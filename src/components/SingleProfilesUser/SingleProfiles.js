@@ -1,5 +1,7 @@
 import React from 'react';
+import PhotoGelary from './PhotoGelary';
 import ProfileCard from "./ProfileCard";
+import UtilitisCard from './UtilitisCard';
 
 const SingleProfiles = () => {
     return (
@@ -8,6 +10,8 @@ const SingleProfiles = () => {
                 <div class="md:col-span-4">
                     <div>
                         <ProfileCard />
+                        <UtilitisCard />
+                        <PhotoGelary />
                     </div>
                 </div>
                 <div class="md:col-span-5">

@@ -17,7 +17,7 @@
     background: linear-gradient(171deg, rgba(233, 11, 200, 0.6979166666666667) 41%, rgba(166, 2, 241, 0.79) 100%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#e90bc8", endColorstr="#ffffff", GradientType=1);
     border-top-left-radius: 10px;
-    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
 }
 
 .card_container .card-img {
