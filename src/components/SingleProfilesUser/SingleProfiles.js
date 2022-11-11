@@ -1,6 +1,7 @@
 import React from 'react';
 import PhotoGelary from './PhotoGelary';
 import ProfileCard from "./ProfileCard";
+import Table from './Table/Table';
 import UtilitisCard from './UtilitisCard';
 
 const SingleProfiles = () => {
@@ -16,7 +17,7 @@ const SingleProfiles = () => {
                 </div>
                 <div class="md:col-span-5">
                     <div>
-                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt cumque magnam veritatis suscipit labore eligendi, minima sequi, iste odit, architecto perspiciatis nemo modi! Debitis iste, possimus enim fuga officiis illum.</p>
+                        <Table />
                     </div>
                 </div>
                 <div class="md:col-span-3">
