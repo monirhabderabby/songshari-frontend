@@ -1,11 +1,16 @@
 import './App.css';
-import Homepage from './Pages/Homepage/Homepage';
+import Index from './route/Index';
+
+//Import Swiper styles
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
 
 function App() {
 
   return (
-    <div className="App">
-    
+    <div>
+      <Index></Index>
     </div>
   );
 }

@@ -1,11 +1,6 @@
 import React from 'react';
 import { Swiper, SwiperSlide } from "swiper/react";
 
-// Import Swiper styles
-import "swiper/css";
-import "swiper/css/pagination";
-import "swiper/css/navigation";
-
 // import required modules
 import { Autoplay, Pagination, Navigation } from "swiper";
 
@@ -17,6 +12,8 @@ import slider4 from '../../assets/Images/Slider/Slider4.jpeg';
 import slider5 from '../../assets/Images/Slider/Slider5.jpeg';
 import slider6 from '../../assets/Images/Slider/Slider6.jpeg';
 import slider7 from '../../assets/Images/Slider/Slider7.jpeg';
+import SwipeMatch from './SwipeMatch';
+import FindPartnerForm from './FindPartnerForm';
 
 const Banner = () => {
 
@@ -27,9 +24,12 @@ const Banner = () => {
                 spaceBetween={30}
                 centeredSlides={true}
                 loop={true}
+                autoplay={
+                    { delay: 3000 }
+                }
                 navigation={true}
                 modules={[Autoplay, Pagination, Navigation]}
-                className="h-[80vh] border-2 border-black"
+                className="h-[90vh]"
             >
                 {
                     sliderImages.map((image, index) => <SwiperSlide key={index}>
@@ -38,6 +38,10 @@ const Banner = () => {
                     )
                 }
             </Swiper>
+            <div className='m-8 h-[60vh] flex justify-around'>
+                <SwipeMatch></SwipeMatch>
+                <FindPartnerForm></FindPartnerForm>
+            </div>
         </div>
     );
 };
