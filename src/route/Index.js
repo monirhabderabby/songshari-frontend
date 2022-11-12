@@ -1,21 +1,20 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Contact from "../components/pages/Contact/Contact";
-import Homepage from "../Pages/Homepage";
-import Notfound from "../Pages/notfound/NotFound";
-import SingleProfile from "../pages/SingleProfile";
+
+// components import 
+import About from "../Wrapper/About/About";
+import Homepage from "../Wrapper/Home/Homepage";
+import SingleProfiles from "../components/SingleProfilesUser/SingleProfiles";
 
 const Index = () => {
     return (
         <div>
             <BrowserRouter>
                 <Routes>
-                    <Route path="/" element={<SingleProfile />}></Route>
-                    <Route path="/contact" element={<Contact />}></Route>
-                    <Route path="/notfound" element={<Notfound />}></Route>
-
-                    <Route path="/" element={<Homepage />}></Route>
-                    <Route path="/singleProfile" element={<SingleProfile />}></Route>
+                    <Route path="/" element={<Homepage></Homepage>}></Route>
+                    <Route path="/about" element={<About></About>}></Route>
+                    <Route path="/userprofile" element={<SingleProfiles></SingleProfiles>}></Route>
+                    
                 </Routes>
             </BrowserRouter>
         </div>
