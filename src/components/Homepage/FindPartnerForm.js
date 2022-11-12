@@ -70,15 +70,17 @@ function FindPartnerForm() {
     //     ));
     // }
     return (
-        <div className="border border-black w-1/4 h-fit">
+        <div className="bg-white w-1/4 h-fit rounded-xl">
             <div
                 id="join-now-box2"
-                className=""
+                className="rounded-xl"
                 data-wow-offset="30"
                 data-wow-delay="0.9s"
             >
-                <div className="border-b">
-                    <p className="text-center py-3">Find Your Partner</p>
+                <div
+                    className="rounded-t-xl"
+                    style={{ backgroundImage: 'linear-gradient(145deg,rgba(81, 27, 231, 1) 0%,rgba(228, 18, 114,1)100%)' }}>
+                    <p className="text-center text-lg font-bold text-white py-3">Find Your Partner</p>
                 </div>
                 <div>
                     <div className="single-option">
@@ -186,10 +188,11 @@ function FindPartnerForm() {
                             </div>
                         </div>
                     </div>
-                    <div className="flex justify-center my-2">
+                    <div className="flex justify-center my-4">
                         <button
                             type="submit"
-                            className="px-6 pt-1 pb-2 bg-orange-500 text-2xl font-bold rounded-lg"
+                            className="px-8 pt-2 pb-3 text-2xl text-white  font-semibold rounded-md tracking-[.25em] shadow-xl shadow-[#0c4ea54d] cursor-pointer"
+                            style={{ backgroundImage: 'linear-gradient(155deg, rgba(228, 18, 114, 1) 0%, #4844a5 100%)' }}
                             onClick={handleSubmit}
                         >
                             JOIN NOW!

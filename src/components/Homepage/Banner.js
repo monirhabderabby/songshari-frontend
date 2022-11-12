@@ -19,7 +19,7 @@ const Banner = () => {
 
     const sliderImages = [slider, slider1, slider2, slider3, slider4, slider5, slider6, slider7];
     return (
-        <div>
+        <div className='relative'>
             <Swiper
                 spaceBetween={30}
                 centeredSlides={true}
@@ -27,9 +27,9 @@ const Banner = () => {
                 autoplay={
                     { delay: 3000 }
                 }
-                navigation={true}
+                // navigation={true}
                 modules={[Autoplay, Pagination, Navigation]}
-                className="h-[90vh]"
+                className="h-[100vh] -z-50"
             >
                 {
                     sliderImages.map((image, index) => <SwiperSlide key={index}>
@@ -38,7 +38,7 @@ const Banner = () => {
                     )
                 }
             </Swiper>
-            <div className='m-8 h-[60vh] flex justify-around'>
+            <div className='absolute top-40 z-50  flex justify-around w-full'>
                 <SwipeMatch></SwipeMatch>
                 <FindPartnerForm></FindPartnerForm>
             </div>

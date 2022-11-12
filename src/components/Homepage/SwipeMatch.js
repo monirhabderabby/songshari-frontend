@@ -8,8 +8,9 @@ import dummyData from './TopProfile/dummyData';
 const SwipeMatch = () => {
     return (
         <div className='w-1/4 h-fit'>
-            <div className='border border-black border-b-0'>
-                <p className='py-3 text-center'>Swipe & Match</p>
+            <div className='rounded-t-xl'
+                style={{ backgroundImage: 'linear-gradient(145deg,rgba(81, 27, 231, 1) 0%,rgba(228, 18, 114,1)100%)' }}>
+                <p className='py-3 text-center text-lg font-bold text-white'>Swipe & Match</p>
             </div>
             <Swiper
                 navigation={true}
@@ -21,7 +22,7 @@ const SwipeMatch = () => {
                         key={data.id}
                         className='relative'
                     >
-                        <img className='w-full ' src={data.img} alt="" />
+                        <img className='w-full rounded-b-xl' src={data.img} alt="" />
                         <div className='absolute bottom-4 left-8 text-white w-4/5'>
                             <p className='mb-2'>{data.name} {data.age}</p>
                             <div className='flex justify-between'>
