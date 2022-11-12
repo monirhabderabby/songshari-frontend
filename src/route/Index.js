@@ -1,22 +1,22 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-// components import 
-import About from "../Wrapper/About/About";
-import Homepage from "../Wrapper/Home/Homepage";
+// components import
+import Contact from "../components/pages/Contact/Contact";
+import NotFound from "../components/pages/notfound/NotFound";
 import SingleProfiles from "../components/SingleProfilesUser/SingleProfiles";
-import MemberShip from "../Wrapper/Membership/MemberShip";
-import FindPartner from "../Wrapper/Findpartner/FindPartner";
-import ProfileInfo from "../Wrapper/Profileinfo/ProfileInfo";
+import Login from "../pages/Login";
+import SignUp from "../pages/SignUp";
+import About from "../Wrapper/About/About";
+import Agent from "../Wrapper/Agent/Agent";
+import Community from "../Wrapper/Community/Community";
 import Course from "../Wrapper/Course/Course";
 import FindAlawyer from "../Wrapper/Findalawyer/FindAlawyer";
+import FindPartner from "../Wrapper/Findpartner/FindPartner";
+import Homepage from "../Wrapper/Home/Homepage";
 import Kazi from "../Wrapper/Kazi/Kazi";
-import Agent from "../Wrapper/Agent/Agent";
-import Login from '../pages/Login';
-import SignUp from '../pages/SignUp';
-import NotFound from '../components/pages/notfound/NotFound'
-import Contact from '../components/pages/Contact/Contact';
-import Community from "../Wrapper/Community/Community";
+import MemberShip from "../Wrapper/Membership/MemberShip";
+import ProfileInfo from "../Wrapper/Profileinfo/ProfileInfo";
 import Shop from "../Wrapper/Shop/Shop";
 import SingleProduct from "../Wrapper/SingleProduct/SingleProduct";
 
@@ -42,7 +42,7 @@ const Index = () => {
                     <Route path="/login" element={<Login />} />
                     <Route path="/signup" element={<SignUp />} />
                     <Route path="/contact" element={<Contact />}></Route>
-                    <Route path="*" element={<NotFound />}></Route>   
+                    <Route path="*" element={<NotFound />}></Route>
                 </Routes>
             </BrowserRouter>
         </div>
