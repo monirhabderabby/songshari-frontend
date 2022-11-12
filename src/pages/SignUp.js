@@ -2,7 +2,7 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import "../../src/assets/css/ragistration.css";
-import ragistrationImg from "../../src/assets/images/gif/couple.gif";
+import ragistrationImg from "../../src/assets/Images/gif/couple.gif";
 
 const SignUp = () => {
     const {
