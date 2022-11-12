@@ -1,22 +1,17 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import './App.css';
-import  Contact  from './components/pages/Contact/Contact';
-import Homepage from './Pages/Homepage/Homepage';
-import Notfound from './Pages/notfound/NotFound';
+import "./App.css";
+import Index from "./route/Index";
 
+//Import Swiper styles
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 
 function App() {
-
-  return (
-    <div className="App">
-  <BrowserRouter>
-                <Routes>
-                  
-                    <Route path="/" element={<Contact />}></Route>
-                </Routes>
-            </BrowserRouter>
-    </div>
-  );
+    return (
+        <div>
+            <Index></Index>
+        </div>
+    );
 }
 
 export default App;
