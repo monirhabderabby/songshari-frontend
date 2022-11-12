@@ -23,7 +23,7 @@ const Button = styled.span`
   font-size: 10px;
   opacity: 0.6;
   transition: opacity 0.25s;
-  right: ${({ type }) => (type === 'prev' ? '5px' : 'initial')};
+  right: ${({ type }) => (type === 'next' ? '5px' : 'initial')};
 
   &:hover {
     opacity: 1;
@@ -39,11 +39,11 @@ const Button = styled.span`
     display: inline-block;
     position: absolute;
     top: 50%;
-    left: 50%;
+    left: 60%;
     transform: ${({ type }) =>
-      type === 'prev'
-        ? 'translate(-25%, -50%) rotate(-135deg)'
-        : 'translate(-75%, -50%) rotate(45deg)'};
+      type === 'next'
+        ? 'translate(-25%, -50%) rotate(135deg)'
+        : 'translate(-75%, -50%) rotate(-135deg)'};
   }
 `
 
