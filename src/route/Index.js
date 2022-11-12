@@ -1,16 +1,12 @@
 import React from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import SingleProfile from '../Pages/SingleProfile';
-import Homepage from '../Pages/Homepage';
+import { BrowserRouter } from 'react-router-dom';
+import App from '../App';
 
 const Index = () => {
     return (
         <div>
             <BrowserRouter>
-                <Routes>
-                    <Route path="/" element={<Homepage />}></Route>
-                    <Route path="/singleProfile" element={<SingleProfile />}></Route>
-                </Routes>
+                <App />
             </BrowserRouter>
         </div>
     );
