@@ -1,13 +1,15 @@
-import './App.css';
-import Homepage from './Pages/Homepage/Homepage';
+import { Route, Routes } from "react-router-dom";
+import SingleProfile from "../src/Pages/SingleProfile.js";
+import "./App.css";
 
 function App() {
-
-  return (
-    <div className="App">
-    
-    </div>
-  );
+    return (
+        <div>
+            <Routes>
+                <Route path="/" element={<SingleProfile />} />
+            </Routes>
+        </div>
+    );
 }
 
 export default App;
