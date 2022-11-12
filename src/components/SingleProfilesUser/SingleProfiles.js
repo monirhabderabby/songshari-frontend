@@ -1,4 +1,5 @@
 import React from 'react';
+import ChartBoard from './chatboard/ChartBoard';
 import PhotoGelary from './PhotoGelary';
 import ProfileCard from "./ProfileCard";
 import Table from './Table/Table';
@@ -22,7 +23,7 @@ const SingleProfiles = () => {
                 </div>
                 <div class="md:col-span-3">
                     <div>
-                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt cumque magnam veritatis suscipit labore eligendi, minima sequi, iste odit, architecto perspiciatis nemo modi! Debitis iste, possimus enim fuga officiis illum.</p>
+                        <ChartBoard />
                     </div>
                 </div>
             </div>
