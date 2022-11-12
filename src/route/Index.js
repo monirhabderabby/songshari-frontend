@@ -9,7 +9,9 @@ const Index = () => {
             <BrowserRouter>
                 <Routes>
                     <Route path="/" element={<SingleProfile />}></Route>
+                    <Route path="/login" element={<Notfound />}></Route>
                     <Route path="/notfound" element={<Notfound />}></Route>
+                    
                 </Routes>
             </BrowserRouter>
         </div>
