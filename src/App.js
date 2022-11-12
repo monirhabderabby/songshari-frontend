@@ -1,15 +1,18 @@
-import { Route, Routes } from "react-router-dom";
-import SingleProfile from "../src/Pages/SingleProfile.js";
-import "./App.css";
+import './App.css';
+import Index from './route/Index';
+
+//Import Swiper styles
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
 
 function App() {
-    return (
-        <div>
-            <Routes>
-                <Route path="/" element={<SingleProfile />} />
-            </Routes>
-        </div>
-    );
+
+  return (
+    <div>
+      <Index></Index>
+    </div>
+  );
 }
 
 export default App;
