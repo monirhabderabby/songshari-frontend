@@ -1,6 +1,7 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
+import "../../src/assets/css/ragistration.css";
 import ragistrationImg from "../../src/assets/images/gif/couple.gif";
 
 const SignUp = () => {
@@ -22,8 +23,8 @@ const SignUp = () => {
                     <img className='rounded-lg' src={ragistrationImg} alt="Ragistration image" />
                 </div>
                 <div>
-                    <div className="relative flex flex-col justify-center min-h-screen overflow-y-scroll">
-                        <div className="w-full p-6 m-auto bg-white rounded-md shadow-md lg:max-w-xl">
+                    <div className="flex flex-col justify-center min-h-screen overflow-y-scroll">
+                        <div className="account-details p-6 m-auto bg-white rounded-md shadow-md lg:max-w-xl">
                             <div className='text-left'>
                                 <h1 className="text-3xl font-semibold text-purple-700">
                                     Shahajan ajency
