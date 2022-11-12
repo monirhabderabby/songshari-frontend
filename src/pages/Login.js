@@ -1,8 +1,8 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
-import loginGif from "../../src/assets/images/gif/teddy.gif";
-import google from "../../src/assets/images/icons/google.svg";
+import loginGif from "../../src/assets/Images/gif/teddy.gif";
+import google from "../../src/assets/Images/icons/google.svg";
 
 const Login = () => {
     const {
