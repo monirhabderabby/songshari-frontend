@@ -1,5 +1,5 @@
 import React from "react";
-import { FaAngleDoubleRight } from "react-icons/fa";
+import { FaAngleDoubleRight, FaDribbble, FaFacebookF, FaInstagram } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import "../../../App.css";
 import "../../../assets/css/footer.css";
@@ -144,6 +144,34 @@ export const Footer = () => {
                     </div>
                 </div>
                 <hr />
+                <div className="h-[80px] w-full flex justify-between items-center">
+                    <div className="text-white text-[16px] tracking-[0.5px] leading-[24px] font-normal font-george">
+                        Copyright © 2021.All Rights Reserved By <span className="text-[#FFCA28]">Shongshari.com </span>
+                    </div>
+                    <div className="flex items-center gap-x-[16px]">
+                        <a
+                            href="https://www.facebook.com/shongsharibd"
+                            target="facebook"
+                            className="h-[50px] w-[50px] flex justify-center items-center bg_Color rounded-full button_shadow"
+                        >
+                            <FaFacebookF className="text-white" />
+                        </a>
+                        <a
+                            href="https://www.instagram.com/shongshari_"
+                            target="instagram"
+                            className="h-[50px] w-[50px] flex justify-center items-center bg_Color rounded-full button_shadow"
+                        >
+                            <FaInstagram className="text-white" />
+                        </a>
+                        <a
+                            href="https://dribbble.com"
+                            target="dribble"
+                            className="h-[50px] w-[50px] flex justify-center items-center bg_Color rounded-full button_shadow"
+                        >
+                            <FaDribbble className="text-white" />
+                        </a>
+                    </div>
+                </div>
             </section>
         </footer>
     );
