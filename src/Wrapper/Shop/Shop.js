@@ -42,7 +42,7 @@ const Shop = () => {
           </div>
         </div>
 
-        {/* shop product start here  */}
+        {/* shop product  card start here  */}
 
         <div className="grid grid-cols-4 py-5 gap-5 ">
           {shopData.map((product) => (
