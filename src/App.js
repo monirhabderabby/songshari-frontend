@@ -1,21 +1,13 @@
-import './App.css';
-import { Route, Routes } from 'react-router-dom';
-
+import Index from "./route/Index";
 //Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import Homepage from './Pages/Homepage';
-import SingleProfile from './Pages/SingleProfile';
 
 function App() {
-
   return (
     <div>
-      <Routes>
-        <Route path="/" element={<Homepage />}></Route>
-        <Route path="/singleProfile" element={<SingleProfile />}></Route>
-      </Routes>
+      <Index></Index>
     </div>
   );
 }

@@ -1,6 +1,6 @@
 import React from 'react';
-import Banner from '../components/Homepage/Banner';
-import ThreeEasySteps from '../components/Homepage/ThreeEasySteps';
+import Banner from '../../components/pages/Home/Banner/Banner';
+import ThreeEasySteps from '../../components/pages/Home/Banner/ThreeEasySteps';
 
 const Homepage = () => {
     return (
