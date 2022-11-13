@@ -1,24 +1,17 @@
 import React, { useState } from "react";
 import { AiFillCheckCircle } from "react-icons/ai";
 import { FaSlidersH } from "react-icons/fa";
-import { IoIosArrowForward } from "react-icons/io";
-import { Link } from "react-router-dom";
+
 import "../../../App.css";
+import { CustomHeader } from "../../shared/CustomHeader/CustomHeader";
 
 export const Members = () => {
     const [value, setValue] = useState("LATEST ACTIVE");
 
     const products = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
     return (
-        <div className="h-[264px] w-full bg-primary">
-            <div className="custom-container flex h-full justify-start items-center">
-                <div>
-                    <h1 className="pb-[15px] text-white text-[50px] leading-[60px] font-bold font-fira">Members</h1>
-                    <div className="flex items-center text-[#ffd0fd] text-[18px]">
-                        <Link to="/">HOME</Link> <IoIosArrowForward /> Members
-                    </div>
-                </div>
-            </div>
+        <div>
+            <CustomHeader title="Members" />
             <div className="custom-container mt-[118px]">
                 <hr />
                 <div className="w-full h-[83px] flex justify-between items-center">
