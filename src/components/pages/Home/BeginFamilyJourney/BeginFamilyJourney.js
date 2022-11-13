@@ -1,11 +1,13 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import './BeginFamilyJourney.css';
+import bgCircle from '../../../../assets/images/HomeImage/circle.png';
+import findImg from '../../../../assets/images/HomeImage/illutration.png';
 
 const BeginFamilyJourney = () => {
     return (
         <div className='pt-8 pb-24 w-4/5 mx-auto'>
-            <div className='border flex'>
-                <div className='border border-black flex-1'>
+            <div className='flex'>
+                <div className='flex-1'>
                     <h6 className='text-[#5650ce] text-2xl font-bold mb-6'>
                         Meet Your Perfect Life Partner!
                     </h6>
@@ -33,8 +35,14 @@ const BeginFamilyJourney = () => {
                         SEEK YOUR PARTNER
                     </button>
                 </div>
-                <div className='border border-black flex-1'>
-
+                <div className='flex-1 relative text-center'>
+                    <div className='flex justify-center items-center'>
+                        <img src={findImg} alt="" />
+                    </div>
+                    <div className='absolute -z-10 top-[-45px] left-[2px]'
+                        style={{ animation: 'scaleAni 5s linear infinite' }}>
+                        <img src={bgCircle} alt="" />
+                    </div>
                 </div>
             </div>
         </div>
