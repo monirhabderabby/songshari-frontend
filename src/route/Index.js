@@ -2,11 +2,11 @@ import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 // components import
+import Login from "../components/pages/Authentications/Login";
+import SignUp from "../components/pages/Authentications/SignUp";
 import Contact from "../components/pages/Contact/Contact";
 import NotFound from "../components/pages/notfound/NotFound";
 import SingleProfiles from "../components/SingleProfilesUser/SingleProfiles";
-import Login from "../pages/Login";
-import SignUp from "../pages/SignUp";
 import About from "../Wrapper/About/About";
 import Agent from "../Wrapper/Agent/Agent";
 import Community from "../Wrapper/Community/Community";

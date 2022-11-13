@@ -1,13 +1,13 @@
-import React from 'react';
-import ChartBoard from './chatboard/ChartBoard';
-import PhotoGelary from './PhotoGelary';
+import React from "react";
+import ChartBoard from "./chatboard/ChartBoard";
+import PhotoGelary from "./PhotoGelary";
 import ProfileCard from "./ProfileCard";
-import Table from './Table/Table';
-import UtilitisCard from './UtilitisCard';
+import Table from "./Table/Table";
+import UtilitisCard from "./UtilitisCard";
 
 const SingleProfiles = () => {
     return (
-        <div className='container mx-auto'>
+        <div className="container mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
                 <div class="md:col-span-4">
                     <div>
@@ -31,4 +31,5 @@ const SingleProfiles = () => {
     );
 };
 
-export default SingleProfiles; <h1>Helo</h1>
+export default SingleProfiles;
+<h1>Helo</h1>;

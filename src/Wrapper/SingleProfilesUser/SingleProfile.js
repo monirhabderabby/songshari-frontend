@@ -1,6 +1,6 @@
 import React from 'react';
-import "../assets/css/singleprofilepage.css";
-import SingleProfiles from '../../SingleProfilesUser/SingleProfiles';
+import "../../assets/css/singleprofilepage.css";
+import SingleProfiles from '../../components/SingleProfilesUser/SingleProfiles';
 
 const SingleProfile = () => {
     return (

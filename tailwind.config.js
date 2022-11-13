@@ -4,7 +4,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        george: ["Outfit", "sans-serif"],
+        george: ['George', 'sans-serif'],
         syne: ["Syne", "sans-serif"],
       },
       colors: {
@@ -18,5 +18,5 @@ module.exports = {
       },
     },
   },
-  plugins: [require("daisyui")],
+  plugins: [],
 };

@@ -26,19 +26,29 @@ const SwipeMatch = () => {
                         <div className='absolute bottom-4 left-8 text-white w-4/5'>
                             <p className='mb-2'>{data.name} {data.age}</p>
                             <div className='flex justify-between'>
-                                <div className='bg-slate-700 p-2 rounded-full'>
+                                <div
+                                    className='border-2 border-[#ff337c] p-2 rounded-full'
+                                    style={{ backgroundImage: 'linear-gradient(155deg, rgba(228, 18, 114, 1) 0%, #4844a5 100%)' }}>
                                     <FaUndo className='text-xl'></FaUndo>
                                 </div>
-                                <div className='bg-slate-700 p-2 rounded-full'>
+                                <div
+                                    className='border-2 border-[#ff337c] p-2 rounded-full'
+                                    style={{ backgroundImage: 'linear-gradient(155deg, rgba(228, 18, 114, 1) 0%, #4844a5 100%)' }}>
                                     <FaTimes className='text-xl'></FaTimes>
                                 </div>
-                                <div className='bg-slate-700 p-2 rounded-full'>
+                                <div
+                                    className='border-2 border-[#ff337c] p-2 rounded-full'
+                                    style={{ backgroundImage: 'linear-gradient(155deg, rgba(228, 18, 114, 1) 0%, #4844a5 100%)' }}>
                                     <FaStar className='text-xl'></FaStar>
                                 </div>
-                                <div className='bg-slate-700 p-2 rounded-full'>
+                                <div
+                                    className='border-2 border-[#ff337c] p-2 rounded-full'
+                                    style={{ backgroundImage: 'linear-gradient(155deg, rgba(228, 18, 114, 1) 0%, #4844a5 100%)' }}>
                                     <FaHeart className='text-xl'></FaHeart>
                                 </div>
-                                <div className='bg-slate-700 p-2 rounded-full'>
+                                <div
+                                    className='border-2 border-[#ff337c] p-2 rounded-full'
+                                    style={{ backgroundImage: 'linear-gradient(155deg, rgba(228, 18, 114, 1) 0%, #4844a5 100%)' }}>
                                     <FaBolt className='text-xl'></FaBolt>
                                 </div>
                             </div>
