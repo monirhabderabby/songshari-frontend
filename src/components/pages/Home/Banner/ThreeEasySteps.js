@@ -8,7 +8,7 @@ const ThreeEasySteps = () => {
             >
                 <div className='flex items-center'>
                     <div className='flex-[35%] pr-16'>
-                        <p className='text-3xl font-bold'>3 Easy Steps</p>
+                        <p className='text-3xl font-bold'>3 EASY STEPS</p>
                         <hr className='w-8 h-1 rounded-sm'
                             style={{ backgroundImage: 'linear-gradient(145deg, #5d38b1f7 0%, #951f1f 100%)' }} />
                         <p className='text-xl whitespace-nowrap'>To Start a Serious Relationship</p>
