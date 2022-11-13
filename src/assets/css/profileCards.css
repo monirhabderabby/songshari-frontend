@@ -22,4 +22,5 @@
 
 .card_container .card-img {
     border: 8px solid white;
+    border-radius: 50%;
 }

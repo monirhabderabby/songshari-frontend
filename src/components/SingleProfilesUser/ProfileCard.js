@@ -8,9 +8,8 @@ const ProfileCard = () => {
                 <div className="Card-header"></div>
                 <div className="relative w-52 h-52 rounded-full">
                     <div className="bottom-20 left-24 absolute">
-                        <div className="relative card-img w-48 h-48 rounded-full">
+                        <div className="relative card-img w-48 h-48">
                             <img className="w-44 h-44 rounded-full img-fluid" src="https://cdn-icons-png.flaticon.com/512/194/194938.png" alt="" />
-                            <span class="bottom-10 left-40 absolute  w-3.5 h-3.5 bg-green-400 border-2 border-white dark:border-gray-800 rounded-full"></span>
                         </div>
                     </div>
                 </div>
