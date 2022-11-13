@@ -6,7 +6,6 @@ import Login from "../components/pages/Authentications/Login";
 import SignUp from "../components/pages/Authentications/SignUp";
 import Contact from "../components/pages/Contact/Contact";
 import NotFound from "../components/pages/notfound/NotFound";
-import SingleProfiles from "../components/SingleProfilesUser/SingleProfiles";
 import About from "../Wrapper/About/About";
 import Agent from "../Wrapper/Agent/Agent";
 import Community from "../Wrapper/Community/Community";
@@ -19,6 +18,7 @@ import MemberShip from "../Wrapper/Membership/MemberShip";
 import ProfileInfo from "../Wrapper/Profileinfo/ProfileInfo";
 import Shop from "../Wrapper/Shop/Shop";
 import SingleProduct from "../Wrapper/SingleProduct/SingleProduct";
+import SingleProfile from "../Wrapper/SingleProfilesUser/SingleProfile";
 
 const Index = () => {
     return (
@@ -27,7 +27,7 @@ const Index = () => {
                 <Routes>
                     <Route path="/" element={<Homepage></Homepage>}></Route>
                     <Route path="/about" element={<About></About>}></Route>
-                    <Route path="/userprofile" element={<SingleProfiles></SingleProfiles>}></Route>
+                    <Route path="/userprofile" element={<SingleProfile />}></Route>
                     <Route path="/membership" element={<MemberShip></MemberShip>}></Route>
                     <Route path="/findpartner" element={<FindPartner></FindPartner>}></Route>
                     <Route path="/profileinfo" element={<ProfileInfo></ProfileInfo>}></Route>
