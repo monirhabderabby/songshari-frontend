@@ -1,19 +1,31 @@
+<<<<<<< HEAD
 import React from 'react';
+=======
+import React from "react";
+>>>>>>> main
 import "../../assets/css/profileCards.css";
 
 const ProfileCard = () => {
     return (
         <div>
+<<<<<<< HEAD
             <div className='card_container'>
                 <div className='Card-header'></div>
                 <div className='relative w-52 h-52 rounded-full'>
                     <div className='bottom-20 left-24 absolute'>
+=======
+            <div className="card_container">
+                <div className="Card-header"></div>
+                <div className="relative w-52 h-52 rounded-full">
+                    <div className="bottom-20 left-24 absolute">
+>>>>>>> main
                         <div className="relative card-img w-48 h-48 rounded-full">
                             <img className="w-44 h-44 rounded-full img-fluid" src="https://cdn-icons-png.flaticon.com/512/194/194938.png" alt="" />
                             <span class="bottom-10 left-40 absolute  w-3.5 h-3.5 bg-green-400 border-2 border-white dark:border-gray-800 rounded-full"></span>
                         </div>
                     </div>
                 </div>
+<<<<<<< HEAD
                 <div className='text-center -mt-10'>
                     <h2>Partho bepary</h2>
                     <div className='flex justify-center  my-2'>
@@ -33,11 +45,61 @@ const ProfileCard = () => {
                         <div className='flex items-center'>
                             <svg color='red' xmlns="http://www.w3.org/2000/svg" fill="" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-10 h-10">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
+=======
+                <div className="text-center -mt-10">
+                    <h2>Partho bepary</h2>
+                    <div className="flex justify-center  my-2">
+                        <h3 className="mr-4">21 years old | </h3>
+                        <div className="flex">
+                            <h3>
+                                <svg
+                                    color="pink"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke-width="1.5"
+                                    stroke="currentColor"
+                                    class="w-6 h-6"
+                                >
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"
+                                    />
+                                </svg>
+                            </h3>
+                            <h3 className="ml-2">Dhaka</h3>
+                        </div>
+                    </div>
+                </div>
+                <div className="flex items-center justify-around mt-5">
+                    <div className="w-16 h-16 flex items-center justify-center rounded-full bg-pink-100">
+                        <div className="flex items-center">
+                            <svg
+                                color="red"
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill=""
+                                viewBox="0 0 24 24"
+                                stroke-width="1.5"
+                                stroke="currentColor"
+                                class="w-10 h-10"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"
+                                />
+>>>>>>> main
                             </svg>
                         </div>
                     </div>
                     <div>
+<<<<<<< HEAD
                         <button className='w-52 bg-pink-500  py-2'>Send me Money</button>
+=======
+                        <button className="w-52 bg-pink-500  py-2">Send me Money</button>
+>>>>>>> main
                     </div>
                 </div>
             </div>
@@ -45,4 +107,8 @@ const ProfileCard = () => {
     );
 };
 
+<<<<<<< HEAD
 export default ProfileCard; <h1>carts</h1>
+=======
+export default ProfileCard;
+>>>>>>> main

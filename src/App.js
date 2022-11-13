@@ -1,4 +1,3 @@
-import "./App.css";
 import Index from "./route/Index";
 
 //Import Swiper styles

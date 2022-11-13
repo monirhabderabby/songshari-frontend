@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .bg-contact{
     background-image: url("https://wpocean.com/html/tf/love-love/assets/images/page-title.jpg");
    background-repeat: no-repeat;
@@ -8,4 +9,16 @@
 .font-location{
     color: #939580;
  
+=======
+.bg-contact {
+    background-image: url("https://wpocean.com/html/tf/love-love/assets/images/page-title.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 60vh;
+}
+
+.font-location {
+    color: #939580;
+
+>>>>>>> main
 }
