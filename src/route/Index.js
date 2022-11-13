@@ -7,6 +7,7 @@ import SignUp from "../components/pages/Authentications/SignUp";
 import Contact from "../components/pages/Contact/Contact";
 import { Members } from "../components/pages/Members/Members";
 import NotFound from "../components/pages/notfound/NotFound";
+import { Footer } from "../components/shared/Footer/Footer";
 import About from "../Wrapper/About/About";
 import Agent from "../Wrapper/Agent/Agent";
 import Community from "../Wrapper/Community/Community";
@@ -46,6 +47,7 @@ const Index = () => {
                     <Route path="/members" element={<Members />}></Route>
                     <Route path="*" element={<NotFound />}></Route>
                 </Routes>
+                <Footer />
             </BrowserRouter>
         </div>
     );

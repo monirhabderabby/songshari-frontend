@@ -1,7 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
-import loginGif from "../../../assets/images/gif/teddy.gif";
+import loginGif from "../../../assets/images/gif/2022-login.gif";
 import google from "../../../assets/images/icons/google.svg";
 import MeetCard from "../../CardComopents/MeetCard";
 
@@ -18,7 +18,7 @@ const Login = () => {
         reset();
     };
     return (
-        <div className="bg-gray-100 ">
+        <div className=" ">
             <div className="grid grid-cols-2 justify-center items-center container mx-auto">
                 <div style={{ width: "100%" }}>
                     <img style={{ width: "90%" }} className="rounded-md" src={loginGif} alt="login image" />

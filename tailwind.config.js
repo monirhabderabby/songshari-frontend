@@ -18,6 +18,9 @@ module.exports = {
                 info: "#b3d4fc",
                 white: "#ffffff",
             },
+            boxShadow: {
+                pagination_Shadow: "0px 15px 30px 0px rgb(119 123 146 / 20%)",
+            },
         },
     },
     plugins: [],

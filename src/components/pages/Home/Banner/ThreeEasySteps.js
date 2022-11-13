@@ -32,7 +32,7 @@ const ThreeEasySteps = () => {
                     <div className='flex-[15%]'>
                         <button
                             type="submit"
-                            className="px-4 pt-2 pb-3 text-2xl text-white  font-semibold rounded-md tracking-[.25em] shadow-xl shadow-[#0c4ea54d] cursor-pointer whitespace-nowrap"
+                            className="px-4 pt-2 pb-1 text-2xl text-white  font-semibold rounded-md tracking-[.25em] shadow-xl shadow-[#0c4ea54d] cursor-pointer whitespace-nowrap"
                             style={{ backgroundImage: 'linear-gradient(155deg, rgba(228, 18, 114, 1) 0%, #4844a5 100%)' }}
                         >
                             JOIN NOW!
