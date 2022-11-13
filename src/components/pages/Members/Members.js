@@ -25,6 +25,7 @@ export const Members = () => {
                         Order By:{" "}
                         <select
                             name="orderBy"
+                            value={value}
                             onChange={e => setValue(e.target.orderBy.value)}
                             className="outline-none button_shadow py-[6px] px-[20px] rounded-full"
                         >
