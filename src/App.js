@@ -1,4 +1,5 @@
 import Index from "./route/Index";
+
 //Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";

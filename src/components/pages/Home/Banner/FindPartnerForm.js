@@ -191,7 +191,7 @@ function FindPartnerForm() {
                     <div className="flex justify-center my-4">
                         <button
                             type="submit"
-                            className="px-8 pt-2 pb-3 text-2xl text-white  font-semibold rounded-md tracking-[.25em] shadow-xl shadow-[#0c4ea54d] cursor-pointer"
+                            className="px-8 pt-2 pb-1 text-2xl text-white  font-semibold rounded-md tracking-[.25em] shadow-xl shadow-[#0c4ea54d] cursor-pointer"
                             style={{ backgroundImage: 'linear-gradient(155deg, rgba(228, 18, 114, 1) 0%, #4844a5 100%)' }}
                             onClick={handleSubmit}
                         >
