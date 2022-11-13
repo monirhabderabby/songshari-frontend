@@ -2,18 +2,6 @@ import React from 'react';
 import "../../assets/css/weadingcard.css";
 
 const WeadingCards = () => {
-    /*   const inlineStyle = (pctFill) => {
-          return (
-              {
-                  backgroundColor: 'yellow',
-                  backgroundImage: 'linear-gradient(45deg, #f3ec78, #af4261)',
-                  webkitBackgroundClip: 'text',
-                  webkitTextFillColor: 'transparent',
-                  mozBackgroundClip: 'text',
-                  mozTextFillColor: 'transparent'
-              }
-          )
-      } */
     return (
         <div>
             <div>

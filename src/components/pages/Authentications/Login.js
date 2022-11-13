@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import loginGif from "../../../assets/images/gif/teddy.gif";
 import google from "../../../assets/images/icons/google.svg";
+import MeetCard from "../../CardComopents/MeetCard";
 
 const Login = () => {
     const {
@@ -85,6 +86,11 @@ const Login = () => {
                             </p>
                         </div>
                     </div>
+                </div>
+            </div>
+            <div>
+                <div className="my-5">
+                    <MeetCard />
                 </div>
             </div>
         </div>
