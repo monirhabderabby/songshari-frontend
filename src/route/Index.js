@@ -9,6 +9,9 @@ import SignUp from "../components/pages/Authentications/SignUp";
 import Contact from "../components/pages/Contact/Contact";
 import { Members } from "../components/pages/Members/Members";
 import NotFound from "../components/pages/notfound/NotFound";
+import Suggested from "../components/pages/TopProfile/Suggested";
+import TopBride from "../components/pages/TopProfile/TopBride";
+import TopGroom from "../components/pages/TopProfile/TopGroom";
 import { Footer } from "../components/shared/Footer/Footer";
 import About from "../Wrapper/About/About";
 import Agent from "../Wrapper/Agent/Agent";
@@ -30,8 +33,6 @@ const Index = () => {
         <div>
             <BrowserRouter>
                 <Routes>
-                    
-                    <Route path="/" element={<Homepage></Homepage>}></Route>
                     <Route path="/about" element={<About></About>}></Route>
                     <Route path="/userprofile" element={<SingleProfile />}></Route>
                     <Route path="/membership" element={<MemberShip></MemberShip>}></Route>
@@ -52,8 +53,12 @@ const Index = () => {
                     <Route path="/loginAsProfessional" element={<LoginAsProfessional />} />
                     <Route path="/contact" element={<Contact />}></Route>
                     <Route path="/members" element={<Members />}></Route>
+                    <Route path="/" element={<Homepage></Homepage>}>
+                        <Route path="/" element={<Suggested />} />
+                        <Route path="/top-gride" element={<TopBride />} />
+                        <Route path="/top-groom" element={<TopGroom />} />
+                    </Route>
                     <Route path="*" element={<NotFound />}></Route>
-
                 </Routes>
                 <Footer />
             </BrowserRouter>
