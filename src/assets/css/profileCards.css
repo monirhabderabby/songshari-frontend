@@ -2,9 +2,7 @@
     height: 500px;
     width: 100%;
     background-color: #fff;
-    box-shadow: -1px 6px 5px 4px rgba(0, 0, 0, 0.75);
-    -webkit-box-shadow: -1px 6px 5px 4px rgba(0, 0, 0, 0.75);
-    -moz-box-shadow: -1px 6px 5px 4px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 10px 5px 0px rgb(119 123 146 / 2%);
     border-radius: 10px;
 }
 
@@ -15,6 +13,8 @@
     background: -moz-linear-gradient(171deg, rgba(233, 11, 200, 0.6979166666666667) 41%, rgba(166, 2, 241, 0.79) 100%);
     background: -webkit-linear-gradient(171deg, rgba(233, 11, 200, 0.6979166666666667) 41%, rgba(166, 2, 241, 0.79) 100%);
     background: linear-gradient(171deg, rgba(233, 11, 200, 0.6979166666666667) 41%, rgba(166, 2, 241, 0.79) 100%);
+    background-image: url("https://pixner.net/peyamba/peyamba/assets/images/profile/profile-box-bg.png");
+    background-size: cover;
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#e90bc8", endColorstr="#ffffff", GradientType=1);
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
@@ -22,4 +22,12 @@
 
 .card_container .card-img {
     border: 8px solid white;
+}
+
+.special_profile_button {
+    background-image: linear-gradient(-51deg, rgb(246, 100, 188) 0%, rgb(251, 123, 188) 35%, rgb(255, 146, 187) 100%);
+    color: white;
+    box-shadow: 0px 5px 20px 0px rgb(139 122 132 / 50%);
+    padding: 5px 15px;
+    border-radius: 50px;
 }

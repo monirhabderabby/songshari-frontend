@@ -1,11 +1,10 @@
 .notification-bar {
-    height: 80px;
+    height: 60px;
     width: 100%;
     background-color: #fff;
-    box-shadow: -1px 6px 5px 4px rgba(0, 0, 0, 0.75);
-    -webkit-box-shadow: -1px 6px 5px 4px rgba(0, 0, 0, 0.75);
-    -moz-box-shadow: -1px 6px 5px 4px rgba(0, 0, 0, 0.75);
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     border-radius: 10px;
+    margin-bottom: 20px;
 }
 
 .table-bar {

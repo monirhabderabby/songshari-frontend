@@ -1,92 +1,131 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import { FaFacebookF, FaGoogle, FaRegEnvelope } from "react-icons/fa";
+import { MdLockOutline } from "react-icons/md";
 import { Link } from "react-router-dom";
-import loginGif from "../../../assets/images/gif/teddy.gif";
-import google from "../../../assets/images/icons/google.svg";
+import "../../../App.css";
 
 const Login = () => {
     const {
         register,
-        handleSubmit,
-        reset,
         formState: { errors },
+        handleSubmit,
     } = useForm();
 
-    const onSubmit = data => {
-        console.log(data);
-        reset();
-    };
+    const onSubmit = async data => {};
     return (
-        <div className="bg-gray-100 ">
-            <div className="grid grid-cols-2 justify-center items-center container mx-auto">
-                <div style={{ width: "100%" }}>
-                    <img style={{ width: "90%" }} className="rounded-md" src={loginGif} alt="login image" />
-                </div>
-                <div>
-                    <div className="relative flex flex-col justify-center min-h-screen overflow-hidden">
-                        <div className="w-full p-6 m-auto bg-white rounded-md shadow-md lg:max-w-xl">
-                            <h1 className="text-3xl font-semibold text-center text-purple-700 underline">Sign in</h1>
-                            <form onSubmit={handleSubmit(onSubmit)} className="mt-6">
-                                <div className="mb-2">
-                                    <label for="email" className="text-start pl-2 block text-sm font-semibold text-gray-800">
-                                        Email
-                                    </label>
-                                    <input
-                                        {...register("email", { required: true })}
-                                        type="email"
-                                        className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
-                                    />
-                                    {errors.email && <p className="text-red-500">Email is required.</p>}
-                                </div>
-                                <div className="mb-2">
-                                    <label for="password" className="text-start pl-2 block text-sm font-semibold text-gray-800">
-                                        Password
-                                    </label>
-                                    <input
-                                        {...register("password", { required: true })}
-                                        type="password"
-                                        className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
-                                    />
-                                    {errors.password && <p className="text-red-500">password is required.</p>}
-                                </div>
-                                <a href="#" className="text-xs text-purple-600 hover:underline">
-                                    Forget Password?
-                                </a>
-
-                                <div className="mt-6">
-                                    <input
-                                        className="cursor-pointer  w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-purple-700 rounded-md hover:bg-purple-600 focus:outline-none focus:bg-purple-600"
-                                        type="submit"
-                                        value="Login"
-                                    />
-                                </div>
-                            </form>
-                            <div class="relative flex py-5 items-center">
-                                <div class="flex-grow border-t border-gray-400"></div>
-                                <span class="flex-shrink mx-4 text-gray-400">Or</span>
-                                <div class="flex-grow border-t border-gray-400"></div>
-                            </div>
-                            <div className="mt-2">
-                                <p className="mb-4">Sign up with your email</p>
-                                <div className=" w-full flex justify-center">
-                                    <button className="flex items-center justify-center cursor-pointer w-3/4 px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-pink-500 rounded-full hover:bg-pink-600 focus:outline-none focus:bg-pink-600">
-                                        <img style={{ width: "40px" }} src={google} alt="google logo" />
-                                        <p className="pl-4"> Login form google</p>
-                                    </button>
-                                </div>
-                            </div>
-
-                            <p className="mt-8 text-xs font-light text-center text-gray-700">
-                                {" "}
-                                Don't have an account?{" "}
-                                <Link to="/signup" className="font-medium text-purple-600 hover:underline">
-                                    Sign up
-                                </Link>
-                            </p>
+        <div>
+            <section className="flex justify-center items-center w-full px-3 flex-1 text-center md:px-20 bg-gray-100 min-h-screen">
+                <div className="bg-white rounded-2xl shadow-2xl md:flex w-[100%] md:w-3/4 lg:w-2/3 max-w-4xl">
+                    <div className="w-full lg:w-3/5 p-5">
+                        <div className="text-left font-bold">
+                            <span className="gradient_text font-george">Songshari.com</span>
                         </div>
-                    </div>
+                        <div className="py-10">
+                            <h2 className="text-3xl font-bold gradient_text">Member Login</h2>
+                            <div className="border-2 w-10 border-primary inline-block"></div>
+                            <div className="flex justify-center items-center my-2">
+                                <p className="border-2 cursor-pointer border-gray-200 rounded-full p-3 mx-1 hover:bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] hover:text-white duration-400 transition-all">
+                                    <FaFacebookF className="text-sm" />
+                                </p>
+                                <p className="border-2 cursor-pointer border-gray-200 rounded-full p-3 mx-1 hover:bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] hover:text-white duration-400 transition-all">
+                                    <FaGoogle className="text-sm" />
+                                </p>
+                            </div>{" "}
+                            {/* Social Login section */}
+                            <p className="text-gray-400 my-3">or use your email account</p>
+                            <div>
+                                <form className="w-64 mx-auto" onSubmit={handleSubmit(onSubmit)}>
+                                    <section>
+                                        <div className="flex items-center bg-gray-100 p-2 w-full rounded-xl">
+                                            <FaRegEnvelope className=" m-2 text-gray-400" />
+                                            <input
+                                                {...register("email", {
+                                                    required: {
+                                                        value: true,
+                                                        message: "Email is required",
+                                                    },
+                                                    pattern: {
+                                                        value: /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/,
+                                                        message: "Provide a Valid Email",
+                                                    },
+                                                })}
+                                                type="email"
+                                                placeholder="Email"
+                                                className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
+                                                id="email"
+                                            />
+                                        </div>
+                                        <h1 className="text-left ml-2">
+                                            {errors.email?.type === "required" && (
+                                                <span className="w-full text-left text-red-400 text-sm">{errors?.email.message}</span>
+                                            )}
+                                            {errors.email?.type === "pattern" && (
+                                                <span className="w-full text-left text-red-400 text-sm">{errors?.email.message}</span>
+                                            )}
+                                        </h1>
+                                    </section>
+                                    <section>
+                                        <div className="flex items-center bg-gray-100 p-2 w-full rounded-xl mt-3">
+                                            <MdLockOutline className=" m-2 text-gray-400" />
+                                            <input
+                                                {...register("password", {
+                                                    minLength: {
+                                                        value: 6,
+                                                        message: "password should be minimum 8 characters",
+                                                    },
+                                                    required: {
+                                                        value: true,
+                                                        message: "Password is Required",
+                                                    },
+                                                })}
+                                                type="password"
+                                                placeholder="Password"
+                                                className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
+                                                id="password"
+                                            />
+                                        </div>
+                                        <h1 className="text-left ml-2">
+                                            {errors.password?.type === "required" && (
+                                                <span className="w-full text-left text-red-400 text-sm">{errors?.password.message}</span>
+                                            )}
+                                            {errors.password?.type === "minLength" && (
+                                                <span className="w-full text-left text-red-400 text-sm">{errors?.password.message}</span>
+                                            )}
+                                        </h1>
+                                    </section>
+                                    <div></div>
+                                    <input
+                                        type="submit"
+                                        value="LOGIN"
+                                        className="border-2 cursor-pointer mt-3 border-primary hover:border-0 rounded-full px-12 py-2 hover:bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] hover:text-white duration-500 transition-all"
+                                    />
+                                </form>
+                                <p className="mt-3">
+                                    Login as professional{" "}
+                                    <Link to="/loginAsProfessional" className="gradient_text font-bold">
+                                        LOGIN
+                                    </Link>{" "}
+                                </p>
+                            </div>
+                            {/*Input Field*/}
+                        </div>
+                    </div>{" "}
+                    {/*Sign up section */}
+                    <div className="hidden md:block bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] lg:w-2/5 p-5 text-white rounded-tr-2xl rounded-br-2xl md:py-36 md:px-4 lg:px-12">
+                        <h2 className="font-bold text-3xl mb-2">Hello, Friend!</h2>
+                        <div className="border-2 w-10 border-white inline-block"></div>
+                        <p className="mb-4">Fill up your information and start journey with us</p>
+                        <Link
+                            to="/signup"
+                            className="border-2 border-white rounded-full md:px-3 lg:px-12 py-2 hover:bg-white hover:text-primary duration-500 transition-all"
+                        >
+                            Sign Up
+                        </Link>
+                    </div>{" "}
+                    {/*Sign up section */}
                 </div>
-            </div>
+            </section>
         </div>
     );
 };
