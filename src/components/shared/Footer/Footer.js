@@ -1,8 +1,11 @@
 import React from "react";
-import { FaAngleDoubleRight, FaDribbble, FaFacebookF, FaInstagram } from "react-icons/fa";
+import { FaAngleDoubleRight, FaDribbble, FaFacebookF, FaInstagram, FaTelegramPlane } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import "../../../App.css";
 import "../../../assets/css/footer.css";
+import icon from './../../../assets/images/footer/icon.png'
+import flower from './../../../assets/images/footer/flower01.png'
+import rightShape from './../../../assets/images/footer/right-shape.png'
 
 export const Footer = () => {
     const links = {
@@ -76,16 +79,41 @@ export const Footer = () => {
         ],
     };
     return (
-        <footer>
+        <footer className="footer-section">
+            <div>
+            <img className="shape2" src={flower} alt="" />
+            <img className="shape3" src={rightShape} alt="" />
+            </div>
             <div className="waves">
                 <div className="wave" id="wave1"></div>
                 <div className="wave" id="wave2"></div>
                 <div className="wave" id="wave3"></div>
                 <div className="wave" id="wave4"></div>
             </div>
-            <section className="custom-container">
-                <div className="newsLetter"></div>
-                <hr />
+            <div className="newslater-section">
+  <div className="container">
+    <div className="flex flex-wrap  justify-center">
+      <div className="lg:w-1/2 pr-4 pl-4 md:w-2/3">
+        <div className="newslater-container">
+          <div className="newslater-wrapper">
+            <div className="icon">
+              <img src={icon} alt="" />
+            </div>
+            <p className="text">Sign up to receive a monthly email on the latest news!</p>
+            <form className="newslater-form">
+              <input type="text" placeholder="Your Email Address" />
+              <button type="submit"> 
+                <FaTelegramPlane />
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+                <hr className="hr" />
                 <div className="grid grid-cols-2 md:grid-cols-4 my-[86px]">
                     <div className="mx-auto">
                         <h1 className="text-white mb-[9px] font-medium tracking-[1.5px] font-george text-[24px]">OUR INFORMATION</h1>
@@ -93,7 +121,7 @@ export const Footer = () => {
                             return (
                                 <Link
                                     to={link.to}
-                                    className="flex items-center mb-[21px] text-[16px] text-gray-400 hover:text-white hover:translate-x-3 transition-[0.3s]"
+                                    className="flex items-center mb-[21px] text-[16px] text-white hover:text-blue-600 hover:translate-x-3 transition-[0.3s]"
                                 >
                                     <span className="mr-1">
                                         <FaAngleDoubleRight />
@@ -109,8 +137,11 @@ export const Footer = () => {
                             return (
                                 <Link
                                     to={link.to}
-                                    className="flex items-center mb-[21px] text-[16px] text-gray-400 hover:text-white hover:translate-x-3 transition-[0.3s]"
+                                    className="flex items-center mb-[21px] text-[16px] text-white hover:text-blue-600 hover:translate-x-3 transition-[0.3s]"
                                 >
+                                    <span className="mr-1">
+                                        <FaAngleDoubleRight />
+                                    </span>
                                     {link.name}
                                 </Link>
                             );
@@ -122,8 +153,11 @@ export const Footer = () => {
                             return (
                                 <Link
                                     to={link.to}
-                                    className="flex items-center mb-[21px] text-[16px] text-gray-400 hover:text-white hover:translate-x-3 transition-[0.3s]"
+                                    className="flex items-center mb-[21px] text-[16px] text-white hover:text-blue-600 hover:translate-x-3 transition-[0.3s]"
                                 >
+                                    <span className="mr-1">
+                                        <FaAngleDoubleRight />
+                                    </span>
                                     {link.name}
                                 </Link>
                             );
@@ -135,8 +169,11 @@ export const Footer = () => {
                             return (
                                 <Link
                                     to={link.to}
-                                    className="flex items-center mb-[21px] text-[16px] text-gray-400 hover:text-white hover:translate-x-3 transition-[0.3s]"
+                                    className="flex items-center mb-[21px] text-[16px] text-white hover:text-blue-600 hover:translate-x-3 transition-[0.3s]"
                                 >
+                                    <span className="mr-1">
+                                        <FaAngleDoubleRight />
+                                    </span>
                                     {link.name}
                                 </Link>
                             );
@@ -172,7 +209,6 @@ export const Footer = () => {
                         </a>
                     </div>
                 </div>
-            </section>
         </footer>
     );
 };
