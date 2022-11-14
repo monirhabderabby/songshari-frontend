@@ -8,7 +8,7 @@ import NavBar from "../../components/shared/Navbar/NavBar";
 const Homepage = () => {
     return (
         <div className="font-george">
-            <NavBar className={"sticky top-0"}></NavBar>
+            <NavBar></NavBar>
             <Banner></Banner>
             <div>
                 <ThreeEasySteps></ThreeEasySteps>

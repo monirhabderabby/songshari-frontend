@@ -1,5 +1,5 @@
 import React from "react";
-import "../../../assets/css/navbar.css";
+import NavBarCSS from "../../../assets/css/navbar.module.css";
 import { Link, NavLink } from "react-router-dom";
 import blackLogo from "../../../assets/images/Logo/logoBlack.png";
 import blog from "../../../assets/images/NavIcons/Blog.svg";
@@ -26,7 +26,7 @@ const NavBar = () => {
     ];
 
     return (
-        <div className="h-32 bg-white z-50">
+        <div className="h-32 bg-white sticky top-0 z-50 shadow-md" >
             <div className="grid grid-cols-5 w-5/6 mx-auto">
                 <div className="col-span-1 mt-7 mr-6 ">
                     <Link to={"/"}>
@@ -37,12 +37,12 @@ const NavBar = () => {
                     <ul className="flex justify-start gap-2 w-11/12 h-32">
                         {allMenu.map(menu => (
                             <li key={menu.id}>
-                                <NavLink to={menu.to} className={({ isActive }) => (isActive ? "" : "has-tooltip")}>
+                                <NavLink to={menu.to} className={({ isActive }) => (isActive ? "" : `${NavBarCSS.hasTooltip}`)}>
                                     <div className="flex flex-col items-center">
                                         <img className="hover:rotate-[360deg] duration-[2000ms] w-[60px] h-[85px]" src={menu.icon} alt="" />
-                                        <span className="tooltip z-50 h-[15px] w-[15px] mt-[70px] ml-[14px]"
+                                        <span className={`${NavBarCSS.tooltip} z-50 h-[15px] w-[15px] mt-[70px] ml-[14px]`}
                                             style={{ transform: 'translateX(-50%) rotate(45deg)', backgroundImage: 'linear-gradient( 103deg, rgba(228, 18, 114, 1) 0%, #4844a5 100%)' }}></span>
-                                        <span className='tooltip z-50 rounded-[40px] shadow-lg px-3 py-1 text-white text-xs whitespace-nowrap uppercase mt-20'
+                                        <span className={`${NavBarCSS.tooltip} z-50 rounded-[40px] shadow-lg px-3 py-1 text-white text-xs whitespace-nowrap uppercase mt-20`}
                                             style={{ backgroundImage: 'linear-gradient(155deg, rgba(228, 18, 114, 1) 0%, #4844a5 100%)' }}>
                                             {menu.tooltip}
                                         </span>
@@ -54,12 +54,12 @@ const NavBar = () => {
                 </div>
                 <div className="col-span-1">
                     <ul className={'flex justify-end items-center gap-6 h-32'}>
-                        <li className="has-tooltip">
+                        <li className={`${NavBarCSS.hasTooltip}`}>
                             <div className="flex flex-col items-center">
                                 <img className="w-14" src={register} alt="img" />
-                                <span className="tooltip z-50 h-[15px] w-[15px] mt-14 ml-[14px]"
+                                <span className={`${NavBarCSS.tooltip} z-50 h-[15px] w-[15px] mt-14 ml-[14px]`}
                                     style={{ transform: 'translateX(-50%) rotate(45deg)', backgroundImage: 'linear-gradient( 103deg, rgba(228, 18, 114, 1) 0%, #4844a5 100%)' }}></span>
-                                <span className='tooltip rounded-xl z-50 shadow-lg px-3 py-1 text-white text-xs font-bold whitespace-nowrap uppercase mt-[66px]'
+                                <span className={`${NavBarCSS.tooltip} rounded-xl z-50 shadow-lg px-3 py-1 text-white text-xs font-bold whitespace-nowrap uppercase mt-[66px]`}
                                     style={{ backgroundImage: 'linear-gradient(155deg, rgba(228, 18, 114, 1) 0%, #4844a5 100%)' }}>
                                     <div className="flex flex-col z-50">
                                         <Link className="text-center my-1" to="/login">login</Link>
@@ -70,13 +70,13 @@ const NavBar = () => {
                             </div>
                         </li>
                         <li className="">
-                            <Link to="/cart" className="has-tooltip">
+                            <Link to="/cart" className={`${NavBarCSS.hasTooltip}`}>
                                 <div className="flex flex-col items-center">
                                     <img src={cart} className="w-8" alt="" />
                                     <span className="absolute top-10 right-16 text-white px-[6px] py-[2px] text-xs font-bold bg-[#dc3545] rounded" >0</span>
-                                    <span className="tooltip z-50 h-[15px] w-[15px] mt-10 ml-[14px]"
+                                    <span className={`${NavBarCSS.tooltip} z-50 h-[15px] w-[15px] mt-10 ml-[14px]`}
                                         style={{ transform: 'translateX(-50%) rotate(45deg)', backgroundImage: 'linear-gradient( 103deg, rgba(228, 18, 114, 1) 0%, #4844a5 100%)' }}></span>
-                                    <span className='tooltip z-50 rounded-[40px] shadow-lg px-3 py-1 text-white text-xs whitespace-nowrap uppercase mt-[50px]'
+                                    <span className={`${NavBarCSS.tooltip} z-50 rounded-[40px] shadow-lg px-3 py-1 text-white text-xs whitespace-nowrap uppercase mt-[50px]`}
                                         style={{ backgroundImage: 'linear-gradient(155deg, rgba(228, 18, 114, 1) 0%, #4844a5 100%)' }}>
                                         Cart
                                     </span>

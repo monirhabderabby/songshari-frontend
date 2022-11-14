@@ -3,6 +3,6 @@
     position: absolute;
 }
 
-.has-tooltip:hover .tooltip {
+.hasTooltip:hover .tooltip {
     visibility: visible;
 }
