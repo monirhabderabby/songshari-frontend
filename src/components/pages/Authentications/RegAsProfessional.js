@@ -9,7 +9,7 @@ import { v4 as uuidv4 } from "uuid";
 import "../../../App.css";
 import { firebaseStorage } from "../../../firebase.init";
 
-const Signup = () => {
+const RegAsProfessional = () => {
     const [photoUploading, setPhotoUploading] = useState(false);
     const [photoUrl, setPhotoUrl] = useState("");
     const {
@@ -46,7 +46,7 @@ const Signup = () => {
                             <span className="gradient_text font-george">Songshari.com</span>
                         </div>
                         <div className="py-10">
-                            <h2 className="text-3xl font-bold gradient_text">Member Registration</h2>
+                            <h2 className="text-3xl font-bold gradient_text">Professional Registration</h2>
                             <div className="border-2 w-10 border-primary inline-block"></div>
                             <div className="flex justify-center items-center my-2">
                                 <p className="border-2 cursor-pointer border-gray-200 rounded-full p-3 mx-1 hover:bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] hover:text-white duration-400 transition-all">
@@ -278,8 +278,8 @@ const Signup = () => {
                                     </div>
                                 </form>
                                 <p className="mt-3">
-                                    Register as professional{" "}
-                                    <Link to="/regAsProfessional" className="gradient_text font-bold">
+                                    Register as member{" "}
+                                    <Link to="/signup" className="gradient_text font-bold">
                                         REGISTER
                                     </Link>{" "}
                                 </p>
@@ -293,7 +293,7 @@ const Signup = () => {
                         <div className="border-2 w-10 border-white inline-block"></div>
                         <p className="mb-4">If you have already an account </p>
                         <Link
-                            to="/login"
+                            to="/loginAsProfessional"
                             className="border-2 border-white rounded-full md:px-3 lg:px-12 py-2 hover:bg-white hover:text-primary duration-500 transition-all"
                         >
                             LOGIN
@@ -306,4 +306,4 @@ const Signup = () => {
     );
 };
 
-export default Signup;
+export default RegAsProfessional;

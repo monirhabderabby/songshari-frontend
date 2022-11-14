@@ -8,20 +8,20 @@ import NavBar from "../../components/pages/Shared/NavBar";
 import TopProfile from "../../components/pages/TopProfile/TopProfile";
 
 const Homepage = () => {
-  return (
-    <div className="font-george">
-      <NavBar></NavBar>
-      <Banner></Banner>
+    return (
+        <div className="font-george">
+            <NavBar></NavBar>
+            <Banner></Banner>
 
-      <div>
-        <ThreeEasySteps></ThreeEasySteps>
-      </div>
-      <SecureVerified></SecureVerified>
-      <BeginFamilyJourney></BeginFamilyJourney>
-      <TopProfile />
-      <PeopleJoinedAlready />
-    </div>
-  );
+            <div>
+                <ThreeEasySteps></ThreeEasySteps>
+            </div>
+            <SecureVerified></SecureVerified>
+            <BeginFamilyJourney></BeginFamilyJourney>
+            <TopProfile />
+            <PeopleJoinedAlready />
+        </div>
+    );
 };
 
 export default Homepage;

@@ -1,28 +1,28 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
+import "../../../App.css";
 import "../../../assets/css/table.css";
-import Title from "../Title/Title";
+import { Friends } from "../FriendsSection/Friends";
+import { Profile } from "../profileSection/Profile";
 
 const Table = () => {
-    const [tables, setTables] = useState([]);
-    useEffect(() => {
-        fetch("json/tableData.json")
-            .then(res => res.json())
-            .then(data => {
-                setTables(data);
-            });
-    }, []);
+    const [page, setPage] = useState(2);
     return (
         <div>
             <div className="pt-5">
                 <div className="notification-bar">
                     <div class="flex justify-center items-center gap-4">
-                        <button class="mt-4 font-medium leading-tight text-gray-800">Active</button>
-                        <button class="mt-4 font-medium leading-tight text-gray-800">Notify</button>
-                        <button class="mt-4 font-medium leading-tight text-gray-800">
-                            Example
-                            <span class="inline-block px-1 leading-none text-center whitespace-nowrap align-baseline font-bold bg-pink-600 text-white rounded">
-                                1
-                            </span>
+                        <button class="mt-4 font-medium leading-tight text-gray-800">Activity</button>
+                        <button
+                            class={`mt-4 font-medium leading-tight ${page === 2 ? "text-primary font-bold" : "text-gray-800"}`}
+                            onClick={() => setPage(2)}
+                        >
+                            Profile
+                        </button>
+                        <button
+                            class={`mt-4 font-medium leading-tight ${page === 3 ? "text-primary font-bold" : "text-gray-800"}`}
+                            onClick={() => setPage(3)}
+                        >
+                            Friends <sup className="text-white bg_Color p-1 rounded-full text-[10px]">1</sup>
                         </button>
                         <button class="mt-4 font-medium leading-tight text-gray-800">
                             heading
@@ -40,62 +40,8 @@ const Table = () => {
                 </div>
             </div>
             {/* table 1 */}
-            <div className="my-6 py-6 table-bar px-8">
-                <div>
-                    <Title titleText="This is first Table"></Title>
-                </div>
-                {tables.map(t => {
-                    return (
-                        <div className="">
-                            <div className="flex justify-between custom-design">
-                                <h1>{t.name}</h1>
-                                <h1>{t.title}</h1>
-                            </div>
-                        </div>
-                    );
-                })}
-            </div>
-            <div class="w-full mt-10 bg-white px-4 py-6 rounded-lg shadow ">
-                <Title titleText="Myself Summary"></Title>
-                <div class="">
-                    <div class="text-left">
-                        <p>
-                            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptate blanditiis cum amet corrupti! Repellendus veritatis
-                            dicta reiciendis eligendi, vero ea nemo. Adipisci tenetur quis neque assumenda a libero maiores eaque?
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div className="my-6 py-6 table-bar px-8">
-                <div>
-                    <Title titleText="This is third Table"></Title>
-                </div>
-                {tables.map(t => {
-                    return (
-                        <div className="">
-                            <div className="flex justify-between custom-design">
-                                <h1>{t.name}</h1>
-                                <h1>{t.title}</h1>
-                            </div>
-                        </div>
-                    );
-                })}
-            </div>
-            <div className="my-6 py-6 table-bar px-8">
-                <div>
-                    <Title titleText="This is second Table"></Title>
-                </div>
-                {tables.map(t => {
-                    return (
-                        <div className="">
-                            <div className="flex justify-between custom-design">
-                                <h1>{t.name}</h1>
-                                <h1>{t.title}</h1>
-                            </div>
-                        </div>
-                    );
-                })}
-            </div>
+            {page === 2 && <Profile />}
+            {page === 3 && <Friends />}
         </div>
     );
 };

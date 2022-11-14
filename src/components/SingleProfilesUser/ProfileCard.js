@@ -62,7 +62,7 @@ const ProfileCard = () => {
                         </div>
                     </div>
                     <div>
-                        <button className="w-52 bg-pink-500  py-2">Send me Money</button>
+                        <button className="special_profile_button">Send me Money</button>
                     </div>
                 </div>
             </div>
