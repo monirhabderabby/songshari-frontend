@@ -4,23 +4,23 @@ import "../../assets/css/profileCards.css";
 const ProfileCard = () => {
     return (
         <div>
-            <div className="card_container">
+            <div className="card_container shadow">
                 <div className="Card-header"></div>
                 <div className="relative w-52 h-52 rounded-full">
                     <div className="bottom-20 left-24 absolute">
                         <div className="relative card-img w-48 h-48">
-                            <img className="w-44 h-44 rounded-full img-fluid" src="https://cdn-icons-png.flaticon.com/512/194/194938.png" alt="" />
+                            <img className="w-44 bg-pink-300 h-44 rounded-full img-fluid" src="https://cdn-icons-png.flaticon.com/512/194/194938.png" alt="" />
                         </div>
                     </div>
                 </div>
                 <div className="text-center -mt-10">
-                    <h2>Partho bepary</h2>
+                    <h2 className="text-2xl font-semibold">Partho bepary</h2>
                     <div className="flex justify-center  my-2">
                         <h3 className="mr-4">21 years old | </h3>
                         <div className="flex">
                             <h3>
                                 <svg
-                                    color="pink"
+                                    color="#FF1D8E"
                                     xmlns="http://www.w3.org/2000/svg"
                                     fill="none"
                                     viewBox="0 0 24 24"
@@ -44,9 +44,9 @@ const ProfileCard = () => {
                     <div className="w-16 h-16 flex items-center justify-center rounded-full bg-pink-100">
                         <div className="flex items-center">
                             <svg
-                                color="red"
+                                color="#FF1D8E"
                                 xmlns="http://www.w3.org/2000/svg"
-                                fill=""
+                                fill="white"
                                 viewBox="0 0 24 24"
                                 stroke-width="1.5"
                                 stroke="currentColor"
@@ -61,7 +61,7 @@ const ProfileCard = () => {
                         </div>
                     </div>
                     <div>
-                        <button className="w-52 bg-pink-500  py-2">Send me Money</button>
+                        <button className="Profile-btn">Get preimum</button>
                     </div>
                 </div>
             </div>

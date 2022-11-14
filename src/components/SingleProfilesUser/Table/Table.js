@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import "../../../assets/css/table.css";
-import Title from "../Title/Title";
 
 const Table = () => {
     const [tables, setTables] = useState([]);
@@ -20,19 +19,19 @@ const Table = () => {
                         <button class="mt-4 font-medium leading-tight text-gray-800">Notify</button>
                         <button class="mt-4 font-medium leading-tight text-gray-800">
                             Example
-                            <span class="inline-block px-1 leading-none text-center whitespace-nowrap align-baseline font-bold bg-pink-600 text-white rounded">
+                            <span class="inline-block px-1 leading-none text-center whitespace-nowrap align-baseline font-bold notification-badge text-white rounded">
                                 1
                             </span>
                         </button>
                         <button class="mt-4 font-medium leading-tight text-gray-800">
                             heading
-                            <span class="inline-block px-1 leading-none text-center whitespace-nowrap align-baseline font-bold bg-pink-600 text-white rounded">
+                            <span class="inline-block px-1 leading-none text-center whitespace-nowrap align-baseline font-bold notification-badge text-white rounded">
                                 1
                             </span>
                         </button>
                         <button class="mt-4 font-medium leading-tight text-gray-800">
                             Message
-                            <span class="inline-block px-1 leading-none text-center whitespace-nowrap align-baseline font-bold bg-pink-600 text-white rounded">
+                            <span class="inline-block px-1 leading-none text-center whitespace-nowrap align-baseline font-bold notification-badge text-white rounded">
                                 1
                             </span>
                         </button>
@@ -40,13 +39,14 @@ const Table = () => {
                 </div>
             </div>
             {/* table 1 */}
-            <div className="my-6 py-6 table-bar px-8">
-                <div>
-                    <Title titleText="This is first Table"></Title>
+            <div className="my-6 py-6 table-bar px-8 shadow">
+                <div className="py-2">
+                    <h1 className="text-3xl font-semibold pb-2">Base</h1>
+                    <hr />
                 </div>
-                {tables.map(t => {
+                {tables.map((t, i) => {
                     return (
-                        <div className="">
+                        <div key={i} className="">
                             <div className="flex justify-between custom-design">
                                 <h1>{t.name}</h1>
                                 <h1>{t.title}</h1>
@@ -55,8 +55,11 @@ const Table = () => {
                     );
                 })}
             </div>
-            <div class="w-full mt-10 bg-white px-4 py-6 rounded-lg shadow ">
-                <Title titleText="Myself Summary"></Title>
+            <div class="w-full mt-10 px-4 py-6 rounded-lg shadow ">
+                <div className="py-2">
+                    <h1 className="text-3xl font-semibold pb-2">Myself summary</h1>
+                    <hr />
+                </div>
                 <div class="">
                     <div class="text-left">
                         <p>
@@ -66,13 +69,14 @@ const Table = () => {
                     </div>
                 </div>
             </div>
-            <div className="my-6 py-6 table-bar px-8">
-                <div>
-                    <Title titleText="This is third Table"></Title>
+            <div className="my-6 py-6 table-bar px-8 shadow">
+                <div className="py-2">
+                    <h1 className="text-3xl font-semibold pb-2">Lifestyle</h1>
+                    <hr />
                 </div>
-                {tables.map(t => {
+                {tables.map((t, i) => {
                     return (
-                        <div className="">
+                        <div key={i} className="">
                             <div className="flex justify-between custom-design">
                                 <h1>{t.name}</h1>
                                 <h1>{t.title}</h1>
@@ -81,13 +85,14 @@ const Table = () => {
                     );
                 })}
             </div>
-            <div className="my-6 py-6 table-bar px-8">
-                <div>
-                    <Title titleText="This is second Table"></Title>
+            <div className="my-6 py-6 table-bar px-8 shadow">
+                <div className="py-2">
+                    <h1 className="text-3xl font-semibold pb-2">Physical</h1>
+                    <hr />
                 </div>
-                {tables.map(t => {
+                {tables.map((t, i) => {
                     return (
-                        <div className="">
+                        <div key={i} className="">
                             <div className="flex justify-between custom-design">
                                 <h1>{t.name}</h1>
                                 <h1>{t.title}</h1>

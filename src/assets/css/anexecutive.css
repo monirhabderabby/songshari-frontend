@@ -1,0 +1,32 @@
+.section-body {
+    height: 80vh;
+}
+
+.section-img-container {
+    min-height: 500px;
+    background: linear-gradient(0deg, rgba(230, 5, 218, 0.548), rgba(232, 15, 240, 0.096)), url('../images/executiveimg.jpeg');
+    background-size: cover;
+    filter: brightness(80%);
+    border-radius: 10px;
+    width: 90%;
+}
+
+.rounded-img {
+    width: 80px;
+    height: 80px;
+    border-radius: 40px;
+}
+
+.free-btn {
+    background-image: linear-gradient(166deg, rgb(242, 40, 118) 0%, rgb(148, 45, 217) 100%);
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 7px solid rgb(255, 35, 164);
+    color: white;
+}
