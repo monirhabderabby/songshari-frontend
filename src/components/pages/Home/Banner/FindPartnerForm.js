@@ -1,4 +1,4 @@
-import { useMemo, useReducer } from "react";
+import { useReducer } from "react";
 // import { useDispatch, useSelector } from "react-redux";
 // import { useNavigate } from "react-router-dom";
 // import { cityFunction } from "../../../redux/actions/ProfileAction";
@@ -15,30 +15,27 @@ function FindPartnerForm() {
     //     dispatch(cityFunction());
     // }, [dispatch]);
 
-    const [state, setState] = useReducer(
-        (state, newState) => ({ ...state, ...newState }),
-        {
-            minAgeValues: [18, 22, 26, 30, 34],
-            maxAgeValues: [38, 42, 46, 50, 54, 58],
-            min_age: "",
-            max_age: "",
-            gender: "",
-            city_id: "",
-        }
-    );
+    const [state, setState] = useReducer((state, newState) => ({ ...state, ...newState }), {
+        minAgeValues: [18, 22, 26, 30, 34],
+        maxAgeValues: [38, 42, 46, 50, 54, 58],
+        min_age: "",
+        max_age: "",
+        gender: "",
+        city_id: "",
+    });
 
-    let minAges = state.minAgeValues.map((m) => (
+    let minAges = state.minAgeValues.map(m => (
         <option key={m + 10} value={m}>
             {m}
         </option>
     ));
-    let maxAges = state.maxAgeValues.map((m) => (
+    let maxAges = state.maxAgeValues.map(m => (
         <option key={m + 10} value={m}>
             {m}
         </option>
     ));
 
-    const inputChange = (e) => {
+    const inputChange = e => {
         let name = e.target.name;
         let value = e.target.value;
         setState({ [name]: value });
@@ -52,9 +49,7 @@ function FindPartnerForm() {
         //         gender: state.gender,
         //         city_id: state.city_id,
         //     };
-
         //     setSearchedData(data);
-
         //     navigate("/partner/searched");
         // } else {
         //     navigate("/login");
@@ -71,15 +66,8 @@ function FindPartnerForm() {
     // }
     return (
         <div className="bg-white w-1/4 h-fit rounded-xl">
-            <div
-                id="join-now-box2"
-                className="rounded-xl"
-                data-wow-offset="30"
-                data-wow-delay="0.9s"
-            >
-                <div
-                    className="rounded-t-xl"
-                    style={{ backgroundImage: 'linear-gradient(145deg,rgba(81, 27, 231, 1) 0%,rgba(228, 18, 114,1)100%)' }}>
+            <div id="join-now-box2" className="rounded-xl" data-wow-offset="30" data-wow-delay="0.9s">
+                <div className="rounded-t-xl" style={{ backgroundImage: "linear-gradient(145deg,rgba(81, 27, 231, 1) 0%,rgba(228, 18, 114,1)100%)" }}>
                     <p className="text-center text-lg font-bold text-white py-3">Find Your Partner</p>
                 </div>
                 <div>
@@ -115,23 +103,11 @@ function FindPartnerForm() {
                         <p className="title">Seeking a</p>
                         <div className="flex">
                             <div className="s-input mr-2">
-                                <input
-                                    type="radio"
-                                    name="gender"
-                                    id="males"
-                                    onChange={inputChange}
-                                    value={1}
-                                />
+                                <input type="radio" name="gender" id="males" onChange={inputChange} value={1} />
                                 <label htmlFor="males">Man</label>
                             </div>
                             <div className="s-input">
-                                <input
-                                    type="radio"
-                                    name="gender"
-                                    id="females"
-                                    onChange={inputChange}
-                                    value={2}
-                                />
+                                <input type="radio" name="gender" id="females" onChange={inputChange} value={2} />
                                 <label htmlFor="females">Woman</label>
                             </div>
                         </div>
@@ -139,11 +115,7 @@ function FindPartnerForm() {
                     <div id="single-option2" className="px-4 flex justify-between py-2 border-b">
                         <p className="title">Religion</p>
                         <div className="border rounded-full px-2">
-                            <select
-                                className="select-bar nice-select"
-                                name="religion"
-                                onChange={inputChange}
-                            >
+                            <select className="select-bar nice-select" name="religion" onChange={inputChange}>
                                 <option value={1}>Muslim</option>
                                 <option value={2}>Hindu</option>
                                 <option value={3}>Christian</option>
@@ -154,21 +126,13 @@ function FindPartnerForm() {
                         <p className="title">Ages</p>
                         <div className="flex">
                             <div className="border rounded-full px-2">
-                                <select
-                                    className="select-bar nice-select"
-                                    name="min_age"
-                                    onChange={inputChange}
-                                >
+                                <select className="select-bar nice-select" name="min_age" onChange={inputChange}>
                                     {minAges}
                                 </select>
                             </div>
                             <div className="mx-2">-</div>
                             <div className="border rounded-full px-2">
-                                <select
-                                    className="select-bar nice-select"
-                                    name="max_age"
-                                    onChange={inputChange}
-                                >
+                                <select className="select-bar nice-select" name="max_age" onChange={inputChange}>
                                     {maxAges}
                                 </select>
                             </div>
@@ -178,10 +142,7 @@ function FindPartnerForm() {
                         <p className="title">City</p>
                         <div className="option">
                             <div className="border rounded-full px-2">
-                                <select
-                                    name="city_id"
-                                    onChange={inputChange}
-                                >
+                                <select name="city_id" onChange={inputChange}>
                                     {/* {cityVal} */}
                                     City
                                 </select>
@@ -192,7 +153,7 @@ function FindPartnerForm() {
                         <button
                             type="submit"
                             className="px-8 pt-2 pb-1 text-2xl text-white  font-semibold rounded-md tracking-[.25em] shadow-xl shadow-[#0c4ea54d] cursor-pointer"
-                            style={{ backgroundImage: 'linear-gradient(155deg, rgba(228, 18, 114, 1) 0%, #4844a5 100%)' }}
+                            style={{ backgroundImage: "linear-gradient(155deg, rgba(228, 18, 114, 1) 0%, #4844a5 100%)" }}
                             onClick={handleSubmit}
                         >
                             JOIN NOW!

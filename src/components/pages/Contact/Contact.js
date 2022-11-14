@@ -1,8 +1,6 @@
 import React from "react";
-import { useForm } from "react-hook-form";
 import "./Contact.css";
 const Contact = () => {
-    const { register } = useForm();
     return (
         <div>
             <div className="bg-contact">
