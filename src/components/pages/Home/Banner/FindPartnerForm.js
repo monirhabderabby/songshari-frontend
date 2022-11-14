@@ -64,18 +64,33 @@ function FindPartnerForm() {
     //         </option>
     //     ));
     // }
+
+    const formLabel = (text) => {
+        return <div>
+            <p className="text-lg font-bold leading-5">{text}</p>
+            <hr className='w-8 h-1 rounded-sm'
+                style={{ backgroundImage: 'linear-gradient(145deg, #5d38b1f7 0%, #951f1f 100%)' }}
+            />
+        </div>
+    };
+
     return (
         <div className="bg-white w-1/4 h-fit rounded-xl">
             <div id="join-now-box2" className="rounded-xl" data-wow-offset="30" data-wow-delay="0.9s">
-                <div className="rounded-t-xl" style={{ backgroundImage: "linear-gradient(145deg,rgba(81, 27, 231, 1) 0%,rgba(228, 18, 114,1)100%)" }}>
-                    <p className="text-center text-lg font-bold text-white py-3">Find Your Partner</p>
+                <div className="rounded-t-xl pb-3 flex justify-center" style={{ backgroundImage: "linear-gradient(145deg,rgba(81, 27, 231, 1) 0%,rgba(228, 18, 114,1)100%)" }}>
+                    <div className="">
+                        <p className="text-lg font-bold text-white pt-3">Find Your Partner</p>
+                        <hr className='w-8 h-1 rounded-sm border-none'
+                            style={{ backgroundImage: 'linear-gradient(145deg, #5d38b1f7 0%, #951f1f 100%)' }}
+                        />
+                    </div>
                 </div>
                 <div>
                     <div className="single-option">
                         <div className="px-4 flex justify-between py-2 border-b">
-                            <p className="">Looking For</p>
+                            {formLabel('Looking For')}
                             <div className="border rounded-full px-2">
-                                <select className="nice-select select-bar">
+                                <select>
                                     <option value="">Myself</option>
                                     <option value="">My Brother</option>
                                     <option value="">My Son</option>
@@ -87,7 +102,7 @@ function FindPartnerForm() {
                         </div>
                     </div>
                     <div id="single-option2" className="px-4 flex justify-between py-2 border-b">
-                        <p className="title">I am a</p>
+                        {formLabel('I am a')}
                         <div className="flex">
                             <div className="s-input mr-2">
                                 <input type="radio" name="" id="male2" />
@@ -100,7 +115,7 @@ function FindPartnerForm() {
                         </div>
                     </div>
                     <div id="single-option2" className="px-4 flex justify-between py-2 border-b">
-                        <p className="title">Seeking a</p>
+                        {formLabel('Seeking a')}
                         <div className="flex">
                             <div className="s-input mr-2">
                                 <input type="radio" name="gender" id="males" onChange={inputChange} value={1} />
@@ -113,9 +128,9 @@ function FindPartnerForm() {
                         </div>
                     </div>
                     <div id="single-option2" className="px-4 flex justify-between py-2 border-b">
-                        <p className="title">Religion</p>
+                        {formLabel('Religion')}
                         <div className="border rounded-full px-2">
-                            <select className="select-bar nice-select" name="religion" onChange={inputChange}>
+                            <select name="religion" onChange={inputChange}>
                                 <option value={1}>Muslim</option>
                                 <option value={2}>Hindu</option>
                                 <option value={3}>Christian</option>
@@ -123,23 +138,23 @@ function FindPartnerForm() {
                         </div>
                     </div>
                     <div id="single-option2" className="px-4 flex justify-between py-2 border-b">
-                        <p className="title">Ages</p>
+                        {formLabel('Ages')}
                         <div className="flex">
                             <div className="border rounded-full px-2">
-                                <select className="select-bar nice-select" name="min_age" onChange={inputChange}>
+                                <select name="min_age" onChange={inputChange}>
                                     {minAges}
                                 </select>
                             </div>
                             <div className="mx-2">-</div>
                             <div className="border rounded-full px-2">
-                                <select className="select-bar nice-select" name="max_age" onChange={inputChange}>
+                                <select name="max_age" onChange={inputChange}>
                                     {maxAges}
                                 </select>
                             </div>
                         </div>
                     </div>
                     <div id="single-option2" className="px-4 flex justify-between py-2 border-b">
-                        <p className="title">City</p>
+                        {formLabel('City')}
                         <div className="option">
                             <div className="border rounded-full px-2">
                                 <select name="city_id" onChange={inputChange}>
