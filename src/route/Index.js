@@ -27,6 +27,7 @@ const Index = () => {
         <div>
             <BrowserRouter>
                 <Routes>
+                    
                     <Route path="/" element={<Homepage></Homepage>}></Route>
                     <Route path="/about" element={<About></About>}></Route>
                     <Route path="/userprofile" element={<SingleProfiles></SingleProfiles>}></Route>
@@ -46,6 +47,7 @@ const Index = () => {
                     <Route path="/signup" element={<SignUp />} />
                     <Route path="/contact" element={<Contact />}></Route>
                     <Route path="*" element={<NotFound />}></Route>
+
                 </Routes>
             </BrowserRouter>
         </div>

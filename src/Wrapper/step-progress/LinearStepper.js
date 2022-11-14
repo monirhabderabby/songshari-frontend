@@ -17,10 +17,12 @@ const useStyles = makeStyles((theme) => ({
 
 function getSteps() {
   return [
-    "Basic information",
-    "Contact Information",
-    "Personal Information",
-    "Payment",
+    "Personal information",
+    "Professional information",
+    "Educational information",
+    "Physical information",
+    "Others information",
+    
   ];
 }
 
@@ -29,32 +31,63 @@ function getStepContent(step) {
     case 0:
       return (
         <>
+        <label className="text-lg font-bold ml-4">Upload Profile Photo</label>
+        <br></br>
           <TextField
-            id="first-name"
-            label="First Name"
+            id="profile"
+            type='file'
+            className="w-2/3"
             variant="outlined"
             placeholder="Enter Your First Name"
-            fullWidth
+            name="profile"
+          />
+          <br></br>
+          <br></br>
+          <label className="text-lg font-bold ml-4">Upload Cover Photo</label>
+          <br></br>
+          <TextField
+            id="cover"
+             type='file'
+            variant="outlined"
+            className="w-2/3"
             margin="normal"
-            name="firstName"
+            name="cover"
+          />
+<br></br>
+          <TextField
+            id="first-name"
+             type='text'
+             placeholder='Enter First Name'
+            variant="outlined"
+            placeholder="Enter Your First Name"
+            className="w-2/3"
+            margin="normal"
+            name="firstname"
           />
           <TextField
             id="last-name"
-            label="Last Name"
+             type='text'
             variant="outlined"
             placeholder="Enter Your Last Name"
-            fullWidth
+            className="w-2/3"
             margin="normal"
-            name="lastName"
+            name="lastname"
           />
           <TextField
-            id="nick-name"
-            label="Nick Name"
+            id="phone"
             variant="outlined"
-            placeholder="Enter Your Nick Name"
-            fullWidth
+            placeholder="Enter Your Phone No"
+            className="w-2/3"
             margin="normal"
-            name="nickName"
+            name="phone"
+          />
+          <TextField
+            id="email"
+            variant="outlined"
+            placeholder="Enter Your Email"
+            className="w-2/3"
+            margin="normal"
+            name="email"
           />
         </>
       );
@@ -203,7 +236,7 @@ const LinaerStepper = () => {
                 align="center"
                 style={{ display: "block" }}
               >
-                optional
+                
               </Typography>
             );
           }
@@ -232,7 +265,7 @@ const LinaerStepper = () => {
           >
             back
           </Button>
-          {isStepOptional(activeStep) && (
+           
             <Button
               className={classes.button}
               variant="contained"
@@ -241,7 +274,7 @@ const LinaerStepper = () => {
             >
               skip
             </Button>
-          )}
+          
           <Button
             className={classes.button}
             variant="contained"
