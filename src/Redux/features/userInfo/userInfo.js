@@ -2,7 +2,6 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     token: "",
-    userDetails: [],
 };
 
 const userInfoSlice = createSlice({
