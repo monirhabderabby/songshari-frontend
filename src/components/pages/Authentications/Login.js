@@ -1,6 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
+import "../../../App.css";
 import loginGif from "../../../assets/images/gif/2022-login.gif";
 import google from "../../../assets/images/icons/google.svg";
 
@@ -20,7 +21,7 @@ const Login = () => {
         <div className=" ">
             <div className="grid grid-cols-2 justify-center items-center container mx-auto">
                 <div style={{ width: "100%" }}>
-                    <img style={{ width: "90%" }} className="rounded-md" src={loginGif} alt="login image" />
+                    <img style={{ width: "90%" }} className="rounded-md" src={loginGif} alt="login" />
                 </div>
                 <div>
                     <div className="relative flex flex-col justify-center min-h-screen overflow-hidden">
@@ -49,13 +50,13 @@ const Login = () => {
                                     />
                                     {errors.password && <p className="text-red-500">password is required.</p>}
                                 </div>
-                                <a href="#" className="text-xs text-purple-600 hover:underline">
+                                <Link to="/" className="text-xs text-purple-600 hover:underline">
                                     Forget Password?
-                                </a>
+                                </Link>
 
                                 <div className="mt-6">
                                     <input
-                                        className="cursor-pointer  w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-purple-700 rounded-md hover:bg-purple-600 focus:outline-none focus:bg-purple-600"
+                                        className="cursor-pointer  w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-purple-700 rounded-md bg_Color focus:bg-purple-600"
                                         type="submit"
                                         value="Login"
                                     />
@@ -69,9 +70,9 @@ const Login = () => {
                             <div className="mt-2">
                                 <p className="mb-4">Sign up with your email</p>
                                 <div className=" w-full flex justify-center">
-                                    <button className="flex items-center justify-center cursor-pointer w-3/4 px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-pink-500 rounded-full hover:bg-pink-600 focus:outline-none focus:bg-pink-600">
+                                    <button className="flex items-center justify-center cursor-pointer w-3/4 px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg_Color rounded-full hover:bg-pink-600 focus:outline-none focus:bg-pink-600">
                                         <img style={{ width: "40px" }} src={google} alt="google logo" />
-                                        <p className="pl-4"> Login form google</p>
+                                        <p className="pl-4"> Login with Google</p>
                                     </button>
                                 </div>
                             </div>
