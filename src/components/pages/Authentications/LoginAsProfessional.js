@@ -5,7 +5,7 @@ import { MdLockOutline } from "react-icons/md";
 import { Link } from "react-router-dom";
 import "../../../App.css";
 
-const Login = () => {
+const LoginAsProfessional = () => {
     const {
         register,
         formState: { errors },
@@ -22,7 +22,7 @@ const Login = () => {
                             <span className="gradient_text font-george">Songshari.com</span>
                         </div>
                         <div className="py-10">
-                            <h2 className="text-3xl font-bold gradient_text">Member Login</h2>
+                            <h2 className="text-3xl font-bold gradient_text">Professional Login</h2>
                             <div className="border-2 w-10 border-primary inline-block"></div>
                             <div className="flex justify-center items-center my-2">
                                 <p className="border-2 cursor-pointer border-gray-200 rounded-full p-3 mx-1 hover:bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] hover:text-white duration-400 transition-all">
@@ -102,8 +102,8 @@ const Login = () => {
                                     />
                                 </form>
                                 <p className="mt-3">
-                                    Login as professional{" "}
-                                    <Link to="/loginAsProfessional" className="gradient_text font-bold">
+                                    Login as member{" "}
+                                    <Link to="/login" className="gradient_text font-bold">
                                         LOGIN
                                     </Link>{" "}
                                 </p>
@@ -117,7 +117,7 @@ const Login = () => {
                         <div className="border-2 w-10 border-white inline-block"></div>
                         <p className="mb-4">Fill up your information and start journey with us</p>
                         <Link
-                            to="/signup"
+                            to="/regAsProfessional"
                             className="border-2 border-white rounded-full md:px-3 lg:px-12 py-2 hover:bg-white hover:text-primary duration-500 transition-all"
                         >
                             Sign Up
@@ -130,4 +130,4 @@ const Login = () => {
     );
 };
 
-export default Login;
+export default LoginAsProfessional;

@@ -3,6 +3,8 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 // components import
 import Login from "../components/pages/Authentications/Login";
+import LoginAsProfessional from "../components/pages/Authentications/LoginAsProfessional";
+import RegAsProfessional from "../components/pages/Authentications/RegAsProfessional";
 import SignUp from "../components/pages/Authentications/SignUp";
 import Contact from "../components/pages/Contact/Contact";
 import { Members } from "../components/pages/Members/Members";
@@ -43,6 +45,8 @@ const Index = () => {
                     <Route path="/singleproduct" element={<SingleProduct></SingleProduct>}></Route>
                     <Route path="/login" element={<Login />} />
                     <Route path="/signup" element={<SignUp />} />
+                    <Route path="/regAsProfessional" element={<RegAsProfessional />} />
+                    <Route path="/loginAsProfessional" element={<LoginAsProfessional />} />
                     <Route path="/contact" element={<Contact />}></Route>
                     <Route path="/members" element={<Members />}></Route>
                     <Route path="*" element={<NotFound />}></Route>

@@ -3,14 +3,15 @@ import React from 'react';
 const ThreeEasySteps = () => {
     return (
         <div className='relative w-4/5 mx-auto'>
-            <div className='absolute bottom-[-75px] z-50 py-5 px-10 w-full rounded-full bg-white'
+            <div className='absolute bottom-[-75px] z-10 py-5 px-10 w-full rounded-full bg-white'
                 style={{ boxShadow: '0px 10px 30px 0px rgb(38 14 116 / 40%)' }}
             >
                 <div className='flex items-center'>
                     <div className='flex-[35%] pr-16'>
                         <p className='text-3xl font-bold'>3 EASY STEPS</p>
                         <hr className='w-8 h-1 rounded-sm'
-                            style={{ backgroundImage: 'linear-gradient(145deg, #5d38b1f7 0%, #951f1f 100%)' }} />
+                            style={{ backgroundImage: 'linear-gradient(145deg, #5d38b1f7 0%, #951f1f 100%)' }}
+                        />
                         <p className='text-xl whitespace-nowrap'>To Start a Serious Relationship</p>
                     </div>
                     <div className='flex-[50%]'>
