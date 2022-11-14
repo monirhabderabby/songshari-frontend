@@ -61,7 +61,8 @@ const ProfileCard = () => {
                         </div>
                     </div>
                     <div>
-                        <button className="Profile-btn">Get preimum</button>
+
+                        <button className="special_profile_button">Send me Money</button>
                     </div>
                 </div>
             </div>
