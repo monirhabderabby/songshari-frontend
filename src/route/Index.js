@@ -19,7 +19,8 @@ import MemberShip from "../Wrapper/Membership/MemberShip";
 import ProfileInfo from "../Wrapper/Profileinfo/ProfileInfo";
 import Shop from "../Wrapper/Shop/Shop";
 import SingleProduct from "../Wrapper/SingleProduct/SingleProduct";
-import Stepher from "../Wrapper/stepher/Stepher";
+import { StepProgress } from "../Wrapper/step-progress/StepProgress";
+
 
 const Index = () => {
     return (
@@ -39,7 +40,7 @@ const Index = () => {
                     <Route path="/agent" element={<Agent></Agent>}></Route>
                     <Route path="/community" element={<Community></Community>}></Route>
                     <Route path="/shop" element={<Shop></Shop>}></Route>
-                    <Route path="/stepher" element={<Stepher></Stepher>}></Route>
+                    <Route path="/stepher" element={<StepProgress></StepProgress>}></Route>
                     <Route path="/singleproduct" element={<SingleProduct></SingleProduct>}></Route>
                     <Route path="/login" element={<Login />} />
                     <Route path="/signup" element={<SignUp />} />
