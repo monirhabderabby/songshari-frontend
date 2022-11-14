@@ -1,18 +1,42 @@
-import React from "react";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { AiOutlineCloudUpload } from "react-icons/ai";
+import { AiOutlineCloudUpload, AiOutlineIdcard } from "react-icons/ai";
 import { FaFacebookF, FaGoogle, FaRegEnvelope, FaRegUser } from "react-icons/fa";
-import { MdLockOutline } from "react-icons/md";
+import { MdLockOutline, MdPhone } from "react-icons/md";
 import { Link } from "react-router-dom";
+import { v4 as uuidv4 } from "uuid";
 import "../../../App.css";
+import { firebaseStorage } from "../../../firebase.init";
 
 const Signup = () => {
+    const [photoUploading, setPhotoUploading] = useState(false);
+    const [photoUrl, setPhotoUrl] = useState("");
     const {
         register,
         formState: { errors },
         handleSubmit,
     } = useForm();
     const onSubmit = async data => {};
+
+    const uploadPhoto = photo => {
+        const storageRef = ref(firebaseStorage, `profile/${photo.name + uuidv4()}`);
+        uploadBytes(storageRef, photo).then(async snapshot => {
+            await getDownloadURL(snapshot.ref).then(url => {
+                console.log(url.toString());
+                setPhotoUrl(url.toString());
+            });
+        });
+    };
+
+    const photoHandler = async e => {
+        setPhotoUploading(true);
+        const photo = e.target.files[0];
+        uploadPhoto(photo);
+
+        setPhotoUploading(false);
+    };
+
     return (
         <div className="min-h-screen">
             <section className="flex justify-center items-center w-full flex-1 text-center px-3 md:px-20  min-h-screen">
@@ -35,7 +59,7 @@ const Signup = () => {
                             {/* Social Login section */}
                             <p className="text-gray-400 my-3">or use your email account</p>
                             <div>
-                                <form className="w-full mx-auto grid gap-x-3 grid-cols-1 lg:grid-cols-2" onSubmit={handleSubmit(onSubmit)}>
+                                <form className="lg:w-full w-64 mx-auto lg:grid lg:gap-x-3 lg:grid-cols-2" onSubmit={handleSubmit(onSubmit)}>
                                     <section>
                                         <div className="flex items-center bg-gray-100 p-2 w-full rounded-xl">
                                             <FaRegUser className=" m-2 text-gray-400" />
@@ -60,7 +84,7 @@ const Signup = () => {
                                     </section>{" "}
                                     {/*first name field*/}
                                     <section>
-                                        <div className="flex items-center bg-gray-100 p-2 w-full rounded-xl ">
+                                        <div className="flex items-center bg-gray-100 p-2 w-full rounded-xl mt-3 lg:mt-0">
                                             <FaRegUser className=" m-2 text-gray-400" />
                                             <input
                                                 {...register("lastName", {
@@ -70,9 +94,9 @@ const Signup = () => {
                                                     },
                                                 })}
                                                 type="text"
-                                                placeholder="First name"
+                                                placeholder="Last name"
                                                 className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
-                                                id="name"
+                                                id="lastName"
                                             />
                                         </div>
                                         <h1 className="text-left ml-2">
@@ -114,7 +138,7 @@ const Signup = () => {
                                     {/*Email field*/}
                                     <section>
                                         <div className="flex items-center bg-gray-100 p-2 w-full rounded-xl mt-3">
-                                            <MdLockOutline className=" m-2 text-gray-400" />
+                                            <MdPhone className=" m-2 text-gray-400" />
                                             <input
                                                 {...register("phone", {
                                                     required: {
@@ -137,7 +161,7 @@ const Signup = () => {
                                     {/*Phone number field*/}
                                     <section>
                                         <div className="flex items-center bg-gray-100 p-2 w-full rounded-xl mt-3">
-                                            <MdLockOutline className=" m-2 text-gray-400" />
+                                            <AiOutlineIdcard className=" m-2 text-gray-400" />
                                             <input
                                                 {...register("NidOrPassportNumber", {
                                                     required: {
@@ -204,7 +228,7 @@ const Signup = () => {
                                                 type="password"
                                                 placeholder="Confirm Password"
                                                 className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
-                                                id="password"
+                                                id="confirmPassword"
                                             />
                                         </div>
                                         <h1 className="text-left ml-2">
@@ -220,7 +244,7 @@ const Signup = () => {
                                         <div className="flex items-center bg-gray-100 p-2 w-full rounded-xl mt-3">
                                             <AiOutlineCloudUpload className=" m-2 text-gray-400" />
                                             <label htmlFor="userPhoto" className="outline-none h-full text-sm text-gray-400 bg-gray-100">
-                                                Upload Image
+                                                {photoUploading ? "Uploading" : "Upload Image"}
                                             </label>
                                             <input
                                                 {...register("image", {
@@ -232,6 +256,7 @@ const Signup = () => {
                                                 type="file"
                                                 id="userPhoto"
                                                 className="hidden"
+                                                onChange={photoHandler}
                                             />
                                         </div>
                                         <h1 className="text-left ml-2">
