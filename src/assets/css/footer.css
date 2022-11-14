@@ -7,7 +7,7 @@ footer {
     margin-top: 200px;
 }
 
-ul {
+footer ul {
     position: relative;
     height: 200px;
     display: flex;
@@ -23,7 +23,7 @@ footer .wave {
     left: 0;
     width: 100%;
     height: 100px;
-    background: url("../images/footer/image.png");
+    background: url("../Images/footer/image.png");
     background-size: 1000px 100px;
 }
 

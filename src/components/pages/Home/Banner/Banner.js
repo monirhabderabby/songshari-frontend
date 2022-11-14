@@ -4,14 +4,14 @@ import { Swiper, SwiperSlide } from "swiper/react";
 // import required modules
 import { Autoplay, Navigation, Pagination } from "swiper";
 
-import slider from "../../../../assets/images/Slider/Slider.jpeg";
-import slider1 from "../../../../assets/images/Slider/Slider1.jpeg";
-import slider2 from "../../../../assets/images/Slider/Slider2.jpeg";
-import slider3 from "../../../../assets/images/Slider/Slider3.jpeg";
-import slider4 from "../../../../assets/images/Slider/Slider4.jpeg";
-import slider5 from "../../../../assets/images/Slider/Slider5.jpeg";
-import slider6 from "../../../../assets/images/Slider/Slider6.jpeg";
-import slider7 from "../../../../assets/images/Slider/Slider7.jpeg";
+import slider from "../../../../assets/Images/Slider/Slider.jpeg";
+import slider1 from "../../../../assets/Images/Slider/Slider1.jpeg";
+import slider2 from "../../../../assets/Images/Slider/Slider2.jpeg";
+import slider3 from "../../../../assets/Images/Slider/Slider3.jpeg";
+import slider4 from "../../../../assets/Images/Slider/Slider4.jpeg";
+import slider5 from "../../../../assets/Images/Slider/Slider5.jpeg";
+import slider6 from "../../../../assets/Images/Slider/Slider6.jpeg";
+import slider7 from "../../../../assets/Images/Slider/Slider7.jpeg";
 import FindPartnerForm from "./FindPartnerForm";
 import SwipeMatch from "./SwipeMatch";
 
@@ -26,7 +26,7 @@ const Banner = () => {
                 autoplay={{ delay: 3000 }}
                 // navigation={true}
                 modules={[Autoplay, Pagination, Navigation]}
-                className="h-[81vh] -z-50"
+                className="h-[100vh] -z-50"
             >
                 {sliderImages.map((image, index) => (
                     <SwiperSlide key={index}>
@@ -34,7 +34,7 @@ const Banner = () => {
                     </SwiperSlide>
                 ))}
             </Swiper>
-            <div className="absolute top-2 z-10 gap-56 flex justify-around w-full">
+            <div className="absolute top-40 z-50  flex justify-around w-full">
                 <SwipeMatch></SwipeMatch>
                 <FindPartnerForm></FindPartnerForm>
             </div>
