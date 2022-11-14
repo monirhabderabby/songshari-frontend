@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import Carousel from 'react-grid-carousel';
-import Title from '../Title/Title';
 import LeftArrowButton from './LeftArrowButton';
 import RightArrowButton from './RightArrowButton';
 
@@ -15,8 +14,8 @@ const ChatGelary = () => {
     }, [])
     return (
         <div className='my-6'>
-            <div>
-                <Title titleText="Message box"></Title>
+            <div className="">
+                <h1 className="text-3xl font-semibold pb-6">You may like</h1>
             </div>
             <div>
                 <Carousel

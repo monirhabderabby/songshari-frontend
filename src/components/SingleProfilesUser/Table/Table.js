@@ -4,6 +4,7 @@ import "../../../assets/css/table.css";
 import { Friends } from "../FriendsSection/Friends";
 import { Profile } from "../profileSection/Profile";
 
+
 const Table = () => {
     const [page, setPage] = useState(2);
     return (
@@ -26,13 +27,13 @@ const Table = () => {
                         </button>
                         <button class="mt-4 font-medium leading-tight text-gray-800">
                             heading
-                            <span class="inline-block px-1 leading-none text-center whitespace-nowrap align-baseline font-bold bg-pink-600 text-white rounded">
+                            <span class="inline-block px-1 leading-none text-center whitespace-nowrap align-baseline font-bold notification-badge text-white rounded">
                                 1
                             </span>
                         </button>
                         <button class="mt-4 font-medium leading-tight text-gray-800">
                             Message
-                            <span class="inline-block px-1 leading-none text-center whitespace-nowrap align-baseline font-bold bg-pink-600 text-white rounded">
+                            <span class="inline-block px-1 leading-none text-center whitespace-nowrap align-baseline font-bold notification-badge text-white rounded">
                                 1
                             </span>
                         </button>
