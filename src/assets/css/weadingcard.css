@@ -1,6 +1,7 @@
 .card-hober:hover img {
-    transform: scale(1, 1.2);
-    transition-timing-function: ease-in-out;
+    transform: scale(1, 1.1);
+    transition-timing-function: ease-out;
+    transition: .2s;
 }
 
 .card-img {

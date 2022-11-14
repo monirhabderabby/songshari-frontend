@@ -1,3 +1,7 @@
+.main-container {
+    font-family: 'Courier New', Courier, monospace;
+}
+
 .section-body {
     height: 80vh;
 }
@@ -12,9 +16,25 @@
 }
 
 .rounded-img {
-    width: 80px;
-    height: 80px;
-    border-radius: 40px;
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+    background-color: rgb(224, 207, 214);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.rounded-img:hover img {
+    transform: rotate(360deg);
+    transition: 3s;
+    cursor: pointer;
+}
+
+.rounded-img img {
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
 }
 
 .free-btn {
