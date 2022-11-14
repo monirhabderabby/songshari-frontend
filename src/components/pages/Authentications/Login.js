@@ -17,6 +17,7 @@ const Login = () => {
         console.log(data);
         reset();
     };
+
     return (
         <div className=" ">
             <div className="grid grid-cols-2 justify-center items-center container mx-auto">
