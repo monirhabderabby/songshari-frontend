@@ -1,18 +1,46 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
 import { FaFacebookF, FaGoogle, FaRegEnvelope } from "react-icons/fa";
 import { MdLockOutline } from "react-icons/md";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import "../../../App.css";
+import { auth } from "../../../firebase.init";
+import { useLoginAsMemberMutation } from "../../../Redux/features/userInfo/userApi";
+import { loadUserData } from "../../../Redux/features/userInfo/userInfo";
+import Error from "../../ui/error/Error";
 
 const Login = () => {
+    const [customError, setCustomError] = useState("");
+    const [signInWithEmailAndPassword, loading, error] = useSignInWithEmailAndPassword(auth);
+    const [loginAsMember, { data: response, isLoading }] = useLoginAsMemberMutation();
+    const dispatch = useDispatch();
     const {
         register,
         formState: { errors },
         handleSubmit,
     } = useForm();
 
-    const onSubmit = async data => {};
+    const onSubmit = async data => {
+        await signInWithEmailAndPassword(data.email, data.password);
+        loginAsMember(data);
+    };
+
+    useEffect(() => {
+        if (error?.message === "Firebase: Error (auth/wrong-password).") {
+            setCustomError("You are entering the wrong password");
+        }
+        if (error?.message === "Firebase: Error (auth/user-not-found).") {
+            setCustomError("User not found");
+        }
+    }, [error, setCustomError]);
+
+    useEffect(() => {
+        if (response) {
+            dispatch(loadUserData(response));
+        }
+    }, [response, dispatch]);
     return (
         <div>
             <section className="flex justify-center items-center w-full px-3 flex-1 text-center md:px-20 bg-gray-100 min-h-screen">
@@ -83,6 +111,7 @@ const Login = () => {
                                                 placeholder="Password"
                                                 className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
                                                 id="password"
+                                                onChange={() => setCustomError("")}
                                             />
                                         </div>
                                         <h1 className="text-left ml-2">
@@ -94,10 +123,10 @@ const Login = () => {
                                             )}
                                         </h1>
                                     </section>
-                                    <div></div>
+                                    <div className="col-span-2">{customError && <Error message={customError} />}</div>
                                     <input
                                         type="submit"
-                                        value="LOGIN"
+                                        value={loading || isLoading ? "Loading..." : "LOGIN"}
                                         className="border-2 cursor-pointer mt-3 border-primary hover:border-0 rounded-full px-12 py-2 hover:bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] hover:text-white duration-500 transition-all"
                                     />
                                 </form>
