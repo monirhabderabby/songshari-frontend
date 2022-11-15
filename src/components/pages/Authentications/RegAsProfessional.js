@@ -1,5 +1,6 @@
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useCreateUserWithEmailAndPassword, useSignInWithGoogle, useUpdateProfile } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
 import { AiOutlineCloudUpload, AiOutlineIdcard } from "react-icons/ai";
 import { FaFacebookF, FaGoogle, FaRegEnvelope, FaRegUser } from "react-icons/fa";
@@ -8,17 +9,36 @@ import { BsPersonLinesFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import "../../../App.css";
-import { firebaseStorage } from "../../../firebase.init";
+import { auth, firebaseStorage } from "../../../firebase.init";
+import Error from "../../ui/error/Error";
 
 const RegAsProfessional = () => {
     const [photoUploading, setPhotoUploading] = useState(false);
     const [photoUrl, setPhotoUrl] = useState("");
+    const [customError, setCustomError] = useState("");
+    const [createUserWithEmailAndPassword, user, loading, error] = useCreateUserWithEmailAndPassword(auth);
+    const [signInWithGoogle, googleLoading] = useSignInWithGoogle(auth);
+    const [updateProfile, updating] = useUpdateProfile(auth);
     const {
         register,
         formState: { errors },
         handleSubmit,
     } = useForm();
-    const onSubmit = async data => { };
+
+    const onSubmit = async data => {
+        if (!photoUrl) {
+            setCustomError("Please wait a second for added your photo");
+            return;
+        }
+        setCustomError("");
+        delete data.image;
+        data.photoURL = photoUrl;
+
+        // Implement firebase registration
+        await createUserWithEmailAndPassword(data.email, data.password);
+        await updateProfile({ displayName: data.firstName + " " + data.lastName }, { photoURL: photoUrl });
+        // await regAsMember(data);
+    };
 
     const uploadPhoto = photo => {
         const storageRef = ref(firebaseStorage, `profile/${photo.name + uuidv4()}`);
@@ -38,6 +58,24 @@ const RegAsProfessional = () => {
         setPhotoUploading(false);
     };
 
+    useEffect(() => {
+        if (error?.message === "Firebase: Error (auth/email-already-in-use).") {
+            setCustomError("email already in use");
+        }
+    }, [error]);
+
+    useEffect(() => {
+        if (photoUrl) {
+            setCustomError("");
+        }
+    }, [photoUrl]);
+
+    useEffect(() => {
+        if (user) {
+            console.log(user);
+        }
+    }, [user]);
+
     return (
         <div className="min-h-screen">
             <section className="flex justify-center items-center w-full flex-1 text-center px-3 md:px-20  min-h-screen">
@@ -53,7 +91,8 @@ const RegAsProfessional = () => {
                                 <p className="border-2 cursor-pointer border-gray-200 rounded-full p-3 mx-1 hover:bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] hover:text-white duration-400 transition-all">
                                     <FaFacebookF className="text-sm" />
                                 </p>
-                                <p className="border-2 cursor-pointer border-gray-200 rounded-full p-3 mx-1 hover:bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] hover:text-white duration-400 transition-all">
+                                <p className="border-2 cursor-pointer border-gray-200 rounded-full p-3 mx-1 hover:bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] hover:text-white duration-400 transition-all"
+                                    onClick={() => signInWithGoogle()}>
                                     <FaGoogle className="text-sm" />
                                 </p>
                             </div>{" "}
@@ -297,10 +336,11 @@ const RegAsProfessional = () => {
                                     {/* <div className="col-span-2">
                                         <Error message="Already  have an account" />
                                     </div> */}
+                                    <div className="col-span-2">{customError && <Error message={customError} />}</div>
                                     <div className="col-span-2">
                                         <input
                                             type="submit"
-                                            value="SIGN UP"
+                                            value={loading || updating || googleLoading ? "Loading..." : "SIGN UP"}
                                             className="border-2 cursor-pointer mt-6 border-primary hover:border-0 rounded-full px-12 py-2 hover:bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] hover:text-white duration-500 transition-all"
                                         />
                                     </div>
