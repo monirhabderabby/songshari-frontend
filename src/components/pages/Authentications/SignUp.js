@@ -9,6 +9,7 @@ import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import "../../../App.css";
+import logo from "../../../assets/images/Logo/logoBlack.png";
 import { auth, firebaseStorage } from "../../../firebase.init";
 import { useRegAsMemberMutation } from "../../../Redux/features/userInfo/userApi";
 import { loadUserData } from "../../../Redux/features/userInfo/userInfo";
@@ -92,7 +93,9 @@ const Signup = () => {
                 <div className="bg-white rounded-2xl shadow-2xl md:flex w-[100%] md:w-3/4 lg:w-4/5 max-w-6xl relative">
                     <div className="w-full lg:w-3/5 p-5 my-auto">
                         <div className="text-left font-bold">
-                            <span className="gradient_text font-george">Songshari.com</span>
+                            <span className="gradient_text font-george">
+                                <img className="w-[150px]" src={logo} alt="logo" />
+                            </span>
                         </div>
                         <div className="py-10">
                             <h2 className="text-3xl font-bold gradient_text">Member Registration</h2>
