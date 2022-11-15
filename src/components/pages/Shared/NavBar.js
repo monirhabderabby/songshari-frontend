@@ -23,6 +23,10 @@ const NavBar = () => {
     const [signOut] = useSignOut(auth);
     const dispatch = useDispatch();
 
+    if (user) {
+        console.log(user);
+    }
+
     const handleLogout = () => {
         dispatch(loadUserData({}));
         signOut();
@@ -87,11 +91,11 @@ const NavBar = () => {
                                     <>
                                         {user?.photoURL === null ? (
                                             <>
-                                                <img className="w-14" src={register} alt="img" />
+                                                <img className="w-14 rounded-full" src={register} alt="img" />
                                             </>
                                         ) : (
                                             <>
-                                                <img className="w-14" src={user?.photoURL} alt="img" />
+                                                <img className="w-14 rounded-full" src={user?.photoURL} alt="img" />
                                             </>
                                         )}
                                     </>

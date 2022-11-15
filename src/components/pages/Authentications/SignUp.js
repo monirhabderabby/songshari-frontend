@@ -16,7 +16,7 @@ import Error from "../../ui/error/Error";
 
 const Signup = () => {
     const [regAsMember, { data: response, isLoading: serverLoading }] = useRegAsMemberMutation();
-    const [photoUrl, setPhotoUrl] = useState("");
+    const [photoURL, setPhotoUrl] = useState("");
     const [customError, setCustomError] = useState("");
     const [createUserWithEmailAndPassword, user, loading, error] = useCreateUserWithEmailAndPassword(auth);
     const [signInWithGoogle, googleLoading] = useSignInWithGoogle(auth);
@@ -37,19 +37,21 @@ const Signup = () => {
     };
 
     const onSubmit = async data => {
-        if (!photoUrl) {
+        if (!photoURL) {
             setCustomError("Please wait a second for added your photo");
             return;
         }
         setCustomError("");
-        delete data.image;
-        data.photoURL = photoUrl;
-        data.role = "member";
+        if (photoURL) {
+            delete data.image;
+            data.photoURL = photoURL;
+            data.role = "member";
 
-        // Implement firebase registration
-        await createUserWithEmailAndPassword(data.email, data.password);
-        await updateProfile({ displayName: data.firstName + " " + data.lastName }, { photoURL: photoUrl });
-        await regAsMember(data);
+            // Implement firebase registration
+            await createUserWithEmailAndPassword(data.email, data.password);
+            await updateProfile({ displayName: data.firstName + " " + data.lastName, photoURL });
+            await regAsMember(data);
+        }
     };
 
     useEffect(() => {
@@ -79,10 +81,10 @@ const Signup = () => {
     };
 
     useEffect(() => {
-        if (photoUrl) {
+        if (photoURL) {
             setCustomError("");
         }
-    }, [photoUrl]);
+    }, [photoURL]);
 
     return (
         <div className="min-h-screen">
@@ -295,7 +297,7 @@ const Signup = () => {
                                         <div className="flex items-center bg-gray-100 p-2 w-full rounded-xl mt-3">
                                             <AiOutlineCloudUpload className=" m-2 text-gray-400" />
                                             <label htmlFor="userPhoto" className="outline-none h-full text-sm text-gray-400 bg-gray-100">
-                                                {photoUrl ? (
+                                                {photoURL ? (
                                                     <>
                                                         <span className="text-green-400">Photo added</span>
                                                     </>
