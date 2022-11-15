@@ -5,25 +5,30 @@ import { useForm } from "react-hook-form";
 import { AiOutlineCloudUpload, AiOutlineIdcard } from "react-icons/ai";
 import { FaFacebookF, FaGoogle, FaRegEnvelope, FaRegUser } from "react-icons/fa";
 import { MdLockOutline, MdPhone } from "react-icons/md";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import "../../../App.css";
 import { auth, firebaseStorage } from "../../../firebase.init";
 import { useRegAsMemberMutation } from "../../../Redux/features/userInfo/userApi";
+import { loadUserData } from "../../../Redux/features/userInfo/userInfo";
 import Error from "../../ui/error/Error";
 
 const Signup = () => {
     const [regAsMember, { data: response, isLoading: serverLoading }] = useRegAsMemberMutation();
     const [photoUrl, setPhotoUrl] = useState("");
     const [customError, setCustomError] = useState("");
-    const [createUserWithEmailAndPassword, user, loading, error] = useCreateUserWithEmailAndPassword(auth);
+    const [createUserWithEmailAndPassword, loading, error] = useCreateUserWithEmailAndPassword(auth);
     const [signInWithGoogle, googleLoading] = useSignInWithGoogle(auth);
     const [updateProfile, updating] = useUpdateProfile(auth);
+
+    const dispatch = useDispatch();
 
     const {
         register,
         formState: { errors },
         handleSubmit,
+        reset,
     } = useForm();
 
     const emailHandler = () => {
@@ -47,9 +52,10 @@ const Signup = () => {
 
     useEffect(() => {
         if (response) {
-            console.log(response);
+            dispatch(loadUserData(response));
+            reset();
         }
-    }, [response]);
+    }, [response, dispatch, reset]);
 
     useEffect(() => {
         if (error?.message === "Firebase: Error (auth/email-already-in-use).") {
@@ -72,12 +78,6 @@ const Signup = () => {
             setCustomError("");
         }
     }, [photoUrl]);
-
-    useEffect(() => {
-        if (user) {
-            console.log(user);
-        }
-    }, [user]);
 
     return (
         <div className="min-h-screen">
