@@ -6,13 +6,16 @@ import { MdLockOutline } from "react-icons/md";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import "../../../App.css";
+import logo from "../../../assets/images/Logo/logoBlack.png";
 import { auth } from "../../../firebase.init";
 import { useLoginAsMemberMutation } from "../../../Redux/features/userInfo/userApi";
 import { loadUserData } from "../../../Redux/features/userInfo/userInfo";
 import Error from "../../ui/error/Error";
+import ForgetPasswordModal from "./ForgetPassword/ForgetPasswordModal";
 
 const Login = () => {
     const [customError, setCustomError] = useState("");
+    const [open, setOpen] = useState(false);
     const [signInWithEmailAndPassword, user, loading, error] = useSignInWithEmailAndPassword(auth);
     const [loginAsMember, { data: response, isLoading }] = useLoginAsMemberMutation();
     const dispatch = useDispatch();
@@ -23,6 +26,10 @@ const Login = () => {
         handleSubmit,
         reset,
     } = useForm();
+
+    const modalControll = () => {
+        setOpen(!open);
+    };
 
     const onSubmit = async data => {
         data.role = "member";
@@ -55,7 +62,9 @@ const Login = () => {
                 <div className="bg-white rounded-2xl shadow-2xl md:flex w-[100%] md:w-3/4 lg:w-2/3 max-w-4xl">
                     <div className="w-full lg:w-3/5 p-5">
                         <div className="text-left font-bold">
-                            <span className="gradient_text font-george">Songshari.com</span>
+                            <span className="gradient_text font-george">
+                                <img className="w-[150px]" src={logo} alt="logo" />
+                            </span>
                         </div>
                         <div className="py-10">
                             <h2 className="text-3xl font-bold gradient_text">Member Login</h2>
@@ -131,6 +140,12 @@ const Login = () => {
                                             )}
                                         </h1>
                                     </section>
+                                    <span
+                                        className="text-gray-400 float-right mt-3 hover:text-gray-500 duration-500 cursor-pointer"
+                                        onClick={modalControll}
+                                    >
+                                        Forget Password
+                                    </span>
                                     <div className="col-span-2">{customError && <Error message={customError} />}</div>
                                     <input
                                         type="submit"
@@ -163,6 +178,7 @@ const Login = () => {
                     {/*Sign up section */}
                 </div>
             </section>
+            {open && <ForgetPasswordModal {...{ open, modalControll }} />}
         </div>
     );
 };
