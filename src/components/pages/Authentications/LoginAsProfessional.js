@@ -1,5 +1,6 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import { BsPersonLinesFill } from "react-icons/bs";
 import { FaFacebookF, FaGoogle, FaRegEnvelope } from "react-icons/fa";
 import { MdLockOutline } from "react-icons/md";
 import { Link } from "react-router-dom";
@@ -12,7 +13,7 @@ const LoginAsProfessional = () => {
         handleSubmit,
     } = useForm();
 
-    const onSubmit = async data => {};
+    const onSubmit = async data => { };
     return (
         <div>
             <section className="flex justify-center items-center w-full px-3 flex-1 text-center md:px-20 bg-gray-100 min-h-screen">
@@ -91,6 +92,32 @@ const LoginAsProfessional = () => {
                                             )}
                                             {errors.password?.type === "minLength" && (
                                                 <span className="w-full text-left text-red-400 text-sm">{errors?.password.message}</span>
+                                            )}
+                                        </h1>
+                                    </section>
+                                    <section>
+                                        <div className="flex items-center bg-gray-100 p-2 w-full rounded-xl mt-3">
+                                            <BsPersonLinesFill className=" m-2 text-gray-400" />
+                                            <select
+                                                {...register("designation", {
+                                                    required: {
+                                                        value: true,
+                                                        message: "Designation is Required",
+                                                    },
+                                                })}
+                                                type="text"
+                                                className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
+                                                id="designation"
+                                            >
+                                                <option value="">Select Designation</option>
+                                                <option value="Kazi">Kazi</option>
+                                                <option value="Agent">Agent</option>
+                                                <option value="Lawyer">Lawyer</option>
+                                            </select>
+                                        </div>
+                                        <h1 className="text-left ml-2">
+                                            {errors.designation?.type === "required" && (
+                                                <span className="w-full text-left text-red-400 text-sm">{errors?.designation.message}</span>
                                             )}
                                         </h1>
                                     </section>
