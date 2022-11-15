@@ -23,10 +23,6 @@ const NavBar = () => {
     const [signOut] = useSignOut(auth);
     const dispatch = useDispatch();
 
-    if (user) {
-        console.log(user);
-    }
-
     const handleLogout = () => {
         dispatch(loadUserData({}));
         signOut();

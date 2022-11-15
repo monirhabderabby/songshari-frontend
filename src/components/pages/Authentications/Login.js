@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
+import { Toaster } from "react-hot-toast";
 import { FaFacebookF, FaGoogle, FaRegEnvelope } from "react-icons/fa";
 import { MdLockOutline } from "react-icons/md";
 import { useDispatch } from "react-redux";
@@ -179,6 +180,7 @@ const Login = () => {
                 </div>
             </section>
             {open && <ForgetPasswordModal {...{ open, modalControll }} />}
+            <Toaster />
         </div>
     );
 };
