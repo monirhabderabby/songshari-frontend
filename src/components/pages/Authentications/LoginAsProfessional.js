@@ -1,21 +1,57 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { BsPersonLinesFill } from "react-icons/bs";
 import { FaFacebookF, FaGoogle, FaRegEnvelope } from "react-icons/fa";
 import { MdLockOutline } from "react-icons/md";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../../../App.css";
+import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
+import { auth } from "../../../firebase.init";
+import { useLoginAsProfessionalMutation } from "../../../Redux/features/userInfo/userApi";
+import { loadUserData } from "../../../Redux/features/userInfo/userInfo";
+import { useDispatch } from "react-redux";
+import Error from "../../../components/ui/error/Error";
 
 const LoginAsProfessional = () => {
+    const [customError, setCustomError] = useState("");
+    const [signInWithEmailAndPassword, user, loading, error] = useSignInWithEmailAndPassword(auth);
+    const [loginAsProfessional, { data: response, isLoading }] = useLoginAsProfessionalMutation();
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
     const {
         register,
         formState: { errors },
         handleSubmit,
+        reset
     } = useForm();
 
     const onSubmit = async data => {
+        data.role = data.designation;
         console.log(data);
+        await signInWithEmailAndPassword(data.email, data.password);
+        loginAsProfessional(data);
     };
+
+    useEffect(() => {
+        if (error?.message === "Firebase: Error (auth/wrong-password).") {
+            setCustomError("You are entering the wrong password");
+        }
+        if (error?.message === "Firebase: Error (auth/user-not-found).") {
+            setCustomError("User not found");
+        }
+    }, [error, setCustomError]);
+
+    useEffect(() => {
+        if (response) {
+            dispatch(loadUserData(response));
+            reset();
+        }
+        if (response && user) {
+            navigate("/");
+            console.log(user);
+        }
+    }, [response, dispatch, user, navigate, reset]);
 
     return (
         <div>
@@ -75,7 +111,7 @@ const LoginAsProfessional = () => {
                                             <input
                                                 {...register("password", {
                                                     minLength: {
-                                                        value: 6,
+                                                        value: 8,
                                                         message: "password should be minimum 8 characters",
                                                     },
                                                     required: {
@@ -124,10 +160,10 @@ const LoginAsProfessional = () => {
                                             )}
                                         </h1>
                                     </section>
-                                    <div></div>
+                                    <div className="col-span-2">{customError && <Error message={customError} />}</div>
                                     <input
                                         type="submit"
-                                        value="LOGIN"
+                                        value={loading || isLoading ? "Loading..." : "LOGIN"}
                                         className="border-2 cursor-pointer mt-3 border-primary hover:border-0 rounded-full px-12 py-2 hover:bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] hover:text-white duration-500 transition-all"
                                     />
                                 </form>

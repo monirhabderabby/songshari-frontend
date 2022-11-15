@@ -47,12 +47,11 @@ const Signup = () => {
             delete data.image;
             data.photoURL = photoURL;
             data.role = "member";
+        // Implement firebase registration
+        await createUserWithEmailAndPassword(data.email, data.password);
+        await updateProfile({ displayName: data.firstName + " " + data.lastName, photoURL: photoUrl });
+        await regAsMember(data);
 
-            // Implement firebase registration
-            await createUserWithEmailAndPassword(data.email, data.password);
-            await updateProfile({ displayName: data.firstName + " " + data.lastName, photoURL });
-            await regAsMember(data);
-        }
     };
 
     useEffect(() => {
@@ -244,7 +243,7 @@ const Signup = () => {
                                             <input
                                                 {...register("password", {
                                                     minLength: {
-                                                        value: 6,
+                                                        value: 8,
                                                         message: "password should be minimum 8 characters",
                                                     },
                                                     required: {
