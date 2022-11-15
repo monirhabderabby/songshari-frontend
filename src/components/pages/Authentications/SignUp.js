@@ -1,6 +1,6 @@
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import React, { useEffect, useState } from "react";
-import { useCreateUserWithEmailAndPassword, useUpdateProfile } from "react-firebase-hooks/auth";
+import { useCreateUserWithEmailAndPassword, useSignInWithGoogle, useUpdateProfile } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
 import { AiOutlineCloudUpload, AiOutlineIdcard } from "react-icons/ai";
 import { FaFacebookF, FaGoogle, FaRegEnvelope, FaRegUser } from "react-icons/fa";
@@ -9,14 +9,15 @@ import { Link } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import "../../../App.css";
 import { auth, firebaseStorage } from "../../../firebase.init";
+import { useRegAsMemberMutation } from "../../../Redux/features/userInfo/userApi";
 import Error from "../../ui/error/Error";
 
 const Signup = () => {
-    const [photoUploading, setPhotoUploading] = useState(false);
+    const [regAsMember, { data: response, isLoading: serverLoading }] = useRegAsMemberMutation();
     const [photoUrl, setPhotoUrl] = useState("");
     const [customError, setCustomError] = useState("");
-
     const [createUserWithEmailAndPassword, user, loading, error] = useCreateUserWithEmailAndPassword(auth);
+    const [signInWithGoogle, googleLoading] = useSignInWithGoogle(auth);
     const [updateProfile, updating] = useUpdateProfile(auth);
 
     const {
@@ -41,16 +42,22 @@ const Signup = () => {
         // Implement firebase registration
         await createUserWithEmailAndPassword(data.email, data.password);
         await updateProfile({ displayName: data.firstName + " " + data.lastName }, { photoURL: photoUrl });
+        await regAsMember(data);
     };
 
     useEffect(() => {
-        if (error?.message == "Firebase: Error (auth/email-already-in-use).") {
+        if (response) {
+            console.log(response);
+        }
+    }, [response]);
+
+    useEffect(() => {
+        if (error?.message === "Firebase: Error (auth/email-already-in-use).") {
             setCustomError("email already in use");
         }
     }, [error]);
 
     const photoHandler = async e => {
-        setPhotoUploading(true);
         const photo = e.target.files[0];
         const storageRef = ref(firebaseStorage, `profile/${photo.name + uuidv4()}`);
         uploadBytes(storageRef, photo).then(async snapshot => {
@@ -58,8 +65,6 @@ const Signup = () => {
                 setPhotoUrl(url.toString());
             });
         });
-
-        setPhotoUploading(false);
     };
 
     useEffect(() => {
@@ -89,7 +94,10 @@ const Signup = () => {
                                 <p className="border-2 cursor-pointer border-gray-200 rounded-full p-3 mx-1 hover:bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] hover:text-white duration-400 transition-all">
                                     <FaFacebookF className="text-sm" />
                                 </p>
-                                <p className="border-2 cursor-pointer border-gray-200 rounded-full p-3 mx-1 hover:bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] hover:text-white duration-400 transition-all">
+                                <p
+                                    className="border-2 cursor-pointer border-gray-200 rounded-full p-3 mx-1 hover:bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] hover:text-white duration-400 transition-all"
+                                    onClick={() => signInWithGoogle()}
+                                >
                                     <FaGoogle className="text-sm" />
                                 </p>
                             </div>{" "}
@@ -314,7 +322,7 @@ const Signup = () => {
                                     <div className="col-span-2">
                                         <input
                                             type="submit"
-                                            value={loading ? "Loading..." : "SIGN UP"}
+                                            value={loading || updating || googleLoading || serverLoading ? "Loading..." : "SIGN UP"}
                                             className="border-2 cursor-pointer mt-6 border-primary hover:border-0 rounded-full px-12 py-2 hover:bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] hover:text-white duration-500 transition-all"
                                         />
                                     </div>
