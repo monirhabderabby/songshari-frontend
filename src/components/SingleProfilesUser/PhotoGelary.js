@@ -39,7 +39,7 @@ const PhotoGelary = () => {
                 <div className="grid grid-cols-3 gap-2 mt-10">
                     {photos?.map((p, i) => {
                         return (
-                            <div key={i} className="borderd m-1 main-box">
+                            <div key={i+p} className="borderd m-1 main-box">
                                 <div className="box ">
                                     <img className="rounded-md" src={p.img} alt="" />
                                 </div>

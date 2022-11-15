@@ -15,7 +15,7 @@ const Comunity = () => {
 
     const array = [1, 2, 3];
     const [showModal, setShowModal] = useState(false);
-    
+
     const handelOnClose = () => setShowModal(false);
     return (
         <div className='container mx-auto'>
@@ -24,29 +24,29 @@ const Comunity = () => {
                     <div className='md:px-16'>
                         <hr />
                         <div className='grid grid-cols-1 md:grid-cols-2 justify-around py-4'>
-                            <div className='text-left flex'>
+                            <div className='flex'>
                                 <button onClick={() => setShowModal(true)} className='filter-search'>
-                                    <div className='flex pl-10'>
+                                    <div className='flex justify-between'>
                                         <img src={togol} alt="" />
-                                        <p className='pl-2'>Filter search</p>
+                                        <p className='pl-2 text-1xl'>Filter your search</p>
                                     </div>
                                 </button>
 
                             </div>
-                            <div className='text-right'>
-                                <label className='text-2xl' htmlFor="message">Order by : </label>
-                                <select
-                                    type="text"
-                                    id="message"
-                                    name="message"
-                                    onChange={handleChange}
-                                    value={message}
-                                    className='order-by-filter'>
-                                    <option value="xx">Volvo</option>
-                                    <option value="saab">Saab</option>
-                                    <option value="opel">Opel</option>
-                                    <option value="audi">Audi</option>
-                                </select>
+                            <div className='flex items-center justify-end'>
+                                <p className='pr-6'>Order by : </p>
+                                <div className='order-by-filter'>
+                                    <select
+                                        type="text"
+                                        id="message"
+                                        name="message"
+                                        onChange={handleChange}
+                                        value={message}
+                                        className=''>
+                                        <option value="lastactive">Last active</option>
+                                        <option value="oneweekago">One wek ago</option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
                         <hr />
