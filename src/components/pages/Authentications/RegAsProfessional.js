@@ -6,23 +6,32 @@ import { AiOutlineCloudUpload, AiOutlineIdcard } from "react-icons/ai";
 import { FaFacebookF, FaGoogle, FaRegEnvelope, FaRegUser } from "react-icons/fa";
 import { MdLockOutline, MdPhone } from "react-icons/md";
 import { BsPersonLinesFill } from "react-icons/bs";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import "../../../App.css";
 import { auth, firebaseStorage } from "../../../firebase.init";
 import Error from "../../ui/error/Error";
+import { useRegAsProfessionalMutation } from "../../../Redux/features/userInfo/userApi";
+import { useDispatch } from "react-redux";
+import { loadUserData } from "../../../Redux/features/userInfo/userInfo";
 
 const RegAsProfessional = () => {
+    const [regAsProfessional, { data: response, isLoading: serverLoading }] = useRegAsProfessionalMutation();
     const [photoUploading, setPhotoUploading] = useState(false);
     const [photoUrl, setPhotoUrl] = useState("");
     const [customError, setCustomError] = useState("");
     const [createUserWithEmailAndPassword, user, loading, error] = useCreateUserWithEmailAndPassword(auth);
     const [signInWithGoogle, googleLoading] = useSignInWithGoogle(auth);
     const [updateProfile, updating] = useUpdateProfile(auth);
+
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
     const {
         register,
         formState: { errors },
         handleSubmit,
+        reset
     } = useForm();
 
     const onSubmit = async data => {
@@ -36,8 +45,8 @@ const RegAsProfessional = () => {
 
         // Implement firebase registration
         await createUserWithEmailAndPassword(data.email, data.password);
-        await updateProfile({ displayName: data.firstName + " " + data.lastName }, { photoURL: photoUrl });
-        // await regAsMember(data);
+        await updateProfile({ displayName: data.firstName + " " + data.lastName, photoURL: photoUrl });
+        await regAsProfessional(data);
     };
 
     const uploadPhoto = photo => {
@@ -54,9 +63,18 @@ const RegAsProfessional = () => {
         setPhotoUploading(true);
         const photo = e.target.files[0];
         uploadPhoto(photo);
-
         setPhotoUploading(false);
     };
+
+    useEffect(() => {
+        if (response) {
+            dispatch(loadUserData(response));
+            reset();
+        }
+        if (user && response) {
+            navigate("/");
+        }
+    }, [response, dispatch, reset, navigate, user]);
 
     useEffect(() => {
         if (error?.message === "Firebase: Error (auth/email-already-in-use).") {
@@ -67,6 +85,7 @@ const RegAsProfessional = () => {
     useEffect(() => {
         if (photoUrl) {
             setCustomError("");
+            console.log(photoUrl)
         }
     }, [photoUrl]);
 
@@ -255,7 +274,7 @@ const RegAsProfessional = () => {
                                             <input
                                                 {...register("password", {
                                                     minLength: {
-                                                        value: 6,
+                                                        value: 8,
                                                         message: "password should be minimum 8 characters",
                                                     },
                                                     required: {
@@ -311,7 +330,13 @@ const RegAsProfessional = () => {
                                         <div className="flex items-center bg-gray-100 p-2 w-full rounded-xl mt-3">
                                             <AiOutlineCloudUpload className=" m-2 text-gray-400" />
                                             <label htmlFor="userPhoto" className="outline-none h-full text-sm text-gray-400 bg-gray-100">
-                                                {photoUploading ? "Uploading" : "Upload Image"}
+                                                {photoUrl ? (
+                                                    <>
+                                                        <span className="text-green-400">Photo added</span>
+                                                    </>
+                                                ) : (
+                                                    "Upload Image"
+                                                )}
                                             </label>
                                             <input
                                                 {...register("image", {
@@ -340,7 +365,7 @@ const RegAsProfessional = () => {
                                     <div className="col-span-2">
                                         <input
                                             type="submit"
-                                            value={loading || updating || googleLoading ? "Loading..." : "SIGN UP"}
+                                            value={loading || updating || googleLoading || serverLoading ? "Loading..." : "SIGN UP"}
                                             className="border-2 cursor-pointer mt-6 border-primary hover:border-0 rounded-full px-12 py-2 hover:bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] hover:text-white duration-500 transition-all"
                                         />
                                     </div>
