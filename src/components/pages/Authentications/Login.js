@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { FaFacebookF, FaGoogle, FaRegEnvelope } from "react-icons/fa";
 import { MdLockOutline } from "react-icons/md";
 import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../../../App.css";
 import { auth } from "../../../firebase.init";
 import { useLoginAsMemberMutation } from "../../../Redux/features/userInfo/userApi";
@@ -13,16 +13,20 @@ import Error from "../../ui/error/Error";
 
 const Login = () => {
     const [customError, setCustomError] = useState("");
-    const [signInWithEmailAndPassword, loading, error] = useSignInWithEmailAndPassword(auth);
+    const [signInWithEmailAndPassword, user, loading, error] = useSignInWithEmailAndPassword(auth);
     const [loginAsMember, { data: response, isLoading }] = useLoginAsMemberMutation();
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const {
         register,
         formState: { errors },
         handleSubmit,
+        reset,
     } = useForm();
 
     const onSubmit = async data => {
+        data.role = "member";
+        console.log(data);
         await signInWithEmailAndPassword(data.email, data.password);
         loginAsMember(data);
     };
@@ -39,8 +43,12 @@ const Login = () => {
     useEffect(() => {
         if (response) {
             dispatch(loadUserData(response));
+            reset();
         }
-    }, [response, dispatch]);
+        if (response && user) {
+            navigate("/");
+        }
+    }, [response, dispatch, user, navigate, reset]);
     return (
         <div>
             <section className="flex justify-center items-center w-full px-3 flex-1 text-center md:px-20 bg-gray-100 min-h-screen">

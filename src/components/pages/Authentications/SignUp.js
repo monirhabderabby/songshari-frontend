@@ -6,7 +6,7 @@ import { AiOutlineCloudUpload, AiOutlineIdcard } from "react-icons/ai";
 import { FaFacebookF, FaGoogle, FaRegEnvelope, FaRegUser } from "react-icons/fa";
 import { MdLockOutline, MdPhone } from "react-icons/md";
 import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import "../../../App.css";
 import { auth, firebaseStorage } from "../../../firebase.init";
@@ -18,11 +18,12 @@ const Signup = () => {
     const [regAsMember, { data: response, isLoading: serverLoading }] = useRegAsMemberMutation();
     const [photoUrl, setPhotoUrl] = useState("");
     const [customError, setCustomError] = useState("");
-    const [createUserWithEmailAndPassword, loading, error] = useCreateUserWithEmailAndPassword(auth);
+    const [createUserWithEmailAndPassword, user, loading, error] = useCreateUserWithEmailAndPassword(auth);
     const [signInWithGoogle, googleLoading] = useSignInWithGoogle(auth);
     const [updateProfile, updating] = useUpdateProfile(auth);
 
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const {
         register,
@@ -43,6 +44,7 @@ const Signup = () => {
         setCustomError("");
         delete data.image;
         data.photoURL = photoUrl;
+        data.role = "member";
 
         // Implement firebase registration
         await createUserWithEmailAndPassword(data.email, data.password);
@@ -55,7 +57,10 @@ const Signup = () => {
             dispatch(loadUserData(response));
             reset();
         }
-    }, [response, dispatch, reset]);
+        if (user && response) {
+            navigate("/");
+        }
+    }, [response, dispatch, reset, navigate, user]);
 
     useEffect(() => {
         if (error?.message === "Firebase: Error (auth/email-already-in-use).") {
