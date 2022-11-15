@@ -2,10 +2,6 @@
     font-family: 'Courier New', Courier, monospace;
 }
 
-.section-body {
-    height: 80vh;
-}
-
 .section-img-container {
     min-height: 500px;
     background: linear-gradient(0deg, rgba(230, 5, 218, 0.548), rgba(232, 15, 240, 0.096)), url('../images/executiveimg.jpeg');
