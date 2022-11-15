@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
+import Anexecutive from '../../CardComopents/Anexecutive';
 import WeadingCards from '../../CardComopents/WeadingCards';
+import Membership from '../../membership/Membership';
 import FilterModel from '../../modals/FilterModel';
 import "./comunity.css";
 
@@ -52,6 +54,13 @@ const Comunity = () => {
                     </div>
                 </div>
             </div>
+            <div className='my-16'>
+                <Anexecutive />
+            </div>
+            <div >
+                <Membership />
+            </div>
+
             <FilterModel onClose={handelOnClose} visiblity={showModal}></FilterModel>
         </div>
     );
