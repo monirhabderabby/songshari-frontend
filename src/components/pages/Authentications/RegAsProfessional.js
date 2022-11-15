@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { AiOutlineCloudUpload, AiOutlineIdcard } from "react-icons/ai";
 import { FaFacebookF, FaGoogle, FaRegEnvelope, FaRegUser } from "react-icons/fa";
 import { MdLockOutline, MdPhone } from "react-icons/md";
+import { BsPersonLinesFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import "../../../App.css";
@@ -17,7 +18,7 @@ const RegAsProfessional = () => {
         formState: { errors },
         handleSubmit,
     } = useForm();
-    const onSubmit = async data => {};
+    const onSubmit = async data => { };
 
     const uploadPhoto = photo => {
         const storageRef = ref(firebaseStorage, `profile/${photo.name + uuidv4()}`);
@@ -138,6 +139,33 @@ const RegAsProfessional = () => {
                                     {/*Email field*/}
                                     <section>
                                         <div className="flex items-center bg-gray-100 p-2 w-full rounded-xl mt-3">
+                                            <BsPersonLinesFill className=" m-2 text-gray-400" />
+                                            <select
+                                                {...register("designation", {
+                                                    required: {
+                                                        value: true,
+                                                        message: "Designation is Required",
+                                                    },
+                                                })}
+                                                type="text"
+                                                className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
+                                                id="designation"
+                                            >
+                                                <option className="m-8 p-8" value="">Select Designation</option>
+                                                <option value="Kazi">Kazi</option>
+                                                <option value="Agent">Agent</option>
+                                                <option value="Lawyer">Lawyer</option>
+                                            </select>
+                                        </div>
+                                        <h1 className="text-left ml-2">
+                                            {errors.designation?.type === "required" && (
+                                                <span className="w-full text-left text-red-400 text-sm">{errors?.designation.message}</span>
+                                            )}
+                                        </h1>
+                                    </section>
+                                    {/* Designation Field ---------------------------------------------*/}
+                                    {/* <section>
+                                        <div className="flex items-center bg-gray-100 p-2 w-full rounded-xl mt-3">
                                             <MdPhone className=" m-2 text-gray-400" />
                                             <input
                                                 {...register("phone", {
@@ -157,7 +185,7 @@ const RegAsProfessional = () => {
                                                 <span className="w-full text-left text-red-400 text-sm">{errors?.phone.message}</span>
                                             )}
                                         </h1>
-                                    </section>
+                                    </section> */}
                                     {/*Phone number field*/}
                                     <section>
                                         <div className="flex items-center bg-gray-100 p-2 w-full rounded-xl mt-3">
