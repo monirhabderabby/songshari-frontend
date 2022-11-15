@@ -12,28 +12,28 @@ const PeopleJoinedAlready = () => {
                 <div className="custom-container">
                     <h1 className="text-white text-[50px] text-center">455,326,234</h1>
                     <h2 className="text-[#f36] text-[24px] text-center">People joined already!</h2>
-                    <section class="text-gray-600 body-font">
-                        <div class="container px-5 pt-[20px] mx-auto">
-                            <div class="flex flex-wrap -m-4 text-center">
-                                <div class="p-4 sm:w-1/4 w-1/2 text-center">
+                    <section className="text-gray-600 body-font">
+                        <div className="container px-5 pt-[20px] mx-auto">
+                            <div className="flex flex-wrap -m-4 text-center">
+                                <div className="p-4 sm:w-1/4 w-1/2 text-center">
                                     <img className=" inline-block" src={icon1} alt="" />
-                                    <h2 class="title-font text-[55px] font-semibold tracking-widest mt-3 sm:text-4xl text-3xl text-white">000 M</h2>
-                                    <p class="leading-relaxed text-[20px] text-white">Messages sent per day</p>
+                                    <h2 className="title-font text-[55px] font-semibold tracking-widest mt-3 sm:text-4xl text-3xl text-white">000 M</h2>
+                                    <p className="leading-relaxed text-[20px] text-white">Messages sent per day</p>
                                 </div>
-                                <div class="p-4 sm:w-1/4 w-1/2 text-center">
+                                <div className="p-4 sm:w-1/4 w-1/2 text-center">
                                     <img className=" inline-block" src={icon2} alt="" />
-                                    <h2 class="title-font text-[55px] font-semibold tracking-widest mt-3 sm:text-4xl text-3xl text-white">000 M</h2>
-                                    <p class="leading-relaxed text-[20px] text-white">Registered users worldwide</p>
+                                    <h2 className="title-font text-[55px] font-semibold tracking-widest mt-3 sm:text-4xl text-3xl text-white">000 M</h2>
+                                    <p className="leading-relaxed text-[20px] text-white">Registered users worldwide</p>
                                 </div>
-                                <div class="p-4 sm:w-1/4 w-1/2 text-center">
+                                <div className="p-4 sm:w-1/4 w-1/2 text-center">
                                     <img className=" inline-block" src={icon3} alt="" />
-                                    <h2 class="title-font text-[55px] font-semibold tracking-widest mt-3 sm:text-4xl text-3xl text-white">000 M</h2>
-                                    <p class="leading-relaxed text-[20px] text-white">Monthly active users</p>
+                                    <h2 className="title-font text-[55px] font-semibold tracking-widest mt-3 sm:text-4xl text-3xl text-white">000 M</h2>
+                                    <p className="leading-relaxed text-[20px] text-white">Monthly active users</p>
                                 </div>
-                                <div class="p-4 sm:w-1/4 w-1/2 text-center">
+                                <div className="p-4 sm:w-1/4 w-1/2 text-center">
                                     <img className=" inline-block" src={icon4} alt="" />
-                                    <h2 class="title-font text-[55px] font-semibold tracking-widest mt-3 sm:text-4xl text-3xl text-white">K</h2>
-                                    <p class="leading-relaxed text-[20px] text-white">New daily sign ups</p>
+                                    <h2 className="title-font text-[55px] font-semibold tracking-widest mt-3 sm:text-4xl text-3xl text-white">K</h2>
+                                    <p className="leading-relaxed text-[20px] text-white">New daily sign ups</p>
                                 </div>
                             </div>
                         </div>

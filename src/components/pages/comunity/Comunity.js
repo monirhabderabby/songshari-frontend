@@ -1,11 +1,21 @@
 import React, { useState } from 'react';
+import togol from "../../../assets/images/icons/togol.png";
 import WeadingCards from '../../CardComopents/WeadingCards';
 import FilterModel from '../../modals/FilterModel';
 import "./comunity.css";
 
 const Comunity = () => {
+    const [message, setMessage] = useState('');
+
+    const handleChange = event => {
+        setMessage(event.target.value);
+
+        console.log('value is:', event.target.value);
+    }
+
     const array = [1, 2, 3];
     const [showModal, setShowModal] = useState(false);
+    
     const handelOnClose = () => setShowModal(false);
     return (
         <div className='container mx-auto'>
@@ -14,28 +24,38 @@ const Comunity = () => {
                     <div className='md:px-16'>
                         <hr />
                         <div className='grid grid-cols-1 md:grid-cols-2 justify-around py-4'>
-                            <div className='text-left'>
-                                <button onClick={() => setShowModal(true)} className='filter-search'>Filter search</button>
+                            <div className='text-left flex'>
+                                <button onClick={() => setShowModal(true)} className='filter-search'>
+                                    <div className='flex pl-10'>
+                                        <img src={togol} alt="" />
+                                        <p className='pl-2'>Filter search</p>
+                                    </div>
+                                </button>
+
                             </div>
                             <div className='text-right'>
-                                <form action="/action_page.php">
-                                    <label className='text-2xl' for="cars">Order by : </label>
-                                    <select className='order-by-filter' name="cars" id="cars">
-                                        <option value="volvo">Volvo</option>
-                                        <option value="saab">Saab</option>
-                                        <option value="opel">Opel</option>
-                                        <option value="audi">Audi</option>
-                                    </select>
-                                </form>
+                                <label className='text-2xl' htmlFor="message">Order by : </label>
+                                <select
+                                    type="text"
+                                    id="message"
+                                    name="message"
+                                    onChange={handleChange}
+                                    value={message}
+                                    className='order-by-filter'>
+                                    <option value="xx">Volvo</option>
+                                    <option value="saab">Saab</option>
+                                    <option value="opel">Opel</option>
+                                    <option value="audi">Audi</option>
+                                </select>
                             </div>
                         </div>
                         <hr />
                     </div >
                     <div className='grid grid-cols-1 md:grid-cols-3'>
                         {
-                            array.map(p => {
+                            array.map((p, i) => {
                                 return (
-                                    <div className='mx-auto'>
+                                    <div key={i} className='mx-auto'>
                                         <WeadingCards />
                                     </div>
                                 )
