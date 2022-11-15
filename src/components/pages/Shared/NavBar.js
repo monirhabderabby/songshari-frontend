@@ -12,9 +12,12 @@ import cart from "../../../assets/images/NavIcons/cart.png";
 import kazi from "../../../assets/images/NavIcons/Kazi.svg";
 import findALawyer from "../../../assets/images/NavIcons/Lawyer.svg";
 import register from "../../../assets/images/NavIcons/Profile-Login-Icon.svg";
-import eng from "../../../assets/images/NavIcons/Language-Switcher-Bangla.svg";
+import bng from "../../../assets/images/NavIcons/Language-Switcher-Bangla.svg";
+import eng from "../../../assets/images/NavIcons/Language-Switcher-English.svg";
+import { useState } from "react";
 
 const NavBar = () => {
+  const [language, setLanguage] = useState(true);
   const allMenu = [
     {
       id: 1,
@@ -32,16 +35,25 @@ const NavBar = () => {
     { id: 8, to: "/agent", icon: agent, tooltip: "Agent" },
   ];
 
+  const banglaHandler = () => {
+    setLanguage(!language);
+  };
+  const englishHandler = () => {
+    setLanguage(!language);
+  };
+
   return (
-    <header class="bg-white sticky top-0 z-50 shadow-md body-font">
-      <div class="custom-container container mx-auto flex flex-wrap  flex-col md:flex-row items-center">
+    <header
+      className={`bg-white  sticky top-0 h-[90px] z-50 shadow-md body-font ${NavBarCSS.navbar}`}
+    >
+      <div className="custom-container container mx-auto flex flex-wrap  flex-col md:flex-row items-center">
         <Link
           to="/"
-          class="flex cursor-pointer title-font font-medium items-center text-gray-900 mb-4 md:mb-0"
+          className="flex cursor-pointer title-font font-medium items-center text-gray-900 mb-4 md:mb-0"
         >
           <img src={blackLogo} alt="" />
         </Link>
-        <nav class="md:mr-auto md:ml-4 md:py-1 md:pl-4  	flex flex-wrap items-center text-base justify-center">
+        <nav className="md:mr-auto md:ml-4 md:py-1 md:pl-4  	flex flex-wrap items-center text-base justify-center">
           {allMenu.map((menu) => (
             <div key={menu.id}>
               <NavLink
@@ -55,7 +67,7 @@ const NavBar = () => {
                   className="flex flex-col items-center"
                 >
                   <img
-                    className="hover:rotate-[360deg] duration-[2000ms] w-[60px] h-[85px]"
+                    className="hover:rotate-[360deg] duration-[2000ms] w-[50px] h-[75px]"
                     src={menu.icon}
                     alt=""
                   />
@@ -140,47 +152,38 @@ const NavBar = () => {
                 className={`relative cursor-pointer ${NavBarCSS.engDropdown}`}
               >
                 <div>
-                  <img className="w-[60px]" src={eng} alt="" />
+                  <img className="w-[60px]" src={language ? eng : bng} alt="" />
                 </div>
                 <div
-                  class={`absolute eng-menu border border-black left-0 z-10 mt-2 w-[80px] origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none ${NavBarCSS.engMenu}`}
+                  className={`absolute eng-menu border border-black left-0 z-10 top-[70px] w-[80px] origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none ${NavBarCSS.engMenu}`}
                   role="menu"
                   aria-orientation="vertical"
                   aria-labelledby="menu-button"
                   tabindex="-1"
                 >
-                  <div class="py-1 text-center" role="none">
-                    <span
-                      class=" text-[#f36] block px-4   text-[22px]"
+                  <div className="py-1 text-center" role="none">
+                    <button
+                      onClick={banglaHandler}
+                      className=" text-[#f36] block px-4   text-[22px]"
                       role="menuitem"
                       tabindex="-1"
                       id="menu-item-0"
                     >
                       BN
-                    </span>
-                    <span
-                      class="block px-4 text-[#f36]  text-[22px]"
+                    </button>
+                    <button
+                      onClick={englishHandler}
+                      className="block px-4 text-[#f36]  text-[22px]"
                       role="menuitem"
                       tabindex="-1"
                       id="menu-item-1"
                     >
                       EN
-                    </span>
+                    </button>
                   </div>
                 </div>
               </li>
             </li>
-            {/* <li className=" text-center">
-              <select
-                className="text-[#ff3366] text-2xl  font-medium font-fira pr-2 px-3 relative top-1 border-none cursor-pointer"
-                name="lan"
-                id="lan"
-              >
-                <option value="">EN</option>
-                <option value="">IN</option>
-                <option value="">BN</option>
-              </select>
-            </li> */}
           </ul>
         </div>
       </div>
