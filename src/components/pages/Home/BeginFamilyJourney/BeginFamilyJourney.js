@@ -1,7 +1,7 @@
 import React from "react";
 import bgCircle from "../../../../assets/images/HomeImage/circle.png";
 import findImg from "../../../../assets/images/HomeImage/illutration.png";
-import "./BeginFamilyJourney.css";
+import ScaleAnimationCSS from "../../../../assets/css/ScaleAnimation.module.css";
 
 const BeginFamilyJourney = () => {
     return (
@@ -34,7 +34,7 @@ const BeginFamilyJourney = () => {
                     <div className="flex justify-center items-center">
                         <img src={findImg} alt="" />
                     </div>
-                    <div className="absolute -z-10 top-[-45px] left-[2px]" style={{ animation: "scaleAni 5s linear infinite" }}>
+                    <div className="absolute -z-10 top-[-45px] left-[2px]" style={{ animation: `${ScaleAnimationCSS.scaleAni} 5s linear infinite` }}>
                         <img src={bgCircle} alt="" />
                     </div>
                 </div>
