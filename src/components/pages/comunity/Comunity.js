@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import WeadingCards from '../CardComopents/WeadingCards';
-import FilterModel from '../modals/FilterModel';
+import WeadingCards from '../../CardComopents/WeadingCards';
+import FilterModel from '../../modals/FilterModel';
 import "./comunity.css";
 
 const Comunity = () => {
