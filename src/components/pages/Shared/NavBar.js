@@ -23,6 +23,10 @@ const NavBar = () => {
     const [signOut] = useSignOut(auth);
     const dispatch = useDispatch();
 
+    if (user) {
+        console.log(user);
+    }
+
     const handleLogout = () => {
         dispatch(loadUserData({}));
         signOut();
@@ -30,7 +34,6 @@ const NavBar = () => {
     const allMenu = [
         {
             id: 1,
-            to: "/findpartner",
             to: "/findpartner",
             icon: findPartner,
             tooltip: "Find Your Partner",
@@ -43,6 +46,10 @@ const NavBar = () => {
         { id: 7, to: "/kazi", icon: kazi, tooltip: "Kazi" },
         { id: 8, to: "/agent", icon: agent, tooltip: "Agent" },
     ];
+
+    if (user) {
+        console.log(user);
+    }
 
     return (
         <header class="bg-white sticky top-0 z-50 shadow-md body-font">
@@ -80,7 +87,23 @@ const NavBar = () => {
                     <ul className={"flex justify-end items-center gap-6 h-32"}>
                         <li className={`${NavBarCSS.hasTooltip}`}>
                             <div className="flex flex-col items-center cursor-pointer">
-                                <img className="w-14" src={register} alt="img" />
+                                {user ? (
+                                    <>
+                                        {user?.photoURL === null ? (
+                                            <>
+                                                <img className="w-14 rounded-full" src={register} alt="img" />
+                                            </>
+                                        ) : (
+                                            <>
+                                                <img className="w-14 rounded-full" src={user?.photoURL} alt="img" />
+                                            </>
+                                        )}
+                                    </>
+                                ) : (
+                                    <>
+                                        <img className="w-14" src={register} alt="img" />
+                                    </>
+                                )}
                                 <span
                                     className={`${NavBarCSS.tooltip} z-50 h-[15px] w-[15px] mt-14 ml-[14px]`}
                                     style={{

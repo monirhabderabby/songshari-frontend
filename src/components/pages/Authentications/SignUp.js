@@ -9,6 +9,7 @@ import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import "../../../App.css";
+import logo from "../../../assets/images/Logo/logoBlack.png";
 import { auth, firebaseStorage } from "../../../firebase.init";
 import { useRegAsMemberMutation } from "../../../Redux/features/userInfo/userApi";
 import { loadUserData } from "../../../Redux/features/userInfo/userInfo";
@@ -16,7 +17,7 @@ import Error from "../../ui/error/Error";
 
 const Signup = () => {
     const [regAsMember, { data: response, isLoading: serverLoading }] = useRegAsMemberMutation();
-    const [photoUrl, setPhotoUrl] = useState("");
+    const [photoURL, setPhotoUrl] = useState("");
     const [customError, setCustomError] = useState("");
     const [createUserWithEmailAndPassword, user, loading, error] = useCreateUserWithEmailAndPassword(auth);
     const [signInWithGoogle, googleLoading] = useSignInWithGoogle(auth);
@@ -37,19 +38,20 @@ const Signup = () => {
     };
 
     const onSubmit = async data => {
-        if (!photoUrl) {
+        if (!photoURL) {
             setCustomError("Please wait a second for added your photo");
             return;
         }
         setCustomError("");
-        delete data.image;
-        data.photoURL = photoUrl;
-        data.role = "member";
-
+        if (photoURL) {
+            delete data.image;
+            data.photoURL = photoURL;
+            data.role = "member";
         // Implement firebase registration
         await createUserWithEmailAndPassword(data.email, data.password);
         await updateProfile({ displayName: data.firstName + " " + data.lastName, photoURL: photoUrl });
         await regAsMember(data);
+
     };
 
     useEffect(() => {
@@ -79,10 +81,10 @@ const Signup = () => {
     };
 
     useEffect(() => {
-        if (photoUrl) {
+        if (photoURL) {
             setCustomError("");
         }
-    }, [photoUrl]);
+    }, [photoURL]);
 
     return (
         <div className="min-h-screen">
@@ -90,7 +92,9 @@ const Signup = () => {
                 <div className="bg-white rounded-2xl shadow-2xl md:flex w-[100%] md:w-3/4 lg:w-4/5 max-w-6xl relative">
                     <div className="w-full lg:w-3/5 p-5 my-auto">
                         <div className="text-left font-bold">
-                            <span className="gradient_text font-george">Songshari.com</span>
+                            <span className="gradient_text font-george">
+                                <img className="w-[150px]" src={logo} alt="logo" />
+                            </span>
                         </div>
                         <div className="py-10">
                             <h2 className="text-3xl font-bold gradient_text">Member Registration</h2>
@@ -295,7 +299,7 @@ const Signup = () => {
                                         <div className="flex items-center bg-gray-100 p-2 w-full rounded-xl mt-3">
                                             <AiOutlineCloudUpload className=" m-2 text-gray-400" />
                                             <label htmlFor="userPhoto" className="outline-none h-full text-sm text-gray-400 bg-gray-100">
-                                                {photoUrl ? (
+                                                {photoURL ? (
                                                     <>
                                                         <span className="text-green-400">Photo added</span>
                                                     </>
