@@ -6,11 +6,11 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 
 function App() {
-    return (
-        <div>
-            <Index></Index>
-        </div>
-    );
+  return (
+    <div>
+      <Index></Index>
+    </div>
+  );
 }
 
 export default App;

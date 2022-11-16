@@ -23,7 +23,7 @@ const TitleWithBar = ({ textData, fontsize, Color, isHidden }) => {
             <div className='text-center'>
                 <h1 style={colors()} className={`text-${fontsize}xl font-extrabold`}>{textData}</h1>
             </div>
-            <div style={leftBar()} className={`text-left-bar ${isHidden}`}>
+            <div style={leftBar()} className={`mt-4 text-left-bar ${isHidden}`}>
 
             </div>
         </div>

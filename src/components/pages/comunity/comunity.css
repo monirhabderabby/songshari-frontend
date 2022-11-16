@@ -39,7 +39,7 @@
     font-weight: bold;
 }
 
-.btn-active {
-    height: 70px;
-    width: 70px;
+.btn:hover {
+    height: 65px;
+    width: 65px;
 }
