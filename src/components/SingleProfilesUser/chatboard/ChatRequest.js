@@ -11,7 +11,7 @@ const ChatRequest = () => {
             })
     }, [])
     return (
-        <div className='my-8 chat-bar pl-6 py-4'>
+        <div className='my-8 chat-bar pl-6 py-4 w-72 md:w-full'>
             <div>
                 <div className='chat-request flex items-center text-3xl '>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">

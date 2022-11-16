@@ -49,7 +49,7 @@ const Button = styled.span`
 
 const LeftArrowButton = ({
   type,
-  mobileBreakpoint = 1,
+  mobileBreakpoint = 2,
   hidden = false,
   CustomBtn,
   onClick
