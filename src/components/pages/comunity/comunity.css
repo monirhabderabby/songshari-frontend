@@ -1,20 +1,28 @@
 .order-by-filter {
-    width: 200px;
-    outline: none;
-    background: none;
     border-radius: 50px;
     background-color: rgb(238, 243, 251);
     -webkit-box-shadow: 0px 5px 10px 0px rgb(143 175 202 / 50%);
     box-shadow: 0px 5px 10px 0px rgb(143 175 202 / 50%);
     cursor: pointer;
     font-size: 14px;
-    height: 50px;
+    width: 180px;
+    height: 35px;
+    padding: 0px;
+    line-height: 35px;
     padding: 0px 10px;
-    text-align: center;
+}
+
+.order-by-filter select {
+    width: 100%;
+    background-color: rgb(238, 243, 251);
+    outline: none;
+}
+
+.select-item {
+    background-color: rgb(238, 243, 251);
 }
 
 .filter-search {
-    width: 300px;
     outline: none;
     background: none;
     border-radius: 50px;
@@ -22,9 +30,7 @@
     -webkit-box-shadow: 0px 5px 10px 0px rgb(143 175 202 / 50%);
     box-shadow: 0px 5px 10px 0px rgb(143 175 202 / 50%);
     cursor: pointer;
-    font-size: 14px;
-    height: 50px;
-    padding: 0px 10px;
+    padding: 6px 30px;
 }
 
 .btn {

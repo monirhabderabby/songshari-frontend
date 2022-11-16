@@ -1,6 +1,11 @@
-import React from 'react';
+import React from "react";
 
 const ThreeEasySteps = () => {
+  const stepsInfo = [
+    { id: 1, text: "Join" },
+    { id: 2, text: "Search" },
+    { id: 3, text: "Find Love" },
+  ];
 
     const stepsInfo = [
         { id: 1, text: 'Join' },
@@ -47,9 +52,26 @@ const ThreeEasySteps = () => {
                         </button>
                     </div>
                 </div>
+              ))}
             </div>
+            <hr className="absolute top-16 right-80 w-[250px] mx-auto h-[2px] border-none bg-[#f664bc]" />
+          </div>
+          <div className="flex-[15%]">
+            <button
+              type="submit"
+              className="px-4 pt-2 pb-1 text-2xl text-white  font-semibold rounded-md tracking-[.25em] shadow-xl shadow-[#0c4ea54d] cursor-pointer whitespace-nowrap"
+              style={{
+                backgroundImage:
+                  "linear-gradient(155deg, rgba(228, 18, 114, 1) 0%, #4844a5 100%)",
+              }}
+            >
+              JOIN NOW!
+            </button>
+          </div>
         </div>
-    );
+      </div>
+    </div>
+  );
 };
 
 export default ThreeEasySteps;
