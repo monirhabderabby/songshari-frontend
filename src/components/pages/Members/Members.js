@@ -12,6 +12,7 @@ export const Members = () => {
     return (
         <div>
             <CustomHeader title="Members" />
+
             <div className="custom-container mt-[118px] px-3">
                 <hr />
                 <div className="w-full h-[83px] flex justify-between items-center">
