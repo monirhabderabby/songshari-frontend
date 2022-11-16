@@ -43,10 +43,6 @@ const NavBar = () => {
         { id: 8, to: "/agent", icon: agent, tooltip: "Agent" },
     ];
 
-    if (user) {
-        console.log(user);
-    }
-
     return (
         <header class="bg-white sticky top-0 z-50 shadow-md body-font">
             <div class="custom-container container mx-auto flex flex-wrap  flex-col md:flex-row items-center">

@@ -51,12 +51,14 @@ const Login = () => {
     useEffect(() => {
         if (response) {
             dispatch(loadUserData(response));
+            console.log(response);
             reset();
         }
         if (response && user) {
             navigate("/");
         }
     }, [response, dispatch, user, navigate, reset]);
+
     return (
         <div>
             <section className="flex justify-center items-center w-full px-3 flex-1 text-center md:px-20 bg-gray-100 min-h-screen">
