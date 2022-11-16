@@ -1,18 +1,58 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
+import { BsPersonLinesFill } from "react-icons/bs";
 import { FaFacebookF, FaGoogle, FaRegEnvelope } from "react-icons/fa";
 import { MdLockOutline } from "react-icons/md";
-import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
 import "../../../App.css";
+import Error from "../../../components/ui/error/Error";
+import { auth } from "../../../firebase.init";
+import { useLoginAsProfessionalMutation } from "../../../Redux/features/userInfo/userApi";
+import { loadUserData } from "../../../Redux/features/userInfo/userInfo";
 
 const LoginAsProfessional = () => {
+    const [customError, setCustomError] = useState("");
+    const [signInWithEmailAndPassword, user, loading, error] = useSignInWithEmailAndPassword(auth);
+    const [loginAsProfessional, { data: response, isLoading }] = useLoginAsProfessionalMutation();
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
     const {
         register,
         formState: { errors },
         handleSubmit,
+        reset,
     } = useForm();
 
-    const onSubmit = async data => {};
+    const onSubmit = async data => {
+        data.role = data.designation;
+        console.log(data);
+        await signInWithEmailAndPassword(data.email, data.password);
+        loginAsProfessional(data);
+    };
+
+    useEffect(() => {
+        if (error?.message === "Firebase: Error (auth/wrong-password).") {
+            setCustomError("You are entering the wrong password");
+        }
+        if (error?.message === "Firebase: Error (auth/user-not-found).") {
+            setCustomError("User not found");
+        }
+    }, [error, setCustomError]);
+
+    useEffect(() => {
+        if (response) {
+            dispatch(loadUserData(response));
+            reset();
+        }
+        if (response && user) {
+            navigate("/");
+            console.log(user);
+        }
+    }, [response, dispatch, user, navigate, reset]);
+
     return (
         <div>
             <section className="flex justify-center items-center w-full px-3 flex-1 text-center md:px-20 bg-gray-100 min-h-screen">
@@ -71,7 +111,7 @@ const LoginAsProfessional = () => {
                                             <input
                                                 {...register("password", {
                                                     minLength: {
-                                                        value: 6,
+                                                        value: 8,
                                                         message: "password should be minimum 8 characters",
                                                     },
                                                     required: {
@@ -94,10 +134,36 @@ const LoginAsProfessional = () => {
                                             )}
                                         </h1>
                                     </section>
-                                    <div></div>
+                                    <section>
+                                        <div className="flex items-center bg-gray-100 p-2 w-full rounded-xl mt-3">
+                                            <BsPersonLinesFill className=" m-2 text-gray-400" />
+                                            <select
+                                                {...register("designation", {
+                                                    required: {
+                                                        value: true,
+                                                        message: "Designation is Required",
+                                                    },
+                                                })}
+                                                type="text"
+                                                className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
+                                                id="designation"
+                                            >
+                                                <option value="">Select Designation</option>
+                                                <option value="Kazi">Kazi</option>
+                                                <option value="Agent">Agent</option>
+                                                <option value="Lawyer">Lawyer</option>
+                                            </select>
+                                        </div>
+                                        <h1 className="text-left ml-2">
+                                            {errors.designation?.type === "required" && (
+                                                <span className="w-full text-left text-red-400 text-sm">{errors?.designation.message}</span>
+                                            )}
+                                        </h1>
+                                    </section>
+                                    <div className="col-span-2">{customError && <Error message={customError} />}</div>
                                     <input
                                         type="submit"
-                                        value="LOGIN"
+                                        value={loading || isLoading ? "Loading..." : "LOGIN"}
                                         className="border-2 cursor-pointer mt-3 border-primary hover:border-0 rounded-full px-12 py-2 hover:bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] hover:text-white duration-500 transition-all"
                                     />
                                 </form>
@@ -111,6 +177,17 @@ const LoginAsProfessional = () => {
                             {/*Input Field*/}
                         </div>
                     </div>{" "}
+                    <div className="h-[200px] w-full bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] rounded-br-2xl rounded-bl-2xl p-2 md:hidden text-white">
+                        <h2 className="font-bold text-3xl mb-2">Hello, Friend!</h2>
+                        <div className="border-2 w-10 border-white inline-block"></div>
+                        <p className="mb-4">Fill up your information and start journey with us</p>
+                        <Link
+                            to="/regAsProfessional"
+                            className="border-2 border-white rounded-full px-3 lg:px-12 py-2 hover:bg-white hover:text-primary duration-500 transition-all"
+                        >
+                            Sign Up
+                        </Link>
+                    </div>
                     {/*Sign up section */}
                     <div className="hidden md:block bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] lg:w-2/5 p-5 text-white rounded-tr-2xl rounded-br-2xl md:py-36 md:px-4 lg:px-12">
                         <h2 className="font-bold text-3xl mb-2">Hello, Friend!</h2>

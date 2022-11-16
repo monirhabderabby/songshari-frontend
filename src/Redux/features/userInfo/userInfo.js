@@ -1,13 +1,17 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    token: "",
+    userInfo: null,
 };
 
 const userInfoSlice = createSlice({
     name: "userInfo",
     initialState,
-    reducers: {},
+    reducers: {
+        loadUserData: (state, action) => {
+            state.userInfo = action.payload;
+        },
+    },
 });
 
 export default userInfoSlice.reducer;

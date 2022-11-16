@@ -39,9 +39,55 @@ const PeopleJoinedAlready = () => {
                         </div>
                     </section>
                 </div>
+                <div
+                  data-aos-easing="ease-out-cubic"
+                  data-aos-duration="1200"
+                  data-aos="fade-up"
+                  class="p-4 sm:w-1/4 w-1/2 text-center"
+                >
+                  <img className=" inline-block" src={icon2} alt="" />
+                  <h2 class="title-font text-[55px] font-semibold tracking-widest mt-3 sm:text-4xl text-3xl text-white">
+                    000 M
+                  </h2>
+                  <p class="leading-relaxed text-[20px] text-white">
+                    Registered users worldwide
+                  </p>
+                </div>
+                <div
+                  data-aos-easing="ease-out-cubic"
+                  data-aos-duration="1400"
+                  data-aos="fade-up"
+                  class="p-4 sm:w-1/4 w-1/2 text-center"
+                >
+                  <img className=" inline-block" src={icon3} alt="" />
+                  <h2 class="title-font text-[55px] font-semibold tracking-widest mt-3 sm:text-4xl text-3xl text-white">
+                    000 M
+                  </h2>
+                  <p class="leading-relaxed text-[20px] text-white">
+                    Monthly active users
+                  </p>
+                </div>
+                <div
+                  data-aos-easing="ease-out-cubic"
+                  data-aos-duration="1500"
+                  data-aos="fade-up"
+                  class="p-4 sm:w-1/4 w-1/2 text-center"
+                >
+                  <img className=" inline-block" src={icon4} alt="" />
+                  <h2 class="title-font text-[55px] font-semibold tracking-widest mt-3 sm:text-4xl text-3xl text-white">
+                    K
+                  </h2>
+                  <p class="leading-relaxed text-[20px] text-white">
+                    New daily sign ups
+                  </p>
+                </div>
+              </div>
             </div>
-        </section>
-    );
+          </section>
+        </div>
+      </div>
+    </section>
+  );
 };
 
 export default PeopleJoinedAlready;
