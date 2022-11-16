@@ -20,6 +20,7 @@ const Homepage = () => {
       </div>
       <SecureVerified></SecureVerified>
       <BeginFamilyJourney></BeginFamilyJourney>
+
       <LatestRegisteredMember />
       <TopProfile />
       <PeopleJoinedAlready />

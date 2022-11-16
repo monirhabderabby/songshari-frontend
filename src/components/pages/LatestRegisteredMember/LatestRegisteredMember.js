@@ -32,8 +32,19 @@ const LatestRegisteredMember = () => {
             </div>
             <div>
               <Swiper
-                slidesPerView={4}
-                spaceBetween={30}
+                breakpoints={{
+                  0: {
+                    slidesPerView: 1,
+                    spaceBetween: 10,
+                  },
+
+                  768: {
+                    slidesPerView: 2,
+                  },
+                  1200: {
+                    slidesPerView: 4,
+                  },
+                }}
                 pagination={{
                   clickable: true,
                 }}
