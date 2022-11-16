@@ -9,7 +9,7 @@ const Table = () => {
     const [page, setPage] = useState(2);
     return (
         <div>
-            <div className="pt-5">
+            <div className="pt-5 px-2 md:px-0">
                 <div className="notification-bar">
                     <div className="flex justify-center items-center gap-4">
                         <button className="mt-4 font-medium leading-tight text-gray-800">Activity</button>
@@ -26,16 +26,10 @@ const Table = () => {
                             Friends <sup className="text-white bg_Color p-1 rounded-full text-[10px]">1</sup>
                         </button>
                         <button className="mt-4 font-medium leading-tight text-gray-800">
-                            heading
-                            <span className="inline-block px-1 leading-none text-center whitespace-nowrap align-baseline font-bold notification-badge text-white rounded">
-                                1
-                            </span>
+                            heading<sup className="text-white bg_Color p-1 rounded-full text-[10px]">5</sup>
                         </button>
                         <button className="mt-4 font-medium leading-tight text-gray-800">
-                            Message
-                            <span className="inline-block px-1 leading-none text-center whitespace-nowrap align-baseline font-bold notification-badge text-white rounded">
-                                1
-                            </span>
+                            Message<sup className="text-white bg_Color p-1 rounded-full text-[10px]">14</sup>
                         </button>
                     </div>
                 </div>

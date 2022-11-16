@@ -133,14 +133,14 @@ const NavBar = () => {
                                     role="menu"
                                     aria-orientation="vertical"
                                     aria-labelledby="menu-button"
-                                    tabindex="-1"
+                                    tabIndex="-1"
                                 >
                                     <div className="py-1 text-center" role="none">
                                         <button
                                             onClick={banglaHandler}
                                             className=" text-[#f36] block px-4   text-[22px]"
                                             role="menuitem"
-                                            tabindex="-1"
+                                            tabIndex="-1"
                                             id="menu-item-0"
                                         >
                                             BN
@@ -149,7 +149,7 @@ const NavBar = () => {
                                             onClick={englishHandler}
                                             className="block px-4 text-[#f36]  text-[22px]"
                                             role="menuitem"
-                                            tabindex="-1"
+                                            tabIndex="-1"
                                             id="menu-item-1"
                                         >
                                             EN
