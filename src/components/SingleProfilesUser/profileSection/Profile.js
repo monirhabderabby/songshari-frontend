@@ -22,7 +22,7 @@ export const Profile = () => {
                 <div className='grid lg:grid-cols-2 sm:grid-cols-1'>
                     
                     <Title titleText="This is first Table"></Title>
-                    <button onClick={handleEdit} className='btn'>Edit</button>
+                    <button onClick={handleEdit} >Edit</button>
                 </div>
                 {tables.map(t => {
                     return (
@@ -58,7 +58,7 @@ export const Profile = () => {
                     );
                 })}
                 {
-                    edit && <button className='btn bg-gray-300 rounded-full p-2 mt-2'>Save Changes</button>
+                    edit && <button className=' rounded-full p-2 mt-2'>Save Changes</button>
                 }
                 
             </div>
