@@ -147,7 +147,7 @@ const Login = () => {
                                         className="text-gray-400 float-right mt-3 hover:text-gray-500 duration-500 cursor-pointer"
                                         onClick={modalControll}
                                     >
-                                        Forget Password
+                                        Forgot Password
                                     </span>
                                     <div className="col-span-2">{customError && <Error message={customError} />}</div>
                                     <input
