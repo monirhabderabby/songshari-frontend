@@ -26,7 +26,7 @@ const Banner = () => {
                 autoplay={{ delay: 3000 }}
                 // navigation={true}
                 modules={[Autoplay, Pagination, Navigation]}
-                className="h-[100vh] -z-50"
+                className="h-[82vh] -z-50"
             >
                 {sliderImages.map((image, index) => (
                     <SwiperSlide key={index}>
@@ -34,7 +34,7 @@ const Banner = () => {
                     </SwiperSlide>
                 ))}
             </Swiper>
-            <div className="absolute top-40 z-30 flex justify-around w-full">
+            <div className="absolute top-4 z-30 flex justify-around w-full">
                 <SwipeMatch></SwipeMatch>
                 <FindPartnerForm></FindPartnerForm>
             </div>

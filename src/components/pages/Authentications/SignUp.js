@@ -51,8 +51,9 @@ const Signup = () => {
             await createUserWithEmailAndPassword(data.email, data.password);
             await updateProfile({ displayName: data.firstName + " " + data.lastName, photoURL: photoURL });
             await regAsMember(data);
-        }
-    };
+
+        };
+    }
 
     useEffect(() => {
         if (response) {
