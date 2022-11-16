@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
+import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
 import { BsPersonLinesFill } from "react-icons/bs";
 import { FaFacebookF, FaGoogle, FaRegEnvelope } from "react-icons/fa";
 import { MdLockOutline } from "react-icons/md";
+import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import "../../../App.css";
-import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
+import Error from "../../../components/ui/error/Error";
 import { auth } from "../../../firebase.init";
 import { useLoginAsProfessionalMutation } from "../../../Redux/features/userInfo/userApi";
 import { loadUserData } from "../../../Redux/features/userInfo/userInfo";
-import { useDispatch } from "react-redux";
-import Error from "../../../components/ui/error/Error";
 
 const LoginAsProfessional = () => {
     const [customError, setCustomError] = useState("");
@@ -23,7 +23,7 @@ const LoginAsProfessional = () => {
         register,
         formState: { errors },
         handleSubmit,
-        reset
+        reset,
     } = useForm();
 
     const onSubmit = async data => {
@@ -177,6 +177,17 @@ const LoginAsProfessional = () => {
                             {/*Input Field*/}
                         </div>
                     </div>{" "}
+                    <div className="h-[200px] w-full bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] rounded-br-2xl rounded-bl-2xl p-2 md:hidden text-white">
+                        <h2 className="font-bold text-3xl mb-2">Hello, Friend!</h2>
+                        <div className="border-2 w-10 border-white inline-block"></div>
+                        <p className="mb-4">Fill up your information and start journey with us</p>
+                        <Link
+                            to="/regAsProfessional"
+                            className="border-2 border-white rounded-full px-3 lg:px-12 py-2 hover:bg-white hover:text-primary duration-500 transition-all"
+                        >
+                            Sign Up
+                        </Link>
+                    </div>
                     {/*Sign up section */}
                     <div className="hidden md:block bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] lg:w-2/5 p-5 text-white rounded-tr-2xl rounded-br-2xl md:py-36 md:px-4 lg:px-12">
                         <h2 className="font-bold text-3xl mb-2">Hello, Friend!</h2>
