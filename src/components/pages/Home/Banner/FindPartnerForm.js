@@ -106,24 +106,24 @@ function FindPartnerForm() {
                         <div className="flex">
                             <div className="s-input mr-2">
                                 <input type="radio" name="" id="male2" />
-                                <label htmlFor="male2">Male</label>
+                                <label htmlFor="male2" className="pl-2">Male</label>
                             </div>
                             <div className="s-input">
                                 <input type="radio" name="" id="female2" />
-                                <label htmlFor="female2">Female</label>
+                                <label htmlFor="female2" className="pl-2">Female</label>
                             </div>
                         </div>
                     </div>
                     <div id="single-option2" className="px-4 flex justify-between py-2 border-b">
                         {formLabel('Seeking a')}
                         <div className="flex">
-                            <div className="s-input mr-2">
+                            <div className="mr-2">
                                 <input type="radio" name="gender" id="males" onChange={inputChange} value={1} />
-                                <label htmlFor="males">Man</label>
+                                <label htmlFor="males" className="pl-2">Man</label>
                             </div>
-                            <div className="s-input">
+                            <div>
                                 <input type="radio" name="gender" id="females" onChange={inputChange} value={2} />
-                                <label htmlFor="females">Woman</label>
+                                <label htmlFor="females" className="pl-1" >Woman</label>
                             </div>
                         </div>
                     </div>

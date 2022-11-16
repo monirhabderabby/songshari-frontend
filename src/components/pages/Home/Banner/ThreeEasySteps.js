@@ -34,8 +34,8 @@ const ThreeEasySteps = () => {
                                 </div>
                                 )
                             }
+                            <hr className='absolute top-10 right-30 w-64 mx-auto h-[2px] border-none bg-[#f664bc]' />
                         </div>
-                        <hr className='absolute top-16 right-80 w-[250px] mx-auto h-[2px] border-none bg-[#f664bc]' />
                     </div>
                     <div className='flex-[15%]'>
                         <button

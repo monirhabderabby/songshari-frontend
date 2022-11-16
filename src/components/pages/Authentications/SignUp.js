@@ -47,12 +47,13 @@ const Signup = () => {
             delete data.image;
             data.photoURL = photoURL;
             data.role = "member";
-        // Implement firebase registration
-        await createUserWithEmailAndPassword(data.email, data.password);
-        await updateProfile({ displayName: data.firstName + " " + data.lastName, photoURL: photoUrl });
-        await regAsMember(data);
+            // Implement firebase registration
+            await createUserWithEmailAndPassword(data.email, data.password);
+            await updateProfile({ displayName: data.firstName + " " + data.lastName, photoURL: photoURL });
+            await regAsMember(data);
 
-    };
+        };
+    }
 
     useEffect(() => {
         if (response) {

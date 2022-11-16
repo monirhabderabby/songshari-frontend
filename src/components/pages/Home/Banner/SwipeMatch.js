@@ -20,7 +20,7 @@ const SwipeMatch = () => {
                 {
                     dummyData.map((data) => <SwiperSlide
                         key={data.id}
-                        className='relative'
+                        className='relative rounded-b-xl'
                     >
                         <img className='w-full rounded-b-xl' src={data.img} alt="" />
                         <div className='absolute bottom-4 left-8 text-white w-4/5'>
