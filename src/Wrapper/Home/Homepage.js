@@ -4,6 +4,7 @@ import ThreeEasySteps from "../../components/pages/Home/Banner/ThreeEasySteps";
 import BeginFamilyJourney from "../../components/pages/Home/BeginFamilyJourney/BeginFamilyJourney";
 import FindSoleMate from "../../components/pages/Home/FindSoleMate/FindSoleMate";
 import SecureVerified from "../../components/pages/Home/SecureVerified/SecureVerified";
+import LatestRegisteredMember from "../../components/pages/LatestRegisteredMember/LatestRegisteredMember";
 import PeopleJoinedAlready from "../../components/pages/PeopleJoinedAlready/PeopleJoinedAlready";
 import NavBar from "../../components/pages/Shared/NavBar";
 import TopProfile from "../../components/pages/TopProfile/TopProfile";
@@ -13,12 +14,10 @@ const Homepage = () => {
         <div className="font-george">
             <NavBar></NavBar>
             <Banner></Banner>
-
-            <div>
-                <ThreeEasySteps></ThreeEasySteps>
-            </div>
+            <ThreeEasySteps></ThreeEasySteps>
             <SecureVerified></SecureVerified>
             <BeginFamilyJourney></BeginFamilyJourney>
+            <LatestRegisteredMember />
             <TopProfile />
             <PeopleJoinedAlready />
             <FindSoleMate />
