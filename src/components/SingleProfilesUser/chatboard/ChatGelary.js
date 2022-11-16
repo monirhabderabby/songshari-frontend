@@ -13,9 +13,9 @@ const ChatGelary = () => {
             })
     }, [])
     return (
-        <div className='my-6'>
+        <div className='my-6 px-2 md:px-0'>
             <div className="">
-                <h1 className="text-3xl font-semibold pb-6">You may like</h1>
+                <h1 className="text-2xl font-semibold pb-6">You may like</h1>
             </div>
             <div>
                 <Carousel

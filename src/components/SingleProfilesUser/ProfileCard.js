@@ -4,7 +4,7 @@ import "../../assets/css/profileCards.css";
 const ProfileCard = () => {
     return (
         <div>
-            <div className="card_container shadow">
+            <div className="card_container shadow px-2 md:px-0">
                 <div className="Card-header"></div>
                 <div className="relative w-52 h-52 rounded-full">
                     <div className="bottom-20 left-24 absolute">
@@ -46,7 +46,7 @@ const ProfileCard = () => {
                             <svg
                                 color="#FF1D8E"
                                 xmlns="http://www.w3.org/2000/svg"
-                                fill="white"
+                                fill="none"
                                 viewBox="0 0 24 24"
                                 strokeWidth="1.5"
                                 stroke="currentColor"

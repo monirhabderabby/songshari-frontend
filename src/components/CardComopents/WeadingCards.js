@@ -5,8 +5,8 @@ import world from "../../assets/images/icons/world.png";
 
 const WeadingCards = () => {
     return (
-        <div>
-            <div className='pt-6 relative'>
+        <div className='main-weading-container'>
+            <div className='pt-6 relative '>
                 <div className="card md:w-96 bg-base-100 rounded-xl card-hober shadow-lg">
                     <div className='card-overflow-hober'><img className='card-img' src="https://placeimg.com/400/225/arch" alt="Shoes" /></div>
                     <div className=' py-10'>

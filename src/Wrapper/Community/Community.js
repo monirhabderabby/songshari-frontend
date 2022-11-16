@@ -2,6 +2,7 @@ import React from 'react';
 import Anexecutive from '../../components/CardComopents/Anexecutive';
 import Membership from '../../components/membership/Membership';
 import Comunity from '../../components/pages/comunity/Comunity';
+import SingleProfiles from '../../components/SingleProfilesUser/SingleProfiles';
 
 const Community = () => {
   return (
@@ -11,6 +12,7 @@ const Community = () => {
         <Anexecutive />
       </div>
       <Membership />
+      <SingleProfiles />
     </div>
   )
 }

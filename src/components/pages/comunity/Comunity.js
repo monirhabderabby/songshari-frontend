@@ -18,7 +18,7 @@ const Comunity = () => {
 
     const handelOnClose = () => setShowModal(false);
     return (
-        <div className='container mx-auto px-4 md:px-0'>
+        <div className='container mx-auto px-4 md:px-0 comuniti-container'>
             <div className='mt-16'>
                 <div>
                     <div className='md:px-16'>
@@ -28,7 +28,7 @@ const Comunity = () => {
                                 <button onClick={() => setShowModal(true)} className='filter-search'>
                                     <div className='flex justify-between'>
                                         <img src={togol} alt="" />
-                                        <p className='pl-2 text-1xl'>Filter your search</p>
+                                        <p className='pl-1'>filter search</p>
                                     </div>
                                 </button>
 
