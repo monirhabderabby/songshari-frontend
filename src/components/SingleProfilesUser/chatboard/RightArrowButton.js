@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types'
 import React from 'react'
 import styled from 'styled-components'
 
@@ -72,7 +71,7 @@ const RightArrowButton = ({
   </ButtonWrapper>
 )
 
-RightArrowButton.propTypes = {
+/* RightArrowButton.propTypes = {
   type: PropTypes.oneOf(['prev', 'next']).isRequired,
   mobileBreakpoint: PropTypes.number,
   hidden: PropTypes.bool,
@@ -82,6 +81,6 @@ RightArrowButton.propTypes = {
     PropTypes.elementType
   ]),
   onClick: PropTypes.func.isRequired
-}
+} */
 
 export default RightArrowButton

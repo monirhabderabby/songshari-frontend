@@ -1,19 +1,19 @@
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useCreateUserWithEmailAndPassword, useSignInWithGoogle, useUpdateProfile } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
 import { AiOutlineCloudUpload, AiOutlineIdcard } from "react-icons/ai";
-import { FaFacebookF, FaGoogle, FaRegEnvelope, FaRegUser } from "react-icons/fa";
-import { MdLockOutline, MdPhone } from "react-icons/md";
 import { BsPersonLinesFill } from "react-icons/bs";
+import { FaFacebookF, FaGoogle, FaRegEnvelope, FaRegUser } from "react-icons/fa";
+import { MdLockOutline } from "react-icons/md";
+import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import "../../../App.css";
 import { auth, firebaseStorage } from "../../../firebase.init";
-import Error from "../../ui/error/Error";
 import { useRegAsProfessionalMutation } from "../../../Redux/features/userInfo/userApi";
-import { useDispatch } from "react-redux";
 import { loadUserData } from "../../../Redux/features/userInfo/userInfo";
+import Error from "../../ui/error/Error";
 
 const RegAsProfessional = () => {
     const [regAsProfessional, { data: response, isLoading: serverLoading }] = useRegAsProfessionalMutation();
@@ -31,7 +31,7 @@ const RegAsProfessional = () => {
         register,
         formState: { errors },
         handleSubmit,
-        reset
+        reset,
     } = useForm();
 
     const onSubmit = async data => {
@@ -85,7 +85,7 @@ const RegAsProfessional = () => {
     useEffect(() => {
         if (photoUrl) {
             setCustomError("");
-            console.log(photoUrl)
+            console.log(photoUrl);
         }
     }, [photoUrl]);
 
@@ -110,8 +110,10 @@ const RegAsProfessional = () => {
                                 <p className="border-2 cursor-pointer border-gray-200 rounded-full p-3 mx-1 hover:bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] hover:text-white duration-400 transition-all">
                                     <FaFacebookF className="text-sm" />
                                 </p>
-                                <p className="border-2 cursor-pointer border-gray-200 rounded-full p-3 mx-1 hover:bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] hover:text-white duration-400 transition-all"
-                                    onClick={() => signInWithGoogle()}>
+                                <p
+                                    className="border-2 cursor-pointer border-gray-200 rounded-full p-3 mx-1 hover:bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] hover:text-white duration-400 transition-all"
+                                    onClick={() => signInWithGoogle()}
+                                >
                                     <FaGoogle className="text-sm" />
                                 </p>
                             </div>{" "}
@@ -209,7 +211,9 @@ const RegAsProfessional = () => {
                                                 className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
                                                 id="designation"
                                             >
-                                                <option className="m-8 p-8" value="">Select Designation</option>
+                                                <option className="m-8 p-8" value="">
+                                                    Select Designation
+                                                </option>
                                                 <option value="Kazi">Kazi</option>
                                                 <option value="Agent">Agent</option>
                                                 <option value="Lawyer">Lawyer</option>
@@ -380,6 +384,17 @@ const RegAsProfessional = () => {
                             {/*Input Field*/}
                         </div>
                     </div>{" "}
+                    <div className="h-[200px] w-full bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] rounded-br-2xl rounded-bl-2xl p-2 md:hidden text-white">
+                        <h2 className="font-bold text-3xl mb-2">Hello, Friend!</h2>
+                        <div className="border-2 w-10 border-white inline-block"></div>
+                        <p className="mb-4">Fill up your information and start journey with us</p>
+                        <Link
+                            to="/loginAsProfessional"
+                            className="border-2 border-white rounded-full px-3 lg:px-12 py-2 hover:bg-white hover:text-primary duration-500 transition-all"
+                        >
+                            LOGIN
+                        </Link>
+                    </div>
                     {/*Sign in section */}
                     <div className="hidden md:block bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] lg:w-2/5 p-5 text-white rounded-tr-2xl rounded-br-2xl md:py-36 md:px-4 lg:px-12">
                         <h2 className="font-bold text-3xl mb-2">Hello, Friend!</h2>

@@ -39,7 +39,7 @@ const FilterModel = ({ visiblity, onClose }) => {
                                         <div className="px-4 h-25 items-center flex justify-center py-2 border-b">
                                             <div className="pr-4">I am : </div>
                                             <div className="form-check">
-                                                <label htmlFor="pizza">
+                                                <label htmlhtmlFor="pizza">
                                                     <input className="border rounded-full px-2"
                                                         {...register('iam', { required: true })}
                                                         type="radio"
@@ -51,7 +51,7 @@ const FilterModel = ({ visiblity, onClose }) => {
                                                 </label>
                                             </div>
                                             <div className="form-check pl-6">
-                                                <label htmlFor="woman">
+                                                <label htmlhtmlFor="woman">
                                                     <input
                                                         {...register('iam', { required: true })}
                                                         type="radio"
@@ -71,9 +71,9 @@ const FilterModel = ({ visiblity, onClose }) => {
                                     <div>
                                         <div>
                                             <div className="px-4 h-25 items-center flex justify-center py-2 border-b">
-                                                <div className="pr-4">I am : </div>
+                                                <div className="pr-4">Seeking a : </div>
                                                 <div className="form-check">
-                                                    <label htmlFor="pizza">
+                                                    <label htmlhtmlFor="pizza">
                                                         <input className="border rounded-full px-2"
                                                             {...register('interest', { required: true })}
                                                             type="radio"
@@ -85,7 +85,7 @@ const FilterModel = ({ visiblity, onClose }) => {
                                                     </label>
                                                 </div>
                                                 <div className="form-check pl-6">
-                                                    <label htmlFor="woman">
+                                                    <label htmlhtmlFor="woman">
                                                         <input
                                                             {...register('interest', { required: true })}
                                                             type="radio"
@@ -107,22 +107,35 @@ const FilterModel = ({ visiblity, onClose }) => {
                                         <div className="px-4 flex justify-center py-2 border-b">
                                             <div className="pr-4">Age : </div>
                                             <div className="border rounded-full px-2">
-                                                <select {...register("category", { required: true })}>
-                                                    <option value="">Select...</option>
-                                                    <option value="A">Option A</option>
-                                                    <option value="B">Option B</option>
+                                                <select {...register("firstAge", { required: true })}>
+                                                    <option value="38">38</option>
+                                                    <option value="39">39</option>
+                                                    <option value="40">40</option>
                                                 </select>
                                             </div>
                                             <div className="px-4">
                                                 -
                                             </div>
                                             <div className="border rounded-full px-2">
-                                                <select {...register("categorys", { required: true })}>
-                                                    <option value="">Select...</option>
-                                                    <option value="A">Option A</option>
-                                                    <option value="B">Option B</option>
+                                                <select {...register("lastAge", { required: true })}>
+                                                    <option value="18">18</option>
+                                                    <option value="19">19</option>
+                                                    <option value="20">20</option>
                                                 </select>
                                             </div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <hr />
+                                    </div>
+                                    <div className="px-4 flex justify-center py-2 border-b">
+                                        <div className="pr-4">Country : </div>
+                                        <div className="border rounded-full px-2">
+                                            <select {...register("country", { required: true })}>
+                                                <option value="Bangladesh">Bangladesh</option>
+                                                <option value="India">India</option>
+                                                <option value="Pakistan">Pakistan</option>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>

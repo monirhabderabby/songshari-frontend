@@ -18,7 +18,6 @@ import Agent from "../Wrapper/Agent/Agent";
 import Community from "../Wrapper/Community/Community";
 import Course from "../Wrapper/Course/Course";
 import FindAlawyer from "../Wrapper/Findalawyer/FindAlawyer";
-import FindPartner from "../Wrapper/Findpartner/FindPartner";
 import Homepage from "../Wrapper/Home/Homepage";
 import Kazi from "../Wrapper/Kazi/Kazi";
 import MemberShip from "../Wrapper/Membership/MemberShip";
