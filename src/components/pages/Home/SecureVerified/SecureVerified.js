@@ -14,8 +14,8 @@ const SecureVerified = () => {
   ];
 
   return (
-    <div className="pt-44 pb-20 w-4/5 mx-auto">
-      <div className="flex justify-center gap-6">
+    <div className="pt-16 md:pt-44 md:pb-20 w-11/12 md:w-4/5 mx-auto">
+      <div className="flex flex-col md:flex-row justify-center gap-6">
         {info.map((i) => (
           <div
             data-aos="fade-up"
