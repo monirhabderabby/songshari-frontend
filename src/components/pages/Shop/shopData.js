@@ -1,15 +1,15 @@
-import shop1 from "../../../assets/Images/shop/01.jpg";
-import shop2 from "../../../assets/Images/shop/02.jpg";
-import shop3 from "../../../assets/Images/shop/03.jpg";
-import shop4 from "../../../assets/Images/shop/04.jpg";
-import shop5 from "../../../assets/Images/shop/05.jpg";
-import shop6 from "../../../assets/Images/shop/06.jpg";
-import shop7 from "../../../assets/Images/shop/07.jpg";
-import shop8 from "../../../assets/Images/shop/08.jpg";
-import shop9 from "../../../assets/Images/shop/09.jpg";
-import shop10 from "../../../assets/Images/shop/10.jpg";
-import shop11 from "../../../assets/Images/shop/11.jpg";
-import shop12 from "../../../assets/Images/shop/12 (1).jpg";
+import shop1 from "../../../assets/images/shop/01.jpg";
+import shop2 from "../../../assets/images/shop/02.jpg";
+import shop3 from "../../../assets/images/shop/03.jpg";
+import shop4 from "../../../assets/images/shop/04.jpg";
+import shop5 from "../../../assets/images/shop/05.jpg";
+import shop6 from "../../../assets/images/shop/06.jpg";
+import shop7 from "../../../assets/images/shop/07.jpg";
+import shop8 from "../../../assets/images/shop/08.jpg";
+import shop9 from "../../../assets/images/shop/09.jpg";
+import shop10 from "../../../assets/images/shop/10.jpg";
+import shop11 from "../../../assets/images/shop/11.jpg";
+import shop12 from "../../../assets/images/shop/12 (1).jpg";
 
 const shopData = [
   {

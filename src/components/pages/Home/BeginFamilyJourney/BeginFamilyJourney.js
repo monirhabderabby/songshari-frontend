@@ -1,7 +1,7 @@
 import React from "react";
 import "./BeginFamilyJourney.css";
-import bgCircle from "../../../../assets/Images/HomeImage/circle.png";
-import findImg from "../../../../assets/Images/HomeImage/illutration.png";
+import bgCircle from "../../../../assets/images/HomeImage/circle.png";
+import findImg from "../../../../assets/images/HomeImage/illutration.png";
 
 const BeginFamilyJourney = () => {
   return (

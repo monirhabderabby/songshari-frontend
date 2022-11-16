@@ -1,14 +1,14 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
-import blackLogo from "../../../assets/Images/Logo/logoBlack.png";
-import blog from "../../../assets/Images/NavIcons/Blog.svg";
-import findPartner from "../../../assets/Images/NavIcons/Find-Your-Partner.svg";
-import membership from "../../../assets/Images/NavIcons/Membership.svg";
-import course from "../../../assets/Images/NavIcons/Online-Course.svg";
+import blackLogo from "../../../assets/images/Logo/logoBlack.png";
+import blog from "../../../assets/images/NavIcons/Blog.svg";
+import findPartner from "../../../assets/images/NavIcons/Find-Your-Partner.svg";
+import membership from "../../../assets/images/NavIcons/Membership.svg";
+import course from "../../../assets/images/NavIcons/Online-Course.svg";
 // import shop from '../../../assets/images/NavIcons/Shop.svg';
-import agent from "../../../assets/Images/NavIcons/Agent.svg";
-import kazi from "../../../assets/Images/NavIcons/Kazi.svg";
-import findALawyer from "../../../assets/Images/NavIcons/Lawyer.svg";
+import agent from "../../../assets/images/NavIcons/Agent.svg";
+import kazi from "../../../assets/images/NavIcons/Kazi.svg";
+import findALawyer from "../../../assets/images/NavIcons/Lawyer.svg";
 
 const NavBar = () => {
   const allMenu = [

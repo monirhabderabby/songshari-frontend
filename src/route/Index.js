@@ -9,7 +9,7 @@ import SignUp from "../components/pages/Authentications/SignUp";
 import Contact from "../components/pages/Contact/Contact";
 import { Members } from "../components/pages/Members/Members";
 import NotFound from "../components/pages/notfound/NotFound";
-import { Footer } from "../components/shared/Footer/Footer";
+import { Footer } from "../components/Shared/Footer/Footer";
 import SingleProfiles from "../components/SingleProfilesUser/SingleProfiles";
 import About from "../Wrapper/About/About";
 import Agent from "../Wrapper/Agent/Agent";

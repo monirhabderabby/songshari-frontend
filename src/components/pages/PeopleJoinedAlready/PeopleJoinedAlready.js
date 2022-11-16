@@ -1,9 +1,9 @@
 import React from "react";
 import "../../../assets/css/PeopleJoinedAlready.css";
-import icon1 from "../../../assets/Images/icons/Messages sent-per-day (1).png";
-import icon2 from "../../../assets/Images/icons/Messages sent-per-day (2).png";
-import icon3 from "../../../assets/Images/icons/Messages sent-per-day (3).png";
-import icon4 from "../../../assets/Images/icons/Messages sent-per-day (4).png";
+import icon1 from "../../../assets/images/icons/Messages sent-per-day (1).png";
+import icon2 from "../../../assets/images/icons/Messages sent-per-day (2).png";
+import icon3 from "../../../assets/images/icons/Messages sent-per-day (3).png";
+import icon4 from "../../../assets/images/icons/Messages sent-per-day (4).png";
 
 const PeopleJoinedAlready = () => {
   return (

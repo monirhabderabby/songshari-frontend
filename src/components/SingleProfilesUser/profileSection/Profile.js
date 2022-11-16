@@ -10,22 +10,56 @@ export const Profile = () => {
                 setTables(data);
             });
     }, []);
+
+    const [edit, setEdit] = useState(false);
+    const handleEdit = () => {
+       setEdit(true);
+    }
     return (
         <div>
             <div className="my-6 py-6 table-bar px-8">
-                <div>
+                <div className='grid lg:grid-cols-2 sm:grid-cols-1'>
+                    
                     <Title titleText="This is first Table"></Title>
+                    <button onClick={handleEdit} className='btn'>Edit</button>
                 </div>
                 {tables.map(t => {
                     return (
                         <div className="">
-                            <div className="flex justify-between custom-design">
-                                <h1>{t.name}</h1>
-                                <h1>{t.title}</h1>
-                            </div>
+
+{
+    edit ?   <div className="flex justify-between custom-design">      
+    <h1 className="flex items-center bg-gray-100 p-2 rounded-xl border-solid border-2 border-gray-400">
+    <input type='text' className="bg-transparent" placeholder="enter name" defaultValue={t.name}></input>
+    </h1>
+
+    <h1 className="flex items-center bg-gray-100 p-2 rounded-xl border-solid border-2 border-gray-400">
+    <input type='text' className="bg-transparent" defaultValue={t.title}></input>
+    </h1>
+               
+            </div>
+            :
+            <div className="flex justify-between custom-design">      
+            <h1 className="flex items-center bg-gray-100 p-2 rounded-xl">
+            <input type='text' className="bg-transparent" placeholder="enter name" defaultValue={t.name} disabled ></input>
+            </h1>
+
+            <h1 className="flex items-center bg-gray-100 p-2 rounded-xl">
+            <input type='text' className="bg-transparent" defaultValue={t.title} disabled></input>
+            </h1>
+                       
+                    </div>
+}
+
+                          
                         </div>
+                        
                     );
                 })}
+                {
+                    edit && <button className='btn bg-gray-300 rounded-full p-2 mt-2'>Save Changes</button>
+                }
+                
             </div>
             <div class="w-full mt-10 bg-white px-4 py-6 rounded-lg shadow ">
                 <Title titleText="Myself Summary"></Title>
