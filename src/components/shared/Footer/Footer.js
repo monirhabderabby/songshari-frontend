@@ -3,9 +3,9 @@ import { FaAngleDoubleRight, FaDribbble, FaFacebookF, FaInstagram, FaTelegramPla
 import { Link } from "react-router-dom";
 import "../../../App.css";
 import "../../../assets/css/footer.css";
-import icon from './../../../assets/images/footer/icon.png'
-import flower from './../../../assets/images/footer/flower01.png'
-import rightShape from './../../../assets/images/footer/right-shape.png'
+import flower from './../../../assets/images/footer/flower01.png';
+import icon from './../../../assets/images/footer/icon.png';
+import rightShape from './../../../assets/images/footer/right-shape.png';
 
 export const Footer = () => {
     const links = {
@@ -117,9 +117,10 @@ export const Footer = () => {
                 <div className="grid grid-cols-2 md:grid-cols-4 my-[86px]">
                     <div className="mx-auto">
                         <h1 className="text-white mb-[9px] font-medium tracking-[1.5px] font-george text-[24px]">OUR INFORMATION</h1>
-                        {links?.ourInformation.map(link => {
+                        {links?.ourInformation.map((link, i) => {
                             return (
                                 <Link
+                                key={i}
                                     to={link.to}
                                     className="flex items-center mb-[21px] text-[16px] text-white hover:text-blue-600 hover:translate-x-3 transition-[0.3s]"
                                 >

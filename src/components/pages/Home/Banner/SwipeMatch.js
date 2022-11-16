@@ -34,10 +34,20 @@ const SwipeMatch = () => {
                     <SwiperSlide key={data.id} className="relative">
                         <img className="w-full rounded-b-xl" src={data.img} alt="" />
                         <div className="absolute bottom-4 left-8 text-white w-4/5">
-                            <p className="mb-2">
-                                {data.name} {data.age}
-                            </p>
-                            <div className="flex justify-between">
+                            <div className="text-left pl-6">
+                                <p className="mb-2">
+                                    {data.name} {data.age}
+                                </p>
+                                <p className="flex gap-1">
+                                    <FaStar className="font-bold text-sm text-green-900"></FaStar>
+                                    <span className="text-xs">Login First</span>
+                                </p>
+                                <p className="flex gap-1 mb-4">
+                                    <FaStar className="font-bold text-sm"></FaStar>
+                                    <span className="text-xs">Login First</span>
+                                </p>
+                            </div>
+                            <div className="flex justify-center gap-2">
                                 <div
                                     className="border-2 border-[#ff337c] p-2 rounded-full"
                                     style={{

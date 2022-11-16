@@ -45,11 +45,11 @@ const Suggested = () => {
                 <h5 className="font-bold">Student</h5>
                 <h5 className="font-bold text-[20px]">Savar Dhaka</h5>
               </div>
-              <div class="Suggested-info__cardUp">
-                <div class="Suggested-info__cardImg">
+              <div className="Suggested-info__cardUp">
+                <div className="Suggested-info__cardImg">
                   <img src={profile.img} alt="card__img" />
                 </div>
-                <h4 class="text-white text-[30px] text-center overflow-hidden">
+                <h4 className="text-white text-[30px] text-center overflow-hidden">
                   Md. Tohidul islam
                   <span style={{ color: "rgb(135, 206, 235)" }}> 27</span>
                 </h4>
@@ -80,15 +80,15 @@ const Suggested = () => {
                     </p>
                   </li>
                 </ul>
-                <div class="info__social">
-                  <a href="/">
-                    <i class="fas fa-user" aria-hidden="true"></i>
+                <div className="info__social">
+                  <a href="#">
+                    <i className="fas fa-user" aria-hidden="true"></i>
                   </a>
-                  <a href="/">
-                    <i class="fas fa-comment" aria-hidden="true"></i>
+                  <a href="#">
+                    <i className="fas fa-comment" aria-hidden="true"></i>
                   </a>
-                  <a href="/">
-                    <i class="fas fa-heart" aria-hidden="true"></i>
+                  <a href="#">
+                    <i className="fas fa-heart" aria-hidden="true"></i>
                   </a>
                 </div>
               </div>
@@ -96,7 +96,7 @@ const Suggested = () => {
           </SwiperSlide>
         ))}
         <div className="text-center py-[40px]">
-          <a class="top-profile-btn" href="/">
+          <a className="top-profile-btn" href="/">
             See More
           </a>
         </div>

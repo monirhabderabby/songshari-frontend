@@ -39,8 +39,8 @@ const ThreeEasySteps = () => {
                                     <div className='flex flex-col justify-center'>
                                         <p className='text-xl text-white font-bold w-4/5 mx-auto bg-[#f664bc] rounded-full inline px-6 py-4 z-30'>{step.id}</p>
                                         <p className='mt-6 font-bold text-[#333333]'>{step.text}</p>
-                                        <div className='absolute top-[-5px] left-[5px] w-[70px] h-[70px] rounded-full bg-[#F664BC] opacity-30 -z-50'></div>
-                                        <div className='absolute top-[-10px] left-[1px] w-[78px] h-[78px] rounded-full bg-[#F664BC] opacity-30 -z-50'></div>
+                                        <div className='absolute top-[-5px] left-[5px] w-[70px] h-[70px] rounded-full bg-[#F664BC] opacity-30 -z-0'></div>
+                                        <div className='absolute top-[-10px] left-[1px] w-[78px] h-[78px] rounded-full bg-[#F664BC] opacity-30 -z-0'></div>
                                     </div>
                                 </div>
                                 )

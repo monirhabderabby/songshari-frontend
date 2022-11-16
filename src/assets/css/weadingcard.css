@@ -2,7 +2,7 @@
     background-color: rgb(253, 251, 252);
 }
 
-.card-hober:hover img {
+.card-hober:hover .card-img {
     transform: scaleX(1.2);
     transition: 2s;
 }
@@ -22,4 +22,18 @@
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     transition: 2s;
+}
+
+.people img {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: none;
+}
+
+.world img {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: none;
 }
