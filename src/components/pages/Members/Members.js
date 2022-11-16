@@ -12,7 +12,7 @@ export const Members = () => {
     return (
         <div>
             <CustomHeader title="Members" />
-            <div className="custom-container mt-[118px]">
+            <div className="custom-container mt-[118px] px-3">
                 <hr />
                 <div className="w-full h-[83px] flex justify-between items-center">
                     <button className="flex items-center py-[6px] px-[30px] button_shadow rounded-full">
@@ -26,7 +26,7 @@ export const Members = () => {
                         <select
                             name="orderBy"
                             value={value}
-                            onChange={e => setValue(e.target.orderBy.value)}
+                            onChange={e => setValue(e.target.value)}
                             className="outline-none button_shadow py-[6px] px-[20px] rounded-full"
                         >
                             <option value="LATEST ACTIVE">LATEST ACTIVE</option>
@@ -38,7 +38,7 @@ export const Members = () => {
                 </div>
                 <hr />
             </div>
-            <section className="grid grid-cols-2 custom-container gap-[33px] py-[33px]">
+            <section className="grid grid-cols-1 md:grid-cols-2 custom-container gap-[33px] py-[33px] px-3">
                 {products.map((p, index) => {
                     return (
                         <div
