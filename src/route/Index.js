@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 // components import
+import FindPartner from '../Wrapper/Findpartner/FindPartner'
 import Login from "../components/pages/Authentications/Login";
 import LoginAsProfessional from "../components/pages/Authentications/LoginAsProfessional";
 import RegAsProfessional from "../components/pages/Authentications/RegAsProfessional";
@@ -12,7 +13,7 @@ import NotFound from "../components/pages/notfound/NotFound";
 import Suggested from "../components/pages/TopProfile/Suggested";
 import TopBride from "../components/pages/TopProfile/TopBride";
 import TopGroom from "../components/pages/TopProfile/TopGroom";
-import { Footer } from "../components/shared/Footer/Footer";
+import { Footer } from "../components/Shared/Footer/Footer";
 import About from "../Wrapper/About/About";
 import Agent from "../Wrapper/Agent/Agent";
 import Community from "../Wrapper/Community/Community";
