@@ -31,6 +31,18 @@
 }
 
 .Suggested-info__cardUp {
+<<<<<<< HEAD
+  background-image: url("../images/TopProfile/Vector-1.9404edcdbad9fde28712.png");
+  background-position: top;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: 0.5s ease-in-out;
+=======
     background-image: url("../images/TopProfile/Vector-1.9404edcdbad9fde28712.png");
     background-position: top;
     background-repeat: no-repeat;
@@ -41,6 +53,7 @@
     width: 100%;
     height: 100%;
     transition: 0.5s ease-in-out;
+>>>>>>> main
 }
 
 .Suggested-info__cardImg {
