@@ -36,10 +36,10 @@ const NavBar = () => {
   ];
 
   const banglaHandler = () => {
-    setLanguage(!language);
+    setLanguage(false);
   };
   const englishHandler = () => {
-    setLanguage(!language);
+    setLanguage(true);
   };
 
   return (

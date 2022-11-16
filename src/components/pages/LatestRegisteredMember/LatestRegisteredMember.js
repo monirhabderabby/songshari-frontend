@@ -11,7 +11,7 @@ const LatestRegisteredMember = () => {
         <img className={LatestRegisteredMemberCSS.shape} src={shape} alt="" />
         <div className="max-w-[1300px] mx-auto">
           <div className="grid justify-center items-center grid-cols-2 ">
-            <div className="	">
+            <div>
               <div className={LatestRegisteredMemberCSS.content}>
                 <div className={LatestRegisteredMemberCSS.sectionHeader}>
                   <h6 className="text-[#ff317b] text-[24px] mb-[30px] font-bold">
@@ -20,7 +20,7 @@ const LatestRegisteredMember = () => {
                   <h2 className="text-[50px] text-[#ff317b]  font-semibold mb-[11px]">
                     Members
                   </h2>
-                  <p className="text-[20px] font-bold mb-[16px]">
+                  <p className="text-[20px] font-normal mb-[16px]">
                     if you have been looking for the someone special of your
                     life for long, then your search ends here
                   </p>
