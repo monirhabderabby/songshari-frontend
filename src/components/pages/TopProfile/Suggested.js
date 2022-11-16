@@ -24,7 +24,12 @@ const Suggested = () => {
       >
         {topProfileData.map((profile) => (
           <SwiperSlide key={profile._id}>
-            <div className=" cursor-pointer border-gray-300 Suggested-card rounded-[10px] border relative left-0 top-0 overflow-hidden">
+            <div
+              data-aos="fade-up"
+              data-aos-easing="ease-out-cubic"
+              data-aos-duration="2000"
+              className=" cursor-pointer border-gray-300 Suggested-card rounded-[10px] border relative left-0 top-0 overflow-hidden"
+            >
               <div>
                 <img
                   style={{ borderRadius: " 10px 10px 0px 0px" }}

@@ -34,7 +34,7 @@ const Banner = () => {
                     </SwiperSlide>
                 ))}
             </Swiper>
-            <div className="absolute top-40 z-50  flex justify-around w-full">
+            <div className="absolute top-40 z-30 flex justify-around w-full">
                 <SwipeMatch></SwipeMatch>
                 <FindPartnerForm></FindPartnerForm>
             </div>
