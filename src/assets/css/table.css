@@ -27,6 +27,16 @@
     }
 }
 
+@media only screen and (max-width: 900px) {
+    .notification-bar {
+        height: 50px;
+    }
+
+    .notification-bar button {
+        font-size: 12px;
+    }
+}
+
 /* @media (max-width: 599px) {}
 
 @media (min-width: 600px) {
