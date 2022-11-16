@@ -162,7 +162,6 @@ function getStepContent(step) {
           </div>
         </div>
 
-
      <br></br>
 
         <div className='grid lg:grid-cols-5 sm:grid-cols-1'>
@@ -969,7 +968,6 @@ const LinaerStepper = () => {
     setActiveStep(activeStep + 1);
   };
 
-
   return (
     <div>
       <Stepper alternativeLabel activeStep={activeStep}>
@@ -1037,3 +1035,5 @@ const LinaerStepper = () => {
 };
 
 export default LinaerStepper;
+
+
