@@ -22,7 +22,6 @@ const NavBar = () => {
         {
             id: 1,
             to: "/findpartner",
-            to: "/findpartner",
             icon: findPartner,
             tooltip: "Find Your Partner",
         },
