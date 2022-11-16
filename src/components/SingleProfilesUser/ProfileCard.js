@@ -4,24 +4,23 @@ import "../../assets/css/profileCards.css";
 const ProfileCard = () => {
     return (
         <div>
-            <div className="card_container">
+            <div className="card_container shadow">
                 <div className="Card-header"></div>
                 <div className="relative w-52 h-52 rounded-full">
                     <div className="bottom-20 left-24 absolute">
-                        <div className="relative card-img w-48 h-48 rounded-full">
-                            <img className="w-44 h-44 rounded-full img-fluid" src="https://cdn-icons-png.flaticon.com/512/194/194938.png" alt="" />
-                            <span class="bottom-10 left-40 absolute  w-3.5 h-3.5 bg-green-400 border-2 border-white dark:border-gray-800 rounded-full"></span>
+                        <div className="relative card-img w-48 h-48">
+                            <img className="w-44 bg-pink-300 h-44 rounded-full img-fluid" src="https://cdn-icons-png.flaticon.com/512/194/194938.png" alt="" />
                         </div>
                     </div>
                 </div>
                 <div className="text-center -mt-10">
-                    <h2>Partho bepary</h2>
+                    <h2 className="text-2xl font-semibold">Partho bepary</h2>
                     <div className="flex justify-center  my-2">
                         <h3 className="mr-4">21 years old | </h3>
                         <div className="flex">
                             <h3>
                                 <svg
-                                    color="pink"
+                                    color="#FF1D8E"
                                     xmlns="http://www.w3.org/2000/svg"
                                     fill="none"
                                     viewBox="0 0 24 24"
@@ -45,9 +44,9 @@ const ProfileCard = () => {
                     <div className="w-16 h-16 flex items-center justify-center rounded-full bg-pink-100">
                         <div className="flex items-center">
                             <svg
-                                color="red"
+                                color="#FF1D8E"
                                 xmlns="http://www.w3.org/2000/svg"
-                                fill=""
+                                fill="white"
                                 viewBox="0 0 24 24"
                                 stroke-width="1.5"
                                 stroke="currentColor"
@@ -62,6 +61,7 @@ const ProfileCard = () => {
                         </div>
                     </div>
                     <div>
+
                         <button className="special_profile_button">Send me Money</button>
                     </div>
                 </div>

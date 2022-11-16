@@ -12,12 +12,12 @@ const PhotoGelary = () => {
     }, []);
     return (
         <div>
-            <div className="photo-gelary p-6 text-left">
+            <div className="photo-gelary p-6 text-left shadow">
                 <div className="flex items-center mb-4">
                     <svg
-                        color="blue"
+                        color="#FF1D8E"
                         xmlns="http://www.w3.org/2000/svg"
-                        fill=""
+                        fill="white"
                         viewBox="0 0 24 24"
                         stroke-width="1.5"
                         stroke="currentColor"
@@ -34,7 +34,7 @@ const PhotoGelary = () => {
                             d="M16.5 12.75a4.5 4.5 0 11-9 0 4.5 4.5 0 019 0zM18.75 10.5h.008v.008h-.008V10.5z"
                         />
                     </svg>
-                    <h1 className="text-2xl ml-2">Hello i am developer</h1>
+                    <h1 className="text-2xl font-semibold ml-2">21 photo uploaded</h1>
                 </div>
                 <div className="grid grid-cols-3 gap-2 mt-10">
                     {photos?.map((p, i) => {
@@ -44,7 +44,7 @@ const PhotoGelary = () => {
                                     <img className="rounded-md" src={p.img} alt="" />
                                 </div>
                                 <div className="intro text-center w-full flex justify-center items-center">
-                                    <button className="py-1 px-2 btn btn-sm bg-yellow-500 rounded-lg">ok</button>
+                                    <button className="py-1 px-2 btn btn-sm text-5xl rounded-lg font-extrabold">+</button>
                                 </div>
                             </div>
                         );

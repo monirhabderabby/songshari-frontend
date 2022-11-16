@@ -1,25 +1,70 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
 import { FaFacebookF, FaGoogle, FaRegEnvelope } from "react-icons/fa";
 import { MdLockOutline } from "react-icons/md";
-import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
 import "../../../App.css";
+import logo from "../../../assets/images/Logo/logoBlack.png";
+import { auth } from "../../../firebase.init";
+import { useLoginAsMemberMutation } from "../../../Redux/features/userInfo/userApi";
+import { loadUserData } from "../../../Redux/features/userInfo/userInfo";
+import Error from "../../ui/error/Error";
+import ForgetPasswordModal from "./ForgetPassword/ForgetPasswordModal";
 
 const Login = () => {
+    const [customError, setCustomError] = useState("");
+    const [open, setOpen] = useState(false);
+    const [signInWithEmailAndPassword, user, loading, error] = useSignInWithEmailAndPassword(auth);
+    const [loginAsMember, { data: response, isLoading }] = useLoginAsMemberMutation();
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
     const {
         register,
         formState: { errors },
         handleSubmit,
+        reset,
     } = useForm();
 
-    const onSubmit = async data => {};
+    const modalControll = () => {
+        setOpen(!open);
+    };
+
+    const onSubmit = async data => {
+        data.role = "member";
+        console.log(data);
+        await signInWithEmailAndPassword(data.email, data.password);
+        loginAsMember(data);
+    };
+
+    useEffect(() => {
+        if (error?.message === "Firebase: Error (auth/wrong-password).") {
+            setCustomError("You are entering the wrong password");
+        }
+        if (error?.message === "Firebase: Error (auth/user-not-found).") {
+            setCustomError("User not found");
+        }
+    }, [error, setCustomError]);
+
+    useEffect(() => {
+        if (response) {
+            dispatch(loadUserData(response));
+            reset();
+        }
+        if (response && user) {
+            navigate("/");
+        }
+    }, [response, dispatch, user, navigate, reset]);
     return (
         <div>
             <section className="flex justify-center items-center w-full px-3 flex-1 text-center md:px-20 bg-gray-100 min-h-screen">
                 <div className="bg-white rounded-2xl shadow-2xl md:flex w-[100%] md:w-3/4 lg:w-2/3 max-w-4xl">
                     <div className="w-full lg:w-3/5 p-5">
                         <div className="text-left font-bold">
-                            <span className="gradient_text font-george">Songshari.com</span>
+                            <span className="gradient_text font-george">
+                                <img className="w-[150px]" src={logo} alt="logo" />
+                            </span>
                         </div>
                         <div className="py-10">
                             <h2 className="text-3xl font-bold gradient_text">Member Login</h2>
@@ -71,7 +116,7 @@ const Login = () => {
                                             <input
                                                 {...register("password", {
                                                     minLength: {
-                                                        value: 6,
+                                                        value: 8,
                                                         message: "password should be minimum 8 characters",
                                                     },
                                                     required: {
@@ -83,6 +128,7 @@ const Login = () => {
                                                 placeholder="Password"
                                                 className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
                                                 id="password"
+                                                onChange={() => setCustomError("")}
                                             />
                                         </div>
                                         <h1 className="text-left ml-2">
@@ -94,10 +140,16 @@ const Login = () => {
                                             )}
                                         </h1>
                                     </section>
-                                    <div></div>
+                                    <span
+                                        className="text-gray-400 float-right mt-3 hover:text-gray-500 duration-500 cursor-pointer"
+                                        onClick={modalControll}
+                                    >
+                                        Forget Password
+                                    </span>
+                                    <div className="col-span-2">{customError && <Error message={customError} />}</div>
                                     <input
                                         type="submit"
-                                        value="LOGIN"
+                                        value={loading || isLoading ? "Loading..." : "LOGIN"}
                                         className="border-2 cursor-pointer mt-3 border-primary hover:border-0 rounded-full px-12 py-2 hover:bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] hover:text-white duration-500 transition-all"
                                     />
                                 </form>
@@ -126,6 +178,7 @@ const Login = () => {
                     {/*Sign up section */}
                 </div>
             </section>
+            {open && <ForgetPasswordModal {...{ open, modalControll }} />}
         </div>
     );
 };

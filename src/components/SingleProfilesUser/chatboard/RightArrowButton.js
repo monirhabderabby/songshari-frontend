@@ -27,6 +27,7 @@ const Button = styled.span`
 
   &:hover {
     opacity: 1;
+    background-image: linear-gradient(166deg, rgb(242, 40, 118) -30%, rgb(148, 45, 217) 100%);
   }
 
   &::before {

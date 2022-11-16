@@ -1,13 +1,24 @@
 import React from "react";
+<<<<<<< HEAD
 import "./BeginFamilyJourney.css";
 import bgCircle from "../../../../assets/images/HomeImage/circle.png";
 import findImg from "../../../../assets/images/HomeImage/illutration.png";
+=======
+import bgCircle from "../../../../assets/images/HomeImage/circle.png";
+import findImg from "../../../../assets/images/HomeImage/illutration.png";
+import ScaleAnimationCSS from "../../../../assets/css/ScaleAnimation.module.css";
+>>>>>>> main
 
 const BeginFamilyJourney = () => {
   return (
     <div className="pt-8 pb-24 w-4/5 mx-auto">
       <div className="flex">
-        <div className="flex-1">
+        <div
+          data-aos="fade-right"
+          data-aos-easing="ease-out-cubic"
+          data-aos-duration="1000"
+          className="flex-1"
+        >
           <h6 className="text-[#5650ce] text-2xl font-bold mb-6">
             Meet Your Perfect Life Partner!
           </h6>
@@ -38,13 +49,20 @@ const BeginFamilyJourney = () => {
             SEEK YOUR PARTNER
           </button>
         </div>
-        <div className="flex-1 relative text-center">
+        <div
+          data-aos="fade-left"
+          data-aos-easing="ease-out-cubic"
+          data-aos-duration="1000"
+          className="flex-1 relative text-center"
+        >
           <div className="flex justify-center items-center">
             <img src={findImg} alt="" />
           </div>
           <div
             className="absolute -z-10 top-[-45px] left-[2px]"
-            style={{ animation: "scaleAni 5s linear infinite" }}
+            style={{
+              animation: `${ScaleAnimationCSS.scaleAni} 5s linear infinite`,
+            }}
           >
             <img src={bgCircle} alt="" />
           </div>

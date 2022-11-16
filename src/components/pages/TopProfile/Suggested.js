@@ -1,7 +1,7 @@
 import React from "react";
-import topProfileData from "./topProfileData";
-import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper";
+import { Swiper, SwiperSlide } from "swiper/react";
+import topProfileData from "./topProfileData";
 
 // Import Swiper styles
 import "swiper/css";
@@ -24,7 +24,12 @@ const Suggested = () => {
       >
         {topProfileData.map((profile) => (
           <SwiperSlide key={profile._id}>
-            <div className=" cursor-pointer border-gray-300 Suggested-card rounded-[10px] border relative left-0 top-0 overflow-hidden">
+            <div
+              data-aos="fade-up"
+              data-aos-easing="ease-out-cubic"
+              data-aos-duration="2000"
+              className=" cursor-pointer border-gray-300 Suggested-card rounded-[10px] border relative left-0 top-0 overflow-hidden"
+            >
               <div>
                 <img
                   style={{ borderRadius: " 10px 10px 0px 0px" }}
@@ -76,13 +81,13 @@ const Suggested = () => {
                   </li>
                 </ul>
                 <div class="info__social">
-                  <a href="#">
+                  <a href="/">
                     <i class="fas fa-user" aria-hidden="true"></i>
                   </a>
-                  <a href="#">
+                  <a href="/">
                     <i class="fas fa-comment" aria-hidden="true"></i>
                   </a>
-                  <a href="#">
+                  <a href="/">
                     <i class="fas fa-heart" aria-hidden="true"></i>
                   </a>
                 </div>

@@ -18,6 +18,9 @@ const SecureVerified = () => {
       <div className="flex justify-center gap-6">
         {info.map((i) => (
           <div
+            data-aos="fade-up"
+            data-aos-easing="ease-out-cubic"
+            data-aos-duration="1000"
             key={i.id}
             className={"w-full h-52 rounded-2xl px-8 pt-8 pb-6"}
             style={{ boxShadow: "0px 5px 30px 0px rgba(176, 171, 193, 0.4)" }}

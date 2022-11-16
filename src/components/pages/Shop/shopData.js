@@ -12,66 +12,66 @@ import shop11 from "../../../assets/images/shop/11.jpg";
 import shop12 from "../../../assets/images/shop/12 (1).jpg";
 
 const shopData = [
-  {
-    title: "Butterfly Rings",
-    image: shop1,
-    id: 1,
-  },
-  {
-    title: "Butterfly Rings",
-    image: shop2,
-    id: 2,
-  },
-  {
-    title: "Butterfly Rings",
-    image: shop3,
-    id: 3,
-  },
-  {
-    title: "Butterfly Rings",
-    image: shop4,
-    id: 4,
-  },
-  {
-    title: "Butterfly Rings",
-    image: shop5,
-    id: 5,
-  },
-  {
-    title: "Butterfly Rings",
-    image: shop6,
-    id: 6,
-  },
-  {
-    title: "Butterfly Rings",
-    image: shop7,
-    id: 7,
-  },
-  {
-    title: "Butterfly Rings",
-    image: shop8,
-    id: 8,
-  },
-  {
-    title: "Butterfly Rings",
-    image: shop9,
-    id: 9,
-  },
-  {
-    title: "Butterfly Rings",
-    image: shop10,
-    id: 10,
-  },
-  {
-    title: "Butterfly Rings",
-    image: shop11,
-    id: 11,
-  },
-  {
-    title: "Butterfly Rings",
-    image: shop12,
-    id: 12,
-  },
+    {
+        title: "Butterfly Rings",
+        image: shop1,
+        id: 1,
+    },
+    {
+        title: "Butterfly Rings",
+        image: shop2,
+        id: 2,
+    },
+    {
+        title: "Butterfly Rings",
+        image: shop3,
+        id: 3,
+    },
+    {
+        title: "Butterfly Rings",
+        image: shop4,
+        id: 4,
+    },
+    {
+        title: "Butterfly Rings",
+        image: shop5,
+        id: 5,
+    },
+    {
+        title: "Butterfly Rings",
+        image: shop6,
+        id: 6,
+    },
+    {
+        title: "Butterfly Rings",
+        image: shop7,
+        id: 7,
+    },
+    {
+        title: "Butterfly Rings",
+        image: shop8,
+        id: 8,
+    },
+    {
+        title: "Butterfly Rings",
+        image: shop9,
+        id: 9,
+    },
+    {
+        title: "Butterfly Rings",
+        image: shop10,
+        id: 10,
+    },
+    {
+        title: "Butterfly Rings",
+        image: shop11,
+        id: 11,
+    },
+    {
+        title: "Butterfly Rings",
+        image: shop12,
+        id: 12,
+    },
 ];
 
 export default shopData;
