@@ -1,6 +1,6 @@
 import React from "react";
+import { FaBolt, FaHeart, FaStar, FaTimes, FaUndo } from "react-icons/fa";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { FaUndo, FaTimes, FaStar, FaHeart, FaBolt } from "react-icons/fa";
 
 import { Navigation } from "swiper";
 import dummyData from "./TopProfile/dummyData";
@@ -59,37 +59,25 @@ const SwipeMatch = () => {
                                 </div>
                                 <div
                                     className="border-2 border-[#ff337c] p-2 rounded-full"
-                                    style={{
-                                        backgroundImage:
-                                            "linear-gradient(155deg, rgba(228, 18, 114, 1) 0%, #4844a5 100%)",
-                                    }}
+                                    style={{ backgroundImage: "linear-gradient(155deg, rgba(228, 18, 114, 1) 0%, #4844a5 100%)" }}
                                 >
                                     <FaTimes className="text-xl"></FaTimes>
                                 </div>
                                 <div
                                     className="border-2 border-[#ff337c] p-2 rounded-full"
-                                    style={{
-                                        backgroundImage:
-                                            "linear-gradient(155deg, rgba(228, 18, 114, 1) 0%, #4844a5 100%)",
-                                    }}
+                                    style={{ backgroundImage: "linear-gradient(155deg, rgba(228, 18, 114, 1) 0%, #4844a5 100%)" }}
                                 >
                                     <FaStar className="text-xl"></FaStar>
                                 </div>
                                 <div
                                     className="border-2 border-[#ff337c] p-2 rounded-full"
-                                    style={{
-                                        backgroundImage:
-                                            "linear-gradient(155deg, rgba(228, 18, 114, 1) 0%, #4844a5 100%)",
-                                    }}
+                                    style={{ backgroundImage: "linear-gradient(155deg, rgba(228, 18, 114, 1) 0%, #4844a5 100%)" }}
                                 >
                                     <FaHeart className="text-xl"></FaHeart>
                                 </div>
                                 <div
                                     className="border-2 border-[#ff337c] p-2 rounded-full"
-                                    style={{
-                                        backgroundImage:
-                                            "linear-gradient(155deg, rgba(228, 18, 114, 1) 0%, #4844a5 100%)",
-                                    }}
+                                    style={{ backgroundImage: "linear-gradient(155deg, rgba(228, 18, 114, 1) 0%, #4844a5 100%)" }}
                                 >
                                     <FaBolt className="text-xl"></FaBolt>
                                 </div>

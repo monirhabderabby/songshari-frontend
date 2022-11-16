@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import { AiFillCheckCircle } from "react-icons/ai";
 import { FaSlidersH } from "react-icons/fa";
-
 import "../../../App.css";
-import { CustomHeader } from "../../shared/CustomHeader/CustomHeader";
 
 export const Members = () => {
     const [value, setValue] = useState("LATEST ACTIVE");
@@ -11,7 +9,7 @@ export const Members = () => {
     const products = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
     return (
         <div>
-            <CustomHeader title="Members" />
+            {/* <CustomHeader title="Members" /> */}
             <div className="custom-container mt-[118px]">
                 <hr />
                 <div className="w-full h-[83px] flex justify-between items-center">

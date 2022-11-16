@@ -1,7 +1,7 @@
 import React from "react";
+import ScaleAnimationCSS from "../../../../assets/css/ScaleAnimation.module.css";
 import bgCircle from "../../../../assets/images/HomeImage/circle.png";
 import findImg from "../../../../assets/images/HomeImage/illutration.png";
-import ScaleAnimationCSS from "../../../../assets/css/ScaleAnimation.module.css";
 
 const BeginFamilyJourney = () => {
   return (

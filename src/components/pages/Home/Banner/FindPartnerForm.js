@@ -15,24 +15,21 @@ function FindPartnerForm() {
     //     dispatch(cityFunction());
     // }, [dispatch]);
 
-    const [state, setState] = useReducer(
-        (state, newState) => ({ ...state, ...newState }),
-        {
-            minAgeValues: [18, 22, 26, 30, 34],
-            maxAgeValues: [38, 42, 46, 50, 54, 58],
-            min_age: "",
-            max_age: "",
-            gender: "",
-            city_id: "",
-        }
-    );
+    const [state, setState] = useReducer((state, newState) => ({ ...state, ...newState }), {
+        minAgeValues: [18, 22, 26, 30, 34],
+        maxAgeValues: [38, 42, 46, 50, 54, 58],
+        min_age: "",
+        max_age: "",
+        gender: "",
+        city_id: "",
+    });
 
-    let minAges = state.minAgeValues.map((m) => (
+    let minAges = state.minAgeValues.map(m => (
         <option key={m + 10} value={m}>
             {m}
         </option>
     ));
-    let maxAges = state.maxAgeValues.map((m) => (
+    let maxAges = state.maxAgeValues.map(m => (
         <option key={m + 10} value={m}>
             {m}
         </option>
@@ -68,17 +65,11 @@ function FindPartnerForm() {
     //     ));
     // }
 
-    const formLabel = (text) => {
+    const formLabel = text => {
         return (
             <div>
                 <p className="text-lg font-bold leading-5">{text}</p>
-                <hr
-                    className="w-8 h-1 rounded-sm"
-                    style={{
-                        backgroundImage:
-                            "linear-gradient(145deg, #5d38b1f7 0%, #951f1f 100%)",
-                    }}
-                />
+                <hr className="w-8 h-1 rounded-sm" style={{ backgroundImage: "linear-gradient(145deg, #5d38b1f7 0%, #951f1f 100%)" }} />
             </div>
         );
     };
@@ -144,7 +135,7 @@ function FindPartnerForm() {
                             </div>
                             <div className="s-input">
                                 <input type="radio" name="" id="female2" />
-                                <label htmlFor="female2" className="pl-2">Female</label>
+                                <label htmlFor="female2">Female</label>
                             </div>
                         </div>
                     </div>
@@ -208,10 +199,7 @@ function FindPartnerForm() {
                             </div>
                         </div>
                     </div>
-                    <div
-                        id="single-option2"
-                        className="px-4 flex justify-between py-2 border-b"
-                    >
+                    <div id="single-option2" className="px-4 flex justify-between py-2 border-b">
                         {formLabel("City")}
                         <div className="option">
                             <div className="border rounded-full px-2">

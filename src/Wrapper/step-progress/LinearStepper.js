@@ -43,17 +43,13 @@ function getStepContent(step) {
               <label className="text-lg ml-4">Upload Profile Photo</label>
            
            <div className="flex items-center bg-gray-100 p-2 w-3/4  rounded-xl">  
-            <input  id="profile" type="file" className="flex-1 outline-none h-full mr-20 bg-transparent text-sm text-gray-400" placeholder="Email"  name="profile" />
+            <input  id="profile" type="file" className="flex-1 outline-none h-full mr-20 bg-transparent text-sm text-gray-400" name="profile" />
            </div>
-        
-          
-       
           </div>
-
           <div>
          <label className="text-lg ml-4">Upload Cover Photo</label>
         <div className="flex items-center bg-gray-100 p-2 w-3/4  rounded-xl">  
-      <input id="profile" type="file" className="flex-1 outline-none h-full mr-20 bg-transparent text-sm text-gray-400" placeholder="Email"  name="profile" />
+      <input id="cover" type="file" className="flex-1 outline-none h-full mr-20 bg-transparent text-sm text-gray-400" name="cover" />
      </div>
           </div>
         </div>
@@ -62,14 +58,14 @@ function getStepContent(step) {
           <div>
           <label className="text-lg ml-4">First Name</label>
         <div className="flex items-center bg-gray-100 p-2 w-3/4  rounded-xl">  
-      <input id="profile" type="text" className="flex-1 outline-none h-full mr-20 bg-transparent text-sm text-gray-400" placeholder="Email"  name="profile" />
+      <input id="fname" type="text" className="flex-1 outline-none h-full mr-20 bg-transparent text-sm text-gray-400" placeholder="First Name"  name="fname" />
      </div>
           </div>
 
           <div>
           <label className="text-lg ml-4">Last Name</label>
         <div className="flex items-center bg-gray-100 p-2 w-3/4  rounded-xl">  
-      <input id="profile" type="text" className="flex-1 outline-none h-full mr-20 bg-transparent text-sm text-gray-400" placeholder="Email"  name="profile" />
+      <input id="lname" type="text" className="flex-1 outline-none h-full mr-20 bg-transparent text-sm text-gray-400" placeholder="Last Name"  name="lname" />
      </div>
           </div>
         </div>
@@ -79,14 +75,14 @@ function getStepContent(step) {
           <div>
           <label className="text-lg ml-4">Phone</label>
         <div className="flex items-center bg-gray-100 p-2 w-3/4  rounded-xl">  
-      <input id="profile" type="text" className="flex-1 outline-none h-full mr-20 bg-transparent text-sm text-gray-400" placeholder="Email"  name="profile" />
+      <input id="phone" type="text" className="flex-1 outline-none h-full mr-20 bg-transparent text-sm text-gray-400" placeholder="Phone"  name="phone" />
      </div>
           </div>
 
           <div>
           <label className="text-lg ml-4">Email</label>
         <div className="flex items-center bg-gray-100 p-2 w-3/4  rounded-xl">  
-      <input id="profile" type="text" className="flex-1 outline-none h-full mr-20 bg-transparent text-sm text-gray-400" placeholder="Email"  name="profile" />
+      <input id="email" type="text" className="flex-1 outline-none h-full mr-20 bg-transparent text-sm text-gray-400" placeholder="Email"  name="email" />
      </div>
           </div>
         </div>
@@ -96,13 +92,13 @@ function getStepContent(step) {
           <div>
           <label className="text-lg ml-4">NID/Passport No</label>
         <div className="flex items-center bg-gray-100 p-2 w-3/4  rounded-xl">  
-      <input id="profile" type="text" className="flex-1 outline-none h-full mr-20 bg-transparent text-sm text-gray-400" placeholder="Email"  name="profile" />
+      <input id="nid" type="text" className="flex-1 outline-none h-full mr-20 bg-transparent text-sm text-gray-400" placeholder="NID/Passport No"  name="nid" />
      </div>
           </div>
           <div>
           <label className="text-lg ml-4">NID/Passport Image</label>
         <div className="flex items-center bg-gray-100 p-2 w-3/4  rounded-xl">  
-      <input id="profile" type="file" className="flex-1 outline-none h-full mr-20 bg-transparent text-sm text-gray-400" placeholder="Email"  name="profile" />
+      <input id="nidimg" type="file" className="flex-1 outline-none h-full mr-20 bg-transparent text-sm text-gray-400"   name="nidimg" />
      </div>
           </div>
         </div>
@@ -112,13 +108,7 @@ function getStepContent(step) {
           <div>
           <label className="text-lg ml-4">Birth Day</label>
         <div className="flex items-center bg-gray-100 p-2 w-3/4  rounded-xl">  
-      <input id="profile" type="date" className="flex-1 outline-none h-full mr-20 bg-transparent text-sm text-gray-400" placeholder="Email"  name="profile" />
-     </div>
-          </div>
-          <div>
-          <label className="text-lg ml-4">NID/Passport Image</label>
-        <div className="flex items-center bg-gray-100 p-2 w-3/4  rounded-xl">  
-      <input id="profile" type="file" className="flex-1 outline-none h-full mr-20 bg-transparent text-sm text-gray-400" placeholder="Email"  name="profile" />
+      <input id="birthday" type="date" className="flex-1 outline-none h-full mr-20 bg-transparent text-sm text-gray-400" placeholder="Birth Day"  name="birthday" />
      </div>
           </div>
         </div>
@@ -131,28 +121,28 @@ function getStepContent(step) {
      </div>
      <br></br>
         <div className="ml-10">  
-      <input type='radio' name='single'></input> Married
+      <input type='radio' name='married'></input> Married
      </div>
         <div className="ml-8">  
-      <input type='text' name='single' placeholder="No of hus/wife"></input> 
-      <input type='text' name='single' placeholder="Reason for again marry"></input> 
+      <input type='text' name='husno' placeholder="No of hus/wife"></input> 
+      <input type='text' name='reasonformarry' placeholder="Reason for again marry"></input> 
       <select name="cars" id="cars">
-  <option value="volvo" >Is Your Current Partner Aware Of Your Decision About Another Marriage?</option>
-  <option value="saab">Yes</option>
-  <option value="mercedes">No</option>
+  <option value="" >Is Your Current Partner Aware Of Your Decision About Another Marriage?</option>
+  <option value="yes">Yes</option>
+  <option value="no">No</option>
 </select>
      </div>
      <br></br>
      <div className="ml-10">  
-      <input type='radio' name='single'></input> Widowed
+      <input type='radio' name='widow'></input> Widowed
      </div>
      <div className="ml-8">  
-      <input type='text' name='single' placeholder="Marriage Date"></input> 
-      <input type='text' name='single' placeholder="Partners Death Date"></input> 
-      <select name="cars" id="cars">
-  <option value="volvo" >Do you have children</option>
-  <option value="saab">Yes</option>
-  <option value="mercedes">No</option>
+      <input type='text' name='marriagedate' placeholder="Marriage Date"></input> 
+      <input type='text' name='deathdate' placeholder="Partners Death Date"></input> 
+      <select name="" id="">
+  <option value="" >Do you have children</option>
+  <option value="yes">Yes</option>
+  <option value="no">No</option>
 </select>
      </div>
      <br></br>
@@ -172,38 +162,37 @@ function getStepContent(step) {
           </div>
         </div>
 
-
      <br></br>
 
         <div className='grid lg:grid-cols-5 sm:grid-cols-1'>
           <div>
           <label className="text-lg ml-4">Current Profession</label>
         <div className="flex items-center bg-gray-100 p-2 w-3/4  rounded-xl">  
-      <input id="citizenship" type="text" className="flex-1 outline-none h-full  bg-transparent text-sm text-gray-400" placeholder="Position"  name="citizenship" />
+      <input id="position" type="text" className="flex-1 outline-none h-full  bg-transparent text-sm text-gray-400" placeholder="Position"  name="position" />
      </div>
           </div>
           <div>
           <label className="text-lg ml-4"></label>
         <div className="flex items-center bg-gray-100 p-2 w-3/4  rounded-xl">  
-      <input id="citizenship" type="text" className="flex-1 outline-none h-full  bg-transparent text-sm text-gray-400" placeholder="Institute"  name="citizenship" />
+      <input id="institute" type="text" className="flex-1 outline-none h-full  bg-transparent text-sm text-gray-400" placeholder="Institute"  name="institute" />
      </div>
           </div>
           <div>
           <label className="text-sm ml-4">Work Period Starts</label>
         <div className="flex items-center bg-gray-100 p-2 w-3/4  rounded-xl">  
-      <input id="citizenship" type="date" className="flex-1 outline-none h-full  bg-transparent text-sm text-gray-400" placeholder=""  name="citizenship" />
+      <input id="wstart" type="date" className="flex-1 outline-none h-full  bg-transparent text-sm text-gray-400" placeholder=""  name="wstart" />
      </div>
           </div>
           <div>
           <label className="text-sm ml-4">Work Period Ends</label>
         <div className="flex items-center bg-gray-100 p-2 w-3/4  rounded-xl">  
-      <input id="citizenship" type="date" className="flex-1 outline-none h-full  bg-transparent text-sm text-gray-400" placeholder=""  name="citizenship" />
+      <input id="wend" type="date" className="flex-1 outline-none h-full  bg-transparent text-sm text-gray-400" placeholder=""  name="wend" />
      </div>
           </div>
           <div>
           <label className="text-sm ml-4"></label>
           <div className="flex items-center bg-gray-100 p-2 w-3/4  rounded-xl">  
-      <input id="citizenship" type="text" className="flex-1 outline-none h-full  bg-transparent text-sm text-gray-400" placeholder="Special Achievements"  name="citizenship" />
+      <input id="achievement" type="text" className="flex-1 outline-none h-full  bg-transparent text-sm text-gray-400" placeholder="Special Achievements"  name="achievement" />
      </div>
           </div>  
         </div>
@@ -211,41 +200,39 @@ function getStepContent(step) {
           <div>
           <label className="text-lg ml-4">Educational Qualification</label>
         <div className="flex items-center bg-gray-100 p-2 w-3/4  rounded-xl">  
-      <input id="citizenship" type="text" className="flex-1 outline-none h-full  bg-transparent text-sm text-gray-400" placeholder="Degree Name"  name="citizenship" />
+      <input id="degree" type="text" className="flex-1 outline-none h-full  bg-transparent text-sm text-gray-400" placeholder="Degree Name"  name="degree" />
      </div>
           </div>
           <div>
           <label className="text-lg ml-4"></label>
         <div className="flex items-center bg-gray-100 p-2 w-3/4  rounded-xl">  
-      <input id="citizenship" type="text" className="flex-1 outline-none h-full  bg-transparent text-sm text-gray-400" placeholder="Institute"  name="citizenship" />
+      <input id="institute" type="text" className="flex-1 outline-none h-full  bg-transparent text-sm text-gray-400" placeholder="Institute"  name="institute" />
      </div>
           </div>
           <div>
           <label className="text-sm ml-4"></label>
         <div className="flex items-center bg-gray-100 p-2 w-3/4  rounded-xl">  
-      <input id="citizenship" type="text" className="flex-1 outline-none h-full  bg-transparent text-sm text-gray-400" placeholder="Department"  name="citizenship" />
+      <input id="department" type="text" className="flex-1 outline-none h-full  bg-transparent text-sm text-gray-400" placeholder="Department"  name="department" />
      </div>
           </div>
- 
         </div>
-
         <div className='grid lg:grid-cols-3 sm:grid-cols-1'>
           <div>
           <label className="text-lg ml-4"></label>
         <div className="flex items-center bg-gray-100 p-2 w-3/4  rounded-xl">  
-      <input id="citizenship" type="text" className="flex-1 outline-none h-full  bg-transparent text-sm text-gray-400" placeholder="Field of study"  name="citizenship" />
+      <input id="fofstudy" type="text" className="flex-1 outline-none h-full  bg-transparent text-sm text-gray-400" placeholder="Field of study"  name="fofstudy" />
      </div>
           </div>
           <div>
           <label className="text-lg ml-4"></label>
         <div className="flex items-center bg-gray-100 p-2 w-3/4  rounded-xl">  
-      <input id="citizenship" type="text" className="flex-1 outline-none h-full  bg-transparent text-sm text-gray-400" placeholder="GPA/CGPA"  name="citizenship" />
+      <input id="cg" type="text" className="flex-1 outline-none h-full  bg-transparent text-sm text-gray-400" placeholder="GPA/CGPA"  name="cg" />
      </div>
           </div>
           <div>
           <label className="text-sm ml-4"></label>
         <div className="flex items-center bg-gray-100 p-2 w-3/4  rounded-xl">  
-      <input id="citizenship" type="DATE" className="flex-1 outline-none h-full  bg-transparent text-sm text-gray-400" placeholder="Year of passing"  name="citizenship" />
+      <input id="passing" type="DATE" className="flex-1 outline-none h-full  bg-transparent text-sm text-gray-400" placeholder="Year of passing"  name="passing" />
      </div>
           </div> 
         </div>
@@ -256,7 +243,7 @@ function getStepContent(step) {
               <label className="text-lg ml-4">Height</label>
            
            <div className="flex items-center bg-gray-100 p-2 w-3/4  rounded-xl">  
-            <input  id="profile" type="text" className="flex-1 outline-none h-full mr-20 bg-transparent text-sm text-gray-400" placeholder="Height"  name="profile" />
+            <input  id="height" type="text" className="flex-1 outline-none h-full mr-20 bg-transparent text-sm text-gray-400" placeholder="Height"  name="height" />
            </div>
         
           
@@ -266,7 +253,7 @@ function getStepContent(step) {
           <div>
          <label className="text-lg ml-4">Weight</label>
         <div className="flex items-center bg-gray-100 p-2 w-3/4  rounded-xl">  
-      <input id="profile" type="file" className="flex-1 outline-none h-full mr-20 bg-transparent text-sm text-gray-400" placeholder="Weight"  name="profile" />
+      <input id="weight" type="text" className="flex-1 outline-none h-full mr-20 bg-transparent text-sm text-gray-400" placeholder="Weight"  name="weight" />
      </div>
           </div>
         </div>
@@ -277,17 +264,14 @@ function getStepContent(step) {
               <label className="text-lg ml-4">Ancestry</label>
            
            <div className="flex items-center bg-gray-100 p-2 w-3/4  rounded-xl">  
-            <input  id="profile" type="text" className="flex-1 outline-none h-full mr-20 bg-transparent text-sm text-gray-400" placeholder="Ancestry"  name="profile" />
+            <input  id="ancestry" type="text" className="flex-1 outline-none h-full mr-20 bg-transparent text-sm text-gray-400" placeholder="Ancestry"  name="ancestry" />
            </div>
-        
-          
-       
           </div>
 
           <div>
          <label className="text-lg ml-4">Skin Tone</label>
         <div className="flex items-center bg-gray-100 p-2 w-3/4  rounded-xl">  
-      <input id="profile" type="file" className="flex-1 outline-none h-full mr-20 bg-transparent text-sm text-gray-400" placeholder="Skin Tone"  name="profile" />
+      <input id="skin" type="text" className="flex-1 outline-none h-full mr-20 bg-transparent text-sm text-gray-400" placeholder="Skin Tone"  name="skin" />
      </div>
           </div>
         </div>
@@ -297,14 +281,14 @@ function getStepContent(step) {
           <div>
               <label className="text-lg ml-4">Hair Color</label> 
            <div className="flex items-center bg-gray-100 p-2 w-3/4  rounded-xl">  
-            <input  id="profile" type="text" className="flex-1 outline-none h-full mr-20 bg-transparent text-sm text-gray-400" placeholder="Hair Color"  name="profile" />
+            <input  id="haircolor" type="text" className="flex-1 outline-none h-full mr-20 bg-transparent text-sm text-gray-400" placeholder="Hair Color"  name="haircolor" />
            </div>
           </div>
 
           <div>
          <label className="text-lg ml-4">Hair Type</label>
         <div className="flex items-center bg-gray-100 p-2 w-3/4  rounded-xl">  
-      <input id="profile" type="file" className="flex-1 outline-none h-full mr-20 bg-transparent text-sm text-gray-400" placeholder="Hair Type"  name="profile" />
+      <input id="hairtype" type="text" className="flex-1 outline-none h-full mr-20 bg-transparent text-sm text-gray-400" placeholder="Hair Type"  name="hairtype" />
      </div>
           </div>
         </div>
@@ -314,14 +298,14 @@ function getStepContent(step) {
           <div>
               <label className="text-lg ml-4">Eye Color</label> 
            <div className="flex items-center bg-gray-100 p-2 w-3/4  rounded-xl">  
-            <input  id="profile" type="text" className="flex-1 outline-none h-full mr-20 bg-transparent text-sm text-gray-400" placeholder="Hair Color"  name="profile" />
+            <input  id="eyecolor" type="text" className="flex-1 outline-none h-full mr-20 bg-transparent text-sm text-gray-400" placeholder="Eye Color"  name="eyecolor" />
            </div>
           </div>
 
           <div>
          <label className="text-lg ml-4">No of teeth</label>
         <div className="flex items-center bg-gray-100 p-2 w-3/4  rounded-xl">  
-      <input id="profile" type="file" className="flex-1 outline-none h-full mr-20 bg-transparent text-sm text-gray-400" placeholder="Hair Type"  name="profile" />
+      <input id="teeth" type="text" className="flex-1 outline-none h-full mr-20 bg-transparent text-sm text-gray-400" placeholder="No of teeth"  name="teeth" />
      </div>
           </div>
         </div>
@@ -330,7 +314,6 @@ function getStepContent(step) {
           <div>
               <label className="text-lg ml-4">Monthly Income</label> 
            <div className="flex items-center bg-gray-100 p-2 w-3/4  rounded-xl">  
-            {/* <input  id="profile" type="text" className="flex-1 outline-none h-full mr-20 bg-transparent text-sm text-gray-400" placeholder="Hair Color"  name="profile" /> */}
             <select className="flex-1 outline-none h-full mr-20 bg-transparent text-sm text-gray-400">
               <option>Below 15000 Bdt</option>
               <option>15000 - 20000 Bdt</option>
@@ -354,7 +337,7 @@ function getStepContent(step) {
           <div>
          <label className="text-lg ml-4">Home Town</label>
         <div className="flex items-center bg-gray-100 p-2 w-3/4  rounded-xl">  
-      <input id="profile" type="text" className="flex-1 outline-none h-full mr-20 bg-transparent text-sm text-gray-400" placeholder="Home Town"  name="profile" />
+      <input id="hometown" type="text" className="flex-1 outline-none h-full mr-20 bg-transparent text-sm text-gray-400" placeholder="Home Town"  name="hometown" />
      </div>
           </div>
         </div>
@@ -364,14 +347,14 @@ function getStepContent(step) {
           <div>
               <label className="text-lg ml-4">Current   City</label> 
            <div className="flex items-center bg-gray-100 p-2 w-3/4  rounded-xl">  
-           <input id="profile" type="text" className="flex-1 outline-none h-full mr-20 bg-transparent text-sm text-gray-400" placeholder="Home Town"  name="profile" />
+           <input id="city" type="text" className="flex-1 outline-none h-full mr-20 bg-transparent text-sm text-gray-400" placeholder="Current City"  name="city" />
            </div>
           </div>
           
           <div>
          <label className="text-lg ml-4">Permanent Address</label>
         <div className="flex items-center bg-gray-100 p-2 w-3/4  rounded-xl">  
-      <input id="profile" type="text" className="flex-1 outline-none h-full mr-20 bg-transparent text-sm text-gray-400" placeholder="Home Town"  name="profile" />
+      <input id="padress" type="text" className="flex-1 outline-none h-full mr-20 bg-transparent text-sm text-gray-400" placeholder="Permanent Address"  name="paddress" />
      </div>
           </div>
 
@@ -393,14 +376,14 @@ function getStepContent(step) {
           <div>
               <label className="text-lg ml-4">Linkedin ID</label> 
            <div className="flex items-center bg-gray-100 p-2 w-3/4  rounded-xl">  
-           <input id="profile" type="text" className="flex-1 outline-none h-full mr-20 bg-transparent text-sm text-gray-400" placeholder="Linkedin"  name="profile" />
+           <input id="linkedin" type="text" className="flex-1 outline-none h-full mr-20 bg-transparent text-sm text-gray-400" placeholder="Linkedin"  name="linkedin" />
            </div>
           </div>
           
           <div>
          <label className="text-lg ml-4">Facebook ID</label>
         <div className="flex items-center bg-gray-100 p-2 w-3/4  rounded-xl">  
-      <input id="profile" type="text" className="flex-1 outline-none h-full mr-20 bg-transparent text-sm text-gray-400" placeholder="Facebook ID"  name="profile" />
+      <input id="facebook" type="text" className="flex-1 outline-none h-full mr-20 bg-transparent text-sm text-gray-400" placeholder="Facebook ID"  name="facebook" />
      </div>
           </div>
 
@@ -411,14 +394,14 @@ function getStepContent(step) {
           <div>
               <label className="text-lg ml-4">Instagram ID</label> 
            <div className="flex items-center bg-gray-100 p-2 w-3/4  rounded-xl">  
-           <input id="profile" type="text" className="flex-1 outline-none h-full mr-20 bg-transparent text-sm text-gray-400" placeholder="Instagram Id"  name="profile" />
+           <input id="instagram" type="text" className="flex-1 outline-none h-full mr-20 bg-transparent text-sm text-gray-400" placeholder="Instagram Id"  name="instagram" />
            </div>
           </div>
           
           <div>
          <label className="text-lg ml-4">Hobbies</label>
         <div className="flex items-center bg-gray-100 p-2 w-3/4  rounded-xl">  
-      <input id="profile" type="text" className="flex-1 outline-none h-full mr-20 bg-transparent text-sm text-gray-400" placeholder="Hobbies"  name="profile" />
+      <input id="hobbies" type="text" className="flex-1 outline-none h-full mr-20 bg-transparent text-sm text-gray-400" placeholder="Hobbies"  name="hobbies" />
      </div>
           </div>
         </div>
@@ -428,14 +411,14 @@ function getStepContent(step) {
           <div>
               <label className="text-lg ml-4">What are you looking for</label> 
            <div className="flex items-center bg-gray-100 p-2 w-3/4  rounded-xl">  
-           <textarea id="profile" type="text" className="flex-1 outline-none h-full mr-20 bg-transparent text-sm text-gray-400" placeholder="what are you looking for"  name="profile" />
+           <textarea id="looking" type="text" className="flex-1 outline-none h-full mr-20 bg-transparent text-sm text-gray-400" placeholder="what are you looking for"  name="looking" />
            </div>
           </div>
           
           <div>
          <label className="text-lg ml-4">About You</label>
         <div className="flex items-center bg-gray-100 p-2 w-3/4  rounded-xl">  
-      <textarea id="profile" type="text" className="flex-1 outline-none h-full mr-20 bg-transparent text-sm text-gray-400" placeholder="about you"  name="profile" />
+      <textarea id="about" type="text" className="flex-1 outline-none h-full mr-20 bg-transparent text-sm text-gray-400" placeholder="about you"  name="about" />
      </div>
           </div>
 
@@ -448,14 +431,14 @@ function getStepContent(step) {
           <div>
               <label className="text-lg ml-4">Father's Name</label> 
            <div className="flex items-center bg-gray-100 p-2 w-3/4  rounded-xl">  
-           <input id="profile" type="text" className="flex-1 outline-none h-full mr-20 bg-transparent text-sm text-gray-400" placeholder="Father's Name"  name="profile" />
+           <input id="fathername" type="text" className="flex-1 outline-none h-full mr-20 bg-transparent text-sm text-gray-400" placeholder="Father's Name"  name="fathername" />
            </div>
           </div>
           
           <div>
          <label className="text-lg ml-4">Father's Profession</label>
         <div className="flex items-center bg-gray-100 p-2 w-3/4  rounded-xl">  
-      <input id="profile" type="text" className="flex-1 outline-none h-full mr-20 bg-transparent text-sm text-gray-400" placeholder="Father's Profession"  name="profile" />
+      <input id="fatherprofession" type="text" className="flex-1 outline-none h-full mr-20 bg-transparent text-sm text-gray-400" placeholder="Father's Profession"  name="fatherprofession" />
      </div>
           </div>
         </div>
@@ -487,7 +470,7 @@ function getStepContent(step) {
           <div>
          <label className="text-lg ml-4">Father's Education</label>
         <div className="flex items-center bg-gray-100 p-2 w-3/4  rounded-xl">  
-      <input id="profile" type="text" className="flex-1 outline-none h-full mr-20 bg-transparent text-sm text-gray-400" placeholder="Father's Education"  name="profile" />
+      <input id="feducation" type="text" className="flex-1 outline-none h-full mr-20 bg-transparent text-sm text-gray-400" placeholder="Father's Education"  name="feducation" />
      </div>
           </div>
 
@@ -497,7 +480,7 @@ function getStepContent(step) {
           <div>
               <label className="text-lg ml-4">Date of Birth</label> 
            <div className="flex items-center bg-gray-100 p-2 w-3/4  rounded-xl">  
-           <input id="profile" type="date" className="flex-1 outline-none h-full mr-20 bg-transparent text-sm text-gray-400" placeholder=""  name="profile" />
+           <input id="fbirth" type="date" className="flex-1 outline-none h-full mr-20 bg-transparent text-sm text-gray-400" placeholder=""  name="fbirth" />
            </div>
           </div>
           
@@ -518,14 +501,14 @@ function getStepContent(step) {
           <div>
               <label className="text-lg ml-4">Mother's Name</label> 
            <div className="flex items-center bg-gray-100 p-2 w-3/4  rounded-xl">  
-           <input id="profile" type="text" className="flex-1 outline-none h-full mr-20 bg-transparent text-sm text-gray-400" placeholder="Father's Name"  name="profile" />
+           <input id="mothername" type="text" className="flex-1 outline-none h-full mr-20 bg-transparent text-sm text-gray-400" placeholder="Mother's Name"  name="mothername" />
            </div>
           </div>
           
           <div>
          <label className="text-lg ml-4">Mother's Profession</label>
         <div className="flex items-center bg-gray-100 p-2 w-3/4  rounded-xl">  
-      <input id="profile" type="text" className="flex-1 outline-none h-full mr-20 bg-transparent text-sm text-gray-400" placeholder="Father's Profession"  name="profile" />
+      <input id="mprof" type="text" className="flex-1 outline-none h-full mr-20 bg-transparent text-sm text-gray-400" placeholder="Mother's Profession"  name="mprof" />
      </div>
           </div>
         </div>
@@ -557,7 +540,7 @@ function getStepContent(step) {
           <div>
          <label className="text-lg ml-4">Mother's Education</label>
         <div className="flex items-center bg-gray-100 p-2 w-3/4  rounded-xl">  
-      <input id="profile" type="text" className="flex-1 outline-none h-full mr-20 bg-transparent text-sm text-gray-400" placeholder="Father's Education"  name="profile" />
+      <input id="meducation" type="text" className="flex-1 outline-none h-full mr-20 bg-transparent text-sm text-gray-400" placeholder="Mother's Education"  name="meducation" />
      </div>
           </div>
 
@@ -567,7 +550,7 @@ function getStepContent(step) {
           <div>
               <label className="text-lg ml-4">Date of Birth</label> 
            <div className="flex items-center bg-gray-100 p-2 w-3/4  rounded-xl">  
-           <input id="profile" type="date" className="flex-1 outline-none h-full mr-20 bg-transparent text-sm text-gray-400" placeholder=""  name="profile" />
+           <input id="mbirth" type="date" className="flex-1 outline-none h-full mr-20 bg-transparent text-sm text-gray-400" placeholder=""  name="mbirth" />
            </div>
           </div>
           
@@ -588,7 +571,7 @@ function getStepContent(step) {
           <div>
               <label className="text-lg ml-4">Sibling's Name</label> 
            <div className="flex items-center bg-gray-100 p-2 w-3/4  rounded-xl">  
-           <input id="profile" type="text" className="flex-1 outline-none h-full mr-20 bg-transparent text-sm text-gray-400" placeholder="Father's Name"  name="profile" />
+           <input id="siblingname" type="text" className="flex-1 outline-none h-full mr-20 bg-transparent text-sm text-gray-400" placeholder="Sibling's Name"  name="siblingname" />
            </div>
           </div>
           
@@ -608,13 +591,13 @@ function getStepContent(step) {
         <div>
          <label className="text-lg ml-4">Age Gap</label>
         <div className="flex items-center bg-gray-100 p-2 w-3/4  rounded-xl">  
-        <input id="profile" type="text" className="flex-1 outline-none h-full mr-20 bg-transparent text-sm text-gray-400" placeholder="Age gap"  name="profile" />
+        <input id="agegap" type="text" className="flex-1 outline-none h-full mr-20 bg-transparent text-sm text-gray-400" placeholder="Age gap"  name="agegap" />
      </div>
           </div>    
           <div>
          <label className="text-lg ml-4">Sibling's Profession</label>
         <div className="flex items-center bg-gray-100 p-2 w-3/4  rounded-xl">  
-      <input id="profile" type="text" className="flex-1 outline-none h-full mr-20 bg-transparent text-sm text-gray-400" placeholder="Sibling's Profession"  name="profile" />
+      <input id="sprofession" type="text" className="flex-1 outline-none h-full mr-20 bg-transparent text-sm text-gray-400" placeholder="Sibling's Profession"  name="sprofession" />
      </div>
           </div>
 
@@ -624,7 +607,7 @@ function getStepContent(step) {
           <div>
               <label className="text-lg ml-4">Sibling's Education</label> 
            <div className="flex items-center bg-gray-100 p-2 w-3/4  rounded-xl">  
-           <input id="profile" type="text" className="flex-1 outline-none h-full mr-20 bg-transparent text-sm text-gray-400" placeholder="Sibling's Education"  name="profile" />
+           <input id="seducation" type="text" className="flex-1 outline-none h-full mr-20 bg-transparent text-sm text-gray-400" placeholder="Sibling's Education"  name="seducation" />
            </div>
           </div>
           
@@ -657,7 +640,7 @@ function getStepContent(step) {
           <div>
               <label className="text-lg ml-4">Sibling's Family</label> 
            <div className="flex items-center bg-gray-100 p-2 w-3/4  rounded-xl">  
-           <input id="profile" type="text" className="flex-1 outline-none h-full mr-20 bg-transparent text-sm text-gray-400" placeholder="Sibling's Family"  name="profile" />
+           <input id="sfamily" type="text" className="flex-1 outline-none h-full mr-20 bg-transparent text-sm text-gray-400" placeholder="Sibling's Family"  name="sfamily" />
            </div>
           </div>
           
@@ -700,14 +683,14 @@ function getStepContent(step) {
               <label className="text-lg ml-4">Add Profession</label>
            
            <div className="flex items-center bg-gray-100 p-2 w-3/4  rounded-xl">  
-            <input  id="profile" type="text" className="flex-1 outline-none h-full mr-20 bg-transparent text-sm text-gray-400" placeholder="Position"  name="profile" />
+            <input  id="position" type="text" className="flex-1 outline-none h-full mr-20 bg-transparent text-sm text-gray-400" placeholder="Position"  name="position" />
            </div>
           </div>
 
           <div>
          <label className="text-lg ml-4"></label>
         <div className="flex items-center bg-gray-100 p-2 w-3/4  rounded-xl">  
-      <input id="profile" type="text" className="flex-1 outline-none h-full mr-20 bg-transparent text-sm text-gray-400" placeholder="Duty"  name="profile" />
+      <input id="duty" type="text" className="flex-1 outline-none h-full mr-20 bg-transparent text-sm text-gray-400" placeholder="Duty"  name="duty" />
      </div>
           </div>
         </div>
@@ -716,14 +699,14 @@ function getStepContent(step) {
           <div>
           <label className="text-lg ml-4"></label>
            <div className="flex items-center bg-gray-100 p-2 w-3/4  rounded-xl">  
-            <input  id="profile" type="text" className="flex-1 outline-none h-full mr-20 bg-transparent text-sm text-gray-400" placeholder="Institute"  name="profile" />
+            <input  id="ins" type="text" className="flex-1 outline-none h-full mr-20 bg-transparent text-sm text-gray-400" placeholder="Institute"  name="ins" />
            </div>
           </div>
 
           <div>
          <label className="text-lg ml-4"></label>
         <div className="flex items-center bg-gray-100 p-2 w-3/4  rounded-xl">  
-      <input id="profile" type="text" className="flex-1 outline-none h-full mr-20 bg-transparent text-sm text-gray-400" placeholder="Working Hours"  name="profile" />
+      <input id="whour" type="text" className="flex-1 outline-none h-full mr-20 bg-transparent text-sm text-gray-400" placeholder="Working Hours"  name="whour" />
      </div>
           </div>
         </div>
@@ -734,14 +717,14 @@ function getStepContent(step) {
               <label className="text-lg ml-4"></label>
            
            <div className="flex items-center bg-gray-100 p-2 w-3/4  rounded-xl">  
-            <input  id="profile" type="text" className="flex-1 outline-none h-full mr-20 bg-transparent text-sm text-gray-400" placeholder="Special Achievements"  name="profile" />
+            <input  id="sachievement" type="text" className="flex-1 outline-none h-full mr-20 bg-transparent text-sm text-gray-400" placeholder="Special Achievements"  name="sachievement" />
            </div>
           </div>
 
           <div>
          <label className="text-lg ml-4">Profession Prove certificate</label>
         <div className="flex items-center bg-gray-100 p-2 w-3/4  rounded-xl">  
-      <input id="profile" type="file" className="flex-1 outline-none h-full mr-20 bg-transparent text-sm text-gray-400"  name="profile" />
+      <input id="ppcert" type="file" className="flex-1 outline-none h-full mr-20 bg-transparent text-sm text-gray-400"  name="pppcert" />
      </div>
           </div>
         </div>
@@ -757,14 +740,14 @@ function getStepContent(step) {
               <label className="text-lg ml-4">Add Educational Details</label>
            
            <div className="flex items-center bg-gray-100 p-2 w-3/4  rounded-xl">  
-            <input  id="profile" type="text" className="flex-1 outline-none h-full mr-20 bg-transparent text-sm text-gray-400" placeholder="Degree Name"  name="profile" />
+            <input  id="edegree" type="text" className="flex-1 outline-none h-full mr-20 bg-transparent text-sm text-gray-400" placeholder="Degree Name"  name="edegree" />
            </div>
           </div>
 
           <div>
          <label className="text-lg ml-4"></label>
         <div className="flex items-center bg-gray-100 p-2 w-3/4  rounded-xl">  
-      <input id="profile" type="text" className="flex-1 outline-none h-full mr-20 bg-transparent text-sm text-gray-400" placeholder="Institute"  name="profile" />
+      <input id="eins" type="text" className="flex-1 outline-none h-full mr-20 bg-transparent text-sm text-gray-400" placeholder="Institute"  name="eins" />
      </div>
           </div>
         </div>
@@ -773,14 +756,14 @@ function getStepContent(step) {
           <div>
           <label className="text-lg ml-4"></label>
            <div className="flex items-center bg-gray-100 p-2 w-3/4  rounded-xl">  
-            <input  id="profile" type="text" className="flex-1 outline-none h-full mr-20 bg-transparent text-sm text-gray-400" placeholder="Department"  name="profile" />
+            <input  id="edept" type="text" className="flex-1 outline-none h-full mr-20 bg-transparent text-sm text-gray-400" placeholder="Department"  name="edept" />
            </div>
           </div>
 
           <div>
          <label className="text-lg ml-4"></label>
         <div className="flex items-center bg-gray-100 p-2 w-3/4  rounded-xl">  
-      <input id="profile" type="text" className="flex-1 outline-none h-full mr-20 bg-transparent text-sm text-gray-400" placeholder="Field of Study"  name="profile" />
+      <input id="estudy" type="text" className="flex-1 outline-none h-full mr-20 bg-transparent text-sm text-gray-400" placeholder="Field of Study"  name="estudy" />
      </div>
           </div>
         </div>
@@ -791,14 +774,14 @@ function getStepContent(step) {
               <label className="text-sm ml-4">Year of Study Starts</label>
            
            <div className="flex items-center bg-gray-100 p-2 w-3/4  rounded-xl">  
-            <input  id="profile" type="date" className="flex-1 outline-none h-full mr-20 bg-transparent text-sm text-gray-400" placeholder=""  name="profile" />
+            <input  id="estudystrt" type="date" className="flex-1 outline-none h-full mr-20 bg-transparent text-sm text-gray-400" placeholder=""  name="estudystrt" />
            </div>
           </div>
 
           <div>
          <label className="text-sm ml-4">Year of Study Ends</label>
         <div className="flex items-center bg-gray-100 p-2 w-3/4  rounded-xl">  
-      <input id="profile" type="date" className="flex-1 outline-none h-full mr-20 bg-transparent text-sm text-gray-400"  name="profile" />
+      <input id="estudyend" type="date" className="flex-1 outline-none h-full mr-20 bg-transparent text-sm text-gray-400"  name="estudyend" />
      </div>
           </div>
         </div>
@@ -809,14 +792,14 @@ function getStepContent(step) {
               <label className="text-sm ml-4"></label>
            
            <div className="flex items-center bg-gray-100 p-2 w-3/4  rounded-xl">  
-            <input  id="profile" type="text" className="flex-1 outline-none h-full mr-20 bg-transparent text-sm text-gray-400" placeholder="Special Achievements"  name="profile" />
+            <input  id="eachieve" type="text" className="flex-1 outline-none h-full mr-20 bg-transparent text-sm text-gray-400" placeholder="Special Achievements"  name="eachieve" />
            </div>
           </div>
 
           <div>
          <label className="text-sm ml-4">Photo of certificate</label>
         <div className="flex items-center bg-gray-100 p-2 w-3/4  rounded-xl">  
-      <input id="profile" type="file" className="flex-1 outline-none h-full mr-20 bg-transparent text-sm text-gray-400"  name="profile" />
+      <input id="ecer" type="file" className="flex-1 outline-none h-full mr-20 bg-transparent text-sm text-gray-400"  name="ecer" />
      </div>
           </div>
         </div>
@@ -985,7 +968,6 @@ const LinaerStepper = () => {
     setActiveStep(activeStep + 1);
   };
 
-
   return (
     <div>
       <Stepper alternativeLabel activeStep={activeStep}>
@@ -1053,3 +1035,5 @@ const LinaerStepper = () => {
 };
 
 export default LinaerStepper;
+
+
