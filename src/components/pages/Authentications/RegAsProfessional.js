@@ -1,23 +1,53 @@
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useCreateUserWithEmailAndPassword, useSignInWithGoogle, useUpdateProfile } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
 import { AiOutlineCloudUpload, AiOutlineIdcard } from "react-icons/ai";
 import { FaFacebookF, FaGoogle, FaRegEnvelope, FaRegUser } from "react-icons/fa";
 import { MdLockOutline, MdPhone } from "react-icons/md";
-import { Link } from "react-router-dom";
+import { BsPersonLinesFill } from "react-icons/bs";
+import { Link, useNavigate } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import "../../../App.css";
-import { firebaseStorage } from "../../../firebase.init";
+import { auth, firebaseStorage } from "../../../firebase.init";
+import Error from "../../ui/error/Error";
+import { useRegAsProfessionalMutation } from "../../../Redux/features/userInfo/userApi";
+import { useDispatch } from "react-redux";
+import { loadUserData } from "../../../Redux/features/userInfo/userInfo";
 
 const RegAsProfessional = () => {
+    const [regAsProfessional, { data: response, isLoading: serverLoading }] = useRegAsProfessionalMutation();
     const [photoUploading, setPhotoUploading] = useState(false);
     const [photoUrl, setPhotoUrl] = useState("");
+    const [customError, setCustomError] = useState("");
+    const [createUserWithEmailAndPassword, user, loading, error] = useCreateUserWithEmailAndPassword(auth);
+    const [signInWithGoogle, googleLoading] = useSignInWithGoogle(auth);
+    const [updateProfile, updating] = useUpdateProfile(auth);
+
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
     const {
         register,
         formState: { errors },
         handleSubmit,
+        reset
     } = useForm();
-    const onSubmit = async data => {};
+
+    const onSubmit = async data => {
+        if (!photoUrl) {
+            setCustomError("Please wait a second for added your photo");
+            return;
+        }
+        setCustomError("");
+        delete data.image;
+        data.photoURL = photoUrl;
+
+        // Implement firebase registration
+        await createUserWithEmailAndPassword(data.email, data.password);
+        await updateProfile({ displayName: data.firstName + " " + data.lastName, photoURL: photoUrl });
+        await regAsProfessional(data);
+    };
 
     const uploadPhoto = photo => {
         const storageRef = ref(firebaseStorage, `profile/${photo.name + uuidv4()}`);
@@ -33,9 +63,37 @@ const RegAsProfessional = () => {
         setPhotoUploading(true);
         const photo = e.target.files[0];
         uploadPhoto(photo);
-
         setPhotoUploading(false);
     };
+
+    useEffect(() => {
+        if (response) {
+            dispatch(loadUserData(response));
+            reset();
+        }
+        if (user && response) {
+            navigate("/");
+        }
+    }, [response, dispatch, reset, navigate, user]);
+
+    useEffect(() => {
+        if (error?.message === "Firebase: Error (auth/email-already-in-use).") {
+            setCustomError("email already in use");
+        }
+    }, [error]);
+
+    useEffect(() => {
+        if (photoUrl) {
+            setCustomError("");
+            console.log(photoUrl)
+        }
+    }, [photoUrl]);
+
+    useEffect(() => {
+        if (user) {
+            console.log(user);
+        }
+    }, [user]);
 
     return (
         <div className="min-h-screen">
@@ -52,7 +110,8 @@ const RegAsProfessional = () => {
                                 <p className="border-2 cursor-pointer border-gray-200 rounded-full p-3 mx-1 hover:bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] hover:text-white duration-400 transition-all">
                                     <FaFacebookF className="text-sm" />
                                 </p>
-                                <p className="border-2 cursor-pointer border-gray-200 rounded-full p-3 mx-1 hover:bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] hover:text-white duration-400 transition-all">
+                                <p className="border-2 cursor-pointer border-gray-200 rounded-full p-3 mx-1 hover:bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] hover:text-white duration-400 transition-all"
+                                    onClick={() => signInWithGoogle()}>
                                     <FaGoogle className="text-sm" />
                                 </p>
                             </div>{" "}
@@ -138,6 +197,33 @@ const RegAsProfessional = () => {
                                     {/*Email field*/}
                                     <section>
                                         <div className="flex items-center bg-gray-100 p-2 w-full rounded-xl mt-3">
+                                            <BsPersonLinesFill className=" m-2 text-gray-400" />
+                                            <select
+                                                {...register("designation", {
+                                                    required: {
+                                                        value: true,
+                                                        message: "Designation is Required",
+                                                    },
+                                                })}
+                                                type="text"
+                                                className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
+                                                id="designation"
+                                            >
+                                                <option className="m-8 p-8" value="">Select Designation</option>
+                                                <option value="Kazi">Kazi</option>
+                                                <option value="Agent">Agent</option>
+                                                <option value="Lawyer">Lawyer</option>
+                                            </select>
+                                        </div>
+                                        <h1 className="text-left ml-2">
+                                            {errors.designation?.type === "required" && (
+                                                <span className="w-full text-left text-red-400 text-sm">{errors?.designation.message}</span>
+                                            )}
+                                        </h1>
+                                    </section>
+                                    {/* Designation Field ---------------------------------------------*/}
+                                    {/* <section>
+                                        <div className="flex items-center bg-gray-100 p-2 w-full rounded-xl mt-3">
                                             <MdPhone className=" m-2 text-gray-400" />
                                             <input
                                                 {...register("phone", {
@@ -157,7 +243,7 @@ const RegAsProfessional = () => {
                                                 <span className="w-full text-left text-red-400 text-sm">{errors?.phone.message}</span>
                                             )}
                                         </h1>
-                                    </section>
+                                    </section> */}
                                     {/*Phone number field*/}
                                     <section>
                                         <div className="flex items-center bg-gray-100 p-2 w-full rounded-xl mt-3">
@@ -188,7 +274,7 @@ const RegAsProfessional = () => {
                                             <input
                                                 {...register("password", {
                                                     minLength: {
-                                                        value: 6,
+                                                        value: 8,
                                                         message: "password should be minimum 8 characters",
                                                     },
                                                     required: {
@@ -244,7 +330,13 @@ const RegAsProfessional = () => {
                                         <div className="flex items-center bg-gray-100 p-2 w-full rounded-xl mt-3">
                                             <AiOutlineCloudUpload className=" m-2 text-gray-400" />
                                             <label htmlFor="userPhoto" className="outline-none h-full text-sm text-gray-400 bg-gray-100">
-                                                {photoUploading ? "Uploading" : "Upload Image"}
+                                                {photoUrl ? (
+                                                    <>
+                                                        <span className="text-green-400">Photo added</span>
+                                                    </>
+                                                ) : (
+                                                    "Upload Image"
+                                                )}
                                             </label>
                                             <input
                                                 {...register("image", {
@@ -269,10 +361,11 @@ const RegAsProfessional = () => {
                                     {/* <div className="col-span-2">
                                         <Error message="Already  have an account" />
                                     </div> */}
+                                    <div className="col-span-2">{customError && <Error message={customError} />}</div>
                                     <div className="col-span-2">
                                         <input
                                             type="submit"
-                                            value="SIGN UP"
+                                            value={loading || updating || googleLoading || serverLoading ? "Loading..." : "SIGN UP"}
                                             className="border-2 cursor-pointer mt-6 border-primary hover:border-0 rounded-full px-12 py-2 hover:bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] hover:text-white duration-500 transition-all"
                                         />
                                     </div>

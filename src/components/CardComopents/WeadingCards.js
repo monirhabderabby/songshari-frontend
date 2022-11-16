@@ -5,16 +5,16 @@ import "../../assets/css/weadingcard.css";
 const WeadingCards = () => {
     return (
         <div>
-            <div className='pt-6'>
-                <div className="card w-96 bg-base-100 shadow-xl rounded-xl card-hober">
-                    <figure><img className='card-img' src="https://placeimg.com/400/225/arch" alt="Shoes" /></figure>
+            <div className='pt-6 relative'>
+                <div className="card w-96 bg-base-100 rounded-xl card-hober shadow-lg">
+                    <div className='card-overflow-hober'><img className='card-img' src="https://placeimg.com/400/225/arch" alt="Shoes" /></div>
                     <div className=' py-10'>
                         <div className="cards-body md:px-8  px-2">
                             <h2 className="card-title"> 6 days ago </h2>
-                            <h2 className="card-title font-bold text-2xl"> Somthing is writen here </h2>
+                            <h2 className="card-title font-bold text-2xl py-2"> Somthing is writen here </h2>
                             <p className='py-2'>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Amet, natus?</p>
                         </div>
-                        <div className='py-3'>
+                        <div className='py-4'>
                             <hr />
                         </div>
                         <div className="flex justify-between items-center md:px-8  px-2 pt-2">

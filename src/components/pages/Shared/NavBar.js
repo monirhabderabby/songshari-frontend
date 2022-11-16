@@ -121,7 +121,7 @@ const NavBar = () => {
             <li className="relative ">
               <Link to="/cart" className={`${NavBarCSS.hasTooltip}`}>
                 <div className="flex flex-col items-center ">
-                  <img src={cart} className="w-[50px]" alt="" />
+                  <img src={cart} className="w-[40px]" alt="" />
                   <span className="absolute top-[-7px] right-[-1px] text-white px-[6px] py-[2px] text-xs font-bold bg-[#dc3545] rounded">
                     0
                   </span>
