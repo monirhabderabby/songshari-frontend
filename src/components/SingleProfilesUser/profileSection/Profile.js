@@ -5,11 +5,12 @@ import Title from "../Title/Title";
 export const Profile = () => {
     const [tables, setTables] = useState([]);
     const [edit, setEdit] = useState(false);
-    const data = useSelector(state => state?.persistedReducer?.userInfo?.userInfo);
+    const { token, user } = useSelector(state => state?.persistedReducer?.userInfo?.userInfo);
 
-    if (data) {
-        console.log(data);
+    if (user) {
+        console.log(user);
     }
+
     useEffect(() => {
         fetch("json/tableData.json")
             .then(res => res.json())
@@ -30,14 +31,30 @@ export const Profile = () => {
                         Edit
                     </button>
                 </div>
-                {tables.map(t => {
-                    return (
-                        <div className="h-[40px] flex justify-between items-center border-b-[2px] border-dotted">
-                            <span>Name</span>
-                            {edit ? <input type="text" className="outline-none text-black" placeholder="Write here" /> : <span>Monir Hossain</span>}
-                        </div>
-                    );
-                })}
+                <div className="h-[40px] flex justify-between items-center border-b-[2px] border-dotted">
+                    <span>Name</span>
+                    {edit ? (
+                        <input type="text" className="outline-none text-black" placeholder="Your name" />
+                    ) : (
+                        <span>{user.firstName + " " + user.lastName}</span>
+                    )}
+                </div>
+                <div className="h-[40px] flex justify-between items-center border-b-[2px] border-dotted">
+                    <span>Email</span>
+                    {edit ? <input type="text" className="outline-none text-black" placeholder="Write here" /> : <span>{user.email}</span>}
+                </div>
+                <div className="h-[40px] flex justify-between items-center border-b-[2px] border-dotted">
+                    <span>Phone</span>
+                    {edit ? <input type="text" className="outline-none text-black" placeholder="Your phone" /> : <span>{user.phone}</span>}
+                </div>
+                <div className="h-[40px] flex justify-between items-center border-b-[2px] border-dotted">
+                    <span>NID or Password</span>
+                    {edit ? (
+                        <input type="text" className="outline-none text-black" placeholder="Your passport or NID" />
+                    ) : (
+                        <span>{user.NidOrPassportNumber}</span>
+                    )}
+                </div>
                 {edit ? (
                     <div className="flex gap-x-3 my-3 items-center">
                         <button className="px-3 py-1 bg-gray-200 font-semibold rounded-full" onClick={() => setEdit(!edit)}>

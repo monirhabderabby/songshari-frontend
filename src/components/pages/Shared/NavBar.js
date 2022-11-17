@@ -8,7 +8,7 @@ import membership from "../../../assets/images/NavIcons/Membership.svg";
 import course from "../../../assets/images/NavIcons/Online-Course.svg";
 // import shop from '../../../assets/images/NavIcons/Shop.svg';
 import { useState } from "react";
-import { useAuthState } from "react-firebase-hooks/auth";
+import { useAuthState, useSignOut } from "react-firebase-hooks/auth";
 import agent from "../../../assets/images/NavIcons/Agent.svg";
 import cart from "../../../assets/images/NavIcons/cart.png";
 import kazi from "../../../assets/images/NavIcons/Kazi.svg";
@@ -21,6 +21,8 @@ import { auth } from "../../../firebase.init";
 const NavBar = ({ bg }) => {
     const [language, setLanguage] = useState(true);
     const [user] = useAuthState(auth);
+
+    const [signOut] = useSignOut(auth);
     const allMenu = [
         {
             id: 1,
@@ -94,15 +96,15 @@ const NavBar = ({ bg }) => {
                                 ></span>
                                 {user ? (
                                     <>
-                                        <Link
-                                            to="/userprofile"
+                                        <button
                                             className={`${NavBarCSS.tooltip} rounded-xl z-50 shadow-lg px-3 py-1 text-white text-xs font-bold whitespace-nowrap uppercase mt-[66px]`}
                                             style={{
                                                 backgroundImage: "linear-gradient(155deg, rgba(228, 18, 114, 1) 0%, #4844a5 100%)",
                                             }}
+                                            onClick={() => signOut()}
                                         >
-                                            Profile
-                                        </Link>
+                                            Logout
+                                        </button>
                                     </>
                                 ) : (
                                     <>
