@@ -14,21 +14,21 @@ const SecureVerified = () => {
   ];
 
   return (
-    <div className="pt-16 md:pt-44 md:pb-20 w-11/12 md:w-4/5 mx-auto">
-      <div className="flex flex-col md:flex-row justify-center gap-6">
+    <div className="pt-16 md:pt-32 lg:pt-44 md:pb-12 lg:pb-20 w-11/12 lg:w-4/5 mx-auto">
+      <div className="flex flex-col md:flex-row justify-center gap-6 md:gap-4 lg:gap-6">
         {info.map((i) => (
           <div
             data-aos="fade-up"
             data-aos-easing="ease-out-cubic"
             data-aos-duration="1000"
             key={i.id}
-            className={"w-full h-52 rounded-2xl px-8 pt-8 pb-6"}
+            className={"w-full h-52 md:h-44 lg:h-52 rounded-2xl px-8 pt-8 pb-6"}
             style={{ boxShadow: "0px 5px 30px 0px rgba(176, 171, 193, 0.4)" }}
           >
-            <div className="mb-5 h-3/5">
+            <div className="mb-5 md:mb-3 lg:mb-5 h-3/5 md:h-1/2 lg:h-3/5">
               <img className="mx-auto" src={i.img} alt="" />
             </div>
-            <p className="text-xl text-center mb-2">{i.text}</p>
+            <p className="text-xl md:text-lg lg:text-xl text-center whitespace-nowrap md:mt-8 lg:mt-0 mb-2">{i.text}</p>
           </div>
         ))}
       </div>

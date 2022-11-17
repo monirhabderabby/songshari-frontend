@@ -68,7 +68,7 @@ function FindPartnerForm() {
     const formLabel = text => {
         return (
             <div>
-                <p className="text-lg font-bold leading-5">{text}</p>
+                <p className="text-lg md:text-base lg:text-lg font-bold md:font-semibold lg:font-bold leading-5 md:leading-4 lg:leading-5">{text}</p>
                 <hr className="w-8 h-1 rounded-sm" style={{ backgroundImage: "linear-gradient(145deg, #5d38b1f7 0%, #951f1f 100%)" }} />
             </div>
         );
@@ -79,7 +79,7 @@ function FindPartnerForm() {
             data-aos="fade-left"
             data-aos-easing="ease-out-cubic"
             data-aos-duration="1000"
-            className="bg-white w-11/12 mx-auto mt-8 md:mt-0 md:w-1/4 h-fit rounded-xl shadow-xl"
+            className="bg-white w-11/12 mx-auto mt-8 md:mt-0 md:w-1/3 lg:w-1/4 h-fit rounded-xl shadow-xl"
         >
             <div
                 id="join-now-box2"
@@ -88,14 +88,14 @@ function FindPartnerForm() {
                 data-wow-delay="0.9s"
             >
                 <div
-                    className="rounded-t-xl pb-3 flex justify-center"
+                    className="rounded-t-xl pb-3 md:pb-1 lg:pb-3 flex justify-center"
                     style={{
                         backgroundImage:
                             "linear-gradient(145deg,rgba(81, 27, 231, 1) 0%,rgba(228, 18, 114,1)100%)",
                     }}
                 >
                     <div className="">
-                        <p className="text-lg font-bold text-white pt-3">
+                        <p className="text-lg font-bold text-white pt-3 md:pt-1 lg:pt-3">
                             Find Your Partner
                         </p>
                         <hr
@@ -109,7 +109,7 @@ function FindPartnerForm() {
                 </div>
                 <div>
                     <div className="single-option">
-                        <div className="px-4 flex justify-between py-2 border-b">
+                        <div className="px-4 flex justify-between py-2 md:py-1 lg:py-2 border-b">
                             {formLabel("Looking For")}
                             <div className="border rounded-full px-2">
                                 <select>
@@ -125,7 +125,7 @@ function FindPartnerForm() {
                     </div>
                     <div
                         id="single-option2"
-                        className="px-4 flex justify-between py-2 border-b"
+                        className="px-4 flex justify-between py-2 md:py-1 lg:py-2 border-b"
                     >
                         {formLabel("I am a")}
                         <div className="flex">
@@ -135,13 +135,13 @@ function FindPartnerForm() {
                             </div>
                             <div className="s-input">
                                 <input type="radio" name="" id="female2" />
-                                <label htmlFor="female2">Female</label>
+                                <label htmlFor="female2" className="pl-2">Female</label>
                             </div>
                         </div>
                     </div>
                     <div
                         id="single-option2"
-                        className="px-4 flex justify-between py-2 border-b"
+                        className="px-4 flex justify-between py-2 md:py-1 lg:py-2 border-b"
                     >
                         {formLabel("Seeking a")}
                         <div className="flex">
@@ -167,10 +167,7 @@ function FindPartnerForm() {
                             </div>
                         </div>
                     </div>
-                    <div
-                        id="single-option2"
-                        className="px-4 flex justify-between py-2 border-b"
-                    >
+                    <div className="px-4 flex justify-between py-2 md:py-1 lg:py-2 border-b">
                         {formLabel("Religion")}
                         <div className="border rounded-full px-2">
                             <select name="religion" onChange={inputChange}>
@@ -180,10 +177,7 @@ function FindPartnerForm() {
                             </select>
                         </div>
                     </div>
-                    <div
-                        id="single-option2"
-                        className="px-4 flex justify-between py-2 border-b"
-                    >
+                    <div className="px-4 flex justify-between py-2 md:py-1 lg:py-2 border-b">
                         {formLabel("Ages")}
                         <div className="flex">
                             <div className="border rounded-full px-2">
@@ -199,9 +193,9 @@ function FindPartnerForm() {
                             </div>
                         </div>
                     </div>
-                    <div id="single-option2" className="px-4 flex justify-between py-2 border-b">
+                    <div className="px-4 flex justify-between py-2 md:py-1 lg:py-2 border-b">
                         {formLabel("City")}
-                        <div className="option">
+                        <div>
                             <div className="border rounded-full px-2">
                                 <select name="city_id" onChange={inputChange}>
                                     {/* {cityVal} */}
@@ -210,10 +204,10 @@ function FindPartnerForm() {
                             </div>
                         </div>
                     </div>
-                    <div className="flex justify-center my-4 ">
+                    <div className="flex justify-center my-4 md:my-2 lg:my-4">
                         <button
                             type="submit"
-                            className="px-8 pt-2 pb-1 mb-4 md:mb-0 text-2xl text-white  font-semibold rounded-md tracking-[.25em] shadow-xl shadow-[#0c4ea54d] cursor-pointer"
+                            className="px-8 md:px-6 lg:px-8 pt-2 md:pt-1 lg:pt-2 pb-1 md:pb-0 lg:pb-1 mb-4 md:mb-0 text-2xl md:text-xl lg:text-2xl text-white font-semibold rounded-md tracking-[.25em] shadow-xl shadow-[#0c4ea54d] cursor-pointer"
                             style={{
                                 backgroundImage:
                                     "linear-gradient(155deg, rgba(228, 18, 114, 1) 0%, #4844a5 100%)",
