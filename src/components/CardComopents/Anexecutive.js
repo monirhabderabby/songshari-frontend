@@ -7,7 +7,7 @@ import Title from '../SingleProfilesUser/Title/Title';
 
 const Anexecutive = () => {
     return (
-        <div className='container mx-auto py-10'>
+        <div className='container mx-auto py-10 px-4 md:px-0'>
             <div className='main-container'>
                 <div className='section-header'>
                     <div className='text-center'>
@@ -19,7 +19,7 @@ const Anexecutive = () => {
                 <div className='section-body pt-6'>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                         <div className='relative'>
-                            <div className='z-10 free-btn absolute top-44 right-0'>
+                            <div className='z-10 free-btn absolute top-44  right-0 md:-right-6 lg:right-0'>
                                 <p><small>Start now for</small></p>
                                 <p className='py-1 text-3xl font-semibold'>Free</p>
                                 <p>7 day Trail</p>

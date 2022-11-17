@@ -1,20 +1,27 @@
 import React from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
 import "../../assets/css/profileCards.css";
+import { auth } from "../../firebase.init";
 
 const ProfileCard = () => {
+    const [user] = useAuthState(auth);
     return (
         <div>
-            <div className="card_container shadow">
+            <div className="card_container shadow px-2 md:px-0">
                 <div className="Card-header"></div>
                 <div className="relative w-52 h-52 rounded-full">
-                    <div className="bottom-20 left-24 absolute">
+                    <div className="bottom-20 left-24 lg:left-24 md:left-16 absolute">
                         <div className="relative card-img w-48 h-48">
-                            <img className="w-44 bg-pink-300 h-44 rounded-full img-fluid" src="https://cdn-icons-png.flaticon.com/512/194/194938.png" alt="" />
+                            <img
+                                className="w-44 bg-pink-300 h-44 rounded-full img-fluid"
+                                src={user?.photoURL ? user.photoURL : "https://cdn-icons-png.flaticon.com/512/194/194938.png"}
+                                alt="profile image"
+                            />
                         </div>
                     </div>
                 </div>
                 <div className="text-center -mt-10">
-                    <h2 className="text-2xl font-semibold">Partho bepary</h2>
+                    <h2 className="text-2xl font-semibold">{user?.displayName}</h2>
                     <div className="flex justify-center  my-2">
                         <h3 className="mr-4">21 years old | </h3>
                         <div className="flex">
@@ -46,7 +53,7 @@ const ProfileCard = () => {
                             <svg
                                 color="#FF1D8E"
                                 xmlns="http://www.w3.org/2000/svg"
-                                fill="white"
+                                fill="none"
                                 viewBox="0 0 24 24"
                                 strokeWidth="1.5"
                                 stroke="currentColor"
@@ -61,7 +68,6 @@ const ProfileCard = () => {
                         </div>
                     </div>
                     <div>
-
                         <button className="special_profile_button">Send me Money</button>
                     </div>
                 </div>

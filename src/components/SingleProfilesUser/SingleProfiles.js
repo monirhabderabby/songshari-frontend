@@ -1,4 +1,5 @@
 import React from "react";
+import { CustomHeader } from "../shared/CustomHeader/CustomHeader";
 import ChartBoard from "./chatboard/ChartBoard";
 import PhotoGelary from "./PhotoGelary";
 import ProfileCard from "./ProfileCard";
@@ -8,22 +9,29 @@ import UtilitisCard from "./UtilitisCard";
 const SingleProfiles = () => {
     return (
         <div>
+            <CustomHeader title="Profile" />
             <div className="container mx-auto">
-                <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
-                    <div className="md:col-span-4">
+                <div className="block lg:flex">
+                    <div className="md:w-full lg:w-9/12">
                         <div>
-                            <ProfileCard />
-                            <UtilitisCard />
-                            <PhotoGelary />
+                            <div className="block md:flex">
+                                <div className="w-full md:w-2/5 mr-2">
+                                    <div>
+                                        <ProfileCard />
+                                        <UtilitisCard />
+                                        <PhotoGelary />
+                                    </div>
+                                </div>
+                                <div className="w-full md:w-3/5">
+                                    <div>
+                                        <Table />
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div className="md:col-span-5">
-                        <div>
-                            <Table />
-                        </div>
-                    </div>
-                    <div className="md:col-span-3">
-                        <div>
+                    <div className="md:w-full lg:w-3/12 ml-2">
+                        <div className="flex justify-center">
                             <ChartBoard />
                         </div>
                     </div>
@@ -34,4 +42,3 @@ const SingleProfiles = () => {
 };
 
 export default SingleProfiles;
-<h1>Helo</h1>;

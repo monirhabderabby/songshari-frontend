@@ -10,23 +10,19 @@ import NavBar from "../../components/pages/Shared/NavBar";
 import TopProfile from "../../components/pages/TopProfile/TopProfile";
 
 const Homepage = () => {
-  return (
-    <div className="font-george">
-      <NavBar></NavBar>
-      <Banner></Banner>
-      <ThreeEasySteps></ThreeEasySteps>
-
-      <div></div>
-      <SecureVerified></SecureVerified>
-      <BeginFamilyJourney></BeginFamilyJourney>
-
-      <LatestRegisteredMember />
-      <TopProfile />
-
-      <PeopleJoinedAlready />
-      <FindSoleMate />
-    </div>
-  );
+    return (
+        <div className="font-george">
+            <NavBar></NavBar>
+            <Banner></Banner>
+            <ThreeEasySteps></ThreeEasySteps>
+            <SecureVerified></SecureVerified>
+            <BeginFamilyJourney></BeginFamilyJourney>
+            <LatestRegisteredMember />
+            <TopProfile />
+            <PeopleJoinedAlready />
+            <FindSoleMate />
+        </div>
+    );
 };
 
 export default Homepage;

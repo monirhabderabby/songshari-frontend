@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 // components import
+import FindPartner from '../Wrapper/Findpartner/FindPartner'
 import Login from "../components/pages/Authentications/Login";
 import LoginAsProfessional from "../components/pages/Authentications/LoginAsProfessional";
 import RegAsProfessional from "../components/pages/Authentications/RegAsProfessional";

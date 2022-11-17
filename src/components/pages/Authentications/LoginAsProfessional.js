@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
+import { Toaster } from "react-hot-toast";
 import { BsPersonLinesFill } from "react-icons/bs";
 import { FaFacebookF, FaGoogle, FaRegEnvelope } from "react-icons/fa";
 import { MdLockOutline } from "react-icons/md";
@@ -11,8 +12,10 @@ import Error from "../../../components/ui/error/Error";
 import { auth } from "../../../firebase.init";
 import { useLoginAsProfessionalMutation } from "../../../Redux/features/userInfo/userApi";
 import { loadUserData } from "../../../Redux/features/userInfo/userInfo";
+import ForgetPasswordModal from "./ForgetPassword/ForgetPasswordModal";
 
 const LoginAsProfessional = () => {
+    const [open, setOpen] = useState(false);
     const [customError, setCustomError] = useState("");
     const [signInWithEmailAndPassword, user, loading, error] = useSignInWithEmailAndPassword(auth);
     const [loginAsProfessional, { data: response, isLoading }] = useLoginAsProfessionalMutation();
@@ -25,6 +28,10 @@ const LoginAsProfessional = () => {
         handleSubmit,
         reset,
     } = useForm();
+
+    const modalControll = () => {
+        setOpen(!open);
+    };
 
     const onSubmit = async data => {
         data.role = data.designation;
@@ -160,6 +167,12 @@ const LoginAsProfessional = () => {
                                             )}
                                         </h1>
                                     </section>
+                                    <span
+                                        className="text-gray-400 float-right mt-3 hover:text-gray-500 duration-500 cursor-pointer"
+                                        onClick={modalControll}
+                                    >
+                                        Forgot Password
+                                    </span>
                                     <div className="col-span-2">{customError && <Error message={customError} />}</div>
                                     <input
                                         type="submit"
@@ -203,6 +216,8 @@ const LoginAsProfessional = () => {
                     {/*Sign up section */}
                 </div>
             </section>
+            {open && <ForgetPasswordModal {...{ open, modalControll }} />}
+            <Toaster />
         </div>
     );
 };

@@ -18,23 +18,23 @@ const Comunity = () => {
 
     const handelOnClose = () => setShowModal(false);
     return (
-        <div className='container mx-auto'>
+        <div className='container mx-auto px-4 md:px-0 comuniti-container'>
             <div className='mt-16'>
                 <div>
                     <div className='md:px-16'>
                         <hr />
-                        <div className='grid grid-cols-1 md:grid-cols-2 justify-around py-4'>
+                        <div className='flex justify-between my-4'>
                             <div className='flex'>
                                 <button onClick={() => setShowModal(true)} className='filter-search'>
                                     <div className='flex justify-between'>
                                         <img src={togol} alt="" />
-                                        <p className='pl-2 text-1xl'>Filter your search</p>
+                                        <p className='pl-1'>filter search</p>
                                     </div>
                                 </button>
 
                             </div>
-                            <div className='flex items-center justify-end'>
-                                <p className='pr-6'>Order by : </p>
+                            <div className='flex items-center justify-start md:justify-end'>
+                                <p className='pr-6 hidden md:block'>Order by : </p>
                                 <div className='order-by-filter'>
                                     <select
                                         type="text"
@@ -51,7 +51,7 @@ const Comunity = () => {
                         </div>
                         <hr />
                     </div >
-                    <div className='grid grid-cols-1 md:grid-cols-3'>
+                    <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 md:gap-6'>
                         {
                             array.map((p, i) => {
                                 return (

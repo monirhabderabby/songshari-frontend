@@ -1,3 +1,8 @@
+.main-weading-container {
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+}
+
 .card-hober {
     background-color: rgb(253, 251, 252);
 }

@@ -8,7 +8,7 @@ import styles from "./membership.module.css";
 
 const Membership = () => {
     return (
-        <div className='container mx-auto'>
+        <div className='container mx-auto px-4 md:-0'>
             <div className={`${styles.set_font_family}`}>
                 <div>
                     <div className='text-center'>
@@ -21,7 +21,7 @@ const Membership = () => {
                         <TitleWithBar isHidden='hidden' Color='black' fontsize='1' textData='Choice from one of our membership levels and unlock featurs you need . Benifine from shongsari at its maximum capacity by choosing the plan that suits you' />
                     </div>
                     <div>
-                        <div className={`grid grid-cols-1 md:grid-cols-4 pt-16 gap-8`}>
+                        <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 md:gap-6 pt-16 gap-8`}>
                             <div>
                                 <div>
                                     <div className='flex justify-center'>

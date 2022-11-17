@@ -10,6 +10,7 @@ const userInfoSlice = createSlice({
     reducers: {
         loadUserData: (state, action) => {
             state.userInfo = action.payload;
+            state.count = undefined;
         },
     },
 });

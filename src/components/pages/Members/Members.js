@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { AiFillCheckCircle } from "react-icons/ai";
 import { FaSlidersH } from "react-icons/fa";
-
+import { IoIosArrowForward } from "react-icons/io";
+import { Link } from "react-router-dom";
 import "../../../App.css";
-import { CustomHeader } from "../../shared/CustomHeader/CustomHeader";
 
 export const Members = () => {
     const [value, setValue] = useState("LATEST ACTIVE");
@@ -11,8 +11,20 @@ export const Members = () => {
     const products = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
     return (
         <div>
-            <CustomHeader title="Members" />
-            <div className="custom-container mt-[118px]">
+            <div className="h-[264px] w-full bg_Color">
+                <div className="custom-container flex h-full justify-start items-center">
+                    <div>
+                        <h1 className="pb-[15px] text-white text-[50px] leading-[60px] font-bold font-fira">Members</h1>
+                        <div className="flex items-center text-[#ffd0fd] text-[18px]">
+                            <Link to="/" className="hover:text-white font-bold">
+                                HOME
+                            </Link>{" "}
+                            <IoIosArrowForward /> Members
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div className="custom-container mt-[118px] px-3">
                 <hr />
                 <div className="w-full h-[83px] flex justify-between items-center">
                     <button className="flex items-center py-[6px] px-[30px] button_shadow rounded-full">
@@ -26,7 +38,7 @@ export const Members = () => {
                         <select
                             name="orderBy"
                             value={value}
-                            onChange={e => setValue(e.target.orderBy.value)}
+                            onChange={e => setValue(e.target.value)}
                             className="outline-none button_shadow py-[6px] px-[20px] rounded-full"
                         >
                             <option value="LATEST ACTIVE">LATEST ACTIVE</option>
@@ -38,7 +50,7 @@ export const Members = () => {
                 </div>
                 <hr />
             </div>
-            <section className="grid grid-cols-2 custom-container gap-[33px] py-[33px]">
+            <section className="grid grid-cols-1 md:grid-cols-2 custom-container gap-[33px] py-[33px] px-3">
                 {products.map((p, index) => {
                     return (
                         <div
