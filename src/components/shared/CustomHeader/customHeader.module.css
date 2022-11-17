@@ -1,0 +1,6 @@
+.container {
+    background-image: url("../../../assets/images/SecureVerified/membership-banner.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 60vh;
+}

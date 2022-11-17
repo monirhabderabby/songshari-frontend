@@ -8,6 +8,7 @@ import membership from "../../../assets/images/NavIcons/Membership.svg";
 import course from "../../../assets/images/NavIcons/Online-Course.svg";
 // import shop from '../../../assets/images/NavIcons/Shop.svg';
 import { useState } from "react";
+import { useAuthState, useSignOut } from "react-firebase-hooks/auth";
 import agent from "../../../assets/images/NavIcons/Agent.svg";
 import cart from "../../../assets/images/NavIcons/cart.png";
 import kazi from "../../../assets/images/NavIcons/Kazi.svg";
@@ -15,9 +16,13 @@ import bng from "../../../assets/images/NavIcons/Language-Switcher-Bangla.svg";
 import eng from "../../../assets/images/NavIcons/Language-Switcher-English.svg";
 import findALawyer from "../../../assets/images/NavIcons/Lawyer.svg";
 import register from "../../../assets/images/NavIcons/Profile-Login-Icon.svg";
+import { auth } from "../../../firebase.init";
 
-const NavBar = () => {
+const NavBar = ({ bg }) => {
     const [language, setLanguage] = useState(true);
+    const [user] = useAuthState(auth);
+
+    const [signOut] = useSignOut(auth);
     const allMenu = [
         {
             id: 1,
@@ -42,7 +47,7 @@ const NavBar = () => {
     };
 
     return (
-        <header className={`bg-white  sticky top-0 h-[90px] z-50 shadow-md body-font ${NavBarCSS.navbar}`}>
+        <header className={`${bg ? "bg-transparent" : "bg-white"}  sticky top-0 h-[90px] z-50 shadow-md body-font ${NavBarCSS.navbar}`}>
             <div className="custom-container container mx-auto flex flex-wrap  flex-col md:flex-row items-center">
                 <Link to="/" className="flex cursor-pointer title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
                     <img src={blackLogo} alt="" />
@@ -77,7 +82,11 @@ const NavBar = () => {
                     <ul className={"flex justify-end items-center gap-6 h-32"}>
                         <li className={`${NavBarCSS.hasTooltip}`}>
                             <div className="flex flex-col items-center cursor-pointer">
-                                <img className="w-14" src={register} alt="img" />
+                                {user?.photoURL ? (
+                                    <img className="w-14" src={user.photoURL} alt="img" />
+                                ) : (
+                                    <img className="w-14" src={register} alt="img" />
+                                )}
                                 <span
                                     className={`${NavBarCSS.tooltip} z-50 h-[15px] w-[15px] mt-14 ml-[14px]`}
                                     style={{
@@ -85,15 +94,31 @@ const NavBar = () => {
                                         backgroundImage: "linear-gradient( 103deg, rgba(228, 18, 114, 1) 0%, #4844a5 100%)",
                                     }}
                                 ></span>
-                                <Link
-                                    to="/login"
-                                    className={`${NavBarCSS.tooltip} rounded-xl z-50 shadow-lg px-3 py-1 text-white text-xs font-bold whitespace-nowrap uppercase mt-[66px]`}
-                                    style={{
-                                        backgroundImage: "linear-gradient(155deg, rgba(228, 18, 114, 1) 0%, #4844a5 100%)",
-                                    }}
-                                >
-                                    Login
-                                </Link>
+                                {user ? (
+                                    <>
+                                        <button
+                                            className={`${NavBarCSS.tooltip} rounded-xl z-50 shadow-lg px-3 py-1 text-white text-xs font-bold whitespace-nowrap uppercase mt-[66px]`}
+                                            style={{
+                                                backgroundImage: "linear-gradient(155deg, rgba(228, 18, 114, 1) 0%, #4844a5 100%)",
+                                            }}
+                                            onClick={() => signOut()}
+                                        >
+                                            Logout
+                                        </button>
+                                    </>
+                                ) : (
+                                    <>
+                                        <Link
+                                            to="/login"
+                                            className={`${NavBarCSS.tooltip} rounded-xl z-50 shadow-lg px-3 py-1 text-white text-xs font-bold whitespace-nowrap uppercase mt-[66px]`}
+                                            style={{
+                                                backgroundImage: "linear-gradient(155deg, rgba(228, 18, 114, 1) 0%, #4844a5 100%)",
+                                            }}
+                                        >
+                                            Login
+                                        </Link>
+                                    </>
+                                )}
                             </div>
                         </li>
                         <li className="relative ">
