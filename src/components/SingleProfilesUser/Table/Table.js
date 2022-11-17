@@ -4,12 +4,11 @@ import "../../../assets/css/table.css";
 import { Friends } from "../FriendsSection/Friends";
 import { Profile } from "../profileSection/Profile";
 
-
 const Table = () => {
     const [page, setPage] = useState(2);
     return (
         <div>
-            <div className="pt-5 px-2 md:px-0">
+            <div className="px-2 md:px-0 mx-4 mb-4">
                 <div className="notification-bar">
                     <div className="flex justify-center items-center gap-4">
                         <button className="mt-4 font-medium leading-tight text-gray-800">Activity</button>

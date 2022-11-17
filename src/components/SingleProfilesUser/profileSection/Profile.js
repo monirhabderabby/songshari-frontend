@@ -1,9 +1,15 @@
 import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import Title from "../Title/Title";
 
 export const Profile = () => {
-
     const [tables, setTables] = useState([]);
+    const [edit, setEdit] = useState(false);
+    const data = useSelector(state => state?.persistedReducer?.userInfo?.userInfo);
+
+    if (data) {
+        console.log(data);
+    }
     useEffect(() => {
         fetch("json/tableData.json")
             .then(res => res.json())
@@ -12,55 +18,38 @@ export const Profile = () => {
             });
     }, []);
 
-    const [edit, setEdit] = useState(false);
     const handleEdit = () => {
-       setEdit(true);
-    }
+        setEdit(!edit);
+    };
     return (
         <div>
-            <div className="my-6 py-6 table-bar px-8">
-                <div className='grid lg:grid-cols-2 sm:grid-cols-1'>
-                    
-                    <Title titleText="This is first Table"></Title>
-                    <button onClick={handleEdit} >Edit</button>
+            <div className={`mt-4 mx-4 ${edit ? "pt-6 pb-2" : "py-6"} table-bar px-8 shadow-md duration-300`}>
+                <div className="flex justify-between h-[60px] items-center">
+                    <Title titleText="Personal Details"></Title>
+                    <button onClick={handleEdit} className="underline">
+                        Edit
+                    </button>
                 </div>
                 {tables.map(t => {
                     return (
-                        <div className="">
-
-{
-    edit ?   <div className="flex justify-between custom-design">      
-    <h1 className="flex items-center bg-gray-100 p-2 rounded-xl border-solid border-2 border-gray-400">
-    <input type='text' className="bg-transparent" placeholder="enter name" defaultValue={t.name}></input>
-    </h1>
-
-    <h1 className="flex items-center bg-gray-100 p-2 rounded-xl border-solid border-2 border-gray-400">
-    <input type='text' className="bg-transparent" defaultValue={t.title}></input>
-    </h1>
-               
-            </div>
-            :
-            <div className="flex justify-between custom-design">      
-            <h1 className="flex items-center bg-gray-100 p-2 rounded-xl">
-            <input type='text' className="bg-transparent" placeholder="enter name" defaultValue={t.name} disabled ></input>
-            </h1>
-
-            <h1 className="flex items-center bg-gray-100 p-2 rounded-xl">
-            <input type='text' className="bg-transparent" defaultValue={t.title} disabled></input>
-            </h1>
-                       
-                    </div>
-}
-
-                          
+                        <div className="h-[40px] flex justify-between items-center border-b-[2px] border-dotted">
+                            <span>Name</span>
+                            {edit ? <input type="text" className="outline-none text-black" placeholder="Write here" /> : <span>Monir Hossain</span>}
                         </div>
-                        
                     );
                 })}
-                {
-                    edit && <button className=' rounded-full p-2 mt-2'>Save Changes</button>
-                }
-                
+                {edit ? (
+                    <div className="flex gap-x-3 my-3 items-center">
+                        <button className="px-3 py-1 bg-gray-200 font-semibold rounded-full" onClick={() => setEdit(!edit)}>
+                            Close
+                        </button>{" "}
+                        <button className="px-3 py-1 bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] text-white font-semibold rounded-full">
+                            Save info
+                        </button>
+                    </div>
+                ) : (
+                    <></>
+                )}
             </div>
             <div className="w-full mt-10 bg-white px-4 py-6 rounded-lg shadow ">
                 <Title titleText="Myself Summary"></Title>
@@ -92,9 +81,9 @@ export const Profile = () => {
                 <div>
                     <Title titleText="This is second Table"></Title>
                 </div>
-                {tables.map((t,i) => {
+                {tables.map((t, i) => {
                     return (
-                        <div key={i}  className="">
+                        <div key={i} className="">
                             <div className="flex justify-between custom-design">
                                 <h1>{t.name}</h1>
                                 <h1>{t.title}</h1>
