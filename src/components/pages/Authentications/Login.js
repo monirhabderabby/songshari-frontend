@@ -166,7 +166,7 @@ const Login = () => {
                             {/*Input Field*/}
                         </div>
                     </div>{" "}
-                    <div className="h-[200px] w-full bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] rounded-br-2xl rounded-bl-2xl p-2 lg:hidden text-white">
+                    <div className="h-[200px] w-full bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] rounded-br-2xl rounded-bl-2xl p-2 md:hidden text-white">
                         <h2 className="font-bold text-3xl mb-2">Hello, Friend!</h2>
                         <div className="border-2 w-10 border-white inline-block"></div>
                         <p className="mb-4">Fill up your information and start journey with us</p>
