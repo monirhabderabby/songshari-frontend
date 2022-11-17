@@ -1,0 +1,31 @@
+.main_weading_container {
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+}
+
+.card_hober {
+    background-color: rgb(253, 251, 252);
+}
+
+.card_hober:hover {
+    box-shadow: 0px 7px 14px 0px rgba(140, 0, 83, 0.75);
+    -webkit-box-shadow: 0px 7px 14px 0px rgba(140, 0, 83, 0.75);
+    -moz-box-shadow: 0px 7px 14px 0px rgba(140, 0, 83, 0.75);
+    transition: .6s;
+}
+
+.author .coverimg {
+    width: 150px;
+    height: 150px;
+}
+
+.commonimg {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+
+.img_body {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}

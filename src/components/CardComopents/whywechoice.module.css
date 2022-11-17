@@ -1,0 +1,6 @@
+.meet_card:hover {
+    box-shadow: 0px 7px 14px 0px rgba(140, 0, 83, 0.75);
+    -webkit-box-shadow: 0px 7px 14px 0px rgba(140, 0, 83, 0.75);
+    -moz-box-shadow: 0px 7px 14px 0px rgba(140, 0, 83, 0.75);
+    transition: .6s;
+}
