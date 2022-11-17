@@ -68,8 +68,9 @@ export const Profile = () => {
                     <></>
                 )}
             </div>
-            <div className="w-full mt-10 bg-white px-4 py-6 rounded-lg shadow ">
+            <div className="w-full mt-10 bg-white px-4 py-6 rounded-lg shadow  mx-4">
                 <Title titleText="Myself Summary"></Title>
+
                 <div className="">
                     <div className="text-left">
                         <p>
@@ -79,9 +80,12 @@ export const Profile = () => {
                     </div>
                 </div>
             </div>
-            <div className="my-6 py-6 table-bar px-8">
-                <div>
-                    <Title titleText="This is third Table"></Title>
+            <div className="my-6 py-6 mx-4 table-bar px-8 shadow">
+                <div className="flex justify-between">
+                    <Title titleText="Educational Details"></Title>
+                    <button onClick={handleEdit} className="underline">
+                        Edit
+                    </button>
                 </div>
                 {tables.map(t => {
                     return (
@@ -94,9 +98,12 @@ export const Profile = () => {
                     );
                 })}
             </div>
-            <div className="my-6 py-6 table-bar px-8">
-                <div>
-                    <Title titleText="This is second Table"></Title>
+            <div className="my-6 py-6 table-bar px-8 mx-4 shadow">
+                <div className="flex justify-between">
+                    <Title titleText="Others Details"></Title>
+                    <button onClick={handleEdit} className="underline">
+                        Edit
+                    </button>
                 </div>
                 {tables.map((t, i) => {
                     return (
