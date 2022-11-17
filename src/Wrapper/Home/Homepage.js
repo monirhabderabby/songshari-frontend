@@ -14,15 +14,15 @@ const Homepage = () => {
     <div className="font-george">
       <NavBar></NavBar>
       <Banner></Banner>
+      <ThreeEasySteps></ThreeEasySteps>
 
-      <div>
-        <ThreeEasySteps></ThreeEasySteps>
-      </div>
+      <div></div>
       <SecureVerified></SecureVerified>
       <BeginFamilyJourney></BeginFamilyJourney>
 
       <LatestRegisteredMember />
       <TopProfile />
+
       <PeopleJoinedAlready />
       <FindSoleMate />
     </div>
