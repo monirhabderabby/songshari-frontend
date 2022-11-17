@@ -8,7 +8,7 @@ import dummyData from "./TopProfile/dummyData";
 const SwipeMatch = () => {
     return (
         <div
-            className="w-11/12 mx-auto absolute md:static top-12 left-[4%] md:w-1/4 h-fit"
+            className="w-11/12 md:w-1/3 lg:w-1/4 mx-auto absolute md:static top-12 left-[4%] h-fit"
             data-aos="fade-right"
             data-aos-easing="ease-out-cubic"
             data-aos-duration="1000"
@@ -20,7 +20,7 @@ const SwipeMatch = () => {
                         "linear-gradient(145deg,rgba(81, 27, 231, 1) 0%,rgba(228, 18, 114,1)100%)",
                 }}
             >
-                <p className="py-3 text-center text-lg font-bold text-white">
+                <p className="py-3 md:pt-1 md:pb-2 lg:py-3 text-center text-lg font-bold text-white">
                     Swipe & Match
                 </p>
             </div>
