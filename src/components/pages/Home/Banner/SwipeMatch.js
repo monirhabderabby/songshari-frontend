@@ -8,7 +8,7 @@ import dummyData from "./TopProfile/dummyData";
 const SwipeMatch = () => {
   return (
     <div
-      className="w-1/4 h-fit"
+      className="w-11/12 md:w-1/3 lg:w-1/4 mx-auto absolute md:static top-12 left-[4%] h-fit"
       data-aos="fade-right"
       data-aos-easing="ease-out-cubic"
       data-aos-duration="1000"
@@ -20,7 +20,7 @@ const SwipeMatch = () => {
             "linear-gradient(145deg,rgba(81, 27, 231, 1) 0%,rgba(228, 18, 114,1)100%)",
         }}
       >
-        <p className="py-3 text-center text-lg font-bold text-white">
+        <p className="py-3 md:pt-1 md:pb-2 lg:py-3 text-center text-lg font-bold text-white">
           Swipe & Match
         </p>
       </div>
@@ -34,10 +34,20 @@ const SwipeMatch = () => {
           <SwiperSlide key={data.id} className="relative">
             <img className="w-full rounded-b-xl" src={data.img} alt="" />
             <div className="absolute bottom-4 left-8 text-white w-4/5">
-              <p className="mb-2">
-                {data.name} {data.age}
-              </p>
-              <div className="flex justify-between">
+              <div className="text-left pl-6">
+                <p className="mb-2">
+                  {data.name} {data.age}
+                </p>
+                <p className="flex gap-1">
+                  <FaStar className="font-bold text-sm text-green-900"></FaStar>
+                  <span className="text-xs">Login First</span>
+                </p>
+                <p className="flex gap-1 mb-4">
+                  <FaStar className="font-bold text-sm"></FaStar>
+                  <span className="text-xs">Login First</span>
+                </p>
+              </div>
+              <div className="flex justify-center gap-2">
                 <div
                   className="border-2 border-[#ff337c] p-2 rounded-full"
                   style={{
@@ -49,37 +59,25 @@ const SwipeMatch = () => {
                 </div>
                 <div
                   className="border-2 border-[#ff337c] p-2 rounded-full"
-                  style={{
-                    backgroundImage:
-                      "linear-gradient(155deg, rgba(228, 18, 114, 1) 0%, #4844a5 100%)",
-                  }}
+                  style={{ backgroundImage: "linear-gradient(155deg, rgba(228, 18, 114, 1) 0%, #4844a5 100%)" }}
                 >
                   <FaTimes className="text-xl"></FaTimes>
                 </div>
                 <div
                   className="border-2 border-[#ff337c] p-2 rounded-full"
-                  style={{
-                    backgroundImage:
-                      "linear-gradient(155deg, rgba(228, 18, 114, 1) 0%, #4844a5 100%)",
-                  }}
+                  style={{ backgroundImage: "linear-gradient(155deg, rgba(228, 18, 114, 1) 0%, #4844a5 100%)" }}
                 >
                   <FaStar className="text-xl"></FaStar>
                 </div>
                 <div
                   className="border-2 border-[#ff337c] p-2 rounded-full"
-                  style={{
-                    backgroundImage:
-                      "linear-gradient(155deg, rgba(228, 18, 114, 1) 0%, #4844a5 100%)",
-                  }}
+                  style={{ backgroundImage: "linear-gradient(155deg, rgba(228, 18, 114, 1) 0%, #4844a5 100%)" }}
                 >
                   <FaHeart className="text-xl"></FaHeart>
                 </div>
                 <div
                   className="border-2 border-[#ff337c] p-2 rounded-full"
-                  style={{
-                    backgroundImage:
-                      "linear-gradient(155deg, rgba(228, 18, 114, 1) 0%, #4844a5 100%)",
-                  }}
+                  style={{ backgroundImage: "linear-gradient(155deg, rgba(228, 18, 114, 1) 0%, #4844a5 100%)" }}
                 >
                   <FaBolt className="text-xl"></FaBolt>
                 </div>

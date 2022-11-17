@@ -18,12 +18,14 @@ import register from "../../../assets/images/NavIcons/Profile-Login-Icon.svg";
 import bng from "../../../assets/images/NavIcons/Language-Switcher-Bangla.svg";
 import eng from "../../../assets/images/NavIcons/Language-Switcher-English.svg";
 
-const NavBar = () => {
+const NavBar = ({ bg }) => {
   const [language, setLanguage] = useState(true);
+  const [user] = useAuthState(auth);
+
+  const [signOut] = useSignOut(auth);
   const allMenu = [
     {
       id: 1,
-      to: "/findpartner",
       to: "/findpartner",
       icon: findPartner,
       tooltip: "Find Your Partner",
@@ -37,27 +39,6 @@ const NavBar = () => {
     { id: 8, to: "/agent", icon: agent, tooltip: "Agent" },
   ];
 
-const NavBar = ({ bg }) => {
-    const [language, setLanguage] = useState(true);
-    const [user] = useAuthState(auth);
-
-    const [signOut] = useSignOut(auth);
-    const allMenu = [
-        {
-            id: 1,
-            to: "/findpartner",
-            icon: findPartner,
-            tooltip: "Find Your Partner",
-        },
-        { id: 2, to: "/membership", icon: membership, tooltip: "Membership" },
-        { id: 3, to: "/blog", icon: blog, tooltip: "Blog" },
-        { id: 4, to: "/course", icon: course, tooltip: "Course" },
-        // { id: 5, to: '/shop', icon: shop, tooltip: "Shop" },
-        { id: 6, to: "/findalawyer", icon: findALawyer, tooltip: "Find a Lawyer" },
-        { id: 7, to: "/kazi", icon: kazi, tooltip: "Kazi" },
-        { id: 8, to: "/agent", icon: agent, tooltip: "Agent" },
-    ];
-
   const banglaHandler = () => {
     setLanguage(false);
   };
@@ -67,7 +48,7 @@ const NavBar = ({ bg }) => {
 
   return (
     <header
-      className={`bg-white  sticky top-0 lg:h-[90px] z-50 shadow-md body-font ${NavBarCSS.navbar}`}
+      className={`${bg ? "bg-transparent" : "bg-white"} sticky top-0 lg:h-[90px] z-50 shadow-md body-font ${NavBarCSS.navbar}`}
     >
       <div className=" lg:max-w-[1000px]  xl:max-w-[1200px] mx-auto flex flex-wrap  flex-col md:flex-row items-center">
         <Link
@@ -121,10 +102,10 @@ const NavBar = ({ bg }) => {
             <li className={`${NavBarCSS.hasTooltip}`}>
               <div className="flex flex-col items-center cursor-pointer">
                 {user?.photoURL ? (
-                 <img className="w-14" src={user.photoURL} alt="img" />
-                                ) : (
+                  <img className="w-14" src={user.photoURL} alt="img" />
+                ) : (
                   <img className="w-14" src={register} alt="img" />
-                 )}
+                )}
                 <span
                   className={`${NavBarCSS.tooltip} z-50 h-[15px] w-[15px] mt-14 ml-[14px]`}
                   style={{
@@ -134,30 +115,30 @@ const NavBar = ({ bg }) => {
                   }}
                 ></span>
                 {user ? (
-                         <>
-                         <button
-                           className={`${NavBarCSS.tooltip} rounded-xl z-50 shadow-lg px-3 py-1 text-white text-xs font-bold whitespace-nowrap uppercase mt-[66px]`}
-                           style={{
-                                   backgroundImage: "linear-gradient(155deg, rgba(228, 18, 114, 1) 0%, #4844a5 100%)",
-                                   }}
-                                   onClick={() => signOut()}
-                                         >
-                                            Logout
-                                        </button>
-                                    </>
-                                ) : (
-                                    <>
-                                        <Link
-                                            to="/login"
-                                            className={`${NavBarCSS.tooltip} rounded-xl z-50 shadow-lg px-3 py-1 text-white text-xs font-bold whitespace-nowrap uppercase mt-[66px]`}
-                                            style={{
-                                                backgroundImage: "linear-gradient(155deg, rgba(228, 18, 114, 1) 0%, #4844a5 100%)",
-                                            }}
-                                        >
-                                            Login
-                                        </Link>
-                                    </>
-                                )}
+                  <>
+                    <button
+                      className={`${NavBarCSS.tooltip} rounded-xl z-50 shadow-lg px-3 py-1 text-white text-xs font-bold whitespace-nowrap uppercase mt-[66px]`}
+                      style={{
+                        backgroundImage: "linear-gradient(155deg, rgba(228, 18, 114, 1) 0%, #4844a5 100%)",
+                      }}
+                      onClick={() => signOut()}
+                    >
+                      Logout
+                    </button>
+                  </>
+                ) : (
+                  <>
+                    <Link
+                      to="/login"
+                      className={`${NavBarCSS.tooltip} rounded-xl z-50 shadow-lg px-3 py-1 text-white text-xs font-bold whitespace-nowrap uppercase mt-[66px]`}
+                      style={{
+                        backgroundImage: "linear-gradient(155deg, rgba(228, 18, 114, 1) 0%, #4844a5 100%)",
+                      }}
+                    >
+                      Login
+                    </Link>
+                  </>
+                )}
               </div>
             </li>
             <li className="relative ">
@@ -201,14 +182,14 @@ const NavBar = ({ bg }) => {
                   role="menu"
                   aria-orientation="vertical"
                   aria-labelledby="menu-button"
-                  tabindex="-1"
+                  tabIndex="-1"
                 >
                   <div className="py-1 text-center" role="none">
                     <button
                       onClick={banglaHandler}
                       className=" text-[#f36] block px-4   text-[22px]"
                       role="menuitem"
-                      tabindex="-1"
+                      tabIndex="-1"
                       id="menu-item-0"
                     >
                       BN
@@ -217,7 +198,7 @@ const NavBar = ({ bg }) => {
                       onClick={englishHandler}
                       className="block px-4 text-[#f36]  text-[22px]"
                       role="menuitem"
-                      tabindex="-1"
+                      tabIndex="-1"
                       id="menu-item-1"
                     >
                       EN
