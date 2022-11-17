@@ -1,5 +1,6 @@
 import React from 'react';
 import img1 from "../../assets/images/banner/peoplepic1.png";
+import style from "./whywechoice.module.css";
 const WhyWechoiceCars = () => {
     const fontFamily = () => {
         return (
@@ -9,8 +10,8 @@ const WhyWechoiceCars = () => {
         )
     }
     return (
-        <div style={fontFamily()} className='my-4 mx-auto'>
-            <div className="card card-container rounded-lg w-11/12 bg-white shadow-xl py-6">
+        <div style={fontFamily()} className='my-4 flex justify-center'>
+            <div className={`card card-container rounded-lg w-11/12 bg-white shadow-xl py-6 ${style.meet_card}`}>
                 <figure className="px-10 pt-10 flex justify-center">
                     <img className="card-img-container" src={img1} alt="Shoes" />
                 </figure>
