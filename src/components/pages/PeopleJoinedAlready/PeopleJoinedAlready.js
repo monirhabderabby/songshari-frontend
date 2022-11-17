@@ -16,13 +16,13 @@ const PeopleJoinedAlready = () => {
           </h2>
           <section className="text-gray-600 body-font">
             <div className="container px-5 pt-[20px] mx-auto">
-              <div className="flex flex-wrap -m-4 text-center">
-                <div
-                  data-aos-easing="ease-out-cubic"
-                  data-aos-duration="1000"
-                  data-aos="fade-up"
-                  className="p-4 sm:w-1/4 w-1/2 text-center"
-                >
+              <div
+                data-aos-easing="ease-out-cubic"
+                data-aos-duration="1000"
+                data-aos="fade-up"
+                className="flex flex-wrap -m-4 text-center"
+              >
+                <div className="p-4 sm:w-1/4 w-1/2 text-center">
                   <img className=" inline-block" src={icon1} alt="" />
                   <h2 className="title-font text-[55px] font-semibold tracking-widest mt-3 sm:text-4xl text-3xl text-white">
                     000 M
@@ -61,7 +61,7 @@ const PeopleJoinedAlready = () => {
                 </div>
                 <div
                   data-aos-easing="ease-out-cubic"
-                  data-aos-duration="1500"
+                  data-aos-duration="1600"
                   data-aos="fade-up"
                   className="p-4 sm:w-1/4 w-1/2 text-center"
                 >

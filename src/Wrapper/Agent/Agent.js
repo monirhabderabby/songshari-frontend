@@ -1,8 +1,11 @@
-import React from 'react'
+import React from "react";
+import AgentPage from "../../components/pages/Agent/AgentPage";
 
 const Agent = () => {
   return (
-    <div>Agent</div>
-  )
-}
+    <>
+      <AgentPage />
+    </>
+  );
+};
 export default Agent;
