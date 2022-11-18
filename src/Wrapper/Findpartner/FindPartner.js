@@ -1,5 +1,5 @@
 import React from "react";
-import FindPartners from "../../components/pages/FindPartner/FindPartners";
+import FindPartners from "../../components/pages/Findpartner/FindPartners";
 
 const FindPartner = () => {
   return (
