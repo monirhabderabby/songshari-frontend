@@ -49,7 +49,7 @@ const Index = () => {
                     ></Route>
                     <Route path="/kazi" element={<Kazi></Kazi>}></Route>
                     <Route path="/agent" element={<Agent></Agent>}></Route>
-                    <Route path="/othersprofile" element={<OthersProfile></OthersProfile>}></Route>
+                    <Route path="/connection/:id" element={<OthersProfile></OthersProfile>}></Route>
                     <Route path="/community" element={<Community></Community>}></Route>
                     <Route path="/shop" element={<Shop></Shop>}></Route>
                     <Route
