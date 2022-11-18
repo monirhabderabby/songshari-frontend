@@ -81,8 +81,8 @@ export const Footer = () => {
     return (
         <footer className="footer-section">
             <div>
-            <img className="shape2" src={flower} alt="" />
-            <img className="shape3" src={rightShape} alt="" />
+                <img className="shape2" src={flower} alt="" />
+                <img className="shape3" src={rightShape} alt="" />
             </div>
             <div className="waves">
                 <div className="wave" id="wave1"></div>
@@ -91,125 +91,128 @@ export const Footer = () => {
                 <div className="wave" id="wave4"></div>
             </div>
             <div className="newslater-section">
-  <div className="container">
-    <div className="flex flex-wrap  justify-center">
-      <div className="lg:w-1/2 pr-4 pl-4 md:w-2/3">
-        <div className="newslater-container">
-          <div className="newslater-wrapper">
-            <div className="icon">
-              <img src={icon} alt="" />
+                <div className="container">
+                    <div className="flex flex-wrap  justify-center">
+                        <div className="lg:w-1/2 pr-4 pl-4 md:w-2/3">
+                            <div className="newslater-container">
+                                <div className="newslater-wrapper">
+                                    <div className="icon">
+                                        <img src={icon} alt="" />
+                                    </div>
+                                    <p className="text">Sign up to receive a monthly email on the latest news!</p>
+                                    <form className="newslater-form">
+                                        <input type="text" placeholder="Your Email Address" />
+                                        <button type="submit">
+                                            <FaTelegramPlane />
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <p className="text">Sign up to receive a monthly email on the latest news!</p>
-            <form className="newslater-form">
-              <input type="text" placeholder="Your Email Address" />
-              <button type="submit"> 
-                <FaTelegramPlane />
-              </button>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
 
-                <hr className="hr" />
-                <div className="grid grid-cols-2 md:grid-cols-4 my-[86px]">
-                    <div className="mx-auto">
-                        <h1 className="text-white mb-[9px] font-medium tracking-[1.5px] font-george text-[24px]">OUR INFORMATION</h1>
-                        {links?.ourInformation.map((link, i) => {
-                            return (
-                                <Link
+            <hr className="hr" />
+            <div className="grid grid-cols-2 md:grid-cols-4 my-[86px]">
+                <div className="mx-auto">
+                    <h1 className="text-white mb-[9px] font-medium tracking-[1.5px] font-george text-[24px]">OUR INFORMATION</h1>
+                    {links?.ourInformation.map((link, i) => {
+                        return (
+                            <Link
                                 key={i}
-                                    to={link.to}
-                                    className="flex items-center mb-[21px] text-[16px] text-white hover:text-blue-600 hover:translate-x-3 transition-[0.3s]"
-                                >
-                                    <span className="mr-1">
-                                        <FaAngleDoubleRight />
-                                    </span>
-                                    {link.name}
-                                </Link>
-                            );
-                        })}
-                    </div>
-                    <div className="mx-auto">
-                        <h1 className="text-white mb-[9px] font-medium tracking-[1.5px] font-george text-[24px]">MY ACCOUNT</h1>
-                        {links?.ourInformation.map(link => {
-                            return (
-                                <Link
-                                    to={link.to}
-                                    className="flex items-center mb-[21px] text-[16px] text-white hover:text-blue-600 hover:translate-x-3 transition-[0.3s]"
-                                >
-                                    <span className="mr-1">
-                                        <FaAngleDoubleRight />
-                                    </span>
-                                    {link.name}
-                                </Link>
-                            );
-                        })}
-                    </div>
-                    <div className="mx-auto">
-                        <h1 className="text-white mb-[9px] font-medium tracking-[1.5px] font-george text-[24px]">HELP CENTER</h1>
-                        {links?.ourInformation.map(link => {
-                            return (
-                                <Link
-                                    to={link.to}
-                                    className="flex items-center mb-[21px] text-[16px] text-white hover:text-blue-600 hover:translate-x-3 transition-[0.3s]"
-                                >
-                                    <span className="mr-1">
-                                        <FaAngleDoubleRight />
-                                    </span>
-                                    {link.name}
-                                </Link>
-                            );
-                        })}
-                    </div>
-                    <div className="mx-auto">
-                        <h1 className="text-white mb-[9px] font-medium tracking-[1.5px] font-george text-[24px]">LEGAL</h1>
-                        {links?.ourInformation.map(link => {
-                            return (
-                                <Link
-                                    to={link.to}
-                                    className="flex items-center mb-[21px] text-[16px] text-white hover:text-blue-600 hover:translate-x-3 transition-[0.3s]"
-                                >
-                                    <span className="mr-1">
-                                        <FaAngleDoubleRight />
-                                    </span>
-                                    {link.name}
-                                </Link>
-                            );
-                        })}
-                    </div>
+                                to={link.to}
+                                className="flex items-center mb-[21px] text-[16px] text-white hover:text-blue-600 hover:translate-x-3 transition-[0.3s]"
+                            >
+                                <span className="mr-1">
+                                    <FaAngleDoubleRight />
+                                </span>
+                                {link.name}
+                            </Link>
+                        );
+                    })}
                 </div>
-                <hr />
-                <div className="h-[80px] w-full flex justify-between items-center">
-                    <div className="text-white text-[16px] tracking-[0.5px] leading-[24px] font-normal font-george">
-                        Copyright © 2021.All Rights Reserved By <span className="text-[#FFCA28]">Shongshari.com </span>
-                    </div>
-                    <div className="flex items-center gap-x-[16px]">
-                        <a
-                            href="https://www.facebook.com/shongsharibd"
-                            target="facebook"
-                            className="h-[50px] w-[50px] flex justify-center items-center bg_Color rounded-full button_shadow"
-                        >
-                            <FaFacebookF className="text-white" />
-                        </a>
-                        <a
-                            href="https://www.instagram.com/shongshari_"
-                            target="instagram"
-                            className="h-[50px] w-[50px] flex justify-center items-center bg_Color rounded-full button_shadow"
-                        >
-                            <FaInstagram className="text-white" />
-                        </a>
-                        <a
-                            href="https://dribbble.com"
-                            target="dribble"
-                            className="h-[50px] w-[50px] flex justify-center items-center bg_Color rounded-full button_shadow"
-                        >
-                            <FaDribbble className="text-white" />
-                        </a>
-                    </div>
+                <div className="mx-auto">
+                    <h1 className="text-white mb-[9px] font-medium tracking-[1.5px] font-george text-[24px]">MY ACCOUNT</h1>
+                    {links?.ourInformation.map(link => {
+                        return (
+                            <Link
+                                key={link.id}
+                                to={link.to}
+                                className="flex items-center mb-[21px] text-[16px] text-white hover:text-blue-600 hover:translate-x-3 transition-[0.3s]"
+                            >
+                                <span className="mr-1">
+                                    <FaAngleDoubleRight />
+                                </span>
+                                {link.name}
+                            </Link>
+                        );
+                    })}
                 </div>
+                <div className="mx-auto">
+                    <h1 className="text-white mb-[9px] font-medium tracking-[1.5px] font-george text-[24px]">HELP CENTER</h1>
+                    {links?.ourInformation.map(link => {
+                        return (
+                            <Link
+                                key={link.id}
+                                to={link.to}
+                                className="flex items-center mb-[21px] text-[16px] text-white hover:text-blue-600 hover:translate-x-3 transition-[0.3s]"
+                            >
+                                <span className="mr-1">
+                                    <FaAngleDoubleRight />
+                                </span>
+                                {link.name}
+                            </Link>
+                        );
+                    })}
+                </div>
+                <div className="mx-auto">
+                    <h1 className="text-white mb-[9px] font-medium tracking-[1.5px] font-george text-[24px]">LEGAL</h1>
+                    {links?.ourInformation.map(link => {
+                        return (
+                            <Link
+                                key={link.id}
+                                to={link.to}
+                                className="flex items-center mb-[21px] text-[16px] text-white hover:text-blue-600 hover:translate-x-3 transition-[0.3s]"
+                            >
+                                <span className="mr-1">
+                                    <FaAngleDoubleRight />
+                                </span>
+                                {link.name}
+                            </Link>
+                        );
+                    })}
+                </div>
+            </div>
+            <hr />
+            <div className="h-[80px] w-full flex justify-between items-center">
+                <div className="text-white text-[16px] tracking-[0.5px] leading-[24px] font-normal font-george">
+                    Copyright © 2021.All Rights Reserved By <span className="text-[#FFCA28]">Shongshari.com </span>
+                </div>
+                <div className="flex items-center gap-x-[16px]">
+                    <a
+                        href="https://www.facebook.com/shongsharibd"
+                        target="facebook"
+                        className="h-[50px] w-[50px] flex justify-center items-center bg_Color rounded-full button_shadow"
+                    >
+                        <FaFacebookF className="text-white" />
+                    </a>
+                    <a
+                        href="https://www.instagram.com/shongshari_"
+                        target="instagram"
+                        className="h-[50px] w-[50px] flex justify-center items-center bg_Color rounded-full button_shadow"
+                    >
+                        <FaInstagram className="text-white" />
+                    </a>
+                    <a
+                        href="https://dribbble.com"
+                        target="dribble"
+                        className="h-[50px] w-[50px] flex justify-center items-center bg_Color rounded-full button_shadow"
+                    >
+                        <FaDribbble className="text-white" />
+                    </a>
+                </div>
+            </div>
         </footer>
     );
 };

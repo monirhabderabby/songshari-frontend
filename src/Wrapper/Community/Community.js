@@ -1,18 +1,14 @@
 import React from 'react';
-import Anexecutive from '../../components/CardComopents/Anexecutive';
-import Membership from '../../components/membership/Membership';
+import CommonBanner from '../../components/comons/CommonBanner';
 import Comunity from '../../components/pages/comunity/Comunity';
-import SingleProfiles from '../../components/SingleProfilesUser/SingleProfiles';
+import NavBar from '../../components/pages/Shared/NavBar';
 
 const Community = () => {
   return (
-    <div className='mb-32'>
+    <div>
+      <NavBar />
+      <CommonBanner title='Community' currentStage='> Community' />
       <Comunity />
-      <div className='my-6'>
-        <Anexecutive />
-      </div>
-      <Membership />
-      <SingleProfiles />
     </div>
   )
 }

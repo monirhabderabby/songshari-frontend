@@ -72,3 +72,17 @@
   padding: 10px 33px;
   width: auto;
 }
+
+@media only screen and (max-width: 950px) {
+  .content {
+    padding-right: 0px;
+  }
+}
+@media only screen and (max-width: 670px) {
+  .content {
+    padding-left: 10px;
+  }
+  .latestRegisteredSection:before {
+    width: 70%;
+  }
+}

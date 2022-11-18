@@ -44,9 +44,9 @@ const Shop = () => {
 
         {/* shop product  card start here  */}
 
-        <div className="grid lg:grid-cols-4 md:grid-cols-2 py-5 gap-5 ">
+        <div className="grid lg:grid-cols-3 xl:grid-cols-4 md:grid-cols-2 py-5 gap-5 ">
           {shopData.map((product) => (
-            <div className="w-[290px] mx-auto">
+            <div className="xl:w-[290px] w-full mx-auto">
               <div className="border-[1px] ] shop-product-card bg-[#fff] border-[#0003] mb-7 overflow-hidden ease-in rounded-lg">
                 <div className="relative overflow-hidden">
                   <img className="w-full" src={product.image} alt="" />

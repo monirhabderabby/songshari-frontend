@@ -10,7 +10,7 @@ const Anexecutive = () => {
         <div className='container mx-auto py-10 px-4 md:px-0'>
             <div className='main-container'>
                 <div className='section-header'>
-                    <div className='text-center'>
+                    <div className='text-center mb-6'>
                         <h1 className='text-2xl font-semibold text-red-600'>An Executive List Of</h1>
                         <h2 className='text-1xl font-semibold text-red-400 py-6'>Amazing feature</h2>
                         <p className=''>To find meaningfull deal and life petner</p>
@@ -19,12 +19,12 @@ const Anexecutive = () => {
                 <div className='section-body pt-6'>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                         <div className='relative'>
-                            <div className='z-10 free-btn absolute top-44 right-0'>
+                            <div className='z-10 free-btn absolute top-44 right-28 md:-right-6 lg:-right-4'>
                                 <p><small>Start now for</small></p>
                                 <p className='py-1 text-3xl font-semibold'>Free</p>
                                 <p>7 day Trail</p>
                             </div>
-                            <div className='section-img-container z-0'>
+                            <div className='section-img-container w-full md:w-11/12 z-0'>
                             </div>
                         </div>
                         <div className='section-text-contener '>

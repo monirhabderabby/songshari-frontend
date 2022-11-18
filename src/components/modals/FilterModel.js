@@ -24,7 +24,7 @@ const FilterModel = ({ visiblity, onClose }) => {
     return (
         <div>
             <div className="fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm flex items-center justify-center">
-                <div className="bg-white p-2 rounded w-2/5">
+                <div className="bg-white p-2 rounded w-full lg:w-2/5">
                     <div className="px-6 py-4">
                         <div className="flex justify-between">
                             <h1 className="text-3xl font-semibold">Filter Search</h1>

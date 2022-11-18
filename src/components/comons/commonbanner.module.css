@@ -1,0 +1,11 @@
+.banner_container {
+    background-image: url('../../assets/images/banner/bc-about.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-position: bottom;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    font-family: 'Courier New', Courier, monospace;
+}
