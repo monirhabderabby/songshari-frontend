@@ -1,4 +1,7 @@
 import React from "react";
+import Anexecutive from "../../components/CardComopents/Anexecutive";
+import MeetCard from "../../components/CardComopents/MeetCard";
+import Membership from "../../components/membership/Membership";
 import Banner from "../../components/pages/Home/Banner/Banner";
 import ThreeEasySteps from "../../components/pages/Home/Banner/ThreeEasySteps";
 import BeginFamilyJourney from "../../components/pages/Home/BeginFamilyJourney/BeginFamilyJourney";
@@ -24,6 +27,9 @@ const Homepage = () => {
       <TopProfile />
       <PeopleJoinedAlready />
       <FindSoleMate />
+      <Anexecutive />
+      <Membership />
+      <MeetCard />
     </div>
   );
 };

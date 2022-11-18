@@ -12,8 +12,8 @@ const Anexecutive = () => {
                 <div className='section-header'>
                     <div className='text-center mb-6'>
                         <h1 className='text-2xl font-semibold text-red-600'>An Executive List Of</h1>
-                        <h2 className='text-1xl font-semibold text-red-400 py-6'>Amazing feature</h2>
-                        <p className=''>To find meaningfull deal and life petner</p>
+                        <h2 className='text-1xl font-semibold text-red-600 py-6'>Amazing feature</h2>
+                        <p className='font-bold'>To find meaningfull deal and life petner</p>
                     </div>
                 </div>
                 <div className='section-body pt-6'>
