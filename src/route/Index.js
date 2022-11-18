@@ -18,6 +18,7 @@ import About from "../Wrapper/About/About";
 import Agent from "../Wrapper/Agent/Agent";
 import Community from "../Wrapper/Community/Community";
 import Course from "../Wrapper/Course/Course";
+
 import FindAlawyer from "../Wrapper/Findalawyer/FindAlawyer";
 import Homepage from "../Wrapper/Home/Homepage";
 import Kazi from "../Wrapper/Kazi/Kazi";
@@ -27,6 +28,7 @@ import Shop from "../Wrapper/Shop/Shop";
 import SingleProduct from "../Wrapper/SingleProduct/SingleProduct";
 import SingleProfile from "../Wrapper/SingleProfilesUser/SingleProfile";
 import { StepProgress } from "../Wrapper/step-progress/StepProgress";
+import OthersProfile from "../components/othersprofile/OthersProfile";
 
 const Index = () => {
     return (
@@ -42,6 +44,7 @@ const Index = () => {
                     <Route path="/findalawyer" element={<FindAlawyer></FindAlawyer>}></Route>
                     <Route path="/kazi" element={<Kazi></Kazi>}></Route>
                     <Route path="/agent" element={<Agent></Agent>}></Route>
+                    <Route path="/othersprofile" element={<OthersProfile></OthersProfile>}></Route>
                     <Route path="/community" element={<Community></Community>}></Route>
                     <Route path="/shop" element={<Shop></Shop>}></Route>
                     <Route path="/stepher" element={<StepProgress></StepProgress>}></Route>

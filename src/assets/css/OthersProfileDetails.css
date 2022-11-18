@@ -1,0 +1,44 @@
+.other-image{
+    margin-top: -150px;
+}
+.others-details-part{
+    display: flex;
+}
+.others-post{
+    display: flex;
+  
+}
+.hu{
+    height: 40px;
+}
+.bg-other-details-btn{
+    background-image: linear-gradient(166deg, #f22876 0%, #942dd9 100%);
+}
+.select-others-profile{
+    border: 1px solid black;
+}
+.color-other-icon{
+    color: #e795cd;
+    background-color: #f7e9f8;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+.bg-comment{
+    border: 1px solid black;
+}
+.recent-members-others{
+    display: flex;
+}
+.hh{
+    margin-top: -20px;
+    margin-left: -10px;
+    background-image: linear-gradient(166deg, #f22876 0%, #942dd9 100%);
+    color: white;
+}
+.bg-tick{
+   background-color: #f7e9f8; 
+   border-radius: 50%;
+   padding: 5px;
+}
