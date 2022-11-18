@@ -7,7 +7,7 @@ import Title from '../SingleProfilesUser/Title/Title';
 
 const Anexecutive = () => {
     return (
-        <div className='container mx-auto py-10'>
+        <div className='container mx-auto py-10 px-4 md:px-0'>
             <div className='main-container'>
                 <div className='section-header'>
                     <div className='text-center'>

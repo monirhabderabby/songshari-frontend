@@ -4,10 +4,10 @@ import "../../assets/css/profileCards.css";
 const ProfileCard = () => {
     return (
         <div>
-            <div className="card_container shadow">
+            <div className="card_container shadow px-2 md:px-0">
                 <div className="Card-header"></div>
                 <div className="relative w-52 h-52 rounded-full">
-                    <div className="bottom-20 left-24 absolute">
+                    <div className="bottom-20 left-24 lg:left-24 md:left-16 absolute">
                         <div className="relative card-img w-48 h-48">
                             <img className="w-44 bg-pink-300 h-44 rounded-full img-fluid" src="https://cdn-icons-png.flaticon.com/512/194/194938.png" alt="" />
                         </div>
@@ -46,7 +46,7 @@ const ProfileCard = () => {
                             <svg
                                 color="#FF1D8E"
                                 xmlns="http://www.w3.org/2000/svg"
-                                fill="white"
+                                fill="none"
                                 viewBox="0 0 24 24"
                                 strokeWidth="1.5"
                                 stroke="currentColor"
