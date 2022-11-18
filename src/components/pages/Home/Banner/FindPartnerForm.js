@@ -79,7 +79,7 @@ function FindPartnerForm() {
       data-aos="fade-left"
       data-aos-easing="ease-out-cubic"
       data-aos-duration="1000"
-      className="bg-white w-11/12 mx-auto mt-8 md:mt-0 md:w-1/3 lg:w-1/4 h-fit rounded-xl shadow-xl"
+      className="bg-white w-11/12 mx-auto mt-8 md:mt-0 md:w-1/3 lg:w-[350px] xl:w-1/4 h-fit lg:h-[374px] 2xl:h-[70vh] rounded-xl shadow-xl"
     >
       <div
         id="join-now-box2"
@@ -204,7 +204,7 @@ function FindPartnerForm() {
               </div>
             </div>
           </div>
-          <div className="flex justify-center my-4 md:my-2 lg:my-4">
+          <div className="flex justify-center my-4 md:my-2 lg:my-2 2xl:my-4">
             <button
               type="submit"
               className="px-8 md:px-6 lg:px-8 pt-2 md:pt-1 lg:pt-2 pb-1 md:pb-0 lg:pb-1 mb-4 md:mb-0 text-2xl md:text-xl lg:text-2xl text-white font-semibold rounded-md tracking-[.25em] shadow-xl shadow-[#0c4ea54d] cursor-pointer"
