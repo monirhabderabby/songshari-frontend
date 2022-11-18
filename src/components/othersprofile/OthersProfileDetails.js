@@ -22,7 +22,7 @@ export const OthersProfileDetails = () => {
 {/* 2nd column  */}
 
 <div>
-<div className="card w-96 ">
+<div className="card lg:max-w-lg others-post-col ">
   <div className="card-body">
     <div className='others-post mb-8'>
     <img src='https://pixner.net/peyamba/peyamba/assets/images/profile/profile-user-sm.png' className='hu'></img>
@@ -87,9 +87,10 @@ export const OthersProfileDetails = () => {
 </div>
 <div className=''>
 <select className='select-others-profile rounded-full'>
-    <option>Public</option>
-    <option>Friends</option>
-    <option>Only me</option>
+    <option>ALL</option>
+    <option>NEW</option>
+    <option>OLD</option>
+    <option>POPULAR</option>
     </select>
 </div>
 <div>
@@ -134,9 +135,10 @@ export const OthersProfileDetails = () => {
 </div>
 <div className=''>
 <select className='select-others-profile rounded-full'>
-    <option>Public</option>
-    <option>Friends</option>
-    <option>Only me</option>
+    <option>ALL</option>
+    <option>NEW</option>
+    <option>OLD</option>
+    <option>POPULAR</option>
     </select>
 </div>
 <div>
@@ -177,15 +179,17 @@ export const OthersProfileDetails = () => {
 <div className='ml-4'>
 <i class="fa-regular fa-star color-other-icon rounded-full pt-2"></i>
 </div>
+
 <div>
 
 </div>
 
 <div className=''>
 <select className='select-others-profile rounded-full'>
-    <option>Public</option>
-    <option>Friends</option>
-    <option>Only me</option>
+    <option>ALL</option>
+    <option>NEW</option>
+    <option>OLD</option>
+    <option>POPULAR</option>
     </select>
 </div>
 <div>
@@ -233,17 +237,20 @@ export const OthersProfileDetails = () => {
 
 <div className=''>
 <select className='select-others-profile rounded-full'>
-    <option>Public</option>
-    <option>Friends</option>
-    <option>Only me</option>
+    <option>ALL</option>
+    <option>NEW</option>
+    <option>OLD</option>
+    <option>POPULAR</option>
     </select>
 </div>
 <div>
 <i class="fa-regular fa-star color-other-icon rounded-full pt-2 ml-6"></i>
 </div>
     </div>
+    <button className='w-full bg-load rounded-full'>Load More</button>
     </div>
   </div>
+  
 </div>
 
 {/* 3rd column  */}
