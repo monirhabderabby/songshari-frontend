@@ -22,8 +22,8 @@ const SecureVerified = () => {
             data-aos-easing="ease-out-cubic"
             data-aos-duration="1000"
             key={i.id}
-            className={"w-full h-52 md:h-44 lg:h-52 rounded-2xl px-8 pt-8 pb-6"}
-            style={{ boxShadow: "0px 5px 30px 0px rgba(176, 171, 193, 0.4)" }}
+            className={"w-full h-52 md:h-44 lg:h-52 rounded-2xl px-8 pt-8 pb-6 shadow-md hover:shadow-xl hover:-translate-y-5"}
+          // style={{ boxShadow: "0px 5px 30px 0px rgba(176, 171, 193, 0.4)" }}
           >
             <div className="mb-5 md:mb-3 lg:mb-5 h-3/5 md:h-1/2 lg:h-3/5">
               <img className="mx-auto" src={i.img} alt="" />
