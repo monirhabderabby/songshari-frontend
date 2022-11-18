@@ -1,5 +1,6 @@
 import React from 'react'
 import '../../assets/css/OthersProfileDetails.css';
+
 export const OthersProfileDetails = () => {
   return (
     <div>
