@@ -9,10 +9,10 @@ import SignUp from "../components/pages/Authentications/SignUp";
 import Contact from "../components/pages/Contact/Contact";
 import { Members } from "../components/pages/Members/Members";
 import NotFound from "../components/pages/notfound/NotFound";
+import { SingleRequestView } from "../components/pages/SingleRequestView/SingleRequestView";
 import Suggested from "../components/pages/TopProfile/Suggested";
 import TopBride from "../components/pages/TopProfile/TopBride";
 import TopGroom from "../components/pages/TopProfile/TopGroom";
-import Footer from "../components/shared/Footer/Footer";
 import About from "../Wrapper/About/About";
 import Agent from "../Wrapper/Agent/Agent";
 import Community from "../Wrapper/Community/Community";
@@ -39,35 +39,20 @@ const Index = () => {
                     <Route path="/about" element={<About></About>}></Route>
                     <Route path="/userprofile" element={<SingleProfile />}></Route>
                     <Route path="/membership" element={<MemberShip></MemberShip>}></Route>
-                    <Route
-                        path="/profileinfo"
-                        element={<ProfileInfo></ProfileInfo>}
-                    ></Route>
+                    <Route path="/profileinfo" element={<ProfileInfo></ProfileInfo>}></Route>
                     <Route path="/course" element={<Course></Course>}></Route>
-                    <Route
-                        path="/findalawyer"
-                        element={<FindAlawyer></FindAlawyer>}
-                    ></Route>
+                    <Route path="/findalawyer" element={<FindAlawyer></FindAlawyer>}></Route>
                     <Route path="/kazi" element={<Kazi></Kazi>}></Route>
                     <Route path="/agent" element={<Agent></Agent>}></Route>
                     <Route path="/connection/:id" element={<OthersProfile></OthersProfile>}></Route>
                     <Route path="/community" element={<Community></Community>}></Route>
                     <Route path="/shop" element={<Shop></Shop>}></Route>
-                    <Route
-                        path="/stepher"
-                        element={<StepProgress></StepProgress>}
-                    ></Route>
-                    <Route
-                        path="/singleproduct"
-                        element={<SingleProduct></SingleProduct>}
-                    ></Route>
+                    <Route path="/stepher" element={<StepProgress></StepProgress>}></Route>
+                    <Route path="/singleproduct" element={<SingleProduct></SingleProduct>}></Route>
                     <Route path="/login" element={<Login />} />
                     <Route path="/signup" element={<SignUp />} />
                     <Route path="/regAsProfessional" element={<RegAsProfessional />} />
-                    <Route
-                        path="/loginAsProfessional"
-                        element={<LoginAsProfessional />}
-                    />
+                    <Route path="/loginAsProfessional" element={<LoginAsProfessional />} />
                     <Route path="/contact" element={<Contact />}></Route>
                     <Route path="/members" element={<Members />}></Route>
                     <Route path="/find-partner" element={<FindPartner />}>
@@ -80,10 +65,10 @@ const Index = () => {
                         <Route path="/top-gride" element={<TopBride />} />
                         <Route path="/top-groom" element={<TopGroom />} />
                     </Route>
+                    <Route path="/singleViewRequest" element={<SingleRequestView />} />
                     <Route path="lawyer" element={<Lawyer />}></Route>
                     <Route path="*" element={<NotFound />}></Route>
                 </Routes>
-                <Footer />
             </BrowserRouter>
         </div>
     );
