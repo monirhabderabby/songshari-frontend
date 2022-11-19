@@ -7,7 +7,7 @@ import flower from './../../../assets/images/footer/flower01.png';
 import icon from './../../../assets/images/footer/icon.png';
 import rightShape from './../../../assets/images/footer/right-shape.png';
 
-export const Footer = () => {
+const Footer = () => {
     const links = {
         ourInformation: [
             {
@@ -216,3 +216,5 @@ export const Footer = () => {
         </footer>
     );
 };
+
+export default Footer;

@@ -8,7 +8,7 @@ import dummyData from "./TopProfile/dummyData";
 const SwipeMatch = () => {
   return (
     <div
-      className="w-11/12 md:w-1/3 lg:w-[350px] xl:w-1/4 mx-auto absolute md:static top-12 left-[4%] h-fit lg:h-[320px] 2xl:h-[70vh]"
+      className="w-11/12 md:w-1/3 lg:w-[350px] xl:w-1/4 mx-auto absolute md:static top-12 left-[4%] h-fit lg:h-[320px]"
       data-aos="fade-right"
       data-aos-easing="ease-out-cubic"
       data-aos-duration="1000"

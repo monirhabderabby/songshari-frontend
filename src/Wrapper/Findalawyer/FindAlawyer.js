@@ -4,7 +4,7 @@ import FindAlawyerPage from "../../components/pages/FindAlawyer/FindAlawyerPage"
 const FindAlawyer = () => {
   return (
     <div>
-      <FindAlawyerPage />
+      <FindAlawyerPage></FindAlawyerPage>
     </div>
   );
 };

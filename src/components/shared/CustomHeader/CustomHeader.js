@@ -3,9 +3,9 @@ import { IoIosArrowForward } from "react-icons/io";
 import { Link } from "react-router-dom";
 import "../../../assets/css/customHeader.css";
 import "../../../index.css";
-import NavBar from "../../pages/Shared/NavBar";
+import NavBar from "../NavBar/NavBar";
 
-export const CustomHeader = ({ title }) => {
+const CustomHeader = ({ title }) => {
     return (
         <div className="custom_header_Container mb-[30px]">
             <NavBar />
@@ -23,3 +23,5 @@ export const CustomHeader = ({ title }) => {
         </div>
     );
 };
+
+export default CustomHeader;
