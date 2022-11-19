@@ -1,0 +1,48 @@
+/* .service_btn {
+    width: 451px;
+    height: 123px;
+    background-color: #E41272;
+    border-radius: 5px;
+    color: white;
+    font-weight: bolder;
+} */
+.service_btn {
+    width: 350px;
+    height: 70px;
+    background-color: #E41272;
+    border-radius: 5px;
+    color: white;
+    font-weight: bolder;
+}
+
+.select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 1px;
+    text-overflow: '';
+}
+
+.submit_btn {
+    background-color: #E41272;
+    Width: 168px;
+    Height: 55px;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.h_devider {
+    height: 100px;
+    width: 2px;
+    background-color: #E41272;
+}
+
+.box_1,
+.box_2 {
+    width: 50%;
+    height: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
