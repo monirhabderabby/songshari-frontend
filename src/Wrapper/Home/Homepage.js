@@ -11,6 +11,7 @@ import LatestRegisteredMember from "../../components/pages/LatestRegisteredMembe
 import PeopleJoinedAlready from "../../components/pages/PeopleJoinedAlready/PeopleJoinedAlready";
 import NavBar from "../../components/shared/NavBar/NavBar";
 import TopProfile from "../../components/pages/TopProfile/TopProfile";
+import Footer from "../../components/shared/Footer/Footer";
 
 const Homepage = () => {
   return (
@@ -30,6 +31,7 @@ const Homepage = () => {
       <Anexecutive />
       <Membership />
       <MeetCard />
+      <Footer />
     </div>
   );
 };
