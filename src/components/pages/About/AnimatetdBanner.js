@@ -7,7 +7,7 @@ const AnimatetdBanner = () => {
     const fontFamily = () => {
         return (
             {
-                fontFamily: 'Courier New, Courier, monospace'
+                fontFamily: "Georgia, 'Times New Roman', Times, serif"
             }
         )
     }

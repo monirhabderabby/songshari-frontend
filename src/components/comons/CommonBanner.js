@@ -8,9 +8,9 @@ const CommonBanner = ({ title, currentStage }) => {
             <div className='container mx-auto'>
                 <div className='text-center md:text-left'>
                     <h1 className='text-1xl md:text-6xl font-extrabold text-white'>{title}</h1>
-                    <div className='flex justify-center md:justify-start mt-4 text-white text-1xl md:text-2xl'>
+                    <div style={{ color: '#D0DBFF' }} className='flex justify-center md:justify-start mt-4 text-white text-1xl md:text-2xl'>
                         <Link className='pr-2' to='/'>Home</Link>
-                        <p>{currentStage}</p>
+                        <p className='pl-3'>{currentStage}</p>
                     </div>
                 </div>
             </div>

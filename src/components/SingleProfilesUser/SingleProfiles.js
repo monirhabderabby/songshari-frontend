@@ -7,8 +7,15 @@ import Table from "./Table/Table";
 import UtilitisCard from "./UtilitisCard";
 
 const SingleProfiles = () => {
+    const fontFamly = () => {
+        return (
+            {
+                fontFamily: 'Courier New, Courier, monospace',
+            }
+        )
+    }
     return (
-        <div>
+        <div style={fontFamly()}>
             <CustomHeader title="Profile" />
             <div className="container mx-auto">
                 <div className="block lg:flex">
