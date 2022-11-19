@@ -20,6 +20,7 @@ module.exports = {
             },
             boxShadow: {
                 pagination_Shadow: "0px 15px 30px 0px rgb(119 123 146 / 20%)",
+                cardShadow: "0px 10px 5px 0px rgb(119 123 146 / 2%)",
             },
         },
     },

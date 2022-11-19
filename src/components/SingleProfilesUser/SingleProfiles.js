@@ -1,4 +1,5 @@
 import React from "react";
+import { CustomHeader } from "../shared/CustomHeader/CustomHeader";
 import ChartBoard from "./chatboard/ChartBoard";
 import PhotoGelary from "./PhotoGelary";
 import ProfileCard from "./ProfileCard";
@@ -9,12 +10,13 @@ const SingleProfiles = () => {
     const fontFamly = () => {
         return (
             {
-                fontFamily: "Georgia, 'Times New Roman', Times, serif"
+                fontFamily: 'Courier New, Courier, monospace',
             }
         )
     }
     return (
         <div style={fontFamly()}>
+            <CustomHeader title="Profile" />
             <div className="container mx-auto">
                 <div className="block lg:flex">
                     <div className="md:w-full lg:w-9/12">
