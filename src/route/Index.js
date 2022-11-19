@@ -17,19 +17,16 @@ import About from "../Wrapper/About/About";
 import Agent from "../Wrapper/Agent/Agent";
 import Community from "../Wrapper/Community/Community";
 import Course from "../Wrapper/Course/Course";
-
 import FindAlawyer from "../Wrapper/Findalawyer/FindAlawyer";
 import FindPartner from "../Wrapper/Findpartner/FindPartner";
 import Homepage from "../Wrapper/Home/Homepage";
 import Kazi from "../Wrapper/Kazi/Kazi";
-import Lawyer from "../Wrapper/Lawyer/Lawyer";
 import MemberShip from "../Wrapper/Membership/MemberShip";
 import ProfileInfo from "../Wrapper/Profileinfo/ProfileInfo";
 import Shop from "../Wrapper/Shop/Shop";
 import SingleProduct from "../Wrapper/SingleProduct/SingleProduct";
 import SingleProfile from "../Wrapper/SingleProfilesUser/SingleProfile";
 import { StepProgress } from "../Wrapper/step-progress/StepProgress";
-import OthersProfile from "../components/othersprofile/OthersProfile";
 
 const Index = () => {
     return (
@@ -44,7 +41,6 @@ const Index = () => {
                     <Route path="/findalawyer" element={<FindAlawyer></FindAlawyer>}></Route>
                     <Route path="/kazi" element={<Kazi></Kazi>}></Route>
                     <Route path="/agent" element={<Agent></Agent>}></Route>
-                    <Route path="/connection/:id" element={<OthersProfile></OthersProfile>}></Route>
                     <Route path="/community" element={<Community></Community>}></Route>
                     <Route path="/shop" element={<Shop></Shop>}></Route>
                     <Route path="/stepher" element={<StepProgress></StepProgress>}></Route>
@@ -66,7 +62,6 @@ const Index = () => {
                         <Route path="/top-groom" element={<TopGroom />} />
                     </Route>
                     <Route path="/singleViewRequest" element={<SingleRequestView />} />
-                    <Route path="lawyer" element={<Lawyer />}></Route>
                     <Route path="*" element={<NotFound />}></Route>
                 </Routes>
             </BrowserRouter>

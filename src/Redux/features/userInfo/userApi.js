@@ -46,6 +46,30 @@ export const userApi = apiSlice.injectEndpoints({
                 body: data,
             }),
         }),
+        setEducationalDetails: builder.mutation({
+            query: data => ({
+                url: "/member/register/educationalDetail",
+                method: "POST",
+                headers: { authorization: `Bearer ${localStorage.getItem("accessToken")}` },
+                body: data,
+            }),
+        }),
+        setPhysicalDetails: builder.mutation({
+            query: data => ({
+                url: "/member/register/physicalDetail",
+                method: "POST",
+                headers: { authorization: `Bearer ${localStorage.getItem("accessToken")}` },
+                body: data,
+            }),
+        }),
+        setOthersDetails: builder.mutation({
+            query: data => ({
+                url: "/member/register/othersDetail",
+                method: "POST",
+                headers: { authorization: `Bearer ${localStorage.getItem("accessToken")}` },
+                body: data,
+            }),
+        }),
     }),
 });
 
@@ -56,4 +80,7 @@ export const {
     useRegAsProfessionalMutation,
     useSetPersonalDetailsMutation,
     useSetProfessionalDetailsMutation,
+    useSetEducationalDetailsMutation,
+    useSetPhysicalDetailsMutation,
+    useSetOthersDetailsMutation,
 } = userApi;

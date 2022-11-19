@@ -21,11 +21,11 @@ const WeadingCards = () => {
                         <div className="flex justify-between items-center md:px-8  px-2 pt-2">
                             <div className='world flex justify-between'>
                                 <img src={world} alt="world" />
-                                <p className='pl-4 font-bold'>Public</p>
+                                <p className='pl-4'>Public</p>
                             </div>
                             <div className='people flex bg-pink-100 px-6 py-2 rounded-full'>
                             <img src={people} alt="people" />
-                                <p className='pl-5 font-bold'>100</p>
+                                <p className='pl-5'>100</p>
                             </div>
                         </div>
                     </div>

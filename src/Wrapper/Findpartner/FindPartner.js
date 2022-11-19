@@ -1,11 +1,11 @@
 import React from "react";
-import FindPartners from "../Findpartner/FindPartner";
+import FindPartners from "../../components/pages/FindPartner/FindPartners";
 
 const FindPartner = () => {
   return (
-    <div>
+    <>
       <FindPartners />
-    </div>
+    </>
   );
 };
 export default FindPartner;
