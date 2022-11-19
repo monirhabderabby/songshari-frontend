@@ -12,7 +12,7 @@ import NotFound from "../components/pages/notfound/NotFound";
 import Suggested from "../components/pages/TopProfile/Suggested";
 import TopBride from "../components/pages/TopProfile/TopBride";
 import TopGroom from "../components/pages/TopProfile/TopGroom";
-import { Footer } from "../components/Shared/Footer/Footer";
+import Footer from "../components/shared/Footer/Footer";
 import About from "../Wrapper/About/About";
 import Agent from "../Wrapper/Agent/Agent";
 import Community from "../Wrapper/Community/Community";

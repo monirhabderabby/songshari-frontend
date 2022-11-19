@@ -9,7 +9,7 @@ import FindSoleMate from "../../components/pages/Home/FindSoleMate/FindSoleMate"
 import SecureVerified from "../../components/pages/Home/SecureVerified/SecureVerified";
 import LatestRegisteredMember from "../../components/pages/LatestRegisteredMember/LatestRegisteredMember";
 import PeopleJoinedAlready from "../../components/pages/PeopleJoinedAlready/PeopleJoinedAlready";
-import NavBar from "../../components/pages/Shared/NavBar";
+import NavBar from "../../components/shared/NavBar/NavBar";
 import TopProfile from "../../components/pages/TopProfile/TopProfile";
 
 const Homepage = () => {

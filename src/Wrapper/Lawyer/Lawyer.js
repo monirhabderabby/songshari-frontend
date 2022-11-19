@@ -1,6 +1,6 @@
 import React from 'react';
 import LawyerService from '../../components/pages/Lawyer/LawyerService';
-import NavBar from '../../components/pages/Shared/NavBar';
+import NavBar from '../../components/shared/NavBar/NavBar';
 
 const Lawyer = () => {
     return (
