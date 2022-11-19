@@ -8,6 +8,7 @@ import LoginAsProfessional from "../components/pages/Authentications/LoginAsProf
 import RegAsProfessional from "../components/pages/Authentications/RegAsProfessional";
 import SignUp from "../components/pages/Authentications/SignUp";
 import Contact from "../components/pages/Contact/Contact";
+import PartnerCard from "../components/pages/FindPartner/PartnerCard";
 import { Members } from "../components/pages/Members/Members";
 import NotFound from "../components/pages/notfound/NotFound";
 import Suggested from "../components/pages/TopProfile/Suggested";
@@ -69,7 +70,7 @@ const Index = () => {
           <Route path="/contact" element={<Contact />}></Route>
           <Route path="/members" element={<Members />}></Route>
           <Route path="/find-partner" element={<FindPartner />}>
-            <Route path="/find-partner" element={<Suggested />} />
+            <Route path="/find-partner" element={<PartnerCard />} />
             <Route path="top" element={<TopBride />} />
             <Route path="nearest" element={<TopGroom />} />
           </Route>
