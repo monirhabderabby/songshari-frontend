@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import AdminAnalytics from "../components/pages/AdminAnalytics/AdminAnalytics";
 
 // components import
 import Login from "../components/pages/Authentications/Login";
@@ -7,6 +8,7 @@ import LoginAsProfessional from "../components/pages/Authentications/LoginAsProf
 import RegAsProfessional from "../components/pages/Authentications/RegAsProfessional";
 import SignUp from "../components/pages/Authentications/SignUp";
 import Contact from "../components/pages/Contact/Contact";
+import PartnerCard from "../components/pages/FindPartner/PartnerCard";
 import { Members } from "../components/pages/Members/Members";
 import NotFound from "../components/pages/notfound/NotFound";
 import { SingleRequestView } from "../components/pages/SingleRequestView/SingleRequestView";
@@ -62,6 +64,7 @@ const Index = () => {
                         <Route path="/top-groom" element={<TopGroom />} />
                     </Route>
                     <Route path="/singleViewRequest" element={<SingleRequestView />} />
+                    <Route path="/admin-analytics" element={<AdminAnalytics />}></Route>
                     <Route path="*" element={<NotFound />}></Route>
                 </Routes>
             </BrowserRouter>
