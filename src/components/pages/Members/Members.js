@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { AiFillCheckCircle } from "react-icons/ai";
 import { FaSlidersH } from "react-icons/fa";
 import "../../../App.css";
-import { CustomHeader } from "../../Shared/CustomHeader/CustomHeader";
+import CustomHeader from "../../shared/CustomHeader/CustomHeader";
 
 export const Members = () => {
     const [value, setValue] = useState("LATEST ACTIVE");
