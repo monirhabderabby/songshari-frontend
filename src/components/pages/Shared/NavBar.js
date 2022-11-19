@@ -26,7 +26,7 @@ const NavBar = ({ bg }) => {
   const allMenu = [
     {
       id: 1,
-      to: "/findpartner",
+      to: "/find-partner",
       icon: findPartner,
       tooltip: "Find Your Partner",
     },
@@ -48,7 +48,9 @@ const NavBar = ({ bg }) => {
 
   return (
     <header
-      className={`${bg ? "bg-transparent" : "bg-white"} sticky top-0 lg:h-[90px] z-50 shadow-md body-font ${NavBarCSS.navbar}`}
+      className={`${
+        bg ? "bg-transparent" : "bg-white"
+      } sticky top-0 lg:h-[90px] z-50 shadow-md body-font ${NavBarCSS.navbar}`}
     >
       <div className=" lg:max-w-[1000px]  xl:max-w-[1200px] mx-auto flex flex-wrap  flex-col md:flex-row items-center">
         <Link
@@ -102,7 +104,11 @@ const NavBar = ({ bg }) => {
             <li className={`${NavBarCSS.hasTooltip}`}>
               <div className="flex flex-col items-center cursor-pointer">
                 {user?.photoURL ? (
-                  <img className="w-14" src={user.photoURL} alt="img" />
+                  <img
+                    className="w-[60px] h-[60px] rounded-[100%]"
+                    src={user.photoURL}
+                    alt="img"
+                  />
                 ) : (
                   <img className="w-14" src={register} alt="img" />
                 )}
@@ -114,12 +120,33 @@ const NavBar = ({ bg }) => {
                       "linear-gradient( 103deg, rgba(228, 18, 114, 1) 0%, #4844a5 100%)",
                   }}
                 ></span>
+
                 {user ? (
                   <>
-                    <button
-                      className={`${NavBarCSS.tooltip} rounded-xl z-50 shadow-lg px-3 py-1 text-white text-xs font-bold whitespace-nowrap uppercase mt-[66px]`}
+                    <Link
+                      to="/userprofile"
+                      className={`${NavBarCSS.tooltip} rounded-xl   z-50 shadow-lg px-3 py-1 text-white text-xs font-bold whitespace-nowrap uppercase mt-[66px]`}
                       style={{
-                        backgroundImage: "linear-gradient(155deg, rgba(228, 18, 114, 1) 0%, #4844a5 100%)",
+                        backgroundImage:
+                          "linear-gradient(155deg, rgba(228, 18, 114, 1) 0%, #4844a5 100%)",
+                      }}
+                    >
+                      Profile
+                    </Link>
+                    <span
+                      className={`${NavBarCSS.tooltip} top-[50px] z-10 h-[15px] w-[15px] mt-14 ml-[14px]`}
+                      style={{
+                        transform: "translateX(-50%) rotate(45deg)",
+                        backgroundImage:
+                          "linear-gradient( 103deg, rgba(228, 18, 114, 1) 0%, #4844a5 100%)",
+                      }}
+                    ></span>
+
+                    <button
+                      className={`${NavBarCSS.tooltip} top-[53px] rounded-xl z-50 shadow-lg px-3 py-1 text-white text-xs font-bold whitespace-nowrap uppercase mt-[66px]`}
+                      style={{
+                        backgroundImage:
+                          "linear-gradient(155deg, rgba(228, 18, 114, 1) 0%, #4844a5 100%)",
                       }}
                       onClick={() => signOut()}
                     >
@@ -132,7 +159,8 @@ const NavBar = ({ bg }) => {
                       to="/login"
                       className={`${NavBarCSS.tooltip} rounded-xl z-50 shadow-lg px-3 py-1 text-white text-xs font-bold whitespace-nowrap uppercase mt-[66px]`}
                       style={{
-                        backgroundImage: "linear-gradient(155deg, rgba(228, 18, 114, 1) 0%, #4844a5 100%)",
+                        backgroundImage:
+                          "linear-gradient(155deg, rgba(228, 18, 114, 1) 0%, #4844a5 100%)",
                       }}
                     >
                       Login
