@@ -21,6 +21,7 @@ import FindAlawyer from "../Wrapper/Findalawyer/FindAlawyer";
 import FindPartner from "../Wrapper/Findpartner/FindPartner";
 import Homepage from "../Wrapper/Home/Homepage";
 import Kazi from "../Wrapper/Kazi/Kazi";
+import Lawyer from "../Wrapper/Lawyer/Lawyer";
 import MemberShip from "../Wrapper/Membership/MemberShip";
 import ProfileInfo from "../Wrapper/Profileinfo/ProfileInfo";
 import Shop from "../Wrapper/Shop/Shop";
@@ -76,6 +77,7 @@ const Index = () => {
                         <Route path="/top-gride" element={<TopBride />} />
                         <Route path="/top-groom" element={<TopGroom />} />
                     </Route>
+                    <Route path="lawyer" element={<Lawyer />}></Route>
                     <Route path="*" element={<NotFound />}></Route>
                 </Routes>
                 <Footer />

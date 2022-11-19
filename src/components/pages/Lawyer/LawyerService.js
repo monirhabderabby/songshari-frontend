@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import CommonBanner from '../../comons/CommonBanner';
+import LawyerAddServiceFrom from './LawyerAddServiceFrom';
 import LawyerCard from './LawyerCard';
 import style from "./lawyerservice.module.css";
 
 const LawyerService = () => {
     const [page, setPage] = useState(2);
     return (
-        <div>
+        <div className='bg-gray-100'>
             <div>
                 <CommonBanner title="Lawyer Profile" currentStage='Lawyer Profile' />
             </div>
@@ -40,8 +41,13 @@ const LawyerService = () => {
                         </div>
                     </div>
                 </div>
-                <div className='flex justify-center mt-10'>
+                <div className='flex justify-center my-10'>
                     <LawyerCard />
+                </div>
+                <div className='flex justify-center mt-10'>
+                    <div>
+                        <LawyerAddServiceFrom />
+                    </div>
                 </div>
             </div>
         </div>
