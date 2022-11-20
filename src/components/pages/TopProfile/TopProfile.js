@@ -10,7 +10,7 @@ const TopProfile = () => {
           Top Profile
         </h1>
 
-        <div className="top-profile-button flex-wrap flex justify-center items-center">
+        <div className="top-profile-button  flex-wrap flex justify-center items-center">
           <NavLink to="/">
             <p className="text-[1.2rem] text-center">Suggested For You</p>
           </NavLink>
