@@ -7,7 +7,7 @@ const ProfileCard = () => {
     const [user] = useAuthState(auth);
     return (
         <div>
-            <div className="card_container shadow px-2 md:px-0">
+            <div className="card_container shadow-4xl px-2 md:px-0">
                 <div className="Card-header"></div>
                 <div className="relative w-52 h-52 rounded-full">
                     <div className="bottom-20 left-24 lg:left-24 md:left-16 absolute">

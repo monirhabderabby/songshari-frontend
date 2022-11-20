@@ -1,43 +1,17 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import axios from "axios";
+import React, { useEffect, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import style from "./lawyeraddservicefrom.module.css";
 
-const baseStyle = {
-    flex: 1,
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    padding: '20px',
-    borderWidth: 2,
-    borderRadius: 2,
-    borderColor: '#eeeeee',
-    borderStyle: 'dashed',
-    backgroundColor: '#fafafa',
-    color: '#bdbdbd',
-    outline: 'none',
-    transition: 'border .24s ease-in-out'
-};
-
-const focusedStyle = {
-    borderColor: '#2196f3'
-};
-
-const acceptStyle = {
-    borderColor: '#00e676'
-};
-
-const rejectStyle = {
-    borderColor: '#ff1744'
-};
 
 const LawyerAddServiceFrom = () => {
+    const [files, setFiles] = useState([]);
+    const [imgUrl, setImgUrl] = useState("");
+    const [isImage, setImage] = useState(false);
 
     const {
         getRootProps,
-        getInputProps,
-        isFocused,
-        isDragAccept,
-        isDragReject
+        getInputProps
     } = useDropzone({
         accept: { 'image/*': [] }, onDrop: acceptedFiles => {
             setFiles(acceptedFiles.map(file => Object.assign(file, {
@@ -45,23 +19,50 @@ const LawyerAddServiceFrom = () => {
             })));
         }
     });
+    const loading = () => {
+        if (isImage) {
+            return (
+                <div>
+                    <p>Loading......</p>
+                </div>
+            )
+        }
+    }
 
-    const styles = useMemo(() => ({
-        ...baseStyle,
-        ...(isFocused ? focusedStyle : {}),
-        ...(isDragAccept ? acceptStyle : {}),
-        ...(isDragReject ? rejectStyle : {})
-    }), [
-        isFocused,
-        isDragAccept,
-        isDragReject
-    ]);
+    const handelImagUpload = (e) => {
+        setImage(true);
+        const image = e;
+        const fromData = new FormData();
+        fromData.set("image", image);
+        axios
+            .post(
+                "https://api.imgbb.com/1/upload?key=79fd0b725c9bb9b85e875f16c38c1622",
+                fromData
+            )
+            .then((res) => {
+                setImgUrl(res.data.data.display_url);
+                console.log(imgUrl);
+                setImage(false);
+            })
+            .catch((error) => {
+                console.log(error);
+                setImage(false);
+            });
+    };
 
-    const [files, setFiles] = useState([]);
+
+
+    /*     const checkj = (e) => {
+            console.log(e.target.files[0]);
+        } */
 
     useEffect(() => {
         // Make sure to revoke the data uris to avoid memory leaks
         files.forEach(file => URL.revokeObjectURL(file.preview));
+        if (files.length) {
+            const file = files.map(p => p)
+            handelImagUpload(file[0])
+        }
     }, [files]);
 
     return (
@@ -162,7 +163,7 @@ const LawyerAddServiceFrom = () => {
                             <div className="mt-2 border-2 bg-[#98999C]">
                                 <div className='flex items-center h-full'>
                                     <div className={`container ${style.box_2} px-24 text-center`}>
-                                        <div {...getRootProps({ styles })}>
+                                        <div {...getRootProps({})}>
                                             <input {...getInputProps()} />
                                             <p>Drag 'n' drop some files here, or <span className='text-[#E41272] cursor-pointer'>click</span> to select files</p>
                                         </div>
@@ -172,8 +173,12 @@ const LawyerAddServiceFrom = () => {
                                         Embed form other stage
                                     </div>
                                 </div>
-                                
+
                             </div>
+                        </div>
+                        {loading()}
+                        <div className={isImage ? 'hidden' :'block'}>                            
+                            <img className="w-52 h-52 rounded-full" src={imgUrl} alt="" />
                         </div>
                         <div className='mt-8'>
                             <p>Provide more details about your offer</p>

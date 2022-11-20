@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import AdminAnalytics from "../components/pages/AdminAnalytics/AdminAnalytics";
 
 // components import
 import Login from "../components/pages/Authentications/Login";
@@ -27,6 +28,7 @@ import Shop from "../Wrapper/Shop/Shop";
 import SingleProduct from "../Wrapper/SingleProduct/SingleProduct";
 import SingleProfile from "../Wrapper/SingleProfilesUser/SingleProfile";
 import { StepProgress } from "../Wrapper/step-progress/StepProgress";
+
 
 const Index = () => {
     return (
@@ -62,6 +64,7 @@ const Index = () => {
                         <Route path="/top-groom" element={<TopGroom />} />
                     </Route>
                     <Route path="/singleViewRequest" element={<SingleRequestView />} />
+                    <Route path="/admin-analytics" element={<AdminAnalytics />}></Route>
                     <Route path="*" element={<NotFound />}></Route>
                 </Routes>
             </BrowserRouter>

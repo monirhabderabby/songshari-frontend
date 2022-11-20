@@ -8,21 +8,47 @@ import LatestRegisteredMember from "../../components/pages/LatestRegisteredMembe
 import PeopleJoinedAlready from "../../components/pages/PeopleJoinedAlready/PeopleJoinedAlready";
 import NavBar from "../../components/pages/Shared/NavBar";
 import TopProfile from "../../components/pages/TopProfile/TopProfile";
+import Footer from "../../components/shared/Footer/Footer";
+// import NavBar from "../../components/shared/NavBar/NavBar";
 
 const Homepage = () => {
-    return (
-        <div className="font-george">
-            <NavBar></NavBar>
-            <Banner></Banner>
-            <ThreeEasySteps></ThreeEasySteps>
-            <SecureVerified></SecureVerified>
-            <BeginFamilyJourney></BeginFamilyJourney>
-            <LatestRegisteredMember />
-            <TopProfile />
-            <PeopleJoinedAlready />
-            <FindSoleMate />
-        </div>
-    );
+  // <<<<<<< HEAD
+  //   return (
+  //     <div className="font-george">
+  //       <NavBar></NavBar>
+  //       <Banner></Banner>
+
+  //       <div>
+  //         <ThreeEasySteps></ThreeEasySteps>
+  //       </div>
+  //       <SecureVerified></SecureVerified>
+  //       <BeginFamilyJourney></BeginFamilyJourney>
+  //       <LatestRegisteredMember />
+  //       <TopProfile />
+  //       <PeopleJoinedAlready />
+  //       <FindSoleMate />
+  //       <Anexecutive />
+  //       <Membership />
+  //       <MeetCard />
+  //       <Footer />
+  //     </div>
+  //   );
+  // =======
+  return (
+    <div className="font-george">
+      <NavBar></NavBar>
+
+      <Banner></Banner>
+      <ThreeEasySteps></ThreeEasySteps>
+      <SecureVerified></SecureVerified>
+      <BeginFamilyJourney></BeginFamilyJourney>
+      <LatestRegisteredMember />
+      <TopProfile />
+      <PeopleJoinedAlready />
+      <FindSoleMate />
+      <Footer />
+    </div>
+  );
 };
 
 export default Homepage;
