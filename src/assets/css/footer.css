@@ -182,6 +182,9 @@
   margin: 10px auto;
   text-align: center;
   width: 140px;
+  position: absolute;
+  left: 45%;
+  top: 0;
 }
 
 .icon img {

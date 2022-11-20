@@ -1,5 +1,4 @@
 import React from "react";
-// import { FaAngleDoubleRight, FaDribbble, FaFacebookF, FaInstagram, FaTelegramPlane } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import "../../../App.css";
 import "../../../assets/css/footer.css";
@@ -32,7 +31,7 @@ const Footer = () => {
                   <div className="icon">
                     <img src={icon} alt="img" />
                   </div>
-                  <p className="text">
+                  <p className="text mt-[200px]">
                     Sign up to receive a monthly email on the latest news!
                   </p>
                   <form className="newslater-form">

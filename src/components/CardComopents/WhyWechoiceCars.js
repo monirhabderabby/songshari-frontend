@@ -5,7 +5,7 @@ const WhyWechoiceCars = () => {
     const fontFamily = () => {
         return (
             {
-                fontFamily: "Georgia, 'Times New Roman', Times, serif"
+                fontFamily: 'Courier New, Courier, monospace'
             }
         )
     }
@@ -19,7 +19,7 @@ const WhyWechoiceCars = () => {
                     <h2 className="card-title text-2xl font-semibold">Dating</h2>
                 </div>
                 <div className='flex justify-center py-6 px-6'>
-                    <p className='text-center font-bold'>Dating - Where two people who are attracted to each other spend time together.</p>
+                    <p className='text-center'>Dating - Where two people who are attracted to each other spend time together.</p>
                 </div>
             </div>
         </div>
