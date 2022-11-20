@@ -52,7 +52,6 @@ const Suggested = () => {
                                 <div>
                                     <img style={{ borderRadius: " 10px 10px 0px 0px" }} src={profile.img} alt="" />
                                 </div>
-
                                 <div className="p-[30px] text-left">
                                     <h3 className="text-[30px] text-[#000]">
                                         {profile?.firstName + " " + profile?.lastName} <span className="text-[#87ceeb]"> 26</span>

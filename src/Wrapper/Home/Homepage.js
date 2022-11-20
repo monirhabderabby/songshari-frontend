@@ -7,6 +7,7 @@ import SecureVerified from "../../components/pages/Home/SecureVerified/SecureVer
 import LatestRegisteredMember from "../../components/pages/LatestRegisteredMember/LatestRegisteredMember";
 import PeopleJoinedAlready from "../../components/pages/PeopleJoinedAlready/PeopleJoinedAlready";
 import NavBar from "../../components/pages/Shared/NavBar";
+import TopProfession from "../../components/pages/TopProfession/TopProfession";
 import TopProfile from "../../components/pages/TopProfile/TopProfile";
 import Footer from "../../components/shared/Footer/Footer";
 // import NavBar from "../../components/shared/NavBar/NavBar";
@@ -45,6 +46,7 @@ const Homepage = () => {
       <LatestRegisteredMember />
       <TopProfile />
       <PeopleJoinedAlready />
+      <TopProfession />
       <FindSoleMate />
       <Footer />
     </div>
