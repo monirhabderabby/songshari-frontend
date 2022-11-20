@@ -6,7 +6,7 @@ const AboutComponents = () => {
     const fontFamily = () => {
         return (
             {
-                fontFamily: "Georgia, 'Times New Roman', Times, serif"
+                fontFamily: 'Courier New, Courier, monospace'
             }
         )
     }
@@ -17,7 +17,7 @@ const AboutComponents = () => {
                     <div className='text-center md:w-2/4'>
                         <h3 className='text-1xl font-bold' style={{ color: '#5650ce', fontSize: '24px' }}>How We’re different</h3>
                         <h1 className='mt-6 mb-8 text-2xl md:text-3xl lg:text-6xl font-extrabold'>Why Choose Us?</h1>
-                        <p className='font-bold'>There are lots of online dating sites available which makes it difficult to choose the one which can give you a serious partner....</p>
+                        <p className=''>There are lots of online dating sites available which makes it difficult to choose the one which can give you a serious partner....</p>
                     </div>
                 </div>
                 <div className=''>

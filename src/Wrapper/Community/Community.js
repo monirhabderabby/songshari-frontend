@@ -1,7 +1,7 @@
 import React from 'react';
 import CommonBanner from '../../components/comons/CommonBanner';
 import Comunity from '../../components/pages/comunity/Comunity';
-import NavBar from '../../components/shared/NavBar/NavBar';
+import NavBar from '../../components/pages/Shared/NavBar';
 
 const Community = () => {
   return (

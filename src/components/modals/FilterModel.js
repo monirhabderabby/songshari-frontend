@@ -18,7 +18,6 @@ const FilterModel = ({ visiblity, onClose }) => {
             borderRadius: "5px",
             color: "white",
             fontSize: "25px",
-            fontFamily: "Georgia, 'Times New Roman', Times, serif"
         };
     };
 
@@ -26,7 +25,7 @@ const FilterModel = ({ visiblity, onClose }) => {
         <div>
             <div className="fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm flex items-center justify-center">
                 <div className="bg-white p-2 rounded w-full lg:w-2/5">
-                    <div className="py-4">
+                    <div className="px-6 py-4">
                         <div className="flex justify-between">
                             <h1 className="text-3xl font-semibold">Filter Search</h1>
                             <button onClick={onClose} className="bg-gray-800 text-red-600 font-extrabold px-4 rounded-md">
