@@ -48,7 +48,9 @@ const NavBar = ({ bg }) => {
 
   return (
     <header
-      className={`${bg ? "bg-transparent" : "bg-white"} sticky top-0 lg:h-[90px] z-50 shadow-md body-font ${NavBarCSS.navbar}`}
+      className={`${
+        bg ? "bg-transparent" : "bg-white"
+      } sticky top-0 lg:h-[90px] z-50 shadow-md body-font ${NavBarCSS.navbar}`}
     >
       <div className=" lg:max-w-[1000px]  xl:max-w-[1200px] mx-auto flex flex-wrap  flex-col md:flex-row items-center">
         <Link
@@ -119,7 +121,8 @@ const NavBar = ({ bg }) => {
                     <button
                       className={`${NavBarCSS.tooltip} rounded-xl z-50 shadow-lg px-3 py-1 text-white text-xs font-bold whitespace-nowrap uppercase mt-[66px]`}
                       style={{
-                        backgroundImage: "linear-gradient(155deg, rgba(228, 18, 114, 1) 0%, #4844a5 100%)",
+                        backgroundImage:
+                          "linear-gradient(155deg, rgba(228, 18, 114, 1) 0%, #4844a5 100%)",
                       }}
                       onClick={() => signOut()}
                     >
@@ -132,7 +135,8 @@ const NavBar = ({ bg }) => {
                       to="/login"
                       className={`${NavBarCSS.tooltip} rounded-xl z-50 shadow-lg px-3 py-1 text-white text-xs font-bold whitespace-nowrap uppercase mt-[66px]`}
                       style={{
-                        backgroundImage: "linear-gradient(155deg, rgba(228, 18, 114, 1) 0%, #4844a5 100%)",
+                        backgroundImage:
+                          "linear-gradient(155deg, rgba(228, 18, 114, 1) 0%, #4844a5 100%)",
                       }}
                     >
                       Login

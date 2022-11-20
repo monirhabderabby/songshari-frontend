@@ -9,6 +9,7 @@ import PeopleJoinedAlready from "../../components/pages/PeopleJoinedAlready/Peop
 import NavBar from "../../components/pages/Shared/NavBar";
 import TopProfile from "../../components/pages/TopProfile/TopProfile";
 import Footer from "../../components/shared/Footer/Footer";
+// import NavBar from "../../components/shared/NavBar/NavBar";
 
 const Homepage = () => {
   // <<<<<<< HEAD
@@ -36,6 +37,7 @@ const Homepage = () => {
   return (
     <div className="font-george">
       <NavBar></NavBar>
+
       <Banner></Banner>
       <ThreeEasySteps></ThreeEasySteps>
       <SecureVerified></SecureVerified>
