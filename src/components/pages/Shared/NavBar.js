@@ -64,7 +64,7 @@ const NavBar = ({ bg }) => {
                 }`}
             >
                 <div className=" lg:max-w-[1000px]  xl:max-w-[1200px] mx-auto flex flex-wrap  flex-col md:flex-row items-center">
-                    <Link to="/" className="lg:flex cursor-pointer title-font font-medium items-center text-gray-900 mb-4 md:mb-0 hidden">
+                    <Link to="/" className="flex cursor-pointer title-font font-medium items-center text-gray-900 mb-4 md:mb-0 ">
                         <img src={blackLogo} alt="" />
                     </Link>
                     <nav className="md:mr-auto md:ml-4 md:py-1 md:pl-4  	flex flex-wrap items-center text-base justify-center">
