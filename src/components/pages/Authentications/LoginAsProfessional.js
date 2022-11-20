@@ -51,12 +51,12 @@ const LoginAsProfessional = () => {
 
     useEffect(() => {
         if (response) {
+            localStorage.setItem("accessToken", response.token);
             dispatch(loadUserData(response));
             reset();
         }
         if (response && user) {
-            navigate("/");
-            console.log(user);
+            navigate("/userProfile");
         }
     }, [response, dispatch, user, navigate, reset]);
 
