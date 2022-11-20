@@ -134,7 +134,7 @@ const NavBar = ({ bg }) => {
                                                 style={{
                                                     backgroundImage: "linear-gradient(155deg, rgba(228, 18, 114, 1) 0%, #4844a5 100%)",
                                                 }}
-                                                onClick={() => signOut()}
+                                                onClick={signOutHandler}
                                             >
                                                 Logout
                                             </button>
