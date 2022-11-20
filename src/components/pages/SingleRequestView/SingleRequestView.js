@@ -62,6 +62,17 @@ export const SingleRequestView = () => {
                     </button>
                 </div>
                 <SingleViewRequestInformations />
+                <div className="max-w-[523px] mx-auto flex justify-around mt-[44px]">
+                    <button className="py-[9px] px-[20px] bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] rounded-[4px] text-white font-medium text-[16px] leading-[20px]">
+                        Approve
+                    </button>
+                    <button className="py-[9px] px-[20px] bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] rounded-[4px] text-white font-medium text-[16px] leading-[20px]">
+                        Reject
+                    </button>
+                    <button className="py-[9px] px-[20px] bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] rounded-[4px] text-white font-medium text-[16px] leading-[20px]">
+                        Send for Resubmit
+                    </button>
+                </div>
             </div>
         </div>
     );

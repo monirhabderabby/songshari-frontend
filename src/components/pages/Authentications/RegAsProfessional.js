@@ -17,7 +17,6 @@ import Error from "../../ui/error/Error";
 
 const RegAsProfessional = () => {
     const [regAsProfessional, { data: response, isLoading: serverLoading }] = useRegAsProfessionalMutation();
-    const [photoUploading, setPhotoUploading] = useState(false);
     const [photoUrl, setPhotoUrl] = useState("");
     const [customError, setCustomError] = useState("");
     const [createUserWithEmailAndPassword, user, loading, error] = useCreateUserWithEmailAndPassword(auth);
@@ -60,19 +59,18 @@ const RegAsProfessional = () => {
     };
 
     const photoHandler = async e => {
-        setPhotoUploading(true);
         const photo = e.target.files[0];
         uploadPhoto(photo);
-        setPhotoUploading(false);
     };
 
     useEffect(() => {
         if (response) {
+            localStorage.setItem("accessToken", response.token);
             dispatch(loadUserData(response));
             reset();
         }
         if (user && response) {
-            navigate("/");
+            navigate("/userProfile");
         }
     }, [response, dispatch, reset, navigate, user]);
 

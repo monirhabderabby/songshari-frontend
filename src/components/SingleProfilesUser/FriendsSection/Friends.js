@@ -9,7 +9,7 @@ export const Friends = () => {
             {friends?.map(f => {
                 return (
                     <div
-                        className="p-[21px] h-[141px] lg:w-[555px] border-[1px] border-[rgba(0,0,0,0.1)] rounded-[15px] flex justify-between items-center"
+                        className="p-[21px] h-[141px] lg:w-[501px] mx-auto border-[1px] border-[rgba(0,0,0,0.1)] rounded-[15px] flex justify-between items-center"
                         key={f}
                     >
                         <div className="h-full flex items-center">

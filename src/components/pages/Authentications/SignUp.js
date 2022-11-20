@@ -61,7 +61,7 @@ const Signup = () => {
             reset();
         }
         if (user && response) {
-            navigate("/");
+            navigate("/userProfile");
         }
     }, [response, dispatch, reset, navigate, user]);
 
