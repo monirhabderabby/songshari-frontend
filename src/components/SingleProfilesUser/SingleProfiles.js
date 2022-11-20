@@ -10,7 +10,7 @@ const SingleProfiles = () => {
     return (
         <div>
             <CustomHeader title="Profile" />
-            <div className="container mx-auto">
+            <div className="custom-container mx-auto">
                 <div className="block lg:flex">
                     <div className="md:w-full lg:w-9/12">
                         <div>

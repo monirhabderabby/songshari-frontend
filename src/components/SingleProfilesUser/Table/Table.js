@@ -7,7 +7,7 @@ import { Profile } from "../profileSection/Profile";
 const Table = () => {
     const [page, setPage] = useState(2);
     return (
-        <div>
+        <div className="">
             <div className="px-2 md:px-0 mx-4 mb-4">
                 <div className="notification-bar">
                     <div className="flex justify-center items-center gap-4">
