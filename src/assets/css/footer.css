@@ -17,6 +17,7 @@
   -webkit-transform: rotate(180deg);
   transform: rotate(180deg);
 }
+
 .wave {
   -webkit-animation: wave 10s linear -3s infinite;
   animation: wave 10s linear -3s infinite;
@@ -28,17 +29,20 @@
   transform: translateZ(0);
   width: 200%;
 }
+
 .wave:nth-of-type(2) {
   animation: wave 18s linear infinite reverse;
   bottom: 0;
   opacity: 0.5;
 }
+
 .wave:nth-of-type(3) {
   -webkit-animation: wave 20s linear -1s infinite;
   animation: wave 20s linear -1s infinite;
   bottom: 0;
   opacity: 0.5;
 }
+
 @keyframes wave {
   0% {
     transform: translateX(0);
@@ -128,6 +132,7 @@
   top: 0;
   opacity: 1;
 }
+
 .footer-section .shape2 {
   -webkit-animation: scaleAni 3s linear infinite;
   animation: scaleAni 3s linear infinite;
@@ -135,6 +140,7 @@
   left: 0;
   position: absolute;
 }
+
 .footer-section .shape3 {
   -webkit-animation: upDown 3s linear infinite;
   animation: upDown 3s linear infinite;
@@ -160,14 +166,17 @@
     max-width: 720px;
   }
 }
+
 @media (max-width: 576px) {
   .footer-container {
     max-width: 540px;
   }
 }
+
 .footer-section .newslater-section .newslater-wrapper {
   text-align: center;
 }
+
 .footer-section .newslater-section .newslater-wrapper .icon {
   background: linear-gradient(150deg, #511be7, #e41272);
   border-radius: 50%;
@@ -191,6 +200,7 @@
   height: 80px;
   width: 75%;
 }
+
 .footer-section .newslater-section .newslater-wrapper .text {
   color: #fff;
   display: block;
@@ -202,6 +212,7 @@
   position: relative;
   text-align: center;
 }
+
 .footer-section .newslater-section .newslater-wrapper .newslater-form input {
   background: #4126a1;
   border: 1px solid #ffffff4d;
@@ -210,6 +221,7 @@
   padding: 13px 180px 13px 30px;
   width: 70%;
 }
+
 .footer-section .newslater-section .newslater-wrapper .newslater-form button {
   background-image: linear-gradient(166deg, #f22876, #942dd9);
   border-radius: 50%;
@@ -223,9 +235,11 @@
   top: 5px;
   width: 44px;
 }
+
 .fa-telegram-plane:before {
   content: "\f3fe";
 }
+
 .f-solial-links li a {
   transition: all 0.5s;
   cursor: pointer;
@@ -236,6 +250,7 @@
   color: #fff;
   padding-left: 10px;
 }
+
 .footer-section .copyright-wrapper .footer-social-links li a {
   background: linear-gradient(155deg, #e41272, #4844a5);
   border-radius: 50%;
@@ -253,6 +268,7 @@
   display: block;
   margin: 80px 0;
 }
+
 .footer-section .copyright-wrapper .hr2 {
   border-top: 1px solid #fff3;
   margin: 80px 0 20px;

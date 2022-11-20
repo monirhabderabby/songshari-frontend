@@ -10,12 +10,12 @@ const ProfileCard = () => {
             <div className="card_container shadow-4xl px-2 md:px-0">
                 <div className="Card-header"></div>
                 <div className="relative w-52 h-52 rounded-full">
-                    <div className="bottom-20 left-24 lg:left-24 md:left-16 absolute">
+                    <div className="bottom-20 left-20 lg:left-20 md:left-16 absolute">
                         <div className="relative card-img w-48 h-48">
                             <img
-                                className="w-44 bg-pink-300 h-44 rounded-full img-fluid"
+                                className="w-44 h-44 rounded-full img-fluid"
                                 src={user?.photoURL ? user.photoURL : "https://cdn-icons-png.flaticon.com/512/194/194938.png"}
-                                alt="profile image"
+                                alt="profileImage"
                             />
                         </div>
                     </div>
@@ -48,7 +48,7 @@ const ProfileCard = () => {
                     </div>
                 </div>
                 <div className="flex items-center justify-around mt-5">
-                    <div className="w-16 h-16 flex items-center justify-center rounded-full bg-pink-100">
+                    {/* <div className="w-16 h-16 flex items-center justify-center rounded-full bg-pink-100">
                         <div className="flex items-center">
                             <svg
                                 color="#FF1D8E"
@@ -66,7 +66,7 @@ const ProfileCard = () => {
                                 />
                             </svg>
                         </div>
-                    </div>
+                    </div> */}
                     <div>
                         <button className="special_profile_button">Send me Money</button>
                     </div>
