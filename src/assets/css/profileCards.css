@@ -13,7 +13,7 @@
     background: -moz-linear-gradient(171deg, rgba(233, 11, 200, 0.6979166666666667) 41%, rgba(166, 2, 241, 0.79) 100%);
     background: -webkit-linear-gradient(171deg, rgba(233, 11, 200, 0.6979166666666667) 41%, rgba(166, 2, 241, 0.79) 100%);
     background: linear-gradient(171deg, rgba(233, 11, 200, 0.6979166666666667) 41%, rgba(166, 2, 241, 0.79) 100%);
-    background-image: url("https://pixner.net/peyamba/peyamba/assets/images/profile/profile-box-bg.png");
+    background-image: linear-gradient(145deg, rgba(81, 27, 231, 1) 0%, rgba(228, 18, 114, 1)100%);
     background-size: cover;
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#e90bc8", endColorstr="#ffffff", GradientType=1);
     border-top-left-radius: 10px;
@@ -26,10 +26,7 @@
 }
 
 
-.Profile-btn {
-    
-   
-}
+.Profile-btn {}
 
 .special_profile_button {
     background: linear-gradient(171deg, rgba(233, 11, 200, 0.6979166666666667) 41%, rgba(166, 2, 241, 0.79) 100%);
