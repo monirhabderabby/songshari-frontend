@@ -28,10 +28,11 @@ const NavBar = ({ bg }) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const signOutHandler = async () => {
-        await signOut();
+    const logoutButton = async () => {
         dispatch(loadUserData(null));
+        await signOut();
         navigate("/");
+        localStorage.removeItem("accessToken");
     };
     const allMenu = [
         {
@@ -134,7 +135,7 @@ const NavBar = ({ bg }) => {
                                                 style={{
                                                     backgroundImage: "linear-gradient(155deg, rgba(228, 18, 114, 1) 0%, #4844a5 100%)",
                                                 }}
-                                                onClick={signOutHandler}
+                                                onClick={logoutButton}
                                             >
                                                 Logout
                                             </button>
