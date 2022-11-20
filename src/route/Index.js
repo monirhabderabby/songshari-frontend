@@ -29,7 +29,6 @@ import SingleProduct from "../Wrapper/SingleProduct/SingleProduct";
 import SingleProfile from "../Wrapper/SingleProfilesUser/SingleProfile";
 import { StepProgress } from "../Wrapper/step-progress/StepProgress";
 
-
 const Index = () => {
     return (
         <div>
