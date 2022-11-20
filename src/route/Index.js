@@ -8,7 +8,6 @@ import LoginAsProfessional from "../components/pages/Authentications/LoginAsProf
 import RegAsProfessional from "../components/pages/Authentications/RegAsProfessional";
 import SignUp from "../components/pages/Authentications/SignUp";
 import Contact from "../components/pages/Contact/Contact";
-import PartnerCard from "../components/pages/FindPartner/PartnerCard";
 import { Members } from "../components/pages/Members/Members";
 import NotFound from "../components/pages/notfound/NotFound";
 import { SingleRequestView } from "../components/pages/SingleRequestView/SingleRequestView";
@@ -29,6 +28,7 @@ import Shop from "../Wrapper/Shop/Shop";
 import SingleProduct from "../Wrapper/SingleProduct/SingleProduct";
 import SingleProfile from "../Wrapper/SingleProfilesUser/SingleProfile";
 import { StepProgress } from "../Wrapper/step-progress/StepProgress";
+
 
 const Index = () => {
     return (
