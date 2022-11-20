@@ -51,17 +51,17 @@ const Signup = () => {
             await createUserWithEmailAndPassword(data.email, data.password);
             await updateProfile({ displayName: data.firstName + " " + data.lastName, photoURL: photoURL });
             await regAsMember(data);
-
-        };
-    }
+        }
+    };
 
     useEffect(() => {
         if (response) {
+            localStorage.setItem("accessToken", response.token);
             dispatch(loadUserData(response));
             reset();
         }
         if (user && response) {
-            navigate("/");
+            navigate("/userProfile");
         }
     }, [response, dispatch, reset, navigate, user]);
 

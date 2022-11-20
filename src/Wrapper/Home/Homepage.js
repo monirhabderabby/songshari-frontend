@@ -7,22 +7,50 @@ import SecureVerified from "../../components/pages/Home/SecureVerified/SecureVer
 import LatestRegisteredMember from "../../components/pages/LatestRegisteredMember/LatestRegisteredMember";
 import PeopleJoinedAlready from "../../components/pages/PeopleJoinedAlready/PeopleJoinedAlready";
 import NavBar from "../../components/pages/Shared/NavBar";
+import TopProfession from "../../components/pages/TopProfession/TopProfession";
 import TopProfile from "../../components/pages/TopProfile/TopProfile";
+import Footer from "../../components/shared/Footer/Footer";
+// import NavBar from "../../components/shared/NavBar/NavBar";
 
 const Homepage = () => {
-    return (
-        <div className="font-george">
-            <NavBar></NavBar>
-            <Banner></Banner>
-            <ThreeEasySteps></ThreeEasySteps>
-            <SecureVerified></SecureVerified>
-            <BeginFamilyJourney></BeginFamilyJourney>
-            <LatestRegisteredMember />
-            <TopProfile />
-            <PeopleJoinedAlready />
-            <FindSoleMate />
-        </div>
-    );
+  // <<<<<<< HEAD
+  //   return (
+  //     <div className="font-george">
+  //       <NavBar></NavBar>
+  //       <Banner></Banner>
+
+  //       <div>
+  //         <ThreeEasySteps></ThreeEasySteps>
+  //       </div>
+  //       <SecureVerified></SecureVerified>
+  //       <BeginFamilyJourney></BeginFamilyJourney>
+  //       <LatestRegisteredMember />
+  //       <TopProfile />
+  //       <PeopleJoinedAlready />
+  //       <FindSoleMate />
+  //       <Anexecutive />
+  //       <Membership />
+  //       <MeetCard />
+  //       <Footer />
+  //     </div>
+  //   );
+  // =======
+  return (
+    <div className="font-george">
+      <NavBar></NavBar>
+
+      <Banner></Banner>
+      <ThreeEasySteps></ThreeEasySteps>
+      <SecureVerified></SecureVerified>
+      <BeginFamilyJourney></BeginFamilyJourney>
+      <LatestRegisteredMember />
+      <TopProfile />
+      <PeopleJoinedAlready />
+      <TopProfession />
+      <FindSoleMate />
+      <Footer />
+    </div>
+  );
 };
 
 export default Homepage;

@@ -1,5 +1,5 @@
 import React from "react";
-import { CustomHeader } from "../../components/Shared/CustomHeader/CustomHeader";
+import { CustomHeader } from "../shared/CustomHeader/CustomHeader";
 import ChartBoard from "./chatboard/ChartBoard";
 import PhotoGelary from "./PhotoGelary";
 import ProfileCard from "./ProfileCard";
@@ -10,7 +10,7 @@ const SingleProfiles = () => {
     return (
         <div>
             <CustomHeader title="Profile" />
-            <div className="container mx-auto">
+            <div className="custom-container mx-auto">
                 <div className="block lg:flex">
                     <div className="md:w-full lg:w-9/12">
                         <div>

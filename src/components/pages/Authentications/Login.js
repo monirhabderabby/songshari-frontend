@@ -34,8 +34,8 @@ const Login = () => {
 
     const onSubmit = async data => {
         data.role = "member";
-        console.log(data);
         await signInWithEmailAndPassword(data.email, data.password);
+        console.log(data);
         loginAsMember(data);
     };
 
@@ -50,12 +50,12 @@ const Login = () => {
 
     useEffect(() => {
         if (response) {
+            localStorage.setItem("accessToken", response.token);
             dispatch(loadUserData(response));
-            console.log(response);
             reset();
         }
         if (response && user) {
-            navigate("/");
+            navigate("/userProfile");
         }
     }, [response, dispatch, user, navigate, reset]);
 

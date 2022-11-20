@@ -30,7 +30,97 @@ export const userApi = apiSlice.injectEndpoints({
                 body: data,
             }),
         }),
+        setPersonalDetails: builder.mutation({
+            query: data => ({
+                url: "/member/register/personalDetail",
+                method: "POST",
+                headers: { authorization: `Bearer ${localStorage.getItem("accessToken")}` },
+                body: data,
+            }),
+        }),
+        setProfessionalDetails: builder.mutation({
+            query: data => ({
+                url: "/member/register/professionalDetail",
+                method: "POST",
+                headers: { authorization: `Bearer ${localStorage.getItem("accessToken")}` },
+                body: data,
+            }),
+        }),
+        setEducationalDetails: builder.mutation({
+            query: data => ({
+                url: "/member/register/educationalDetail",
+                method: "POST",
+                headers: { authorization: `Bearer ${localStorage.getItem("accessToken")}` },
+                body: data,
+            }),
+        }),
+        setPhysicalDetails: builder.mutation({
+            query: data => ({
+                url: "/member/register/physicalDetail",
+                method: "POST",
+                headers: { authorization: `Bearer ${localStorage.getItem("accessToken")}` },
+                body: data,
+            }),
+        }),
+        setOthersDetails: builder.mutation({
+            query: data => ({
+                url: "/member/register/othersDetail",
+                method: "POST",
+                headers: { authorization: `Bearer ${localStorage.getItem("accessToken")}` },
+                body: data,
+            }),
+        }),
+        updateProfessionalDetails: builder.mutation({
+            query: ({ data, id }) => ({
+                url: `/member/professionalDetail/${id}`,
+                method: "PUT",
+                headers: { authorization: `Bearer ${localStorage.getItem("accessToken")}` },
+                body: data,
+            }),
+        }),
+        updateEducationalDetails: builder.mutation({
+            query: ({ data, id }) => ({
+                url: `/member/professionalDetail/${id}`,
+                method: "PUT",
+                headers: { authorization: `Bearer ${localStorage.getItem("accessToken")}` },
+                body: data,
+            }),
+        }),
+        updatePhysicalDetails: builder.mutation({
+            query: data => ({
+                url: `/member/physicalDetali`,
+                method: "PUT",
+                headers: { authorization: `Bearer ${localStorage.getItem("accessToken")}` },
+                body: data,
+            }),
+        }),
+        updateOthersDetails: builder.mutation({
+            query: data => ({
+                url: `/member/othersDetail`,
+                method: "PUT",
+                headers: { authorization: `Bearer ${localStorage.getItem("accessToken")}` },
+                body: data,
+            }),
+        }),
+        setOthersDetails: builder.mutation({
+            query: data => ({
+                url: `/member/register/othersDetail`,
+                method: "POST",
+                headers: { authorization: `Bearer ${localStorage.getItem("accessToken")}` },
+                body: data,
+            }),
+        }),
     }),
 });
 
-export const { useRegAsMemberMutation, useLoginAsMemberMutation, useLoginAsProfessionalMutation, useRegAsProfessionalMutation } = userApi;
+export const {
+    useRegAsMemberMutation,
+    useLoginAsMemberMutation,
+    useLoginAsProfessionalMutation,
+    useRegAsProfessionalMutation,
+    useSetPersonalDetailsMutation,
+    useSetProfessionalDetailsMutation,
+    useSetEducationalDetailsMutation,
+    useSetPhysicalDetailsMutation,
+    useSetOthersDetailsMutation,
+} = userApi;
