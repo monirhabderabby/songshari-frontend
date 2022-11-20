@@ -35,7 +35,6 @@ const Login = () => {
     const onSubmit = async data => {
         data.role = "member";
         await signInWithEmailAndPassword(data.email, data.password);
-        console.log(data);
         loginAsMember(data);
     };
 

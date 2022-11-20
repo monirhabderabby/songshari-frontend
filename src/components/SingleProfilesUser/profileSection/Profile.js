@@ -7,7 +7,7 @@ export const Profile = () => {
     const [tables, setTables] = useState([]);
     const [edit, setEdit] = useState(false);
 
-    const { token, user } = useSelector(state => state?.persistedReducer?.userInfo?.userInfo);
+    const user = useSelector(state => state?.persistedReducer?.userInfo?.userInfo?.user);
 
     const { data, isSuccess } = useGetRecentUsersQuery();
     if (isSuccess) {
