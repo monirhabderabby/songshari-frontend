@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import LawyerServicesPage from "../components/LawyerUserProfile/LawyerServicesPage";
 import AdminAnalytics from "../components/pages/AdminAnalytics/AdminAnalytics";
 
 // components import
@@ -90,6 +91,7 @@ const Index = () => {
           </Route>
           <Route path="/singleViewRequest" element={<SingleRequestView />} />
           <Route path="/admin-analytics" element={<AdminAnalytics />}></Route>
+          <Route path="/lawyerServicePage" element={<LawyerServicesPage></LawyerServicesPage>} ></Route>
           <Route path="*" element={<NotFound />}></Route>
         </Routes>
       </BrowserRouter>
