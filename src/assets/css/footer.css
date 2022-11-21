@@ -273,3 +273,15 @@
   border-top: 1px solid #fff3;
   margin: 80px 0 20px;
 }
+
+@media (max-width: 764px) {
+  .footer-section .newslater-section .newslater-wrapper .newslater-form button {
+    right: 110px;
+  }
+}
+
+@media (max-width: 574px) {
+  .footer-section .newslater-section .newslater-wrapper .newslater-form button {
+    right: 80px;
+  }
+}
