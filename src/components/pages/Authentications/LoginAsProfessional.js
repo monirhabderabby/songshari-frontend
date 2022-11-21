@@ -6,7 +6,7 @@ import { BsPersonLinesFill } from "react-icons/bs";
 import { FaFacebookF, FaGoogle, FaRegEnvelope } from "react-icons/fa";
 import { MdLockOutline } from "react-icons/md";
 import { useDispatch } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import "../../../App.css";
 import Error from "../../../components/ui/error/Error";
 import { auth } from "../../../firebase.init";
@@ -21,6 +21,8 @@ const LoginAsProfessional = () => {
     const [loginAsProfessional, { data: response, isLoading }] = useLoginAsProfessionalMutation();
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    let location = useLocation();
+    let from = location.state?.from?.pathname || "/";
 
     const {
         register,
@@ -56,9 +58,10 @@ const LoginAsProfessional = () => {
             reset();
         }
         if (response && user) {
-            navigate("/userProfile");
+            // navigate("/userProfile");
+            navigate(from, { replace: true });
         }
-    }, [response, dispatch, user, navigate, reset]);
+    }, [response, dispatch, user, navigate, reset, from]);
 
     return (
         <div>
