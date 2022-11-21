@@ -46,7 +46,7 @@ const Suggested = () => {
                                 className=" cursor-pointer border-gray-300 Suggested-card rounded-[10px] border relative left-0 top-0 overflow-hidden"
                             >
                                 <div>
-                                    <img style={{ borderRadius: " 10px 10px 0px 0px" }} src={profile.img} alt="" />
+                                    <img style={{ borderRadius: " 10px 10px 0px 0px" }} src={profile.profilePhoto} alt="" />
                                 </div>
                                 <div className="p-[30px] text-left">
                                     <h3 className="text-[30px] text-[#000]">
@@ -57,10 +57,10 @@ const Suggested = () => {
                                 </div>
                                 <div className="Suggested-info__cardUp">
                                     <div className="Suggested-info__cardImg">
-                                        <img src={profile.img} alt="card__img" />
+                                        <img src={profile.profilePhoto} alt="card__img" />
                                     </div>
                                     <h4 className="text-white text-[30px] text-center overflow-hidden">
-                                        Md. Tohidul islam
+                                        {profile?.firstName + " " + profile?.lastName}
                                         <span style={{ color: "rgb(135, 206, 235)" }}> 27</span>
                                     </h4>
                                     <ul>

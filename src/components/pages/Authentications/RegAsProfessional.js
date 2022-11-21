@@ -40,7 +40,7 @@ const RegAsProfessional = () => {
         }
         setCustomError("");
         delete data.image;
-        data.profilePhoto = photoURL;
+        data.profilePhoto = photoUrl;
 
         // Implement firebase registration
         await createUserWithEmailAndPassword(data.email, data.password);
@@ -52,7 +52,6 @@ const RegAsProfessional = () => {
         const storageRef = ref(firebaseStorage, `profile/${photo.name + uuidv4()}`);
         uploadBytes(storageRef, photo).then(async snapshot => {
             await getDownloadURL(snapshot.ref).then(url => {
-                console.log(url.toString());
                 setPhotoUrl(url.toString());
             });
         });
