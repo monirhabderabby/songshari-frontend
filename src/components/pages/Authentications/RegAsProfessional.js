@@ -40,7 +40,7 @@ const RegAsProfessional = () => {
         }
         setCustomError("");
         delete data.image;
-        data.photoURL = photoUrl;
+        data.profilePhoto = photoURL;
 
         // Implement firebase registration
         await createUserWithEmailAndPassword(data.email, data.password);
