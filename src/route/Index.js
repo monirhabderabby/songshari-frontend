@@ -9,6 +9,7 @@ import LoginAsProfessional from "../components/pages/Authentications/LoginAsProf
 import RegAsProfessional from "../components/pages/Authentications/RegAsProfessional";
 import SignUp from "../components/pages/Authentications/SignUp";
 import Contact from "../components/pages/Contact/Contact";
+import { DynamicProfilePage } from "../components/pages/DynamicProfilePage/DynamicProfilePage";
 import { Members } from "../components/pages/Members/Members";
 import NotFound from "../components/pages/notfound/NotFound";
 import { SingleRequestView } from "../components/pages/SingleRequestView/SingleRequestView";
@@ -55,6 +56,7 @@ const Index = () => {
                     <Route path="/loginAsProfessional" element={<LoginAsProfessional />} />
                     <Route path="/contact" element={<Contact />}></Route>
                     <Route path="/members" element={<Members />}></Route>
+                    <Route path="/profile/:id" element={<DynamicProfilePage />}></Route>
                     <Route path="/find-partner" element={<FindPartner />}>
                         <Route path="/find-partner" element={<Suggested />} />
                         <Route path="top" element={<TopBride />} />

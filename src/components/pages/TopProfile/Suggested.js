@@ -3,10 +3,12 @@ import { Autoplay } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 // Import Swiper styles
+import { useNavigate } from "react-router";
 import "swiper/css";
 import "swiper/css/pagination";
 import { useGetRecentMembersQuery } from "../../../Redux/features/userInfo/withoutLoginApi";
 const Suggested = () => {
+    const navigate = useNavigate();
     const { data, isSuccess } = useGetRecentMembersQuery();
 
     return (
@@ -91,9 +93,12 @@ const Suggested = () => {
                                         </li>
                                     </ul>
                                     <div className="info__social">
-                                        <a href="#">
-                                            <i className="fas fa-user" aria-hidden="true"></i>
-                                        </a>
+                                        <i
+                                            className="fas fa-user text-white"
+                                            aria-hidden="true"
+                                            onClick={() => navigate(`/profile/${profile._id}`)}
+                                        ></i>
+
                                         <a href="#">
                                             <i className="fas fa-comment" aria-hidden="true"></i>
                                         </a>
