@@ -5,7 +5,7 @@ import { Toaster } from "react-hot-toast";
 import { FaFacebookF, FaGoogle, FaRegEnvelope } from "react-icons/fa";
 import { MdLockOutline } from "react-icons/md";
 import { useDispatch } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import "../../../App.css";
 import logo from "../../../assets/images/Logo/logoBlack.png";
 import { auth } from "../../../firebase.init";
@@ -21,6 +21,9 @@ const Login = () => {
     const [loginAsMember, { data: response, isLoading }] = useLoginAsMemberMutation();
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    let location = useLocation();
+    let from = location.state?.from?.pathname || "/";
+
     const {
         register,
         formState: { errors },
@@ -55,9 +58,10 @@ const Login = () => {
             reset();
         }
         if (response && user) {
-            navigate("/userProfile");
+            // navigate("/userProfile");
+            navigate(from, { replace: true });
         }
-    }, [response, dispatch, user, navigate, reset]);
+    }, [response, dispatch, user, navigate, reset, from]);
 
     return (
         <div>
