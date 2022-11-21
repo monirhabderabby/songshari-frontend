@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { useGetRecentUsersQuery } from "../../../Redux/features/AllRecentData/recentApi";
 import Title from "../Title/Title";
 
 export const Profile = () => {
@@ -8,15 +7,6 @@ export const Profile = () => {
     const [edit, setEdit] = useState(false);
 
     const user = useSelector(state => state?.persistedReducer?.userInfo?.userInfo?.user);
-
-    const { data, isSuccess } = useGetRecentUsersQuery();
-    if (isSuccess) {
-        console.log(data);
-    }
-
-    if (user) {
-        console.log(user);
-    }
 
     useEffect(() => {
         fetch("json/tableData.json")
