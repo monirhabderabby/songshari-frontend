@@ -24,6 +24,7 @@ import FindAlawyer from "../Wrapper/Findalawyer/FindAlawyer";
 import FindPartner from "../Wrapper/Findpartner/FindPartner";
 import Homepage from "../Wrapper/Home/Homepage";
 import Kazi from "../Wrapper/Kazi/Kazi";
+import LawyerProfile from "../Wrapper/Lawyer Profile/LawyerProfile";
 import MemberShip from "../Wrapper/Membership/MemberShip";
 import ProfileInfo from "../Wrapper/Profileinfo/ProfileInfo";
 import Shop from "../Wrapper/Shop/Shop";
@@ -48,6 +49,7 @@ const Index = () => {
             path="/findalawyer"
             element={<FindAlawyer></FindAlawyer>}
           ></Route>
+          <Route path="/lawyer-profile" element={<LawyerProfile />}></Route>
           <Route path="/kazi" element={<Kazi></Kazi>}></Route>
           <Route path="/agent" element={<Agent></Agent>}></Route>
           <Route path="/community" element={<Community></Community>}></Route>
