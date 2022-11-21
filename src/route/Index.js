@@ -66,7 +66,6 @@ const Index = () => {
                         <Route path="/" element={<Suggested />} />
                         <Route path="/top-gride" element={<TopBride />} />
                         <Route path="/top-groom" element={<TopGroom />} />
-
                         <Route path="/top-profession/kazi" element={<TopProfessionKazi />} />
                         <Route path="/top-profession/agent" element={<TopProfessionAgent />} />
                     </Route>
