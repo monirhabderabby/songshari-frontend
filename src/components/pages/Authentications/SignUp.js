@@ -45,7 +45,7 @@ const Signup = () => {
         setCustomError("");
         if (photoURL) {
             delete data.image;
-            data.photoURL = photoURL;
+            data.profilePhoto = photoURL;
             data.role = "member";
             // Implement firebase registration
             await createUserWithEmailAndPassword(data.email, data.password);
@@ -56,6 +56,7 @@ const Signup = () => {
 
     useEffect(() => {
         if (response) {
+            console.log(response);
             localStorage.setItem("accessToken", response.token);
             dispatch(loadUserData(response));
             reset();

@@ -9,10 +9,6 @@ import { useGetRecentMembersQuery } from "../../../Redux/features/userInfo/witho
 const Suggested = () => {
     const { data, isSuccess } = useGetRecentMembersQuery();
 
-    if (data) {
-        console.log(data);
-    }
-
     return (
         <div className="mt-[30px]">
             <Swiper
