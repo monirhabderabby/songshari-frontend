@@ -278,10 +278,16 @@
   .footer-section .newslater-section .newslater-wrapper .newslater-form button {
     right: 110px;
   }
+  .footer-section .newslater-section .newslater-wrapper .icon {
+    left: 40%;
+  }
 }
 
 @media (max-width: 574px) {
   .footer-section .newslater-section .newslater-wrapper .newslater-form button {
-    right: 80px;
+    right: 105px;
+  }
+  .footer-section .newslater-section .newslater-wrapper .newslater-form input {
+    width: 60%;
   }
 }

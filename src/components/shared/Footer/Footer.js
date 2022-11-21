@@ -61,7 +61,7 @@ const Footer = () => {
                 </h4>
                 <ul className="f-solial-links">
                   <li className="py-[5px]">
-                    <Link to="/about">
+                    <Link className="footer-link" to="/about">
                       <i className="fas text-[16px] mr-[5px] fa-angle-double-right"></i>{" "}
                       About Us
                     </Link>
@@ -213,12 +213,12 @@ const Footer = () => {
           </div>
         </div>
         <div className="copyright-wrapper ">
-          <div className="row">
-            <div className="col-lg-12">
+          <div>
+            <div>
               <hr className="hr2" />
             </div>
           </div>
-          <div className="flex justify-between  items-center">
+          <div className="flex md:justify-between justify-center md:flex-row flex-col  items-center">
             <div>
               <div className="copyr-text">
                 <span className="text-[#fff]">

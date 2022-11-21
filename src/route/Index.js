@@ -26,6 +26,7 @@ import FindAlawyer from "../Wrapper/Findalawyer/FindAlawyer";
 import FindPartner from "../Wrapper/Findpartner/FindPartner";
 import Homepage from "../Wrapper/Home/Homepage";
 import Kazi from "../Wrapper/Kazi/Kazi";
+import LawyerProfile from "../Wrapper/Lawyer Profile/LawyerProfile";
 import MemberShip from "../Wrapper/Membership/MemberShip";
 import ProfileInfo from "../Wrapper/Profileinfo/ProfileInfo";
 import Shop from "../Wrapper/Shop/Shop";
