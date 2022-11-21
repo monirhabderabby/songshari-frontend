@@ -8,6 +8,7 @@ import LoginAsProfessional from "../components/pages/Authentications/LoginAsProf
 import RegAsProfessional from "../components/pages/Authentications/RegAsProfessional";
 import SignUp from "../components/pages/Authentications/SignUp";
 import Contact from "../components/pages/Contact/Contact";
+import LawyerServiceDetails from "../components/pages/LawyerServiceDetails/LawyerServiceDetails";
 import { Members } from "../components/pages/Members/Members";
 import NotFound from "../components/pages/notfound/NotFound";
 import { SingleRequestView } from "../components/pages/SingleRequestView/SingleRequestView";
@@ -50,6 +51,10 @@ const Index = () => {
             element={<FindAlawyer></FindAlawyer>}
           ></Route>
           <Route path="/lawyer-profile" element={<LawyerProfile />}></Route>
+          <Route
+            path="/lawyer-service-detail"
+            element={<LawyerServiceDetails />}
+          ></Route>
           <Route path="/kazi" element={<Kazi></Kazi>}></Route>
           <Route path="/agent" element={<Agent></Agent>}></Route>
           <Route path="/community" element={<Community></Community>}></Route>
