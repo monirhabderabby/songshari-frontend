@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import LawyerServiceForm from "../components/Lawyer-Seam/LawyerServiceForm/LawyerServiceForm";
 import LawyerServicesPage from "../components/Lawyer-Seam/LawyerUserProfile/LawyerServicesPage";
 import AdminAnalytics from "../components/pages/AdminAnalytics/AdminAnalytics";
 
@@ -60,6 +61,7 @@ const Index = () => {
                     <Route path="/profile/:id" element={<DynamicProfilePage />}></Route>
                     <Route path="/lawyer_details" element={<LawyerServiceDetails />} />
                     <Route path="/lawyerServices" element={<LawyerServicesPage />} />
+                    <Route path="/lawyerServicesForm" element={<LawyerServiceForm />} />
                     <Route path="/lawyerProfile" element={<LawyerProfilePage />} />
                     <Route path="/find-partner" element={<FindPartner />}>
                         <Route path="/find-partner" element={<Suggested />} />
