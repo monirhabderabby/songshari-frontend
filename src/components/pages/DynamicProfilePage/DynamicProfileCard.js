@@ -1,10 +1,7 @@
 import React from "react";
-import { useAuthState } from "react-firebase-hooks/auth";
 import "../../../assets/css/profileCards.css";
-import { auth } from "../../../firebase.init";
 
-const DynamicProfileCard = () => {
-    const [user] = useAuthState(auth);
+const DynamicProfileCard = ({ user }) => {
     return (
         <div>
             <div className="card_container shadow-4xl px-2 md:px-0">
@@ -14,14 +11,14 @@ const DynamicProfileCard = () => {
                         <div className="relative card-img w-48 h-48">
                             <img
                                 className="w-44 h-44 rounded-full img-fluid"
-                                src={user?.photoURL ? user.photoURL : "https://cdn-icons-png.flaticon.com/512/194/194938.png"}
+                                src={user?.profilePhoto ? user.profilePhoto : "https://cdn-icons-png.flaticon.com/512/194/194938.png"}
                                 alt="profileImage"
                             />
                         </div>
                     </div>
                 </div>
                 <div className="text-center -mt-10">
-                    <h2 className="text-2xl font-semibold">{user?.displayName}</h2>
+                    <h2 className="text-2xl font-semibold">{user?.firstName + " " + user?.lastName}</h2>
                     <div className="flex justify-center  my-2">
                         <h3 className="mr-4">21 years old | </h3>
                         <div className="flex">

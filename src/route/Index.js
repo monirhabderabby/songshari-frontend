@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import OthersProfile from "../components/othersprofile/OthersProfile";
+import LawyerServiceForm from "../components/Lawyer-Seam/LawyerServiceForm/LawyerServiceForm";
+import LawyerServicesPage from "../components/Lawyer-Seam/LawyerUserProfile/LawyerServicesPage";
 import AdminAnalytics from "../components/pages/AdminAnalytics/AdminAnalytics";
 
 // components import
@@ -34,7 +35,7 @@ import ProfileInfo from "../Wrapper/Profileinfo/ProfileInfo";
 import Shop from "../Wrapper/Shop/Shop";
 import SingleProduct from "../Wrapper/SingleProduct/SingleProduct";
 import SingleProfile from "../Wrapper/SingleProfilesUser/SingleProfile";
-import { StepProgress } from "../Wrapper/step-progress/StepProgress";
+import { Container } from "../Wrapper/Stepper/Container";
 
 const Index = () => {
   return (
@@ -63,10 +64,10 @@ const Index = () => {
           <Route path="/agent" element={<Agent></Agent>}></Route>
           <Route path="/community" element={<Community></Community>}></Route>
           <Route path="/shop" element={<Shop></Shop>}></Route>
-          <Route
+          {/* <Route
             path="/stepher"
             element={<StepProgress></StepProgress>}
-          ></Route>
+          ></Route> */}
           <Route
             path="/singleproduct"
             element={<SingleProduct></SingleProduct>}
@@ -101,7 +102,7 @@ const Index = () => {
           </Route>
           <Route path="/singleViewRequest" element={<SingleRequestView />} />
           <Route path="/admin-analytics" element={<AdminAnalytics />}></Route>
-          <Route path="/profile" element={<OthersProfile />} />
+          {/* <Route path="/profile" element={<OthersProfile />} /> */}
           <Route path="*" element={<NotFound />}></Route>
         </Routes>
       </BrowserRouter>

@@ -77,7 +77,7 @@ const LawyerRecentReview = () => {
                   Slate helps you see how many more days you need to work to
                   reach your financial goal.
                 </p>
-                <div className="flex  items-center pt-[10px]">
+                <div className="flex  items-center justify-center pt-[10px]">
                   <img src={data.img} alt="" />
                   <div className="ml-3">
                     <h3 className="text-sm text-[#E41272] font-bold">
