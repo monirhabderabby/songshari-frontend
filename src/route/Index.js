@@ -56,7 +56,6 @@ const Index = () => {
           <Route path="/agent" element={<Agent></Agent>}></Route>
           <Route path="/community" element={<Community></Community>}></Route>
           <Route path="/shop" element={<Shop></Shop>}></Route>
-<<<<<<< HEAD
           <Route
             path="/stepher"
             element={<StepperHeader></StepperHeader>}
@@ -65,10 +64,6 @@ const Index = () => {
             path="/singleproduct"
             element={<SingleProduct></SingleProduct>}
           ></Route>
-=======
-          <Route path="/stepher" element={<StepProgress></StepProgress>}></Route>
-          <Route path="/singleproduct" element={<SingleProduct></SingleProduct>}></Route>
->>>>>>> ad6f022aaa5909784bfe8e7c70adc87c733ecdd0
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/regAsProfessional" element={<RegAsProfessional />} />

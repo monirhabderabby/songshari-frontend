@@ -1,5 +1,5 @@
 import React from "react";
-import CustomHeader from "../../shared/CustomHeader/CustomHeader";
+import CustomHeader from "../../Shared/CustomHeader/CustomHeader";
 import Table from "../../SingleProfilesUser/Table/Table";
 import DynamicChatGallary from "./DynamicChatGallary";
 import DynamicProfileCard from "./DynamicProfileCard";
