@@ -1,7 +1,6 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import LawyerServicesPage from "../components/Lawyer-Seam/LawyerUserProfile/LawyerServicesPage";
-import OthersProfile from "../components/othersprofile/OthersProfile";
 import AdminAnalytics from "../components/pages/AdminAnalytics/AdminAnalytics";
 
 // components import
@@ -11,6 +10,7 @@ import RegAsProfessional from "../components/pages/Authentications/RegAsProfessi
 import SignUp from "../components/pages/Authentications/SignUp";
 import Contact from "../components/pages/Contact/Contact";
 import { DynamicProfilePage } from "../components/pages/DynamicProfilePage/DynamicProfilePage";
+import LawyerProfilePage from "../components/pages/lawyerProfile/LawyerProfilePage";
 import LawyerServiceDetails from "../components/pages/LawyerServiceDetails/LawyerServiceDetails";
 import { Members } from "../components/pages/Members/Members";
 import NotFound from "../components/pages/notfound/NotFound";
@@ -59,7 +59,9 @@ const Index = () => {
                     <Route path="/contact" element={<Contact />}></Route>
                     <Route path="/members" element={<Members />}></Route>
                     <Route path="/profile/:id" element={<DynamicProfilePage />}></Route>
-                    <Route path="/lawyer_services" element={<LawyerServiceDetails />} />
+                    <Route path="/lawyer_details" element={<LawyerServiceDetails />} />
+                    <Route path="/lawyerServices" element={<LawyerServicesPage />} />
+                    <Route path="/lawyerProfile" element={<LawyerProfilePage />} />
                     <Route path="/find-partner" element={<FindPartner />}>
                         <Route path="/find-partner" element={<Suggested />} />
                         <Route path="top" element={<TopBride />} />
@@ -74,8 +76,6 @@ const Index = () => {
                     </Route>
                     <Route path="/singleViewRequest" element={<SingleRequestView />} />
                     <Route path="/admin-analytics" element={<AdminAnalytics />}></Route>
-                    <Route path="/lawyerProfile" element={<LawyerServicesPage />} />
-                    <Route path="/profile" element={<OthersProfile />} />
                     <Route path="*" element={<NotFound />}></Route>
                 </Routes>
             </BrowserRouter>
