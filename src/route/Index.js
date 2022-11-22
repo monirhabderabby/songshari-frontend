@@ -33,7 +33,7 @@ import ProfileInfo from "../Wrapper/Profileinfo/ProfileInfo";
 import Shop from "../Wrapper/Shop/Shop";
 import SingleProduct from "../Wrapper/SingleProduct/SingleProduct";
 import SingleProfile from "../Wrapper/SingleProfilesUser/SingleProfile";
-import { StepProgress } from "../Wrapper/step-progress/StepProgress";
+import { Container } from "../Wrapper/Stepper/Container";
 
 const Index = () => {
     return (
@@ -50,7 +50,6 @@ const Index = () => {
                     <Route path="/agent" element={<Agent></Agent>}></Route>
                     <Route path="/community" element={<Community></Community>}></Route>
                     <Route path="/shop" element={<Shop></Shop>}></Route>
-                    <Route path="/stepher" element={<StepProgress></StepProgress>}></Route>
                     <Route path="/singleproduct" element={<SingleProduct></SingleProduct>}></Route>
                     <Route path="/login" element={<Login />} />
                     <Route path="/signup" element={<SignUp />} />
@@ -76,6 +75,7 @@ const Index = () => {
                     </Route>
                     <Route path="/singleViewRequest" element={<SingleRequestView />} />
                     <Route path="/admin-analytics" element={<AdminAnalytics />}></Route>
+                    <Route path="/stepper" element={<Container />} />
                     <Route path="*" element={<NotFound />}></Route>
                 </Routes>
             </BrowserRouter>
