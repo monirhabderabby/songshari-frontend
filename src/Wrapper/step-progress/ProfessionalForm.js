@@ -37,16 +37,12 @@ const ProfessionalForm = () => {
     };
 
     const onSubmit = async data => {
-      
         console.log(data);
         professionaldetails(data);
         alert('Data Posted Successfully');
        setStep(true);
        navigate('/educationaldetailsform')
     };
-
-
-
 
     return (
         <div>
@@ -212,7 +208,7 @@ const ProfessionalForm = () => {
                                     <div className="col-span-2">{customError && <Error message={customError} />}</div>
                                     <input
                                         type="submit"
-                                        value={loading || isLoading ? "Loading..." : "LOGIN"}
+                                        value={loading || isLoading ? "Loading..." : "Next"}
                                         className=" mt-4"
                                     />
                                 </form>

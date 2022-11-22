@@ -37,6 +37,7 @@ import ProfessionaForm from "../Wrapper/step-progress/ProfessionalForm";
 import EducationalForm from "../Wrapper/step-progress/EducationalForm";
 import PhysicalForm from "../Wrapper/step-progress/PhysicalForm";
 import OtherForm from "../Wrapper/step-progress/OtherForm";
+import { LawyerActivity } from "../components/pages/lawyeractivity/LawyerActivity";
 const Index = () => {
   return (
     <div>
@@ -75,6 +76,7 @@ const Index = () => {
           />
           <Route path="/contact" element={<Contact />}></Route>
           <Route path="/personaldetailsform" element={<PersonalForm></PersonalForm>}></Route>
+          <Route path="/lawyeractivity" element={<LawyerActivity></LawyerActivity>}></Route>
           <Route path="/professionaldetailsform" element={<ProfessionaForm></ProfessionaForm>}></Route>
           <Route path="/educationaldetailsform" element={<EducationalForm></EducationalForm>}></Route>
           <Route path="/physicaldetailsform" element={<PhysicalForm></PhysicalForm>}></Route>
