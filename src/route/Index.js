@@ -10,8 +10,8 @@ import RegAsProfessional from "../components/pages/Authentications/RegAsProfessi
 import SignUp from "../components/pages/Authentications/SignUp";
 import Contact from "../components/pages/Contact/Contact";
 import { DynamicProfilePage } from "../components/pages/DynamicProfilePage/DynamicProfilePage";
-import LawyerProfilePage from "../components/pages/lawyerProfile/LawyerProfilePage";
-import LawyerServiceDetails from "../components/pages/LawyerServiceDetails/LawyerServiceDetails";
+import LawyerReview from "../components/pages/lawyerPage/lawyerReview/LawyerReview";
+import LawyerServiceDetails from "../components/pages/lawyerPage/LawyerServiceDetails/LawyerServiceDetails";
 import { Members } from "../components/pages/Members/Members";
 import NotFound from "../components/pages/notfound/NotFound";
 import { SingleRequestView } from "../components/pages/SingleRequestView/SingleRequestView";
@@ -25,6 +25,7 @@ import Agent from "../Wrapper/Agent/Agent";
 import Community from "../Wrapper/Community/Community";
 import Course from "../Wrapper/Course/Course";
 import FindAlawyer from "../Wrapper/Findalawyer/FindAlawyer";
+import LawyerProfilePage from "../components/pages/lawyerPage/lawyerProfile/LawyerProfilePage";
 import FindPartner from "../Wrapper/Findpartner/FindPartner";
 import Homepage from "../Wrapper/Home/Homepage";
 import Kazi from "../Wrapper/Kazi/Kazi";
@@ -52,10 +53,8 @@ const Index = () => {
             path="/findalawyer"
             element={<FindAlawyer></FindAlawyer>}
           ></Route>
-          <Route
-            path="/lawyer-profilePage "
-            element={<LawyerProfilePage />}
-          ></Route>
+          <Route path="/lawyer-profile" element={<LawyerProfilePage />}></Route>
+          <Route path="/lawyer-review" element={<LawyerReview />}></Route>
           <Route
             path="/lawyer-service-detail"
             element={<LawyerServiceDetails />}

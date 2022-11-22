@@ -1,5 +1,5 @@
 import React from "react";
-import LawyerProfileCSS from "../../../assets/css/LawyerProfile.module.css";
+import LawyerProfileCSS from "../../../../assets/css/LawyerProfile.module.css";
 
 const LawyerUserProfile = () => {
   return (
