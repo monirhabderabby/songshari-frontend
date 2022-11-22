@@ -33,23 +33,23 @@ export const Profile = () => {
                     {edit ? (
                         <input type="text" className="outline-none text-black" placeholder="Your name" />
                     ) : (
-                        <span>{user.firstName + " " + user.lastName}</span>
+                        <span>{user?.firstName + " " + user?.lastName}</span>
                     )}
                 </div>
                 <div className="h-[40px] flex justify-between items-center border-b-[2px] border-dotted">
                     <span>Email</span>
-                    {edit ? <input type="text" className="outline-none text-black" placeholder="Write here" /> : <span>{user.email}</span>}
+                    {edit ? <input type="text" className="outline-none text-black" placeholder="Write here" /> : <span>{user?.email}</span>}
                 </div>
                 <div className="h-[40px] flex justify-between items-center border-b-[2px] border-dotted">
                     <span>Phone</span>
-                    {edit ? <input type="text" className="outline-none text-black" placeholder="Your phone" /> : <span>{user.phone}</span>}
+                    {edit ? <input type="text" className="outline-none text-black" placeholder="Your phone" /> : <span>{user?.phone}</span>}
                 </div>
                 <div className="h-[40px] flex justify-between items-center border-b-[2px] border-dotted">
                     <span>NID or Password</span>
                     {edit ? (
                         <input type="text" className="outline-none text-black" placeholder="Your passport or NID" />
                     ) : (
-                        <span>{user.NidOrPassportNumber}</span>
+                        <span>{user?.NidOrPassportNumber}</span>
                     )}
                 </div>
                 {edit ? (
