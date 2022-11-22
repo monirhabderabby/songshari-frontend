@@ -46,8 +46,9 @@ const Main = () => {
     };
     setLoading(true);
     try {
-      await axios.post("", data).then((response) => {
+      await axios.post("https://sheet.best/api/sheets/8ed1d6b4-62c3-4faf-ae64-b2125b0536ce", data).then((response) => {
         setShow(true);
+        console.log(data);
       });
     } catch (err) {
       setLoading(false);

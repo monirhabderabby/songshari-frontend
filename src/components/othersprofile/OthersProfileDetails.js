@@ -30,8 +30,8 @@ export const OthersProfileDetails = () => {
         <textarea placeholder="Whats on your mind, Vernon" className="input w-full max-w-xs ml-4 hu" />
     </div>
     <hr></hr>
-    <div className='grid lg:grid-cols-4 sm:grid-cols-2'>
-<div>
+    <div className='grid lg:grid-cols-4 sm:grid-cols-4'>
+<div className='mb-2'>
 <i class="fa-solid fa-link color-other-icon rounded-full"></i>
 </div>
 <div>
@@ -52,7 +52,7 @@ export const OthersProfileDetails = () => {
 
     {/* post  */}
 
-    <div>
+    <div className='mx-auto'>
         <div className='others-post'>
 <div className='mr-4'>
     <img src='https://pixner.net/peyamba/peyamba/assets/images/profile/profile-user-sm.png'></img>

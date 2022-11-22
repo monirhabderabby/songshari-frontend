@@ -27,10 +27,10 @@ export const OthersNav = () => {
   </div>
   <div className="navbar-center hidden lg:flex">
     <ul className="menu menu-horizontal p-0 text-white">
-      <li className='text-white'><a>Activity</a></li>
+      <li className='text-white'><a>Service</a></li>
      
       <li><a>Profile</a></li>
-      <li><a>Friends <span className="badge badge-sm indicator-item hh">04</span></a></li>
+      <li><a>Connections <span className="badge badge-sm indicator-item hh">04</span></a></li>
       <li><a>Groups <span className="badge badge-sm indicator-item hh">14</span></a></li>
       <li><a>Media <span className="badge badge-sm indicator-item hh">47</span></a></li>
     </ul>

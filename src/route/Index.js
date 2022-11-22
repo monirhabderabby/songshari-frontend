@@ -30,7 +30,13 @@ import Shop from "../Wrapper/Shop/Shop";
 import SingleProduct from "../Wrapper/SingleProduct/SingleProduct";
 import SingleProfile from "../Wrapper/SingleProfilesUser/SingleProfile";
 import { StepProgress } from "../Wrapper/step-progress/StepProgress";
-
+import Main from '../Wrapper/step-progress/Main'
+import { StepperHeader } from "../Wrapper/step-progress/StepperHeader";
+import PersonalForm from "../Wrapper/step-progress/PersonalForm";
+import ProfessionaForm from "../Wrapper/step-progress/ProfessionalForm";
+import EducationalForm from "../Wrapper/step-progress/EducationalForm";
+import PhysicalForm from "../Wrapper/step-progress/PhysicalForm";
+import OtherForm from "../Wrapper/step-progress/OtherForm";
 const Index = () => {
   return (
     <div>
@@ -54,7 +60,7 @@ const Index = () => {
           <Route path="/shop" element={<Shop></Shop>}></Route>
           <Route
             path="/stepher"
-            element={<StepProgress></StepProgress>}
+            element={<StepperHeader></StepperHeader>}
           ></Route>
           <Route
             path="/singleproduct"
@@ -68,6 +74,11 @@ const Index = () => {
             element={<LoginAsProfessional />}
           />
           <Route path="/contact" element={<Contact />}></Route>
+          <Route path="/personaldetailsform" element={<PersonalForm></PersonalForm>}></Route>
+          <Route path="/professionaldetailsform" element={<ProfessionaForm></ProfessionaForm>}></Route>
+          <Route path="/educationaldetailsform" element={<EducationalForm></EducationalForm>}></Route>
+          <Route path="/physicaldetailsform" element={<PhysicalForm></PhysicalForm>}></Route>
+          <Route path="/otherdetailsform" element={<OtherForm></OtherForm>}></Route>
           <Route path="/members" element={<Members />}></Route>
           <Route path="/find-partner" element={<FindPartner />}>
             <Route path="/find-partner" element={<Suggested />} />
