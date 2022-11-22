@@ -1,17 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Carousel from "react-grid-carousel";
 import LeftArrowButton from "../../SingleProfilesUser/chatboard/LeftArrowButton";
 import RightArrowButton from "../../SingleProfilesUser/chatboard/RightArrowButton";
 
 const DynamicChatGallary = () => {
-    const [chats, setChats] = useState([]);
-    useEffect(() => {
-        fetch("json/userImage.json")
-            .then(res => res.json())
-            .then(data => {
-                setChats(data);
-            });
-    }, []);
+    const chats = [1, 2, 3, 4, 5, 6];
     return (
         <div className="my-6 px-2 md:px-0 w-72 md:w-full">
             <div className="">
@@ -28,7 +21,7 @@ const DynamicChatGallary = () => {
                 >
                     {chats.map((city, i) => (
                         <Carousel.Item key={i}>
-                            <img className="rounded-lg" src={city.img} alt="" />
+                            <img className="rounded-lg" src="https://www.w3schools.com/howto/img_avatar.png" alt="" />
                         </Carousel.Item>
                     ))}
                 </Carousel>
