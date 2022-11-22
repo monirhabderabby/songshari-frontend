@@ -48,7 +48,12 @@ const Suggested = () => {
                                 className=" cursor-pointer border-gray-300 Suggested-card rounded-[10px] border relative left-0 top-0 overflow-hidden"
                             >
                                 <div>
-                                    <img style={{ borderRadius: " 10px 10px 0px 0px" }} src={profile.profilePhoto} alt="" />
+                                    <img
+                                        style={{ borderRadius: " 10px 10px 0px 0px" }}
+                                        src={profile.profilePhoto}
+                                        className="h-[374px] w-[380px]"
+                                        alt="profile"
+                                    />
                                 </div>
                                 <div className="p-[30px] text-left">
                                     <h3 className="text-[30px] text-[#000]">
