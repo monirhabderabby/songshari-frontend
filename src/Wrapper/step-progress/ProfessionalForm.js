@@ -11,7 +11,7 @@ import logo from "../../assets/images/Logo/logoBlack.png";
 import { auth } from "../../firebase.init";
 import Error from "../../../src/components/ui/error/Error";
 import ForgetPasswordModal from "../../components/pages/Authentications/ForgetPassword/ForgetPasswordModal";
-import { useLoginAsMemberMutation } from "../../Redux/features/userInfo/userApi";
+import { useLoginAsMemberMutation, useSetProfessionalDetailsMutation } from "../../Redux/features/userInfo/userApi";
 import { loadUserData } from "../../Redux/features/userInfo/userInfo";
 
 const ProfessionalForm = () => {
@@ -19,7 +19,7 @@ const ProfessionalForm = () => {
     const [step,setStep] = useState(false);
     const [open, setOpen] = useState(false);
     const [signInWithEmailAndPassword, user, loading, error] = useSignInWithEmailAndPassword(auth);
-    const [loginAsMember, { data: response, isLoading }] = useLoginAsMemberMutation();
+    const [professionaldetails, { data: response, isLoading }] = useSetProfessionalDetailsMutation();
     const dispatch = useDispatch();
     const navigate = useNavigate();
     let location = useLocation();
@@ -39,6 +39,7 @@ const ProfessionalForm = () => {
     const onSubmit = async data => {
       
         console.log(data);
+        professionaldetails(data);
         alert('Data Posted Successfully');
        setStep(true);
        navigate('/educationaldetailsform')
