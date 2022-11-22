@@ -1,5 +1,7 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import LawyerServiceForm from "../components/Lawyer-Seam/LawyerServiceForm/LawyerServiceForm";
+import OthersProfile from "../components/othersprofile/OthersProfile";
 import AdminAnalytics from "../components/pages/AdminAnalytics/AdminAnalytics";
 
 // components import
@@ -8,6 +10,7 @@ import LoginAsProfessional from "../components/pages/Authentications/LoginAsProf
 import RegAsProfessional from "../components/pages/Authentications/RegAsProfessional";
 import SignUp from "../components/pages/Authentications/SignUp";
 import Contact from "../components/pages/Contact/Contact";
+import { DynamicProfilePage } from "../components/pages/DynamicProfilePage/DynamicProfilePage";
 import { Members } from "../components/pages/Members/Members";
 import NotFound from "../components/pages/notfound/NotFound";
 import { SingleRequestView } from "../components/pages/SingleRequestView/SingleRequestView";
@@ -46,19 +49,14 @@ const Index = () => {
           <Route path="/about" element={<About></About>}></Route>
           <Route path="/userprofile" element={<SingleProfile />}></Route>
           <Route path="/membership" element={<MemberShip></MemberShip>}></Route>
-          <Route
-            path="/profileinfo"
-            element={<ProfileInfo></ProfileInfo>}
-          ></Route>
+          <Route path="/profileinfo" element={<ProfileInfo></ProfileInfo>}></Route>
           <Route path="/course" element={<Course></Course>}></Route>
-          <Route
-            path="/findalawyer"
-            element={<FindAlawyer></FindAlawyer>}
-          ></Route>
+          <Route path="/findalawyer" element={<FindAlawyer></FindAlawyer>}></Route>
           <Route path="/kazi" element={<Kazi></Kazi>}></Route>
           <Route path="/agent" element={<Agent></Agent>}></Route>
           <Route path="/community" element={<Community></Community>}></Route>
           <Route path="/shop" element={<Shop></Shop>}></Route>
+<<<<<<< HEAD
           <Route
             path="/stepher"
             element={<StepperHeader></StepperHeader>}
@@ -67,13 +65,14 @@ const Index = () => {
             path="/singleproduct"
             element={<SingleProduct></SingleProduct>}
           ></Route>
+=======
+          <Route path="/stepher" element={<StepProgress></StepProgress>}></Route>
+          <Route path="/singleproduct" element={<SingleProduct></SingleProduct>}></Route>
+>>>>>>> ad6f022aaa5909784bfe8e7c70adc87c733ecdd0
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/regAsProfessional" element={<RegAsProfessional />} />
-          <Route
-            path="/loginAsProfessional"
-            element={<LoginAsProfessional />}
-          />
+          <Route path="/loginAsProfessional" element={<LoginAsProfessional />} />
           <Route path="/contact" element={<Contact />}></Route>
           <Route path="/personaldetailsform" element={<PersonalForm></PersonalForm>}></Route>
           <Route path="/lawyeractivity" element={<LawyerActivity></LawyerActivity>}></Route>
@@ -82,6 +81,7 @@ const Index = () => {
           <Route path="/physicaldetailsform" element={<PhysicalForm></PhysicalForm>}></Route>
           <Route path="/otherdetailsform" element={<OtherForm></OtherForm>}></Route>
           <Route path="/members" element={<Members />}></Route>
+          <Route path="/profile/:id" element={<DynamicProfilePage />}></Route>
           <Route path="/find-partner" element={<FindPartner />}>
             <Route path="/find-partner" element={<Suggested />} />
             <Route path="top" element={<TopBride />} />
@@ -91,18 +91,13 @@ const Index = () => {
             <Route path="/" element={<Suggested />} />
             <Route path="/top-gride" element={<TopBride />} />
             <Route path="/top-groom" element={<TopGroom />} />
-
-            <Route
-              path="/top-profession/kazi"
-              element={<TopProfessionKazi />}
-            />
-            <Route
-              path="/top-profession/agent"
-              element={<TopProfessionAgent />}
-            />
+            <Route path="/top-profession/kazi" element={<TopProfessionKazi />} />
+            <Route path="/top-profession/agent" element={<TopProfessionAgent />} />
           </Route>
           <Route path="/singleViewRequest" element={<SingleRequestView />} />
           <Route path="/admin-analytics" element={<AdminAnalytics />}></Route>
+          <Route path="/profile" element={<OthersProfile />} />
+          <Route path="/lawyerServiceForm" element={<LawyerServiceForm />} ></Route>
           <Route path="*" element={<NotFound />}></Route>
         </Routes>
       </BrowserRouter>
