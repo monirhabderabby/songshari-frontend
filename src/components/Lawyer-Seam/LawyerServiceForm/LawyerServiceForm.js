@@ -1,8 +1,16 @@
 import React from 'react';
+import { useCallback } from 'react';
+import { useDropzone } from 'react-dropzone';
 import { useForm } from 'react-hook-form';
 import CustomHeader from '../../shared/CustomHeader/CustomHeader';
 
 const LawyerServiceForm = () => {
+
+    const onDrop = useCallback(acceptedFiles => {
+        // Do something with the files
+        console.log(acceptedFiles);
+    }, []);
+    const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
     const { register, handleSubmit } = useForm();
     const onSubmit = data => console.log(data);
@@ -130,12 +138,35 @@ const LawyerServiceForm = () => {
                         {...register("tags")}
                         id=""
                     />
-                    <label htmlFor="tags" className='text-xs font-bold leading-5 text-[#98999C] ml-1 block'>
+                    <label htmlFor="tags" className='text-xs leading-[18px] text-[#98999C] ml-1 mt-1 block'>
                         Can't find a skill? Contact Us to add it.
                     </label>
                 </div>
 
-                <div className='my-24' >Make it fun</div>
+                <div className='mt-8 mb-14' >
+                    <label
+                        htmlFor="fileUpload"
+                        className='text-xs font-bold leading-5 text-[#707276] ml-1 block uppercase'>
+                        MAKE IT FUN: UPLOAD PHOTOS, VIDEOS!
+                    </label>
+                    <div
+                        {...getRootProps()}
+                        className="border border-[#98999C] h-[174px] bg-[#F5F7FA] flex items-center justify-center p-2 rounded-md col-span-2"
+                        style={{ boxShadow: "0px 1.24992px 2.5px rgba(93, 94, 97, 0.25)" }}
+                    >
+                        <input name='fileUpload' {...getInputProps()} />
+                        {isDragActive ? (
+                            <p>Drop the files here ...</p>
+                        ) : (
+                            <p className="text-[#707276] text-sm leading-4 text-center">
+                                Drop files here <br /> or Browse to add attachment
+                            </p>
+                        )}
+                    </div>
+                    <label htmlFor="fileUpload" className='text-xs leading-[18px] text-[#98999C] ml-1 mt-1 block'>
+                        Offer images are displayed at a 3:2 ratio, we advise using 1200x800px. Learn More!
+                    </label>
+                </div>
 
                 <div className='mb-8'>
                     <label htmlFor="serviceDetails" className='text-xs font-bold leading-5 text-[#707276] ml-1 block uppercase'>
