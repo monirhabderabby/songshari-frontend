@@ -123,3 +123,16 @@
 .pBMetaTwo .right i:before {
   content: "\f385";
 }
+.details::before {
+  content: "";
+  position: absolute;
+  height: 12px;
+  width: 12px;
+
+  right: -5px;
+  top: 0px;
+
+  background: #ffffff;
+  border: 2px solid #ff7300;
+  border-radius: 6px;
+}
