@@ -52,7 +52,7 @@ export const CompletedCase = () => {
         <Card sx={{ maxWidth: 345, backgroundColor:'#40268B', color:'white' }}>
       <CardContent className='grid lg:grid-cols-2'>
         <div>
-            <img src='https://i.ibb.co/JsdsT72/Rectangle-714.png'></img>
+            <img src='https://i.ibb.co/KmhRxrm/Rectangle-714-3.png'></img>
         </div>
         <div>
         <Typography variant="body2" sx={{fontSize:14, color:'white'}} color="text.secondary">
@@ -72,7 +72,7 @@ export const CompletedCase = () => {
         <Card sx={{ maxWidth: 345, backgroundColor:'#40268B', color:'white' }}>
       <CardContent className='grid lg:grid-cols-2'>
         <div>
-            <img src='https://i.ibb.co/JsdsT72/Rectangle-714.png'></img>
+            <img src='https://i.ibb.co/tZS2Ldc/Rectangle-714-5.png'></img>
         </div>
         <div>
         <Typography variant="body2" sx={{fontSize:14, color:'white'}} color="text.secondary">
@@ -90,7 +90,7 @@ export const CompletedCase = () => {
         <Card sx={{ maxWidth: 345, backgroundColor:'#40268B', color:'white' }}>
       <CardContent className='grid lg:grid-cols-2'>
         <div>
-            <img src='https://i.ibb.co/JsdsT72/Rectangle-714.png'></img>
+            <img src='https://i.ibb.co/yRPNCbh/Rectangle-714-4.png'></img>
         </div>
         <div>
         <Typography variant="body2" sx={{fontSize:14, color:'white'}} color="text.secondary">
@@ -108,7 +108,7 @@ export const CompletedCase = () => {
         <Card sx={{ maxWidth: 345, backgroundColor:'#40268B', color:'white' }}>
       <CardContent className='grid lg:grid-cols-2'>
         <div>
-            <img src='https://i.ibb.co/JsdsT72/Rectangle-714.png'></img>
+            <img src='https://i.ibb.co/jMSTWdQ/Rectangle-714-2.png'></img>
         </div>
         <div>
         <Typography variant="body2" sx={{fontSize:14, color:'white'}} color="text.secondary">
