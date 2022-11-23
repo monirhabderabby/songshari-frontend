@@ -1,6 +1,6 @@
 import React from "react";
-import CustomHeader from "../../shared/CustomHeader/CustomHeader";
-import Footer from "../../shared/Footer/Footer";
+import CustomHeader from "../../../shared/CustomHeader/CustomHeader";
+import Footer from "../../../shared/Footer/Footer";
 import LawyerServiceDetailsBox from "./LawyerServiceDetailsBox";
 import LawyerServiceDetailsContent from "./LawyerServiceDetailsContent";
 import LawyerServiceDetailsHeader from "./LawyerServiceDetailsHeader";
@@ -13,10 +13,10 @@ const LawyerServiceDetails = () => {
       <div className="py-10 custom-container">
         <LawyerServiceDetailsHeader />
         {/* Lawyer Service Details */}
-        <h1 className="text-left text-[42px] mt-[70px] font-bold text-[#32353B]">
+        <h1 className="text-center lg:text-left text-[42px] mt-[70px] font-bold text-[#32353B]">
           Lawyer Service name here
         </h1>
-        <div className="grid grid-cols-3 gap-10 pt-[20px] justify-between">
+        <div className="grid lg:grid-cols-3 gap-10 pt-[20px] justify-center lg:justify-between">
           <div className="col-span-2">
             <LawyerServiceDetailsContent />
 

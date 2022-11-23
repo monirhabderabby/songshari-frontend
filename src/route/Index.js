@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import LawyerServiceForm from "../components/Lawyer-Seam/LawyerServiceForm/LawyerServiceForm";
+import LawyerServicesPage from "../components/Lawyer-Seam/LawyerUserProfile/LawyerServicesPage";
 import OthersProfile from "../components/othersprofile/OthersProfile";
 import AdminAnalytics from "../components/pages/AdminAnalytics/AdminAnalytics";
 
@@ -11,6 +12,8 @@ import RegAsProfessional from "../components/pages/Authentications/RegAsProfessi
 import SignUp from "../components/pages/Authentications/SignUp";
 import Contact from "../components/pages/Contact/Contact";
 import { DynamicProfilePage } from "../components/pages/DynamicProfilePage/DynamicProfilePage";
+import LawyerReview from "../components/pages/lawyerPage/lawyerReview/LawyerReview";
+import LawyerServiceDetails from "../components/pages/lawyerPage/LawyerServiceDetails/LawyerServiceDetails";
 import { Members } from "../components/pages/Members/Members";
 import NotFound from "../components/pages/notfound/NotFound";
 import { SingleRequestView } from "../components/pages/SingleRequestView/SingleRequestView";
@@ -24,6 +27,7 @@ import Agent from "../Wrapper/Agent/Agent";
 import Community from "../Wrapper/Community/Community";
 import Course from "../Wrapper/Course/Course";
 import FindAlawyer from "../Wrapper/Findalawyer/FindAlawyer";
+import LawyerProfilePage from "../components/pages/lawyerPage/lawyerProfile/LawyerProfilePage";
 import FindPartner from "../Wrapper/Findpartner/FindPartner";
 import Homepage from "../Wrapper/Home/Homepage";
 import Kazi from "../Wrapper/Kazi/Kazi";
@@ -32,6 +36,7 @@ import ProfileInfo from "../Wrapper/Profileinfo/ProfileInfo";
 import Shop from "../Wrapper/Shop/Shop";
 import SingleProduct from "../Wrapper/SingleProduct/SingleProduct";
 import SingleProfile from "../Wrapper/SingleProfilesUser/SingleProfile";
+<<<<<<< HEAD
 import { StepProgress } from "../Wrapper/step-progress/StepProgress";
 import Main from '../Wrapper/step-progress/Main'
 import { StepperHeader } from "../Wrapper/step-progress/StepperHeader";
@@ -41,6 +46,10 @@ import EducationalForm from "../Wrapper/step-progress/EducationalForm";
 import PhysicalForm from "../Wrapper/step-progress/PhysicalForm";
 import OtherForm from "../Wrapper/step-progress/OtherForm";
 import { LawyerActivity } from "../components/pages/lawyeractivity/LawyerActivity";
+=======
+import { Container } from "../Wrapper/Stepper/Container";
+
+>>>>>>> dbb014f87b5a84746172cc859729c7630c994ccb
 const Index = () => {
   return (
     <div>
@@ -49,17 +58,36 @@ const Index = () => {
           <Route path="/about" element={<About></About>}></Route>
           <Route path="/userprofile" element={<SingleProfile />}></Route>
           <Route path="/membership" element={<MemberShip></MemberShip>}></Route>
-          <Route path="/profileinfo" element={<ProfileInfo></ProfileInfo>}></Route>
+          <Route
+            path="/profileinfo"
+            element={<ProfileInfo></ProfileInfo>}
+          ></Route>
           <Route path="/course" element={<Course></Course>}></Route>
-          <Route path="/findalawyer" element={<FindAlawyer></FindAlawyer>}></Route>
+          <Route
+            path="/findalawyer"
+            element={<FindAlawyer></FindAlawyer>}
+          ></Route>
+          <Route path="/lawyer-profile" element={<LawyerProfilePage />}></Route>
+          <Route path="/lawyer-review" element={<LawyerReview />}></Route>
+          <Route
+            path="/lawyer-service-detail"
+            element={<LawyerServiceDetails />}
+          ></Route>
           <Route path="/kazi" element={<Kazi></Kazi>}></Route>
           <Route path="/agent" element={<Agent></Agent>}></Route>
           <Route path="/community" element={<Community></Community>}></Route>
           <Route path="/shop" element={<Shop></Shop>}></Route>
+<<<<<<< HEAD
           <Route
             path="/stepher"
             element={<StepperHeader></StepperHeader>}
           ></Route>
+=======
+          {/* <Route
+            path="/stepher"
+            element={<StepProgress></StepProgress>}
+          ></Route> */}
+>>>>>>> dbb014f87b5a84746172cc859729c7630c994ccb
           <Route
             path="/singleproduct"
             element={<SingleProduct></SingleProduct>}
@@ -67,7 +95,10 @@ const Index = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/regAsProfessional" element={<RegAsProfessional />} />
-          <Route path="/loginAsProfessional" element={<LoginAsProfessional />} />
+          <Route
+            path="/loginAsProfessional"
+            element={<LoginAsProfessional />}
+          />
           <Route path="/contact" element={<Contact />}></Route>
           <Route path="/personaldetailsform" element={<PersonalForm></PersonalForm>}></Route>
           <Route path="/lawyeractivity" element={<LawyerActivity></LawyerActivity>}></Route>
@@ -86,13 +117,18 @@ const Index = () => {
             <Route path="/" element={<Suggested />} />
             <Route path="/top-gride" element={<TopBride />} />
             <Route path="/top-groom" element={<TopGroom />} />
-            <Route path="/top-profession/kazi" element={<TopProfessionKazi />} />
-            <Route path="/top-profession/agent" element={<TopProfessionAgent />} />
+            <Route
+              path="/top-profession/kazi"
+              element={<TopProfessionKazi />}
+            />
+            <Route
+              path="/top-profession/agent"
+              element={<TopProfessionAgent />}
+            />
           </Route>
           <Route path="/singleViewRequest" element={<SingleRequestView />} />
           <Route path="/admin-analytics" element={<AdminAnalytics />}></Route>
-          <Route path="/profile" element={<OthersProfile />} />
-          <Route path="/lawyerServiceForm" element={<LawyerServiceForm />} ></Route>
+          {/* <Route path="/profile" element={<OthersProfile />} /> */}
           <Route path="*" element={<NotFound />}></Route>
         </Routes>
       </BrowserRouter>
