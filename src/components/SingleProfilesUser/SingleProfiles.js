@@ -1,5 +1,5 @@
 import React from "react";
-import { CustomHeader } from "../shared/CustomHeader/CustomHeader";
+import { CustomHeader } from "../../components/Shared/CustomHeader/CustomHeader";
 import ChartBoard from "./chatboard/ChartBoard";
 import PhotoGelary from "./PhotoGelary";
 import ProfileCard from "./ProfileCard";

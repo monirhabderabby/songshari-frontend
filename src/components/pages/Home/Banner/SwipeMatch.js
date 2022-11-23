@@ -1,11 +1,20 @@
-import React from "react";
+import React, { useEffect, useState } from 'react';
 import { FaBolt, FaHeart, FaStar, FaTimes, FaUndo } from "react-icons/fa";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import { Navigation } from "swiper";
 import dummyData from "./TopProfile/dummyData";
 
+
 const SwipeMatch = () => {
+
+  const [swipematch,setSwipeMatch] = useState([])
+    useEffect(()=>{
+        fetch(' https://shanshari-temp.vercel.app/withoutLogin/recentMembers')
+        .then(res => res.json())
+        .then(data => setSwipeMatch(data))
+    },[])
+
   return (
     <div
       className="w-11/12 md:w-1/3 lg:w-[350px] xl:w-1/4 mx-auto absolute md:static top-12 left-[4%] h-fit lg:h-[320px] 2xl:h-[70vh]"
@@ -30,13 +39,13 @@ const SwipeMatch = () => {
         modules={[Navigation]}
         className="mySwiper text-center"
       >
-        {dummyData.map((data) => (
+        {swipematch.map((data) => (
           <SwiperSlide key={data.id} className="relative">
-            <img className="w-full rounded-b-xl" src={data.img} alt="" />
+            <img className="w-full rounded-b-xl" src={data.profilePhoto} alt="" />
             <div className="absolute bottom-4 left-8 text-white w-4/5">
               <div className="text-left pl-6">
-                <p className="mb-2">
-                  {data.name} {data.age}
+                <p className="mb-2 text-black font-bold text-2xl text-center mt-20">
+                  {data.firstName} {data.lastName}
                 </p>
                 <p className="flex gap-1">
                   <FaStar className="font-bold text-sm text-green-900"></FaStar>
