@@ -10,7 +10,7 @@ const ProfileCard = () => {
             <div className="card_container shadow-4xl px-2 md:px-0">
                 <div className="Card-header"></div>
                 <div className="relative w-52 h-52 rounded-full">
-                    <div className="bottom-20 left-20 lg:left-20 md:left-16 absolute">
+                    <div className="bottom-20 left-20 lg:left-[67px] md:left-16 absolute">
                         <div className="relative card-img w-48 h-48">
                             <img
                                 className="w-44 h-44 rounded-full img-fluid"
@@ -68,7 +68,12 @@ const ProfileCard = () => {
                         </div>
                     </div> */}
                     <div>
-                        <button className="special_profile_button">Send me Money</button>
+                        {
+                            user ?
+                                <button className="special_profile_button">Upgrade Membership</button>
+                                :
+                                <button className="special_profile_button">Send Connection Request</button>
+                        }
                     </div>
                 </div>
             </div>
