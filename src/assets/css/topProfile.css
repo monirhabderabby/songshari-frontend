@@ -27,22 +27,27 @@
   box-shadow: none !important;
   color: #fff;
 }
+.find-partner-button .active {
+  background: linear-gradient(155deg, #e41242 0%, #4844a5 100%);
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+  color: #fff;
+}
 
 .Suggested-card:hover .Suggested-info__cardUp {
   top: 50px;
 }
 
 .Suggested-info__cardUp {
-    background-image: url("../images/TopProfile/Vector-1.9404edcdbad9fde28712.png");
-    background-position: top;
-    background-repeat: no-repeat;
-    background-size: cover;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    transition: 0.5s ease-in-out;
+  background-image: url("../images/TopProfile/Vector-1.9404edcdbad9fde28712.png");
+  background-position: top;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: 0.5s ease-in-out;
 }
 
 .Suggested-info__cardImg {
