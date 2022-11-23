@@ -1,161 +1,315 @@
-import React from "react";
-import partnerCSS from "../../../assets/css/FindPartner.module.css";
+import React, { useState } from "react";
+import FindPartner from "../../../assets/css/FindPartner.module.css";
 
 const KaziFindBox = () => {
+  const [remuneration, setRemuneration] = useState(true);
+  const [location, setLocation] = useState(true);
+  const [category, setCategory] = useState(true);
+  const [qualifications, setQualifications] = useState(true);
   return (
     <>
       <div
         id="join-now-box2"
-        className="bg-[#fff] rounded-[10px] pb-[15px]"
+        className={`bg-[#fff]  ${FindPartner.partnerFilterBox} w-[400px] lg:w-full mx-auto rounded-[10px] px-[30px] py-[40px]`}
         style={{
           visibility: "visible",
-          boxShadow: "0 3px 10px 0 rgb(0 0 0 / 10%)",
+          boxShadow: " 2px 2px 10px rgba(0, 0, 0, 0.12)",
         }}
       >
-        <div
-          className="flex justify-center items-center py-[10px] px-[15px] border-b-[1px] border-b-[#0000001a] "
-          style={{
-            background: "linear-gradient(145deg,#511be7,#e41272)",
-            borderTopLeftRadius: "15px",
-            borderTopRightRadius: "15px",
-          }}
-        >
-          <div className="flex items-center p-[4px]">
-            <div className="flex items-center">
-              <input
-                className="bg-white border-[1px] py-1 border-[#0000001a] rounded-[50px] "
-                type="text"
-                name="location"
-              />
-            </div>
-            <p className={` text-white ml-2  ${partnerCSS.searchFind}`}>
-              Search
-            </p>
-          </div>
-        </div>
         {/* Category input  */}
-        <div className="flex flex-col border-b-[1px] border-b-[#0000001a] py-[10px] px-[15px]">
-          <p className={`mb-2 ${partnerCSS.searchFind}`}>Category</p>
-          <div
-            id="option2"
-            className={`flex items-start flex-col ${partnerCSS.option}`}
-          >
-            <div id="s-input2">
-              <input type="checkbox" name="gender2" id="Personal" />
-              <label for="Personal">Personal Injury Lawyer</label>
-            </div>
-            <div id="s-input2">
-              <input type="checkbox" name="gender2" id="Family" />
-              <label for="Family">Family Lawyer</label>
-            </div>
-            <div id="s-input2">
-              <input type="checkbox" name="gender2" id="Estate" />
-              <label for="Estate">Estate Planning Lawyer</label>
-            </div>
-            <div id="s-input2">
-              <input type="checkbox" name="gender2" id="Contract" />
-              <label for="Contract">Contract Lawyer</label>
+        <div className="flex ] flex-col border-b-[2px] border-b-[#BDCADB] py-[10px]">
+          <h2 className="text-[#000000] text-lg font-bold mb-[16px]">
+            Category
+          </h2>
+          <div className="flex pb-[10px] justify-between items-center">
+            <h4 className="text-[#000000] font-medium text-base">
+              Personal Injury Lawyer
+            </h4>
+            <div className=" relative">
+              <button onClick={() => setCategory(!category)}>
+                {" "}
+                <i className="fa-solid font-semibold fa-chevron-down"></i>
+              </button>
+
+              <div
+                className={`absolute top-[44px] border ${
+                  category ? "hidden" : "block"
+                } right-0 z-10 w-[260px] bg-white rounded divide-y divide-gray-100 shadow-lg dark:bg-gray-700 dark:divide-gray-600`}
+              >
+                <ul
+                  className="py-1 text-[#000000] font-medium text-base text-center dark:text-gray-200"
+                  aria-labelledby="dropdownDividerButton"
+                >
+                  <li>
+                    <a
+                      href="!#"
+                      className="block font-semibold py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                    >
+                      PERSONAL INJURY LAWYER
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="!#"
+                      className="block font-semibold py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                    >
+                      FAMILY LAWYER
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="!#"
+                      className="block font-semibold py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                    >
+                      ESTATE PLANNING LAWYER
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="!#"
+                      className="block font-semibold py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                    >
+                      CONTRACT LAWYER
+                    </a>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
         {/* location input  */}
-        <div className="flex flex-col border-b-[1px] border-b-[#0000001a] py-[10px] px-[15px]">
-          <p className={`mb-2 ${partnerCSS.searchFind}`}>Location</p>
-          <div className={`flex items-start flex-col ${partnerCSS.option}`}>
-            <div>
-              <input type="checkbox" name="gender2" id="Dhaka" />
-              <label for="Dhaka">Dhaka</label>
-            </div>
-            <div>
-              <input type="checkbox" name="gender2" id="Chittagong" />
-              <label for="Chittagong">Chittagong</label>
-            </div>
-            <div>
-              <input type="checkbox" name="gender2" id="Comilla" />
-              <label for="Comilla">Comilla</label>
-            </div>
-            <div>
-              <input type="checkbox" name="gender2" id="Rajshahi" />
-              <label for="Rajshahi">Rajshahi</label>
-            </div>
-          </div>
-        </div>
-        {/* Remuneration box */}
-        <div className="flex flex-col border-b-[1px] border-b-[#0000001a] py-[10px] px-[15px]">
-          <p className={`mb-2 ${partnerCSS.searchFind}`}>Remuneration</p>
-          <div className={`flex items-center  ${partnerCSS.option}`}>
-            <div className=" mr-2">
-              <select className={`${partnerCSS.selectBar}`}>
-                <option value="">30,000</option>
-                <option value="">40,000</option>
-                <option value="">50,000</option>
-              </select>
-            </div>
-            <div className="separator">-</div>
-            <div className=" ml-2">
-              <select className={`${partnerCSS.selectBar}`}>
-                <option value="">70,000</option>
-                <option value="">75,000</option>
-                <option value="">80,000</option>
-              </select>
-            </div>
-          </div>
-        </div>
-        {/* rating box  */}
-        <div className="flex flex-col border-b-[1px] border-b-[#0000001a] py-[10px] px-[15px]">
-          <p className={`mb-2 ${partnerCSS.searchFind}`}>Rating</p>
-          <div className={`flex items-start flex-col ${partnerCSS.option}`}>
-            <div id="s-input2" className="s-input">
-              <input type="checkbox" name="gender2" id="star5" />
-              <label for="star5">5 Star</label>
-            </div>
-            <div id="s-input2" className="s-input">
-              <input type="checkbox" name="gender2" id="star4" />
-              <label for="star4">4 Star</label>
-            </div>
-            <div id="s-input2" className="s-input">
-              <input type="checkbox" name="gender2" id="star3" />
-              <label for="star3">3 Star</label>
-            </div>
-            <div id="s-input2" className="s-input">
-              <input type="checkbox" name="gender2" id="star2" />
-              <label for="star2">2 Star</label>
-            </div>
-            <div id="s-input2" className="s-input">
-              <input type="checkbox" name="gender2" id="star1" />
-              <label for="star1">1 Star</label>
+        <div className="flex ] mt-[20px] flex-col border-b-[1px] border-b-[#BDCADB] py-[10px]">
+          <h2 className="text-[#000000] text-lg font-bold mb-[16px]">
+            location
+          </h2>
+          <div className="flex pb-[10px] justify-between items-center">
+            <h4 className="text-[#000000] font-medium text-base">Dhaka</h4>
+            <div className=" relative">
+              <button onClick={() => setLocation(!location)}>
+                {" "}
+                <i className="fa-solid font-semibold fa-chevron-down"></i>
+              </button>
+
+              <div
+                className={`absolute top-[44px] border ${
+                  location ? "hidden" : "block"
+                } right-0 z-10 w-[260px] bg-white rounded divide-y divide-gray-100 shadow-lg dark:bg-gray-700 dark:divide-gray-600`}
+              >
+                <ul
+                  className="py-1 text-[#000000] font-medium text-base text-center dark:text-gray-200"
+                  aria-labelledby="dropdownDividerButton"
+                >
+                  <li>
+                    <a
+                      href="!#"
+                      className="block font-semibold py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                    >
+                      Dhaka
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="!#"
+                      className="block font-semibold py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                    >
+                      Chittagong
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="!#"
+                      className="block font-semibold py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                    >
+                      Comilla
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="!#"
+                      className="block font-semibold py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                    >
+                      Rajshahi
+                    </a>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
-        {/* Qualifications box */}
-        <div className="flex flex-col border-b-[1px] border-b-[#0000001a] py-[10px] px-[15px]">
-          <p className={`mb-2 ${partnerCSS.searchFind}`}>Qualifications</p>
-          <div className={`flex items-start flex-col ${partnerCSS.option}`}>
-            <div id="s-input2" className="s-input">
-              <input type="checkbox" name="gender2" id="Bankruptcy" />
-              <label for="Bankruptcy">Bankruptcy Lawyer</label>
+        {/* Rating input  */}
+        <div className="flex ] mt-[20px] flex-col border-b-[1px] border-b-[#BDCADB] py-[10px]">
+          <h2 className="text-[#000000] text-lg font-bold mb-[16px]">Rating</h2>
+          <div className=" pb-[10px] ">
+            <div className="flex">
+              {" "}
+              <button
+                className="w-[70px] h-[40px] py-[8px] px-[10px] rounded-xl border border-[#BDCADB] text-sm text-[#FFFFFF] font-medium"
+                style={{
+                  background:
+                    " linear-gradient(180deg, #E41272 0%, #942DD9 100%)",
+                }}
+              >
+                1 Start
+              </button>
+              <button className="w-[70px] bg-[#FAFCFF] h-[40px] py-[8px] px-[10px] ml-[28px] rounded-xl border border-[#BDCADB] text-sm text-[#6E84AB] font-medium">
+                2 Start
+              </button>
             </div>
-            <div id="s-input2" className="s-input">
-              <input type="checkbox" name="gender2" id="Business" />
-              <label for="Business">Business Lawyer</label>
+            <div className="flex mt-[16px]">
+              {" "}
+              <button className="w-[70px] bg-[#FAFCFF] h-[40px] py-[8px] px-[10px]  rounded-xl border border-[#BDCADB] text-sm text-[#6E84AB] font-medium">
+                3 Start
+              </button>
+              <button className="w-[70px] bg-[#FAFCFF] h-[40px] py-[8px] px-[10px] ml-[28px] rounded-xl border border-[#BDCADB] text-sm text-[#6E84AB] font-medium">
+                4 Start
+              </button>
             </div>
-            <div id="s-input2" className="s-input">
-              <input type="checkbox" name="gender2" id="Constitutional" />
-              <label for="Constitutional">Constitutional Lawyer</label>
-            </div>
-            <div id="s-input2" className="s-input">
-              <input type="checkbox" name="gender2" id="Tax" />
-              <label for="Tax">Tax Lawyer</label>
+            <div className="flex mt-[16px]">
+              {" "}
+              <button className="w-[70px] bg-[#FAFCFF] h-[40px] py-[8px] px-[10px]  rounded-xl border border-[#BDCADB] text-sm text-[#6E84AB] font-medium">
+                5 Start
+              </button>
             </div>
           </div>
         </div>
-        <div className="px-[15px] py-[10px]">
-          <p className={`mb-2 w-full ${partnerCSS.searchFind}`}>
-            Total Case <span className="ml-1">(+25)</span>
-          </p>
+
+        {/*  Remuneration box  */}
+        <div className="flex ] mt-[20px] flex-col border-b-[1px] border-b-[#BDCADB] py-[10px]">
+          <h2 className="text-[#000000] text-lg font-bold mb-[16px]">
+            Remuneration
+          </h2>
+          <div className="flex pb-[10px] justify-between items-center">
+            <h4 className="text-[#000000] font-medium text-base">
+              30,000 - 40,000
+            </h4>
+            <div className=" relative">
+              <button onClick={() => setRemuneration(!remuneration)}>
+                {" "}
+                <i className="fa-solid font-semibold fa-chevron-down"></i>
+              </button>
+
+              <div
+                className={`absolute top-[44px] border ${
+                  remuneration ? "hidden" : "block"
+                } right-0 z-10 w-[260px] bg-white rounded divide-y divide-gray-100 shadow-lg dark:bg-gray-700 dark:divide-gray-600`}
+              >
+                <ul
+                  className="py-1 text-[#000000] font-medium text-base text-center dark:text-gray-200"
+                  aria-labelledby="dropdownDividerButton"
+                >
+                  <li>
+                    <a
+                      href="!#"
+                      className="block font-semibold py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                    >
+                      30,000
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="!#"
+                      className="block font-semibold py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                    >
+                      40,000
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="!#"
+                      className="block font-semibold py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                    >
+                      50,000
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
         </div>
-        <div className="text-center">
-          <button className={partnerCSS.partnerButton}>Submit</button>
+        {/*  Total Case */}
+        <div className="flex ] mt-[20px] flex-col border-b-[1px] border-b-[#BDCADB] py-[10px]">
+          <h2 className="text-[#000000] text-lg font-bold mb-[16px]">
+            Total Case
+          </h2>
+          <div className="flex pb-[10px] justify-between items-center">
+            <h4 className="text-[#000000] font-medium text-base">25+</h4>
+            <div>
+              <i className="fa-solid font-semibold fa-chevron-down"></i>
+            </div>
+          </div>
+        </div>
+        {/*  Qualifications*/}
+        <div className="flex ] mt-[20px] flex-col border-b-[1px] border-b-[#BDCADB] py-[10px]">
+          <h2 className="text-[#000000] text-lg font-bold mb-[16px]">
+            Qualifications
+          </h2>
+          <div className="flex pb-[10px] justify-between items-center">
+            <h4 className="text-[#000000] font-medium text-base">
+              Bankruptcy Lawyer
+            </h4>
+            <div className=" relative">
+              <button onClick={() => setQualifications(!qualifications)}>
+                {" "}
+                <i className="fa-solid font-semibold fa-chevron-down"></i>
+              </button>
+
+              <div
+                className={`absolute top-[44px] border ${
+                  qualifications ? "hidden" : "block"
+                } right-0 z-10 w-[260px] bg-white rounded divide-y divide-gray-100 shadow-lg dark:bg-gray-700 dark:divide-gray-600`}
+              >
+                <ul
+                  className="py-1 text-[#000000] font-medium text-base text-center dark:text-gray-200"
+                  aria-labelledby="dropdownDividerButton"
+                >
+                  <li>
+                    <a
+                      href="!#"
+                      className="block font-semibold py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                    >
+                      BANKRUPTCY LAWYER
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="!#"
+                      className="block font-semibold py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                    >
+                      BUSINESS LAWYER
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="!#"
+                      className="block font-semibold py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                    >
+                      CONSTITUTIONAL LAWYER
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="!#"
+                      className="block font-semibold py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                    >
+                      TAX LAWYER
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* submit button  */}
+        <div className="flex justify-center items-center ] mt-[30px] ">
+          <button
+            style={{
+              background: "linear-gradient(180deg, #E41272 0%, #942DD9 100%)",
+            }}
+            className="w-[179px] text-center py-[8] px-[10px] text-[#fff] h-[54px] text-2xl font-medium rounded-xl"
+          >
+            Submit
+          </button>
         </div>
       </div>
     </>

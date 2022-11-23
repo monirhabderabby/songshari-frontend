@@ -22,17 +22,16 @@
   padding: 10px;
 }
 
-.top-profile-button,
-.find-partner-button .active {
+.top-profile-button .active {
   background: linear-gradient(155deg, #e41242, #4844a5) !important;
   box-shadow: none !important;
   color: #fff;
 }
-/* . .active {
+.find-partner-button .active {
   background: linear-gradient(155deg, #e41242 0%, #4844a5 100%);
   box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
   color: #fff;
-} */
+}
 
 .Suggested-card:hover .Suggested-info__cardUp {
   top: 50px;

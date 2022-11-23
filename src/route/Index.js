@@ -38,6 +38,7 @@ import SingleProduct from "../Wrapper/SingleProduct/SingleProduct";
 import SingleProfile from "../Wrapper/SingleProfilesUser/SingleProfile";
 import { LawyerActivity } from "../components/pages/lawyeractivity/LawyerActivity";
 import { Container } from "../Wrapper/Stepper/Container";
+import PartnerCard from "../components/pages/FindPartner/PartnerCard";
 
 const Index = () => {
   return (
@@ -66,7 +67,7 @@ const Index = () => {
           <Route path="/agent" element={<Agent></Agent>}></Route>
           <Route path="/community" element={<Community></Community>}></Route>
           <Route path="/shop" element={<Shop></Shop>}></Route>
-          
+
           <Route
             path="/singleproduct"
             element={<SingleProduct></SingleProduct>}
@@ -79,11 +80,14 @@ const Index = () => {
             element={<LoginAsProfessional />}
           />
           <Route path="/contact" element={<Contact />}></Route>
-          <Route path="/lawyeractivity" element={<LawyerActivity></LawyerActivity>}></Route>
+          <Route
+            path="/lawyeractivity"
+            element={<LawyerActivity></LawyerActivity>}
+          ></Route>
           <Route path="/members" element={<Members />}></Route>
           <Route path="/profile/:id" element={<DynamicProfilePage />}></Route>
           <Route path="/find-partner" element={<FindPartner />}>
-            <Route path="/find-partner" element={<Suggested />} />
+            <Route path="/find-partner" element={<PartnerCard />} />
             <Route path="top" element={<TopBride />} />
             <Route path="nearest" element={<TopGroom />} />
           </Route>
