@@ -64,7 +64,7 @@ export const DynamicProfileInfo = ({ user }) => {
                         </div>
                         <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                             <span className="font-medium">Birthday</span>
-                            <p className="font-normal">1988-01-19</p>
+                            <p className="font-normal">not provided</p>
                         </div>
                         <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                             <span className="font-medium">I am</span>
