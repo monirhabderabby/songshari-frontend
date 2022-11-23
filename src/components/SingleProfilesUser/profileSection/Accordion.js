@@ -555,7 +555,11 @@ const Accordian = () => {
                         </div>
                         <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                             <span className="font-medium">Join Family</span>
-                            <p className="font-normal">Like Join Family</p>
+                            <p className="font-normal"></p>
+                        </div>
+                        <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                            <span className="font-medium">Like Join Family</span>
+                            <p className="font-normal">Not Provided</p>
                         </div>
                         <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                             <span className="font-medium">Believe in God</span>
