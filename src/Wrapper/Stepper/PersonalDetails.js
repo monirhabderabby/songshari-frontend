@@ -27,6 +27,11 @@ export const PersonalDetails = () => {
 
     return (
         <div className="w-full h-auto">
+            {/* ---------- Header ---------- */}
+            <section className="col-span-1 md:col-span-2 lg:col-span-3 text-2xl text-[#2F3659] mb-4">
+                <p>Personal Information Form</p>
+                <hr className="w-1/2 mt-2 mx-auto" />
+            </section>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <section className="md:w-full w-64 mx-auto grid grid-cols-1 md:grid-cols-2 gap-3 lg:grid-cols-3">
                     {/* ---------- First Name ---------- */}
@@ -92,6 +97,28 @@ export const PersonalDetails = () => {
                         <h1 className="text-left ml-2">
                             {errors.designation?.type === "required" && (
                                 <span className="w-full text-left text-red-400 text-sm">{errors?.designation.message}</span>
+                            )}
+                        </h1>
+                    </section>
+                    {/* ---------- Date of Birth ---------- */}
+                    <section>
+                        <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
+                            <input
+                                {...register("dateOfBirth", {
+                                    required: {
+                                        value: true,
+                                        message: "Date of birth is required",
+                                    },
+                                })}
+                                type="date"
+                                placeholder="Date of Birth"
+                                className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
+                                id="dateOfBirth"
+                            />
+                        </div>
+                        <h1 className="text-left ml-2">
+                            {errors.dateOfBirth?.type === "required" && (
+                                <span className="w-full text-left text-red-400 text-sm">{errors?.dateOfBirth.message}</span>
                             )}
                         </h1>
                     </section>
@@ -311,99 +338,54 @@ export const PersonalDetails = () => {
                             )}
                         </h1>
                     </section>
-                    {/* ---------- Bar registration number ---------- */}
+                    {/* ---------- Citizenship ---------- */}
                     <section>
                         <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
                             <input
-                                {...register("barRegistrationNumber")}
-                                type="text"
-                                placeholder="Bar Registration Number"
-                                className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
-                                id="barRegistrationNumber"
-                            />
-                        </div>
-                        <h1 className="text-left ml-2">
-                            {errors.barRegistrationNumber?.type === "required" && (
-                                <span className="w-full text-left text-red-400 text-sm">{errors?.barRegistrationNumber.message}</span>
-                            )}
-                        </h1>
-                    </section>
-                    {/* ---------- License No ---------- */}
-                    <section>
-                        <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
-                            <input
-                                {...register("licenceNo")}
-                                type="text"
-                                placeholder="License No"
-                                className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
-                                id="licenceNo"
-                            />
-                        </div>
-                        <h1 className="text-left ml-2">
-                            {errors.licenceNo?.type === "required" && (
-                                <span className="w-full text-left text-red-400 text-sm">{errors?.licenceNo.message}</span>
-                            )}
-                        </h1>
-                    </section>
-                    {/* ---------- License Photo ---------- */}
-                    <section>
-                        <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
-                            <AiOutlineIdcard className="mr-2 text-gray-400" />
-                            <label htmlFor="licencePhoto" className="outline-none h-full text-sm text-gray-400 bg-gray-100">
-                                {photoURL ? (
-                                    <>
-                                        <span className="text-green-400">Photo added</span>
-                                    </>
-                                ) : (
-                                    "License Photo"
-                                )}
-                            </label>
-                            <input {...register("licencePhoto")} type="file" id="licencePhoto" className="hidden" onChange={photoHandler} />
-                        </div>
-                        <h1 className="text-left ml-2">
-                            {errors.licencePhoto?.type === "required" && (
-                                <span className="w-full text-left text-red-400 text-sm">{errors?.licencePhoto.message}</span>
-                            )}
-                        </h1>
-                    </section>
-                    {/* ---------- Year of bar registration ---------- */}
-                    <section>
-                        <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
-                            <input
-                                {...register("yearOfBarRegistration")}
-                                type="number"
-                                placeholder="Year of Bar Registration"
-                                className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
-                                id="yearOfBarRegistration"
-                            />
-                        </div>
-                        <h1 className="text-left ml-2">
-                            {errors.yearOfBarRegistration?.type === "required" && (
-                                <span className="w-full text-left text-red-400 text-sm">{errors?.yearOfBarRegistration.message}</span>
-                            )}
-                        </h1>
-                    </section>
-                    {/* ---------- Date of Birth ---------- */}
-                    <section>
-                        <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
-                            <input
-                                {...register("dateOfBirth", {
+                                {...register("citizenShip", {
                                     required: {
                                         value: true,
-                                        message: "Date of birth is required",
+                                        message: "Citizenship is required",
                                     },
                                 })}
-                                type="date"
-                                placeholder="Date of Birth"
+                                type="text"
+                                placeholder="Citizenship"
                                 className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
-                                id="dateOfBirth"
+                                id="citizenShip"
                             />
                         </div>
                         <h1 className="text-left ml-2">
-                            {errors.dateOfBirth?.type === "required" && (
-                                <span className="w-full text-left text-red-400 text-sm">{errors?.dateOfBirth.message}</span>
+                            {errors.citizenShip?.type === "required" && (
+                                <span className="w-full text-left text-red-400 text-sm">{errors?.citizenShip.message}</span>
                             )}
                         </h1>
+                    </section>
+                    {/* ---------- Zodiac Sign ---------- */}
+                    <section>
+                        <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
+                            <input
+                                {...register("zodiacSign", {
+                                    required: {
+                                        value: true,
+                                        message: "Zodiac Sign is required",
+                                    },
+                                })}
+                                type="text"
+                                placeholder="Zodiac Sign"
+                                className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
+                                id="zodiacSign"
+                            />
+                        </div>
+                        <h1 className="text-left ml-2">
+                            {errors.zodiacSign?.type === "required" && (
+                                <span className="w-full text-left text-red-400 text-sm">{errors?.zodiacSign.message}</span>
+                            )}
+                        </h1>
+                    </section>
+
+                    {/* ---------- Marital info ---------- */}
+                    <section className="col-span-1 md:col-span-2 lg:col-span-3 text-[#2F3659] font-medium text-left ml-1">
+                        Marital Info
                     </section>
                     {/* ---------- Marital Status ---------- */}
                     <section>
@@ -690,52 +672,12 @@ export const PersonalDetails = () => {
                             )}
                         </h1>
                     </section>
-                    {/* ---------- Citizenship ---------- */}
-                    <section>
-                        <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
-                            <input
-                                {...register("citizenShip", {
-                                    required: {
-                                        value: true,
-                                        message: "Citizenship is required",
-                                    },
-                                })}
-                                type="text"
-                                placeholder="Citizenship"
-                                className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
-                                id="citizenShip"
-                            />
-                        </div>
-                        <h1 className="text-left ml-2">
-                            {errors.citizenShip?.type === "required" && (
-                                <span className="w-full text-left text-red-400 text-sm">{errors?.citizenShip.message}</span>
-                            )}
-                        </h1>
-                    </section>
-                    {/* ---------- Zodiac Sign ---------- */}
-                    <section>
-                        <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
-                            <input
-                                {...register("zodiacSign", {
-                                    required: {
-                                        value: true,
-                                        message: "Zodiac Sign is required",
-                                    },
-                                })}
-                                type="text"
-                                placeholder="Zodiac Sign"
-                                className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
-                                id="zodiacSign"
-                            />
-                        </div>
-                        <h1 className="text-left ml-2">
-                            {errors.zodiacSign?.type === "required" && (
-                                <span className="w-full text-left text-red-400 text-sm">{errors?.zodiacSign.message}</span>
-                            )}
-                        </h1>
-                    </section>
                     {/* ------------------------ Current profession field start ------------------------ */}
 
+                    {/* ---------- Current Profession info ---------- */}
+                    <section className="col-span-1 md:col-span-2 lg:col-span-3 text-[#2F3659] font-medium text-left ml-1">
+                        Current Profession Info
+                    </section>
                     {/* ---------- Position ---------- */}
                     <section>
                         <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
@@ -829,6 +771,10 @@ export const PersonalDetails = () => {
 
                     {/* ---------------------- Highest education qualification start --------------------- */}
 
+                    {/* ---------- Education info ---------- */}
+                    <section className="col-span-1 md:col-span-2 lg:col-span-3 text-[#2F3659] font-medium text-left ml-1">
+                        Education Info
+                    </section>
                     {/* ---------- Degree Name ---------- */}
                     <section>
                         <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
@@ -964,6 +910,10 @@ export const PersonalDetails = () => {
 
                     {/* --------------------- Highest education qualification end ---------------------- */}
 
+                    {/* ---------- Physical info ---------- */}
+                    <section className="col-span-1 md:col-span-2 lg:col-span-3 text-[#2F3659] font-medium text-left ml-1">
+                        Physical Info
+                    </section>
                     {/* ---------- Height ---------- */}
                     <section>
                         <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
@@ -1115,25 +1065,90 @@ export const PersonalDetails = () => {
                             )}
                         </h1>
                     </section>
-                    {/* ---------- Monthly Income ---------- */}
+                    {/* ---------- Parents Status Info Start ---------- */}
+                    <section className="col-span-1 md:col-span-2 lg:col-span-3 text-[#2F3659] font-medium text-left ml-1">
+                        Family Member Info
+                    </section>
+                    {/* ---------- Status ---------- */}
                     <section>
                         <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
-                            <input
-                                {...register("monthlyIncome")}
+                            <select
+                                {...register("status", {
+                                    required: {
+                                        value: true,
+                                        message: "Answer is required",
+                                    },
+                                })}
                                 type="text"
-                                placeholder="Monthly Income"
                                 className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
-                                id="monthlyIncome"
-                            />
+                                id="status"
+                            >
+                                <option value="">Parents status?</option>
+                                <option value="yes">Yes</option>
+                                <option value="no">No</option>
+                                <option value="mother is alive">Mother is alive</option>
+                                <option value="father is alive">Father is alive</option>
+                            </select>
                         </div>
                         <h1 className="text-left ml-2">
-                            {errors.monthlyIncome?.type === "required" && (
-                                <span className="w-full text-left text-red-400 text-sm">{errors?.monthlyIncome.message}</span>
+                            {errors.status?.type === "required" && (
+                                <span className="w-full text-left text-red-400 text-sm">{errors?.status.message}</span>
                             )}
                         </h1>
                     </section>
-                    {/* ---------- Parents ---------- */}
-                    <section>parents info</section>
+                    {/* ---------- Have Step Mother ---------- */}
+                    <section>
+                        <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
+                            <select
+                                {...register("haveStepMother", {
+                                    required: {
+                                        value: true,
+                                        message: "Answer is required",
+                                    },
+                                })}
+                                type="text"
+                                className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
+                                id="haveStepMother"
+                            >
+                                <option value="">Have Step Mother?</option>
+                                <option value="yes">Yes</option>
+                                <option value="no">No</option>
+                            </select>
+                        </div>
+                        <h1 className="text-left ml-2">
+                            {errors.haveStepMother?.type === "required" && (
+                                <span className="w-full text-left text-red-400 text-sm">{errors?.haveStepMother.message}</span>
+                            )}
+                        </h1>
+                    </section>
+                    {/* ---------- Have Step Father ---------- */}
+                    <section>
+                        <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
+                            <select
+                                {...register("haveStepFather", {
+                                    required: {
+                                        value: true,
+                                        message: "Answer is required",
+                                    },
+                                })}
+                                type="text"
+                                className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
+                                id="haveStepFather"
+                            >
+                                <option value="">Have Step Father?</option>
+                                <option value="yes">Yes</option>
+                                <option value="no">No</option>
+                            </select>
+                        </div>
+                        <h1 className="text-left ml-2">
+                            {errors.haveStepFather?.type === "required" && (
+                                <span className="w-full text-left text-red-400 text-sm">{errors?.haveStepFather.message}</span>
+                            )}
+                        </h1>
+                    </section>
+
+                    {/* ---------- Parents Status Info End ---------- */}
+
                     {/* ---------- Number of Brother ---------- */}
                     <section>
                         <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
@@ -1167,6 +1182,10 @@ export const PersonalDetails = () => {
                                 <span className="w-full text-left text-red-400 text-sm">{errors?.numberOfSister.message}</span>
                             )}
                         </h1>
+                    </section>
+                    {/* ---------- Social media info ---------- */}
+                    <section className="col-span-1 md:col-span-2 lg:col-span-3 text-[#2F3659] font-medium text-left ml-1">
+                        Social Media Info
                     </section>
                     {/* ---------- LinkedIn Id ---------- */}
                     <section>
@@ -1218,6 +1237,86 @@ export const PersonalDetails = () => {
                                 <span className="w-full text-left text-red-400 text-sm">{errors?.instagramId.message}</span>
                             )}
                         </h1>
+                    </section>
+                    {/* ---------- Optional ---------- */}
+                    <section className="col-span-1 md:col-span-2 lg:col-span-3 text-[#2F3659] font-medium text-left ml-1">
+                        Optional
+                    </section>
+                    {/* ---------- Bar registration number ---------- */}
+                    <section>
+                        <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
+                            <input
+                                {...register("barRegistrationNumber")}
+                                type="text"
+                                placeholder="Bar Registration Number"
+                                className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
+                                id="barRegistrationNumber"
+                            />
+                        </div>
+                        <h1 className="text-left ml-2">
+                            {errors.barRegistrationNumber?.type === "required" && (
+                                <span className="w-full text-left text-red-400 text-sm">{errors?.barRegistrationNumber.message}</span>
+                            )}
+                        </h1>
+                    </section>
+                    {/* ---------- License No ---------- */}
+                    <section>
+                        <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
+                            <input
+                                {...register("licenceNo")}
+                                type="text"
+                                placeholder="License No"
+                                className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
+                                id="licenceNo"
+                            />
+                        </div>
+                        <h1 className="text-left ml-2">
+                            {errors.licenceNo?.type === "required" && (
+                                <span className="w-full text-left text-red-400 text-sm">{errors?.licenceNo.message}</span>
+                            )}
+                        </h1>
+                    </section>
+                    {/* ---------- License Photo ---------- */}
+                    <section>
+                        <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
+                            <AiOutlineIdcard className="mr-2 text-gray-400" />
+                            <label htmlFor="licencePhoto" className="outline-none h-full text-sm text-gray-400 bg-gray-100">
+                                {photoURL ? (
+                                    <>
+                                        <span className="text-green-400">Photo added</span>
+                                    </>
+                                ) : (
+                                    "License Photo"
+                                )}
+                            </label>
+                            <input {...register("licencePhoto")} type="file" id="licencePhoto" className="hidden" onChange={photoHandler} />
+                        </div>
+                        <h1 className="text-left ml-2">
+                            {errors.licencePhoto?.type === "required" && (
+                                <span className="w-full text-left text-red-400 text-sm">{errors?.licencePhoto.message}</span>
+                            )}
+                        </h1>
+                    </section>
+                    {/* ---------- Year of bar registration ---------- */}
+                    <section>
+                        <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
+                            <input
+                                {...register("yearOfBarRegistration")}
+                                type="number"
+                                placeholder="Year of Bar Registration"
+                                className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
+                                id="yearOfBarRegistration"
+                            />
+                        </div>
+                        <h1 className="text-left ml-2">
+                            {errors.yearOfBarRegistration?.type === "required" && (
+                                <span className="w-full text-left text-red-400 text-sm">{errors?.yearOfBarRegistration.message}</span>
+                            )}
+                        </h1>
+                    </section>
+                    {/* ---------- Extra ---------- */}
+                    <section className="col-span-1 md:col-span-2 lg:col-span-3 text-[#2F3659] font-medium text-left ml-1">
+                        Extra Info
                     </section>
                     {/* ---------- Your Hobbies ---------- */}
                     <section>
@@ -1281,6 +1380,10 @@ export const PersonalDetails = () => {
 
                     {/* -------------------- Professional Details field -------------------- */}
 
+                    {/* ---------- Extra ---------- */}
+                    <section className="col-span-1 md:col-span-2 lg:col-span-3 text-[#2F3659] font-medium text-left ml-1">
+                        Professional Info
+                    </section>
                     {/* ---------- Year of Experience ---------- */}
                     <section>
                         <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
@@ -1346,6 +1449,23 @@ export const PersonalDetails = () => {
                         <h1 className="text-left ml-2">
                             {errors.serviceProvide?.type === "required" && (
                                 <span className="w-full text-left text-red-400 text-sm">{errors?.serviceProvide.message}</span>
+                            )}
+                        </h1>
+                    </section>
+                    {/* ---------- Monthly Income ---------- */}
+                    <section>
+                        <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
+                            <input
+                                {...register("monthlyIncome")}
+                                type="text"
+                                placeholder="Monthly Income"
+                                className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
+                                id="monthlyIncome"
+                            />
+                        </div>
+                        <h1 className="text-left ml-2">
+                            {errors.monthlyIncome?.type === "required" && (
+                                <span className="w-full text-left text-red-400 text-sm">{errors?.monthlyIncome.message}</span>
                             )}
                         </h1>
                     </section>

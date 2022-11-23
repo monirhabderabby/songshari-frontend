@@ -104,6 +104,7 @@ const Index = () => {
           <Route path="/singleViewRequest" element={<SingleRequestView />} />
           <Route path="/admin-analytics" element={<AdminAnalytics />}></Route>
           {/* <Route path="/profile" element={<OthersProfile />} /> */}
+          <Route path="/stepper" element={<Container></Container>}></Route>
           <Route path="*" element={<NotFound />}></Route>
         </Routes>
       </BrowserRouter>
