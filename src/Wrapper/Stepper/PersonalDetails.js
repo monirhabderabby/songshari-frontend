@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { AiOutlineCloudUpload, AiOutlineIdcard } from "react-icons/ai";
 
-export const PersonalDetails = () => {
+export const PersonalDetails = ({ setPage }) => {
     const [photoURL, setPhotoUrl] = useState("");
     const [meritalStatus, setMeritalStatus] = useState("");
 
@@ -17,7 +17,24 @@ export const PersonalDetails = () => {
     } = useForm();
 
     const onSubmit = data => {
+        const hightestEducationalQualification = {
+            ...data.degreeName,
+            ...data.institute,
+            ...data.Department,
+            ...data.fieldOfStudy,
+            ...data.yearOfPassing,
+            ...data.specialAchievement,
+        };
+        // delete data.degreeName,
+        //     delete data.institute,
+        //     delete data.Department,
+        //     delete data.fieldOfStudy,
+        //     delete data.yearOfPassing,
+        //     delete data.specialAchievement;
+        data = { ...data, hightestEducationalQualification };
+        console.log(hightestEducationalQualification);
         console.log(data);
+        setPage(2);
     };
 
     const photoHandler = async e => {
@@ -384,9 +401,7 @@ export const PersonalDetails = () => {
                     </section>
 
                     {/* ---------- Marital info ---------- */}
-                    <section className="col-span-1 md:col-span-2 lg:col-span-3 text-[#2F3659] font-medium text-left ml-1">
-                        Marital Info
-                    </section>
+                    <section className="col-span-1 md:col-span-2 lg:col-span-3 text-[#2F3659] font-medium text-left ml-1">Marital Info</section>
                     {/* ---------- Marital Status ---------- */}
                     <section>
                         <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
@@ -772,9 +787,7 @@ export const PersonalDetails = () => {
                     {/* ---------------------- Highest education qualification start --------------------- */}
 
                     {/* ---------- Education info ---------- */}
-                    <section className="col-span-1 md:col-span-2 lg:col-span-3 text-[#2F3659] font-medium text-left ml-1">
-                        Education Info
-                    </section>
+                    <section className="col-span-1 md:col-span-2 lg:col-span-3 text-[#2F3659] font-medium text-left ml-1">Education Info</section>
                     {/* ---------- Degree Name ---------- */}
                     <section>
                         <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
@@ -911,9 +924,7 @@ export const PersonalDetails = () => {
                     {/* --------------------- Highest education qualification end ---------------------- */}
 
                     {/* ---------- Physical info ---------- */}
-                    <section className="col-span-1 md:col-span-2 lg:col-span-3 text-[#2F3659] font-medium text-left ml-1">
-                        Physical Info
-                    </section>
+                    <section className="col-span-1 md:col-span-2 lg:col-span-3 text-[#2F3659] font-medium text-left ml-1">Physical Info</section>
                     {/* ---------- Height ---------- */}
                     <section>
                         <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
@@ -1066,9 +1077,7 @@ export const PersonalDetails = () => {
                         </h1>
                     </section>
                     {/* ---------- Parents Status Info Start ---------- */}
-                    <section className="col-span-1 md:col-span-2 lg:col-span-3 text-[#2F3659] font-medium text-left ml-1">
-                        Family Member Info
-                    </section>
+                    <section className="col-span-1 md:col-span-2 lg:col-span-3 text-[#2F3659] font-medium text-left ml-1">Family Member Info</section>
                     {/* ---------- Status ---------- */}
                     <section>
                         <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
@@ -1184,9 +1193,7 @@ export const PersonalDetails = () => {
                         </h1>
                     </section>
                     {/* ---------- Social media info ---------- */}
-                    <section className="col-span-1 md:col-span-2 lg:col-span-3 text-[#2F3659] font-medium text-left ml-1">
-                        Social Media Info
-                    </section>
+                    <section className="col-span-1 md:col-span-2 lg:col-span-3 text-[#2F3659] font-medium text-left ml-1">Social Media Info</section>
                     {/* ---------- LinkedIn Id ---------- */}
                     <section>
                         <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
@@ -1239,9 +1246,7 @@ export const PersonalDetails = () => {
                         </h1>
                     </section>
                     {/* ---------- Optional ---------- */}
-                    <section className="col-span-1 md:col-span-2 lg:col-span-3 text-[#2F3659] font-medium text-left ml-1">
-                        Optional
-                    </section>
+                    <section className="col-span-1 md:col-span-2 lg:col-span-3 text-[#2F3659] font-medium text-left ml-1">Optional</section>
                     {/* ---------- Bar registration number ---------- */}
                     <section>
                         <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
@@ -1315,9 +1320,7 @@ export const PersonalDetails = () => {
                         </h1>
                     </section>
                     {/* ---------- Extra ---------- */}
-                    <section className="col-span-1 md:col-span-2 lg:col-span-3 text-[#2F3659] font-medium text-left ml-1">
-                        Extra Info
-                    </section>
+                    <section className="col-span-1 md:col-span-2 lg:col-span-3 text-[#2F3659] font-medium text-left ml-1">Extra Info</section>
                     {/* ---------- Your Hobbies ---------- */}
                     <section>
                         <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
@@ -1381,9 +1384,7 @@ export const PersonalDetails = () => {
                     {/* -------------------- Professional Details field -------------------- */}
 
                     {/* ---------- Extra ---------- */}
-                    <section className="col-span-1 md:col-span-2 lg:col-span-3 text-[#2F3659] font-medium text-left ml-1">
-                        Professional Info
-                    </section>
+                    <section className="col-span-1 md:col-span-2 lg:col-span-3 text-[#2F3659] font-medium text-left ml-1">Professional Info</section>
                     {/* ---------- Year of Experience ---------- */}
                     <section>
                         <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">

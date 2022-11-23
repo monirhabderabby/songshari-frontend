@@ -1,9 +1,8 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { AiOutlineCloudUpload } from "react-icons/ai";
 
-export const EducationalDetails = () => {
+export const EducationalDetails = ({ setPage }) => {
     const [photoURL, setPhotoUrl] = useState("");
     const {
         register,
@@ -15,6 +14,7 @@ export const EducationalDetails = () => {
     const onSubmit = data => {
         data.caseCompleted = parseInt(data.caseCompleted);
         console.log(data);
+        setPage(3);
     };
 
     const photoHandler = async e => {

@@ -1,7 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 
-export const PhysicalDetails = () => {
+export const PhysicalDetails = ({ setPage }) => {
     const {
         register,
         formState: { errors },
@@ -12,6 +12,7 @@ export const PhysicalDetails = () => {
     const onSubmit = data => {
         data.caseCompleted = parseInt(data.caseCompleted);
         console.log(data);
+        setPage(5);
     };
     return (
         <div className="w-full h-auto">
