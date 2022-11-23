@@ -2,7 +2,7 @@ import React from 'react';
 import { useCallback } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { useForm } from 'react-hook-form';
-import CustomHeader from '../../Shared/CustomHeader/CustomHeader';
+import CustomHeader from "../../../components/shared/CustomHeader/CustomHeader";
 
 const LawyerServiceForm = () => {
 

@@ -1,5 +1,5 @@
 import React from "react";
-import FindAlawyerPage from "../../components/pages/Findalawyer/FindAlawyerPage";
+import FindAlawyerPage from "../../components/pages/FindAlawyer/FindAlawyerPage";
 
 const FindAlawyer = () => {
   return (
