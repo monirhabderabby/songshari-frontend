@@ -1,7 +1,7 @@
 import React from "react";
 import { useParams } from "react-router";
 import { useGetProfileDetailsQuery } from "../../../Redux/features/userInfo/userApi";
-import CustomHeader from "../../Shared/CustomHeader/CustomHeader";
+import CustomHeader from "../../../components/shared/CustomHeader/CustomHeader";
 import DynamicChatGallary from "./DynamicChatGallary";
 import { DynamicConnectionsCard } from "./DynamicConnectionsCard";
 import DynamicProfileCard from "./DynamicProfileCard";

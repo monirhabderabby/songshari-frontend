@@ -1,5 +1,5 @@
 import React from 'react';
-import CustomHeader from '../../Shared/CustomHeader/CustomHeader';
+import CustomHeader from "../../../components/shared/CustomHeader/CustomHeader";
 import CompletedCase from './CompletedCase/CompletedCase';
 import PendingOrder from './PendingOrder/PendingOrder';
 import RunningCase from './RunningCase/RunningCase';
