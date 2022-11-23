@@ -1,7 +1,7 @@
 import React from "react";
 
-import { CustomHeader } from "../../../shared/CustomHeader/CustomHeader";
-import Footer from "../../../shared/Footer/Footer";
+import { CustomHeader } from "../../../Shared/CustomHeader/CustomHeader";
+import Footer from "../../../Shared/Footer/Footer";
 
 import UtilitisCard from "../../../SingleProfilesUser/UtilitisCard";
 import LawyerProfileChat from "./LawyerProfileChat";

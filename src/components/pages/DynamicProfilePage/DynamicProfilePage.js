@@ -1,12 +1,7 @@
 import React from "react";
-<<<<<<< HEAD
-import CustomHeader from "../../Shared/CustomHeader/CustomHeader";
-import Table from "../../SingleProfilesUser/Table/Table";
-=======
 import { useParams } from "react-router";
 import { useGetProfileDetailsQuery } from "../../../Redux/features/userInfo/userApi";
-import CustomHeader from "../../shared/CustomHeader/CustomHeader";
->>>>>>> dbb014f87b5a84746172cc859729c7630c994ccb
+import CustomHeader from "../../Shared/CustomHeader/CustomHeader";
 import DynamicChatGallary from "./DynamicChatGallary";
 import DynamicProfileCard from "./DynamicProfileCard";
 import DynamicTable from "./DynamicTable";

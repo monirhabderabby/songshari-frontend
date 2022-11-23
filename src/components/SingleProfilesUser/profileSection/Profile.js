@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import Title from "../Title/Title";
+import Accordian from "./Accordion";
 
 export const Profile = () => {
     const [tables, setTables] = useState([]);
@@ -21,7 +22,7 @@ export const Profile = () => {
     };
     return (
         <div>
-            <div className={`mt-4 mx-4 ${edit ? "pt-6 pb-2" : "py-6"} table-bar px-8 shadow-md duration-300`}>
+            {/* <div className={`mt-4 mx-4 ${edit ? "pt-6 pb-2" : "py-6"} table-bar px-8 shadow-md duration-300`}>
                 <div className="flex justify-between h-[60px] items-center">
                     <Title titleText="Personal Details"></Title>
                     <button onClick={handleEdit} className="underline">
@@ -64,7 +65,8 @@ export const Profile = () => {
                 ) : (
                     <></>
                 )}
-            </div>
+            </div> */}
+            <Accordian></Accordian>
             <div className="w-full mt-10 bg-white px-4 py-6 rounded-lg shadow  mx-4">
                 <Title titleText="Myself Summary"></Title>
 

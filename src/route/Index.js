@@ -36,20 +36,9 @@ import ProfileInfo from "../Wrapper/Profileinfo/ProfileInfo";
 import Shop from "../Wrapper/Shop/Shop";
 import SingleProduct from "../Wrapper/SingleProduct/SingleProduct";
 import SingleProfile from "../Wrapper/SingleProfilesUser/SingleProfile";
-<<<<<<< HEAD
-import { StepProgress } from "../Wrapper/step-progress/StepProgress";
-import Main from '../Wrapper/step-progress/Main'
-import { StepperHeader } from "../Wrapper/step-progress/StepperHeader";
-import PersonalForm from "../Wrapper/step-progress/PersonalForm";
-import ProfessionaForm from "../Wrapper/step-progress/ProfessionalForm";
-import EducationalForm from "../Wrapper/step-progress/EducationalForm";
-import PhysicalForm from "../Wrapper/step-progress/PhysicalForm";
-import OtherForm from "../Wrapper/step-progress/OtherForm";
 import { LawyerActivity } from "../components/pages/lawyeractivity/LawyerActivity";
-=======
 import { Container } from "../Wrapper/Stepper/Container";
 
->>>>>>> dbb014f87b5a84746172cc859729c7630c994ccb
 const Index = () => {
   return (
     <div>
@@ -77,17 +66,7 @@ const Index = () => {
           <Route path="/agent" element={<Agent></Agent>}></Route>
           <Route path="/community" element={<Community></Community>}></Route>
           <Route path="/shop" element={<Shop></Shop>}></Route>
-<<<<<<< HEAD
-          <Route
-            path="/stepher"
-            element={<StepperHeader></StepperHeader>}
-          ></Route>
-=======
-          {/* <Route
-            path="/stepher"
-            element={<StepProgress></StepProgress>}
-          ></Route> */}
->>>>>>> dbb014f87b5a84746172cc859729c7630c994ccb
+          
           <Route
             path="/singleproduct"
             element={<SingleProduct></SingleProduct>}
@@ -100,12 +79,7 @@ const Index = () => {
             element={<LoginAsProfessional />}
           />
           <Route path="/contact" element={<Contact />}></Route>
-          <Route path="/personaldetailsform" element={<PersonalForm></PersonalForm>}></Route>
           <Route path="/lawyeractivity" element={<LawyerActivity></LawyerActivity>}></Route>
-          <Route path="/professionaldetailsform" element={<ProfessionaForm></ProfessionaForm>}></Route>
-          <Route path="/educationaldetailsform" element={<EducationalForm></EducationalForm>}></Route>
-          <Route path="/physicaldetailsform" element={<PhysicalForm></PhysicalForm>}></Route>
-          <Route path="/otherdetailsform" element={<OtherForm></OtherForm>}></Route>
           <Route path="/members" element={<Members />}></Route>
           <Route path="/profile/:id" element={<DynamicProfilePage />}></Route>
           <Route path="/find-partner" element={<FindPartner />}>
