@@ -1193,7 +1193,9 @@ export const PersonalDetails = ({ setPage }) => {
                         </h1>
                     </section>
                     {/* ---------- Social media info ---------- */}
-                    <section className="col-span-1 md:col-span-2 lg:col-span-3 text-[#2F3659] font-medium text-left ml-1">Social Media Info</section>
+                    <section className="col-span-1 md:col-span-2 lg:col-span-3 text-[#2F3659] font-medium text-left ml-1">
+                        Social Media Link
+                    </section>
                     {/* ---------- LinkedIn Id ---------- */}
                     <section>
                         <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
