@@ -1,9 +1,10 @@
 import React from "react";
 import { useParams } from "react-router";
-import { useGetProfileDetailsQuery } from "../../../Redux/features/userInfo/userApi";
 import CustomHeader from "../../../components/shared/CustomHeader/CustomHeader";
+import { useGetProfileDetailsQuery } from "../../../Redux/features/userInfo/userApi";
 import DynamicChatGallary from "./DynamicChatGallary";
 import { DynamicConnectionsCard } from "./DynamicConnectionsCard";
+import { DynamicPhotosContainer } from "./DynamicPhotosContainer";
 import DynamicProfileCard from "./DynamicProfileCard";
 import DynamicTable from "./DynamicTable";
 
@@ -22,6 +23,7 @@ export const DynamicProfilePage = () => {
                                     <div>
                                         <DynamicProfileCard {...{ user }} />
                                         <DynamicConnectionsCard />
+                                        <DynamicPhotosContainer />
                                     </div>
                                 </div>
                                 <div className="w-full md:w-3/5">

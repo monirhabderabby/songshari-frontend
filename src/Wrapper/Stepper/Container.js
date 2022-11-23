@@ -1,13 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import logo from "../../assets/images/Logo/logoBlack.png";
 import NavBar from "../../components/pages/Shared/NavBar";
-import { PersonalDetails } from "./PersonalDetails";
-import { ProfessionalDetails } from "./ProfessionalDetails";
 import { EducationalDetails } from "./EducationalDetails";
-import { PhysicalDetails } from "./PhysicalDetails";
 import { OtherDetails } from "./OtherDetails";
+import { PersonalDetails } from "./PersonalDetails";
+import { PhysicalDetails } from "./PhysicalDetails";
+import { ProfessionalDetails } from "./ProfessionalDetails";
 
 export const Container = () => {
+    const [page, setPage] = useState(1);
     return (
         <div className="min-h-screen">
             <NavBar />
@@ -20,11 +21,11 @@ export const Container = () => {
                             </span>
                         </div>
                         <div className="my-[20px]">
-                            <PersonalDetails />
-                            {/* <ProfessionalDetails />
-                            <EducationalDetails />
-                            <PhysicalDetails />
-                            <OtherDetails /> */}
+                            {page === 1 && <PersonalDetails {...{ setPage }} />}
+                            {page === 2 && <EducationalDetails {...{ setPage }} />}
+                            {page === 3 && <ProfessionalDetails {...{ setPage }} />}
+                            {page === 4 && <PhysicalDetails {...{ setPage }} />}
+                            {page === 5 && <OtherDetails {...{ setPage }} />}
                         </div>
                     </div>
                 </div>

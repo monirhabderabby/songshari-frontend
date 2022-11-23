@@ -2,7 +2,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { useSetPhysicalDetailsMutation } from "../../Redux/features/userInfo/userApi";
 
-export const ProfessionalDetails = () => {
+export const ProfessionalDetails = ({ setPage }) => {
     const [setProfessionalDetails, { data, isLoading }] = useSetPhysicalDetailsMutation();
     const {
         register,
@@ -15,6 +15,7 @@ export const ProfessionalDetails = () => {
         data.caseCompleted = parseInt(data.caseCompleted);
         // console.log(data);
         await setProfessionalDetails(data);
+        setPage(4);
     };
 
     if (data) {
