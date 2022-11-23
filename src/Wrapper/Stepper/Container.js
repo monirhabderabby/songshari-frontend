@@ -1,11 +1,13 @@
 import React from "react";
 import logo from "../../assets/images/Logo/logoBlack.png";
-import { PersonalDetails } from "./PersonalDetails";
+import NavBar from "../../components/pages/Shared/NavBar";
+import { ProfessionalDetails } from "./ProfessionalDetails";
 
 export const Container = () => {
     return (
         <div className="min-h-screen">
-            <section className="flex justify-center items-center w-full flex-1 text-center px-3 md:px-20  min-h-screen">
+            <NavBar />
+            <section className="flex justify-center items-center w-full flex-1 text-center px-3 md:px-20 min-h-[calc(100vh-90px)]">
                 <div className="bg-white rounded-2xl shadow-2xl md:flex w-[100%] md:w-3/4 lg:w-4/5 max-w-6xl relative">
                     <div className="w-full p-5 my-auto">
                         <div className="text-left font-bold">
@@ -14,7 +16,7 @@ export const Container = () => {
                             </span>
                         </div>
                         <div className="my-[20px]">
-                            <PersonalDetails />
+                            <ProfessionalDetails />
                         </div>
                     </div>
                 </div>
