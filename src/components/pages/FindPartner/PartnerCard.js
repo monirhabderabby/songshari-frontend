@@ -66,13 +66,13 @@ const PartnerCard = () => {
                     </li>
                   </ul>
                   <div className="info__social">
-                    <a href="#">
+                    <a href="!#">
                       <i className="fas fa-user" aria-hidden="true"></i>
                     </a>
-                    <a href="#">
+                    <a href="!#">
                       <i className="fas fa-comment" aria-hidden="true"></i>
                     </a>
-                    <a href="#">
+                    <a href="!#">
                       <i className="fas fa-heart" aria-hidden="true"></i>
                     </a>
                   </div>

@@ -6,10 +6,10 @@ import { recentReview } from "./LawyerReviewData";
 
 const LawyerReviewBelowStar = () => {
   return (
-    <section className="bg-[#F9E2FF] my-[100px] py-[91px]">
+    <section className="bg-[#E3E2FF] my-[100px] py-[91px]">
       <div className="custom-container ">
         <h2 className="text-[#090914] mb-[92px] text-left text-[52px] font-semibold">
-          Top Review
+          Review Below 3 Star
         </h2>
 
         <Swiper

@@ -12,7 +12,7 @@ const LawyerRecentReview = () => {
         Recent Review{" "}
       </h2>
       <div className="custom-container ">
-        <div className="grid grid-cols-2 gap-3">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
           <div className="flex justify-center items-center">
             <div>
               <img src={bg1} alt="" />
@@ -62,7 +62,7 @@ const LawyerRecentReview = () => {
             </div>
           </div>
         </div>
-        <div className="pt-[92px] max-w-[1048px] mx-auto  justify-center items-center grid grid-cols-3 gap-5">
+        <div className="pt-[92px] max-w-[1048px] mx-auto  justify-center items-center grid-cols-1 md:grid-cols-2 grid lg:grid-cols-3 gap-5">
           {recentReview.map((data) => (
             <div>
               <div className="bg-[#FFFFFF] border rounded-md border-[#DEDEDE] py-[30px] px-[35px]">
