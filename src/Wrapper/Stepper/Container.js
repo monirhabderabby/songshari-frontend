@@ -1,5 +1,6 @@
 import React from "react";
 import logo from "../../assets/images/Logo/logoBlack.png";
+import NavBar from "../../components/pages/Shared/NavBar";
 import { PersonalDetails } from "./PersonalDetails";
 import { ProfessionalDetails } from "./ProfessionalDetails";
 import { EducationalDetails } from "./EducationalDetails";
@@ -9,7 +10,8 @@ import { OtherDetails } from "./OtherDetails";
 export const Container = () => {
     return (
         <div className="min-h-screen">
-            <section className="flex justify-center items-center w-full flex-1 text-center px-3 md:px-20  min-h-screen">
+            <NavBar />
+            <section className="flex justify-center items-center w-full flex-1 text-center px-3 md:px-20 min-h-[calc(100vh-90px)]">
                 <div className="bg-white rounded-2xl shadow-2xl md:flex w-[100%] md:w-3/4 lg:w-4/5 max-w-6xl relative">
                     <div className="w-full p-5 my-auto">
                         <div className="text-left font-bold">
