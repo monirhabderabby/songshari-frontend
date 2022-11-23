@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import LawyerServiceForm from "../components/Lawyer-Seam/LawyerServiceForm/LawyerServiceForm";
 import LawyerServicesPage from "../components/Lawyer-Seam/LawyerUserProfile/LawyerServicesPage";
+import OthersProfile from "../components/othersprofile/OthersProfile";
 import AdminAnalytics from "../components/pages/AdminAnalytics/AdminAnalytics";
 
 // components import
@@ -78,6 +79,7 @@ const Index = () => {
                     <Route path="/singleViewRequest" element={<SingleRequestView />} />
                     <Route path="/admin-analytics" element={<AdminAnalytics />}></Route>
                     <Route path="/stepper" element={<Container />} />
+                    <Route path="/profile" element={<OthersProfile />} />
                     <Route path="*" element={<NotFound />}></Route>
                 </Routes>
             </BrowserRouter>

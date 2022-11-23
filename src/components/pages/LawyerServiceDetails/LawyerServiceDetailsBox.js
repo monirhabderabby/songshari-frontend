@@ -4,7 +4,7 @@ const LawyerServiceDetailsBox = () => {
   return (
     <div>
       <div
-        className="p-[10px] rounded-xl"
+        className="p-[10px] mx-auto rounded-xl"
         style={{
           background: "linear-gradient(180deg, #E42986 0%, #A32CCB 100%)",
         }}

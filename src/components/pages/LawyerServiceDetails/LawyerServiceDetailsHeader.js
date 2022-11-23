@@ -5,7 +5,7 @@ const LawyerServiceDetailsHeader = () => {
     <>
       <div
         style={{ boxShadow: "0px 5px 30px rgba(35, 57, 184, 0.2)" }}
-        className=" mx-auto w-[523px] rounded-[10px] py-[20px] px-8 flex justify-around items-center bg-[#FFFFFF]"
+        className=" mx-auto w-full lg:w-[523px] rounded-[10px] py-[20px] px-8 flex justify-around items-center bg-[#FFFFFF]"
       >
         <a className="text-[15px] font-semibold text-[#AC216C] " href="!#">
           Service
