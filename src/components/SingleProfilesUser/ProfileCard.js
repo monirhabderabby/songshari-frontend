@@ -6,7 +6,7 @@ import { auth } from "../../firebase.init";
 const ProfileCard = () => {
     const [user] = useAuthState(auth);
     return (
-        <div>
+        <div style={{ boxShadow: "0px 10px 5px rgba(119, 123, 146, 0.02)" }} className="rounded-xl">
             <div className="card_container shadow-4xl px-2 md:px-0">
                 <div className="Card-header"></div>
                 <div className="relative w-52 h-52 rounded-full">

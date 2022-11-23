@@ -1185,7 +1185,7 @@ export const PersonalDetails = () => {
                     </section>
                     {/* ---------- Social media info ---------- */}
                     <section className="col-span-1 md:col-span-2 lg:col-span-3 text-[#2F3659] font-medium text-left ml-1">
-                        Social Media Info
+                        Social Media Link
                     </section>
                     {/* ---------- LinkedIn Id ---------- */}
                     <section>
