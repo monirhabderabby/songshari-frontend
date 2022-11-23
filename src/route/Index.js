@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import LawyerServiceForm from "../components/Lawyer-Seam/LawyerServiceForm/LawyerServiceForm";
 import LawyerServicesPage from "../components/Lawyer-Seam/LawyerUserProfile/LawyerServicesPage";
+import OthersProfile from "../components/othersprofile/OthersProfile";
 import AdminAnalytics from "../components/pages/AdminAnalytics/AdminAnalytics";
 
 // components import

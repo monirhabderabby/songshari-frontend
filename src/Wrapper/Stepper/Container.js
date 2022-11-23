@@ -1,6 +1,6 @@
 import React from "react";
 import logo from "../../assets/images/Logo/logoBlack.png";
-import { ProfessionalDetails } from "./ProfessionalDetails";
+import { PersonalDetails } from "./PersonalDetails";
 
 export const Container = () => {
     return (
@@ -14,7 +14,7 @@ export const Container = () => {
                             </span>
                         </div>
                         <div className="my-[20px]">
-                            <ProfessionalDetails />
+                            <PersonalDetails />
                         </div>
                     </div>
                 </div>

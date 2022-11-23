@@ -4,6 +4,11 @@ import { AiOutlineCloudUpload, AiOutlineIdcard } from "react-icons/ai";
 
 export const PersonalDetails = () => {
     const [photoURL, setPhotoUrl] = useState("");
+    const [meritalStatus, setMeritalStatus] = useState("");
+
+    if (meritalStatus) {
+        console.log(meritalStatus);
+    }
     const {
         register,
         formState: { errors },
@@ -353,13 +358,7 @@ export const PersonalDetails = () => {
                                     "License Photo"
                                 )}
                             </label>
-                            <input
-                                {...register("licencePhoto")}
-                                type="file"
-                                id="licencePhoto"
-                                className="hidden"
-                                onChange={photoHandler}
-                            />
+                            <input {...register("licencePhoto")} type="file" id="licencePhoto" className="hidden" onChange={photoHandler} />
                         </div>
                         <h1 className="text-left ml-2">
                             {errors.licencePhoto?.type === "required" && (
@@ -417,8 +416,10 @@ export const PersonalDetails = () => {
                                     },
                                 })}
                                 type="text"
+                                onChange={e => setMeritalStatus(e.target.value)}
                                 className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
-                                id="maritalStatus">
+                                id="maritalStatus"
+                            >
                                 <option value="">Select Marital Status</option>
                                 <option value="married">Married</option>
                                 <option value="single">Single</option>
@@ -433,139 +434,152 @@ export const PersonalDetails = () => {
                         </h1>
                     </section>
                     {/* ---------- Number Of Partner ---------- */}
-                    <section>
-                        <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
-                            <input
-                                {...register("numberOfPartner", {
-                                    required: {
-                                        value: true,
-                                        message: "Number of partner is required",
-                                    },
-                                })}
-                                type="number"
-                                placeholder="Number of Partner"
-                                className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
-                                id="numberOfPartner"
-                            />
-                        </div>
-                        <h1 className="text-left ml-2">
-                            {errors.numberOfPartner?.type === "required" && (
-                                <span className="w-full text-left text-red-400 text-sm">{errors?.numberOfPartner.message}</span>
-                            )}
-                        </h1>
-                    </section>
+                    {meritalStatus === "married" && (
+                        <section>
+                            <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
+                                <input
+                                    {...register("numberOfPartner", {
+                                        required: {
+                                            value: true,
+                                            message: "Number of partner is required",
+                                        },
+                                    })}
+                                    type="number"
+                                    placeholder="Number of Partner"
+                                    className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
+                                    id="numberOfPartner"
+                                />
+                            </div>
+                            <h1 className="text-left ml-2">
+                                {errors.numberOfPartner?.type === "required" && (
+                                    <span className="w-full text-left text-red-400 text-sm">{errors?.numberOfPartner.message}</span>
+                                )}
+                            </h1>
+                        </section>
+                    )}
                     {/* ---------- Reason of Marriage ---------- */}
-                    <section>
-                        <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
-                            <input
-                                {...register("reasonOfMarriage", {
-                                    required: {
-                                        value: true,
-                                        message: "Reason of Marriage is required",
-                                    },
-                                })}
-                                type="text"
-                                placeholder="Reason of Marriage"
-                                className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
-                                id="reasonOfMarriage"
-                            />
-                        </div>
-                        <h1 className="text-left ml-2">
-                            {errors.reasonOfMarriage?.type === "required" && (
-                                <span className="w-full text-left text-red-400 text-sm">{errors?.reasonOfMarriage.message}</span>
-                            )}
-                        </h1>
-                    </section>
+                    {meritalStatus === "married" && (
+                        <section>
+                            <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
+                                <input
+                                    {...register("reasonOfMarriage", {
+                                        required: {
+                                            value: true,
+                                            message: "Reason of Marriage is required",
+                                        },
+                                    })}
+                                    type="text"
+                                    placeholder="Reason of Marriage"
+                                    className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
+                                    id="reasonOfMarriage"
+                                />
+                            </div>
+                            <h1 className="text-left ml-2">
+                                {errors.reasonOfMarriage?.type === "required" && (
+                                    <span className="w-full text-left text-red-400 text-sm">{errors?.reasonOfMarriage.message}</span>
+                                )}
+                            </h1>
+                        </section>
+                    )}
                     {/* ---------- Is partner aware of marriage ---------- */}
-                    <section>
-                        <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
-                            <select
-                                {...register("isPartnerAwarOfMarriage", {
-                                    required: {
-                                        value: true,
-                                        message: "Answer is required",
-                                    },
-                                })}
-                                type="text"
-                                className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
-                                id="isPartnerAwarOfMarriage">
-                                <option value="">Is partner aware of marriage?</option>
-                                <option value="yes">Yes</option>
-                                <option value="no">No</option>
-                            </select>
-                        </div>
-                        <h1 className="text-left ml-2">
-                            {errors.isPartnerAwarOfMarriage?.type === "required" && (
-                                <span className="w-full text-left text-red-400 text-sm">{errors?.isPartnerAwarOfMarriage.message}</span>
-                            )}
-                        </h1>
-                    </section>
+                    {meritalStatus === "married" && (
+                        <section>
+                            <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
+                                <select
+                                    {...register("isPartnerAwarOfMarriage", {
+                                        required: {
+                                            value: true,
+                                            message: "Answer is required",
+                                        },
+                                    })}
+                                    type="text"
+                                    className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
+                                    id="isPartnerAwarOfMarriage"
+                                >
+                                    <option value="">Is partner aware of marriage?</option>
+                                    <option value="yes">Yes</option>
+                                    <option value="no">No</option>
+                                </select>
+                            </div>
+                            <h1 className="text-left ml-2">
+                                {errors.isPartnerAwarOfMarriage?.type === "required" && (
+                                    <span className="w-full text-left text-red-400 text-sm">{errors?.isPartnerAwarOfMarriage.message}</span>
+                                )}
+                            </h1>
+                        </section>
+                    )}
                     {/* ---------- Date of Marriage ---------- */}
-                    <section>
-                        <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
-                            <input
-                                {...register("marriageDate", {
-                                    required: {
-                                        value: true,
-                                        message: "Date of Marriage is required",
-                                    },
-                                })}
-                                type="date"
-                                placeholder="Date of Marriage"
-                                className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
-                                id="marriageDate"
-                            />
-                        </div>
-                        <h1 className="text-left ml-2">
-                            {errors.marriageDate?.type === "required" && (
-                                <span className="w-full text-left text-red-400 text-sm">{errors?.marriageDate.message}</span>
-                            )}
-                        </h1>
-                    </section>
-                    {/* ---------- Date of Divorce ---------- */}
-                    <section>
-                        <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
-                            <input
-                                {...register("dicorceDate", {
-                                    required: {
-                                        value: true,
-                                        message: "Date of Divorce is required",
-                                    },
-                                })}
-                                type="date"
-                                placeholder="Date of Divorce"
-                                className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
-                                id="dicorceDate"
-                            />
-                        </div>
-                        <h1 className="text-left ml-2">
-                            {errors.dicorceDate?.type === "required" && (
-                                <span className="w-full text-left text-red-400 text-sm">{errors?.dicorceDate.message}</span>
-                            )}
-                        </h1>
-                    </section>
+                    {meritalStatus === "married" && (
+                        <section>
+                            <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
+                                <input
+                                    {...register("marriageDate", {
+                                        required: {
+                                            value: true,
+                                            message: "Date of Marriage is required",
+                                        },
+                                    })}
+                                    type="date"
+                                    placeholder="Date of Marriage"
+                                    className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
+                                    id="marriageDate"
+                                />
+                            </div>
+                            <h1 className="text-left ml-2">
+                                {errors.marriageDate?.type === "required" && (
+                                    <span className="w-full text-left text-red-400 text-sm">{errors?.marriageDate.message}</span>
+                                )}
+                            </h1>
+                        </section>
+                    )}
                     {/* ---------- Reason of Divorce ---------- */}
-                    <section>
-                        <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
-                            <input
-                                {...register("reasonOfDivorce", {
-                                    required: {
-                                        value: true,
-                                        message: "Reason of Divorce is required",
-                                    },
-                                })}
-                                type="text"
-                                placeholder="Reason of Divorce"
-                                className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
-                                id="reasonOfDivorce"
-                            />
-                        </div>
-                        <h1 className="text-left ml-2">
-                            {errors.reasonOfDivorce?.type === "required" && (
-                                <span className="w-full text-left text-red-400 text-sm">{errors?.reasonOfDivorce.message}</span>
-                            )}
-                        </h1>
-                    </section>
+                    {meritalStatus === "divorced" && (
+                        <section>
+                            <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
+                                <input
+                                    {...register("reasonOfDivorce", {
+                                        required: {
+                                            value: true,
+                                            message: "Reason of Divorce is required",
+                                        },
+                                    })}
+                                    type="text"
+                                    placeholder="Reason of Divorce"
+                                    className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
+                                    id="reasonOfDivorce"
+                                />
+                            </div>
+                            <h1 className="text-left ml-2">
+                                {errors.reasonOfDivorce?.type === "required" && (
+                                    <span className="w-full text-left text-red-400 text-sm">{errors?.reasonOfDivorce.message}</span>
+                                )}
+                            </h1>
+                        </section>
+                    )}
+                    {/* ---------- Date of Divorce ---------- */}
+                    {meritalStatus === "divorced" && (
+                        <section>
+                            <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
+                                <input
+                                    {...register("dicorceDate", {
+                                        required: {
+                                            value: true,
+                                            message: "Date of Divorce is required",
+                                        },
+                                    })}
+                                    type="date"
+                                    placeholder="Date of Divorce"
+                                    className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
+                                    id="dicorceDate"
+                                />
+                            </div>
+                            <h1 className="text-left ml-2">
+                                {errors.dicorceDate?.type === "required" && (
+                                    <span className="w-full text-left text-red-400 text-sm">{errors?.dicorceDate.message}</span>
+                                )}
+                            </h1>
+                        </section>
+                    )}
                     {/* ---------- Number Of Boy ---------- */}
                     <section>
                         <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
@@ -812,7 +826,6 @@ export const PersonalDetails = () => {
                     </section>
 
                     {/* ------------------------ Current profession field end ------------------------ */}
-
 
                     {/* ---------------------- Highest education qualification start --------------------- */}
 
@@ -1120,9 +1133,7 @@ export const PersonalDetails = () => {
                         </h1>
                     </section>
                     {/* ---------- Parents ---------- */}
-                    <section>
-                        parents info
-                    </section>
+                    <section>parents info</section>
                     {/* ---------- Number of Brother ---------- */}
                     <section>
                         <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
@@ -1254,7 +1265,8 @@ export const PersonalDetails = () => {
                                 })}
                                 type="text"
                                 className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
-                                id="whatAreYouLookingFor">
+                                id="whatAreYouLookingFor"
+                            >
                                 <option value="">What Are You Looking For?</option>
                                 <option value="men">Men</option>
                                 <option value="women">Women</option>
@@ -1337,7 +1349,6 @@ export const PersonalDetails = () => {
                             )}
                         </h1>
                     </section>
-
                 </section>
                 <input
                     type="submit"
