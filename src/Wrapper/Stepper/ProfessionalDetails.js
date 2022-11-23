@@ -1,20 +1,30 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import { useSetPhysicalDetailsMutation } from "../../Redux/features/userInfo/userApi";
 
-export const ProfessionalDetails = () => {
+export const ProfessionalDetails = ({ setPage }) => {
+    const [setProfessionalDetails, { data, isLoading }] = useSetPhysicalDetailsMutation();
     const {
         register,
         formState: { errors },
         handleSubmit,
-        reset,
+        // reset,
     } = useForm();
 
-    const onSubmit = data => {
+    const onSubmit = async data => {
         data.caseCompleted = parseInt(data.caseCompleted);
-        console.log(data);
+        // console.log(data);
+        await setProfessionalDetails(data);
+        setPage(4);
     };
+
+    if (data) {
+        console.log(data);
+    }
+
     return (
         <div className="w-full h-auto">
+            <h1 className="text-left text-[32px] my-[21px}]">Professional</h1>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <section className="md:w-full w-64 mx-auto grid grid-cols-1 md:grid-cols-2 gap-3 lg:grid-cols-3">
                     {/* ---------- Position ---------- */}
@@ -130,7 +140,7 @@ export const ProfessionalDetails = () => {
                 </section>
                 <input
                     type="submit"
-                    value={"Submit"}
+                    value={isLoading ? "Loading" : "Submit"}
                     className="border-2 cursor-pointer mt-3 border-primary hover:border-0 rounded-full px-12 py-2 hover:bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] hover:text-white duration-500 transition-all"
                 />
             </form>

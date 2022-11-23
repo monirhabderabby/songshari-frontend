@@ -4,7 +4,7 @@ import "../../../assets/css/profileCards.css";
 const DynamicProfileCard = ({ user }) => {
     return (
         <div>
-            <div className="card_container shadow-4xl px-2 md:px-0">
+            <div className="card_container shadow-[0px_10px_5px_rgba(119,123,146,0.02)] px-2 md:px-0">
                 <div className="Card-header"></div>
                 <div className="relative w-52 h-52 rounded-full">
                     <div className="bottom-20 left-20 lg:left-20 md:left-16 absolute">

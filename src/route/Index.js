@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import LawyerServiceForm from "../components/Lawyer-Seam/LawyerServiceForm/LawyerServiceForm";
 import LawyerServicesPage from "../components/Lawyer-Seam/LawyerUserProfile/LawyerServicesPage";
+import OthersProfile from "../components/othersprofile/OthersProfile";
 import AdminAnalytics from "../components/pages/AdminAnalytics/AdminAnalytics";
 
 // components import
@@ -35,6 +36,7 @@ import ProfileInfo from "../Wrapper/Profileinfo/ProfileInfo";
 import Shop from "../Wrapper/Shop/Shop";
 import SingleProduct from "../Wrapper/SingleProduct/SingleProduct";
 import SingleProfile from "../Wrapper/SingleProfilesUser/SingleProfile";
+import { LawyerActivity } from "../components/pages/lawyeractivity/LawyerActivity";
 import { Container } from "../Wrapper/Stepper/Container";
 
 const Index = () => {
@@ -64,10 +66,7 @@ const Index = () => {
           <Route path="/agent" element={<Agent></Agent>}></Route>
           <Route path="/community" element={<Community></Community>}></Route>
           <Route path="/shop" element={<Shop></Shop>}></Route>
-          {/* <Route
-            path="/stepher"
-            element={<StepProgress></StepProgress>}
-          ></Route> */}
+          
           <Route
             path="/singleproduct"
             element={<SingleProduct></SingleProduct>}
@@ -80,6 +79,7 @@ const Index = () => {
             element={<LoginAsProfessional />}
           />
           <Route path="/contact" element={<Contact />}></Route>
+          <Route path="/lawyeractivity" element={<LawyerActivity></LawyerActivity>}></Route>
           <Route path="/members" element={<Members />}></Route>
           <Route path="/profile/:id" element={<DynamicProfilePage />}></Route>
           <Route path="/find-partner" element={<FindPartner />}>
@@ -103,6 +103,7 @@ const Index = () => {
           <Route path="/singleViewRequest" element={<SingleRequestView />} />
           <Route path="/admin-analytics" element={<AdminAnalytics />}></Route>
           {/* <Route path="/profile" element={<OthersProfile />} /> */}
+          <Route path="/stepper" element={<Container></Container>}></Route>
           <Route path="*" element={<NotFound />}></Route>
         </Routes>
       </BrowserRouter>
