@@ -1,6 +1,10 @@
 import React from "react";
 import logo from "../../assets/images/Logo/logoBlack.png";
 import { PersonalDetails } from "./PersonalDetails";
+import { ProfessionalDetails } from "./ProfessionalDetails";
+import { EducationalDetails } from "./EducationalDetails";
+import { PhysicalDetails } from "./PhysicalDetails";
+import { OtherDetails } from "./OtherDetails";
 
 export const Container = () => {
     return (
@@ -15,6 +19,10 @@ export const Container = () => {
                         </div>
                         <div className="my-[20px]">
                             <PersonalDetails />
+                            {/* <ProfessionalDetails />
+                            <EducationalDetails />
+                            <PhysicalDetails />
+                            <OtherDetails /> */}
                         </div>
                     </div>
                 </div>
