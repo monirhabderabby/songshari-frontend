@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 
 const FindPartnersHeader = () => {
   return (
-    <div className="flex justify-between items-center">
+    <div className="flex lg:flex-row flex-col justify-between items-center">
       {/* <!-- search --> */}
       <div>
         <div
@@ -37,7 +37,7 @@ const FindPartnersHeader = () => {
           />
         </div>
       </div>
-      <div className="find-partner-button flex-wrap flex justify-between items-center">
+      <div className="find-partner-button mt-[10px] lg:mt-0 flex-wrap flex justify-between items-center">
         {" "}
         <NavLink
           style={{ boxShadow: "2px 2px 8px rgba(0, 0, 0, 0.1)" }}

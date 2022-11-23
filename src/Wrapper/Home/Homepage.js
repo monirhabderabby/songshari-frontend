@@ -18,7 +18,7 @@ import Footer from "../../components/shared/Footer/Footer";
 const Homepage = () => {
   return (
     <div className="font-george">
-      <NavBar></NavBar>
+      {/* <NavBar></NavBar>
       <Banner></Banner>
       <ThreeEasySteps></ThreeEasySteps>
       <SecureVerified></SecureVerified>
@@ -30,7 +30,7 @@ const Homepage = () => {
       <FindSoleMate />
       <MeetNewPeople />
       <Membership />
-      <Anexecutive></Anexecutive>
+      <Anexecutive></Anexecutive> */}
       <Footer />
     </div>
   );

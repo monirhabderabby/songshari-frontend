@@ -169,7 +169,7 @@
 
 @media (max-width: 576px) {
   .footer-container {
-    max-width: 540px;
+    max-width: 100%;
   }
 }
 
@@ -289,5 +289,18 @@
   }
   .footer-section .newslater-section .newslater-wrapper .newslater-form input {
     width: 60%;
+  }
+  .ocean,
+  .ocean2 {
+    height: 83px;
+  }
+}
+
+@media (max-width: 574px) {
+  .footer-section .newslater-section .newslater-wrapper .newslater-form button {
+    right: 5px;
+  }
+  .footer-section .newslater-section .newslater-wrapper .newslater-form input {
+    width: 100%;
   }
 }
