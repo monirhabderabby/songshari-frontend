@@ -8,11 +8,11 @@ import dummyData from "./TopProfile/dummyData";
 
 const SwipeMatch = () => {
 
-  const [ambulance,setAmbulance] = useState([])
+  const [swipematch,setSwipeMatch] = useState([])
     useEffect(()=>{
         fetch(' https://shanshari-temp.vercel.app/withoutLogin/recentMembers')
         .then(res => res.json())
-        .then(data => setAmbulance(data))
+        .then(data => setSwipeMatch(data))
     },[])
 
   return (
@@ -39,7 +39,7 @@ const SwipeMatch = () => {
         modules={[Navigation]}
         className="mySwiper text-center"
       >
-        {ambulance.map((data) => (
+        {swipematch.map((data) => (
           <SwiperSlide key={data.id} className="relative">
             <img className="w-full rounded-b-xl" src={data.profilePhoto} alt="" />
             <div className="absolute bottom-4 left-8 text-white w-4/5">
