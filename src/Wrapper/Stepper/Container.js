@@ -1,7 +1,11 @@
 import React from "react";
 import logo from "../../assets/images/Logo/logoBlack.png";
 import NavBar from "../../components/pages/Shared/NavBar";
+import { PersonalDetails } from "./PersonalDetails";
 import { ProfessionalDetails } from "./ProfessionalDetails";
+import { EducationalDetails } from "./EducationalDetails";
+import { PhysicalDetails } from "./PhysicalDetails";
+import { OtherDetails } from "./OtherDetails";
 
 export const Container = () => {
     return (
@@ -16,7 +20,11 @@ export const Container = () => {
                             </span>
                         </div>
                         <div className="my-[20px]">
-                            <ProfessionalDetails />
+                            <PersonalDetails />
+                            {/* <ProfessionalDetails />
+                            <EducationalDetails />
+                            <PhysicalDetails />
+                            <OtherDetails /> */}
                         </div>
                     </div>
                 </div>

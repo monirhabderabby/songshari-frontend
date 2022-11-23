@@ -3,7 +3,7 @@ import '../../assets/css/OthersNav.css';
 export const OthersNav = () => {
   return (
     <div>
-        <div className="navbar bg-othersnav">
+        <div className="navbar">
   <div className="navbar-start">
     <div className="dropdown">
       <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -26,13 +26,13 @@ export const OthersNav = () => {
     </div>
   </div>
   <div className="navbar-center hidden lg:flex">
-    <ul className="menu menu-horizontal p-0 text-white">
-      <li className='text-white'><a>Activity</a></li>
+    <ul className="menu menu-horizontal p-0 text-black">
+      <li className='text-black'><a>Service</a></li>
      
       <li><a>Profile</a></li>
-      <li><a>Friends <span className="badge badge-sm indicator-item hh">04</span></a></li>
-      <li><a>Groups <span className="badge badge-sm indicator-item hh">14</span></a></li>
-      <li><a>Media <span className="badge badge-sm indicator-item hh">47</span></a></li>
+      <li><a>Review <span className="badge badge-sm indicator-item hh">04</span></a></li>
+      <li className='text-red-700'><a>Activity</a></li>
+   
     </ul>
   </div>
   <div className="navbar-end">

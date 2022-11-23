@@ -1,7 +1,7 @@
 import React from "react";
 import "../../../App.css";
 import img from "../../../assets/images/Slider/Slider3.jpeg";
-import { CustomHeader } from "../../shared/CustomHeader/CustomHeader";
+import { CustomHeader } from "../../Shared/CustomHeader/CustomHeader";
 import { SingleViewRequestInformations } from "./SingleViewRequestInformations";
 
 export const SingleRequestView = () => {

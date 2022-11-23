@@ -12,7 +12,7 @@ import PeopleJoinedAlready from "../../components/pages/PeopleJoinedAlready/Peop
 import NavBar from "../../components/pages/Shared/NavBar";
 import TopProfession from "../../components/pages/TopProfession/TopProfession";
 import TopProfile from "../../components/pages/TopProfile/TopProfile";
-import Footer from "../../components/shared/Footer/Footer";
+import Footer from "../../components/Shared/Footer/Footer";
 // import NavBar from "../../components/shared/NavBar/NavBar";
 
 const Homepage = () => {

@@ -15,7 +15,10 @@ import slider7 from "../../../../assets/images/Slider/Slider7.jpeg";
 import FindPartnerForm from "./FindPartnerForm";
 import SwipeMatch from "./SwipeMatch";
 
+
 const Banner = () => {
+   
+
     const sliderImages = [slider, slider1, slider2, slider3, slider4, slider5, slider6, slider7];
     return (
         <div className="relative">
