@@ -7,6 +7,7 @@ import { TbMessageCircle2 } from "react-icons/tb";
 import { BsCommand } from 'react-icons/bs';
 import { MdMessage } from 'react-icons/md';
 import { BiUserPlus } from 'react-icons/bi';
+import ChartBoardCSS from '../../../assets/css/chartBoard.module.css';
 
 const ChartBoard = () => {
 
@@ -43,9 +44,9 @@ const ChartBoard = () => {
                         <h3 className='mt-3 mb-2'>
                             {certificate.text}
                         </h3>
-                        <div className='relative'>
+                        <div className={`relative ${ChartBoardCSS.hasViewButton}`}>
                             <img className='rounded-lg' src={certificate.img} alt="" />
-                            <button className='absolute top-[35%] left-[35%] rounded block bg-white text-sm font-medium leading-[26px] px-4 py-1'>
+                            <button className={`${ChartBoardCSS.showViewButton} top-[35%] left-[35%] rounded block bg-white text-sm font-medium leading-[26px] px-4 py-1 duration-300`}>
                                 View
                             </button>
                         </div>

@@ -67,54 +67,6 @@ export const Profile = () => {
                 )}
             </div> */}
             <Accordian></Accordian>
-            <div className="w-full mt-10 bg-white px-4 py-6 rounded-lg shadow  mx-4">
-                <Title titleText="Myself Summary"></Title>
-
-                <div className="">
-                    <div className="text-left">
-                        <p>
-                            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptate blanditiis cum amet corrupti! Repellendus veritatis
-                            dicta reiciendis eligendi, vero ea nemo. Adipisci tenetur quis neque assumenda a libero maiores eaque?
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div className="my-6 py-6 mx-4 table-bar px-8 shadow">
-                <div className="flex justify-between">
-                    <Title titleText="Educational Details"></Title>
-                    <button onClick={handleEdit} className="underline">
-                        Edit
-                    </button>
-                </div>
-                {tables.map(t => {
-                    return (
-                        <div className="">
-                            <div className="flex justify-between custom-design">
-                                <h1>{t.name}</h1>
-                                <h1>{t.title}</h1>
-                            </div>
-                        </div>
-                    );
-                })}
-            </div>
-            <div className="my-6 py-6 table-bar px-8 mx-4 shadow">
-                <div className="flex justify-between">
-                    <Title titleText="Others Details"></Title>
-                    <button onClick={handleEdit} className="underline">
-                        Edit
-                    </button>
-                </div>
-                {tables.map((t, i) => {
-                    return (
-                        <div key={i} className="">
-                            <div className="flex justify-between custom-design">
-                                <h1>{t.name}</h1>
-                                <h1>{t.title}</h1>
-                            </div>
-                        </div>
-                    );
-                })}
-            </div>
         </div>
     );
 };
