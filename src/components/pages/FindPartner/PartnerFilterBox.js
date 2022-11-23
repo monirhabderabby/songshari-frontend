@@ -1,11 +1,16 @@
-import React from "react";
-
+import React, { useState } from "react";
+import FindPartner from "../../../assets/css/FindPartner.module.css";
 const PartnerFilterBox = () => {
+  const [remuneration, setRemuneration] = useState(true);
+  const [location, setLocation] = useState(true);
+  const [category, setCategory] = useState(true);
+  const [qualifications, setQualifications] = useState(true);
+
   return (
     <>
       <div
         id="join-now-box2"
-        className="bg-[#fff] w-[400px] lg:w-full mx-auto rounded-[10px] px-[30px] py-[40px]"
+        className={`bg-[#fff]  ${FindPartner.partnerFilterBox} w-[400px] lg:w-full mx-auto rounded-[10px] px-[30px] py-[40px]`}
         style={{
           visibility: "visible",
           boxShadow: " 2px 2px 10px rgba(0, 0, 0, 0.12)",
@@ -20,8 +25,55 @@ const PartnerFilterBox = () => {
             <h4 className="text-[#000000] font-medium text-base">
               Personal Injury Lawyer
             </h4>
-            <div>
-              <i className="fa-solid font-semibold fa-chevron-down"></i>
+            <div className=" relative">
+              <button onClick={() => setCategory(!category)}>
+                {" "}
+                <i className="fa-solid font-semibold fa-chevron-down"></i>
+              </button>
+
+              <div
+                className={`absolute top-[44px] border ${
+                  category ? "hidden" : "block"
+                } right-0 z-10 w-[260px] bg-white rounded divide-y divide-gray-100 shadow-lg dark:bg-gray-700 dark:divide-gray-600`}
+              >
+                <ul
+                  className="py-1 text-[#000000] font-medium text-base text-center dark:text-gray-200"
+                  aria-labelledby="dropdownDividerButton"
+                >
+                  <li>
+                    <a
+                      href="!#"
+                      className="block font-semibold py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                    >
+                      PERSONAL INJURY LAWYER
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="!#"
+                      className="block font-semibold py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                    >
+                      FAMILY LAWYER
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="!#"
+                      className="block font-semibold py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                    >
+                      ESTATE PLANNING LAWYER
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="!#"
+                      className="block font-semibold py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                    >
+                      CONTRACT LAWYER
+                    </a>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
@@ -32,8 +84,55 @@ const PartnerFilterBox = () => {
           </h2>
           <div className="flex pb-[10px] justify-between items-center">
             <h4 className="text-[#000000] font-medium text-base">Dhaka</h4>
-            <div>
-              <i className="fa-solid font-semibold fa-chevron-down"></i>
+            <div className=" relative">
+              <button onClick={() => setLocation(!location)}>
+                {" "}
+                <i className="fa-solid font-semibold fa-chevron-down"></i>
+              </button>
+
+              <div
+                className={`absolute top-[44px] border ${
+                  location ? "hidden" : "block"
+                } right-0 z-10 w-[260px] bg-white rounded divide-y divide-gray-100 shadow-lg dark:bg-gray-700 dark:divide-gray-600`}
+              >
+                <ul
+                  className="py-1 text-[#000000] font-medium text-base text-center dark:text-gray-200"
+                  aria-labelledby="dropdownDividerButton"
+                >
+                  <li>
+                    <a
+                      href="!#"
+                      className="block font-semibold py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                    >
+                      Dhaka
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="!#"
+                      className="block font-semibold py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                    >
+                      Chittagong
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="!#"
+                      className="block font-semibold py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                    >
+                      Comilla
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="!#"
+                      className="block font-semibold py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                    >
+                      Rajshahi
+                    </a>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
@@ -84,19 +183,24 @@ const PartnerFilterBox = () => {
               30,000 - 40,000
             </h4>
             <div className=" relative">
-              <button>
+              <button onClick={() => setRemuneration(!remuneration)}>
                 {" "}
                 <i className="fa-solid font-semibold fa-chevron-down"></i>
               </button>
-              <div className=" absolute hidden top-[46px] right-0 z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600">
+
+              <div
+                className={`absolute top-[44px] border ${
+                  remuneration ? "hidden" : "block"
+                } right-0 z-10 w-[260px] bg-white rounded divide-y divide-gray-100 shadow-lg dark:bg-gray-700 dark:divide-gray-600`}
+              >
                 <ul
-                  className="py-1 text-sm text-gray-700 dark:text-gray-200"
+                  className="py-1 text-[#000000] font-medium text-base text-center dark:text-gray-200"
                   aria-labelledby="dropdownDividerButton"
                 >
                   <li>
                     <a
                       href="!#"
-                      className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                      className="block font-semibold py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                     >
                       30,000
                     </a>
@@ -104,7 +208,7 @@ const PartnerFilterBox = () => {
                   <li>
                     <a
                       href="!#"
-                      className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                      className="block font-semibold py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                     >
                       40,000
                     </a>
@@ -112,7 +216,7 @@ const PartnerFilterBox = () => {
                   <li>
                     <a
                       href="!#"
-                      className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                      className="block font-semibold py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                     >
                       50,000
                     </a>
@@ -143,8 +247,55 @@ const PartnerFilterBox = () => {
             <h4 className="text-[#000000] font-medium text-base">
               Bankruptcy Lawyer
             </h4>
-            <div>
-              <i className="fa-solid font-semibold fa-chevron-down"></i>
+            <div className=" relative">
+              <button onClick={() => setQualifications(!qualifications)}>
+                {" "}
+                <i className="fa-solid font-semibold fa-chevron-down"></i>
+              </button>
+
+              <div
+                className={`absolute top-[44px] border ${
+                  qualifications ? "hidden" : "block"
+                } right-0 z-10 w-[260px] bg-white rounded divide-y divide-gray-100 shadow-lg dark:bg-gray-700 dark:divide-gray-600`}
+              >
+                <ul
+                  className="py-1 text-[#000000] font-medium text-base text-center dark:text-gray-200"
+                  aria-labelledby="dropdownDividerButton"
+                >
+                  <li>
+                    <a
+                      href="!#"
+                      className="block font-semibold py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                    >
+                      BANKRUPTCY LAWYER
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="!#"
+                      className="block font-semibold py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                    >
+                      BUSINESS LAWYER
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="!#"
+                      className="block font-semibold py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                    >
+                      CONSTITUTIONAL LAWYER
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="!#"
+                      className="block font-semibold py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                    >
+                      TAX LAWYER
+                    </a>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>

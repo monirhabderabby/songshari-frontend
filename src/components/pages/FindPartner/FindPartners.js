@@ -15,7 +15,7 @@ const FindPartners = () => {
             <div>
               <PartnerFilterBox />
             </div>
-            <div className="lg:col-span-2 xl:col-span-3">
+            <div className="lg:col-span-2 pt-[50px] md:pt-[0px] xl:col-span-3">
               <FindPartnersHeader />
               <div>
                 <Outlet />
