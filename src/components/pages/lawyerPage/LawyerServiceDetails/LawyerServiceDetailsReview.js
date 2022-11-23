@@ -1,6 +1,6 @@
 import React from "react";
-import review from "../../../assets/images/LawyerProfile/review.png";
-import LawyerProfileCSS from "../../../assets/css/LawyerProfile.module.css";
+import review from "../../../../assets/images/LawyerProfile/review.png";
+import LawyerProfileCSS from "../../../../assets/css/LawyerProfile.module.css";
 
 const LawyerServiceDetailsReview = () => {
   return (

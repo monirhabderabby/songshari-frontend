@@ -1,6 +1,6 @@
 import React from "react";
-import banner from "../../../assets/images/LawyerProfile/LawyerProfileBanner.png";
-import suggest from "../../../assets/images/LawyerProfile/LawyerProfile.png";
+import banner from "../../../../assets/images/LawyerProfile/LawyerProfileBanner.png";
+import suggest from "../../../../assets/images/LawyerProfile/LawyerProfile.png";
 
 const LawyerServiceDetailsContent = () => {
   const suggestBox = [
