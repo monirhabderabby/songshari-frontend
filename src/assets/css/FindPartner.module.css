@@ -90,3 +90,10 @@
   padding: 10px 33px;
   font-weight: 600t;
 }
+
+@media (max-width: 320px) {
+  .partnerFilterBox {
+    width: 300px;
+    margin: 0 auto;
+  }
+}
