@@ -39,6 +39,7 @@ import SingleProfile from "../Wrapper/SingleProfilesUser/SingleProfile";
 import { LawyerActivity } from "../components/pages/lawyeractivity/LawyerActivity";
 import { Container } from "../Wrapper/Stepper/Container";
 import PartnerCard from "../components/pages/FindPartner/PartnerCard";
+import { UsersProfile } from "../components/SingleProfilesUser/profileSection/UsersProfile";
 
 const Index = () => {
   return (
@@ -47,6 +48,7 @@ const Index = () => {
         <Routes>
           <Route path="/about" element={<About></About>}></Route>
           <Route path="/userprofile" element={<SingleProfile />}></Route>
+          <Route path="/usersprofile" element={<UsersProfile />}></Route>
           <Route path="/membership" element={<MemberShip></MemberShip>}></Route>
           <Route
             path="/profileinfo"
@@ -107,6 +109,7 @@ const Index = () => {
           <Route path="/singleViewRequest" element={<SingleRequestView />} />
           <Route path="/admin-analytics" element={<AdminAnalytics />}></Route>
           {/* <Route path="/profile" element={<OthersProfile />} /> */}
+          <Route path="/ste" element={<OthersProfile></OthersProfile>}></Route>
           <Route path="/stepper" element={<Container></Container>}></Route>
           <Route path="*" element={<NotFound />}></Route>
         </Routes>
