@@ -5,7 +5,7 @@ import Button from '../comons/Button';
 const MeetCard = () => {
     return (
         <div>
-            <div className='text-center pt-4 pb-10'>
+            {/* <div className='text-center pt-4 pb-10'>
                 <h1 className='text-red-600 text-3xl pb-8'>Lorem ipsum dolor sit amet </h1>
                 <h1 className='text-red-600 text-3xl pb-3'>Lorem ipsum dolor</h1>
                 <h1>Lorem ipsum dolor sit amet consectetur.</h1>
@@ -21,7 +21,7 @@ const MeetCard = () => {
                         <Button btntext="Click me" />
                     </div>
                 </div>
-            </div>
+            </div> */}
         </div>
     );
 };
