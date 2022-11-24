@@ -8,6 +8,8 @@ import { firebaseStorage } from "../../firebase.init";
 export const PersonalDetails = ({ setPage }) => {
     const [photoURL, setPhotoUrl] = useState("");
     const [profilePhoto, setProfilePhoto] = useState("");
+    const [coverPhoto, setCoverPhoto] = useState("");
+    const [frontSide, setFrontSide] = useState("");
     const [meritalStatus, setMeritalStatus] = useState("");
 
     const {
@@ -56,8 +58,27 @@ export const PersonalDetails = ({ setPage }) => {
         const storageRef = ref(firebaseStorage, `profile/${photo.name + uuidv4()}`);
         uploadBytes(storageRef, photo).then(async snapshot => {
             await getDownloadURL(snapshot.ref).then(url => {
-                console.log(url);
                 setProfilePhoto(url.toString());
+            });
+        });
+    };
+
+    const coverPhotoHandler = async e => {
+        const photo = e.target.files[0];
+        const storageRef = ref(firebaseStorage, `cover/${photo.name + uuidv4()}`);
+        uploadBytes(storageRef, photo).then(async snapshot => {
+            await getDownloadURL(snapshot.ref).then(url => {
+                setCoverPhoto(url.toString());
+            });
+        });
+    };
+
+    const frontSideNIDHandler = async e => {
+        const photo = e.target.files[0];
+        const storageRef = ref(firebaseStorage, `cover/${photo.name + uuidv4()}`);
+        uploadBytes(storageRef, photo).then(async snapshot => {
+            await getDownloadURL(snapshot.ref).then(url => {
+                setFrontSide(url.toString());
             });
         });
     };
@@ -234,7 +255,7 @@ export const PersonalDetails = ({ setPage }) => {
                             <label htmlFor="profilePhoto" className="outline-none h-full text-sm text-gray-400 bg-gray-100">
                                 {profilePhoto ? (
                                     <>
-                                        <span className="text-green-400">Photo added</span>
+                                        <span className="text-green-400">Profile Photo added</span>
                                     </>
                                 ) : (
                                     "Upload Profile Photo"
@@ -264,9 +285,9 @@ export const PersonalDetails = ({ setPage }) => {
                         <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
                             <AiOutlineCloudUpload className=" mr-2 text-gray-400" />
                             <label htmlFor="coverPhoto" className="outline-none h-full text-sm text-gray-400 bg-gray-100">
-                                {photoURL ? (
+                                {coverPhoto ? (
                                     <>
-                                        <span className="text-green-400">Photo added</span>
+                                        <span className="text-green-400">Cover Photo added</span>
                                     </>
                                 ) : (
                                     "Upload Cover Photo"
@@ -282,7 +303,7 @@ export const PersonalDetails = ({ setPage }) => {
                                 type="file"
                                 id="coverPhoto"
                                 className="hidden"
-                                onChange={photoHandler}
+                                onChange={coverPhotoHandler}
                             />
                         </div>
                         <h1 className="text-left ml-2">
@@ -318,9 +339,9 @@ export const PersonalDetails = ({ setPage }) => {
                         <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
                             <AiOutlineIdcard className=" mr-2 text-gray-400" />
                             <label htmlFor="frontSide" className="outline-none h-full text-sm text-gray-400 bg-gray-100">
-                                {photoURL ? (
+                                {frontSide ? (
                                     <>
-                                        <span className="text-green-400">Photo added</span>
+                                        <span className="text-green-400">Front side NID / PAssport added</span>
                                     </>
                                 ) : (
                                     "Nid Or Passport Front side Photo"
@@ -336,7 +357,7 @@ export const PersonalDetails = ({ setPage }) => {
                                 type="file"
                                 id="frontSide"
                                 className="hidden"
-                                onChange={photoHandler}
+                                onChange={frontSideNIDHandler}
                             />
                         </div>
                         <h1 className="text-left ml-2">
