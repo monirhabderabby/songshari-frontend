@@ -1,14 +1,15 @@
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { AiOutlineCloudUpload, AiOutlineIdcard } from "react-icons/ai";
+import { v4 as uuidv4 } from "uuid";
+import { firebaseStorage } from "../../firebase.init";
 
 export const PersonalDetails = ({ setPage }) => {
     const [photoURL, setPhotoUrl] = useState("");
+    const [profilePhoto, setProfilePhoto] = useState("");
     const [meritalStatus, setMeritalStatus] = useState("");
 
-    if (meritalStatus) {
-        console.log(meritalStatus);
-    }
     const {
         register,
         formState: { errors },
@@ -17,30 +18,51 @@ export const PersonalDetails = ({ setPage }) => {
     } = useForm();
 
     const onSubmit = data => {
-        const hightestEducationalQualification = {
-            ...data.degreeName,
-            ...data.institute,
-            ...data.Department,
-            ...data.fieldOfStudy,
-            ...data.yearOfPassing,
-            ...data.specialAchievement,
-        };
-        // delete data.degreeName,
-        //     delete data.institute,
-        //     delete data.Department,
-        //     delete data.fieldOfStudy,
-        //     delete data.yearOfPassing,
-        //     delete data.specialAchievement;
-        data = { ...data, hightestEducationalQualification };
-        console.log(hightestEducationalQualification);
+        const hightestEducationalQualification = {};
+        const currentProfession = {};
+
+        Object.keys(data).forEach(function (key) {
+            if (key === "position" || key === "institute" || key === "workPeriod" || key === "specialAchievement") {
+                currentProfession[key] = data[key];
+            }
+        });
+
+        Object.keys(data).forEach(function (key) {
+            if (key === "degreeName" || key === "Department" || key === "fieldOfStudy" || key === "yearOfPassing" || key === "specialAchievement") {
+                hightestEducationalQualification[key] = data[key];
+            }
+        });
+
+        delete data.degreeName;
+        delete data.institute;
+        delete data.Department;
+        delete data.fieldOfStudy;
+        delete data.yearOfPassing;
+        delete data.specialAchievement;
+
+        //current profession object delete from main object
+        delete data.position;
+        delete data.institute;
+        delete data.workPeriod;
+        delete data.specialAchievement;
+
+        data = { ...data, hightestEducationalQualification, currentProfession };
         console.log(data);
-        setPage(2);
+        // setPage(2);
     };
 
-    const photoHandler = async e => {
+    const profilePhotoHandler = async e => {
         const photo = e.target.files[0];
-        console.log(photo);
+        const storageRef = ref(firebaseStorage, `profile/${photo.name + uuidv4()}`);
+        uploadBytes(storageRef, photo).then(async snapshot => {
+            await getDownloadURL(snapshot.ref).then(url => {
+                console.log(url);
+                setProfilePhoto(url.toString());
+            });
+        });
     };
+
+    const photoHandler = () => {};
 
     return (
         <div className="w-full h-auto">
@@ -210,7 +232,7 @@ export const PersonalDetails = ({ setPage }) => {
                         <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
                             <AiOutlineCloudUpload className=" mr-2 text-gray-400" />
                             <label htmlFor="profilePhoto" className="outline-none h-full text-sm text-gray-400 bg-gray-100">
-                                {photoURL ? (
+                                {profilePhoto ? (
                                     <>
                                         <span className="text-green-400">Photo added</span>
                                     </>
@@ -228,7 +250,7 @@ export const PersonalDetails = ({ setPage }) => {
                                 type="file"
                                 id="profilePhoto"
                                 className="hidden"
-                                onChange={photoHandler}
+                                onChange={profilePhotoHandler}
                             />
                         </div>
                         <h1 className="text-left ml-2">
@@ -1193,9 +1215,7 @@ export const PersonalDetails = ({ setPage }) => {
                         </h1>
                     </section>
                     {/* ---------- Social media info ---------- */}
-                    <section className="col-span-1 md:col-span-2 lg:col-span-3 text-[#2F3659] font-medium text-left ml-1">
-                        Social Media Link
-                    </section>
+                    <section className="col-span-1 md:col-span-2 lg:col-span-3 text-[#2F3659] font-medium text-left ml-1">Social Media Link</section>
                     {/* ---------- LinkedIn Id ---------- */}
                     <section>
                         <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
