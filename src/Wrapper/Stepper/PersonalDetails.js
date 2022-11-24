@@ -4,13 +4,17 @@ import { useForm } from "react-hook-form";
 import { AiOutlineCloudUpload, AiOutlineIdcard } from "react-icons/ai";
 import { v4 as uuidv4 } from "uuid";
 import { firebaseStorage } from "../../firebase.init";
+import { useSetPersonalDetailsMutation } from "../../Redux/features/userInfo/userApi";
 
 export const PersonalDetails = ({ setPage }) => {
-    const [photoURL, setPhotoUrl] = useState("");
     const [profilePhoto, setProfilePhoto] = useState("");
     const [coverPhoto, setCoverPhoto] = useState("");
     const [frontSide, setFrontSide] = useState("");
+    const [backSide, setBackSide] = useState("");
+    const [licencePhoto, setLicencePhoto] = useState("");
     const [meritalStatus, setMeritalStatus] = useState("");
+
+    const [setPersonalDetails, { data, isLoading }] = useSetPersonalDetailsMutation();
 
     const {
         register,
@@ -24,13 +28,20 @@ export const PersonalDetails = ({ setPage }) => {
         const currentProfession = {};
 
         Object.keys(data).forEach(function (key) {
-            if (key === "position" || key === "institute" || key === "workPeriod" || key === "specialAchievement") {
+            if (key === "CurrentProfessionposition" || key === "CurrentProfessionInstitute" || key === "workPeriod" || key === "specialAchievement") {
                 currentProfession[key] = data[key];
             }
         });
 
         Object.keys(data).forEach(function (key) {
-            if (key === "degreeName" || key === "Department" || key === "fieldOfStudy" || key === "yearOfPassing" || key === "specialAchievement") {
+            if (
+                key === "degreeName" ||
+                key === "institute" ||
+                key === "Department" ||
+                key === "fieldOfStudy" ||
+                key === "yearOfPassing" ||
+                key === "specialAchievement"
+            ) {
                 hightestEducationalQualification[key] = data[key];
             }
         });
@@ -43,10 +54,23 @@ export const PersonalDetails = ({ setPage }) => {
         delete data.specialAchievement;
 
         //current profession object delete from main object
-        delete data.position;
-        delete data.institute;
+        delete data.CurrentProfessionposition;
+        delete data.CurrentProfessionInstitute;
         delete data.workPeriod;
         delete data.specialAchievement;
+
+        currentProfession.position = currentProfession.CurrentProfessionposition;
+        currentProfession.institute = currentProfession.CurrentProfessionInstitute;
+
+        delete currentProfession.CurrentProfessionposition;
+        delete currentProfession.CurrentProfessionInstitute;
+
+        //photo links upload
+        data.profilePhoto = profilePhoto;
+        data.coverPhoto = coverPhoto;
+        data.frontSide = frontSide;
+        data.backSide = backSide;
+        data.licencePhoto = licencePhoto;
 
         data = { ...data, hightestEducationalQualification, currentProfession };
         console.log(data);
@@ -75,15 +99,31 @@ export const PersonalDetails = ({ setPage }) => {
 
     const frontSideNIDHandler = async e => {
         const photo = e.target.files[0];
-        const storageRef = ref(firebaseStorage, `cover/${photo.name + uuidv4()}`);
+        const storageRef = ref(firebaseStorage, `nid/${photo.name + uuidv4()}`);
         uploadBytes(storageRef, photo).then(async snapshot => {
             await getDownloadURL(snapshot.ref).then(url => {
                 setFrontSide(url.toString());
             });
         });
     };
-
-    const photoHandler = () => {};
+    const backSideNIDHandler = async e => {
+        const photo = e.target.files[0];
+        const storageRef = ref(firebaseStorage, `nid/${photo.name + uuidv4()}`);
+        uploadBytes(storageRef, photo).then(async snapshot => {
+            await getDownloadURL(snapshot.ref).then(url => {
+                setBackSide(url.toString());
+            });
+        });
+    };
+    const licenseHandler = async e => {
+        const photo = e.target.files[0];
+        const storageRef = ref(firebaseStorage, `license/${photo.name + uuidv4()}`);
+        uploadBytes(storageRef, photo).then(async snapshot => {
+            await getDownloadURL(snapshot.ref).then(url => {
+                setLicencePhoto(url.toString());
+            });
+        });
+    };
 
     return (
         <div className="w-full h-auto">
@@ -371,7 +411,7 @@ export const PersonalDetails = ({ setPage }) => {
                         <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
                             <AiOutlineIdcard className="mr-2 text-gray-400" />
                             <label htmlFor="backSide" className="outline-none h-full text-sm text-gray-400 bg-gray-100">
-                                {photoURL ? (
+                                {backSide ? (
                                     <>
                                         <span className="text-green-400">Photo added</span>
                                     </>
@@ -389,7 +429,7 @@ export const PersonalDetails = ({ setPage }) => {
                                 type="file"
                                 id="backSide"
                                 className="hidden"
-                                onChange={photoHandler}
+                                onChange={backSideNIDHandler}
                             />
                         </div>
                         <h1 className="text-left ml-2">
@@ -474,7 +514,7 @@ export const PersonalDetails = ({ setPage }) => {
                         </h1>
                     </section>
                     {/* ---------- Number Of Partner ---------- */}
-                    {meritalStatus === "married" && (
+                    {meritalStatus === "married" && meritalStatus !== "single" && (
                         <section>
                             <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
                                 <input
@@ -498,7 +538,7 @@ export const PersonalDetails = ({ setPage }) => {
                         </section>
                     )}
                     {/* ---------- Reason of Marriage ---------- */}
-                    {meritalStatus === "married" && (
+                    {meritalStatus === "married" && meritalStatus !== "single" && (
                         <section>
                             <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
                                 <input
@@ -522,7 +562,7 @@ export const PersonalDetails = ({ setPage }) => {
                         </section>
                     )}
                     {/* ---------- Is partner aware of marriage ---------- */}
-                    {meritalStatus === "married" && (
+                    {meritalStatus === "married" && meritalStatus !== "single" && (
                         <section>
                             <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
                                 <select
@@ -549,7 +589,7 @@ export const PersonalDetails = ({ setPage }) => {
                         </section>
                     )}
                     {/* ---------- Date of Marriage ---------- */}
-                    {meritalStatus === "married" && (
+                    {meritalStatus === "married" && meritalStatus !== "single" && (
                         <section>
                             <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
                                 <input
@@ -573,7 +613,7 @@ export const PersonalDetails = ({ setPage }) => {
                         </section>
                     )}
                     {/* ---------- Reason of Divorce ---------- */}
-                    {meritalStatus === "divorced" && (
+                    {meritalStatus === "divorced" && meritalStatus !== "single" && (
                         <section>
                             <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
                                 <input
@@ -597,7 +637,7 @@ export const PersonalDetails = ({ setPage }) => {
                         </section>
                     )}
                     {/* ---------- Date of Divorce ---------- */}
-                    {meritalStatus === "divorced" && (
+                    {meritalStatus === "divorced" && meritalStatus !== "single" && (
                         <section>
                             <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
                                 <input
@@ -621,71 +661,78 @@ export const PersonalDetails = ({ setPage }) => {
                         </section>
                     )}
                     {/* ---------- Number Of Boy ---------- */}
-                    <section>
-                        <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
-                            <input
-                                {...register("numberOfBoy", {
-                                    required: {
-                                        value: true,
-                                        message: "Number of Boy is required",
-                                    },
-                                })}
-                                type="number"
-                                placeholder="Number of Boy"
-                                className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
-                                id="numberOfBoy"
-                            />
-                        </div>
-                        <h1 className="text-left ml-2">
-                            {errors.numberOfBoy?.type === "required" && (
-                                <span className="w-full text-left text-red-400 text-sm">{errors?.numberOfBoy.message}</span>
-                            )}
-                        </h1>
-                    </section>
+                    {meritalStatus === "married" ||
+                        (meritalStatus === "divorced" && (
+                            <section>
+                                <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
+                                    <input
+                                        {...register("numberOfBoy", {
+                                            required: {
+                                                value: true,
+                                                message: "Number of Boy is required",
+                                            },
+                                        })}
+                                        type="number"
+                                        placeholder="Number of Boy"
+                                        className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
+                                        id="numberOfBoy"
+                                    />
+                                </div>
+                                <h1 className="text-left ml-2">
+                                    {errors.numberOfBoy?.type === "required" && (
+                                        <span className="w-full text-left text-red-400 text-sm">{errors?.numberOfBoy.message}</span>
+                                    )}
+                                </h1>
+                            </section>
+                        ))}
                     {/* ---------- Ages Of Boy ---------- */}
-                    <section>
-                        <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
-                            <input
-                                {...register("agesOfBoy", {
-                                    required: {
-                                        value: true,
-                                        message: "Ages of boy is required",
-                                    },
-                                })}
-                                type="number"
-                                placeholder="Ages of Boy"
-                                className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
-                                id="agesOfBoy"
-                            />
-                        </div>
-                        <h1 className="text-left ml-2">
-                            {errors.agesOfBoy?.type === "required" && (
-                                <span className="w-full text-left text-red-400 text-sm">{errors?.agesOfBoy.message}</span>
-                            )}
-                        </h1>
-                    </section>
+                    {meritalStatus !== "single" && (
+                        <section>
+                            <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
+                                <input
+                                    {...register("agesOfBoy", {
+                                        required: {
+                                            value: true,
+                                            message: "Ages of boy is required",
+                                        },
+                                    })}
+                                    type="number"
+                                    placeholder="Ages of Boy"
+                                    className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
+                                    id="agesOfBoy"
+                                />
+                            </div>
+                            <h1 className="text-left ml-2">
+                                {errors.agesOfBoy?.type === "required" && (
+                                    <span className="w-full text-left text-red-400 text-sm">{errors?.agesOfBoy.message}</span>
+                                )}
+                            </h1>
+                        </section>
+                    )}
                     {/* ---------- Number Of Girl ---------- */}
-                    <section>
-                        <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
-                            <input
-                                {...register("numberOfGirl", {
-                                    required: {
-                                        value: true,
-                                        message: "Number of Girl is required",
-                                    },
-                                })}
-                                type="number"
-                                placeholder="Number of Girl"
-                                className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
-                                id="numberOfGirl"
-                            />
-                        </div>
-                        <h1 className="text-left ml-2">
-                            {errors.numberOfGirl?.type === "required" && (
-                                <span className="w-full text-left text-red-400 text-sm">{errors?.numberOfGirl.message}</span>
-                            )}
-                        </h1>
-                    </section>
+                    {meritalStatus !== "single" && (
+                        <section>
+                            <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
+                                <input
+                                    {...register("numberOfGirl", {
+                                        required: {
+                                            value: true,
+                                            message: "Number of Girl is required",
+                                        },
+                                    })}
+                                    type="number"
+                                    placeholder="Number of Girl"
+                                    className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
+                                    id="numberOfGirl"
+                                />
+                            </div>
+                            <h1 className="text-left ml-2">
+                                {errors.numberOfGirl?.type === "required" && (
+                                    <span className="w-full text-left text-red-400 text-sm">{errors?.numberOfGirl.message}</span>
+                                )}
+                            </h1>
+                        </section>
+                    )}
                     {/* ---------- Ages Of Girl ---------- */}
                     <section>
                         <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
@@ -740,7 +787,7 @@ export const PersonalDetails = ({ setPage }) => {
                     <section>
                         <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
                             <input
-                                {...register("position", {
+                                {...register("CurrentProfessionposition", {
                                     required: {
                                         value: true,
                                         message: "Position is required",
@@ -762,7 +809,7 @@ export const PersonalDetails = ({ setPage }) => {
                     <section>
                         <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
                             <input
-                                {...register("institute", {
+                                {...register("CurrentProfessionInstitute", {
                                     required: {
                                         value: true,
                                         message: "Institution is required",
@@ -1329,7 +1376,7 @@ export const PersonalDetails = ({ setPage }) => {
                         <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
                             <AiOutlineIdcard className="mr-2 text-gray-400" />
                             <label htmlFor="licencePhoto" className="outline-none h-full text-sm text-gray-400 bg-gray-100">
-                                {photoURL ? (
+                                {licencePhoto ? (
                                     <>
                                         <span className="text-green-400">Photo added</span>
                                     </>
@@ -1337,7 +1384,7 @@ export const PersonalDetails = ({ setPage }) => {
                                     "License Photo"
                                 )}
                             </label>
-                            <input {...register("licencePhoto")} type="file" id="licencePhoto" className="hidden" onChange={photoHandler} />
+                            <input {...register("licencePhoto")} type="file" id="licencePhoto" className="hidden" onChange={licenseHandler} />
                         </div>
                         <h1 className="text-left ml-2">
                             {errors.licencePhoto?.type === "required" && (
