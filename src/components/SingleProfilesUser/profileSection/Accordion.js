@@ -236,60 +236,60 @@ const Accordian = () => {
                         <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                             <span className="font-medium">Special Achievement</span>
                             <p className="font-normal"></p>
-                            </div>
+                        </div>
                         <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                             <span className="font-medium">What are you looking for</span>
                             <p className="font-normal"></p>
-                            </div>
+                        </div>
 
                         <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                             <span className="font-medium">Height</span>
                             <p className="font-normal"></p>
-                            </div>
+                        </div>
                         <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                             <span className="font-medium">Weight</span>
                             <p className="font-normal"></p>
-                            </div>
+                        </div>
                         <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                             <span className="font-medium">Ancestry</span>
                             <p className="font-normal"></p>
-                            </div>
+                        </div>
                         <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                             <span className="font-medium">Skin Tone</span>
                             <p className="font-normal"></p>
-                            </div>
+                        </div>
                         <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                             <span className="font-medium">Hair Color</span>
                             <p className="font-normal"></p>
-                            </div>
+                        </div>
                         <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                             <span className="font-medium"> Hair Type</span>
                             <p className="font-normal"></p>
-                            </div>
+                        </div>
                         <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                             <span className="font-medium">Eye Color</span>
                             <p className="font-normal"></p>
-                            </div>
+                        </div>
                         <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                             <span className="font-medium">Number Of Teeth</span>
                             <p className="font-normal"></p>
-                            </div>
+                        </div>
                         <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                             <span className="font-medium">Monthly Income</span>
                             <p className="font-normal"></p>
-                            </div>
+                        </div>
                         <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                             <span className="font-medium">Hometown</span>
                             <p className="font-normal"></p>
-                            </div>
+                        </div>
                         <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                             <span className="font-medium">Permanent Adress</span>
                             <p className="font-normal"></p>
-                            </div>
+                        </div>
                         <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                             <span className="font-medium">Current Adress</span>
                             <p className="font-normal"></p>
-                            </div>
+                        </div>
                         <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                             <span className="font-medium">Merital status</span>
                             <p className="font-normal">Not Provided</p>
@@ -409,7 +409,7 @@ const Accordian = () => {
                         <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                             <span className="font-medium">Hobbies</span>
                             <p className="font-normal"></p>
-                        </div>    
+                        </div>
                     </Typography>
                 </AccordionDetails>
             </Accordion>
@@ -420,7 +420,7 @@ const Accordian = () => {
                     </Typography>
                 </AccordionSummary>
                 <AccordionDetails>
-                <Typography>
+                    <Typography>
                         <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                             <span className="font-medium">Position</span>
                             <p className="font-normal">Not Provided</p>
@@ -443,7 +443,7 @@ const Accordian = () => {
                     </Typography>
                 </AccordionSummary>
                 <AccordionDetails>
-                <Typography>
+                    <Typography>
                         <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                             <span className="font-medium">Degree</span>
                             <p className="font-normal">Not Provided</p>
@@ -483,7 +483,7 @@ const Accordian = () => {
                     </Typography>
                 </AccordionSummary>
                 <AccordionDetails>
-                <Typography>
+                    <Typography>
                         <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                             <span className="font-medium">Height</span>
                             <p className="font-normal">Not Provided</p>
@@ -527,7 +527,7 @@ const Accordian = () => {
                     </Typography>
                 </AccordionSummary>
                 <AccordionDetails>
-                <Typography>
+                    <Typography>
                         <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                             <span className="font-medium">Do smoke</span>
                             <p className="font-normal">Not Provided</p>
