@@ -10,7 +10,7 @@ const FindPartnersHeader = () => {
           style={{
             border: "2px solid #FFE8F3",
           }}
-          className="relative flex items-center md:w-[386px] h-[52px] shadow-sm rounded-lg focus-within:shadow-lg bg-white overflow-hidden"
+          className="relative flex items-center w-[386px] h-[52px] shadow-sm rounded-lg focus-within:shadow-lg bg-white overflow-hidden"
         >
           <div className="grid place-items-center h-full w-12 text-gray-300">
             <svg
@@ -42,7 +42,7 @@ const FindPartnersHeader = () => {
         <NavLink
           style={{ boxShadow: "2px 2px 8px rgba(0, 0, 0, 0.1)" }}
           to="/find-partner"
-          className="w-[242px] mx-auto my-2 md:my-0 bg-[#FFFFFF] text-[#000] font-semibold flex justify-center rounded items-center h-[50px]"
+          className="w-[242px] bg-[#FFFFFF] text-[#000] font-semibold flex justify-center rounded items-center h-[50px]"
         >
           Suggested For You
         </NavLink>
@@ -55,7 +55,7 @@ const FindPartnersHeader = () => {
         </NavLink>
         <NavLink
           style={{ boxShadow: "2px 2px 8px rgba(0, 0, 0, 0.1)" }}
-          className="bg-[#FFFFFF] h-[50px] font-semibold mr-[24px] md:ml-[24px]  w-[105px] flex justify-center rounded items-center  text-[#000]"
+          className="bg-[#FFFFFF] h-[50px] font-semibold ml-[24px]  w-[105px] flex justify-center rounded items-center  text-[#000]"
           to="nearest"
         >
           Nearest
