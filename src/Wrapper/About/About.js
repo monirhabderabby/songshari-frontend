@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Anexecutive from '../../components/CardComopents/Anexecutive'
 import MeetCard from '../../components/CardComopents/MeetCard'
 import CommonBanner from '../../components/comons/CommonBanner'
@@ -9,7 +9,12 @@ import AnimatetdBanner from '../../components/pages/About/AnimatetdBanner'
 import LoveIsFeath from '../../components/pages/About/LoveIsFeath'
 import NavBar from '../../components/pages/Shared/NavBar'
 
- const About = () => {
+const About = () => {
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  }, []);
+
   return (
     <div>
       <NavBar />

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useParams } from "react-router";
 import CustomHeader from "../../../components/shared/CustomHeader/CustomHeader";
 import { useGetProfileDetailsQuery } from "../../../Redux/features/userInfo/userApi";
@@ -11,6 +11,9 @@ import DynamicTable from "./DynamicTable";
 export const DynamicProfilePage = () => {
     const { id } = useParams();
     const { data: user, isLoading } = useGetProfileDetailsQuery(id);
+    useEffect(() => {
+        window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+    }, []);
     return (
         <div className="bg-[#FAFBFF]">
             <CustomHeader title="Profile" />
