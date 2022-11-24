@@ -8,7 +8,7 @@ import Typography from '@mui/material/Typography';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 
-export const CompletedCase = () => {
+export const CompletedCaseMov = () => {
   return (
     <div>
         <h1 className='font-bold text-4xl mb-5 mt-12 ml-16'>Completed Cases</h1>
