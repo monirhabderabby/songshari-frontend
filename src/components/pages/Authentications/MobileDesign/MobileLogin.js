@@ -118,11 +118,11 @@ const MobileLogin = () => {
                             )}
                         </h1>
                     </section>
-                    <span
+                    <Link to={'/mobileForgetPassword'}
                         className="text-[#E41272] text-xs leading-4 font-medium mt-6"
                     >
                         Forgot Password?
-                    </span>
+                    </Link>
                     <div className="col-span-2">{customError && <Error message={customError} />}</div>
                     <p className='text-[#1E2022] mt-14 mb-5 text-xs leading-4'>
                         By continuing, you agree to our Terms of Service and Privacy Policy.
