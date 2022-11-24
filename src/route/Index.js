@@ -40,6 +40,7 @@ import { LawyerActivity } from "../components/pages/lawyeractivity/LawyerActivit
 import { Container } from "../Wrapper/Stepper/Container";
 import PartnerCard from "../components/pages/FindPartner/PartnerCard";
 import { UsersProfile } from "../components/SingleProfilesUser/profileSection/UsersProfile";
+import MobileForgetPassword from "../components/pages/Authentications/MobileDesign/MobileForgetPassword";
 
 const Index = () => {
   return (
@@ -77,6 +78,7 @@ const Index = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/regAsProfessional" element={<RegAsProfessional />} />
+          <Route path="/mobileForgetPassword" element={<MobileForgetPassword />}></Route>
           <Route
             path="/loginAsProfessional"
             element={<LoginAsProfessional />}
