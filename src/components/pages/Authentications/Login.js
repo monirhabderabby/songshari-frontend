@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
+import { useSignInWithEmailAndPassword, useSignInWithGoogle } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
 import { Toaster } from "react-hot-toast";
 import { FaFacebookF, FaGoogle, FaRegEnvelope } from "react-icons/fa";
@@ -20,6 +20,7 @@ const Login = () => {
     const [open, setOpen] = useState(false);
     const [signInWithEmailAndPassword, user, loading, error] = useSignInWithEmailAndPassword(auth);
     const [loginAsMember, { data: response, isLoading, error: responseError }] = useLoginAsMemberMutation();
+    const [signInWithGoogle] = useSignInWithGoogle(auth);
     const dispatch = useDispatch();
     const navigate = useNavigate();
     let location = useLocation();
@@ -85,7 +86,10 @@ const Login = () => {
                                     <p className="border-2 cursor-pointer border-gray-200 rounded-full p-3 mx-1 hover:bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] hover:text-white duration-400 transition-all">
                                         <FaFacebookF className="text-sm" />
                                     </p>
-                                    <p className="border-2 cursor-pointer border-gray-200 rounded-full p-3 mx-1 hover:bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] hover:text-white duration-400 transition-all">
+                                    <p
+                                        className="border-2 cursor-pointer border-gray-200 rounded-full p-3 mx-1 hover:bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] hover:text-white duration-400 transition-all"
+                                        onClick={() => signInWithGoogle()}
+                                    >
                                         <FaGoogle className="text-sm" />
                                     </p>
                                 </div>{" "}
