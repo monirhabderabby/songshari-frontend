@@ -20,7 +20,7 @@ const Homepage = () => {
     <div className="font-george">
       <NavBar></NavBar>
       <Banner></Banner>
-      <ThreeEasySteps></ThreeEasySteps>
+      {/* <ThreeEasySteps></ThreeEasySteps> */}
       <SecureVerified></SecureVerified>
       <BeginFamilyJourney></BeginFamilyJourney>
       <LatestRegisteredMember />
