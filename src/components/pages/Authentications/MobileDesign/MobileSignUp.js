@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
-import { AiOutlineLeft, AiFillFileAdd } from "react-icons/ai";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import React, { useEffect, useState } from "react";
 import { useCreateUserWithEmailAndPassword, useUpdateProfile } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
+import { AiFillFileAdd, AiOutlineLeft } from "react-icons/ai";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
@@ -85,20 +85,18 @@ const MobileSignUp = () => {
     }, [photoURL]);
 
     return (
-        <div className='bg-[#F8F8FF] pt-2'>
-            <div
-                className='text-[#1E2022] flex justify-start items-center gap-[33%] bg-white font-medium text-center text-lg leading-[18px] py-4 px-6 mx-2 mb-9'>
-                <span><AiOutlineLeft /></span>
+        <div className="bg-[#F8F8FF] pt-2">
+            <div className="text-[#1E2022] flex justify-start items-center gap-[33%] bg-white font-medium text-center text-lg leading-[18px] py-4 px-6 mx-2 mb-9">
+                <span>
+                    <AiOutlineLeft onClick={() => navigate("/")} />
+                </span>
                 <p>Sign Up</p>
             </div>
             <div className="flex justify-center mb-16">
                 <img src={logo} alt="" />
             </div>
-            <section className=''>
-                <form
-                    onSubmit={handleSubmit(onSubmit)}
-                    className="flex flex-col mx-8"
-                >
+            <section className="">
+                <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col mx-8">
                     {/* ---------- First Name ---------- */}
                     <section className="mb-4">
                         <div className="flex items-center bg-white p-4 w-full rounded-lg">
@@ -316,18 +314,18 @@ const MobileSignUp = () => {
                     </section>
                     {/* ---------------Input data end------------ */}
                     <div className="col-span-2">{customError && <Error message={customError} />}</div>
-                    <p className='text-[#1E2022] mt-5 mb-5 text-xs leading-4'>
-                        By continuing, you agree to our Terms of Service and Privacy Policy.
-                    </p>
+                    <p className="text-[#1E2022] mt-5 mb-5 text-xs leading-4">By continuing, you agree to our Terms of Service and Privacy Policy.</p>
                     <input
-                        className='rounded-[48px] pt-3 pb-4 mb-5 w-full font-medium leading-4 text-white'
+                        className="rounded-[48px] pt-3 pb-4 mb-5 w-full font-medium leading-4 text-white"
                         style={{ backgroundImage: "linear-gradient(180deg, #D21878 0%, #4F42A3 100%)" }}
                         type="submit"
                         value={loading || serverLoading ? "Loading..." : "Complete Sign Up"}
                     />
-                    <p className='text-[#202325] text-xs leading-6 mb-5'>
+                    <p className="text-[#202325] text-xs leading-6 mb-5">
                         Have an account?
-                        <Link className='text-[#E41272] font-medium ml-1' to={'/login'}>Log In</Link>
+                        <Link className="text-[#E41272] font-medium ml-1" to={"/login"}>
+                            Log In
+                        </Link>
                     </p>
                 </form>
             </section>

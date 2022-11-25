@@ -1,15 +1,14 @@
-import React from 'react';
-import { useState, useEffect } from 'react';
-import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import React, { useEffect, useState } from "react";
+import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
-import { useDispatch } from 'react-redux';
-import { useLocation, useNavigate } from 'react-router';
-import { Link } from 'react-router-dom';
-import { auth } from '../../../../firebase.init';
-import { useLoginAsMemberMutation } from '../../../../Redux/features/userInfo/userApi';
-import { loadUserData } from '../../../../Redux/features/userInfo/userInfo';
-import Error from '../../../ui/error/Error';
 import { AiOutlineLeft } from "react-icons/ai";
+import { useDispatch } from "react-redux";
+import { useLocation, useNavigate } from "react-router";
+import { Link } from "react-router-dom";
+import { auth } from "../../../../firebase.init";
+import { useLoginAsMemberMutation } from "../../../../Redux/features/userInfo/userApi";
+import { loadUserData } from "../../../../Redux/features/userInfo/userInfo";
+import Error from "../../../ui/error/Error";
 
 const MobileLogin = () => {
     const [customError, setCustomError] = useState("");
@@ -20,7 +19,12 @@ const MobileLogin = () => {
     let location = useLocation();
     let from = location.state?.from?.pathname || "/";
 
-    const { register, formState: { errors }, handleSubmit, reset } = useForm();
+    const {
+        register,
+        formState: { errors },
+        handleSubmit,
+        reset,
+    } = useForm();
     const onSubmit = async data => {
         data.role = "member";
         await signInWithEmailAndPassword(data.email, data.password);
@@ -50,17 +54,15 @@ const MobileLogin = () => {
     }, [response, dispatch, user, navigate, reset, from]);
 
     return (
-        <div className='bg-[#F8F8FF] pt-2'>
-            <div
-                className='text-[#1E2022] flex justify-start items-center gap-[33%] bg-white font-medium text-center text-lg leading-[18px] py-4 px-6 mx-2 mb-10'>
-                <span><AiOutlineLeft /></span>
+        <div className="bg-[#F8F8FF] min-h-screen pt-2">
+            <div className="text-[#1E2022] flex justify-start items-center gap-[33%] bg-white font-medium text-center text-lg leading-[18px] py-4 px-6  mb-10">
+                <span>
+                    <AiOutlineLeft onClick={() => navigate("/")} />
+                </span>
                 <p>Log In</p>
             </div>
-            <section className=''>
-                <form
-                    onSubmit={handleSubmit(onSubmit)}
-                    className="flex flex-col mx-8"
-                >
+            <section className="">
+                <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col mx-8">
                     <section className="mb-4">
                         <div className="flex items-center bg-white p-4 w-full rounded-lg">
                             <input
@@ -118,24 +120,24 @@ const MobileLogin = () => {
                             )}
                         </h1>
                     </section>
-                    <Link to={'/mobileForgetPassword'}
-                        className="text-[#E41272] text-xs leading-4 font-medium mt-6"
-                    >
+                    <Link to={"/mobileForgetPassword"} className="text-[#E41272] text-xs leading-4 font-medium mt-6">
                         Forgot Password?
                     </Link>
                     <div className="col-span-2">{customError && <Error message={customError} />}</div>
-                    <p className='text-[#1E2022] mt-14 mb-5 text-xs leading-4'>
+                    <p className="text-[#1E2022] mt-14 mb-5 text-xs leading-4">
                         By continuing, you agree to our Terms of Service and Privacy Policy.
                     </p>
                     <input
-                        className='rounded-[48px] pt-3 pb-4 mb-5 w-full font-medium leading-4 text-white'
+                        className="rounded-[48px] pt-3 pb-4 mb-5 w-full font-medium leading-4 text-white"
                         style={{ backgroundImage: "linear-gradient(180deg, #D21878 0%, #4F42A3 100%)" }}
                         type="submit"
                         value={loading || isLoading ? "Loading..." : "LOGIN"}
                     />
-                    <p className='text-[#202325] text-xs leading-6 mb-5'>
+                    <p className="text-[#202325] text-xs leading-6 mb-5">
                         Don't have an account?
-                        <Link className='text-[#E41272] font-medium ml-1' to={'/signup'}>Sign Up</Link>
+                        <Link className="text-[#E41272] font-medium ml-1" to={"/signup"}>
+                            Sign Up
+                        </Link>
                     </p>
                 </form>
             </section>
