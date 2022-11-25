@@ -1,6 +1,5 @@
-import React from 'react';
+import React from "react";
 import "../../assets/css/meetcard.css";
-import Button from '../comons/Button';
 
 const MeetCard = () => {
     return (

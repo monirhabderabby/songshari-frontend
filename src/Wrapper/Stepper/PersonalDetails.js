@@ -74,7 +74,7 @@ export const PersonalDetails = ({ setPage }) => {
 
         data = { ...data, hightestEducationalQualification, currentProfession };
         console.log(data);
-        // setPage(2);
+        setPage(2);
     };
 
     const profilePhotoHandler = async e => {
