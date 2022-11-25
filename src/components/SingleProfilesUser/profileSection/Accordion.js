@@ -1,13 +1,11 @@
-import React from 'react';
-import { v4 as uuidv4 } from 'uuid';
-import { IoIosArrowDown } from "react-icons/io";
-import "./Accordion.css";
 import ArrowForwardIosSharpIcon from "@material-ui/icons/ArrowForwardIosSharp";
 import MuiAccordion from "@mui/material/Accordion";
 import MuiAccordionDetails from "@mui/material/AccordionDetails";
 import MuiAccordionSummary from "@mui/material/AccordionSummary";
 import { styled } from "@mui/material/styles";
 import Typography from "@mui/material/Typography";
+import React from "react";
+import "./Accordion.css";
 
 const Accordion = styled(props => <MuiAccordion disableGutters elevation={0} square {...props} />)(({ theme }) => ({
     //     border: `1px solid ${theme.palette.divider}`,
@@ -118,39 +116,6 @@ const Accordian = () => {
     const user = { firstName: "User", lastName: "Name" };
 
     return (
-        // <div className='w-[523px] h-[1294px] app__accordian px-5'>
-        //     <div className='flex justify-between app__accordian-head py-5'>
-        //         <p className='font-[600] text-[24px]'>Personal Information</p>
-        //         <button className='inline-block w-[64px] h-[24px] font-[600] text-[18px] app__edit-button text-white rounded-md'>Edit</button>
-        //     </div>
-        //     <span className='w-full inline-block app__border-main'></span>
-        //     <div className='flex justify-between'>
-        //         <div className='flex flex-col items-start'>
-        //             {
-        //                 body.map((item) => <>
-        //                     <p key={uuidv4()} className="">{item}</p>
-        //                     <span className='w-[125%] inline-block app__border' key={uuidv4()}></span>
-        //                 </>)
-        //             }
-        //         </div>
-        //         <div className='flex flex-col items-end'>
-        //             {
-        //                 bodyValue.map((item) => <>
-        //                     <p key={uuidv4()}>{item}</p>
-        //                     <span className='w-[124%] inline-block app__border' key={uuidv4()}></span>
-        //                 </>)
-        //             }
-        //         </div>
-        //     </div>
-        //     <div className='flex justify-between my-5'>
-        //         <p className='font-[600] text-[24px] app__accordian-name'>Personal information</p>
-        //         <IoIosArrowDown />
-        //     </div>
-        //     <div className='flex justify-between my-5'>
-        //         <p className='font-[600] text-[24px] app__accordian-name'>Education and Others</p>
-        //         <IoIosArrowDown />
-        //     </div>
-        // </div>
         <div className="mb-[69px] max-w-[523px] mx-auto">
             <Accordion expanded={expanded === "panel1"} onChange={handleChange("panel1")}>
                 <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
