@@ -1,5 +1,6 @@
 import React from 'react'
 import { LawyerActivityMov } from '../../../Wrapper/Home/mobileversion/mobilelawyeractivity/LawyerActivityMov'
+import { NavCase } from '../../../Wrapper/Home/mobileversion/mobilelawyeractivity/NavCase'
 import { OthersNav } from '../../othersprofile/OthersNav'
 import { CompletedCase } from './CompletedCase'
 import { FirstCard } from './FirstCard'

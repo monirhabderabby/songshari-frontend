@@ -39,6 +39,10 @@ import SingleProfile from "../Wrapper/SingleProfilesUser/SingleProfile";
 import { LawyerActivity } from "../components/pages/lawyeractivity/LawyerActivity";
 import { Container } from "../Wrapper/Stepper/Container";
 import { UsersProfile } from "../components/SingleProfilesUser/profileSection/UsersProfile";
+import { NavCase } from "../Wrapper/Home/mobileversion/mobilelawyeractivity/NavCase";
+import { PendingCaseMov } from "../Wrapper/Home/mobileversion/mobilelawyeractivity/PendingCase";
+import { RunningCaseMov } from "../Wrapper/Home/mobileversion/mobilelawyeractivity/RunningCase";
+import { CompletedCaseMov } from "../Wrapper/Home/mobileversion/mobilelawyeractivity/CompletedCase";
 
 const Index = () => {
   return (
@@ -68,7 +72,13 @@ const Index = () => {
           <Route path="/agent" element={<Agent></Agent>}></Route>
           <Route path="/community" element={<Community></Community>}></Route>
           <Route path="/shop" element={<Shop></Shop>}></Route>
-          
+
+          <Route path="products" element={<NavCase />}>
+          <Route path="search" element={<PendingCaseMov />} />
+          <Route path="list" element={<RunningCaseMov />} />
+          <Route path="add" element={<CompletedCaseMov />} />
+        </Route>
+
           <Route
             path="/singleproduct"
             element={<SingleProduct></SingleProduct>}
