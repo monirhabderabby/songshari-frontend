@@ -5,3 +5,6 @@
 .mov-card{
     border: 1px solid white;
 }
+.pos-mov{
+    position: fixed;
+}

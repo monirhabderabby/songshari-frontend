@@ -13,7 +13,8 @@ export const MobileBanner = () => {
     <div className='mt-8'>
         <Slider {...settings}>
           <div>
-            <img src='https://i.ibb.co/FDC2838/Rectangle-4464.png' className='lg:max-w-lg mx-auto'></img>
+            <img src='https://i.ibb.co/FDC2838/Rectangle-4464.png' className='w-full ml-8'></img>
+          
           </div>
           <div>
             <h3>2</h3>

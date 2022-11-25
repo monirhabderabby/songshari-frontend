@@ -1,16 +1,30 @@
 import React from 'react'
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { MovSelect } from './movselect/MovSelect';
 import './TopMenu.css';
 export const TopMenu = () => {
+  const [state,setState] = useState(false)
+  const handleClick=()=>{
+setState(true);
+  }
   return (
     <div>
         <div className='grid grid-cols-5  ml-8 mt-2'>
             <div>
                 <img src='https://i.ibb.co/TKH1hQj/Ellipse-8.png'></img>
             </div>
-            <div>
-                <select className='mt-2 top-menu-hobile'>
-                    <option>Anik Haque</option>
-                </select>
+            <div onClick={handleClick}>
+               <p className='font-bold text-lg mt-2'>shongshari.com <span><i class="fa-solid fa-angle-down"></i></span></p>
+               {
+                state && <div className='mt-2'>
+                  <Link to='/login'><span className='bg-red-500 pt-2 pl-4 pr-4 pb-2 mr-4'>Login</span></Link>
+                  
+                  <span className='  pr-4'>or</span>
+                  <span className='bg-red-500 pt-2 pl-4 pr-4 pb-2 mr-4'>SignUp</span>
+                 
+                </div>
+               }
             </div>
             <div>
               
