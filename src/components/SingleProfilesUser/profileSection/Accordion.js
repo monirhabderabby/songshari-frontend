@@ -1,29 +1,18 @@
-import React from 'react';
-import { v4 as uuidv4 } from 'uuid';
-import { IoIosArrowDown } from "react-icons/io";
-import "./Accordion.css";
 import ArrowForwardIosSharpIcon from "@material-ui/icons/ArrowForwardIosSharp";
 import MuiAccordion from "@mui/material/Accordion";
 import MuiAccordionDetails from "@mui/material/AccordionDetails";
 import MuiAccordionSummary from "@mui/material/AccordionSummary";
 import { styled } from "@mui/material/styles";
 import Typography from "@mui/material/Typography";
-
+import React from "react";
+import "./Accordion.css";
 const Accordion = styled(props => <MuiAccordion disableGutters elevation={0} square {...props} />)(({ theme }) => ({
-    //     border: `1px solid ${theme.palette.divider}`,
-    //     "&:not(:last-child)": {
-    //         borderBottom: 0,
-    //     },
-    //     "&:before": {
-    //         display: "none",
-    //     },
-    //     boxShadow: "0px 5px 30px rgba(35,57, 184, 0.2)",
+
     paddingTop: "23px",
     paddingLeft: "53px",
     paddingBottom: "23px",
     paddingRight: "53px",
 }));
-
 const AccordionSummary = styled(props => <MuiAccordionSummary expandIcon={<ArrowForwardIosSharpIcon sx={{ fontSize: "0.9rem" }} />} {...props} />)(
     ({ theme }) => ({
         backgroundColor: "#ffffff",
@@ -39,10 +28,7 @@ const AccordionSummary = styled(props => <MuiAccordionSummary expandIcon={<Arrow
         fontWeight: "bold",
     })
 );
-
-const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
-    //     padding: theme.spacing(2),
-    //     borderTop: "1px solid rgba(0, 0, 0, .125)",
+const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({  
 }));
 
 const Accordian = () => {
@@ -52,105 +38,9 @@ const Accordian = () => {
         setExpanded(newExpanded ? panel : true);
     };
 
-    // const body = [
-    //     "Name",
-    //     "Birthday",
-    //     "I am a",
-    //     "Marital status",
-    //     "Country",
-    //     "City",
-    //     "Phone number",
-    //     "NID/Passport Number",
-    //     "Year Of Experience",
-    //     "BAR Registration Number",
-    //     "Licence Number",
-    //     "Year Of BAR Registration",
-    //     "Chamber Location",
-    //     "Lawyer Category",
-    //     "Citizenship",
-    //     "Zodiac Sign",
-    //     "Not provide",
-    //     "Highest Educational Qualification",
-    //     "Height",
-    //     "Weight",
-    //     "Ancestry",
-    //     "Skin Tone",
-    //     "Monthly Income",
-    //     "Siblings",
-    //     "Linkedin",
-    //     "Instagram",
-    //     "Facebook",
-    //     "Hobby",
-    //     "Highest Educational Qualification"
-    // ]
-    // const bodyValue = [
-    //     "Albert Don",
-    //     "1988-01-19",
-    //     "Man",
-    //     "Married",
-    //     "France",
-    //     "Paris",
-    //     "+880 177.004-5304",
-    //     "0000 0000 0000 0000",
-    //     "5 Month 5 Years",
-    //     "0000 0000 0000 0000",
-    //     "0000 0000 0000 0000",
-    //     "1999",
-    //     "Dhaka, Bangladesh",
-    //     "Genarel",
-    //     "Not provide",
-    //     "Not provide",
-    //     "Not provide",
-    //     "BCS",
-    //     "Not provide",
-    //     "Not provide",
-    //     "Not provide",
-    //     "Not provide",
-    //     "2 Brother and 0 Sister",
-    //     "Not provide",
-    //     "Not provide",
-    //     "Not provide",
-    //     "Not provide",
-    //     "ualification",
-    //     "BCS"
-    // ]
-
     const user = { firstName: "User", lastName: "Name" };
 
     return (
-        // <div className='w-[523px] h-[1294px] app__accordian px-5'>
-        //     <div className='flex justify-between app__accordian-head py-5'>
-        //         <p className='font-[600] text-[24px]'>Personal Information</p>
-        //         <button className='inline-block w-[64px] h-[24px] font-[600] text-[18px] app__edit-button text-white rounded-md'>Edit</button>
-        //     </div>
-        //     <span className='w-full inline-block app__border-main'></span>
-        //     <div className='flex justify-between'>
-        //         <div className='flex flex-col items-start'>
-        //             {
-        //                 body.map((item) => <>
-        //                     <p key={uuidv4()} className="">{item}</p>
-        //                     <span className='w-[125%] inline-block app__border' key={uuidv4()}></span>
-        //                 </>)
-        //             }
-        //         </div>
-        //         <div className='flex flex-col items-end'>
-        //             {
-        //                 bodyValue.map((item) => <>
-        //                     <p key={uuidv4()}>{item}</p>
-        //                     <span className='w-[124%] inline-block app__border' key={uuidv4()}></span>
-        //                 </>)
-        //             }
-        //         </div>
-        //     </div>
-        //     <div className='flex justify-between my-5'>
-        //         <p className='font-[600] text-[24px] app__accordian-name'>Personal information</p>
-        //         <IoIosArrowDown />
-        //     </div>
-        //     <div className='flex justify-between my-5'>
-        //         <p className='font-[600] text-[24px] app__accordian-name'>Education and Others</p>
-        //         <IoIosArrowDown />
-        //     </div>
-        // </div>
         <div className="mb-[69px] max-w-[523px] mx-auto">
             <Accordion expanded={expanded === "panel1"} onChange={handleChange("panel1")}>
                 <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
@@ -236,60 +126,60 @@ const Accordian = () => {
                         <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                             <span className="font-medium">Special Achievement</span>
                             <p className="font-normal"></p>
-                            </div>
+                        </div>
                         <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                             <span className="font-medium">What are you looking for</span>
                             <p className="font-normal"></p>
-                            </div>
+                        </div>
 
                         <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                             <span className="font-medium">Height</span>
                             <p className="font-normal"></p>
-                            </div>
+                        </div>
                         <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                             <span className="font-medium">Weight</span>
                             <p className="font-normal"></p>
-                            </div>
+                        </div>
                         <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                             <span className="font-medium">Ancestry</span>
                             <p className="font-normal"></p>
-                            </div>
+                        </div>
                         <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                             <span className="font-medium">Skin Tone</span>
                             <p className="font-normal"></p>
-                            </div>
+                        </div>
                         <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                             <span className="font-medium">Hair Color</span>
                             <p className="font-normal"></p>
-                            </div>
+                        </div>
                         <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                             <span className="font-medium"> Hair Type</span>
                             <p className="font-normal"></p>
-                            </div>
+                        </div>
                         <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                             <span className="font-medium">Eye Color</span>
                             <p className="font-normal"></p>
-                            </div>
+                        </div>
                         <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                             <span className="font-medium">Number Of Teeth</span>
                             <p className="font-normal"></p>
-                            </div>
+                        </div>
                         <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                             <span className="font-medium">Monthly Income</span>
                             <p className="font-normal"></p>
-                            </div>
+                        </div>
                         <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                             <span className="font-medium">Hometown</span>
                             <p className="font-normal"></p>
-                            </div>
+                        </div>
                         <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                             <span className="font-medium">Permanent Adress</span>
                             <p className="font-normal"></p>
-                            </div>
+                        </div>
                         <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                             <span className="font-medium">Current Adress</span>
                             <p className="font-normal"></p>
-                            </div>
+                        </div>
                         <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                             <span className="font-medium">Merital status</span>
                             <p className="font-normal">Not Provided</p>
@@ -409,7 +299,7 @@ const Accordian = () => {
                         <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                             <span className="font-medium">Hobbies</span>
                             <p className="font-normal"></p>
-                        </div>    
+                        </div>
                     </Typography>
                 </AccordionDetails>
             </Accordion>
@@ -420,7 +310,7 @@ const Accordian = () => {
                     </Typography>
                 </AccordionSummary>
                 <AccordionDetails>
-                <Typography>
+                    <Typography>
                         <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                             <span className="font-medium">Position</span>
                             <p className="font-normal">Not Provided</p>
@@ -443,7 +333,7 @@ const Accordian = () => {
                     </Typography>
                 </AccordionSummary>
                 <AccordionDetails>
-                <Typography>
+                    <Typography>
                         <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                             <span className="font-medium">Degree</span>
                             <p className="font-normal">Not Provided</p>
@@ -483,7 +373,7 @@ const Accordian = () => {
                     </Typography>
                 </AccordionSummary>
                 <AccordionDetails>
-                <Typography>
+                    <Typography>
                         <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                             <span className="font-medium">Height</span>
                             <p className="font-normal">Not Provided</p>
@@ -527,7 +417,7 @@ const Accordian = () => {
                     </Typography>
                 </AccordionSummary>
                 <AccordionDetails>
-                <Typography>
+                    <Typography>
                         <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                             <span className="font-medium">Do smoke</span>
                             <p className="font-normal">Not Provided</p>

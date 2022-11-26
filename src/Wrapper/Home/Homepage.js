@@ -13,11 +13,12 @@ import NavBar from "../../components/pages/Shared/NavBar";
 import TopProfession from "../../components/pages/TopProfession/TopProfession";
 import TopProfile from "../../components/pages/TopProfile/TopProfile";
 import Footer from "../../components/shared/Footer/Footer";
+import { MobileHome } from "./mobileversion/MobileHome";
 // import NavBar from "../../components/shared/NavBar/NavBar";
-
 const Homepage = () => {
   return (
     <div className="font-george">
+      <div className="hidden md:block">
       <NavBar></NavBar>
       <Banner></Banner>
       {/* <ThreeEasySteps></ThreeEasySteps> */}
@@ -32,6 +33,10 @@ const Homepage = () => {
       <Membership />
       <Anexecutive></Anexecutive>
       <Footer />
+      </div>
+      <div className="md:hidden">
+        <MobileHome></MobileHome>
+      </div>
     </div>
   );
 };

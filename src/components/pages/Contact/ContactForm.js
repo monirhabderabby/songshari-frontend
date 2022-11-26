@@ -1,109 +1,134 @@
-import React from 'react';
-import { useForm } from "react-hook-form";
-import '../../../assets/css/ContactForm.css';
-
+import React, { useState } from "react";
+import "../../../assets/css/ContactForm.css";
 
 export const ContactForm = () => {
-    const { register } = useForm();
-  return (
-    <div className=''>
-        <h1 className='text-secondary font-bold font-syne text-2xl text-center mt-20'>Contact Us</h1>
-        <h1 className='text-black font-bold text-5xl text-center mt-4 '>Get in Touch</h1>
-        <p className='text-center mt-4 text-lg'>We'd love to hear from you! Let us know how we can help.</p>
-
-<div className='contact-form'>
-<section className="mb-10 ml-64 w-full">
-                <div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
-                    <div className="grid grid-cols-1 gap-x-16 gap-y-8 lg:grid-cols-5">
-                        <div className="rounded-lg bg-white p-8 shadow-lg lg:col-span-3 lg:p-12">
-                            <form className="space-y-4">
-                                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                                    <div className="input input-bordered">
-                                        <label className="sr-only" htmlFor="name">
-                                            Name
-                                        </label>
-                                        <input
-                                            className="w-full rounded-lg border-gray-200 p-3 text-sm"
-                                            placeholder="Name"
-                                            type="text"
-                                            id="name"
-                                            name="name"
-                                        />
-                                    </div>
-
-                                    <div className="input input-bordered">
-                                        <label className="sr-only" htmlFor="email">
-                                            Email
-                                        </label>
-                                        <input
-                                            className="w-full rounded-lg border-gray-200 p-3 text-sm"
-                                            placeholder="Email address"
-                                            type="email"
-                                            id="email"
-                                            name="email"
-                                        />
-                                    </div>
-                                    <div className="input input-bordered">
-                                        <label className="sr-only" htmlFor="phone">
-                                            Phone
-                                        </label>
-                                        <input
-                                            className="w-full rounded-lg border-gray-200 p-3 text-sm"
-                                            placeholder="Phone Number"
-                                            type="tel"
-                                            id="phone"
-                                            name="phone"
-                                        />
-                                    </div>
-                                    <div className="input input-bordered">
-                                        <label className="sr-only" htmlFor="phone">
-                                            Address
-                                        </label>
-                                        <input
-                                            className="w-full rounded-lg border-gray-200 p-3 text-sm"
-                                            placeholder="Address"
-                                            type="tel"
-                                            id="phone"
-                                            name="address"
-                                        />
-                                    </div>
-                                </div>
-                                <div className="">
-                                    <label className="sr-only" htmlFor="message">
-                                        Message
-                                    </label>
-                                    <textarea
-                                        className="w-full rounded-lg border-gray-300 p-3 text-sm"
-                                        placeholder="Message"
-                                        rows={8}
-                                        id="message"
-                                        defaultValue={""}
-                                        name="message"
+    const [checked, setChecked] = useState(false);
+    return (
+        <>
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3649.472937096036!2d90.3680889150866!3d23.837334284546543!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c1da28248e65%3A0x3dbe73c739c2fb09!2sMirpur%20DOHS%20-%20Dhaka!5e0!3m2!1sen!2sbd!4v1669390569029!5m2!1sen!2sbd"
+                width="100%"
+                height="450"
+                allowfullscreen=""
+                title="Google Map"
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
+            <div class="container my-24 px-6 mx-auto">
+                <section class="mb-32 text-gray-800">
+                    <div class="flex flex-wrap">
+                        <div class="grow-0 shrink-0 basis-auto mb-6 md:mb-0 w-full md:w-6/12 px-3 lg:px-6">
+                            <h2 class="text-3xl font-bold mb-6">Contact us</h2>
+                            <p class="text-gray-500 mb-6">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium, modi accusantium ipsum corporis quia asperiores
+                                dolorem nisi corrupti eveniet dolores ad maiores repellendus enim autem omnis fugiat perspiciatis? Ad, veritatis.
+                            </p>
+                            <p class="text-gray-500 mb-2">884, A-2, Mirpur DOHS, Dhaka</p>
+                            <p class="text-gray-500 mb-2">+ 01 234 567 89</p>
+                            <p class="text-gray-500 mb-2">itco.com.bd@gmail.com</p>
+                        </div>
+                        <div class="grow-0 shrink-0 basis-auto mb-12 md:mb-0 w-full md:w-6/12 px-3 lg:px-6">
+                            <form>
+                                <div class="form-group mb-6">
+                                    <input
+                                        type="text"
+                                        class="form-control block
+              w-full
+              px-3
+              py-1.5
+              text-base
+              font-normal
+              text-gray-700
+              bg-white bg-clip-padding
+              border border-solid border-gray-300
+              rounded
+              transition
+              ease-in-out
+              m-0
+              focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                                        id="exampleInput7"
+                                        placeholder="Name"
                                     />
                                 </div>
-                                <div className="mt-4">
-                                    <button
-                                        type="submit"
-                                        className="inline-flex w-full items-center justify-center rounded-lg contact-btn rounded-full px-5 py-3 text-white sm:w-auto"
-                                    >
-                                        <span className="font-medium"> Send Enquiry </span>
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            className="ml-3 h-5 w-5"
-                                            fill="none"
-                                            viewBox="0 0 24 24"
-                                            stroke="currentColor"
-                                        >
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                                        </svg>
-                                    </button>
+                                <div class="form-group mb-6">
+                                    <input
+                                        type="email"
+                                        class="form-control block
+              w-full
+              px-3
+              py-1.5
+              text-base
+              font-normal
+              text-gray-700
+              bg-white bg-clip-padding
+              border border-solid border-gray-300
+              rounded
+              transition
+              ease-in-out
+              m-0
+              focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                                        id="exampleInput8"
+                                        placeholder="Email address"
+                                    />
                                 </div>
+                                <div class="form-group mb-6">
+                                    <textarea
+                                        class="
+              form-control
+              block
+              w-full
+              px-3
+              py-1.5
+              text-base
+              font-normal
+              text-gray-700
+              bg-white bg-clip-padding
+              border border-solid border-gray-300
+              rounded
+              transition
+              ease-in-out
+              m-0
+              focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
+            "
+                                        id="exampleFormControlTextarea13"
+                                        rows="3"
+                                        placeholder="Message"
+                                    ></textarea>
+                                </div>
+                                <div class="mb-6">
+                                    <input type="checkbox" className="mr-2" checked={checked} onClick={() => setChecked(!checked)} />
+                                    <label class="form-check-label inline-block text-gray-800" for="exampleCheck87">
+                                        Send me a copy of this message
+                                    </label>
+                                </div>
+                                <button
+                                    type="submit"
+                                    class="
+            w-full
+            px-6
+            py-2.5
+            bg-blue-600
+            text-white
+            font-medium
+            text-xs
+            leading-tight
+            uppercase
+            rounded
+            shadow-md
+            hover:bg-blue-700 hover:shadow-lg
+            focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0
+            active:bg-blue-800 active:shadow-lg
+            transition
+            duration-150
+            ease-in-out"
+                                >
+                                    Send
+                                </button>
                             </form>
                         </div>
                     </div>
-                </div>
-            </section>
-</div>
-    </div>
-  )
-}
+                </section>
+            </div>
+        </>
+    );
+};

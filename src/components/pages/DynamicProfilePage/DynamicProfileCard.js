@@ -46,7 +46,7 @@ const DynamicProfileCard = ({ user }) => {
                 </div>
                 <div className="flex items-center justify-around mt-5">
                     <div>
-                        <button className="special_profile_button">Send me Money</button>
+                        <button className="special_profile_button">Premium Member</button>
                     </div>
                 </div>
             </div>
