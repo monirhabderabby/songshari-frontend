@@ -3,7 +3,6 @@ import { FaBolt, FaHeart, FaStar, FaTimes, FaUndo } from "react-icons/fa";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import { Navigation } from "swiper";
-import dummyData from "./TopProfile/dummyData";
 
 const SwipeMatch = () => {
   const [swipematch, setSwipeMatch] = useState([]);
@@ -41,7 +40,7 @@ const SwipeMatch = () => {
           <SwiperSlide key={data.id} className="relative">
             <img
               className="w-full h-[310px] rounded-b-xl"
-              src={data.profilePhoto}
+              src={data?.profilePhoto}
               alt=""
             />
             <div className="absolute bottom-4 left-8 text-white w-4/5">
