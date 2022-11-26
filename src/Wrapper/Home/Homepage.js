@@ -21,7 +21,7 @@ const Homepage = () => {
       <div className="hidden md:block">
       <NavBar></NavBar>
       <Banner></Banner>
-      <ThreeEasySteps></ThreeEasySteps>
+      {/* <ThreeEasySteps></ThreeEasySteps> */}
       <SecureVerified></SecureVerified>
       <BeginFamilyJourney></BeginFamilyJourney>
       <LatestRegisteredMember />
