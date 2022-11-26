@@ -5,6 +5,11 @@ const PartnerFilterBox = () => {
   const [location, setLocation] = useState(true);
   const [category, setCategory] = useState(true);
   const [qualifications, setQualifications] = useState(true);
+  const [categoryItem, setCategoryItem] = useState("PERSONAL INJURY LAWYER");
+  const [locationItem, setLocationItem] = useState("Dhaka");
+  const [remunerationItem, setRemunerationItem] = useState("  30,000 - 40,000");
+  const [qualificationsItem, setQualificationsItem] =
+    useState(" Bankruptcy Lawyer");
 
   return (
     <>
@@ -23,7 +28,7 @@ const PartnerFilterBox = () => {
           </h2>
           <div className="flex pb-[10px] justify-between items-center">
             <h4 className="text-[#000000] font-medium text-base">
-              Personal Injury Lawyer
+              {categoryItem}
             </h4>
             <div className=" relative">
               <button onClick={() => setCategory(!category)}>
@@ -41,36 +46,44 @@ const PartnerFilterBox = () => {
                   aria-labelledby="dropdownDividerButton"
                 >
                   <li>
-                    <a
-                      href="!#"
-                      className="block font-semibold py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                    <p
+                      onClick={(event) =>
+                        setCategoryItem(event.target.innerText)
+                      }
+                      className="block cursor-pointer font-semibold py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                     >
                       PERSONAL INJURY LAWYER
-                    </a>
+                    </p>
                   </li>
                   <li>
-                    <a
-                      href="!#"
-                      className="block font-semibold py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                    <p
+                      onClick={(event) =>
+                        setCategoryItem(event.target.innerText)
+                      }
+                      className="block cursor-pointer font-semibold py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                     >
                       FAMILY LAWYER
-                    </a>
+                    </p>
                   </li>
                   <li>
-                    <a
-                      href="!#"
+                    <p
+                      onClick={(event) =>
+                        setCategoryItem(event.target.innerText)
+                      }
                       className="block font-semibold py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                     >
                       ESTATE PLANNING LAWYER
-                    </a>
+                    </p>
                   </li>
                   <li>
-                    <a
-                      href="!#"
+                    <p
+                      onClick={(event) =>
+                        setCategoryItem(event.target.innerText)
+                      }
                       className="block font-semibold py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                     >
                       CONTRACT LAWYER
-                    </a>
+                    </p>
                   </li>
                 </ul>
               </div>
@@ -80,10 +93,13 @@ const PartnerFilterBox = () => {
         {/* location input  */}
         <div className="flex ] mt-[20px] flex-col border-b-[1px] border-b-[#BDCADB] py-[10px]">
           <h2 className="text-[#000000] text-lg font-bold mb-[16px]">
-            location
+            Location
           </h2>
           <div className="flex pb-[10px] justify-between items-center">
-            <h4 className="text-[#000000] font-medium text-base">Dhaka</h4>
+            <h4 className="text-[#000000] font-medium text-base">
+              {" "}
+              {locationItem}
+            </h4>
             <div className=" relative">
               <button onClick={() => setLocation(!location)}>
                 {" "}
@@ -100,36 +116,44 @@ const PartnerFilterBox = () => {
                   aria-labelledby="dropdownDividerButton"
                 >
                   <li>
-                    <a
-                      href="!#"
+                    <p
+                      onClick={(event) =>
+                        setLocationItem(event.target.innerText)
+                      }
                       className="block font-semibold py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                     >
                       Dhaka
-                    </a>
+                    </p>
                   </li>
                   <li>
-                    <a
-                      href="!#"
+                    <p
+                      onClick={(event) =>
+                        setLocationItem(event.target.innerText)
+                      }
                       className="block font-semibold py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                     >
                       Chittagong
-                    </a>
+                    </p>
                   </li>
                   <li>
-                    <a
-                      href="!#"
+                    <p
+                      onClick={(event) =>
+                        setLocationItem(event.target.innerText)
+                      }
                       className="block font-semibold py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                     >
                       Comilla
-                    </a>
+                    </p>
                   </li>
                   <li>
-                    <a
-                      href="!#"
+                    <p
+                      onClick={(event) =>
+                        setLocationItem(event.target.innerText)
+                      }
                       className="block font-semibold py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                     >
                       Rajshahi
-                    </a>
+                    </p>
                   </li>
                 </ul>
               </div>
@@ -180,7 +204,7 @@ const PartnerFilterBox = () => {
           </h2>
           <div className="flex pb-[10px] justify-between items-center">
             <h4 className="text-[#000000] font-medium text-base">
-              30,000 - 40,000
+              {remunerationItem}
             </h4>
             <div className=" relative">
               <button onClick={() => setRemuneration(!remuneration)}>
@@ -198,28 +222,34 @@ const PartnerFilterBox = () => {
                   aria-labelledby="dropdownDividerButton"
                 >
                   <li>
-                    <a
-                      href="!#"
+                    <p
+                      onClick={(event) =>
+                        setRemunerationItem(event.target.innerText)
+                      }
                       className="block font-semibold py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                     >
-                      30,000
-                    </a>
+                      30,000 - 40,000
+                    </p>
                   </li>
                   <li>
-                    <a
-                      href="!#"
+                    <p
+                      onClick={(event) =>
+                        setRemunerationItem(event.target.innerText)
+                      }
                       className="block font-semibold py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                     >
-                      40,000
-                    </a>
+                      40,000 - 50,000
+                    </p>
                   </li>
                   <li>
-                    <a
-                      href="!#"
+                    <p
+                      onClick={(event) =>
+                        setRemunerationItem(event.target.innerText)
+                      }
                       className="block font-semibold py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                     >
-                      50,000
-                    </a>
+                      50,000 - 60,000
+                    </p>
                   </li>
                 </ul>
               </div>
@@ -245,7 +275,7 @@ const PartnerFilterBox = () => {
           </h2>
           <div className="flex pb-[10px] justify-between items-center">
             <h4 className="text-[#000000] font-medium text-base">
-              Bankruptcy Lawyer
+              {qualificationsItem}
             </h4>
             <div className=" relative">
               <button onClick={() => setQualifications(!qualifications)}>
@@ -263,36 +293,44 @@ const PartnerFilterBox = () => {
                   aria-labelledby="dropdownDividerButton"
                 >
                   <li>
-                    <a
-                      href="!#"
+                    <p
+                      onClick={(event) =>
+                        setQualificationsItem(event.target.innerText)
+                      }
                       className="block font-semibold py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                     >
                       BANKRUPTCY LAWYER
-                    </a>
+                    </p>
                   </li>
                   <li>
-                    <a
-                      href="!#"
+                    <p
+                      onClick={(event) =>
+                        setQualificationsItem(event.target.innerText)
+                      }
                       className="block font-semibold py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                     >
                       BUSINESS LAWYER
-                    </a>
+                    </p>
                   </li>
                   <li>
-                    <a
-                      href="!#"
+                    <p
+                      onClick={(event) =>
+                        setQualificationsItem(event.target.innerText)
+                      }
                       className="block font-semibold py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                     >
                       CONSTITUTIONAL LAWYER
-                    </a>
+                    </p>
                   </li>
                   <li>
-                    <a
-                      href="!#"
+                    <p
+                      onClick={(event) =>
+                        setQualificationsItem(event.target.innerText)
+                      }
                       className="block font-semibold py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                     >
                       TAX LAWYER
-                    </a>
+                    </p>
                   </li>
                 </ul>
               </div>
