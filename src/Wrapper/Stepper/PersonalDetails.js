@@ -16,6 +16,10 @@ export const PersonalDetails = ({ setPage }) => {
 
     const [setPersonalDetails, { data, isLoading }] = useSetPersonalDetailsMutation();
 
+    if (data) {
+        console.log(data);
+    }
+
     const {
         register,
         formState: { errors },
@@ -23,7 +27,7 @@ export const PersonalDetails = ({ setPage }) => {
         reset,
     } = useForm();
 
-    const onSubmit = data => {
+    const onSubmit = async data => {
         const hightestEducationalQualification = {};
         const currentProfession = {};
 
@@ -74,6 +78,7 @@ export const PersonalDetails = ({ setPage }) => {
 
         data = { ...data, hightestEducationalQualification, currentProfession };
         console.log(data);
+        await setPersonalDetails(data);
         setPage(2);
     };
 
