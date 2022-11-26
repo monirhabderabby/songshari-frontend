@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { AiOutlineCloudUpload } from "react-icons/ai";
+import { useSetPersonalDetailsMutation } from "../../Redux/features/userInfo/userApi";
 
 export const EducationalDetails = ({ setPage }) => {
     const [photoURL, setPhotoUrl] = useState("");
+    const [setPersonalDetails, { data, isLoading }] = useSetPersonalDetailsMutation();
     const {
         register,
         formState: { errors },
@@ -11,11 +13,23 @@ export const EducationalDetails = ({ setPage }) => {
         reset,
     } = useForm();
 
-    const onSubmit = data => {
+    const onSubmit = async data => {
         data.caseCompleted = parseInt(data.caseCompleted);
-        console.log(data);
-        setPage(3);
+        // await setPersonalDetails(data);
+        fetch("https://shanshari-temp.onrender.com/member/register/educationalDetail", {
+            method: "POST",
+            headers: {
+                authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzgwY2RmYTk0YmQwNTI5OGIwNzRkOTYiLCJpYXQiOjE2NjkzODU3MjN9.0hzosa6Xo3AQKLkpp_5MWs9oD2txN8vQ71ycWEt6S8g`,
+                "content-type": "application/json",
+            },
+            body: JSON.stringify(data),
+        })
+            .then(res => res.json())
+            .then(data => console.log(data));
     };
+    if (data) {
+        console.log(data);
+    }
 
     const photoHandler = async e => {
         const photo = e.target.files[0];
@@ -219,7 +233,7 @@ export const EducationalDetails = ({ setPage }) => {
                 </section>
                 <input
                     type="submit"
-                    value={"Submit"}
+                    value={isLoading ? "Loading..." : "Submit"}
                     className="border-2 cursor-pointer mt-3 border-primary hover:border-0 rounded-full px-12 py-2 hover:bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] hover:text-white duration-500 transition-all"
                 />
             </form>

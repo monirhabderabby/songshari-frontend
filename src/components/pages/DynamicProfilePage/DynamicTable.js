@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "../../../App.css";
 import "../../../assets/css/table.css";
 import { DynamicActivityPage } from "./DynamicActivityPage";
+import { DynamicMatches } from "./DynamicMaches";
 import { DynamicProfileInfo } from "./DynamicProfileInfo";
 
 const DynamicTable = ({ user }) => {
@@ -29,7 +30,7 @@ const DynamicTable = ({ user }) => {
                         <button className="mt-4 font-medium leading-tight text-gray-800">
                             Connection<sup className="text-white bg_Color p-1 rounded-full text-[10px]">5</sup>
                         </button>
-                        <button className="mt-4 font-medium leading-tight text-gray-800">
+                        <button className="mt-4 font-medium leading-tight text-gray-800" onClick={() => setPage(5)}>
                             Match<sup className="text-white bg_Color p-1 rounded-full text-[10px]">14</sup>
                         </button>
                     </div>
@@ -37,6 +38,7 @@ const DynamicTable = ({ user }) => {
             </div>
             {page === 1 && <DynamicActivityPage />}
             {page === 2 && <DynamicProfileInfo {...{ user }} />}
+            {page === 5 && <DynamicMatches />}
         </div>
     );
 };

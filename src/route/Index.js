@@ -1,33 +1,36 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import LawyerServiceForm from "../components/Lawyer-Seam/LawyerServiceForm/LawyerServiceForm";
-import LawyerServicesPage from "../components/Lawyer-Seam/LawyerUserProfile/LawyerServicesPage";
-import OthersProfile from "../components/othersprofile/OthersProfile";
 import AdminAnalytics from "../components/pages/AdminAnalytics/AdminAnalytics";
 
 // components import
 import Login from "../components/pages/Authentications/Login";
 import LoginAsProfessional from "../components/pages/Authentications/LoginAsProfessional";
+import MobileForgetPassword from "../components/pages/Authentications/MobileDesign/MobileForgetPassword";
 import RegAsProfessional from "../components/pages/Authentications/RegAsProfessional";
 import SignUp from "../components/pages/Authentications/SignUp";
 import Contact from "../components/pages/Contact/Contact";
 import { DynamicProfilePage } from "../components/pages/DynamicProfilePage/DynamicProfilePage";
+import PartnerCard from "../components/pages/FindPartner/PartnerCard";
+import { LawyerActivity } from "../components/pages/lawyeractivity/LawyerActivity";
+import LawyerProfilePage from "../components/pages/lawyerPage/lawyerProfile/LawyerProfilePage";
 import LawyerReview from "../components/pages/lawyerPage/lawyerReview/LawyerReview";
 import LawyerServiceDetails from "../components/pages/lawyerPage/LawyerServiceDetails/LawyerServiceDetails";
 import { Members } from "../components/pages/Members/Members";
 import NotFound from "../components/pages/notfound/NotFound";
+import { OurTeams } from "../components/pages/OurTeams/OurTeams";
+import { Privacy } from "../components/pages/Privacy/Privacy";
 import { SingleRequestView } from "../components/pages/SingleRequestView/SingleRequestView";
 import TopProfessionAgent from "../components/pages/TopProfession/TopProfessionAgent";
 import TopProfessionKazi from "../components/pages/TopProfession/TopProfessionKazi";
 import Suggested from "../components/pages/TopProfile/Suggested";
 import TopBride from "../components/pages/TopProfile/TopBride";
 import TopGroom from "../components/pages/TopProfile/TopGroom";
+import { UsersProfile } from "../components/SingleProfilesUser/profileSection/UsersProfile";
 import About from "../Wrapper/About/About";
 import Agent from "../Wrapper/Agent/Agent";
 import Community from "../Wrapper/Community/Community";
 import Course from "../Wrapper/Course/Course";
 import FindAlawyer from "../Wrapper/Findalawyer/FindAlawyer";
-import LawyerProfilePage from "../components/pages/lawyerPage/lawyerProfile/LawyerProfilePage";
 import FindPartner from "../Wrapper/Findpartner/FindPartner";
 import Homepage from "../Wrapper/Home/Homepage";
 import Kazi from "../Wrapper/Kazi/Kazi";
@@ -36,7 +39,6 @@ import ProfileInfo from "../Wrapper/Profileinfo/ProfileInfo";
 import Shop from "../Wrapper/Shop/Shop";
 import SingleProduct from "../Wrapper/SingleProduct/SingleProduct";
 import SingleProfile from "../Wrapper/SingleProfilesUser/SingleProfile";
-import { LawyerActivity } from "../components/pages/lawyeractivity/LawyerActivity";
 import { Container } from "../Wrapper/Stepper/Container";
 import { UsersProfile } from "../components/SingleProfilesUser/profileSection/UsersProfile";
 import { NavCase } from "../Wrapper/Home/mobileversion/mobilelawyeractivity/NavCase";
@@ -97,6 +99,8 @@ const Index = () => {
           <Route path="/lawyeractivity" element={<LawyerActivity></LawyerActivity>}></Route>
           <Route path="/members" element={<Members />}></Route>
           <Route path="/profile/:id" element={<DynamicProfilePage />}></Route>
+          <Route path="/privacy-policy" element={<Privacy></Privacy>}></Route>
+                    <Route path="/our-teams" element={<OurTeams />}></Route>
           <Route path="/find-partner" element={<FindPartner />}>
             <Route path="/find-partner" element={<Suggested />} />
             <Route path="top" element={<TopBride />} />

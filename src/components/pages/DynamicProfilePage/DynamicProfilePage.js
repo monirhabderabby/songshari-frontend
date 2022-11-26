@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useParams } from "react-router";
 import CustomHeader from "../../../components/shared/CustomHeader/CustomHeader";
 import { useGetProfileDetailsQuery } from "../../../Redux/features/userInfo/userApi";
-import DynamicChatGallary from "./DynamicChatGallary";
+import DynamicCertificate from "./DynamicCertificate";
 import { DynamicConnectionsCard } from "./DynamicConnectionsCard";
 import { DynamicPhotosContainer } from "./DynamicPhotosContainer";
 import DynamicProfileCard from "./DynamicProfileCard";
@@ -11,6 +11,9 @@ import DynamicTable from "./DynamicTable";
 export const DynamicProfilePage = () => {
     const { id } = useParams();
     const { data: user, isLoading } = useGetProfileDetailsQuery(id);
+    useEffect(() => {
+        window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+    }, []);
     return (
         <div className="bg-[#FAFBFF]">
             <CustomHeader title="Profile" />
@@ -36,7 +39,7 @@ export const DynamicProfilePage = () => {
                     </div>
                     <div className="md:w-full lg:w-3/12 ml-2">
                         <div className="flex justify-center">
-                            <DynamicChatGallary />
+                            <DynamicCertificate />
                         </div>
                     </div>
                 </div>
