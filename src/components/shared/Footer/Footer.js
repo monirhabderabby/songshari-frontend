@@ -151,7 +151,7 @@ const Footer = () => {
                                 <h4 className="text-[24px] mb-[9px] uppercase font-normal text-[#fff]">legal</h4>
                                 <ul className="f-solial-links">
                                     <li className="py-[5px]">
-                                        <Link to="/privacy">
+                                        <Link to="/privacy-policy">
                                             <i className="fas text-[16px] mr-[5px] fa-angle-double-right"></i> Privacy policy
                                         </Link>
                                     </li>
