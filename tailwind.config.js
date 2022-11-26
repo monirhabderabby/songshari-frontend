@@ -8,6 +8,7 @@ module.exports = {
                 syne: ["Syne", "sans-serif"],
                 fira: ["Fira Sans", "sans-serif"],
                 outfit: ["Outfit", "sans-serif"],
+                Inter: ["Inter", "sans-serif"],
             },
             colors: {
                 transparent: "transparent",
@@ -25,5 +26,4 @@ module.exports = {
         },
     },
     plugins: [],
-
 };

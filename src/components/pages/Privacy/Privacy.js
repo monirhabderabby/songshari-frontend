@@ -1,6 +1,7 @@
 import React from "react";
 import { AiOutlineSearch } from "react-icons/ai";
 import CustomHeader from "../../shared/CustomHeader/CustomHeader";
+import Footer from "../../shared/Footer/Footer";
 import ".././../../App.css";
 import { PolicyPage } from "./PolicyPage";
 
@@ -73,6 +74,7 @@ export const Privacy = () => {
                     </div>
                 </section>
             </div>
+            <Footer />
         </>
     );
 };

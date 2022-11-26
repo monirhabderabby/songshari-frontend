@@ -17,6 +17,7 @@ import LawyerReview from "../components/pages/lawyerPage/lawyerReview/LawyerRevi
 import LawyerServiceDetails from "../components/pages/lawyerPage/LawyerServiceDetails/LawyerServiceDetails";
 import { Members } from "../components/pages/Members/Members";
 import NotFound from "../components/pages/notfound/NotFound";
+import { OurTeams } from "../components/pages/OurTeams/OurTeams";
 import { Privacy } from "../components/pages/Privacy/Privacy";
 import { SingleRequestView } from "../components/pages/SingleRequestView/SingleRequestView";
 import TopProfessionAgent from "../components/pages/TopProfession/TopProfessionAgent";
@@ -83,6 +84,7 @@ const Index = () => {
                         <Route path="/top-profession/agent" element={<TopProfessionAgent />} />
                     </Route>
                     <Route path="/privacy-policy" element={<Privacy></Privacy>}></Route>
+                    <Route path="/our-teams" element={<OurTeams />}></Route>
                     <Route path="/singleViewRequest" element={<SingleRequestView />} />
                     <Route path="/admin-analytics" element={<AdminAnalytics />}></Route>
                     <Route path="/stepper" element={<Container></Container>}></Route>
