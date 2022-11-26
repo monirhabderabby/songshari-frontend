@@ -227,6 +227,10 @@ const Signup = () => {
                                                             value: true,
                                                             message: "Nid Or Passport Number is Required",
                                                         },
+                                                        minLength: {
+                                                            value: 10,
+                                                            message: "Nid Or Passport Number should be minimum 10 characters"
+                                                        }
                                                     })}
                                                     type="text"
                                                     placeholder="NID or Passport Number"
@@ -236,6 +240,9 @@ const Signup = () => {
                                             </div>
                                             <h1 className="text-left ml-2">
                                                 {errors.NidOrPassportNumber?.type === "required" && (
+                                                    <span className="w-full text-left text-red-400 text-sm">{errors?.NidOrPassportNumber.message}</span>
+                                                )}
+                                                {errors.NidOrPassportNumber?.type === "minLength" && (
                                                     <span className="w-full text-left text-red-400 text-sm">{errors?.NidOrPassportNumber.message}</span>
                                                 )}
                                             </h1>

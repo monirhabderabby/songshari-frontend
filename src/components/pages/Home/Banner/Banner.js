@@ -1,48 +1,52 @@
-import React from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-
-// import required modules
-import { Autoplay, Navigation, Pagination } from "swiper";
-
-import slider from "../../../../assets/images/Slider/Slider.jpeg";
-import slider1 from "../../../../assets/images/Slider/Slider1.jpeg";
-import slider2 from "../../../../assets/images/Slider/Slider2.jpeg";
-import slider3 from "../../../../assets/images/Slider/Slider3.jpeg";
-import slider4 from "../../../../assets/images/Slider/Slider4.jpeg";
-import slider5 from "../../../../assets/images/Slider/Slider5.jpeg";
-import slider6 from "../../../../assets/images/Slider/Slider6.jpeg";
-import slider7 from "../../../../assets/images/Slider/Slider7.jpeg";
-import FindPartnerForm from "./FindPartnerForm";
-import SwipeMatch from "./SwipeMatch";
-
+import { Fragment } from "react";
+import BannerFilterBox from "./BannerFilterBox";
+import banner from "../../../../assets/images/banner/banner.png";
+import BannerProfile from "./BannerProfile";
+import { Typewriter } from "react-simple-typewriter";
 
 const Banner = () => {
-   
-
-    const sliderImages = [slider, slider1, slider2, slider3, slider4, slider5, slider6, slider7];
-    return (
-        <div className="relative">
-            <Swiper
-                spaceBetween={30}
-                centeredSlides={true}
-                loop={true}
-                autoplay={{ delay: 3000 }}
-                // navigation={true}
-                modules={[Autoplay, Pagination, Navigation]}
-                className="h-[87vh] -z-50"
-            >
-                {sliderImages.map((image, index) => (
-                    <SwiperSlide key={index}>
-                        <img className="h-[87vh] w-full" src={image} alt="" />
-                    </SwiperSlide>
-                ))}
-            </Swiper>
-            <div className=" md:absolute md:top-4 lg:top-10 z-30  md:flex justify-around w-full">
-                <SwipeMatch></SwipeMatch>
-                <FindPartnerForm></FindPartnerForm>
+  return (
+    <Fragment>
+      <section
+        style={{
+          background:
+            "url(https://img1.picmix.com/output/stamp/normal/9/9/4/3/1503499_8efaf.gif)",
+        }}
+      >
+        <div className="custom-container py-[50px]">
+          <h2
+            // style={{ textShadow: " 2px 2px 8px #7B047D" }}
+            className="text-center mb-[43px] text-[74px] font-bold leading-[94px] text-[#000000]"
+          >
+            Starting Your
+            <span className="text-[#701FD8] ml-[5px]">
+              <Typewriter
+                words={["Family Journey", "New Journey", "Life Journey"]}
+                loop={3}
+                typeSpeed={70}
+                deleteSpeed={50}
+                delaySpeed={2000}
+              />
+            </span>{" "}
+            Is
+            <br /> So Easy With{" "}
+            <span className="text-[#E41272]">Shongshari.Com</span>
+          </h2>
+          <div className="grid grid-cols-4 gap-x-2 justify-center items-center">
+            <div>
+              <BannerFilterBox />
             </div>
+            <div className=" col-span-2">
+              <img className="h-[400px] w-[721px]" src={banner} alt="" />
+            </div>
+            <div>
+              <BannerProfile />
+            </div>
+          </div>
         </div>
-    );
+      </section>
+    </Fragment>
+  );
 };
 
 export default Banner;

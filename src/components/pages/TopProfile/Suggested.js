@@ -18,7 +18,6 @@ const Suggested = () => {
         breakpoints={{
           0: {
             slidesPerView: 1,
-           
           },
 
           375: {
@@ -55,7 +54,11 @@ const Suggested = () => {
                   <img
                     style={{ borderRadius: " 10px 10px 0px 0px" }}
                     src={profile.profilePhoto}
+<<<<<<< HEAD
                     className="h-[120px] w-[200px]"
+=======
+                    className="h-[400px] w-[380px]"
+>>>>>>> f2f389dc68597b9445a216441c9b1b1766668a55
                     alt="profile"
                   />
                 </div>

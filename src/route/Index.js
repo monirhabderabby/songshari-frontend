@@ -39,7 +39,7 @@ import Shop from "../Wrapper/Shop/Shop";
 import SingleProduct from "../Wrapper/SingleProduct/SingleProduct";
 import SingleProfile from "../Wrapper/SingleProfilesUser/SingleProfile";
 import { Container } from "../Wrapper/Stepper/Container";
-import { UsersProfile } from "../components/SingleProfilesUser/profileSection/UsersProfile";
+// import { UsersProfile } from "../components/SingleProfilesUser/profileSection/UsersProfile";
 import { NavCase } from "../Wrapper/Home/mobileversion/mobilelawyeractivity/NavCase";
 import { PendingCaseMov } from "../Wrapper/Home/mobileversion/mobilelawyeractivity/PendingCase";
 import { RunningCaseMov } from "../Wrapper/Home/mobileversion/mobilelawyeractivity/RunningCase";
@@ -77,11 +77,11 @@ const Index = () => {
           <Route path="/shop" element={<Shop></Shop>}></Route>
 
           <Route path="products" element={<NavCase />}>
-          <Route path="search" element={<PendingCaseMov />} />
-          <Route path="list" element={<RunningCaseMov />} />
-          <Route path="add" element={<CompletedCaseMov />} />
-        </Route>
          
+            <Route path="search" element={<PendingCaseMov />} />
+            <Route path="list" element={<RunningCaseMov />} />
+            <Route path="add" element={<CompletedCaseMov />} />
+          </Route>
 
           <Route
             path="/singleproduct"
@@ -95,11 +95,14 @@ const Index = () => {
             element={<LoginAsProfessional />}
           />
           <Route path="/contact" element={<Contact />}></Route>
-          <Route path="/lawyeractivity" element={<LawyerActivity></LawyerActivity>}></Route>
+          <Route
+            path="/lawyeractivity"
+            element={<LawyerActivity></LawyerActivity>}
+          ></Route>
           <Route path="/members" element={<Members />}></Route>
           <Route path="/profile/:id" element={<DynamicProfilePage />}></Route>
           <Route path="/privacy-policy" element={<Privacy></Privacy>}></Route>
-                    <Route path="/our-teams" element={<OurTeams />}></Route>
+          <Route path="/our-teams" element={<OurTeams />}></Route>
           <Route path="/find-partner" element={<FindPartner />}>
             <Route path="/find-partner" element={<Suggested />} />
             <Route path="top" element={<TopBride />} />

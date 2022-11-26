@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "../../../App.css";
 import img from "../../../assets/images/olivia.png";
 import dribble from "../../../assets/images/Social Icons/dribble.png";
@@ -8,6 +8,10 @@ import CustomHeader from "../../shared/CustomHeader/CustomHeader";
 import Footer from "../../shared/Footer/Footer";
 
 export const OurTeams = () => {
+    useEffect(() => {
+        window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+    }, []);
+
     const profile = [1, 2, 3, 4, 5, 6, 7, 8];
     return (
         <>
