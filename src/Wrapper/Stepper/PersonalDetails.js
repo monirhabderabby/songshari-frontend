@@ -1,6 +1,7 @@
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import axios from 'axios';
 import { AiOutlineCloudUpload, AiOutlineIdcard } from "react-icons/ai";
 import { v4 as uuidv4 } from "uuid";
 import { firebaseStorage } from "../../firebase.init";
@@ -24,6 +25,18 @@ export const PersonalDetails = ({ setPage }) => {
     } = useForm();
 
     const onSubmit = data => {
+        fetch("https://shanshari-temp.onrender.com/member/register/educationalDetail", {
+            method: "POST",
+            headers: {
+                authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzgwY2RmYTk0YmQwNTI5OGIwNzRkOTYiLCJpYXQiOjE2NjkzODU3MjN9.0hzosa6Xo3AQKLkpp_5MWs9oD2txN8vQ71ycWEt6S8g`,
+                "content-type": "application/json",
+            },
+            body: JSON.stringify(data),
+        })
+            .then(res => res.json())
+            .then(data => console.log(data));
+    
+
         const hightestEducationalQualification = {};
         const currentProfession = {};
 

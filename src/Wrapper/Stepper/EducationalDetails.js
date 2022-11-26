@@ -15,6 +15,7 @@ export const EducationalDetails = ({ setPage }) => {
 
     const onSubmit = async data => {
         data.caseCompleted = parseInt(data.caseCompleted);
+        console.log(data);
         // await setPersonalDetails(data);
         fetch("https://shanshari-temp.onrender.com/member/register/educationalDetail", {
             method: "POST",
@@ -199,7 +200,7 @@ export const EducationalDetails = ({ setPage }) => {
                         </h1>
                     </section>
                     {/* ---------- Photo of Certificate ---------- */}
-                    <section>
+                    {/* <section>
                         <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
                             <AiOutlineCloudUpload className=" mr-2 text-gray-400" />
                             <label htmlFor="photoCertificate" className="outline-none h-full text-sm text-gray-400 bg-gray-100">
@@ -229,7 +230,7 @@ export const EducationalDetails = ({ setPage }) => {
                                 <span className="w-full text-left text-red-400 text-sm">{errors?.photoCertificate.message}</span>
                             )}
                         </h1>
-                    </section>
+                    </section> */}
                 </section>
                 <input
                     type="submit"

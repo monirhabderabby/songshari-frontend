@@ -21,7 +21,7 @@ const Suggested = () => {
            
           },
 
-          400: {
+          375: {
             slidesPerView: 2,
           },
 
@@ -55,7 +55,7 @@ const Suggested = () => {
                   <img
                     style={{ borderRadius: " 10px 10px 0px 0px" }}
                     src={profile.profilePhoto}
-                    className="h-[200px] w-[380px]"
+                    className="h-[120px] w-[200px]"
                     alt="profile"
                   />
                 </div>
@@ -70,9 +70,9 @@ const Suggested = () => {
                 </div>
                </div>
                <div className="md:hidden">
-                <div className="grid grid-cols-2 mt-2">
-                  <h1 className="font-bold text-xl ml-4">{profile?.firstName + " " + profile?.lastName}{" "}</h1>
-                  <p className="ml-16 text-red-400">26</p>
+                <div className="grid grid-cols-2 gap-16 mt-2">
+                  <h1 className="font-bold text-xl ml-4">{profile?.firstName }</h1>
+                  <p className="text-red-400">26</p>
                 </div>
                 <h5 className="ml-4">Student</h5>
                {/* <div className="p-[30px] text-left">
