@@ -9,14 +9,15 @@ import TopProfile from '../../../components/pages/TopProfile/TopProfile'
 import { BottomNav } from './BottomNav'
 import Title from './Title'
 import { Services } from './Services'
+import TopProfileMov from './topprofilemov/TopProfileMov'
 
 export const MobileHome = () => {
   return (
-    <div>
+    <div className='mov-res'>
         <TopMenu></TopMenu>
         <MobileBanner></MobileBanner>
         <Services></Services>
-        <TopProfile></TopProfile>
+       <TopProfileMov></TopProfileMov>
   <BottomNav></BottomNav>
     </div>
   )
