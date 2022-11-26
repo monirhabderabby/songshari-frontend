@@ -59,7 +59,8 @@ const Suggested = () => {
                     alt="profile"
                   />
                 </div>
-                <div className="p-[30px] text-left">
+               <div className="hidden md:block">
+               <div className="p-[30px] text-left">
                   <h3 className="text-[30px] text-[#000]">
                     {profile?.firstName + " " + profile?.lastName}{" "}
                     <span className="text-[#87ceeb]"> 26</span>
@@ -67,6 +68,22 @@ const Suggested = () => {
                   <h5 className="font-bold">Student</h5>
                   <h5 className="font-bold text-[20px]">Savar Dhaka</h5>
                 </div>
+               </div>
+               <div className="md:hidden">
+                <div className="grid grid-cols-2 mt-2">
+                  <h1 className="font-bold text-xl ml-4">{profile?.firstName + " " + profile?.lastName}{" "}</h1>
+                  <p className="ml-16 text-red-400">26</p>
+                </div>
+                <h5 className="ml-4">Student</h5>
+               {/* <div className="p-[30px] text-left">
+                  <h3 className="text-[30px] text-[#000]">
+                    {profile?.firstName + " " + profile?.lastName}{" "}
+                    <span className="text-[#87ceeb]"> 16</span>
+                  </h3>
+                  <h5 className="font-bold">Student</h5>
+                  <h5 className="font-bold text-[20px]">Savar Dhaka</h5>
+                </div> */}
+               </div>
                 <div className="Suggested-info__cardUp">
                   <div className="Suggested-info__cardImg">
                     <img src={profile.profilePhoto} alt="card__img" />
