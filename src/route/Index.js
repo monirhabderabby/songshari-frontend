@@ -25,7 +25,6 @@ import TopProfessionKazi from "../components/pages/TopProfession/TopProfessionKa
 import Suggested from "../components/pages/TopProfile/Suggested";
 import TopBride from "../components/pages/TopProfile/TopBride";
 import TopGroom from "../components/pages/TopProfile/TopGroom";
-import { UsersProfile } from "../components/SingleProfilesUser/profileSection/UsersProfile";
 import About from "../Wrapper/About/About";
 import Agent from "../Wrapper/Agent/Agent";
 import Community from "../Wrapper/Community/Community";
@@ -123,7 +122,7 @@ const Index = () => {
           <Route path="/singleViewRequest" element={<SingleRequestView />} />
           <Route path="/admin-analytics" element={<AdminAnalytics />}></Route>
           {/* <Route path="/profile" element={<OthersProfile />} /> */}
-          <Route path="/ste" element={<OthersProfile></OthersProfile>}></Route>
+          {/* <Route path="/ste" element={<OthersProfile></OthersProfile>}></Route> */}
           <Route path="/setting" element={<Setting></Setting>}></Route>
           <Route path="/stepper" element={<Container></Container>}></Route>
           <Route path="*" element={<NotFound />}></Route>

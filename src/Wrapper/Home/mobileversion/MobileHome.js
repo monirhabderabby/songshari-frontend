@@ -13,7 +13,7 @@ import TopProfileMov from './topprofilemov/TopProfileMov'
 
 export const MobileHome = () => {
   return (
-    <div>
+    <div className='mov-res'>
         <TopMenu></TopMenu>
         <MobileBanner></MobileBanner>
         <Services></Services>

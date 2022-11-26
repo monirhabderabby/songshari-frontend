@@ -29,3 +29,6 @@
     border-radius: 10%;
    
 }
+.mov-res{
+    overflow-x: hidden;
+}
