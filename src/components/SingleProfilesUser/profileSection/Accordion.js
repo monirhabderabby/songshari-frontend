@@ -6,22 +6,13 @@ import { styled } from "@mui/material/styles";
 import Typography from "@mui/material/Typography";
 import React from "react";
 import "./Accordion.css";
-
 const Accordion = styled(props => <MuiAccordion disableGutters elevation={0} square {...props} />)(({ theme }) => ({
-    //     border: `1px solid ${theme.palette.divider}`,
-    //     "&:not(:last-child)": {
-    //         borderBottom: 0,
-    //     },
-    //     "&:before": {
-    //         display: "none",
-    //     },
-    //     boxShadow: "0px 5px 30px rgba(35,57, 184, 0.2)",
+
     paddingTop: "23px",
     paddingLeft: "53px",
     paddingBottom: "23px",
     paddingRight: "53px",
 }));
-
 const AccordionSummary = styled(props => <MuiAccordionSummary expandIcon={<ArrowForwardIosSharpIcon sx={{ fontSize: "0.9rem" }} />} {...props} />)(
     ({ theme }) => ({
         backgroundColor: "#ffffff",
@@ -37,10 +28,7 @@ const AccordionSummary = styled(props => <MuiAccordionSummary expandIcon={<Arrow
         fontWeight: "bold",
     })
 );
-
-const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
-    //     padding: theme.spacing(2),
-    //     borderTop: "1px solid rgba(0, 0, 0, .125)",
+const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({  
 }));
 
 const Accordian = () => {
@@ -49,69 +37,6 @@ const Accordian = () => {
     const handleChange = panel => (event, newExpanded) => {
         setExpanded(newExpanded ? panel : true);
     };
-
-    // const body = [
-    //     "Name",
-    //     "Birthday",
-    //     "I am a",
-    //     "Marital status",
-    //     "Country",
-    //     "City",
-    //     "Phone number",
-    //     "NID/Passport Number",
-    //     "Year Of Experience",
-    //     "BAR Registration Number",
-    //     "Licence Number",
-    //     "Year Of BAR Registration",
-    //     "Chamber Location",
-    //     "Lawyer Category",
-    //     "Citizenship",
-    //     "Zodiac Sign",
-    //     "Not provide",
-    //     "Highest Educational Qualification",
-    //     "Height",
-    //     "Weight",
-    //     "Ancestry",
-    //     "Skin Tone",
-    //     "Monthly Income",
-    //     "Siblings",
-    //     "Linkedin",
-    //     "Instagram",
-    //     "Facebook",
-    //     "Hobby",
-    //     "Highest Educational Qualification"
-    // ]
-    // const bodyValue = [
-    //     "Albert Don",
-    //     "1988-01-19",
-    //     "Man",
-    //     "Married",
-    //     "France",
-    //     "Paris",
-    //     "+880 177.004-5304",
-    //     "0000 0000 0000 0000",
-    //     "5 Month 5 Years",
-    //     "0000 0000 0000 0000",
-    //     "0000 0000 0000 0000",
-    //     "1999",
-    //     "Dhaka, Bangladesh",
-    //     "Genarel",
-    //     "Not provide",
-    //     "Not provide",
-    //     "Not provide",
-    //     "BCS",
-    //     "Not provide",
-    //     "Not provide",
-    //     "Not provide",
-    //     "Not provide",
-    //     "2 Brother and 0 Sister",
-    //     "Not provide",
-    //     "Not provide",
-    //     "Not provide",
-    //     "Not provide",
-    //     "ualification",
-    //     "BCS"
-    // ]
 
     const user = { firstName: "User", lastName: "Name" };
 

@@ -11,8 +11,8 @@ import Stack from '@mui/material/Stack';
 export const RunningCase = () => {
   return (
     <div>
-        <h1 className='font-bold text-2xl mt-12 ml-16'>Running Cases</h1>
-        <div className='grid lg:grid-cols-3 gap-4 container ml-12'>
+        <h1 className='font-bold text-4xl mb-5 mt-12 ml-16'>Running Cases</h1>
+        <div className='grid lg:grid-cols-3 gap-4 container ml-12 mb-4'>
         <Card sx={{ maxWidth: 345, backgroundColor:'#40268B', color:'white' }}>
       <CardContent>
         <Typography gutterBottom variant="p" sx={{fontSize:25, color:'white'}} component="div">

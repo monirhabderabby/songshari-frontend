@@ -1,30 +1,27 @@
 import React from 'react'
-import Box from '@mui/material/Box';
-import BottomNavigation from '@mui/material/BottomNavigation';
-import BottomNavigationAction from '@mui/material/BottomNavigationAction';
-import RestoreIcon from '@mui/icons-material/Restore';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import LocationOnIcon from '@mui/icons-material/LocationOn';
+import agent from '../../../assets/images/Logo/Agent.svg'
+import partner from '../../../assets/images/Logo/partner.svg'
+import Lawyer from '../../../assets/images/Logo/Lawyer.svg'
+import Kazi from '../../../assets/images/Logo/Kazi.svg'
+import Shop from '../../../assets/images/Logo/Shop.svg'
+import courses from '../../../assets/images/Logo/online.svg'
+import member from '../../../assets/images/Logo/Membership.svg'
+import cart from '../../../assets/images/Logo/Cart.svg'
+import HOME from '../../../assets/images/Logo/HOME.svg'
+
 export const BottomNav = () => {
-    const [value, setValue] = React.useState(0);
   return (
-    <div>
-          <Box sx={{ width: 500, paddingLeft:10 }}>
-      <BottomNavigation
-        showLabels
-        value={value}
-        onChange={(event, newValue) => {
-          setValue(newValue);
-        }}
-      >
-        <BottomNavigationAction className='pl-2' label="Recents" icon={<RestoreIcon />} />
-        <BottomNavigationAction label="Favorites" icon={<FavoriteIcon />} />
-        <BottomNavigationAction label="Nearby" icon={<LocationOnIcon />} />
-        <BottomNavigationAction label="Recents" icon={<RestoreIcon />} />
-        <BottomNavigationAction label="Favorites" icon={<FavoriteIcon />} />
-        <BottomNavigationAction label="Nearby" icon={<LocationOnIcon />} />
-      </BottomNavigation>
-    </Box>
+    <div className='bg-gray-200 w-full ml-4 bottom-nav-mov'>
+        <div className='grid grid-cols-5 gap-14 ml-8'>
+<img src={HOME} className='w-8'></img>
+<img src={member} className='w-12'></img>
+<img src={Shop} className='w-12'></img>
+<img src={cart} className='w-12'></img>
+<img src={cart} className='w-12'></img>
+
+
+
+        </div>
     </div>
   )
 }
