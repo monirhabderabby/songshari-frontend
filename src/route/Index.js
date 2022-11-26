@@ -47,6 +47,9 @@ import { CompletedCaseMov } from "../Wrapper/Home/mobileversion/mobilelawyeracti
 import { Setting } from "../Wrapper/Home/mobileversion/Setting";
 import TopProfileMov from "../Wrapper/Home/mobileversion/topprofilemov/TopProfileMov";
 import Suggest from '../Wrapper/Home/mobileversion/Suggest';
+import { CertificateMov } from "../Wrapper/Home/mobileversion/CertificateMov";
+import { Like } from "../Wrapper/Home/mobileversion/Like";
+import { MatchesMov } from "../Wrapper/Home/mobileversion/MatchesMov";
 const Index = () => {
   return (
     <div>
@@ -56,6 +59,10 @@ const Index = () => {
           <Route path="/userprofile" element={<SingleProfile />}></Route>
           {/* <Route path="/usersprofile" element={<UsersProfile />}></Route> */}
           <Route path="/membership" element={<MemberShip></MemberShip>}></Route>
+          
+          <Route path="/certificatemov" element={<CertificateMov></CertificateMov>}></Route>
+          <Route path="/like" element={<Like></Like>}></Route>
+          <Route path="/matchesmov" element={<MatchesMov></MatchesMov>}></Route>
           <Route
             path="/profileinfo"
             element={<ProfileInfo></ProfileInfo>}

@@ -10,6 +10,9 @@ import { BottomNav } from './BottomNav'
 import Title from './Title'
 import { Services } from './Services'
 import TopProfileMov from './topprofilemov/TopProfileMov'
+import ChartBoard from '../../../components/SingleProfilesUser/chatboard/ChartBoard'
+import { Like } from './Like'
+import { CertificateMov } from './CertificateMov'
 
 export const MobileHome = () => {
   return (
@@ -18,7 +21,6 @@ export const MobileHome = () => {
         <MobileBanner></MobileBanner>
         <Services></Services>
        <TopProfileMov></TopProfileMov>
-       
        <BottomNav></BottomNav>
     </div>
   )

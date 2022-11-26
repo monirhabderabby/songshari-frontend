@@ -33,13 +33,10 @@ export const Setting = () => {
       </div>
 
      <AccountSettingMov></AccountSettingMov>
-     <LogoutMov></LogoutMov>
+     {/* <LogoutMov></LogoutMov>
      <br></br>
      <br></br>
-   
-   
-   
-   
+     <BottomNav></BottomNav> */}
      <BottomNav></BottomNav>
     </div>
   )

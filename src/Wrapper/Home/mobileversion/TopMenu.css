@@ -33,11 +33,16 @@
 
 .setting-mov{
     display: flex;
+
 }
 .profile-tit{
     color: #1E2022;
     font-weight: 500;
-    font-size: 24px;
+    font-size: 14px;
+   
+}
+.ggg{
+    margin-left: -30px;
 }
 .he{
     margin-left: -10px;
