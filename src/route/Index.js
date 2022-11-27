@@ -48,7 +48,8 @@ import Suggest from '../Wrapper/Home/mobileversion/Suggest';
 import { CertificateMov } from "../Wrapper/Home/mobileversion/CertificateMov";
 import { Like } from "../Wrapper/Home/mobileversion/Like";
 import { MatchesMov } from "../Wrapper/Home/mobileversion/MatchesMov";
-import { UpgradePlan } from "../components/pages/Membership/MobileVersion/UpgradePlan";
+import UpgradePlan from "../components/pages/Membership/MobileVersion/UpgradePlan";
+
 const Index = () => {
     return (
         <div>
@@ -107,6 +108,7 @@ const Index = () => {
                     {/* <Route path="/ste" element={<OthersProfile></OthersProfile>}></Route> */}
                     <Route path="/setting" element={<Setting></Setting>}></Route>
                     <Route path="/stepper" element={<Container></Container>}></Route>
+                    <Route path="/upgrade" element={<UpgradePlan></UpgradePlan>}></Route>
                     <Route path="*" element={<NotFound />}></Route>
                 </Routes>
             </BrowserRouter>
