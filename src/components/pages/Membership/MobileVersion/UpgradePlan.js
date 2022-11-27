@@ -6,6 +6,7 @@ import upgrade from '../../../../assets/images/UpgradePlan/upgrade.png';
 import { Switch } from 'antd';
 import { SlArrowRight } from "react-icons/sl";
 import '../../../../assets/css/UpgradePlan.css';
+import { BottomNav } from '../../../../Wrapper/Home/mobileversion/BottomNav';
 
 const UpgradePlan = () => {
 
@@ -82,7 +83,9 @@ const UpgradePlan = () => {
                     )
                 }
             </div>
-
+            <br></br>
+      <br></br>
+<BottomNav></BottomNav>
         </div>
     );
 };

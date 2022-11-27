@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router";
+import { BottomNav } from "../../../Wrapper/Home/mobileversion/BottomNav";
 import MobileAccordion from "./MobileAccordion";
 import MobileUsersProfile from "./MobileUsersProfile";
 
@@ -22,7 +23,9 @@ const MobileSingleProfilesUser = () => {
             <div className="py-[20px]">
                 <MobileAccordion />
             </div>
+            <BottomNav></BottomNav>
         </section>
+      
     );
 };
 

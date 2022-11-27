@@ -5,6 +5,7 @@ import love from "../../../assets/images/activity/love.png";
 import { Select } from "antd";
 import banner from "../../../assets/images/activity/postBanner.png";
 import { Link } from "react-router-dom";
+import { BottomNav } from "../../../Wrapper/Home/mobileversion/BottomNav";
 
 const handleChange = () => { };
 const MobileActivity = () => {
@@ -162,6 +163,9 @@ const MobileActivity = () => {
           Next Page
         </Link>
       </div>
+      <br></br>
+      <br></br>
+      <BottomNav></BottomNav>
     </section>
   );
 };
