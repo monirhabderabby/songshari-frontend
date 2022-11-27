@@ -13,8 +13,8 @@ const steps = [
 export const StepperMov = () => {
   return (
     <div>
-        <h1 className='font-bold ml-12'>Complete your profile</h1>
-        <Box sx={{ width: '100%', backgroundColor:'#8559E4' }}>
+        <h1 className='font-bold ml-8'>Complete your profile</h1>
+        <Box sx={{ width: '100%', marginTop:2 }}>
       <Stepper activeStep={1} alternativeLabel>
         {steps.map((label) => (
           <Step key={label}>

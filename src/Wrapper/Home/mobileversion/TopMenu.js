@@ -10,12 +10,12 @@ setState(true);
   }
   return (
     <div>
-        <div className='grid grid-cols-5  ml-8 mt-2'>
-            <div  className='mov-top w-10 rounded-full'>
+        <div className='grid grid-cols-5 mt-2'>
+            <div  className='ml-4 mov-top w-8 rounded-full mt-1'>
                 <img src='https://i.ibb.co/pZFRdCB/512-512-Icon-1.png'></img>
             </div>
             <div onClick={handleClick}>
-               <p className='font-bold text-lg mt-2 shongshari-mov'>shongshari.com <span><i class="fa-solid fa-angle-down"></i></span></p>
+               <p className='font-bold text-sm mt-3 shongshari-mov'>shongshari.com <span><i class="fa-solid fa-angle-down"></i></span></p>
                {
                 state && <div className='mt-2'>
                   <Link to='/login'><span className='bg-red-500 pt-2 pl-4 pr-4 pb-2 mr-4'>Login</span></Link>
@@ -33,8 +33,8 @@ setState(true);
             <div>
             
             </div>
-            <div>
-            <i class="fa-regular fa-bell mt-3 mr-8"></i>
+            <div className='mr-4'>
+            <i class="fa-regular fa-bell mt-3 mr-6"></i>
             <i class="fa-solid fa-magnifying-glass mt-3"></i>
             </div>
            

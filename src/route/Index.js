@@ -43,6 +43,11 @@ import { NavCase } from "../Wrapper/Home/mobileversion/mobilelawyeractivity/NavC
 import { PendingCaseMov } from "../Wrapper/Home/mobileversion/mobilelawyeractivity/PendingCase";
 import { RunningCaseMov } from "../Wrapper/Home/mobileversion/mobilelawyeractivity/RunningCase";
 import { Setting } from "../Wrapper/Home/mobileversion/Setting";
+import TopProfileMov from "../Wrapper/Home/mobileversion/topprofilemov/TopProfileMov";
+import Suggest from '../Wrapper/Home/mobileversion/Suggest';
+import { CertificateMov } from "../Wrapper/Home/mobileversion/CertificateMov";
+import { Like } from "../Wrapper/Home/mobileversion/Like";
+import { MatchesMov } from "../Wrapper/Home/mobileversion/MatchesMov";
 const Index = () => {
     return (
         <div>
@@ -53,6 +58,9 @@ const Index = () => {
                     <Route path="/membership" element={<MemberShip></MemberShip>}></Route>
                     <Route path="/profileinfo" element={<ProfileInfo></ProfileInfo>}></Route>
                     <Route path="/course" element={<Course></Course>}></Route>
+                    <Route path="/certificatemov" element={<CertificateMov></CertificateMov>}></Route>
+          <Route path="/like" element={<Like></Like>}></Route>
+          <Route path="/matchesmov" element={<MatchesMov></MatchesMov>}></Route>
                     <Route path="/findalawyer" element={<FindAlawyer></FindAlawyer>}></Route>
                     <Route path="/lawyer-profile" element={<LawyerProfilePage />}></Route>
                     <Route path="/lawyer-review" element={<LawyerReview />}></Route>
