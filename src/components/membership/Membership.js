@@ -8,11 +8,11 @@ import styles from "./membership.module.css";
 
 const Membership = () => {
     return (
-        <div className='container mx-auto px-4 md:-0'>
+        <div className='container mx-auto px-4 pt-10 md:-0'>
             <div className={`${styles.set_font_family}`}>
                 <div>
                     <div className='text-center'>
-                        <h1 className='text-4xl font-extrabold text-red-500 pb-10'>Upgrate Your Plan</h1>
+                        <h1 className='text-4xl font-extrabold text-red-500 pb-10'>Upgrade Your Plan</h1>
                     </div>
                     <div>
                         <TitleWithBar Color='red' fontsize='4' textData='MemberShip Plan'></TitleWithBar>
@@ -84,7 +84,7 @@ const Membership = () => {
                 </div>
             </div>
             <div className='flex justify-center'>
-                <button className={styles.MembershipButton}>MEMBERSHIP DETAILS</button>
+                <button className={`${styles.MembershipButton} font-george`}>MEMBERSHIP DETAILS</button>
             </div>
         </div>
     );
