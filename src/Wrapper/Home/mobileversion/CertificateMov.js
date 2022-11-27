@@ -47,6 +47,9 @@ export const CertificateMov = () => {
                     </div>)
                 }
             </div>
+            <br></br>
+            <br></br>
+            <br></br>
             <BottomNav></BottomNav>
     </div>
   )

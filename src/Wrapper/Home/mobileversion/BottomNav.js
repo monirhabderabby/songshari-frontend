@@ -12,13 +12,13 @@ import { Link } from 'react-router-dom'
 
 export const BottomNav = () => {
   return (
-    <div className=' ml-4  mt-10  mb-4 '>
+    <div className='rounded-full bg-bottom-nav'>
         <div className='grid grid-cols-5 gap-4 bottom-bar'>
-<img src={HOME} className='w-6'></img>
-<img src={member} className='w-8'></img>
-<img src={Shop} className='w-8'></img>
-<img src={cart} className='w-8'></img>
-<Link to='/setting'><img src={cart} className='w-8'></img></Link>
+<img src={member} className='w-10'></img>
+<img src={Shop} className='w-10'></img>
+<img src='https://i.ibb.co/d5yyNd6/512-512-Icon.png' className='w-10'></img>
+<img src={cart} className='w-10'></img>
+<Link to='/setting'><img src={cart} className='w-10'></img></Link>
 
 
 

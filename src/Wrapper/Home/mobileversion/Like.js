@@ -61,6 +61,9 @@ export const Like = () => {
                     }
                 </div>
             </div>
+            <br></br>
+            <br></br>
+            <br></br>
 <BottomNav></BottomNav>
     </div>
   )

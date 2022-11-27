@@ -7,7 +7,7 @@ import { StepperMov } from './StepperMov'
 
 export const Setting = () => {
   return (
-    <div>
+    <div className='bg-setting-mov'>
         <div className='grid grid-cols-6 mt-5'>
         <div className='setting-mov'>
         <i class="fa-solid fa-chevron-left ml-8 mt-3"></i>
@@ -33,6 +33,10 @@ export const Setting = () => {
       </div>
 
      <AccountSettingMov></AccountSettingMov>
+     <br></br>
+     <br></br>
+     <br></br>
+     <br></br>
      {/* <LogoutMov></LogoutMov>
      <br></br>
      <br></br>
