@@ -105,6 +105,10 @@ export const userApi = apiSlice.injectEndpoints({
         getProfileDetails: builder.query({
             query: id => `/member/personalDetail/${id}`,
         }),
+        getProfileDetailsWIthAuth: builder.query({
+            query: () => "/member/personalDetail",
+            headers: { authorization: `Bearer ${localStorage.getItem("accessToken")}` },
+        }),
     }),
 });
 
@@ -121,4 +125,5 @@ export const {
     useGetProfileDetailsQuery,
     useUpdateEducationalDetailsMutation,
     useUpdatePhysicalDetailsMutation,
+    useGetProfileDetailsWIthAuthQuery,
 } = userApi;

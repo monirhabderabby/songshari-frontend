@@ -10,7 +10,7 @@ setState(true);
   }
   return (
     <div>
-        <div className='grid grid-cols-5 mt-2'>
+        <div className='grid grid-cols-5 mt-2 bg-top rounded-full ml-3 mr-3 pt-2 pb-2'>
             <div  className='ml-4 mov-top w-8 rounded-full mt-1'>
                 <img src='https://i.ibb.co/pZFRdCB/512-512-Icon-1.png'></img>
             </div>

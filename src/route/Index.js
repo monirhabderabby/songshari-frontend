@@ -49,6 +49,9 @@ import { CertificateMov } from "../Wrapper/Home/mobileversion/CertificateMov";
 import { Like } from "../Wrapper/Home/mobileversion/Like";
 import { MatchesMov } from "../Wrapper/Home/mobileversion/MatchesMov";
 import UpgradePlan from "../components/pages/Membership/MobileVersion/UpgradePlan";
+import { UpgradePlan } from "../components/pages/Membership/MobileVersion/UpgradePlan";
+import MobileSingleProfilesUser from "../components/SingleProfilesUser/MobileSingleProfilesUser/MobileSingleProfilesUser";
+import MobileActivity from "../components/pages/MobileActivity/MobileActivity";
 
 const Index = () => {
     return (
@@ -62,7 +65,6 @@ const Index = () => {
                     <Route path="/course" element={<Course></Course>}></Route>
                     <Route path="/certificatemov" element={<CertificateMov></CertificateMov>}></Route>
                     <Route path="/like" element={<Like></Like>}></Route>
-                    <Route path="/matchesmov" element={<MatchesMov></MatchesMov>}></Route>
                     <Route path="/findalawyer" element={<FindAlawyer></FindAlawyer>}></Route>
                     <Route path="/lawyer-profile" element={<LawyerProfilePage />}></Route>
                     <Route path="/lawyer-review" element={<LawyerReview />}></Route>
@@ -109,6 +111,13 @@ const Index = () => {
                     <Route path="/setting" element={<Setting></Setting>}></Route>
                     <Route path="/stepper" element={<Container></Container>}></Route>
                     <Route path="/upgrade" element={<UpgradePlan></UpgradePlan>}></Route>
+
+                    {/* --------------- MOBILE ROUTES START --------------- */}
+                    <Route path="/matchesmov" element={<MatchesMov></MatchesMov>}></Route>
+                    <Route path="/mobileActivityPage" element={<MobileActivity />} ></Route>
+                    <Route path="/mobileUserProfile" element={<MobileSingleProfilesUser />} ></Route>
+                    {/* --------------- MOBILE ROUTES END --------------- */}
+
                     <Route path="*" element={<NotFound />}></Route>
                 </Routes>
             </BrowserRouter>

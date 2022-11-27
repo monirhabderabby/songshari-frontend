@@ -6,7 +6,10 @@ import AboutUsCommunity from "../../components/pages/About/AboutUsCommunity";
 import AboutUsMotive from "../../components/pages/About/AboutUsMotive";
 import AboutUsOurHistory from "../../components/pages/About/AboutUsOurHistory";
 import AboutUsStory from "../../components/pages/About/AboutUsStory";
-import { DioamondPlan } from "../../components/pages/Membership/MobileVersion/DioamondPlan";
+import MobileDiamondPlan from "../../components/pages/Membership/MobileVersion/MobileDiamondPlan";
+import MobileFreePlan from "../../components/pages/Membership/MobileVersion/MobileFreePlan";
+import MobileGoldPlan from "../../components/pages/Membership/MobileVersion/MobileGoldPlan";
+import MobilePlatinumPlan from "../../components/pages/Membership/MobileVersion/MobilePlatinumPlan";
 import CustomHeader from "../../components/shared/CustomHeader/CustomHeader";
 import Footer from "../../components/shared/Footer/Footer";
 
@@ -29,7 +32,10 @@ const About = () => {
                 <Footer />
             </div>
             <div className="md:hidden">
-                <DioamondPlan />
+                {/* <MobileFreePlan /> */}
+                {/* <MobileGoldPlan /> */}
+                {/* <MobileDiamondPlan /> */}
+                <MobilePlatinumPlan />
             </div>
         </>
     );

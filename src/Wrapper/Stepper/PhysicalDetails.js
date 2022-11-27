@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { useUpdatePhysicalDetailsMutation } from "../../Redux/features/userInfo/userApi";
+import { useSetPhysicalDetailsMutation } from "../../Redux/features/userInfo/userApi";
 
 export const PhysicalDetails = ({ setPage }) => {
     const {
@@ -9,11 +9,11 @@ export const PhysicalDetails = ({ setPage }) => {
         handleSubmit,
     } = useForm();
 
-    const [updatePhysicalDetails, { data, isLoading }] = useUpdatePhysicalDetailsMutation();
+    const [setPhysicalDetails, { data, isLoading }] = useSetPhysicalDetailsMutation();
 
     const onSubmit = async data => {
         data.caseCompleted = parseInt(data.caseCompleted);
-        await updatePhysicalDetails(data);
+        await setPhysicalDetails(data);
     };
 
     useEffect(() => {
