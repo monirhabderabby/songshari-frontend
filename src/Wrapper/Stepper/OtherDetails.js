@@ -1,18 +1,29 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router";
+import { useSetOthersDetailsMutation } from "../../Redux/features/userInfo/userApi";
 
 export const OtherDetails = () => {
+    const [setOthersDetails, { data, isLoading }] = useSetOthersDetailsMutation();
+    const navigate = useNavigate();
     const {
         register,
         formState: { errors },
         handleSubmit,
-        reset,
     } = useForm();
 
-    const onSubmit = data => {
-        data.caseCompleted = parseInt(data.caseCompleted);
+    const onSubmit = async data => {
         console.log(data);
+        await setOthersDetails(data);
     };
+
+    useEffect(() => {
+        if (data) {
+            toast.success("Successfully updated your profile");
+            navigate("/");
+        }
+    }, [data]);
     return (
         <div className="w-full h-auto">
             <section className="col-span-1 md:col-span-2 lg:col-span-3 text-2xl text-[#2F3659] mb-4">
@@ -265,7 +276,7 @@ export const OtherDetails = () => {
                 </section>
                 <input
                     type="submit"
-                    value={"Submit"}
+                    value={isLoading ? "Saving..." : "Submit"}
                     className="border-2 cursor-pointer mt-3 border-primary hover:border-0 rounded-full px-12 py-2 hover:bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] hover:text-white duration-500 transition-all"
                 />
             </form>

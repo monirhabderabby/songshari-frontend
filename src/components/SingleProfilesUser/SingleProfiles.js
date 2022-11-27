@@ -10,7 +10,7 @@ const SingleProfiles = () => {
     return (
         <div className="bg-[#FAFBFF]">
             <CustomHeader title="Profile" />
-            <div className="custom-container mx-auto bg-[#FAFBFF] ">
+            <div className="custom-container mx-auto bg-[#FAFBFF] pt-[30px]">
                 <div className="block lg:flex">
                     <div className="md:w-full lg:w-9/12">
                         <div>

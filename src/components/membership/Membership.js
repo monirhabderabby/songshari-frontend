@@ -18,14 +18,14 @@ const Membership = () => {
                         <TitleWithBar Color='red' fontsize='4' textData='MemberShip Plan'></TitleWithBar>
                     </div>
                     <div className='pt-10'>
-                        <TitleWithBar isHidden='hidden' Color='black' fontsize='1' textData='Choice from one of our membership levels and unlock featurs you need . Benifine from shongsari at its maximum capacity by choosing the plan that suits you' />
+                        <TitleWithBar isHidden='hidden' Color='black' fontsize='1' textData='Choice from one of our membership levels and unlock features you need . Benfine from shongsari at its maximum capacity by choosing the plan that suits you' />
                     </div>
                     <div>
                         <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 md:gap-6 pt-16 gap-8`}>
                             <div>
                                 <div>
                                     <div className='flex justify-center'>
-                                        <img src={i1} alt="image" />
+                                        <img src={i1} alt="" />
                                     </div>
                                     <div className='py-4'>
                                         <TitleWithBar isHidden='' Color='black' fontsize='2' textData='Unlimited Message' />
@@ -39,7 +39,7 @@ const Membership = () => {
                             <div className=''>
                                 <div>
                                     <div className='flex justify-center'>
-                                        <img src={i2} alt="image" />
+                                        <img src={i2} alt="" />
                                     </div>
                                     <div className='py-4'>
                                         <TitleWithBar isHidden='' Color='black' fontsize='2' textData='Unlimited matched' />
@@ -53,7 +53,7 @@ const Membership = () => {
                             <div className=''>
                                 <div>
                                     <div className='flex justify-center'>
-                                        <img src={i3} alt="image" />
+                                        <img src={i3} alt="" />
                                     </div>
                                     <div className='py-4'>
                                         <TitleWithBar isHidden='' Color='black' fontsize='2' textData='Take more messages' />
@@ -67,7 +67,7 @@ const Membership = () => {
                             <div className=''>
                                 <div>
                                     <div className='flex justify-center'>
-                                        <img src={i4} alt="image" />
+                                        <img src={i4} alt="" />
                                     </div>
                                     <div className='py-4'>
                                         <TitleWithBar isHidden='' Color='black' fontsize='2' textData='Vip Badge' />

@@ -10,26 +10,26 @@ export const Setting = () => {
     <div className='bg-setting-mov'>
         <div className='grid grid-cols-6 mt-5'>
         <div className='setting-mov'>
-        <i class="fa-solid fa-chevron-left ml-8 mt-3"></i>
-            <h1 className='ml-28 profile-tit'>Profile</h1>
+          <i class="fa-solid fa-chevron-left ml-8 mt-3"></i>
+          <h1 className='ml-28 profile-tit'>Profile</h1>
         </div>
-        
+
         <div>
-        
+
         </div>
         <div>
 
         </div>
         <div>
-    
+
         </div>
         <div>
-      
+
         </div>
         <div>
-       
+
         </div>
-      
+
       </div>
 
      <AccountSettingMov></AccountSettingMov>
@@ -41,7 +41,7 @@ export const Setting = () => {
      <br></br>
      <br></br>
      <BottomNav></BottomNav> */}
-     <BottomNav></BottomNav>
+      <BottomNav></BottomNav>
     </div>
   )
 }
