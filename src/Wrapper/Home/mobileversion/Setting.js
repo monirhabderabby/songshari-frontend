@@ -12,7 +12,7 @@ export const Setting = () => {
         <Link to='/'>
         <div className='grid grid-cols-6 mt-5'>
         <div className='setting-mov'>
-          <i class="fa-solid fa-chevron-left ml-8 mt-3"></i>
+          <i class="fa-solid fa-chevron-left ml-8"></i>
           <h1 className='ml-28 profile-tit'>Profile</h1>
         </div>
 
