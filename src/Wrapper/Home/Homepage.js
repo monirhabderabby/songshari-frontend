@@ -19,20 +19,20 @@ const Homepage = () => {
   return (
     <div className="font-george">
       <div className="hidden md:block">
-      <NavBar></NavBar>
-      <Banner></Banner>
-      {/* <ThreeEasySteps></ThreeEasySteps> */}
-      <SecureVerified></SecureVerified>
-      <BeginFamilyJourney></BeginFamilyJourney>
-      <LatestRegisteredMember />
-      <TopProfile />
-      <PeopleJoinedAlready />
-      <TopProfession />
-      <FindSoleMate />
-      <MeetNewPeople />
-      <Membership />
-      <Anexecutive></Anexecutive>
-      <Footer />
+        <NavBar></NavBar>
+        <Banner></Banner>
+        {/* <ThreeEasySteps></ThreeEasySteps> */}
+        <SecureVerified></SecureVerified>
+        <BeginFamilyJourney></BeginFamilyJourney>
+        <LatestRegisteredMember />
+        <TopProfile />
+        <PeopleJoinedAlready />
+        <TopProfession />
+        <FindSoleMate />
+        <MeetNewPeople />
+        <Membership />
+        <Anexecutive></Anexecutive>
+        <Footer />
       </div>
       <div className="md:hidden">
         <MobileHome></MobileHome>
