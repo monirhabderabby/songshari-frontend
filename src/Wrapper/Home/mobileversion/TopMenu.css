@@ -8,3 +8,45 @@
 .bottom-nav-mov{
     position: sticky;
 }
+.shongshari-mov{
+    margin-left: -16px;
+}
+.mov-top{
+    background-color: black;
+   
+}
+.bg-home-suggested{
+    background: linear-gradient(155deg, #E41272 0%, #4844A5 100%);
+    border-radius: 10%;
+}
+.bg-gome-2{
+    border-radius: 10%;
+   
+}
+.bg-gome-3{
+    border-radius: 10%;
+   
+}
+.mov-res{
+    overflow-x: hidden;
+}
+
+.setting-mov{
+    display: flex;
+
+}
+.profile-tit{
+    color: #1E2022;
+    font-weight: 500;
+    font-size: 14px;
+   
+}
+.ggg{
+    margin-left: -30px;
+}
+.he{
+    margin-left: -10px;
+}
+.bottom-nav{
+    overflow-x: hidden;
+}

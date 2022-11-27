@@ -1,7 +1,7 @@
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
-import React, { useState } from "react";
-import { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import axios from 'axios';
 import { AiOutlineCloudUpload, AiOutlineIdcard } from "react-icons/ai";
 import { v4 as uuidv4 } from "uuid";
 import { firebaseStorage } from "../../firebase.init";
@@ -21,10 +21,9 @@ export const PersonalDetails = ({ setPage }) => {
         register,
         formState: { errors },
         handleSubmit,
-        reset,
     } = useForm();
 
-    const onSubmit = data => {
+    const onSubmit = async data => {
         const hightestEducationalQualification = {};
         const currentProfession = {};
 
@@ -74,9 +73,14 @@ export const PersonalDetails = ({ setPage }) => {
         data.licencePhoto = licencePhoto;
 
         data = { ...data, hightestEducationalQualification, currentProfession };
-        console.log(data);
-        setPage(2);
+        await setPersonalDetails(data);
     };
+
+    useEffect(() => {
+        if (data) {
+            setPage(2);
+        }
+    }, [data, setPage]);
 
     const profilePhotoHandler = async e => {
         const photo = e.target.files[0];
@@ -1568,7 +1572,7 @@ export const PersonalDetails = ({ setPage }) => {
                 </section>
                 <input
                     type="submit"
-                    value={"Submit"}
+                    value={isLoading ? "Saving..." : "Submit"}
                     className="border-2 cursor-pointer mt-3 border-primary hover:border-0 rounded-full px-12 py-2 hover:bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] hover:text-white duration-500 transition-all"
                 />
             </form>

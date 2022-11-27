@@ -8,16 +8,19 @@ import courses from '../../../assets/images/Logo/online.svg'
 import member from '../../../assets/images/Logo/Membership.svg'
 import cart from '../../../assets/images/Logo/Cart.svg'
 import HOME from '../../../assets/images/Logo/HOME.svg'
+import { Link } from 'react-router-dom'
 
 export const BottomNav = () => {
   return (
-    <div className='bg-gray-200 w-full ml-4 bottom-nav-mov'>
-        <div className='grid grid-cols-5 gap-14 ml-8'>
-<img src={HOME} className='w-8'></img>
-<img src={member} className='w-12'></img>
-<img src={Shop} className='w-12'></img>
-<img src={cart} className='w-12'></img>
-<img src={cart} className='w-12'></img>
+    <div className=' container bottom-nav  mt-10  w-full mb-4'>
+        <div className='grid grid-cols-5 gap-12'>
+<img src={HOME} className='w-6'></img>
+<img src={member} className='w-8'></img>
+<img src={Shop} className='w-8'></img>
+<img src={cart} className='w-8'></img>
+<Link to='/setting'><img src={cart} className='w-8'></img></Link>
+
+
 
 
 

@@ -9,15 +9,19 @@ import TopProfile from '../../../components/pages/TopProfile/TopProfile'
 import { BottomNav } from './BottomNav'
 import Title from './Title'
 import { Services } from './Services'
+import TopProfileMov from './topprofilemov/TopProfileMov'
+import ChartBoard from '../../../components/SingleProfilesUser/chatboard/ChartBoard'
+import { Like } from './Like'
+import { CertificateMov } from './CertificateMov'
 
 export const MobileHome = () => {
   return (
-    <div>
+    <div className='mov-res'>
         <TopMenu></TopMenu>
         <MobileBanner></MobileBanner>
         <Services></Services>
-        <TopProfile></TopProfile>
-  <BottomNav></BottomNav>
+       <TopProfileMov></TopProfileMov>
+       <BottomNav></BottomNav>
     </div>
   )
 }

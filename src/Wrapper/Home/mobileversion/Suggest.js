@@ -7,7 +7,6 @@ import { useNavigate } from "react-router";
 import "swiper/css";
 import "swiper/css/pagination";
 import { useGetRecentMembersQuery } from "../../../Redux/features/userInfo/withoutLoginApi";
-
 const Suggest = () => {
   const navigate = useNavigate();
   const { data, isSuccess } = useGetRecentMembersQuery();
@@ -23,11 +22,11 @@ const Suggest = () => {
           },
 
           400: {
-            slidesPerView: 2,
+            slidesPerView: 1,
           },
 
           768: {
-            slidesPerView: 2,
+            slidesPerView: 1,
           },
           1200: {
             slidesPerView: 3,
@@ -50,13 +49,13 @@ const Suggest = () => {
                 data-aos="fade-up"
                 data-aos-easing="ease-out-cubic"
                 data-aos-duration="2000"
-                className=" cursor-pointer border-gray-300 Suggested-card rounded-[10px] border relative left-0 top-0 overflow-hidden"
+                className=" cursor-pointer ml-4 mr-4 border-gray-300 Suggested-card rounded-[10px] border relative left-0 top-0 overflow-hidden"
               >
                 <div>
                   <img
                     style={{ borderRadius: " 10px 10px 0px 0px" }}
                     src={profile.profilePhoto}
-                    className="h-[374px] w-[380px]"
+                    className="h-[200px] w-[380px]"
                     alt="profile"
                   />
                 </div>
