@@ -8,13 +8,11 @@ import { RunningCaseMov } from './RunningCase'
 export const LawyerActivityMov = () => {
   return (
     <div>
-
-
       <BannerLayerMov></BannerLayerMov>
       <NavCase></NavCase>
-        <PendingCaseMov></PendingCaseMov>
-        <RunningCaseMov></RunningCaseMov>
-        <CompletedCaseMov></CompletedCaseMov>
+      <PendingCaseMov></PendingCaseMov>
+      <RunningCaseMov></RunningCaseMov>
+      <CompletedCaseMov></CompletedCaseMov>
     </div>
   )
 }
