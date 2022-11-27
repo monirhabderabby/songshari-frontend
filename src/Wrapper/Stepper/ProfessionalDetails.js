@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useSetPhysicalDetailsMutation } from "../../Redux/features/userInfo/userApi";
 
@@ -8,19 +8,18 @@ export const ProfessionalDetails = ({ setPage }) => {
         register,
         formState: { errors },
         handleSubmit,
-        // reset,
     } = useForm();
 
     const onSubmit = async data => {
         data.caseCompleted = parseInt(data.caseCompleted);
-        // console.log(data);
         await setProfessionalDetails(data);
-        setPage(4);
     };
 
-    if (data) {
-        console.log(data);
-    }
+    useEffect(() => {
+        if (data) {
+            setPage(4);
+        }
+    }, [data, setPage]);
 
     return (
         <div className="w-full h-auto">
@@ -140,7 +139,7 @@ export const ProfessionalDetails = ({ setPage }) => {
                 </section>
                 <input
                     type="submit"
-                    value={isLoading ? "Loading" : "Submit"}
+                    value={isLoading ? "Saving..." : "Submit"}
                     className="border-2 cursor-pointer mt-3 border-primary hover:border-0 rounded-full px-12 py-2 hover:bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] hover:text-white duration-500 transition-all"
                 />
             </form>

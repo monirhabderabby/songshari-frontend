@@ -32,8 +32,8 @@ export const userApi = apiSlice.injectEndpoints({
         }),
         setPersonalDetails: builder.mutation({
             query: data => ({
-                url: "/member/register/personalDetail",
-                method: "POST",
+                url: "/member/personalDetail",
+                method: "PUT",
                 headers: { authorization: `Bearer ${localStorage.getItem("accessToken")}` },
                 body: data,
             }),
@@ -41,7 +41,6 @@ export const userApi = apiSlice.injectEndpoints({
         setProfessionalDetails: builder.mutation({
             query: data => ({
                 url: "/member/register/professionalDetail",
-                mode: "no-cors",
                 method: "POST",
                 headers: { authorization: `Bearer ${localStorage.getItem("accessToken")}` },
                 body: data,
@@ -120,4 +119,6 @@ export const {
     useSetPhysicalDetailsMutation,
     useSetOthersDetailsMutation,
     useGetProfileDetailsQuery,
+    useUpdateEducationalDetailsMutation,
+    useUpdatePhysicalDetailsMutation,
 } = userApi;
