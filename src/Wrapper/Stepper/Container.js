@@ -8,7 +8,7 @@ import { PhysicalDetails } from "./PhysicalDetails";
 import { ProfessionalDetails } from "./ProfessionalDetails";
 
 export const Container = () => {
-    const [page, setPage] = useState(1);
+    const [page, setPage] = useState(4);
     return (
         <div className="min-h-screen">
             <NavBar />
