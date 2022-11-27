@@ -13,6 +13,7 @@ import TopProfileMov from './topprofilemov/TopProfileMov'
 import ChartBoard from '../../../components/SingleProfilesUser/chatboard/ChartBoard'
 import { Like } from './Like'
 import { CertificateMov } from './CertificateMov'
+import Navigation from './BottomBar'
 
 export const MobileHome = () => {
   return (
@@ -21,7 +22,10 @@ export const MobileHome = () => {
         <MobileBanner></MobileBanner>
         <Services></Services>
        <TopProfileMov></TopProfileMov>
-     <BottomNav></BottomNav>
+       <br></br>
+       <br></br>
+       <br></br>
+ <BottomNav></BottomNav>
     </div>
   )
 }

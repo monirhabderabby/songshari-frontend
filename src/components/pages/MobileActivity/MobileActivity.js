@@ -4,8 +4,10 @@ import coolicon from "../../../assets/images/activity/coolicon.png";
 import love from "../../../assets/images/activity/love.png";
 import { Select } from "antd";
 import banner from "../../../assets/images/activity/postBanner.png";
+import { Link } from "react-router-dom";
+import { BottomNav } from "../../../Wrapper/Home/mobileversion/BottomNav";
 
-const handleChange = () => {};
+const handleChange = () => { };
 const MobileActivity = () => {
   return (
     <section className=" bg-[#F8F8FF] py-[5px]">
@@ -14,7 +16,7 @@ const MobileActivity = () => {
           className="bg-[#FFFFFF] rounded-md pb-[5px] my-[10px]"
           style={{ boxShadow: "2px 2px 4px rgba(0, 0, 0, 0.12)" }}
         >
-          <div className="max-w-[338px] border-[rgba(0, 0, 0, 0.2)] pt-[30px] pb-[50px] border-b-[1px] mx-auto flex">
+          <div className="max-w-[338px] border-[rgba(0, 0, 0, 0.2)] pt-[30px] pb-[50px] border-b-[1px] mx-auto flex px-6">
             <div className="relative">
               <img
                 className="w-[40px] h-[40px] rounded-[50px]"
@@ -22,13 +24,13 @@ const MobileActivity = () => {
                 alt=""
               />
             </div>
-            <div className="ml-[25px] ">
+            <div className="ml-[25px]">
               <textarea className="text-xs w-full text-[#757575] font-normal">
                 Write somethiings here......
               </textarea>
             </div>
           </div>
-          <div className="flex max-w-[338px] mt-[20px] mx-auto justify-between items-center">
+          <div className="flex max-w-[338px] mt-[20px] mx-auto justify-between items-center px-6">
             <div className="flex justify-between items-center">
               <button className="bg-[#F7E9F8] flex justify-center items-center w-[51px] h-[31px] rounded-[20px]">
                 <img src={coolicon} alt="" />
@@ -73,10 +75,10 @@ const MobileActivity = () => {
         </div>
 
         <div
-          className="bg-[#FFFFFF] rounded-md pb-[5px] mb-[10px]"
+          className="bg-[#FFFFFF] rounded-md pb-[5px] mb-[10px] px-6"
           style={{ boxShadow: "2px 2px 4px rgba(0, 0, 0, 0.12)" }}
         >
-          <div className="max-w-[338px]   pt-[30px] pb-[10px]  mx-auto flex  items-center">
+          <div className="max-w-[338px] pt-[30px] pb-[10px]  mx-auto flex  items-center">
             <div className="flex justify-center items-center">
               <div className="relative">
                 <img
@@ -113,7 +115,7 @@ const MobileActivity = () => {
         </div>
 
         <div
-          className="bg-[#FFFFFF] rounded-md pb-[5px] mb-[10px]"
+          className="bg-[#FFFFFF] rounded-md pb-[5px] mb-[10px] px-6"
           style={{ boxShadow: "2px 2px 4px rgba(0, 0, 0, 0.12)" }}
         >
           <div>
@@ -157,10 +159,13 @@ const MobileActivity = () => {
         </div>
       </div>
       <div className="text-center">
-        <button className="text-[10px] text-[#333333] font-medium">
+        <Link to={'/mobileActivityNextPage'} className="text-[10px] text-[#333333] font-medium">
           Next Page
-        </button>
+        </Link>
       </div>
+      <br></br>
+      <br></br>
+      <BottomNav></BottomNav>
     </section>
   );
 };

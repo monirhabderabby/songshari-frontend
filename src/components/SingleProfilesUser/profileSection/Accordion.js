@@ -102,11 +102,15 @@ const Accordian = ({ data, isLoading }) => {
 
                             <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                                 <span className="font-medium"> Degree Name</span>
-                                <p className="font-normal">{data ? hightestEducationalQualification?.degreeName : "Not Provided"}</p>
+                                <p className="font-normal">
+                                    {data?.hightestEducationalQualification?.degreeName
+                                        ? hightestEducationalQualification?.degreeName
+                                        : "Not Provided"}
+                                </p>
                             </div>
                             <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                                 <span className="font-medium">Institute</span>
-                                <p className="font-normal">{data ? hightestEducationalQualification.institute : "Not Provided"}</p>
+                                <p className="font-normal">{data ? hightestEducationalQualification?.institute : "Not Provided"}</p>
                             </div>
                             <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                                 <span className="font-medium">Department</span>
