@@ -8,10 +8,10 @@ import { Link } from 'react-router-dom'
 export const BottomNav = () => {
   return (
     <div className='rounded-full bg-bottom-nav'>
-      <div className='grid grid-cols-4 gap-4 bottom-bar'>
+      <div className='grid grid-cols-5 gap-4 bottom-bar'>
         <img src={member} alt='' className='w-8'></img>
         <img src={Shop} alt='' className='w-8'></img>
-        <Link to='/mobileHomePage'><img src='https://i.ibb.co/d5yyNd6/512-512-Icon.png' className='w-8'></img></Link>
+        <Link to='/'><img src='https://i.ibb.co/d5yyNd6/512-512-Icon.png' className='w-8'></img></Link>
         <img src={cart} className='w-8'></img>
         <Link to='/setting'><img src={cart} alt='' className='w-8'></img></Link>
       </div>
