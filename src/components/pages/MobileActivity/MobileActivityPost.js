@@ -8,7 +8,7 @@ const MobileActivityPost = () => {
     <section className=" bg-[#F8F8FF] py-[5px]">
       <div className="max-w-[390px] mx-auto">
         <div
-          className="bg-[#FFFFFF] rounded-md pb-[5px] mb-[10px]"
+          className="bg-[#FFFFFF] rounded-md pb-[5px] mb-[10px] px-6"
           style={{ boxShadow: "2px 2px 4px rgba(0, 0, 0, 0.12)" }}
         >
           <div className="max-w-[338px]   pt-[30px] pb-[10px]  mx-auto flex  items-center">
@@ -47,7 +47,7 @@ const MobileActivityPost = () => {
           </div>
         </div>
         <div
-          className="bg-[#FFFFFF] rounded-md pb-[5px] mb-[10px]"
+          className="bg-[#FFFFFF] rounded-md pb-[5px] mb-[10px] px-6"
           style={{ boxShadow: "2px 2px 4px rgba(0, 0, 0, 0.12)" }}
         >
           <div className="max-w-[338px]   pt-[30px] pb-[10px]  mx-auto flex  items-center">
@@ -87,7 +87,7 @@ const MobileActivityPost = () => {
         </div>
 
         <div
-          className="bg-[#FFFFFF] rounded-md pb-[5px] mb-[10px]"
+          className="bg-[#FFFFFF] rounded-md pb-[5px] mb-[10px] px-6"
           style={{ boxShadow: "2px 2px 4px rgba(0, 0, 0, 0.12)" }}
         >
           <div>

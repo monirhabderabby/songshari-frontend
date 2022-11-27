@@ -17,11 +17,11 @@ import { CertificateMov } from './CertificateMov'
 export const MobileHome = () => {
   return (
     <div className='mov-res'>
-        <TopMenu></TopMenu>
-        <MobileBanner></MobileBanner>
-        <Services></Services>
-       <TopProfileMov></TopProfileMov>
-     <BottomNav></BottomNav>
+      <TopMenu></TopMenu>
+      <MobileBanner></MobileBanner>
+      <Services></Services>
+      <TopProfileMov></TopProfileMov>
+      <BottomNav></BottomNav>
     </div>
   )
 }

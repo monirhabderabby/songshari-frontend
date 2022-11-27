@@ -51,6 +51,8 @@ import { MatchesMov } from "../Wrapper/Home/mobileversion/MatchesMov";
 import { UpgradePlan } from "../components/pages/Membership/MobileVersion/UpgradePlan";
 import MobileSingleProfilesUser from "../components/SingleProfilesUser/MobileSingleProfilesUser/MobileSingleProfilesUser";
 import MobileActivity from "../components/pages/MobileActivity/MobileActivity";
+import { MobileHome } from "../Wrapper/Home/mobileversion/MobileHome";
+import MobileActivityPost from "../components/pages/MobileActivity/MobileActivityPost";
 const Index = () => {
     return (
         <div>
@@ -61,8 +63,6 @@ const Index = () => {
                     <Route path="/membership" element={<MemberShip></MemberShip>}></Route>
                     <Route path="/profileinfo" element={<ProfileInfo></ProfileInfo>}></Route>
                     <Route path="/course" element={<Course></Course>}></Route>
-                    <Route path="/certificatemov" element={<CertificateMov></CertificateMov>}></Route>
-                    <Route path="/like" element={<Like></Like>}></Route>
                     <Route path="/findalawyer" element={<FindAlawyer></FindAlawyer>}></Route>
                     <Route path="/lawyer-profile" element={<LawyerProfilePage />}></Route>
                     <Route path="/lawyer-review" element={<LawyerReview />}></Route>
@@ -71,13 +71,11 @@ const Index = () => {
                     <Route path="/agent" element={<Agent></Agent>}></Route>
                     <Route path="/community" element={<Community></Community>}></Route>
                     <Route path="/shop" element={<Shop></Shop>}></Route>
-
                     <Route path="products" element={<NavCase />}>
                         <Route path="search" element={<PendingCaseMov />} />
                         <Route path="list" element={<RunningCaseMov />} />
                         <Route path="add" element={<CompletedCaseMov />} />
                     </Route>
-
                     <Route path="/singleproduct" element={<SingleProduct></SingleProduct>}></Route>
                     <Route path="/login" element={<Login />} />
                     <Route path="/signup" element={<SignUp />} />
@@ -101,18 +99,21 @@ const Index = () => {
                         <Route path="/top-profession/kazi" element={<TopProfessionKazi />} />
                         <Route path="/top-profession/agent" element={<TopProfessionAgent />} />
                     </Route>
-
                     <Route path="/singleViewRequest" element={<SingleRequestView />} />
                     <Route path="/admin-analytics" element={<AdminAnalytics />}></Route>
                     {/* <Route path="/profile" element={<OthersProfile />} /> */}
                     {/* <Route path="/ste" element={<OthersProfile></OthersProfile>}></Route> */}
-                    <Route path="/setting" element={<Setting></Setting>}></Route>
                     <Route path="/stepper" element={<Container></Container>}></Route>
 
                     {/* --------------- MOBILE ROUTES START --------------- */}
+                    <Route path="/mobileHomePage" element={<MobileHome />}></Route>
+                    <Route path="/setting" element={<Setting></Setting>}></Route>
                     <Route path="/matchesmov" element={<MatchesMov></MatchesMov>}></Route>
                     <Route path="/mobileActivityPage" element={<MobileActivity />} ></Route>
+                    <Route path="/mobileActivityNextPage" element={<MobileActivityPost />} ></Route>
                     <Route path="/mobileUserProfile" element={<MobileSingleProfilesUser />} ></Route>
+                    <Route path="/certificatemov" element={<CertificateMov></CertificateMov>}></Route>
+                    <Route path="/like" element={<Like></Like>}></Route>
                     {/* --------------- MOBILE ROUTES END --------------- */}
 
                     <Route path="*" element={<NotFound />}></Route>
