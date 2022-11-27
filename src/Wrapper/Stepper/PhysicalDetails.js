@@ -18,6 +18,7 @@ export const PhysicalDetails = ({ setPage }) => {
 
     useEffect(() => {
         if (data) {
+            console.log("physical data response", data);
             setPage(5);
         }
     }, [data, setPage]);

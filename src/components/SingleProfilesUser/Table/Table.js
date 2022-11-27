@@ -12,26 +12,29 @@ const Table = () => {
         <div className="">
             <div className="px-2 md:px-0 mx-4 mb-4">
                 <div className="notification-bar">
-                    <div className="flex justify-center items-center gap-4">
-                        <button className="mt-4 font-medium leading-tight text-gray-800">Activity</button>
+                    <div className="flex justify-center items-center h-full gap-4">
+                        <button className="font-medium text-[15px] leading-tight text-gray-800">Activity</button>
                         <button
-                            className={`mt-4 font-medium leading-tight ${page === 2 ? "text-primary font-bold" : "text-gray-800"}`}
+                            className={`font-medium text-[15px] leading-tight ${page === 2 ? "text-primary font-bold" : "text-gray-800"}`}
                             onClick={() => setPage(2)}
                         >
                             Profile
                         </button>
                         <button
-                            className={`mt-4 font-medium leading-tight ${page === 3 ? "text-primary font-bold" : "text-gray-800"}`}
+                            className={`font-medium text-[15px] leading-tight ${page === 3 ? "text-primary font-bold" : "text-gray-800"}`}
                             onClick={() => setPage(3)}
                         >
-                            Friends <sup className="text-white bg_Color px-2 py-1 rounded-full text-[10px]">1</sup>
-                        </button>
-                        <button className="mt-4 font-medium leading-tight text-gray-800">
-                            Heading <sup className="text-white bg_Color px-2 py-1 rounded-full text-[10px]">5</sup>
+                            Services <sup className="text-white bg_Color px-2 py-1 rounded-full text-[10px]">1</sup>
                         </button>
                         <button
-                            className={`mt-4 font-medium leading-tight ${page === 4 ? "text-primary font-bold" : "text-gray-800"}`}
+                            className={`font-medium text-[15px] leading-tight ${page === 4 ? "text-primary font-bold" : "text-gray-800"}`}
                             onClick={() => setPage(4)}
+                        >
+                            Connections <sup className="text-white bg_Color px-2 py-1 rounded-full text-[10px]">5</sup>
+                        </button>
+                        <button
+                            className={`font-medium text-[15px] leading-tight ${page === 5 ? "text-primary font-bold" : "text-gray-800"}`}
+                            onClick={() => setPage(5)}
                         >
                             Matches <sup className="text-white bg_Color px-2 py-1 rounded-full text-[10px]">1</sup>
                         </button>
@@ -40,8 +43,8 @@ const Table = () => {
             </div>
             {/* table 1 */}
             {page === 2 && <Profile />}
-            {page === 3 && <Friends />}
-            {page === 4 && <Matches />}
+            {page === 4 && <Friends />}
+            {page === 5 && <Matches />}
         </div>
     );
 };
