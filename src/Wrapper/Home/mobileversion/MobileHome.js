@@ -25,7 +25,7 @@ export const MobileHome = () => {
        <br></br>
        <br></br>
        <br></br>
-       <br></br>
+    
       
  <BottomNav></BottomNav>
     </div>
