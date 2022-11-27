@@ -8,6 +8,7 @@ const Banner = () => {
   return (
     <Fragment>
       <section
+        className="banner"
         style={{
           background:
             "url(https://img1.picmix.com/output/stamp/normal/9/9/4/3/1503499_8efaf.gif)",
