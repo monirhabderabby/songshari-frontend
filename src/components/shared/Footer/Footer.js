@@ -46,8 +46,8 @@ const Footer = () => {
                             <hr className="hr" />
                         </div>
                     </div>
-                    <div className="grid  lg:grid-cols-4 md:grid-cols-2">
-                        <div className=" relative ">
+                    <div className="grid  lg:grid-cols-3 md:grid-cols-2">
+                        <div className=" relative flex justify-center ">
                             <div className="link-wrapper one">
                                 <h4 className="text-[24px] mb-[9px] uppercase font-normal text-[#fff]">Our Information</h4>
                                 <ul className="f-solial-links">
@@ -79,39 +79,7 @@ const Footer = () => {
                                 </ul>
                             </div>
                         </div>
-                        <div className=" relative ">
-                            <div className="link-wrapper two">
-                                <h4 className="text-[24px] mb-[9px] uppercase font-normal text-[#fff]">My Account</h4>
-                                <ul className="f-solial-links">
-                                    <li className="py-[5px]">
-                                        <Link to="/">
-                                            <i className="fas text-[16px] mr-[5px] fa-angle-double-right"></i> Manage Account
-                                        </Link>
-                                    </li>
-                                    <li className="py-[5px]">
-                                        <Link to="/">
-                                            <i className="fas text-[16px] mr-[5px] fa-angle-double-right"></i> Safety Tips
-                                        </Link>
-                                    </li>
-                                    <li className="py-[5px]">
-                                        <Link to="/">
-                                            <i className="fas text-[16px] mr-[5px] fa-angle-double-right"></i> Account Varification
-                                        </Link>
-                                    </li>
-                                    <li className="py-[5px]">
-                                        <Link to="/">
-                                            <i className="fas text-[16px] mr-[5px] fa-angle-double-right"></i> Safety & Security
-                                        </Link>
-                                    </li>
-                                    <li className="py-[5px]">
-                                        <Link to="/">
-                                            <i className="fas text-[16px] mr-[5px] fa-angle-double-right"></i> Membership Level
-                                        </Link>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div className=" relative ">
+                        <div className=" relative flex justify-center ">
                             <div className="link-wrapper three">
                                 <h4 className="text-[24px] mb-[9px] uppercase font-normal text-[#fff]">help center</h4>
                                 <ul className="f-solial-links">
@@ -146,7 +114,7 @@ const Footer = () => {
                                 </ul>
                             </div>
                         </div>
-                        <div className=" relative ">
+                        <div className=" relative flex justify-center ">
                             <div className="link-wrapper four">
                                 <h4 className="text-[24px] mb-[9px] uppercase font-normal text-[#fff]">legal</h4>
                                 <ul className="f-solial-links">
