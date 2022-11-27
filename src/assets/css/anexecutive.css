@@ -1,10 +1,10 @@
 .main-container {
-    font-family: 'Courier New', Courier, monospace;
+    font-family: "Courier New", Courier, monospace;
 }
 
 .section-img-container {
     min-height: 500px;
-    background: linear-gradient(0deg, rgba(230, 5, 218, 0.548), rgba(232, 15, 240, 0.096)), url('../images/executiveimg.jpeg');
+    background: linear-gradient(0deg, rgba(230, 5, 218, 0.548), rgba(232, 15, 240, 0.096)), url("../images/executiveimg.jpeg");
     background-size: cover;
     filter: brightness(80%);
     border-radius: 10px;
@@ -21,7 +21,7 @@
 }
 
 .rounded-img:hover {
-    box-shadow: 0.872px 9.962px 20px 0px rgba(0, 6, 14);
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 20px 30px;
 }
 
 .rounded-img img {
