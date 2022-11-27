@@ -5,9 +5,7 @@
     margin-left: -30px;
     margin-top: 5px;
 }
-.bottom-nav-mov{
-    position: sticky;
-}
+
 .shongshari-mov{
     margin-left: -16px;
 }
@@ -49,4 +47,10 @@
 }
 .bottom-nav{
     overflow-x: hidden;
+}
+.mov-res{
+    background-color: #ebdef4;
+}
+.bg-top{
+    background-color: #efeef0;
 }

@@ -5,7 +5,7 @@ import { Link, NavLink, Outlet } from "react-router-dom";
 const TopProfileMov = () => {
   return (
     <div className="bg-[#F8F8FF]">
-     <div className="mt-24">
+     <div className="mt-8 pt-8">
         <Link to="/profile/suggest" className='bg-home-suggested pr-4 pt-2 pb-2 pl-2 ml-2 mr-4 text-white'> Suggested For You </Link>
         <Link to="/profile/top-gride" className='pl-4 pr-4 pt-2 pb-2 mr-4  bg-gome-2 '> Top Profile </Link>
         <Link to="/profile/top-groom" className='pl-4 pr-4 pt-2 pb-2  bg-gome-3 '> Top Groom </Link>
