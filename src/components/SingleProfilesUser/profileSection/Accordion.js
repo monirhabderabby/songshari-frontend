@@ -35,7 +35,7 @@ const Accordian = ({ data, isLoading }) => {
     const hightestEducationalQualification = data?.hightestEducationalQualification;
 
     if (hightestEducationalQualification) {
-        console.log(hightestEducationalQualification);
+        console.log(data);
     }
     const [expanded, setExpanded] = React.useState("panel1");
 
@@ -43,8 +43,6 @@ const Accordian = ({ data, isLoading }) => {
         setExpanded(newExpanded ? panel : true);
     };
     if (isLoading) return false;
-
-    const user = { firstName: "User", lastName: "Name" };
 
     return (
         <div className="mb-[69px] max-w-[523px] mx-auto">

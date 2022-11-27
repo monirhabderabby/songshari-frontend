@@ -12,13 +12,13 @@ export const PhysicalDetails = ({ setPage }) => {
     const [setPhysicalDetails, { data, isLoading }] = useSetPhysicalDetailsMutation();
 
     const onSubmit = async data => {
-        data.caseCompleted = parseInt(data.caseCompleted);
+        data.numberOfTeeth = Number(data.numberOfTeeth);
         await setPhysicalDetails(data);
     };
 
     useEffect(() => {
         if (data) {
-            console.log(data);
+            setPage(5);
         }
     }, [data, setPage]);
     return (
