@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import "../../../App.css";
 import "../../../assets/css/table.css";
 import { Friends } from "../FriendsSection/Friends";
-import Accordian from "../profileSection/Accordion";
 import { Matches } from "../profileSection/Matches";
 import { Profile } from "../profileSection/Profile";
 
 const Table = () => {
     const [page, setPage] = useState(2);
+
     return (
         <div className="">
             <div className="px-2 md:px-0 mx-4 mb-4">
