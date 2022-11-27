@@ -7,7 +7,6 @@ import Typography from "@mui/material/Typography";
 import React from "react";
 import "./Accordion.css";
 const Accordion = styled(props => <MuiAccordion disableGutters elevation={0} square {...props} />)(({ theme }) => ({
-
     paddingTop: "23px",
     paddingLeft: "53px",
     paddingBottom: "23px",
@@ -28,8 +27,7 @@ const AccordionSummary = styled(props => <MuiAccordionSummary expandIcon={<Arrow
         fontWeight: "bold",
     })
 );
-const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({  
-}));
+const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({}));
 
 const Accordian = () => {
     const [expanded, setExpanded] = React.useState("panel1");
