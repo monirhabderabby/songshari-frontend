@@ -38,22 +38,20 @@ import SingleProduct from "../Wrapper/SingleProduct/SingleProduct";
 import SingleProfile from "../Wrapper/SingleProfilesUser/SingleProfile";
 import { Container } from "../Wrapper/Stepper/Container";
 // import { UsersProfile } from "../components/SingleProfilesUser/profileSection/UsersProfile";
+import UpgradePlan from "../components/pages/Membership/MobileVersion/UpgradePlan";
+import { CertificateMov } from "../Wrapper/Home/mobileversion/CertificateMov";
+import { Like } from "../Wrapper/Home/mobileversion/Like";
+import { MatchesMov } from "../Wrapper/Home/mobileversion/MatchesMov";
 import { CompletedCaseMov } from "../Wrapper/Home/mobileversion/mobilelawyeractivity/CompletedCase";
 import { NavCase } from "../Wrapper/Home/mobileversion/mobilelawyeractivity/NavCase";
 import { PendingCaseMov } from "../Wrapper/Home/mobileversion/mobilelawyeractivity/PendingCase";
 import { RunningCaseMov } from "../Wrapper/Home/mobileversion/mobilelawyeractivity/RunningCase";
 import { Setting } from "../Wrapper/Home/mobileversion/Setting";
-import TopProfileMov from "../Wrapper/Home/mobileversion/topprofilemov/TopProfileMov";
-import Suggest from '../Wrapper/Home/mobileversion/Suggest';
-import { CertificateMov } from "../Wrapper/Home/mobileversion/CertificateMov";
-import { Like } from "../Wrapper/Home/mobileversion/Like";
-import { MatchesMov } from "../Wrapper/Home/mobileversion/MatchesMov";
-import UpgradePlan from "../components/pages/Membership/MobileVersion/UpgradePlan";
-import { UpgradePlan } from "../components/pages/Membership/MobileVersion/UpgradePlan";
-import MobileSingleProfilesUser from "../components/SingleProfilesUser/MobileSingleProfilesUser/MobileSingleProfilesUser";
+// import { UpgradePlan } from "../components/pages/Membership/MobileVersion/UpgradePlan";
 import MobileActivity from "../components/pages/MobileActivity/MobileActivity";
-import { MobileHome } from "../Wrapper/Home/mobileversion/MobileHome";
 import MobileActivityPost from "../components/pages/MobileActivity/MobileActivityPost";
+import MobileSingleProfilesUser from "../components/SingleProfilesUser/MobileSingleProfilesUser/MobileSingleProfilesUser";
+import { MobileHome } from "../Wrapper/Home/mobileversion/MobileHome";
 
 const Index = () => {
     return (
@@ -112,9 +110,9 @@ const Index = () => {
                     <Route path="/mobileHomePage" element={<MobileHome />}></Route>
                     <Route path="/setting" element={<Setting></Setting>}></Route>
                     <Route path="/matchesmov" element={<MatchesMov></MatchesMov>}></Route>
-                    <Route path="/mobileActivityPage" element={<MobileActivity />} ></Route>
-                    <Route path="/mobileActivityNextPage" element={<MobileActivityPost />} ></Route>
-                    <Route path="/mobileUserProfile" element={<MobileSingleProfilesUser />} ></Route>
+                    <Route path="/mobileActivityPage" element={<MobileActivity />}></Route>
+                    <Route path="/mobileActivityNextPage" element={<MobileActivityPost />}></Route>
+                    <Route path="/mobileUserProfile" element={<MobileSingleProfilesUser />}></Route>
                     <Route path="/certificatemov" element={<CertificateMov></CertificateMov>}></Route>
                     <Route path="/like" element={<Like></Like>}></Route>
                     {/* --------------- MOBILE ROUTES END --------------- */}
