@@ -16,19 +16,19 @@ const certificateInfo = [
 ];
 
 export const CertificateMov = () => {
-  return (
-    <div>
-        <div className='mt-5'>
-        <div className='setting-mov'>
-            <Link to='/setting'>
-            <i class="fa-solid fa-chevron-left ml-8 mt-3"></i>
-            </Link>
-        
-            <h1 className='profile-tit ml-20 mt-2 mb-5'>Certificate</h1>
-        </div> 
-      </div>
-         {/* ----- Certificate ----- */}
-         <div className='rounded-xl p-5' style={{ backgroundImage: "linear-gradient(180deg, #FFD7F6 0%, #FFC1E6 100%)" }}>
+    return (
+        <div className='px-6'>
+            <div className='mt-5'>
+                <div className='setting-mov'>
+                    <Link to='/setting'>
+                        <i class="fa-solid fa-chevron-left ml-8 mt-3"></i>
+                    </Link>
+
+                    <h1 className='profile-tit ml-20 mt-2 mb-5'>Certificate</h1>
+                </div>
+            </div>
+            {/* ----- Certificate ----- */}
+            <div className='rounded-xl p-5' style={{ backgroundImage: "linear-gradient(180deg, #FFD7F6 0%, #FFC1E6 100%)" }}>
                 <div className='flex justify-start items-center mx-1 gap-6'>
                     <TbMessageCircle2 className='text-[#333333] text-2xl' />
                     <h1 className='text-[#333333] text-2xl leading-[34px] font-bold' >Certificate</h1>
@@ -48,6 +48,6 @@ export const CertificateMov = () => {
                 }
             </div>
             <BottomNav></BottomNav>
-    </div>
-  )
+        </div>
+    )
 }

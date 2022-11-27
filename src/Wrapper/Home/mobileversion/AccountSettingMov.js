@@ -22,7 +22,7 @@ export const AccountSettingMov = () => {
         </div>
         <div>
           <Link to={'/mobileUserProfile'}>
-            <i class="fa-solid fa-angle-right ml-10"></i>
+            <i class="fa-solid fa-angle-right ml-5 mr-8"></i>
           </Link>
         </div>
 
@@ -46,7 +46,7 @@ export const AccountSettingMov = () => {
 
         </div>
         <div>
-          <i class="fa-solid fa-angle-right ml-10"></i>
+          <i class="fa-solid fa-angle-right ml-5 mr-8"></i>
         </div>
 
       </div>
@@ -70,7 +70,7 @@ export const AccountSettingMov = () => {
         </div>
         <div>
           <Link to={'/mobileActivityPage'}>
-            <i class="fa-solid fa-angle-right ml-10"></i>
+            <i class="fa-solid fa-angle-right ml-5 mr-8"></i>
           </Link>
         </div>
 
@@ -94,7 +94,7 @@ export const AccountSettingMov = () => {
 
         </div>
         <div>
-          <i class="fa-solid fa-angle-right ml-10"></i>
+          <i class="fa-solid fa-angle-right ml-5 mr-8"></i>
         </div>
 
       </div>
@@ -118,7 +118,7 @@ export const AccountSettingMov = () => {
         </div>
         <div>
           <Link to='/matchesmov'>
-            <i class="fa-solid fa-angle-right ml-10"></i>
+            <i class="fa-solid fa-angle-right ml-5 mr-8"></i>
           </Link>
 
         </div>
@@ -144,7 +144,7 @@ export const AccountSettingMov = () => {
         </div>
         <div>
           <Link to='/certificatemov'>
-            <i class="fa-solid fa-angle-right ml-10"></i>
+            <i class="fa-solid fa-angle-right ml-5 mr-8"></i>
           </Link>
 
 
@@ -171,15 +171,10 @@ export const AccountSettingMov = () => {
         </div>
         <div>
           <Link to='/like'>
-            <i class="fa-solid fa-angle-right ml-10"></i>
+            <i class="fa-solid fa-angle-right ml-5 mr-8"></i>
           </Link>
-
         </div>
-
       </div>
-
-
-
     </div>
   )
 }
