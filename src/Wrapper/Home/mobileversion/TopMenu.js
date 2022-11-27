@@ -28,8 +28,8 @@ export const TopMenu = () => {
         </div>
 
         <div className='mr-4'>
-          <i class="fa-regular fa-bell mt-3 mr-6"></i>
-          <i class="fa-solid fa-magnifying-glass mt-3"></i>
+          <i class="fa-regular fa-bell mt-3 mr-4"></i>
+          <i class="fa-solid fa-bars"></i>
         </div>
 
       </div>
