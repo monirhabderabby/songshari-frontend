@@ -1,7 +1,6 @@
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import axios from 'axios';
 import { AiOutlineCloudUpload, AiOutlineIdcard } from "react-icons/ai";
 import { v4 as uuidv4 } from "uuid";
 import { firebaseStorage } from "../../firebase.init";
@@ -743,49 +742,53 @@ export const PersonalDetails = ({ setPage }) => {
                         </section>
                     )}
                     {/* ---------- Ages Of Girl ---------- */}
-                    <section>
-                        <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
-                            <input
-                                {...register("agesOfGirl", {
-                                    required: {
-                                        value: true,
-                                        message: "Ages of Girl is required",
-                                    },
-                                })}
-                                type="number"
-                                placeholder="Ages of Girl"
-                                className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
-                                id="agesOfGirl"
-                            />
-                        </div>
-                        <h1 className="text-left ml-2">
-                            {errors.agesOfGirl?.type === "required" && (
-                                <span className="w-full text-left text-red-400 text-sm">{errors?.agesOfGirl.message}</span>
-                            )}
-                        </h1>
-                    </section>
+                    {meritalStatus !== "single" && (
+                        <section>
+                            <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
+                                <input
+                                    {...register("agesOfGirl", {
+                                        required: {
+                                            value: true,
+                                            message: "Ages of Girl is required",
+                                        },
+                                    })}
+                                    type="number"
+                                    placeholder="Ages of Girl"
+                                    className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
+                                    id="agesOfGirl"
+                                />
+                            </div>
+                            <h1 className="text-left ml-2">
+                                {errors.agesOfGirl?.type === "required" && (
+                                    <span className="w-full text-left text-red-400 text-sm">{errors?.agesOfGirl.message}</span>
+                                )}
+                            </h1>
+                        </section>
+                    )}
                     {/* ---------- Partner death date ---------- */}
-                    <section>
-                        <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
-                            <input
-                                {...register("partnerDeathDay", {
-                                    required: {
-                                        value: true,
-                                        message: "Partner Death Date is required",
-                                    },
-                                })}
-                                type="date"
-                                placeholder="Partner Death Date"
-                                className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
-                                id="partnerDeathDay"
-                            />
-                        </div>
-                        <h1 className="text-left ml-2">
-                            {errors.partnerDeathDay?.type === "required" && (
-                                <span className="w-full text-left text-red-400 text-sm">{errors?.partnerDeathDay.message}</span>
-                            )}
-                        </h1>
-                    </section>
+                    {meritalStatus !== "single" && (
+                        <section>
+                            <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
+                                <input
+                                    {...register("partnerDeathDay", {
+                                        required: {
+                                            value: true,
+                                            message: "Partner Death Date is required",
+                                        },
+                                    })}
+                                    type="date"
+                                    placeholder="Partner Death Date"
+                                    className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
+                                    id="partnerDeathDay"
+                                />
+                            </div>
+                            <h1 className="text-left ml-2">
+                                {errors.partnerDeathDay?.type === "required" && (
+                                    <span className="w-full text-left text-red-400 text-sm">{errors?.partnerDeathDay.message}</span>
+                                )}
+                            </h1>
+                        </section>
+                    )}
                     {/* ------------------------ Current profession field start ------------------------ */}
 
                     {/* ---------- Current Profession info ---------- */}
