@@ -10,28 +10,28 @@ import DynamicTable from "./DynamicTable";
 
 export const DynamicProfilePage = () => {
     const { id } = useParams();
-    const { data: user, isLoading } = useGetProfileDetailsQuery(id);
+    const { data, isLoading } = useGetProfileDetailsQuery(id);
     useEffect(() => {
         window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
     }, []);
     return (
         <div className="bg-[#FAFBFF]">
             <CustomHeader title="Profile" />
-            <div className="custom-container mx-auto pb-12">
+            <div className="custom-container mx-auto pb-12 pt-[30px]">
                 <div className="block lg:flex">
                     <div className="md:w-full lg:w-9/12">
                         <div>
                             <div className="block md:flex">
                                 <div className="w-full md:w-2/5 mr-2">
                                     <div>
-                                        <DynamicProfileCard {...{ user }} />
+                                        <DynamicProfileCard {...{ user: data }} />
                                         <DynamicConnectionsCard />
                                         <DynamicPhotosContainer />
                                     </div>
                                 </div>
                                 <div className="w-full md:w-3/5">
                                     <div>
-                                        <DynamicTable {...{ user }} />
+                                        <DynamicTable {...{ data, isLoading }} />
                                     </div>
                                 </div>
                             </div>
