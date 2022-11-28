@@ -20,7 +20,9 @@
   overflow: hidden;
   padding: 30px 0;
   position: relative;
+  margin-top: 100px;
 }
+
 .latestRegisteredSection:before {
   background: #e1e6ff;
   content: "";
@@ -30,11 +32,13 @@
   width: 50%;
   z-index: 1;
 }
+
 .latestRegisteredSection:before {
   left: -100px;
   -webkit-transform: skewX(-20deg);
   transform: skewX(-20deg);
 }
+
 .latestRegisteredSection .shape {
   -webkit-animation: upDown 3s linear infinite;
   animation: upDown 3s linear infinite;
@@ -42,12 +46,14 @@
   top: 20%;
   z-index: 0;
 }
+
 .content {
   padding-left: 20%;
   padding-right: 200px;
   position: relative;
   z-index: 3;
 }
+
 .sectionHeader {
   margin-bottom: 36px;
   text-align: left;
@@ -78,10 +84,12 @@
     padding-right: 0px;
   }
 }
+
 @media only screen and (max-width: 670px) {
   .content {
     padding-left: 10px;
   }
+
   .latestRegisteredSection:before {
     width: 70%;
   }
