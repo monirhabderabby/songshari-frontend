@@ -1,12 +1,21 @@
 import React from "react";
 import { Fragment } from "react";
 import { Select, Slider } from "antd";
+import { useNavigate } from "react-router-dom";
+import { auth } from "../../../../firebase.init";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 const handleChange = () => {
   //   console.log(`selected ${value}`);
 };
 
 const BannerFilterBox = () => {
+  const [user, loading] = useAuthState(auth);
+  const navigate = useNavigate();
+  if (loading) {
+    return;
+  }
+
   return (
     <Fragment>
       <div
@@ -229,6 +238,7 @@ const BannerFilterBox = () => {
           </div>
         </div>
         <button
+          onClick={() => navigate(user ? '/find-partner' : 'signup')}
           className="rounded-[48px] w-[121px] h-[31px] block mt-[15px] mx-auto text-[#fff] text-sm font-medium"
           style={{
             background: "linear-gradient(180deg, #D21878 0%, #4F42A3 100%)",

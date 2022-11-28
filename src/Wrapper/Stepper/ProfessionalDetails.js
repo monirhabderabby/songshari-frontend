@@ -1,9 +1,7 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useForm } from "react-hook-form";
-import { useSetPhysicalDetailsMutation } from "../../Redux/features/userInfo/userApi";
 
 export const ProfessionalDetails = ({ setPage }) => {
-    const [setProfessionalDetails, { data, isLoading }] = useSetPhysicalDetailsMutation();
     const {
         register,
         formState: { errors },
@@ -12,14 +10,22 @@ export const ProfessionalDetails = ({ setPage }) => {
 
     const onSubmit = async data => {
         data.caseCompleted = parseInt(data.caseCompleted);
-        await setProfessionalDetails(data);
+        // await setProfessionalDetails(data);
+        await fetch("https://shanshari-temp.onrender.com/member/register/professionalDetail", {
+            method: "POST",
+            headers: {
+                "content-type": "application/json",
+                authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+            },
+            body: JSON.stringify(data),
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data) {
+                    setPage(4);
+                }
+            });
     };
-
-    useEffect(() => {
-        if (data) {
-            setPage(4);
-        }
-    }, [data, setPage]);
 
     return (
         <div className="w-full h-auto">
@@ -139,7 +145,7 @@ export const ProfessionalDetails = ({ setPage }) => {
                 </section>
                 <input
                     type="submit"
-                    value={isLoading ? "Saving..." : "Submit"}
+                    value="Submit"
                     className="border-2 cursor-pointer mt-3 border-primary hover:border-0 rounded-full px-12 py-2 hover:bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] hover:text-white duration-500 transition-all"
                 />
             </form>

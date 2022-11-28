@@ -60,9 +60,8 @@ const NavBar = ({ bg }) => {
     return (
         <>
             <header
-                className={`${bg ? "bg-transparent" : "bg-white"} sticky hidden lg:block top-0 lg:h-[90px] z-50 shadow-md body-font ${
-                    NavBarCSS.navbar
-                }`}
+                className={`${bg ? "bg-transparent" : "bg-white"} sticky hidden lg:block top-0 lg:h-[90px] z-50 shadow-md body-font ${NavBarCSS.navbar
+                    }`}
             >
                 <div className=" lg:max-w-[1000px]  xl:max-w-[1200px] mx-auto flex flex-wrap  flex-col md:flex-row items-center">
                     <Link to="/" className="flex cursor-pointer title-font font-medium items-center text-gray-900 mb-4 md:mb-0 ">
@@ -95,7 +94,7 @@ const NavBar = ({ bg }) => {
                         ))}
                     </nav>
                     <div>
-                        <ul className={"flex justify-end items-center gap-6 h-32"}>
+                        <ul className={"flex justify-end items-center gap-2 h-32"}>
                             <li className={`${NavBarCSS.hasTooltip}`}>
                                 <div className="flex flex-col items-center cursor-pointer">
                                     {user?.photoURL ? (
@@ -115,7 +114,7 @@ const NavBar = ({ bg }) => {
                                         <>
                                             <Link
                                                 to="/userprofile"
-                                                className={`${NavBarCSS.tooltip} rounded-xl   z-50 shadow-lg px-3 py-1 text-white text-xs font-bold whitespace-nowrap uppercase mt-[66px]`}
+                                                className={`${NavBarCSS.tooltip} rounded-xl z-50 shadow-lg px-3 py-1 text-white text-xs font-bold whitespace-nowrap uppercase mt-[66px]`}
                                                 style={{
                                                     backgroundImage: "linear-gradient(155deg, rgba(228, 18, 114, 1) 0%, #4844a5 100%)",
                                                 }}
@@ -156,7 +155,7 @@ const NavBar = ({ bg }) => {
                                 </div>
                             </li>
                             <li className="relative ">
-                                <Link to="/cart" className={`${NavBarCSS.hasTooltip}`}>
+                                {/* <Link to="/cart" className={`${NavBarCSS.hasTooltip}`}>
                                     <div className="flex flex-col items-center ">
                                         <img src={cart} className="w-[40px]" alt="" />
                                         <span className="absolute top-[-7px] right-[-1px] text-white px-[6px] py-[2px] text-xs font-bold bg-[#dc3545] rounded">
@@ -179,7 +178,7 @@ const NavBar = ({ bg }) => {
                                             Cart
                                         </span>
                                     </div>
-                                </Link>
+                                </Link> */}
                             </li>
 
                             <li>

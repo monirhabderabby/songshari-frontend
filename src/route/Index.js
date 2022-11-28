@@ -38,23 +38,23 @@ import SingleProduct from "../Wrapper/SingleProduct/SingleProduct";
 import SingleProfile from "../Wrapper/SingleProfilesUser/SingleProfile";
 import { Container } from "../Wrapper/Stepper/Container";
 // import { UsersProfile } from "../components/SingleProfilesUser/profileSection/UsersProfile";
+import MobileDiamondPlan from "../components/pages/Membership/MobileVersion/MobileDiamondPlan";
+import MobileFreePlan from "../components/pages/Membership/MobileVersion/MobileFreePlan";
+import MobileGoldPlan from "../components/pages/Membership/MobileVersion/MobileGoldPlan";
+import MobilePlatinumPlan from "../components/pages/Membership/MobileVersion/MobilePlatinumPlan";
 import UpgradePlan from "../components/pages/Membership/MobileVersion/UpgradePlan";
+import MobileActivity from "../components/pages/MobileActivity/MobileActivity";
+import MobileActivityPost from "../components/pages/MobileActivity/MobileActivityPost";
+import MobileSingleProfilesUser from "../components/SingleProfilesUser/MobileSingleProfilesUser/MobileSingleProfilesUser";
 import { CertificateMov } from "../Wrapper/Home/mobileversion/CertificateMov";
 import { Like } from "../Wrapper/Home/mobileversion/Like";
 import { MatchesMov } from "../Wrapper/Home/mobileversion/MatchesMov";
+import { MobileHome } from "../Wrapper/Home/mobileversion/MobileHome";
 import { CompletedCaseMov } from "../Wrapper/Home/mobileversion/mobilelawyeractivity/CompletedCase";
 import { NavCase } from "../Wrapper/Home/mobileversion/mobilelawyeractivity/NavCase";
 import { PendingCaseMov } from "../Wrapper/Home/mobileversion/mobilelawyeractivity/PendingCase";
 import { RunningCaseMov } from "../Wrapper/Home/mobileversion/mobilelawyeractivity/RunningCase";
 import { Setting } from "../Wrapper/Home/mobileversion/Setting";
-import TopProfileMov from "../Wrapper/Home/mobileversion/topprofilemov/TopProfileMov";
-import Suggest from '../Wrapper/Home/mobileversion/Suggest';
-
-
-import MobileActivity from "../components/pages/MobileActivity/MobileActivity";
-import MobileActivityPost from "../components/pages/MobileActivity/MobileActivityPost";
-import MobileSingleProfilesUser from "../components/SingleProfilesUser/MobileSingleProfilesUser/MobileSingleProfilesUser";
-import { MobileHome } from "../Wrapper/Home/mobileversion/MobileHome";
 import MobileProfileOthers from "../Wrapper/Home/mobileversion/MobileProfileOthers";
 
 const Index = () => {
@@ -120,7 +120,11 @@ const Index = () => {
                     <Route path="/mobileUserProfile" element={<MobileSingleProfilesUser />}></Route>
                     <Route path="/certificatemov" element={<CertificateMov></CertificateMov>}></Route>
                     <Route path="/like" element={<Like></Like>}></Route>
-                    <Route path="/upgrade" element={<UpgradePlan></UpgradePlan>}></Route>
+                    <Route path="/mobileUpgrade" element={<UpgradePlan></UpgradePlan>}></Route>
+                    <Route path="/mobileFreePlan" element={<MobileFreePlan />}></Route>
+                    <Route path="/mobileGoldPlan" element={<MobileGoldPlan />}></Route>
+                    <Route path="/mobileDiamondPlan" element={<MobileDiamondPlan />}></Route>
+                    <Route path="/mobilePlatinumPlan" element={<MobilePlatinumPlan />}></Route>
                     {/* --------------- MOBILE ROUTES END --------------- */}
 
                     <Route path="*" element={<NotFound />}></Route>
