@@ -38,6 +38,10 @@ import SingleProduct from "../Wrapper/SingleProduct/SingleProduct";
 import SingleProfile from "../Wrapper/SingleProfilesUser/SingleProfile";
 import { Container } from "../Wrapper/Stepper/Container";
 // import { UsersProfile } from "../components/SingleProfilesUser/profileSection/UsersProfile";
+import MobileDiamondPlan from "../components/pages/Membership/MobileVersion/MobileDiamondPlan";
+import MobileFreePlan from "../components/pages/Membership/MobileVersion/MobileFreePlan";
+import MobileGoldPlan from "../components/pages/Membership/MobileVersion/MobileGoldPlan";
+import MobilePlatinumPlan from "../components/pages/Membership/MobileVersion/MobilePlatinumPlan";
 import UpgradePlan from "../components/pages/Membership/MobileVersion/UpgradePlan";
 import MobileActivity from "../components/pages/MobileActivity/MobileActivity";
 import MobileActivityPost from "../components/pages/MobileActivity/MobileActivityPost";
@@ -51,17 +55,6 @@ import { NavCase } from "../Wrapper/Home/mobileversion/mobilelawyeractivity/NavC
 import { PendingCaseMov } from "../Wrapper/Home/mobileversion/mobilelawyeractivity/PendingCase";
 import { RunningCaseMov } from "../Wrapper/Home/mobileversion/mobilelawyeractivity/RunningCase";
 import { Setting } from "../Wrapper/Home/mobileversion/Setting";
-import TopProfileMov from "../Wrapper/Home/mobileversion/topprofilemov/TopProfileMov";
-import Suggest from '../Wrapper/Home/mobileversion/Suggest';
-import { Like } from "../Wrapper/Home/mobileversion/Like";
-import MobileSingleProfilesUser from "../components/SingleProfilesUser/MobileSingleProfilesUser/MobileSingleProfilesUser";
-import MobileActivity from "../components/pages/MobileActivity/MobileActivity";
-import MobileActivityPost from "../components/pages/MobileActivity/MobileActivityPost";
-import { MobileHome } from "../Wrapper/Home/mobileversion/MobileHome";
-import MobileFreePlan from "../components/pages/Membership/MobileVersion/MobileFreePlan";
-import MobileGoldPlan from "../components/pages/Membership/MobileVersion/MobileGoldPlan";
-import MobileDiamondPlan from "../components/pages/Membership/MobileVersion/MobileDiamondPlan";
-import MobilePlatinumPlan from "../components/pages/Membership/MobileVersion/MobilePlatinumPlan";
 
 const Index = () => {
     return (
