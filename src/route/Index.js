@@ -55,6 +55,7 @@ import { NavCase } from "../Wrapper/Home/mobileversion/mobilelawyeractivity/NavC
 import { PendingCaseMov } from "../Wrapper/Home/mobileversion/mobilelawyeractivity/PendingCase";
 import { RunningCaseMov } from "../Wrapper/Home/mobileversion/mobilelawyeractivity/RunningCase";
 import { Setting } from "../Wrapper/Home/mobileversion/Setting";
+import MobileProfileOthers from "../Wrapper/Home/mobileversion/MobileProfileOthers";
 
 const Index = () => {
     return (
@@ -63,6 +64,7 @@ const Index = () => {
                 <Routes>
                     <Route path="/about" element={<About></About>}></Route>
                     <Route path="/userprofile" element={<SingleProfile />}></Route>
+                    <Route path="/mobileotherprofile" element={<MobileProfileOthers></MobileProfileOthers>}></Route>
                     <Route path="/membership" element={<MemberShip></MemberShip>}></Route>
                     <Route path="/profileinfo" element={<ProfileInfo></ProfileInfo>}></Route>
                     <Route path="/course" element={<Course></Course>}></Route>
@@ -94,7 +96,7 @@ const Index = () => {
                         <Route path="/find-partner" element={<Suggested />} />
                         <Route path="top" element={<TopBride />} />
                         <Route path="nearest" element={<TopGroom />} />
-                    </Route>
+                    </Route>  
                     <Route path="/" element={<Homepage></Homepage>}>
                         <Route path="/" element={<Suggested />} />
                         <Route path="/top-gride" element={<TopBride />} />
