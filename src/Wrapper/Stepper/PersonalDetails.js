@@ -2,6 +2,8 @@ import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { AiOutlineCloudUpload, AiOutlineIdcard } from "react-icons/ai";
+import Select from "react-select";
+import makeAnimated from "react-select/animated";
 import { v4 as uuidv4 } from "uuid";
 import { firebaseStorage } from "../../firebase.init";
 import { useSetPersonalDetailsMutation } from "../../Redux/features/userInfo/userApi";
@@ -14,8 +16,40 @@ export const PersonalDetails = ({ setPage }) => {
     const [licencePhoto, setLicencePhoto] = useState("");
     const [meritalStatus, setMeritalStatus] = useState("");
     const [childrenStatus, setChildrenStatus] = useState("");
+    // Countries
+    const [countries, setCountries] = useState([
+        { id: 1, value: "Bangladesh", label: "Bangladesh" },
+        { id: 2, value: "India", label: "India" },
+    ]);
+    const animatedComponents = makeAnimated();
+    const [homeTownSuggestion, setHomeTownSuggestion] = useState([]);
+    const [homeTownValue, setHomeTownValue] = useState("");
+    const [homeTowns, setHomeTown] = useState([]);
+
+    useEffect(() => {
+        fetch("json/district.json")
+            .then(res => res.json())
+            .then(data => {
+                if (data) setHomeTown(data);
+            });
+    }, [setHomeTown]);
 
     const [setPersonalDetails, { data, isLoading }] = useSetPersonalDetailsMutation();
+
+    const handleHomeTownSuggestion = text => {
+        let matches = [];
+        if (text.length > 0) {
+            matches = homeTowns.filter(town => {
+                const regex = new RegExp(`${text}`, "gi");
+                return town.name.match(regex);
+            });
+        }
+        setHomeTownSuggestion(matches);
+        setHomeTownValue(text);
+    };
+    if (homeTownSuggestion) {
+        console.log(homeTownSuggestion);
+    }
 
     const {
         register,
@@ -222,8 +256,12 @@ export const PersonalDetails = ({ setPage }) => {
                         </h1>
                     </section>
                     {/* ---------- Hometown ---------- */}
-                    <section>
-                        <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
+                    <section className="relative">
+                        <div
+                            className={`flex items-center  p-3 w-full rounded-lg mt-3 lg:mt-0 ${
+                                homeTownSuggestion.length > 0 ? "rounded-br-none rounded-bl-none shadow-lg bg-white" : "bg-gray-100"
+                            }`}
+                        >
                             <input
                                 {...register("hometown", {
                                     required: {
@@ -234,8 +272,31 @@ export const PersonalDetails = ({ setPage }) => {
                                 type="text"
                                 placeholder="Hometown"
                                 className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
+                                onChange={e => handleHomeTownSuggestion(e.target.value)}
+                                value={homeTownValue}
                                 id="hometown"
                             />
+                        </div>
+                        <div
+                            className={`bg-white shadow-lg absolute top-[40px] right-0 w-full rounded-br-lg rounded-bl-lg overflow-y-scroll ${
+                                homeTownSuggestion.length > 0 ? "h-[346px]" : "h-0"
+                            }`}
+                        >
+                            {homeTownSuggestion.length > 0 &&
+                                homeTownSuggestion.map(suggetion => {
+                                    return (
+                                        <div
+                                            key={suggetion?.id}
+                                            className="h-[40px] flex justify-start items-center text-[14px] hover:bg-gray-100 px-3 cursor-pointer text-gray-500 rounded-br-lg rounded-bl-lg"
+                                            onClick={() => {
+                                                setHomeTownValue(suggetion?.name);
+                                                setHomeTownSuggestion([]);
+                                            }}
+                                        >
+                                            {suggetion?.name}
+                                        </div>
+                                    );
+                                })}
                         </div>
                         <h1 className="text-left ml-2">
                             {errors.hometown?.type === "required" && (
@@ -443,18 +504,15 @@ export const PersonalDetails = ({ setPage }) => {
                     </section>
                     {/* ---------- Citizenship ---------- */}
                     <section>
-                        <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
-                            <input
-                                {...register("citizenShip", {
-                                    required: {
-                                        value: true,
-                                        message: "Citizenship is required",
-                                    },
-                                })}
-                                type="text"
-                                placeholder="Citizenship"
+                        <div className="flex items-center bg-gray-100  w-full rounded-lg mt-3 lg:mt-0">
+                            <Select
+                                {...register("citizenShip", { required: { value: true, message: "Citizenship is required" } })}
+                                closeMenuOnSelect={false}
+                                components={animatedComponents}
+                                isMulti
+                                options={countries}
                                 className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
-                                id="citizenShip"
+                                placeholder="Select Citizenship"
                             />
                         </div>
                         <h1 className="text-left ml-2">
