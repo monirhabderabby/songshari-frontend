@@ -13,6 +13,7 @@ export const PersonalDetails = ({ setPage }) => {
     const [backSide, setBackSide] = useState("");
     const [licencePhoto, setLicencePhoto] = useState("");
     const [meritalStatus, setMeritalStatus] = useState("");
+    const [childrenStatus, setChildrenStatus] = useState("");
 
     const [setPersonalDetails, { data, isLoading }] = useSetPersonalDetailsMutation();
 
@@ -190,23 +191,13 @@ export const PersonalDetails = ({ setPage }) => {
                     <section>
                         <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
                             <input
-                                {...register("designation", {
-                                    required: {
-                                        value: true,
-                                        message: "Designation is required",
-                                    },
-                                })}
+                                {...register("designation")}
                                 type="text"
                                 placeholder="Designation"
                                 className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
                                 id="designation"
                             />
                         </div>
-                        <h1 className="text-left ml-2">
-                            {errors.designation?.type === "required" && (
-                                <span className="w-full text-left text-red-400 text-sm">{errors?.designation.message}</span>
-                            )}
-                        </h1>
                     </section>
                     {/* ---------- Date of Birth ---------- */}
                     <section>
@@ -342,23 +333,13 @@ export const PersonalDetails = ({ setPage }) => {
                                 )}
                             </label>
                             <input
-                                {...register("coverPhoto", {
-                                    required: {
-                                        value: true,
-                                        message: "Cover Photo is Required",
-                                    },
-                                })}
+                                {...register("coverPhoto")}
                                 type="file"
                                 id="coverPhoto"
                                 className="hidden"
                                 onChange={coverPhotoHandler}
                             />
                         </div>
-                        <h1 className="text-left ml-2">
-                            {errors.coverPhoto?.type === "required" && (
-                                <span className="w-full text-left text-red-400 text-sm">{errors?.coverPhoto.message}</span>
-                            )}
-                        </h1>
                     </section>
                     {/* ---------- Nid or Passport Number ---------- */}
                     <section>
@@ -369,6 +350,14 @@ export const PersonalDetails = ({ setPage }) => {
                                         value: true,
                                         message: "Nid Or Passport Number is required",
                                     },
+                                    minLength: {
+                                        value: 10,
+                                        message: "Nid or Passport number must be 10 or 17 digit"
+                                    },
+                                    maxLength: {
+                                        value: 17,
+                                        message: "Nid or Passport number must be 10 or 17 digit"
+                                    }
                                 })}
                                 type="text"
                                 placeholder="Nid Or Passport Number"
@@ -378,6 +367,12 @@ export const PersonalDetails = ({ setPage }) => {
                         </div>
                         <h1 className="text-left ml-2">
                             {errors.NidOrPassportNumber?.type === "required" && (
+                                <span className="w-full text-left text-red-400 text-sm">{errors?.NidOrPassportNumber.message}</span>
+                            )}
+                            {errors.NidOrPassportNumber?.type === "minLength" && (
+                                <span className="w-full text-left text-red-400 text-sm">{errors?.NidOrPassportNumber.message}</span>
+                            )}
+                            {errors.NidOrPassportNumber?.type === "maxLength" && (
                                 <span className="w-full text-left text-red-400 text-sm">{errors?.NidOrPassportNumber.message}</span>
                             )}
                         </h1>
@@ -509,8 +504,8 @@ export const PersonalDetails = ({ setPage }) => {
                                 id="maritalStatus"
                             >
                                 <option value="">Select Marital Status</option>
+                                <option value="single">Never Married</option>
                                 <option value="married">Married</option>
-                                <option value="single">Single</option>
                                 <option value="divorced">Divorced</option>
                                 <option value="widowed">Widowed</option>
                             </select>
@@ -668,33 +663,115 @@ export const PersonalDetails = ({ setPage }) => {
                             </h1>
                         </section>
                     )}
+                    {/* ---------- Do you have children --------- */}
+                    {/* {meritalStatus !== "" || meritalStatus !== "single" || ( */}
+                    {(
+                        meritalStatus === "married" && meritalStatus !== "" && meritalStatus !== "single" && <section>
+                            <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
+                                <select
+                                    {...register("haveChildren", {
+                                        required: {
+                                            value: true,
+                                            message: "Answer is required",
+                                        },
+                                    })}
+                                    type="text"
+                                    onChange={e => setChildrenStatus(e.target.value)}
+                                    className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
+                                    id="haveChildren"
+                                >
+                                    <option value="">Do you have children?</option>
+                                    <option value="yes">Yes</option>
+                                    <option value="no">No</option>
+                                </select>
+                            </div>
+                            <h1 className="text-left ml-2">
+                                {errors.haveChildren?.type === "required" && (
+                                    <span className="w-full text-left text-red-400 text-sm">{errors?.haveChildren.message}</span>
+                                )}
+                            </h1>
+                        </section>
+                    )}
+                    {(
+                        meritalStatus === "divorced" && meritalStatus !== "" && meritalStatus !== "single" && <section>
+                            <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
+                                <select
+                                    {...register("haveChildren", {
+                                        required: {
+                                            value: true,
+                                            message: "Answer is required",
+                                        },
+                                    })}
+                                    type="text"
+                                    onChange={e => setChildrenStatus(e.target.value)}
+                                    className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
+                                    id="haveChildren"
+                                >
+                                    <option value="">Do you have children?</option>
+                                    <option value="yes">Yes</option>
+                                    <option value="no">No</option>
+                                </select>
+                            </div>
+                            <h1 className="text-left ml-2">
+                                {errors.haveChildren?.type === "required" && (
+                                    <span className="w-full text-left text-red-400 text-sm">{errors?.haveChildren.message}</span>
+                                )}
+                            </h1>
+                        </section>
+                    )}
+                    {(
+                        meritalStatus === "widowed" && meritalStatus !== "" && meritalStatus !== "single" && <section>
+                            <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
+                                <select
+                                    {...register("haveChildren", {
+                                        required: {
+                                            value: true,
+                                            message: "Answer is required",
+                                        },
+                                    })}
+                                    type="text"
+                                    onChange={e => setChildrenStatus(e.target.value)}
+                                    className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
+                                    id="haveChildren"
+                                >
+                                    <option value="">Do you have children?</option>
+                                    <option value="yes">Yes</option>
+                                    <option value="no">No</option>
+                                </select>
+                            </div>
+                            <h1 className="text-left ml-2">
+                                {errors.haveChildren?.type === "required" && (
+                                    <span className="w-full text-left text-red-400 text-sm">{errors?.haveChildren.message}</span>
+                                )}
+                            </h1>
+                        </section>
+                    )}
                     {/* ---------- Number Of Boy ---------- */}
-                    {meritalStatus === "married" ||
-                        (meritalStatus === "divorced" && (
-                            <section>
-                                <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
-                                    <input
-                                        {...register("numberOfBoy", {
-                                            required: {
-                                                value: true,
-                                                message: "Number of Boy is required",
-                                            },
-                                        })}
-                                        type="number"
-                                        placeholder="Number of Boy"
-                                        className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
-                                        id="numberOfBoy"
-                                    />
-                                </div>
-                                <h1 className="text-left ml-2">
-                                    {errors.numberOfBoy?.type === "required" && (
-                                        <span className="w-full text-left text-red-400 text-sm">{errors?.numberOfBoy.message}</span>
-                                    )}
-                                </h1>
-                            </section>
-                        ))}
+                    {childrenStatus === "yes" && meritalStatus !== "single" && meritalStatus !== "" && (
+                        <section>
+                            <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
+                                <input
+                                    {...register("numberOfBoy", {
+                                        required: {
+                                            value: true,
+                                            message: "Number of Boy is required",
+                                        },
+                                    })}
+                                    type="number"
+                                    placeholder="Number of Boy"
+                                    className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
+                                    id="numberOfBoy"
+                                />
+                            </div>
+                            <h1 className="text-left ml-2">
+                                {errors.numberOfBoy?.type === "required" && (
+                                    <span className="w-full text-left text-red-400 text-sm">{errors?.numberOfBoy.message}</span>
+                                )}
+                            </h1>
+                        </section>
+                    )}
                     {/* ---------- Ages Of Boy ---------- */}
-                    {meritalStatus !== "single" && (
+                    {childrenStatus === "yes" && meritalStatus !== "single" && meritalStatus !== "" && (
                         <section>
                             <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
                                 <input
@@ -718,7 +795,7 @@ export const PersonalDetails = ({ setPage }) => {
                         </section>
                     )}
                     {/* ---------- Number Of Girl ---------- */}
-                    {meritalStatus !== "single" && (
+                    {childrenStatus === "yes" && meritalStatus !== "single" && meritalStatus !== "" && (
                         <section>
                             <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
                                 <input
@@ -742,7 +819,7 @@ export const PersonalDetails = ({ setPage }) => {
                         </section>
                     )}
                     {/* ---------- Ages Of Girl ---------- */}
-                    {meritalStatus !== "single" && (
+                    {childrenStatus === "yes" && meritalStatus !== "single" && meritalStatus !== "" && (
                         <section>
                             <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
                                 <input
@@ -766,7 +843,7 @@ export const PersonalDetails = ({ setPage }) => {
                         </section>
                     )}
                     {/* ---------- Partner death date ---------- */}
-                    {meritalStatus !== "single" && (
+                    {meritalStatus !== "single" && meritalStatus !== "" && (
                         <section>
                             <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
                                 <input
