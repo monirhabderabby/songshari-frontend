@@ -1,12 +1,18 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router";
 import "../../../App.css";
 import "../../../assets/css/table.css";
+import { useGetProfileDetailsWIthAuthQuery } from "../../../Redux/features/userInfo/userApi";
 import { Friends } from "../FriendsSection/Friends";
 import { Matches } from "../profileSection/Matches";
 import { Profile } from "../profileSection/Profile";
 
 const Table = () => {
     const [page, setPage] = useState(2);
+
+    const navigate = useNavigate();
+
+    const { data } = useGetProfileDetailsWIthAuthQuery();
 
     return (
         <div className="">
@@ -41,6 +47,20 @@ const Table = () => {
                     </div>
                 </div>
             </div>
+            {!data?.designation && (
+                <div class="bg-white h-[30px] pl-3 flex items-center shadow-lg shadow-slate-200 rounded-lg w-full mb-4">
+                    <div class="flex-auto bg-slate-100 mr-3">
+                        <div class="bg-teal-400 h-1 rounded" style={{ width: "15%" }}></div>
+                    </div>
+                    <button
+                        className="text-[12px] bg-teal-400 text-white h-full rounded-tr-lg rounded-br-lg px-2 font-semibold"
+                        onClick={() => navigate("/stepper")}
+                    >
+                        Update Profile
+                    </button>
+                </div>
+            )}
+
             {/* table 1 */}
             {page === 2 && <Profile />}
             {page === 4 && <Friends />}
