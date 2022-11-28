@@ -12,10 +12,10 @@ const ThreeEasySteps = () => {
             data-aos="fade-up"
             data-aos-easing="ease-out-cubic"
             data-aos-duration="1000"
-            className="relative w-11/12 lg:w-4/5 mx-auto mt-8 md:mt-0"
+            className="w-11/12 lg:w-4/5 mx-auto mt-20"
         >
             <div
-                className=" md:absolute md:bottom-[-75px] z-10 py-5 md:py-3 lg:py-5 px-10 md:px-5 lg:px-10 w-full rounded-3xl md:rounded-full bg-white"
+                className="z-10 py-5 md:py-3 lg:py-5 px-10 md:px-5 lg:px-10 w-full rounded-3xl md:rounded-full bg-white"
                 style={{ boxShadow: "0px 10px 30px 0px rgb(38 14 116 / 40%)" }}
             >
                 <div className="flex flex-col md:flex-row gap-4 md:gap-0 items-center">
