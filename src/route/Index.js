@@ -46,8 +46,6 @@ import { NavCase } from "../Wrapper/Home/mobileversion/mobilelawyeractivity/NavC
 import { PendingCaseMov } from "../Wrapper/Home/mobileversion/mobilelawyeractivity/PendingCase";
 import { RunningCaseMov } from "../Wrapper/Home/mobileversion/mobilelawyeractivity/RunningCase";
 import { Setting } from "../Wrapper/Home/mobileversion/Setting";
-import TopProfileMov from "../Wrapper/Home/mobileversion/topprofilemov/TopProfileMov";
-import Suggest from '../Wrapper/Home/mobileversion/Suggest';
 import { Like } from "../Wrapper/Home/mobileversion/Like";
 import MobileSingleProfilesUser from "../components/SingleProfilesUser/MobileSingleProfilesUser/MobileSingleProfilesUser";
 import MobileActivity from "../components/pages/MobileActivity/MobileActivity";
