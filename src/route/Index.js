@@ -53,6 +53,10 @@ import MobileSingleProfilesUser from "../components/SingleProfilesUser/MobileSin
 import MobileActivity from "../components/pages/MobileActivity/MobileActivity";
 import MobileActivityPost from "../components/pages/MobileActivity/MobileActivityPost";
 import { MobileHome } from "../Wrapper/Home/mobileversion/MobileHome";
+import MobileFreePlan from "../components/pages/Membership/MobileVersion/MobileFreePlan";
+import MobileGoldPlan from "../components/pages/Membership/MobileVersion/MobileGoldPlan";
+import MobileDiamondPlan from "../components/pages/Membership/MobileVersion/MobileDiamondPlan";
+import MobilePlatinumPlan from "../components/pages/Membership/MobileVersion/MobilePlatinumPlan";
 
 const Index = () => {
     return (
@@ -116,7 +120,11 @@ const Index = () => {
                     <Route path="/mobileUserProfile" element={<MobileSingleProfilesUser />}></Route>
                     <Route path="/certificatemov" element={<CertificateMov></CertificateMov>}></Route>
                     <Route path="/like" element={<Like></Like>}></Route>
-                    <Route path="/upgrade" element={<UpgradePlan></UpgradePlan>}></Route>
+                    <Route path="/mobileUpgrade" element={<UpgradePlan></UpgradePlan>}></Route>
+                    <Route path="/mobileFreePlan" element={<MobileFreePlan />}></Route>
+                    <Route path="/mobileGoldPlan" element={<MobileGoldPlan />}></Route>
+                    <Route path="/mobileDiamondPlan" element={<MobileDiamondPlan />}></Route>
+                    <Route path="/mobilePlatinumPlan" element={<MobilePlatinumPlan />}></Route>
                     {/* --------------- MOBILE ROUTES END --------------- */}
 
                     <Route path="*" element={<NotFound />}></Route>
