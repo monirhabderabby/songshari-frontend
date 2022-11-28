@@ -17,6 +17,7 @@ export const Matches = () => {
                             <img
                                 src="https://www.creative-tim.com/learning-lab/tailwind-starter-kit/img/team-2-800x800.jpg"
                                 className="w-20 mx-auto rounded-full mt-4"
+                                alt="profile"
                             ></img>
 
                             <div className="card-body items-center text-center">
