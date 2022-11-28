@@ -35,7 +35,7 @@ const Accordian = ({ data, isLoading }) => {
     const hightestEducationalQualification = data?.hightestEducationalQualification;
 
     if (hightestEducationalQualification) {
-        console.log(data);
+        console.log(data?.othersDetail);
     }
     const [expanded, setExpanded] = React.useState("panel1");
 
@@ -479,40 +479,36 @@ const Accordian = ({ data, isLoading }) => {
                     <Typography>
                         <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                             <span className="font-medium">Do smoke</span>
-                            <p className="font-normal">Not Provided</p>
+                            <p className="font-normal">{data?.othersDetail ? data?.othersDetail?.doSmoke : "Not Provided"}</p>
                         </div>
                         <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                             <span className="font-medium">Do drink</span>
-                            <p className="font-normal">Not Provided</p>
+                            <p className="font-normal">{data?.othersDetail ? data?.othersDetail?.doDrink : "Not Provided"}</p>
                         </div>
                         <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                             <span className="font-medium">Have pet</span>
-                            <p className="font-normal">Not Provided</p>
+                            <p className="font-normal">{data?.othersDetail ? data?.othersDetail?.doDrink : "Not Provided"}</p>
                         </div>
 
                         <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                             <span className="font-medium">Have tattos</span>
-                            <p className="font-normal">Not Provided</p>
+                            <p className="font-normal">{data?.othersDetail ? data?.othersDetail?.haveTattos : "Not Provided"}</p>
                         </div>
                         <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                             <span className="font-medium">Have voluntary Exp</span>
-                            <p className="font-normal">Not Provided</p>
+                            <p className="font-normal">{data?.othersDetail ? data?.othersDetail?.haveVoluntaryExp : "Not Provided"}</p>
                         </div>
                         <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                             <span className="font-medium">Travelled outside Bangladesh</span>
-                            <p className="font-normal">Not Provided</p>
-                        </div>
-                        <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                            <span className="font-medium">Join Family</span>
-                            <p className="font-normal"></p>
+                            <p className="font-normal">{data?.othersDetail ? data?.othersDetail?.travelledOutsideBangladesh : "Not Provided"}</p>
                         </div>
                         <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                             <span className="font-medium">Like Join Family</span>
-                            <p className="font-normal">Not Provided</p>
+                            <p className="font-normal">{data?.othersDetail ? data?.othersDetail?.likeJoinFamily : "Not Provided"}</p>
                         </div>
                         <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                             <span className="font-medium">Believe in God</span>
-                            <p className="font-normal">Not Provided</p>
+                            <p className="font-normal">{data?.othersDetail ? data?.othersDetail?.believeInGod : "Not Provided"}</p>
                         </div>
                     </Typography>
                 </AccordionDetails>
