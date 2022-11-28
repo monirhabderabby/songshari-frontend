@@ -21,7 +21,7 @@ export const TopMenu = () => {
               <Link to='/login'><span className='bg-red-500 pt-2 pl-4 pr-4 pb-2 mr-4'>Login</span></Link>
 
               <span className='  pr-4'>or</span>
-              <span className='bg-red-500 pt-2 pl-4 pr-4 pb-2 mr-4'>SignUp</span>
+              <Link to={'/signup'} className='bg-red-500 pt-2 pl-4 pr-4 pb-2 mr-4'>SignUp</Link>
 
             </div>
           }
