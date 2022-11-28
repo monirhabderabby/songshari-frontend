@@ -49,11 +49,8 @@ import { RunningCaseMov } from "../Wrapper/Home/mobileversion/mobilelawyeractivi
 import { Setting } from "../Wrapper/Home/mobileversion/Setting";
 import TopProfileMov from "../Wrapper/Home/mobileversion/topprofilemov/TopProfileMov";
 import Suggest from '../Wrapper/Home/mobileversion/Suggest';
-import { CertificateMov } from "../Wrapper/Home/mobileversion/CertificateMov";
-import { Like } from "../Wrapper/Home/mobileversion/Like";
-import { MatchesMov } from "../Wrapper/Home/mobileversion/MatchesMov";
-import MobileSingleProfilesUser from "../components/SingleProfilesUser/MobileSingleProfilesUser/MobileSingleProfilesUser";
-import { UpgradePlan } from "../components/pages/Membership/MobileVersion/UpgradePlan";
+
+
 import MobileActivity from "../components/pages/MobileActivity/MobileActivity";
 import MobileActivityPost from "../components/pages/MobileActivity/MobileActivityPost";
 import MobileSingleProfilesUser from "../components/SingleProfilesUser/MobileSingleProfilesUser/MobileSingleProfilesUser";
