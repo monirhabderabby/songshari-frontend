@@ -1,15 +1,30 @@
 import React, { useState } from "react";
+import Accordian from '../../../components/SingleProfilesUser/profileSection/Accordion';
 import FindPartner from "../../../assets/css/FindPartner.module.css";
+import { Input, Select } from 'antd';
+import { AccordionPartner } from "./AccordionPartner";
+const handleChange = (value) => {
+  console.log(`selected ${value}`);
+};
 const PartnerFilterBox = () => {
   const [remuneration, setRemuneration] = useState(true);
   const [location, setLocation] = useState(true);
+  const [hometown, setHomeTown] = useState(true);
+  const [current, setCurrent] = useState(true);
+  const [marrital, setMarritul] = useState(true);
+  const [religion, setRelion] = useState(true);
   const [category, setCategory] = useState(true);
   const [qualifications, setQualifications] = useState(true);
-  const [categoryItem, setCategoryItem] = useState("PERSONAL INJURY LAWYER");
-  const [locationItem, setLocationItem] = useState("Dhaka");
+  const [categoryItem, setCategoryItem] = useState("Bride");
+  const [locationItem, setLocationItem] = useState("Myself");
+  const [religionItem, setReligionItem] = useState("Islam");
+  const [hometownItem, setHomeTownItem] = useState("Dhaka");
+  const [currentItem, setCurrentItem] = useState("Dhaka");
   const [remunerationItem, setRemunerationItem] = useState("  30,000 - 40,000");
   const [qualificationsItem, setQualificationsItem] =
-    useState(" Bankruptcy Lawyer");
+    useState(" Dhaka");
+  const [maritalItem, setMaritalItem] =
+    useState(" Single");
 
   return (
     <>
@@ -21,10 +36,14 @@ const PartnerFilterBox = () => {
           boxShadow: " 2px 2px 10px rgba(0, 0, 0, 0.12)",
         }}
       >
+<h2 className="text-[#000000] text-[15px] font-bold mb-[16px]">
+            Basic Information <i class="fa-solid fa-chevron-right ml-28"></i>
+          </h2>
+
         {/* Category input  */}
         <div className="flex ] flex-col border-b-[2px] border-b-[#BDCADB] py-[10px]">
           <h2 className="text-[#000000] text-lg font-bold mb-[16px]">
-            Category
+            Looking For
           </h2>
           <div className="flex pb-[10px] justify-between items-center">
             <h4 className="text-[#000000] font-medium text-base">
@@ -52,7 +71,7 @@ const PartnerFilterBox = () => {
                       }
                       className="block cursor-pointer font-semibold py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                     >
-                      PERSONAL INJURY LAWYER
+                     Bride
                     </p>
                   </li>
                   <li>
@@ -62,27 +81,7 @@ const PartnerFilterBox = () => {
                       }
                       className="block cursor-pointer font-semibold py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                     >
-                      FAMILY LAWYER
-                    </p>
-                  </li>
-                  <li>
-                    <p
-                      onClick={(event) =>
-                        setCategoryItem(event.target.innerText)
-                      }
-                      className="block font-semibold py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                    >
-                      ESTATE PLANNING LAWYER
-                    </p>
-                  </li>
-                  <li>
-                    <p
-                      onClick={(event) =>
-                        setCategoryItem(event.target.innerText)
-                      }
-                      className="block font-semibold py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                    >
-                      CONTRACT LAWYER
+                      Groom
                     </p>
                   </li>
                 </ul>
@@ -93,7 +92,7 @@ const PartnerFilterBox = () => {
         {/* location input  */}
         <div className="flex ] mt-[20px] flex-col border-b-[1px] border-b-[#BDCADB] py-[10px]">
           <h2 className="text-[#000000] text-lg font-bold mb-[16px]">
-            Location
+           For
           </h2>
           <div className="flex pb-[10px] justify-between items-center">
             <h4 className="text-[#000000] font-medium text-base">
@@ -122,37 +121,7 @@ const PartnerFilterBox = () => {
                       }
                       className="block font-semibold py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                     >
-                      Dhaka
-                    </p>
-                  </li>
-                  <li>
-                    <p
-                      onClick={(event) =>
-                        setLocationItem(event.target.innerText)
-                      }
-                      className="block font-semibold py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                    >
-                      Chittagong
-                    </p>
-                  </li>
-                  <li>
-                    <p
-                      onClick={(event) =>
-                        setLocationItem(event.target.innerText)
-                      }
-                      className="block font-semibold py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                    >
-                      Comilla
-                    </p>
-                  </li>
-                  <li>
-                    <p
-                      onClick={(event) =>
-                        setLocationItem(event.target.innerText)
-                      }
-                      className="block font-semibold py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                    >
-                      Rajshahi
+                     Myself
                     </p>
                   </li>
                 </ul>
@@ -164,57 +133,34 @@ const PartnerFilterBox = () => {
         <div className="flex ] mt-[20px] flex-col border-b-[1px] border-b-[#BDCADB] py-[10px]">
           <h2 className="text-[#000000] text-lg font-bold mb-[16px]">Rating</h2>
           <div className=" pb-[10px] ">
-            <div className="flex">
-              {" "}
-              <button
-                className="w-[70px] h-[40px] py-[8px] px-[10px] rounded-xl border border-[#BDCADB] text-sm text-[#FFFFFF] font-medium"
-                style={{
-                  background:
-                    " linear-gradient(180deg, #E41272 0%, #942DD9 100%)",
-                }}
-              >
-                1 Start
-              </button>
-              <button className="w-[70px] bg-[#FAFCFF] h-[40px] py-[8px] px-[10px] ml-[28px] rounded-xl border border-[#BDCADB] text-sm text-[#6E84AB] font-medium">
-                2 Start
-              </button>
-            </div>
             <div className="flex mt-[16px]">
               {" "}
-              <button className="w-[70px] bg-[#FAFCFF] h-[40px] py-[8px] px-[10px]  rounded-xl border border-[#BDCADB] text-sm text-[#6E84AB] font-medium">
-                3 Start
-              </button>
-              <button className="w-[70px] bg-[#FAFCFF] h-[40px] py-[8px] px-[10px] ml-[28px] rounded-xl border border-[#BDCADB] text-sm text-[#6E84AB] font-medium">
-                4 Start
+              <button className="w-[70px] bg-[#FAFCFF] h-[40px] py-[8px]  rounded-xl border border-[#BDCADB] text-sm text-[#6E84AB] font-medium">
+                3 Star
               </button>
             </div>
-            <div className="flex mt-[16px]">
-              {" "}
-              <button className="w-[70px] bg-[#FAFCFF] h-[40px] py-[8px] px-[10px]  rounded-xl border border-[#BDCADB] text-sm text-[#6E84AB] font-medium">
-                5 Start
-              </button>
-            </div>
+
           </div>
         </div>
-
-        {/*  Remuneration box  */}
-        <div className="flex ] mt-[20px] flex-col border-b-[1px] border-b-[#BDCADB] py-[10px]">
+{/* Religion  */}
+<div className="flex ] mt-[20px] flex-col border-b-[1px] border-b-[#BDCADB] py-[10px]">
           <h2 className="text-[#000000] text-lg font-bold mb-[16px]">
-            Remuneration
+           Religion
           </h2>
           <div className="flex pb-[10px] justify-between items-center">
             <h4 className="text-[#000000] font-medium text-base">
-              {remunerationItem}
+              {" "}
+              {religionItem}
             </h4>
             <div className=" relative">
-              <button onClick={() => setRemuneration(!remuneration)}>
+              <button onClick={() => setRelion(!religion)}>
                 {" "}
                 <i className="fa-solid font-semibold fa-chevron-down"></i>
               </button>
 
               <div
                 className={`absolute top-[44px] border ${
-                  remuneration ? "hidden" : "block"
+                  religion ? "hidden" : "block"
                 } right-0 z-10 w-[260px] bg-white rounded divide-y divide-gray-100 shadow-lg dark:bg-gray-700 dark:divide-gray-600`}
               >
                 <ul
@@ -224,31 +170,11 @@ const PartnerFilterBox = () => {
                   <li>
                     <p
                       onClick={(event) =>
-                        setRemunerationItem(event.target.innerText)
+                        setReligionItem(event.target.innerText)
                       }
                       className="block font-semibold py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                     >
-                      30,000 - 40,000
-                    </p>
-                  </li>
-                  <li>
-                    <p
-                      onClick={(event) =>
-                        setRemunerationItem(event.target.innerText)
-                      }
-                      className="block font-semibold py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                    >
-                      40,000 - 50,000
-                    </p>
-                  </li>
-                  <li>
-                    <p
-                      onClick={(event) =>
-                        setRemunerationItem(event.target.innerText)
-                      }
-                      className="block font-semibold py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                    >
-                      50,000 - 60,000
+                     Islam
                     </p>
                   </li>
                 </ul>
@@ -256,22 +182,51 @@ const PartnerFilterBox = () => {
             </div>
           </div>
         </div>
-        {/*  Total Case */}
-        <div className="flex ] mt-[20px] flex-col border-b-[1px] border-b-[#BDCADB] py-[10px]">
+{/* Home town  */}
+<div className="flex ] mt-[20px] flex-col border-b-[1px] border-b-[#BDCADB] py-[10px]">
           <h2 className="text-[#000000] text-lg font-bold mb-[16px]">
-            Total Case
+           Home Town
           </h2>
           <div className="flex pb-[10px] justify-between items-center">
-            <h4 className="text-[#000000] font-medium text-base">25+</h4>
-            <div>
-              <i className="fa-solid font-semibold fa-chevron-down"></i>
+            <h4 className="text-[#000000] font-medium text-base">
+              {" "}
+              {hometownItem}
+            </h4>
+            <div className=" relative">
+              <button onClick={() => setHomeTown(!hometown)}>
+                {" "}
+                <i className="fa-solid font-semibold fa-chevron-down"></i>
+              </button>
+
+              <div
+                className={`absolute top-[44px] border ${
+                  hometown ? "hidden" : "block"
+                } right-0 z-10 w-[260px] bg-white rounded divide-y divide-gray-100 shadow-lg dark:bg-gray-700 dark:divide-gray-600`}
+              >
+                <ul
+                  className="py-1 text-[#000000] font-medium text-base text-center dark:text-gray-200"
+                  aria-labelledby="dropdownDividerButton"
+                >
+                  <li>
+                    <p
+                      onClick={(event) =>
+                        setHomeTownItem(event.target.innerText)
+                      }
+                      className="block font-semibold py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                    >
+                     Dhaka
+                    </p>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
-        {/*  Qualifications*/}
-        <div className="flex ] mt-[20px] flex-col border-b-[1px] border-b-[#BDCADB] py-[10px]">
+        {/*  Current Location  */}
+       {/*  Qualifications*/}
+       <div className="flex ] mt-[20px] flex-col border-b-[1px] border-b-[#BDCADB] py-[10px]">
           <h2 className="text-[#000000] text-lg font-bold mb-[16px]">
-            Qualifications
+           Current Location
           </h2>
           <div className="flex pb-[10px] justify-between items-center">
             <h4 className="text-[#000000] font-medium text-base">
@@ -299,37 +254,7 @@ const PartnerFilterBox = () => {
                       }
                       className="block font-semibold py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                     >
-                      BANKRUPTCY LAWYER
-                    </p>
-                  </li>
-                  <li>
-                    <p
-                      onClick={(event) =>
-                        setQualificationsItem(event.target.innerText)
-                      }
-                      className="block font-semibold py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                    >
-                      BUSINESS LAWYER
-                    </p>
-                  </li>
-                  <li>
-                    <p
-                      onClick={(event) =>
-                        setQualificationsItem(event.target.innerText)
-                      }
-                      className="block font-semibold py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                    >
-                      CONSTITUTIONAL LAWYER
-                    </p>
-                  </li>
-                  <li>
-                    <p
-                      onClick={(event) =>
-                        setQualificationsItem(event.target.innerText)
-                      }
-                      className="block font-semibold py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                    >
-                      TAX LAWYER
+                    Dhaka
                     </p>
                   </li>
                 </ul>
@@ -338,6 +263,58 @@ const PartnerFilterBox = () => {
           </div>
         </div>
 
+        {/*  Total Case */}
+        <div className="flex ] mt-[20px] flex-col border-b-[1px] border-b-[#BDCADB] py-[10px]">
+          <h2 className="text-[#000000] text-lg font-bold mb-[16px]">
+            Citizenship
+          </h2>
+          <div className="flex pb-[10px] justify-between items-center">
+            <h4 className="text-[#000000] font-medium text-base"></h4>
+            <div>
+              <i className="fa-solid font-semibold fa-chevron-down"></i>
+            </div>
+          </div>
+        </div>
+        {/*  Qualifications*/}
+        <div className="flex ] mt-[20px] flex-col border-b-[1px] border-b-[#BDCADB] py-[10px]">
+          <h2 className="text-[#000000] text-lg font-bold mb-[16px]">
+            Marital Status
+          </h2>
+          <div className="flex pb-[10px] justify-between items-center">
+            <h4 className="text-[#000000] font-medium text-base">
+              {maritalItem}
+            </h4>
+            <div className=" relative">
+              <button onClick={() => setMarritul(!marrital)}>
+                {" "}
+                <i className="fa-solid font-semibold fa-chevron-down"></i>
+              </button>
+
+              <div
+                className={`absolute top-[44px] border ${
+                  marrital ? "hidden" : "block"
+                } right-0 z-10 w-[260px] bg-white rounded divide-y divide-gray-100 shadow-lg dark:bg-gray-700 dark:divide-gray-600`}
+              >
+                <ul
+                  className="py-1 text-[#000000] font-medium text-base text-center dark:text-gray-200"
+                  aria-labelledby="dropdownDividerButton"
+                >
+                  <li>
+                    <p
+                      onClick={(event) =>
+                        setMarritul(event.target.innerText)
+                      }
+                      className="block font-semibold py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                    >
+                     Single
+                    </p>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+<AccordionPartner></AccordionPartner>
         {/* submit button  */}
         <div className="flex justify-center items-center ] mt-[30px] ">
           <button
@@ -353,5 +330,6 @@ const PartnerFilterBox = () => {
     </>
   );
 };
+
 
 export default PartnerFilterBox;
