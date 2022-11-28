@@ -40,7 +40,6 @@ import { Container } from "../Wrapper/Stepper/Container";
 // import { UsersProfile } from "../components/SingleProfilesUser/profileSection/UsersProfile";
 import UpgradePlan from "../components/pages/Membership/MobileVersion/UpgradePlan";
 import { CertificateMov } from "../Wrapper/Home/mobileversion/CertificateMov";
-import { Like } from "../Wrapper/Home/mobileversion/Like";
 import { MatchesMov } from "../Wrapper/Home/mobileversion/MatchesMov";
 import { CompletedCaseMov } from "../Wrapper/Home/mobileversion/mobilelawyeractivity/CompletedCase";
 import { NavCase } from "../Wrapper/Home/mobileversion/mobilelawyeractivity/NavCase";
@@ -49,6 +48,7 @@ import { RunningCaseMov } from "../Wrapper/Home/mobileversion/mobilelawyeractivi
 import { Setting } from "../Wrapper/Home/mobileversion/Setting";
 import TopProfileMov from "../Wrapper/Home/mobileversion/topprofilemov/TopProfileMov";
 import Suggest from '../Wrapper/Home/mobileversion/Suggest';
+import { Like } from "../Wrapper/Home/mobileversion/Like";
 import MobileSingleProfilesUser from "../components/SingleProfilesUser/MobileSingleProfilesUser/MobileSingleProfilesUser";
 import MobileActivity from "../components/pages/MobileActivity/MobileActivity";
 import MobileActivityPost from "../components/pages/MobileActivity/MobileActivityPost";
