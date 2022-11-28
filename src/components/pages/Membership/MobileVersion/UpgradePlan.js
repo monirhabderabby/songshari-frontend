@@ -7,6 +7,7 @@ import { Switch } from 'antd';
 import { SlArrowRight } from "react-icons/sl";
 import '../../../../assets/css/UpgradePlan.css';
 import { BottomNav } from '../../../../Wrapper/Home/mobileversion/BottomNav';
+import { Link } from 'react-router-dom';
 
 const UpgradePlan = () => {
 
@@ -14,17 +15,20 @@ const UpgradePlan = () => {
         {
             id: 1,
             name: "Gold",
-            price: "$299"
+            price: "$299",
+            path: "/mobileGoldPlan"
         },
         {
             id: 2,
             name: "Diamond",
-            price: "$499"
+            price: "$499",
+            path: "/mobileDiamondPlan"
         },
         {
             id: 3,
             name: "Platinum",
-            price: "$699"
+            price: "$699",
+            path: "/mobilePlatinumPlan"
         }
     ];
 
@@ -44,7 +48,9 @@ const UpgradePlan = () => {
                     <h1 className='font-normal text-sm text-[#979C9E]'>Upgrade for more features</h1>
                 </div>
                 <div className='flex items-center'>
-                    <button className='font-medium text-[8px] text-[#FFFFFF] bg-red-400 rounded-[5px] bg-gradient-to-br from-[#E41272] to-[#4844A5] h-6 w-16'>View Details</button>
+                    <Link to={'/mobileFreePlan'}>
+                        <button className='font-medium text-[8px] text-[#FFFFFF] bg-red-400 rounded-[5px] bg-gradient-to-br from-[#E41272] to-[#4844A5] h-6 w-16'>View Details</button>
+                    </Link>
                 </div>
             </div>
 
@@ -56,36 +62,38 @@ const UpgradePlan = () => {
             <div className='flex flex-col gap-6 mt-6 mx-6 mb-10'>
                 {
                     plan.map((item) =>
-                        <div key={item.id} className='flex px-4 py-4 bg-[#FFFFFF] rounded-xl'>
-                            <div>
-                                <img src={upgrade} alt="Upgrade" />
-                            </div>
+                        <Link key={item.id} to={item.path}>
+                            <div className='flex px-4 py-4 bg-[#FFFFFF] rounded-xl'>
+                                <div>
+                                    <img src={upgrade} alt="Upgrade" />
+                                </div>
 
-                            <div className='flex w-full items-center'>
-                                <div className='ml-[10px] mr-[53px] font-Inter font-medium text-base text-[#000000] w-5/12'>
-                                    <h1>{item?.name}</h1>
-                                    <h1 className='font-sans font-normal text-xs'>Monthly</h1>
-                                    <h1 className='text-[#E41272]'>{item?.price}</h1>
-                                </div>
-                                <div className='flex w-10/12 items-center justify-between'>
-                                    <div>
-                                        <Switch size="small" defaultChecked />
+                                <div className='flex w-full items-center'>
+                                    <div className='ml-[10px] mr-[53px] font-Inter font-medium text-base text-[#000000] w-5/12'>
+                                        <h1>{item?.name}</h1>
+                                        <h1 className='font-sans font-normal text-xs'>Monthly</h1>
+                                        <h1 className='text-[#E41272]'>{item?.price}</h1>
                                     </div>
-                                    <div className='font-sans font-normal text-xs text-[#8A8A8E]'>
-                                        <h1>Annually</h1>
-                                    </div>
-                                    <div className='toggler h-2 w-3 text-[rgba(60, 60, 67, 0.6)]'>
-                                        <SlArrowRight />
+                                    <div className='flex w-10/12 items-center justify-between'>
+                                        <div>
+                                            <Switch size="small" defaultChecked />
+                                        </div>
+                                        <div className='font-sans font-normal text-xs text-[#8A8A8E]'>
+                                            <h1>Annually</h1>
+                                        </div>
+                                        <div className='toggler h-2 w-3 text-[rgba(60, 60, 67, 0.6)]'>
+                                            <SlArrowRight />
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </Link>
                     )
                 }
             </div>
             <br></br>
-      <br></br>
-<BottomNav></BottomNav>
+            <br></br>
+            <BottomNav></BottomNav>
         </div>
     );
 };
