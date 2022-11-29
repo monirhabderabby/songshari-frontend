@@ -24,7 +24,7 @@ export const DynamicProfilePage = () => {
                             <div className="block md:flex">
                                 <div className="w-full md:w-2/5 mr-2">
                                     <div>
-                                        <DynamicProfileCard {...{ user: data }} />
+                                        <DynamicProfileCard {...{ data, isLoading }} />
                                         <DynamicConnectionsCard />
                                         <DynamicPhotosContainer />
                                     </div>

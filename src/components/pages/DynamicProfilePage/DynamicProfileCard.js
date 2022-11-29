@@ -1,7 +1,16 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../../../assets/css/profileCards.css";
+import { ageCalculator } from "../../../assets/utilities/AgeCalculation/ageCalculator";
 
-const DynamicProfileCard = ({ user }) => {
+const DynamicProfileCard = ({ data, isLoading }) => {
+    const [age, setAge] = useState("");
+
+    useEffect(() => {
+        if (data) {
+            const age = ageCalculator(data?.dateOfBirth);
+            setAge(age);
+        }
+    }, [data]);
     return (
         <div>
             <div className="card_container shadow-[0px_10px_5px_rgba(119,123,146,0.02)] px-2 md:px-0">
@@ -11,16 +20,16 @@ const DynamicProfileCard = ({ user }) => {
                         <div className="relative card-img w-48 h-48">
                             <img
                                 className="w-44 h-44 rounded-full img-fluid"
-                                src={user?.profilePhoto ? user.profilePhoto : "https://cdn-icons-png.flaticon.com/512/194/194938.png"}
+                                src={data?.profilePhoto ? data.profilePhoto : "https://cdn-icons-png.flaticon.com/512/194/194938.png"}
                                 alt="profileImage"
                             />
                         </div>
                     </div>
                 </div>
                 <div className="text-center -mt-10">
-                    <h2 className="text-2xl font-semibold">{user?.firstName + " " + user?.lastName}</h2>
+                    <h2 className="text-2xl font-semibold">{data?.firstName + " " + data?.lastName}</h2>
                     <div className="flex justify-center  my-2">
-                        <h3 className="mr-4">21 years old | </h3>
+                        <h3 className="mr-4">{age} years old | </h3>
                         <div className="flex">
                             <h3>
                                 <svg
@@ -40,7 +49,7 @@ const DynamicProfileCard = ({ user }) => {
                                     />
                                 </svg>
                             </h3>
-                            <h3 className="ml-2">Dhaka</h3>
+                            <h3 className="ml-2">{data?.hometown}</h3>
                         </div>
                     </div>
                 </div>

@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom'
 
 export const BottomNav = () => {
   return (
-    <div className='rounded-full bg-bottom-nav'>
+    <div className='rounded-full bg-bottom-nav mt-4'>
       <div className='grid grid-cols-5 gap-4 bottom-bar'>
         <Link to='/mobileUpgrade'>
           <img src={member} alt='' className='w-8'></img>
@@ -22,3 +22,4 @@ export const BottomNav = () => {
     </div>
   )
 }
+
