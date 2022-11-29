@@ -10,7 +10,7 @@ const PeopleJoinedAlready = () => {
         <section>
             <div className="People-Joined-Alreadyon">
                 <div className="custom-container">
-                    <h1 className="text-white text-[50px] text-center">1000</h1>
+                    <h1 className="text-white text-[50px] text-center">100</h1>
                     <h2 className="text-[#f36] text-[24px] text-center">People joined already!</h2>
                     <section className="text-gray-600 body-font">
                         <div className="container px-5 pt-[20px] mx-auto">
@@ -22,7 +22,7 @@ const PeopleJoinedAlready = () => {
                             >
                                 <div className="p-4 sm:w-1/4 w-1/2 text-center">
                                     <img className=" inline-block" src={icon1} alt="" />
-                                    <h2 className="title-font text-[55px] font-semibold tracking-widest mt-3 sm:text-4xl text-3xl text-white">1 M</h2>
+                                    <h2 className="title-font text-[55px] font-semibold tracking-widest mt-3 sm:text-4xl text-3xl text-white">100</h2>
                                     <p className="leading-relaxed text-[20px] text-white">Messages sent per day</p>
                                 </div>
                                 <div
@@ -32,7 +32,7 @@ const PeopleJoinedAlready = () => {
                                     className="p-4 sm:w-1/4 w-1/2 text-center"
                                 >
                                     <img className=" inline-block" src={icon2} alt="" />
-                                    <h2 className="title-font text-[55px] font-semibold tracking-widest mt-3 sm:text-4xl text-3xl text-white">1 M</h2>
+                                    <h2 className="title-font text-[55px] font-semibold tracking-widest mt-3 sm:text-4xl text-3xl text-white">100</h2>
                                     <p className="leading-relaxed text-[20px] text-white">Registered users worldwide</p>
                                 </div>
                                 <div
@@ -42,7 +42,7 @@ const PeopleJoinedAlready = () => {
                                     className="p-4 sm:w-1/4 w-1/2 text-center"
                                 >
                                     <img className=" inline-block" src={icon3} alt="" />
-                                    <h2 className="title-font text-[55px] font-semibold tracking-widest mt-3 sm:text-4xl text-3xl text-white">1 M</h2>
+                                    <h2 className="title-font text-[55px] font-semibold tracking-widest mt-3 sm:text-4xl text-3xl text-white">100</h2>
                                     <p className="leading-relaxed text-[20px] text-white">Monthly active users</p>
                                 </div>
                                 <div
@@ -52,7 +52,7 @@ const PeopleJoinedAlready = () => {
                                     className="p-4 sm:w-1/4 w-1/2 text-center"
                                 >
                                     <img className=" inline-block" src={icon4} alt="" />
-                                    <h2 className="title-font text-[55px] font-semibold tracking-widest mt-3 sm:text-4xl text-3xl text-white">1 M</h2>
+                                    <h2 className="title-font text-[55px] font-semibold tracking-widest mt-3 sm:text-4xl text-3xl text-white">100</h2>
                                     <p className="leading-relaxed text-[20px] text-white">New daily sign ups</p>
                                 </div>
                             </div>

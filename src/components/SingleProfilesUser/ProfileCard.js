@@ -1,10 +1,15 @@
-import React from "react";
-import { useAuthState } from "react-firebase-hooks/auth";
+import React, { useEffect, useState } from "react";
 import "../../assets/css/profileCards.css";
-import { auth } from "../../firebase.init";
+import { ageCalculator } from "../../assets/utilities/AgeCalculation/ageCalculator";
 
-const ProfileCard = () => {
-    const [user] = useAuthState(auth);
+const ProfileCard = ({ data, isLoading }) => {
+    const [age, setAge] = useState("");
+    useEffect(() => {
+        if (data) {
+            const age = ageCalculator(data?.dateOfBirth);
+            setAge(age);
+        }
+    }, [data]);
     return (
         <div style={{ boxShadow: "0px 10px 5px rgba(119, 123, 146, 0.02)" }} className="rounded-xl">
             <div className="card_container shadow-4xl px-2 md:px-0">
@@ -14,16 +19,16 @@ const ProfileCard = () => {
                         <div className="relative card-img w-48 h-48">
                             <img
                                 className="w-44 h-44 rounded-full img-fluid"
-                                src={user?.photoURL ? user.photoURL : "https://cdn-icons-png.flaticon.com/512/194/194938.png"}
+                                src={data?.profilePhoto ? data?.profilePhoto : "https://cdn-icons-png.flaticon.com/512/194/194938.png"}
                                 alt="profileImage"
                             />
                         </div>
                     </div>
                 </div>
                 <div className="text-center -mt-10">
-                    <h2 className="text-2xl font-semibold">{user?.displayName}</h2>
+                    <h2 className="text-2xl font-semibold">{data?.firstName + " " + data?.lastName}</h2>
                     <div className="flex justify-center  my-2">
-                        <h3 className="mr-4">21 years old | </h3>
+                        <h3 className="mr-4">{age} years old | </h3>
                         <div className="flex">
                             <h3>
                                 <svg
@@ -43,7 +48,7 @@ const ProfileCard = () => {
                                     />
                                 </svg>
                             </h3>
-                            <h3 className="ml-2">Dhaka</h3>
+                            <h3 className="ml-2">{data?.hometown}</h3>
                         </div>
                     </div>
                 </div>
@@ -68,12 +73,11 @@ const ProfileCard = () => {
                         </div>
                     </div> */}
                     <div>
-                        {
-                            user ?
-                                <button className="special_profile_button">Upgrade Membership</button>
-                                :
-                                <button className="special_profile_button">Send Connection Request</button>
-                        }
+                        {data ? (
+                            <button className="special_profile_button">Upgrade Membership</button>
+                        ) : (
+                            <button className="special_profile_button">Send Connection Request</button>
+                        )}
                     </div>
                 </div>
             </div>

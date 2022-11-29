@@ -1,24 +1,32 @@
-import React from 'react';
+import React from "react";
 import aboutUsMission1 from "../../../assets/images/AboutUs/aboutUsMission1.jpg";
 import aboutUsMission2 from "../../../assets/images/AboutUs/aboutUsMission2.jpg";
 
 const AboutOurMission = () => {
     return (
         <div>
-            <div className='max-w-5xl mx-auto mt-20 flex items-center gap-[70px]'>
-                <div className='text-center flex-1 flex items-center justify-center'>
+            <div className="max-w-5xl mx-auto mt-20 flex items-center gap-[70px]">
+                <div className="text-center flex-1 flex items-center justify-center">
                     <div>
-                        <h3 className='text-3xl font-semibold leading-10 mb-9'>
-                            Our Mission
-                        </h3>
-                        <p className='text-[#757575] text-lg leading-8 text-left'>
-                            Lorem ipsum dolor sit amet consectetur. Suspendisse sit duis platea dapibus urna aliquet. Massa fringilla mauris morbi tincidunt vitae in. Hac adipiscing enim orci dictum. Quis auctor fames blandit et quis ipsum dolor lacus volutpat. Euismod sed urna in aenean iaculis. Egestas feugiat nibh justo tristique quis. Feugiat dis pharetra praesent interdum nibh odio sit. Convallis nec interdum dignissim fusce. Risus quis cras cras ullamcorper blandit nisl mauris. Nibh.
+                        <h3 className="text-3xl font-semibold leading-10 mb-9">Our Mission</h3>
+                        <p className="text-[#757575] text-lg leading-8 text-left">
+                            "Choosing the Perfect Life Partner" is the core condition of a happy and beautiful family. Shongshari.Com started its
+                            journey to become the most reliable source of finding the right life partner. Not only in the terms of finding the right
+                            life partner, but Shongshari.Com also wants to support and aid its users and well-wishers in every step of their family
+                            journey. Thus, in addition to matchmaking and matchmaking, Shongshari.Com is developing a Legal Assistance Platform built
+                            with the best lawyers in the country to solve all kinds of legal complications related to the family.
+                        </p>
+                        <p className="text-[#757575] text-lg leading-8 text-left">
+                            In addition, there will be Exclusive Kazi Service for marital needs. Highly Skilled Professional Service Providers of
+                            Shongshari.Com would be available to help and assist you in every step of your daily life. Regular talk shows and special
+                            courses for the users of Shongshari.com about marriage or any necessary work would be helpful to make anyone well-prepared
+                            to maintain a family easily.
                         </p>
                     </div>
                 </div>
-                <div className='relative flex-1 mb-12'>
-                    <img className='z-0 rounded-bl-[80px] w-[476px] h-[415px]' src={aboutUsMission1} alt="" />
-                    <img className='absolute -bottom-12 rounded-tr-[128px] rounded-bl-[127px] w-72 z-10' src={aboutUsMission2} alt="" />
+                <div className="relative flex-1 mb-12">
+                    <img className="z-0 rounded-bl-[80px] w-[476px] h-[415px]" src={aboutUsMission1} alt="" />
+                    <img className="absolute -bottom-12 rounded-tr-[128px] rounded-bl-[127px] w-72 z-10" src={aboutUsMission2} alt="" />
                 </div>
             </div>
         </div>
