@@ -25,7 +25,7 @@ const MobileUsersProfile = () => {
                             {user ? user.email : "Not Provided"}
                         </h3>
                         <h3 className="text-[#737373] w-[165px] mt-[16px] pb-[10px] border-[#737373] text-xs font-normal border-b-[1px]">
-                            +234 9011039271
+                            +8801814803281
                         </h3>
                         <h3 className="text-[#737373] w-[165px] mt-[16px]  text-xs font-normal pb-[20px]">Single</h3>
                     </div>
