@@ -2,17 +2,14 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router";
 import "../../../App.css";
 import "../../../assets/css/table.css";
-import { useGetProfileDetailsWIthAuthQuery } from "../../../Redux/features/userInfo/userApi";
 import { Friends } from "../FriendsSection/Friends";
 import { Matches } from "../profileSection/Matches";
 import { Profile } from "../profileSection/Profile";
 
-const Table = () => {
+const Table = ({ data, isLoading }) => {
     const [page, setPage] = useState(2);
 
     const navigate = useNavigate();
-
-    const { data } = useGetProfileDetailsWIthAuthQuery();
 
     return (
         <div>
@@ -62,7 +59,7 @@ const Table = () => {
             )}
 
             {/* table 1 */}
-            {page === 2 && <Profile />}
+            {page === 2 && <Profile {...{ data, isLoading }} />}
             {page === 4 && <Friends />}
             {page === 5 && <Matches />}
         </div>

@@ -5,7 +5,7 @@ import { DynamicActivityPage } from "./DynamicActivityPage";
 import { DynamicMatches } from "./DynamicMaches";
 import { DynamicProfileInfo } from "./DynamicProfileInfo";
 
-const DynamicTable = ({ user }) => {
+const DynamicTable = ({ data, isLoading }) => {
     const [page, setPage] = useState(2);
     return (
         <div>
@@ -37,7 +37,7 @@ const DynamicTable = ({ user }) => {
                 </div>
             </div>
             {page === 1 && <DynamicActivityPage />}
-            {page === 2 && <DynamicProfileInfo {...{ user }} />}
+            {page === 2 && <DynamicProfileInfo {...{ data, isLoading }} />}
             {page === 5 && <DynamicMatches />}
         </div>
     );

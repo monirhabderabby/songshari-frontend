@@ -18,9 +18,9 @@ const MeetNewPeople = () => {
                         <div className="w-[50%] mx-auto">
                             <div className="content">
                                 <div className="mb-[40px] text-center">
-                                    <h6 className="text-[#ff317b] mb-[30px] text-[24px] font-bold">Meet New People Today!</h6>
+                                    <h6 className="text-[#ff317b] mb-[30px] text-[24px] font-bold">Meet Your Perfect Life Partner Today!</h6>
                                     <h2 className="text-[#ff317b] text-[25px] font-medium mb-[11px]">How Does It Work?</h2>
-                                    <p className="text-[#3b368c] text-[20px] mb-[16px]">You’re just 3 steps away from a great date</p>
+                                    <p className="text-[#3b368c] text-[20px] mb-[16px]">You’re just 3 steps away from a great Match</p>
                                 </div>
                             </div>
                         </div>

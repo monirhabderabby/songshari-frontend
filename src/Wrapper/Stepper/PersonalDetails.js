@@ -1,6 +1,6 @@
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import React, { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import { AiOutlineCloudUpload, AiOutlineIdcard } from "react-icons/ai";
 import Select from "react-select";
 import makeAnimated from "react-select/animated";
@@ -15,16 +15,43 @@ export const PersonalDetails = ({ setPage }) => {
     const [backSide, setBackSide] = useState("");
     const [licencePhoto, setLicencePhoto] = useState("");
     const [meritalStatus, setMeritalStatus] = useState("");
+    const [citizenShip, setCitizenShip] = useState([]);
+
+    // hobbies
+    const [hobbies, setHobbies] = useState([]);
+    useEffect(() => {
+        fetch("json/hobby.json")
+            .then(res => res.json())
+            .then(data => setHobbies(data));
+    }, []);
+
+    // Zodac Sign
+    const [zodiacSign, setZodiacSign] = useState([]);
+    const [zodiacSignValue, setZodiacSignValue] = useState("");
+    const [zodiacSignSuggestion, setZodiacSignSuggestion] = useState("");
+    useEffect(() => {
+        fetch("json/zodiacSign.json")
+            .then(res => res.json())
+            .then(data => setZodiacSign(data));
+    }, []);
     const [childrenStatus, setChildrenStatus] = useState("");
+
     // Countries
-    const [countries, setCountries] = useState([
-        { id: 1, value: "Bangladesh", label: "Bangladesh" },
-        { id: 2, value: "India", label: "India" },
-    ]);
+    const [countries, setCountries] = useState([]);
+    useEffect(() => {
+        fetch("json/countries.json")
+            .then(res => res.json())
+            .then(data => setCountries(data));
+    }, []);
+
     const animatedComponents = makeAnimated();
     const [homeTownSuggestion, setHomeTownSuggestion] = useState([]);
     const [homeTownValue, setHomeTownValue] = useState("");
     const [homeTowns, setHomeTown] = useState([]);
+    const [townPermanentSuggestion, setTownPermanentSuggestion] = useState([]);
+    const [townPermanentValue, setTownPermanentValue] = useState("");
+    const [townCurrentSuggestion, setTownCurrentSuggestion] = useState([]);
+    const [townCurrentValue, setTownCurrentValue] = useState("");
 
     useEffect(() => {
         fetch("json/district.json")
@@ -48,10 +75,47 @@ export const PersonalDetails = ({ setPage }) => {
         setHomeTownValue(text);
     };
 
+    const handleTownPermanentSuggestion = text => {
+        let matches = [];
+        if (text.length > 0) {
+            matches = homeTowns.filter(town => {
+                const regex = new RegExp(`${text}`, "gi");
+                return town.name.match(regex);
+            });
+        }
+        setTownPermanentSuggestion(matches);
+        setTownPermanentValue(text);
+    };
+
+    const handleTownCurrentSuggestion = text => {
+        let matches = [];
+        if (text.length > 0) {
+            matches = homeTowns.filter(town => {
+                const regex = new RegExp(`${text}`, "gi");
+                return town.name.match(regex);
+            });
+        }
+        setTownCurrentSuggestion(matches);
+        setTownCurrentValue(text);
+    };
+
+    const zodiacSignHandler = text => {
+        let matches = [];
+        if (text.length > 0) {
+            matches = zodiacSign.filter(sign => {
+                const regex = new RegExp(`${text}`, "gi");
+                return sign.name.match(regex);
+            });
+        }
+        setZodiacSignSuggestion(matches);
+        setZodiacSignValue(text);
+    };
+
     const {
         register,
         formState: { errors },
         handleSubmit,
+        control,
     } = useForm();
 
     const onSubmit = async data => {
@@ -274,7 +338,7 @@ export const PersonalDetails = ({ setPage }) => {
                             />
                         </div>
                         <div
-                            className={`bg-white shadow-lg absolute top-[40px] right-0 w-full rounded-br-lg rounded-bl-lg overflow-y-scroll ${homeTownSuggestion.length > 0 ? "h-[346px]" : "h-0"
+                            className={`bg-white shadow-lg absolute top-[40px] right-0 w-full rounded-br-lg rounded-bl-lg overflow-y-scroll ${homeTownSuggestion.length > 0 ? "max-h-[346px]" : "h-0"
                                 }`}
                         >
                             {homeTownSuggestion.length > 0 &&
@@ -300,7 +364,7 @@ export const PersonalDetails = ({ setPage }) => {
                         </h1>
                     </section>
                     {/* ---------- Permanent Address ---------- */}
-                    <section>
+                    {/* <section>
                         <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
                             <input
                                 {...register("permanentAdress", {
@@ -320,9 +384,9 @@ export const PersonalDetails = ({ setPage }) => {
                                 <span className="w-full text-left text-red-400 text-sm">{errors?.permanentAdress.message}</span>
                             )}
                         </h1>
-                    </section>
+                    </section> */}
                     {/* ---------- Current Address ---------- */}
-                    <section>
+                    {/* <section>
                         <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
                             <input
                                 {...register("currentAdress", {
@@ -342,7 +406,7 @@ export const PersonalDetails = ({ setPage }) => {
                                 <span className="w-full text-left text-red-400 text-sm">{errors?.currentAdress.message}</span>
                             )}
                         </h1>
-                    </section>
+                    </section> */}
                     {/* ---------- Profile Photo ---------- */}
                     <section>
                         <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
@@ -388,13 +452,7 @@ export const PersonalDetails = ({ setPage }) => {
                                     "Upload Cover Photo"
                                 )}
                             </label>
-                            <input
-                                {...register("coverPhoto")}
-                                type="file"
-                                id="coverPhoto"
-                                className="hidden"
-                                onChange={coverPhotoHandler}
-                            />
+                            <input {...register("coverPhoto")} type="file" id="coverPhoto" className="hidden" onChange={coverPhotoHandler} />
                         </div>
                     </section>
                     {/* ---------- Nid or Passport Number ---------- */}
@@ -408,12 +466,12 @@ export const PersonalDetails = ({ setPage }) => {
                                     },
                                     minLength: {
                                         value: 10,
-                                        message: "Nid or Passport number must be 10 or 17 digit"
+                                        message: "Nid or Passport number must be 10 or 17 digit",
                                     },
                                     maxLength: {
                                         value: 17,
-                                        message: "Nid or Passport number must be 10 or 17 digit"
-                                    }
+                                        message: "Nid or Passport number must be 10 or 17 digit",
+                                    },
                                 })}
                                 type="text"
                                 placeholder="Nid Or Passport Number"
@@ -500,14 +558,18 @@ export const PersonalDetails = ({ setPage }) => {
                     {/* ---------- Citizenship ---------- */}
                     <section>
                         <div className="flex items-center bg-gray-100  w-full rounded-lg mt-3 lg:mt-0">
-                            <Select
-                                {...register("citizenShip", { required: { value: true, message: "Citizenship is required" } })}
-                                closeMenuOnSelect={false}
-                                components={animatedComponents}
-                                isMulti
-                                options={countries}
-                                className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
-                                placeholder="Select Citizenship"
+                            <Controller
+                                control={control}
+                                name="citizenship"
+                                render={({ field: { onChange, value, ref } }) => (
+                                    <Select
+                                        inputRef={ref}
+                                        className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
+                                        onChange={val => onChange(val.map(c => setCitizenShip([...citizenShip, c.value])))}
+                                        options={countries}
+                                        isMulti
+                                    />
+                                )}
                             />
                         </div>
                         <h1 className="text-left ml-2">
@@ -517,8 +579,11 @@ export const PersonalDetails = ({ setPage }) => {
                         </h1>
                     </section>
                     {/* ---------- Zodiac Sign ---------- */}
-                    <section>
-                        <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
+                    <section className="relative">
+                        <div
+                            className={`flex items-center  p-3 w-full rounded-lg mt-3 lg:mt-0 ${zodiacSignSuggestion.length > 0 ? "rounded-br-none rounded-bl-none shadow-lg bg-white" : "bg-gray-100"
+                                }`}
+                        >
                             <input
                                 {...register("zodiacSign", {
                                     required: {
@@ -530,7 +595,29 @@ export const PersonalDetails = ({ setPage }) => {
                                 placeholder="Zodiac Sign"
                                 className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
                                 id="zodiacSign"
+                                onChange={e => zodiacSignHandler(e.target.value)}
+                                value={zodiacSignValue}
                             />
+                        </div>
+                        <div
+                            className={`bg-white shadow-lg absolute top-[40px] right-0 w-full rounded-br-lg rounded-bl-lg overflow-y-scroll ${zodiacSignSuggestion.length > 0 ? "max-h-[346px]" : "h-0"
+                                }`}
+                        >
+                            {zodiacSignSuggestion.length > 0 &&
+                                zodiacSignSuggestion.map(suggetion => {
+                                    return (
+                                        <div
+                                            key={suggetion?.id}
+                                            className="h-[40px] flex justify-start items-center text-[14px] hover:bg-gray-100 px-3 cursor-pointer text-gray-500 "
+                                            onClick={() => {
+                                                setZodiacSignValue(suggetion?.name);
+                                                setZodiacSignSuggestion([]);
+                                            }}
+                                        >
+                                            {suggetion?.name}
+                                        </div>
+                                    );
+                                })}
                         </div>
                         <h1 className="text-left ml-2">
                             {errors.zodiacSign?.type === "required" && (
@@ -538,6 +625,346 @@ export const PersonalDetails = ({ setPage }) => {
                             )}
                         </h1>
                     </section>
+
+                    {/* -------------------- Permanent Address Start -------------------- */}
+                    <section className="col-span-1 md:col-span-2 lg:col-span-3 text-[#2F3659] font-medium text-left ml-1">Permanent Address</section>
+
+                    {/* ---------- Street Address ---------- */}
+                    <section>
+                        <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
+                            <input
+                                {...register("streetPermanent", {
+                                    required: {
+                                        value: true,
+                                        message: "Street No. is required",
+                                    },
+                                })}
+                                type="text"
+                                placeholder="Street No."
+                                className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
+                                id="streetPermanent"
+                            />
+                        </div>
+                        <h1 className="text-left ml-2">
+                            {errors.streetPermanent?.type === "required" && (
+                                <span className="w-full text-left text-red-400 text-sm">{errors?.streetPermanent.message}</span>
+                            )}
+                        </h1>
+                    </section>
+                    {/* ---------- House Address ---------- */}
+                    <section>
+                        <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
+                            <input
+                                {...register("housePermanent", {
+                                    required: {
+                                        value: true,
+                                        message: "House Name is required",
+                                    },
+                                })}
+                                type="text"
+                                placeholder="House Name"
+                                className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
+                                id="housePermanent"
+                            />
+                        </div>
+                        <h1 className="text-left ml-2">
+                            {errors.housePermanent?.type === "required" && (
+                                <span className="w-full text-left text-red-400 text-sm">{errors?.housePermanent.message}</span>
+                            )}
+                        </h1>
+                    </section>
+                    {/* ---------- Zip Code ----------*/}
+                    <section>
+                        <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
+                            <input
+                                {...register("zipPermanent", {
+                                    required: {
+                                        value: true,
+                                        message: "Zip Code is required",
+                                    },
+                                })}
+                                type="text"
+                                placeholder="Zip Code"
+                                className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
+                                id="zipPermanent"
+                            />
+                        </div>
+                        <h1 className="text-left ml-2">
+                            {errors.zipPermanent?.type === "required" && (
+                                <span className="w-full text-left text-red-400 text-sm">{errors?.zipPermanent.message}</span>
+                            )}
+                        </h1>
+                    </section>
+                    {/* ---------- Town permanent ---------- */}
+                    <section className="relative">
+                        <div
+                            className={`flex items-center  p-3 w-full rounded-lg mt-3 lg:mt-0 ${townPermanentSuggestion.length > 0 ? "rounded-br-none rounded-bl-none shadow-lg bg-white" : "bg-gray-100"
+                                }`}
+                        >
+                            <input
+                                {...register("townPermanent", {
+                                    required: {
+                                        value: true,
+                                        message: "Town name is required",
+                                    },
+                                })}
+                                type="text"
+                                placeholder="Town or City"
+                                className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
+                                onChange={e => handleTownPermanentSuggestion(e.target.value)}
+                                value={townPermanentValue}
+                                id="townPermanent"
+                            />
+                        </div>
+                        <div
+                            className={`bg-white shadow-lg absolute top-[40px] right-0 w-full rounded-br-lg rounded-bl-lg overflow-y-scroll ${townPermanentSuggestion.length > 0 ? "max-h-[346px]" : "h-0"
+                                }`}
+                        >
+                            {townPermanentSuggestion.length > 0 &&
+                                townPermanentSuggestion.map(suggetion => {
+                                    return (
+                                        <div
+                                            key={suggetion?.id}
+                                            className="h-[40px] flex justify-start items-center text-[14px] hover:bg-gray-100 px-3 cursor-pointer text-gray-500 rounded-br-lg rounded-bl-lg"
+                                            onClick={() => {
+                                                setTownPermanentValue(suggetion?.name);
+                                                setTownPermanentSuggestion([]);
+                                            }}
+                                        >
+                                            {suggetion?.name}
+                                        </div>
+                                    );
+                                })}
+                        </div>
+                        <h1 className="text-left ml-2">
+                            {errors.townPermanent?.type === "required" && (
+                                <span className="w-full text-left text-red-400 text-sm">{errors?.townPermanent.message}</span>
+                            )}
+                        </h1>
+                    </section>
+                    {/* ---------- Division Permanent ---------- */}
+                    <section>
+                        <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
+                            <select
+                                {...register("divisionPermanent", {
+                                    required: {
+                                        value: true,
+                                        message: "Division is required",
+                                    },
+                                })}
+                                type="text"
+                                className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
+                                id="divisionPermanent"
+                            >
+                                <option value="">Select Division</option>
+                                <option value="dhaka">Dhaka</option>
+                                <option value="chittagong">Chittagong</option>
+                                <option value="sylhet">Sylhet</option>
+                                <option value="rajshahi">Rajshahi</option>
+                            </select>
+                        </div>
+                        <h1 className="text-left ml-2">
+                            {errors.divisionPermanent?.type === "required" && (
+                                <span className="w-full text-left text-red-400 text-sm">{errors?.divisionPermanent.message}</span>
+                            )}
+                        </h1>
+                    </section>
+                    {/* ---------- Country Permanent ---------- */}
+                    <section>
+                        <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
+                            <select
+                                {...register("countryPermanent", {
+                                    required: {
+                                        value: true,
+                                        message: "Country Name is required",
+                                    },
+                                })}
+                                type="text"
+                                className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
+                                id="countryPermanent"
+                            >
+                                <option value="">Select Country</option>
+                                <option value="bangladesh">Bangladesh</option>
+                            </select>
+                        </div>
+                        <h1 className="text-left ml-2">
+                            {errors.countryPermanent?.type === "required" && (
+                                <span className="w-full text-left text-red-400 text-sm">{errors?.countryPermanent.message}</span>
+                            )}
+                        </h1>
+                    </section>
+
+                    {/* --------------------------- Permanent Adress End ------------------------- */}
+
+                    {/* --------------------------- Current Adress Start ------------------------- */}
+                    <section className="col-span-1 md:col-span-2 lg:col-span-3 text-[#2F3659] font-medium text-left ml-1">Current Address</section>
+
+                    {/* ---------- Street Address Current ---------- */}
+                    <section>
+                        <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
+                            <input
+                                {...register("streetCurrent", {
+                                    required: {
+                                        value: true,
+                                        message: "Street No. is required",
+                                    },
+                                })}
+                                type="text"
+                                placeholder="Street No."
+                                className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
+                                id="streetCurrent"
+                            />
+                        </div>
+                        <h1 className="text-left ml-2">
+                            {errors.streetCurrent?.type === "required" && (
+                                <span className="w-full text-left text-red-400 text-sm">{errors?.streetCurrent.message}</span>
+                            )}
+                        </h1>
+                    </section>
+                    {/* ---------- House Address Current ---------- */}
+                    <section>
+                        <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
+                            <input
+                                {...register("houseCurrent", {
+                                    required: {
+                                        value: true,
+                                        message: "House Name is required",
+                                    },
+                                })}
+                                type="text"
+                                placeholder="House Name"
+                                className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
+                                id="houseCurrent"
+                            />
+                        </div>
+                        <h1 className="text-left ml-2">
+                            {errors.houseCurrent?.type === "required" && (
+                                <span className="w-full text-left text-red-400 text-sm">{errors?.houseCurrent.message}</span>
+                            )}
+                        </h1>
+                    </section>
+                    {/* ---------- Zip Code Current ----------*/}
+                    <section>
+                        <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
+                            <input
+                                {...register("zipCurrent", {
+                                    required: {
+                                        value: true,
+                                        message: "Zip Code is required",
+                                    },
+                                })}
+                                type="text"
+                                placeholder="Zip Code"
+                                className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
+                                id="zipCurrent"
+                            />
+                        </div>
+                        <h1 className="text-left ml-2">
+                            {errors.zipCurrent?.type === "required" && (
+                                <span className="w-full text-left text-red-400 text-sm">{errors?.zipCurrent.message}</span>
+                            )}
+                        </h1>
+                    </section>
+                    {/* ---------- Town Current ---------- */}
+                    <section className="relative">
+                        <div
+                            className={`flex items-center  p-3 w-full rounded-lg mt-3 lg:mt-0 ${townCurrentSuggestion.length > 0 ? "rounded-br-none rounded-bl-none shadow-lg bg-white" : "bg-gray-100"
+                                }`}
+                        >
+                            <input
+                                {...register("townCurrent", {
+                                    required: {
+                                        value: true,
+                                        message: "Town name is required",
+                                    },
+                                })}
+                                type="text"
+                                placeholder="Town or City"
+                                className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
+                                onChange={e => handleTownCurrentSuggestion(e.target.value)}
+                                value={townCurrentValue}
+                                id="townCurrent"
+                            />
+                        </div>
+                        <div
+                            className={`bg-white shadow-lg absolute top-[40px] right-0 w-full rounded-br-lg rounded-bl-lg overflow-y-scroll ${townCurrentSuggestion.length > 0 ? "max-h-[346px]" : "h-0"
+                                }`}
+                        >
+                            {townCurrentSuggestion.length > 0 &&
+                                townCurrentSuggestion.map(suggetion => {
+                                    return (
+                                        <div
+                                            key={suggetion?.id}
+                                            className="h-[40px] flex justify-start items-center text-[14px] hover:bg-gray-100 px-3 cursor-pointer text-gray-500 rounded-br-lg rounded-bl-lg"
+                                            onClick={() => {
+                                                setTownCurrentValue(suggetion?.name);
+                                                setTownCurrentSuggestion([]);
+                                            }}
+                                        >
+                                            {suggetion?.name}
+                                        </div>
+                                    );
+                                })}
+                        </div>
+                        <h1 className="text-left ml-2">
+                            {errors.townCurrent?.type === "required" && (
+                                <span className="w-full text-left text-red-400 text-sm">{errors?.townCurrent.message}</span>
+                            )}
+                        </h1>
+                    </section>
+                    {/* ---------- Division Current ---------- */}
+                    <section>
+                        <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
+                            <select
+                                {...register("divisionCurrent", {
+                                    required: {
+                                        value: true,
+                                        message: "Division is required",
+                                    },
+                                })}
+                                type="text"
+                                className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
+                                id="divisionCurrent"
+                            >
+                                <option value="">Select Division</option>
+                                <option value="dhaka">Dhaka</option>
+                                <option value="chittagong">Chittagong</option>
+                                <option value="sylhet">Sylhet</option>
+                                <option value="rajshahi">Rajshahi</option>
+                            </select>
+                        </div>
+                        <h1 className="text-left ml-2">
+                            {errors.divisionCurrent?.type === "required" && (
+                                <span className="w-full text-left text-red-400 text-sm">{errors?.divisionCurrent.message}</span>
+                            )}
+                        </h1>
+                    </section>
+                    {/* ---------- Country Current ---------- */}
+                    <section>
+                        <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
+                            <select
+                                {...register("countryCurrent", {
+                                    required: {
+                                        value: true,
+                                        message: "Country Name is required",
+                                    },
+                                })}
+                                type="text"
+                                className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
+                                id="countryCurrent"
+                            >
+                                <option value="">Select Country</option>
+                                <option value="bangladesh">Bangladesh</option>
+                            </select>
+                        </div>
+                        <h1 className="text-left ml-2">
+                            {errors.countryCurrent?.type === "required" && (
+                                <span className="w-full text-left text-red-400 text-sm">{errors?.countryCurrent.message}</span>
+                            )}
+                        </h1>
+                    </section>
+
+                    {/* --------------------------- Current Adress End ------------------------- */}
 
                     {/* ---------- Marital info ---------- */}
                     <section className="col-span-1 md:col-span-2 lg:col-span-3 text-[#2F3659] font-medium text-left ml-1">Marital Info</section>
@@ -718,8 +1145,8 @@ export const PersonalDetails = ({ setPage }) => {
                     )}
                     {/* ---------- Do you have children --------- */}
                     {/* {meritalStatus !== "" || meritalStatus !== "single" || ( */}
-                    {(
-                        meritalStatus === "married" && meritalStatus !== "" && meritalStatus !== "single" && <section>
+                    {meritalStatus === "married" && meritalStatus !== "" && meritalStatus !== "single" && (
+                        <section>
                             <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
                                 <select
                                     {...register("haveChildren", {
@@ -745,8 +1172,8 @@ export const PersonalDetails = ({ setPage }) => {
                             </h1>
                         </section>
                     )}
-                    {(
-                        meritalStatus === "divorced" && meritalStatus !== "" && meritalStatus !== "single" && <section>
+                    {meritalStatus === "divorced" && meritalStatus !== "" && meritalStatus !== "single" && (
+                        <section>
                             <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
                                 <select
                                     {...register("haveChildren", {
@@ -772,8 +1199,8 @@ export const PersonalDetails = ({ setPage }) => {
                             </h1>
                         </section>
                     )}
-                    {(
-                        meritalStatus === "widowed" && meritalStatus !== "" && meritalStatus !== "single" && <section>
+                    {meritalStatus === "widowed" && meritalStatus !== "" && meritalStatus !== "single" && (
+                        <section>
                             <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
                                 <select
                                     {...register("haveChildren", {
@@ -1555,13 +1982,15 @@ export const PersonalDetails = ({ setPage }) => {
                     <section className="col-span-1 md:col-span-2 lg:col-span-3 text-[#2F3659] font-medium text-left ml-1">Extra Info</section>
                     {/* ---------- Your Hobbies ---------- */}
                     <section>
-                        <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
-                            <input
+                        <div className="flex items-center bg-gray-100  w-full rounded-lg mt-3 lg:mt-0">
+                            <Select
                                 {...register("hobbies")}
-                                type="text"
-                                placeholder="Your Hobbies"
+                                closeMenuOnSelect={false}
+                                components={animatedComponents}
+                                isMulti
+                                options={hobbies}
                                 className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
-                                id="hobbies"
+                                placeholder="Select Hobbies"
                             />
                         </div>
                         <h1 className="text-left ml-2">
