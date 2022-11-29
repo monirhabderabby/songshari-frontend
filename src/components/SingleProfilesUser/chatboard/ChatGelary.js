@@ -14,7 +14,7 @@ const ChatGelary = () => {
     }, [])
     return (
         <div className='my-6 px-2 md:px-0 w-72 md:w-full'>
-            <div className="">
+            <div>
                 <h1 className="text-2xl font-semibold pb-6">You may like</h1>
             </div>
             <div className='w-72'>
@@ -28,7 +28,7 @@ const ChatGelary = () => {
                 >
                     {chats.map((city, i) => (
                         <Carousel.Item key={i}>
-                            <img className='rounded-lg' src={city.img} alt="" />
+                            <img className='rounded-lg' src={city.img} alt="Not Available" />
                         </Carousel.Item>
                     ))}
                 </Carousel>

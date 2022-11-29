@@ -49,7 +49,7 @@ const Shop = () => {
             <div className="xl:w-[290px] w-full mx-auto">
               <div className="border-[1px] ] shop-product-card bg-[#fff] border-[#0003] mb-7 overflow-hidden ease-in rounded-lg">
                 <div className="relative overflow-hidden">
-                  <img className="w-full" src={product.image} alt="" />
+                  <img className="w-full" src={product.image} alt="Not Available" />
                   <ul className="more-links">
                     <li>
                       <a href="!#">

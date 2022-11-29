@@ -21,7 +21,7 @@ const PeopleJoinedAlready = () => {
                                 className="flex flex-wrap -m-4 text-center"
                             >
                                 <div className="p-4 sm:w-1/4 w-1/2 text-center">
-                                    <img className=" inline-block" src={icon1} alt="" />
+                                    <img className=" inline-block" src={icon1} alt="Not Available" />
                                     <h2 className="title-font text-[55px] font-semibold tracking-widest mt-3 sm:text-4xl text-3xl text-white">100</h2>
                                     <p className="leading-relaxed text-[20px] text-white">Messages sent per day</p>
                                 </div>
@@ -31,7 +31,7 @@ const PeopleJoinedAlready = () => {
                                     data-aos="fade-up"
                                     className="p-4 sm:w-1/4 w-1/2 text-center"
                                 >
-                                    <img className=" inline-block" src={icon2} alt="" />
+                                    <img className=" inline-block" src={icon2} alt="Not Available" />
                                     <h2 className="title-font text-[55px] font-semibold tracking-widest mt-3 sm:text-4xl text-3xl text-white">100</h2>
                                     <p className="leading-relaxed text-[20px] text-white">Registered users worldwide</p>
                                 </div>
@@ -41,7 +41,7 @@ const PeopleJoinedAlready = () => {
                                     data-aos="fade-up"
                                     className="p-4 sm:w-1/4 w-1/2 text-center"
                                 >
-                                    <img className=" inline-block" src={icon3} alt="" />
+                                    <img className=" inline-block" src={icon3} alt="Not Available" />
                                     <h2 className="title-font text-[55px] font-semibold tracking-widest mt-3 sm:text-4xl text-3xl text-white">100</h2>
                                     <p className="leading-relaxed text-[20px] text-white">Monthly active users</p>
                                 </div>
@@ -51,7 +51,7 @@ const PeopleJoinedAlready = () => {
                                     data-aos="fade-up"
                                     className="p-4 sm:w-1/4 w-1/2 text-center"
                                 >
-                                    <img className=" inline-block" src={icon4} alt="" />
+                                    <img className=" inline-block" src={icon4} alt="Not Available" />
                                     <h2 className="title-font text-[55px] font-semibold tracking-widest mt-3 sm:text-4xl text-3xl text-white">100</h2>
                                     <p className="leading-relaxed text-[20px] text-white">New daily sign ups</p>
                                 </div>

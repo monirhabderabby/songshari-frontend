@@ -5,35 +5,33 @@ import { auth } from "../../../firebase.init";
 
 const MobileOtherUsersProfile = () => {
     const [user] = useAuthState(auth);
-    if (user) {
-        console.log(user);
-    }
+
     return (
         <>
             <div className="bg-[#D9D9D9] max-w-[337px] flex justify-center items-center flex-col  mx-auto h-[92px]">
-                <img src='https://i.ibb.co/YD5hC1J/Rectangle-4471.png'></img>
+                <img src='https://i.ibb.co/YD5hC1J/Rectangle-4471.png' alt="Not Available"></img>
             </div>
             <div style={{ boxShadow: " 0px 10px 40px rgba(0, 0, 0, 0.03)" }} className="max-w-[337px] px-[23px]  rounded-sm mx-auto bg-[#ffffff]">
                 <div>
                     <div className="flex justify-start items-center">
-                        <img src={user ? user.photoURL : profile} className="mt-[-20px] w-16 h-16 rounded-full" alt="" />
+                        <img src={user ? user.photoURL : profile} className="mt-[-20px] w-16 h-16 rounded-full" alt="Not Available" />
                         <h2 className="pl-[7px] text-sm font-semibold text-[#000000]">Marvis Ighedosa</h2>
                     </div>
                     <div className="grid grid-cols-3">
                         <div className='heu col-span-1'>
-                        <h1 className="">21 years old</h1>
-                        <img src='https://i.ibb.co/HNrqrcw/image.png' className="ml-2"></img>
+                            <h1 className="">21 years old</h1>
+                            <img src='https://i.ibb.co/HNrqrcw/image.png' className="ml-2" alt="Not Available"></img>
                         </div>
-                       
+
                         <div>
-                        <h1 className=" ml-6">Paris,France</h1>
+                            <h1 className=" ml-6">Paris,France</h1>
                         </div>
-                       
+
                         <div>
-                        <h1 className="ml-8"> <i class="fa-regular fa-heart"></i> 257</h1>
+                            <h1 className="ml-8"> <i className="fa-regular fa-heart"></i> 257</h1>
                         </div>
-                       
-                       
+
+
                     </div>
                 </div>
             </div>

@@ -7,7 +7,7 @@ const MeetNewPeopleCard = ({ data }) => {
       <div>
         <div className={`${meetNewPeople.singleWorkBox} mx-auto`}>
           <div className={meetNewPeople.icon}>
-            <img src={data.img} alt="img" />
+            <img src={data.img} alt="Not Available" />
             <div className={meetNewPeople.number}>{data.number}</div>
           </div>
           <h4 className={meetNewPeople.title}>{data.title}</h4>

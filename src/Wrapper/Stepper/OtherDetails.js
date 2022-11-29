@@ -14,7 +14,6 @@ export const OtherDetails = () => {
     } = useForm();
 
     const onSubmit = async data => {
-        console.log(data);
         await setOthersDetails(data);
     };
 
@@ -23,7 +22,8 @@ export const OtherDetails = () => {
             toast.success("Successfully updated your profile");
             navigate("/");
         }
-    }, [data]);
+    }, [data, navigate]);
+
     return (
         <div className="w-full h-auto">
             <section className="col-span-1 md:col-span-2 lg:col-span-3 text-2xl text-[#2F3659] mb-4">

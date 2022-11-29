@@ -14,25 +14,25 @@ export const ContactForm = () => {
                 loading="lazy"
                 referrerpolicy="no-referrer-when-downgrade"
             ></iframe>
-            <div class="container my-24 px-6 mx-auto">
-                <section class="mb-32 text-gray-800">
-                    <div class="flex flex-wrap">
-                        <div class="grow-0 shrink-0 basis-auto mb-6 md:mb-0 w-full md:w-6/12 px-3 lg:px-6">
-                            <h2 class="text-3xl font-bold mb-6">Contact us</h2>
-                            <p class="text-gray-500 mb-6">
+            <div className="container my-24 px-6 mx-auto">
+                <section className="mb-32 text-gray-800">
+                    <div className="flex flex-wrap">
+                        <div className="grow-0 shrink-0 basis-auto mb-6 md:mb-0 w-full md:w-6/12 px-3 lg:px-6">
+                            <h2 className="text-3xl font-bold mb-6">Contact us</h2>
+                            <p className="text-gray-500 mb-6">
                                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium, modi accusantium ipsum corporis quia asperiores
                                 dolorem nisi corrupti eveniet dolores ad maiores repellendus enim autem omnis fugiat perspiciatis? Ad, veritatis.
                             </p>
-                            <p class="text-gray-500 mb-2">884, A-2, Mirpur DOHS, Dhaka</p>
-                            <p class="text-gray-500 mb-2">+ 01 234 567 89</p>
-                            <p class="text-gray-500 mb-2">itco.com.bd@gmail.com</p>
+                            <p className="text-gray-500 mb-2">884, A-2, Mirpur DOHS, Dhaka</p>
+                            <p className="text-gray-500 mb-2">+ 01 234 567 89</p>
+                            <p className="text-gray-500 mb-2">itco.com.bd@gmail.com</p>
                         </div>
-                        <div class="grow-0 shrink-0 basis-auto mb-12 md:mb-0 w-full md:w-6/12 px-3 lg:px-6">
+                        <div className="grow-0 shrink-0 basis-auto mb-12 md:mb-0 w-full md:w-6/12 px-3 lg:px-6">
                             <form>
-                                <div class="form-group mb-6">
+                                <div className="form-group mb-6">
                                     <input
                                         type="text"
-                                        class="form-control block
+                                        className="form-control block
               w-full
               px-3
               py-1.5
@@ -50,10 +50,10 @@ export const ContactForm = () => {
                                         placeholder="Name"
                                     />
                                 </div>
-                                <div class="form-group mb-6">
+                                <div className="form-group mb-6">
                                     <input
                                         type="email"
-                                        class="form-control block
+                                        className="form-control block
               w-full
               px-3
               py-1.5
@@ -71,9 +71,9 @@ export const ContactForm = () => {
                                         placeholder="Email address"
                                     />
                                 </div>
-                                <div class="form-group mb-6">
+                                <div className="form-group mb-6">
                                     <textarea
-                                        class="
+                                        className="
               form-control
               block
               w-full
@@ -95,15 +95,15 @@ export const ContactForm = () => {
                                         placeholder="Message"
                                     ></textarea>
                                 </div>
-                                <div class="mb-6">
+                                <div className="mb-6">
                                     <input type="checkbox" className="mr-2" checked={checked} onClick={() => setChecked(!checked)} />
-                                    <label class="form-check-label inline-block text-gray-800" for="exampleCheck87">
+                                    <label className="form-check-label inline-block text-gray-800" for="exampleCheck87">
                                         Send me a copy of this message
                                     </label>
                                 </div>
                                 <button
                                     type="submit"
-                                    class="
+                                    className="
             w-full
             px-6
             py-2.5

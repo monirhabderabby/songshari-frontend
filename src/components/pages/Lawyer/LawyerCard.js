@@ -10,7 +10,7 @@ const LawyerCard = () => {
                     <div className={`pl-4 pr-6 pt-4 pb-1 ${style.card_body} rounded-md`}>
                         <div>
                             <div className={`${style.img_container}`}>
-                                <img className={`rounded-md ${style.img}`} src={img1} alt="service image" />
+                                <img className={`rounded-md ${style.img}`} src={img1} alt="Not Available" />
                             </div>
                             <div>
                                 <h1 className='py-2 text-[20px] font-bold'>Lawyer service name here</h1>
@@ -36,7 +36,7 @@ const LawyerCard = () => {
                     <div className={`pl-4 pr-6 pt-4 pb-1 ${style.card_body} rounded-md`}>
                         <div>
                             <div className={`${style.img_container}`}>
-                                <img className={`rounded-md ${style.img}`} src={img1} alt="service image" />
+                                <img className={`rounded-md ${style.img}`} src={img1} alt="Not Available" />
                             </div>
                             <div>
                                 <h1 className='py-2 text-[20px] font-bold'>Lawyer service name here</h1>

@@ -55,20 +55,20 @@ export const MembershipPremium = () => {
         If you have any questions Contact Us
       </h1>
       <div className="grid lg:grid-cols-6 sm:grid-cols-1 gap-2 mx-auto ml-14 mr-14 mt-20">
-        <div className="">
+        <div>
           <img
-            alt=""
+            alt="Not Available"
             src="https://pixner.net/peyamba/peyamba/assets/images/membership/left-img.png"
             className="hhh"
           ></img>
         </div>
-        <div className=""></div>
-        <div className=""></div>
-        <div className=""></div>
-        <div className=""></div>
-        <div className="">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div>
           <img
-            alt=""
+            alt="Not Available"
             src="https://pixner.net/peyamba/peyamba/assets/images/membership/right-img.png"
             className="hhhh"
           ></img>

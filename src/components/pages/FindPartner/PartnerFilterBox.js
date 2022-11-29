@@ -3,9 +3,7 @@ import Accordian from '../../../components/SingleProfilesUser/profileSection/Acc
 import FindPartner from "../../../assets/css/FindPartner.module.css";
 import { Input, Select } from 'antd';
 import { AccordionPartner } from "./AccordionPartner";
-const handleChange = (value) => {
-  console.log(`selected ${value}`);
-};
+
 const PartnerFilterBox = () => {
   const [remuneration, setRemuneration] = useState(true);
   const [location, setLocation] = useState(true);
@@ -37,7 +35,7 @@ const PartnerFilterBox = () => {
         }}
       >
         {/* <h2 className="text-[#000000] text-[15px] font-bold mb-[16px]">
-          Basic Information <i class="fa-solid fa-chevron-right ml-28"></i>
+          Basic Information <i className="fa-solid fa-chevron-right ml-28"></i>
         </h2> */}
 
         {/* Category input  */}

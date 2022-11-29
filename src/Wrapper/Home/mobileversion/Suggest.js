@@ -18,7 +18,7 @@ const Suggest = () => {
         breakpoints={{
           0: {
             slidesPerView: 1,
-           
+
           },
 
           400: {
@@ -69,7 +69,7 @@ const Suggest = () => {
                 </div>
                 <div className="Suggested-info__cardUp">
                   <div className="Suggested-info__cardImg">
-                    <img src={profile.profilePhoto} alt="card__img" />
+                    <img src={profile.profilePhoto} alt="Not Available" />
                   </div>
                   <h4 className="text-white text-[30px] text-center overflow-hidden">
                     {profile?.firstName + " " + profile?.lastName}
@@ -109,10 +109,10 @@ const Suggest = () => {
                       onClick={() => navigate(`/profile/${profile._id}`)}
                     ></i>
 
-                    <a href="#">
+                    <a href="!#">
                       <i className="fas fa-comment" aria-hidden="true"></i>
                     </a>
-                    <a href="#">
+                    <a href="!#">
                       <i className="fas fa-heart" aria-hidden="true"></i>
                     </a>
                   </div>

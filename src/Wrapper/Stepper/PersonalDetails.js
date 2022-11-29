@@ -319,9 +319,8 @@ export const PersonalDetails = ({ setPage }) => {
                     {/* ---------- Hometown ---------- */}
                     <section className="relative">
                         <div
-                            className={`flex items-center  p-3 w-full rounded-lg mt-3 lg:mt-0 ${
-                                homeTownSuggestion.length > 0 ? "rounded-br-none rounded-bl-none shadow-lg bg-white" : "bg-gray-100"
-                            }`}
+                            className={`flex items-center  p-3 w-full rounded-lg mt-3 lg:mt-0 ${homeTownSuggestion.length > 0 ? "rounded-br-none rounded-bl-none shadow-lg bg-white" : "bg-gray-100"
+                                }`}
                         >
                             <input
                                 {...register("hometown", {
@@ -339,9 +338,8 @@ export const PersonalDetails = ({ setPage }) => {
                             />
                         </div>
                         <div
-                            className={`bg-white shadow-lg absolute top-[40px] right-0 w-full rounded-br-lg rounded-bl-lg overflow-y-scroll ${
-                                homeTownSuggestion.length > 0 ? "max-h-[346px]" : "h-0"
-                            }`}
+                            className={`bg-white shadow-lg absolute top-[40px] right-0 w-full rounded-br-lg rounded-bl-lg overflow-y-scroll ${homeTownSuggestion.length > 0 ? "max-h-[346px]" : "h-0"
+                                }`}
                         >
                             {homeTownSuggestion.length > 0 &&
                                 homeTownSuggestion.map(suggetion => {
@@ -583,9 +581,8 @@ export const PersonalDetails = ({ setPage }) => {
                     {/* ---------- Zodiac Sign ---------- */}
                     <section className="relative">
                         <div
-                            className={`flex items-center  p-3 w-full rounded-lg mt-3 lg:mt-0 ${
-                                zodiacSignSuggestion.length > 0 ? "rounded-br-none rounded-bl-none shadow-lg bg-white" : "bg-gray-100"
-                            }`}
+                            className={`flex items-center  p-3 w-full rounded-lg mt-3 lg:mt-0 ${zodiacSignSuggestion.length > 0 ? "rounded-br-none rounded-bl-none shadow-lg bg-white" : "bg-gray-100"
+                                }`}
                         >
                             <input
                                 {...register("zodiacSign", {
@@ -603,9 +600,8 @@ export const PersonalDetails = ({ setPage }) => {
                             />
                         </div>
                         <div
-                            className={`bg-white shadow-lg absolute top-[40px] right-0 w-full rounded-br-lg rounded-bl-lg overflow-y-scroll ${
-                                zodiacSignSuggestion.length > 0 ? "max-h-[346px]" : "h-0"
-                            }`}
+                            className={`bg-white shadow-lg absolute top-[40px] right-0 w-full rounded-br-lg rounded-bl-lg overflow-y-scroll ${zodiacSignSuggestion.length > 0 ? "max-h-[346px]" : "h-0"
+                                }`}
                         >
                             {zodiacSignSuggestion.length > 0 &&
                                 zodiacSignSuggestion.map(suggetion => {
@@ -702,9 +698,8 @@ export const PersonalDetails = ({ setPage }) => {
                     {/* ---------- Town permanent ---------- */}
                     <section className="relative">
                         <div
-                            className={`flex items-center  p-3 w-full rounded-lg mt-3 lg:mt-0 ${
-                                townPermanentSuggestion.length > 0 ? "rounded-br-none rounded-bl-none shadow-lg bg-white" : "bg-gray-100"
-                            }`}
+                            className={`flex items-center  p-3 w-full rounded-lg mt-3 lg:mt-0 ${townPermanentSuggestion.length > 0 ? "rounded-br-none rounded-bl-none shadow-lg bg-white" : "bg-gray-100"
+                                }`}
                         >
                             <input
                                 {...register("townPermanent", {
@@ -722,9 +717,8 @@ export const PersonalDetails = ({ setPage }) => {
                             />
                         </div>
                         <div
-                            className={`bg-white shadow-lg absolute top-[40px] right-0 w-full rounded-br-lg rounded-bl-lg overflow-y-scroll ${
-                                townPermanentSuggestion.length > 0 ? "max-h-[346px]" : "h-0"
-                            }`}
+                            className={`bg-white shadow-lg absolute top-[40px] right-0 w-full rounded-br-lg rounded-bl-lg overflow-y-scroll ${townPermanentSuggestion.length > 0 ? "max-h-[346px]" : "h-0"
+                                }`}
                         >
                             {townPermanentSuggestion.length > 0 &&
                                 townPermanentSuggestion.map(suggetion => {
@@ -874,9 +868,8 @@ export const PersonalDetails = ({ setPage }) => {
                     {/* ---------- Town Current ---------- */}
                     <section className="relative">
                         <div
-                            className={`flex items-center  p-3 w-full rounded-lg mt-3 lg:mt-0 ${
-                                townCurrentSuggestion.length > 0 ? "rounded-br-none rounded-bl-none shadow-lg bg-white" : "bg-gray-100"
-                            }`}
+                            className={`flex items-center  p-3 w-full rounded-lg mt-3 lg:mt-0 ${townCurrentSuggestion.length > 0 ? "rounded-br-none rounded-bl-none shadow-lg bg-white" : "bg-gray-100"
+                                }`}
                         >
                             <input
                                 {...register("townCurrent", {
@@ -894,9 +887,8 @@ export const PersonalDetails = ({ setPage }) => {
                             />
                         </div>
                         <div
-                            className={`bg-white shadow-lg absolute top-[40px] right-0 w-full rounded-br-lg rounded-bl-lg overflow-y-scroll ${
-                                townCurrentSuggestion.length > 0 ? "max-h-[346px]" : "h-0"
-                            }`}
+                            className={`bg-white shadow-lg absolute top-[40px] right-0 w-full rounded-br-lg rounded-bl-lg overflow-y-scroll ${townCurrentSuggestion.length > 0 ? "max-h-[346px]" : "h-0"
+                                }`}
                         >
                             {townCurrentSuggestion.length > 0 &&
                                 townCurrentSuggestion.map(suggetion => {
