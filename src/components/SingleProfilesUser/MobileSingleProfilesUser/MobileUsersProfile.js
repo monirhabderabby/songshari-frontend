@@ -17,8 +17,8 @@ const MobileUsersProfile = () => {
             <div style={{ boxShadow: " 0px 10px 40px rgba(0, 0, 0, 0.03)" }} className="max-w-[337px] px-[23px]  rounded-sm mx-auto bg-[#ffffff]">
                 <div>
                     <div className="flex justify-start items-center">
-                        <img src={user ? user.photoURL : profile} className="mt-[-20px] w-16 h-16 rounded-full" alt="" />
-                        <h2 className="pl-[7px] text-sm font-semibold text-[#000000]">{user.displayName}</h2>
+                        <img src={user ? user?.photoURL : profile} className="mt-[-20px] w-16 h-16 rounded-full" alt="" />
+                        <h2 className="pl-[7px] text-sm font-semibold text-[#000000]">{user?.displayName}</h2>
                     </div>
                     <div>
                         <h3 className="text-[#737373] w-[165px] mt-[16px] pb-[10px] border-[#737373] text-xs font-normal border-b-[1px]">
