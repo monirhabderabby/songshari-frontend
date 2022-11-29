@@ -17,8 +17,8 @@ const AboutOurMission = () => {
                     </div>
                 </div>
                 <div className='relative flex-1 mb-12'>
-                    <img className='z-0 rounded-bl-[80px] w-[476px] h-[415px]' src={aboutUsMission1} alt="" />
-                    <img className='absolute -bottom-12 rounded-tr-[128px] rounded-bl-[127px] w-72 z-10' src={aboutUsMission2} alt="" />
+                    <img className='z-0 rounded-bl-[80px] w-[476px] h-[415px]' src={aboutUsMission1} alt="Not Available" />
+                    <img className='absolute -bottom-12 rounded-tr-[128px] rounded-bl-[127px] w-72 z-10' src={aboutUsMission2} alt="Not Available" />
                 </div>
             </div>
         </div>

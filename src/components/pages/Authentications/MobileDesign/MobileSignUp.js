@@ -92,7 +92,7 @@ const MobileSignUp = () => {
                 <p>Sign Up</p>
             </div>
             <div className="flex justify-center mb-16">
-                <img src={logo} alt="" />
+                <img src={logo} alt="Not Available" />
             </div>
             <section>
                 <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col mx-8">

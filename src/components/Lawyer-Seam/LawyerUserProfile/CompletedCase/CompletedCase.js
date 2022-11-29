@@ -21,7 +21,7 @@ const CompletedCase = () => {
                     >
                         <div className="grid grid-cols-3">
                             <div className="col-span-1">
-                                <img className="rounded-xl" src={singleCase.img} alt="" />
+                                <img className="rounded-xl" src={singleCase.img} alt="Not Available" />
                             </div>
                             <div className="col-span-2 ml-6 my-auto">
                                 <p className="font-medium leading-6 mb-4">{singleCase.caseName}</p>

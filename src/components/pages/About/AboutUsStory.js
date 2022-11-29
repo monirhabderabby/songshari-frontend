@@ -9,7 +9,7 @@ const AboutUsStory = () => {
             </h1>
             <div className='max-w-5xl mx-auto flex items-start gap-16'>
                 <div>
-                    <img className='w-[584px] rounded-[30px]' src={aboutUsStoryImg} alt="" />
+                    <img className='w-[584px] rounded-[30px]' src={aboutUsStoryImg} alt="Not Available" />
                 </div>
                 <div className='w-96 text-[#757575] leading-7'>
                     <p className='mb-4'>

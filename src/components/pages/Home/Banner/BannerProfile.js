@@ -26,8 +26,8 @@ const BannerProfile = () => {
                 >
                     {swipematch.map(data => (
                         <SwiperSlide key={data._id}>
-                            <div className=" h-[400px] w-[280px] relative mx-auto">
-                                <img className=" h-[400px] w-[280px] rounded-[40px] " src={data?.profilePhoto} alt="" />
+                            <div className="h-[400px] w-[280px] relative mx-auto rounded-[40px]" style={{ boxShadow: "2px 2px 10px rgba(0, 0, 0, 0.12)" }}>
+                                <img className="h-[400px] w-[280px] rounded-[40px] " src={data?.profilePhoto} alt="Not Available" />
                                 <div className="bottom-[20px] left-[25%] flex justify-around items-center absolute">
                                     <div
                                         className="w-[29px] mr-[20px] rounded-[50px] flex justify-center items-center h-[30px]"

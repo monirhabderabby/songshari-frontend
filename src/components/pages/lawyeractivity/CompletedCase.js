@@ -1,9 +1,6 @@
 import React from 'react'
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
@@ -16,7 +13,7 @@ export const CompletedCase = () => {
         <Card sx={{ maxWidth: 345, backgroundColor: '#40268B', color: 'white' }}>
           <CardContent className='grid lg:grid-cols-2'>
             <div>
-              <img src='https://i.ibb.co/JsdsT72/Rectangle-714.png'></img>
+              <img src='https://i.ibb.co/JsdsT72/Rectangle-714.png' alt="Not Available"></img>
             </div>
             <div>
               <Typography variant="body2" sx={{ fontSize: 14, color: 'white' }} color="text.secondary">

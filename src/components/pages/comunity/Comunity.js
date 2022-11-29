@@ -25,7 +25,7 @@ const Comunity = () => {
                             <div className='flex'>
                                 <button onClick={() => setShowModal(true)} className='filter-search'>
                                     <div className='flex justify-between'>
-                                        <img src={togol} alt="" />
+                                        <img src={togol} alt="Not Available" />
                                         <p className='pl-1'>filter search</p>
                                     </div>
                                 </button>

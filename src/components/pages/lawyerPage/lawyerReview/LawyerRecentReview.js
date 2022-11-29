@@ -78,7 +78,7 @@ const LawyerRecentReview = () => {
                   reach your financial goal.
                 </p>
                 <div className="flex  items-center justify-center pt-[10px]">
-                  <img src={data.img} alt="" />
+                  <img src={data.img} alt="Not Available" />
                   <div className="ml-3">
                     <h3 className="text-sm text-[#E41272] font-bold">
                       Regina Miles

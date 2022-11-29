@@ -169,7 +169,7 @@ const LawyerAddServiceFrom = () => {
                         </div>
                         {loading()}
                         <div className={isImage ? 'hidden' : 'block'}>
-                            <img className="w-52 h-52 rounded-full" src={imgUrl} alt="" />
+                            <img className="w-52 h-52 rounded-full" src={imgUrl} alt="Not Available" />
                         </div>
                         <div className='mt-8'>
                             <p>Provide more details about your offer</p>

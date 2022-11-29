@@ -14,9 +14,9 @@ const Footer = () => {
                 <div className="wave"></div>
                 <div className="wave"></div>
             </div>
-            <img className="shape1" src="https://shonshari.vercel.app/static/media/f-shape.b5e3192423e8e9d80b7a.png" alt="img" />
-            <img className="shape2" src={flower} alt="img" />
-            <img className="shape3" src={rightShape} alt="img" />
+            <img className="shape1" src="https://shonshari.vercel.app/static/media/f-shape.b5e3192423e8e9d80b7a.png" alt="Not Available" />
+            <img className="shape2" src={flower} alt="Not Available" />
+            <img className="shape3" src={rightShape} alt="Not Available" />
             <div className="newslater-section z-50">
                 <div className="footer-container z-50">
                     <div className="flex mb-[50px] justify-center">
@@ -24,7 +24,7 @@ const Footer = () => {
                             <div className="newslater-container">
                                 <div className="newslater-wrapper">
                                     <div className="icon">
-                                        <img src={icon} alt="img" />
+                                        <img src={icon} alt="Not Available" />
                                     </div>
                                     <p className="text mt-[200px]">Sign up to receive a monthly email on the latest news!</p>
                                     <form className="newslater-form">

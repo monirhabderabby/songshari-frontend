@@ -18,7 +18,7 @@ const AboutUsOurHistory = () => {
                 {
                     articlesInfo.map(article => <div key={article.id}>
                         <div>
-                            <img className='rounded-[20px]' src={article.img} alt="" />
+                            <img className='rounded-[20px]' src={article.img} alt="Not Available" />
                         </div>
                         <h3 className='text-xl leading-8 font-medium mt-6 mb-3'>
                             {article.title}

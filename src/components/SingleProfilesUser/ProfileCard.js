@@ -15,7 +15,7 @@ const ProfileCard = () => {
                             <img
                                 className="w-44 h-44 rounded-full img-fluid"
                                 src={user?.photoURL ? user.photoURL : "https://cdn-icons-png.flaticon.com/512/194/194938.png"}
-                                alt="profileImage"
+                                alt="profile"
                             />
                         </div>
                     </div>

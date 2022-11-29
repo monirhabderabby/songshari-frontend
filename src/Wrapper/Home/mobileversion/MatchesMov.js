@@ -1,7 +1,7 @@
 import React from 'react'
 import '../../../components/SingleProfilesUser/profileSection/Matches.css';
-import img from '../../../assets/images/Vector.png';
-import img1 from '../../../assets/images/coolicon.png';
+// import img from '../../../assets/images/Vector.png';
+// import img1 from '../../../assets/images/coolicon.png';
 import { BottomNav } from './BottomNav';
 import { Link } from 'react-router-dom';
 
@@ -26,7 +26,7 @@ export const MatchesMov = () => {
             </div>
             {/* ------------percent----------- */}
             <p className='bg-white w-28 text-center ml-3 rounded-full'>80% Match</p>
-            <img src='https://www.creative-tim.com/learning-lab/tailwind-starter-kit/img/team-2-800x800.jpg' className='w-20 mx-auto rounded-full mt-2'></img>
+            <img src='https://www.creative-tim.com/learning-lab/tailwind-starter-kit/img/team-2-800x800.jpg' className='w-20 mx-auto rounded-full mt-2' alt="Not Available"></img>
             <div className="card-body items-center text-center">
               <h2 className="card-title text-white">Anamika</h2>
               <p className="text-white">Age : 28 </p>
@@ -34,10 +34,10 @@ export const MatchesMov = () => {
               <div className="card-actions justify-end pt-5 gap-10">
                 <div className='match-icon-mov ml-28 mb-4'>
                   <div className='match-icon1 rounded-full mr-4'>
-                    <img src='https://i.ibb.co/Fh0pm2w/Vector.png' className='lg:max-w-lg'></img>
+                    <img src='https://i.ibb.co/Fh0pm2w/Vector.png' className='lg:max-w-lg' alt="Not Available"></img>
                   </div>
                   <div className='match-icon-2 rounded-full'>
-                    <img src='https://i.ibb.co/km8DS6j/coolicon.png'></img>
+                    <img src='https://i.ibb.co/km8DS6j/coolicon.png' alt="Not Available"></img>
                   </div>
                 </div>
 
@@ -58,7 +58,7 @@ export const MatchesMov = () => {
 
 
             </div>
-            <img src='https://www.creative-tim.com/learning-lab/tailwind-starter-kit/img/team-2-800x800.jpg' className='w-20 mx-auto rounded-full mt-4'></img>
+            <img src='https://www.creative-tim.com/learning-lab/tailwind-starter-kit/img/team-2-800x800.jpg' className='w-20 mx-auto rounded-full mt-4' alt="Not Available"></img>
 
             <div className="card-body items-center text-center">
               <h2 className="card-title text-white">Anamika</h2>
@@ -67,10 +67,10 @@ export const MatchesMov = () => {
               <div className="card-actions justify-end pt-5 gap-10">
                 <div className='match-icon-mov ml-28 mb-4'>
                   <div className='match-icon1 rounded-full mr-4'>
-                    <img src='https://i.ibb.co/Fh0pm2w/Vector.png' className='lg:max-w-lg'></img>
+                    <img src='https://i.ibb.co/Fh0pm2w/Vector.png' className='lg:max-w-lg' alt="Not Available"></img>
                   </div>
                   <div className='match-icon-2 rounded-full'>
-                    <img src='https://i.ibb.co/km8DS6j/coolicon.png'></img>
+                    <img src='https://i.ibb.co/km8DS6j/coolicon.png' alt="Not Available"></img>
                   </div>
                 </div>
 
@@ -82,7 +82,7 @@ export const MatchesMov = () => {
             {/* ----------Image-------- */}
             {/* ------------percent----------- */}
             <p className='bg-white w-28 text-center ml-3 mt-3 rounded-full'>80% Match</p>
-            <img src='https://www.creative-tim.com/learning-lab/tailwind-starter-kit/img/team-2-800x800.jpg' className='w-20 mx-auto rounded-full mt-4'></img>
+            <img src='https://www.creative-tim.com/learning-lab/tailwind-starter-kit/img/team-2-800x800.jpg' className='w-20 mx-auto rounded-full mt-4' alt="Not Available"></img>
 
             <div className="card-body items-center text-center">
               <h2 className="card-title text-white">Anamika</h2>
@@ -91,10 +91,10 @@ export const MatchesMov = () => {
               <div className="card-actions justify-end pt-5 gap-10">
                 <div className='match-icon-mov ml-28 mb-4'>
                   <div className='match-icon1 rounded-full mr-4'>
-                    <img src='https://i.ibb.co/Fh0pm2w/Vector.png' className='lg:max-w-lg'></img>
+                    <img src='https://i.ibb.co/Fh0pm2w/Vector.png' className='lg:max-w-lg' alt="Not Available"></img>
                   </div>
                   <div className='match-icon-2 rounded-full'>
-                    <img src='https://i.ibb.co/km8DS6j/coolicon.png'></img>
+                    <img src='https://i.ibb.co/km8DS6j/coolicon.png' alt="Not Available"></img>
                   </div>
                 </div>
 
@@ -106,7 +106,7 @@ export const MatchesMov = () => {
             {/* ----------Image-------- */}
             {/* ------------percent----------- */}
             <p className='bg-white w-28 text-center ml-3 mt-3 rounded-full'>80% Match</p>
-            <img src='https://www.creative-tim.com/learning-lab/tailwind-starter-kit/img/team-2-800x800.jpg' className='w-20 mx-auto rounded-full mt-4'></img>
+            <img src='https://www.creative-tim.com/learning-lab/tailwind-starter-kit/img/team-2-800x800.jpg' className='w-20 mx-auto rounded-full mt-4' alt="Not Available"></img>
 
             <div className="card-body items-center text-center">
               <h2 className="card-title text-white">Anamika</h2>
@@ -115,10 +115,10 @@ export const MatchesMov = () => {
               <div className="card-actions justify-end pt-5 gap-10">
                 <div className='match-icon-mov ml-28 mb-4'>
                   <div className='match-icon1 rounded-full mr-4'>
-                    <img src='https://i.ibb.co/Fh0pm2w/Vector.png' className='lg:max-w-lg'></img>
+                    <img src='https://i.ibb.co/Fh0pm2w/Vector.png' className='lg:max-w-lg' alt="Not Available"></img>
                   </div>
                   <div className='match-icon-2 rounded-full'>
-                    <img src='https://i.ibb.co/km8DS6j/coolicon.png'></img>
+                    <img src='https://i.ibb.co/km8DS6j/coolicon.png' alt="Not Available"></img>
                   </div>
                 </div>
 
@@ -130,7 +130,7 @@ export const MatchesMov = () => {
             {/* ----------Image-------- */}
             {/* ------------percent----------- */}
             <p className='bg-white w-28 text-center ml-3 mt-3 rounded-full'>80% Match</p>
-            <img src='https://www.creative-tim.com/learning-lab/tailwind-starter-kit/img/team-2-800x800.jpg' className='w-20 mx-auto rounded-full mt-4'></img>
+            <img src='https://www.creative-tim.com/learning-lab/tailwind-starter-kit/img/team-2-800x800.jpg' className='w-20 mx-auto rounded-full mt-4' alt="Not Available"></img>
 
             <div className="card-body items-center text-center">
               <h2 className="card-title text-white">Anamika</h2>
@@ -139,10 +139,10 @@ export const MatchesMov = () => {
               <div className="card-actions justify-end pt-5 gap-10">
                 <div className='match-icon-mov ml-28 mb-4'>
                   <div className='match-icon1 rounded-full mr-4'>
-                    <img src='https://i.ibb.co/Fh0pm2w/Vector.png' className='lg:max-w-lg'></img>
+                    <img src='https://i.ibb.co/Fh0pm2w/Vector.png' className='lg:max-w-lg' alt="Not Available"></img>
                   </div>
                   <div className='match-icon-2 rounded-full'>
-                    <img src='https://i.ibb.co/km8DS6j/coolicon.png'></img>
+                    <img src='https://i.ibb.co/km8DS6j/coolicon.png' alt="Not Available"></img>
                   </div>
                 </div>
 
@@ -154,7 +154,7 @@ export const MatchesMov = () => {
             {/* ----------Image-------- */}
             {/* ------------percent----------- */}
             <p className='bg-white w-28 text-center ml-3 mt-3 rounded-full'>80% Match</p>
-            <img src='https://www.creative-tim.com/learning-lab/tailwind-starter-kit/img/team-2-800x800.jpg' className='w-20 mx-auto rounded-full mt-4'></img>
+            <img src='https://www.creative-tim.com/learning-lab/tailwind-starter-kit/img/team-2-800x800.jpg' className='w-20 mx-auto rounded-full mt-4' alt="Not Available"></img>
 
             <div className="card-body items-center text-center">
               <h2 className="card-title text-white">Anamika</h2>
@@ -163,10 +163,10 @@ export const MatchesMov = () => {
               <div className="card-actions justify-end pt-5 gap-10">
                 <div className='match-icon-mov ml-28 mb-4'>
                   <div className='match-icon1 rounded-full mr-4'>
-                    <img src='https://i.ibb.co/Fh0pm2w/Vector.png' className='lg:max-w-lg'></img>
+                    <img src='https://i.ibb.co/Fh0pm2w/Vector.png' className='lg:max-w-lg' alt="Not Available"></img>
                   </div>
                   <div className='match-icon-2 rounded-full'>
-                    <img src='https://i.ibb.co/km8DS6j/coolicon.png'></img>
+                    <img src='https://i.ibb.co/km8DS6j/coolicon.png' alt="Not Available"></img>
                   </div>
                 </div>
 
@@ -178,7 +178,7 @@ export const MatchesMov = () => {
             {/* ----------Image-------- */}
             {/* ------------percent----------- */}
             <p className='bg-white w-28 text-center ml-3 mt-3 rounded-full'>80% Match</p>
-            <img src='https://www.creative-tim.com/learning-lab/tailwind-starter-kit/img/team-2-800x800.jpg' className='w-20 mx-auto rounded-full mt-4'></img>
+            <img src='https://www.creative-tim.com/learning-lab/tailwind-starter-kit/img/team-2-800x800.jpg' className='w-20 mx-auto rounded-full mt-4' alt="Not Available"></img>
 
             <div className="card-body items-center text-center">
               <h2 className="card-title text-white">Anamika</h2>
@@ -187,10 +187,10 @@ export const MatchesMov = () => {
               <div className="card-actions justify-end pt-5 gap-10">
                 <div className='match-icon-mov ml-28 mb-4'>
                   <div className='match-icon1 rounded-full mr-4'>
-                    <img src='https://i.ibb.co/Fh0pm2w/Vector.png' className='lg:max-w-lg'></img>
+                    <img src='https://i.ibb.co/Fh0pm2w/Vector.png' className='lg:max-w-lg' alt="Not Available"></img>
                   </div>
                   <div className='match-icon-2 rounded-full'>
-                    <img src='https://i.ibb.co/km8DS6j/coolicon.png'></img>
+                    <img src='https://i.ibb.co/km8DS6j/coolicon.png' alt="Not Available"></img>
                   </div>
                 </div>
 
@@ -202,7 +202,7 @@ export const MatchesMov = () => {
             {/* ----------Image-------- */}
             {/* ------------percent----------- */}
             <p className='bg-white w-28 text-center ml-3 mt-3 rounded-full'>80% Match</p>
-            <img src='https://www.creative-tim.com/learning-lab/tailwind-starter-kit/img/team-2-800x800.jpg' className='w-20 mx-auto rounded-full mt-4'></img>
+            <img src='https://www.creative-tim.com/learning-lab/tailwind-starter-kit/img/team-2-800x800.jpg' className='w-20 mx-auto rounded-full mt-4' alt="Not Available"></img>
 
             <div className="card-body items-center text-center">
               <h2 className="card-title text-white">Anamika</h2>
@@ -211,10 +211,10 @@ export const MatchesMov = () => {
               <div className="card-actions justify-end pt-5 gap-10">
                 <div className='match-icon-mov ml-28 mb-4'>
                   <div className='match-icon1 rounded-full mr-4'>
-                    <img src='https://i.ibb.co/Fh0pm2w/Vector.png' className='lg:max-w-lg'></img>
+                    <img src='https://i.ibb.co/Fh0pm2w/Vector.png' className='lg:max-w-lg' alt="Not Available"></img>
                   </div>
                   <div className='match-icon-2 rounded-full'>
-                    <img src='https://i.ibb.co/km8DS6j/coolicon.png'></img>
+                    <img src='https://i.ibb.co/km8DS6j/coolicon.png' alt="Not Available"></img>
                   </div>
                 </div>
 

@@ -42,7 +42,7 @@ const MobileForgetPassword = () => {
                 </p>
             </div>
             <div>
-                <img className='w-48 mx-auto my-10' src={forgetPasswordImg} alt="" />
+                <img className='w-48 mx-auto my-10' src={forgetPasswordImg} alt="Not Available" />
             </div>
             <section>
                 <form

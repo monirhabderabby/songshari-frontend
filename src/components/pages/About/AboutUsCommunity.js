@@ -100,7 +100,7 @@ const AboutUsCommunity = () => {
                         <a className='text-sm leading-6' href="/">Learn More</a>
                     </div>
                 </div>
-                <img className='absolute bottom-0 bg-transparent z-50' src={waveImg} alt="" />
+                <img className='absolute bottom-0 bg-transparent z-50' src={waveImg} alt="Not Available" />
             </div>
         </div>
     );

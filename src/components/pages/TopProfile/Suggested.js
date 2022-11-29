@@ -62,7 +62,7 @@ const Suggested = () => {
                                     <img
                                         style={{ borderRadius: " 10px 10px 0px 0px" }}
                                         src={profile.profilePhoto}
-                                        className="w-full h-[224px]"
+                                        className="w-full h-[324px]"
                                         alt="profile"
                                     />
                                 </div>

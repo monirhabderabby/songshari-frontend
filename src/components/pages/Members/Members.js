@@ -58,7 +58,7 @@ export const Members = () => {
                             key={index}
                         >
                             <div className="h-full flex items-center">
-                                <img className="w-[83px] h-[100px] rounded-[15px] mr-[21px]" src="https://placeimg.com/192/192/people" alt="" />
+                                <img className="w-[83px] h-[100px] rounded-[15px] mr-[21px]" src="https://placeimg.com/192/192/people" alt="Not Available" />
                                 <div>
                                     <div className="flex items-center">
                                         <h1 className="text-[20px] leading-[30px] text-[#333333] font-bold mr-[4px]">Erma Porter</h1>

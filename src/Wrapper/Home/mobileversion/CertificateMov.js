@@ -35,7 +35,7 @@ export const CertificateMov = () => {
                             {certificate.text}
                         </h3>
                         <div className={`relative ${ChartBoardCSS.hasViewButton}`}>
-                            <img className='rounded-lg' src={certificate.img} alt="" />
+                            <img className='rounded-lg' src={certificate.img} alt="Not Available" />
                             <button className={`${ChartBoardCSS.showViewButton} top-[35%] left-[35%] rounded block bg-white text-sm font-medium leading-[26px] px-4 py-1 duration-300`}>
                                 View
                             </button>

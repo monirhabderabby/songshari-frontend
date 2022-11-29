@@ -3,14 +3,13 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import profile from "../../../assets/images/profile/Ellipse 8.png";
 import { auth } from "../../../firebase.init";
 
-const MobileUsersProfile = () => {
+const MobileOtherUsersProfile = () => {
     const [user] = useAuthState(auth);
 
     return (
         <>
             <div className="bg-[#D9D9D9] max-w-[337px] flex justify-center items-center flex-col  mx-auto h-[92px]">
-                <h1 className="text-[#979C9E] pb-[10px] text-xs">Upload a cover photo</h1>
-                <i className="fa-solid text-[#979C9E]  fa-camera"></i>
+                <img src='https://i.ibb.co/YD5hC1J/Rectangle-4471.png' alt="Not Available"></img>
             </div>
             <div style={{ boxShadow: " 0px 10px 40px rgba(0, 0, 0, 0.03)" }} className="max-w-[337px] px-[23px]  rounded-sm mx-auto bg-[#ffffff]">
                 <div>
@@ -18,14 +17,21 @@ const MobileUsersProfile = () => {
                         <img src={user ? user.photoURL : profile} className="mt-[-20px] w-16 h-16 rounded-full" alt="Not Available" />
                         <h2 className="pl-[7px] text-sm font-semibold text-[#000000]">Marvis Ighedosa</h2>
                     </div>
-                    <div>
-                        <h3 className="text-[#737373] w-[165px] mt-[16px] pb-[10px] border-[#737373] text-xs font-normal border-b-[1px]">
-                            {user ? user.email : "Not Provided"}
-                        </h3>
-                        <h3 className="text-[#737373] w-[165px] mt-[16px] pb-[10px] border-[#737373] text-xs font-normal border-b-[1px]">
-                            +234 9011039271
-                        </h3>
-                        <h3 className="text-[#737373] w-[165px] mt-[16px]  text-xs font-normal pb-[20px]">Single</h3>
+                    <div className="grid grid-cols-3">
+                        <div className='heu col-span-1'>
+                            <h1 className="">21 years old</h1>
+                            <img src='https://i.ibb.co/HNrqrcw/image.png' className="ml-2" alt="Not Available"></img>
+                        </div>
+
+                        <div>
+                            <h1 className=" ml-6">Paris,France</h1>
+                        </div>
+
+                        <div>
+                            <h1 className="ml-8"> <i className="fa-regular fa-heart"></i> 257</h1>
+                        </div>
+
+
                     </div>
                 </div>
             </div>
@@ -33,4 +39,4 @@ const MobileUsersProfile = () => {
     );
 };
 
-export default MobileUsersProfile;
+export default MobileOtherUsersProfile;

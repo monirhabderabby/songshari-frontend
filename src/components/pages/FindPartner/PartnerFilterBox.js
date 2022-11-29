@@ -3,9 +3,7 @@ import Accordian from '../../../components/SingleProfilesUser/profileSection/Acc
 import FindPartner from "../../../assets/css/FindPartner.module.css";
 import { Input, Select } from 'antd';
 import { AccordionPartner } from "./AccordionPartner";
-const handleChange = (value) => {
-  console.log(`selected ${value}`);
-};
+
 const PartnerFilterBox = () => {
   const [remuneration, setRemuneration] = useState(true);
   const [location, setLocation] = useState(true);
@@ -36,12 +34,12 @@ const PartnerFilterBox = () => {
           boxShadow: " 2px 2px 10px rgba(0, 0, 0, 0.12)",
         }}
       >
-<h2 className="text-[#000000] text-[15px] font-bold mb-[16px]">
-            Basic Information <i class="fa-solid fa-chevron-right ml-28"></i>
-          </h2>
+        {/* <h2 className="text-[#000000] text-[15px] font-bold mb-[16px]">
+          Basic Information <i className="fa-solid fa-chevron-right ml-28"></i>
+        </h2> */}
 
         {/* Category input  */}
-        <div className="flex ] flex-col border-b-[2px] border-b-[#BDCADB] py-[10px]">
+        {/* <div className="flex ] flex-col border-b-[2px] border-b-[#BDCADB] py-[10px]">
           <h2 className="text-[#000000] text-lg font-bold mb-[16px]">
             Looking For
           </h2>
@@ -56,9 +54,8 @@ const PartnerFilterBox = () => {
               </button>
 
               <div
-                className={`absolute top-[44px] border ${
-                  category ? "hidden" : "block"
-                } right-0 z-10 w-[260px] bg-white rounded divide-y divide-gray-100 shadow-lg dark:bg-gray-700 dark:divide-gray-600`}
+                className={`absolute top-[44px] border ${category ? "hidden" : "block"
+                  } right-0 z-10 w-[260px] bg-white rounded divide-y divide-gray-100 shadow-lg dark:bg-gray-700 dark:divide-gray-600`}
               >
                 <ul
                   className="py-1 text-[#000000] font-medium text-base text-center dark:text-gray-200"
@@ -71,7 +68,7 @@ const PartnerFilterBox = () => {
                       }
                       className="block cursor-pointer font-semibold py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                     >
-                     Bride
+                      Bride
                     </p>
                   </li>
                   <li>
@@ -88,11 +85,11 @@ const PartnerFilterBox = () => {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
         {/* location input  */}
-        <div className="flex ] mt-[20px] flex-col border-b-[1px] border-b-[#BDCADB] py-[10px]">
+        {/* <div className="flex ] mt-[20px] flex-col border-b-[1px] border-b-[#BDCADB] py-[10px]">
           <h2 className="text-[#000000] text-lg font-bold mb-[16px]">
-           For
+            For
           </h2>
           <div className="flex pb-[10px] justify-between items-center">
             <h4 className="text-[#000000] font-medium text-base">
@@ -106,9 +103,8 @@ const PartnerFilterBox = () => {
               </button>
 
               <div
-                className={`absolute top-[44px] border ${
-                  location ? "hidden" : "block"
-                } right-0 z-10 w-[260px] bg-white rounded divide-y divide-gray-100 shadow-lg dark:bg-gray-700 dark:divide-gray-600`}
+                className={`absolute top-[44px] border ${location ? "hidden" : "block"
+                  } right-0 z-10 w-[260px] bg-white rounded divide-y divide-gray-100 shadow-lg dark:bg-gray-700 dark:divide-gray-600`}
               >
                 <ul
                   className="py-1 text-[#000000] font-medium text-base text-center dark:text-gray-200"
@@ -121,16 +117,16 @@ const PartnerFilterBox = () => {
                       }
                       className="block font-semibold py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                     >
-                     Myself
+                      Myself
                     </p>
                   </li>
                 </ul>
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
         {/* Rating input  */}
-        <div className="flex ] mt-[20px] flex-col border-b-[1px] border-b-[#BDCADB] py-[10px]">
+        {/* <div className="flex ] mt-[20px] flex-col border-b-[1px] border-b-[#BDCADB] py-[10px]">
           <h2 className="text-[#000000] text-lg font-bold mb-[16px]">Rating</h2>
           <div className=" pb-[10px] ">
             <div className="flex mt-[16px]">
@@ -141,11 +137,11 @@ const PartnerFilterBox = () => {
             </div>
 
           </div>
-        </div>
-{/* Religion  */}
-<div className="flex ] mt-[20px] flex-col border-b-[1px] border-b-[#BDCADB] py-[10px]">
+        </div> */}
+        {/* Religion  */}
+        {/* <div className="flex ] mt-[20px] flex-col border-b-[1px] border-b-[#BDCADB] py-[10px]">
           <h2 className="text-[#000000] text-lg font-bold mb-[16px]">
-           Religion
+            Religion
           </h2>
           <div className="flex pb-[10px] justify-between items-center">
             <h4 className="text-[#000000] font-medium text-base">
@@ -159,9 +155,8 @@ const PartnerFilterBox = () => {
               </button>
 
               <div
-                className={`absolute top-[44px] border ${
-                  religion ? "hidden" : "block"
-                } right-0 z-10 w-[260px] bg-white rounded divide-y divide-gray-100 shadow-lg dark:bg-gray-700 dark:divide-gray-600`}
+                className={`absolute top-[44px] border ${religion ? "hidden" : "block"
+                  } right-0 z-10 w-[260px] bg-white rounded divide-y divide-gray-100 shadow-lg dark:bg-gray-700 dark:divide-gray-600`}
               >
                 <ul
                   className="py-1 text-[#000000] font-medium text-base text-center dark:text-gray-200"
@@ -174,18 +169,18 @@ const PartnerFilterBox = () => {
                       }
                       className="block font-semibold py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                     >
-                     Islam
+                      Islam
                     </p>
                   </li>
                 </ul>
               </div>
             </div>
           </div>
-        </div>
-{/* Home town  */}
-<div className="flex ] mt-[20px] flex-col border-b-[1px] border-b-[#BDCADB] py-[10px]">
+        </div> */}
+        {/* Home town  */}
+        {/* <div className="flex ] mt-[20px] flex-col border-b-[1px] border-b-[#BDCADB] py-[10px]">
           <h2 className="text-[#000000] text-lg font-bold mb-[16px]">
-           Home Town
+            Home Town
           </h2>
           <div className="flex pb-[10px] justify-between items-center">
             <h4 className="text-[#000000] font-medium text-base">
@@ -199,9 +194,8 @@ const PartnerFilterBox = () => {
               </button>
 
               <div
-                className={`absolute top-[44px] border ${
-                  hometown ? "hidden" : "block"
-                } right-0 z-10 w-[260px] bg-white rounded divide-y divide-gray-100 shadow-lg dark:bg-gray-700 dark:divide-gray-600`}
+                className={`absolute top-[44px] border ${hometown ? "hidden" : "block"
+                  } right-0 z-10 w-[260px] bg-white rounded divide-y divide-gray-100 shadow-lg dark:bg-gray-700 dark:divide-gray-600`}
               >
                 <ul
                   className="py-1 text-[#000000] font-medium text-base text-center dark:text-gray-200"
@@ -214,19 +208,19 @@ const PartnerFilterBox = () => {
                       }
                       className="block font-semibold py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                     >
-                     Dhaka
+                      Dhaka
                     </p>
                   </li>
                 </ul>
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
         {/*  Current Location  */}
-       {/*  Qualifications*/}
-       <div className="flex ] mt-[20px] flex-col border-b-[1px] border-b-[#BDCADB] py-[10px]">
+        {/*  Qualifications*/}
+        {/* <div className="flex ] mt-[20px] flex-col border-b-[1px] border-b-[#BDCADB] py-[10px]">
           <h2 className="text-[#000000] text-lg font-bold mb-[16px]">
-           Current Location
+            Current Location
           </h2>
           <div className="flex pb-[10px] justify-between items-center">
             <h4 className="text-[#000000] font-medium text-base">
@@ -239,9 +233,8 @@ const PartnerFilterBox = () => {
               </button>
 
               <div
-                className={`absolute top-[44px] border ${
-                  qualifications ? "hidden" : "block"
-                } right-0 z-10 w-[260px] bg-white rounded divide-y divide-gray-100 shadow-lg dark:bg-gray-700 dark:divide-gray-600`}
+                className={`absolute top-[44px] border ${qualifications ? "hidden" : "block"
+                  } right-0 z-10 w-[260px] bg-white rounded divide-y divide-gray-100 shadow-lg dark:bg-gray-700 dark:divide-gray-600`}
               >
                 <ul
                   className="py-1 text-[#000000] font-medium text-base text-center dark:text-gray-200"
@@ -254,29 +247,28 @@ const PartnerFilterBox = () => {
                       }
                       className="block font-semibold py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                     >
-                    Dhaka
+                      Dhaka
                     </p>
                   </li>
                 </ul>
               </div>
             </div>
           </div>
-        </div>
-
+        </div> */}
         {/*  Total Case */}
-        <div className="flex ] mt-[20px] flex-col border-b-[1px] border-b-[#BDCADB] py-[10px]">
+        {/* <div className="flex ] mt-[20px] flex-col border-b-[1px] border-b-[#BDCADB] py-[10px]">
           <h2 className="text-[#000000] text-lg font-bold mb-[16px]">
             Citizenship
           </h2>
           <div className="flex pb-[10px] justify-between items-center">
-            <h4 className="text-[#000000] font-medium text-base"></h4>
+            <h4 className="text-[#000000] font-medium text-base"> </h4>
             <div>
               <i className="fa-solid font-semibold fa-chevron-down"></i>
             </div>
           </div>
-        </div>
+        </div> */}
         {/*  Qualifications*/}
-        <div className="flex ] mt-[20px] flex-col border-b-[1px] border-b-[#BDCADB] py-[10px]">
+        {/* <div className="flex ] mt-[20px] flex-col border-b-[1px] border-b-[#BDCADB] py-[10px]">
           <h2 className="text-[#000000] text-lg font-bold mb-[16px]">
             Marital Status
           </h2>
@@ -291,9 +283,8 @@ const PartnerFilterBox = () => {
               </button>
 
               <div
-                className={`absolute top-[44px] border ${
-                  marrital ? "hidden" : "block"
-                } right-0 z-10 w-[260px] bg-white rounded divide-y divide-gray-100 shadow-lg dark:bg-gray-700 dark:divide-gray-600`}
+                className={`absolute top-[44px] border ${marrital ? "hidden" : "block"
+                  } right-0 z-10 w-[260px] bg-white rounded divide-y divide-gray-100 shadow-lg dark:bg-gray-700 dark:divide-gray-600`}
               >
                 <ul
                   className="py-1 text-[#000000] font-medium text-base text-center dark:text-gray-200"
@@ -306,15 +297,16 @@ const PartnerFilterBox = () => {
                       }
                       className="block font-semibold py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                     >
-                     Single
+                      Single
                     </p>
                   </li>
                 </ul>
               </div>
             </div>
           </div>
-        </div>
-<AccordionPartner></AccordionPartner>
+        </div> */}
+
+        <AccordionPartner></AccordionPartner>
         {/* submit button  */}
         <div className="flex justify-center items-center ] mt-[30px] ">
           <button

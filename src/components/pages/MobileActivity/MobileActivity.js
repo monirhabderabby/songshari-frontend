@@ -20,7 +20,7 @@ const MobileActivity = () => {
               <img
                 className="w-[40px] h-[40px] rounded-[50px]"
                 src={profile}
-                alt=""
+                alt="Not Available"
               />
             </div>
             <div className="ml-[25px]">
@@ -32,7 +32,7 @@ const MobileActivity = () => {
           <div className="flex max-w-[338px] mt-[20px] mx-auto justify-between items-center px-6">
             <div className="flex justify-between items-center">
               <button className="bg-[#F7E9F8] flex justify-center items-center w-[51px] h-[31px] rounded-[20px]">
-                <img src={coolicon} alt="" />
+                <img src={coolicon} alt="Not Available" />
               </button>
               <div className="ml-[20px]">
                 <Select
@@ -83,7 +83,7 @@ const MobileActivity = () => {
                 <img
                   className="w-[40px] h-[40px] rounded-[50px]"
                   src={profile}
-                  alt=""
+                  alt="Not Available"
                 />
                 <div className="bg-[#1CE36F] absolute left-[23px] top-[28px]  w-[15px] h-[15px] border-[3px] rounded-[7px] border-[#FFFFFF]"></div>
               </div>
@@ -143,7 +143,7 @@ const MobileActivity = () => {
               Nam vel porta felis.
             </p>
             <div className="ml-[76px] py-[10px]">
-              <img src={banner} alt="" />
+              <img src={banner} alt="Not Available" />
             </div>
             <div className="flex items-center my-[10px] max-w-[338px]  mx-auto">
               <i className="fa-regular fa-heart"></i>

@@ -10,7 +10,7 @@ const LawyerUserProfile = () => {
           <div className={LawyerProfileCSS.profileImg}>
             <img
               src="https://pixner.net/peyamba/peyamba/assets/images/profile/profile-user.png"
-              alt=""
+              alt="Not Available"
             />
             <div className={LawyerProfileCSS.activeOnline}></div>
           </div>

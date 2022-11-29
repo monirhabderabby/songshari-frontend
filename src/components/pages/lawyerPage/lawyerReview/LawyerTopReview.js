@@ -43,7 +43,7 @@ const LawyerTopReview = () => {
                   <div className="bg-[#FFFFFF] py-4 text-center px-[25px]">
                     <div>
                       {" "}
-                      <img className="block mx-auto" src={review} alt="" />
+                      <img className="block mx-auto" src={review} alt="Not Available" />
                     </div>
                     <p className="w-[270px] mx-auto pt-6 text-[14px] text-[#737373] ">
                       Slate helps you see how many more days you need to work to reach
@@ -73,7 +73,7 @@ const LawyerTopReview = () => {
             <div className="bg-[#FFFFFF] py-4 text-center px-[25px]">
               <div>
                 {" "}
-                <img className="block mx-auto" src={review} alt="" />
+                <img className="block mx-auto" src={review}  alt="Not Available" />
               </div>
               <p className="w-[270px] mx-auto pt-6 text-[14px] text-[#737373] ">
                 Slate helps you see how many more days you need to work to reach

@@ -12,7 +12,7 @@ const LawyerServiceForm = () => {
     const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
     const { register, handleSubmit } = useForm();
-    const onSubmit = data => console.log(data);
+    const onSubmit = data => ;
 
     return (
         <div>

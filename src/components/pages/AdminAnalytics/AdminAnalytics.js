@@ -1,5 +1,4 @@
 import React from "react";
-import AdminAnalyticsCSS from "../../../assets/css/AdminAnalytics.module.css";
 import AdminAnalyticsContext from "./AdminAnalyticsContext";
 
 const AdminAnalytics = () => {

@@ -15,7 +15,7 @@ const LawyerServiceDetailsReview = () => {
         >
           <h5 className="mr-[20px] text-[10px] text-[#98999C] ">Wed 10:03am</h5>
           <div className="ml-[70px] mt-[10px]">
-            <img className="  " src={review} alt="" />
+            <img className="  " src={review} alt="Not Available" />
           </div>
         </div>
         <div className="bg-[#FFFFFF] mt-[20px] ml-[10px] p-[13px] flex items-center w-[657px] h-[76px] border border-[#DFE0E3]">
@@ -36,7 +36,7 @@ const LawyerServiceDetailsReview = () => {
         >
           <h5 className="mr-[20px] text-[10px] text-[#98999C] ">Wed 10:03am</h5>
           <div className="ml-[70px] mt-[10px]">
-            <img className="  " src={review} alt="" />
+            <img className="  " src={review} alt="Not Available" />
           </div>
         </div>
         <div className="bg-[#FFFFFF] mt-[20px] ml-[10px] p-[13px] flex items-center w-[657px] h-[76px] border border-[#DFE0E3]">
@@ -57,7 +57,7 @@ const LawyerServiceDetailsReview = () => {
         >
           <h5 className="mr-[20px] text-[10px] text-[#98999C] ">Wed 10:03am</h5>
           <div className="ml-[70px] mt-[10px]">
-            <img className="  " src={review} alt="" />
+            <img className="  " src={review} alt="Not Available" />
           </div>
         </div>
         <div className="bg-[#FFFFFF] mt-[20px] ml-[10px] p-[13px] flex items-center w-[657px] h-[76px] border border-[#DFE0E3]">

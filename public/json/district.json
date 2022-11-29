@@ -1,0 +1,258 @@
+[
+    {
+        "id": "1",
+        "name": "Chittagong"
+    },
+    {
+        "id": "2",
+        "name": "Dhaka"
+    },
+    {
+        "id": "3",
+        "name": "Rajshahi"
+    },
+    {
+        "id": "4",
+        "name": "Sylhet"
+    },
+    {
+        "id": "5",
+        "name": "Jessore"
+    },
+    {
+        "id": "6",
+        "name": "Dinajpur"
+    },
+    {
+        "id": "7",
+        "name": "Mymensingh"
+    },
+    {
+        "id": "8",
+        "name": "Comilla"
+    },
+    {
+        "id": "9",
+        "name": "Barisal"
+    },
+    {
+        "id": "10",
+        "name": "Faridpur"
+    },
+    {
+        "id": "11",
+        "name": "Bogra"
+    },
+    {
+        "id": "12",
+        "name": "Pabna"
+    },
+    {
+        "id": "13",
+        "name": "Rangamati"
+    },
+    {
+        "id": "14",
+        "name": "Kushtia"
+    },
+    {
+        "id": "15",
+        "name": "Rangpur"
+    },
+    {
+        "id": "16",
+        "name": "Noakhali"
+    },
+    {
+        "id": "17",
+        "name": "Khulna"
+    },
+    {
+        "id": "18",
+        "name": "Tangail"
+    },
+    {
+        "id": "19",
+        "name": "Panchagarh"
+    },
+    {
+        "id": "20",
+        "name": "Bhola"
+    },
+    {
+        "id": "21",
+        "name": "Bandarban"
+    },
+    {
+        "id": "22",
+        "name": "Chandpur"
+    },
+    {
+        "id": "23",
+        "name": "Habiganj"
+    },
+    {
+        "id": "24",
+        "name": "Lakshmipur"
+    },
+    {
+        "id": "25",
+        "name": "Barguna"
+    },
+    {
+        "id": "26",
+        "name": "Jhalokati"
+    },
+    {
+        "id": "27",
+        "name": "Pirojpur"
+    },
+    {
+        "id": "28",
+        "name": "Patuakhali"
+    },
+    {
+        "id": "29",
+        "name": "Jhenaidah"
+    },
+    {
+        "id": "30",
+        "name": "Narail"
+    },
+    {
+        "id": "31",
+        "name": "Magura"
+    },
+    {
+        "id": "32",
+        "name": "Lalmonirhat"
+    },
+    {
+        "id": "33",
+        "name": "Kurigram"
+    },
+    {
+        "id": "34",
+        "name": "Nilphamari"
+    },
+    {
+        "id": "35",
+        "name": "Gaibandha"
+    },
+    {
+        "id": "36",
+        "name": "Thakurgaon"
+    },
+    {
+        "id": "37",
+        "name": "Satkhira"
+    },
+    {
+        "id": "38",
+        "name": "Bagerhat"
+    },
+    {
+        "id": "39",
+        "name": "Chuadanga"
+    },
+    {
+        "id": "40",
+        "name": "Meherpur"
+    },
+    {
+        "id": "41",
+        "name": "Sirajganj"
+    },
+    {
+        "id": "42",
+        "name": "Joypurhat"
+    },
+    {
+        "id": "43",
+        "name": "Natore"
+    },
+    {
+        "id": "44",
+        "name": "Naogaon"
+    },
+    {
+        "id": "45",
+        "name": "Nawabganj"
+    },
+    {
+        "id": "46",
+        "name": "Khagrachhari"
+    },
+    {
+        "id": "47",
+        "name": "Feni"
+    },
+    {
+        "id": "48",
+        "name": "Brahmanbaria"
+    },
+    {
+        "id": "49",
+        "name": "Sunamganj"
+    },
+    {
+        "id": "50",
+        "name": "Cox's Bazar"
+    },
+    {
+        "id": "51",
+        "name": "Moulvibazar"
+    },
+    {
+        "id": "52",
+        "name": "Gopalganj"
+    },
+    {
+        "id": "53",
+        "name": "Shariatpur"
+    },
+    {
+        "id": "54",
+        "name": "Madaripur"
+    },
+    {
+        "id": "55",
+        "name": "Rajbari"
+    },
+    {
+        "id": "56",
+        "name": "Gazipur"
+    },
+    {
+        "id": "57",
+        "name": "Kishoreganj"
+    },
+    {
+        "id": "58",
+        "name": "Jamalpur"
+    },
+    {
+        "id": "59",
+        "name": "Sherpur"
+    },
+    {
+        "id": "60",
+        "name": "Netrakona"
+    },
+    {
+        "id": "61",
+        "name": "Munshiganj"
+    },
+    {
+        "id": "62",
+        "name": "Narsingdi"
+    },
+    {
+        "id": "63",
+        "name": "Narayanganj"
+    },
+    {
+        "id": "64",
+        "name": "Manikganj"
+    }
+]

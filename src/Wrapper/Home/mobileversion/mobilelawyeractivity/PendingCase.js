@@ -2,7 +2,7 @@ import React from 'react'
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
+// import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Pagination from '@mui/material/Pagination';
@@ -26,7 +26,7 @@ export const PendingCaseMov = () => {
             </Typography>
           </CardContent>
           <CardActions>
-            <img src='https://i.ibb.co/PtZvMKJ/circle-check.png' className='w-8' ></img>
+            <img src='https://i.ibb.co/PtZvMKJ/circle-check.png' className='w-8' alt="Not Available"></img>
             <Button variant="" sx={{ backgroundColor: '#E41272', color: 'black' }}>Accept</Button>
             <Button variant="outlined" sx={{ color: 'black' }}>Reject</Button>
           </CardActions>
@@ -44,7 +44,7 @@ export const PendingCaseMov = () => {
             </Typography>
           </CardContent>
           <CardActions>
-            <img src='https://i.ibb.co/PtZvMKJ/circle-check.png' className='w-8' ></img>
+            <img src='https://i.ibb.co/PtZvMKJ/circle-check.png' className='w-8' alt="Not Available"></img>
             <Button variant="" sx={{ backgroundColor: '#E41272', color: 'black' }}>Accept</Button>
             <Button variant="outlined" sx={{ color: 'black' }}>Reject</Button>
           </CardActions>
@@ -62,7 +62,7 @@ export const PendingCaseMov = () => {
             </Typography>
           </CardContent>
           <CardActions>
-            <img src='https://i.ibb.co/PtZvMKJ/circle-check.png' className='w-8' ></img>
+            <img src='https://i.ibb.co/PtZvMKJ/circle-check.png' className='w-8' alt="Not Available"></img>
             <Button variant="" sx={{ backgroundColor: '#E41272', color: 'black' }}>Accept</Button>
             <Button variant="outlined" sx={{ color: 'black' }}>Reject</Button>
           </CardActions>
@@ -80,7 +80,7 @@ export const PendingCaseMov = () => {
             </Typography>
           </CardContent>
           <CardActions>
-            <img src='https://i.ibb.co/PtZvMKJ/circle-check.png' className='w-8' ></img>
+            <img src='https://i.ibb.co/PtZvMKJ/circle-check.png' className='w-8' alt="Not Available"></img>
             <Button variant="" sx={{ backgroundColor: '#E41272', color: 'black' }}>Accept</Button>
             <Button variant="outlined" sx={{ color: 'black' }}>Reject</Button>
           </CardActions>

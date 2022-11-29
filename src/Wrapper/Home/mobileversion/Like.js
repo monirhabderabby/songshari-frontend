@@ -1,11 +1,11 @@
 import React from 'react'
-import ChartBoard from '../../../components/SingleProfilesUser/chatboard/ChartBoard'
-import certificate from "../../../assets/images/certificate.jpg";
-import { TbMessageCircle2 } from "react-icons/tb";
+// import ChartBoard from '../../../components/SingleProfilesUser/chatboard/ChartBoard'
+// import certificate from "../../../assets/images/certificate.jpg";
+// import { TbMessageCircle2 } from "react-icons/tb";
 import { BsCommand } from 'react-icons/bs';
 import { MdMessage } from 'react-icons/md';
 import { BiUserPlus } from 'react-icons/bi';
-import ChartBoardCSS from '../../../assets/css/chartBoard.module.css';
+// import ChartBoardCSS from '../../../assets/css/chartBoard.module.css';
 import profilePhoto from "../../../assets/images/profileSmile.jpg";
 import { BottomNav } from './BottomNav';
 import { Link } from 'react-router-dom';
@@ -45,7 +45,7 @@ export const Like = () => {
                             className="bg-white ggg rounded-[20px] flex flex-col items-center justify-center  py-2"
                             style={{ boxShadow: "0px 4px 4px rgba(62, 73, 84, 0.04)" }}
                         >
-                            <img className='w-[45px] h-[45px] rounded-full' src='https://i.ibb.co/djmzvNG/placeholder.png' alt="" />
+                            <img className='w-[45px] h-[45px] rounded-full' src='https://i.ibb.co/djmzvNG/placeholder.png' alt="Not Available" />
                             <h4 className='text-xs leading-5 font-semibold'>
                                 {profile.name}
                             </h4>
