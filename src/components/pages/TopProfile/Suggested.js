@@ -13,7 +13,8 @@ const Suggested = () => {
     const { data, isSuccess } = useGetRecentMembersQuery();
 
     return (
-        <div className="mt-[30px] w-80 mx-auto">
+        // w-80 mx-auto
+        <div className="mt-[30px] ">
             <Swiper
                 spaceBetween={30}
                 breakpoints={{
