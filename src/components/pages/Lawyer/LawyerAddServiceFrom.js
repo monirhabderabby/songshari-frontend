@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import style from "./lawyeraddservicefrom.module.css";
 
-
 const LawyerAddServiceFrom = () => {
     const [files, setFiles] = useState([]);
     const [imgUrl, setImgUrl] = useState("");
@@ -41,20 +40,12 @@ const LawyerAddServiceFrom = () => {
             )
             .then((res) => {
                 setImgUrl(res.data.data.display_url);
-                console.log(imgUrl);
                 setImage(false);
             })
             .catch((error) => {
-                console.log(error);
                 setImage(false);
             });
     };
-
-
-
-    /*     const checkj = (e) => {
-            console.log(e.target.files[0]);
-        } */
 
     useEffect(() => {
         // Make sure to revoke the data uris to avoid memory leaks
@@ -155,7 +146,7 @@ const LawyerAddServiceFrom = () => {
                                 </div>
                             </div>
                             <div className='px-2 mt-2'>
-                                <p><small>Can't find a skil? <a className='text-red-500' href="">Contact us </a>to addd it.</small></p>
+                                <p><small>Can't find a skil? <a className='text-red-500' href="!#">Contact us </a>to addd it.</small></p>
                             </div>
                         </div>
                         <div className="mt-8 " >
@@ -177,7 +168,7 @@ const LawyerAddServiceFrom = () => {
                             </div>
                         </div>
                         {loading()}
-                        <div className={isImage ? 'hidden' :'block'}>                            
+                        <div className={isImage ? 'hidden' : 'block'}>
                             <img className="w-52 h-52 rounded-full" src={imgUrl} alt="" />
                         </div>
                         <div className='mt-8'>
@@ -229,7 +220,7 @@ const LawyerAddServiceFrom = () => {
                             </div>
                         </div>
                         <div className='py-10'>
-                            <p><small>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate blanditiis fuga, deserunt eum eos nostrum nam voluptas quam! Consequuntur, ea. Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo facilis atque incidunt, et corporis nesciunt vitae, a sequi quo hfhgfhgfhgjhfvfjfjvjfgj hello <a className='text-red-500' href="">T&Cs</a></small></p>
+                            <p><small>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate blanditiis fuga, deserunt eum eos nostrum nam voluptas quam! Consequuntur, ea. Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo facilis atque incidunt, et corporis nesciunt vitae, a sequi quo hfhgfhgfhgjhfvfjfjvjfgj hello <a className='text-red-500' href="!#">T&Cs</a></small></p>
                         </div>
                         <div className={`py-4 ${style.submit_btn}`}>
                             <button>SUBMIT OFFER</button>

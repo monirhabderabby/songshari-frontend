@@ -105,7 +105,7 @@ const LawyerServiceDetailsReview = () => {
           14
         </button>
         <button className="ml-[20px] font-semibold text-[20px] text-black">
-          <i class="fa-solid fa-chevron-right"></i>
+          <i className="fa-solid fa-chevron-right"></i>
         </button>
       </div>
     </section>

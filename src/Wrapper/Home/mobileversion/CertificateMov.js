@@ -1,10 +1,6 @@
 import React from 'react'
-import ChartBoard from '../../../components/SingleProfilesUser/chatboard/ChartBoard'
 import certificate from "../../../assets/images/certificate.jpg";
 import { TbMessageCircle2 } from "react-icons/tb";
-import { BsCommand } from 'react-icons/bs';
-import { MdMessage } from 'react-icons/md';
-import { BiUserPlus } from 'react-icons/bi';
 import ChartBoardCSS from '../../../assets/css/chartBoard.module.css';
 import { BottomNav } from './BottomNav';
 import { Link } from 'react-router-dom';
@@ -21,7 +17,7 @@ export const CertificateMov = () => {
             <div className='mt-5'>
                 <div className='setting-mov'>
                     <Link to='/setting'>
-                        <i class="fa-solid fa-chevron-left ml-8 mt-3"></i>
+                        <i className="fa-solid fa-chevron-left ml-8 mt-3"></i>
                     </Link>
 
                     <h1 className='profile-tit ml-20 mt-2 mb-5'>Certificate</h1>

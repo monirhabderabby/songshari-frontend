@@ -5,7 +5,6 @@ import topShape from "../../../../assets/images/Shape/membershipPageShape.png";
 const MobileMembershipHeader = ({ planTitle }) => {
 
     const onChange = checked => {
-        console.log(`switch to ${checked}`);
     };
 
     return (

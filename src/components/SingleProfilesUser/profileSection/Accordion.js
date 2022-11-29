@@ -34,12 +34,9 @@ const Accordian = ({ data, isLoading }) => {
     // const { phone, email, NidOrPassportNumber, citizenShip, zodiacSign, barRegistrationNumber, licenceNo, yearOfBarRegistration, dateOfBirth } = data;
     const hightestEducationalQualification = data?.hightestEducationalQualification;
 
-    if (hightestEducationalQualification) {
-        console.log(data);
-    }
     const [expanded, setExpanded] = React.useState("panel1");
 
-    const handleChange = panel => (event, newExpanded) => {
+    const handleChange = panel => (newExpanded) => {
         setExpanded(newExpanded ? panel : true);
     };
     if (isLoading) return false;

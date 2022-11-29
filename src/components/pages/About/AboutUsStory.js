@@ -8,7 +8,7 @@ const AboutUsStory = () => {
                 Our Story
             </h1>
             <div className='max-w-5xl mx-auto flex items-start gap-16'>
-                <div className=''>
+                <div>
                     <img className='w-[584px] rounded-[30px]' src={aboutUsStoryImg} alt="" />
                 </div>
                 <div className='w-96 text-[#757575] leading-7'>

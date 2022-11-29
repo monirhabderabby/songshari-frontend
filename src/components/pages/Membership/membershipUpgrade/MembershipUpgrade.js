@@ -14,9 +14,9 @@ export const MembershipUpgrade = () => {
       </p>
 
       <div className="grid lg:grid-cols-4 sm:grid-cols-1 gap-2 mx-auto ml-14 mr-14 mt-20">
-        <div className="">
+        <div>
           <img
-            alt=""
+            alt="Not Available"
             src="https://pixner.net/peyamba/peyamba/assets/images/membership/icon1.png"
             className="mx-auto"
           ></img>
@@ -27,9 +27,9 @@ export const MembershipUpgrade = () => {
             Send and receive messages <br></br>with no limits
           </p>
         </div>
-        <div className="">
+        <div>
           <img
-            alt=""
+            alt="Not Available"
             src="https://pixner.net/peyamba/peyamba/assets/images/membership/icon2.png"
             className="mx-auto"
           ></img>
@@ -40,9 +40,9 @@ export const MembershipUpgrade = () => {
             Send and receive messages <br></br>with no limits
           </p>
         </div>
-        <div className="">
+        <div>
           <img
-            alt=""
+            alt="Not Available"
             src="https://pixner.net/peyamba/peyamba/assets/images/membership/icon3.png"
             className="mx-auto"
           ></img>
@@ -53,9 +53,9 @@ export const MembershipUpgrade = () => {
             Send and receive messages <br></br>with no limits
           </p>
         </div>
-        <div className="">
+        <div>
           <img
-            alt=""
+            alt="Not Available"
             src="https://pixner.net/peyamba/peyamba/assets/images/membership/icon4.png"
             className="mx-auto"
           ></img>

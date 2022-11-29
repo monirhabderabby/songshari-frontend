@@ -15,15 +15,15 @@ const LawyerRecentReview = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
           <div className="flex justify-center items-center">
             <div>
-              <img src={bg1} alt="" />
+              <img src={bg1} alt="Not Available" />
             </div>
             <div className="pl-6">
               <div className="text-[#E41272] text-[14px]">
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid pl-1 fa-star"></i>
-                <i class="fa-solid pl-1 fa-star"></i>
-                <i class="fa-solid pl-1 fa-star"></i>
-                <i class="fa-solid pl-1 fa-star"></i>
+                <i className="fa-solid fa-star"></i>
+                <i className="fa-solid pl-1 fa-star"></i>
+                <i className="fa-solid pl-1 fa-star"></i>
+                <i className="fa-solid pl-1 fa-star"></i>
+                <i className="fa-solid pl-1 fa-star"></i>
               </div>
               <p className="w-[346px] pt-6 text-lg text-[#090914] font-medium">
                 "We love it ! Our designers were using it for their projects, so
@@ -39,15 +39,15 @@ const LawyerRecentReview = () => {
           </div>
           <div className="flex justify-center items-center">
             <div>
-              <img src={bg2} alt="" />
+              <img src={bg2} alt="Not Available" />
             </div>
             <div className="pl-6">
               <div className="text-[#E41272] text-[14px]">
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid pl-1 fa-star"></i>
-                <i class="fa-solid pl-1 fa-star"></i>
-                <i class="fa-solid pl-1 fa-star"></i>
-                <i class="fa-solid pl-1 fa-star"></i>
+                <i className="fa-solid fa-star"></i>
+                <i className="fa-solid pl-1 fa-star"></i>
+                <i className="fa-solid pl-1 fa-star"></i>
+                <i className="fa-solid pl-1 fa-star"></i>
+                <i className="fa-solid pl-1 fa-star"></i>
               </div>
               <p className="w-[346px] pt-6 text-lg text-[#090914] font-medium">
                 "We love it ! Our designers were using it for their projects, so
@@ -67,11 +67,11 @@ const LawyerRecentReview = () => {
             <div>
               <div className="bg-[#FFFFFF] border rounded-md border-[#DEDEDE] py-[30px] px-[35px]">
                 <div className="text-[#E41272] pb-[15px] text-[14px]">
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid pl-1 fa-star"></i>
-                  <i class="fa-solid pl-1 fa-star"></i>
-                  <i class="fa-solid pl-1 fa-star"></i>
-                  <i class="fa-solid pl-1 fa-star"></i>
+                  <i className="fa-solid fa-star"></i>
+                  <i className="fa-solid pl-1 fa-star"></i>
+                  <i className="fa-solid pl-1 fa-star"></i>
+                  <i className="fa-solid pl-1 fa-star"></i>
+                  <i className="fa-solid pl-1 fa-star"></i>
                 </div>
                 <p className="text-sm text-[#737373]">
                   Slate helps you see how many more days you need to work to

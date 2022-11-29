@@ -177,7 +177,7 @@ const LawyerProfileContent = () => {
             </span>
 
             <span className=" text-[#333333] text-[24px]">
-              <i class="fa-solid fa-chevron-down"></i>
+              <i className="fa-solid fa-chevron-down"></i>
             </span>
           </div>
           <div className="h-[40px] flex justify-between items-center pt-[30px] pb-[10px] ">
@@ -186,7 +186,7 @@ const LawyerProfileContent = () => {
             </span>
 
             <span className=" text-[#333333] text-[24px]">
-              <i class="fa-solid fa-chevron-down"></i>
+              <i className="fa-solid fa-chevron-down"></i>
             </span>
           </div>
         </div>

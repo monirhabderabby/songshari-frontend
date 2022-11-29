@@ -3,7 +3,6 @@ import { Fragment } from "react";
 import { Select, Slider } from "antd";
 
 const handleChange = () => {
-  //   console.log(`selected ${value}`);
 };
 
 const BannerFilterBox = () => {

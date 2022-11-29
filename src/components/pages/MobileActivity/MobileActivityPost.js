@@ -1,6 +1,5 @@
 import React from "react";
 import profile from "../../../assets/images/activity/profile-user-sm.png.png";
-
 import banner from "../../../assets/images/activity/postBanner.png";
 
 const MobileActivityPost = () => {
@@ -37,7 +36,7 @@ const MobileActivityPost = () => {
             vel porta felis.
           </p>
           <div className="flex  items-center my-[10px] max-w-[338px]  mx-auto">
-            <i class="fa-regular fa-heart"></i>
+            <i className="fa-regular fa-heart"></i>
             <button
               className="rounded-[50px] ml-[25px] text-xs text-[#333333] w-[89px] h-[30px]"
               style={{ border: " 1px solid rgba(0, 0, 0, 0.2)" }}
@@ -76,7 +75,7 @@ const MobileActivityPost = () => {
             vel porta felis.
           </p>
           <div className="flex  items-center my-[10px] max-w-[338px]  mx-auto">
-            <i class="fa-regular fa-heart"></i>
+            <i className="fa-regular fa-heart"></i>
             <button
               className="rounded-[50px] ml-[25px] text-xs text-[#333333] w-[89px] h-[30px]"
               style={{ border: " 1px solid rgba(0, 0, 0, 0.2)" }}
@@ -119,7 +118,7 @@ const MobileActivityPost = () => {
               <img src={banner} alt="" />
             </div>
             <div className="flex items-center my-[10px] max-w-[338px]  mx-auto">
-              <i class="fa-regular fa-heart"></i>
+              <i className="fa-regular fa-heart"></i>
               <button
                 className="rounded-[50px] ml-[25px] text-xs text-[#333333] w-[89px] h-[30px]"
                 style={{ border: " 1px solid rgba(0, 0, 0, 0.2)" }}

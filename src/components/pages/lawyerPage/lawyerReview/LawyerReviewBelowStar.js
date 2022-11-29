@@ -1,7 +1,6 @@
 import React from "react";
 import { Autoplay } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
-
 import { recentReview } from "./LawyerReviewData";
 
 const LawyerReviewBelowStar = () => {
@@ -42,11 +41,11 @@ const LawyerReviewBelowStar = () => {
               <div>
                 <div className="bg-[#FFFFFF] text-center border rounded-md border-[#DEDEDE] py-[30px] px-[35px]">
                   <div className="text-[#E41272] pb-[15px] text-[14px]">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid pl-1 fa-star"></i>
-                    <i class="fa-solid pl-1 fa-star"></i>
-                    <i class="fa-solid pl-1 fa-star"></i>
-                    <i class="fa-solid pl-1 fa-star"></i>
+                    <i className="fa-solid fa-star"></i>
+                    <i className="fa-solid pl-1 fa-star"></i>
+                    <i className="fa-solid pl-1 fa-star"></i>
+                    <i className="fa-solid pl-1 fa-star"></i>
+                    <i className="fa-solid pl-1 fa-star"></i>
                   </div>
                   <p className="text-sm text-[#737373]">
                     Slate helps you see how many more days you need to work to

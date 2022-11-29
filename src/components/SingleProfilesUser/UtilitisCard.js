@@ -7,7 +7,7 @@ import { FiSettings } from "react-icons/fi";
 
 const UtilitisCard = () => {
     return (
-        <div className="">
+        <div>
             <div className="utiliti-card bg-white rounded-[10px] mt-[30px] mb-[70px] py-6 flex items-center justify-around"
                 style={{ boxShadow: "0px 10px 5px rgba(119, 123, 146, 0.02)" }}>
                 <div className="w-16 h-16 flex items-center justify-center rounded-full bg-pink-100">

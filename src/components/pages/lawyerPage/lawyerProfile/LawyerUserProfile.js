@@ -26,14 +26,14 @@ const LawyerUserProfile = () => {
             >
               <span>
                 {" "}
-                <i class="fa-solid fa-location-dot"></i>Paris,France
+                <i className="fa-solid fa-location-dot"></i>Paris,France
               </span>
             </li>
           </ul>
           <div className={LawyerProfileCSS.pBMetaTwo}>
             <div className={LawyerProfileCSS.left}>
               <div className={LawyerProfileCSS.icon}>
-                <i class="fa-regular fa-heart"></i>
+                <i className="fa-regular fa-heart"></i>
               </div>{" "}
               257
             </div>

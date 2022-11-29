@@ -17,7 +17,7 @@ const MobileSignUp = () => {
     const [photoURL, setPhotoUrl] = useState("");
     const [customError, setCustomError] = useState("");
     const [createUserWithEmailAndPassword, user, loading, error] = useCreateUserWithEmailAndPassword(auth);
-    const [updateProfile, updating] = useUpdateProfile(auth);
+    const [updateProfile] = useUpdateProfile(auth);
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -52,7 +52,6 @@ const MobileSignUp = () => {
 
     useEffect(() => {
         if (response) {
-            console.log(response);
             localStorage.setItem("accessToken", response.token);
             dispatch(loadUserData(response));
             reset();
@@ -95,7 +94,7 @@ const MobileSignUp = () => {
             <div className="flex justify-center mb-16">
                 <img src={logo} alt="" />
             </div>
-            <section className="">
+            <section>
                 <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col mx-8">
                     {/* ---------- First Name ---------- */}
                     <section className="mb-4">

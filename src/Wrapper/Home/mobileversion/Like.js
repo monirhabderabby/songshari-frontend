@@ -26,7 +26,7 @@ export const Like = () => {
             <div className='mt-5'>
                 <div className='setting-mov'>
                     <Link to='/setting'>
-                        <i class="fa-solid fa-chevron-left ml-8 mt-3"></i>
+                        <i className="fa-solid fa-chevron-left ml-8 mt-3"></i>
                     </Link>
 
                     <h1 className='profile-tit ml-20 mt-2 mb-5'>You May Like</h1>
@@ -64,7 +64,7 @@ export const Like = () => {
             <br></br>
             <br></br>
             <br></br>
-<BottomNav></BottomNav>
-    </div>
-  )
+            <BottomNav></BottomNav>
+        </div>
+    )
 }

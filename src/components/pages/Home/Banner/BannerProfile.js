@@ -12,7 +12,7 @@ const BannerProfile = () => {
             .then(res => res.json())
             .then(data => setSwipeMatch(data));
     }, []);
-    console.log(swipematch);
+
     return (
         <Fragment>
             <div>
@@ -35,7 +35,7 @@ const BannerProfile = () => {
                                             background: "linear-gradient(180deg, #D91448 0%, #603B95 100%)",
                                         }}
                                     >
-                                        <img className="" src={profileS1} alt="" />
+                                        <img src={profileS1} alt="Not Available" />
                                     </div>
                                     <div
                                         className="w-[40px] rounded-[50px] flex justify-center items-center h-[40px]"
@@ -43,7 +43,7 @@ const BannerProfile = () => {
                                             background: "linear-gradient(180deg, #D91448 0%, #603B95 100%)",
                                         }}
                                     >
-                                        <img className="w-[20px]" src={profileS2} alt="" />
+                                        <img className="w-[20px]" src={profileS2} alt="Not Available" />
                                     </div>
                                     <div
                                         className="w-[29px] ml-[20px] rounded-[50px] flex justify-center items-center h-[30px]"
@@ -51,7 +51,7 @@ const BannerProfile = () => {
                                             background: "linear-gradient(180deg, #D91448 0%, #603B95 100%)",
                                         }}
                                     >
-                                        <img className="w-[15px]" src={profileS3} alt="" />
+                                        <img className="w-[15px]" src={profileS3} alt="Not Available" />
                                     </div>
                                 </div>
                             </div>
