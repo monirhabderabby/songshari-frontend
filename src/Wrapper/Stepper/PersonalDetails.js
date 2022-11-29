@@ -15,11 +15,21 @@ export const PersonalDetails = ({ setPage }) => {
     const [backSide, setBackSide] = useState("");
     const [licencePhoto, setLicencePhoto] = useState("");
     const [meritalStatus, setMeritalStatus] = useState("");
+    const [zodiacSign, setZodiacSign] = useState([]);
+    const [zodiacSignValue, setZodiacSignValue] = useState("");
+    const [zodiacSignSuggestion, setZodiacSignSuggestion] = useState("");
+    useEffect(() => {
+        fetch("json/zodiacSign.json")
+            .then(res => res.json())
+            .then(data => setZodiacSign(data));
+    }, []);
     // Countries
-    const [countries, setCountries] = useState([
-        { id: 1, value: "Bangladesh", label: "Bangladesh" },
-        { id: 2, value: "India", label: "India" },
-    ]);
+    const [countries, setCountries] = useState([]);
+    useEffect(() => {
+        fetch("json/countries.json")
+            .then(res => res.json())
+            .then(data => setCountries(data));
+    }, []);
     const animatedComponents = makeAnimated();
     const [homeTownSuggestion, setHomeTownSuggestion] = useState([]);
     const [homeTownValue, setHomeTownValue] = useState("");
@@ -46,9 +56,18 @@ export const PersonalDetails = ({ setPage }) => {
         setHomeTownSuggestion(matches);
         setHomeTownValue(text);
     };
-    if (homeTownSuggestion) {
-        console.log(homeTownSuggestion);
-    }
+
+    const zodiacSignHandler = text => {
+        let matches = [];
+        if (text.length > 0) {
+            matches = zodiacSign.filter(sign => {
+                const regex = new RegExp(`${text}`, "gi");
+                return sign.name.match(regex);
+            });
+        }
+        setZodiacSignSuggestion(matches);
+        setZodiacSignValue(text);
+    };
 
     const {
         register,
@@ -288,7 +307,7 @@ export const PersonalDetails = ({ setPage }) => {
                         </div>
                         <div
                             className={`bg-white shadow-lg absolute top-[40px] right-0 w-full rounded-br-lg rounded-bl-lg overflow-y-scroll ${
-                                homeTownSuggestion.length > 0 ? "h-[346px]" : "h-0"
+                                homeTownSuggestion.length > 0 ? "max-h-[346px]" : "h-0"
                             }`}
                         >
                             {homeTownSuggestion.length > 0 &&
@@ -527,8 +546,12 @@ export const PersonalDetails = ({ setPage }) => {
                         </h1>
                     </section>
                     {/* ---------- Zodiac Sign ---------- */}
-                    <section>
-                        <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
+                    <section className="relative">
+                        <div
+                            className={`flex items-center  p-3 w-full rounded-lg mt-3 lg:mt-0 ${
+                                zodiacSignSuggestion.length > 0 ? "rounded-br-none rounded-bl-none shadow-lg bg-white" : "bg-gray-100"
+                            }`}
+                        >
                             <input
                                 {...register("zodiacSign", {
                                     required: {
@@ -540,7 +563,30 @@ export const PersonalDetails = ({ setPage }) => {
                                 placeholder="Zodiac Sign"
                                 className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
                                 id="zodiacSign"
+                                onChange={e => zodiacSignHandler(e.target.value)}
+                                value={zodiacSignValue}
                             />
+                        </div>
+                        <div
+                            className={`bg-white shadow-lg absolute top-[40px] right-0 w-full rounded-br-lg rounded-bl-lg overflow-y-scroll ${
+                                zodiacSignSuggestion.length > 0 ? "max-h-[346px]" : "h-0"
+                            }`}
+                        >
+                            {zodiacSignSuggestion.length > 0 &&
+                                zodiacSignSuggestion.map(suggetion => {
+                                    return (
+                                        <div
+                                            key={suggetion?.id}
+                                            className="h-[40px] flex justify-start items-center text-[14px] hover:bg-gray-100 px-3 cursor-pointer text-gray-500 "
+                                            onClick={() => {
+                                                setZodiacSignValue(suggetion?.name);
+                                                setZodiacSignSuggestion([]);
+                                            }}
+                                        >
+                                            {suggetion?.name}
+                                        </div>
+                                    );
+                                })}
                         </div>
                         <h1 className="text-left ml-2">
                             {errors.zodiacSign?.type === "required" && (
