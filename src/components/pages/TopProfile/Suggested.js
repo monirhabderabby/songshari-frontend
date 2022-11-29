@@ -6,6 +6,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { useNavigate } from "react-router";
 import "swiper/css";
 import "swiper/css/pagination";
+import { ageCalculator } from "../../../assets/utilities/AgeCalculation/ageCalculator";
 import { useGetRecentMembersQuery } from "../../../Redux/features/userInfo/withoutLoginApi";
 const Suggested = () => {
     const navigate = useNavigate();
@@ -58,31 +59,25 @@ const Suggested = () => {
                                         alt="profile"
                                     />
                                 </div>
-                                <div className="md:hidden">
-                                    <img
-                                        style={{ borderRadius: " 10px 10px 0px 0px" }}
-                                        src={profile.profilePhoto}
-                                        className="w-full h-[324px]"
-                                        alt="profile"
-                                    />
-                                </div>
                                 <div className="hidden md:block">
                                     <div className="p-[30px] text-left">
                                         <h3 className="text-[30px] text-[#000]">
-                                            {profile?.firstName + " " + profile?.lastName} <span className="text-[#87ceeb]"> 26</span>
+                                            {profile?.firstName + " " + profile?.lastName}{" "}
+                                            <span className="text-[#87ceeb]">
+                                                {" "}
+                                                {profile?.dateOfBirth ? ageCalculator(profile?.dateOfBirth) : "0"}
+                                            </span>
                                         </h3>
-                                        <h5 className="font-bold">Student</h5>
-                                        <h5 className="font-bold text-[20px]">Savar Dhaka</h5>
+                                        <h5 className="font-bold">{profile?.designation ? profile?.designation : "Student"}</h5>
+                                        <h5 className="font-bold text-[20px]">{profile?.hometown ? profile?.hometown : "Dhaka"}</h5>
                                     </div>
                                 </div>
                                 <div className="md:hidden">
-
                                     <div className="grid grid-cols-2  mt-2">
                                         <h1 className="font-bold  ml-4 text-2xl">{profile?.firstName}</h1>
                                         <p className="text-red-400 ml-24 font-bold text-2xl">26</p>
                                     </div>
                                     <h5 className="ml-4 text-xl">Student</h5>
-                                 
                                 </div>
                                 <div className="Suggested-info__cardUp">
                                     <div className="Suggested-info__cardImg">

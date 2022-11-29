@@ -1,6 +1,6 @@
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import React, { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import { AiOutlineCloudUpload, AiOutlineIdcard } from "react-icons/ai";
 import Select from "react-select";
 import makeAnimated from "react-select/animated";
@@ -15,6 +15,17 @@ export const PersonalDetails = ({ setPage }) => {
     const [backSide, setBackSide] = useState("");
     const [licencePhoto, setLicencePhoto] = useState("");
     const [meritalStatus, setMeritalStatus] = useState("");
+    const [citizenShip, setCitizenShip] = useState([]);
+
+    // hobbies
+    const [hobbies, setHobbies] = useState([]);
+    useEffect(() => {
+        fetch("json/hobby.json")
+            .then(res => res.json())
+            .then(data => setHobbies(data));
+    }, []);
+
+    // Zodac Sign
     const [zodiacSign, setZodiacSign] = useState([]);
     const [zodiacSignValue, setZodiacSignValue] = useState("");
     const [zodiacSignSuggestion, setZodiacSignSuggestion] = useState("");
@@ -24,6 +35,7 @@ export const PersonalDetails = ({ setPage }) => {
             .then(data => setZodiacSign(data));
     }, []);
     const [childrenStatus, setChildrenStatus] = useState("");
+
     // Countries
     const [countries, setCountries] = useState([]);
     useEffect(() => {
@@ -31,6 +43,7 @@ export const PersonalDetails = ({ setPage }) => {
             .then(res => res.json())
             .then(data => setCountries(data));
     }, []);
+
     const animatedComponents = makeAnimated();
     const [homeTownSuggestion, setHomeTownSuggestion] = useState([]);
     const [homeTownValue, setHomeTownValue] = useState("");
@@ -102,6 +115,7 @@ export const PersonalDetails = ({ setPage }) => {
         register,
         formState: { errors },
         handleSubmit,
+        control,
     } = useForm();
 
     const onSubmit = async data => {
@@ -305,8 +319,9 @@ export const PersonalDetails = ({ setPage }) => {
                     {/* ---------- Hometown ---------- */}
                     <section className="relative">
                         <div
-                            className={`flex items-center  p-3 w-full rounded-lg mt-3 lg:mt-0 ${homeTownSuggestion.length > 0 ? "rounded-br-none rounded-bl-none shadow-lg bg-white" : "bg-gray-100"
-                                }`}
+                            className={`flex items-center  p-3 w-full rounded-lg mt-3 lg:mt-0 ${
+                                homeTownSuggestion.length > 0 ? "rounded-br-none rounded-bl-none shadow-lg bg-white" : "bg-gray-100"
+                            }`}
                         >
                             <input
                                 {...register("hometown", {
@@ -324,8 +339,9 @@ export const PersonalDetails = ({ setPage }) => {
                             />
                         </div>
                         <div
-                            className={`bg-white shadow-lg absolute top-[40px] right-0 w-full rounded-br-lg rounded-bl-lg overflow-y-scroll ${homeTownSuggestion.length > 0 ? "max-h-[346px]" : "h-0"
-                                }`}
+                            className={`bg-white shadow-lg absolute top-[40px] right-0 w-full rounded-br-lg rounded-bl-lg overflow-y-scroll ${
+                                homeTownSuggestion.length > 0 ? "max-h-[346px]" : "h-0"
+                            }`}
                         >
                             {homeTownSuggestion.length > 0 &&
                                 homeTownSuggestion.map(suggetion => {
@@ -544,14 +560,18 @@ export const PersonalDetails = ({ setPage }) => {
                     {/* ---------- Citizenship ---------- */}
                     <section>
                         <div className="flex items-center bg-gray-100  w-full rounded-lg mt-3 lg:mt-0">
-                            <Select
-                                {...register("citizenShip", { required: { value: true, message: "Citizenship is required" } })}
-                                closeMenuOnSelect={false}
-                                components={animatedComponents}
-                                isMulti
-                                options={countries}
-                                className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
-                                placeholder="Select Citizenship"
+                            <Controller
+                                control={control}
+                                name="citizenship"
+                                render={({ field: { onChange, value, ref } }) => (
+                                    <Select
+                                        inputRef={ref}
+                                        className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
+                                        onChange={val => onChange(val.map(c => setCitizenShip([...citizenShip, c.value])))}
+                                        options={countries}
+                                        isMulti
+                                    />
+                                )}
                             />
                         </div>
                         <h1 className="text-left ml-2">
@@ -563,8 +583,9 @@ export const PersonalDetails = ({ setPage }) => {
                     {/* ---------- Zodiac Sign ---------- */}
                     <section className="relative">
                         <div
-                            className={`flex items-center  p-3 w-full rounded-lg mt-3 lg:mt-0 ${zodiacSignSuggestion.length > 0 ? "rounded-br-none rounded-bl-none shadow-lg bg-white" : "bg-gray-100"
-                                }`}
+                            className={`flex items-center  p-3 w-full rounded-lg mt-3 lg:mt-0 ${
+                                zodiacSignSuggestion.length > 0 ? "rounded-br-none rounded-bl-none shadow-lg bg-white" : "bg-gray-100"
+                            }`}
                         >
                             <input
                                 {...register("zodiacSign", {
@@ -582,8 +603,9 @@ export const PersonalDetails = ({ setPage }) => {
                             />
                         </div>
                         <div
-                            className={`bg-white shadow-lg absolute top-[40px] right-0 w-full rounded-br-lg rounded-bl-lg overflow-y-scroll ${zodiacSignSuggestion.length > 0 ? "max-h-[346px]" : "h-0"
-                                }`}
+                            className={`bg-white shadow-lg absolute top-[40px] right-0 w-full rounded-br-lg rounded-bl-lg overflow-y-scroll ${
+                                zodiacSignSuggestion.length > 0 ? "max-h-[346px]" : "h-0"
+                            }`}
                         >
                             {zodiacSignSuggestion.length > 0 &&
                                 zodiacSignSuggestion.map(suggetion => {
@@ -680,8 +702,9 @@ export const PersonalDetails = ({ setPage }) => {
                     {/* ---------- Town permanent ---------- */}
                     <section className="relative">
                         <div
-                            className={`flex items-center  p-3 w-full rounded-lg mt-3 lg:mt-0 ${townPermanentSuggestion.length > 0 ? "rounded-br-none rounded-bl-none shadow-lg bg-white" : "bg-gray-100"
-                                }`}
+                            className={`flex items-center  p-3 w-full rounded-lg mt-3 lg:mt-0 ${
+                                townPermanentSuggestion.length > 0 ? "rounded-br-none rounded-bl-none shadow-lg bg-white" : "bg-gray-100"
+                            }`}
                         >
                             <input
                                 {...register("townPermanent", {
@@ -699,8 +722,9 @@ export const PersonalDetails = ({ setPage }) => {
                             />
                         </div>
                         <div
-                            className={`bg-white shadow-lg absolute top-[40px] right-0 w-full rounded-br-lg rounded-bl-lg overflow-y-scroll ${townPermanentSuggestion.length > 0 ? "max-h-[346px]" : "h-0"
-                                }`}
+                            className={`bg-white shadow-lg absolute top-[40px] right-0 w-full rounded-br-lg rounded-bl-lg overflow-y-scroll ${
+                                townPermanentSuggestion.length > 0 ? "max-h-[346px]" : "h-0"
+                            }`}
                         >
                             {townPermanentSuggestion.length > 0 &&
                                 townPermanentSuggestion.map(suggetion => {
@@ -850,8 +874,9 @@ export const PersonalDetails = ({ setPage }) => {
                     {/* ---------- Town Current ---------- */}
                     <section className="relative">
                         <div
-                            className={`flex items-center  p-3 w-full rounded-lg mt-3 lg:mt-0 ${townCurrentSuggestion.length > 0 ? "rounded-br-none rounded-bl-none shadow-lg bg-white" : "bg-gray-100"
-                                }`}
+                            className={`flex items-center  p-3 w-full rounded-lg mt-3 lg:mt-0 ${
+                                townCurrentSuggestion.length > 0 ? "rounded-br-none rounded-bl-none shadow-lg bg-white" : "bg-gray-100"
+                            }`}
                         >
                             <input
                                 {...register("townCurrent", {
@@ -869,8 +894,9 @@ export const PersonalDetails = ({ setPage }) => {
                             />
                         </div>
                         <div
-                            className={`bg-white shadow-lg absolute top-[40px] right-0 w-full rounded-br-lg rounded-bl-lg overflow-y-scroll ${townCurrentSuggestion.length > 0 ? "max-h-[346px]" : "h-0"
-                                }`}
+                            className={`bg-white shadow-lg absolute top-[40px] right-0 w-full rounded-br-lg rounded-bl-lg overflow-y-scroll ${
+                                townCurrentSuggestion.length > 0 ? "max-h-[346px]" : "h-0"
+                            }`}
                         >
                             {townCurrentSuggestion.length > 0 &&
                                 townCurrentSuggestion.map(suggetion => {
@@ -1964,13 +1990,15 @@ export const PersonalDetails = ({ setPage }) => {
                     <section className="col-span-1 md:col-span-2 lg:col-span-3 text-[#2F3659] font-medium text-left ml-1">Extra Info</section>
                     {/* ---------- Your Hobbies ---------- */}
                     <section>
-                        <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
-                            <input
+                        <div className="flex items-center bg-gray-100  w-full rounded-lg mt-3 lg:mt-0">
+                            <Select
                                 {...register("hobbies")}
-                                type="text"
-                                placeholder="Your Hobbies"
+                                closeMenuOnSelect={false}
+                                components={animatedComponents}
+                                isMulti
+                                options={hobbies}
                                 className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
-                                id="hobbies"
+                                placeholder="Select Hobbies"
                             />
                         </div>
                         <h1 className="text-left ml-2">
