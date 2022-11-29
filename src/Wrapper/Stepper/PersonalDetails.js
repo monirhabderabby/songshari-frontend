@@ -1,6 +1,6 @@
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import React, { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import { AiOutlineCloudUpload, AiOutlineIdcard } from "react-icons/ai";
 import Select from "react-select";
 import makeAnimated from "react-select/animated";
@@ -15,6 +15,7 @@ export const PersonalDetails = ({ setPage }) => {
     const [backSide, setBackSide] = useState("");
     const [licencePhoto, setLicencePhoto] = useState("");
     const [meritalStatus, setMeritalStatus] = useState("");
+    const [citizenShip, setCitizenShip] = useState([]);
 
     // hobbies
     const [hobbies, setHobbies] = useState([]);
@@ -51,7 +52,6 @@ export const PersonalDetails = ({ setPage }) => {
     const [townPermanentValue, setTownPermanentValue] = useState("");
     const [townCurrentSuggestion, setTownCurrentSuggestion] = useState([]);
     const [townCurrentValue, setTownCurrentValue] = useState("");
-    const [citizenShip, setCitizenShip] = useState([]);
 
     useEffect(() => {
         fetch("json/district.json")
@@ -111,14 +111,11 @@ export const PersonalDetails = ({ setPage }) => {
         setZodiacSignValue(text);
     };
 
-    const handleCitizenshipChange = e => {
-        console.log(e.value);
-    };
-
     const {
         register,
         formState: { errors },
         handleSubmit,
+        control,
     } = useForm();
 
     const onSubmit = async data => {
@@ -171,8 +168,7 @@ export const PersonalDetails = ({ setPage }) => {
         data.licencePhoto = licencePhoto;
 
         data = { ...data, hightestEducationalQualification, currentProfession };
-        console.log(data);
-        // await setPersonalDetails(data);
+        await setPersonalDetails(data);
     };
 
     useEffect(() => {
@@ -564,16 +560,18 @@ export const PersonalDetails = ({ setPage }) => {
                     {/* ---------- Citizenship ---------- */}
                     <section>
                         <div className="flex items-center bg-gray-100  w-full rounded-lg mt-3 lg:mt-0">
-                            <Select
-                                {...register("citizenShip", { required: { value: true, message: "Citizenship is required" } })}
-                                closeMenuOnSelect={false}
-                                components={animatedComponents}
-                                onChange={e => setCitizenShip(e.value)}
-                                isMulti
-                                value={citizenShip}
-                                options={countries}
-                                className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
-                                placeholder="Select Citizenship"
+                            <Controller
+                                control={control}
+                                name="citizenship"
+                                render={({ field: { onChange, value, ref } }) => (
+                                    <Select
+                                        inputRef={ref}
+                                        className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
+                                        onChange={val => onChange(val.map(c => setCitizenShip([...citizenShip, c.value])))}
+                                        options={countries}
+                                        isMulti
+                                    />
+                                )}
                             />
                         </div>
                         <h1 className="text-left ml-2">
