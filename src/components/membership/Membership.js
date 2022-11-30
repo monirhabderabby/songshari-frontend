@@ -25,7 +25,7 @@ const Membership = () => {
                             <div>
                                 <div>
                                     <div className='flex justify-center'>
-                                        <img src={i1} alt="" />
+                                        <img src={i1} alt="Not Available" />
                                     </div>
                                     <div className='py-4'>
                                         <TitleWithBar isHidden='' Color='black' fontsize='2' textData='Unlimited Message' />
@@ -39,7 +39,7 @@ const Membership = () => {
                             <div className=''>
                                 <div>
                                     <div className='flex justify-center'>
-                                        <img src={i2} alt="" />
+                                        <img src={i2} alt="Not Available" />
                                     </div>
                                     <div className='py-4'>
                                         <TitleWithBar isHidden='' Color='black' fontsize='2' textData='Unlimited matched' />
@@ -53,7 +53,7 @@ const Membership = () => {
                             <div className=''>
                                 <div>
                                     <div className='flex justify-center'>
-                                        <img src={i3} alt="" />
+                                        <img src={i3} alt="Not Available" />
                                     </div>
                                     <div className='py-4'>
                                         <TitleWithBar isHidden='' Color='black' fontsize='2' textData='Take more messages' />
@@ -67,7 +67,7 @@ const Membership = () => {
                             <div className=''>
                                 <div>
                                     <div className='flex justify-center'>
-                                        <img src={i4} alt="" />
+                                        <img src={i4} alt="Not Available" />
                                     </div>
                                     <div className='py-4'>
                                         <TitleWithBar isHidden='' Color='black' fontsize='2' textData='Vip Badge' />

@@ -82,15 +82,8 @@ const RegAsProfessional = () => {
     useEffect(() => {
         if (photoUrl) {
             setCustomError("");
-            console.log(photoUrl);
         }
     }, [photoUrl]);
-
-    useEffect(() => {
-        if (user) {
-            console.log(user);
-        }
-    }, [user]);
 
     return (
         <div className="min-h-screen">

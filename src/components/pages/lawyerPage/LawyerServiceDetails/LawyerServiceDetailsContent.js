@@ -42,7 +42,7 @@ const LawyerServiceDetailsContent = () => {
               <img
                 className="inline-block w-[93px] ml-[10px]"
                 src={data.img}
-                alt=""
+                alt="Not Available"
               />
             </div>
           ))}

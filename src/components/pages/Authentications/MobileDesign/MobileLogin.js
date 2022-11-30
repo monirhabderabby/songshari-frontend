@@ -28,7 +28,6 @@ const MobileLogin = () => {
     const onSubmit = async data => {
         data.role = "member";
         await signInWithEmailAndPassword(data.email, data.password);
-        console.log(data);
         loginAsMember(data);
     };
 
@@ -48,7 +47,6 @@ const MobileLogin = () => {
             reset();
         }
         if (response && user) {
-            // navigate("/userProfile");
             navigate(from, { replace: true });
         }
     }, [response, dispatch, user, navigate, reset, from]);
@@ -61,7 +59,7 @@ const MobileLogin = () => {
                 </span>
                 <p>Log In</p>
             </div>
-            <section className="">
+            <section>
                 <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col mx-8">
                     <section className="mb-4">
                         <div className="flex items-center bg-white p-4 w-full rounded-lg">

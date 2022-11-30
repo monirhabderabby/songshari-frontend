@@ -59,7 +59,7 @@ const MobileFreePlan = () => {
                         style={{ backgroundImage: "linear-gradient(180deg, #CC1A7A 0%, #5A3FA0 96.35%, rgba(228, 18, 114, 0) 100%)" }}>
                         Get Started
                     </button>
-                    <img className='absolute bottom-0 rotate-180 h-36 w-full' src={topShape} alt="" />
+                    <img className='absolute bottom-0 rotate-180 h-36 w-full' src={topShape} alt="Not Available" />
                 </div>
             </section>
             <BottomNav></BottomNav>

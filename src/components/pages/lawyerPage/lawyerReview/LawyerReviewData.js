@@ -1,5 +1,4 @@
 import recent from "../../../../assets/images/LawyerProfile/recentReview.png";
-import review from "../../../../assets/images/LawyerProfile/topReview.png";
 
 const recentReview = [
   {

@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 const FindSoleMate = () => {
     return (
         <div className='bg-[#5736cb] relative h-60 lg:h-72 overflow-hidden mt-10 md:mt-5'>
-            <img className='absolute top-0' style={{ animation: `${ScaleAnimationCSS.scaleAni} 5s linear infinite` }} src={bgHeartShape} alt="" />
+            <img className='absolute top-0' style={{ animation: `${ScaleAnimationCSS.scaleAni} 5s linear infinite` }} src={bgHeartShape} alt="Not Available" />
             <div className='h-60 lg:h-72 overflow-hidden w-5/6 md:w-11/12 lg:w-5/6 mx-auto flex flex-col md:flex-row items-center'>
                 <div className='md:flex-1 my-auto z-10 bg-black md:bg-none rounded-md md:rounded-none bg-opacity-30 md:bg-opacity-0 py-2 md:py-0 px-2 md:px-0'>
                     <div>
@@ -22,7 +22,7 @@ const FindSoleMate = () => {
                     </div>
                 </div>
                 <div className='flex-1 absolute md:static -z-0 lg:mr-10'>
-                    <img src={soleMate} alt="" />
+                    <img src={soleMate} alt="Not Available" />
                 </div>
             </div>
         </div>

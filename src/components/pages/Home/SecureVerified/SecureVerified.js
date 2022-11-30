@@ -26,7 +26,7 @@ const SecureVerified = () => {
             style={{ boxShadow: "0px 5px 20px 0px rgba(176, 171, 193, 0.4)" }}
           >
             <div className="mb-5 md:mb-3 lg:mb-5 h-3/5 md:h-1/2 lg:h-3/5">
-              <img className="mx-auto" src={i.img} alt="" />
+              <img className="mx-auto" src={i.img} alt="Not Available" />
             </div>
             <p className="text-xl md:text-lg lg:text-xl text-center whitespace-nowrap md:mt-8 lg:mt-0 mb-2">{i.text}</p>
           </div>

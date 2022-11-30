@@ -13,7 +13,7 @@ const Banner = () => {
                             <BannerFilterBox />
                         </div>
                         <div className=" col-span-2">
-                            <img className="h-[400px] w-[721px]" src={banner} alt="" />
+                            <img className="h-[400px] w-[721px]" src={banner} alt="Not Available" />
                         </div>
                         <div>
                             <BannerProfile />

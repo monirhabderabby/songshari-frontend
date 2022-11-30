@@ -15,7 +15,6 @@ export const AccordionPartner = ({ data, isLoading }) => {
     const [religionValue, setReligionValue] = useState(1);
 
     if (hightestEducationalQualification) {
-        console.log(data);
     }
     // const [expanded, setExpanded] = React.useState("panel1");
 
@@ -31,10 +30,10 @@ export const AccordionPartner = ({ data, isLoading }) => {
 
     // ----------- Basic Information ----------
     const handleLookingForChange = (value) => {
-        console.log(`selected ${value}`);
+
     };
     const handleForChange = (value) => {
-        console.log(`selected ${value}`);
+
     };
     // const handleAgeChange = (value) => {
     //     console.log(`selected ${value}`);
@@ -50,79 +49,79 @@ export const AccordionPartner = ({ data, isLoading }) => {
         setReligionValue(e.target.value);
     };
     const handleHometownChange = (value) => {
-        console.log(`selected ${value}`);
+
     };
     const handleCurrentLocationChange = (value) => {
-        console.log(`selected ${value}`);
+
     };
     const handleCitizenshipChange = (value) => {
-        console.log(`selected ${value}`);
+
     };
     const handleMaritalStatusChange = (value) => {
-        console.log(`selected ${value}`);
+
     };
 
     // ------ Family Information -----------
     const handleFatherStatusChange = (value) => {
-        console.log(`selected ${value}`);
+
     };
     const handleFatherProfessionChange = (value) => {
-        console.log(`selected ${value}`);
+
     };
     const handleFatherIncomeChange = (value) => {
-        console.log(`selected ${value}`);
+
     };
     const handleMotherStatusChange = (value) => {
-        console.log(`selected ${value}`);
+
     };
     const handleMotherProfessionChange = (value) => {
-        console.log(`selected ${value}`);
+
     };
     const handleMotherIncomeChange = (value) => {
-        console.log(`selected ${value}`);
+
     };
     const handleNumberOfBrother = (value) => {
-        console.log(`selected ${value}`);
+
     };
     const handleNumberOfSister = (value) => {
-        console.log(`selected ${value}`);
+
     };
 
     // ------- Professional Info -------------
     const handleUserProfessionChange = (value) => {
-        console.log(`selected ${value}`);
+
     };
     const handleUserProfessionalExperienceChange = (value) => {
-        console.log(`selected ${value}`);
+
     };
     const handleUserEducationalQualificationChange = (value) => {
-        console.log(`selected ${value}`);
+
     };
     const handleUserIncomeChange = (value) => {
-        console.log(`selected ${value}`);
+
     };
 
     // --------- Others Information ------------
     const handleUserHeightChange = (value) => {
-        console.log(`selected ${value}`);
+
     };
     const handleUserWeightChange = (value) => {
-        console.log(`selected ${value}`);
+
     };
     const handleUserAncestryChange = (value) => {
-        console.log(`selected ${value}`);
+
     };
     const handleUserSkinToneChange = (value) => {
-        console.log(`selected ${value}`);
+
     };
     const handleUserHairColorChange = (value) => {
-        console.log(`selected ${value}`);
+
     };
     const handleUserHairTypeChange = (value) => {
-        console.log(`selected ${value}`);
+
     };
     const handleUserEyeColorChange = (value) => {
-        console.log(`selected ${value}`);
+
     };
 
     return (

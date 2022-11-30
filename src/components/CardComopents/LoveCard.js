@@ -15,15 +15,15 @@ const LoveCard = () => {
                 <div className={`w-96 bg-base-100 rounded-xl ${style.card_hober} shadow-lg`}>
                     <div className={` relative`}>
                         <div className={`h-64`}>
-                            <img className={`${style.img_body} h-full`} src="https://placeimg.com/400/225/arch" alt="image" />
+                            <img className={`${style.img_body} h-full`} src="https://placeimg.com/400/225/arch" alt="Not Available" />
                         </div>
                         <div className='absolute top-44 left-28'>
                             <div className={`${style.author} relative`}>
                                 <div>
-                                    <img className={`${style.coverimg}`} src={imgcover} alt="" />
+                                    <img className={`${style.coverimg}`} src={imgcover} alt="Not Available" />
                                 </div>
                                 <div className='absolute top-11 left-11'>
-                                    <img src={man} alt="" />
+                                    <img src={man} alt="Not Available" />
                                 </div>
                             </div>
                         </div>
@@ -38,11 +38,11 @@ const LoveCard = () => {
                         </div>
                         <div className="flex justify-between items-center pt-2">
                             <div className={`${style.world} flex justify-between`}>
-                                <a href="">
-                                    <img className={`${style.commonimg}`} src={fb} alt="" />
+                                <a href="!#">
+                                    <img className={`${style.commonimg}`} src={fb} alt="Not Available" />
                                 </a>
-                                <a className='px-2' href=""><img className={`${style.commonimg}`} src={twi} alt="" /></a>
-                                <a href=""><img className={`${style.commonimg}`} src={insta} alt="" /></a>
+                                <a className='px-2' href="!#"><img className={`${style.commonimg}`} src={twi} alt="Not Available" /></a>
+                                <a href="!#"><img className={`${style.commonimg}`} src={insta} alt="Not Available" /></a>
                             </div>
                             <div className={``}>
                                 <Link to='/'>{text}</Link>

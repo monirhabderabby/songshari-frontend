@@ -8,7 +8,7 @@ import { DynamicProfileInfo } from "./DynamicProfileInfo";
 const DynamicTable = ({ data, isLoading }) => {
     const [page, setPage] = useState(2);
     return (
-        <div className="">
+        <div>
             <div className="px-2 md:px-0 mx-4 mb-4">
                 <div className="notification-bar">
                     <div className="flex justify-center items-center gap-4">

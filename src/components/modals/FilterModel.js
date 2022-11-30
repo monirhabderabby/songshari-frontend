@@ -4,7 +4,6 @@ import { useForm } from "react-hook-form";
 const FilterModel = ({ visiblity, onClose }) => {
     const { register, handleSubmit } = useForm();
     const onSubmit = data => {
-        console.log(data);
         onClose();
     };
 
@@ -34,7 +33,7 @@ const FilterModel = ({ visiblity, onClose }) => {
                         </div>
                         <div className="py-6 px-4">
                             <form onSubmit={handleSubmit(onSubmit)}>
-                                <div className="">
+                                <div>
                                     <div>
                                         <div className="px-4 h-25 items-center flex justify-center py-2 border-b">
                                             <div className="pr-4">I am : </div>
@@ -152,8 +151,3 @@ const FilterModel = ({ visiblity, onClose }) => {
 };
 
 export default FilterModel;
-
-/* 
-<input defaultValue="test" {...register("example")} />
-                                <input {...register("exampleRequired", { required: true })} />
-*/

@@ -12,7 +12,7 @@ const Table = ({ data, isLoading }) => {
     const navigate = useNavigate();
 
     return (
-        <div className="">
+        <div>
             <div className="px-2 md:px-0 mx-4 mb-4">
                 <div className="notification-bar">
                     <div className="flex justify-center items-center h-full gap-4">
@@ -45,9 +45,9 @@ const Table = ({ data, isLoading }) => {
                 </div>
             </div>
             {!data?.designation && (
-                <div class="bg-white h-[30px] pl-3 flex items-center shadow-lg shadow-slate-200 rounded-lg w-full mb-4">
-                    <div class="flex-auto bg-slate-100 mr-3">
-                        <div class="bg-teal-400 h-1 rounded" style={{ width: "15%" }}></div>
+                <div className="bg-white h-[30px] pl-3 flex items-center shadow-lg shadow-slate-200 rounded-lg w-full mb-4">
+                    <div className="flex-auto bg-slate-100 mr-3">
+                        <div className="bg-teal-400 h-1 rounded" style={{ width: "15%" }}></div>
                     </div>
                     <button
                         className="text-[12px] bg-teal-400 text-white h-full rounded-tr-lg rounded-br-lg px-2 font-semibold"
