@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import moment from "moment";
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
@@ -7,10 +7,12 @@ import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { Collapse } from 'antd';
 import { Select } from 'antd';
+import { Input, Radio, Space, Slider } from 'antd';
 
 export const AccordionPartner = ({ data, isLoading }) => {
     const hightestEducationalQualification = data?.hightestEducationalQualification;
     const { Panel } = Collapse;
+    const [religionValue, setReligionValue] = useState(1);
 
     if (hightestEducationalQualification) {
         console.log(data);
@@ -34,11 +36,18 @@ export const AccordionPartner = ({ data, isLoading }) => {
     const handleForChange = (value) => {
         console.log(`selected ${value}`);
     };
-    const handleAgeChange = (value) => {
-        console.log(`selected ${value}`);
+    // const handleAgeChange = (value) => {
+    //     console.log(`selected ${value}`);
+    // };
+    const onAgeChange = (value) => {
+        console.log('onChange: ', value);
     };
-    const handleReligionChange = (value) => {
-        console.log(`selected ${value}`);
+    const onAfterAgeChange = (value) => {
+        console.log('onAfterChange: ', value);
+    };
+    const handleReligionChange = (e) => {
+        console.log('radio checked', e.target.value);
+        setReligionValue(e.target.value);
     };
     const handleHometownChange = (value) => {
         console.log(`selected ${value}`);
@@ -253,18 +262,30 @@ export const AccordionPartner = ({ data, isLoading }) => {
                                 },
                                 {
                                     value: 'brother',
-                                    label: 'Brother',
+                                    label: 'My Brother',
                                 },
                                 {
                                     value: 'sister',
-                                    label: 'Sister',
+                                    label: 'My Sister',
+                                },
+                                {
+                                    value: 'cousin',
+                                    label: 'My Cousin',
+                                },
+                                {
+                                    value: 'friend',
+                                    label: 'My Friend',
+                                },
+                                {
+                                    value: 'relative',
+                                    label: 'My Relative',
                                 },
                             ]}
                         />
                     </div>
                     <div>
                         <h1 className='text-lg leading-6 font-semibold mb-4'>Age</h1>
-                        <Select
+                        {/* <Select
                             defaultValue="20 - 25"
                             className='w-full mb-2'
                             onChange={handleAgeChange}
@@ -286,29 +307,41 @@ export const AccordionPartner = ({ data, isLoading }) => {
                                     label: '35 - 40',
                                 },
                             ]}
+                        /> */}
+                        {/* <Slider
+                            className="text-[#E41272]"
+                            range={{ draggableTrack: true }}
+                            defaultValue={[20, 50]}
+                        /> */}
+                        <Slider
+                            range={{ draggableTrack: true }}
+                            defaultValue={[20, 50]}
+                            onChange={onAgeChange}
+                            onAfterChange={onAfterAgeChange}
                         />
                     </div>
                     <div>
                         <h1 className='text-lg leading-6 font-semibold mb-4'>Religion</h1>
-                        <Select
-                            defaultValue="islam"
-                            className='w-full mb-2'
-                            onChange={handleReligionChange}
-                            options={[
-                                {
-                                    value: 'islam',
-                                    label: 'Islam',
-                                },
-                                {
-                                    value: 'hindu',
-                                    label: 'Hindu',
-                                },
-                                {
-                                    value: 'christian',
-                                    label: 'Christian',
-                                },
-                            ]}
-                        />
+                        <Radio.Group onChange={handleReligionChange} value={religionValue}>
+                            <Space direction="vertical">
+                                <Radio value={1}>Islam</Radio>
+                                <Radio value={2}>Hinduism</Radio>
+                                <Radio value={3}>Christian</Radio>
+                                <Radio value={4}>Buddhist</Radio>
+                                <Radio value={5}>Atheist</Radio>
+                                <Radio value={6}>
+                                    Add New
+                                    {religionValue === 6 ? (
+                                        <Input
+                                            style={{
+                                                width: 100,
+                                                marginLeft: 10,
+                                            }}
+                                        />
+                                    ) : null}
+                                </Radio>
+                            </Space>
+                        </Radio.Group>
                     </div>
                     <div>
                         <h1 className='text-lg leading-6 font-semibold mb-4'>Hometown</h1>
@@ -384,12 +417,16 @@ export const AccordionPartner = ({ data, isLoading }) => {
                             onChange={handleMaritalStatusChange}
                             options={[
                                 {
-                                    value: 'unmarried',
-                                    label: 'Unmarried',
+                                    value: 'single',
+                                    label: 'Never Married',
                                 },
                                 {
                                     value: 'married',
                                     label: 'Married',
+                                },
+                                {
+                                    value: 'divorced',
+                                    label: 'Divorced',
                                 },
                                 {
                                     value: 'widowed',
