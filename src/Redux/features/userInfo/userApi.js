@@ -104,6 +104,7 @@ export const userApi = apiSlice.injectEndpoints({
         }),
         getProfileDetails: builder.query({
             query: id => `/member/personalDetail/${id}`,
+            keepUnusedDataFor: 30,
         }),
         getProfileDetailsWIthAuth: builder.query({
             query: () => ({
@@ -111,6 +112,7 @@ export const userApi = apiSlice.injectEndpoints({
                 method: "GET",
                 headers: { authorization: `Bearer ${localStorage.getItem("accessToken")}` },
             }),
+            keepUnusedDataFor: 60,
         }),
     }),
 });
