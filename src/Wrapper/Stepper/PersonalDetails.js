@@ -18,6 +18,8 @@ export const PersonalDetails = ({ setPage }) => {
     const [meritalStatus, setMeritalStatus] = useState("");
     const [citizenShip, setCitizenShip] = useState([]);
 
+    const { RangePicker } = DatePicker;
+
     // hobbies
     const [hobbies, setHobbies] = useState([]);
     useEffect(() => {
@@ -1395,17 +1397,16 @@ export const PersonalDetails = ({ setPage }) => {
                     </section>
                     {/* ---------- Work Period ---------- */}
                     <section>
-                        <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
-                            <input
+                        <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
+                            <RangePicker
                                 {...register("workPeriod", {
                                     required: {
                                         value: true,
                                         message: "Work Period is required",
                                     },
                                 })}
-                                type="text"
-                                placeholder="Work Period"
-                                className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
+                                placeholder={['Start Date', 'End Date']}
+                                className="flex-1 px-2 py-[10px] outline-none h-full bg-transparent text-sm text-gray-400"
                                 id="workPeriod"
                             />
                         </div>
