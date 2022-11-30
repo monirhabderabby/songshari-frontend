@@ -61,8 +61,8 @@ const Suggested = () => {
                                     />
                                 </div>
                                 <div className="hidden md:block">
-                                    <div className="p-[30px] text-left">
-                                        <h3 className="text-[30px] text-[#000]">
+                                    <div className="p-[30px] text-left bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] text-white">
+                                        <h3 className="text-[30px] text-[#ffffff]">
                                             {profile?.firstName + " " + profile?.lastName}{" "}
                                             <span className="text-[#87ceeb]">
                                                 {" "}
