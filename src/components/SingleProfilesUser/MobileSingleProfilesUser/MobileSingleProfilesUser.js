@@ -18,7 +18,7 @@ const MobileSingleProfilesUser = () => {
                         </Link>
                     </div>
                     <div className="mr-8">
-                        <span className="text-center">{user.displayName}'s Profile</span>
+                        <span className="text-center">{user?.displayName}'s Profile</span>
                     </div>
                     <div></div>
                 </div>
