@@ -8,15 +8,12 @@ export const UserCard = ({ profile, isLoading }) => {
     const array = [1, 2, 3];
     const navigate = useNavigate();
 
-    if (profile) {
-        console.log(profile);
-    }
     return (
         <div className="col-span-1" data-aos="fade-up" data-aos-easing="ease-out-cubic" data-aos-duration="2000">
             {profile && (
-                <div className="bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] h-[400px] relative group overflow-hidden Suggested-card">
+                <div className="h-[400px] relative group overflow-hidden Suggested-card">
                     <img className="h-[290px] w-full" src={profile?.profilePhoto} alt="profile" />
-                    <div className="px-[15px] py-[10px] text-white">
+                    <div className="px-[15px] py-[10px] text-white bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)]">
                         <div className="flex gap-x-5 items-center">
                             <p className="text-[22px]">{profile?.firstName + " " + profile?.lastName}</p>
                             <p className="text-[18px]">{ageCalculator(profile?.dateOfBirth ? profile?.dateOfBirth : 0)}</p>
