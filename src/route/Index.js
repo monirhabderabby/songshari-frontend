@@ -117,7 +117,7 @@ const Index = () => {
                     <Route path="/matchesmov" element={<MatchesMov></MatchesMov>}></Route>
                     <Route path="/mobileActivityPage" element={<MobileActivity />}></Route>
                     <Route path="/mobileActivityNextPage" element={<MobileActivityPost />}></Route>
-                    <Route path="/mobileUserProfile" element={<MobileSingleProfilesUser />}></Route>
+                    
                     <Route path="/certificatemov" element={<CertificateMov></CertificateMov>}></Route>
                     <Route path="/like" element={<Like></Like>}></Route>
                     <Route path="/mobileUpgrade" element={<UpgradePlan></UpgradePlan>}></Route>
