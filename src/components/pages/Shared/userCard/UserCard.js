@@ -11,16 +11,24 @@ export const UserCard = ({ profile, isLoading }) => {
     return (
         <div className="col-span-1" data-aos="fade-up" data-aos-easing="ease-out-cubic" data-aos-duration="2000">
             {profile && (
-                <div className="h-[400px] relative group overflow-hidden Suggested-card">
-                    <img className="h-[290px] w-full" src={profile?.profilePhoto} alt="profile" />
-                    <div className="px-[15px] py-[10px] text-white bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)]">
+                <div className="h-[370px] relative group overflow-hidden Suggested-card">
+                    <img className="h-[370px] w-full" src={profile?.profilePhoto} alt="profile" />
+                    <div className="absolute h-[100px] w-full top-[270px] right-0 inset-0 bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] opacity-90 text-white px-4 py-2 font-serif group-hover:top-[370px] transition ease-out duration-500">
+                        <div className="flex gap-x-4 items-center">
+                            <p className="text-[20px] text-white font-bold drop-shadow-lg">{profile?.firstName + " " + profile?.lastName}</p>
+                            <p className="text-[18px] text-[#87ceeb]">{ageCalculator(profile?.dateOfBirth ? profile?.dateOfBirth : 0)}</p>
+                        </div>
+                        <p>{profile?.designation ? profile?.designation : "Not Provided"}</p>
+                        <p>{profile?.hometown ? profile?.hometown : "Not Provided"}</p>
+                    </div>
+                    {/* <div className="px-[15px]  py-[10px] text-white bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)]">
                         <div className="flex gap-x-5 items-center">
                             <p className="text-[22px]">{profile?.firstName + " " + profile?.lastName}</p>
                             <p className="text-[18px]">{ageCalculator(profile?.dateOfBirth ? profile?.dateOfBirth : 0)}</p>
                         </div>
                         <p>{profile?.designation ? profile?.designation : "Not Provided"}</p>
                         <p>{profile?.hometown ? profile?.hometown : "Not Provided"}</p>
-                    </div>
+                    </div> */}
                     <div
                         style={{
                             backgroundImage: `url(${bg})`,
@@ -35,26 +43,18 @@ export const UserCard = ({ profile, isLoading }) => {
                         className="Suggested-info__cardUp"
                     >
                         <img
-                            src="https://i.postimg.cc/52Y8nHnf/310814492-3383940818533755-1197676094327108122-n.jpg"
+                            src={profile?.profilePhoto}
                             alt="profile"
                             className="w-[94px] h-[94px] rounded-full relative left-[35%] border-white border-4"
                         />
                         <div className="p-2">
-                            <h4 className="text-white text-[30px] text-center overflow-hidden">
+                            <h4 className="text-white text-[25px] font-bold text-center overflow-hidden">
                                 <span className="font-george">Monir Hossain</span>
                                 <span style={{ color: "rgb(135, 206, 235)" }}> 27</span>
                             </h4>
                             <ul className="text-white font-george">
                                 <li>
-                                    <p>
-                                        <span>Occupation</span>
-                                        {profile?.designation ? profile?.designation : "Not Provided"}
-                                    </p>
-                                </li>
-                                <li>
-                                    <p>
-                                        <span>Home Town</span> {profile?.hometown ? profile?.hometown : "Not Provided"}
-                                    </p>
+                                    <p className="text-[14px]">Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti veritatis nobis</p>
                                 </li>
                                 <li>
                                     <p>
@@ -63,11 +63,6 @@ export const UserCard = ({ profile, isLoading }) => {
                                             ? profile?.hightestEducationalQualification?.degreeName +
                                               `(Department Of ${profile?.hightestEducationalQualification?.Department})`
                                             : "Not Provided"}
-                                    </p>
-                                </li>
-                                <li>
-                                    <p>
-                                        <span>Religion</span> Muslim
                                     </p>
                                 </li>
                             </ul>

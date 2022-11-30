@@ -1,13 +1,20 @@
 import { AutoComplete, Select, Slider } from "antd";
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
 import { auth } from "../../../../firebase.init";
 
-const handleChange = () => {};
-
 const BannerFilterBox = () => {
     const [user, loading] = useAuthState(auth);
+    const [lookingFor, setLookingFor] = useState("");
+    const [searchFor, setSearchFor] = useState("");
+    const [profession, setProfession] = useState("");
+    const [religion, setReligion] = useState("");
+    const [homeTown, setHomeTown] = useState("");
+    const [currentLocation, setCurrentLocation] = useState("");
+    const [education, setEducation] = useState("");
+    const [age, setAge] = useState("");
+
     const options = [
         {
             value: "Teacher",
@@ -248,7 +255,7 @@ const BannerFilterBox = () => {
             value: "Sylhet",
         },
     ];
-    const education = [
+    const educations = [
         {
             value: "SSC",
         },
@@ -285,6 +292,8 @@ const BannerFilterBox = () => {
         return;
     }
 
+    const handleChange = e => {};
+
     return (
         <Fragment>
             <div style={{ boxShadow: "2px 2px 10px rgba(0, 0, 0, 0.12)" }} className="max-w-[280px] rounded-[40px] h-[400px] bg-[#FFFFFF] p-5">
@@ -300,7 +309,7 @@ const BannerFilterBox = () => {
                                     boxShadow: "2px 2px 8px 2px rgba(0, 0, 0, 0.1)",
                                     borderRadius: "5px",
                                 }}
-                                onChange={handleChange}
+                                onSelect={val => setLookingFor(val)}
                                 options={[
                                     {
                                         value: "Bride",
@@ -316,8 +325,15 @@ const BannerFilterBox = () => {
                         <div className="mt-[15px]">
                             <h2 className=" text-[#000000] font-medium">Age</h2>
                             <div className="mt-[5px]">
-                                <span className="text-[14px] block text-center font-medium text-[#72777A]">20 - 22</span>
-                                <Slider className="text-[#E41272]" range={{ draggableTrack: true }} defaultValue={[20, 50]} />
+                                <span className="text-[14px] block text-center font-medium text-[#72777A]">
+                                    {age[0]} - {age[1]}
+                                </span>
+                                <Slider
+                                    className="text-[#E41272]"
+                                    range={{ draggableTrack: true }}
+                                    onChange={val => setAge(val)}
+                                    defaultValue={[20, 50]}
+                                />
                             </div>
                         </div>
                         <div className="mt-[15px]">
@@ -330,7 +346,7 @@ const BannerFilterBox = () => {
                                     boxShadow: "2px 2px 8px 2px rgba(0, 0, 0, 0.1)",
                                     borderRadius: "5px",
                                 }}
-                                onChange={handleChange}
+                                onSelect={val => setReligion(val)}
                                 options={[
                                     {
                                         value: "Islam",
@@ -364,7 +380,7 @@ const BannerFilterBox = () => {
                                 }}
                                 options={division}
                                 placeholder="Location"
-                                onSelect={val => console.log(val)}
+                                onSelect={val => setCurrentLocation(val)}
                                 filterOption={(inputValue, option) => option.value.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1}
                             />
                         </div>
@@ -380,7 +396,7 @@ const BannerFilterBox = () => {
                                     boxShadow: "2px 2px 8px 2px rgba(0, 0, 0, 0.1)",
                                     borderRadius: "5px",
                                 }}
-                                onChange={handleChange}
+                                onSelect={val => setSearchFor(val)}
                                 options={[
                                     {
                                         value: "My Self",
@@ -417,7 +433,7 @@ const BannerFilterBox = () => {
                                 }}
                                 options={options}
                                 placeholder="Profession"
-                                onSelect={val => console.log(val)}
+                                onSelect={val => setProfession(val)}
                                 filterOption={(inputValue, option) => option.value.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1}
                             />
                         </div>
@@ -429,7 +445,7 @@ const BannerFilterBox = () => {
                                 }}
                                 options={hometown}
                                 placeholder="Home Town"
-                                onSelect={val => console.log(val)}
+                                onSelect={val => setHomeTown(val)}
                                 filterOption={(inputValue, option) => option.value.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1}
                             />
                         </div>
@@ -439,16 +455,16 @@ const BannerFilterBox = () => {
                                 style={{
                                     width: 101,
                                 }}
-                                options={education}
+                                options={educations}
                                 placeholder="Education"
-                                onSelect={val => console.log(val)}
+                                onSelect={val => setEducation(val)}
                                 filterOption={(inputValue, option) => option.value.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1}
                             />
                         </div>
                     </div>
                 </div>
                 <button
-                    onClick={() => navigate(user ? "/find-partner" : "signup")}
+                    onClick={() => navigate(user ? "/find-partner/filter" : "signup")}
                     className="rounded-[48px] w-[121px] h-[31px] block mt-[15px] mx-auto text-[#fff] text-sm font-medium"
                     style={{
                         background: "linear-gradient(180deg, #D21878 0%, #4F42A3 100%)",

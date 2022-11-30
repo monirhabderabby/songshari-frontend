@@ -3,6 +3,7 @@ import { Autoplay } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 // Import Swiper styles
+import { Link } from "react-router-dom";
 import "swiper/css";
 import "swiper/css/pagination";
 import { useGetRecentMembersQuery } from "../../../Redux/features/userInfo/withoutLoginApi";
@@ -48,9 +49,9 @@ const Suggested = () => {
                         </SwiperSlide>
                     ))}
                 <div className="text-center py-[40px] hidden md:block">
-                    <a className="top-profile-btn" href="/">
+                    <Link to="/find-partner" className="top-profile-btn">
                         See More
-                    </a>
+                    </Link>
                 </div>
             </Swiper>
         </div>
