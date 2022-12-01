@@ -1,3 +1,4 @@
+import { DatePicker } from "antd";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import React, { useEffect, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
@@ -16,6 +17,8 @@ export const PersonalDetails = ({ setPage }) => {
     const [licencePhoto, setLicencePhoto] = useState("");
     const [meritalStatus, setMeritalStatus] = useState("");
     const [citizenShip, setCitizenShip] = useState([]);
+
+    const { RangePicker } = DatePicker;
 
     // hobbies
     const [hobbies, setHobbies] = useState([]);
@@ -296,17 +299,16 @@ export const PersonalDetails = ({ setPage }) => {
                     </section>
                     {/* ---------- Date of Birth ---------- */}
                     <section>
-                        <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
-                            <input
+                        <div className="flex items-center bg-gray-100  w-full rounded-lg mt-3 lg:mt-0">
+                            <DatePicker
                                 {...register("dateOfBirth", {
                                     required: {
                                         value: true,
                                         message: "Date of birth is required",
                                     },
                                 })}
-                                type="date"
                                 placeholder="Date of Birth"
-                                className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
+                                className="flex-1 px-2 py-[10px] outline-none h-full bg-transparent text-sm text-gray-400"
                                 id="dateOfBirth"
                             />
                         </div>
@@ -319,9 +321,8 @@ export const PersonalDetails = ({ setPage }) => {
                     {/* ---------- Hometown ---------- */}
                     <section className="relative">
                         <div
-                            className={`flex items-center  p-3 w-full rounded-lg mt-3 lg:mt-0 ${
-                                homeTownSuggestion.length > 0 ? "rounded-br-none rounded-bl-none shadow-lg bg-white" : "bg-gray-100"
-                            }`}
+                            className={`flex items-center  p-3 w-full rounded-lg mt-3 lg:mt-0 ${homeTownSuggestion.length > 0 ? "rounded-br-none rounded-bl-none shadow-lg bg-white" : "bg-gray-100"
+                                }`}
                         >
                             <input
                                 {...register("hometown", {
@@ -339,9 +340,8 @@ export const PersonalDetails = ({ setPage }) => {
                             />
                         </div>
                         <div
-                            className={`bg-white shadow-lg absolute top-[40px] right-0 w-full rounded-br-lg rounded-bl-lg overflow-y-scroll ${
-                                homeTownSuggestion.length > 0 ? "max-h-[346px]" : "h-0"
-                            }`}
+                            className={`bg-white shadow-lg absolute top-[40px] right-0 w-full rounded-br-lg rounded-bl-lg overflow-y-scroll ${homeTownSuggestion.length > 0 ? "max-h-[346px]" : "h-0"
+                                }`}
                         >
                             {homeTownSuggestion.length > 0 &&
                                 homeTownSuggestion.map(suggetion => {
@@ -583,9 +583,8 @@ export const PersonalDetails = ({ setPage }) => {
                     {/* ---------- Zodiac Sign ---------- */}
                     <section className="relative">
                         <div
-                            className={`flex items-center  p-3 w-full rounded-lg mt-3 lg:mt-0 ${
-                                zodiacSignSuggestion.length > 0 ? "rounded-br-none rounded-bl-none shadow-lg bg-white" : "bg-gray-100"
-                            }`}
+                            className={`flex items-center  p-3 w-full rounded-lg mt-3 lg:mt-0 ${zodiacSignSuggestion.length > 0 ? "rounded-br-none rounded-bl-none shadow-lg bg-white" : "bg-gray-100"
+                                }`}
                         >
                             <input
                                 {...register("zodiacSign", {
@@ -603,9 +602,8 @@ export const PersonalDetails = ({ setPage }) => {
                             />
                         </div>
                         <div
-                            className={`bg-white shadow-lg absolute top-[40px] right-0 w-full rounded-br-lg rounded-bl-lg overflow-y-scroll ${
-                                zodiacSignSuggestion.length > 0 ? "max-h-[346px]" : "h-0"
-                            }`}
+                            className={`bg-white shadow-lg absolute top-[40px] right-0 w-full rounded-br-lg rounded-bl-lg overflow-y-scroll ${zodiacSignSuggestion.length > 0 ? "max-h-[346px]" : "h-0"
+                                }`}
                         >
                             {zodiacSignSuggestion.length > 0 &&
                                 zodiacSignSuggestion.map(suggetion => {
@@ -702,9 +700,8 @@ export const PersonalDetails = ({ setPage }) => {
                     {/* ---------- Town permanent ---------- */}
                     <section className="relative">
                         <div
-                            className={`flex items-center  p-3 w-full rounded-lg mt-3 lg:mt-0 ${
-                                townPermanentSuggestion.length > 0 ? "rounded-br-none rounded-bl-none shadow-lg bg-white" : "bg-gray-100"
-                            }`}
+                            className={`flex items-center  p-3 w-full rounded-lg mt-3 lg:mt-0 ${townPermanentSuggestion.length > 0 ? "rounded-br-none rounded-bl-none shadow-lg bg-white" : "bg-gray-100"
+                                }`}
                         >
                             <input
                                 {...register("townPermanent", {
@@ -722,9 +719,8 @@ export const PersonalDetails = ({ setPage }) => {
                             />
                         </div>
                         <div
-                            className={`bg-white shadow-lg absolute top-[40px] right-0 w-full rounded-br-lg rounded-bl-lg overflow-y-scroll ${
-                                townPermanentSuggestion.length > 0 ? "max-h-[346px]" : "h-0"
-                            }`}
+                            className={`bg-white shadow-lg absolute top-[40px] right-0 w-full rounded-br-lg rounded-bl-lg overflow-y-scroll ${townPermanentSuggestion.length > 0 ? "max-h-[346px]" : "h-0"
+                                }`}
                         >
                             {townPermanentSuggestion.length > 0 &&
                                 townPermanentSuggestion.map(suggetion => {
@@ -874,9 +870,8 @@ export const PersonalDetails = ({ setPage }) => {
                     {/* ---------- Town Current ---------- */}
                     <section className="relative">
                         <div
-                            className={`flex items-center  p-3 w-full rounded-lg mt-3 lg:mt-0 ${
-                                townCurrentSuggestion.length > 0 ? "rounded-br-none rounded-bl-none shadow-lg bg-white" : "bg-gray-100"
-                            }`}
+                            className={`flex items-center  p-3 w-full rounded-lg mt-3 lg:mt-0 ${townCurrentSuggestion.length > 0 ? "rounded-br-none rounded-bl-none shadow-lg bg-white" : "bg-gray-100"
+                                }`}
                         >
                             <input
                                 {...register("townCurrent", {
@@ -894,9 +889,8 @@ export const PersonalDetails = ({ setPage }) => {
                             />
                         </div>
                         <div
-                            className={`bg-white shadow-lg absolute top-[40px] right-0 w-full rounded-br-lg rounded-bl-lg overflow-y-scroll ${
-                                townCurrentSuggestion.length > 0 ? "max-h-[346px]" : "h-0"
-                            }`}
+                            className={`bg-white shadow-lg absolute top-[40px] right-0 w-full rounded-br-lg rounded-bl-lg overflow-y-scroll ${townCurrentSuggestion.length > 0 ? "max-h-[346px]" : "h-0"
+                                }`}
                         >
                             {townCurrentSuggestion.length > 0 &&
                                 townCurrentSuggestion.map(suggetion => {
@@ -1082,17 +1076,16 @@ export const PersonalDetails = ({ setPage }) => {
                     {/* ---------- Date of Marriage ---------- */}
                     {meritalStatus === "married" && meritalStatus !== "single" && (
                         <section>
-                            <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
-                                <input
+                            <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
+                                <DatePicker
                                     {...register("marriageDate", {
                                         required: {
                                             value: true,
                                             message: "Date of Marriage is required",
                                         },
                                     })}
-                                    type="date"
-                                    placeholder="Date of Marriage"
-                                    className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
+                                    placeholder="Marriage Date"
+                                    className="flex-1 px-2 py-[10px] outline-none h-full bg-transparent text-sm text-gray-400"
                                     id="marriageDate"
                                 />
                             </div>
@@ -1130,17 +1123,16 @@ export const PersonalDetails = ({ setPage }) => {
                     {/* ---------- Date of Divorce ---------- */}
                     {meritalStatus === "divorced" && meritalStatus !== "single" && (
                         <section>
-                            <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
-                                <input
+                            <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
+                                <DatePicker
                                     {...register("dicorceDate", {
                                         required: {
                                             value: true,
                                             message: "Date of Divorce is required",
                                         },
                                     })}
-                                    type="date"
-                                    placeholder="Date of Divorce"
-                                    className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
+                                    placeholder="Divorce Date"
+                                    className="flex-1 px-2 py-[10px] outline-none h-full bg-transparent text-sm text-gray-400"
                                     id="dicorceDate"
                                 />
                             </div>
@@ -1333,17 +1325,16 @@ export const PersonalDetails = ({ setPage }) => {
                     {/* ---------- Partner death date ---------- */}
                     {meritalStatus !== "single" && meritalStatus !== "" && (
                         <section>
-                            <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
-                                <input
+                            <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
+                                <DatePicker
                                     {...register("partnerDeathDay", {
                                         required: {
                                             value: true,
                                             message: "Partner Death Date is required",
                                         },
                                     })}
-                                    type="date"
                                     placeholder="Partner Death Date"
-                                    className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
+                                    className="flex-1 px-2 py-[10px] outline-none h-full bg-transparent text-sm text-gray-400"
                                     id="partnerDeathDay"
                                 />
                             </div>
@@ -1406,17 +1397,16 @@ export const PersonalDetails = ({ setPage }) => {
                     </section>
                     {/* ---------- Work Period ---------- */}
                     <section>
-                        <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
-                            <input
+                        <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
+                            <RangePicker
                                 {...register("workPeriod", {
                                     required: {
                                         value: true,
                                         message: "Work Period is required",
                                     },
                                 })}
-                                type="text"
-                                placeholder="Work Period"
-                                className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
+                                placeholder={['Start Date', 'End Date']}
+                                className="flex-1 px-2 py-[10px] outline-none h-full bg-transparent text-sm text-gray-400"
                                 id="workPeriod"
                             />
                         </div>
@@ -1545,17 +1535,16 @@ export const PersonalDetails = ({ setPage }) => {
                     </section>
                     {/* ---------- Year of Passing ---------- */}
                     <section>
-                        <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
-                            <input
+                        <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
+                            <DatePicker
                                 {...register("yearOfPassing", {
                                     required: {
                                         value: true,
                                         message: "Year of Passing is required",
                                     },
                                 })}
-                                type="date"
                                 placeholder="Year of Passing"
-                                className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
+                                className="flex-1 px-2 py-[10px] outline-none h-full bg-transparent text-sm text-gray-400"
                                 id="yearOfPassing"
                             />
                         </div>
@@ -1913,9 +1902,9 @@ export const PersonalDetails = ({ setPage }) => {
                         </h1>
                     </section>
                     {/* ---------- Optional ---------- */}
-                    <section className="col-span-1 md:col-span-2 lg:col-span-3 text-[#2F3659] font-medium text-left ml-1">Optional</section>
+                    {/* <section className="col-span-1 md:col-span-2 lg:col-span-3 text-[#2F3659] font-medium text-left ml-1">Optional</section> */}
                     {/* ---------- Bar registration number ---------- */}
-                    <section>
+                    {/* <section>
                         <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
                             <input
                                 {...register("barRegistrationNumber")}
@@ -1930,9 +1919,9 @@ export const PersonalDetails = ({ setPage }) => {
                                 <span className="w-full text-left text-red-400 text-sm">{errors?.barRegistrationNumber.message}</span>
                             )}
                         </h1>
-                    </section>
+                    </section> */}
                     {/* ---------- License No ---------- */}
-                    <section>
+                    {/* <section>
                         <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
                             <input
                                 {...register("licenceNo")}
@@ -1947,9 +1936,9 @@ export const PersonalDetails = ({ setPage }) => {
                                 <span className="w-full text-left text-red-400 text-sm">{errors?.licenceNo.message}</span>
                             )}
                         </h1>
-                    </section>
+                    </section> */}
                     {/* ---------- License Photo ---------- */}
-                    <section>
+                    {/* <section>
                         <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
                             <AiOutlineIdcard className="mr-2 text-gray-400" />
                             <label htmlFor="licencePhoto" className="outline-none h-full text-sm text-gray-400 bg-gray-100">
@@ -1968,9 +1957,9 @@ export const PersonalDetails = ({ setPage }) => {
                                 <span className="w-full text-left text-red-400 text-sm">{errors?.licencePhoto.message}</span>
                             )}
                         </h1>
-                    </section>
+                    </section> */}
                     {/* ---------- Year of bar registration ---------- */}
-                    <section>
+                    {/* <section>
                         <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
                             <input
                                 {...register("yearOfBarRegistration")}
@@ -1985,7 +1974,7 @@ export const PersonalDetails = ({ setPage }) => {
                                 <span className="w-full text-left text-red-400 text-sm">{errors?.yearOfBarRegistration.message}</span>
                             )}
                         </h1>
-                    </section>
+                    </section> */}
                     {/* ---------- Extra ---------- */}
                     <section className="col-span-1 md:col-span-2 lg:col-span-3 text-[#2F3659] font-medium text-left ml-1">Extra Info</section>
                     {/* ---------- Your Hobbies ---------- */}

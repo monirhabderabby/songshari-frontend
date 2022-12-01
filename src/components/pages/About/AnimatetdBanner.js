@@ -13,7 +13,7 @@ const AnimatetdBanner = () => {
     }
     return (
         <div style={fontFamily()} className='bg-[#5736cb] relative h-96 overflow-hidden mt-5'>
-            <img className='absolute top-0' style={{ animation: `${animetedcss.scaleAni} 5s linear infinite` }} src={bgHeartShape} alt="animation image" />
+            <img className='absolute top-0' style={{ animation: `${animetedcss.scaleAni} 5s linear infinite` }} src={bgHeartShape} alt="animation" />
             <div className='container mx-auto flex items-center'>
                 <div className='grid grid-cols-1 md:grid-cols-2 items-center h-full w-full justify-between'>
                     <div className='text-center md:text-left pt-8 lg:pt-0'>
@@ -27,8 +27,8 @@ const AnimatetdBanner = () => {
                             Join Now!
                         </button>
                     </div>
-                    <div className=''>
-                        <img src={soleMate} alt="" />
+                    <div>
+                        <img src={soleMate} alt="Not Available" />
                     </div>
                 </div>
             </div>

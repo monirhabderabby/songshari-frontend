@@ -36,7 +36,7 @@ const Accordian = ({ data, isLoading }) => {
 
     const [expanded, setExpanded] = React.useState("panel1");
 
-    const handleChange = panel => (event, newExpanded) => {
+    const handleChange = panel => (newExpanded) => {
         setExpanded(newExpanded ? panel : true);
     };
     if (isLoading) return false;

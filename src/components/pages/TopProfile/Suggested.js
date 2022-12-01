@@ -130,10 +130,10 @@ const Suggested = () => {
                                             onClick={() => navigate(`/profile/${profile._id}`)}
                                         ></i>
 
-                                        <a href="#">
+                                        <a href="!#">
                                             <i className="fas fa-comment" aria-hidden="true"></i>
                                         </a>
-                                        <a href="#">
+                                        <a href="!#">
                                             <i className="fas fa-heart" aria-hidden="true"></i>
                                         </a>
                                     </div>

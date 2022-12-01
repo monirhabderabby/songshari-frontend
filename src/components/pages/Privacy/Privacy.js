@@ -43,11 +43,11 @@ export const Privacy = () => {
             <CustomHeader title="Privacy Policy" />
             <div className="bg-[#FAFBFF] pt-[60px]">
                 <section className="custom-container w-[936px] mb-[88px] shadow-[0px_1px_24px_rgba(0,0,0,0.08)] rounded-[3px]">
-                    <div class="flex h-[50px] items-center bg-white p-[4px]">
+                    <div className="flex h-[50px] items-center bg-white p-[4px]">
                         <span className="p-[18px]">
                             <AiOutlineSearch className="text-[#4A4A4A]" />
                         </span>
-                        <input type="text" class="h-full w-full bg-[#FAFBFF] px-[8px]" />
+                        <input type="text" className="h-full w-full bg-[#FAFBFF] px-[8px]" />
                     </div>
                 </section>
                 <section className="flex custom-container gap-x-[214px]">

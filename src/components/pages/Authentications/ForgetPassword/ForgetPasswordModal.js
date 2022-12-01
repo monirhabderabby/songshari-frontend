@@ -4,7 +4,7 @@ import toast from "react-hot-toast";
 import "../../../../App.css";
 import { auth } from "../../../../firebase.init";
 
-export default function ForgetPasswordModal({ open, modalControll }) {
+export default function ForgetPasswordModal({ modalControll }) {
     const [email, setEmail] = useState("");
     const [sendPasswordResetEmail] = useSendPasswordResetEmail(auth);
 

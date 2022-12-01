@@ -37,7 +37,6 @@ const LoginAsProfessional = () => {
 
     const onSubmit = async data => {
         data.role = data.designation;
-        console.log(data);
         await signInWithEmailAndPassword(data.email, data.password);
         loginAsProfessional(data);
     };
@@ -58,7 +57,6 @@ const LoginAsProfessional = () => {
             reset();
         }
         if (response && user) {
-            // navigate("/userProfile");
             navigate(from, { replace: true });
         }
     }, [response, dispatch, user, navigate, reset, from]);

@@ -37,7 +37,7 @@ const BeginFamilyJourney = () => {
                     className="md:flex-1 relative mt-20 md:mt-4 lg:mt-0"
                 >
                     <div className="flex justify-center items-center">
-                        <img src={findImg} alt="" />
+                        <img src={findImg} alt="Not Available" />
                     </div>
                     <div
                         className="absolute -z-10 top-[-45px] left-[2px]"
@@ -45,7 +45,7 @@ const BeginFamilyJourney = () => {
                             animation: `${ScaleAnimationCSS.scaleAni} 5s linear infinite`,
                         }}
                     >
-                        <img src={bgCircle} alt="" />
+                        <img src={bgCircle} alt="Not Available" />
                     </div>
                 </div>
             </div>

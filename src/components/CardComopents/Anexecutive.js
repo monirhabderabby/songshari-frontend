@@ -30,7 +30,7 @@ const Anexecutive = () => {
                         <div className='section-text-contener '>
                             <div className='flex items-start'>
                                 <div className='rounded-img' >
-                                    <img src={p1} alt="" />
+                                    <img src={p1} alt="Not Available" />
                                 </div>
                                 <div className='ml-5 pb-3 md:pr-20'>
                                     <Title titleText="Simple to use"></Title>
@@ -40,7 +40,7 @@ const Anexecutive = () => {
                             </div>
                             <div className='flex items-start'>
                                 <div className='rounded-img'>
-                                    <img src={p2} alt="" />
+                                    <img src={p2} alt="Not Available" />
                                 </div>
                                 <div className='ml-5 pb-3 md:pr-20'>
                                     <Title titleText="Smart matching"></Title>
@@ -50,7 +50,7 @@ const Anexecutive = () => {
                             </div>
                             <div className='flex items-start'>
                                 <div className='rounded-img'>
-                                    <img src={p3} alt="" />
+                                    <img src={p3} alt="Not Available" />
                                 </div>
                                 <div className='ml-5 pb-3 md:pr-20'>
                                     <Title titleText="Filter very fast"></Title>
@@ -60,7 +60,7 @@ const Anexecutive = () => {
                             </div>
                             <div className='flex items-start'>
                                 <div className='rounded-img'>
-                                    <img src={p4} alt="" />
+                                    <img src={p4} alt="Not Available" />
                                 </div>
                                 <div className='ml-5 pb-3 md:pr-20'>
                                     <Title titleText="Cool community"></Title>

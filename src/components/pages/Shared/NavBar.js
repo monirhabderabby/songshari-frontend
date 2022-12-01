@@ -11,7 +11,7 @@ import { useState } from "react";
 import { useAuthState, useSignOut } from "react-firebase-hooks/auth";
 import { useDispatch } from "react-redux";
 import agent from "../../../assets/images/NavIcons/Agent.svg";
-import cart from "../../../assets/images/NavIcons/cart.png";
+// import cart from "../../../assets/images/NavIcons/cart.png";
 import kazi from "../../../assets/images/NavIcons/Kazi.svg";
 import bng from "../../../assets/images/NavIcons/Language-Switcher-Bangla.svg";
 import eng from "../../../assets/images/NavIcons/Language-Switcher-English.svg";
@@ -65,14 +65,14 @@ const NavBar = ({ bg }) => {
             >
                 <div className=" lg:max-w-[1000px]  xl:max-w-[1200px] mx-auto flex flex-wrap  flex-col md:flex-row items-center">
                     <Link to="/" className="flex cursor-pointer title-font font-medium items-center text-gray-900 mb-4 md:mb-0 ">
-                        <img src={blackLogo} alt="" />
+                        <img src={blackLogo} alt="Not Available" />
                     </Link>
                     <nav className="md:mr-auto md:ml-4 md:py-1 md:pl-4  	flex flex-wrap items-center text-base justify-center">
                         {allMenu.map(menu => (
                             <div key={menu.id}>
                                 <NavLink to={menu.to} className={({ isActive }) => (isActive ? "" : `${NavBarCSS.hasTooltip}`)}>
                                     <div style={{ marginLeft: "15px" }} className="flex flex-col items-center">
-                                        <img className="hover:rotate-[360deg] duration-[2000ms] w-[50px] h-[75px]" src={menu.icon} alt="" />
+                                        <img className="hover:rotate-[360deg] duration-[2000ms] w-[50px] h-[75px]" src={menu.icon} alt="Not Available" />
                                         <span
                                             className={`${NavBarCSS.tooltip} z-50 h-[15px] w-[15px] mt-[70px] ml-[14px]`}
                                             style={{
@@ -98,9 +98,9 @@ const NavBar = ({ bg }) => {
                             <li className={`${NavBarCSS.hasTooltip}`}>
                                 <div className="flex flex-col items-center cursor-pointer">
                                     {user?.photoURL ? (
-                                        <img className="w-[60px] h-[60px] rounded-[100%]" src={user.photoURL} alt="img" />
+                                        <img className="w-[60px] h-[60px] rounded-[100%]" src={user.photoURL} alt="Not Available" />
                                     ) : (
-                                        <img className="w-14" src={register} alt="img" />
+                                        <img className="w-14" src={register} alt="Not Available" />
                                     )}
                                     <span
                                         className={`${NavBarCSS.tooltip} z-50 h-[15px] w-[15px] mt-14 ml-[14px]`}
@@ -157,7 +157,7 @@ const NavBar = ({ bg }) => {
                             <li className="relative ">
                                 {/* <Link to="/cart" className={`${NavBarCSS.hasTooltip}`}>
                                     <div className="flex flex-col items-center ">
-                                        <img src={cart} className="w-[40px]" alt="" />
+                                        <img src={cart} className="w-[40px]"  alt="Not Available" />
                                         <span className="absolute top-[-7px] right-[-1px] text-white px-[6px] py-[2px] text-xs font-bold bg-[#dc3545] rounded">
                                             0
                                         </span>
@@ -184,7 +184,7 @@ const NavBar = ({ bg }) => {
                             <li>
                                 <li className={`relative cursor-pointer ${NavBarCSS.engDropdown}`}>
                                     <div>
-                                        <img className="w-[60px]" src={language ? eng : bng} alt="" />
+                                        <img className="w-[60px]" src={language ? eng : bng} alt="Not Available" />
                                     </div>
                                     <div
                                         className={`absolute eng-menu border border-black left-0 z-10 top-[70px] w-[80px] origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none ${NavBarCSS.engMenu}`}

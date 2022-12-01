@@ -8,7 +8,7 @@ const LatestRegisteredMember = () => {
     return (
         <>
             <section className={LatestRegisteredMemberCSS.latestRegisteredSection}>
-                <img className={LatestRegisteredMemberCSS.shape} src={shape} alt="" />
+                <img className={LatestRegisteredMemberCSS.shape} src={shape} alt="Not Available" />
                 <div className="max-w-[1300px] mx-auto">
                     <div className="grid justify-center items-center grid-cols-2 ">
                         <div>
@@ -63,7 +63,7 @@ const LatestRegisteredMember = () => {
                                                         }}
                                                         src={data.img}
                                                         className="border-[5px] mx-auto border-[#fff] inline-block "
-                                                        alt="img"
+                                                        alt="Not Available"
                                                     />
                                                 </div>
                                                 <div className="inner-content">

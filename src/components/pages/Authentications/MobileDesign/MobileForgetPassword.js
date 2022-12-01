@@ -17,7 +17,6 @@ const MobileForgetPassword = () => {
     const onSubmit = async data => {
         data.role = "member";
         await sendPasswordResetEmail(data.email);
-        console.log(data);
         reset();
     };
 
@@ -43,9 +42,9 @@ const MobileForgetPassword = () => {
                 </p>
             </div>
             <div>
-                <img className='w-48 mx-auto my-10' src={forgetPasswordImg} alt="" />
+                <img className='w-48 mx-auto my-10' src={forgetPasswordImg} alt="Not Available" />
             </div>
-            <section className=''>
+            <section>
                 <form
                     onSubmit={handleSubmit(onSubmit)}
                     className="flex flex-col mx-8"

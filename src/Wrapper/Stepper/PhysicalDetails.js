@@ -18,10 +18,10 @@ export const PhysicalDetails = ({ setPage }) => {
 
     useEffect(() => {
         if (data) {
-            console.log("physical data response", data);
             setPage(5);
         }
     }, [data, setPage]);
+
     return (
         <div className="w-full h-auto">
             <section className="col-span-1 md:col-span-2 lg:col-span-3 text-2xl text-[#2F3659] mb-4">

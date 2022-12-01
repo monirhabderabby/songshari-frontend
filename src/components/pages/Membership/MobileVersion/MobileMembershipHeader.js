@@ -5,13 +5,12 @@ import topShape from "../../../../assets/images/Shape/membershipPageShape.png";
 const MobileMembershipHeader = ({ planTitle }) => {
 
     const onChange = checked => {
-        console.log(`switch to ${checked}`);
     };
 
     return (
         <div>
             <div className="w-full relative">
-                <img src={topShape} className="w-full h-32 absolute top-0 right-0" alt="" />
+                <img src={topShape} className="w-full h-32 absolute top-0 right-0" alt="Not Available" />
                 <div className="flex items-center w-full justify-evenly pt-[18px]">
                     <p className="text-[16px] text-[#E41272] font-semibold">Monthly</p>
                     <Switch defaultChecked onChange={onChange} />
