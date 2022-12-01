@@ -1,22 +1,14 @@
 import { AutoComplete, Select, Slider } from "antd";
 
-import React, { Fragment } from "react";
-import { useState } from "react";
+import React, { Fragment, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useDispatch } from "react-redux";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { auth } from "../../../../firebase.init";
-import { updateMatch } from "../../../../Redux/api/filterSlice";
+import { setFilter } from "../../../../Redux/features/filter/filterSlice";
 
-
-const handleChange = () => {
-
-};
 const BannerFilterBox = () => {
-    const location = useLocation();
     const dispatch = useDispatch();
-
-
     const [id, setId] = useState(location.state.id);
     const [looking, setLooking] = useState(location.state.looking);
     const [lookingfor, setLookingFor] = useState(location.state.lookingfor);
@@ -28,10 +20,11 @@ const BannerFilterBox = () => {
     const [educationn, setEducation] = useState(location.state.educationn);
 
     const handleSubmit = (e) => {
-
         e.preventDefault();
         dispatch(updateMatch({ id, looking, age }));
-
+        
+    const handleSubmit = e => {
+        e.preventDefault();
     };
 
     const [user, loading] = useAuthState(auth);
@@ -320,8 +313,33 @@ const BannerFilterBox = () => {
     if (loading) {
         return;
     }
-
+    
     const handleChange = e => { };
+    
+    const lookingForHandler = val => {
+        dispatch(setFilter({ lookingFor: val }));
+    };
+    const forHandler = val => {
+        dispatch(setFilter({ for: val }));
+    };
+    const ageHandler = val => {
+        dispatch(setFilter({ age: val }));
+    };
+    const professionHandler = val => {
+        dispatch(setFilter({ profession: val }));
+    };
+    const religionHandler = val => {
+        dispatch(setFilter({ religion: val }));
+    };
+    const homeTownHandler = val => {
+        dispatch(setFilter({ homeTown: val }));
+    };
+    const currentLocationHandler = val => {
+        dispatch(setFilter({ currentLocation: val }));
+    };
+    const educationHandler = val => {
+        dispatch(setFilter({ education: val }));
+    };
 
     return (
         <Fragment>
@@ -338,7 +356,7 @@ const BannerFilterBox = () => {
                                     boxShadow: "2px 2px 8px 2px rgba(0, 0, 0, 0.1)",
                                     borderRadius: "5px",
                                 }}
-                                onSelect={val => setLookingFor(val)}
+                                onSelect={val => lookingForHandler(val)}
                                 options={[
                                     {
                                         value: "Bride",
@@ -360,7 +378,7 @@ const BannerFilterBox = () => {
                                 <Slider
                                     className="text-[#E41272]"
                                     range={{ draggableTrack: true }}
-                                    onChange={val => setAge(val)}
+                                    onChange={val => ageHandler(val)}
                                     defaultValue={[20, 50]}
                                 />
                             </div>
@@ -375,7 +393,7 @@ const BannerFilterBox = () => {
                                     boxShadow: "2px 2px 8px 2px rgba(0, 0, 0, 0.1)",
                                     borderRadius: "5px",
                                 }}
-                                onSelect={val => setReligion(val)}
+                                onSelect={val => religionHandler(val)}
                                 options={[
                                     {
                                         value: "Islam",
@@ -409,7 +427,7 @@ const BannerFilterBox = () => {
                                 }}
                                 options={division}
                                 placeholder="Location"
-                                onSelect={val => setCurrentLocation(val)}
+                                onSelect={val => currentLocationHandler(val)}
                                 filterOption={(inputValue, option) => option.value.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1}
                             />
                         </div>
@@ -425,7 +443,7 @@ const BannerFilterBox = () => {
                                     boxShadow: "2px 2px 8px 2px rgba(0, 0, 0, 0.1)",
                                     borderRadius: "5px",
                                 }}
-                                onSelect={val => setSearchFor(val)}
+                                onSelect={val => forHandler(val)}
                                 options={[
                                     {
                                         value: "My Self",
@@ -462,7 +480,7 @@ const BannerFilterBox = () => {
                                 }}
                                 options={options}
                                 placeholder="Profession"
-                                onSelect={val => setProfession(val)}
+                                onSelect={val => professionHandler(val)}
                                 filterOption={(inputValue, option) => option.value.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1}
                             />
                         </div>
@@ -473,9 +491,9 @@ const BannerFilterBox = () => {
                                     width: 101,
                                 }}
                                 options={hometown}
-                                onChange={(e) => setHomeTown(e.target.value)}
+                                onChange={e => setHomeTown(e.target.value)}
                                 placeholder="Home Town"
-                                onSelect={val => setHomeTown(val)}
+                                onSelect={val => homeTownHandler(val)}
                                 filterOption={(inputValue, option) => option.value.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1}
                             />
                         </div>
@@ -487,7 +505,7 @@ const BannerFilterBox = () => {
                                 }}
                                 options={educations}
                                 placeholder="Education"
-                                onSelect={val => setEducation(val)}
+                                onSelect={val => educationHandler(val)}
                                 filterOption={(inputValue, option) => option.value.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1}
                             />
                         </div>
