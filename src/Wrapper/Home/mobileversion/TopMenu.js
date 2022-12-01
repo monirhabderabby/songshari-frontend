@@ -16,15 +16,7 @@ export const TopMenu = () => {
         </div>
         <div onClick={handleClick} className='col-span-3'>
           <p className='font-bold text-sm mt-3 shongshari-mov'>shongshari.com <span><i class="fa-solid fa-angle-down"></i></span></p>
-          {
-            state && <div className='mt-2'>
-              <Link to='/login'><span className='bg-red-500 pt-2 pl-4 pr-4 pb-2 mr-4'>Login</span></Link>
-
-              <span className='  pr-4'>or</span>
-              <Link to={'/signup'} className='bg-red-500 pt-2 pl-4 pr-4 pb-2 mr-4'>SignUp</Link>
-
-            </div>
-          }
+         
         </div>
 
         <div className='mr-4'>
@@ -33,6 +25,18 @@ export const TopMenu = () => {
         </div>
 
       </div>
+      {
+
+      }
+      {
+            state && <div className='` '>
+              <Link to='/login' className='mt-4'><span className='bg-red-500 text-white pt-2 pl-4 pr-4 pb-2 mr-4 rounded-full ml-8'>Login</span></Link>
+
+              <span className='  pr-4'>or</span>
+              <Link to={'/signup'} className='bg-red-500 text-white pt-2 pl-4 pr-4 pb-2 mr-4 rounded-full'>SignUp</Link>
+
+            </div>
+          }
     </div>
   )
 }
