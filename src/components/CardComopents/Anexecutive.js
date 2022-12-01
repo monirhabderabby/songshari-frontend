@@ -8,7 +8,7 @@ import Title from '../SingleProfilesUser/Title/Title';
 const Anexecutive = () => {
     return (
         <div className='container mx-auto py-10 px-4 md:px-0'>
-            <div className='main-container'>
+            <div className='main-container xl:ml-36'>
                 <div className='section-header'>
                     <div className='text-center mb-6'>
                         <h1 className='text-4xl font-semibold text-red-600'>An Executive List Of</h1>
