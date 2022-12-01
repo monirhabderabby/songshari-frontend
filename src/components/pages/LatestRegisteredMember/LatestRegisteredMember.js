@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { Autoplay } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import LatestRegisteredMemberCSS from "../../../assets/css/latestRegisteredMember.module.css";
@@ -14,15 +13,9 @@ const LatestRegisteredMember = () => {
                         <div>
                             <div className={LatestRegisteredMemberCSS.content}>
                                 <div className={LatestRegisteredMemberCSS.sectionHeader}>
-                                    <h6 className="text-[#ff317b] text-[24px] mb-[30px] font-bold">Latest Registered</h6>
+                                    <h6 className="text-[#ff317b] text-[24px] mb-[5px] font-bold">Latest Registered</h6>
                                     <h2 className="text-[50px] text-[#ff317b]  font-semibold mb-[11px]">Members</h2>
-                                    <p className="text-[20px] font-normal mb-[16px]">
-                                        if you have been looking for the someone special of your life for long, then your search ends here
-                                    </p>
                                 </div>
-                                <Link to="/signup" className={LatestRegisteredMemberCSS.customButton}>
-                                    Join Now !
-                                </Link>
                             </div>
                         </div>
                         <div>
