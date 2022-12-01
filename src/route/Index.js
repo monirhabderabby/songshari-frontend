@@ -38,6 +38,7 @@ import SingleProduct from "../Wrapper/SingleProduct/SingleProduct";
 import SingleProfile from "../Wrapper/SingleProfilesUser/SingleProfile";
 import { Container } from "../Wrapper/Stepper/Container";
 // import { UsersProfile } from "../components/SingleProfilesUser/profileSection/UsersProfile";
+import { FilterResults } from "../components/pages/FindPartner/FilterResults/FilterResults";
 import MobileDiamondPlan from "../components/pages/Membership/MobileVersion/MobileDiamondPlan";
 import MobileFreePlan from "../components/pages/Membership/MobileVersion/MobileFreePlan";
 import MobileGoldPlan from "../components/pages/Membership/MobileVersion/MobileGoldPlan";
@@ -45,7 +46,7 @@ import MobilePlatinumPlan from "../components/pages/Membership/MobileVersion/Mob
 import UpgradePlan from "../components/pages/Membership/MobileVersion/UpgradePlan";
 import MobileActivity from "../components/pages/MobileActivity/MobileActivity";
 import MobileActivityPost from "../components/pages/MobileActivity/MobileActivityPost";
-import MobileSingleProfilesUser from "../components/SingleProfilesUser/MobileSingleProfilesUser/MobileSingleProfilesUser";
+// import MobileSingleProfilesUser from "../components/SingleProfilesUser/MobileSingleProfilesUser/MobileSingleProfilesUser";
 import { CertificateMov } from "../Wrapper/Home/mobileversion/CertificateMov";
 import { Like } from "../Wrapper/Home/mobileversion/Like";
 import { MatchesMov } from "../Wrapper/Home/mobileversion/MatchesMov";
@@ -54,8 +55,8 @@ import { CompletedCaseMov } from "../Wrapper/Home/mobileversion/mobilelawyeracti
 import { NavCase } from "../Wrapper/Home/mobileversion/mobilelawyeractivity/NavCase";
 import { PendingCaseMov } from "../Wrapper/Home/mobileversion/mobilelawyeractivity/PendingCase";
 import { RunningCaseMov } from "../Wrapper/Home/mobileversion/mobilelawyeractivity/RunningCase";
-import { Setting } from "../Wrapper/Home/mobileversion/Setting";
 import MobileProfileOthers from "../Wrapper/Home/mobileversion/MobileProfileOthers";
+import { Setting } from "../Wrapper/Home/mobileversion/Setting";
 
 const Index = () => {
     return (
@@ -96,6 +97,7 @@ const Index = () => {
                         <Route path="/find-partner" element={<Suggested />} />
                         <Route path="top" element={<TopBride />} />
                         <Route path="nearest" element={<TopGroom />} />
+                        <Route path="filter" element={<FilterResults />} />
                     </Route>
                     <Route path="/" element={<Homepage></Homepage>}>
                         <Route path="/" element={<Suggested />} />
@@ -115,7 +117,7 @@ const Index = () => {
                     <Route path="/matchesmov" element={<MatchesMov></MatchesMov>}></Route>
                     <Route path="/mobileActivityPage" element={<MobileActivity />}></Route>
                     <Route path="/mobileActivityNextPage" element={<MobileActivityPost />}></Route>
-                    
+
                     <Route path="/certificatemov" element={<CertificateMov></CertificateMov>}></Route>
                     <Route path="/like" element={<Like></Like>}></Route>
                     <Route path="/mobileUpgrade" element={<UpgradePlan></UpgradePlan>}></Route>

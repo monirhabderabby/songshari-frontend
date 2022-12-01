@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { AutoComplete, Collapse } from 'antd';
 import { Select } from 'antd';
 import { Input, Radio, Space, Slider } from 'antd';
+import TextField from '@mui/material/TextField';
+import Autocomplete, { createFilterOptions } from '@mui/material/Autocomplete';
 
 export const AccordionPartner = ({ data, isLoading }) => {
     const hightestEducationalQualification = data?.hightestEducationalQualification;
@@ -36,6 +38,44 @@ export const AccordionPartner = ({ data, isLoading }) => {
             .then(data => setProfessions(data));
     }, []);
 
+    //............professional information data state.........//
+    const [professionalInfo, setProfessionalInfo] = useState({});
+    //state for set monthly income field
+    const [monthlyIncome, setMonthlyIncome] = useState('');
+    // Educational Qualification
+    const [educationalInfo, setEducationalInfo] = useState(null)
+    //Professional Experience state
+    const [professionalStatus, setProfessionalStatus] = useState(null);
+
+
+    //.............Basic information data state.............//
+    const [basicInfo, setBasicInfo] = useState({});
+
+    //...........Familly Information data state ................//
+    const [familyInfo, setFamilyInfo] = useState({});
+
+    //.............. Others information data state................//
+    const [othersInfo, setOthersInfo] = useState({});
+
+    //Educational Qualifications Options
+    const educationalInfoOptions = [
+        { title: 'Ssc' },
+        { title: 'Hsc' },
+        { title: 'Hons' },
+        { title: 'Masters' },
+
+    ]
+    //Professional experience options
+    const professionalStatusOptions = [
+        { title: 'Teacher' },
+        { title: 'Doctor' },
+        { title: 'Student' },
+        { title: 'Business' },
+
+    ]
+
+
+
     if (hightestEducationalQualification) {
     }
     // const [expanded, setExpanded] = React.useState("panel1");
@@ -52,112 +92,179 @@ export const AccordionPartner = ({ data, isLoading }) => {
 
     // ----------- Basic Information ----------
     const handleLookingForChange = (value) => {
-
+        setBasicInfo({ ...basicInfo, looking: value })
     };
     const handleForChange = (value) => {
+        setBasicInfo({ ...basicInfo, forWhom: value })
 
     };
     // const handleAgeChange = (value) => {
     //     console.log(`selected ${value}`);
     // };
     const onAgeChange = (value) => {
-        console.log('onChange: ', value);
         setAge(value);
+        setBasicInfo({ ...basicInfo, age: value });
+
     };
     const onAfterAgeChange = (value) => {
         console.log('onAfterChange: ', value);
     };
     const handleReligionChange = (e) => {
-        console.log('radio checked', e.target.value);
         setReligionValue(e.target.value);
+        setBasicInfo({ ...basicInfo, relition: e?.target?.value })
     };
     const handleHometownChange = (value) => {
-
+        setBasicInfo({ ...basicInfo, homeTown: value })
     };
     const handleCurrentLocationChange = (value) => {
-
+        setBasicInfo({ ...basicInfo, currentLocation: value })
     };
     const handleCitizenshipChange = (value) => {
-
+        setBasicInfo({ ...basicInfo, citizenship: value })
     };
     const handleMaritalStatusChange = (value) => {
-
+        setBasicInfo({ ...basicInfo, martialStatus: value })
     };
 
     // ------ Family Information -----------
     const handleFatherStatusChange = (e) => {
-        console.log('radio checked', e.target.value);
         setFatherStatusValue(e.target.value);
     };
     const handleFatherProfessionChange = (value) => {
-
+        setFamilyInfo({ ...familyInfo, fatherStatus: value });
     };
     const handleFatherIncomeChange = (e) => {
-        console.log('radio checked', e.target.value);
         setFatherIncomeValue(e.target.value);
+        setFamilyInfo({ ...familyInfo, fatherIncome: e.target.value });
+
     };
     const handleMotherStatusChange = (e) => {
-        console.log('radio checked', e.target.value);
         setMotherStatusValue(e.target.value);
+        setFamilyInfo({ ...familyInfo, motherStatus: e?.target?.value });
     };
     const handleMotherProfessionChange = (value) => {
+        setFamilyInfo({ ...familyInfo, motherProfession: value });
 
     };
     const handleMotherIncomeChange = (e) => {
-        console.log('radio checked', e.target.value);
+
         setMotherIncomeValue(e.target.value);
+        setFamilyInfo({ ...familyInfo, motherIncome: e.target.value });
+
     };
     const handleNumberOfBrother = (value) => {
+        setFamilyInfo({ ...familyInfo, numberOfBrother: value });
 
     };
     const handleNumberOfSister = (value) => {
+        setFamilyInfo({ ...familyInfo, numberOfSister: value });
 
     };
-
     // ------- Professional Info -------------
-    const handleUserProfessionChange = (value) => {
+    const handleUserProfessionChange = (event, newValue) => {
+        console.log(newValue)
+        if (typeof newValue === 'string') {
+            setProfessionalStatus({
+                title: newValue,
+            });
+            setProfessionalInfo({ ...professionalInfo, professionalStatus: newValue.title })
+        } else if (newValue && newValue.inputValue) {
+            // Create a new value from the user input
+            setProfessionalStatus({
+                title: newValue.inputValue,
+            });
+            setProfessionalInfo({ ...professionalInfo, professionalStatus: newValue.inputValue })
+        } else {
+            setProfessionalStatus(newValue);
+            setProfessionalInfo({ ...professionalInfo, professionalStatus: newValue.title })
+        }
 
-    };
-    const handleUserProfessionalExperienceChange = (value) => {
 
-    };
-    const handleUserEducationalQualificationChange = (value) => {
+    }
 
+    const handleUserProfessionalExperienceChange = (e) => {
+        setProfessionalInfo({ ...professionalInfo, professionalExperience: e.target.value });
     };
-    const handleUserIncomeChange = (value) => {
+    const handleUserEducationalQualificationChange = (event, newValue) => {
+        if (typeof newValue === 'string') {
+            setEducationalInfo({
+                title: newValue,
+            });
+            setProfessionalInfo({ ...professionalInfo, educationalQualification: newValue?.title })
+        } else if (newValue && newValue.inputValue) {
+            // Create a new value from the user input
+            setEducationalInfo({
+                title: newValue.inputValue,
+            });
+            setProfessionalInfo({ ...professionalInfo, educationalQualification: newValue.inputValue })
 
+        } else {
+            setEducationalInfo(newValue);
+            setProfessionalInfo({ ...professionalInfo, educationalQualification: newValue.title })
+
+
+        }
+
+
+    }
+    const handleUserIncomeChange = (e) => {
+        setProfessionalInfo({ ...professionalInfo, monthlyIncome: e.target.value })
+        setMonthlyIncome(e.target.value)
     };
+
 
     // --------- Others Information ------------
     const onHeightChange = (value) => {
-        console.log('onChange: ', value);
         setHeight(value);
+        setOthersInfo({ ...othersInfo, height: value });
     };
     const onAfterHeightChange = (value) => {
-        console.log('onAfterChange: ', value);
+
+
     };
     const onWeightChange = (value) => {
-        console.log('onChange: ', value);
         setWeight(value);
+        setOthersInfo({ ...othersInfo, weight: value });
+
     };
     const onAfterWeightChange = (value) => {
-        console.log('onAfterChange: ', value);
+
     };
     const handleUserAncestryChange = (value) => {
+        setOthersInfo({ ...othersInfo, ancestry: value });
 
     };
     const handleUserSkinToneChange = (value) => {
+        setOthersInfo({ ...othersInfo, skinTune: value });
 
     };
     const handleUserHairColorChange = (value) => {
+        setOthersInfo({ ...othersInfo, hairColor: value });
 
     };
     const handleUserHairTypeChange = (value) => {
+        setOthersInfo({ ...othersInfo, HairType: value });
 
     };
     const handleUserEyeColorChange = (value) => {
+        setOthersInfo({ ...othersInfo, EyeColor: value });
 
     };
+
+    //handle data submission
+    const handleSubmit = () => {
+        const data = {
+            basicInfo,
+            familyInfo,
+            professionalInfo,
+            othersInfo
+        }
+        console.log(data)
+    }
+
+    //filter options for type search select (Autocomplete MUI)
+    const filter = createFilterOptions();
+
 
     return (
         <div className='w-full'>
@@ -176,6 +283,10 @@ export const AccordionPartner = ({ data, isLoading }) => {
                             defaultValue="bride"
                             className='w-full mb-2'
                             onChange={handleLookingForChange}
+                            showSearch
+                            filterOption={(input, option) =>
+                                (option?.label ?? '').toLowerCase().includes(input.toLowerCase())
+                            }
                             options={[
                                 {
                                     value: 'bride',
@@ -194,6 +305,11 @@ export const AccordionPartner = ({ data, isLoading }) => {
                             defaultValue="myself"
                             className='w-full mb-2'
                             onChange={handleForChange}
+                            showSearch
+                            filterOption={(input, option) =>
+                                (option?.label ?? '').toLowerCase().includes(input.toLowerCase())
+                            }
+
                             options={[
                                 {
                                     value: 'myself',
@@ -236,11 +352,11 @@ export const AccordionPartner = ({ data, isLoading }) => {
                         <h1 className='text-lg leading-6 font-semibold mb-4'>Religion</h1>
                         <Radio.Group onChange={handleReligionChange} value={religionValue}>
                             <Space direction="vertical">
-                                <Radio value={1}>Islam</Radio>
-                                <Radio value={2}>Hinduism</Radio>
-                                <Radio value={3}>Christian</Radio>
-                                <Radio value={4}>Buddhist</Radio>
-                                <Radio value={5}>Atheist</Radio>
+                                <Radio value='Islam'>Islam</Radio>
+                                <Radio value="Hinduism">Hinduism</Radio>
+                                <Radio value="Christian">Christian</Radio>
+                                <Radio value="Buddhist">Buddhist</Radio>
+                                <Radio value="Atheist">Atheist</Radio>
                                 <Radio value={6}>
                                     Add New
                                     {religionValue === 6 ? (
@@ -261,6 +377,10 @@ export const AccordionPartner = ({ data, isLoading }) => {
                             className='w-full mb-2'
                             onChange={handleHometownChange}
                             placeholder="Select Hometown"
+                            showSearch
+                            filterOption={(input, option) =>
+                                (option?.children ?? '').toLowerCase().includes(input.toLowerCase())
+                            }
                         >
                             {
                                 homeTowns.map(town => {
@@ -275,6 +395,10 @@ export const AccordionPartner = ({ data, isLoading }) => {
                             className='w-full mb-2'
                             onChange={handleCurrentLocationChange}
                             placeholder="Select current location"
+                            showSearch
+                            filterOption={(input, option) =>
+                                (option?.children ?? '').toLowerCase().includes(input.toLowerCase())
+                            }
                         >
                             {
                                 homeTowns.map(town => {
@@ -292,6 +416,10 @@ export const AccordionPartner = ({ data, isLoading }) => {
                             mode='multiple'
                             maxTagCount={2}
                             allowClear
+                            showSearch
+                            filterOption={(input, option) =>
+                                (option?.children ?? '').toLowerCase().includes(input.toLowerCase())
+                            }
                         >
                             {
                                 countries.map(country => <Select.Option
@@ -308,6 +436,10 @@ export const AccordionPartner = ({ data, isLoading }) => {
                             className='w-full mb-2'
                             onChange={handleMaritalStatusChange}
                             placeholder="Select Status"
+                            showSearch
+                            filterOption={(input, option) =>
+                                (option?.label ?? '').toLowerCase().includes(input.toLowerCase())
+                            }
                             options={[
                                 {
                                     value: 'single',
@@ -483,29 +615,60 @@ export const AccordionPartner = ({ data, isLoading }) => {
                 <Panel header={styledHeader("Professional Information")} key="3">
                     <div>
                         <h1 className='text-lg leading-6 font-semibold mb-4'>Profession</h1>
-                        <Select
-                            defaultValue="officer"
-                            className='w-full mb-2'
+                        <Autocomplete
+                            className='mb-2'
+                            value={professionalStatus}
                             onChange={handleUserProfessionChange}
-                            options={[
-                                {
-                                    value: 'officer',
-                                    label: 'Officer',
+                            filterOptions={(options, params) => {
+                                const filtered = filter(options, params);
+
+                                const { inputValue } = params;
+                                // Suggest the creation of a new value
+                                const isExisting = options.some((option) => inputValue === option.title);
+                                if (inputValue !== '' && !isExisting) {
+                                    filtered.push({
+                                        inputValue,
+                                        title: `Add "${inputValue}"`,
+                                    });
+                                }
+
+                                return filtered;
+                            }}
+                            selectOnFocus
+                            clearOnBlur
+                            handleHomeEndKeys
+                            id="free-solo-with-text-demo"
+                            options={professionalStatusOptions}
+                            getOptionLabel={(option) => {
+                                // Value selected with enter, right from the input
+                                if (typeof option === 'string') {
+                                    return option;
+                                }
+                                // Add "xxx" option created dynamically
+                                if (option.inputValue) {
+                                    return option.inputValue;
+                                }
+                                // Regular option
+                                return option.title;
+                            }}
+                            renderOption={(props, option) => <li {...props}>{option.title}</li>}
+                            freeSolo
+                            renderInput={(params) => (
+                                <TextField {...params} placeholder="Professional Experience" />
+                            )}
+                            sx={{
+                                '& input': {
+                                    height: 6,
+                                    padding: 0,
+
                                 },
-                                {
-                                    value: 'police',
-                                    label: 'Police',
-                                },
-                                {
-                                    value: 'doctor',
-                                    label: 'Doctor',
-                                },
-                            ]}
+
+                            }}
                         />
                     </div>
                     <div>
                         <h1 className='text-lg leading-6 font-semibold mb-4'>Professional Experience</h1>
-                        <Select
+                        {/* <Select
                             defaultValue="1-2 years"
                             className='w-full mb-2'
                             onChange={handleUserProfessionalExperienceChange}
@@ -523,11 +686,22 @@ export const AccordionPartner = ({ data, isLoading }) => {
                                     label: '3-4 years',
                                 },
                             ]}
-                        />
+                        /> */}
+                        <Radio.Group onChange={handleUserProfessionalExperienceChange} value={professionalInfo?.professionalExperience}>
+                            <Space direction="vertical">
+                                <Radio value="Less Than 1 Year">Less Than 1 Year</Radio>
+                                <Radio value="1-2 Years">1-2 Years</Radio>
+                                <Radio value="2-3 Years">2-3 Years</Radio>
+                                <Radio value="3-5 Years">3-5 Years</Radio>
+                                <Radio value="5-10 Years">5-10 Years</Radio>
+                                <Radio value="10-15 Years">10-15 Years </Radio>
+                                <Radio value="15 Years+">15 Years+</Radio>
+                            </Space>
+                        </Radio.Group>
                     </div>
                     <div>
                         <h1 className='text-lg leading-6 font-semibold mb-4'>Educational Qualification</h1>
-                        <Select
+                        {/* <Select
                             defaultValue="HSC"
                             className='w-full mb-2'
                             onChange={handleUserEducationalQualificationChange}
@@ -545,11 +719,65 @@ export const AccordionPartner = ({ data, isLoading }) => {
                                     label: 'Masters',
                                 },
                             ]}
+                        /> */}
+
+                        <Autocomplete
+                            value={educationalInfo}
+                            className='w-full mb-2'
+
+                            onChange={handleUserEducationalQualificationChange}
+
+                            filterOptions={(options, params) => {
+                                const filtered = filter(options, params);
+
+                                const { inputValue } = params;
+                                // Suggest the creation of a new value
+                                const isExisting = options.some((option) => inputValue === option.title);
+                                if (inputValue !== '' && !isExisting) {
+                                    filtered.push({
+                                        inputValue,
+                                        title: `Add "${inputValue}"`,
+                                    });
+                                }
+
+                                return filtered;
+                            }}
+                            selectOnFocus
+                            clearOnBlur
+                            handleHomeEndKeys
+                            id="free-solo-with-text-demo"
+                            options={educationalInfoOptions}
+                            getOptionLabel={(option) => {
+                                // Value selected with enter, right from the input
+                                if (typeof option === 'string') {
+                                    return option;
+                                }
+                                // Add "xxx" option created dynamically
+                                if (option.inputValue) {
+                                    return option.inputValue;
+                                }
+                                // Regular option
+                                return option.title;
+                            }}
+                            renderOption={(props, option) => <li {...props}>{option.title}</li>}
+                            freeSolo
+                            renderInput={(params) => (
+                                <TextField {...params} placeholder="Educational Qualification" />
+                            )}
+                            sx={{
+                                '& input': {
+                                    height: 6,
+                                    padding: 0,
+
+                                },
+
+                            }}
                         />
                     </div>
+
                     <div>
                         <h1 className='text-lg leading-6 font-semibold mb-4'>Monthly Income</h1>
-                        <Select
+                        {/* <Select
                             defaultValue="30,000 - 40,000"
                             className='w-full mb-2'
                             onChange={handleUserIncomeChange}
@@ -567,7 +795,29 @@ export const AccordionPartner = ({ data, isLoading }) => {
                                     label: '50,000 - 60,000',
                                 },
                             ]}
-                        />
+                        /> */}
+
+                        <Radio.Group onChange={handleUserIncomeChange} value={monthlyIncome}>
+                            <Space direction="vertical">
+                                <Radio value={'Below 15,000 BDT'}>Below 15,000 BDT</Radio>
+                                <Radio value={'15000-20000 BDT'}>15000-20000 BDT</Radio>
+                                <Radio value={'20000-25000 BDT'}>20000-25000 BDT</Radio>
+                                <Radio value={'25000-30000 BDT'}>25000-30000 BDT</Radio>
+                                <Radio value={'30000-35000 BDT'}>30000-35000 BDT</Radio>
+                                <Radio value={'35000-40000 BDT'}>35000-40000 BDT</Radio>
+                                <Radio value={'45000-50000 BDT'}>45000-50000 BDT</Radio>
+                                <Radio value={'50000-60000 BDT'}>50000-60000 BDT</Radio>
+                                <Radio value={'60000-70000 BDT'}>60000-70000 BDT</Radio>
+                                <Radio value={'70000-80000 BDT'}>70000-80000 BDT</Radio>
+                                <Radio value={'80000-90000 BDT'}>80000-90000 BDT</Radio>
+                                <Radio value={'90000-100000 BDT'}>90000-100000 BDT</Radio>
+                                <Radio value={'100000-150000 BDT'}>100000-150000 BDT</Radio>
+                                <Radio value={'150000-200000 BDT'}>150000-200000 BDT</Radio>
+                                <Radio value={'200000-250000 BDT'}>200000-250000 BDT</Radio>
+                                <Radio value={'300000+ BDT'}>300000+ BDT</Radio>
+
+                            </Space>
+                        </Radio.Group>
                     </div>
                 </Panel>
                 {/*---------------- Others Information --------------*/}
@@ -838,6 +1088,17 @@ export const AccordionPartner = ({ data, isLoading }) => {
                     </div>
                 </Panel>
             </Collapse>
+            <div className="flex justify-center items-center ] mt-[30px] ">
+                <button
+                    onClick={handleSubmit}
+                    style={{
+                        background: "linear-gradient(180deg, #E41272 0%, #942DD9 100%)",
+                    }}
+                    className="w-[179px] text-center py-[8] px-[10px] text-[#fff] h-[54px] text-2xl font-medium rounded-xl"
+                >
+                    Submit
+                </button>
+            </div>
         </div>
     )
 }

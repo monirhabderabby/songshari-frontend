@@ -18,7 +18,15 @@ export const recentApi = apiSlice.injectEndpoints({
             query: () => "/withoutLogin/recentAgents",
             keepUnusedDataFor: 1200,
         }),
+        getSuggestedUsers: builder.query({
+            query: () => ({
+                url: "/member/connections/suggested",
+                headers: { authorization: `Bearer ${localStorage.getItem("accessToken")}` },
+            }),
+            keepUnusedDataFor: 1200,
+        }),
     }),
 });
 
-export const { useGetRecentUsersQuery, useLazyGetRecentLawyersQuery, useGetRecentKazisQuery, useGetRecentAgentsQuery } = recentApi;
+export const { useGetRecentUsersQuery, useLazyGetRecentLawyersQuery, useGetRecentKazisQuery, useGetRecentAgentsQuery, useGetSuggestedUsersQuery } =
+    recentApi;

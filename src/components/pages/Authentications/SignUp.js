@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useCreateUserWithEmailAndPassword, useSignInWithGoogle, useUpdateProfile } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
 import { AiOutlineCloudUpload, AiOutlineIdcard } from "react-icons/ai";
-import { FaFacebookF, FaGoogle, FaRegEnvelope, FaRegUser } from "react-icons/fa";
+import { FaGoogle, FaRegEnvelope, FaRegUser } from "react-icons/fa";
 import { MdLockOutline, MdPhone } from "react-icons/md";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
@@ -21,7 +21,7 @@ const Signup = () => {
     const [photoURL, setPhotoUrl] = useState("");
     const [customError, setCustomError] = useState("");
     const [createUserWithEmailAndPassword, user, loading, error] = useCreateUserWithEmailAndPassword(auth);
-    const [signInWithGoogle, googleLoading] = useSignInWithGoogle(auth);
+    const [signInWithGoogle, googleUser, googleLoading] = useSignInWithGoogle(auth);
     const [updateProfile, updating] = useUpdateProfile(auth);
 
     const dispatch = useDispatch();
@@ -61,10 +61,10 @@ const Signup = () => {
             dispatch(loadUserData(response));
             reset();
         }
-        if (user && response) {
+        if ((user && response) || googleUser) {
             navigate("/userProfile");
         }
-    }, [response, dispatch, reset, navigate, user]);
+    }, [response, dispatch, reset, navigate, user, googleUser]);
 
     useEffect(() => {
         if (error?.message === "Firebase: Error (auth/email-already-in-use).") {
@@ -103,9 +103,6 @@ const Signup = () => {
                                 <h2 className="text-3xl font-bold gradient_text">Member Registration</h2>
                                 <div className="border-2 w-10 border-primary inline-block"></div>
                                 <div className="flex justify-center items-center my-2">
-                                    <p className="border-2 cursor-pointer border-gray-200 rounded-full p-3 mx-1 hover:bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] hover:text-white duration-400 transition-all">
-                                        <FaFacebookF className="text-sm" />
-                                    </p>
                                     <p
                                         className="border-2 cursor-pointer border-gray-200 rounded-full p-3 mx-1 hover:bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] hover:text-white duration-400 transition-all"
                                         onClick={() => signInWithGoogle()}
@@ -228,8 +225,8 @@ const Signup = () => {
                                                         },
                                                         minLength: {
                                                             value: 10,
-                                                            message: "Nid Or Passport Number should be minimum 10 characters"
-                                                        }
+                                                            message: "Nid Or Passport Number should be minimum 10 characters",
+                                                        },
                                                     })}
                                                     type="text"
                                                     placeholder="NID or Passport Number"
@@ -239,10 +236,14 @@ const Signup = () => {
                                             </div>
                                             <h1 className="text-left ml-2">
                                                 {errors.NidOrPassportNumber?.type === "required" && (
-                                                    <span className="w-full text-left text-red-400 text-sm">{errors?.NidOrPassportNumber.message}</span>
+                                                    <span className="w-full text-left text-red-400 text-sm">
+                                                        {errors?.NidOrPassportNumber.message}
+                                                    </span>
                                                 )}
                                                 {errors.NidOrPassportNumber?.type === "minLength" && (
-                                                    <span className="w-full text-left text-red-400 text-sm">{errors?.NidOrPassportNumber.message}</span>
+                                                    <span className="w-full text-left text-red-400 text-sm">
+                                                        {errors?.NidOrPassportNumber.message}
+                                                    </span>
                                                 )}
                                             </h1>
                                         </section>

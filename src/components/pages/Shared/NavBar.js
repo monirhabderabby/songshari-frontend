@@ -28,6 +28,10 @@ const NavBar = ({ bg }) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
+    if (user) {
+        console.log(user?.photoURL);
+    }
+
     const logoutButton = async () => {
         dispatch(loadUserData(null));
         await signOut();
@@ -60,8 +64,9 @@ const NavBar = ({ bg }) => {
     return (
         <>
             <header
-                className={`${bg ? "bg-transparent" : "bg-white"} sticky hidden lg:block top-0 lg:h-[90px] z-50 shadow-md body-font ${NavBarCSS.navbar
-                    }`}
+                className={`${bg ? "bg-transparent" : "bg-white"} sticky hidden lg:block top-0 lg:h-[90px] z-50 shadow-md body-font ${
+                    NavBarCSS.navbar
+                }`}
             >
                 <div className=" lg:max-w-[1000px]  xl:max-w-[1200px] mx-auto flex flex-wrap  flex-col md:flex-row items-center">
                     <Link to="/" className="flex cursor-pointer title-font font-medium items-center text-gray-900 mb-4 md:mb-0 ">
@@ -72,7 +77,11 @@ const NavBar = ({ bg }) => {
                             <div key={menu.id}>
                                 <NavLink to={menu.to} className={({ isActive }) => (isActive ? "" : `${NavBarCSS.hasTooltip}`)}>
                                     <div style={{ marginLeft: "15px" }} className="flex flex-col items-center">
-                                        <img className="hover:rotate-[360deg] duration-[2000ms] w-[50px] h-[75px]" src={menu.icon} alt="Not Available" />
+                                        <img
+                                            className="hover:rotate-[360deg] duration-[2000ms] w-[50px] h-[75px]"
+                                            src={menu.icon}
+                                            alt="Not Available"
+                                        />
                                         <span
                                             className={`${NavBarCSS.tooltip} z-50 h-[15px] w-[15px] mt-[70px] ml-[14px]`}
                                             style={{
@@ -98,7 +107,7 @@ const NavBar = ({ bg }) => {
                             <li className={`${NavBarCSS.hasTooltip}`}>
                                 <div className="flex flex-col items-center cursor-pointer">
                                     {user?.photoURL ? (
-                                        <img className="w-[60px] h-[60px] rounded-[100%]" src={user.photoURL} alt="Not Available" />
+                                        <img className="w-[60px] h-[60px] rounded-[100%]" src={user?.photoURL} />
                                     ) : (
                                         <img className="w-14" src={register} alt="Not Available" />
                                     )}

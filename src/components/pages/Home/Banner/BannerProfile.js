@@ -14,7 +14,11 @@ const BannerProfile = () => {
         fetch(" https://shanshari-temp.vercel.app/withoutLogin/recentMembers")
             .then(res => res.json())
             .then(data => setSwipeMatch(data));
-    }, []);
+    }, [setSwipeMatch]);
+
+    if (swipematch) {
+        console.log(swipematch);
+    }
 
     return (
         <Fragment>
@@ -29,32 +33,51 @@ const BannerProfile = () => {
                 >
                     {swipematch.map(data => (
                         <SwiperSlide key={data._id}>
-                            <div className="h-[400px] w-[280px] relative mx-auto rounded-[40px]" style={{ boxShadow: "2px 2px 10px rgba(0, 0, 0, 0.12)" }}>
-                                <img className="h-[314px] w-[280px] rounded-t-[40px] " src={data?.profilePhoto} alt="Not Available" />
-                                <div className="bottom-[100px] left-[25%] flex justify-around items-center absolute">
-                                    <div
-                                        className="w-[29px] mr-[20px] rounded-[50px] flex justify-center items-center h-[30px]"
-                                        style={{
-                                            background: "linear-gradient(180deg, #D91448 0%, #603B95 100%)",
-                                        }}
-                                    >
-                                        <img src={profileS1} alt="Not Available" />
+                            <div class="w-[280px] h-[400px] relative">
+                                <img
+                                    src={data?.profilePhoto}
+                                    class="h-[400px] w-[280px] rounded-tr-[12px] rounded-tl-[12px] rounded-bl-[12px] rounded-br-[12px] object-cover"
+                                    alt=""
+                                />
+                                <div
+                                    style={{
+                                        background: "linear-gradient(0deg, #1B070E 52.26%, rgba(0, 0, 0, 0) 100.26%, rgba(0, 0, 0, 0) 100.26%)",
+                                    }}
+                                    class="h-[140px] w-full absolute top-[260px] rounded-bl-[12px] rounded-br-[12px] px-[22px] py-[10px]"
+                                >
+                                    <div className="flex items-center gap-x-[12px]">
+                                        <h1 className="font-Inter text-[18px] font-bold leading-[22px] text-[#FFFFFF]">Crystina</h1>
+                                        <p className="text-[18px] font-normal leading-[22px] font-Inter text-[#FFFFFF]">20</p>
                                     </div>
-                                    <div
-                                        className="w-[40px] rounded-[50px] flex justify-center items-center h-[40px]"
-                                        style={{
-                                            background: "linear-gradient(180deg, #D91448 0%, #603B95 100%)",
-                                        }}
-                                    >
-                                        <img className="w-[20px]" src={profileS2} alt="Not Available" />
+                                    <div className="flex flex-col mt-[4px]">
+                                        <p className="text-[14px] text-[#FFFFFF] font-normal leading-[17px] font-Inter">New Work</p>
+                                        <p className="text-[14px] text-[#FFFFFF] font-normal leading-[17px] font-Inter">Doctor</p>
                                     </div>
-                                    <div
-                                        className="w-[29px] ml-[20px] rounded-[50px] flex justify-center items-center h-[30px]"
-                                        style={{
-                                            background: "linear-gradient(180deg, #D91448 0%, #603B95 100%)",
-                                        }}
-                                    >
-                                        <img className="w-[15px]" src={profileS3} alt="Not Available" />
+                                    <div className="w-full flex justify-center items-center relative -bottom-4">
+                                        <div
+                                            className="w-[29.21px] mr-[20px] rounded-[50px] flex justify-center items-center h-[30.38px]"
+                                            style={{
+                                                background: "linear-gradient(180deg, #D91448 0%, #603B95 100%)",
+                                            }}
+                                        >
+                                            <img src={profileS1} alt="Not Available" />
+                                        </div>
+                                        <div
+                                            className="w-[36.22px] rounded-[40px] flex justify-center items-center h-[37.66px]"
+                                            style={{
+                                                background: "linear-gradient(180deg, #D91448 0%, #603B95 100%)",
+                                            }}
+                                        >
+                                            <img className="w-[20px]" src={profileS2} alt="Not Available" />
+                                        </div>
+                                        <div
+                                            className="w-[29.21px] ml-[20px] rounded-[50px] flex justify-center items-center h-[30.38px]"
+                                            style={{
+                                                background: "linear-gradient(180deg, #D91448 0%, #603B95 100%)",
+                                            }}
+                                        >
+                                            <img className="w-[15px]" src={profileS3} alt="Not Available" />
+                                        </div>
                                     </div>
                                 </div>
                                 <div className="bg-gradient-to-r from-[#E41272] to-[#701FD8] rounded-b-[40px] h-[86px]">
