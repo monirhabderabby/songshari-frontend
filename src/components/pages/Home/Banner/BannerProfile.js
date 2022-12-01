@@ -30,17 +30,17 @@ const BannerProfile = () => {
                 >
                     {swipematch.map(data => (
                         <SwiperSlide key={data._id}>
-                            <div class="w-[280px] h-[400px] relative overflow-hidden">
+                            <div className="w-[280px] h-[400px] relative overflow-hidden">
                                 <img
                                     src={data?.profilePhoto}
-                                    class="h-[400px] w-[280px] rounded-tr-[12px] rounded-tl-[12px] rounded-bl-[12px] rounded-br-[12px] object-cover"
+                                    className="h-[400px] w-[280px] rounded-tr-[12px] rounded-tl-[12px] rounded-bl-[12px] rounded-br-[12px] object-cover"
                                     alt=""
                                 />
                                 <div
                                     style={{
                                         background: "linear-gradient(0deg, #1B070E 52.26%, rgba(0, 0, 0, 0) 100.26%, rgba(0, 0, 0, 0) 100.26%)",
                                     }}
-                                    class="h-[140px] w-full absolute top-[260px] rounded-bl-[12px] rounded-br-[12px] px-[22px] py-[10px]"
+                                    className="h-[140px] w-full absolute top-[260px] rounded-bl-[12px] rounded-br-[12px] px-[22px] py-[10px]"
                                 >
                                     <div className="flex items-center gap-x-[12px]">
                                         <h1 className="font-Inter text-[18px] font-bold leading-[22px] text-[#FFFFFF]">Crystina</h1>
