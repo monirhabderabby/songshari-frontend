@@ -16,7 +16,7 @@ const BannerFilterBox = () => {
     const dispatch = useDispatch();
    
   
-    const [id, setId] = useState(location.state.id);
+   
     const [looking, setLooking] = useState(location.state.looking);
     const [lookingfor, setLookingFor] = useState(location.state.lookingfor);
     const [age, setAge] = useState(location.state.age);
@@ -27,9 +27,9 @@ const BannerFilterBox = () => {
     const [educationn, setEducation] = useState(location.state.educationn);
 
     const handleSubmit = (e) => {
-        
+
         e.preventDefault();
-        dispatch(updateMatch({ id, looking, age }));
+        dispatch(updateMatch({ looking, age }));
        
       };
 

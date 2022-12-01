@@ -1,9 +1,10 @@
-const { createSlice } = require("@reduxjs/toolkit");
+import { createSlice } from "@reduxjs/toolkit";
+
 const { v4: uuidv4 } = require("uuid");
 
 const initialmatchfilter = {
   matchfilter: [
-    { id: uuidv4(), looking: "", lookingfor: "" },
+    {  looking: "", lookingfor: "",  },
     
   ],
 };
