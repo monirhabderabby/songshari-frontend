@@ -7,7 +7,7 @@ export const AccountSettingMov = () => {
 
     <div className='mt-10'>
       <h1 className='font-bold ml-8 text-xl mb-12'>Account</h1>
-      <Link to='/mobileUserProfile'>
+      <Link to='/userprofile'>
         <div className='grid grid-cols-6 mt-5 mb-10 he'>
           <div className='setting-mov'>
             <img src='https://i.ibb.co/WxB9SbQ/Vector.png' className='ml-8 mr-6' alt="Not Available"></img>
