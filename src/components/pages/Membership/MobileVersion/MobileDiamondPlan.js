@@ -2,6 +2,7 @@ import React from 'react';
 import MobileMembershipHeader from './MobileMembershipHeader';
 import { BsCheckCircleFill } from 'react-icons/bs';
 import topShape from "../../../../assets/images/Shape/membershipPageShape.png";
+import { BottomNav } from '../../../../Wrapper/Home/mobileversion/BottomNav';
 
 const MobileDiamondPlan = () => {
     const diamondPlanInfo = [
@@ -50,15 +51,16 @@ const MobileDiamondPlan = () => {
                         </div>)
                     }
                 </div>
-                <div className='flex justify-center pb-5 relative'>
+                <div className='flex justify-center pb-5 mb-10 relative'>
                     <button
                         className='py-6 px-24 rounded-[96px] text-lg leading-5 font-bold text-white'
                         style={{ backgroundImage: "linear-gradient(180deg, #CC1A7A 0%, #5A3FA0 96.35%, rgba(228, 18, 114, 0) 100%)" }}>
                         Get Started
                     </button>
-                    <img className='absolute bottom-0 rotate-180 h-36 w-full' src={topShape} alt="" />
+                    <img className='absolute bottom-0 rotate-180 h-36 w-full' src={topShape} alt="Not Available" />
                 </div>
             </section>
+            <BottomNav></BottomNav>
         </div>
     );
 };

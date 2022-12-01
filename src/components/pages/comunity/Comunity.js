@@ -9,8 +9,6 @@ const Comunity = () => {
 
     const handleChange = event => {
         setMessage(event.target.value);
-
-        console.log('value is:', event.target.value);
     }
 
     const array = [1, 2, 3];
@@ -27,7 +25,7 @@ const Comunity = () => {
                             <div className='flex'>
                                 <button onClick={() => setShowModal(true)} className='filter-search'>
                                     <div className='flex justify-between'>
-                                        <img src={togol} alt="" />
+                                        <img src={togol} alt="Not Available" />
                                         <p className='pl-1'>filter search</p>
                                     </div>
                                 </button>
@@ -41,8 +39,7 @@ const Comunity = () => {
                                         id="message"
                                         name="message"
                                         onChange={handleChange}
-                                        value={message}
-                                        className=''>
+                                        value={message}>
                                         <option value="lastactive">Last active</option>
                                         <option value="oneweekago">One wek ago</option>
                                     </select>

@@ -24,10 +24,10 @@ const AboutHeaderBanner = () => {
                     </h4>
                 </div>
                 <div>
-                    <img src={aboutUsBanner} alt="" />
+                    <img src={aboutUsBanner} alt="Not Available" />
                 </div>
             </div>
-            <img className='absolute bottom-0' src={waveImg} alt="" />
+            <img className='absolute bottom-0' src={waveImg} alt="Not Available" />
         </div>
     );
 };

@@ -7,13 +7,12 @@ import CustomHeader from "../../../components/shared/CustomHeader/CustomHeader";
 const LawyerServiceForm = () => {
 
     const onDrop = useCallback(acceptedFiles => {
-        // Do something with the files
-        console.log(acceptedFiles);
+
     }, []);
     const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
     const { register, handleSubmit } = useForm();
-    const onSubmit = data => console.log(data);
+    const onSubmit = data => ;
 
     return (
         <div>

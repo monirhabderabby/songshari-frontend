@@ -1,31 +1,36 @@
 import React from "react";
-import { useNavigate } from "react-router";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { Link } from "react-router-dom";
+import { auth } from "../../../firebase.init";
 import { BottomNav } from "../../../Wrapper/Home/mobileversion/BottomNav";
+import Accordian from "../profileSection/Accordion";
 import MobileAccordion from "./MobileAccordion";
 import MobileUsersProfile from "./MobileUsersProfile";
 
 const MobileSingleProfilesUser = () => {
-    const navigate = useNavigate();
-
+    const [user] = useAuthState(auth);
     return (
         <section>
             <div className="bg-[#FFFFFF] py-[10px] mb-[15px]">
-                <div className="bg-white w-full flex items-center h-[48px] relative">
-                    <div className="ml-[27px] absolute" onClick={() => navigate("/")}>
-                        <i class="fa-solid text-xs text-[#1E2022] fa-chevron-left "></i>
+                <div className="bg-white w-full flex justify-between items-center h-[48px]">
+                    <div className="ml-7">
+                        <Link to='/setting'>
+                            <i className="fa-solid text-sm text-[#1E2022] fa-chevron-left "></i>
+                        </Link>
                     </div>
-                    <div className="relative w-full flex justify-center">
-                        <span className="text-center">Profile</span>
+                    <div className="mr-8">
+                        <span className="text-center"> Profile</span>
                     </div>
+                    <div></div>
                 </div>
             </div>
             <MobileUsersProfile />
             <div className="py-[20px]">
-                <MobileAccordion />
+              <Accordian></Accordian>
             </div>
             <BottomNav></BottomNav>
         </section>
-      
+
     );
 };
 

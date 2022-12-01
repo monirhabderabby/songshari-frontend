@@ -1,10 +1,15 @@
-import React from "react";
-import { useAuthState } from "react-firebase-hooks/auth";
+import React, { useEffect, useState } from "react";
 import "../../assets/css/profileCards.css";
-import { auth } from "../../firebase.init";
+import { ageCalculator } from "../../assets/utilities/AgeCalculation/ageCalculator";
 
-const ProfileCard = () => {
-    const [user] = useAuthState(auth);
+const ProfileCard = ({ data, isLoading }) => {
+    const [age, setAge] = useState("");
+    useEffect(() => {
+        if (data) {
+            const age = ageCalculator(data?.dateOfBirth);
+            setAge(age);
+        }
+    }, [data]);
     return (
         <div style={{ boxShadow: "0px 10px 5px rgba(119, 123, 146, 0.02)" }} className="rounded-xl">
             <div className="card_container shadow-4xl px-2 md:px-0">
@@ -14,16 +19,16 @@ const ProfileCard = () => {
                         <div className="relative card-img w-48 h-48">
                             <img
                                 className="w-44 h-44 rounded-full img-fluid"
-                                src={user?.photoURL ? user.photoURL : "https://cdn-icons-png.flaticon.com/512/194/194938.png"}
+                                src={data?.profilePhoto ? data?.profilePhoto : "https://cdn-icons-png.flaticon.com/512/194/194938.png"}
                                 alt="profileImage"
                             />
                         </div>
                     </div>
                 </div>
                 <div className="text-center -mt-10">
-                    <h2 className="text-2xl font-semibold">{user?.displayName}</h2>
+                    <h2 className="text-2xl font-semibold">{data?.firstName + " " + data?.lastName}</h2>
                     <div className="flex justify-center  my-2">
-                        <h3 className="mr-4">21 years old | </h3>
+                        <h3 className="mr-4">{age} years old | </h3>
                         <div className="flex">
                             <h3>
                                 <svg
@@ -43,37 +48,17 @@ const ProfileCard = () => {
                                     />
                                 </svg>
                             </h3>
-                            <h3 className="ml-2">Dhaka</h3>
+                            <h3 className="ml-2">{data?.hometown}</h3>
                         </div>
                     </div>
                 </div>
                 <div className="flex items-center justify-around mt-5">
-                    {/* <div className="w-16 h-16 flex items-center justify-center rounded-full bg-pink-100">
-                        <div className="flex items-center">
-                            <svg
-                                color="#FF1D8E"
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                strokeWidth="1.5"
-                                stroke="currentColor"
-                                className="w-10 h-10"
-                            >
-                                <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"
-                                />
-                            </svg>
-                        </div>
-                    </div> */}
                     <div>
-                        {
-                            user ?
-                                <button className="special_profile_button">Upgrade Membership</button>
-                                :
-                                <button className="special_profile_button">Send Connection Request</button>
-                        }
+                        {data ? (
+                            <button className="special_profile_button">Upgrade Membership</button>
+                        ) : (
+                            <button className="special_profile_button">Send Connection Request</button>
+                        )}
                     </div>
                 </div>
             </div>

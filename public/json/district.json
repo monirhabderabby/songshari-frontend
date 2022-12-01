@@ -1,0 +1,321 @@
+[
+    {
+        "id": "1",
+        "name": "Chittagong",
+        "value": "Chittagong"
+    },
+    {
+        "id": "2",
+        "name": "Dhaka",
+        "value": "Dhaka"
+    },
+    {
+        "id": "3",
+        "name": "Rajshahi",
+        "value": "Rajshahi"
+    },
+    {
+        "id": "4",
+        "name": "Sylhet",
+        "value": "Sylhet"
+    },
+    {
+        "id": "5",
+        "name": "Jessore",
+        "value": "Jessore"
+    },
+    {
+        "id": "6",
+        "name": "Dinajpur",
+        "value": "Dinajpur"
+    },
+    {
+        "id": "7",
+        "name": "Mymensingh",
+        "value": "Mymensingh"
+    },
+    {
+        "id": "8",
+        "name": "Comilla",
+        "value": "Comilla"
+    },
+    {
+        "id": "9",
+        "name": "Barisal",
+        "value": "Barisal"
+    },
+    {
+        "id": "10",
+        "name": "Faridpur",
+        "value": "Faridpur"
+    },
+    {
+        "id": "11",
+        "name": "Bogra",
+        "value": "Bogra"
+    },
+    {
+        "id": "12",
+        "name": "Pabna",
+        "value": "Pabna"
+    },
+    {
+        "id": "13",
+        "name": "Rangamati",
+        "value": "Rangamati"
+    },
+    {
+        "id": "14",
+        "name": "Kushtia",
+        "value": "Kushtia"
+    },
+    {
+        "id": "15",
+        "name": "Rangpur",
+        "value": "Rangpur"
+    },
+    {
+        "id": "16",
+        "name": "Noakhali",
+        "value": "Noakhali"
+    },
+    {
+        "id": "17",
+        "name": "Khulna"
+    },
+    {
+        "id": "18",
+        "name": "Tangail",
+        "value": "Tangail"
+    },
+    {
+        "id": "19",
+        "name": "Panchagarh",
+        "value": "Panchagarh"
+    },
+    {
+        "id": "20",
+        "name": "Bhola",
+        "value": "Bhola"
+    },
+    {
+        "id": "21",
+        "name": "Bandarban",
+        "value": "Bandarban"
+    },
+    {
+        "id": "22",
+        "name": "Chandpur",
+        "value": "Chandpur"
+    },
+    {
+        "id": "23",
+        "name": "Habiganj",
+        "value": "Habiganj"
+    },
+    {
+        "id": "24",
+        "name": "Lakshmipur",
+        "value": "Lakshmipur"
+    },
+    {
+        "id": "25",
+        "name": "Barguna",
+        "value": "Barguna"
+    },
+    {
+        "id": "26",
+        "name": "Jhalokati",
+        "value": "Jhalokati"
+    },
+    {
+        "id": "27",
+        "name": "Pirojpur",
+        "value": "Pirojpur"
+    },
+    {
+        "id": "28",
+        "name": "Patuakhali",
+        "value": "Patuakhali"
+    },
+    {
+        "id": "29",
+        "name": "Jhenaidah",
+        "value": "Jhenaidah"
+    },
+    {
+        "id": "30",
+        "name": "Narail",
+        "value": "Narail"
+    },
+    {
+        "id": "31",
+        "name": "Magura",
+        "value": "Magura"
+    },
+    {
+        "id": "32",
+        "name": "Lalmonirhat",
+        "value": "Lalmonirhat"
+    },
+    {
+        "id": "33",
+        "name": "Kurigram",
+        "value": "Kurigram"
+    },
+    {
+        "id": "34",
+        "name": "Nilphamari",
+        "value": "Nilphamari"
+    },
+    {
+        "id": "35",
+        "name": "Gaibandha",
+        "value": "Gaibandha"
+    },
+    {
+        "id": "36",
+        "name": "Thakurgaon",
+        "value": "Thakurgaon"
+    },
+    {
+        "id": "37",
+        "name": "Satkhira",
+        "value": "Satkhira"
+    },
+    {
+        "id": "38",
+        "name": "Bagerhat",
+        "value": "Bagerhat"
+    },
+    {
+        "id": "39",
+        "name": "Chuadanga",
+        "value": "Chuadanga"
+    },
+    {
+        "id": "40",
+        "name": "Meherpur",
+        "value": "Meherpur"
+    },
+    {
+        "id": "41",
+        "name": "Sirajganj",
+        "value": "Sirajganj"
+    },
+    {
+        "id": "42",
+        "name": "Joypurhat",
+        "value": "Joypurhat"
+    },
+    {
+        "id": "43",
+        "name": "Natore",
+        "value": "Natore"
+    },
+    {
+        "id": "44",
+        "name": "Naogaon",
+        "value": "Naogaon"
+    },
+    {
+        "id": "45",
+        "name": "Nawabganj",
+        "value": "Nawabganj"
+    },
+    {
+        "id": "46",
+        "name": "Khagrachhari",
+        "value": "Khagrachhari"
+    },
+    {
+        "id": "47",
+        "name": "Feni",
+        "value": "Feni"
+    },
+    {
+        "id": "48",
+        "name": "Brahmanbaria",
+        "value": "Brahmanbaria"
+    },
+    {
+        "id": "49",
+        "name": "Sunamganj",
+        "value": "Sunamganj"
+    },
+    {
+        "id": "50",
+        "name": "Cox's Bazar",
+        "value": "Cox's Bazar"
+    },
+    {
+        "id": "51",
+        "name": "Moulvibazar",
+        "value": "Moulvibazar"
+    },
+    {
+        "id": "52",
+        "name": "Gopalganj",
+        "value": "Gopalganj"
+    },
+    {
+        "id": "53",
+        "name": "Shariatpur",
+        "value": "Shariatpur"
+    },
+    {
+        "id": "54",
+        "name": "Madaripur",
+        "value": "Madaripur"
+    },
+    {
+        "id": "55",
+        "name": "Rajbari",
+        "value": "Rajbari"
+    },
+    {
+        "id": "56",
+        "name": "Gazipur",
+        "value": "Gazipur"
+    },
+    {
+        "id": "57",
+        "name": "Kishoreganj",
+        "value": "Kishoreganj"
+    },
+    {
+        "id": "58",
+        "name": "Jamalpur",
+        "value": "Jamalpur"
+    },
+    {
+        "id": "59",
+        "name": "Sherpur",
+        "value": "Sherpur"
+    },
+    {
+        "id": "60",
+        "name": "Netrakona",
+        "value": "Netrakona"
+    },
+    {
+        "id": "61",
+        "name": "Munshiganj",
+        "value": "Munshiganj"
+    },
+    {
+        "id": "62",
+        "name": "Narsingdi",
+        "value": "Narsingdi"
+    },
+    {
+        "id": "63",
+        "name": "Narayanganj",
+        "value": "Narayanganj"
+    },
+    {
+        "id": "64",
+        "name": "Manikganj",
+        "value": "Manikganj"
+    }
+]

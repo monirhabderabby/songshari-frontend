@@ -5,10 +5,10 @@ import { DynamicActivityPage } from "./DynamicActivityPage";
 import { DynamicMatches } from "./DynamicMaches";
 import { DynamicProfileInfo } from "./DynamicProfileInfo";
 
-const DynamicTable = ({ user }) => {
+const DynamicTable = ({ data, isLoading }) => {
     const [page, setPage] = useState(2);
     return (
-        <div className="">
+        <div>
             <div className="px-2 md:px-0 mx-4 mb-4">
                 <div className="notification-bar">
                     <div className="flex justify-center items-center gap-4">
@@ -37,7 +37,7 @@ const DynamicTable = ({ user }) => {
                 </div>
             </div>
             {page === 1 && <DynamicActivityPage />}
-            {page === 2 && <DynamicProfileInfo {...{ user }} />}
+            {page === 2 && <DynamicProfileInfo {...{ data, isLoading }} />}
             {page === 5 && <DynamicMatches />}
         </div>
     );

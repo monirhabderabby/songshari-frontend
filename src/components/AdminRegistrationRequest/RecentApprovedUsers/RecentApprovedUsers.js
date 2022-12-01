@@ -22,7 +22,7 @@ const RecentApprovedUsers = () => {
                     >
                         <div className='flex justify-start items-center gap-6 lg:gap-4 xl:gap-6'>
                             <div className=''>
-                                <img className='rounded-full w-[85px] h-[85px]' src={adminRuffImg} alt="" />
+                                <img className='rounded-full w-[85px] h-[85px]' src={adminRuffImg} alt="Not Available" />
                             </div>
                             <div className='text-white'>
                                 <p className='text-2xl font-medium leading-8 whitespace-nowrap'>{data.name}</p>

@@ -38,10 +38,13 @@ import SingleProduct from "../Wrapper/SingleProduct/SingleProduct";
 import SingleProfile from "../Wrapper/SingleProfilesUser/SingleProfile";
 import { Container } from "../Wrapper/Stepper/Container";
 // import { UsersProfile } from "../components/SingleProfilesUser/profileSection/UsersProfile";
+import MobileDiamondPlan from "../components/pages/Membership/MobileVersion/MobileDiamondPlan";
+import MobileFreePlan from "../components/pages/Membership/MobileVersion/MobileFreePlan";
+import MobileGoldPlan from "../components/pages/Membership/MobileVersion/MobileGoldPlan";
+import MobilePlatinumPlan from "../components/pages/Membership/MobileVersion/MobilePlatinumPlan";
 import UpgradePlan from "../components/pages/Membership/MobileVersion/UpgradePlan";
 import MobileActivity from "../components/pages/MobileActivity/MobileActivity";
 import MobileActivityPost from "../components/pages/MobileActivity/MobileActivityPost";
-import MobileSingleProfilesUser from "../components/SingleProfilesUser/MobileSingleProfilesUser/MobileSingleProfilesUser";
 import { CertificateMov } from "../Wrapper/Home/mobileversion/CertificateMov";
 import { Like } from "../Wrapper/Home/mobileversion/Like";
 import { MatchesMov } from "../Wrapper/Home/mobileversion/MatchesMov";
@@ -50,6 +53,7 @@ import { CompletedCaseMov } from "../Wrapper/Home/mobileversion/mobilelawyeracti
 import { NavCase } from "../Wrapper/Home/mobileversion/mobilelawyeractivity/NavCase";
 import { PendingCaseMov } from "../Wrapper/Home/mobileversion/mobilelawyeractivity/PendingCase";
 import { RunningCaseMov } from "../Wrapper/Home/mobileversion/mobilelawyeractivity/RunningCase";
+import MobileProfileOthers from "../Wrapper/Home/mobileversion/MobileProfileOthers";
 import { Setting } from "../Wrapper/Home/mobileversion/Setting";
 
 const Index = () => {
@@ -59,6 +63,7 @@ const Index = () => {
                 <Routes>
                     <Route path="/about" element={<About></About>}></Route>
                     <Route path="/userprofile" element={<SingleProfile />}></Route>
+                    <Route path="/mobileotherprofile" element={<MobileProfileOthers></MobileProfileOthers>}></Route>
                     <Route path="/membership" element={<MemberShip></MemberShip>}></Route>
                     <Route path="/profileinfo" element={<ProfileInfo></ProfileInfo>}></Route>
                     <Route path="/course" element={<Course></Course>}></Route>
@@ -100,8 +105,6 @@ const Index = () => {
                     </Route>
                     <Route path="/singleViewRequest" element={<SingleRequestView />} />
                     <Route path="/admin-analytics" element={<AdminAnalytics />}></Route>
-                    {/* <Route path="/profile" element={<OthersProfile />} /> */}
-                    {/* <Route path="/ste" element={<OthersProfile></OthersProfile>}></Route> */}
                     <Route path="/stepper" element={<Container></Container>}></Route>
                     <Route path="/upgrade" element={<UpgradePlan></UpgradePlan>}></Route>
 
@@ -111,10 +114,14 @@ const Index = () => {
                     <Route path="/matchesmov" element={<MatchesMov></MatchesMov>}></Route>
                     <Route path="/mobileActivityPage" element={<MobileActivity />}></Route>
                     <Route path="/mobileActivityNextPage" element={<MobileActivityPost />}></Route>
-                    <Route path="/mobileUserProfile" element={<MobileSingleProfilesUser />}></Route>
+
                     <Route path="/certificatemov" element={<CertificateMov></CertificateMov>}></Route>
                     <Route path="/like" element={<Like></Like>}></Route>
-                    <Route path="/upgrade" element={<UpgradePlan></UpgradePlan>}></Route>
+                    <Route path="/mobileUpgrade" element={<UpgradePlan></UpgradePlan>}></Route>
+                    <Route path="/mobileFreePlan" element={<MobileFreePlan />}></Route>
+                    <Route path="/mobileGoldPlan" element={<MobileGoldPlan />}></Route>
+                    <Route path="/mobileDiamondPlan" element={<MobileDiamondPlan />}></Route>
+                    <Route path="/mobilePlatinumPlan" element={<MobilePlatinumPlan />}></Route>
                     {/* --------------- MOBILE ROUTES END --------------- */}
 
                     <Route path="*" element={<NotFound />}></Route>
