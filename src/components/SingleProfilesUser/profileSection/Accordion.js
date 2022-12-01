@@ -52,22 +52,29 @@ const Accordian = ({ data, isLoading }) => {
                 <AccordionDetails>
                     {data && (
                         <Typography>
-                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                            {
+                                data?.firstName && <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                                 <span className="font-medium">Name</span>
                                 <p className="font-normal">{data ? `${data?.firstName}` : "Not Provided"}</p>
                             </div>
-                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                            }
+
+                            
+                            {data.phone && <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                                 <span className="font-medium">Phone</span>
                                 <p className="font-normal">{data ? data.phone : "Not Provided"}</p>
-                            </div>
-                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                            </div>}
+
+                          { data?.email && <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                                 <span className="font-medium">Email</span>
                                 <p className="font-normal">{data ? data?.email : "Not Provided"}</p>
-                            </div>
-                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                            </div>}
+
+                           { data?.NidOrPassportNumber && <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                                 <span className="font-medium">Nid Or Passport Number</span>
                                 <p className="font-normal">{data ? data?.NidOrPassportNumber : "Not Provided"}</p>
-                            </div>
+                            </div>}
+                            
                             <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                                 <span className="font-medium">CitizenShip</span>
                                 <p className="font-normal">{data ? data?.citizenShip.toString() : "Not Provided"}</p>
