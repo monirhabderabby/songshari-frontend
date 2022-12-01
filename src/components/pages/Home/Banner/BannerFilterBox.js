@@ -1,12 +1,38 @@
 import { AutoComplete, Select, Slider } from "antd";
 import React, { Fragment } from "react";
+import { useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { useLocation, useNavigate } from "react-router-dom";
 import { auth } from "../../../../firebase.init";
+import { updateMatch } from "../../../../Redux/api/filterSlice";
 
-const handleChange = () => {};
+const handleChange = () => {
+
+};
 
 const BannerFilterBox = () => {
+    const location = useLocation();
+    const dispatch = useDispatch();
+   
+  
+    const [id, setId] = useState(location.state.id);
+    const [looking, setLooking] = useState(location.state.looking);
+    const [lookingfor, setLookingFor] = useState(location.state.lookingfor);
+    const [age, setAge] = useState(location.state.age);
+    const [religion, setReligion] = useState(location.state.religion);
+    const [profession, setProfession] = useState(location.state.profession);
+    const [hometow, setHomeTown] = useState(location.state.hometow);
+    const [currentloc, setCurrentLoc] = useState(location.state.currentloc);
+    const [educationn, setEducation] = useState(location.state.educationn);
+
+    const handleSubmit = (e) => {
+        
+        e.preventDefault();
+        dispatch(updateMatch({ id, looking, age }));
+       
+      };
+
     const [user, loading] = useAuthState(auth);
     const options = [
         {
@@ -300,7 +326,7 @@ const BannerFilterBox = () => {
                                     boxShadow: "2px 2px 8px 2px rgba(0, 0, 0, 0.1)",
                                     borderRadius: "5px",
                                 }}
-                                onChange={handleChange}
+                                onChange={(e) => setLooking(e.target.value)}
                                 options={[
                                     {
                                         value: "Bride",
@@ -317,6 +343,7 @@ const BannerFilterBox = () => {
                             <h2 className=" text-[#000000] font-medium">Age</h2>
                             <div className="mt-[5px]">
                                 <span className="text-[14px] block text-center font-medium text-[#72777A]">20 - 22</span>
+                                onChange={(e) => setAge(e.target.value)}
                                 <Slider className="text-[#E41272]" range={{ draggableTrack: true }} defaultValue={[20, 50]} />
                             </div>
                         </div>
@@ -330,7 +357,7 @@ const BannerFilterBox = () => {
                                     boxShadow: "2px 2px 8px 2px rgba(0, 0, 0, 0.1)",
                                     borderRadius: "5px",
                                 }}
-                                onChange={handleChange}
+                                onChange={(e) => setReligion(e.target.value)}
                                 options={[
                                     {
                                         value: "Islam",
@@ -364,6 +391,7 @@ const BannerFilterBox = () => {
                                 }}
                                 options={division}
                                 placeholder="Location"
+                                onChange={(e) => setCurrentLoc(e.target.value)}
                                 onSelect={val => console.log(val)}
                                 filterOption={(inputValue, option) => option.value.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1}
                             />
@@ -380,7 +408,7 @@ const BannerFilterBox = () => {
                                     boxShadow: "2px 2px 8px 2px rgba(0, 0, 0, 0.1)",
                                     borderRadius: "5px",
                                 }}
-                                onChange={handleChange}
+                                onChange={(e) => setLookingFor(e.target.value)}
                                 options={[
                                     {
                                         value: "My Self",
@@ -417,6 +445,7 @@ const BannerFilterBox = () => {
                                 }}
                                 options={options}
                                 placeholder="Profession"
+                                onChange={(e) => setProfession(e.target.value)}
                                 onSelect={val => console.log(val)}
                                 filterOption={(inputValue, option) => option.value.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1}
                             />
@@ -428,6 +457,7 @@ const BannerFilterBox = () => {
                                     width: 101,
                                 }}
                                 options={hometown}
+                                onChange={(e) => setHomeTown(e.target.value)}
                                 placeholder="Home Town"
                                 onSelect={val => console.log(val)}
                                 filterOption={(inputValue, option) => option.value.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1}
@@ -440,6 +470,7 @@ const BannerFilterBox = () => {
                                     width: 101,
                                 }}
                                 options={education}
+                                onChange={(e) => setHomeTown(e.target.value)}
                                 placeholder="Education"
                                 onSelect={val => console.log(val)}
                                 filterOption={(inputValue, option) => option.value.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1}
