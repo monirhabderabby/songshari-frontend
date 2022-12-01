@@ -19,6 +19,7 @@ export const AccordionPartner = ({ data, isLoading }) => {
     const [age, setAge] = useState(0);
     const [height, setHeight] = useState(10);
     const [weight, setWeight] = useState(10);
+    const [maritalStatus, setMaritalStatus] = useState('');
 
     useEffect(() => {
         fetch("json/district.json")
@@ -124,6 +125,7 @@ export const AccordionPartner = ({ data, isLoading }) => {
     };
     const handleMaritalStatusChange = (value) => {
         setBasicInfo({ ...basicInfo, martialStatus: value })
+        setMaritalStatus(value);
     };
 
     // ------ Family Information -----------
@@ -460,6 +462,38 @@ export const AccordionPartner = ({ data, isLoading }) => {
                             ]}
                         />
                     </div>
+                    {
+                        maritalStatus === "married" && <div>
+                            <h1 className='text-lg leading-6 font-semibold mb-4'>How Many Husband/Wife Do You Have</h1>
+                            <Select
+                                className='w-full mb-2'
+                                onChange={handleMaritalStatusChange}
+                                placeholder="Select Status"
+                                showSearch
+                                filterOption={(input, option) =>
+                                    (option?.label ?? '').toLowerCase().includes(input.toLowerCase())
+                                }
+                                options={[
+                                    {
+                                        value: 'single',
+                                        label: 'Never Married',
+                                    },
+                                    {
+                                        value: 'married',
+                                        label: 'Married',
+                                    },
+                                    {
+                                        value: 'divorced',
+                                        label: 'Divorced',
+                                    },
+                                    {
+                                        value: 'widowed',
+                                        label: 'Widowed',
+                                    },
+                                ]}
+                            />
+                        </div>
+                    }
                 </Panel>
                 {/* ---------- Family Information ---------- */}
                 <Panel header={styledHeader("Family Information")} key="2">
