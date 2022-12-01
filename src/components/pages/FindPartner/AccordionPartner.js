@@ -19,6 +19,8 @@ export const AccordionPartner = ({ data, isLoading }) => {
     const [age, setAge] = useState(0);
     const [height, setHeight] = useState(10);
     const [weight, setWeight] = useState(10);
+    const [brother, setBrother] = useState(0);
+    const [sister, setSister] = useState(0)
     const [maritalStatus, setMaritalStatus] = useState('');
 
     useEffect(() => {
@@ -154,14 +156,7 @@ export const AccordionPartner = ({ data, isLoading }) => {
         setFamilyInfo({ ...familyInfo, motherIncome: e.target.value });
 
     };
-    const handleNumberOfBrother = (value) => {
-        setFamilyInfo({ ...familyInfo, numberOfBrother: value });
 
-    };
-    const handleNumberOfSister = (value) => {
-        setFamilyInfo({ ...familyInfo, numberOfSister: value });
-
-    };
     // ------- Professional Info -------------
     const handleUserProfessionChange = (event, newValue) => {
         console.log(newValue)
@@ -255,6 +250,7 @@ export const AccordionPartner = ({ data, isLoading }) => {
 
     //handle data submission
     const handleSubmit = () => {
+        familyInfo.siblings = { brother: brother, sister: sister }
         const data = {
             basicInfo,
             familyInfo,
@@ -605,44 +601,13 @@ export const AccordionPartner = ({ data, isLoading }) => {
                     </div>
                     <div>
                         <h1 className='text-lg leading-6 font-semibold mb-4'>Number of Siblings</h1>
-                        <Select
-                            defaultValue="no brother"
-                            className='w-full mb-1'
-                            onChange={handleNumberOfBrother}
-                            options={[
-                                {
-                                    value: 'no brother',
-                                    label: 'No Brother',
-                                },
-                                {
-                                    value: '1 brother',
-                                    label: '1 Brother',
-                                },
-                                {
-                                    value: '1 brother',
-                                    label: '2 Brother',
-                                },
-                            ]}
-                        />
-                        <Select
-                            defaultValue="no sister"
-                            className='w-full mb-2'
-                            onChange={handleNumberOfSister}
-                            options={[
-                                {
-                                    value: 'no sister',
-                                    label: 'No Sister',
-                                },
-                                {
-                                    value: '1 sister',
-                                    label: '1 Sister',
-                                },
-                                {
-                                    value: '2 sister',
-                                    label: '2 Sister',
-                                },
-                            ]}
-                        />
+                        <div>
+                            <button onClick={() => setBrother(brother + 1)} >+ </button> {brother} Brother <button onClick={() => brother == 0 || brother > 0 && setBrother(brother - 1)}>-</button>
+                        </div>
+                        <div>
+                            <button onClick={() => setSister(sister + 1)} >+ </button> {sister} Sister <button onClick={() => sister == 0 || sister > 0 && setSister(sister - 1)}>-</button>
+                        </div>
+
                     </div>
                 </Panel>
                 {/* ---------- Professional Information ------------- */}
