@@ -55,6 +55,8 @@ export const PersonalDetails = ({ setPage }) => {
     const [townPermanentValue, setTownPermanentValue] = useState("");
     const [townCurrentSuggestion, setTownCurrentSuggestion] = useState([]);
     const [townCurrentValue, setTownCurrentValue] = useState("");
+    const [countriesSuggestionForParmanent, setCountriesSuggestionForParmanent] = useState([]);
+    const [parmanentCountryValue, setPermanentCountryValue] = useState("");
 
     useEffect(() => {
         fetch("json/district.json")
@@ -65,6 +67,18 @@ export const PersonalDetails = ({ setPage }) => {
     }, [setHomeTown]);
 
     const [setPersonalDetails, { data, isLoading }] = useSetPersonalDetailsMutation();
+
+    const handleCountriesSuggestion = text => {
+        let matches = [];
+        if (text.length > 0) {
+            matches = countries.filter(country => {
+                const regex = new RegExp(`${text}`, "gi");
+                return country.value.match(regex);
+            });
+        }
+        setCountriesSuggestionForParmanent(matches);
+        setPermanentCountryValue(text);
+    };
 
     const handleHomeTownSuggestion = text => {
         let matches = [];
@@ -321,8 +335,9 @@ export const PersonalDetails = ({ setPage }) => {
                     {/* ---------- Hometown ---------- */}
                     <section className="relative">
                         <div
-                            className={`flex items-center  p-3 w-full rounded-lg mt-3 lg:mt-0 ${homeTownSuggestion.length > 0 ? "rounded-br-none rounded-bl-none shadow-lg bg-white" : "bg-gray-100"
-                                }`}
+                            className={`flex items-center  p-3 w-full rounded-lg mt-3 lg:mt-0 ${
+                                homeTownSuggestion.length > 0 ? "rounded-br-none rounded-bl-none shadow-lg bg-white" : "bg-gray-100"
+                            }`}
                         >
                             <input
                                 {...register("hometown", {
@@ -340,8 +355,9 @@ export const PersonalDetails = ({ setPage }) => {
                             />
                         </div>
                         <div
-                            className={`bg-white shadow-lg absolute top-[40px] right-0 w-full rounded-br-lg rounded-bl-lg overflow-y-scroll ${homeTownSuggestion.length > 0 ? "max-h-[346px]" : "h-0"
-                                }`}
+                            className={`bg-white shadow-lg absolute top-[40px] right-0 w-full rounded-br-lg rounded-bl-lg overflow-y-scroll ${
+                                homeTownSuggestion.length > 0 ? "max-h-[346px]" : "h-0"
+                            }`}
                         >
                             {homeTownSuggestion.length > 0 &&
                                 homeTownSuggestion.map(suggetion => {
@@ -583,8 +599,9 @@ export const PersonalDetails = ({ setPage }) => {
                     {/* ---------- Zodiac Sign ---------- */}
                     <section className="relative">
                         <div
-                            className={`flex items-center  p-3 w-full rounded-lg mt-3 lg:mt-0 ${zodiacSignSuggestion.length > 0 ? "rounded-br-none rounded-bl-none shadow-lg bg-white" : "bg-gray-100"
-                                }`}
+                            className={`flex items-center  p-3 w-full rounded-lg mt-3 lg:mt-0 ${
+                                zodiacSignSuggestion.length > 0 ? "rounded-br-none rounded-bl-none shadow-lg bg-white" : "bg-gray-100"
+                            }`}
                         >
                             <input
                                 {...register("zodiacSign", {
@@ -602,8 +619,9 @@ export const PersonalDetails = ({ setPage }) => {
                             />
                         </div>
                         <div
-                            className={`bg-white shadow-lg absolute top-[40px] right-0 w-full rounded-br-lg rounded-bl-lg overflow-y-scroll ${zodiacSignSuggestion.length > 0 ? "max-h-[346px]" : "h-0"
-                                }`}
+                            className={`bg-white shadow-lg absolute top-[40px] right-0 w-full rounded-br-lg rounded-bl-lg overflow-y-scroll ${
+                                zodiacSignSuggestion.length > 0 ? "max-h-[346px]" : "h-0"
+                            }`}
                         >
                             {zodiacSignSuggestion.length > 0 &&
                                 zodiacSignSuggestion.map(suggetion => {
@@ -700,8 +718,9 @@ export const PersonalDetails = ({ setPage }) => {
                     {/* ---------- Town permanent ---------- */}
                     <section className="relative">
                         <div
-                            className={`flex items-center  p-3 w-full rounded-lg mt-3 lg:mt-0 ${townPermanentSuggestion.length > 0 ? "rounded-br-none rounded-bl-none shadow-lg bg-white" : "bg-gray-100"
-                                }`}
+                            className={`flex items-center  p-3 w-full rounded-lg mt-3 lg:mt-0 ${
+                                townPermanentSuggestion.length > 0 ? "rounded-br-none rounded-bl-none shadow-lg bg-white" : "bg-gray-100"
+                            }`}
                         >
                             <input
                                 {...register("townPermanent", {
@@ -719,8 +738,9 @@ export const PersonalDetails = ({ setPage }) => {
                             />
                         </div>
                         <div
-                            className={`bg-white shadow-lg absolute top-[40px] right-0 w-full rounded-br-lg rounded-bl-lg overflow-y-scroll ${townPermanentSuggestion.length > 0 ? "max-h-[346px]" : "h-0"
-                                }`}
+                            className={`bg-white shadow-lg absolute top-[40px] right-0 w-full rounded-br-lg rounded-bl-lg overflow-y-scroll ${
+                                townPermanentSuggestion.length > 0 ? "max-h-[346px]" : "h-0"
+                            }`}
                         >
                             {townPermanentSuggestion.length > 0 &&
                                 townPermanentSuggestion.map(suggetion => {
@@ -772,26 +792,46 @@ export const PersonalDetails = ({ setPage }) => {
                         </h1>
                     </section>
                     {/* ---------- Country Permanent ---------- */}
-                    <section>
-                        <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
-                            <select
-                                {...register("countryPermanent", {
-                                    required: {
-                                        value: true,
-                                        message: "Country Name is required",
-                                    },
-                                })}
+                    <section className="relative">
+                        <div
+                            className={`flex items-center  p-3 w-full rounded-lg mt-3 lg:mt-0 ${
+                                countriesSuggestionForParmanent.length > 0 ? "rounded-br-none rounded-bl-none shadow-lg bg-white" : "bg-gray-100"
+                            }`}
+                        >
+                            <input
+                                {...register("countryPermanent", { required: { value: true, message: "Country Name is required" } })}
                                 type="text"
+                                placeholder="Country"
                                 className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
-                                id="countryPermanent"
-                            >
-                                <option value="">Select Country</option>
-                                <option value="bangladesh">Bangladesh</option>
-                            </select>
+                                onChange={e => handleCountriesSuggestion(e.target.value)}
+                                value={parmanentCountryValue}
+                                id="hometown"
+                            />
+                        </div>
+                        <div
+                            className={`bg-white z-50 shadow-lg absolute top-[40px] right-0 w-full rounded-br-lg rounded-bl-lg overflow-y-scroll ${
+                                countriesSuggestionForParmanent.length > 0 ? "max-h-[346px]" : "h-0"
+                            }`}
+                        >
+                            {countriesSuggestionForParmanent.length > 0 &&
+                                countriesSuggestionForParmanent.map(suggetion => {
+                                    return (
+                                        <div
+                                            key={suggetion?.id}
+                                            className="h-[40px] flex justify-start items-center text-[14px] hover:bg-gray-100 px-3 cursor-pointer text-gray-500 rounded-br-lg rounded-bl-lg"
+                                            onClick={() => {
+                                                setPermanentCountryValue(suggetion?.name);
+                                                setCountriesSuggestionForParmanent([]);
+                                            }}
+                                        >
+                                            {suggetion?.value}
+                                        </div>
+                                    );
+                                })}
                         </div>
                         <h1 className="text-left ml-2">
-                            {errors.countryPermanent?.type === "required" && (
-                                <span className="w-full text-left text-red-400 text-sm">{errors?.countryPermanent.message}</span>
+                            {errors.hometown?.type === "required" && (
+                                <span className="w-full text-left text-red-400 text-sm">{errors?.hometown.message}</span>
                             )}
                         </h1>
                     </section>
@@ -870,8 +910,9 @@ export const PersonalDetails = ({ setPage }) => {
                     {/* ---------- Town Current ---------- */}
                     <section className="relative">
                         <div
-                            className={`flex items-center  p-3 w-full rounded-lg mt-3 lg:mt-0 ${townCurrentSuggestion.length > 0 ? "rounded-br-none rounded-bl-none shadow-lg bg-white" : "bg-gray-100"
-                                }`}
+                            className={`flex items-center  p-3 w-full rounded-lg mt-3 lg:mt-0 ${
+                                townCurrentSuggestion.length > 0 ? "rounded-br-none rounded-bl-none shadow-lg bg-white" : "bg-gray-100"
+                            }`}
                         >
                             <input
                                 {...register("townCurrent", {
@@ -889,8 +930,9 @@ export const PersonalDetails = ({ setPage }) => {
                             />
                         </div>
                         <div
-                            className={`bg-white shadow-lg absolute top-[40px] right-0 w-full rounded-br-lg rounded-bl-lg overflow-y-scroll ${townCurrentSuggestion.length > 0 ? "max-h-[346px]" : "h-0"
-                                }`}
+                            className={`bg-white shadow-lg absolute top-[40px] right-0 w-full rounded-br-lg rounded-bl-lg overflow-y-scroll ${
+                                townCurrentSuggestion.length > 0 ? "max-h-[346px]" : "h-0"
+                            }`}
                         >
                             {townCurrentSuggestion.length > 0 &&
                                 townCurrentSuggestion.map(suggetion => {
@@ -1405,7 +1447,7 @@ export const PersonalDetails = ({ setPage }) => {
                                         message: "Work Period is required",
                                     },
                                 })}
-                                placeholder={['Start Date', 'End Date']}
+                                placeholder={["Start Date", "End Date"]}
                                 className="flex-1 px-2 py-[10px] outline-none h-full bg-transparent text-sm text-gray-400"
                                 id="workPeriod"
                             />
