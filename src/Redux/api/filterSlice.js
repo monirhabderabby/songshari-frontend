@@ -18,7 +18,7 @@ export const filterSlice = createSlice({
       const { id, looking, lookingfor } = action.payload;
       const isMatchExist = state.matchfilter.filter((matchfilter) => matchfilter.id === id);
       if (isMatchExist) {
-        isisMatchExist[0].looking = looking;
+        isMatchExist[0].looking = looking;
         isMatchExist[0].lookingfor = lookingfor;
       }
     },
