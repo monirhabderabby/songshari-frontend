@@ -306,10 +306,11 @@ const PartnerFilterBox = () => {
           </div>
         </div> */}
 
-        <AccordionPartner></AccordionPartner>
+        <AccordionPartner ></AccordionPartner>
         {/* submit button  */}
-        <div className="flex justify-center items-center ] mt-[30px] ">
+        {/* <div className="flex justify-center items-center ] mt-[30px] ">
           <button
+          onClick={handleSubmit}
             style={{
               background: "linear-gradient(180deg, #E41272 0%, #942DD9 100%)",
             }}
@@ -317,7 +318,7 @@ const PartnerFilterBox = () => {
           >
             Submit
           </button>
-        </div>
+        </div> */}
       </div>
     </>
   );
