@@ -55,23 +55,20 @@ const MobileNav = ({ bg }) => {
   return (
     <>
       <header
-        className={`${
-          bg ? "bg-transparent" : "bg-white"
-        }  z-50 block lg:hidden relative shadow-md body-font ${
-          NavBarCSS.navbar
-        }`}
+        className={`${bg ? "bg-transparent" : "bg-white"
+          }  z-50 block lg:hidden relative shadow-md body-font ${NavBarCSS.navbar
+          }`}
       >
         <div className=" w-full mx-auto flex flex-wrap justify-around items-center">
           <Link
             to="/"
             className="flex cursor-pointer title-font font-medium items-center text-gray-900 md:mb-0"
           >
-            <img src={blackLogo} alt="" />
+            <img src={blackLogo} alt="Not Available" />
           </Link>
           <nav
-            className={`py-[20px] block left-0 px-[100px] top-[100px] absolute shadow-lg bg-white ${
-              open ? "block" : "hidden"
-            }`}
+            className={`py-[20px] block left-0 px-[100px] top-[100px] absolute shadow-lg bg-white ${open ? "block" : "hidden"
+              }`}
             style={{ transition: "all 0.5s" }}
           >
             {allMenu.map((menu) => (
@@ -89,7 +86,7 @@ const MobileNav = ({ bg }) => {
                     <img
                       className="hover:rotate-[360deg] duration-[2000ms] w-[50px] h-[75px]"
                       src={menu.icon}
-                      alt=""
+                      alt="Not Available"
                     />
                     <span
                       className={`${NavBarCSS.tooltip} z-50 h-[15px] w-[15px] mt-[70px] ml-[14px]`}
@@ -122,10 +119,10 @@ const MobileNav = ({ bg }) => {
                       <img
                         className="w-[60px] h-[60px] rounded-[100%]"
                         src={user.photoURL}
-                        alt="img"
+                        alt="Not Available"
                       />
                     ) : (
-                      <img className="w-14" src={register} alt="img" />
+                      <img className="w-14" src={register} alt="Not Available" />
                     )}
                     <span
                       className={`${NavBarCSS.tooltip} z-50 h-[15px] w-[15px] mt-14 ml-[14px]`}
@@ -187,7 +184,7 @@ const MobileNav = ({ bg }) => {
                 <li className="relative ">
                   <Link to="/cart" className={`${NavBarCSS.hasTooltip}`}>
                     <div className="flex flex-col items-center ">
-                      <img src={cart} className="w-[40px]" alt="" />
+                      <img src={cart} className="w-[40px]" alt="Not Available" />
                       <span className="absolute top-[-7px] right-[-1px] text-white px-[6px] py-[2px] text-xs font-bold bg-[#dc3545] rounded">
                         0
                       </span>
@@ -221,7 +218,7 @@ const MobileNav = ({ bg }) => {
                       <img
                         className="w-[60px]"
                         src={language ? eng : bng}
-                        alt=""
+                        alt="Not Available"
                       />
                     </div>
                     <div
@@ -259,7 +256,7 @@ const MobileNav = ({ bg }) => {
                 onClick={menubarOpen}
                 className="flex justify-center cursor-pointer items-center pb-[20px] text-[40px] pl-[30px]"
               >
-                <i class="fa-solid fa-bars"></i>
+                <i className="fa-solid fa-bars"></i>
               </button>
             </div>
           </div>

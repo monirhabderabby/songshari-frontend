@@ -4,7 +4,6 @@ import { useForm } from "react-hook-form";
 const ProfileEditModal = ({ visiblity, onClose }) => {
     const { register, handleSubmit } = useForm();
     const onSubmit = data => {
-        console.log(data);
         onClose();
     };
 
@@ -22,7 +21,7 @@ const ProfileEditModal = ({ visiblity, onClose }) => {
         <div>
             <div className="fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm flex items-center justify-center">
                 <div className="bg-white rounded w-2/5">
-                    <div style={inlineStyle()}  className="px-3 py-2 rounded-sm flex justify-between">
+                    <div style={inlineStyle()} className="px-3 py-2 rounded-sm flex justify-between">
                         <h1 className="text-3xl text-yellow-100 font-extrabold">Edit profile</h1>
                         <button onClick={onClose} className="bg-gray-800 text-red-600 font-extrabold px-4 rounded-md">
                             X

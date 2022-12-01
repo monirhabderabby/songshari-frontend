@@ -14,7 +14,7 @@ export const DynamicMatches = () => {
                     <p className="bg-white w-28 text-center ml-3">80% Match</p>
                     <img
                         src="https://www.creative-tim.com/learning-lab/tailwind-starter-kit/img/team-2-800x800.jpg"
-                        className="w-20 mx-auto rounded-full mt-2"
+                        className="w-20 mx-auto rounded-full mt-2" alt="Not Available"
                     ></img>
                     <div className="card-body items-center text-center">
                         <h2 className="card-title text-white">Anamika</h2>
@@ -22,10 +22,10 @@ export const DynamicMatches = () => {
                         <p className="text-white">Dhaka , Bangladesh </p>
                         <div className="card-actions justify-end pt-5 gap-10">
                             <button className="btn bg-white rounded-full ">
-                                <img src={img} alt="" />
+                                <img src={img} alt="Not Available" />
                             </button>
                             <button className="btn bg-white rounded-full">
-                                <img src={img1} alt="" />
+                                <img src={img1} alt="Not Available" />
                             </button>
                         </div>
                     </div>
@@ -43,7 +43,7 @@ export const DynamicMatches = () => {
                     </div>
                     <img
                         src="https://www.creative-tim.com/learning-lab/tailwind-starter-kit/img/team-2-800x800.jpg"
-                        className="w-20 mx-auto rounded-full mt-4"
+                        className="w-20 mx-auto rounded-full mt-4" alt="Not Available"
                     ></img>
 
                     <div className="card-body items-center text-center">
@@ -52,10 +52,10 @@ export const DynamicMatches = () => {
                         <p className="text-white">Dhaka , Bangladesh </p>
                         <div className="card-actions justify-end pt-5 gap-10">
                             <button className="btn bg-white rounded-full ">
-                                <img src={img} alt="" className="lg:max-w-lg" />
+                                <img src={img} alt="Not Available" className="lg:max-w-lg" />
                             </button>
                             <button className="btn bg-white rounded-full">
-                                <img src={img1} alt="" />
+                                <img src={img1} alt="Not Available" />
                             </button>
                         </div>
                     </div>
@@ -66,7 +66,7 @@ export const DynamicMatches = () => {
                     <p className="bg-white w-28 text-center ml-3 mt-3">80% Match</p>
                     <img
                         src="https://www.creative-tim.com/learning-lab/tailwind-starter-kit/img/team-2-800x800.jpg"
-                        className="w-20 mx-auto rounded-full mt-4"
+                        className="w-20 mx-auto rounded-full mt-4" alt="Not Available"
                     ></img>
 
                     <div className="card-body items-center text-center">
@@ -75,10 +75,10 @@ export const DynamicMatches = () => {
                         <p className="text-white">Dhaka , Bangladesh </p>
                         <div className="card-actions justify-end pt-5 gap-10">
                             <button className="btn bg-white rounded-full ">
-                                <img src={img} alt="" />
+                                <img src={img} alt="Not Available" />
                             </button>
                             <button className="btn bg-white rounded-full">
-                                <img src={img1} alt="" />
+                                <img src={img1} alt="Not Available" />
                             </button>
                         </div>
                     </div>
@@ -89,7 +89,7 @@ export const DynamicMatches = () => {
                     <p className="bg-white w-28 text-center ml-3 mt-3">80% Match</p>
                     <img
                         src="https://www.creative-tim.com/learning-lab/tailwind-starter-kit/img/team-2-800x800.jpg"
-                        className="w-20 mx-auto rounded-full mt-4"
+                        className="w-20 mx-auto rounded-full mt-4" alt="Not Available"
                     ></img>
 
                     <div className="card-body items-center text-center">
@@ -98,10 +98,10 @@ export const DynamicMatches = () => {
                         <p className="text-white">Dhaka , Bangladesh </p>
                         <div className="card-actions justify-end pt-5 gap-10">
                             <button className="btn bg-white rounded-full ">
-                                <img src={img} alt="" />
+                                <img src={img} alt="Not Available" />
                             </button>
                             <button className="btn bg-white rounded-full">
-                                <img src={img1} alt="" />
+                                <img src={img1} alt="Not Available" />
                             </button>
                         </div>
                     </div>
@@ -112,7 +112,7 @@ export const DynamicMatches = () => {
                     <p className="bg-white w-28 text-center ml-3 mt-3">80% Match</p>
                     <img
                         src="https://www.creative-tim.com/learning-lab/tailwind-starter-kit/img/team-2-800x800.jpg"
-                        className="w-20 mx-auto rounded-full mt-4"
+                        className="w-20 mx-auto rounded-full mt-4" alt="Not Available"
                     ></img>
 
                     <div className="card-body items-center text-center">
@@ -121,10 +121,10 @@ export const DynamicMatches = () => {
                         <p className="text-white">Dhaka , Bangladesh </p>
                         <div className="card-actions justify-end pt-5 gap-10">
                             <button className="btn bg-white rounded-full ">
-                                <img src={img} alt="" />
+                                <img src={img} alt="Not Available" />
                             </button>
                             <button className="btn bg-white rounded-full">
-                                <img src={img1} alt="" />
+                                <img src={img1} alt="Not Available" />
                             </button>
                         </div>
                     </div>
@@ -135,7 +135,7 @@ export const DynamicMatches = () => {
                     <p className="bg-white w-28 text-center ml-3 mt-3">80% Match</p>
                     <img
                         src="https://www.creative-tim.com/learning-lab/tailwind-starter-kit/img/team-2-800x800.jpg"
-                        className="w-20 mx-auto rounded-full mt-4"
+                        className="w-20 mx-auto rounded-full mt-4" alt="Not Available"
                     ></img>
 
                     <div className="card-body items-center text-center">
@@ -144,10 +144,10 @@ export const DynamicMatches = () => {
                         <p className="text-white">Dhaka , Bangladesh </p>
                         <div className="card-actions justify-end pt-5 gap-10">
                             <button className="btn bg-white rounded-full ">
-                                <img src={img} alt="" />
+                                <img src={img} alt="Not Available" />
                             </button>
                             <button className="btn  rounded-full">
-                                <img src={img1} alt="" />
+                                <img src={img1} alt="Not Available" />
                             </button>
                         </div>
                     </div>
@@ -158,7 +158,7 @@ export const DynamicMatches = () => {
                     <p className="bg-white w-28 text-center ml-3 mt-3">80% Match</p>
                     <img
                         src="https://www.creative-tim.com/learning-lab/tailwind-starter-kit/img/team-2-800x800.jpg"
-                        className="w-20 mx-auto rounded-full mt-4"
+                        className="w-20 mx-auto rounded-full mt-4" alt="Not Available"
                     ></img>
 
                     <div className="card-body items-center text-center">
@@ -167,10 +167,10 @@ export const DynamicMatches = () => {
                         <p className="text-white">Dhaka , Bangladesh </p>
                         <div className="card-actions justify-end pt-5 gap-10">
                             <button className="btn bg-white rounded-full ">
-                                <img src={img} alt="" />
+                                <img src={img} alt="Not Available" />
                             </button>
                             <button className="btn bg-white rounded-full">
-                                <img src={img1} alt="" />
+                                <img src={img1} alt="Not Available" />
                             </button>
                         </div>
                     </div>
@@ -181,7 +181,7 @@ export const DynamicMatches = () => {
                     <p className="bg-white w-28 text-center ml-3 mt-3">80% Match</p>
                     <img
                         src="https://www.creative-tim.com/learning-lab/tailwind-starter-kit/img/team-2-800x800.jpg"
-                        className="w-20 mx-auto rounded-full mt-4"
+                        className="w-20 mx-auto rounded-full mt-4" alt="Not Available"
                     ></img>
 
                     <div className="card-body items-center text-center">
@@ -190,10 +190,10 @@ export const DynamicMatches = () => {
                         <p className="text-white">Dhaka , Bangladesh </p>
                         <div className="card-actions justify-end pt-5 gap-10">
                             <button className="btn bg-white rounded-full ">
-                                <img src={img} alt="" />
+                                <img src={img} alt="Not Available" />
                             </button>
                             <button className="btn bg-white rounded-full">
-                                <img src={img1} alt="" />
+                                <img src={img1} alt="Not Available" />
                             </button>
                         </div>
                     </div>

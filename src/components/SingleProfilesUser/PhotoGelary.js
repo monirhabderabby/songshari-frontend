@@ -39,9 +39,9 @@ const PhotoGelary = () => {
                 <div className="grid grid-cols-3 gap-2 mt-10">
                     {photos?.map((p, i) => {
                         return (
-                            <div key={i+p} className="borderd m-1 main-box">
+                            <div key={i + p} className="borderd m-1 main-box">
                                 <div className="box ">
-                                    <img className="rounded-md" src={p.img} alt="" />
+                                    <img className="rounded-md" src={p.img} alt="Not Available" />
                                 </div>
                                 <div className="intro text-center w-full flex justify-center items-center">
                                     <button className="py-1 px-2 btn btn-sm text-5xl rounded-lg font-extrabold">+</button>

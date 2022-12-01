@@ -96,7 +96,7 @@ const Index = () => {
                         <Route path="/find-partner" element={<Suggested />} />
                         <Route path="top" element={<TopBride />} />
                         <Route path="nearest" element={<TopGroom />} />
-                    </Route>  
+                    </Route>
                     <Route path="/" element={<Homepage></Homepage>}>
                         <Route path="/" element={<Suggested />} />
                         <Route path="/top-gride" element={<TopBride />} />
@@ -106,8 +106,6 @@ const Index = () => {
                     </Route>
                     <Route path="/singleViewRequest" element={<SingleRequestView />} />
                     <Route path="/admin-analytics" element={<AdminAnalytics />}></Route>
-                    {/* <Route path="/profile" element={<OthersProfile />} /> */}
-                    {/* <Route path="/ste" element={<OthersProfile></OthersProfile>}></Route> */}
                     <Route path="/stepper" element={<Container></Container>}></Route>
                     <Route path="/upgrade" element={<UpgradePlan></UpgradePlan>}></Route>
 

@@ -15,7 +15,7 @@ const MobileSingleProfilesUser = () => {
                 <div className="bg-white w-full flex justify-between items-center h-[48px]">
                     <div className="ml-7">
                         <Link to='/setting'>
-                            <i class="fa-solid text-sm text-[#1E2022] fa-chevron-left "></i>
+                            <i className="fa-solid text-sm text-[#1E2022] fa-chevron-left "></i>
                         </Link>
                     </div>
                     <div className="mr-8">
