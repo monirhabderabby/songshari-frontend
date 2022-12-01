@@ -11,6 +11,7 @@
 }
 .mov-top{
     background-color: black;
+
    
 }
 .bg-home-suggested{
@@ -77,4 +78,9 @@
 .heu{
     display: flex;
     
+}
+.accordion-top-banner{
+    margin-left: -30px;
+    margin-right: 50px;
+   
 }

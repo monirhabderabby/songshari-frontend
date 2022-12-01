@@ -1,13 +1,42 @@
 import { AutoComplete, Select, Slider } from "antd";
-import React, { Fragment } from "react";
+
+import React, { Fragment, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { auth } from "../../../../firebase.init";
-
-const handleChange = () => {};
+import { setFilter } from "../../../../Redux/features/filter/filterSlice";
 
 const BannerFilterBox = () => {
+    const dispatch = useDispatch();
+    const [id, setId] = useState(location.state.id);
+    const [looking, setLooking] = useState(location.state.looking);
+    const [lookingfor, setLookingFor] = useState(location.state.lookingfor);
+    const [age, setAge] = useState(location.state.age);
+    const [religion, setReligion] = useState(location.state.religion);
+    const [profession, setProfession] = useState(location.state.profession);
+    const [hometow, setHomeTown] = useState(location.state.hometow);
+    const [currentloc, setCurrentLoc] = useState(location.state.currentloc);
+    const [educationn, setEducation] = useState(location.state.educationn);
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        dispatch(updateMatch({ id, looking, age }));
+        
+    const handleSubmit = e => {
+        e.preventDefault();
+    };
+
     const [user, loading] = useAuthState(auth);
+    // const [lookingFor, setLookingFor] = useState("");
+    const [searchFor, setSearchFor] = useState("");
+    // const [profession, setProfession] = useState("");
+    // const [religion, setReligion] = useState("");
+    // const [homeTown, setHomeTown] = useState("");
+    const [currentLocation, setCurrentLocation] = useState("");
+    // const [education, setEducation] = useState("");
+    // const [age, setAge] = useState("");
+
     const options = [
         {
             value: "Teacher",
@@ -248,7 +277,7 @@ const BannerFilterBox = () => {
             value: "Sylhet",
         },
     ];
-    const education = [
+    const educations = [
         {
             value: "SSC",
         },
@@ -284,6 +313,33 @@ const BannerFilterBox = () => {
     if (loading) {
         return;
     }
+    
+    const handleChange = e => { };
+    
+    const lookingForHandler = val => {
+        dispatch(setFilter({ lookingFor: val }));
+    };
+    const forHandler = val => {
+        dispatch(setFilter({ for: val }));
+    };
+    const ageHandler = val => {
+        dispatch(setFilter({ age: val }));
+    };
+    const professionHandler = val => {
+        dispatch(setFilter({ profession: val }));
+    };
+    const religionHandler = val => {
+        dispatch(setFilter({ religion: val }));
+    };
+    const homeTownHandler = val => {
+        dispatch(setFilter({ homeTown: val }));
+    };
+    const currentLocationHandler = val => {
+        dispatch(setFilter({ currentLocation: val }));
+    };
+    const educationHandler = val => {
+        dispatch(setFilter({ education: val }));
+    };
 
     return (
         <Fragment>
@@ -300,7 +356,7 @@ const BannerFilterBox = () => {
                                     boxShadow: "2px 2px 8px 2px rgba(0, 0, 0, 0.1)",
                                     borderRadius: "5px",
                                 }}
-                                onChange={handleChange}
+                                onSelect={val => lookingForHandler(val)}
                                 options={[
                                     {
                                         value: "Bride",
@@ -316,8 +372,15 @@ const BannerFilterBox = () => {
                         <div className="mt-[15px]">
                             <h2 className=" text-[#000000] font-medium">Age</h2>
                             <div className="mt-[5px]">
-                                <span className="text-[14px] block text-center font-medium text-[#72777A]">20 - 22</span>
-                                <Slider className="text-[#E41272]" range={{ draggableTrack: true }} defaultValue={[20, 50]} />
+                                <span className="text-[14px] block text-center font-medium text-[#72777A]">
+                                    {age[0]} - {age[1]}
+                                </span>
+                                <Slider
+                                    className="text-[#E41272]"
+                                    range={{ draggableTrack: true }}
+                                    onChange={val => ageHandler(val)}
+                                    defaultValue={[20, 50]}
+                                />
                             </div>
                         </div>
                         <div className="mt-[15px]">
@@ -330,7 +393,7 @@ const BannerFilterBox = () => {
                                     boxShadow: "2px 2px 8px 2px rgba(0, 0, 0, 0.1)",
                                     borderRadius: "5px",
                                 }}
-                                onChange={handleChange}
+                                onSelect={val => religionHandler(val)}
                                 options={[
                                     {
                                         value: "Islam",
@@ -364,7 +427,7 @@ const BannerFilterBox = () => {
                                 }}
                                 options={division}
                                 placeholder="Location"
-                                onSelect={val => console.log(val)}
+                                onSelect={val => currentLocationHandler(val)}
                                 filterOption={(inputValue, option) => option.value.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1}
                             />
                         </div>
@@ -380,7 +443,7 @@ const BannerFilterBox = () => {
                                     boxShadow: "2px 2px 8px 2px rgba(0, 0, 0, 0.1)",
                                     borderRadius: "5px",
                                 }}
-                                onChange={handleChange}
+                                onSelect={val => forHandler(val)}
                                 options={[
                                     {
                                         value: "My Self",
@@ -417,7 +480,7 @@ const BannerFilterBox = () => {
                                 }}
                                 options={options}
                                 placeholder="Profession"
-                                onSelect={val => console.log(val)}
+                                onSelect={val => professionHandler(val)}
                                 filterOption={(inputValue, option) => option.value.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1}
                             />
                         </div>
@@ -428,8 +491,9 @@ const BannerFilterBox = () => {
                                     width: 101,
                                 }}
                                 options={hometown}
+                                onChange={e => setHomeTown(e.target.value)}
                                 placeholder="Home Town"
-                                onSelect={val => console.log(val)}
+                                onSelect={val => homeTownHandler(val)}
                                 filterOption={(inputValue, option) => option.value.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1}
                             />
                         </div>
@@ -439,16 +503,16 @@ const BannerFilterBox = () => {
                                 style={{
                                     width: 101,
                                 }}
-                                options={education}
+                                options={educations}
                                 placeholder="Education"
-                                onSelect={val => console.log(val)}
+                                onSelect={val => educationHandler(val)}
                                 filterOption={(inputValue, option) => option.value.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1}
                             />
                         </div>
                     </div>
                 </div>
                 <button
-                    onClick={() => navigate(user ? "/find-partner" : "signup")}
+                    onClick={() => navigate(user ? "/find-partner/filter" : "signup")}
                     className="rounded-[48px] w-[121px] h-[31px] block mt-[15px] mx-auto text-[#fff] text-sm font-medium"
                     style={{
                         background: "linear-gradient(180deg, #D21878 0%, #4F42A3 100%)",
