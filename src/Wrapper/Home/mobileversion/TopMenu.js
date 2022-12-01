@@ -15,21 +15,8 @@ export const TopMenu = () => {
           <img src='https://i.ibb.co/pZFRdCB/512-512-Icon-1.png' alt="Not Available"></img>
         </div>
         <div onClick={handleClick} className='col-span-3'>
-<<<<<<< HEAD
           <p className='font-bold text-sm mt-3 shongshari-mov'>shongshari.com <span><i class="fa-solid fa-angle-down"></i></span></p>
          
-=======
-          <p className='font-bold text-sm mt-3 shongshari-mov'>shongshari.com <span><i className="fa-solid fa-angle-down"></i></span></p>
-          {
-            state && <div className='mt-2'>
-              <Link to='/login'><span className='bg-red-500 pt-2 pl-4 pr-4 pb-2 mr-4'>Login</span></Link>
-
-              <span className='  pr-4'>or</span>
-              <Link to={'/signup'} className='bg-red-500 pt-2 pl-4 pr-4 pb-2 mr-4'>SignUp</Link>
-
-            </div>
-          }
->>>>>>> cb70b14426d815155095d0ac6f616192ab2fb8bb
         </div>
 
         <div className='mr-4'>
