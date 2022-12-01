@@ -8,7 +8,7 @@ const FindSoleMate = () => {
     return (
         <div className='bg-[#5736cb] relative h-60 lg:h-72 overflow-hidden mt-10 md:mt-5'>
             <img className='absolute top-0' style={{ animation: `${ScaleAnimationCSS.scaleAni} 5s linear infinite` }} src={bgHeartShape} alt="Not Available" />
-            <div className='h-60 lg:h-72 overflow-hidden w-5/6 md:w-11/12 lg:w-5/6 mx-auto flex flex-col md:flex-row items-center'>
+            <div className='h-60 lg:h-72 overflow-hidden w-5/6 md:w-11/12 lg:w-5/6 mx-auto flex flex-col md:flex-row items-center max-w-[1200px]'>
                 <div className='md:flex-1 my-auto z-10 bg-black md:bg-none rounded-md md:rounded-none bg-opacity-30 md:bg-opacity-0 py-2 md:py-0 px-2 md:px-0'>
                     <div>
                         <h2 className='mb-2 lg:mb-4 text-3xl lg:text-4xl font-medium tracking-wide leading-8 md:leading-6 text-white'>Best Ways to Find Your True Sole Mate</h2>

@@ -29,7 +29,7 @@
   height: 100%;
   position: absolute;
   top: 0;
-  width: 50%;
+  width: 45%;
   z-index: 1;
 }
 
@@ -55,8 +55,8 @@
 }
 
 .sectionHeader {
-  margin-bottom: 36px;
   text-align: left;
+  margin-top: 20px;
 }
 
 .customButton {
