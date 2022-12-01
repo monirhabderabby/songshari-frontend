@@ -1,10 +1,39 @@
 import { AutoComplete, Select, Slider } from "antd";
-import React, { Fragment, useState } from "react";
-import { useAuthState } from "react-firebase-hooks/auth";
-import { useNavigate } from "react-router-dom";
-import { auth } from "../../../../firebase.init";
 
+import React, { Fragment } from "react";
+import { useState } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { useDispatch } from "react-redux";
+import { useLocation, useNavigate } from "react-router-dom";
+import { auth } from "../../../../firebase.init";
+import { updateMatch } from "../../../../Redux/api/filterSlice";
+
+
+const handleChange = () => {
+
+};
 const BannerFilterBox = () => {
+    const location = useLocation();
+    const dispatch = useDispatch();
+   
+  
+    const [id, setId] = useState(location.state.id);
+    const [looking, setLooking] = useState(location.state.looking);
+    const [lookingfor, setLookingFor] = useState(location.state.lookingfor);
+    const [age, setAge] = useState(location.state.age);
+    const [religion, setReligion] = useState(location.state.religion);
+    const [profession, setProfession] = useState(location.state.profession);
+    const [hometow, setHomeTown] = useState(location.state.hometow);
+    const [currentloc, setCurrentLoc] = useState(location.state.currentloc);
+    const [educationn, setEducation] = useState(location.state.educationn);
+
+    const handleSubmit = (e) => {
+        
+        e.preventDefault();
+        dispatch(updateMatch({ id, looking, age }));
+       
+      };
+
     const [user, loading] = useAuthState(auth);
     const [lookingFor, setLookingFor] = useState("");
     const [searchFor, setSearchFor] = useState("");
@@ -444,6 +473,7 @@ const BannerFilterBox = () => {
                                     width: 101,
                                 }}
                                 options={hometown}
+                                onChange={(e) => setHomeTown(e.target.value)}
                                 placeholder="Home Town"
                                 onSelect={val => setHomeTown(val)}
                                 filterOption={(inputValue, option) => option.value.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1}

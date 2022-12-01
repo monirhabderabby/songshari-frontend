@@ -312,7 +312,7 @@ const Accordian = ({ data, isLoading }) => {
                                 <span className="font-medium">number Of Sister</span>
                                 <p className="font-normal">{data ? data.numberOfSister : "Not Provided"}</p>
                             </div>
-                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                            {/* <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                                 <span className="font-medium">Linkedin Id</span>
                                 <p className="font-normal">{data ? data.LinkedInId : "Not Provided"}</p>
                             </div>
@@ -323,7 +323,7 @@ const Accordian = ({ data, isLoading }) => {
                             <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                                 <span className="font-medium">Instagram Id</span>
                                 <p className="font-normal">{data ? data.instagramId : "Not Provided"}</p>
-                            </div>
+                            </div> */}
                             <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                                 <span className="font-medium">Hobbies</span>
                                 <p className="font-normal">{data ? data.hobbies : "Not Provided"}</p>

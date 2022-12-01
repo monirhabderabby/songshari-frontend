@@ -40,312 +40,328 @@ const MobileAccordion = () => {
     const { data, isLoading } = useGetProfileDetailsWIthAuthQuery();
     const [expanded, setExpanded] = React.useState("panel1");
 
-    const handleChange = panel => (event, newExpanded) => {
-        setExpanded(newExpanded ? panel : true);
-    };
-    return (
-        <>
-            <div className="mb-[69px] max-w-[337px] mx-auto">
-                <Accordion expanded={expanded === "panel1"} onChange={handleChange("panel1")}>
-                    <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
-                        <Typography>
-                            <h1 className=" text-[#000000] text-base font-fira font-normal">Personal Information</h1>
-                        </Typography>
-                    </AccordionSummary>
-                    <AccordionDetails>
-                        <Typography>
-                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                                <span className="font-medium">Name</span>
-                                <p className="font-normal">{data?.firstName}</p>
-                            </div>
-                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                                <span className="font-medium">Phone</span>
-                                <p className="font-normal">{data?.phone}</p>
-                            </div>
-                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                                <span className="font-medium">Email</span>
-                                <p className="font-normal">{data?.email}</p>
-                            </div>
-                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                                <span className="font-medium">Nid Or Passport Number</span>
-                                <p className="font-normal">{data?.NidOrPassportNumber}</p>
-                            </div>
-                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                                <span className="font-medium">CitizenShip</span>
-                                <p className="font-normal">{data?.citizenShip}</p>
-                            </div>
-                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                                <span className="font-medium">ZodiacSign</span>
-                                <p className="font-normal">{data?.zodiacSign}</p>
-                            </div>
-                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                                <span className="font-medium">Bar Registration Number</span>
-                                <p className="font-normal">{data?.barRegistrationNumber}</p>
-                            </div>
-                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                                <span className="font-medium">Licence No</span>
-                                <p className="font-normal">{data?.licenceNo}</p>
-                            </div>
-                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                                <span className="font-medium">Licence Photo</span>
-                                <p className="font-normal">Not Provided</p>
-                            </div>
-                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                                <span className="font-medium">Year Of Bar Registration</span>
-                                <p className="font-normal">{data?.yearOfBarRegistration}</p>
-                            </div>
-                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                                <span className="font-medium">Date Of Birth</span>
-                                <p className="font-normal">{data?.dateOfBirth}</p>
-                            </div>
-                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                                <span className="font-medium">About You</span>
-                                <p className="font-normal"></p>
-                            </div>
 
-                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                                <span className="font-medium"> Degree Name</span>
-                                <p className="font-normal">{data?.hightestEducationalQualification?.degreeName}</p>
-                            </div>
-                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                                <span className="font-medium">Institute</span>
-                                <p className="font-normal">{data?.hightestEducationalQualification?.institute}</p>
-                            </div>
-                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                                <span className="font-medium">Department</span>
-                                <p className="font-normal"></p>
-                            </div>
-                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                                <span className="font-medium">Field Of Study</span>
-                                <p className="font-normal"></p>
-                            </div>
-                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                                <span className="font-medium">Year Of Passing</span>
-                                <p className="font-normal"></p>
-                            </div>
-                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                                <span className="font-medium">Special Achievement</span>
-                                <p className="font-normal"></p>
-                            </div>
-                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                                <span className="font-medium">What are you looking for</span>
-                                <p className="font-normal"></p>
-                            </div>
+  const handleChange = (panel) => (event, newExpanded) => {
+    setExpanded(newExpanded ? panel : true);
+  };
+  return (
+    <>
+      <div className="mb-[69px] max-w-[337px] mx-auto">
+        <Accordion
+          expanded={expanded === "panel1"}
+          onChange={handleChange("panel1")}
+        >
+          <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
+            <Typography>
+              <h1 className=" text-[#000000] text-base font-fira font-normal">
+                Personal Information
+              </h1>
+            </Typography>
+          </AccordionSummary>
+          <AccordionDetails>
+            <Typography>
+              <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                <span className="font-medium">Name</span>
+                <p className="font-normal">{data?.firstName}</p>
+              </div>
+              <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                <span className="font-medium">Phone</span>
+                <p className="font-normal">{data?.phone}</p>
+              </div>
+              <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                <span className="font-medium">Email</span>
+                <p className="font-normal">{data?.email}</p>
+              </div>
+              <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                <span className="font-medium">Nid Or Passport Number</span>
+                <p className="font-normal">{data?.NidOrPassportNumber}</p>
+              </div>
+              <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                <span className="font-medium">CitizenShip</span>
+                <p className="font-normal">{data?.citizenShip}</p>
+              </div>
+              <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                <span className="font-medium">ZodiacSign</span>
+                <p className="font-normal">{data?.zodiacSign}</p>
+              </div>
+              <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                <span className="font-medium">Bar Registration Number</span>
+                <p className="font-normal">{data?.barRegistrationNumber}</p>
+              </div>
+              <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                <span className="font-medium">Licence No</span>
+                <p className="font-normal">{data?.licenceNo}</p>
+              </div>
+              <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                <span className="font-medium">Licence Photo</span>
+                <p className="font-normal">Not Provided</p>
+              </div>
+              <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                <span className="font-medium">Year Of Bar Registration</span>
+                <p className="font-normal"></p>
+              </div>
+              <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                <span className="font-medium">Date Of Birth</span>
+                <p className="font-normal">{data?.dateOfBirth}</p>
+              </div>
+              <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                <span className="font-medium">About You</span>
+                <p className="font-normal"></p>
+              </div>
 
-                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                                <span className="font-medium">Height</span>
-                                <p className="font-normal"></p>
-                            </div>
-                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                                <span className="font-medium">Weight</span>
-                                <p className="font-normal"></p>
-                            </div>
-                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                                <span className="font-medium">Ancestry</span>
-                                <p className="font-normal"></p>
-                            </div>
-                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                                <span className="font-medium">Skin Tone</span>
-                                <p className="font-normal"></p>
-                            </div>
-                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                                <span className="font-medium">Hair Color</span>
-                                <p className="font-normal"></p>
-                            </div>
-                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                                <span className="font-medium"> Hair Type</span>
-                                <p className="font-normal"></p>
-                            </div>
-                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                                <span className="font-medium">Eye Color</span>
-                                <p className="font-normal"></p>
-                            </div>
-                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                                <span className="font-medium">Number Of Teeth</span>
-                                <p className="font-normal"></p>
-                            </div>
-                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                                <span className="font-medium">Monthly Income</span>
-                                <p className="font-normal"></p>
-                            </div>
-                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                                <span className="font-medium">Hometown</span>
-                                <p className="font-normal"></p>
-                            </div>
-                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                                <span className="font-medium">Permanent Adress</span>
-                                <p className="font-normal"></p>
-                            </div>
-                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                                <span className="font-medium">Current Adress</span>
-                                <p className="font-normal"></p>
-                            </div>
-                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                                <span className="font-medium">Merital status</span>
-                                <p className="font-normal">Not Provided</p>
-                            </div>
-                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                                <span className="font-medium">Designation</span>
-                                <p className="font-normal"></p>
-                            </div>
-                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                                <span className="font-medium">Number Of Partner</span>
-                                <p className="font-normal"></p>
-                            </div>
-                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                                <span className="font-medium">Reason Of Marriage</span>
-                                <p className="font-normal"></p>
-                            </div>
-                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                                <span className="font-medium">Is Partner Awar Of Marriage</span>
-                                <p className="font-normal"></p>
-                            </div>
-                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                                <span className="font-medium">Marriage Date</span>
-                                <p className="font-normal"></p>
-                            </div>
-                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                                <span className="font-medium">Divorce Date</span>
-                                <p className="font-normal"></p>
-                            </div>
-                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                                <span className="font-medium">Reason Of Divorce</span>
-                                <p className="font-normal"></p>
-                            </div>
-                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                                <span className="font-medium">Number Of Boy</span>
-                                <p className="font-normal"></p>
-                            </div>
-                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                                <span className="font-medium">Ages Of Boy</span>
-                                <p className="font-normal"></p>
-                            </div>
-                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                                <span className="font-medium">Number Of Girl</span>
-                                <p className="font-normal"></p>
-                            </div>
-                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                                <span className="font-medium"> Ages Of Girl</span>
-                                <p className="font-normal"></p>
-                            </div>
-                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                                <span className="font-medium">Partner Death Day</span>
-                                <p className="font-normal"></p>
-                            </div>
-                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                                <span className="font-medium">Position</span>
-                                <p className="font-normal"></p>
-                            </div>
-                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                                <span className="font-medium">Institute</span>
-                                <p className="font-normal"></p>
-                            </div>
-                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                                <span className="font-medium">Work Period</span>
-                                <p className="font-normal"></p>
-                            </div>
-                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                                <span className="font-medium">Special Achievement</span>
-                                <p className="font-normal"></p>
-                            </div>
-                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                                <span className="font-medium">Year Of Experience</span>
-                                <p className="font-normal"></p>
-                            </div>
-                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                                <span className="font-medium">Office Location</span>
-                                <p className="font-normal"></p>
-                            </div>
-                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                                <span className="font-medium">Service Category</span>
-                                <p className="font-normal"></p>
-                            </div>
-                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                                <span className="font-medium">Service Provide</span>
-                                <p className="font-normal"></p>
-                            </div>
-                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                                <span className="font-medium">Parents</span>
-                                <p className="font-normal"></p>
-                            </div>
-                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                                <span className="font-medium">Have Step Mother</span>
-                                <p className="font-normal"></p>
-                            </div>
-                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                                <span className="font-medium">Have Step Father</span>
-                                <p className="font-normal"></p>
-                            </div>
-                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                                <span className="font-medium">number Of Brother</span>
-                                <p className="font-normal"></p>
-                            </div>
-                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                                <span className="font-medium">number Of Sister</span>
-                                <p className="font-normal"></p>
-                            </div>
-                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                                <span className="font-medium">Linkedin Id</span>
-                                <p className="font-normal"></p>
-                            </div>
-                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                                <span className="font-medium">Facebook Id</span>
-                                <p className="font-normal"></p>
-                            </div>
-                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                                <span className="font-medium">Instagram Id</span>
-                                <p className="font-normal"></p>
-                            </div>
-                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                                <span className="font-medium">Hobbies</span>
-                                <p className="font-normal"></p>
-                            </div>
-                        </Typography>
-                    </AccordionDetails>
-                </Accordion>
-                <Accordion expanded={expanded === "panel2"} onChange={handleChange("panel2")}>
-                    <AccordionSummary aria-controls="panel2d-content" id="panel2d-header">
-                        <Typography>
-                            <h1 className=" text-[#000000] text-base font-fira font-normal">Profesional Information</h1>
-                        </Typography>
-                    </AccordionSummary>
-                    <AccordionDetails>
-                        <Typography>
-                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                                <span className="font-medium">Position</span>
-                                <p className="font-normal">Not Provided</p>
-                            </div>
-                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                                <span className="font-medium">Duty</span>
-                                <p className="font-normal">Not Provided</p>
-                            </div>
-                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                                <span className="font-medium">Institute</span>
-                                <p className="font-normal">Not Provided</p>
-                            </div>
-                        </Typography>
-                    </AccordionDetails>
-                </Accordion>
-                <Accordion expanded={expanded === "panel3"} onChange={handleChange("panel3")}>
-                    <AccordionSummary aria-controls="panel3d-content" id="panel3d-header">
-                        <Typography>
-                            <h1 className=" text-[#000000] text-base font-fira font-normal">Educational Information</h1>
-                        </Typography>
-                    </AccordionSummary>
-                    <AccordionDetails>
-                        <Typography>
-                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                                <span className="font-medium">Degree</span>
-                                <p className="font-normal">Not Provided</p>
-                            </div>
-                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                                <span className="font-medium">Institute</span>
-                                <p className="font-normal">Not Provided</p>
-                            </div>
-                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                                <span className="font-medium">Department</span>
-                                <p className="font-normal">Not Provided</p>
-                            </div>
+              <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                <span className="font-medium"> Degree Name</span>
+                <p className="font-normal">{data?.hightestEducationalQualification?.degreeName}</p>
+              </div>
+              <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                <span className="font-medium">Institute</span>
+                <p className="font-normal">{data?.hightestEducationalQualification?.institute}</p>
+              </div>
+              <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                <span className="font-medium">Department</span>
+                <p className="font-normal">{data?.hightestEducationalQualification?.Department}</p>
+              </div>
+              <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                <span className="font-medium">Field Of Study</span>
+                <p className="font-normal">{data?.hightestEducationalQualification?.institute}</p>
+              </div>
+              <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                <span className="font-medium">Year Of Passing</span>
+                <p className="font-normal">{data?.hightestEducationalQualification?.yearOfPassing}</p>
+              </div>
+              <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                <span className="font-medium">Special Achievement</span>
+                <p className="font-normal">{data.whatAreYouLookingFor}</p>
+              </div>
+              <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                <span className="font-medium">What are you looking for</span>
+                <p className="font-normal">{data.whatAreYouLookingFor}</p>
+              </div>
+
+              <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                <span className="font-medium">Height</span>
+                <p className="font-normal">{data.height}</p>
+              </div>
+              <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                <span className="font-medium">Weight</span>
+                <p className="font-normal">{data.weight}</p>
+              </div>
+              <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                <span className="font-medium">Ancestry</span>
+                <p className="font-normal">{data.ancestry}</p>
+              </div>
+              <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                <span className="font-medium">Skin Tone</span>
+                <p className="font-normal">{data.SkinTone}</p>
+              </div>
+              <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                <span className="font-medium">Hair Color</span>
+                <p className="font-normal">{data.hairColor}</p>
+              </div>
+              <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                <span className="font-medium"> Hair Type</span>
+                <p className="font-normal">{data.hairType}</p>
+              </div>
+              <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                <span className="font-medium">Eye Color</span>
+                <p className="font-normal">{data.eyeColor}</p>
+              </div>
+              <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                <span className="font-medium">Number Of Teeth</span>
+                <p className="font-normal">{data.numberOfTeeth}</p>
+              </div>
+              <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                <span className="font-medium">Monthly Income</span>
+                <p className="font-normal">{data.monthlyIncome}</p>
+              </div>
+              <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                <span className="font-medium">Hometown</span>
+                <p className="font-normal">{data.hometown}</p>
+              </div>
+              <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                <span className="font-medium">Permanent Adress</span>
+                <p className="font-normal">{data.permanentAdress}</p>
+              </div>
+              <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                <span className="font-medium">Current Adress</span>
+                <p className="font-normal">{data.currentAdress}</p>
+              </div>
+              <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                <span className="font-medium">Merital status</span>
+                <p className="font-normal">{data.meritalAdress}</p>
+              </div>
+              <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                <span className="font-medium">Designation</span>
+                <p className="font-normal">{data.designation}</p>
+              </div>
+              <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                <span className="font-medium">Number Of Partner</span>
+                <p className="font-normal">{data.numberOfPartner}</p>
+              </div>
+              <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                <span className="font-medium">Reason Of Marriage</span>
+                <p className="font-normal">{data.reasonOfMarriage}</p>
+              </div>
+              <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                <span className="font-medium">Is Partner Awar Of Marriage</span>
+                <p className="font-normal">{data.isPartnerAwarOfMarriage}</p>
+              </div>
+              <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                <span className="font-medium">Marriage Date</span>
+                <p className="font-normal">{data.marriageDate}</p>
+              </div>
+              <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                <span className="font-medium">Divorce Date</span>
+                <p className="font-normal">{data.divorceDate}</p>
+              </div>
+              <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                <span className="font-medium">Reason Of Divorce</span>
+                <p className="font-normal">{data.reasonOfDivorce}</p>
+              </div>
+              <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                <span className="font-medium">Number Of Boy</span>
+                <p className="font-normal">{data.numberOfBoy}</p>
+              </div>
+              <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                <span className="font-medium">Ages Of Boy</span>
+                <p className="font-normal">{data.agesOfBoy}</p>
+              </div>
+              <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                <span className="font-medium">Number Of Girl</span>
+                <p className="font-normal">{data.numberOfGirl}</p>
+              </div>
+              <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                <span className="font-medium"> Ages Of Girl</span>
+                <p className="font-normal">{data.agesOfGirl}</p>
+              </div>
+              <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                <span className="font-medium">Partner Death Day</span>
+                <p className="font-normal">{data.partnerDeathDay}</p>
+              </div>
+              <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                <span className="font-medium">Position</span>
+                <p className="font-normal">{data?.currentProfession?.position}</p>
+              </div>
+              <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                <span className="font-medium">Institute</span>
+                <p className="font-normal">{ data?.currentProfession?.institute}</p>
+              </div>
+              <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                <span className="font-medium">Work Period</span>
+                <p className="font-normal">{ data?.currentProfession?.workPeriod}</p>
+              </div>
+              <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                <span className="font-medium">Special Achievement</span>
+                <p className="font-normal">{data?.currentProfession?.specialAchievement}</p>
+              </div>
+              <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                <span className="font-medium">Year Of Experience</span>
+                <p className="font-normal"></p>
+              </div>
+              <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                <span className="font-medium">Office Location</span>
+                <p className="font-normal"></p>
+              </div>
+              <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                <span className="font-medium">Service Category</span>
+                <p className="font-normal"></p>
+              </div>
+              <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                <span className="font-medium">Service Provide</span>
+                <p className="font-normal"></p>
+              </div>
+              <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                <span className="font-medium">Parents</span>
+                <p className="font-normal"></p>
+              </div>
+              <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                <span className="font-medium">Have Step Mother</span>
+                <p className="font-normal"></p>
+              </div>
+              <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                <span className="font-medium">Have Step Father</span>
+                <p className="font-normal"></p>
+              </div>
+              <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                <span className="font-medium">number Of Brother</span>
+                <p className="font-normal"></p>
+              </div>
+              <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                <span className="font-medium">number Of Sister</span>
+                <p className="font-normal"></p>
+              </div>
+              <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                <span className="font-medium">Linkedin Id</span>
+                <p className="font-normal"></p>
+              </div>
+              <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                <span className="font-medium">Facebook Id</span>
+                <p className="font-normal"></p>
+              </div>
+              <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                <span className="font-medium">Instagram Id</span>
+                <p className="font-normal"></p>
+              </div>
+              <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                <span className="font-medium">Hobbies</span>
+                <p className="font-normal"></p>
+              </div>
+            </Typography>
+          </AccordionDetails>
+        </Accordion>
+        <Accordion
+          expanded={expanded === "panel2"}
+          onChange={handleChange("panel2")}
+        >
+          <AccordionSummary aria-controls="panel2d-content" id="panel2d-header">
+            <Typography>
+              <h1 className=" text-[#000000] text-base font-fira font-normal">
+                Profesional Information
+              </h1>
+            </Typography>
+          </AccordionSummary>
+          <AccordionDetails>
+            <Typography>
+              <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                <span className="font-medium">Position</span>
+                <p className="font-normal">Not Provided</p>
+              </div>
+              <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                <span className="font-medium">Duty</span>
+                <p className="font-normal">Not Provided</p>
+              </div>
+              <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                <span className="font-medium">Institute</span>
+                <p className="font-normal">Not Provided</p>
+              </div>
+            </Typography>
+          </AccordionDetails>
+        </Accordion>
+        <Accordion
+          expanded={expanded === "panel3"}
+          onChange={handleChange("panel3")}
+        >
+          <AccordionSummary aria-controls="panel3d-content" id="panel3d-header">
+            <Typography>
+              <h1 className=" text-[#000000] text-base font-fira font-normal">
+                Educational Information
+              </h1>
+            </Typography>
+          </AccordionSummary>
+          <AccordionDetails>
+            <Typography>
+              <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                <span className="font-medium">Degree</span>
+                <p className="font-normal">Not Provided</p>
+              </div>
+              <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                <span className="font-medium">Institute</span>
+                <p className="font-normal">Not Provided</p>
+              </div>
+              <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                <span className="font-medium">Department</span>
+                <p className="font-normal">Not Provided</p>
+              </div>
 
                             <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                                 <span className="font-medium">Field of Study</span>
