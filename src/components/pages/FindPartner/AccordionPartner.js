@@ -8,11 +8,36 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { Collapse } from 'antd';
 import { Select } from 'antd';
 import { Input, Radio, Space, Slider } from 'antd';
+import TextField from '@mui/material/TextField';
+import Autocomplete, { createFilterOptions } from '@mui/material/Autocomplete';
 
 export const AccordionPartner = ({ data, isLoading }) => {
     const hightestEducationalQualification = data?.hightestEducationalQualification;
     const { Panel } = Collapse;
     const [religionValue, setReligionValue] = useState(1);
+
+    //............professional information.........//
+
+    //state for set monthly income field
+    const [monthlyIncome, setMonthlyIncome] = useState(1);
+    const [educationalInfo, setEducationalInfo] = useState(null)
+    const educationalInfoOptions = [
+        { title: 'Ssc' },
+        { title: 'Hsc' },
+        { title: 'Hons' },
+        { title: 'Masters' },
+
+    ]
+    const [professionalInfo, setProfessionalInfo] = useState(null);
+    const professionalInfoOptions = [
+        { title: 'Teacher' },
+        { title: 'Doctor' },
+        { title: 'Student' },
+        { title: 'Business' },
+
+    ]
+
+
 
     if (hightestEducationalQualification) {
     }
@@ -94,11 +119,12 @@ export const AccordionPartner = ({ data, isLoading }) => {
     const handleUserProfessionalExperienceChange = (value) => {
 
     };
-    const handleUserEducationalQualificationChange = (value) => {
+    const handleUserEducationalQualificationChange = (e) => {
 
     };
-    const handleUserIncomeChange = (value) => {
-
+    const handleUserIncomeChange = (e) => {
+        setMonthlyIncome(e.target.value);
+        console.log(e.target)
     };
 
     // --------- Others Information ------------
@@ -123,6 +149,11 @@ export const AccordionPartner = ({ data, isLoading }) => {
     const handleUserEyeColorChange = (value) => {
 
     };
+
+
+    //filter options for type search select (Autocomplete MUI)
+    const filter = createFilterOptions();
+
 
     return (
         <div className='w-full'>
@@ -607,29 +638,64 @@ export const AccordionPartner = ({ data, isLoading }) => {
                 <Panel header={styledHeader("Professional Information")} key="3">
                     <div>
                         <h1 className='text-lg leading-6 font-semibold mb-4'>Profession</h1>
-                        <Select
-                            defaultValue="officer"
-                            className='w-full mb-2'
-                            onChange={handleUserProfessionChange}
-                            options={[
-                                {
-                                    value: 'officer',
-                                    label: 'Officer',
-                                },
-                                {
-                                    value: 'police',
-                                    label: 'Police',
-                                },
-                                {
-                                    value: 'doctor',
-                                    label: 'Doctor',
-                                },
-                            ]}
+                        <Autocomplete
+                            value={professionalInfo}
+                            onChange={(event, newValue) => {
+                                if (typeof newValue === 'string') {
+                                    setProfessionalInfo({
+                                        title: newValue,
+                                    });
+                                } else if (newValue && newValue.inputValue) {
+                                    // Create a new value from the user input
+                                    setProfessionalInfo({
+                                        title: newValue.inputValue,
+                                    });
+                                } else {
+                                    setProfessionalInfo(newValue);
+                                }
+                            }}
+                            filterOptions={(options, params) => {
+                                const filtered = filter(options, params);
+
+                                const { inputValue } = params;
+                                // Suggest the creation of a new value
+                                const isExisting = options.some((option) => inputValue === option.title);
+                                if (inputValue !== '' && !isExisting) {
+                                    filtered.push({
+                                        inputValue,
+                                        title: `Add "${inputValue}"`,
+                                    });
+                                }
+
+                                return filtered;
+                            }}
+                            selectOnFocus
+                            clearOnBlur
+                            handleHomeEndKeys
+                            id="free-solo-with-text-demo"
+                            options={professionalInfoOptions}
+                            getOptionLabel={(option) => {
+                                // Value selected with enter, right from the input
+                                if (typeof option === 'string') {
+                                    return option;
+                                }
+                                // Add "xxx" option created dynamically
+                                if (option.inputValue) {
+                                    return option.inputValue;
+                                }
+                                // Regular option
+                                return option.title;
+                            }}
+                            renderOption={(props, option) => <li {...props}>{option.title}</li>}
+                            freeSolo
+                            renderInput={(params) => (
+                                <TextField {...params} label="Select One" />
+                            )}
                         />
                     </div>
                     <div>
                         <h1 className='text-lg leading-6 font-semibold mb-4'>Professional Experience</h1>
-                        <Select
+                        {/* <Select
                             defaultValue="1-2 years"
                             className='w-full mb-2'
                             onChange={handleUserProfessionalExperienceChange}
@@ -647,11 +713,22 @@ export const AccordionPartner = ({ data, isLoading }) => {
                                     label: '3-4 years',
                                 },
                             ]}
-                        />
+                        /> */}
+                        <Radio.Group onChange={handleUserProfessionalExperienceChange} value={monthlyIncome}>
+                            <Space direction="vertical">
+                                <Radio value={1}>Less Than 1 Year</Radio>
+                                <Radio value={2}>1-2 Years</Radio>
+                                <Radio value={3}>2-3 Years</Radio>
+                                <Radio value={4}>3-5 Years</Radio>
+                                <Radio value={5}>5-10 Years</Radio>
+                                <Radio value={6}>10-15 Years </Radio>
+                                <Radio value={7}>15 Years+</Radio>
+                            </Space>
+                        </Radio.Group>
                     </div>
                     <div>
                         <h1 className='text-lg leading-6 font-semibold mb-4'>Educational Qualification</h1>
-                        <Select
+                        {/* <Select
                             defaultValue="HSC"
                             className='w-full mb-2'
                             onChange={handleUserEducationalQualificationChange}
@@ -669,11 +746,67 @@ export const AccordionPartner = ({ data, isLoading }) => {
                                     label: 'Masters',
                                 },
                             ]}
+                        /> */}
+
+                        <Autocomplete
+                            value={educationalInfo}
+                            onChange={(event, newValue) => {
+                                if (typeof newValue === 'string') {
+                                    setEducationalInfo({
+                                        title: newValue,
+                                    });
+                                } else if (newValue && newValue.inputValue) {
+                                    // Create a new value from the user input
+                                    setEducationalInfo({
+                                        title: newValue.inputValue,
+                                    });
+                                } else {
+                                    setEducationalInfo(newValue);
+                                }
+                            }}
+                            filterOptions={(options, params) => {
+                                const filtered = filter(options, params);
+
+                                const { inputValue } = params;
+                                // Suggest the creation of a new value
+                                const isExisting = options.some((option) => inputValue === option.title);
+                                if (inputValue !== '' && !isExisting) {
+                                    filtered.push({
+                                        inputValue,
+                                        title: `Add "${inputValue}"`,
+                                    });
+                                }
+
+                                return filtered;
+                            }}
+                            selectOnFocus
+                            clearOnBlur
+                            handleHomeEndKeys
+                            id="free-solo-with-text-demo"
+                            options={educationalInfoOptions}
+                            getOptionLabel={(option) => {
+                                // Value selected with enter, right from the input
+                                if (typeof option === 'string') {
+                                    return option;
+                                }
+                                // Add "xxx" option created dynamically
+                                if (option.inputValue) {
+                                    return option.inputValue;
+                                }
+                                // Regular option
+                                return option.title;
+                            }}
+                            renderOption={(props, option) => <li {...props}>{option.title}</li>}
+                            freeSolo
+                            renderInput={(params) => (
+                                <TextField {...params} label="Select One" />
+                            )}
                         />
                     </div>
+
                     <div>
                         <h1 className='text-lg leading-6 font-semibold mb-4'>Monthly Income</h1>
-                        <Select
+                        {/* <Select
                             defaultValue="30,000 - 40,000"
                             className='w-full mb-2'
                             onChange={handleUserIncomeChange}
@@ -691,7 +824,30 @@ export const AccordionPartner = ({ data, isLoading }) => {
                                     label: '50,000 - 60,000',
                                 },
                             ]}
-                        />
+                        /> */}
+
+                        <Radio.Group onChange={handleUserIncomeChange} value={monthlyIncome}>
+                            <Space direction="vertical">
+                                <Radio value={1}>Below 15,000 BDT  </Radio>
+                                <Radio value={2}>15000-20000 BDT</Radio>
+                                <Radio value={3}>20000-25000 BDT</Radio>
+                                <Radio value={4}>25000-30000 BDT</Radio>
+                                <Radio value={5}>30000-35000 BDT</Radio>
+                                <Radio value={6}>35000-40000 BDT </Radio>
+                                <Radio value={7}>40000-45000 BDT</Radio>
+                                <Radio value={8}>45000-50000 BDT</Radio>
+                                <Radio value={9}>50000-60000 BDT</Radio>
+                                <Radio value={10}>60000-70000 BDT</Radio>
+                                <Radio value={11}>70000-80000 BDT </Radio>
+                                <Radio value={12}>80000-90000 BDT </Radio>
+                                <Radio value={13}>90000-100000 BDT </Radio>
+                                <Radio value={14}>100000-150000 BDT</Radio>
+                                <Radio value={15}>150000-200000 BDT</Radio>
+                                <Radio value={16}>20000-25000 BDT</Radio>
+                                <Radio value={17}>300000+ BDT</Radio>
+
+                            </Space>
+                        </Radio.Group>
                     </div>
                 </Panel>
                 {/*---------------- Others Information --------------*/}
