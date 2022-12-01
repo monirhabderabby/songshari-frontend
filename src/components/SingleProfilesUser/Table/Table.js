@@ -5,6 +5,7 @@ import "../../../assets/css/table.css";
 import { Friends } from "../FriendsSection/Friends";
 import { Matches } from "../profileSection/Matches";
 import { Profile } from "../profileSection/Profile";
+import SingleUserActivity from "../SingleUserActivity/SingleUserActivity";
 
 const Table = ({ data, isLoading }) => {
     const [page, setPage] = useState(2);
@@ -16,7 +17,11 @@ const Table = ({ data, isLoading }) => {
             <div className="px-2 md:px-0 mx-4 mb-4">
                 <div className="notification-bar">
                     <div className="flex justify-center items-center h-full gap-4">
-                        <button className="font-medium text-[15px] leading-tight text-gray-800">Activity</button>
+                        <button className={`font-medium text-[15px] leading-tight ${page === 1 ? "text-primary font-bold" : "text-gray-800"}`}
+                            onClick={() => setPage(1)}
+                        >
+                            Activity
+                        </button>
                         <button
                             className={`font-medium text-[15px] leading-tight ${page === 2 ? "text-primary font-bold" : "text-gray-800"}`}
                             onClick={() => setPage(2)}
@@ -59,6 +64,7 @@ const Table = ({ data, isLoading }) => {
             )}
 
             {/* table 1 */}
+            {page === 1 && <SingleUserActivity {...{ data, isLoading }} />}
             {page === 2 && <Profile {...{ data, isLoading }} />}
             {page === 4 && <Friends />}
             {page === 5 && <Matches />}

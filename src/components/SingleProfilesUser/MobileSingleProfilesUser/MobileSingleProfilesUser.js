@@ -19,7 +19,11 @@ const MobileSingleProfilesUser = () => {
                         </Link>
                     </div>
                     <div className="mr-8">
+<<<<<<< HEAD
                         <span className="text-center"> Profile</span>
+=======
+                        <span className="text-center">{user?.displayName}'s Profile</span>
+>>>>>>> b2ab1a2fa3626595a75ac309984158565bdc36d1
                     </div>
                     <div></div>
                 </div>
