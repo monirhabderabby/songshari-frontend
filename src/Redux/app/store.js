@@ -3,7 +3,7 @@ import { combineReducers } from "redux";
 import { persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import apiSlice from "../api/apiSlice";
-import matchfilterReducer from '../api/filterSlice';
+import filterSlice from "../features/filter/filterSlice";
 import userInfo from "../features/userInfo/userInfo";
 
 const persistConfig = {
@@ -22,7 +22,7 @@ const store = configureStore({
     reducer: {
         [apiSlice.reducerPath]: apiSlice.reducer,
         persistedReducer,
-        matchfilterReducer: matchfilterReducer,
+        filter: filterSlice,
     },
     devTools: process.env.NODE_ENV !== "production",
     middleware: getDefaultMiddleware =>
