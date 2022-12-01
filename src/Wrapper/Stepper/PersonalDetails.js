@@ -8,12 +8,15 @@ import makeAnimated from "react-select/animated";
 import { v4 as uuidv4 } from "uuid";
 import { firebaseStorage } from "../../firebase.init";
 import { useSetPersonalDetailsMutation } from "../../Redux/features/userInfo/userApi";
+import CreatableSelect from 'react-select/creatable';
 
 export const PersonalDetails = ({ setPage }) => {
     const [profilePhoto, setProfilePhoto] = useState("");
     const [coverPhoto, setCoverPhoto] = useState("");
     const [frontSide, setFrontSide] = useState("");
     const [backSide, setBackSide] = useState("");
+    const [professionalAchievementMoment, setProfessionalAchievementMoment] = useState("");
+    const [educationalAchievementMoment, setEducationalAchievementMoment] = useState("");
     const [licencePhoto, setLicencePhoto] = useState("");
     const [meritalStatus, setMeritalStatus] = useState("");
     const [citizenShip, setCitizenShip] = useState([]);
@@ -152,7 +155,7 @@ export const PersonalDetails = ({ setPage }) => {
                 key === "Department" ||
                 key === "fieldOfStudy" ||
                 key === "yearOfPassing" ||
-                key === "specialAchievement"
+                key === "specialEducationalAchievement"
             ) {
                 hightestEducationalQualification[key] = data[key];
             }
@@ -163,13 +166,13 @@ export const PersonalDetails = ({ setPage }) => {
         delete data.Department;
         delete data.fieldOfStudy;
         delete data.yearOfPassing;
-        delete data.specialAchievement;
+        delete data.specialEducationalAchievement;
 
         //current profession object delete from main object
         delete data.CurrentProfessionposition;
         delete data.CurrentProfessionInstitute;
         delete data.workPeriod;
-        delete data.specialAchievement;
+        delete data.specialProfessionalAchievement;
 
         currentProfession.position = currentProfession.CurrentProfessionposition;
         currentProfession.institute = currentProfession.CurrentProfessionInstitute;
@@ -183,6 +186,8 @@ export const PersonalDetails = ({ setPage }) => {
         data.frontSide = frontSide;
         data.backSide = backSide;
         data.licencePhoto = licencePhoto;
+        data.educationalAchievementMoment = educationalAchievementMoment;
+        data.professionalAchievementMoment = professionalAchievementMoment;
 
         data = { ...data, hightestEducationalQualification, currentProfession };
         await setPersonalDetails(data);
@@ -210,6 +215,26 @@ export const PersonalDetails = ({ setPage }) => {
         uploadBytes(storageRef, photo).then(async snapshot => {
             await getDownloadURL(snapshot.ref).then(url => {
                 setCoverPhoto(url.toString());
+            });
+        });
+    };
+
+    const professionalAchievementMomentHandler = async e => {
+        const photo = e.target.files[0];
+        const storageRef = ref(firebaseStorage, `cover/${photo.name + uuidv4()}`);
+        uploadBytes(storageRef, photo).then(async snapshot => {
+            await getDownloadURL(snapshot.ref).then(url => {
+                setProfessionalAchievementMoment(url.toString());
+            });
+        });
+    };
+
+    const educationalAchievementMomentHandler = async e => {
+        const photo = e.target.files[0];
+        const storageRef = ref(firebaseStorage, `cover/${photo.name + uuidv4()}`);
+        uploadBytes(storageRef, photo).then(async snapshot => {
+            await getDownloadURL(snapshot.ref).then(url => {
+                setEducationalAchievementMoment(url.toString());
             });
         });
     };
@@ -649,6 +674,28 @@ export const PersonalDetails = ({ setPage }) => {
                     {/* -------------------- Permanent Address Start -------------------- */}
                     <section className="col-span-1 md:col-span-2 lg:col-span-3 text-[#2F3659] font-medium text-left ml-1">Permanent Address</section>
 
+                    {/* ---------- House Address ---------- */}
+                    <section>
+                        <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
+                            <input
+                                {...register("housePermanent", {
+                                    required: {
+                                        value: true,
+                                        message: "House Name is required",
+                                    },
+                                })}
+                                type="text"
+                                placeholder="House"
+                                className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
+                                id="housePermanent"
+                            />
+                        </div>
+                        <h1 className="text-left ml-2">
+                            {errors.housePermanent?.type === "required" && (
+                                <span className="w-full text-left text-red-400 text-sm">{errors?.housePermanent.message}</span>
+                            )}
+                        </h1>
+                    </section>
                     {/* ---------- Street Address ---------- */}
                     <section>
                         <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
@@ -668,28 +715,6 @@ export const PersonalDetails = ({ setPage }) => {
                         <h1 className="text-left ml-2">
                             {errors.streetPermanent?.type === "required" && (
                                 <span className="w-full text-left text-red-400 text-sm">{errors?.streetPermanent.message}</span>
-                            )}
-                        </h1>
-                    </section>
-                    {/* ---------- House Address ---------- */}
-                    <section>
-                        <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
-                            <input
-                                {...register("housePermanent", {
-                                    required: {
-                                        value: true,
-                                        message: "House Name is required",
-                                    },
-                                })}
-                                type="text"
-                                placeholder="House Name"
-                                className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
-                                id="housePermanent"
-                            />
-                        </div>
-                        <h1 className="text-left ml-2">
-                            {errors.housePermanent?.type === "required" && (
-                                <span className="w-full text-left text-red-400 text-sm">{errors?.housePermanent.message}</span>
                             )}
                         </h1>
                     </section>
@@ -783,6 +808,10 @@ export const PersonalDetails = ({ setPage }) => {
                                 <option value="chittagong">Chittagong</option>
                                 <option value="sylhet">Sylhet</option>
                                 <option value="rajshahi">Rajshahi</option>
+                                <option value="rangpur">Rangpur</option>
+                                <option value="mymensingh">Mymensingh</option>
+                                <option value="khulna">Khulna</option>
+                                <option value="barisal">Barisal</option>
                             </select>
                         </div>
                         <h1 className="text-left ml-2">
@@ -841,6 +870,28 @@ export const PersonalDetails = ({ setPage }) => {
                     {/* --------------------------- Current Adress Start ------------------------- */}
                     <section className="col-span-1 md:col-span-2 lg:col-span-3 text-[#2F3659] font-medium text-left ml-1">Current Address</section>
 
+                    {/* ---------- House Address Current ---------- */}
+                    <section>
+                        <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
+                            <input
+                                {...register("houseCurrent", {
+                                    required: {
+                                        value: true,
+                                        message: "House Name is required",
+                                    },
+                                })}
+                                type="text"
+                                placeholder="House"
+                                className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
+                                id="houseCurrent"
+                            />
+                        </div>
+                        <h1 className="text-left ml-2">
+                            {errors.houseCurrent?.type === "required" && (
+                                <span className="w-full text-left text-red-400 text-sm">{errors?.houseCurrent.message}</span>
+                            )}
+                        </h1>
+                    </section>
                     {/* ---------- Street Address Current ---------- */}
                     <section>
                         <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
@@ -860,28 +911,6 @@ export const PersonalDetails = ({ setPage }) => {
                         <h1 className="text-left ml-2">
                             {errors.streetCurrent?.type === "required" && (
                                 <span className="w-full text-left text-red-400 text-sm">{errors?.streetCurrent.message}</span>
-                            )}
-                        </h1>
-                    </section>
-                    {/* ---------- House Address Current ---------- */}
-                    <section>
-                        <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
-                            <input
-                                {...register("houseCurrent", {
-                                    required: {
-                                        value: true,
-                                        message: "House Name is required",
-                                    },
-                                })}
-                                type="text"
-                                placeholder="House Name"
-                                className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
-                                id="houseCurrent"
-                            />
-                        </div>
-                        <h1 className="text-left ml-2">
-                            {errors.houseCurrent?.type === "required" && (
-                                <span className="w-full text-left text-red-400 text-sm">{errors?.houseCurrent.message}</span>
                             )}
                         </h1>
                     </section>
@@ -975,6 +1004,10 @@ export const PersonalDetails = ({ setPage }) => {
                                 <option value="chittagong">Chittagong</option>
                                 <option value="sylhet">Sylhet</option>
                                 <option value="rajshahi">Rajshahi</option>
+                                <option value="rangpur">Rangpur</option>
+                                <option value="mymensingh">Mymensingh</option>
+                                <option value="khulna">Khulna</option>
+                                <option value="barisal">Barisal</option>
                             </select>
                         </div>
                         <h1 className="text-left ml-2">
@@ -1365,7 +1398,7 @@ export const PersonalDetails = ({ setPage }) => {
                         </section>
                     )}
                     {/* ---------- Partner death date ---------- */}
-                    {meritalStatus !== "single" && meritalStatus !== "" && (
+                    {meritalStatus === "widowed" && meritalStatus !== "" && (
                         <section>
                             <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
                                 <DatePicker
@@ -1458,27 +1491,43 @@ export const PersonalDetails = ({ setPage }) => {
                             )}
                         </h1>
                     </section>
-                    {/* ---------- Special Achievement ---------- */}
+                    {/* ---------- Special Professional Achievement ---------- */}
                     <section>
                         <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
                             <input
-                                {...register("specialAchievement", {
+                                {...register("specialProfessionalAchievement", {
                                     required: {
                                         value: true,
-                                        message: "Special Achievement is required",
+                                        message: "Special Professional Achievement is required",
                                     },
                                 })}
                                 type="text"
                                 placeholder="Special Achievement"
                                 className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
-                                id="specialAchievement"
+                                id="specialProfessionalAchievement"
                             />
                         </div>
                         <h1 className="text-left ml-2">
-                            {errors.specialAchievement?.type === "required" && (
-                                <span className="w-full text-left text-red-400 text-sm">{errors?.specialAchievement.message}</span>
+                            {errors.specialProfessionalAchievement?.type === "required" && (
+                                <span className="w-full text-left text-red-400 text-sm">{errors?.specialProfessionalAchievement.message}</span>
                             )}
                         </h1>
+                    </section>
+                    {/* ---------- Professional Achievement moment ---------- */}
+                    <section>
+                        <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
+                            <AiOutlineCloudUpload className=" mr-2 text-gray-400" />
+                            <label htmlFor="professionalAchievementMoment" className="outline-none h-full text-sm text-gray-400 bg-gray-100">
+                                {professionalAchievementMoment ? (
+                                    <>
+                                        <span className="text-green-400">Moments added</span>
+                                    </>
+                                ) : (
+                                    "Upload Achievement Moments"
+                                )}
+                            </label>
+                            <input {...register("professionalAchievementMoment")} type="file" id="professionalAchievementMoment" className="hidden" onChange={professionalAchievementMomentHandler} />
+                        </div>
                     </section>
 
                     {/* ------------------------ Current profession field end ------------------------ */}
@@ -1486,11 +1535,11 @@ export const PersonalDetails = ({ setPage }) => {
                     {/* ---------------------- Highest education qualification start --------------------- */}
 
                     {/* ---------- Education info ---------- */}
-                    <section className="col-span-1 md:col-span-2 lg:col-span-3 text-[#2F3659] font-medium text-left ml-1">Education Info</section>
+                    <section className="col-span-1 md:col-span-2 lg:col-span-3 text-[#2F3659] font-medium text-left ml-1">Highest Educational Info</section>
                     {/* ---------- Degree Name ---------- */}
                     <section>
-                        <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
-                            <input
+                        <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
+                            <CreatableSelect
                                 {...register("degreeName", {
                                     required: {
                                         value: true,
@@ -1499,6 +1548,17 @@ export const PersonalDetails = ({ setPage }) => {
                                 })}
                                 type="text"
                                 placeholder="Degree Name"
+                                // options={options}
+                                styles={{
+                                    control: (baseStyles, state) => ({
+                                        ...baseStyles,
+                                        backgroundColor: 'transparent',
+                                        border: "none",
+                                        textAlign: "left",
+                                        fontSize: "14px",
+                                        color: "#9CA3AF"
+                                    }),
+                                }}
                                 className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
                                 id="degreeName"
                             />
@@ -1511,8 +1571,8 @@ export const PersonalDetails = ({ setPage }) => {
                     </section>
                     {/* ---------- Institution ---------- */}
                     <section>
-                        <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
-                            <input
+                        <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
+                            <CreatableSelect
                                 {...register("institute", {
                                     required: {
                                         value: true,
@@ -1521,6 +1581,17 @@ export const PersonalDetails = ({ setPage }) => {
                                 })}
                                 type="text"
                                 placeholder="Institution"
+                                // options={options}
+                                styles={{
+                                    control: (baseStyles, state) => ({
+                                        ...baseStyles,
+                                        backgroundColor: 'transparent',
+                                        border: "none",
+                                        textAlign: "left",
+                                        fontSize: "14px",
+                                        color: "#9CA3AF"
+                                    }),
+                                }}
                                 className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
                                 id="institute"
                             />
@@ -1533,8 +1604,8 @@ export const PersonalDetails = ({ setPage }) => {
                     </section>
                     {/* ---------- Department Name ---------- */}
                     <section>
-                        <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
-                            <input
+                        <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
+                            <CreatableSelect
                                 {...register("Department", {
                                     required: {
                                         value: true,
@@ -1543,6 +1614,17 @@ export const PersonalDetails = ({ setPage }) => {
                                 })}
                                 type="text"
                                 placeholder="Department Name"
+                                // options={options}
+                                styles={{
+                                    control: (baseStyles, state) => ({
+                                        ...baseStyles,
+                                        backgroundColor: 'transparent',
+                                        border: "none",
+                                        textAlign: "left",
+                                        fontSize: "14px",
+                                        color: "#9CA3AF"
+                                    }),
+                                }}
                                 className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
                                 id="Department"
                             />
@@ -1555,8 +1637,8 @@ export const PersonalDetails = ({ setPage }) => {
                     </section>
                     {/* ---------- Field of Study ---------- */}
                     <section>
-                        <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
-                            <input
+                        <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
+                            <CreatableSelect
                                 {...register("fieldOfStudy", {
                                     required: {
                                         value: true,
@@ -1565,6 +1647,17 @@ export const PersonalDetails = ({ setPage }) => {
                                 })}
                                 type="text"
                                 placeholder="Field of Study"
+                                // options={options}
+                                styles={{
+                                    control: (baseStyles, state) => ({
+                                        ...baseStyles,
+                                        backgroundColor: 'transparent',
+                                        border: "none",
+                                        textAlign: "left",
+                                        fontSize: "14px",
+                                        color: "#9CA3AF"
+                                    }),
+                                }}
                                 className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
                                 id="fieldOfStudy"
                             />
@@ -1586,7 +1679,7 @@ export const PersonalDetails = ({ setPage }) => {
                                     },
                                 })}
                                 placeholder="Year of Passing"
-                                className="flex-1 px-2 py-[10px] outline-none h-full bg-transparent text-sm text-gray-400"
+                                className="flex-1 px-2 py-2 outline-none h-full bg-transparent text-sm text-gray-400"
                                 id="yearOfPassing"
                             />
                         </div>
@@ -1596,27 +1689,43 @@ export const PersonalDetails = ({ setPage }) => {
                             )}
                         </h1>
                     </section>
-                    {/* ---------- Special Achievement ---------- */}
+                    {/* ---------- Special Educational Achievement ---------- */}
                     <section>
                         <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
                             <input
-                                {...register("specialAchievement", {
+                                {...register("specialEducationalAchievement", {
                                     required: {
                                         value: true,
-                                        message: "Special Achievement is required",
+                                        message: "Special Educational Achievement is required",
                                     },
                                 })}
                                 type="text"
                                 placeholder="Special Achievement"
                                 className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
-                                id="specialAchievement"
+                                id="specialEducationalAchievement"
                             />
                         </div>
                         <h1 className="text-left ml-2">
-                            {errors.specialAchievement?.type === "required" && (
-                                <span className="w-full text-left text-red-400 text-sm">{errors?.specialAchievement.message}</span>
+                            {errors.specialEducationalAchievement?.type === "required" && (
+                                <span className="w-full text-left text-red-400 text-sm">{errors?.specialEducationalAchievement.message}</span>
                             )}
                         </h1>
+                    </section>
+                    {/* ---------- Educational Achievement Moment ---------- */}
+                    <section>
+                        <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
+                            <AiOutlineCloudUpload className=" mr-2 text-gray-400" />
+                            <label htmlFor="educationalAchievementMoment" className="outline-none h-full text-sm text-gray-400 bg-gray-100">
+                                {educationalAchievementMoment ? (
+                                    <>
+                                        <span className="text-green-400">Moments added</span>
+                                    </>
+                                ) : (
+                                    "Upload Achievement Moments"
+                                )}
+                            </label>
+                            <input {...register("educationalAchievementMoment")} type="file" id="educationalAchievementMoment" className="hidden" onChange={educationalAchievementMomentHandler} />
+                        </div>
                     </section>
 
                     {/* --------------------- Highest education qualification end ---------------------- */}
@@ -1669,8 +1778,8 @@ export const PersonalDetails = ({ setPage }) => {
                     </section>
                     {/* ---------- Ancestry ---------- */}
                     <section>
-                        <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
-                            <input
+                        <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
+                            <CreatableSelect
                                 {...register("ancestry", {
                                     required: {
                                         value: true,
@@ -1679,6 +1788,17 @@ export const PersonalDetails = ({ setPage }) => {
                                 })}
                                 type="text"
                                 placeholder="Ancestry"
+                                // options={options}
+                                styles={{
+                                    control: (baseStyles, state) => ({
+                                        ...baseStyles,
+                                        backgroundColor: 'transparent',
+                                        border: "none",
+                                        textAlign: "left",
+                                        fontSize: "14px",
+                                        color: "#9CA3AF"
+                                    }),
+                                }}
                                 className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
                                 id="ancestry"
                             />
@@ -1691,11 +1811,22 @@ export const PersonalDetails = ({ setPage }) => {
                     </section>
                     {/* ---------- Skin Tone ---------- */}
                     <section>
-                        <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
-                            <input
+                        <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
+                            <CreatableSelect
                                 {...register("SkinTone")}
                                 type="text"
                                 placeholder="Skin Tone"
+                                // options={options}
+                                styles={{
+                                    control: (baseStyles, state) => ({
+                                        ...baseStyles,
+                                        backgroundColor: 'transparent',
+                                        border: "none",
+                                        textAlign: "left",
+                                        fontSize: "14px",
+                                        color: "#9CA3AF"
+                                    }),
+                                }}
                                 className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
                                 id="SkinTone"
                             />
@@ -1708,11 +1839,22 @@ export const PersonalDetails = ({ setPage }) => {
                     </section>
                     {/* ---------- Hair Color ---------- */}
                     <section>
-                        <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
-                            <input
+                        <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
+                            <CreatableSelect
                                 {...register("hairColour")}
                                 type="text"
                                 placeholder="Hair Color"
+                                // options={options}
+                                styles={{
+                                    control: (baseStyles, state) => ({
+                                        ...baseStyles,
+                                        backgroundColor: 'transparent',
+                                        border: "none",
+                                        textAlign: "left",
+                                        fontSize: "14px",
+                                        color: "#9CA3AF"
+                                    }),
+                                }}
                                 className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
                                 id="hairColour"
                             />
@@ -1725,11 +1867,22 @@ export const PersonalDetails = ({ setPage }) => {
                     </section>
                     {/* ---------- Hair Type ---------- */}
                     <section>
-                        <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
-                            <input
+                        <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
+                            <CreatableSelect
                                 {...register("hairType")}
                                 type="text"
                                 placeholder="Hair Type"
+                                // options={options}
+                                styles={{
+                                    control: (baseStyles, state) => ({
+                                        ...baseStyles,
+                                        backgroundColor: 'transparent',
+                                        border: "none",
+                                        textAlign: "left",
+                                        fontSize: "14px",
+                                        color: "#9CA3AF"
+                                    }),
+                                }}
                                 className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
                                 id="hairType"
                             />
@@ -1742,11 +1895,22 @@ export const PersonalDetails = ({ setPage }) => {
                     </section>
                     {/* ---------- Eye Color ---------- */}
                     <section>
-                        <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
-                            <input
+                        <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
+                            <CreatableSelect
                                 {...register("eyeColor")}
                                 type="text"
                                 placeholder="Eye Color"
+                                // options={options}
+                                styles={{
+                                    control: (baseStyles, state) => ({
+                                        ...baseStyles,
+                                        backgroundColor: 'transparent',
+                                        border: "none",
+                                        textAlign: "left",
+                                        fontSize: "14px",
+                                        color: "#9CA3AF"
+                                    }),
+                                }}
                                 className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
                                 id="eyeColor"
                             />
@@ -1759,11 +1923,22 @@ export const PersonalDetails = ({ setPage }) => {
                     </section>
                     {/* ---------- Number of Teeth ---------- */}
                     <section>
-                        <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
-                            <input
+                        <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
+                            <CreatableSelect
                                 {...register("numberOfTeeth")}
                                 type="number"
                                 placeholder="Number of Teeth"
+                                // options={options}
+                                styles={{
+                                    control: (baseStyles, state) => ({
+                                        ...baseStyles,
+                                        backgroundColor: 'transparent',
+                                        border: "none",
+                                        textAlign: "left",
+                                        fontSize: "14px",
+                                        color: "#9CA3AF"
+                                    }),
+                                }}
                                 className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
                                 id="numberOfTeeth"
                             />
@@ -2044,7 +2219,7 @@ export const PersonalDetails = ({ setPage }) => {
                             <input
                                 {...register("aboutYou")}
                                 type="text"
-                                placeholder="About You"
+                                placeholder="Your Intro"
                                 className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
                                 id="aboutYou"
                             />
