@@ -7,6 +7,7 @@ import MuiAccordionDetails from "@mui/material/AccordionDetails";
 import MuiAccordionSummary from "@mui/material/AccordionSummary";
 import { styled } from "@mui/material/styles";
 import Typography from "@mui/material/Typography";
+import { useGetProfileDetailsWIthAuthQuery } from "../../../Redux/features/userInfo/userApi";
 
 const Accordion = styled((props) => (
   <MuiAccordion disableGutters elevation={0} square {...props} />
@@ -43,6 +44,7 @@ const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
   //     borderTop: "1px solid rgba(0, 0, 0, .125)",
 }));
 const MobileAccordion = () => {
+  const { data, isLoading } = useGetProfileDetailsWIthAuthQuery();
   const [expanded, setExpanded] = React.useState("panel1");
 
   const handleChange = (panel) => (event, newExpanded) => {
@@ -66,39 +68,35 @@ const MobileAccordion = () => {
             <Typography>
               <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                 <span className="font-medium">Name</span>
-                <p className="font-normal">Not Provided</p>
+                <p className="font-normal">{data?.firstName}</p>
               </div>
               <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                 <span className="font-medium">Phone</span>
-                <p className="font-normal">Not Provided</p>
+                <p className="font-normal">{data?.phone}</p>
               </div>
               <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                 <span className="font-medium">Email</span>
-                <p className="font-normal">Not Provided</p>
-              </div>
-              <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                <span className="font-medium">Password</span>
-                <p className="font-normal"></p>
+                <p className="font-normal">{data?.email}</p>
               </div>
               <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                 <span className="font-medium">Nid Or Passport Number</span>
-                <p className="font-normal">Not Provided</p>
+                <p className="font-normal">{data?.NidOrPassportNumber}</p>
               </div>
               <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                 <span className="font-medium">CitizenShip</span>
-                <p className="font-normal">Not Provided</p>
+                <p className="font-normal">{data?.citizenShip}</p>
               </div>
               <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                 <span className="font-medium">ZodiacSign</span>
-                <p className="font-normal">Not Provided</p>
+                <p className="font-normal">{data?.zodiacSign}</p>
               </div>
               <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                 <span className="font-medium">Bar Registration Number</span>
-                <p className="font-normal">Not Provided</p>
+                <p className="font-normal">{data?.barRegistrationNumber}</p>
               </div>
               <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                 <span className="font-medium">Licence No</span>
-                <p className="font-normal">Not Provided</p>
+                <p className="font-normal">{data?.licenceNo}</p>
               </div>
               <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                 <span className="font-medium">Licence Photo</span>
@@ -106,24 +104,24 @@ const MobileAccordion = () => {
               </div>
               <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                 <span className="font-medium">Year Of Bar Registration</span>
-                <p className="font-normal">Not Provided</p>
+                <p className="font-normal">{data.yearOfBarRegistration}</p>
               </div>
               <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                 <span className="font-medium">Date Of Birth</span>
-                <p className="font-normal">Not Provided</p>
+                <p className="font-normal">{data?.dateOfBirth}</p>
               </div>
               <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                 <span className="font-medium">About You</span>
-                <p className="font-normal">Not Provided</p>
+                <p className="font-normal"></p>
               </div>
 
               <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                 <span className="font-medium"> Degree Name</span>
-                <p className="font-normal"></p>
+                <p className="font-normal">{data?.hightestEducationalQualification?.degreeName}</p>
               </div>
               <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                 <span className="font-medium">Institute</span>
-                <p className="font-normal"></p>
+                <p className="font-normal">{data?.hightestEducationalQualification?.institute}</p>
               </div>
               <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                 <span className="font-medium">Department</span>

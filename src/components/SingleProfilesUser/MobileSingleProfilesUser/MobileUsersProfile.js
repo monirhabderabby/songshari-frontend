@@ -2,9 +2,12 @@ import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import profile from "../../../assets/images/profile/Ellipse 8.png";
 import { auth } from "../../../firebase.init";
+import { useGetProfileDetailsWIthAuthQuery } from "../../../Redux/features/userInfo/userApi";
+import Accordian from "../profileSection/Accordion";
 
 const MobileUsersProfile = () => {
     const [user] = useAuthState(auth);
+    const { data, isLoading } = useGetProfileDetailsWIthAuthQuery();
 
     return (
         <>
@@ -28,6 +31,7 @@ const MobileUsersProfile = () => {
                         <h3 className="text-[#737373] w-[165px] mt-[16px]  text-xs font-normal pb-[20px]">Single</h3>
                     </div>
                 </div>
+
             </div>
         </>
     );

@@ -60,6 +60,14 @@ const Suggested = () => {
                                         alt="profile"
                                     />
                                 </div>
+                                <div className="md:hidden">
+                                    <img
+                                        style={{ borderRadius: " 10px 10px 0px 0px" }}
+                                        src={profile.profilePhoto}
+                                        className="w-full h-[324px]"
+                                        alt="profile"
+                                    />
+                                </div>
                                 <div className="hidden md:block">
                                     <div className="p-[30px] text-left">
                                         <h3 className="text-[30px] text-[#000]">
