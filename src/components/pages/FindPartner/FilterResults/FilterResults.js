@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import "../../../../assets/css/topProfile.css";
+import { buildFilterQueryString } from "../../../../assets/utilities/getUsersByFilter/buildFilterQueryString";
 import { useGetRecentUsersQuery } from "../../../../Redux/features/AllRecentData/recentApi";
 import { UserCard } from "../../Shared/userCard/UserCard";
 
@@ -9,9 +10,10 @@ export const FilterResults = () => {
     const array = [1, 2, 3];
     const filter = useSelector(state => state.filter);
 
-    if (filter) {
-        console.log(filter);
-    }
+    useEffect(() => {
+        const result = buildFilterQueryString(filter);
+        console.log(result);
+    }, [filter]);
 
     return (
         <div className="mt-[30px] grid grid-flow-row-dense sm:grid-cols-2 md:grid-cols-3  gap-x-8">

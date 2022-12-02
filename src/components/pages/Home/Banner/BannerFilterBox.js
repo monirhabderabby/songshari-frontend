@@ -3,7 +3,16 @@ import { AutoComplete, Select, Slider } from "antd";
 import React, { Fragment } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { setFilter } from "../../../../Redux/features/filter/filterSlice";
+import {
+    setAge,
+    setCurrentLocation,
+    setEducation,
+    setfor,
+    setHomeTown,
+    setLookingFor,
+    setProfession,
+    setReligion,
+} from "../../../../Redux/features/filter/filterSlice";
 
 const BannerFilterBox = () => {
     const dispatch = useDispatch();
@@ -283,28 +292,28 @@ const BannerFilterBox = () => {
     const navigate = useNavigate();
 
     const lookingForHandler = val => {
-        dispatch(setFilter({ lookingFor: val }));
+        dispatch(setLookingFor({ lookingFor: val }));
     };
     const forHandler = val => {
-        dispatch(setFilter({ for: val }));
+        dispatch(setfor({ for: val }));
     };
     const ageHandler = val => {
-        dispatch(setFilter({ age: val }));
+        dispatch(setAge({ age: val }));
     };
     const professionHandler = val => {
-        dispatch(setFilter({ profession: val }));
+        dispatch(setProfession({ profession: val }));
     };
     const religionHandler = val => {
-        dispatch(setFilter({ religion: val }));
+        dispatch(setReligion({ religion: val }));
     };
     const homeTownHandler = val => {
-        dispatch(setFilter({ homeTown: val }));
+        dispatch(setHomeTown({ homeTown: val }));
     };
     const currentLocationHandler = val => {
-        dispatch(setFilter({ currentLocation: val }));
+        dispatch(setCurrentLocation({ currentLocation: val }));
     };
     const educationHandler = val => {
-        dispatch(setFilter({ education: val }));
+        dispatch(setEducation({ education: val }));
     };
 
     return (
