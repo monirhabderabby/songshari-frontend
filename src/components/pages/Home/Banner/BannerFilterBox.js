@@ -9,30 +9,6 @@ import { setFilter } from "../../../../Redux/features/filter/filterSlice";
 
 const BannerFilterBox = () => {
     const dispatch = useDispatch();
-    // const [id, setId] = useState(location.state.id);
-    // const [looking, setLooking] = useState(location.state.looking);
-    // const [lookingfor, setLookingFor] = useState(location.state.lookingfor);
-    // const [age, setAge] = useState(location.state.age);
-    // const [religion, setReligion] = useState(location.state.religion);
-    // const [profession, setProfession] = useState(location.state.profession);
-    // const [hometow, setHomeTown] = useState(location.state.hometow);
-    // const [currentloc, setCurrentLoc] = useState(location.state.currentloc);
-    // const [educationn, setEducation] = useState(location.state.educationn);
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        // dispatch(updateMatch({ id, looking, age }));
-    };
-
-    const [user, loading] = useAuthState(auth);
-    // const [lookingFor, setLookingFor] = useState("");
-    const [searchFor, setSearchFor] = useState("");
-    // const [profession, setProfession] = useState("");
-    // const [religion, setReligion] = useState("");
-    const [homeTown, setHomeTown] = useState("");
-    const [currentLocation, setCurrentLocation] = useState("");
-    // const [education, setEducation] = useState("");
-    const [age, setAge] = useState("");
 
     const options = [
         {
@@ -370,7 +346,7 @@ const BannerFilterBox = () => {
                             <h2 className=" text-[#000000] font-medium">Age</h2>
                             <div className="mt-[5px]">
                                 <span className="text-[14px] block text-center font-medium text-[#72777A]">
-                                    {age[0]} - {age[1]}
+                                    {/* {age[0]} - {age[1]} */}
                                 </span>
                                 <Slider
                                     className="text-[#E41272]"
