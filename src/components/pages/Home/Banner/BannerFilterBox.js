@@ -1,28 +1,12 @@
 import { AutoComplete, Select, Slider } from "antd";
 
-import React, { Fragment, useState } from "react";
-import { useAuthState } from "react-firebase-hooks/auth";
+import React, { Fragment } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { auth } from "../../../../firebase.init";
 import { setFilter } from "../../../../Redux/features/filter/filterSlice";
 
 const BannerFilterBox = () => {
     const dispatch = useDispatch();
-
-    const handleSubmit = e => {
-        e.preventDefault();
-    };
-
-    const [user, loading] = useAuthState(auth);
-    const [lookingFor, setLookingFor] = useState("");
-    const [searchFor, setSearchFor] = useState("");
-    const [profession, setProfession] = useState("");
-    const [religion, setReligion] = useState("");
-    const [homeTown, setHomeTown] = useState("");
-    const [currentLocation, setCurrentLocation] = useState("");
-    const [education, setEducation] = useState("");
-    const [age, setAge] = useState("");
 
     const options = [
         {
@@ -297,9 +281,6 @@ const BannerFilterBox = () => {
         },
     ];
     const navigate = useNavigate();
-    if (loading) {
-        return;
-    }
 
     const lookingForHandler = val => {
         dispatch(setFilter({ lookingFor: val }));
@@ -357,9 +338,7 @@ const BannerFilterBox = () => {
                         <div className="mt-[15px]">
                             <h2 className=" text-[#000000] font-medium">Age</h2>
                             <div className="mt-[5px]">
-                                <span className="text-[14px] block text-center font-medium text-[#72777A]">
-                                    {age[0]} - {age[1]}
-                                </span>
+                                <span className="text-[14px] block text-center font-medium text-[#72777A]">{/* {age[0]} - {age[1]} */}</span>
                                 <Slider
                                     className="text-[#E41272]"
                                     range={{ draggableTrack: true }}
@@ -476,7 +455,6 @@ const BannerFilterBox = () => {
                                     width: 101,
                                 }}
                                 options={hometown}
-                                onChange={e => setHomeTown(e.target.value)}
                                 placeholder="Home Town"
                                 onSelect={val => homeTownHandler(val)}
                                 filterOption={(inputValue, option) => option.value.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1}
@@ -497,7 +475,7 @@ const BannerFilterBox = () => {
                     </div>
                 </div>
                 <button
-                    onClick={() => navigate(user ? "/find-partner/filter" : "signup")}
+                    onClick={() => navigate("/find-partner/filter")}
                     className="rounded-[48px] w-[121px] h-[31px] block mt-[15px] mx-auto text-[#fff] text-sm font-medium"
                     style={{
                         background: "linear-gradient(180deg, #D21878 0%, #4F42A3 100%)",
