@@ -286,9 +286,9 @@ const BannerFilterBox = () => {
     if (loading) {
         return;
     }
-    
+
     const handleChange = e => { };
-    
+
     const lookingForHandler = val => {
         dispatch(setFilter({ lookingFor: val }));
     };
