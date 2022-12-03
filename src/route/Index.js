@@ -37,6 +37,8 @@ import Shop from "../Wrapper/Shop/Shop";
 import SingleProduct from "../Wrapper/SingleProduct/SingleProduct";
 import SingleProfile from "../Wrapper/SingleProfilesUser/SingleProfile";
 import { Container } from "../Wrapper/Stepper/Container";
+import EditProfile from "../components/SingleProfilesUser/profileSection/EditProfile";
+import Accordian from "../components/SingleProfilesUser/profileSection/Accordion";
 // import { UsersProfile } from "../components/SingleProfilesUser/profileSection/UsersProfile";
 import { FilterResults } from "../components/pages/FindPartner/FilterResults/FilterResults";
 import MobileDiamondPlan from "../components/pages/Membership/MobileVersion/MobileDiamondPlan";
@@ -64,13 +66,17 @@ import { PrivacyMov } from "../Wrapper/Home/mobileversion/privacy/PrivacyMov";
 import { AboutMov } from "../Wrapper/Home/mobileversion/about/AboutMov";
 import { MeetMov } from "../Wrapper/Home/mobileversion/meet/MeetMov";
 
+
 const Index = () => {
     return (
         <div>
             <BrowserRouter>
                 <Routes>
                     <Route path="/about" element={<About></About>}></Route>
-                    <Route path="/userprofile" element={<SingleProfile />}></Route>
+                    <Route path="/userprofile" element={<SingleProfile />}>
+                        <Route path="" element={<Accordian />} />
+                        <Route path="edit" element={<EditProfile />} />
+                    </Route>
                     <Route path="/mobileotherprofile" element={<MobileProfileOthers></MobileProfileOthers>}></Route>
                     <Route path="/membership" element={<MemberShip></MemberShip>}></Route>
                     <Route path="/profileinfo" element={<ProfileInfo></ProfileInfo>}></Route>

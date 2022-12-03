@@ -6,6 +6,7 @@ import { styled } from "@mui/material/styles";
 import Typography from "@mui/material/Typography";
 import moment from "moment";
 import React from "react";
+import { useNavigate } from "react-router";
 import "./Accordion.css";
 const Accordion = styled(props => <MuiAccordion disableGutters elevation={0} square {...props} />)(({ theme }) => ({
     paddingTop: "23px",
@@ -39,16 +40,39 @@ const Accordian = ({ data, isLoading }) => {
     const handleChange = panel => (event, newExpanded) => {
         setExpanded(newExpanded ? panel : false);
     };
-    if (isLoading) return false;
+    console.log(isLoading)
+    // if (isLoading) return false;
+
+
+    const navigate = useNavigate();
 
     return (
         <div className="mb-[69px] max-w-[523px] mx-auto">
             <Accordion expanded={expanded === "panel1"} onChange={handleChange("panel1")}>
-                <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
-                    <Typography>
-                        <h1 className="text-[24px] text-[#333333] leading-[34px] font-fira font-semibold">Personal Information</h1>
-                    </Typography>
-                </AccordionSummary>
+                <div className="flex justify-between items-center	">
+                    <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
+
+                        <div>
+                            <Typography>
+                                <h1 className="text-[24px] text-[#333333] leading-[34px] font-fira font-semibold">Personal Information</h1>
+                            </Typography>
+                        </div>
+
+
+
+                    </AccordionSummary>
+                    <div>
+                        <button
+                            onClick={() => navigate("/userprofile/edit")}
+                            style={{
+                                background: "linear-gradient(180deg, #E41272 0%, #942DD9 100%)",
+                            }}
+                            className="w-[64px] text-center py-[8] px-[10px] text-[#fff] h-[28px] text-lg font-medium rounded"
+                        >
+                            Edit
+                        </button>
+                    </div>
+                </div>
                 <AccordionDetails>
                     {data && (
                         <Typography>
@@ -137,14 +161,12 @@ const Accordian = ({ data, isLoading }) => {
                                     <p className="font-normal">{data ? hightestEducationalQualification?.institute : "Not Provided"}</p>
                                 </div>
                             )}
-
                             {data?.hightestEducationalQualification?.Department && (
                                 <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                                     <span className="font-medium">Department</span>
                                     <p className="font-normal">{data ? hightestEducationalQualification?.Department : "Not Provided"}</p>
                                 </div>
                             )}
-
                             {data?.hightestEducationalQualification?.fieldOfStudy && (
                                 <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                                     <span className="font-medium">Field Of Study</span>
@@ -160,7 +182,6 @@ const Accordian = ({ data, isLoading }) => {
                                     </p>
                                 </div>
                             )}
-
                             <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                                 <span className="font-medium">Special Achievement</span>
                                 <p className="font-normal">{data ? hightestEducationalQualification?.specialAchievement : "Not Provided"}</p>
