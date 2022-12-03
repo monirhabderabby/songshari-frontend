@@ -20,9 +20,6 @@ const ChartBoard = () => {
 
     return (
         <div>
-            {/* <ChatGelary />
-            <ChatRequest /> */}
-
             {/* ----- Certificate ----- */}
             <div className="rounded-xl p-5" style={{ backgroundImage: "linear-gradient(180deg, #FFD7F6 0%, #FFC1E6 100%)" }}>
                 <div className="flex justify-start items-center mx-1 gap-6">
