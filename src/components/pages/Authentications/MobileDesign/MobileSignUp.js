@@ -262,8 +262,8 @@ const MobileSignUp = () => {
                                     },
                                     minLength: {
                                         value: 10,
-                                        message: "Nid Or Passport Number should be minimum 10 characters"
-                                    }
+                                        message: "Nid Or Passport Number should be minimum 10 characters",
+                                    },
                                 })}
                                 type="text"
                                 placeholder="NID or Passport Number"
