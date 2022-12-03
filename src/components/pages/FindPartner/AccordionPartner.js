@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { AutoComplete, Collapse } from 'antd';
+import { AutoComplete, Collapse, DatePicker } from 'antd';
 import { Select } from 'antd';
 import { Input, Radio, Space, Slider } from 'antd';
 import TextField from '@mui/material/TextField';
@@ -8,7 +8,7 @@ import Autocomplete, { createFilterOptions } from '@mui/material/Autocomplete';
 export const AccordionPartner = ({ data, isLoading }) => {
     const hightestEducationalQualification = data?.hightestEducationalQualification;
     const { Panel } = Collapse;
-    const [religionValue, setReligionValue] = useState(1);
+    const [religionValue, setReligionValue] = useState('');
     const [homeTowns, setHomeTown] = useState([]);
     const [countries, setCountries] = useState([]);
     const [professions, setProfessions] = useState([]);
@@ -22,6 +22,14 @@ export const AccordionPartner = ({ data, isLoading }) => {
     const [brother, setBrother] = useState(0);
     const [sister, setSister] = useState(0)
     const [maritalStatus, setMaritalStatus] = useState('');
+    const [partnerAwareValue, setPartnerAwareValue] = useState('');
+    const [haveChildren, setHaveChildren] = useState('');
+    const [partnerQuantity, setPartnerQuantity] = useState(1);
+    const [boyQuantity, setBoyQuantity] = useState(0);
+    const [boyAge, setBoyAge] = useState(0);
+    const [girlQuantity, setGirlQuantity] = useState(0);
+    const [girlAge, setGirlAge] = useState(0);
+    const [childrenLiveStatus, setChildrenLiveStatus] = useState('');
 
     useEffect(() => {
         fetch("json/district.json")
@@ -54,7 +62,16 @@ export const AccordionPartner = ({ data, isLoading }) => {
     //.............Basic information data state.............//
     const [basicInfo, setBasicInfo] = useState({});
 
-    //...........Familly Information data state ................//
+    useEffect(() => {
+        if (maritalStatus === "married") {
+            setBasicInfo({ ...basicInfo, partnerQuantity })
+        }
+        if (haveChildren === 'yes') {
+            setBasicInfo({ ...basicInfo, haveChildren, boyQuantity, boyAge, girlQuantity, girlAge, childrenLiveStatus });
+        }
+    }, [basicInfo, maritalStatus, partnerQuantity, haveChildren, boyAge, boyQuantity, girlAge, girlQuantity, childrenLiveStatus]);
+
+    //...........Family Information data state ................//
     const [familyInfo, setFamilyInfo] = useState({});
 
     //.............. Others information data state................//
@@ -107,14 +124,13 @@ export const AccordionPartner = ({ data, isLoading }) => {
     const onAgeChange = (value) => {
         setAge(value);
         setBasicInfo({ ...basicInfo, age: value });
-
     };
     const onAfterAgeChange = (value) => {
         console.log('onAfterChange: ', value);
     };
     const handleReligionChange = (e) => {
         setReligionValue(e.target.value);
-        setBasicInfo({ ...basicInfo, relition: e?.target?.value })
+        setBasicInfo({ ...basicInfo, religion: e?.target?.value })
     };
     const handleHometownChange = (value) => {
         setBasicInfo({ ...basicInfo, homeTown: value })
@@ -129,13 +145,79 @@ export const AccordionPartner = ({ data, isLoading }) => {
         setBasicInfo({ ...basicInfo, martialStatus: value })
         setMaritalStatus(value);
     };
+    const handleIncreasePartner = () => {
+        setPartnerQuantity(prevCount => prevCount + 1);
+    };
+    const handleDecreasePartner = () => {
+        if (partnerQuantity > 0) {
+            setPartnerQuantity(prevCount => prevCount - 1);
+        }
+    };
+    const handleMarriageReasonChange = (value) => {
+        console.log(`selected ${value}`);
+    };
+    const handleHaveChildrenChange = (value) => {
+        console.log(`selected ${value}`);
+        setHaveChildren(value);
+    };
+    const handleIncreaseBoy = () => {
+        setBoyQuantity(prevCount => prevCount + 1);
+    };
+    const handleDecreaseBoy = () => {
+        if (boyQuantity > 0) {
+            setBoyQuantity(prevCount => prevCount - 1);
+        }
+    };
+    const handleIncreaseBoyAge = () => {
+        setBoyAge(prevCount => prevCount + 1);
+    };
+    const handleDecreaseBoyAge = () => {
+        if (boyAge > 0) {
+            setBoyAge(prevCount => prevCount - 1);
+        }
+    };
+    const handleIncreaseGirl = () => {
+        setGirlQuantity(prevCount => prevCount + 1);
+    };
+    const handleDecreaseGirl = () => {
+        if (girlQuantity > 0) {
+            setGirlQuantity(prevCount => prevCount - 1);
+        }
+    };
+    const handleIncreaseGirlAge = () => {
+        setGirlAge(prevCount => prevCount + 1);
+    };
+    const handleDecreaseGirlAge = () => {
+        if (girlAge > 0) {
+            setGirlAge(prevCount => prevCount - 1);
+        }
+    };
+    const handlePartnerAwareChange = (e) => {
+        setPartnerAwareValue(e.target.value);
+    };
+    const onMarriageDateChange = (date, dateString) => {
+        console.log(date, dateString);
+    };
+    const onDivorceDateChange = (date, dateString) => {
+        console.log(date, dateString);
+    };
+    const handleDivorceReasonChange = (value) => {
+        console.log(`selected ${value}`);
+    };
+    const onPartnerDeathDateChange = (date, dateString) => {
+        console.log(date, dateString);
+    };
+    const handleChildrenLiveChange = (e) => {
+        setChildrenLiveStatus(e.target.value);
+    };
 
     // ------ Family Information -----------
     const handleFatherStatusChange = (e) => {
         setFatherStatusValue(e.target.value);
+        setFamilyInfo({ ...familyInfo, fatherStatus: e.target.value });
     };
     const handleFatherProfessionChange = (value) => {
-        setFamilyInfo({ ...familyInfo, fatherStatus: value });
+        setFamilyInfo({ ...familyInfo, fatherProfession: value });
     };
     const handleFatherIncomeChange = (e) => {
         setFatherIncomeValue(e.target.value);
@@ -148,13 +230,10 @@ export const AccordionPartner = ({ data, isLoading }) => {
     };
     const handleMotherProfessionChange = (value) => {
         setFamilyInfo({ ...familyInfo, motherProfession: value });
-
     };
     const handleMotherIncomeChange = (e) => {
-
         setMotherIncomeValue(e.target.value);
         setFamilyInfo({ ...familyInfo, motherIncome: e.target.value });
-
     };
 
     // ------- Professional Info -------------
@@ -198,17 +277,12 @@ export const AccordionPartner = ({ data, isLoading }) => {
         } else {
             setEducationalInfo(newValue);
             setProfessionalInfo({ ...professionalInfo, educationalQualification: newValue.title })
-
-
         }
-
-
     }
     const handleUserIncomeChange = (e) => {
         setProfessionalInfo({ ...professionalInfo, monthlyIncome: e.target.value })
         setMonthlyIncome(e.target.value)
     };
-
 
     // --------- Others Information ------------
     const onHeightChange = (value) => {
@@ -216,7 +290,6 @@ export const AccordionPartner = ({ data, isLoading }) => {
         setOthersInfo({ ...othersInfo, height: value });
     };
     const onAfterHeightChange = (value) => {
-
 
     };
     const onWeightChange = (value) => {
@@ -229,22 +302,19 @@ export const AccordionPartner = ({ data, isLoading }) => {
     };
     const handleUserAncestryChange = (value) => {
         setOthersInfo({ ...othersInfo, ancestry: value });
-
     };
     const handleUserSkinToneChange = (value) => {
-        setOthersInfo({ ...othersInfo, skinTune: value });
-
+        setOthersInfo({ ...othersInfo, skinTone: value });
     };
     const handleUserHairColorChange = (value) => {
         setOthersInfo({ ...othersInfo, hairColor: value });
-
     };
     const handleUserHairTypeChange = (value) => {
-        setOthersInfo({ ...othersInfo, HairType: value });
+        setOthersInfo({ ...othersInfo, hairType: value });
 
     };
     const handleUserEyeColorChange = (value) => {
-        setOthersInfo({ ...othersInfo, EyeColor: value });
+        setOthersInfo({ ...othersInfo, eyeColor: value });
 
     };
 
@@ -460,36 +530,219 @@ export const AccordionPartner = ({ data, isLoading }) => {
                     </div>
                     {
                         maritalStatus === "married" && <div>
-                            <h1 className='text-lg leading-6 font-semibold mb-4'>How Many Husband/Wife Do You Have</h1>
-                            <Select
+                            <h1 className='text-lg leading-6 font-semibold mb-2'>How Many Partner Do You Have</h1>
+                            <div className='flex justify-center items-center mb-2'>
+                                <button onClick={handleDecreasePartner} className="px-4 py-2 text-3xl bg-gray-300 leading-6 rounded-l-lg">
+                                    -
+                                </button>
+                                <div className='text-lg text-center leading-6 font-medium w-24 py-2 bg-gray-200'>{partnerQuantity}</div>
+                                <button onClick={handleIncreasePartner} className="px-4 py-2 text-3xl bg-gray-300 leading-6 rounded-r-lg">
+                                    +
+                                </button>
+                            </div>
+                        </div>
+                    }
+                    {
+                        maritalStatus === "married" && <div>
+                            <h1 className='text-lg leading-6 font-semibold mb-4'>Reason For Another Marriage</h1>
+                            <Input
                                 className='w-full mb-2'
-                                onChange={handleMaritalStatusChange}
-                                placeholder="Select Status"
-                                showSearch
-                                filterOption={(input, option) =>
-                                    (option?.label ?? '').toLowerCase().includes(input.toLowerCase())
-                                }
-                                options={[
-                                    {
-                                        value: 'single',
-                                        label: 'Never Married',
-                                    },
-                                    {
-                                        value: 'married',
-                                        label: 'Married',
-                                    },
-                                    {
-                                        value: 'divorced',
-                                        label: 'Divorced',
-                                    },
-                                    {
-                                        value: 'widowed',
-                                        label: 'Widowed',
-                                    },
-                                ]}
+                                onChange={handleMarriageReasonChange}
+                                placeholder="Type reason"
                             />
                         </div>
                     }
+                    {
+                        maritalStatus === "married" && <div>
+                            <h1 className='text-lg leading-6 font-semibold mb-4'>Is Your Current Partner Aware Of Your Decision About Another Marriage?</h1>
+                            <Radio.Group
+                                onChange={handlePartnerAwareChange}
+                                value={partnerAwareValue}>
+                                <Space direction="vertical">
+                                    <Radio value={'yes'}>Yes</Radio>
+                                    <Radio value={'no'}>No</Radio>
+                                </Space>
+                            </Radio.Group>
+                        </div>
+                    }
+                    {
+                        maritalStatus === "divorced" && <div>
+                            <h1 className='text-lg leading-6 font-semibold mb-4'>Marriage Date</h1>
+                            <DatePicker
+                                placeholder='Marriage Date'
+                                className='w-full mb-2'
+                                onChange={onMarriageDateChange}
+                            />
+                        </div>
+                    }
+                    {
+                        maritalStatus === "divorced" && <div>
+                            <h1 className='text-lg leading-6 font-semibold mb-4'>Divorce Date</h1>
+                            <DatePicker
+                                placeholder='Divorce Date'
+                                className='w-full mb-2'
+                                onChange={onDivorceDateChange}
+                            />
+                        </div>
+                    }
+                    {
+                        maritalStatus === "divorced" && <div>
+                            <h1 className='text-lg leading-6 font-semibold mb-4'>Reason of Divorce</h1>
+                            <Input
+                                className='w-full mb-2'
+                                onChange={handleDivorceReasonChange}
+                                placeholder="Type reason"
+                            />
+                        </div>
+                    }
+
+                    {
+                        maritalStatus === "widowed" && <div>
+                            <h1 className='text-lg leading-6 font-semibold mb-4'>Marriage Date</h1>
+                            <DatePicker
+                                placeholder='Marriage Date'
+                                className='w-full mb-2'
+                                onChange={onMarriageDateChange}
+                            />
+                        </div>
+                    }
+                    {
+                        maritalStatus === "widowed" && <div>
+                            <h1 className='text-lg leading-6 font-semibold mb-4'>Partner's Death Date</h1>
+                            <DatePicker
+                                placeholder="Partner's Death Date"
+                                className='w-full mb-2'
+                                onChange={onPartnerDeathDateChange}
+                            />
+                        </div>
+                    }
+                    {
+                        maritalStatus === "married" && maritalStatus !== "" && maritalStatus !== "single" && (<div>
+                            <h1 className='text-lg leading-6 font-semibold mb-4'>Do You Have children</h1>
+                            <Select
+                                className='w-full mb-2'
+                                onChange={handleHaveChildrenChange}
+                                placeholder="Have any children?"
+                                options={[
+                                    {
+                                        value: 'yes',
+                                        label: 'Yes',
+                                    },
+                                    {
+                                        value: 'no',
+                                        label: 'No',
+                                    },
+                                ]}
+                            />
+                        </div>)
+                    }
+                    {
+                        maritalStatus === "divorced" && maritalStatus !== "" && maritalStatus !== "single" && (<div>
+                            <h1 className='text-lg leading-6 font-semibold mb-4'>Do You Have children</h1>
+                            <Select
+                                className='w-full mb-2'
+                                onChange={handleHaveChildrenChange}
+                                placeholder="Have any children?"
+                                options={[
+                                    {
+                                        value: 'yes',
+                                        label: 'Yes',
+                                    },
+                                    {
+                                        value: 'no',
+                                        label: 'No',
+                                    },
+                                ]}
+                            />
+                        </div>)
+                    }
+                    {
+                        maritalStatus === "widowed" && maritalStatus !== "" && maritalStatus !== "single" && (<div>
+                            <h1 className='text-lg leading-6 font-semibold mb-4'>Do You Have children</h1>
+                            <Select
+                                className='w-full mb-2'
+                                onChange={handleHaveChildrenChange}
+                                placeholder="Have any children?"
+                                options={[
+                                    {
+                                        value: 'yes',
+                                        label: 'Yes',
+                                    },
+                                    {
+                                        value: 'no',
+                                        label: 'No',
+                                    },
+                                ]}
+                            />
+                        </div>)
+                    }
+                    {
+                        haveChildren === "yes" && maritalStatus !== "single" && <div>
+                            <div>
+                                <h1 className='text-lg leading-6 font-semibold mb-4'>Number of Boy</h1>
+                                <div className='flex justify-center items-center mb-2'>
+                                    <button onClick={handleDecreaseBoy} className="px-4 py-2 text-3xl bg-gray-300 leading-6 rounded-l-lg">
+                                        -
+                                    </button>
+                                    <div className='text-lg text-center leading-6 font-medium w-24 py-2 bg-gray-200'>{boyQuantity}</div>
+                                    <button onClick={handleIncreaseBoy} className="px-4 py-2 text-3xl bg-gray-300 leading-6 rounded-r-lg">
+                                        +
+                                    </button>
+                                </div>
+                            </div>
+                            <div>
+                                <h1 className='text-lg leading-6 font-semibold mb-4'>Boy Age</h1>
+                                <div className='flex justify-center items-center mb-2'>
+                                    <button onClick={handleDecreaseBoyAge} className="px-4 py-2 text-3xl bg-gray-300 leading-6 rounded-l-lg">
+                                        -
+                                    </button>
+                                    <div className='text-lg text-center leading-6 font-medium w-24 py-2 bg-gray-200'>{boyAge}</div>
+                                    <button onClick={handleIncreaseBoyAge} className="px-4 py-2 text-3xl bg-gray-300 leading-6 rounded-r-lg">
+                                        +
+                                    </button>
+                                </div>
+                            </div>
+                            <div>
+                                <h1 className='text-lg leading-6 font-semibold mb-4'>Number of Girl</h1>
+                                <div className='flex justify-center items-center mb-2'>
+                                    <button onClick={handleDecreaseGirl} className="px-4 py-2 text-3xl bg-gray-300 leading-6 rounded-l-lg">
+                                        -
+                                    </button>
+                                    <div className='text-lg text-center leading-6 font-medium w-24 py-2 bg-gray-200'>{girlQuantity}</div>
+                                    <button onClick={handleIncreaseGirl} className="px-4 py-2 text-3xl bg-gray-300 leading-6 rounded-r-lg">
+                                        +
+                                    </button>
+                                </div>
+                            </div>
+                            <div>
+                                <h1 className='text-lg leading-6 font-semibold mb-4'>Girl Age</h1>
+                                <div className='flex justify-center items-center mb-2'>
+                                    <button onClick={handleDecreaseGirlAge} className="px-4 py-2 text-3xl bg-gray-300 leading-6 rounded-l-lg">
+                                        -
+                                    </button>
+                                    <div className='text-lg text-center leading-6 font-medium w-24 py-2 bg-gray-200'>{girlAge}</div>
+                                    <button onClick={handleIncreaseGirlAge} className="px-4 py-2 text-3xl bg-gray-300 leading-6 rounded-r-lg">
+                                        +
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    {
+                        maritalStatus === "divorced" && haveChildren === "yes" && (
+                            <div>
+                                <h1 className='text-lg leading-6 font-semibold mb-4'>Do Your Children Live with You</h1>
+                                <Radio.Group onChange={handleChildrenLiveChange} value={childrenLiveStatus}>
+                                    <Space direction="vertical">
+                                        <Radio value='yes'>Yes</Radio>
+                                        <Radio value="no">No</Radio>
+                                        <Radio value="sometimes">Sometimes</Radio>
+                                    </Space>
+                                </Radio.Group>
+                            </div>
+                        )
+                    }
+
                 </Panel>
                 {/* ---------- Family Information ---------- */}
                 <Panel header={styledHeader("Family Information")} key="2">
@@ -601,13 +854,36 @@ export const AccordionPartner = ({ data, isLoading }) => {
                     </div>
                     <div>
                         <h1 className='text-lg leading-6 font-semibold mb-4'>Number of Siblings</h1>
-                        <div>
+                        {/* <div>
                             <button onClick={() => setBrother(brother + 1)} >+ </button> {brother} Brother <button onClick={() => brother == 0 || brother > 0 && setBrother(brother - 1)}>-</button>
                         </div>
                         <div>
                             <button onClick={() => setSister(sister + 1)} >+ </button> {sister} Sister <button onClick={() => sister == 0 || sister > 0 && setSister(sister - 1)}>-</button>
+                        </div> */}
+                        <div>
+                            <h1 className='text-lg leading-6 font-semibold mb-2'>Brothers</h1>
+                            <div className='flex justify-center items-center mb-2'>
+                                <button onClick={() => setBrother(prevCount => prevCount - 1)} className="px-4 py-2 text-3xl bg-gray-300 leading-6 rounded-l-lg">
+                                    -
+                                </button>
+                                <div className='text-lg text-center leading-6 font-medium w-24 py-2 bg-gray-200'>{brother}</div>
+                                <button onClick={() => setBrother(prevCount => prevCount + 1)} className="px-4 py-2 text-3xl bg-gray-300 leading-6 rounded-r-lg">
+                                    +
+                                </button>
+                            </div>
                         </div>
-
+                        <div>
+                            <h1 className='text-lg leading-6 font-semibold mb-2'>Sisters</h1>
+                            <div className='flex justify-center items-center mb-2'>
+                                <button onClick={() => setSister(prevCount => prevCount - 1)} className="px-4 py-2 text-3xl bg-gray-300 leading-6 rounded-l-lg">
+                                    -
+                                </button>
+                                <div className='text-lg text-center leading-6 font-medium w-24 py-2 bg-gray-200'>{sister}</div>
+                                <button onClick={() => setSister(prevCount => prevCount + 1)} className="px-4 py-2 text-3xl bg-gray-300 leading-6 rounded-r-lg">
+                                    +
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </Panel>
                 {/* ---------- Professional Information ------------- */}

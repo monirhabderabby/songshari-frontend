@@ -52,77 +52,90 @@ const Accordian = ({ data, isLoading }) => {
                 <AccordionDetails>
                     {data && (
                         <Typography>
-                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                            {
+                                data?.firstName && <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                                 <span className="font-medium">Name</span>
                                 <p className="font-normal">{data ? `${data?.firstName}` : "Not Provided"}</p>
                             </div>
-                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                            }
+
+                            
+                            {data.phone && <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                                 <span className="font-medium">Phone</span>
                                 <p className="font-normal">{data ? data.phone : "Not Provided"}</p>
-                            </div>
-                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                            </div>}
+
+                          { data?.email && <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                                 <span className="font-medium">Email</span>
                                 <p className="font-normal">{data ? data?.email : "Not Provided"}</p>
-                            </div>
-                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                            </div>}
+
+                           { data?.NidOrPassportNumber && <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                                 <span className="font-medium">Nid Or Passport Number</span>
                                 <p className="font-normal">{data ? data?.NidOrPassportNumber : "Not Provided"}</p>
-                            </div>
-                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                            </div>}
+
+                            {data?.citizenShip && <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                                 <span className="font-medium">CitizenShip</span>
                                 <p className="font-normal">{data ? data?.citizenShip.toString() : "Not Provided"}</p>
-                            </div>
-                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                            </div>}
+
+                            {data?.zodiacSign && <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                                 <span className="font-medium">ZodiacSign</span>
                                 <p className="font-normal">{data ? data?.zodiacSign : "Not Provided"}</p>
-                            </div>
-                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                            </div>}
+                           {data?.barRegistrationNumber && <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                                 <span className="font-medium">Bar Registration Number</span>
                                 <p className="font-normal">{data ? data?.barRegistrationNumber : "Not Provided"}</p>
-                            </div>
-                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                            </div>}
+
+                            { data?.licenceNo && <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                                 <span className="font-medium">Licence No</span>
                                 <p className="font-normal">{data ? data?.licenceNo : "Not provided"}</p>
-                            </div>
-                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                            </div>}
+                            {data.yearOfBarRegistration && <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                                 <span className="font-medium">Year Of Bar Registration</span>
                                 <p className="font-normal">{data ? data.yearOfBarRegistration : "Not Provided"}</p>
-                            </div>
-                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                            </div>}
+
+                           {data?.dateOfBirth && <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                                 <span className="font-medium">Date Of Birth</span>
                                 <p className="font-normal">{data ? moment(data?.dateOfBirth).format("ll") : "Not Provided"}</p>
-                            </div>
-                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                                <span className="font-medium">About You</span>
-                                <p className="font-normal">Not Provided</p>
-                            </div>
+                            </div>}
 
-                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                           
+
+                            {data?.hightestEducationalQualification?.degreeName && <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                                 <span className="font-medium"> Degree Name</span>
                                 <p className="font-normal">
                                     {data?.hightestEducationalQualification?.degreeName
                                         ? hightestEducationalQualification?.degreeName
                                         : "Not Provided"}
                                 </p>
-                            </div>
-                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                            </div>}
+
+                           {data?.hightestEducationalQualification?.institute && <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                                 <span className="font-medium">Institute</span>
                                 <p className="font-normal">{data ? hightestEducationalQualification?.institute : "Not Provided"}</p>
-                            </div>
-                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                            </div>}
+
+                            {data?.hightestEducationalQualification?.Department && <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                                 <span className="font-medium">Department</span>
                                 <p className="font-normal">{data ? hightestEducationalQualification?.Department : "Not Provided"}</p>
-                            </div>
-                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                            </div>}
+
+                            {data?.hightestEducationalQualification?.fieldOfStudy && <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                                 <span className="font-medium">Field Of Study</span>
                                 <p className="font-normal">{data ? hightestEducationalQualification?.fieldOfStudy : "Not Provided"}</p>
-                            </div>
-                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                            </div>}
+
+                           {data?.hightestEducationalQualification?.yearOfPassing && <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                                 <span className="font-medium">Year Of Passing</span>
                                 <p className="font-normal">
                                     {data ? moment(hightestEducationalQualification?.yearOfPassing).format("ll") : "Not Provided"}
                                 </p>
-                            </div>
+                            </div>}
+                            
                             <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                                 <span className="font-medium">Special Achievement</span>
                                 <p className="font-normal">{data ? hightestEducationalQualification?.specialAchievement : "Not Provided"}</p>
