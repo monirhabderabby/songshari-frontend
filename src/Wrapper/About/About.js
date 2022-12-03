@@ -23,10 +23,7 @@ const About = () => {
                 <Footer />
             </div>
             <div className="md:hidden">
-                {/* <MobileFreePlan /> */}
-                {/* <MobileGoldPlan /> */}
-                {/* <MobileDiamondPlan /> */}
-                <MobilePlatinumPlan />
+          
             </div>
         </>
     );
