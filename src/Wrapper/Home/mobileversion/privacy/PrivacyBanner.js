@@ -8,6 +8,10 @@ import { CardActionArea } from '@mui/material';
 export const PrivacyBanner = () => {
   return (
     <div>
+         <div className='grid grid-cols-3'>
+     <img src='https://i.ibb.co/stTYBVf/Arrow-1.png' className='col-span-2 ml-8 mt-5'></img>
+     <img src='https://i.ibb.co/x2L99Cr/Arrow-2.png' className='ml-20 mt-5'></img>
+      </div>
  <Card className='w-full rounded'>
       <CardActionArea>
         <CardContent>

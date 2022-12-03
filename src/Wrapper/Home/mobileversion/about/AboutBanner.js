@@ -14,6 +14,7 @@ const AboutBanner = () => {
         <div
             // style={fontFamily()} 
             className='relative'>
+                
             <div className='grid grid-cols-2 ml-4 mr-4'>
                 <div className='flex items-center justify-center mb-32'>
                     <h4

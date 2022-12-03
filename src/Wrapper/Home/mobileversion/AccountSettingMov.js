@@ -180,8 +180,8 @@ export const AccountSettingMov = () => {
       </Link>
      
 
-      <button aria-describedby={id} type="button" onClick={handleClick} className='ml-20 mt-4'>
-        About Shongshari
+      <button aria-describedby={id} type="button" onClick={handleClick} className='ml-6 mt-4'>
+      <i class="fa-solid fa-ban mr-4"></i> About Shongshari
       </button>
       <Popper id={id} open={open} anchorEl={anchorEl}>
         <Box sx={{ border: 1, p: 1, bgcolor: 'background.paper' }} className='p-12'>

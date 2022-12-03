@@ -10,6 +10,10 @@ import { BottomNav } from '../BottomNav';
 export const MeetMov = () => {
   return (
     <div>
+         <div className='grid grid-cols-3'>
+     <img src='https://i.ibb.co/stTYBVf/Arrow-1.png' className='col-span-2 ml-8 mt-5'></img>
+     <img src='https://i.ibb.co/x2L99Cr/Arrow-2.png' className='ml-20 mt-5'></img>
+      </div>
          <div className="w-full flex flex-col items-center font-Inter gap-y-[20px] pt-[70px]">
                         <p className="text-[#6941C6] text-[16px] font-semibold">Shongshari.com</p>
                         <h1 className="font-semibold text-[36px] text-[#101828]">Meet our team</h1>
