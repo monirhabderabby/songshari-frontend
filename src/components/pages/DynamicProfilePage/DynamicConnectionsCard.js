@@ -33,8 +33,6 @@ export const DynamicConnectionsCard = ({ data, isLoading }) => {
                     ) : (
                         <BiUserPlus className="h-[36px] w-[36px] text-[#E41272] transition-all duration-500 " onClick={handleSentRequest} />
                     )}
-
-                    {/* bg-[#FFDFF4] */}
                 </div>
             </div>
         </section>

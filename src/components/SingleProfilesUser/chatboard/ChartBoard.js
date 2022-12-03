@@ -5,29 +5,17 @@ import { BsCommand } from "react-icons/bs";
 import { TbMessageCircle2 } from "react-icons/tb";
 import ChartBoardCSS from "../../../assets/css/chartBoard.module.css";
 import certificate from "../../../assets/images/certificate.jpg";
-import profilePhoto from "../../../assets/images/profileSmile.jpg";
 import { useGetSuggestedUsersQuery } from "../../../Redux/features/AllRecentData/recentApi";
 import { CardYouMayLike } from "../../pages/Shared/CardYouMayLike/CardYouMayLike";
 
 const ChartBoard = () => {
-    const { data, isLoading } = useGetSuggestedUsersQuery();
+    const { data } = useGetSuggestedUsersQuery();
     const number6 = [1, 2, 3, 4, 5, 6];
 
     const certificateInfo = [
         { id: 1, text: "Personal Certificate", img: certificate },
         { id: 2, text: "Professional Certificate", img: certificate },
         { id: 3, text: "Educational Certificate", img: certificate },
-    ];
-
-    const suggestedProfiles = [
-        { id: 1, name: "Mr. Sherlock", img: profilePhoto },
-        { id: 2, name: "Mr. Sherlock", img: profilePhoto },
-        { id: 3, name: "Mr. Sherlock", img: profilePhoto },
-        { id: 4, name: "Mr. Sherlock", img: profilePhoto },
-        { id: 5, name: "Mr. Sherlock", img: profilePhoto },
-        { id: 6, name: "Mr. Sherlock", img: profilePhoto },
-        { id: 7, name: "Mr. Sherlock", img: profilePhoto },
-        { id: 8, name: "Mr. Sherlock", img: profilePhoto },
     ];
 
     return (
@@ -65,7 +53,7 @@ const ChartBoard = () => {
                 <div className="grid grid-cols-2 gap-3">
                     {data
                         ? data.suggestion.map(profile => {
-                              return <CardYouMayLike key={profile._id} {...{ profile }} />;
+                              return <CardYouMayLike key={profile._id} {...{ data: profile }} />;
                           })
                         : number6.map(n => {
                               return (
