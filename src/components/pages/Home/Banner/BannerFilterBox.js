@@ -1,11 +1,18 @@
 import { AutoComplete, Select, Slider } from "antd";
 
-import React, { Fragment, useState } from "react";
-import { useAuthState } from "react-firebase-hooks/auth";
+import React, { Fragment } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { auth } from "../../../../firebase.init";
-import { setFilter } from "../../../../Redux/features/filter/filterSlice";
+import {
+    setAge,
+    setCurrentLocation,
+    setEducation,
+    setfor,
+    setHomeTown,
+    setLookingFor,
+    setProfession,
+    setReligion,
+} from "../../../../Redux/features/filter/filterSlice";
 
 const BannerFilterBox = () => {
     const dispatch = useDispatch();
@@ -283,35 +290,30 @@ const BannerFilterBox = () => {
         },
     ];
     const navigate = useNavigate();
-    if (loading) {
-        return;
-    }
-
-    const handleChange = e => { };
 
     const lookingForHandler = val => {
-        dispatch(setFilter({ lookingFor: val }));
+        dispatch(setLookingFor({ lookingFor: val }));
     };
     const forHandler = val => {
-        dispatch(setFilter({ for: val }));
+        dispatch(setfor({ for: val }));
     };
     const ageHandler = val => {
-        dispatch(setFilter({ age: val }));
+        dispatch(setAge({ age: val }));
     };
     const professionHandler = val => {
-        dispatch(setFilter({ profession: val }));
+        dispatch(setProfession({ profession: val }));
     };
     const religionHandler = val => {
-        dispatch(setFilter({ religion: val }));
+        dispatch(setReligion({ religion: val }));
     };
     const homeTownHandler = val => {
-        dispatch(setFilter({ homeTown: val }));
+        dispatch(setHomeTown({ homeTown: val }));
     };
     const currentLocationHandler = val => {
-        dispatch(setFilter({ currentLocation: val }));
+        dispatch(setCurrentLocation({ currentLocation: val }));
     };
     const educationHandler = val => {
-        dispatch(setFilter({ education: val }));
+        dispatch(setEducation({ education: val }));
     };
 
     return (
@@ -345,9 +347,7 @@ const BannerFilterBox = () => {
                         <div className="mt-[15px]">
                             <h2 className=" text-[#000000] font-medium">Age</h2>
                             <div className="mt-[5px]">
-                                <span className="text-[14px] block text-center font-medium text-[#72777A]">
-                                    {/* {age[0]} - {age[1]} */}
-                                </span>
+                                <span className="text-[14px] block text-center font-medium text-[#72777A]">{/* {age[0]} - {age[1]} */}</span>
                                 <Slider
                                     className="text-[#E41272]"
                                     range={{ draggableTrack: true }}
@@ -464,7 +464,6 @@ const BannerFilterBox = () => {
                                     width: 101,
                                 }}
                                 options={hometown}
-                                onChange={e => setHomeTown(e.target.value)}
                                 placeholder="Home Town"
                                 onSelect={val => homeTownHandler(val)}
                                 filterOption={(inputValue, option) => option.value.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1}
@@ -485,7 +484,7 @@ const BannerFilterBox = () => {
                     </div>
                 </div>
                 <button
-                    onClick={() => navigate(user ? "/find-partner/filter" : "signup")}
+                    onClick={() => navigate("/find-partner/filter")}
                     className="rounded-[48px] w-[121px] h-[31px] block mt-[15px] mx-auto text-[#fff] text-sm font-medium"
                     style={{
                         background: "linear-gradient(180deg, #D21878 0%, #4F42A3 100%)",
