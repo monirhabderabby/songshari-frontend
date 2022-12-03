@@ -6,7 +6,7 @@ import { styled } from "@mui/material/styles";
 import Typography from "@mui/material/Typography";
 import moment from "moment";
 import React from "react";
-import { useNavigate } from "react-router";
+import { useNavigate, useOutletContext } from "react-router";
 import "./Accordion.css";
 const Accordion = styled(props => <MuiAccordion disableGutters elevation={0} square {...props} />)(({ theme }) => ({
     paddingTop: "23px",
@@ -31,7 +31,8 @@ const AccordionSummary = styled(props => <MuiAccordionSummary expandIcon={<Arrow
 );
 const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({}));
 
-const Accordian = ({ data, isLoading }) => {
+const Accordian = () => {
+    const [data, isLoading] = useOutletContext();
     // const { phone, email, NidOrPassportNumber, citizenShip, zodiacSign, barRegistrationNumber, licenceNo, yearOfBarRegistration, dateOfBirth } = data;
     const hightestEducationalQualification = data?.hightestEducationalQualification;
 
@@ -40,7 +41,8 @@ const Accordian = ({ data, isLoading }) => {
     const handleChange = panel => (newExpanded) => {
         setExpanded(newExpanded ? panel : true);
     };
-    console.log(isLoading)
+
+    console.log(data)
     // if (isLoading) return false;
 
 
@@ -51,15 +53,11 @@ const Accordian = ({ data, isLoading }) => {
             <Accordion expanded={expanded === "panel1"} onChange={handleChange("panel1")}>
                 <div className="flex justify-between items-center	">
                     <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
-
                         <div>
                             <Typography>
                                 <h1 className="text-[24px] text-[#333333] leading-[34px] font-fira font-semibold">Personal Information</h1>
                             </Typography>
                         </div>
-
-
-
                     </AccordionSummary>
                     <div>
                         <button
