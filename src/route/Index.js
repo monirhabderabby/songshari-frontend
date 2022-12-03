@@ -57,6 +57,11 @@ import { PendingCaseMov } from "../Wrapper/Home/mobileversion/mobilelawyeractivi
 import { RunningCaseMov } from "../Wrapper/Home/mobileversion/mobilelawyeractivity/RunningCase";
 import MobileProfileOthers from "../Wrapper/Home/mobileversion/MobileProfileOthers";
 import { Setting } from "../Wrapper/Home/mobileversion/Setting";
+import { HistoryMov } from "../Wrapper/Home/mobileversion/history/HistoryMov";
+import { CommunityMov } from "../Wrapper/Home/mobileversion/comminuty/CommunityMov";
+import { PrivacyMov } from "../Wrapper/Home/mobileversion/privacy/PrivacyMov";
+import { AboutMov } from "../Wrapper/Home/mobileversion/about/AboutMov";
+import { MeetMov } from "../Wrapper/Home/mobileversion/meet/MeetMov";
 
 const Index = () => {
     return (
@@ -114,10 +119,14 @@ const Index = () => {
                     {/* --------------- MOBILE ROUTES START --------------- */}
                     <Route path="/mobileHomePage" element={<MobileHome />}></Route>
                     <Route path="/setting" element={<Setting></Setting>}></Route>
+                    <Route path="/aboutmov" element={<AboutMov></AboutMov>}></Route>
+                    <Route path="/meetmov" element={<MeetMov></MeetMov>}></Route>
                     <Route path="/matchesmov" element={<MatchesMov></MatchesMov>}></Route>
                     <Route path="/mobileActivityPage" element={<MobileActivity />}></Route>
                     <Route path="/mobileActivityNextPage" element={<MobileActivityPost />}></Route>
-
+                    <Route path="/historymov" element={<HistoryMov></HistoryMov>}></Route>
+                    <Route path="/privacymov" element={<PrivacyMov></PrivacyMov>}></Route>
+                    <Route path="/communitymov" element={<CommunityMov></CommunityMov>}></Route>
                     <Route path="/certificatemov" element={<CertificateMov></CertificateMov>}></Route>
                     <Route path="/like" element={<Like></Like>}></Route>
                     <Route path="/mobileUpgrade" element={<UpgradePlan></UpgradePlan>}></Route>
