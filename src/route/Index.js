@@ -47,6 +47,7 @@ import UpgradePlan from "../components/pages/Membership/MobileVersion/UpgradePla
 import MobileActivity from "../components/pages/MobileActivity/MobileActivity";
 import MobileActivityPost from "../components/pages/MobileActivity/MobileActivityPost";
 // import MobileSingleProfilesUser from "../components/SingleProfilesUser/MobileSingleProfilesUser/MobileSingleProfilesUser";
+import { FindAPartnerSuggested } from "../components/pages/FindPartner/FindAPartnerSuggested";
 import { CertificateMov } from "../Wrapper/Home/mobileversion/CertificateMov";
 import { Like } from "../Wrapper/Home/mobileversion/Like";
 import { MatchesMov } from "../Wrapper/Home/mobileversion/MatchesMov";
@@ -94,7 +95,7 @@ const Index = () => {
                     <Route path="/privacy-policy" element={<Privacy></Privacy>}></Route>
                     <Route path="/our-teams" element={<OurTeams />}></Route>
                     <Route path="/find-partner" element={<FindPartner />}>
-                        <Route path="/find-partner" element={<Suggested />} />
+                        <Route path="/find-partner" element={<FindAPartnerSuggested />} />
                         <Route path="top" element={<TopBride />} />
                         <Route path="nearest" element={<TopGroom />} />
                         <Route path="filter" element={<FilterResults />} />
