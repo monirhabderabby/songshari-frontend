@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useRef } from 'react';
 import { DynamicActivityPage } from '../../pages/DynamicProfilePage/DynamicActivityPage';
 import profile from "../../../assets/images/profile/up1.png";
@@ -26,12 +26,6 @@ const SingleUserActivity = () => {
             });
         });
     };
-
-    useEffect(() => {
-        if (photoURL) {
-            console.log(photoURL);
-        }
-    }, [photoURL]);
 
     return (
         <div className="grid grid-cols-1 gap-y-[30px]">

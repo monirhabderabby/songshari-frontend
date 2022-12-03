@@ -283,12 +283,12 @@ const BannerFilterBox = () => {
         },
     ];
     const navigate = useNavigate();
-    if (loading) {
+    /* if (loading) {
         return;
-    }
-    
+    } */
+
     const handleChange = e => { };
-    
+
     const lookingForHandler = val => {
         dispatch(setFilter({ lookingFor: val }));
     };
@@ -464,7 +464,7 @@ const BannerFilterBox = () => {
                                     width: 101,
                                 }}
                                 options={hometown}
-                                onChange={e => setHomeTown(e.target.value)}
+                                // onChange={e => setHomeTown(e.target.value)}
                                 placeholder="Home Town"
                                 onSelect={val => homeTownHandler(val)}
                                 filterOption={(inputValue, option) => option.value.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1}
@@ -485,7 +485,7 @@ const BannerFilterBox = () => {
                     </div>
                 </div>
                 <button
-                    onClick={() => navigate(user ? "/find-partner/filter" : "signup")}
+                    // onClick={() => navigate(user ? "/find-partner/filter" : "signup")}
                     className="rounded-[48px] w-[121px] h-[31px] block mt-[15px] mx-auto text-[#fff] text-sm font-medium"
                     style={{
                         background: "linear-gradient(180deg, #D21878 0%, #4F42A3 100%)",
