@@ -1,8 +1,14 @@
 import React from "react";
 import "../../../App.css";
 import tick from "../../../assets/images/icons/tick.png";
+import { useGetAllRequestQuery } from "../../../Redux/features/connections/connectionApi";
 
-export const Friends = () => {
+export const Friends = ({ data, isLoading }) => {
+    const { data: request } = useGetAllRequestQuery();
+
+    if (request) {
+        console.log(request);
+    }
     const friends = [1, 2, 3, 4, 5, 6, 7];
     return (
         <div className="w-full grid grid-cols-1 gap-y-4">
@@ -13,7 +19,11 @@ export const Friends = () => {
                         key={f}
                     >
                         <div className="h-full flex items-center">
-                            <img className="w-[83px] h-[100px] rounded-[15px] mr-[21px]" src="https://placeimg.com/192/192/people" alt="Not Available" />
+                            <img
+                                className="w-[83px] h-[100px] rounded-[15px] mr-[21px]"
+                                src="https://placeimg.com/192/192/people"
+                                alt="Not Available"
+                            />
                             <div>
                                 <div className="flex items-center">
                                     <h1 className="text-[20px] leading-[30px] text-[#333333] font-bold mr-[4px]">Erma Porter</h1>

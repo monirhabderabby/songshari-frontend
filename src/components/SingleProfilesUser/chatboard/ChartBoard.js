@@ -1,22 +1,17 @@
 import React from "react";
 // import ChatGelary from './ChatGelary';
 // import ChatRequest from './ChatRequest';
-import { BiUserPlus } from "react-icons/bi";
 import { BsCommand } from "react-icons/bs";
-import { MdMessage } from "react-icons/md";
 import { TbMessageCircle2 } from "react-icons/tb";
 import ChartBoardCSS from "../../../assets/css/chartBoard.module.css";
 import certificate from "../../../assets/images/certificate.jpg";
 import profilePhoto from "../../../assets/images/profileSmile.jpg";
 import { useGetSuggestedUsersQuery } from "../../../Redux/features/AllRecentData/recentApi";
+import { CardYouMayLike } from "../../pages/Shared/CardYouMayLike/CardYouMayLike";
 
 const ChartBoard = () => {
     const { data, isLoading } = useGetSuggestedUsersQuery();
     const number6 = [1, 2, 3, 4, 5, 6];
-
-    if (data) {
-        console.log(data);
-    }
 
     const certificateInfo = [
         { id: 1, text: "Personal Certificate", img: certificate },
@@ -70,24 +65,7 @@ const ChartBoard = () => {
                 <div className="grid grid-cols-2 gap-3">
                     {data
                         ? data.suggestion.map(profile => {
-                              return (
-                                  <div
-                                      key={profile?._id}
-                                      className="bg-white rounded-[20px] flex flex-col items-center justify-center px-3 py-2"
-                                      style={{ boxShadow: "0px 4px 4px rgba(62, 73, 84, 0.04)" }}
-                                  >
-                                      <img className="w-[45px] h-[45px] rounded-full" src={profile?.profilePhoto} alt="Not Available" />
-                                      <h4 className="text-xs leading-5 font-semibold">{profile?.firstName}</h4>
-                                      <div className="flex justify-between items-center gap-4">
-                                          <span className="bg-[#FFDFF4] p-3 rounded-full">
-                                              <MdMessage className="text-[#E41272] text-xl" />
-                                          </span>
-                                          <span className="bg-[#FFDFF4] p-3 rounded-full">
-                                              <BiUserPlus className="text-[#E41272] text-xl" />
-                                          </span>
-                                      </div>
-                                  </div>
-                              );
+                              return <CardYouMayLike key={profile._id} {...{ profile }} />;
                           })
                         : number6.map(n => {
                               return (
