@@ -16,18 +16,32 @@ const filterSlice = createSlice({
     name: "filter",
     initialState,
     reducers: {
-        setFilter: (state, action) => {
+        setLookingFor: (state, action) => {
             state.lookingFor = action.payload.lookingFor;
+        },
+        setfor: (state, action) => {
             state.for = action.payload.for;
-            state.age = action.payload.age;
-            state.profession = action.payload.profession;
-            state.religion = action.payload.religion;
-            state.homeTown = action.payload.homeTown;
-            state.currentLocation = action.payload.currentLocation;
+        },
+        setEducation: (state, action) => {
             state.education = action.payload.education;
+        },
+        setHomeTown: (state, action) => {
+            state.homeTown = action.payload.homeTown;
+        },
+        setCurrentLocation: (state, action) => {
+            state.currentLocation = action.payload.currentLocation;
+        },
+        setReligion: (state, action) => {
+            state.religion = action.payload.religion;
+        },
+        setProfession: (state, action) => {
+            state.profession = action.payload.profession;
+        },
+        setAge: (state, action) => {
+            state.age = action.payload.age;
         },
     },
 });
 
 export default filterSlice.reducer;
-export const { setFilter } = filterSlice.actions;
+export const { setfor, setHomeTown, setLookingFor, setEducation, setAge, setCurrentLocation, setReligion, setProfession } = filterSlice.actions;

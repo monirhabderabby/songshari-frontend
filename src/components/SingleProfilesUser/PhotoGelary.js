@@ -25,8 +25,6 @@ const PhotoGelary = () => {
         handleUpload();
     };
 
-    console.log("urls", urls);
-
     const handleUpload = async () => {
         const promises = [];
         images.map(async photo => {
