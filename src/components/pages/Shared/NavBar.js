@@ -28,10 +28,6 @@ const NavBar = ({ bg }) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    if (user) {
-        console.log(user?.photoURL);
-    }
-
     const logoutButton = async () => {
         dispatch(loadUserData(null));
         await signOut();

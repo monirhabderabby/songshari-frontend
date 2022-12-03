@@ -11,13 +11,13 @@ export const Services = () => {
     <div>
       <h1 className='font-bold ml-10 mt-12'>All Services</h1>
       <div className='grid grid-cols-3 gap-3 ml-12'>
-        <img src={partner} className='w-14 bg-service-mov' alt="Not Available"></img>
-        <img src={Lawyer} className='w-14 bg-service-mov' alt="Not Available"></img>
-        <img src={agent} className='w-14 bg-service-mov' alt="Not Available"></img>
-        <img src={Kazi} className='w-14 bg-service-mov' alt="Not Available"></img>
-        <img src={Shop} className='w-14 bg-service-mov' alt="Not Available"></img>
-        <img src={courses} className='w-14 bg-service-mov' alt="Not Available"></img>
-        <img src={Blog} className='w-14 bg-service-mov' alt="Not Available"></img>
+        <img src={partner} className='w-14 bg-service-mov rounded-full' alt="Not Available"></img>
+        <img src={Lawyer} className='w-14 bg-service-mov rounded-full' alt="Not Available"></img>
+        <img src={agent} className='w-14 bg-service-mov rounded-full' alt="Not Available"></img>
+        <img src={Kazi} className='w-14 bg-service-mov rounded-full' alt="Not Available"></img>
+        <img src={Shop} className='w-14 bg-service-mov rounded-full' alt="Not Available"></img>
+        <img src={courses} className='w-14 bg-service-mov rounded-full' alt="Not Available"></img>
+        <img src={Blog} className='w-14 bg-service-mov rounded-full' alt="Not Available"></img>
       </div>
     </div>
   )
