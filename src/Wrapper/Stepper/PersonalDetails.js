@@ -2,7 +2,7 @@ import { DatePicker } from "antd";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import React, { useEffect, useState } from "react";
 import { Controller, useForm, useFieldArray } from "react-hook-form";
-import { AiOutlineCloudUpload, AiOutlineIdcard } from "react-icons/ai";
+import { AiFillFileAdd, AiOutlineCloudUpload, AiOutlineIdcard } from "react-icons/ai";
 import Select from "react-select";
 import makeAnimated from "react-select/animated";
 import { v4 as uuidv4 } from "uuid";
@@ -16,7 +16,7 @@ export const PersonalDetails = ({ setPage }) => {
     const [frontSide, setFrontSide] = useState("");
     const [backSide, setBackSide] = useState("");
     const [professionalAchievementMoment, setProfessionalAchievementMoment] = useState("");
-    const [addedAchievementMoment, setAddedAchievementMoment] = useState("");
+    const [addedAchievementMoment, setAddedAchievementMoment] = useState([]);
     const [educationalAchievementMoment, setEducationalAchievementMoment] = useState("");
     // const [licencePhoto, setLicencePhoto] = useState("");
     const [meritalStatus, setMeritalStatus] = useState("");
@@ -26,6 +26,7 @@ export const PersonalDetails = ({ setPage }) => {
     const [divorceDate, setDivorceDate] = useState();
     const [partnerDeathDate, setPartnerDeathDate] = useState();
     const [currentWorkPeriod, setCurrentWorkPeriod] = useState();
+    const [addedWorkPeriod, setAddedWorkPeriod] = useState([]);
     const [userHobbies, setUserHobbies] = useState([]);
 
     // Education
@@ -43,21 +44,21 @@ export const PersonalDetails = ({ setPage }) => {
     const [phyHairType, setPhyHairType] = useState('');
     const [phyNumberTeeth, setPhyNumberTeeth] = useState('');
 
+    // All data
+    const [allPersonalInfo, setAllPersonalInfo] = useState({});
+
     const { RangePicker } = DatePicker;
 
     const {
         register,
         formState: { errors },
         handleSubmit,
-        control,
+        control
     } = useForm();
 
     const { fields, append, remove } = useFieldArray({
         name: "professions",
-        control,
-        rules: {
-            required: "Please append at least 1 item"
-        }
+        control
     });
 
     // hobbies
@@ -190,11 +191,8 @@ export const PersonalDetails = ({ setPage }) => {
         setZodiacSignValue(text);
     };
 
-    const handleAllPersonalDetailsInfo = (info) => {
-        console.log(...info, dateOfBirth, currentWorkPeriod, degreeName, eduDepartment, eduFieldOfStudy, eduInstitute, eduYearOfPassing, phyAncestry, phyEyeColor, phyHairColor, phyHairType, phyNumberTeeth, phySkinTone, userHobbies, marriageDate, divorceDate, partnerDeathDate);
-    }
-
     const onSubmit = async data => {
+        console.log(data);
         const hightestEducationalQualification = {};
         const currentProfession = {};
 
@@ -245,11 +243,19 @@ export const PersonalDetails = ({ setPage }) => {
         data.educationalAchievementMoment = educationalAchievementMoment;
         data.professionalAchievementMoment = professionalAchievementMoment;
 
-        data = { ...data, hightestEducationalQualification, currentProfession };
+        data = { ...data, hightestEducationalQualification, currentProfession, dateOfBirth, currentWorkPeriod, degreeName, eduDepartment, eduFieldOfStudy, eduInstitute, eduYearOfPassing, phyAncestry, phyEyeColor, phyHairColor, phyHairType, phyNumberTeeth, phySkinTone, userHobbies, marriageDate, divorceDate, partnerDeathDate };
         await setPersonalDetails(data);
+        setAllPersonalInfo(data);
         console.log(data);
-        await handleAllPersonalDetailsInfo(...data);
     };
+
+
+
+    useEffect(() => {
+        setAllPersonalInfo({ ...allPersonalInfo, dateOfBirth, currentWorkPeriod, degreeName, eduDepartment, eduFieldOfStudy, eduInstitute, eduYearOfPassing, phyAncestry, phyEyeColor, phyHairColor, phyHairType, phyNumberTeeth, phySkinTone, userHobbies, marriageDate, divorceDate, partnerDeathDate })
+        console.log(allPersonalInfo);
+    }, [])
+
 
     useEffect(() => {
         if (data) {
@@ -292,7 +298,7 @@ export const PersonalDetails = ({ setPage }) => {
         const storageRef = ref(firebaseStorage, `cover/${photo?.name + uuidv4()}`);
         uploadBytes(storageRef, photo).then(async snapshot => {
             await getDownloadURL(snapshot.ref).then(url => {
-                setAddedAchievementMoment(url.toString());
+                setAddedAchievementMoment(...addedAchievementMoment, { addedAchievementMoment: url.toString() });
             });
         });
     };
@@ -340,7 +346,9 @@ export const PersonalDetails = ({ setPage }) => {
     };
     const onCurrentWorkPeriodChange = (value, dateString) => {
         setCurrentWorkPeriod(dateString);
-        console.log(dateString);
+    };
+    const onAddedWorkPeriodChange = (value, dateString) => {
+        setAddedWorkPeriod(dateString);
     };
 
     useEffect(() => {
@@ -416,7 +424,7 @@ export const PersonalDetails = ({ setPage }) => {
                     <section>
                         <div className="flex items-center bg-gray-100  w-full rounded-lg mt-3 lg:mt-0">
                             <DatePicker
-                                required
+                                {...register("dateOfBirth")}
                                 placeholder="Date of Birth"
                                 className="flex-1 px-2 py-[9px] outline-none h-full bg-transparent text-sm text-gray-400"
                                 id="dateOfBirth"
@@ -424,11 +432,6 @@ export const PersonalDetails = ({ setPage }) => {
                                 onChange={onDateOfBirthChange}
                             />
                         </div>
-                        <h1 className="text-left ml-2">
-                            {/* {
-                                !dateOfBirth ? <span className="w-full text-left text-red-400 text-sm">Date of birth is required</span> : ''
-                            } */}
-                        </h1>
                     </section>
                     {/* ---------- Hometown ---------- */}
                     <section className="relative">
@@ -629,6 +632,7 @@ export const PersonalDetails = ({ setPage }) => {
                     <section>
                         <div className="flex items-center bg-gray-100  w-full rounded-lg mt-3 lg:mt-0">
                             <Controller
+                                {...register("citizenship")}
                                 control={control}
                                 name="citizenship"
                                 render={({ field: { onChange, value, ref } }) => (
@@ -1201,23 +1205,13 @@ export const PersonalDetails = ({ setPage }) => {
                         <section>
                             <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
                                 <DatePicker
-                                    // {...register("marriageDate", {
-                                    //     required: {
-                                    //         value: true,
-                                    //         message: "Date of Marriage is required",
-                                    //     },
-                                    // })}
+                                    {...register("marriageDate")}
                                     onChange={(date, dateString) => setMarriageDate(dateString)}
                                     placeholder="Marriage Date"
                                     className="flex-1 px-2 py-[10px] outline-none h-full bg-transparent text-sm text-gray-400"
                                     id="marriageDate"
                                 />
                             </div>
-                            {/* <h1 className="text-left ml-2">
-                                {errors.marriageDate?.type === "required" && (
-                                    <span className="w-full text-left text-red-400 text-sm">{errors?.marriageDate.message}</span>
-                                )}
-                            </h1> */}
                         </section>
                     )}
                     {/* ---------- Reason of Divorce ---------- */}
@@ -1249,23 +1243,13 @@ export const PersonalDetails = ({ setPage }) => {
                         <section>
                             <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
                                 <DatePicker
-                                    // {...register("dicorceDate", {
-                                    //     required: {
-                                    //         value: true,
-                                    //         message: "Date of Divorce is required",
-                                    //     },
-                                    // })}
+                                    {...register("divorceDate")}
                                     onChange={(date, dateString) => setDivorceDate(dateString)}
                                     placeholder="Divorce Date"
                                     className="flex-1 px-2 py-[10px] outline-none h-full bg-transparent text-sm text-gray-400"
-                                    id="dicorceDate"
+                                    id="divorceDate"
                                 />
                             </div>
-                            <h1 className="text-left ml-2">
-                                {errors.dicorceDate?.type === "required" && (
-                                    <span className="w-full text-left text-red-400 text-sm">{errors?.dicorceDate.message}</span>
-                                )}
-                            </h1>
                         </section>
                     )}
                     {/* ---------- Do you have children --------- */}
@@ -1452,23 +1436,18 @@ export const PersonalDetails = ({ setPage }) => {
                         <section>
                             <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
                                 <DatePicker
-                                    // {...register("partnerDeathDay", {
-                                    //     required: {
-                                    //         value: true,
-                                    //         message: "Partner Death Date is required",
-                                    //     },
-                                    // })}
+                                    {...register("partnerDeathDay")}
                                     onChange={(date, dateString) => setPartnerDeathDate(dateString)}
                                     placeholder="Partner Death Date"
                                     className="flex-1 px-2 py-[10px] outline-none h-full bg-transparent text-sm text-gray-400"
                                     id="partnerDeathDay"
                                 />
                             </div>
-                            <h1 className="text-left ml-2">
+                            {/* <h1 className="text-left ml-2">
                                 {errors.partnerDeathDay?.type === "required" && (
                                     <span className="w-full text-left text-red-400 text-sm">{errors?.partnerDeathDay.message}</span>
                                 )}
-                            </h1>
+                            </h1> */}
                         </section>
                     )}
                     {/* ------------------------ Current profession field start ------------------------ */}
@@ -1525,6 +1504,7 @@ export const PersonalDetails = ({ setPage }) => {
                     <section>
                         <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
                             <RangePicker
+                                {...register("workPeriod")}
                                 placeholder={["Start Date", "End Date"]}
                                 className="flex-1 px-2 py-[10px] outline-none h-full bg-transparent text-sm text-gray-400"
                                 id="workPeriod"
@@ -1584,21 +1564,6 @@ export const PersonalDetails = ({ setPage }) => {
                     {fields.map((field, index) => {
                         return (
                             <section className="col-span-1 md:col-span-2 lg:col-span-3 grid grid-cols-3 gap-3" key={field.id}>
-                                {/* <label>
-                                    <span>Name</span>
-                                    <input
-                                        {...register(`professions${index}`, { required: true })}
-                                    />
-                                </label>
-                                <label>
-                                    <span>amount</span>
-                                    <input
-                                        type="number"
-                                        {...register(`professions${index}`, { valueAsNumber: true })}
-                                    />
-                                </label> */}
-
-                                {/* ---------- Position ---------- */}
                                 <section>
                                     <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
                                         <input
@@ -1615,12 +1580,11 @@ export const PersonalDetails = ({ setPage }) => {
                                         />
                                     </div>
                                     <h1 className="text-left ml-2">
-                                        {errors.position?.type === "required" && (
-                                            <span className="w-full text-left text-red-400 text-sm">{errors?.position.message}</span>
+                                        {errors.addedProfessionPosition?.type === "required" && (
+                                            <span className="w-full text-left text-red-400 text-sm">{errors?.addedProfessionPosition.message}</span>
                                         )}
                                     </h1>
                                 </section>
-                                {/* ---------- Institution ---------- */}
                                 <section>
                                     <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
                                         <input
@@ -1642,29 +1606,23 @@ export const PersonalDetails = ({ setPage }) => {
                                         )}
                                     </h1>
                                 </section>
-                                {/* ---------- Work Period ---------- */}
                                 <section>
                                     <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
                                         <RangePicker
-                                            {...register(`professions.${index}.addedProfessionWorkPeriod`, {
-                                                required: {
-                                                    value: true,
-                                                    message: "Work Period is required",
-                                                },
-                                            })}
+                                            {...register(`professions.${index}.addedProfessionWorkPeriod`)}
                                             placeholder={["Start Date", "End Date"]}
                                             className="flex-1 px-2 py-[10px] outline-none h-full bg-transparent text-sm text-gray-400"
                                             id="workPeriod"
                                             bordered={false}
+                                            onChange={onAddedWorkPeriodChange}
                                         />
                                     </div>
                                     <h1 className="text-left ml-2">
-                                        {errors.workPeriod?.type === "required" && (
-                                            <span className="w-full text-left text-red-400 text-sm">{errors?.workPeriod.message}</span>
+                                        {errors.addedProfessionWorkPeriod?.type === "required" && (
+                                            <span className="w-full text-left text-red-400 text-sm">{errors?.addedProfessionWorkPeriod.message}</span>
                                         )}
                                     </h1>
                                 </section>
-                                {/* ---------- Special Professional Achievement ---------- */}
                                 <section>
                                     <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
                                         <input
@@ -1681,17 +1639,16 @@ export const PersonalDetails = ({ setPage }) => {
                                         />
                                     </div>
                                     <h1 className="text-left ml-2">
-                                        {errors.specialProfessionalAchievement?.type === "required" && (
-                                            <span className="w-full text-left text-red-400 text-sm">{errors?.specialProfessionalAchievement.message}</span>
+                                        {errors.addedProfessionAchievement?.type === "required" && (
+                                            <span className="w-full text-left text-red-400 text-sm">{errors?.addedProfessionAchievement.message}</span>
                                         )}
                                     </h1>
                                 </section>
-                                {/* ---------- Professional Achievement moment ---------- */}
                                 <section>
                                     <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
                                         <AiOutlineCloudUpload className=" mr-2 text-gray-400" />
                                         <label htmlFor="professionalAchievementMoment" className="outline-none h-full text-sm text-gray-400 bg-gray-100">
-                                            {addedAchievementMoment ? (
+                                            {addedAchievementMoment.length > 0 ? (
                                                 <>
                                                     <span className="text-green-400">Moments new added</span>
                                                 </>
@@ -1702,7 +1659,6 @@ export const PersonalDetails = ({ setPage }) => {
                                         <input {...register(`professions.${index}.addedProfessionAchievementMoment`)} type="file" id="addedProfessionAchievementMoment" className="hidden" onChange={addedProfessionAchievementMomentHandler} />
                                     </div>
                                 </section>
-
                                 <button className="p-3 text-sm text-center font-medium bg-red-100 text-red-500 rounded-lg" type="button" onClick={() => remove(index)}>
                                     Remove
                                 </button>
@@ -1714,7 +1670,11 @@ export const PersonalDetails = ({ setPage }) => {
                         className="p-3 text-sm text-center font-medium text-gray-400 bg-gray-100 rounded-lg"
                         onClick={() => {
                             append({
-                                name: "add"
+                                addedProfessionPosition: "",
+                                addedProfessionInstitute: "",
+                                addedProfessionWorkPeriod: "",
+                                addedProfessionAchievement: "",
+                                addedProfessionAchievementMoment: "file"
                             });
                         }}
                     >
@@ -1731,6 +1691,7 @@ export const PersonalDetails = ({ setPage }) => {
                     <section>
                         <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
                             <CreatableSelect
+                                {...register("eduDegreeName")}
                                 onChange={val => setDegreeName(val.value)}
                                 type="text"
                                 placeholder="Degree Name"
@@ -1759,6 +1720,7 @@ export const PersonalDetails = ({ setPage }) => {
                     <section>
                         <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
                             <CreatableSelect
+                                {...register("eduInstitute")}
                                 onChange={val => setEduInstitute(val.value)}
                                 type="text"
                                 placeholder="Institution"
@@ -1782,6 +1744,7 @@ export const PersonalDetails = ({ setPage }) => {
                     <section>
                         <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
                             <CreatableSelect
+                                {...register("eduDepartment")}
                                 onChange={val => setEduDepartment(val.value)}
                                 type="text"
                                 placeholder="Department Name"
@@ -1810,6 +1773,7 @@ export const PersonalDetails = ({ setPage }) => {
                     <section>
                         <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
                             <CreatableSelect
+                                {...register("eduFieldOfStudy")}
                                 onChange={val => setEduFieldOfStudy(val.value)}
                                 type="text"
                                 placeholder="Field of Study"
@@ -1838,6 +1802,7 @@ export const PersonalDetails = ({ setPage }) => {
                     <section>
                         <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
                             <DatePicker
+                                {...register("eduYearOfPassing")}
                                 onChange={(date, dateString) => setEduYearOfPassing(dateString)}
                                 placeholder="Year of Passing"
                                 className="flex-1 px-2 py-2 outline-none h-full bg-transparent text-sm text-gray-400"
@@ -1942,6 +1907,7 @@ export const PersonalDetails = ({ setPage }) => {
                     <section>
                         <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
                             <CreatableSelect
+                                {...register("phyAncestry")}
                                 onChange={val => setPhyAncestry(val.value)}
                                 type="text"
                                 placeholder="Ancestry"
@@ -1965,6 +1931,7 @@ export const PersonalDetails = ({ setPage }) => {
                     <section>
                         <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
                             <CreatableSelect
+                                {...register("phySkinTone")}
                                 onChange={val => setPhySkinTone(val.value)}
                                 type="text"
                                 placeholder="Skin Tone"
@@ -2002,6 +1969,7 @@ export const PersonalDetails = ({ setPage }) => {
                     <section>
                         <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
                             <CreatableSelect
+                                {...register("phyHairColor")}
                                 onChange={val => setPhyHairColor(val.value)}
                                 type="text"
                                 placeholder="Hair Color"
@@ -2025,6 +1993,7 @@ export const PersonalDetails = ({ setPage }) => {
                     <section>
                         <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
                             <CreatableSelect
+                                {...register("phyHairType")}
                                 onChange={val => setPhyHairType(val.value)}
                                 type="text"
                                 placeholder="Hair Type"
@@ -2048,6 +2017,7 @@ export const PersonalDetails = ({ setPage }) => {
                     <section>
                         <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
                             <CreatableSelect
+                                {...register("phyColor")}
                                 onChange={val => setPhyEyeColor(val.value)}
                                 type="text"
                                 placeholder="Eye Color"
@@ -2071,6 +2041,7 @@ export const PersonalDetails = ({ setPage }) => {
                     <section>
                         <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
                             <CreatableSelect
+                                {...register("phyNumberTeeth")}
                                 onChange={val => setPhyNumberTeeth(val.value)}
                                 type="number"
                                 placeholder="Number of Teeth"
@@ -2339,6 +2310,7 @@ export const PersonalDetails = ({ setPage }) => {
                     <section>
                         <div className="flex items-center bg-gray-100  w-full rounded-lg mt-3 lg:mt-0">
                             <Controller
+                                {...register("userHobbies")}
                                 control={control}
                                 name="userHobbies"
                                 render={({ field: { onChange, value, ref } }) => (
@@ -2501,7 +2473,8 @@ export const PersonalDetails = ({ setPage }) => {
                 </section>
                 <input
                     type="submit"
-                    value={isLoading ? "Saving..." : "Submit"}
+                    // value={isLoading ? "Saving..." : "Submit"}
+                    value={"Submit"}
                     className="border-2 cursor-pointer mt-3 border-primary hover:border-0 rounded-full px-12 py-2 hover:bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] hover:text-white duration-500 transition-all"
                 />
             </form>
