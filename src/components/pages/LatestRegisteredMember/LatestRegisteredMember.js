@@ -60,7 +60,7 @@ const LatestRegisteredMember = () => {
                                                     />
                                                 </div>
                                                 <div className="inner-content">
-                                                    <h4 className="text-[#fff] text-[16px] uppercase font-bold">{data.name}</h4>
+                                                    <h4 className="text-[#fff] text-[16px] uppercase font-bold">{data.firstName}</h4>
                                                 </div>
                                                 <div className="inner-content">
                                                     <h4 className="text-[#fff] text-[16px] uppercase">Age: {data.age}</h4>
