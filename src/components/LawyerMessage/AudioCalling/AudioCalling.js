@@ -18,7 +18,7 @@ const AudioCalling = () => {
                         <h1>Martha Craig</h1>
                         <span>Contacting…</span>
                     </div>
-                    <div className='flex mx-auto gap-14 mt-[283px]'>
+                    <div className='flex justify-center gap-14 mt-[283px]'>
                         <div className="flex rounded-full bg-white bg-opacity-50 items-center justify-center h-[86px] w-[86px]">
                             <RxSpeakerModerate />
                         </div>
