@@ -25,8 +25,6 @@ const PhotoGelary = () => {
         handleUpload();
     };
 
-    console.log("urls", urls);
-
     const handleUpload = async () => {
         const promises = [];
         images.map(async photo => {
@@ -87,6 +85,11 @@ const PhotoGelary = () => {
                         );
                     })}
                 </div>
+            </div>
+            <div className="w-full flex justify-center mt-[15px]">
+                <button className="py-[5px] px-[15px] shadow-[0px_5px_20px_0px_rgb(139_122_132/50%)]  bg-[linear-gradient(171deg,rgba(233,11,200,0.6979166666666667)_41%,rgba(166,2,241,0.79)_100%)] text-white rounded-[50px]">
+                    See All
+                </button>
             </div>
         </div>
     );

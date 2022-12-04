@@ -1,10 +1,11 @@
 import React from "react";
-import Accordian from "./Accordion";
+import { Outlet } from "react-router";
 
 export const Profile = ({ data, isLoading }) => {
+
     return (
         <div>
-            <Accordian {...{ data, isLoading }}></Accordian>
+            <Outlet context={[data, isLoading]} />
         </div>
     );
 };

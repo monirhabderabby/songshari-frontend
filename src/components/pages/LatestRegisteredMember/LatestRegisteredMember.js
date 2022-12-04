@@ -8,9 +8,9 @@ const LatestRegisteredMember = () => {
         <>
             <section className={LatestRegisteredMemberCSS.latestRegisteredSection}>
                 <img className={LatestRegisteredMemberCSS.shape} src={shape} alt="Not Available" />
-                <div className="max-w-[1300px] mx-auto">
-                    <div className="grid justify-center items-center grid-cols-2 ">
-                        <div>
+                <div className="max-w-[1200px] mx-auto">
+                    <div className="flex justify-between items-center w-full px-0">
+                        <div className="w-[30%]">
                             <div className={LatestRegisteredMemberCSS.content}>
                                 <div className={LatestRegisteredMemberCSS.sectionHeader}>
                                     <h6 className="text-[#ff317b] text-[24px] mb-[5px] font-bold">Latest Registered</h6>
@@ -18,7 +18,7 @@ const LatestRegisteredMember = () => {
                                 </div>
                             </div>
                         </div>
-                        <div>
+                        <div className="w-[65%]">
                             <Swiper
                                 breakpoints={{
                                     0: {
@@ -30,7 +30,7 @@ const LatestRegisteredMember = () => {
                                         slidesPerView: 2,
                                     },
                                     1200: {
-                                        slidesPerView: 4,
+                                        slidesPerView: 5,
                                     },
                                 }}
                                 pagination={{
@@ -60,7 +60,13 @@ const LatestRegisteredMember = () => {
                                                     />
                                                 </div>
                                                 <div className="inner-content">
-                                                    <h4 className="text-[#fff] text-[24px] uppercase font-bold">{data.name}</h4>
+                                                    <h4 className="text-[#fff] text-[16px] uppercase font-bold">{data.name}</h4>
+                                                </div>
+                                                <div className="inner-content">
+                                                    <h4 className="text-[#fff] text-[16px] uppercase">Age: {data.age}</h4>
+                                                </div>
+                                                <div className="inner-content">
+                                                    <h4 className="text-[#fff] text-[16px] uppercase">Gender: {data.gender}</h4>
                                                 </div>
                                             </div>
                                         </div>

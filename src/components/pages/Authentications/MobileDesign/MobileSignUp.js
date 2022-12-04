@@ -1,5 +1,6 @@
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
+import { useDropzone } from "react-dropzone";
 import { useCreateUserWithEmailAndPassword, useUpdateProfile } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
 import { AiFillFileAdd, AiOutlineLeft } from "react-icons/ai";
@@ -29,9 +30,19 @@ const MobileSignUp = () => {
         reset,
     } = useForm();
 
-    // const emailHandler = () => {
-    //     setCustomError("");
-    // };
+    // upload profile photo to firebase storage
+    const onDrop = useCallback(acceptedFiles => {
+        // Do something with the files
+        const photo = acceptedFiles[0];
+        const storageRef = ref(firebaseStorage, `profile/${photo.name + uuidv4()}`);
+        uploadBytes(storageRef, photo).then(async snapshot => {
+            await getDownloadURL(snapshot.ref).then(url => {
+                setPhotoUrl(url.toString());
+            });
+        });
+    }, []);
+
+    const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
     const onSubmit = async data => {
         if (!photoURL) {
@@ -67,16 +78,6 @@ const MobileSignUp = () => {
         }
     }, [error]);
 
-    const photoHandler = async e => {
-        const photo = e.target.files[0];
-        const storageRef = ref(firebaseStorage, `profile/${photo?.name + uuidv4()}`);
-        uploadBytes(storageRef, photo).then(async snapshot => {
-            await getDownloadURL(snapshot.ref).then(url => {
-                setPhotoUrl(url.toString());
-            });
-        });
-    };
-
     useEffect(() => {
         if (photoURL) {
             setCustomError("");
@@ -109,7 +110,7 @@ const MobileSignUp = () => {
                                 type="text"
                                 placeholder="First name"
                                 className="flex-1 outline-none h-full text-sm text-[#1E2022]"
-                                id="name"
+                                id="firstName"
                             />
                         </div>
                         <h1 className="text-left ml-2">
@@ -131,7 +132,7 @@ const MobileSignUp = () => {
                                 type="text"
                                 placeholder="Last name"
                                 className="flex-1 outline-none h-full text-sm text-[#1E2022]"
-                                id="name"
+                                id="lastName"
                             />
                         </div>
                         <h1 className="text-left ml-2">
@@ -262,8 +263,8 @@ const MobileSignUp = () => {
                                     },
                                     minLength: {
                                         value: 10,
-                                        message: "Nid Or Passport Number should be minimum 10 characters"
-                                    }
+                                        message: "Nid Or Passport Number should be minimum 10 characters",
+                                    },
                                 })}
                                 type="text"
                                 placeholder="NID or Passport Number"
@@ -281,42 +282,23 @@ const MobileSignUp = () => {
                         </h1>
                     </section>
                     {/* ---------- Upload profile photo ---------- */}
-                    <section className="mb-4">
-                        <div className="flex items-center bg-white px-8 py-6 w-full rounded-lg">
-                            <label
-                                htmlFor="userPhoto"
-                                className="outline-none h-full text-sm mx-auto text-[#1E2022] rounded-[10px]"
-                                style={{ boxShadow: "2px 2px 8px 2px rgba(0, 0, 0, 0.1)" }}
+                    <section>
+                        <div className="flex items-center bg-white p-2 w-full mt-3 h-[197px]  justify-center rounded-[8px]">
+                            <div
+                                {...getRootProps()}
+                                className="w-[242px] h-[132px] bg-white flex justify-center items-center shadow-[2px_2px_8px_2px_rgba(0,0,0,0.1)]"
                             >
-                                {photoURL ? (
-                                    <>
-                                        <span className="text-green-400">Photo added</span>
-                                    </>
+                                <input {...getInputProps()} />
+                                {isDragActive ? (
+                                    <p>Drop the files here ...</p>
                                 ) : (
-                                    <p className="flex justify-center items-center gap-2 text-xs font-medium leading-9 px-6 py-10 whitespace-nowrap">
-                                        Upload Profile Photo
-                                        <AiFillFileAdd className="text-[#E41272] text-2xl" />
-                                    </p>
+                                    <div className="flex gap-x-[15px] items-center">
+                                        <span className={`${photoURL ? "text-green-400" : "text-[#000000]"} text-[12px] font-medium font-Inter`}>
+                                            {photoURL ? "Photo Added" : "Upload File"}
+                                        </span>{" "}
+                                        <AiFillFileAdd className="text-[#E41272] h-[27px] w-[21px]" />
+                                    </div>
                                 )}
-                            </label>
-                            <input
-                                {...register("userPhoto", {
-                                    required: {
-                                        value: true,
-                                        message: "Photo is Required",
-                                    },
-                                })}
-                                type="file"
-                                id="userPhoto"
-                                className="hidden"
-                                onChange={photoHandler}
-                            />
-                        </div>
-                        <h1 className="text-left ml-2">
-                            {errors.userPhoto?.type === "required" && (
-                                <span className="w-full text-left text-red-400 text-sm">{errors?.userPhoto.message}</span>
-                            )}
-                        </h1>
                     </section>
                     {/* ---------------Input data end------------ */}
                     <div className="col-span-2">{customError && <Error message={customError} />}</div>
