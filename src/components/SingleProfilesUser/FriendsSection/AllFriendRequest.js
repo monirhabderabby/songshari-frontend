@@ -6,7 +6,7 @@ export const AllFriendRequest = () => {
     return (
         <div className="grid grid-cols-1 gap-y-4 w-full">
             {arr.map(f => {
-                return <FriendRequestCard />;
+                return <FriendRequestCard key={f} />;
             })}
         </div>
     );
