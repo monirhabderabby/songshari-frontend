@@ -69,7 +69,7 @@ const MobileSignUp = () => {
 
     const photoHandler = async e => {
         const photo = e.target.files[0];
-        const storageRef = ref(firebaseStorage, `profile/${photo.name + uuidv4()}`);
+        const storageRef = ref(firebaseStorage, `profile/${photo?.name + uuidv4()}`);
         uploadBytes(storageRef, photo).then(async snapshot => {
             await getDownloadURL(snapshot.ref).then(url => {
                 setPhotoUrl(url.toString());
@@ -300,7 +300,7 @@ const MobileSignUp = () => {
                                 )}
                             </label>
                             <input
-                                {...register("image", {
+                                {...register("userPhoto", {
                                     required: {
                                         value: true,
                                         message: "Photo is Required",
@@ -313,8 +313,8 @@ const MobileSignUp = () => {
                             />
                         </div>
                         <h1 className="text-left ml-2">
-                            {errors.image?.type === "required" && (
-                                <span className="w-full text-left text-red-400 text-sm">{errors?.image.message}</span>
+                            {errors.userPhoto?.type === "required" && (
+                                <span className="w-full text-left text-red-400 text-sm">{errors?.userPhoto.message}</span>
                             )}
                         </h1>
                     </section>
