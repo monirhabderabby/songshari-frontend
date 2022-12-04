@@ -299,6 +299,8 @@ const MobileSignUp = () => {
                                         <AiFillFileAdd className="text-[#E41272] h-[27px] w-[21px]" />
                                     </div>
                                 )}
+                            </div>
+                        </div>
                     </section>
                     {/* ---------------Input data end------------ */}
                     <div className="col-span-2">{customError && <Error message={customError} />}</div>
