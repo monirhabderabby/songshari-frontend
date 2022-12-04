@@ -37,8 +37,12 @@ import Shop from "../Wrapper/Shop/Shop";
 import SingleProduct from "../Wrapper/SingleProduct/SingleProduct";
 import SingleProfile from "../Wrapper/SingleProfilesUser/SingleProfile";
 import { Container } from "../Wrapper/Stepper/Container";
-import EditProfile from "../components/SingleProfilesUser/profileSection/EditProfile";
+import EditPersonalInfo from "../components/SingleProfilesUser/profileSection/EditprofileSection/EditPersonalInfo";
 import Accordian from "../components/SingleProfilesUser/profileSection/Accordion";
+import EditProfesionalInfo from "../components/SingleProfilesUser/profileSection/EditprofileSection/EditProfesionalInfo";
+import EditEducationalInfo from "../components/SingleProfilesUser/profileSection/EditprofileSection/EditEducationalInfo";
+import EditPhysicalInfo from "../components/SingleProfilesUser/profileSection/EditprofileSection/EditPhysicalInfo";
+import EditOthersInfo from "../components/SingleProfilesUser/profileSection/EditprofileSection/EditOthersInfo";
 // import { UsersProfile } from "../components/SingleProfilesUser/profileSection/UsersProfile";
 import { FilterResults } from "../components/pages/FindPartner/FilterResults/FilterResults";
 import MobileDiamondPlan from "../components/pages/Membership/MobileVersion/MobileDiamondPlan";
@@ -67,6 +71,7 @@ import { AboutMov } from "../Wrapper/Home/mobileversion/about/AboutMov";
 import { MeetMov } from "../Wrapper/Home/mobileversion/meet/MeetMov";
 
 
+
 const Index = () => {
     return (
         <div>
@@ -75,7 +80,13 @@ const Index = () => {
                     <Route path="/about" element={<About></About>}></Route>
                     <Route path="/userprofile" element={<SingleProfile />}>
                         <Route path="" element={<Accordian />} />
-                        <Route path="edit" element={<EditProfile />} />
+                        <Route path="edit"  >
+                            <Route path="personalinfo" element={<EditPersonalInfo />} />
+                            <Route path="profesionalinfo" element={<EditProfesionalInfo />} />
+                            <Route path="educationalinfo" element={<EditEducationalInfo />} />
+                            <Route path="physicalinfo" element={<EditPhysicalInfo />} />
+                            <Route path="othersinfo" element={<EditOthersInfo />} />
+                        </Route>
                     </Route>
                     <Route path="/mobileotherprofile" element={<MobileProfileOthers></MobileProfileOthers>}></Route>
                     <Route path="/membership" element={<MemberShip></MemberShip>}></Route>
