@@ -6,7 +6,7 @@ import findImg from "../../../../assets/images/HomeImage/illutration.png";
 
 const BeginFamilyJourney = () => {
     return (
-        <div className="pt-8 pb-24 w-11/12 lg:w-4/5 mx-auto">
+        <div className="custom-container max-w-[1200px] pt-8 pb-24 w-11/12 lg:w-4/5 mx-auto">
             <div className="flex flex-col md:flex-row">
                 <div data-aos="fade-right" data-aos-easing="ease-out-cubic" data-aos-duration="1000" className="md:flex-1">
                     <h6 className="text-[#5650ce] text-2xl md:text-xl lg:text-2xl font-bold mb-3 md:mb-1 lg:mb-6">Meet Your Perfect Life Partner!</h6>
