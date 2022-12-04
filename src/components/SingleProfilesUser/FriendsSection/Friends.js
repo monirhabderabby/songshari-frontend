@@ -1,18 +1,13 @@
 import React, { useState } from "react";
 import "../../../App.css";
 
-import { useGetAllRequestQuery } from "../../../Redux/features/connections/connectionApi";
 import { AllFriendRequest } from "./AllFriendRequest";
 import { AllFriends } from "./AllFriends";
 import { AllSentRequest } from "./AllSentRequest";
 
 export const Friends = ({ data, isLoading }) => {
     const [page, setPage] = useState(2);
-    const { data: request } = useGetAllRequestQuery();
 
-    if (request) {
-        console.log(request);
-    }
     return (
         <>
             <div className="mb-4 w-full flex justify-around items-center">
