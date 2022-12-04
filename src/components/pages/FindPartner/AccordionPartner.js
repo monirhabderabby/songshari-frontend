@@ -284,6 +284,9 @@ export const AccordionPartner = ({ data, isLoading }) => {
     const handleUserEyeColorChange = value => {
         setOthersInfo({ ...othersInfo, eyeColor: value });
     };
+    const handleNumberOfTeeth = (value) => {
+        setOthersInfo({ ...othersInfo, numberOfTeeth: value });
+    }
 
     //handle data submission
     const handleSubmit = () => {
@@ -1166,8 +1169,8 @@ export const AccordionPartner = ({ data, isLoading }) => {
                     <div>
                         <h1 className="text-base leading-6 font-medium mb-2">Number of Teeth</h1>
                         <Select
-                            className="w-full mb-4"
-                            onChange={handleUserEyeColorChange}
+                            className='w-full mb-2'
+                            onChange={handleNumberOfTeeth}
                             placeholder="Select teeth number"
                             mode="multiple"
                             allowClear

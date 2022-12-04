@@ -1,7 +1,7 @@
 import { DatePicker } from "antd";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import React, { useEffect, useState } from "react";
-import { Controller, useForm } from "react-hook-form";
+import { Controller, useForm, useFieldArray } from "react-hook-form";
 import { AiOutlineCloudUpload, AiOutlineIdcard } from "react-icons/ai";
 import Select from "react-select";
 import makeAnimated from "react-select/animated";
@@ -16,12 +16,45 @@ export const PersonalDetails = ({ setPage }) => {
     const [frontSide, setFrontSide] = useState("");
     const [backSide, setBackSide] = useState("");
     const [professionalAchievementMoment, setProfessionalAchievementMoment] = useState("");
+    const [addedAchievementMoment, setAddedAchievementMoment] = useState("");
     const [educationalAchievementMoment, setEducationalAchievementMoment] = useState("");
-    const [licencePhoto, setLicencePhoto] = useState("");
+    // const [licencePhoto, setLicencePhoto] = useState("");
     const [meritalStatus, setMeritalStatus] = useState("");
     const [citizenShip, setCitizenShip] = useState([]);
+    const [dateOfBirth, setDateOfBirth] = useState();
+    const [currentWorkPeriod, setCurrentWorkPeriod] = useState();
+
+    // Education
+    const [degreeName, setDegreeName] = useState('');
+    const [eduDepartment, setEduDepartment] = useState('');
+    const [eduInstitute, setEduInstitute] = useState('');
+    const [eduFieldOfStudy, setEduFieldOfStudy] = useState('');
+    const [eduYearOfPassing, setEduYearOfPassing] = useState('');
+
+    // Physical
+    const [phyAncestry, setPhyAncestry] = useState('');
+    const [phySkinTone, setPhySkinTone] = useState('');
+    const [phyEyeColor, setPhyEyeColor] = useState('');
+    const [phyHairColor, setPhyHairColor] = useState('');
+    const [phyHairType, setPhyHairType] = useState('');
+    const [phyNumberTeeth, setPhyNumberTeeth] = useState('');
 
     const { RangePicker } = DatePicker;
+
+    const {
+        register,
+        formState: { errors },
+        handleSubmit,
+        control,
+    } = useForm();
+
+    const { fields, append, remove } = useFieldArray({
+        name: "professions",
+        control,
+        rules: {
+            required: "Please append at least 1 item"
+        }
+    });
 
     // hobbies
     const [hobbies, setHobbies] = useState([]);
@@ -29,6 +62,14 @@ export const PersonalDetails = ({ setPage }) => {
         fetch("json/hobby.json")
             .then(res => res.json())
             .then(data => setHobbies(data));
+    }, []);
+
+    // Ancestry
+    const [ancestryData, setAncestryData] = useState([]);
+    useEffect(() => {
+        fetch("json/ancestry.json")
+            .then(res => res.json())
+            .then(data => setAncestryData(data));
     }, []);
 
     // Zodac Sign
@@ -59,7 +100,9 @@ export const PersonalDetails = ({ setPage }) => {
     const [townCurrentSuggestion, setTownCurrentSuggestion] = useState([]);
     const [townCurrentValue, setTownCurrentValue] = useState("");
     const [countriesSuggestionForParmanent, setCountriesSuggestionForParmanent] = useState([]);
+    const [countriesSuggestionForCurrent, setCountriesSuggestionForCurrent] = useState([]);
     const [parmanentCountryValue, setPermanentCountryValue] = useState("");
+    const [currentCountryValue, setCurrentCountryValue] = useState("");
 
     useEffect(() => {
         fetch("json/district.json")
@@ -81,6 +124,18 @@ export const PersonalDetails = ({ setPage }) => {
         }
         setCountriesSuggestionForParmanent(matches);
         setPermanentCountryValue(text);
+    };
+
+    const handleCurrentCountriesSuggestion = text => {
+        let matches = [];
+        if (text.length > 0) {
+            matches = countries.filter(country => {
+                const regex = new RegExp(`${text}`, "gi");
+                return country.value.match(regex);
+            });
+        }
+        setCountriesSuggestionForCurrent(matches);
+        setCurrentCountryValue(text);
     };
 
     const handleHomeTownSuggestion = text => {
@@ -131,13 +186,6 @@ export const PersonalDetails = ({ setPage }) => {
         setZodiacSignValue(text);
     };
 
-    const {
-        register,
-        formState: { errors },
-        handleSubmit,
-        control,
-    } = useForm();
-
     const onSubmit = async data => {
         const hightestEducationalQualification = {};
         const currentProfession = {};
@@ -185,12 +233,13 @@ export const PersonalDetails = ({ setPage }) => {
         data.coverPhoto = coverPhoto;
         data.frontSide = frontSide;
         data.backSide = backSide;
-        data.licencePhoto = licencePhoto;
+        // data.licencePhoto = licencePhoto;
         data.educationalAchievementMoment = educationalAchievementMoment;
         data.professionalAchievementMoment = professionalAchievementMoment;
 
-        data = { ...data, hightestEducationalQualification, currentProfession };
+        data = { ...data, hightestEducationalQualification, currentProfession, dateOfBirth, currentWorkPeriod, degreeName, eduDepartment, eduFieldOfStudy, eduInstitute, eduYearOfPassing, phyAncestry, phyEyeColor, phyHairColor, phyHairType, phyNumberTeeth, phySkinTone };
         await setPersonalDetails(data);
+        console.log(data);
     };
 
     useEffect(() => {
@@ -229,6 +278,16 @@ export const PersonalDetails = ({ setPage }) => {
         });
     };
 
+    const addedProfessionAchievementMomentHandler = async e => {
+        const photo = e.target.files[0];
+        const storageRef = ref(firebaseStorage, `cover/${photo.name + uuidv4()}`);
+        uploadBytes(storageRef, photo).then(async snapshot => {
+            await getDownloadURL(snapshot.ref).then(url => {
+                setAddedAchievementMoment(url.toString());
+            });
+        });
+    };
+
     const educationalAchievementMomentHandler = async e => {
         const photo = e.target.files[0];
         const storageRef = ref(firebaseStorage, `cover/${photo.name + uuidv4()}`);
@@ -257,14 +316,21 @@ export const PersonalDetails = ({ setPage }) => {
             });
         });
     };
-    const licenseHandler = async e => {
-        const photo = e.target.files[0];
-        const storageRef = ref(firebaseStorage, `license/${photo.name + uuidv4()}`);
-        uploadBytes(storageRef, photo).then(async snapshot => {
-            await getDownloadURL(snapshot.ref).then(url => {
-                setLicencePhoto(url.toString());
-            });
-        });
+    // const licenseHandler = async e => {
+    //     const photo = e.target.files[0];
+    //     const storageRef = ref(firebaseStorage, `license/${photo.name + uuidv4()}`);
+    //     uploadBytes(storageRef, photo).then(async snapshot => {
+    //         await getDownloadURL(snapshot.ref).then(url => {
+    //             setLicencePhoto(url.toString());
+    //         });
+    //     });
+    // };
+
+    const onDateOfBirthChange = (date, dateString) => {
+        setDateOfBirth(date);
+    };
+    const onCurrentWorkPeriodChange = (value, dateString) => {
+        setCurrentWorkPeriod(value);
     };
 
     useEffect(() => {
@@ -340,29 +406,25 @@ export const PersonalDetails = ({ setPage }) => {
                     <section>
                         <div className="flex items-center bg-gray-100  w-full rounded-lg mt-3 lg:mt-0">
                             <DatePicker
-                                {...register("dateOfBirth", {
-                                    required: {
-                                        value: true,
-                                        message: "Date of birth is required",
-                                    },
-                                })}
+                                required
                                 placeholder="Date of Birth"
-                                className="flex-1 px-2 py-[10px] outline-none h-full bg-transparent text-sm text-gray-400"
+                                className="flex-1 px-2 py-[9px] outline-none h-full bg-transparent text-sm text-gray-400"
                                 id="dateOfBirth"
+                                bordered={false}
+                                onChange={onDateOfBirthChange}
                             />
                         </div>
                         <h1 className="text-left ml-2">
-                            {errors.dateOfBirth?.type === "required" && (
-                                <span className="w-full text-left text-red-400 text-sm">{errors?.dateOfBirth.message}</span>
-                            )}
+                            {/* {
+                                !dateOfBirth ? <span className="w-full text-left text-red-400 text-sm">Date of birth is required</span> : ''
+                            } */}
                         </h1>
                     </section>
                     {/* ---------- Hometown ---------- */}
                     <section className="relative">
                         <div
-                            className={`flex items-center  p-3 w-full rounded-lg mt-3 lg:mt-0 ${
-                                homeTownSuggestion.length > 0 ? "rounded-br-none rounded-bl-none shadow-lg bg-white" : "bg-gray-100"
-                            }`}
+                            className={`flex items-center  p-3 w-full rounded-lg mt-3 lg:mt-0 ${homeTownSuggestion.length > 0 ? "rounded-br-none rounded-bl-none shadow-lg bg-white" : "bg-gray-100"
+                                }`}
                         >
                             <input
                                 {...register("hometown", {
@@ -380,9 +442,8 @@ export const PersonalDetails = ({ setPage }) => {
                             />
                         </div>
                         <div
-                            className={`bg-white shadow-lg absolute top-[40px] right-0 w-full rounded-br-lg rounded-bl-lg overflow-y-scroll ${
-                                homeTownSuggestion.length > 0 ? "max-h-[346px]" : "h-0"
-                            }`}
+                            className={`bg-white shadow-lg absolute top-[40px] right-0 w-full rounded-br-lg rounded-bl-lg overflow-y-scroll ${homeTownSuggestion.length > 0 ? "max-h-[346px]" : "h-0"
+                                }`}
                         >
                             {homeTownSuggestion.length > 0 &&
                                 homeTownSuggestion.map(suggetion => {
@@ -611,6 +672,17 @@ export const PersonalDetails = ({ setPage }) => {
                                         onChange={val => onChange(val.map(c => setCitizenShip([...citizenShip, c.value])))}
                                         options={countries}
                                         isMulti
+                                        placeholder="Select Citizenship"
+                                        styles={{
+                                            control: (baseStyles, state) => ({
+                                                ...baseStyles,
+                                                backgroundColor: 'transparent',
+                                                border: "none",
+                                                textAlign: "left",
+                                                fontSize: "14px",
+                                                color: "#9CA3AF"
+                                            }),
+                                        }}
                                     />
                                 )}
                             />
@@ -624,9 +696,8 @@ export const PersonalDetails = ({ setPage }) => {
                     {/* ---------- Zodiac Sign ---------- */}
                     <section className="relative">
                         <div
-                            className={`flex items-center  p-3 w-full rounded-lg mt-3 lg:mt-0 ${
-                                zodiacSignSuggestion.length > 0 ? "rounded-br-none rounded-bl-none shadow-lg bg-white" : "bg-gray-100"
-                            }`}
+                            className={`flex items-center  p-3 w-full rounded-lg mt-3 lg:mt-0 ${zodiacSignSuggestion.length > 0 ? "rounded-br-none rounded-bl-none shadow-lg bg-white" : "bg-gray-100"
+                                }`}
                         >
                             <input
                                 {...register("zodiacSign", {
@@ -644,9 +715,8 @@ export const PersonalDetails = ({ setPage }) => {
                             />
                         </div>
                         <div
-                            className={`bg-white shadow-lg absolute top-[40px] right-0 w-full rounded-br-lg rounded-bl-lg overflow-y-scroll ${
-                                zodiacSignSuggestion.length > 0 ? "max-h-[346px]" : "h-0"
-                            }`}
+                            className={`bg-white shadow-lg absolute top-[40px] right-0 w-full rounded-br-lg rounded-bl-lg overflow-y-scroll ${zodiacSignSuggestion.length > 0 ? "max-h-[346px]" : "h-0"
+                                }`}
                         >
                             {zodiacSignSuggestion.length > 0 &&
                                 zodiacSignSuggestion.map(suggetion => {
@@ -743,9 +813,8 @@ export const PersonalDetails = ({ setPage }) => {
                     {/* ---------- Town permanent ---------- */}
                     <section className="relative">
                         <div
-                            className={`flex items-center  p-3 w-full rounded-lg mt-3 lg:mt-0 ${
-                                townPermanentSuggestion.length > 0 ? "rounded-br-none rounded-bl-none shadow-lg bg-white" : "bg-gray-100"
-                            }`}
+                            className={`flex items-center  p-3 w-full rounded-lg mt-3 lg:mt-0 ${townPermanentSuggestion.length > 0 ? "rounded-br-none rounded-bl-none shadow-lg bg-white" : "bg-gray-100"
+                                }`}
                         >
                             <input
                                 {...register("townPermanent", {
@@ -763,9 +832,8 @@ export const PersonalDetails = ({ setPage }) => {
                             />
                         </div>
                         <div
-                            className={`bg-white shadow-lg absolute top-[40px] right-0 w-full rounded-br-lg rounded-bl-lg overflow-y-scroll ${
-                                townPermanentSuggestion.length > 0 ? "max-h-[346px]" : "h-0"
-                            }`}
+                            className={`bg-white shadow-lg absolute top-[40px] right-0 w-full rounded-br-lg rounded-bl-lg overflow-y-scroll ${townPermanentSuggestion.length > 0 ? "max-h-[346px]" : "h-0"
+                                }`}
                         >
                             {townPermanentSuggestion.length > 0 &&
                                 townPermanentSuggestion.map(suggetion => {
@@ -823,24 +891,22 @@ export const PersonalDetails = ({ setPage }) => {
                     {/* ---------- Country Permanent ---------- */}
                     <section className="relative">
                         <div
-                            className={`flex items-center  p-3 w-full rounded-lg mt-3 lg:mt-0 ${
-                                countriesSuggestionForParmanent.length > 0 ? "rounded-br-none rounded-bl-none shadow-lg bg-white" : "bg-gray-100"
-                            }`}
+                            className={`flex items-center  p-3 w-full rounded-lg mt-3 lg:mt-0 ${countriesSuggestionForParmanent.length > 0 ? "rounded-br-none rounded-bl-none shadow-lg bg-white" : "bg-gray-100"
+                                }`}
                         >
                             <input
                                 {...register("countryPermanent", { required: { value: true, message: "Country Name is required" } })}
                                 type="text"
-                                placeholder="Country"
+                                placeholder="Select Country"
                                 className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
                                 onChange={e => handleCountriesSuggestion(e.target.value)}
                                 value={parmanentCountryValue}
-                                id="hometown"
+                                id="countryPermanent"
                             />
                         </div>
                         <div
-                            className={`bg-white z-50 shadow-lg absolute top-[40px] right-0 w-full rounded-br-lg rounded-bl-lg overflow-y-scroll ${
-                                countriesSuggestionForParmanent.length > 0 ? "max-h-[346px]" : "h-0"
-                            }`}
+                            className={`bg-white z-50 shadow-lg absolute top-[40px] right-0 w-full rounded-br-lg rounded-bl-lg overflow-y-scroll ${countriesSuggestionForParmanent.length > 0 ? "max-h-[346px]" : "h-0"
+                                }`}
                         >
                             {countriesSuggestionForParmanent.length > 0 &&
                                 countriesSuggestionForParmanent.map(suggetion => {
@@ -939,9 +1005,8 @@ export const PersonalDetails = ({ setPage }) => {
                     {/* ---------- Town Current ---------- */}
                     <section className="relative">
                         <div
-                            className={`flex items-center  p-3 w-full rounded-lg mt-3 lg:mt-0 ${
-                                townCurrentSuggestion.length > 0 ? "rounded-br-none rounded-bl-none shadow-lg bg-white" : "bg-gray-100"
-                            }`}
+                            className={`flex items-center  p-3 w-full rounded-lg mt-3 lg:mt-0 ${townCurrentSuggestion.length > 0 ? "rounded-br-none rounded-bl-none shadow-lg bg-white" : "bg-gray-100"
+                                }`}
                         >
                             <input
                                 {...register("townCurrent", {
@@ -959,9 +1024,8 @@ export const PersonalDetails = ({ setPage }) => {
                             />
                         </div>
                         <div
-                            className={`bg-white shadow-lg absolute top-[40px] right-0 w-full rounded-br-lg rounded-bl-lg overflow-y-scroll ${
-                                townCurrentSuggestion.length > 0 ? "max-h-[346px]" : "h-0"
-                            }`}
+                            className={`bg-white shadow-lg absolute top-[40px] right-0 w-full rounded-br-lg rounded-bl-lg overflow-y-scroll ${townCurrentSuggestion.length > 0 ? "max-h-[346px]" : "h-0"
+                                }`}
                         >
                             {townCurrentSuggestion.length > 0 &&
                                 townCurrentSuggestion.map(suggetion => {
@@ -1017,22 +1081,40 @@ export const PersonalDetails = ({ setPage }) => {
                         </h1>
                     </section>
                     {/* ---------- Country Current ---------- */}
-                    <section>
-                        <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
-                            <select
-                                {...register("countryCurrent", {
-                                    required: {
-                                        value: true,
-                                        message: "Country Name is required",
-                                    },
-                                })}
+                    <section className="relative">
+                        <div
+                            className={`flex items-center  p-3 w-full rounded-lg mt-3 lg:mt-0 ${countriesSuggestionForParmanent.length > 0 ? "rounded-br-none rounded-bl-none shadow-lg bg-white" : "bg-gray-100"
+                                }`}
+                        >
+                            <input
+                                {...register("countryCurrent", { required: { value: true, message: "Country Name is required" } })}
                                 type="text"
+                                placeholder="Select Country"
                                 className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
+                                onChange={e => handleCurrentCountriesSuggestion(e.target.value)}
+                                value={currentCountryValue}
                                 id="countryCurrent"
-                            >
-                                <option value="">Select Country</option>
-                                <option value="bangladesh">Bangladesh</option>
-                            </select>
+                            />
+                        </div>
+                        <div
+                            className={`bg-white z-50 shadow-lg absolute top-[40px] right-0 w-full rounded-br-lg rounded-bl-lg overflow-y-scroll ${countriesSuggestionForCurrent.length > 0 ? "max-h-[346px]" : "h-0"
+                                }`}
+                        >
+                            {countriesSuggestionForCurrent.length > 0 &&
+                                countriesSuggestionForCurrent.map(suggetion => {
+                                    return (
+                                        <div
+                                            key={suggetion?.id}
+                                            className="h-[40px] flex justify-start items-center text-[14px] hover:bg-gray-100 px-3 cursor-pointer text-gray-500 rounded-br-lg rounded-bl-lg"
+                                            onClick={() => {
+                                                setCurrentCountryValue(suggetion?.name);
+                                                setCountriesSuggestionForCurrent([]);
+                                            }}
+                                        >
+                                            {suggetion?.value}
+                                        </div>
+                                    );
+                                })}
                         </div>
                         <h1 className="text-left ml-2">
                             {errors.countryCurrent?.type === "required" && (
@@ -1465,8 +1547,8 @@ export const PersonalDetails = ({ setPage }) => {
                             />
                         </div>
                         <h1 className="text-left ml-2">
-                            {errors.institute?.type === "required" && (
-                                <span className="w-full text-left text-red-400 text-sm">{errors?.institute.message}</span>
+                            {errors.CurrentProfessionInstitute?.type === "required" && (
+                                <span className="w-full text-left text-red-400 text-sm">{errors?.CurrentProfessionInstitute.message}</span>
                             )}
                         </h1>
                     </section>
@@ -1474,22 +1556,18 @@ export const PersonalDetails = ({ setPage }) => {
                     <section>
                         <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
                             <RangePicker
-                                {...register("workPeriod", {
-                                    required: {
-                                        value: true,
-                                        message: "Work Period is required",
-                                    },
-                                })}
                                 placeholder={["Start Date", "End Date"]}
                                 className="flex-1 px-2 py-[10px] outline-none h-full bg-transparent text-sm text-gray-400"
                                 id="workPeriod"
+                                bordered={false}
+                                onChange={onCurrentWorkPeriodChange}
                             />
                         </div>
-                        <h1 className="text-left ml-2">
+                        {/* <h1 className="text-left ml-2">
                             {errors.workPeriod?.type === "required" && (
                                 <span className="w-full text-left text-red-400 text-sm">{errors?.workPeriod.message}</span>
                             )}
-                        </h1>
+                        </h1> */}
                     </section>
                     {/* ---------- Special Professional Achievement ---------- */}
                     <section>
@@ -1530,6 +1608,150 @@ export const PersonalDetails = ({ setPage }) => {
                         </div>
                     </section>
 
+                    {/* <section className="col-span-1 md:col-span-2 lg:col-span-3 text-left text-lg font-bold">
+                        Add more professional experience
+                    </section> */}
+                    <br />
+                    {fields.map((field, index) => {
+                        return (
+                            <section className="col-span-1 md:col-span-2 lg:col-span-3 grid grid-cols-3 gap-3" key={field.id}>
+                                {/* <label>
+                                    <span>Name</span>
+                                    <input
+                                        {...register(`professions${index}`, { required: true })}
+                                    />
+                                </label>
+                                <label>
+                                    <span>amount</span>
+                                    <input
+                                        type="number"
+                                        {...register(`professions${index}`, { valueAsNumber: true })}
+                                    />
+                                </label> */}
+
+                                {/* ---------- Position ---------- */}
+                                <section>
+                                    <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
+                                        <input
+                                            {...register(`professions.${index}.addedProfessionPosition`, {
+                                                required: {
+                                                    value: true,
+                                                    message: "Position is required",
+                                                },
+                                            })}
+                                            type="text"
+                                            placeholder="Position"
+                                            className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
+                                            id="position"
+                                        />
+                                    </div>
+                                    <h1 className="text-left ml-2">
+                                        {errors.position?.type === "required" && (
+                                            <span className="w-full text-left text-red-400 text-sm">{errors?.position.message}</span>
+                                        )}
+                                    </h1>
+                                </section>
+                                {/* ---------- Institution ---------- */}
+                                <section>
+                                    <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
+                                        <input
+                                            {...register(`professions.${index}.addedProfessionInstitute`, {
+                                                required: {
+                                                    value: true,
+                                                    message: "Institution is required",
+                                                },
+                                            })}
+                                            type="text"
+                                            placeholder="Institution"
+                                            className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
+                                            id="institute"
+                                        />
+                                    </div>
+                                    <h1 className="text-left ml-2">
+                                        {errors.addedProfessionInstitute?.type === "required" && (
+                                            <span className="w-full text-left text-red-400 text-sm">{errors?.addedProfessionInstitute.message}</span>
+                                        )}
+                                    </h1>
+                                </section>
+                                {/* ---------- Work Period ---------- */}
+                                <section>
+                                    <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
+                                        <RangePicker
+                                            {...register(`professions.${index}.addedProfessionWorkPeriod`, {
+                                                required: {
+                                                    value: true,
+                                                    message: "Work Period is required",
+                                                },
+                                            })}
+                                            placeholder={["Start Date", "End Date"]}
+                                            className="flex-1 px-2 py-[10px] outline-none h-full bg-transparent text-sm text-gray-400"
+                                            id="workPeriod"
+                                            bordered={false}
+                                        />
+                                    </div>
+                                    <h1 className="text-left ml-2">
+                                        {errors.workPeriod?.type === "required" && (
+                                            <span className="w-full text-left text-red-400 text-sm">{errors?.workPeriod.message}</span>
+                                        )}
+                                    </h1>
+                                </section>
+                                {/* ---------- Special Professional Achievement ---------- */}
+                                <section>
+                                    <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
+                                        <input
+                                            {...register(`professions.${index}.addedProfessionAchievement`, {
+                                                required: {
+                                                    value: true,
+                                                    message: "Special Professional Achievement is required",
+                                                },
+                                            })}
+                                            type="text"
+                                            placeholder="Special Achievement"
+                                            className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
+                                            id="specialProfessionalAchievement"
+                                        />
+                                    </div>
+                                    <h1 className="text-left ml-2">
+                                        {errors.specialProfessionalAchievement?.type === "required" && (
+                                            <span className="w-full text-left text-red-400 text-sm">{errors?.specialProfessionalAchievement.message}</span>
+                                        )}
+                                    </h1>
+                                </section>
+                                {/* ---------- Professional Achievement moment ---------- */}
+                                <section>
+                                    <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
+                                        <AiOutlineCloudUpload className=" mr-2 text-gray-400" />
+                                        <label htmlFor="professionalAchievementMoment" className="outline-none h-full text-sm text-gray-400 bg-gray-100">
+                                            {addedAchievementMoment ? (
+                                                <>
+                                                    <span className="text-green-400">Moments new added</span>
+                                                </>
+                                            ) : (
+                                                "Upload new Achievement Moments"
+                                            )}
+                                        </label>
+                                        <input {...register(`professions.${index}.addedProfessionAchievementMoment`)} type="file" id="addedProfessionAchievementMoment" className="hidden" onChange={addedProfessionAchievementMomentHandler} />
+                                    </div>
+                                </section>
+
+                                <button className="p-3 text-sm text-center font-medium bg-red-100 text-red-500 rounded-lg" type="button" onClick={() => remove(index)}>
+                                    Remove
+                                </button>
+                            </section>
+                        );
+                    })}
+                    <button
+                        type="button"
+                        className="p-3 text-sm text-center font-medium text-gray-400 bg-gray-100 rounded-lg"
+                        onClick={() => {
+                            append({
+                                name: "add"
+                            });
+                        }}
+                    >
+                        + Add More Professional Experience
+                    </button>
+
                     {/* ------------------------ Current profession field end ------------------------ */}
 
                     {/* ---------------------- Highest education qualification start --------------------- */}
@@ -1540,12 +1762,13 @@ export const PersonalDetails = ({ setPage }) => {
                     <section>
                         <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
                             <CreatableSelect
-                                {...register("degreeName", {
-                                    required: {
-                                        value: true,
-                                        message: "Degree Name is required",
-                                    },
-                                })}
+                                // {...register("degreeName", {
+                                //     required: {
+                                //         value: true,
+                                //         message: "Degree Name is required",
+                                //     },
+                                // })}
+                                onChange={val => setDegreeName(val)}
                                 type="text"
                                 placeholder="Degree Name"
                                 // options={options}
@@ -1573,12 +1796,13 @@ export const PersonalDetails = ({ setPage }) => {
                     <section>
                         <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
                             <CreatableSelect
-                                {...register("institute", {
-                                    required: {
-                                        value: true,
-                                        message: "Institution is required",
-                                    },
-                                })}
+                                // {...register("institute", {
+                                //     required: {
+                                //         value: true,
+                                //         message: "Institution is required",
+                                //     },
+                                // })}
+                                onChange={val => setEduInstitute(val)}
                                 type="text"
                                 placeholder="Institution"
                                 // options={options}
@@ -1596,22 +1820,23 @@ export const PersonalDetails = ({ setPage }) => {
                                 id="institute"
                             />
                         </div>
-                        <h1 className="text-left ml-2">
-                            {errors.institute?.type === "required" && (
-                                <span className="w-full text-left text-red-400 text-sm">{errors?.institute.message}</span>
+                        {/* <h1 className="text-left ml-2">
+                            {errors.eduInstitute?.type === "required" && (
+                                <span className="w-full text-left text-red-400 text-sm">{errors?.eduInstitute.message}</span>
                             )}
-                        </h1>
+                        </h1> */}
                     </section>
                     {/* ---------- Department Name ---------- */}
                     <section>
                         <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
                             <CreatableSelect
-                                {...register("Department", {
-                                    required: {
-                                        value: true,
-                                        message: "Department Name is required",
-                                    },
-                                })}
+                                // {...register("Department", {
+                                //     required: {
+                                //         value: true,
+                                //         message: "Department Name is required",
+                                //     },
+                                // })}
+                                onChange={val => setEduDepartment(val)}
                                 type="text"
                                 placeholder="Department Name"
                                 // options={options}
@@ -1629,22 +1854,23 @@ export const PersonalDetails = ({ setPage }) => {
                                 id="Department"
                             />
                         </div>
-                        <h1 className="text-left ml-2">
+                        {/* <h1 className="text-left ml-2">
                             {errors.Department?.type === "required" && (
                                 <span className="w-full text-left text-red-400 text-sm">{errors?.Department.message}</span>
                             )}
-                        </h1>
+                        </h1> */}
                     </section>
                     {/* ---------- Field of Study ---------- */}
                     <section>
                         <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
                             <CreatableSelect
-                                {...register("fieldOfStudy", {
-                                    required: {
-                                        value: true,
-                                        message: "Field of Study is required",
-                                    },
-                                })}
+                                // {...register("fieldOfStudy", {
+                                //     required: {
+                                //         value: true,
+                                //         message: "Field of Study is required",
+                                //     },
+                                // })}
+                                onChange={val => setEduFieldOfStudy(val)}
                                 type="text"
                                 placeholder="Field of Study"
                                 // options={options}
@@ -1672,22 +1898,18 @@ export const PersonalDetails = ({ setPage }) => {
                     <section>
                         <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
                             <DatePicker
-                                {...register("yearOfPassing", {
-                                    required: {
-                                        value: true,
-                                        message: "Year of Passing is required",
-                                    },
-                                })}
+                                onChange={value => setEduYearOfPassing(value)}
                                 placeholder="Year of Passing"
                                 className="flex-1 px-2 py-2 outline-none h-full bg-transparent text-sm text-gray-400"
                                 id="yearOfPassing"
+                                bordered={false}
                             />
                         </div>
-                        <h1 className="text-left ml-2">
+                        {/* <h1 className="text-left ml-2">
                             {errors.yearOfPassing?.type === "required" && (
                                 <span className="w-full text-left text-red-400 text-sm">{errors?.yearOfPassing.message}</span>
                             )}
-                        </h1>
+                        </h1> */}
                     </section>
                     {/* ---------- Special Educational Achievement ---------- */}
                     <section>
@@ -1780,15 +2002,16 @@ export const PersonalDetails = ({ setPage }) => {
                     <section>
                         <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
                             <CreatableSelect
-                                {...register("ancestry", {
-                                    required: {
-                                        value: true,
-                                        message: "Ancestry is required",
-                                    },
-                                })}
+                                // {...register("ancestry", {
+                                //     required: {
+                                //         value: true,
+                                //         message: "Ancestry is required",
+                                //     },
+                                // })}
+                                onChange={val => setPhyAncestry(val)}
                                 type="text"
                                 placeholder="Ancestry"
-                                // options={options}
+                                options={ancestryData}
                                 styles={{
                                     control: (baseStyles, state) => ({
                                         ...baseStyles,
@@ -1803,20 +2026,35 @@ export const PersonalDetails = ({ setPage }) => {
                                 id="ancestry"
                             />
                         </div>
-                        <h1 className="text-left ml-2">
+                        {/* <h1 className="text-left ml-2">
                             {errors.ancestry?.type === "required" && (
                                 <span className="w-full text-left text-red-400 text-sm">{errors?.ancestry.message}</span>
                             )}
-                        </h1>
+                        </h1> */}
                     </section>
                     {/* ---------- Skin Tone ---------- */}
                     <section>
                         <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
                             <CreatableSelect
-                                {...register("SkinTone")}
+                                // {...register("SkinTone")}
+                                onChange={val => setPhySkinTone(val)}
                                 type="text"
                                 placeholder="Skin Tone"
-                                // options={options}
+                                options={[
+                                    {
+                                        "value": "Dark",
+                                        "label": "Dark"
+                                    },
+                                    {
+                                        "value": "Brown",
+                                        "label": "Brown"
+                                    },
+                                    {
+                                        "value": "White",
+                                        "label": "White"
+                                    }
+                                ]
+                                }
                                 styles={{
                                     control: (baseStyles, state) => ({
                                         ...baseStyles,
@@ -1831,17 +2069,18 @@ export const PersonalDetails = ({ setPage }) => {
                                 id="SkinTone"
                             />
                         </div>
-                        <h1 className="text-left ml-2">
+                        {/* <h1 className="text-left ml-2">
                             {errors.SkinTone?.type === "required" && (
                                 <span className="w-full text-left text-red-400 text-sm">{errors?.SkinTone.message}</span>
                             )}
-                        </h1>
+                        </h1> */}
                     </section>
                     {/* ---------- Hair Color ---------- */}
                     <section>
                         <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
                             <CreatableSelect
-                                {...register("hairColour")}
+                                // {...register("hairColour")}
+                                onChange={val => setPhyHairColor(val)}
                                 type="text"
                                 placeholder="Hair Color"
                                 // options={options}
@@ -1859,17 +2098,18 @@ export const PersonalDetails = ({ setPage }) => {
                                 id="hairColour"
                             />
                         </div>
-                        <h1 className="text-left ml-2">
+                        {/* <h1 className="text-left ml-2">
                             {errors.hairColour?.type === "required" && (
                                 <span className="w-full text-left text-red-400 text-sm">{errors?.hairColour.message}</span>
                             )}
-                        </h1>
+                        </h1> */}
                     </section>
                     {/* ---------- Hair Type ---------- */}
                     <section>
                         <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
                             <CreatableSelect
-                                {...register("hairType")}
+                                // {...register("hairType")}
+                                onChange={val => setPhyHairType(val)}
                                 type="text"
                                 placeholder="Hair Type"
                                 // options={options}
@@ -1887,17 +2127,18 @@ export const PersonalDetails = ({ setPage }) => {
                                 id="hairType"
                             />
                         </div>
-                        <h1 className="text-left ml-2">
+                        {/* <h1 className="text-left ml-2">
                             {errors.hairType?.type === "required" && (
                                 <span className="w-full text-left text-red-400 text-sm">{errors?.hairType.message}</span>
                             )}
-                        </h1>
+                        </h1> */}
                     </section>
                     {/* ---------- Eye Color ---------- */}
                     <section>
                         <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
                             <CreatableSelect
-                                {...register("eyeColor")}
+                                // {...register("eyeColor")}
+                                onChange={val => setPhyEyeColor(val)}
                                 type="text"
                                 placeholder="Eye Color"
                                 // options={options}
@@ -1915,17 +2156,18 @@ export const PersonalDetails = ({ setPage }) => {
                                 id="eyeColor"
                             />
                         </div>
-                        <h1 className="text-left ml-2">
+                        {/* <h1 className="text-left ml-2">
                             {errors.eyeColor?.type === "required" && (
                                 <span className="w-full text-left text-red-400 text-sm">{errors?.eyeColor.message}</span>
                             )}
-                        </h1>
+                        </h1> */}
                     </section>
                     {/* ---------- Number of Teeth ---------- */}
                     <section>
                         <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
                             <CreatableSelect
-                                {...register("numberOfTeeth")}
+                                // {...register("numberOfTeeth")}
+                                onChange={val => setPhyNumberTeeth(val)}
                                 type="number"
                                 placeholder="Number of Teeth"
                                 // options={options}
@@ -1943,11 +2185,11 @@ export const PersonalDetails = ({ setPage }) => {
                                 id="numberOfTeeth"
                             />
                         </div>
-                        <h1 className="text-left ml-2">
+                        {/* <h1 className="text-left ml-2">
                             {errors.numberOfTeeth?.type === "required" && (
                                 <span className="w-full text-left text-red-400 text-sm">{errors?.numberOfTeeth.message}</span>
                             )}
-                        </h1>
+                        </h1> */}
                     </section>
                     {/* ---------- Parents Status Info Start ---------- */}
                     <section className="col-span-1 md:col-span-2 lg:col-span-3 text-[#2F3659] font-medium text-left ml-1">Family Member Info</section>
@@ -2205,6 +2447,16 @@ export const PersonalDetails = ({ setPage }) => {
                                 options={hobbies}
                                 className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
                                 placeholder="Select Hobbies"
+                                styles={{
+                                    control: (baseStyles, state) => ({
+                                        ...baseStyles,
+                                        backgroundColor: 'transparent',
+                                        border: "none",
+                                        textAlign: "left",
+                                        fontSize: "14px",
+                                        color: "#9CA3AF"
+                                    }),
+                                }}
                             />
                         </div>
                         <h1 className="text-left ml-2">
