@@ -44,9 +44,6 @@ export const PersonalDetails = ({ setPage }) => {
     const [phyHairType, setPhyHairType] = useState('');
     const [phyNumberTeeth, setPhyNumberTeeth] = useState('');
 
-    // All data
-    const [allPersonalInfo, setAllPersonalInfo] = useState({});
-
     const { RangePicker } = DatePicker;
 
     const {
@@ -197,7 +194,7 @@ export const PersonalDetails = ({ setPage }) => {
         const currentProfession = {};
 
         Object.keys(data).forEach(function (key) {
-            if (key === "CurrentProfessionposition" || key === "CurrentProfessionInstitute" || key === "workPeriod" || key === "specialAchievement") {
+            if (key === "CurrentProfessionposition" || key === "CurrentProfessionInstitute" || key === "currentWorkPeriod" || key === "specialProfessionalAchievement") {
                 currentProfession[key] = data[key];
             }
         });
@@ -205,10 +202,10 @@ export const PersonalDetails = ({ setPage }) => {
         Object.keys(data).forEach(function (key) {
             if (
                 key === "degreeName" ||
-                key === "institute" ||
-                key === "Department" ||
-                key === "fieldOfStudy" ||
-                key === "yearOfPassing" ||
+                key === "eduInstitute" ||
+                key === "eduDepartment" ||
+                key === "eduFieldOfStudy" ||
+                key === "eduYearOfPassing" ||
                 key === "specialEducationalAchievement"
             ) {
                 hightestEducationalQualification[key] = data[key];
@@ -225,7 +222,7 @@ export const PersonalDetails = ({ setPage }) => {
         //current profession object delete from main object
         delete data.CurrentProfessionposition;
         delete data.CurrentProfessionInstitute;
-        delete data.workPeriod;
+        delete data.currentWorkPeriod;
         delete data.specialProfessionalAchievement;
 
         currentProfession.position = currentProfession.CurrentProfessionposition;
@@ -243,19 +240,10 @@ export const PersonalDetails = ({ setPage }) => {
         data.educationalAchievementMoment = educationalAchievementMoment;
         data.professionalAchievementMoment = professionalAchievementMoment;
 
-        data = { ...data, hightestEducationalQualification, currentProfession, dateOfBirth, currentWorkPeriod, degreeName, eduDepartment, eduFieldOfStudy, eduInstitute, eduYearOfPassing, phyAncestry, phyEyeColor, phyHairColor, phyHairType, phyNumberTeeth, phySkinTone, userHobbies, marriageDate, divorceDate, partnerDeathDate };
+        data = { ...data, hightestEducationalQualification, currentProfession, dateOfBirth, currentWorkPeriod, degreeName, eduDepartment, eduFieldOfStudy, eduInstitute, eduYearOfPassing, phyAncestry, phyEyeColor, phyHairColor, phyHairType, phyNumberTeeth, phySkinTone, userHobbies, marriageDate, divorceDate, partnerDeathDate, addedWorkPeriod };
         await setPersonalDetails(data);
-        setAllPersonalInfo(data);
         console.log(data);
     };
-
-
-
-    useEffect(() => {
-        setAllPersonalInfo({ ...allPersonalInfo, dateOfBirth, currentWorkPeriod, degreeName, eduDepartment, eduFieldOfStudy, eduInstitute, eduYearOfPassing, phyAncestry, phyEyeColor, phyHairColor, phyHairType, phyNumberTeeth, phySkinTone, userHobbies, marriageDate, divorceDate, partnerDeathDate })
-        console.log(allPersonalInfo);
-    }, [])
-
 
     useEffect(() => {
         if (data) {
@@ -298,7 +286,7 @@ export const PersonalDetails = ({ setPage }) => {
         const storageRef = ref(firebaseStorage, `cover/${photo?.name + uuidv4()}`);
         uploadBytes(storageRef, photo).then(async snapshot => {
             await getDownloadURL(snapshot.ref).then(url => {
-                setAddedAchievementMoment(...addedAchievementMoment, { addedAchievementMoment: url.toString() });
+                setAddedAchievementMoment([...addedAchievementMoment, { addedAchievementMoment: url.toString() }]);
             });
         });
     };
@@ -348,7 +336,7 @@ export const PersonalDetails = ({ setPage }) => {
         setCurrentWorkPeriod(dateString);
     };
     const onAddedWorkPeriodChange = (value, dateString) => {
-        setAddedWorkPeriod(dateString);
+        setAddedWorkPeriod([...addedWorkPeriod, { addedWorkPeriod: dateString }]);
     };
 
     useEffect(() => {
@@ -632,9 +620,9 @@ export const PersonalDetails = ({ setPage }) => {
                     <section>
                         <div className="flex items-center bg-gray-100  w-full rounded-lg mt-3 lg:mt-0">
                             <Controller
-                                {...register("citizenship")}
+                                {...register("citizenShip")}
                                 control={control}
-                                name="citizenship"
+                                name="citizenShip"
                                 render={({ field: { onChange, value, ref } }) => (
                                     <Select
                                         inputRef={ref}
@@ -1504,7 +1492,7 @@ export const PersonalDetails = ({ setPage }) => {
                     <section>
                         <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
                             <RangePicker
-                                {...register("workPeriod")}
+                                {...register("currentWorkPeriod")}
                                 placeholder={["Start Date", "End Date"]}
                                 className="flex-1 px-2 py-[10px] outline-none h-full bg-transparent text-sm text-gray-400"
                                 id="workPeriod"
@@ -1691,7 +1679,7 @@ export const PersonalDetails = ({ setPage }) => {
                     <section>
                         <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
                             <CreatableSelect
-                                {...register("eduDegreeName")}
+                                {...register("degreeName")}
                                 onChange={val => setDegreeName(val.value)}
                                 type="text"
                                 placeholder="Degree Name"
@@ -2017,7 +2005,7 @@ export const PersonalDetails = ({ setPage }) => {
                     <section>
                         <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
                             <CreatableSelect
-                                {...register("phyColor")}
+                                {...register("phyEyeColor")}
                                 onChange={val => setPhyEyeColor(val.value)}
                                 type="text"
                                 placeholder="Eye Color"
@@ -2315,7 +2303,7 @@ export const PersonalDetails = ({ setPage }) => {
                                 name="userHobbies"
                                 render={({ field: { onChange, value, ref } }) => (
                                     <Select
-                                        onChange={val => onChange(val.map(hobby => setUserHobbies(...userHobbies, hobby.value)))}
+                                        onChange={val => onChange(val.map(hobby => setUserHobbies([...userHobbies, hobby.value])))}
                                         closeMenuOnSelect={false}
                                         components={animatedComponents}
                                         isMulti
@@ -2473,8 +2461,7 @@ export const PersonalDetails = ({ setPage }) => {
                 </section>
                 <input
                     type="submit"
-                    // value={isLoading ? "Saving..." : "Submit"}
-                    value={"Submit"}
+                    value={isLoading ? "Saving..." : "Submit"}
                     className="border-2 cursor-pointer mt-3 border-primary hover:border-0 rounded-full px-12 py-2 hover:bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] hover:text-white duration-500 transition-all"
                 />
             </form>
