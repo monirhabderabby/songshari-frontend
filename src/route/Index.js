@@ -71,6 +71,7 @@ import { RunningCaseMov } from "../Wrapper/Home/mobileversion/mobilelawyeractivi
 import MobileProfileOthers from "../Wrapper/Home/mobileversion/MobileProfileOthers";
 import { PrivacyMov } from "../Wrapper/Home/mobileversion/privacy/PrivacyMov";
 import { Setting } from "../Wrapper/Home/mobileversion/Setting";
+import { GallaryMov } from "../Wrapper/Home/mobileversion/gallarymov/GallaryMov";
 
 
 const Index = () => {
@@ -106,6 +107,7 @@ const Index = () => {
                         <Route path="list" element={<RunningCaseMov />} />
                         <Route path="add" element={<CompletedCaseMov />} />
                     </Route>
+
                     <Route path="/singleproduct" element={<SingleProduct></SingleProduct>}></Route>
                     <Route path="/login" element={<Login />} />
                     <Route path="/signup" element={<SignUp />} />
@@ -139,7 +141,9 @@ const Index = () => {
                     {/* --------------- MOBILE ROUTES START --------------- */}
                     <Route path="/mobileHomePage" element={<MobileHome />}></Route>
                     <Route path="/setting" element={<Setting></Setting>}></Route>
+                   
                     <Route path="/aboutmov" element={<AboutMov></AboutMov>}></Route>
+                    <Route path="/gallarymov" element={<GallaryMov />}></Route>
                     <Route path="/meetmov" element={<MeetMov></MeetMov>}></Route>
                     <Route path="/matchesmov" element={<MatchesMov></MatchesMov>}></Route>
                     <Route path="/mobileActivityPage" element={<MobileActivity />}></Route>
