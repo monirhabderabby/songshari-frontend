@@ -9,9 +9,30 @@ export const connectionApi = apiSlice.injectEndpoints({
                 headers: { authorization: `Bearer ${localStorage.getItem("accessToken")}` },
             }),
         }),
-        getAllRequest: builder.query({
+        getAllSentRequest: builder.query({
+            query: () => ({
+                url: "/member/connections/sentRequests",
+                method: "GET",
+                headers: { authorization: `Bearer ${localStorage.getItem("accessToken")}` },
+            }),
+        }),
+        getAllFriendRequest: builder.query({
             query: () => ({
                 url: "/member/connections/requests",
+                method: "GET",
+                headers: { authorization: `Bearer ${localStorage.getItem("accessToken")}` },
+            }),
+        }),
+        acceptFriendRequest: builder.mutation({
+            query: ({ id }) => ({
+                url: `/member/connections/accept/${id}`,
+                method: "POST",
+                headers: { authorization: `Bearer ${localStorage.getItem("accessToken")}` },
+            }),
+        }),
+        getAllConnectedConnections: builder.query({
+            query: () => ({
+                url: "/member/connections",
                 method: "GET",
                 headers: { authorization: `Bearer ${localStorage.getItem("accessToken")}` },
             }),
@@ -19,4 +40,10 @@ export const connectionApi = apiSlice.injectEndpoints({
     }),
 });
 
-export const { useAddFriendMutation, useGetAllRequestQuery } = connectionApi;
+export const {
+    useAddFriendMutation,
+    useGetAllSentRequestQuery,
+    useGetAllFriendRequestQuery,
+    useAcceptFriendRequestMutation,
+    useGetAllConnectedConnectionsQuery,
+} = connectionApi;

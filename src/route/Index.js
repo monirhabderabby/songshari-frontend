@@ -23,6 +23,8 @@ import TopProfessionKazi from "../components/pages/TopProfession/TopProfessionKa
 import Suggested from "../components/pages/TopProfile/Suggested";
 import TopBride from "../components/pages/TopProfile/TopBride";
 import TopGroom from "../components/pages/TopProfile/TopGroom";
+import Accordian from "../components/SingleProfilesUser/profileSection/Accordion";
+// import EditProfile from "../components/SingleProfilesUser/profileSection/EditProfile";
 import About from "../Wrapper/About/About";
 import Agent from "../Wrapper/Agent/Agent";
 import Community from "../Wrapper/Community/Community";
@@ -37,8 +39,11 @@ import Shop from "../Wrapper/Shop/Shop";
 import SingleProduct from "../Wrapper/SingleProduct/SingleProduct";
 import SingleProfile from "../Wrapper/SingleProfilesUser/SingleProfile";
 import { Container } from "../Wrapper/Stepper/Container";
-import EditProfile from "../components/SingleProfilesUser/profileSection/EditProfile";
-import Accordian from "../components/SingleProfilesUser/profileSection/Accordion";
+import EditPersonalInfo from "../components/SingleProfilesUser/profileSection/EditprofileSection/EditPersonalInfo";
+import EditProfesionalInfo from "../components/SingleProfilesUser/profileSection/EditprofileSection/EditProfesionalInfo";
+import EditEducationalInfo from "../components/SingleProfilesUser/profileSection/EditprofileSection/EditEducationalInfo";
+import EditPhysicalInfo from "../components/SingleProfilesUser/profileSection/EditprofileSection/EditPhysicalInfo";
+import EditOthersInfo from "../components/SingleProfilesUser/profileSection/EditprofileSection/EditOthersInfo";
 // import { UsersProfile } from "../components/SingleProfilesUser/profileSection/UsersProfile";
 import { FilterResults } from "../components/pages/FindPartner/FilterResults/FilterResults";
 import MobileDiamondPlan from "../components/pages/Membership/MobileVersion/MobileDiamondPlan";
@@ -49,22 +54,24 @@ import UpgradePlan from "../components/pages/Membership/MobileVersion/UpgradePla
 import MobileActivity from "../components/pages/MobileActivity/MobileActivity";
 import MobileActivityPost from "../components/pages/MobileActivity/MobileActivityPost";
 // import MobileSingleProfilesUser from "../components/SingleProfilesUser/MobileSingleProfilesUser/MobileSingleProfilesUser";
+import { DynamicPhotosGallary } from "../components/pages/DynamicProfilePage/DynamicPhotosGallary";
 import { FindAPartnerSuggested } from "../components/pages/FindPartner/FindAPartnerSuggested";
+import { AboutMov } from "../Wrapper/Home/mobileversion/about/AboutMov";
 import { CertificateMov } from "../Wrapper/Home/mobileversion/CertificateMov";
+import { CommunityMov } from "../Wrapper/Home/mobileversion/comminuty/CommunityMov";
+import { HistoryMov } from "../Wrapper/Home/mobileversion/history/HistoryMov";
 import { Like } from "../Wrapper/Home/mobileversion/Like";
 import { MatchesMov } from "../Wrapper/Home/mobileversion/MatchesMov";
+import { MeetMov } from "../Wrapper/Home/mobileversion/meet/MeetMov";
 import { MobileHome } from "../Wrapper/Home/mobileversion/MobileHome";
 import { CompletedCaseMov } from "../Wrapper/Home/mobileversion/mobilelawyeractivity/CompletedCase";
 import { NavCase } from "../Wrapper/Home/mobileversion/mobilelawyeractivity/NavCase";
 import { PendingCaseMov } from "../Wrapper/Home/mobileversion/mobilelawyeractivity/PendingCase";
 import { RunningCaseMov } from "../Wrapper/Home/mobileversion/mobilelawyeractivity/RunningCase";
 import MobileProfileOthers from "../Wrapper/Home/mobileversion/MobileProfileOthers";
-import { Setting } from "../Wrapper/Home/mobileversion/Setting";
-import { HistoryMov } from "../Wrapper/Home/mobileversion/history/HistoryMov";
-import { CommunityMov } from "../Wrapper/Home/mobileversion/comminuty/CommunityMov";
 import { PrivacyMov } from "../Wrapper/Home/mobileversion/privacy/PrivacyMov";
-import { AboutMov } from "../Wrapper/Home/mobileversion/about/AboutMov";
-import { MeetMov } from "../Wrapper/Home/mobileversion/meet/MeetMov";
+import { Setting } from "../Wrapper/Home/mobileversion/Setting";
+import { GallaryMov } from "../Wrapper/Home/mobileversion/gallarymov/GallaryMov";
 
 const Index = () => {
     return (
@@ -74,7 +81,13 @@ const Index = () => {
                     <Route path="/about" element={<About></About>}></Route>
                     <Route path="/userprofile" element={<SingleProfile />}>
                         <Route path="" element={<Accordian />} />
-                        <Route path="edit" element={<EditProfile />} />
+                        <Route path="edit"  >
+                            <Route path="personalinfo" element={<EditPersonalInfo />} />
+                            <Route path="profesionalinfo" element={<EditProfesionalInfo />} />
+                            <Route path="educationalinfo" element={<EditEducationalInfo />} />
+                            <Route path="physicalinfo" element={<EditPhysicalInfo />} />
+                            <Route path="othersinfo" element={<EditOthersInfo />} />
+                        </Route>
                     </Route>
                     <Route path="/mobileotherprofile" element={<MobileProfileOthers></MobileProfileOthers>}></Route>
                     <Route path="/membership" element={<MemberShip></MemberShip>}></Route>
@@ -93,6 +106,7 @@ const Index = () => {
                         <Route path="list" element={<RunningCaseMov />} />
                         <Route path="add" element={<CompletedCaseMov />} />
                     </Route>
+
                     <Route path="/singleproduct" element={<SingleProduct></SingleProduct>}></Route>
                     <Route path="/login" element={<Login />} />
                     <Route path="/signup" element={<SignUp />} />
@@ -102,6 +116,7 @@ const Index = () => {
                     <Route path="/lawyeractivity" element={<LawyerActivity></LawyerActivity>}></Route>
                     <Route path="/members" element={<Members />}></Route>
                     <Route path="/profile/:id" element={<DynamicProfilePage />}></Route>
+                    <Route path="/gallery/:id" element={<DynamicPhotosGallary />} />
                     <Route path="/privacy-policy" element={<Privacy></Privacy>}></Route>
                     <Route path="/our-teams" element={<OurTeams />}></Route>
                     <Route path="/find-partner" element={<FindPartner />}>
@@ -125,7 +140,9 @@ const Index = () => {
                     {/* --------------- MOBILE ROUTES START --------------- */}
                     <Route path="/mobileHomePage" element={<MobileHome />}></Route>
                     <Route path="/setting" element={<Setting></Setting>}></Route>
+                   
                     <Route path="/aboutmov" element={<AboutMov></AboutMov>}></Route>
+                    <Route path="/gallarymov" element={<GallaryMov />}></Route>
                     <Route path="/meetmov" element={<MeetMov></MeetMov>}></Route>
                     <Route path="/matchesmov" element={<MatchesMov></MatchesMov>}></Route>
                     <Route path="/mobileActivityPage" element={<MobileActivity />}></Route>

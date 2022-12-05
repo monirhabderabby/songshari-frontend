@@ -9,7 +9,7 @@ import SingleUserActivity from "../SingleUserActivity/SingleUserActivity";
 
 const Table = ({ data, isLoading }) => {
     const [page, setPage] = useState(2);
-
+    //here navigate use for manage edit proofile information route
     const navigate = useNavigate();
 
     return (
@@ -25,7 +25,10 @@ const Table = ({ data, isLoading }) => {
                         </button>
                         <button
                             className={`font-medium text-[15px] leading-tight ${page === 2 ? "text-primary font-bold" : "text-gray-800"}`}
-                            onClick={() => setPage(2)}
+                            onClick={() => {
+                                navigate("/userprofile")
+                                setPage(2)
+                            }}
                         >
                             Profile
                         </button>

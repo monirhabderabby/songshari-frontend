@@ -1,27 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import { HiOutlineAdjustmentsHorizontal } from "react-icons/hi2";
 import "../../../App.css";
 import FindPartner from "../../../assets/css/FindPartner.module.css";
 import { AccordionPartner } from "./AccordionPartner";
 
 const PartnerFilterBox = () => {
-    const [remuneration, setRemuneration] = useState(true);
-    const [location, setLocation] = useState(true);
-    const [hometown, setHomeTown] = useState(true);
-    const [current, setCurrent] = useState(true);
-    const [marrital, setMarritul] = useState(true);
-    const [religion, setRelion] = useState(true);
-    const [category, setCategory] = useState(true);
-    const [qualifications, setQualifications] = useState(true);
-    const [categoryItem, setCategoryItem] = useState("Bride");
-    const [locationItem, setLocationItem] = useState("Myself");
-    const [religionItem, setReligionItem] = useState("Islam");
-    const [hometownItem, setHomeTownItem] = useState("Dhaka");
-    const [currentItem, setCurrentItem] = useState("Dhaka");
-    const [remunerationItem, setRemunerationItem] = useState("  30,000 - 40,000");
-    const [qualificationsItem, setQualificationsItem] = useState(" Dhaka");
-    const [maritalItem, setMaritalItem] = useState(" Single");
-
     return (
         <>
             <div

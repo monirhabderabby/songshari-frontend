@@ -2,7 +2,7 @@ import { DatePicker } from "antd";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import React, { useEffect, useState } from "react";
 import { Controller, useForm, useFieldArray } from "react-hook-form";
-import { AiOutlineCloudUpload, AiOutlineIdcard } from "react-icons/ai";
+import { AiFillFileAdd, AiOutlineCloudUpload, AiOutlineIdcard } from "react-icons/ai";
 import Select from "react-select";
 import makeAnimated from "react-select/animated";
 import { v4 as uuidv4 } from "uuid";
@@ -16,13 +16,18 @@ export const PersonalDetails = ({ setPage }) => {
     const [frontSide, setFrontSide] = useState("");
     const [backSide, setBackSide] = useState("");
     const [professionalAchievementMoment, setProfessionalAchievementMoment] = useState("");
-    const [addedAchievementMoment, setAddedAchievementMoment] = useState("");
+    const [addedAchievementMoment, setAddedAchievementMoment] = useState([]);
     const [educationalAchievementMoment, setEducationalAchievementMoment] = useState("");
     // const [licencePhoto, setLicencePhoto] = useState("");
     const [meritalStatus, setMeritalStatus] = useState("");
     const [citizenShip, setCitizenShip] = useState([]);
     const [dateOfBirth, setDateOfBirth] = useState();
+    const [marriageDate, setMarriageDate] = useState();
+    const [divorceDate, setDivorceDate] = useState();
+    const [partnerDeathDate, setPartnerDeathDate] = useState();
     const [currentWorkPeriod, setCurrentWorkPeriod] = useState();
+    const [addedWorkPeriod, setAddedWorkPeriod] = useState([]);
+    const [userHobbies, setUserHobbies] = useState([]);
 
     // Education
     const [degreeName, setDegreeName] = useState('');
@@ -45,15 +50,12 @@ export const PersonalDetails = ({ setPage }) => {
         register,
         formState: { errors },
         handleSubmit,
-        control,
+        control
     } = useForm();
 
     const { fields, append, remove } = useFieldArray({
         name: "professions",
-        control,
-        rules: {
-            required: "Please append at least 1 item"
-        }
+        control
     });
 
     // hobbies
@@ -187,11 +189,12 @@ export const PersonalDetails = ({ setPage }) => {
     };
 
     const onSubmit = async data => {
+        console.log(data);
         const hightestEducationalQualification = {};
         const currentProfession = {};
 
         Object.keys(data).forEach(function (key) {
-            if (key === "CurrentProfessionposition" || key === "CurrentProfessionInstitute" || key === "workPeriod" || key === "specialAchievement") {
+            if (key === "CurrentProfessionposition" || key === "CurrentProfessionInstitute" || key === "currentWorkPeriod" || key === "specialProfessionalAchievement") {
                 currentProfession[key] = data[key];
             }
         });
@@ -199,10 +202,10 @@ export const PersonalDetails = ({ setPage }) => {
         Object.keys(data).forEach(function (key) {
             if (
                 key === "degreeName" ||
-                key === "institute" ||
-                key === "Department" ||
-                key === "fieldOfStudy" ||
-                key === "yearOfPassing" ||
+                key === "eduInstitute" ||
+                key === "eduDepartment" ||
+                key === "eduFieldOfStudy" ||
+                key === "eduYearOfPassing" ||
                 key === "specialEducationalAchievement"
             ) {
                 hightestEducationalQualification[key] = data[key];
@@ -219,7 +222,7 @@ export const PersonalDetails = ({ setPage }) => {
         //current profession object delete from main object
         delete data.CurrentProfessionposition;
         delete data.CurrentProfessionInstitute;
-        delete data.workPeriod;
+        delete data.currentWorkPeriod;
         delete data.specialProfessionalAchievement;
 
         currentProfession.position = currentProfession.CurrentProfessionposition;
@@ -237,7 +240,7 @@ export const PersonalDetails = ({ setPage }) => {
         data.educationalAchievementMoment = educationalAchievementMoment;
         data.professionalAchievementMoment = professionalAchievementMoment;
 
-        data = { ...data, hightestEducationalQualification, currentProfession, dateOfBirth, currentWorkPeriod, degreeName, eduDepartment, eduFieldOfStudy, eduInstitute, eduYearOfPassing, phyAncestry, phyEyeColor, phyHairColor, phyHairType, phyNumberTeeth, phySkinTone };
+        data = { ...data, hightestEducationalQualification, currentProfession, dateOfBirth, currentWorkPeriod, degreeName, eduDepartment, eduFieldOfStudy, eduInstitute, eduYearOfPassing, phyAncestry, phyEyeColor, phyHairColor, phyHairType, phyNumberTeeth, phySkinTone, userHobbies, marriageDate, divorceDate, partnerDeathDate, addedWorkPeriod };
         await setPersonalDetails(data);
         console.log(data);
     };
@@ -250,7 +253,7 @@ export const PersonalDetails = ({ setPage }) => {
 
     const profilePhotoHandler = async e => {
         const photo = e.target.files[0];
-        const storageRef = ref(firebaseStorage, `profile/${photo.name + uuidv4()}`);
+        const storageRef = ref(firebaseStorage, `profile/${photo?.name + uuidv4()}`);
         uploadBytes(storageRef, photo).then(async snapshot => {
             await getDownloadURL(snapshot.ref).then(url => {
                 setProfilePhoto(url.toString());
@@ -260,7 +263,7 @@ export const PersonalDetails = ({ setPage }) => {
 
     const coverPhotoHandler = async e => {
         const photo = e.target.files[0];
-        const storageRef = ref(firebaseStorage, `cover/${photo.name + uuidv4()}`);
+        const storageRef = ref(firebaseStorage, `cover/${photo?.name + uuidv4()}`);
         uploadBytes(storageRef, photo).then(async snapshot => {
             await getDownloadURL(snapshot.ref).then(url => {
                 setCoverPhoto(url.toString());
@@ -270,7 +273,7 @@ export const PersonalDetails = ({ setPage }) => {
 
     const professionalAchievementMomentHandler = async e => {
         const photo = e.target.files[0];
-        const storageRef = ref(firebaseStorage, `cover/${photo.name + uuidv4()}`);
+        const storageRef = ref(firebaseStorage, `cover/${photo?.name + uuidv4()}`);
         uploadBytes(storageRef, photo).then(async snapshot => {
             await getDownloadURL(snapshot.ref).then(url => {
                 setProfessionalAchievementMoment(url.toString());
@@ -280,17 +283,17 @@ export const PersonalDetails = ({ setPage }) => {
 
     const addedProfessionAchievementMomentHandler = async e => {
         const photo = e.target.files[0];
-        const storageRef = ref(firebaseStorage, `cover/${photo.name + uuidv4()}`);
+        const storageRef = ref(firebaseStorage, `cover/${photo?.name + uuidv4()}`);
         uploadBytes(storageRef, photo).then(async snapshot => {
             await getDownloadURL(snapshot.ref).then(url => {
-                setAddedAchievementMoment(url.toString());
+                setAddedAchievementMoment([...addedAchievementMoment, { addedAchievementMoment: url.toString() }]);
             });
         });
     };
 
     const educationalAchievementMomentHandler = async e => {
         const photo = e.target.files[0];
-        const storageRef = ref(firebaseStorage, `cover/${photo.name + uuidv4()}`);
+        const storageRef = ref(firebaseStorage, `cover/${photo?.name + uuidv4()}`);
         uploadBytes(storageRef, photo).then(async snapshot => {
             await getDownloadURL(snapshot.ref).then(url => {
                 setEducationalAchievementMoment(url.toString());
@@ -300,7 +303,7 @@ export const PersonalDetails = ({ setPage }) => {
 
     const frontSideNIDHandler = async e => {
         const photo = e.target.files[0];
-        const storageRef = ref(firebaseStorage, `nid/${photo.name + uuidv4()}`);
+        const storageRef = ref(firebaseStorage, `nid/${photo?.name + uuidv4()}`);
         uploadBytes(storageRef, photo).then(async snapshot => {
             await getDownloadURL(snapshot.ref).then(url => {
                 setFrontSide(url.toString());
@@ -309,7 +312,7 @@ export const PersonalDetails = ({ setPage }) => {
     };
     const backSideNIDHandler = async e => {
         const photo = e.target.files[0];
-        const storageRef = ref(firebaseStorage, `nid/${photo.name + uuidv4()}`);
+        const storageRef = ref(firebaseStorage, `nid/${photo?.name + uuidv4()}`);
         uploadBytes(storageRef, photo).then(async snapshot => {
             await getDownloadURL(snapshot.ref).then(url => {
                 setBackSide(url.toString());
@@ -327,10 +330,13 @@ export const PersonalDetails = ({ setPage }) => {
     // };
 
     const onDateOfBirthChange = (date, dateString) => {
-        setDateOfBirth(date);
+        setDateOfBirth(dateString);
     };
     const onCurrentWorkPeriodChange = (value, dateString) => {
-        setCurrentWorkPeriod(value);
+        setCurrentWorkPeriod(dateString);
+    };
+    const onAddedWorkPeriodChange = (value, dateString) => {
+        setAddedWorkPeriod([...addedWorkPeriod, { addedWorkPeriod: dateString }]);
     };
 
     useEffect(() => {
@@ -406,7 +412,7 @@ export const PersonalDetails = ({ setPage }) => {
                     <section>
                         <div className="flex items-center bg-gray-100  w-full rounded-lg mt-3 lg:mt-0">
                             <DatePicker
-                                required
+                                {...register("dateOfBirth")}
                                 placeholder="Date of Birth"
                                 className="flex-1 px-2 py-[9px] outline-none h-full bg-transparent text-sm text-gray-400"
                                 id="dateOfBirth"
@@ -414,11 +420,6 @@ export const PersonalDetails = ({ setPage }) => {
                                 onChange={onDateOfBirthChange}
                             />
                         </div>
-                        <h1 className="text-left ml-2">
-                            {/* {
-                                !dateOfBirth ? <span className="w-full text-left text-red-400 text-sm">Date of birth is required</span> : ''
-                            } */}
-                        </h1>
                     </section>
                     {/* ---------- Hometown ---------- */}
                     <section className="relative">
@@ -467,50 +468,6 @@ export const PersonalDetails = ({ setPage }) => {
                             )}
                         </h1>
                     </section>
-                    {/* ---------- Permanent Address ---------- */}
-                    {/* <section>
-                        <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
-                            <input
-                                {...register("permanentAdress", {
-                                    required: {
-                                        value: true,
-                                        message: "Permanent Address is required",
-                                    },
-                                })}
-                                type="text"
-                                placeholder="Permanent Address"
-                                className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
-                                id="permanentAdress"
-                            />
-                        </div>
-                        <h1 className="text-left ml-2">
-                            {errors.permanentAdress?.type === "required" && (
-                                <span className="w-full text-left text-red-400 text-sm">{errors?.permanentAdress.message}</span>
-                            )}
-                        </h1>
-                    </section> */}
-                    {/* ---------- Current Address ---------- */}
-                    {/* <section>
-                        <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
-                            <input
-                                {...register("currentAdress", {
-                                    required: {
-                                        value: true,
-                                        message: "Current Address is required",
-                                    },
-                                })}
-                                type="text"
-                                placeholder="Current Address"
-                                className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
-                                id="currentAdress"
-                            />
-                        </div>
-                        <h1 className="text-left ml-2">
-                            {errors.currentAdress?.type === "required" && (
-                                <span className="w-full text-left text-red-400 text-sm">{errors?.currentAdress.message}</span>
-                            )}
-                        </h1>
-                    </section> */}
                     {/* ---------- Profile Photo ---------- */}
                     <section>
                         <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
@@ -663,8 +620,9 @@ export const PersonalDetails = ({ setPage }) => {
                     <section>
                         <div className="flex items-center bg-gray-100  w-full rounded-lg mt-3 lg:mt-0">
                             <Controller
+                                {...register("citizenShip")}
                                 control={control}
-                                name="citizenship"
+                                name="citizenShip"
                                 render={({ field: { onChange, value, ref } }) => (
                                     <Select
                                         inputRef={ref}
@@ -1123,7 +1081,7 @@ export const PersonalDetails = ({ setPage }) => {
                         </h1>
                     </section>
 
-                    {/* --------------------------- Current Adress End ------------------------- */}
+                    {/* --------------------------- Current Address End ------------------------- */}
 
                     {/* ---------- Marital info ---------- */}
                     <section className="col-span-1 md:col-span-2 lg:col-span-3 text-[#2F3659] font-medium text-left ml-1">Marital Info</section>
@@ -1208,7 +1166,7 @@ export const PersonalDetails = ({ setPage }) => {
                         <section>
                             <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
                                 <select
-                                    {...register("isPartnerAwarOfMarriage", {
+                                    {...register("isPartnerAwareOfMarriage", {
                                         required: {
                                             value: true,
                                             message: "Answer is required",
@@ -1216,7 +1174,7 @@ export const PersonalDetails = ({ setPage }) => {
                                     })}
                                     type="text"
                                     className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
-                                    id="isPartnerAwarOfMarriage"
+                                    id="isPartnerAwareOfMarriage"
                                 >
                                     <option value="">Is partner aware of marriage?</option>
                                     <option value="yes">Yes</option>
@@ -1224,8 +1182,8 @@ export const PersonalDetails = ({ setPage }) => {
                                 </select>
                             </div>
                             <h1 className="text-left ml-2">
-                                {errors.isPartnerAwarOfMarriage?.type === "required" && (
-                                    <span className="w-full text-left text-red-400 text-sm">{errors?.isPartnerAwarOfMarriage.message}</span>
+                                {errors.isPartnerAwareOfMarriage?.type === "required" && (
+                                    <span className="w-full text-left text-red-400 text-sm">{errors?.isPartnerAwareOfMarriage.message}</span>
                                 )}
                             </h1>
                         </section>
@@ -1235,22 +1193,13 @@ export const PersonalDetails = ({ setPage }) => {
                         <section>
                             <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
                                 <DatePicker
-                                    {...register("marriageDate", {
-                                        required: {
-                                            value: true,
-                                            message: "Date of Marriage is required",
-                                        },
-                                    })}
+                                    {...register("marriageDate")}
+                                    onChange={(date, dateString) => setMarriageDate(dateString)}
                                     placeholder="Marriage Date"
                                     className="flex-1 px-2 py-[10px] outline-none h-full bg-transparent text-sm text-gray-400"
                                     id="marriageDate"
                                 />
                             </div>
-                            <h1 className="text-left ml-2">
-                                {errors.marriageDate?.type === "required" && (
-                                    <span className="w-full text-left text-red-400 text-sm">{errors?.marriageDate.message}</span>
-                                )}
-                            </h1>
                         </section>
                     )}
                     {/* ---------- Reason of Divorce ---------- */}
@@ -1282,22 +1231,13 @@ export const PersonalDetails = ({ setPage }) => {
                         <section>
                             <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
                                 <DatePicker
-                                    {...register("dicorceDate", {
-                                        required: {
-                                            value: true,
-                                            message: "Date of Divorce is required",
-                                        },
-                                    })}
+                                    {...register("divorceDate")}
+                                    onChange={(date, dateString) => setDivorceDate(dateString)}
                                     placeholder="Divorce Date"
                                     className="flex-1 px-2 py-[10px] outline-none h-full bg-transparent text-sm text-gray-400"
-                                    id="dicorceDate"
+                                    id="divorceDate"
                                 />
                             </div>
-                            <h1 className="text-left ml-2">
-                                {errors.dicorceDate?.type === "required" && (
-                                    <span className="w-full text-left text-red-400 text-sm">{errors?.dicorceDate.message}</span>
-                                )}
-                            </h1>
                         </section>
                     )}
                     {/* ---------- Do you have children --------- */}
@@ -1484,22 +1424,18 @@ export const PersonalDetails = ({ setPage }) => {
                         <section>
                             <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
                                 <DatePicker
-                                    {...register("partnerDeathDay", {
-                                        required: {
-                                            value: true,
-                                            message: "Partner Death Date is required",
-                                        },
-                                    })}
+                                    {...register("partnerDeathDay")}
+                                    onChange={(date, dateString) => setPartnerDeathDate(dateString)}
                                     placeholder="Partner Death Date"
                                     className="flex-1 px-2 py-[10px] outline-none h-full bg-transparent text-sm text-gray-400"
                                     id="partnerDeathDay"
                                 />
                             </div>
-                            <h1 className="text-left ml-2">
+                            {/* <h1 className="text-left ml-2">
                                 {errors.partnerDeathDay?.type === "required" && (
                                     <span className="w-full text-left text-red-400 text-sm">{errors?.partnerDeathDay.message}</span>
                                 )}
-                            </h1>
+                            </h1> */}
                         </section>
                     )}
                     {/* ------------------------ Current profession field start ------------------------ */}
@@ -1556,6 +1492,7 @@ export const PersonalDetails = ({ setPage }) => {
                     <section>
                         <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
                             <RangePicker
+                                {...register("currentWorkPeriod")}
                                 placeholder={["Start Date", "End Date"]}
                                 className="flex-1 px-2 py-[10px] outline-none h-full bg-transparent text-sm text-gray-400"
                                 id="workPeriod"
@@ -1615,21 +1552,6 @@ export const PersonalDetails = ({ setPage }) => {
                     {fields.map((field, index) => {
                         return (
                             <section className="col-span-1 md:col-span-2 lg:col-span-3 grid grid-cols-3 gap-3" key={field.id}>
-                                {/* <label>
-                                    <span>Name</span>
-                                    <input
-                                        {...register(`professions${index}`, { required: true })}
-                                    />
-                                </label>
-                                <label>
-                                    <span>amount</span>
-                                    <input
-                                        type="number"
-                                        {...register(`professions${index}`, { valueAsNumber: true })}
-                                    />
-                                </label> */}
-
-                                {/* ---------- Position ---------- */}
                                 <section>
                                     <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
                                         <input
@@ -1646,12 +1568,11 @@ export const PersonalDetails = ({ setPage }) => {
                                         />
                                     </div>
                                     <h1 className="text-left ml-2">
-                                        {errors.position?.type === "required" && (
-                                            <span className="w-full text-left text-red-400 text-sm">{errors?.position.message}</span>
+                                        {errors.addedProfessionPosition?.type === "required" && (
+                                            <span className="w-full text-left text-red-400 text-sm">{errors?.addedProfessionPosition.message}</span>
                                         )}
                                     </h1>
                                 </section>
-                                {/* ---------- Institution ---------- */}
                                 <section>
                                     <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
                                         <input
@@ -1673,29 +1594,23 @@ export const PersonalDetails = ({ setPage }) => {
                                         )}
                                     </h1>
                                 </section>
-                                {/* ---------- Work Period ---------- */}
                                 <section>
                                     <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
                                         <RangePicker
-                                            {...register(`professions.${index}.addedProfessionWorkPeriod`, {
-                                                required: {
-                                                    value: true,
-                                                    message: "Work Period is required",
-                                                },
-                                            })}
+                                            {...register(`professions.${index}.addedProfessionWorkPeriod`)}
                                             placeholder={["Start Date", "End Date"]}
                                             className="flex-1 px-2 py-[10px] outline-none h-full bg-transparent text-sm text-gray-400"
                                             id="workPeriod"
                                             bordered={false}
+                                            onChange={onAddedWorkPeriodChange}
                                         />
                                     </div>
                                     <h1 className="text-left ml-2">
-                                        {errors.workPeriod?.type === "required" && (
-                                            <span className="w-full text-left text-red-400 text-sm">{errors?.workPeriod.message}</span>
+                                        {errors.addedProfessionWorkPeriod?.type === "required" && (
+                                            <span className="w-full text-left text-red-400 text-sm">{errors?.addedProfessionWorkPeriod.message}</span>
                                         )}
                                     </h1>
                                 </section>
-                                {/* ---------- Special Professional Achievement ---------- */}
                                 <section>
                                     <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
                                         <input
@@ -1712,17 +1627,16 @@ export const PersonalDetails = ({ setPage }) => {
                                         />
                                     </div>
                                     <h1 className="text-left ml-2">
-                                        {errors.specialProfessionalAchievement?.type === "required" && (
-                                            <span className="w-full text-left text-red-400 text-sm">{errors?.specialProfessionalAchievement.message}</span>
+                                        {errors.addedProfessionAchievement?.type === "required" && (
+                                            <span className="w-full text-left text-red-400 text-sm">{errors?.addedProfessionAchievement.message}</span>
                                         )}
                                     </h1>
                                 </section>
-                                {/* ---------- Professional Achievement moment ---------- */}
                                 <section>
                                     <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
                                         <AiOutlineCloudUpload className=" mr-2 text-gray-400" />
                                         <label htmlFor="professionalAchievementMoment" className="outline-none h-full text-sm text-gray-400 bg-gray-100">
-                                            {addedAchievementMoment ? (
+                                            {addedAchievementMoment.length > 0 ? (
                                                 <>
                                                     <span className="text-green-400">Moments new added</span>
                                                 </>
@@ -1733,7 +1647,6 @@ export const PersonalDetails = ({ setPage }) => {
                                         <input {...register(`professions.${index}.addedProfessionAchievementMoment`)} type="file" id="addedProfessionAchievementMoment" className="hidden" onChange={addedProfessionAchievementMomentHandler} />
                                     </div>
                                 </section>
-
                                 <button className="p-3 text-sm text-center font-medium bg-red-100 text-red-500 rounded-lg" type="button" onClick={() => remove(index)}>
                                     Remove
                                 </button>
@@ -1745,7 +1658,11 @@ export const PersonalDetails = ({ setPage }) => {
                         className="p-3 text-sm text-center font-medium text-gray-400 bg-gray-100 rounded-lg"
                         onClick={() => {
                             append({
-                                name: "add"
+                                addedProfessionPosition: "",
+                                addedProfessionInstitute: "",
+                                addedProfessionWorkPeriod: "",
+                                addedProfessionAchievement: "",
+                                addedProfessionAchievementMoment: "file"
                             });
                         }}
                     >
@@ -1762,13 +1679,8 @@ export const PersonalDetails = ({ setPage }) => {
                     <section>
                         <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
                             <CreatableSelect
-                                // {...register("degreeName", {
-                                //     required: {
-                                //         value: true,
-                                //         message: "Degree Name is required",
-                                //     },
-                                // })}
-                                onChange={val => setDegreeName(val)}
+                                {...register("degreeName")}
+                                onChange={val => setDegreeName(val.value)}
                                 type="text"
                                 placeholder="Degree Name"
                                 // options={options}
@@ -1796,13 +1708,8 @@ export const PersonalDetails = ({ setPage }) => {
                     <section>
                         <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
                             <CreatableSelect
-                                // {...register("institute", {
-                                //     required: {
-                                //         value: true,
-                                //         message: "Institution is required",
-                                //     },
-                                // })}
-                                onChange={val => setEduInstitute(val)}
+                                {...register("eduInstitute")}
+                                onChange={val => setEduInstitute(val.value)}
                                 type="text"
                                 placeholder="Institution"
                                 // options={options}
@@ -1820,23 +1727,13 @@ export const PersonalDetails = ({ setPage }) => {
                                 id="institute"
                             />
                         </div>
-                        {/* <h1 className="text-left ml-2">
-                            {errors.eduInstitute?.type === "required" && (
-                                <span className="w-full text-left text-red-400 text-sm">{errors?.eduInstitute.message}</span>
-                            )}
-                        </h1> */}
                     </section>
                     {/* ---------- Department Name ---------- */}
                     <section>
                         <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
                             <CreatableSelect
-                                // {...register("Department", {
-                                //     required: {
-                                //         value: true,
-                                //         message: "Department Name is required",
-                                //     },
-                                // })}
-                                onChange={val => setEduDepartment(val)}
+                                {...register("eduDepartment")}
+                                onChange={val => setEduDepartment(val.value)}
                                 type="text"
                                 placeholder="Department Name"
                                 // options={options}
@@ -1864,13 +1761,8 @@ export const PersonalDetails = ({ setPage }) => {
                     <section>
                         <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
                             <CreatableSelect
-                                // {...register("fieldOfStudy", {
-                                //     required: {
-                                //         value: true,
-                                //         message: "Field of Study is required",
-                                //     },
-                                // })}
-                                onChange={val => setEduFieldOfStudy(val)}
+                                {...register("eduFieldOfStudy")}
+                                onChange={val => setEduFieldOfStudy(val.value)}
                                 type="text"
                                 placeholder="Field of Study"
                                 // options={options}
@@ -1888,17 +1780,18 @@ export const PersonalDetails = ({ setPage }) => {
                                 id="fieldOfStudy"
                             />
                         </div>
-                        <h1 className="text-left ml-2">
+                        {/* <h1 className="text-left ml-2">
                             {errors.fieldOfStudy?.type === "required" && (
                                 <span className="w-full text-left text-red-400 text-sm">{errors?.fieldOfStudy.message}</span>
                             )}
-                        </h1>
+                        </h1> */}
                     </section>
                     {/* ---------- Year of Passing ---------- */}
                     <section>
                         <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
                             <DatePicker
-                                onChange={value => setEduYearOfPassing(value)}
+                                {...register("eduYearOfPassing")}
+                                onChange={(date, dateString) => setEduYearOfPassing(dateString)}
                                 placeholder="Year of Passing"
                                 className="flex-1 px-2 py-2 outline-none h-full bg-transparent text-sm text-gray-400"
                                 id="yearOfPassing"
@@ -2002,13 +1895,8 @@ export const PersonalDetails = ({ setPage }) => {
                     <section>
                         <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
                             <CreatableSelect
-                                // {...register("ancestry", {
-                                //     required: {
-                                //         value: true,
-                                //         message: "Ancestry is required",
-                                //     },
-                                // })}
-                                onChange={val => setPhyAncestry(val)}
+                                {...register("phyAncestry")}
+                                onChange={val => setPhyAncestry(val.value)}
                                 type="text"
                                 placeholder="Ancestry"
                                 options={ancestryData}
@@ -2026,18 +1914,13 @@ export const PersonalDetails = ({ setPage }) => {
                                 id="ancestry"
                             />
                         </div>
-                        {/* <h1 className="text-left ml-2">
-                            {errors.ancestry?.type === "required" && (
-                                <span className="w-full text-left text-red-400 text-sm">{errors?.ancestry.message}</span>
-                            )}
-                        </h1> */}
                     </section>
                     {/* ---------- Skin Tone ---------- */}
                     <section>
                         <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
                             <CreatableSelect
-                                // {...register("SkinTone")}
-                                onChange={val => setPhySkinTone(val)}
+                                {...register("phySkinTone")}
+                                onChange={val => setPhySkinTone(val.value)}
                                 type="text"
                                 placeholder="Skin Tone"
                                 options={[
@@ -2069,18 +1952,13 @@ export const PersonalDetails = ({ setPage }) => {
                                 id="SkinTone"
                             />
                         </div>
-                        {/* <h1 className="text-left ml-2">
-                            {errors.SkinTone?.type === "required" && (
-                                <span className="w-full text-left text-red-400 text-sm">{errors?.SkinTone.message}</span>
-                            )}
-                        </h1> */}
                     </section>
                     {/* ---------- Hair Color ---------- */}
                     <section>
                         <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
                             <CreatableSelect
-                                // {...register("hairColour")}
-                                onChange={val => setPhyHairColor(val)}
+                                {...register("phyHairColor")}
+                                onChange={val => setPhyHairColor(val.value)}
                                 type="text"
                                 placeholder="Hair Color"
                                 // options={options}
@@ -2098,18 +1976,13 @@ export const PersonalDetails = ({ setPage }) => {
                                 id="hairColour"
                             />
                         </div>
-                        {/* <h1 className="text-left ml-2">
-                            {errors.hairColour?.type === "required" && (
-                                <span className="w-full text-left text-red-400 text-sm">{errors?.hairColour.message}</span>
-                            )}
-                        </h1> */}
                     </section>
                     {/* ---------- Hair Type ---------- */}
                     <section>
                         <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
                             <CreatableSelect
-                                // {...register("hairType")}
-                                onChange={val => setPhyHairType(val)}
+                                {...register("phyHairType")}
+                                onChange={val => setPhyHairType(val.value)}
                                 type="text"
                                 placeholder="Hair Type"
                                 // options={options}
@@ -2127,18 +2000,13 @@ export const PersonalDetails = ({ setPage }) => {
                                 id="hairType"
                             />
                         </div>
-                        {/* <h1 className="text-left ml-2">
-                            {errors.hairType?.type === "required" && (
-                                <span className="w-full text-left text-red-400 text-sm">{errors?.hairType.message}</span>
-                            )}
-                        </h1> */}
                     </section>
                     {/* ---------- Eye Color ---------- */}
                     <section>
                         <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
                             <CreatableSelect
-                                // {...register("eyeColor")}
-                                onChange={val => setPhyEyeColor(val)}
+                                {...register("phyEyeColor")}
+                                onChange={val => setPhyEyeColor(val.value)}
                                 type="text"
                                 placeholder="Eye Color"
                                 // options={options}
@@ -2156,18 +2024,13 @@ export const PersonalDetails = ({ setPage }) => {
                                 id="eyeColor"
                             />
                         </div>
-                        {/* <h1 className="text-left ml-2">
-                            {errors.eyeColor?.type === "required" && (
-                                <span className="w-full text-left text-red-400 text-sm">{errors?.eyeColor.message}</span>
-                            )}
-                        </h1> */}
                     </section>
                     {/* ---------- Number of Teeth ---------- */}
                     <section>
                         <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
                             <CreatableSelect
-                                // {...register("numberOfTeeth")}
-                                onChange={val => setPhyNumberTeeth(val)}
+                                {...register("phyNumberTeeth")}
+                                onChange={val => setPhyNumberTeeth(val.value)}
                                 type="number"
                                 placeholder="Number of Teeth"
                                 // options={options}
@@ -2185,11 +2048,6 @@ export const PersonalDetails = ({ setPage }) => {
                                 id="numberOfTeeth"
                             />
                         </div>
-                        {/* <h1 className="text-left ml-2">
-                            {errors.numberOfTeeth?.type === "required" && (
-                                <span className="w-full text-left text-red-400 text-sm">{errors?.numberOfTeeth.message}</span>
-                            )}
-                        </h1> */}
                     </section>
                     {/* ---------- Parents Status Info Start ---------- */}
                     <section className="col-span-1 md:col-span-2 lg:col-span-3 text-[#2F3659] font-medium text-left ml-1">Family Member Info</section>
@@ -2439,31 +2297,34 @@ export const PersonalDetails = ({ setPage }) => {
                     {/* ---------- Your Hobbies ---------- */}
                     <section>
                         <div className="flex items-center bg-gray-100  w-full rounded-lg mt-3 lg:mt-0">
-                            <Select
-                                {...register("hobbies")}
-                                closeMenuOnSelect={false}
-                                components={animatedComponents}
-                                isMulti
-                                options={hobbies}
-                                className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
-                                placeholder="Select Hobbies"
-                                styles={{
-                                    control: (baseStyles, state) => ({
-                                        ...baseStyles,
-                                        backgroundColor: 'transparent',
-                                        border: "none",
-                                        textAlign: "left",
-                                        fontSize: "14px",
-                                        color: "#9CA3AF"
-                                    }),
-                                }}
-                            />
+                            <Controller
+                                {...register("userHobbies")}
+                                control={control}
+                                name="userHobbies"
+                                render={({ field: { onChange, value, ref } }) => (
+                                    <Select
+                                        onChange={val => onChange(val.map(hobby => setUserHobbies([...userHobbies, hobby.value])))}
+                                        closeMenuOnSelect={false}
+                                        components={animatedComponents}
+                                        isMulti
+                                        options={hobbies}
+                                        className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
+                                        placeholder="Select Hobbies"
+                                        styles={{
+                                            control: (baseStyles, state) => ({
+                                                ...baseStyles,
+                                                backgroundColor: 'transparent',
+                                                border: "none",
+                                                textAlign: "left",
+                                                fontSize: "14px",
+                                                color: "#9CA3AF"
+                                            }),
+                                        }}
+
+                                    />
+                                )}
+                            ></Controller>
                         </div>
-                        <h1 className="text-left ml-2">
-                            {errors.hobbies?.type === "required" && (
-                                <span className="w-full text-left text-red-400 text-sm">{errors?.hobbies.message}</span>
-                            )}
-                        </h1>
                     </section>
                     {/* ---------- About You ---------- */}
                     <section>
