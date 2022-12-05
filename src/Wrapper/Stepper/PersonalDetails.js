@@ -25,7 +25,7 @@ export const PersonalDetails = ({ setPage }) => {
     const [marriageDate, setMarriageDate] = useState();
     const [divorceDate, setDivorceDate] = useState();
     const [partnerDeathDate, setPartnerDeathDate] = useState();
-    const [currentWorkPeriod, setCurrentWorkPeriod] = useState();
+    const [theCurrentWorkPeriod, setTheCurrentWorkPeriod] = useState();
     const [addedWorkPeriod, setAddedWorkPeriod] = useState([]);
     const [userHobbies, setUserHobbies] = useState([]);
 
@@ -190,7 +190,7 @@ export const PersonalDetails = ({ setPage }) => {
 
     const onSubmit = async data => {
         console.log(data);
-        const hightestEducationalQualification = {};
+        const highestEducationalQualification = {};
         const currentProfession = {};
 
         Object.keys(data).forEach(function (key) {
@@ -206,18 +206,27 @@ export const PersonalDetails = ({ setPage }) => {
                 key === "eduDepartment" ||
                 key === "eduFieldOfStudy" ||
                 key === "eduYearOfPassing" ||
-                key === "specialEducationalAchievement"
+                key === "specialEducationalAchievement" ||
+                key === "educationalAchievementMoment"
             ) {
-                hightestEducationalQualification[key] = data[key];
+                highestEducationalQualification[key] = data[key];
             }
         });
 
         delete data.degreeName;
-        delete data.institute;
-        delete data.Department;
-        delete data.fieldOfStudy;
-        delete data.yearOfPassing;
+        delete data.eduInstitute;
+        delete data.eduDepartment;
+        delete data.eduFieldOfStudy;
+        delete data.eduYearOfPassing;
         delete data.specialEducationalAchievement;
+        delete data.educationalAchievementMoment;
+
+        highestEducationalQualification.degreeName = degreeName;
+        highestEducationalQualification.eduInstitute = eduInstitute;
+        highestEducationalQualification.eduDepartment = eduDepartment;
+        highestEducationalQualification.eduFieldOfStudy = eduFieldOfStudy;
+        highestEducationalQualification.eduYearOfPassing = eduYearOfPassing;
+        highestEducationalQualification.educationalAchievementMoment = educationalAchievementMoment;
 
         //current profession object delete from main object
         delete data.CurrentProfessionposition;
@@ -230,6 +239,9 @@ export const PersonalDetails = ({ setPage }) => {
 
         delete currentProfession.CurrentProfessionposition;
         delete currentProfession.CurrentProfessionInstitute;
+        delete data.citizenShip;
+
+        currentProfession.currentWorkPeriod = theCurrentWorkPeriod;
 
         //photo links upload
         data.profilePhoto = profilePhoto;
@@ -237,10 +249,15 @@ export const PersonalDetails = ({ setPage }) => {
         data.frontSide = frontSide;
         data.backSide = backSide;
         // data.licencePhoto = licencePhoto;
-        data.educationalAchievementMoment = educationalAchievementMoment;
         data.professionalAchievementMoment = professionalAchievementMoment;
 
-        data = { ...data, hightestEducationalQualification, currentProfession, dateOfBirth, currentWorkPeriod, degreeName, eduDepartment, eduFieldOfStudy, eduInstitute, eduYearOfPassing, phyAncestry, phyEyeColor, phyHairColor, phyHairType, phyNumberTeeth, phySkinTone, userHobbies, marriageDate, divorceDate, partnerDeathDate, addedWorkPeriod };
+        data.professions.map(p => delete p.addedProfessionWorkPeriod);
+        data.professions.map((p, index) => p.addedProfessionWorkPeriod = addedWorkPeriod[index]);
+
+        data.professions.map(p => delete p.addedProfessionAchievementMoment);
+        data.professions.map((p, index) => p.addedProfessionAchievementMoment = addedAchievementMoment[index]);
+
+        data = { ...data, highestEducationalQualification, currentProfession, dateOfBirth, phyAncestry, phyEyeColor, phyHairColor, phyHairType, phyNumberTeeth, phySkinTone, userHobbies, marriageDate, divorceDate, partnerDeathDate, citizenShip, addedAchievementMoment };
         await setPersonalDetails(data);
         console.log(data);
     };
@@ -273,9 +290,11 @@ export const PersonalDetails = ({ setPage }) => {
 
     const professionalAchievementMomentHandler = async e => {
         const photo = e.target.files[0];
+        console.log(photo);
         const storageRef = ref(firebaseStorage, `cover/${photo?.name + uuidv4()}`);
         uploadBytes(storageRef, photo).then(async snapshot => {
             await getDownloadURL(snapshot.ref).then(url => {
+                console.log(url);
                 setProfessionalAchievementMoment(url.toString());
             });
         });
@@ -283,13 +302,19 @@ export const PersonalDetails = ({ setPage }) => {
 
     const addedProfessionAchievementMomentHandler = async e => {
         const photo = e.target.files[0];
-        const storageRef = ref(firebaseStorage, `cover/${photo?.name + uuidv4()}`);
+        console.log(e);
+        console.log(photo);
+        const storageRef = ref(firebaseStorage, `moment/${photo?.name + uuidv4()}`);
         uploadBytes(storageRef, photo).then(async snapshot => {
             await getDownloadURL(snapshot.ref).then(url => {
-                setAddedAchievementMoment([...addedAchievementMoment, { addedAchievementMoment: url.toString() }]);
+                console.log(url);
+                console.log(addedAchievementMoment);
+                setAddedAchievementMoment([...addedAchievementMoment, url.toString()]);
+                console.log(addedAchievementMoment);
             });
         });
     };
+
 
     const educationalAchievementMomentHandler = async e => {
         const photo = e.target.files[0];
@@ -333,10 +358,10 @@ export const PersonalDetails = ({ setPage }) => {
         setDateOfBirth(dateString);
     };
     const onCurrentWorkPeriodChange = (value, dateString) => {
-        setCurrentWorkPeriod(dateString);
+        setTheCurrentWorkPeriod(dateString);
     };
     const onAddedWorkPeriodChange = (value, dateString) => {
-        setAddedWorkPeriod([...addedWorkPeriod, { addedWorkPeriod: dateString }]);
+        setAddedWorkPeriod([...addedWorkPeriod, dateString]);
     };
 
     useEffect(() => {
@@ -1662,7 +1687,7 @@ export const PersonalDetails = ({ setPage }) => {
                                 addedProfessionInstitute: "",
                                 addedProfessionWorkPeriod: "",
                                 addedProfessionAchievement: "",
-                                addedProfessionAchievementMoment: "file"
+                                addedProfessionAchievementMoment: ""
                             });
                         }}
                     >
