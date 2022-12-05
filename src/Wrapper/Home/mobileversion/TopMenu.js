@@ -22,8 +22,8 @@ export const TopMenu = () => {
                     </p>
                 </div>
 
-                <div className="mr-4">
-                    <i className="fa-regular fa-bell mt-3 mr-4"></i>
+                <div className="">
+                    <i className="fa-regular fa-bell"></i>
                     <i className="fa-solid fa-bars"></i>
                 </div>
             </div>
