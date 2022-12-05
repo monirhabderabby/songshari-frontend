@@ -1,16 +1,31 @@
 import React, { useEffect, useState } from 'react';
-import { InputNumber, Select, Upload, message, DatePicker, Radio, Space } from 'antd';
+import { InputNumber, Select, Upload, message, DatePicker, Radio, Space, Slider } from 'antd';
 import { FileAddFilled } from '@ant-design/icons';
 import TextArea from 'antd/es/input/TextArea';
 import { useNavigate, useParams } from 'react-router';
+import Autocomplete, { createFilterOptions } from '@mui/material/Autocomplete';
+import TextField from '@mui/material/TextField';
 import { useUpdatePersonalDetailsMutation } from '../../../../Redux/features/userInfo/userApi';
-// import { useNavigate } from "react-router-dom";
-
+const { RangePicker } = DatePicker;
 
 const { Option } = Select;
 const { Dragger } = Upload;
 const EditPersonalInfo = () => {
     const [personalInfo, setPersonalInfo] = useState({});
+    const [physicalInfo, setPhysicalInfo] = useState({});
+    const [educationalInfo, setEducationalInfo] = useState({});
+    //educational qualification state
+    const [degreeName, setDegreeName] = useState(null);
+    const [instituteName, setInstituteName] = useState(null);
+    const [departmentName, setDepartmentName] = useState(null);
+    const [fieldOfStudy, setFieldOfStudy] = useState(null);
+    const [cgpa, setCgpa] = useState(null);
+    // current position state
+    const [currentPosition, setCurrentPosition] = useState(null);
+    // institue state 
+    const [currentInstitute, setCurrentInstitute] = useState(null);
+    const [professionalInfo, setProfessionalInfo] = useState({});
+
     const [countries, setCountries] = useState([]);
     const [city, setCity] = useState([]);
     const [marriageDetails, setMarriageDetails] = useState({});
@@ -18,6 +33,9 @@ const EditPersonalInfo = () => {
     const [widowedDetails, setWidowedDetails] = useState({});
     //phone number mananging state
     const [countryCode, setCountryCode] = useState('+880')
+    //others physical information state
+    const [height, setHeight] = useState(10);
+    const [weight, setWeight] = useState(10);
 
 
     const [brother, setBrother] = useState(0);
@@ -88,13 +106,144 @@ const EditPersonalInfo = () => {
         console.log(data)
         e.preventDefault();
     }
+    //educational qualifitaion data handler function
+    const handleDegreeName = (event, newValue) => {
+        if (typeof newValue === 'string') {
+            setDegreeName({
+                title: newValue,
+            });
+        } else if (newValue && newValue.inputValue) {
+            // Create a new value from the user input
+            setDegreeName({
+                title: newValue.inputValue,
+            });
 
+        } else {
+            setDegreeName(newValue);
+
+        }
+    }
+
+    const handleInstituteName = (event, newValue) => {
+        if (typeof newValue === 'string') {
+            setInstituteName({
+                title: newValue,
+            });
+        } else if (newValue && newValue.inputValue) {
+            // Create a new value from the user input
+            setInstituteName({
+                title: newValue.inputValue,
+            });
+
+        } else {
+            setInstituteName(newValue);
+
+        }
+    }
+
+    const handleDepartmentName = (event, newValue) => {
+        if (typeof newValue === 'string') {
+            setDepartmentName({
+                title: newValue,
+            });
+        } else if (newValue && newValue.inputValue) {
+            // Create a new value from the user input
+            setDepartmentName({
+                title: newValue.inputValue,
+            });
+
+        } else {
+            setDepartmentName(newValue);
+
+        }
+    }
+
+    const handleStudyField = (event, newValue) => {
+        if (typeof newValue === 'string') {
+            setFieldOfStudy({
+                title: newValue,
+            });
+        } else if (newValue && newValue.inputValue) {
+            // Create a new value from the user input
+            setFieldOfStudy({
+                title: newValue.inputValue,
+            });
+
+        } else {
+            setFieldOfStudy(newValue);
+
+        }
+    }
+
+    const handleCgpa = (event, newValue) => {
+        if (typeof newValue === 'string') {
+            setCgpa({
+                title: newValue,
+            });
+        } else if (newValue && newValue.inputValue) {
+            // Create a new value from the user input
+            setCgpa({
+                title: newValue.inputValue,
+            });
+
+        } else {
+            setCgpa(newValue);
+
+        }
+    }
+    //passing year handler
+    const handlePassingYear = (date, dateString) => {
+        setEducationalInfo({ ...educationalInfo, yearOfPassing: date });
+    }
+
+    // current position state handler
+    const handleCurrentPosition = (event, newValue) => {
+        if (typeof newValue === 'string') {
+            setCurrentPosition({
+                title: newValue,
+            });
+        } else if (newValue && newValue.inputValue) {
+            // Create a new value from the user input
+            setCurrentPosition({
+                title: newValue.inputValue,
+            });
+
+        } else {
+            setCurrentPosition(newValue);
+
+        }
+    }
+    // currnent institue hanler function
+    const handleCurrentInstitute = (event, newValue) => {
+        if (typeof newValue === 'string') {
+            setCurrentInstitute({
+                title: newValue,
+            });
+        } else if (newValue && newValue.inputValue) {
+            // Create a new value from the user input
+            setCurrentInstitute({
+                title: newValue.inputValue,
+            });
+
+        } else {
+            setCurrentInstitute(newValue);
+
+        }
+    }
+    // working period data handler
+    const handleWorkingPeriod = (date, dateString) => {
+        setProfessionalInfo({ ...professionalInfo, workingPeriod: dateString })
+    }
+    // handle achivements data chane
+    const handleAchivements = (e) => {
+        setProfessionalInfo({ ...professionalInfo, specialAchievement: e?.target.value });
+    }
 
     //handle marriage reason data 
 
     //martial status change handler
     const handleMaritalStatusChange = (value) => {
-        setPersonalInfo({ ...personalInfo, martialStatus: value });
+        setPersonalInfo({ ...personalInfo, maritialStatus: value });
     }
     const handleMarriageReason = (e) => {
         const data = { ...marriageDetails };
@@ -159,7 +308,47 @@ const EditPersonalInfo = () => {
         setPersonalInfo({ ...personalInfo, nidOrPassportFile: event?.file })
     }
 
+    //phycsical information data change handler
+    const onHeightChange = (value) => {
+        setHeight(value);
+    };
+    const onAfterHeightChange = (value) => {
 
+    };
+    const onWeightChange = (value) => {
+        setWeight(value);
+
+
+    };
+    const onAfterWeightChange = (value) => {
+
+    };
+    const handleUserAncestryChange = (value) => {
+        setPhysicalInfo({ ...physicalInfo, ancestry: value });
+
+    };
+    const handleUserSkinToneChange = (value) => {
+        setPhysicalInfo({ ...physicalInfo, skinTune: value });
+
+    };
+    const handleUserHairColorChange = (value) => {
+        setPhysicalInfo({ ...physicalInfo, hairColor: value });
+
+    };
+    const handleUserHairTypeChange = (value) => {
+
+        setPhysicalInfo({ ...physicalInfo, hairType: value });
+
+    };
+    const handleUserEyeColorChange = (value) => {
+
+        setPhysicalInfo({ ...physicalInfo, eyeColor: value });
+
+    };
+    const handleNumberOfTeeth = (value) => {
+        setPhysicalInfo({ ...physicalInfo, teethNumber: value });
+
+    }
 
     // --------- Others Information ------------
 
@@ -173,26 +362,84 @@ const EditPersonalInfo = () => {
         setPersonalInfo({ ...personalInfo, hobbies: value })
     }
 
+    // current position options (MUI Autocomplete)
+    const currentPositionOptions = [
+        { title: 'Deveoper' },
+        { title: 'Hr' },
+        { title: 'Accouantant' },
+        { title: 'Office assitanat' },
+    ]
+    // current institue option (MUI Autocomplete)
+    const currentInstituteOptions = [
+        { title: 'Developer company' },
+        { title: 'ItCO ' },
+        { title: 'Microsoft' },
+        { title: 'Google' },
+    ]
+    // educational qualifitaions options Autocomplete (MUI)
+    const degreeOptions = [
+        { title: 'SSC' },
+        { title: 'HSC' },
+        { title: 'HOns' },
+        { title: 'Masters' },
+
+    ]
+    const instituteNameOptions = [
+        { title: 'Model College' },
+        { title: 'Brac University' },
+    ]
+    const departmentOptions = [
+        { title: 'BBA' },
+        { title: 'MBA' },
+    ]
+    const studyFieldOptions = [
+        { title: 'CSE' },
+        { title: 'Accounting' },
+    ]
+    const cgpaOptions = [
+        { title: '1.0 out of 4' },
+        { title: '2.0 out of 4' },
+    ]
+
     const navigate = useNavigate();
 
     //form submission
     const handleSubmit = async (e) => {
-        const data = { ...personalInfo, numberOfBrother: brother, numberOfSister: sister, ...marriageDetails, ...divorceDetails, ...widowedDetails };
         e.preventDefault()
 
-        await updatePersonalDetails(data).then(() => {
-            if (isSuccess) {
-                navigate("/userprofile")
+        const data = {
+            ...personalInfo,
+            numberOfBrother: brother?.toString(),
+            numberOfSister: sister?.toString(),
+            ...marriageDetails,
+            ...divorceDetails,
+            ...widowedDetails,
+            ...professionalInfo,
+            institute: currentInstitute?.title,
+            position: currentPosition?.title,
+            ...educationalInfo,
+            degree: degreeName?.title,
+            institute: instituteName?.title,
+            department: departmentName?.title,
+            feildOfStudy: fieldOfStudy?.title,
+            gpaOrCgpa: cgpa?.title,
+            ...physicalInfo,
+            height: height?.toString(),
+            weight: weight?.toString()
+        };
 
-            }
-        })
+        await updatePersonalDetails(data)
+
 
 
     }
 
+    //after success update data redirect to the userprofile page
     if (isSuccess) {
         navigate("/userprofile")
     }
+    //this filter for mui autocomplete
+    const filter = createFilterOptions();
 
     return (
         <div className='max-w-[523px] mx-auto bg-white drop-shadow-lg px-4 py-6 mb-4 rounded'>
@@ -257,7 +504,417 @@ const EditPersonalInfo = () => {
                             <DatePicker onChange={handleDateOfBirth} className="w-full" size='large' />
                         </div>
                     </div>
+                    {/* educational qualification */}
+                    <div className='pb-4'>
+                        <label className='text-sm block pb-2 text-slate-600	  font-medium'>Educational Qualification</label>
+                        <div className='flex justify-between'>
+                            <Autocomplete
+                                className='mb-2 w-56'
+                                value={degreeName}
+                                onChange={handleDegreeName}
+                                filterOptions={(options, params) => {
+                                    const filtered = filter(options, params);
 
+                                    const { inputValue } = params;
+                                    // Suggest the creation of a new value
+                                    const isExisting = options.some((option) => inputValue === option.title);
+                                    if (inputValue !== '' && !isExisting) {
+                                        filtered.push({
+                                            inputValue,
+                                            title: `Add "${inputValue}"`,
+                                        });
+                                    }
+
+                                    return filtered;
+                                }}
+                                selectOnFocus
+                                clearOnBlur
+                                handleHomeEndKeys
+                                id="free-solo-with-text-demo"
+                                options={degreeOptions}
+                                getOptionLabel={(option) => {
+                                    // Value selected with enter, right from the input
+                                    if (typeof option === 'string') {
+                                        return option;
+                                    }
+                                    // Add "xxx" option created dynamically
+                                    if (option.inputValue) {
+                                        return option.inputValue;
+                                    }
+                                    // Regular option
+                                    return option.title;
+                                }}
+                                renderOption={(props, option) => <li {...props}>{option.title}</li>}
+                                freeSolo
+                                renderInput={(params) => (
+                                    <TextField {...params} placeholder="Select Degree" />
+                                )}
+                                sx={{
+                                    '& input': {
+                                        height: 6,
+                                        padding: 0,
+
+                                    },
+
+                                }}
+                            />
+
+                            <Autocomplete
+                                className='mb-2 w-56'
+                                value={instituteName}
+                                onChange={handleInstituteName}
+                                filterOptions={(options, params) => {
+                                    const filtered = filter(options, params);
+
+                                    const { inputValue } = params;
+                                    // Suggest the creation of a new value
+                                    const isExisting = options.some((option) => inputValue === option.title);
+                                    if (inputValue !== '' && !isExisting) {
+                                        filtered.push({
+                                            inputValue,
+                                            title: `Add "${inputValue}"`,
+                                        });
+                                    }
+
+                                    return filtered;
+                                }}
+                                selectOnFocus
+                                clearOnBlur
+                                handleHomeEndKeys
+                                id="free-solo-with-text-demo"
+                                options={instituteNameOptions}
+                                getOptionLabel={(option) => {
+                                    // Value selected with enter, right from the input
+                                    if (typeof option === 'string') {
+                                        return option;
+                                    }
+                                    // Add "xxx" option created dynamically
+                                    if (option.inputValue) {
+                                        return option.inputValue;
+                                    }
+                                    // Regular option
+                                    return option.title;
+                                }}
+                                renderOption={(props, option) => <li {...props}>{option.title}</li>}
+                                freeSolo
+                                renderInput={(params) => (
+                                    <TextField {...params} placeholder="Select Institute" />
+                                )}
+                                sx={{
+                                    '& input': {
+                                        height: 6,
+                                        padding: 0,
+
+                                    },
+
+                                }}
+                            />
+
+
+
+                        </div>
+
+                        <div className='flex justify-between'>
+                            <Autocomplete
+                                className='mb-2 w-36'
+                                value={departmentName}
+                                onChange={handleDepartmentName}
+                                filterOptions={(options, params) => {
+                                    const filtered = filter(options, params);
+
+                                    const { inputValue } = params;
+                                    // Suggest the creation of a new value
+                                    const isExisting = options.some((option) => inputValue === option.title);
+                                    if (inputValue !== '' && !isExisting) {
+                                        filtered.push({
+                                            inputValue,
+                                            title: `Add "${inputValue}"`,
+                                        });
+                                    }
+
+                                    return filtered;
+                                }}
+                                selectOnFocus
+                                clearOnBlur
+                                handleHomeEndKeys
+                                id="free-solo-with-text-demo"
+                                options={departmentOptions}
+                                getOptionLabel={(option) => {
+                                    // Value selected with enter, right from the input
+                                    if (typeof option === 'string') {
+                                        return option;
+                                    }
+                                    // Add "xxx" option created dynamically
+                                    if (option.inputValue) {
+                                        return option.inputValue;
+                                    }
+                                    // Regular option
+                                    return option.title;
+                                }}
+                                renderOption={(props, option) => <li {...props}>{option.title}</li>}
+                                freeSolo
+                                renderInput={(params) => (
+                                    <TextField {...params} placeholder="Select Department" />
+                                )}
+                                sx={{
+                                    '& input': {
+                                        height: 6,
+                                        padding: 0,
+
+                                    },
+
+                                }}
+                            />
+
+                            <Autocomplete
+                                className='mb-2 w-36'
+                                value={fieldOfStudy}
+                                onChange={handleStudyField}
+                                filterOptions={(options, params) => {
+                                    const filtered = filter(options, params);
+
+                                    const { inputValue } = params;
+                                    // Suggest the creation of a new value
+                                    const isExisting = options.some((option) => inputValue === option.title);
+                                    if (inputValue !== '' && !isExisting) {
+                                        filtered.push({
+                                            inputValue,
+                                            title: `Add "${inputValue}"`,
+                                        });
+                                    }
+
+                                    return filtered;
+                                }}
+                                selectOnFocus
+                                clearOnBlur
+                                handleHomeEndKeys
+                                id="free-solo-with-text-demo"
+                                options={studyFieldOptions}
+                                getOptionLabel={(option) => {
+                                    // Value selected with enter, right from the input
+                                    if (typeof option === 'string') {
+                                        return option;
+                                    }
+                                    // Add "xxx" option created dynamically
+                                    if (option.inputValue) {
+                                        return option.inputValue;
+                                    }
+                                    // Regular option
+                                    return option.title;
+                                }}
+                                renderOption={(props, option) => <li {...props}>{option.title}</li>}
+                                freeSolo
+                                renderInput={(params) => (
+                                    <TextField {...params} placeholder="Select Field of study" />
+                                )}
+                                sx={{
+                                    '& input': {
+                                        height: 6,
+                                        padding: 0,
+
+                                    },
+
+                                }}
+                            />
+
+
+                            <Autocomplete
+                                className='mb-2 w-36'
+                                value={cgpa}
+                                onChange={handleCgpa}
+                                filterOptions={(options, params) => {
+                                    const filtered = filter(options, params);
+
+                                    const { inputValue } = params;
+                                    // Suggest the creation of a new value
+                                    const isExisting = options.some((option) => inputValue === option.title);
+                                    if (inputValue !== '' && !isExisting) {
+                                        filtered.push({
+                                            inputValue,
+                                            title: `Add "${inputValue}"`,
+                                        });
+                                    }
+
+                                    return filtered;
+                                }}
+                                selectOnFocus
+                                clearOnBlur
+                                handleHomeEndKeys
+                                id="free-solo-with-text-demo"
+                                options={cgpaOptions}
+                                getOptionLabel={(option) => {
+                                    // Value selected with enter, right from the input
+                                    if (typeof option === 'string') {
+                                        return option;
+                                    }
+                                    // Add "xxx" option created dynamically
+                                    if (option.inputValue) {
+                                        return option.inputValue;
+                                    }
+                                    // Regular option
+                                    return option.title;
+                                }}
+                                renderOption={(props, option) => <li {...props}>{option.title}</li>}
+                                freeSolo
+                                renderInput={(params) => (
+                                    <TextField {...params} placeholder="Select CGPA" />
+                                )}
+                                sx={{
+                                    '& input': {
+                                        height: 6,
+                                        padding: 0,
+
+                                    },
+
+                                }}
+                            />
+
+                        </div>
+
+                    </div>
+
+                    <div className='pb-4'>
+                        <div>
+                            <label htmlFor="nid" className='text-sm block pb-2 text-slate-600 font-medium'>Year of passing</label>
+                            <DatePicker onChange={handlePassingYear} className="w-full" />
+                        </div>
+                    </div>
+
+
+
+                    {/* some professional information */}
+                    <div className='pb-4'>
+                        <label className='text-sm block pb-2 text-slate-600	  font-medium'>Current Position</label>
+                        <div className='flex justify-between'>
+                            <Autocomplete
+                                className='mb-2 w-56'
+                                value={currentPosition}
+                                onChange={handleCurrentPosition}
+                                filterOptions={(options, params) => {
+                                    const filtered = filter(options, params);
+
+                                    const { inputValue } = params;
+                                    // Suggest the creation of a new value
+                                    const isExisting = options.some((option) => inputValue === option.title);
+                                    if (inputValue !== '' && !isExisting) {
+                                        filtered.push({
+                                            inputValue,
+                                            title: `Add "${inputValue}"`,
+                                        });
+                                    }
+
+                                    return filtered;
+                                }}
+                                selectOnFocus
+                                clearOnBlur
+                                handleHomeEndKeys
+                                id="free-solo-with-text-demo"
+                                options={currentPositionOptions}
+                                getOptionLabel={(option) => {
+                                    // Value selected with enter, right from the input
+                                    if (typeof option === 'string') {
+                                        return option;
+                                    }
+                                    // Add "xxx" option created dynamically
+                                    if (option.inputValue) {
+                                        return option.inputValue;
+                                    }
+                                    // Regular option
+                                    return option.title;
+                                }}
+                                renderOption={(props, option) => <li {...props}>{option.title}</li>}
+                                freeSolo
+                                renderInput={(params) => (
+                                    <TextField {...params} placeholder="Select Position" />
+                                )}
+                                sx={{
+                                    '& input': {
+                                        height: 6,
+                                        padding: 0,
+
+                                    },
+
+                                }}
+                            />
+
+                            <Autocomplete
+                                className='mb-2 w-56'
+                                value={currentInstitute}
+                                onChange={handleCurrentInstitute}
+                                filterOptions={(options, params) => {
+                                    const filtered = filter(options, params);
+
+                                    const { inputValue } = params;
+                                    // Suggest the creation of a new value
+                                    const isExisting = options.some((option) => inputValue === option.title);
+                                    if (inputValue !== '' && !isExisting) {
+                                        filtered.push({
+                                            inputValue,
+                                            title: `Add "${inputValue}"`,
+                                        });
+                                    }
+
+                                    return filtered;
+                                }}
+                                selectOnFocus
+                                clearOnBlur
+                                handleHomeEndKeys
+                                id="free-solo-with-text-demo"
+                                options={currentInstituteOptions}
+                                getOptionLabel={(option) => {
+                                    // Value selected with enter, right from the input
+                                    if (typeof option === 'string') {
+                                        return option;
+                                    }
+                                    // Add "xxx" option created dynamically
+                                    if (option.inputValue) {
+                                        return option.inputValue;
+                                    }
+                                    // Regular option
+                                    return option.title;
+                                }}
+                                renderOption={(props, option) => <li {...props}>{option.title}</li>}
+                                freeSolo
+                                renderInput={(params) => (
+                                    <TextField {...params} placeholder="Select Institute" />
+                                )}
+                                sx={{
+                                    '& input': {
+                                        height: 6,
+                                        padding: 0,
+
+                                    },
+
+                                }}
+                            />
+                        </div>
+
+                    </div>
+
+
+                    <div className='pb-4'>
+                        <div>
+                            <label htmlFor="nid" className='text-sm block pb-2 text-slate-600	  font-medium'>Working Period</label>
+                            <RangePicker className="w-full" onChange={handleWorkingPeriod} />
+                        </div>
+                    </div>
+
+                    <div className='pb-4'>
+                        <div>
+                            <label htmlFor="nid" className='text-sm block pb-2 text-slate-600 font-medium'>Monthly Income</label>
+                            <input type="number" name="monthlyIncome" placeholder='Monthly Income' className=' focus:outline-none p-2 border focus:border-blue-500 shadow rounded-lg hover:border-blue-500 w-full ' onChange={handleData} />
+
+                        </div>
+                    </div>
+
+
+                    <div className='pb-4'>
+                        <div>
+                            <label htmlFor="nid" className='text-sm block pb-2 text-slate-600 font-medium'>Special Achievements</label>
+                            <TextArea rows={4} placeholder="Text Here" name='achivements' onChange={handleAchivements} />
+
+                        </div>
+                    </div>
                     <div className='pb-4'>
                         <label className='text-sm block pb-2 text-slate-600	  font-medium'>Martial Status</label>
                         <Select
@@ -289,7 +946,7 @@ const EditPersonalInfo = () => {
                             ]}
                         />
                         {/* married details  */}
-                        {personalInfo?.martialStatus === "married" &&
+                        {personalInfo?.maritialStatus === "married" &&
                             <div className='py-4'>
                                 <div className='mb-2'>
                                     <input type="number" name="numberOfPartner" placeholder='Number of Partner' className=' focus:outline-none p-2 border focus:border-blue-500 shadow rounded-lg hover:border-blue-500 w-full ' onChange={handleMarriageReason} />
@@ -363,10 +1020,10 @@ const EditPersonalInfo = () => {
                             </div>
                         }
                         {/* divorced details  */}
-                        {personalInfo?.martialStatus === "divorced" &&
+                        {personalInfo?.maritialStatus === "divorced" &&
                             <div>
                                 <div className='mb-2'>
-                                    <input type="number" name="reasonOfDivorce" placeholder='Divorce Reason' className=' focus:outline-none p-2 border focus:border-blue-500 shadow rounded-lg hover:border-blue-500 w-full ' onChange={handleDivorceReason} />
+                                    <input type="text" name="reasonOfDivorce" placeholder='Divorce Reason' className=' focus:outline-none p-2 border focus:border-blue-500 shadow rounded-lg hover:border-blue-500 w-full ' onChange={handleDivorceReason} />
                                 </div>
                                 <div className="mb-2">
                                     <DatePicker onChange={handleDivorceDate} placeholder="Divorce Date" className="w-full" size='large' />
@@ -405,7 +1062,7 @@ const EditPersonalInfo = () => {
                             </div>
                         }
 
-                        {personalInfo?.martialStatus === "widowed" &&
+                        {personalInfo?.maritialStatus === "widowed" &&
                             <div>
                                 <div className="mb-2">
                                     <DatePicker onChange={handleWidowedDate} placeholder="Divorce Date" className="w-full" size='large' />
@@ -519,9 +1176,274 @@ const EditPersonalInfo = () => {
                         />
                     </div>
 
+                    {/* some physical information  */}
 
+                    <div className='pb-4'>
+                        <label className='text-sm block pb-2 text-slate-600 font-medium'>Height</label>
+                        <p className='text-left text-base font-medium'> {height}" </p>
+                        <Slider
 
+                            defaultValue={5}
+                            key={weight}
+                            min={5}
+                            max={200}
+                            onChange={onHeightChange}
+                            onAfterChange={onAfterHeightChange}
+                        />
+                    </div>
 
+                    <div className='pb-4'>
+                        <label className='text-sm block pb-2 text-slate-600 font-medium'>Weight</label>
+                        <p className='text-left text-base font-medium'> {weight} Kg </p>
+                        <Slider
+                            defaultValue={50}
+                            onChange={onWeightChange}
+                            onAfterChange={onAfterWeightChange}
+                            min={20}
+                            max={200}
+                        />
+                    </div>
+
+                    <div className='pb-4'>
+                        <label className='text-sm block pb-2 text-slate-600 font-medium'>Ancestry</label>
+                        <Select
+                            className='w-full mb-2'
+                            onChange={handleUserAncestryChange}
+                            size="large"
+                            placeholder="Select Ancestry"
+                            options={[
+                                {
+                                    value: 'option',
+                                    label: 'no options',
+                                },
+                                {
+                                    value: 'option no',
+                                    label: 'others options',
+                                },
+
+                            ]}
+                        />
+                    </div>
+
+                    <div className='pb-4'>
+                        <label className='text-sm block pb-2 text-slate-600 font-medium'>Skin Tone</label>
+                        <Select
+                            className='w-full mb-2'
+                            onChange={handleUserSkinToneChange}
+                            placeholder="Select skin tone"
+                            size='large'
+                            allowClear
+                            options={[
+                                {
+                                    value: 'light',
+                                    label: 'Light',
+                                },
+                                {
+                                    value: 'fair',
+                                    label: 'Fair',
+                                },
+                                {
+                                    value: 'medium',
+                                    label: 'Medium',
+                                },
+                                {
+                                    value: 'deep',
+                                    label: 'Deep (Dark)',
+                                },
+                            ]}
+                        />
+                    </div>
+                    <div className='pb-4'>
+                        <label className='text-sm block pb-2 text-slate-600 font-medium'>Hair Color</label>
+                        <Select
+                            className='w-full mb-2'
+                            onChange={handleUserHairColorChange}
+                            placeholder="Select hair color"
+                            size='large'
+                            allowClear
+                            options={[
+                                {
+                                    value: 'black',
+                                    label: 'Black',
+                                },
+                                {
+                                    value: 'brown',
+                                    label: 'Brown',
+                                },
+                                {
+                                    value: 'blond',
+                                    label: 'Blond',
+                                },
+                                {
+                                    value: 'white',
+                                    label: 'White',
+                                },
+                                {
+                                    value: 'gray',
+                                    label: 'Gray',
+                                },
+                                {
+                                    value: 'rarely red',
+                                    label: 'Rarely Red',
+                                },
+                            ]}
+                        />
+                    </div>
+
+                    <div className='pb-4'>
+                        <label className='text-sm block pb-2 text-slate-600 font-medium'>Hair Type</label>
+                        <Select
+                            className='w-full mb-2'
+                            onChange={handleUserHairTypeChange}
+                            placeholder="Select hair type"
+                            size='large'
+                            allowClear
+                            options={[
+                                {
+                                    value: 'fine',
+                                    label: 'Fine',
+                                },
+                                {
+                                    value: 'thick',
+                                    label: 'Thick',
+                                },
+                                {
+                                    value: 'long',
+                                    label: 'Long',
+                                },
+                                {
+                                    value: 'short',
+                                    label: 'Short',
+                                },
+                                {
+                                    value: 'matte',
+                                    label: 'Matte',
+                                },
+                                {
+                                    value: 'glossy',
+                                    label: 'Glossy',
+                                },
+                                {
+                                    value: 'curly',
+                                    label: 'Curly',
+                                },
+                                {
+                                    value: 'coily',
+                                    label: 'Coily',
+                                },
+                                {
+                                    value: 'straight',
+                                    label: 'Straight',
+                                },
+                                {
+                                    value: 'wavy',
+                                    label: 'Wavy',
+                                },
+                            ]}
+                        />
+                    </div>
+
+                    <div className='pb-4'>
+                        <label className='text-sm block pb-2 text-slate-600 font-medium'>Eye Color</label>
+                        <Select
+                            className='w-full mb-2'
+                            onChange={handleUserEyeColorChange}
+                            placeholder="Select hair type"
+                            allowClear
+                            size='large'
+                            options={[
+                                {
+                                    value: 'brown',
+                                    label: 'Brown',
+                                },
+                                {
+                                    value: 'hazel',
+                                    label: 'Hazel',
+                                },
+                                {
+                                    value: 'blue',
+                                    label: 'Blue',
+                                },
+                                {
+                                    value: 'green',
+                                    label: 'Green',
+                                },
+                                {
+                                    value: 'gray',
+                                    label: 'Gray',
+                                },
+                                {
+                                    value: 'amber',
+                                    label: 'Amber',
+                                },
+                            ]}
+                        />
+                    </div>
+
+                    <div className='pb-4'>
+                        <label className='text-sm block pb-2 text-slate-600 font-medium'>Number of Teeth</label>
+                        <Select
+                            className='w-full mb-2'
+                            onChange={handleNumberOfTeeth}
+                            placeholder="Select teeth number"
+                            size='large'
+                            allowClear
+                            options={[
+                                {
+                                    value: '20',
+                                    label: '20',
+                                },
+                                {
+                                    value: '21',
+                                    label: '21',
+                                },
+                                {
+                                    value: '22',
+                                    label: '22',
+                                },
+                                {
+                                    value: '23',
+                                    label: '23',
+                                },
+                                {
+                                    value: '24',
+                                    label: '24',
+                                },
+                                {
+                                    value: '25',
+                                    label: '25',
+                                },
+                                {
+                                    value: '26',
+                                    label: '26',
+                                },
+                                {
+                                    value: '27',
+                                    label: '27',
+                                },
+                                {
+                                    value: '28',
+                                    label: '28',
+                                },
+                                {
+                                    value: '29',
+                                    label: '29',
+                                },
+                                {
+                                    value: '30',
+                                    label: '30',
+                                },
+                                {
+                                    value: '31',
+                                    label: '31',
+                                },
+                                {
+                                    value: '32',
+                                    label: '32',
+                                },
+                            ]}
+                        />
+                    </div>
 
                     <div className='pb-4'>
                         <div>

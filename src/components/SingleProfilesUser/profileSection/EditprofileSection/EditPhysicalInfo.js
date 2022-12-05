@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Select, Slider, message } from 'antd';
+import { Select, Slider } from 'antd';
 import { useUpdatePhysicalDetailsMutation } from '../../../../Redux/features/userInfo/userApi';
 import LinearProgress from '@mui/material/LinearProgress';
 import { useNavigate } from 'react-router';
