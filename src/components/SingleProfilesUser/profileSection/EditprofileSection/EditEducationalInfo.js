@@ -3,6 +3,7 @@ import { DatePicker, } from 'antd';
 import Autocomplete, { createFilterOptions } from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
 import TextArea from 'antd/es/input/TextArea';
+import { useUpdateEducationalDetailsMutation } from '../../../../Redux/features/userInfo/userApi';
 
 const EditEducationalInfo = () => {
     const [educationalInfo, setEducationalInfo] = useState({});
@@ -12,6 +13,8 @@ const EditEducationalInfo = () => {
     const [departmentName, setDepartmentName] = useState(null);
     const [fieldOfStudy, setFieldOfStudy] = useState(null);
     const [cgpa, setCgpa] = useState(null);
+
+    const [updateEducationalDetails, { data: response, isLoading: serverLoading }] = useUpdateEducationalDetailsMutation();
 
     //educational qualifitaion data handler function
     const handleDegreeName = (event, newValue) => {
@@ -137,6 +140,7 @@ const EditEducationalInfo = () => {
     //data submission handler
     const handleSubmit = (e) => {
         const data = { ...educationalInfo, degreeName, instituteName, departmentName, fieldOfStudy, cgpa }
+
         console.log(data)
         e.preventDefault()
     }

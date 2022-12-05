@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { InputNumber, Select, Upload, message, DatePicker, Radio, Space } from 'antd';
 import { FileAddFilled } from '@ant-design/icons';
 import TextArea from 'antd/es/input/TextArea';
+import { useParams } from 'react-router';
 // import { useNavigate } from "react-router-dom";
 
 
@@ -22,6 +23,7 @@ const EditPersonalInfo = () => {
     const [sister, setSister] = useState(0);
     const [parentStatus, setParentStatus] = useState('');
 
+    const { id } = useParams();
 
     useEffect(() => {
         fetch("/json/countries.json")
@@ -99,7 +101,7 @@ const EditPersonalInfo = () => {
         setMarriageDetails(data);
     }
     const handleAwareOFMarriage = (value) => {
-        setMarriageDetails({ ...marriageDetails, awareOfMarriage: value });
+        setMarriageDetails({ ...marriageDetails, isPartnerAwarOfMarriage: value });
     }
     const handleMarriageDate = (date, dateString) => {
         setMarriageDetails({ ...marriageDetails, marriageDate: dateString });
@@ -132,7 +134,7 @@ const EditPersonalInfo = () => {
         setWidowedDetails({ ...widowedDetails, childrenStatus: value })
     }
     const handleWidowedDate = (value) => {
-        setWidowedDetails({ ...widowedDetails, widowedDate: value });
+        setWidowedDetails({ ...widowedDetails, partnerDeathDay: value });
     }
     //date of birth handle data function
     const handleDateOfBirth = (date, dateString) => {
@@ -167,14 +169,14 @@ const EditPersonalInfo = () => {
 
     // hanlde hoby 
     const handleHoby = (value) => {
-        setPersonalInfo({ ...personalInfo, hoby: value })
+        setPersonalInfo({ ...personalInfo, hobbies: value })
     }
 
     // const navigate = useNavigate();
 
     //form submission
     const handleSubmit = (e) => {
-        const data = { ...personalInfo, siblings: { brother: brother, sister: sister }, marriageDetails, divorceDetails, widowedDetails };
+        const data = { ...personalInfo, numberOfBrother: brother, numberOfSister: sister, ...marriageDetails, ...divorceDetails, ...widowedDetails };
         console.log(data)
         // navigate("/userprofile")
         e.preventDefault()
@@ -282,7 +284,7 @@ const EditPersonalInfo = () => {
                                     <input type="number" name="numberOfPartner" placeholder='Number of Partner' className=' focus:outline-none p-2 border focus:border-blue-500 shadow rounded-lg hover:border-blue-500 w-full ' onChange={handleMarriageReason} />
                                 </div>
                                 <div className='mb-2'>
-                                    <input type="text" name="marriageReason" placeholder='Reason of Marriage' className=' focus:outline-none p-2 border focus:border-blue-500 shadow rounded-lg hover:border-blue-500 w-full ' onChange={handleMarriageReason} />
+                                    <input type="text" name="reasonOfMarriage" placeholder='Reason of Marriage' className=' focus:outline-none p-2 border focus:border-blue-500 shadow rounded-lg hover:border-blue-500 w-full ' onChange={handleMarriageReason} />
                                 </div>
 
                                 <Select
@@ -336,9 +338,9 @@ const EditPersonalInfo = () => {
                                         marriageDetails.childrenStatus === "yes" &&
                                         <div>
                                             <input type="number" name="numberOfBoy" placeholder='Number of Boy' className=' focus:outline-none p-2 border focus:border-blue-500 shadow rounded-lg hover:border-blue-500 w-52 mr-10 ' onChange={handleMarriageReason} />
-                                            <input type="number" name="ageOfBoy" placeholder='Age of Boy' className=' focus:outline-none p-2 border focus:border-blue-500 shadow rounded-lg hover:border-blue-500 w-52 ' onChange={handleMarriageReason} />
+                                            <input type="number" name="agesOfBoy" placeholder='Age of Boy' className=' focus:outline-none p-2 border focus:border-blue-500 shadow rounded-lg hover:border-blue-500 w-52 ' onChange={handleMarriageReason} />
                                             <input type="number" name="numberOfGirl" placeholder='Number of Girl' className=' focus:outline-none p-2 border focus:border-blue-500 shadow rounded-lg hover:border-blue-500 w-52 mr-10 mt-2' onChange={handleMarriageReason} />
-                                            <input type="number" name="ageOfGirl" placeholder='Age of Girl' className=' focus:outline-none p-2 border focus:border-blue-500 shadow rounded-lg hover:border-blue-500 w-52 ' onChange={handleMarriageReason} />
+                                            <input type="number" name="agesOfGirl" placeholder='Age of Girl' className=' focus:outline-none p-2 border focus:border-blue-500 shadow rounded-lg hover:border-blue-500 w-52 ' onChange={handleMarriageReason} />
                                         </div>
                                     }
 
@@ -383,9 +385,9 @@ const EditPersonalInfo = () => {
                                     divorceDetails?.childrenStatus === "yes" &&
                                     <div>
                                         <input type="number" name="numberOfBoy" placeholder='Number of Boy' className=' focus:outline-none p-2 border focus:border-blue-500 shadow rounded-lg hover:border-blue-500 w-52 mr-10 ' onChange={handleDivorceReason} />
-                                        <input type="number" name="ageOfBoy" placeholder='Age of Boy' className=' focus:outline-none p-2 border focus:border-blue-500 shadow rounded-lg hover:border-blue-500 w-52 ' onChange={handleDivorceReason} />
+                                        <input type="number" name="agesOfBoy" placeholder='Age of Boy' className=' focus:outline-none p-2 border focus:border-blue-500 shadow rounded-lg hover:border-blue-500 w-52 ' onChange={handleDivorceReason} />
                                         <input type="number" name="numberOfGirl" placeholder='Number of Girl' className=' focus:outline-none p-2 border focus:border-blue-500 shadow rounded-lg hover:border-blue-500 w-52 mr-10 mt-2' onChange={handleDivorceReason} />
-                                        <input type="number" name="ageOfGirl" placeholder='Age of Girl' className=' focus:outline-none p-2 border focus:border-blue-500 shadow rounded-lg hover:border-blue-500 w-52 ' onChange={handleDivorceReason} />
+                                        <input type="number" name="agesOfGirl" placeholder='Age of Girl' className=' focus:outline-none p-2 border focus:border-blue-500 shadow rounded-lg hover:border-blue-500 w-52 ' onChange={handleDivorceReason} />
                                     </div>
                                 }
 
@@ -422,9 +424,9 @@ const EditPersonalInfo = () => {
                                     widowedDetails?.childrenStatus === "yes" &&
                                     <div>
                                         <input type="number" name="numberOfBoy" placeholder='Number of Boy' className=' focus:outline-none p-2 border focus:border-blue-500 shadow rounded-lg hover:border-blue-500 w-52 mr-10 ' onChange={handleWidowed} />
-                                        <input type="number" name="ageOfBoy" placeholder='Age of Boy' className=' focus:outline-none p-2 border focus:border-blue-500 shadow rounded-lg hover:border-blue-500 w-52 ' onChange={handleWidowed} />
+                                        <input type="number" name="agesOfBoy" placeholder='Age of Boy' className=' focus:outline-none p-2 border focus:border-blue-500 shadow rounded-lg hover:border-blue-500 w-52 ' onChange={handleWidowed} />
                                         <input type="number" name="numberOfGirl" placeholder='Number of Girl' className=' focus:outline-none p-2 border focus:border-blue-500 shadow rounded-lg hover:border-blue-500 w-52 mr-10 mt-2' onChange={handleWidowed} />
-                                        <input type="number" name="ageOfGirl" placeholder='Age of Girl' className=' focus:outline-none p-2 border focus:border-blue-500 shadow rounded-lg hover:border-blue-500 w-52 ' onChange={handleWidowed} />
+                                        <input type="number" name="agesOfGirl" placeholder='Age of Girl' className=' focus:outline-none p-2 border focus:border-blue-500 shadow rounded-lg hover:border-blue-500 w-52 ' onChange={handleWidowed} />
                                     </div>
                                 }
 
@@ -513,7 +515,7 @@ const EditPersonalInfo = () => {
                     <div className='pb-4'>
                         <div>
                             <label htmlFor="nid" className='text-sm block pb-2 text-slate-600 font-medium'>About You</label>
-                            <TextArea rows={4} placeholder="Text Here" maxLength={6} name='about' onChange={handleData} />
+                            <TextArea rows={4} placeholder="Text Here" maxLength={6} name='aboutYou' onChange={handleData} />
 
                         </div>
                     </div>
@@ -521,7 +523,7 @@ const EditPersonalInfo = () => {
                     <div className='pb-4'>
                         <div>
                             <label htmlFor="nid" className='text-sm block pb-2 text-slate-600 font-medium'>What are you looking for</label>
-                            <TextArea rows={4} placeholder="Text Here" maxLength={6} name="lookingFor" onChange={handleData} />
+                            <TextArea rows={4} placeholder="Text Here" maxLength={6} name="whatAreYouLookingFor" onChange={handleData} />
 
                         </div>
                     </div>
@@ -529,7 +531,7 @@ const EditPersonalInfo = () => {
                     <div className='pb-4'>
                         <div>
                             <label htmlFor="nid" className='text-sm block pb-2 text-slate-600 font-medium'>Permanent Address</label>
-                            <TextArea rows={4} placeholder="Text Here" maxLength={6} onChange={handleData} name="permanentAddress" />
+                            <TextArea rows={4} placeholder="Text Here" maxLength={6} onChange={handleData} name="permanentAdress" />
 
                         </div>
                     </div>
@@ -594,7 +596,7 @@ const EditPersonalInfo = () => {
                         <div>
 
                             <label htmlFor="linkdin" className='text-sm block pb-2 text-slate-600	  font-medium'>Linkedin</label>
-                            <input type="text" name="linkdin" id="linkdin" placeholder='your linkdin profile link' className=' focus:outline-none p-2 border focus:border-blue-500 shadow rounded-lg hover:border-blue-500 w-full ' onChange={handleData} />
+                            <input type="text" name="LinkedInId" id="linkdin" placeholder='your linkdin profile link' className=' focus:outline-none p-2 border focus:border-blue-500 shadow rounded-lg hover:border-blue-500 w-full ' onChange={handleData} />
 
 
                         </div>
@@ -603,7 +605,7 @@ const EditPersonalInfo = () => {
                         <div>
 
                             <label htmlFor="istragram" className='text-sm block pb-2 text-slate-600	  font-medium'>Istragram</label>
-                            <input type="text" name="istragram" id="istragram" placeholder='your istragram profile link' className=' focus:outline-none p-2 border focus:border-blue-500 shadow rounded-lg hover:border-blue-500 w-full ' onChange={handleData} />
+                            <input type="text" name="instagramId" id="istragram" placeholder='your istragram profile link' className=' focus:outline-none p-2 border focus:border-blue-500 shadow rounded-lg hover:border-blue-500 w-full ' onChange={handleData} />
 
 
                         </div>
@@ -612,7 +614,7 @@ const EditPersonalInfo = () => {
                         <div>
 
                             <label htmlFor="facebook" className='text-sm block pb-2 text-slate-600	  font-medium'>Facebook</label>
-                            <input type="text" name="facebook" id="facebook" placeholder='your facebook profile link' className=' focus:outline-none p-2 border focus:border-blue-500 shadow rounded-lg hover:border-blue-500 w-full ' onChange={handleData} />
+                            <input type="text" name="faceBookId" id="facebook" placeholder='your facebook profile link' className=' focus:outline-none p-2 border focus:border-blue-500 shadow rounded-lg hover:border-blue-500 w-full ' onChange={handleData} />
                         </div>
                     </div>
 

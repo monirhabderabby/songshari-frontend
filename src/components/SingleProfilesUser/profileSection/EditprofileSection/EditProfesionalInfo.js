@@ -12,7 +12,6 @@ const EditProfesionalInfo = () => {
     // institue state 
     const [currentInstitute, setCurrentInstitute] = useState(null);
     const [professionalInfo, setProfessionalInfo] = useState({});
-
     // current position state handler
     const handleCurrentPosition = (event, newValue) => {
         if (typeof newValue === 'string') {
@@ -53,7 +52,11 @@ const EditProfesionalInfo = () => {
     }
     // handle achivements data chane
     const handleAchivements = (e) => {
-        setProfessionalInfo({ ...professionalInfo, achivements: e.target.value });
+        setProfessionalInfo({ ...professionalInfo, specialAchievement: e.target.value });
+    }
+    // handle duty data change
+    const handleDuty = (e) => {
+        setProfessionalInfo({ ...professionalInfo, duty: e.target.value });
     }
     // current position options (MUI Autocomplete)
     const currentPositionOptions = [
@@ -72,7 +75,7 @@ const EditProfesionalInfo = () => {
 
     //data submission
     const handleSubmit = (e) => {
-        const data = { ...professionalInfo, currentInstitute, currentPosition }
+        const data = { ...professionalInfo, institute: currentInstitute, position: currentPosition }
         console.log(data)
         e.preventDefault()
     }
@@ -188,7 +191,13 @@ const EditProfesionalInfo = () => {
                     </div>
 
                 </div>
+                <div className='pb-4'>
+                    <div>
+                        <label htmlFor="nid" className='text-sm block pb-2 text-slate-600 font-medium'>Special Achievements</label>
+                        <TextArea rows={4} placeholder="Text Here" maxLength={6} onChange={handleDuty} />
 
+                    </div>
+                </div>
 
                 <div className='pb-4'>
                     <div>

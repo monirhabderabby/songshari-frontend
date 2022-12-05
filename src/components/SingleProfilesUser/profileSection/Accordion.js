@@ -65,7 +65,7 @@ const Accordian = () => {
                         display: `${expanded === 'panel1' ? "block" : "none"}`
                     }}>
                         <button
-                            onClick={() => navigate("/userprofile/edit/personalinfo")}
+                            onClick={() => navigate(`/userprofile/edit/personalinfo/${data?._id}`)}
                             style={{
                                 background: "linear-gradient(180deg, #E41272 0%, #942DD9 100%)",
                             }}
@@ -407,7 +407,7 @@ const Accordian = () => {
                         display: `${expanded === 'panel2' ? "block" : "none"}`
                     }}>
                         <button
-                            onClick={() => navigate("/userprofile/edit/profesionalinfo")}
+                            onClick={() => navigate(`/userprofile/edit/profesionalinfo/${data?._id}`)}
                             style={{
                                 background: "linear-gradient(180deg, #E41272 0%, #942DD9 100%)",
                             }}
