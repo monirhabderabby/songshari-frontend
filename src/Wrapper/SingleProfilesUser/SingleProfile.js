@@ -14,7 +14,7 @@ const SingleProfile = () => {
         <SingleProfiles />
       </div>
       <div className="md:hidden">
-        <MobileSingleProfilesUser />
+      <SingleProfiles />
       </div>
     </div>
   );
