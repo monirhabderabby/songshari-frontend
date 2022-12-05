@@ -41,6 +41,8 @@ const PhotoGelary = () => {
             .then(() => alert("all photo uploaded"))
             .catch(err => console.log(err));
     };
+
+    console.log(urls)
     return (
         <div>
             <div className="photo-gelary p-6 text-left shadow">
