@@ -1,10 +1,14 @@
 import { Select } from 'antd';
 import React from 'react';
 import { useState } from 'react';
+import { useNavigate } from 'react-router';
+import { useUpdateOthersDetailsMutation } from '../../../../Redux/features/userInfo/userApi';
 
 const EditOthersInfo = () => {
     const [othersInfo, setOthersInfo] = useState({});
-    //data submission function
+    // update query function 
+    const [updateOthersDetails, { isSuccess, isLoading, isError }] = useUpdateOthersDetailsMutation();
+
     const handleDoSmoke = (value) => {
         setOthersInfo({ ...othersInfo, doSmoke: value })
     }
@@ -18,21 +22,27 @@ const EditOthersInfo = () => {
         setOthersInfo({ ...othersInfo, haveTattos: value })
     }
     const handleHaveVoluntaryExp = (value) => {
-        setOthersInfo({ ...othersInfo, voluntaryExp: value })
+        setOthersInfo({ ...othersInfo, haveVoluntaryExp: value })
     }
     const handleDoTravelledOutsiteBD = (value) => {
-        setOthersInfo({ ...othersInfo, travelOutsiteBd: value })
+        setOthersInfo({ ...othersInfo, travelledOutsideBangladesh: value })
     }
     const handleJoinFamily = (value) => {
-        setOthersInfo({ ...othersInfo, joinFamily: value })
+        setOthersInfo({ ...othersInfo, likeJoinFamily: value })
     }
     const handleBelieveInGod = (value) => {
         setOthersInfo({ ...othersInfo, believeInGod: value })
     }
-
-    const handleSubmit = (e) => {
-        console.log(othersInfo)
+    //for navigate to user profile after update data
+    const navigate = useNavigate()
+    const handleSubmit = async (e) => {
         e.preventDefault();
+        const data = { ...othersInfo }
+        await updateOthersDetails(data);
+
+    }
+    if (isSuccess) {
+        navigate("/userprofile")
     }
 
     //all data handler function

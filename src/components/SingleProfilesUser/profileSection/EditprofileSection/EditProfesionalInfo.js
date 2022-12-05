@@ -3,6 +3,9 @@ import { DatePicker } from 'antd';
 import Autocomplete, { createFilterOptions } from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
 import TextArea from 'antd/es/input/TextArea';
+import { useUpdateProfessionalDetailsMutation } from '../../../../Redux/features/userInfo/userApi';
+import { useNavigate, useParams } from 'react-router';
+import LinearProgress from 'material-ui/LinearProgress';
 const { RangePicker } = DatePicker;
 
 
@@ -12,6 +15,7 @@ const EditProfesionalInfo = () => {
     // institue state 
     const [currentInstitute, setCurrentInstitute] = useState(null);
     const [professionalInfo, setProfessionalInfo] = useState({});
+    const [updateProfessionalDetails, { data, isLoading, isError, isSuccess }] = useUpdateProfessionalDetailsMutation()
     // current position state handler
     const handleCurrentPosition = (event, newValue) => {
         if (typeof newValue === 'string') {
@@ -52,7 +56,7 @@ const EditProfesionalInfo = () => {
     }
     // handle achivements data chane
     const handleAchivements = (e) => {
-        setProfessionalInfo({ ...professionalInfo, specialAchievement: e.target.value });
+        setProfessionalInfo({ ...professionalInfo, specialAchievement: e?.target.value });
     }
     // handle duty data change
     const handleDuty = (e) => {
@@ -72,12 +76,20 @@ const EditProfesionalInfo = () => {
         { title: 'Microsoft' },
         { title: 'Google' },
     ]
-
+    const { id } = useParams()
+    const navigate = useNavigate()
     //data submission
-    const handleSubmit = (e) => {
-        const data = { ...professionalInfo, institute: currentInstitute, position: currentPosition }
-        console.log(data)
+    const handleSubmit = async (e) => {
         e.preventDefault()
+
+        const data = { ...professionalInfo, institute: currentInstitute?.title, position: currentPosition?.title }
+        await updateProfessionalDetails({ data, id })
+
+
+    }
+
+    if (isSuccess) {
+        navigate("/userprofile")
     }
 
     const filter = createFilterOptions();
@@ -193,8 +205,8 @@ const EditProfesionalInfo = () => {
                 </div>
                 <div className='pb-4'>
                     <div>
-                        <label htmlFor="nid" className='text-sm block pb-2 text-slate-600 font-medium'>Special Achievements</label>
-                        <TextArea rows={4} placeholder="Text Here" maxLength={6} onChange={handleDuty} />
+                        <label htmlFor="nid" className='text-sm block pb-2 text-slate-600 font-medium'>duty</label>
+                        <TextArea rows={4} placeholder="Text Here" onChange={handleDuty} />
 
                     </div>
                 </div>
@@ -210,7 +222,7 @@ const EditProfesionalInfo = () => {
                 <div className='pb-4'>
                     <div>
                         <label htmlFor="nid" className='text-sm block pb-2 text-slate-600 font-medium'>Special Achievements</label>
-                        <TextArea rows={4} placeholder="Text Here" maxLength={6} onChange={handleAchivements} />
+                        <TextArea rows={4} placeholder="Text Here" name='achivements' onChange={handleAchivements} />
 
                     </div>
                 </div>
@@ -225,7 +237,12 @@ const EditProfesionalInfo = () => {
                         }}
                         className="w-full text-center py-[8] py-[10px] text-[#fff]  text-lg font-medium rounded"
                     />
+                    {/* {isLoading &&
+                        <div className='mt-2'>
+                            <LinearProgress color="secondary" />
+                        </div>
 
+                    } */}
                 </div>
             </form>
 

@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { InputNumber, Select, Upload, message, DatePicker, Radio, Space } from 'antd';
 import { FileAddFilled } from '@ant-design/icons';
 import TextArea from 'antd/es/input/TextArea';
-import { useParams } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
+import { useUpdatePersonalDetailsMutation } from '../../../../Redux/features/userInfo/userApi';
 // import { useNavigate } from "react-router-dom";
 
 
@@ -24,7 +25,7 @@ const EditPersonalInfo = () => {
     const [parentStatus, setParentStatus] = useState('');
 
     const { id } = useParams();
-
+    const [updatePersonalDetails, { isError, isLoading, isSuccess }] = useUpdatePersonalDetailsMutation()
     useEffect(() => {
         fetch("/json/countries.json")
             .then(res => res.json())
@@ -138,7 +139,7 @@ const EditPersonalInfo = () => {
     }
     //date of birth handle data function
     const handleDateOfBirth = (date, dateString) => {
-        setPersonalInfo({ ...personalInfo, dateOfBirth: dateString });
+        setPersonalInfo({ ...personalInfo, dateOfBirth: date });
     };
 
     // handle citizenship status 
@@ -147,7 +148,7 @@ const EditPersonalInfo = () => {
     };
     // handle current city status
     const handleCurrentCity = (value) => {
-        setPersonalInfo({ ...personalInfo, homeTown: value })
+        setPersonalInfo({ ...personalInfo, hometown: value })
     }
     //zodaic sign change handler
     const handleZodiacSign = (value) => {
@@ -172,16 +173,26 @@ const EditPersonalInfo = () => {
         setPersonalInfo({ ...personalInfo, hobbies: value })
     }
 
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
 
     //form submission
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         const data = { ...personalInfo, numberOfBrother: brother, numberOfSister: sister, ...marriageDetails, ...divorceDetails, ...widowedDetails };
-        console.log(data)
-        // navigate("/userprofile")
         e.preventDefault()
+
+        await updatePersonalDetails(data).then(() => {
+            if (isSuccess) {
+                navigate("/userprofile")
+
+            }
+        })
+
+
     }
 
+    if (isSuccess) {
+        navigate("/userprofile")
+    }
 
     return (
         <div className='max-w-[523px] mx-auto bg-white drop-shadow-lg px-4 py-6 mb-4 rounded'>
@@ -515,7 +526,7 @@ const EditPersonalInfo = () => {
                     <div className='pb-4'>
                         <div>
                             <label htmlFor="nid" className='text-sm block pb-2 text-slate-600 font-medium'>About You</label>
-                            <TextArea rows={4} placeholder="Text Here" maxLength={6} name='aboutYou' onChange={handleData} />
+                            <TextArea rows={4} placeholder="Text Here" name='aboutYou' onChange={handleData} />
 
                         </div>
                     </div>
@@ -523,7 +534,7 @@ const EditPersonalInfo = () => {
                     <div className='pb-4'>
                         <div>
                             <label htmlFor="nid" className='text-sm block pb-2 text-slate-600 font-medium'>What are you looking for</label>
-                            <TextArea rows={4} placeholder="Text Here" maxLength={6} name="whatAreYouLookingFor" onChange={handleData} />
+                            <TextArea rows={4} placeholder="Text Here" name="whatAreYouLookingFor" onChange={handleData} />
 
                         </div>
                     </div>
@@ -531,7 +542,7 @@ const EditPersonalInfo = () => {
                     <div className='pb-4'>
                         <div>
                             <label htmlFor="nid" className='text-sm block pb-2 text-slate-600 font-medium'>Permanent Address</label>
-                            <TextArea rows={4} placeholder="Text Here" maxLength={6} onChange={handleData} name="permanentAdress" />
+                            <TextArea rows={4} placeholder="Text Here" onChange={handleData} name="permanentAdress" />
 
                         </div>
                     </div>
@@ -539,7 +550,7 @@ const EditPersonalInfo = () => {
                     <div className='pb-4'>
                         <div>
                             <label htmlFor="nid" className='text-sm block pb-2 text-slate-600 font-medium'>Present Address</label>
-                            <TextArea rows={4} placeholder="Text Here" maxLength={6} onChange={handleData} name="present Address" />
+                            <TextArea rows={4} placeholder="Text Here" onChange={handleData} name="present Address" />
 
                         </div>
                     </div>

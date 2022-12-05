@@ -4,6 +4,7 @@ import Autocomplete, { createFilterOptions } from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
 import TextArea from 'antd/es/input/TextArea';
 import { useUpdateEducationalDetailsMutation } from '../../../../Redux/features/userInfo/userApi';
+import { useNavigate, useParams } from 'react-router';
 
 const EditEducationalInfo = () => {
     const [educationalInfo, setEducationalInfo] = useState({});
@@ -14,7 +15,7 @@ const EditEducationalInfo = () => {
     const [fieldOfStudy, setFieldOfStudy] = useState(null);
     const [cgpa, setCgpa] = useState(null);
 
-    const [updateEducationalDetails, { data: response, isLoading: serverLoading }] = useUpdateEducationalDetailsMutation();
+    const [updateEducationalDetails, { isSuccess, isLoading, isError }] = useUpdateEducationalDetailsMutation();
 
     //educational qualifitaion data handler function
     const handleDegreeName = (event, newValue) => {
@@ -103,10 +104,10 @@ const EditEducationalInfo = () => {
     }
     //passing year handler
     const handlePassingYear = (date, dateString) => {
-        setEducationalInfo({ ...educationalInfo, handlePassingYear: dateString });
+        setEducationalInfo({ ...educationalInfo, yearOfStudy: date });
     }
     const handleAchiveMents = (e) => {
-        setEducationalInfo({ ...educationalInfo, achivements: e.target.value });
+        setEducationalInfo({ ...educationalInfo, specialAchievement: e?.target?.value });
     }
     // educational qualifitaions options Autocomplete (MUI)
     const degreeOptions = [
@@ -137,12 +138,17 @@ const EditEducationalInfo = () => {
 
     // mui autocomplete filter
     const filter = createFilterOptions();
+    const { id } = useParams();
+    const navigate = useNavigate()
     //data submission handler
-    const handleSubmit = (e) => {
-        const data = { ...educationalInfo, degreeName, instituteName, departmentName, fieldOfStudy, cgpa }
-
-        console.log(data)
+    const handleSubmit = async (e) => {
         e.preventDefault()
+        const data = { ...educationalInfo, degree: degreeName?.title, institute: instituteName?.title, department: departmentName?.title, feildOfStudy: fieldOfStudy?.title, gpaOrCgpa: cgpa?.title }
+        await updateEducationalDetails({ data, id })
+
+    }
+    if (isSuccess) {
+        navigate("/userprofile")
     }
     return (
         <div className='max-w-[523px] mx-auto bg-white drop-shadow-lg px-4 py-6 mb-4 rounded'>

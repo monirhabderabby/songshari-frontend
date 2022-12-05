@@ -86,7 +86,7 @@ const Index = () => {
                             <Route path="profesionalinfo/:id" element={<EditProfesionalInfo />} />
                             <Route path="educationalinfo/:id" element={<EditEducationalInfo />} />
                             <Route path="physicalinfo/:id" element={<EditPhysicalInfo />} />
-                            <Route path="othersinfo/id" element={<EditOthersInfo />} />
+                            <Route path="othersinfo/:id" element={<EditOthersInfo />} />
                         </Route>
                     </Route>
                     <Route path="/mobileotherprofile" element={<MobileProfileOthers></MobileProfileOthers>}></Route>
