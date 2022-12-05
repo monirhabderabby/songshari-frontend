@@ -5,7 +5,7 @@ import { auth } from "../../../firebase.init";
 // import { MovSelect } from './movselect/MovSelect';
 import "./TopMenu.css";
 export const TopMenu = () => {
-    const {user} = useAuthState(auth);
+    const [user] = useAuthState(auth);
     const [state, setState] = useState(false);
     const handleClick = () => {
         setState(true);
@@ -30,7 +30,7 @@ export const TopMenu = () => {
                     <i className="fa-solid fa-bars"></i>
                 </div>
             </div>
-            {}
+         
             {user && state && (
                 <div className="` ">
                     <Link to="" className="mt-4">
@@ -47,7 +47,7 @@ export const TopMenu = () => {
 
                     <span className="  pr-4">or</span>
                     <Link to={"/signup"} className="bg-red-500 text-white pt-2 pl-4 pr-4 pb-2 mr-4 rounded-full">
-                        signup
+                        
                     </Link>
                 </div>
             )}
