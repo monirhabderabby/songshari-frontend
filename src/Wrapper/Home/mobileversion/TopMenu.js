@@ -1,8 +1,11 @@
 import React, { useState } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { Link } from "react-router-dom";
+import { auth } from "../../../firebase.init";
 // import { MovSelect } from './movselect/MovSelect';
 import "./TopMenu.css";
 export const TopMenu = () => {
+    const {user} = useAuthState(auth);
     const [state, setState] = useState(false);
     const handleClick = () => {
         setState(true);
@@ -23,12 +26,20 @@ export const TopMenu = () => {
                 </div>
 
                 <div className="">
-                    <i className="fa-regular fa-bell"></i>
+                    <i className="fa-regular fa-bell mr-4"></i>
                     <i className="fa-solid fa-bars"></i>
                 </div>
             </div>
             {}
-            {state && (
+            {user && state && (
+                <div className="` ">
+                    <Link to="" className="mt-4">
+                        <span className="bg-red-500 text-white pt-2   pb-2  ml-8">{user.displayName}</span>
+                    </Link>
+
+                </div>
+            )}
+            {!user && state && (
                 <div className="` ">
                     <Link to="/login" className="mt-4">
                         <span className="bg-red-500 text-white pt-2 pl-4 pr-4 pb-2 mr-4 rounded-full ml-8">Login</span>
@@ -36,7 +47,7 @@ export const TopMenu = () => {
 
                     <span className="  pr-4">or</span>
                     <Link to={"/signup"} className="bg-red-500 text-white pt-2 pl-4 pr-4 pb-2 mr-4 rounded-full">
-                        SignUp
+                        signup
                     </Link>
                 </div>
             )}
