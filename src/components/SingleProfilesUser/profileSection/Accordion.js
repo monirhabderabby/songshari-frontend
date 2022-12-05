@@ -42,13 +42,8 @@ const Accordian = () => {
     const handleChange = panel => (event, newExpanded) => {
         setExpanded(newExpanded ? panel : false);
     };
-
-    console.log(data, isLoading)
     const navigate = useNavigate();
     // if (isLoading) return false;
-
-
-
 
     return (
         <div className="mb-[69px] max-w-[523px] mx-auto">
@@ -61,9 +56,11 @@ const Accordian = () => {
                             </Typography>
                         </div>
                     </AccordionSummary>
-                    <div style={{
-                        display: `${expanded === 'panel1' ? "block" : "none"}`
-                    }}>
+                    <div
+                        style={{
+                            display: `${expanded === "panel1" ? "block" : "none"}`,
+                        }}
+                    >
                         <button
                             onClick={() => navigate(`/userprofile/edit/personalinfo/${data?._id}`)}
                             style={{
@@ -76,7 +73,6 @@ const Accordian = () => {
                     </div>
                 </div>
                 <AccordionDetails>
-
                     <Typography>
                         {data?.firstName && (
                             <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
@@ -327,9 +323,7 @@ const Accordian = () => {
                         </div>
                         <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                             <span className="font-medium">Special Achievement</span>
-                            <p className="font-normal">
-                                {data?.currentProfession ? data?.currentProfession?.specialAchievement : "Not Provided"}
-                            </p>
+                            <p className="font-normal">{data?.currentProfession ? data?.currentProfession?.specialAchievement : "Not Provided"}</p>
                         </div>
                         <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                             <span className="font-medium">Year Of Experience</span>
@@ -390,7 +384,6 @@ const Accordian = () => {
                             <p className="font-normal">{data ? data.hobbies : "Not Provided"}</p>
                         </div>
                     </Typography>
-
                 </AccordionDetails>
             </Accordion>
 
@@ -403,9 +396,11 @@ const Accordian = () => {
                             </Typography>
                         </div>
                     </AccordionSummary>
-                    <div style={{
-                        display: `${expanded === 'panel2' ? "block" : "none"}`
-                    }}>
+                    <div
+                        style={{
+                            display: `${expanded === "panel2" ? "block" : "none"}`,
+                        }}
+                    >
                         <button
                             onClick={() => navigate(`/userprofile/edit/profesionalinfo/${data?._id}`)}
                             style={{
@@ -478,9 +473,11 @@ const Accordian = () => {
                             </Typography>
                         </div>
                     </AccordionSummary>
-                    <div style={{
-                        display: `${expanded === 'panel3' ? "block" : "none"}`
-                    }}>
+                    <div
+                        style={{
+                            display: `${expanded === "panel3" ? "block" : "none"}`,
+                        }}
+                    >
                         <button
                             onClick={() => navigate("/userprofile/edit/educationalinfo")}
                             style={{
@@ -580,9 +577,11 @@ const Accordian = () => {
                             </Typography>
                         </div>
                     </AccordionSummary>
-                    <div style={{
-                        display: `${expanded === 'panel4' ? "block" : "none"}`
-                    }}>
+                    <div
+                        style={{
+                            display: `${expanded === "panel4" ? "block" : "none"}`,
+                        }}
+                    >
                         <button
                             onClick={() => navigate("/userprofile/edit/physicalinfo")}
                             style={{
@@ -644,9 +643,11 @@ const Accordian = () => {
                             </Typography>
                         </div>
                     </AccordionSummary>
-                    <div style={{
-                        display: `${expanded === 'panel5' ? "block" : "none"}`
-                    }}>
+                    <div
+                        style={{
+                            display: `${expanded === "panel5" ? "block" : "none"}`,
+                        }}
+                    >
                         <button
                             onClick={() => navigate("/userprofile/edit/othersinfo")}
                             style={{

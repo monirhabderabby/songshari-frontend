@@ -1,16 +1,14 @@
-import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import React, { useEffect, useState } from "react";
 import { useCreateUserWithEmailAndPassword, useSignInWithGoogle, useUpdateProfile } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
-import { AiOutlineCloudUpload, AiOutlineIdcard } from "react-icons/ai";
+import { AiOutlineIdcard } from "react-icons/ai";
 import { FaGoogle, FaRegEnvelope, FaRegUser } from "react-icons/fa";
 import { MdLockOutline, MdPhone } from "react-icons/md";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { v4 as uuidv4 } from "uuid";
 import "../../../App.css";
 import logo from "../../../assets/images/Logo/logoBlack.png";
-import { auth, firebaseStorage } from "../../../firebase.init";
+import { auth } from "../../../firebase.init";
 import { useRegAsMemberMutation } from "../../../Redux/features/userInfo/userApi";
 import { loadUserData } from "../../../Redux/features/userInfo/userInfo";
 import Error from "../../ui/error/Error";
@@ -23,6 +21,7 @@ const Signup = () => {
     const [createUserWithEmailAndPassword, user, loading, error] = useCreateUserWithEmailAndPassword(auth);
     const [signInWithGoogle, googleUser, googleLoading] = useSignInWithGoogle(auth);
     const [updateProfile, updating] = useUpdateProfile(auth);
+    const [gender, setGender] = useState("");
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -39,20 +38,14 @@ const Signup = () => {
     };
 
     const onSubmit = async data => {
-        if (!photoURL) {
-            setCustomError("Please wait a second for added your photo");
-            return;
-        }
-        setCustomError("");
-        if (photoURL) {
-            delete data.image;
-            data.profilePhoto = photoURL;
-            data.role = "member";
-            // Implement firebase registration
-            await createUserWithEmailAndPassword(data.email, data.password);
-            await updateProfile({ displayName: data.firstName + " " + data.lastName, photoURL: photoURL });
-            await regAsMember(data);
-        }
+        delete data.image;
+        data.role = "member";
+        data.gender = gender;
+        console.log(data);
+        // Implement firebase registration
+        await createUserWithEmailAndPassword(data.email, data.password);
+        await updateProfile({ displayName: data.firstName + " " + data.lastName });
+        await regAsMember(data);
     };
 
     useEffect(() => {
@@ -60,8 +53,6 @@ const Signup = () => {
             localStorage.setItem("accessToken", response.token);
             dispatch(loadUserData(response));
             reset();
-        }
-        if ((user && response) || googleUser) {
             navigate("/userProfile");
         }
     }, [response, dispatch, reset, navigate, user, googleUser]);
@@ -71,22 +62,6 @@ const Signup = () => {
             setCustomError("email already in use");
         }
     }, [error]);
-
-    const photoHandler = async e => {
-        const photo = e.target.files[0];
-        const storageRef = ref(firebaseStorage, `profile/${photo.name + uuidv4()}`);
-        uploadBytes(storageRef, photo).then(async snapshot => {
-            await getDownloadURL(snapshot.ref).then(url => {
-                setPhotoUrl(url.toString());
-            });
-        });
-    };
-
-    useEffect(() => {
-        if (photoURL) {
-            setCustomError("");
-        }
-    }, [photoURL]);
 
     return (
         <div>
@@ -308,28 +283,17 @@ const Signup = () => {
                                         </section>
                                         <section>
                                             <div className="flex items-center bg-gray-100 p-2 w-full rounded-xl mt-3">
-                                                <AiOutlineCloudUpload className=" m-2 text-gray-400" />
-                                                <label htmlFor="userPhoto" className="outline-none h-full text-sm text-gray-400 bg-gray-100">
-                                                    {photoURL ? (
-                                                        <>
-                                                            <span className="text-green-400">Photo added</span>
-                                                        </>
-                                                    ) : (
-                                                        "Upload Image"
-                                                    )}
-                                                </label>
-                                                <input
-                                                    {...register("image", {
-                                                        required: {
-                                                            value: true,
-                                                            message: "Photo is Required",
-                                                        },
-                                                    })}
-                                                    type="file"
-                                                    id="userPhoto"
-                                                    className="hidden"
-                                                    onChange={photoHandler}
-                                                />
+                                                <MdLockOutline className=" m-2 text-gray-400" />
+                                                <select
+                                                    name="gender"
+                                                    className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
+                                                    required
+                                                    onChange={e => setGender(e.target.value)}
+                                                >
+                                                    <option value="">Select Gender</option>
+                                                    <option value="man">Man</option>
+                                                    <option value="women">Women</option>
+                                                </select>
                                             </div>
                                             <h1 className="text-left ml-2">
                                                 {errors.image?.type === "required" && (
