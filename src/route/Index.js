@@ -65,9 +65,6 @@ import { CommunityMov } from "../Wrapper/Home/mobileversion/comminuty/CommunityM
 import { PrivacyMov } from "../Wrapper/Home/mobileversion/privacy/PrivacyMov";
 import { AboutMov } from "../Wrapper/Home/mobileversion/about/AboutMov";
 import { MeetMov } from "../Wrapper/Home/mobileversion/meet/MeetMov";
-import LawyerMessages from "../components/pages/LawyerMessages/LawyerMessages";
-import AudioCalling from "../components/LawyerMessage/AudioCalling/AudioCalling";
-
 
 const Index = () => {
     return (
@@ -124,8 +121,6 @@ const Index = () => {
                     <Route path="/admin-analytics" element={<AdminAnalytics />}></Route>
                     <Route path="/stepper" element={<Container></Container>}></Route>
                     <Route path="/upgrade" element={<UpgradePlan></UpgradePlan>}></Route>
-                    <Route path="/lawmsg" element={<LawyerMessages></LawyerMessages>}></Route>
-                    <Route path="/ac" element={<AudioCalling></AudioCalling>}></Route>
 
                     {/* --------------- MOBILE ROUTES START --------------- */}
                     <Route path="/mobileHomePage" element={<MobileHome />}></Route>
