@@ -16,7 +16,14 @@ export const connectionApi = apiSlice.injectEndpoints({
                 headers: { authorization: `Bearer ${localStorage.getItem("accessToken")}` },
             }),
         }),
+        getAllSentRequest: builder.query({
+            query: () => ({
+                url: "/member/connections/sentRequests",
+                method: "GET",
+                headers: { authorization: `Bearer ${localStorage.getItem("accessToken")}` },
+            }),
+        }),
     }),
 });
 
-export const { useAddFriendMutation, useGetAllRequestQuery } = connectionApi;
+export const { useAddFriendMutation, useGetAllRequestQuery, useGetAllSentRequestQuery } = connectionApi;

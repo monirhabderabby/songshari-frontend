@@ -11,7 +11,7 @@ import bgImg from "../../../../assets/images/HomeImage/Rectangle .png";
 const BannerProfile = () => {
     const [swipematch, setSwipeMatch] = useState([]);
     useEffect(() => {
-        fetch(" https://shanshari-temp.vercel.app/withoutLogin/recentMembers")
+        fetch("http://localhost:4000/withoutLogin/recentMembers")
             .then(res => res.json())
             .then(data => setSwipeMatch(data));
     }, [setSwipeMatch]);
