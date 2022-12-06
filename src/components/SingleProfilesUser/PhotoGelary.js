@@ -8,6 +8,7 @@ const PhotoGelary = () => {
     const [photos, setPhotos] = useState([]);
     const [images, setImages] = useState([]);
     const [urls, setUrls] = useState([]);
+
     useEffect(() => {
         fetch("json/userImage.json")
             .then(res => res.json())
@@ -15,6 +16,7 @@ const PhotoGelary = () => {
                 setPhotos(data);
             });
     }, []);
+
 
     const handleChange = async e => {
         for (let i = 0; i < e.target.files.length; i++) {
@@ -41,8 +43,8 @@ const PhotoGelary = () => {
             .then(() => alert("all photo uploaded"))
             .catch(err => console.log(err));
     };
-
     console.log(urls)
+
     return (
         <div>
             <div className="photo-gelary p-6 text-left shadow">

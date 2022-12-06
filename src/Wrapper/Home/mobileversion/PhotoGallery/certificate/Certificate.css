@@ -1,0 +1,30 @@
+.btn-tab {
+    background: rgb(208, 219, 255);
+    border-radius: 0.2rem;
+    font-size: 0.3rem;
+    width: 4rem;
+}
+
+.btn-certificate {
+    background: linear-gradient(106.79deg, #E52982 25.24%, #A72BC3 88.25%);
+}
+
+.title {
+    font-size: .40rem;
+    font-weight: 700;
+}
+
+.mobile-content {
+    font-size: .30rem;
+}
+
+.reupload-certificate {
+    background-color: black;
+
+}
+
+.reupload-certificate-inner-box {
+    margin-top: -70%;
+    color: #ffffff;
+    z-index: 11111111111111111;
+}
