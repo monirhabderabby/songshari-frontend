@@ -11,29 +11,26 @@ const SingleUserActivity = () => {
 
     const ref = useRef(null);
     const [photoURL, setPhotoUrl] = useState("");
+    const [postRefetch, setPostRefetch] = ('0');
 
     const handleMessage = event => {
         event.preventDefault();
         const post_info = {
             postBody: ref.current.value
         }
-        // console.log(ref.current.value);
 
-        fetch(`http://localhost:4000/member/personalDetail`, {
+        fetch(`http://localhost:4000/member/post/add`, {
             method: "POST",
             headers: {
                 "content-type": "application/json",
-                "author": localStorage.getItem("accessToken")
+                authorization: `Bearer ${localStorage.getItem("accessToken")}`
             },
             body: JSON.stringify(post_info)
         })
             .then(res => res.json())
             .then(data => {
-                /* if(){
-    
-                }else{
-    
-                } */
+                /* event.target.reset();
+                setPostRefetch(postRefetch + 1); */
             })
     }
 
