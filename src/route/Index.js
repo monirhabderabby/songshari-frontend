@@ -73,7 +73,6 @@ import { PrivacyMov } from "../Wrapper/Home/mobileversion/privacy/PrivacyMov";
 import { Setting } from "../Wrapper/Home/mobileversion/Setting";
 import { GallaryMov } from "../Wrapper/Home/mobileversion/gallarymov/GallaryMov";
 
-
 const Index = () => {
     return (
         <div>
