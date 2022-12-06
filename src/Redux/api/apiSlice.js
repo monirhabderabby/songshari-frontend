@@ -6,6 +6,7 @@ const apiSlice = createApi({
         baseUrl: "http://localhost:4000",
     }),
     endpoints: builder => ({}),
+    tagTypes: ["allGetFriendRequest"],
 });
 
 export default apiSlice;

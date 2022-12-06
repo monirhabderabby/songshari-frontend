@@ -29,6 +29,13 @@ export const connectionApi = apiSlice.injectEndpoints({
                 method: "POST",
                 headers: { authorization: `Bearer ${localStorage.getItem("accessToken")}` },
             }),
+            async onQueryStarted(arg, { queryFulfilled, dispatch }) {
+                dispatch(
+                    apiSlice.util.updateQueryData("getAllFriendRequest", localStorage.getItem("accessToken"), draft => {
+                        draft = draft.data.connectionRequests.filter(c => c._id !== arg.id);
+                    })
+                );
+            },
         }),
         getAllConnectedConnections: builder.query({
             query: () => ({
@@ -37,6 +44,10 @@ export const connectionApi = apiSlice.injectEndpoints({
                 headers: { authorization: `Bearer ${localStorage.getItem("accessToken")}` },
             }),
         }),
+        cancleSentRequest: builder.mutation({
+            query: ({ id }) => ({
+                url: `/member/connections/sentRequest/${id}`,
+                method: "DELETE",
         getMatchedUsers: builder.query({
             query: () => ({
                 url: "/member/connections/matchesAndPercentage",
@@ -53,5 +64,6 @@ export const {
     useGetAllFriendRequestQuery,
     useAcceptFriendRequestMutation,
     useGetAllConnectedConnectionsQuery,
+    useCancleSentRequestMutation,
     useGetMatchedUsersQuery,
 } = connectionApi;

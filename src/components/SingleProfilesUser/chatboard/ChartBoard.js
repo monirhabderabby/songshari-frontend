@@ -47,7 +47,7 @@ const ChartBoard = () => {
                     <BsCommand className="text-[#2E3A59] text-2xl" />
                     <h1 className="text-[#333333] text-2xl leading-[34px] font-bold">You May Like</h1>
                 </div>
-                <div className="grid grid-cols-2 gap-3">
+                <div className="grid grid-cols-1 gap-y-[19px] p-5">
                     {data
                         ? data.suggestion.map(profile => {
                               return <CardYouMayLike key={profile._id} {...{ data: profile }} />;
