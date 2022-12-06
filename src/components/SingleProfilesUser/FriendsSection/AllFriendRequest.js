@@ -6,6 +6,10 @@ export const AllFriendRequest = () => {
     const arr = [1, 2, 3, 4, 5, 6];
     const { data } = useGetAllFriendRequestQuery();
 
+    if (data) {
+        console.log(data);
+    }
+
     return (
         <div className="grid grid-cols-1 gap-y-4 w-full">
             {data?.connectionRequests.map(friend => {
