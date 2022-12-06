@@ -1698,9 +1698,11 @@ export const PersonalDetails = ({ setPage }) => {
                                 </section>
                                 <section>
                                     <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
+                                        <AiOutlineCloudUpload className=" mr-2 text-gray-400" />
                                         <label
                                             htmlFor="addedProfessionAchievementMoment"
                                             className="outline-none h-full text-sm text-gray-400 bg-gray-100"
+                                        >
                                             {addedAchievementMoment.length > 0 ? (
                                                 <>
                                                     <span className="text-green-400">Moments new added</span>
