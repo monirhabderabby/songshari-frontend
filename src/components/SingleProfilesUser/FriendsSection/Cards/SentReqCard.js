@@ -15,8 +15,8 @@ export const SentReqCard = ({ friend }) => {
         if (isError) {
             console.log(error?.message);
         }
-        if (data) {
-            console.log(data);
+        if (friend) {
+            console.log(friend);
         }
     }, [isError, error, data]);
 
