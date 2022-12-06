@@ -73,7 +73,6 @@ import { PrivacyMov } from "../Wrapper/Home/mobileversion/privacy/PrivacyMov";
 import { Setting } from "../Wrapper/Home/mobileversion/Setting";
 import { GallaryMov } from "../Wrapper/Home/mobileversion/gallarymov/GallaryMov";
 
-
 const Index = () => {
     return (
         <div>
@@ -83,11 +82,11 @@ const Index = () => {
                     <Route path="/userprofile" element={<SingleProfile />}>
                         <Route path="" element={<Accordian />} />
                         <Route path="edit"  >
-                            <Route path="personalinfo" element={<EditPersonalInfo />} />
-                            <Route path="profesionalinfo" element={<EditProfesionalInfo />} />
-                            <Route path="educationalinfo" element={<EditEducationalInfo />} />
-                            <Route path="physicalinfo" element={<EditPhysicalInfo />} />
-                            <Route path="othersinfo" element={<EditOthersInfo />} />
+                            <Route path="personalinfo/:id" element={<EditPersonalInfo />} />
+                            <Route path="profesionalinfo/:id" element={<EditProfesionalInfo />} />
+                            <Route path="educationalinfo/:id" element={<EditEducationalInfo />} />
+                            <Route path="physicalinfo/:id" element={<EditPhysicalInfo />} />
+                            <Route path="othersinfo/:id" element={<EditOthersInfo />} />
                         </Route>
                     </Route>
                     <Route path="/mobileotherprofile" element={<MobileProfileOthers></MobileProfileOthers>}></Route>

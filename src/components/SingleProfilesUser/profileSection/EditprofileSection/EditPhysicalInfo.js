@@ -1,13 +1,18 @@
 import React, { useState } from 'react';
-import { Select, Slider, } from 'antd';
+import { Select, Slider } from 'antd';
+import { useUpdatePhysicalDetailsMutation } from '../../../../Redux/features/userInfo/userApi';
+import LinearProgress from '@mui/material/LinearProgress';
+import { useNavigate } from 'react-router';
 
 
 const EditPhysicalInfo = () => {
+
     const [physicalInfo, setPhysicalInfo] = useState({});
     //others physical information
     const [height, setHeight] = useState(10);
     const [weight, setWeight] = useState(10);
 
+    const [updatePhysicalDetails, { isLoading, isError, isSuccess }] = useUpdatePhysicalDetailsMutation();
 
     //phycsical information data change handler
     const onHeightChange = (value) => {
@@ -50,16 +55,24 @@ const EditPhysicalInfo = () => {
         setPhysicalInfo({ ...physicalInfo, teethNumber: value });
 
     }
+
+    const navigate = useNavigate();
     //data submission function
-    const handleSubmit = (e) => {
-        const data = { ...physicalInfo, height, weight }
-        console.log(data)
+    const handleSubmit = async (e) => {
         e.preventDefault()
+        const data = { ...physicalInfo, height, weight }
+        const response = await updatePhysicalDetails(data);
+
     }
+    if (isSuccess) {
+        navigate("/userprofile")
+    }
+
+
     return (
         <div className='max-w-[523px] mx-auto bg-white drop-shadow-lg px-4 py-6 mb-4 rounded'>
-            <form onSubmit={handleSubmit}>
 
+            <form onSubmit={handleSubmit}>
                 {/* others physical information  */}
                 <div className='pb-4'>
                     <label className='text-sm block pb-2 text-slate-600 font-medium'>Height</label>
@@ -115,7 +128,6 @@ const EditPhysicalInfo = () => {
                         onChange={handleUserSkinToneChange}
                         placeholder="Select skin tone"
                         size='large'
-                        mode='multiple'
                         allowClear
                         options={[
                             {
@@ -143,7 +155,6 @@ const EditPhysicalInfo = () => {
                         className='w-full mb-2'
                         onChange={handleUserHairColorChange}
                         placeholder="Select hair color"
-                        mode='multiple'
                         size='large'
                         allowClear
                         options={[
@@ -181,7 +192,6 @@ const EditPhysicalInfo = () => {
                         className='w-full mb-2'
                         onChange={handleUserHairTypeChange}
                         placeholder="Select hair type"
-                        mode='multiple'
                         size='large'
                         allowClear
                         options={[
@@ -235,7 +245,6 @@ const EditPhysicalInfo = () => {
                         className='w-full mb-2'
                         onChange={handleUserEyeColorChange}
                         placeholder="Select hair type"
-                        mode='multiple'
                         allowClear
                         size='large'
                         options={[
@@ -273,7 +282,6 @@ const EditPhysicalInfo = () => {
                         className='w-full mb-2'
                         onChange={handleNumberOfTeeth}
                         placeholder="Select teeth number"
-                        mode='multiple'
                         size='large'
                         allowClear
                         options={[
@@ -341,6 +349,14 @@ const EditPhysicalInfo = () => {
                         }}
                         className="w-full text-center py-[8] py-[10px] text-[#fff]  text-lg font-medium rounded"
                     />
+                    {isLoading &&
+                        <div className='mt-2'>
+                            <LinearProgress color="secondary" />
+                        </div>
+
+                    }
+
+
 
                 </div>
 

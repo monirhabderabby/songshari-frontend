@@ -9,7 +9,8 @@ import tumpa from "./dummyImg/tumpa.png";
 const dummyData = [
   {
     id: 1,
-    name: "Sajia Jahan Rakha",
+    firstName: "Sajia",
+    lastName: "Jahan Rakha",
     img: sanjida,
     age: 22,
     hight: "5 feet 4",
@@ -23,7 +24,8 @@ const dummyData = [
   },
   {
     id: 2,
-    name: "Md. Sahriar Saiful",
+    firstName: "Md. Sahriar",
+    lastName: "Saiful",
     age: 26,
     hight: "5 feet 6",
     profession: "private holder",
@@ -36,7 +38,8 @@ const dummyData = [
   },
   {
     id: 3,
-    name: "Md. Shakil Mridha",
+    firstName: "Md. Shakil",
+    lastName: "Mridha",
     age: 26,
     hight: "5 feet 5",
     profession: "private holder",
@@ -50,7 +53,8 @@ const dummyData = [
   },
   {
     id: 4,
-    name: "Md. Tohidul islam",
+    firstName: "Md. Tohidul",
+    lastName: "Islam",
     age: 27,
     hight: "5 feet 6",
     profession: "Private holder",
@@ -64,7 +68,8 @@ const dummyData = [
   },
   {
     id: 5,
-    name: " Tumpa Akter Sathi",
+    firstName: "Tumpa",
+    lastName: "Akter Sathi",
     age: 22,
     hight: "5 feet 4",
     profession: "Student",
@@ -78,7 +83,8 @@ const dummyData = [
   },
   {
     id: 6,
-    name: " Sah Ali isalam",
+    firstName: "Sah Ali",
+    lastName: "Islam",
     age: 26,
     hight: "5 feet 6",
     profession: "Private holder",
@@ -92,7 +98,8 @@ const dummyData = [
   },
   {
     id: 7,
-    name: "Nowrin Meem",
+    firstName: "Nowrin",
+    lastName: "Meem",
     age: 21,
     hight: "5 feet 5",
     profession: "Student",

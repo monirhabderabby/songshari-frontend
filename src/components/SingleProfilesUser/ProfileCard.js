@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "../../assets/css/profileCards.css";
+import blackLove from "../../assets/images/icons/blackLove.png";
 import { ageCalculator } from "../../assets/utilities/AgeCalculation/ageCalculator";
 
 const ProfileCard = ({ data, isLoading }) => {
@@ -48,11 +49,17 @@ const ProfileCard = ({ data, isLoading }) => {
                                     />
                                 </svg>
                             </h3>
-                            <h3 className="ml-2">{data?.hometown}</h3>
+                            <h3 className="ml-2">{data?.hometown || "Not provided"}</h3>
                         </div>
                     </div>
                 </div>
                 <div className="flex items-center justify-around mt-5">
+                    <div className="flex items-center">
+                        <div className="w-[40px] h-[40px] rounded-full bg-[#F7E9F8] mr-1 flex items-center justify-center">
+                            <img src={blackLove} alt="blackLove" />
+                        </div>
+                        <span>257</span>
+                    </div>
                     <div>
                         {data ? (
                             <button className="special_profile_button">Upgrade Membership</button>

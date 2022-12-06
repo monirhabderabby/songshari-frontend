@@ -70,6 +70,14 @@ export const userApi = apiSlice.injectEndpoints({
                 body: data,
             }),
         }),
+        updatePersonalDetails: builder.mutation({
+            query: (data) => ({
+                url: `/member/personalDetail`,
+                method: "PUT",
+                headers: { authorization: `Bearer ${localStorage.getItem("accessToken")}` },
+                body: data,
+            }),
+        }),
         updateProfessionalDetails: builder.mutation({
             query: ({ data, id }) => ({
                 url: `/member/professionalDetail/${id}`,
@@ -80,7 +88,7 @@ export const userApi = apiSlice.injectEndpoints({
         }),
         updateEducationalDetails: builder.mutation({
             query: ({ data, id }) => ({
-                url: `/member/professionalDetail/${id}`,
+                url: `/member/educationalDetail/${id}`,
                 method: "PUT",
                 headers: { authorization: `Bearer ${localStorage.getItem("accessToken")}` },
                 body: data,
@@ -88,7 +96,7 @@ export const userApi = apiSlice.injectEndpoints({
         }),
         updatePhysicalDetails: builder.mutation({
             query: data => ({
-                url: `/member/physicalDetali`,
+                url: `/member/physicalDetail`,
                 method: "PUT",
                 headers: { authorization: `Bearer ${localStorage.getItem("accessToken")}` },
                 body: data,
@@ -112,7 +120,7 @@ export const userApi = apiSlice.injectEndpoints({
                 method: "GET",
                 headers: { authorization: `Bearer ${localStorage.getItem("accessToken")}` },
             }),
-            keepUnusedDataFor: 60,
+            keepUnusedDataFor: 20,
         }),
     }),
 });
@@ -128,7 +136,10 @@ export const {
     useSetPhysicalDetailsMutation,
     useSetOthersDetailsMutation,
     useGetProfileDetailsQuery,
+    useUpdatePersonalDetailsMutation,
     useUpdateEducationalDetailsMutation,
     useUpdatePhysicalDetailsMutation,
+    useUpdateOthersDetailsMutation,
+    useUpdateProfessionalDetailsMutation,
     useGetProfileDetailsWIthAuthQuery,
 } = userApi;
