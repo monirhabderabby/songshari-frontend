@@ -37,6 +37,13 @@ export const connectionApi = apiSlice.injectEndpoints({
                 headers: { authorization: `Bearer ${localStorage.getItem("accessToken")}` },
             }),
         }),
+        getMatchedUsers: builder.query({
+            query: () => ({
+                url: "/member/connections/matchesAndPercentage",
+                method: "GET",
+                headers: { authorization: `Bearer ${localStorage.getItem("accessToken")}` },
+            }),
+        }),
     }),
 });
 
@@ -46,4 +53,5 @@ export const {
     useGetAllFriendRequestQuery,
     useAcceptFriendRequestMutation,
     useGetAllConnectedConnectionsQuery,
+    useGetMatchedUsersQuery,
 } = connectionApi;
