@@ -48,6 +48,8 @@ export const connectionApi = apiSlice.injectEndpoints({
             query: ({ id }) => ({
                 url: `/member/connections/sentRequest/${id}`,
                 method: "DELETE",
+            }),
+        }),
         getMatchedUsers: builder.query({
             query: () => ({
                 url: "/member/connections/matchesAndPercentage",
