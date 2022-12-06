@@ -1,6 +1,6 @@
 import React from "react";
 import { MdKeyboardArrowRight } from "react-icons/md";
-import verificationIcon from "../../../assets/images/icons/verification.png";
+import verificationIcon from "../../assets/images/icons/verification.png";
 
 export const VerificationCard = () => {
     return (
