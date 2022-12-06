@@ -74,7 +74,7 @@ export const PersonalDetails = ({ setPage }) => {
             .then(data => setAncestryData(data));
     }, []);
 
-    // Zodac Sign
+    // Zodiac Sign
     const [zodiacSign, setZodiacSign] = useState([]);
     const [zodiacSignValue, setZodiacSignValue] = useState("");
     const [zodiacSignSuggestion, setZodiacSignSuggestion] = useState("");
@@ -241,6 +241,7 @@ export const PersonalDetails = ({ setPage }) => {
         delete currentProfession.CurrentProfessionposition;
         delete currentProfession.CurrentProfessionInstitute;
         delete data.citizenShip;
+        delete data.professionalAchievementMoment;
 
         currentProfession.currentWorkPeriod = theCurrentWorkPeriod;
         currentProfession.professionalAchievementMoment = professionalAchievementMoment;
@@ -251,7 +252,7 @@ export const PersonalDetails = ({ setPage }) => {
         data.frontSide = frontSide;
         data.backSide = backSide;
         // data.licencePhoto = licencePhoto;
-        data.professionalAchievementMoment = professionalAchievementMoment;
+        // data.professionalAchievementMoment = professionalAchievementMoment;
 
         data.professions.map(p => delete p.addedProfessionWorkPeriod);
         data.professions.map((p, index) => p.addedProfessionWorkPeriod = addedWorkPeriod[index]);
