@@ -2,6 +2,7 @@ import { DatePicker } from "antd";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import React, { useEffect, useState } from "react";
 import { Controller, useFieldArray, useForm } from "react-hook-form";
+
 import { AiOutlineCloudUpload, AiOutlineIdcard } from "react-icons/ai";
 import Select from "react-select";
 import makeAnimated from "react-select/animated";
@@ -74,7 +75,7 @@ export const PersonalDetails = ({ setPage }) => {
             .then(data => setAncestryData(data));
     }, []);
 
-    // Zodac Sign
+    // Zodiac Sign
     const [zodiacSign, setZodiacSign] = useState([]);
     const [zodiacSignValue, setZodiacSignValue] = useState("");
     const [zodiacSignSuggestion, setZodiacSignSuggestion] = useState("");
@@ -238,6 +239,7 @@ export const PersonalDetails = ({ setPage }) => {
         delete data.CurrentProfessionInstitute;
         delete data.currentWorkPeriod;
         delete data.specialProfessionalAchievement;
+        delete data.professionalAchievementMoment;
 
         currentProfession.position = currentProfession.CurrentProfessionposition;
         currentProfession.institute = currentProfession.CurrentProfessionInstitute;
@@ -245,8 +247,10 @@ export const PersonalDetails = ({ setPage }) => {
         delete currentProfession.CurrentProfessionposition;
         delete currentProfession.CurrentProfessionInstitute;
         delete data.citizenShip;
+        delete data.professionalAchievementMoment;
 
         currentProfession.currentWorkPeriod = theCurrentWorkPeriod;
+        currentProfession.professionalAchievementMoment = professionalAchievementMoment;
 
         //photo links upload
         data.profilePhoto = profilePhoto;
@@ -254,14 +258,13 @@ export const PersonalDetails = ({ setPage }) => {
         data.frontSide = frontSide;
         data.backSide = backSide;
         // data.licencePhoto = licencePhoto;
-        data.professionalAchievementMoment = professionalAchievementMoment;
+        // data.professionalAchievementMoment = professionalAchievementMoment;
 
         data.professions.map(p => delete p.addedProfessionWorkPeriod);
         data.professions.map((p, index) => (p.addedProfessionWorkPeriod = addedWorkPeriod[index]));
 
         data.professions.map(p => delete p.addedProfessionAchievementMoment);
         data.professions.map((p, index) => (p.addedProfessionAchievementMoment = addedAchievementMoment[index]));
-
         data = {
             ...data,
             highestEducationalQualification,
@@ -324,14 +327,10 @@ export const PersonalDetails = ({ setPage }) => {
 
     const addedProfessionAchievementMomentHandler = async e => {
         const photo = e.target.files[0];
-        console.log(photo);
         const storageRef = ref(firebaseStorage, `moment/${photo?.name + uuidv4()}`);
         uploadBytes(storageRef, photo).then(async snapshot => {
             await getDownloadURL(snapshot.ref).then(url => {
-                console.log(url);
-                console.log(addedAchievementMoment);
                 setAddedAchievementMoment([...addedAchievementMoment, url.toString()]);
-                console.log(addedAchievementMoment);
             });
         });
     };
@@ -1699,11 +1698,9 @@ export const PersonalDetails = ({ setPage }) => {
                                 </section>
                                 <section>
                                     <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
-                                        <AiOutlineCloudUpload className=" mr-2 text-gray-400" />
                                         <label
                                             htmlFor="addedProfessionAchievementMoment"
                                             className="outline-none h-full text-sm text-gray-400 bg-gray-100"
-                                        >
                                             {addedAchievementMoment.length > 0 ? (
                                                 <>
                                                     <span className="text-green-400">Moments new added</span>
@@ -2140,7 +2137,7 @@ export const PersonalDetails = ({ setPage }) => {
                     <section>
                         <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
                             <select
-                                {...register("status", {
+                                {...register("parentStatus", {
                                     required: {
                                         value: true,
                                         message: "Answer is required",
@@ -2148,7 +2145,7 @@ export const PersonalDetails = ({ setPage }) => {
                                 })}
                                 type="text"
                                 className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
-                                id="status"
+                                id="parentStatus"
                             >
                                 <option value="">Parents status?</option>
                                 <option value="yes">Yes</option>
@@ -2158,8 +2155,8 @@ export const PersonalDetails = ({ setPage }) => {
                             </select>
                         </div>
                         <h1 className="text-left ml-2">
-                            {errors.status?.type === "required" && (
-                                <span className="w-full text-left text-red-400 text-sm">{errors?.status.message}</span>
+                            {errors.parentStatus?.type === "required" && (
+                                <span className="w-full text-left text-red-400 text-sm">{errors?.parentStatus.message}</span>
                             )}
                         </h1>
                     </section>

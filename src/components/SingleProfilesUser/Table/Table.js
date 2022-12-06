@@ -5,6 +5,7 @@ import "../../../assets/css/table.css";
 import { Friends } from "../FriendsSection/Friends";
 import { Matches } from "../profileSection/Matches";
 import { Profile } from "../profileSection/Profile";
+import ProfileServices from "../ServicesSection/ProfileServices";
 import SingleUserActivity from "../SingleUserActivity/SingleUserActivity";
 
 const Table = ({ data, isLoading }) => {
@@ -14,7 +15,7 @@ const Table = ({ data, isLoading }) => {
 
     return (
         <div>
-            <div className="mb-4">
+            <div className="mb-4 mx-8">
                 <div className="notification-bar">
                     <div className="flex justify-center items-center h-full gap-4">
                         <button
@@ -70,6 +71,7 @@ const Table = ({ data, isLoading }) => {
             {/* table 1 */}
             {page === 1 && <SingleUserActivity {...{ data, isLoading }} />}
             {page === 2 && <Profile {...{ data, isLoading }} />}
+            {page === 3 && <ProfileServices />}
             {page === 4 && <Friends {...{ data, isLoading }} />}
             {page === 5 && <Matches />}
         </div>

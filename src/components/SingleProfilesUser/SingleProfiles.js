@@ -22,7 +22,7 @@ const SingleProfiles = () => {
                     <div className="md:w-full w-full lg:w-9/12">
                         <div>
                             <div className="block md:flex">
-                                <div className="w-full md:w-2/5 mr-12">
+                                <div className="w-full md:w-2/5 mr-4">
                                     <div>
                                         <ProfileCard {...{ data, isLoading }} />
                                         <VerificationCard />
@@ -33,7 +33,7 @@ const SingleProfiles = () => {
                                         <PhotoGelary />
                                     </div>
                                 </div>
-                                <div className="w-full md:w-3/5">
+                                <div className="w-full md:w-3/4">
                                     <div>
                                         <Table {...{ data, isLoading }} />
                                     </div>
@@ -41,7 +41,7 @@ const SingleProfiles = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="md:w-full lg:w-3/12 ml-12">
+                    <div className="md:w-full lg:w-3/12 ml-4">
                         <div className="flex justify-center">
                             <ChartBoard />
                         </div>
