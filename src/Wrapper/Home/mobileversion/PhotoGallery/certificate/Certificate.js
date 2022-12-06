@@ -16,15 +16,16 @@ const { Dragger } = Upload;
 
 export default function Certificate() {
     const [tabValue, setTabValue] = useState(1);
-    const [stepScale, setStepScale] = useState(1.0)
+    const [stepScale, setStepScale] = useState(1.0);
+    const [selectedImage, setSelectedImage] = useState('');
     return (
         <div className='flex justify-center items-center'>
             <div className='max-w-[337px] p-2 '>
                 <div className='flex '>
                     <div className='w-3/12'>
-                        {tabValue === 1 && <EducationalCertificateSidebar />}
-                        {tabValue === 2 && <ProfessionalCertificateSidebar />}
-                        {tabValue === 3 && <OthersCertificateSidebar />}
+                        {tabValue === 1 && <EducationalCertificateSidebar setSelectedImage={setSelectedImage} />}
+                        {tabValue === 2 && <ProfessionalCertificateSidebar setSelectedImage={setSelectedImage} />}
+                        {tabValue === 3 && <OthersCertificateSidebar setSelectedImage={setSelectedImage} />}
 
 
                     </div>
@@ -51,9 +52,9 @@ export default function Certificate() {
 
                         </div>
                         <div>
-                            {tabValue === 1 && <EducationalCertificate />}
-                            {tabValue === 2 && <ProfessionalCertificate />}
-                            {tabValue === 3 && <OthersCertificate />}
+                            {tabValue === 1 && <EducationalCertificate selectedImage={selectedImage} />}
+                            {tabValue === 2 && <ProfessionalCertificate selectedImage={selectedImage} />}
+                            {tabValue === 3 && <OthersCertificate selectedImage={selectedImage} />}
                         </div>
                     </div>
                 </div>

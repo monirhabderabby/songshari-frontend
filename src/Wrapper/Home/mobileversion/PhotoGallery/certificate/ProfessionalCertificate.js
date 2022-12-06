@@ -7,66 +7,98 @@ const { Dragger } = Upload;
 
 
 
-export const ProfessionalCertificateSidebar = () => {
-
+export const ProfessionalCertificateSidebar = ({ setSelectedImage }) => {
+    const handleImage = (e) => {
+        setSelectedImage(e.target.currentSrc)
+    }
 
     return (
         <div>
-            <div className='pt-2'>
+            <div className='pt-2 '>
                 <div>
                     <h1 className="title mb-1">
-                        Certificate 1
+                        SSC Certificate
                     </h1>
-                    <img src="https://img.freepik.com/free-vector/modern-employee-month-certificate_52683-75428.jpg?w=2000" alt="" />
+                    <div tabIndex="1" className='onselect-image rounded'>
+                        <img src="https://d1csarkz8obe9u.cloudfront.net/posterpreviews/certificate-of-appreciation-portrait-design-template-009e3d995336bfe9277e0b01e6658bc1_screen.jpg?ts=1650358684" alt="" className='rounded' onClick={handleImage} />
+                        <div className='selected-btn'>
+                            <button className='btn-certificate mobile-content text-white py-1 px-2 rounded'>Selected</button>
+                        </div>
+                    </div>
+
                 </div>
             </div>
-            <div className='pt-2'>
+            <div className='pt-2 '>
                 <div>
                     <h1 className="title mb-1">
-                        Certificate 1
+                        SSC Certificate
                     </h1>
-                    <img src="https://img.freepik.com/free-vector/modern-employee-month-certificate_52683-75428.jpg?w=2000" alt="" />
+                    <div tabIndex="2" className='onselect-image rounded'>
+                        <img src="https://www.shutterstock.com/image-vector/certificate-appreciation-medal-ribbon-portrait-260nw-479429395.jpg" alt="" className='rounded' onClick={handleImage} />
+                        <div className='selected-btn'>
+                            <button className='btn-certificate mobile-content text-white py-1 px-2 rounded'>Selected</button>
+                        </div>
+                    </div>
+
                 </div>
             </div>
-            <div className='pt-2'>
+            <div className='pt-2 '>
                 <div>
                     <h1 className="title mb-1">
-                        Certificate 2
+                        SSC Certificate
                     </h1>
-                    <img src="https://img.freepik.com/free-vector/modern-employee-month-certificate_52683-75428.jpg?w=2000" alt="" />
+                    <div tabIndex="3" className='onselect-image rounded'>
+                        <img src="https://img.freepik.com/free-vector/modern-employee-month-certificate_52683-75428.jpg?w=2000" alt="" className='rounded' onClick={handleImage} />
+                        <div className='selected-btn'>
+                            <button className='btn-certificate mobile-content text-white py-1 px-2 rounded'>Selected</button>
+                        </div>
+                    </div>
+
                 </div>
             </div>
-            <div className='pt-2'>
+            <div className='pt-2 '>
                 <div>
                     <h1 className="title mb-1">
-                        Certificate 3
+                        SSC Certificate
                     </h1>
-                    <img src="https://img.freepik.com/free-vector/modern-employee-month-certificate_52683-75428.jpg?w=2000" alt="" />
+                    <div tabIndex="4" className='onselect-image rounded'>
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlisgkeJ4vUWfCnQ7AAuA8Xi6kxieUpDAu_K3MrtBNvoAy1zi6XUKCCBpeMDZVCp_osYo&usqp=CAU" alt="" className='rounded' onClick={handleImage} />
+                        <div className='selected-btn'>
+                            <button className='btn-certificate mobile-content text-white py-1 px-2 rounded'>Selected</button>
+                        </div>
+                    </div>
+
                 </div>
             </div>
-            <div className='pt-2'>
+            <div className='pt-2 '>
                 <div>
                     <h1 className="title mb-1">
-                        Certificate 4
+                        SSC Certificate
                     </h1>
-                    <img src="https://img.freepik.com/free-vector/modern-employee-month-certificate_52683-75428.jpg?w=2000" alt="" />
+                    <div tabIndex="5" className='onselect-image rounded'>
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsCmvTUfjQJROGRqRimmATQIgD4ESoPp-kXA&usqp=CAU" alt="" className='rounded' onClick={handleImage} />
+                        <div className='selected-btn'>
+                            <button className='btn-certificate mobile-content text-white py-1 px-2 rounded'>Selected</button>
+                        </div>
+                    </div>
+
                 </div>
             </div>
+
         </div>
     )
 }
 
-export function ProfessionalCertificate() {
+export function ProfessionalCertificate({ selectedImage }) {
     const [stepScale, setStepScale] = useState(1.0)
     return (
         <div>
             <div className='py-2'>
                 <div className='shadow rounded p-2 '>
-                    <div>
+                    <div className='flex justify-center items-center h-[270px] w-[216px] z-50 overflow-hidden'>
                         <img
-                            width={200}
-                            src="https://img.freepik.com/free-vector/modern-employee-month-certificate_52683-75428.jpg?w=2000"
-                            style={{ transform: `scale(${stepScale})` }}
+                            src={selectedImage}
+                            style={{ transform: `scale(${stepScale})`, zIndex: '1' }}
 
                         />
                     </div>
@@ -77,7 +109,7 @@ export function ProfessionalCertificate() {
                                 <ZoomInOutlined color='black' style={{ fontSize: 'unset' }} />
                             </button>
                             <h1 className="title mt-2">Certificate</h1>
-                            <button className='p-[0px]'>
+                            <button className='p-[0px]' onClick={() => setStepScale(stepScale - .1)}>
                                 <ZoomOutOutlined color='black' style={{ fontSize: 'unset' }} />
                             </button>
                         </div>

@@ -28,3 +28,19 @@
     color: #ffffff;
     z-index: 11111111111111111;
 }
+
+.onselect-image:focus img {
+    border: 1px solid #E52982
+}
+
+
+
+.selected-btn {
+    display: none;
+}
+
+.onselect-image:focus .selected-btn {
+    margin-top: -25%;
+    display: flex;
+    justify-content: center;
+}
