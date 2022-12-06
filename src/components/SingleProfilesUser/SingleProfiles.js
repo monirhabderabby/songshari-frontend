@@ -5,6 +5,7 @@ import { Badges } from "./Badges";
 import ChartBoard from "./chatboard/ChartBoard";
 import { IntroCard } from "./IntroCard";
 import PhotoGelary from "./PhotoGelary";
+import { PhotoUploadCard } from "./PhotoUploadCard";
 import ProfileCard from "./ProfileCard";
 import Table from "./Table/Table";
 import UtilitisCard from "./UtilitisCard";
@@ -28,6 +29,7 @@ const SingleProfiles = () => {
                                         <Badges />
                                         <UtilitisCard />
                                         <IntroCard />
+                                        <PhotoUploadCard />
                                         <PhotoGelary />
                                     </div>
                                 </div>
