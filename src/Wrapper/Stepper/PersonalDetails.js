@@ -304,7 +304,6 @@ export const PersonalDetails = ({ setPage }) => {
 
     const addedProfessionAchievementMomentHandler = async e => {
         const photo = e.target.files[0];
-        console.log(photo);
         const storageRef = ref(firebaseStorage, `moment/${photo?.name + uuidv4()}`);
         uploadBytes(storageRef, photo).then(async snapshot => {
             await getDownloadURL(snapshot.ref).then(url => {
