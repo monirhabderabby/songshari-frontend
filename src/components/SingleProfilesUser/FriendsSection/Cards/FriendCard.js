@@ -1,14 +1,18 @@
 import React from "react";
 import tick from "../../../../assets/images/icons/tick.png";
 
-export const FriendCard = () => {
+export const FriendCard = ({ friend }) => {
+    const name = friend.firstName + " " + friend.lastName;
     return (
         <div className="p-[21px] h-[141px] lg:w-[501px] mx-auto bg-white shadow-[2px_2px_8px_rgba(0,0,0,0.12)] rounded-[15px] flex justify-between items-center">
             <div className="h-full flex items-center">
-                <img className="w-[83px] h-[100px] rounded-[15px] mr-[21px]" src="https://placeimg.com/192/192/people" alt="Not Available" />
+                <div
+                    className="w-[83px] h-[100px] rounded-[15px] mr-[21px] bg-center bg-cover"
+                    style={{ backgroundImage: `url(${friend?.profilePhoto ? friend?.profilePhoto : "https://placeimg.com/192/192/people"})` }}
+                ></div>
                 <div>
                     <div className="flex items-center">
-                        <h1 className="text-[20px] leading-[30px] text-[#333333] font-bold mr-[4px]">Erma Porter</h1>
+                        <h1 className="text-[20px] leading-[30px] text-[#333333] font-bold mr-[4px]">{name}</h1>
                         <img src={tick} alt="Not Available" />
                     </div>
                     <span className="text-[16px] leading-[26px] text-[#333333] font-normal">A month ago</span>
