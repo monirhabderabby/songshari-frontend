@@ -1,7 +1,4 @@
-import { Token } from "@mui/icons-material";
-import { Content } from "antd/es/layout/layout";
 import React from "react";
-import { useEffect } from "react";
 import { BiUserCircle } from "react-icons/bi";
 import { TbMessage } from "react-icons/tb";
 import { useGetMatchedUsersQuery } from "../../../Redux/features/connections/connectionApi";
@@ -16,22 +13,22 @@ export const Matches = () => {
     if (isLoading) {
         return;
     }
-    if (error) { console.log(error.message) };
+    if (error) {
+        console.log(error.message);
+    }
 
     return (
         <div>
             <div className="grid lg:grid-cols-2 gap-4">
-                {data.map((info, index) => {
+                {data?.map((info, index) => {
                     return (
                         <div key={index} className=" rounded-lg lg:max-w-lg shadow-xl colorrrrrr">
                             {/* ----------Image-------- */}
                             {/* ------------percent----------- */}
-                            <p className="bg-white w-28 text-center ml-3 mt-3 text-[12px] py-[6px] px-[8px] rounded-[8px]">{info.percentage}% Match</p>
-                            <img
-                                src={info._doc.profilePhoto}
-                                className="w-20 h-20 mx-auto rounded-full mt-4"
-                                alt="profile"
-                            ></img>
+                            <p className="bg-white w-28 text-center ml-3 mt-3 text-[12px] py-[6px] px-[8px] rounded-[8px]">
+                                {info.percentage}% Match
+                            </p>
+                            <img src={info._doc.profilePhoto} className="w-20 h-20 mx-auto rounded-full mt-4" alt="profile"></img>
 
                             <div className="card-body items-center text-center">
                                 <h2 className="card-title text-white">{info._doc.firstName}</h2>

@@ -17,7 +17,6 @@ const PhotoGelary = () => {
             });
     }, []);
 
-
     const handleChange = async e => {
         for (let i = 0; i < e.target.files.length; i++) {
             const newImage = e.target.files[i];
@@ -43,11 +42,12 @@ const PhotoGelary = () => {
             .then(() => alert("all photo uploaded"))
             .catch(err => console.log(err));
     };
-    console.log(urls)
+
+    if (urls) console.log(urls);
 
     return (
         <div>
-            <div className="photo-gelary p-6 text-left shadow">
+            <div className="photo-gelary p-6 text-left bg-white shadow mt-[24px]">
                 <div className="flex items-center mb-4">
                     <label htmlFor="photos">
                         <svg
@@ -73,9 +73,10 @@ const PhotoGelary = () => {
                     </label>
                     <input type="file" id="photos" name="photos" onChange={handleChange} className="hidden" multiple />
 
-                    <h1 className="text-2xl font-semibold ml-2">21 photo uploaded</h1>
+                    <h1 className="text-2xl font-semibold ml-2">No Photos</h1>
                 </div>
-                <div className="grid grid-cols-3 gap-2 mt-10">
+                <div className="h-full flex justify-center items-center text-gray-400">No photos were uploaded</div>
+                {/* <div className="grid grid-cols-3 gap-2">
                     {photos?.map((p, i) => {
                         return (
                             <div key={i + p} className="borderd m-1 main-box">
@@ -88,11 +89,11 @@ const PhotoGelary = () => {
                             </div>
                         );
                     })}
-                </div>
+                </div> */}
             </div>
             <div className="w-full flex justify-center mt-[15px]">
                 <button className="py-[5px] px-[15px] shadow-[0px_5px_20px_0px_rgb(139_122_132/50%)]  bg-[linear-gradient(171deg,rgba(233,11,200,0.6979166666666667)_41%,rgba(166,2,241,0.79)_100%)] text-white rounded-[50px]">
-                    See All
+                    See All Photos
                 </button>
             </div>
         </div>
