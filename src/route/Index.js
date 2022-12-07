@@ -72,6 +72,7 @@ import MobileProfileOthers from "../Wrapper/Home/mobileversion/MobileProfileOthe
 import { PrivacyMov } from "../Wrapper/Home/mobileversion/privacy/PrivacyMov";
 import { Setting } from "../Wrapper/Home/mobileversion/Setting";
 import { GallaryMov } from "../Wrapper/Home/mobileversion/gallarymov/GallaryMov";
+import Certificate from "../Wrapper/Home/mobileversion/PhotoGallery/certificate/Certificate";
 
 const Index = () => {
     return (
@@ -140,7 +141,7 @@ const Index = () => {
                     {/* --------------- MOBILE ROUTES START --------------- */}
                     <Route path="/mobileHomePage" element={<MobileHome />}></Route>
                     <Route path="/setting" element={<Setting></Setting>}></Route>
-                   
+
                     <Route path="/aboutmov" element={<AboutMov></AboutMov>}></Route>
                     <Route path="/gallarymov" element={<GallaryMov />}></Route>
                     <Route path="/meetmov" element={<MeetMov></MeetMov>}></Route>
@@ -157,6 +158,7 @@ const Index = () => {
                     <Route path="/mobileGoldPlan" element={<MobileGoldPlan />}></Route>
                     <Route path="/mobileDiamondPlan" element={<MobileDiamondPlan />}></Route>
                     <Route path="/mobilePlatinumPlan" element={<MobilePlatinumPlan />}></Route>
+                    <Route path="/mobilecertificate" element={<Certificate />} />
                     {/* --------------- MOBILE ROUTES END --------------- */}
 
                     <Route path="*" element={<NotFound />}></Route>
