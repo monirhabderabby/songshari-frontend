@@ -1,12 +1,18 @@
 import React from "react";
-import { useForm } from "react-hook-form";
+import { useFieldArray, useForm } from "react-hook-form";
 
 export const ProfessionalDetails = ({ setPage }) => {
     const {
         register,
         formState: { errors },
         handleSubmit,
+        control
     } = useForm();
+
+    const { fields, append, remove } = useFieldArray({
+        name: "moreProfessionalInfo",
+        control,
+    });
 
     const onSubmit = async data => {
         data.caseCompleted = parseInt(data.caseCompleted);
@@ -29,7 +35,11 @@ export const ProfessionalDetails = ({ setPage }) => {
 
     return (
         <div className="w-full h-auto">
-            <h1 className="text-left text-[32px] my-[21px}]">Professional</h1>
+            {/* <h1 className="text-left text-[32px] my-[21px}]">Professional Info</h1> */}
+            <section className="col-span-1 md:col-span-2 lg:col-span-3 text-2xl text-[#2F3659] mb-4">
+                <p>Professional Info</p>
+                <hr className="w-1/2 mt-2 mx-auto" />
+            </section>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <section className="md:w-full w-64 mx-auto grid grid-cols-1 md:grid-cols-2 gap-3 lg:grid-cols-3">
                     {/* ---------- Position ---------- */}
@@ -120,28 +130,167 @@ export const ProfessionalDetails = ({ setPage }) => {
                             )}
                         </h1>
                     </section>
-                    {/* ---------- Case  Complete ---------- */}
+                    {/* ---------- Service Year Duration ---------- */}
                     <section>
                         <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
                             <input
-                                {...register("caseCompleted", {
+                                {...register("serviceYearDuration", {
                                     required: {
                                         value: true,
-                                        message: "Case Completed is required",
+                                        message: "Service Year Duration is required",
                                     },
                                 })}
                                 type="number"
-                                placeholder="Case Completed"
+                                placeholder="Service Year Duration"
                                 className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
-                                id="caseCompleted"
+                                id="serviceYearDuration"
                             />
                         </div>
                         <h1 className="text-left ml-2">
-                            {errors.caseCompleted?.type === "required" && (
-                                <span className="w-full text-left text-red-400 text-sm">{errors?.caseCompleted.message}</span>
+                            {errors.serviceYearDuration?.type === "required" && (
+                                <span className="w-full text-left text-red-400 text-sm">{errors?.serviceYearDuration.message}</span>
                             )}
                         </h1>
                     </section>
+                    <br />
+                    {fields.map((field, index) => {
+                        return (
+                            <section className="col-span-1 md:col-span-2 lg:col-span-3 grid grid-cols-3 gap-3" key={field.id}>
+                                {/* ---------- Position ---------- */}
+                                <section>
+                                    <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
+                                        <input
+                                            {...register(`moreProfessionalInfo.${index}.addedProfessionPosition`, {
+                                                required: {
+                                                    value: true,
+                                                    message: "position is required",
+                                                },
+                                            })}
+                                            type="text"
+                                            placeholder="Position"
+                                            className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
+                                            id="addedProfessionPosition"
+                                        />
+                                    </div>
+                                    <h1 className="text-left ml-2">
+                                        {errors.addedProfessionPosition?.type === "required" && (
+                                            <span className="w-full text-left text-red-400 text-sm">{errors?.addedProfessionPosition.message}</span>
+                                        )}
+                                    </h1>
+                                </section>
+                                {/* ---------- Duty ---------- */}
+                                <section>
+                                    <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
+                                        <input
+                                            {...register(`moreProfessionalInfo.${index}.addedProfessionDuty`, {
+                                                required: {
+                                                    value: true,
+                                                    message: "Duty is required",
+                                                },
+                                            })}
+                                            type="text"
+                                            placeholder="Duty"
+                                            className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
+                                            id="addedProfessionDuty"
+                                        />
+                                    </div>
+                                    <h1 className="text-left ml-2">
+                                        {errors.addedProfessionDuty?.type === "required" && (
+                                            <span className="w-full text-left text-red-400 text-sm">{errors?.addedProfessionDuty.message}</span>
+                                        )}
+                                    </h1>
+                                </section>
+                                {/* ---------- Institute ---------- */}
+                                <section>
+                                    <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
+                                        <input
+                                            {...register(`moreProfessionalInfo.${index}.addedProfessionInstitute`, {
+                                                required: {
+                                                    value: true,
+                                                    message: "Institute is required",
+                                                },
+                                            })}
+                                            type="text"
+                                            placeholder="Institute"
+                                            className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
+                                            id="addedProfessionInstitute"
+                                        />
+                                    </div>
+                                    <h1 className="text-left ml-2">
+                                        {errors.addedProfessionInstitute?.type === "required" && (
+                                            <span className="w-full text-left text-red-400 text-sm">{errors?.addedProfessionInstitute.message}</span>
+                                        )}
+                                    </h1>
+                                </section>
+                                {/* ---------- Special Achievement ---------- */}
+                                <section>
+                                    <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
+                                        <input
+                                            {...register(`moreProfessionalInfo.${index}.addedProfessionAchievement`, {
+                                                required: {
+                                                    value: true,
+                                                    message: "Special Achievement is required",
+                                                },
+                                            })}
+                                            type="text"
+                                            placeholder="Special Achievement"
+                                            className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
+                                            id="specialAchievement"
+                                        />
+                                    </div>
+                                    <h1 className="text-left ml-2">
+                                        {errors.specialAchievement?.type === "required" && (
+                                            <span className="w-full text-left text-red-400 text-sm">{errors?.specialAchievement.message}</span>
+                                        )}
+                                    </h1>
+                                </section>
+                                {/* ---------- Service Year Duration ---------- */}
+                                <section>
+                                    <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
+                                        <input
+                                            {...register(`moreProfessionalInfo.${index}.addedProfessionServiceYearDuration`, {
+                                                required: {
+                                                    value: true,
+                                                    message: "Service Year Duration is required",
+                                                },
+                                            })}
+                                            type="number"
+                                            placeholder="Service Year Duration"
+                                            className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
+                                            id="addedProfessionServiceYearDuration"
+                                        />
+                                    </div>
+                                    <h1 className="text-left ml-2">
+                                        {errors.addedProfessionServiceYearDuration?.type === "required" && (
+                                            <span className="w-full text-left text-red-400 text-sm">{errors?.addedProfessionServiceYearDuration.message}</span>
+                                        )}
+                                    </h1>
+                                </section>
+                                <button
+                                    className="p-3 text-sm text-center font-medium bg-red-100 text-red-500 rounded-lg"
+                                    type="button"
+                                    onClick={() => remove(index)}
+                                >
+                                    Remove
+                                </button>
+                            </section>
+                        );
+                    })}
+                    <button
+                        type="button"
+                        className="p-3 text-sm text-center font-medium text-gray-400 bg-gray-100 rounded-lg"
+                        onClick={() => {
+                            append({
+                                addedProfessionPosition: "",
+                                addedProfessionDuty: "",
+                                addedProfessionInstitute: "",
+                                addedProfessionAchievement: "",
+                                addedProfessionServiceYearDuration: "",
+                            });
+                        }}
+                    >
+                        + Add More Professional Experience
+                    </button>
                 </section>
                 <input
                     type="submit"

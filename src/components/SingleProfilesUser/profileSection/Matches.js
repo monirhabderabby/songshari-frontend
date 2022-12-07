@@ -10,14 +10,16 @@ export const Matches = () => {
     if (isLoading) {
         return;
     }
-    if (error) { console.log(error.message) };
+    if (error) {
+        console.log(error.message)
+    };
 
     return (
         <div>
             <div className="grid lg:grid-cols-2 gap-4">
-                {data.map((info, index) => {
+                {data.map((info) => {
                     return (
-                        <div key={index} className=" rounded-lg lg:max-w-lg shadow-xl colorrrrrr">
+                        <div key={info._doc._id} className=" rounded-lg lg:max-w-lg shadow-xl colorrrrrr">
                             <p className="bg-white w-28 text-center ml-3 mt-3 text-[12px] py-[6px] px-[8px] rounded-[8px]">{info.percentage}% Match</p>
                             <img
                                 src={info._doc.profilePhoto}

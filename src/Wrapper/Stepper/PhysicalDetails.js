@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useSetPhysicalDetailsMutation } from "../../Redux/features/userInfo/userApi";
+import CreatableSelect from "react-select/creatable";
 
 export const PhysicalDetails = ({ setPage }) => {
     const {
@@ -76,110 +77,160 @@ export const PhysicalDetails = ({ setPage }) => {
                     </section>
                     {/* ---------- Ancestry ---------- */}
                     <section>
-                        <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
-                            <input
-                                {...register("ancestry", {
-                                    required: {
-                                        value: true,
-                                        message: "Ancestry is required",
-                                    },
-                                })}
+                        <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
+                            <CreatableSelect
+                                {...register("phyAncestry")}
+                                // onChange={val => setPhyAncestry(val.value)}
                                 type="text"
                                 placeholder="Ancestry"
+                                // options={ancestryData}
+                                styles={{
+                                    control: (baseStyles, state) => ({
+                                        ...baseStyles,
+                                        backgroundColor: "transparent",
+                                        border: "none",
+                                        textAlign: "left",
+                                        fontSize: "14px",
+                                        color: "#9CA3AF",
+                                    }),
+                                }}
                                 className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
                                 id="ancestry"
                             />
                         </div>
-                        <h1 className="text-left ml-2">
-                            {errors.ancestry?.type === "required" && (
-                                <span className="w-full text-left text-red-400 text-sm">{errors?.ancestry.message}</span>
-                            )}
-                        </h1>
                     </section>
                     {/* ---------- Skin Tone ---------- */}
                     <section>
-                        <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
-                            <input
-                                {...register("SkinTone")}
+                        <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
+                            <CreatableSelect
+                                {...register("phySkinTone")}
+                                // onChange={val => setPhySkinTone(val.value)}
                                 type="text"
                                 placeholder="Skin Tone"
+                                options={[
+                                    {
+                                        value: "Dark",
+                                        label: "Dark",
+                                    },
+                                    {
+                                        value: "Brown",
+                                        label: "Brown",
+                                    },
+                                    {
+                                        value: "White",
+                                        label: "White",
+                                    },
+                                ]}
+                                styles={{
+                                    control: (baseStyles, state) => ({
+                                        ...baseStyles,
+                                        backgroundColor: "transparent",
+                                        border: "none",
+                                        textAlign: "left",
+                                        fontSize: "14px",
+                                        color: "#9CA3AF",
+                                    }),
+                                }}
                                 className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
                                 id="SkinTone"
                             />
                         </div>
-                        <h1 className="text-left ml-2">
-                            {errors.SkinTone?.type === "required" && (
-                                <span className="w-full text-left text-red-400 text-sm">{errors?.SkinTone.message}</span>
-                            )}
-                        </h1>
                     </section>
                     {/* ---------- Hair Color ---------- */}
                     <section>
-                        <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
-                            <input
-                                {...register("hairColour")}
+                        <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
+                            <CreatableSelect
+                                {...register("phyHairColor")}
+                                // onChange={val => setPhyHairColor(val.value)}
                                 type="text"
                                 placeholder="Hair Color"
+                                // options={options}
+                                styles={{
+                                    control: (baseStyles, state) => ({
+                                        ...baseStyles,
+                                        backgroundColor: "transparent",
+                                        border: "none",
+                                        textAlign: "left",
+                                        fontSize: "14px",
+                                        color: "#9CA3AF",
+                                    }),
+                                }}
                                 className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
                                 id="hairColour"
                             />
                         </div>
-                        <h1 className="text-left ml-2">
-                            {errors.hairColour?.type === "required" && (
-                                <span className="w-full text-left text-red-400 text-sm">{errors?.hairColour.message}</span>
-                            )}
-                        </h1>
                     </section>
                     {/* ---------- Hair Type ---------- */}
                     <section>
-                        <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
-                            <input
-                                {...register("hairType")}
+                        <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
+                            <CreatableSelect
+                                {...register("phyHairType")}
+                                // onChange={val => setPhyHairType(val.value)}
                                 type="text"
                                 placeholder="Hair Type"
+                                // options={options}
+                                styles={{
+                                    control: (baseStyles, state) => ({
+                                        ...baseStyles,
+                                        backgroundColor: "transparent",
+                                        border: "none",
+                                        textAlign: "left",
+                                        fontSize: "14px",
+                                        color: "#9CA3AF",
+                                    }),
+                                }}
                                 className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
                                 id="hairType"
                             />
                         </div>
-                        <h1 className="text-left ml-2">
-                            {errors.hairType?.type === "required" && (
-                                <span className="w-full text-left text-red-400 text-sm">{errors?.hairType.message}</span>
-                            )}
-                        </h1>
                     </section>
                     {/* ---------- Eye Color ---------- */}
                     <section>
-                        <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
-                            <input
-                                {...register("eyeColor")}
+                        <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
+                            <CreatableSelect
+                                {...register("phyEyeColor")}
+                                // onChange={val => setPhyEyeColor(val.value)}
                                 type="text"
                                 placeholder="Eye Color"
+                                // options={options}
+                                styles={{
+                                    control: (baseStyles, state) => ({
+                                        ...baseStyles,
+                                        backgroundColor: "transparent",
+                                        border: "none",
+                                        textAlign: "left",
+                                        fontSize: "14px",
+                                        color: "#9CA3AF",
+                                    }),
+                                }}
                                 className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
                                 id="eyeColor"
                             />
                         </div>
-                        <h1 className="text-left ml-2">
-                            {errors.eyeColor?.type === "required" && (
-                                <span className="w-full text-left text-red-400 text-sm">{errors?.eyeColor.message}</span>
-                            )}
-                        </h1>
                     </section>
                     {/* ---------- Number of Teeth ---------- */}
                     <section>
-                        <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
-                            <input
-                                {...register("numberOfTeeth")}
+                        <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
+                            <CreatableSelect
+                                {...register("phyNumberTeeth")}
+                                // onChange={val => setPhyNumberTeeth(val.value)}
                                 type="number"
                                 placeholder="Number of Teeth"
+                                // options={options}
+                                styles={{
+                                    control: (baseStyles, state) => ({
+                                        ...baseStyles,
+                                        backgroundColor: "transparent",
+                                        border: "none",
+                                        textAlign: "left",
+                                        fontSize: "14px",
+                                        color: "#9CA3AF",
+                                    }),
+                                }}
                                 className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
                                 id="numberOfTeeth"
                             />
                         </div>
-                        <h1 className="text-left ml-2">
-                            {errors.numberOfTeeth?.type === "required" && (
-                                <span className="w-full text-left text-red-400 text-sm">{errors?.numberOfTeeth.message}</span>
-                            )}
-                        </h1>
                     </section>
                 </section>
                 <input
