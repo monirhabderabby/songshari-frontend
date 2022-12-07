@@ -1,14 +1,15 @@
 import { DatePicker } from "antd";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import React, { useEffect, useState } from "react";
-import { Controller, useForm, useFieldArray } from "react-hook-form";
-import { AiFillFileAdd, AiOutlineCloudUpload, AiOutlineIdcard } from "react-icons/ai";
+import { Controller, useFieldArray, useForm } from "react-hook-form";
+
+import { AiOutlineCloudUpload, AiOutlineIdcard } from "react-icons/ai";
 import Select from "react-select";
 import makeAnimated from "react-select/animated";
+import CreatableSelect from "react-select/creatable";
 import { v4 as uuidv4 } from "uuid";
 import { firebaseStorage } from "../../firebase.init";
 import { useSetPersonalDetailsMutation } from "../../Redux/features/userInfo/userApi";
-import CreatableSelect from 'react-select/creatable';
 
 export const PersonalDetails = ({ setPage }) => {
     const [profilePhoto, setProfilePhoto] = useState("");
@@ -30,19 +31,19 @@ export const PersonalDetails = ({ setPage }) => {
     const [userHobbies, setUserHobbies] = useState([]);
 
     // Education
-    const [degreeName, setDegreeName] = useState('');
-    const [eduDepartment, setEduDepartment] = useState('');
-    const [eduInstitute, setEduInstitute] = useState('');
-    const [eduFieldOfStudy, setEduFieldOfStudy] = useState('');
-    const [eduYearOfPassing, setEduYearOfPassing] = useState('');
+    const [degreeName, setDegreeName] = useState("");
+    const [eduDepartment, setEduDepartment] = useState("");
+    const [eduInstitute, setEduInstitute] = useState("");
+    const [eduFieldOfStudy, setEduFieldOfStudy] = useState("");
+    const [eduYearOfPassing, setEduYearOfPassing] = useState("");
 
     // Physical
-    const [phyAncestry, setPhyAncestry] = useState('');
-    const [phySkinTone, setPhySkinTone] = useState('');
-    const [phyEyeColor, setPhyEyeColor] = useState('');
-    const [phyHairColor, setPhyHairColor] = useState('');
-    const [phyHairType, setPhyHairType] = useState('');
-    const [phyNumberTeeth, setPhyNumberTeeth] = useState('');
+    const [phyAncestry, setPhyAncestry] = useState("");
+    const [phySkinTone, setPhySkinTone] = useState("");
+    const [phyEyeColor, setPhyEyeColor] = useState("");
+    const [phyHairColor, setPhyHairColor] = useState("");
+    const [phyHairType, setPhyHairType] = useState("");
+    const [phyNumberTeeth, setPhyNumberTeeth] = useState("");
 
     const { RangePicker } = DatePicker;
 
@@ -50,12 +51,12 @@ export const PersonalDetails = ({ setPage }) => {
         register,
         formState: { errors },
         handleSubmit,
-        control
+        control,
     } = useForm();
 
     const { fields, append, remove } = useFieldArray({
         name: "professions",
-        control
+        control,
     });
 
     // hobbies
@@ -74,7 +75,7 @@ export const PersonalDetails = ({ setPage }) => {
             .then(data => setAncestryData(data));
     }, []);
 
-    // Zodac Sign
+    // Zodiac Sign
     const [zodiacSign, setZodiacSign] = useState([]);
     const [zodiacSignValue, setZodiacSignValue] = useState("");
     const [zodiacSignSuggestion, setZodiacSignSuggestion] = useState("");
@@ -194,7 +195,12 @@ export const PersonalDetails = ({ setPage }) => {
         const currentProfession = {};
 
         Object.keys(data).forEach(function (key) {
-            if (key === "CurrentProfessionposition" || key === "CurrentProfessionInstitute" || key === "currentWorkPeriod" || key === "specialProfessionalAchievement") {
+            if (
+                key === "CurrentProfessionposition" ||
+                key === "CurrentProfessionInstitute" ||
+                key === "currentWorkPeriod" ||
+                key === "specialProfessionalAchievement"
+            ) {
                 currentProfession[key] = data[key];
             }
         });
@@ -233,6 +239,7 @@ export const PersonalDetails = ({ setPage }) => {
         delete data.CurrentProfessionInstitute;
         delete data.currentWorkPeriod;
         delete data.specialProfessionalAchievement;
+        delete data.professionalAchievementMoment;
 
         currentProfession.position = currentProfession.CurrentProfessionposition;
         currentProfession.institute = currentProfession.CurrentProfessionInstitute;
@@ -240,8 +247,10 @@ export const PersonalDetails = ({ setPage }) => {
         delete currentProfession.CurrentProfessionposition;
         delete currentProfession.CurrentProfessionInstitute;
         delete data.citizenShip;
+        delete data.professionalAchievementMoment;
 
         currentProfession.currentWorkPeriod = theCurrentWorkPeriod;
+        currentProfession.professionalAchievementMoment = professionalAchievementMoment;
 
         //photo links upload
         data.profilePhoto = profilePhoto;
@@ -249,15 +258,31 @@ export const PersonalDetails = ({ setPage }) => {
         data.frontSide = frontSide;
         data.backSide = backSide;
         // data.licencePhoto = licencePhoto;
-        data.professionalAchievementMoment = professionalAchievementMoment;
+        // data.professionalAchievementMoment = professionalAchievementMoment;
 
         data.professions.map(p => delete p.addedProfessionWorkPeriod);
-        data.professions.map((p, index) => p.addedProfessionWorkPeriod = addedWorkPeriod[index]);
+        data.professions.map((p, index) => (p.addedProfessionWorkPeriod = addedWorkPeriod[index]));
 
         data.professions.map(p => delete p.addedProfessionAchievementMoment);
-        data.professions.map((p, index) => p.addedProfessionAchievementMoment = addedAchievementMoment[index]);
-
-        data = { ...data, highestEducationalQualification, currentProfession, dateOfBirth, phyAncestry, phyEyeColor, phyHairColor, phyHairType, phyNumberTeeth, phySkinTone, userHobbies, marriageDate, divorceDate, partnerDeathDate, citizenShip, addedAchievementMoment };
+        data.professions.map((p, index) => (p.addedProfessionAchievementMoment = addedAchievementMoment[index]));
+        data = {
+            ...data,
+            highestEducationalQualification,
+            currentProfession,
+            dateOfBirth,
+            phyAncestry,
+            phyEyeColor,
+            phyHairColor,
+            phyHairType,
+            phyNumberTeeth,
+            phySkinTone,
+            userHobbies,
+            marriageDate,
+            divorceDate,
+            partnerDeathDate,
+            citizenShip,
+            addedAchievementMoment,
+        };
         await setPersonalDetails(data);
         console.log(data);
     };
@@ -302,19 +327,13 @@ export const PersonalDetails = ({ setPage }) => {
 
     const addedProfessionAchievementMomentHandler = async e => {
         const photo = e.target.files[0];
-        console.log(e);
-        console.log(photo);
         const storageRef = ref(firebaseStorage, `moment/${photo?.name + uuidv4()}`);
         uploadBytes(storageRef, photo).then(async snapshot => {
             await getDownloadURL(snapshot.ref).then(url => {
-                console.log(url);
-                console.log(addedAchievementMoment);
                 setAddedAchievementMoment([...addedAchievementMoment, url.toString()]);
-                console.log(addedAchievementMoment);
             });
         });
     };
-
 
     const educationalAchievementMomentHandler = async e => {
         const photo = e.target.files[0];
@@ -449,8 +468,9 @@ export const PersonalDetails = ({ setPage }) => {
                     {/* ---------- Hometown ---------- */}
                     <section className="relative">
                         <div
-                            className={`flex items-center  p-3 w-full rounded-lg mt-3 lg:mt-0 ${homeTownSuggestion.length > 0 ? "rounded-br-none rounded-bl-none shadow-lg bg-white" : "bg-gray-100"
-                                }`}
+                            className={`flex items-center  p-3 w-full rounded-lg mt-3 lg:mt-0 ${
+                                homeTownSuggestion.length > 0 ? "rounded-br-none rounded-bl-none shadow-lg bg-white" : "bg-gray-100"
+                            }`}
                         >
                             <input
                                 {...register("hometown", {
@@ -468,8 +488,9 @@ export const PersonalDetails = ({ setPage }) => {
                             />
                         </div>
                         <div
-                            className={`bg-white shadow-lg absolute top-[40px] right-0 w-full rounded-br-lg rounded-bl-lg overflow-y-scroll ${homeTownSuggestion.length > 0 ? "max-h-[346px]" : "h-0"
-                                }`}
+                            className={`bg-white shadow-lg absolute top-[40px] right-0 w-full rounded-br-lg rounded-bl-lg overflow-y-scroll ${
+                                homeTownSuggestion.length > 0 ? "max-h-[346px]" : "h-0"
+                            }`}
                         >
                             {homeTownSuggestion.length > 0 &&
                                 homeTownSuggestion.map(suggetion => {
@@ -659,11 +680,11 @@ export const PersonalDetails = ({ setPage }) => {
                                         styles={{
                                             control: (baseStyles, state) => ({
                                                 ...baseStyles,
-                                                backgroundColor: 'transparent',
+                                                backgroundColor: "transparent",
                                                 border: "none",
                                                 textAlign: "left",
                                                 fontSize: "14px",
-                                                color: "#9CA3AF"
+                                                color: "#9CA3AF",
                                             }),
                                         }}
                                     />
@@ -679,8 +700,9 @@ export const PersonalDetails = ({ setPage }) => {
                     {/* ---------- Zodiac Sign ---------- */}
                     <section className="relative">
                         <div
-                            className={`flex items-center  p-3 w-full rounded-lg mt-3 lg:mt-0 ${zodiacSignSuggestion.length > 0 ? "rounded-br-none rounded-bl-none shadow-lg bg-white" : "bg-gray-100"
-                                }`}
+                            className={`flex items-center  p-3 w-full rounded-lg mt-3 lg:mt-0 ${
+                                zodiacSignSuggestion.length > 0 ? "rounded-br-none rounded-bl-none shadow-lg bg-white" : "bg-gray-100"
+                            }`}
                         >
                             <input
                                 {...register("zodiacSign", {
@@ -698,8 +720,9 @@ export const PersonalDetails = ({ setPage }) => {
                             />
                         </div>
                         <div
-                            className={`bg-white shadow-lg absolute top-[40px] right-0 w-full rounded-br-lg rounded-bl-lg overflow-y-scroll ${zodiacSignSuggestion.length > 0 ? "max-h-[346px]" : "h-0"
-                                }`}
+                            className={`bg-white shadow-lg absolute top-[40px] right-0 w-full rounded-br-lg rounded-bl-lg overflow-y-scroll ${
+                                zodiacSignSuggestion.length > 0 ? "max-h-[346px]" : "h-0"
+                            }`}
                         >
                             {zodiacSignSuggestion.length > 0 &&
                                 zodiacSignSuggestion.map(suggetion => {
@@ -796,8 +819,9 @@ export const PersonalDetails = ({ setPage }) => {
                     {/* ---------- Town permanent ---------- */}
                     <section className="relative">
                         <div
-                            className={`flex items-center  p-3 w-full rounded-lg mt-3 lg:mt-0 ${townPermanentSuggestion.length > 0 ? "rounded-br-none rounded-bl-none shadow-lg bg-white" : "bg-gray-100"
-                                }`}
+                            className={`flex items-center  p-3 w-full rounded-lg mt-3 lg:mt-0 ${
+                                townPermanentSuggestion.length > 0 ? "rounded-br-none rounded-bl-none shadow-lg bg-white" : "bg-gray-100"
+                            }`}
                         >
                             <input
                                 {...register("townPermanent", {
@@ -815,8 +839,9 @@ export const PersonalDetails = ({ setPage }) => {
                             />
                         </div>
                         <div
-                            className={`bg-white shadow-lg absolute top-[40px] right-0 w-full rounded-br-lg rounded-bl-lg overflow-y-scroll ${townPermanentSuggestion.length > 0 ? "max-h-[346px]" : "h-0"
-                                }`}
+                            className={`bg-white shadow-lg absolute top-[40px] right-0 w-full rounded-br-lg rounded-bl-lg overflow-y-scroll ${
+                                townPermanentSuggestion.length > 0 ? "max-h-[346px]" : "h-0"
+                            }`}
                         >
                             {townPermanentSuggestion.length > 0 &&
                                 townPermanentSuggestion.map(suggetion => {
@@ -874,8 +899,9 @@ export const PersonalDetails = ({ setPage }) => {
                     {/* ---------- Country Permanent ---------- */}
                     <section className="relative">
                         <div
-                            className={`flex items-center  p-3 w-full rounded-lg mt-3 lg:mt-0 ${countriesSuggestionForParmanent.length > 0 ? "rounded-br-none rounded-bl-none shadow-lg bg-white" : "bg-gray-100"
-                                }`}
+                            className={`flex items-center  p-3 w-full rounded-lg mt-3 lg:mt-0 ${
+                                countriesSuggestionForParmanent.length > 0 ? "rounded-br-none rounded-bl-none shadow-lg bg-white" : "bg-gray-100"
+                            }`}
                         >
                             <input
                                 {...register("countryPermanent", { required: { value: true, message: "Country Name is required" } })}
@@ -888,8 +914,9 @@ export const PersonalDetails = ({ setPage }) => {
                             />
                         </div>
                         <div
-                            className={`bg-white z-50 shadow-lg absolute top-[40px] right-0 w-full rounded-br-lg rounded-bl-lg overflow-y-scroll ${countriesSuggestionForParmanent.length > 0 ? "max-h-[346px]" : "h-0"
-                                }`}
+                            className={`bg-white z-50 shadow-lg absolute top-[40px] right-0 w-full rounded-br-lg rounded-bl-lg overflow-y-scroll ${
+                                countriesSuggestionForParmanent.length > 0 ? "max-h-[346px]" : "h-0"
+                            }`}
                         >
                             {countriesSuggestionForParmanent.length > 0 &&
                                 countriesSuggestionForParmanent.map(suggetion => {
@@ -988,8 +1015,9 @@ export const PersonalDetails = ({ setPage }) => {
                     {/* ---------- Town Current ---------- */}
                     <section className="relative">
                         <div
-                            className={`flex items-center  p-3 w-full rounded-lg mt-3 lg:mt-0 ${townCurrentSuggestion.length > 0 ? "rounded-br-none rounded-bl-none shadow-lg bg-white" : "bg-gray-100"
-                                }`}
+                            className={`flex items-center  p-3 w-full rounded-lg mt-3 lg:mt-0 ${
+                                townCurrentSuggestion.length > 0 ? "rounded-br-none rounded-bl-none shadow-lg bg-white" : "bg-gray-100"
+                            }`}
                         >
                             <input
                                 {...register("townCurrent", {
@@ -1007,8 +1035,9 @@ export const PersonalDetails = ({ setPage }) => {
                             />
                         </div>
                         <div
-                            className={`bg-white shadow-lg absolute top-[40px] right-0 w-full rounded-br-lg rounded-bl-lg overflow-y-scroll ${townCurrentSuggestion.length > 0 ? "max-h-[346px]" : "h-0"
-                                }`}
+                            className={`bg-white shadow-lg absolute top-[40px] right-0 w-full rounded-br-lg rounded-bl-lg overflow-y-scroll ${
+                                townCurrentSuggestion.length > 0 ? "max-h-[346px]" : "h-0"
+                            }`}
                         >
                             {townCurrentSuggestion.length > 0 &&
                                 townCurrentSuggestion.map(suggetion => {
@@ -1066,8 +1095,9 @@ export const PersonalDetails = ({ setPage }) => {
                     {/* ---------- Country Current ---------- */}
                     <section className="relative">
                         <div
-                            className={`flex items-center  p-3 w-full rounded-lg mt-3 lg:mt-0 ${countriesSuggestionForParmanent.length > 0 ? "rounded-br-none rounded-bl-none shadow-lg bg-white" : "bg-gray-100"
-                                }`}
+                            className={`flex items-center  p-3 w-full rounded-lg mt-3 lg:mt-0 ${
+                                countriesSuggestionForParmanent.length > 0 ? "rounded-br-none rounded-bl-none shadow-lg bg-white" : "bg-gray-100"
+                            }`}
                         >
                             <input
                                 {...register("countryCurrent", { required: { value: true, message: "Country Name is required" } })}
@@ -1080,8 +1110,9 @@ export const PersonalDetails = ({ setPage }) => {
                             />
                         </div>
                         <div
-                            className={`bg-white z-50 shadow-lg absolute top-[40px] right-0 w-full rounded-br-lg rounded-bl-lg overflow-y-scroll ${countriesSuggestionForCurrent.length > 0 ? "max-h-[346px]" : "h-0"
-                                }`}
+                            className={`bg-white z-50 shadow-lg absolute top-[40px] right-0 w-full rounded-br-lg rounded-bl-lg overflow-y-scroll ${
+                                countriesSuggestionForCurrent.length > 0 ? "max-h-[346px]" : "h-0"
+                            }`}
                         >
                             {countriesSuggestionForCurrent.length > 0 &&
                                 countriesSuggestionForCurrent.map(suggetion => {
@@ -1566,7 +1597,13 @@ export const PersonalDetails = ({ setPage }) => {
                                     "Upload Achievement Moments"
                                 )}
                             </label>
-                            <input {...register("professionalAchievementMoment")} type="file" id="professionalAchievementMoment" className="hidden" onChange={professionalAchievementMomentHandler} />
+                            <input
+                                {...register("professionalAchievementMoment")}
+                                type="file"
+                                id="professionalAchievementMoment"
+                                className="hidden"
+                                onChange={professionalAchievementMomentHandler}
+                            />
                         </div>
                     </section>
 
@@ -1653,14 +1690,19 @@ export const PersonalDetails = ({ setPage }) => {
                                     </div>
                                     <h1 className="text-left ml-2">
                                         {errors.addedProfessionAchievement?.type === "required" && (
-                                            <span className="w-full text-left text-red-400 text-sm">{errors?.addedProfessionAchievement.message}</span>
+                                            <span className="w-full text-left text-red-400 text-sm">
+                                                {errors?.addedProfessionAchievement.message}
+                                            </span>
                                         )}
                                     </h1>
                                 </section>
                                 <section>
                                     <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
                                         <AiOutlineCloudUpload className=" mr-2 text-gray-400" />
-                                        <label htmlFor="professionalAchievementMoment" className="outline-none h-full text-sm text-gray-400 bg-gray-100">
+                                        <label
+                                            htmlFor="addedProfessionAchievementMoment"
+                                            className="outline-none h-full text-sm text-gray-400 bg-gray-100"
+                                        >
                                             {addedAchievementMoment.length > 0 ? (
                                                 <>
                                                     <span className="text-green-400">Moments new added</span>
@@ -1669,10 +1711,20 @@ export const PersonalDetails = ({ setPage }) => {
                                                 "Upload new Achievement Moments"
                                             )}
                                         </label>
-                                        <input {...register(`professions.${index}.addedProfessionAchievementMoment`)} type="file" id="addedProfessionAchievementMoment" className="hidden" onChange={addedProfessionAchievementMomentHandler} />
+                                        <input
+                                            {...register(`professions.${index}.addedProfessionAchievementMoment`)}
+                                            type="file"
+                                            id="addedProfessionAchievementMoment"
+                                            className="hidden"
+                                            onChange={addedProfessionAchievementMomentHandler}
+                                        />
                                     </div>
                                 </section>
-                                <button className="p-3 text-sm text-center font-medium bg-red-100 text-red-500 rounded-lg" type="button" onClick={() => remove(index)}>
+                                <button
+                                    className="p-3 text-sm text-center font-medium bg-red-100 text-red-500 rounded-lg"
+                                    type="button"
+                                    onClick={() => remove(index)}
+                                >
                                     Remove
                                 </button>
                             </section>
@@ -1687,7 +1739,7 @@ export const PersonalDetails = ({ setPage }) => {
                                 addedProfessionInstitute: "",
                                 addedProfessionWorkPeriod: "",
                                 addedProfessionAchievement: "",
-                                addedProfessionAchievementMoment: ""
+                                addedProfessionAchievementMoment: "",
                             });
                         }}
                     >
@@ -1699,7 +1751,9 @@ export const PersonalDetails = ({ setPage }) => {
                     {/* ---------------------- Highest education qualification start --------------------- */}
 
                     {/* ---------- Education info ---------- */}
-                    <section className="col-span-1 md:col-span-2 lg:col-span-3 text-[#2F3659] font-medium text-left ml-1">Highest Educational Info</section>
+                    <section className="col-span-1 md:col-span-2 lg:col-span-3 text-[#2F3659] font-medium text-left ml-1">
+                        Highest Educational Info
+                    </section>
                     {/* ---------- Degree Name ---------- */}
                     <section>
                         <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
@@ -1712,11 +1766,11 @@ export const PersonalDetails = ({ setPage }) => {
                                 styles={{
                                     control: (baseStyles, state) => ({
                                         ...baseStyles,
-                                        backgroundColor: 'transparent',
+                                        backgroundColor: "transparent",
                                         border: "none",
                                         textAlign: "left",
                                         fontSize: "14px",
-                                        color: "#9CA3AF"
+                                        color: "#9CA3AF",
                                     }),
                                 }}
                                 className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
@@ -1741,11 +1795,11 @@ export const PersonalDetails = ({ setPage }) => {
                                 styles={{
                                     control: (baseStyles, state) => ({
                                         ...baseStyles,
-                                        backgroundColor: 'transparent',
+                                        backgroundColor: "transparent",
                                         border: "none",
                                         textAlign: "left",
                                         fontSize: "14px",
-                                        color: "#9CA3AF"
+                                        color: "#9CA3AF",
                                     }),
                                 }}
                                 className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
@@ -1765,11 +1819,11 @@ export const PersonalDetails = ({ setPage }) => {
                                 styles={{
                                     control: (baseStyles, state) => ({
                                         ...baseStyles,
-                                        backgroundColor: 'transparent',
+                                        backgroundColor: "transparent",
                                         border: "none",
                                         textAlign: "left",
                                         fontSize: "14px",
-                                        color: "#9CA3AF"
+                                        color: "#9CA3AF",
                                     }),
                                 }}
                                 className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
@@ -1794,11 +1848,11 @@ export const PersonalDetails = ({ setPage }) => {
                                 styles={{
                                     control: (baseStyles, state) => ({
                                         ...baseStyles,
-                                        backgroundColor: 'transparent',
+                                        backgroundColor: "transparent",
                                         border: "none",
                                         textAlign: "left",
                                         fontSize: "14px",
-                                        color: "#9CA3AF"
+                                        color: "#9CA3AF",
                                     }),
                                 }}
                                 className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
@@ -1864,7 +1918,13 @@ export const PersonalDetails = ({ setPage }) => {
                                     "Upload Achievement Moments"
                                 )}
                             </label>
-                            <input {...register("educationalAchievementMoment")} type="file" id="educationalAchievementMoment" className="hidden" onChange={educationalAchievementMomentHandler} />
+                            <input
+                                {...register("educationalAchievementMoment")}
+                                type="file"
+                                id="educationalAchievementMoment"
+                                className="hidden"
+                                onChange={educationalAchievementMomentHandler}
+                            />
                         </div>
                     </section>
 
@@ -1928,11 +1988,11 @@ export const PersonalDetails = ({ setPage }) => {
                                 styles={{
                                     control: (baseStyles, state) => ({
                                         ...baseStyles,
-                                        backgroundColor: 'transparent',
+                                        backgroundColor: "transparent",
                                         border: "none",
                                         textAlign: "left",
                                         fontSize: "14px",
-                                        color: "#9CA3AF"
+                                        color: "#9CA3AF",
                                     }),
                                 }}
                                 className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
@@ -1950,27 +2010,26 @@ export const PersonalDetails = ({ setPage }) => {
                                 placeholder="Skin Tone"
                                 options={[
                                     {
-                                        "value": "Dark",
-                                        "label": "Dark"
+                                        value: "Dark",
+                                        label: "Dark",
                                     },
                                     {
-                                        "value": "Brown",
-                                        "label": "Brown"
+                                        value: "Brown",
+                                        label: "Brown",
                                     },
                                     {
-                                        "value": "White",
-                                        "label": "White"
-                                    }
-                                ]
-                                }
+                                        value: "White",
+                                        label: "White",
+                                    },
+                                ]}
                                 styles={{
                                     control: (baseStyles, state) => ({
                                         ...baseStyles,
-                                        backgroundColor: 'transparent',
+                                        backgroundColor: "transparent",
                                         border: "none",
                                         textAlign: "left",
                                         fontSize: "14px",
-                                        color: "#9CA3AF"
+                                        color: "#9CA3AF",
                                     }),
                                 }}
                                 className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
@@ -1990,11 +2049,11 @@ export const PersonalDetails = ({ setPage }) => {
                                 styles={{
                                     control: (baseStyles, state) => ({
                                         ...baseStyles,
-                                        backgroundColor: 'transparent',
+                                        backgroundColor: "transparent",
                                         border: "none",
                                         textAlign: "left",
                                         fontSize: "14px",
-                                        color: "#9CA3AF"
+                                        color: "#9CA3AF",
                                     }),
                                 }}
                                 className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
@@ -2014,11 +2073,11 @@ export const PersonalDetails = ({ setPage }) => {
                                 styles={{
                                     control: (baseStyles, state) => ({
                                         ...baseStyles,
-                                        backgroundColor: 'transparent',
+                                        backgroundColor: "transparent",
                                         border: "none",
                                         textAlign: "left",
                                         fontSize: "14px",
-                                        color: "#9CA3AF"
+                                        color: "#9CA3AF",
                                     }),
                                 }}
                                 className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
@@ -2038,11 +2097,11 @@ export const PersonalDetails = ({ setPage }) => {
                                 styles={{
                                     control: (baseStyles, state) => ({
                                         ...baseStyles,
-                                        backgroundColor: 'transparent',
+                                        backgroundColor: "transparent",
                                         border: "none",
                                         textAlign: "left",
                                         fontSize: "14px",
-                                        color: "#9CA3AF"
+                                        color: "#9CA3AF",
                                     }),
                                 }}
                                 className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
@@ -2062,11 +2121,11 @@ export const PersonalDetails = ({ setPage }) => {
                                 styles={{
                                     control: (baseStyles, state) => ({
                                         ...baseStyles,
-                                        backgroundColor: 'transparent',
+                                        backgroundColor: "transparent",
                                         border: "none",
                                         textAlign: "left",
                                         fontSize: "14px",
-                                        color: "#9CA3AF"
+                                        color: "#9CA3AF",
                                     }),
                                 }}
                                 className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
@@ -2080,7 +2139,7 @@ export const PersonalDetails = ({ setPage }) => {
                     <section>
                         <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
                             <select
-                                {...register("status", {
+                                {...register("parentStatus", {
                                     required: {
                                         value: true,
                                         message: "Answer is required",
@@ -2088,7 +2147,7 @@ export const PersonalDetails = ({ setPage }) => {
                                 })}
                                 type="text"
                                 className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
-                                id="status"
+                                id="parentStatus"
                             >
                                 <option value="">Parents status?</option>
                                 <option value="yes">Yes</option>
@@ -2098,8 +2157,8 @@ export const PersonalDetails = ({ setPage }) => {
                             </select>
                         </div>
                         <h1 className="text-left ml-2">
-                            {errors.status?.type === "required" && (
-                                <span className="w-full text-left text-red-400 text-sm">{errors?.status.message}</span>
+                            {errors.parentStatus?.type === "required" && (
+                                <span className="w-full text-left text-red-400 text-sm">{errors?.parentStatus.message}</span>
                             )}
                         </h1>
                     </section>
@@ -2338,14 +2397,13 @@ export const PersonalDetails = ({ setPage }) => {
                                         styles={{
                                             control: (baseStyles, state) => ({
                                                 ...baseStyles,
-                                                backgroundColor: 'transparent',
+                                                backgroundColor: "transparent",
                                                 border: "none",
                                                 textAlign: "left",
                                                 fontSize: "14px",
-                                                color: "#9CA3AF"
+                                                color: "#9CA3AF",
                                             }),
                                         }}
-
                                     />
                                 )}
                             ></Controller>

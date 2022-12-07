@@ -74,7 +74,6 @@ import { Setting } from "../Wrapper/Home/mobileversion/Setting";
 import { GallaryMov } from "../Wrapper/Home/mobileversion/gallarymov/GallaryMov";
 import Certificate from "../Wrapper/Home/mobileversion/PhotoGallery/certificate/Certificate";
 
-
 const Index = () => {
     return (
         <div>

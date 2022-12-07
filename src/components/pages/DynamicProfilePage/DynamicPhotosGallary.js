@@ -14,7 +14,7 @@ export const DynamicPhotosGallary = () => {
                             <>
                                 <img
                                     src="https://scontent.frjh5-1.fna.fbcdn.net/v/t39.30808-6/310814492_3383940818533755_1197676094327108122_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=09cbfe&_nc_eui2=AeGA9lfn6WujkVz6fYFMVoFwjDMuNZrRHNWMMy41mtEc1bicZO-AvSF9FXCNTfRYimndHxJlLdYlNYLMqh4qcFXK&_nc_ohc=5U4tQU61ozwAX_tpt4B&tn=5Af7VWSQfe-WPdJS&_nc_ht=scontent.frjh5-1.fna&oh=00_AfBsaMUFAS7yYXwbj1q1dtbGWDGbsQBJ6zjMlpr6hm2VYQ&oe=6391729C"
-                                    className={`${p === 1 && "col-span-2"} ${p === 2 && "grid-rows-2"} rounded-[15px]`}
+                                    className={`${p === 1 && "col-span-2 row-span-2"} ${p === 2 && "grid-rows-2"} rounded-[15px] h-full`}
                                     alt=""
                                 />
                             </>

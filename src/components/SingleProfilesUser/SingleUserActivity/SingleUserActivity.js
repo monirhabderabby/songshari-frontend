@@ -14,12 +14,33 @@ const SingleUserActivity = () => {
 
     const handleMessage = event => {
         event.preventDefault();
-        console.log(ref.current.value);
+        const post_info = {
+            postBody: ref.current.value
+        }
+        // console.log(ref.current.value);
+
+        fetch(`http://localhost:4000/member/personalDetail`, {
+            method: "POST",
+            headers: {
+                "content-type": "application/json",
+                "author": localStorage.getItem("accessToken")
+            },
+            body: JSON.stringify(post_info)
+        })
+            .then(res => res.json())
+            .then(data => {
+                /* if(){
+    
+                }else{
+    
+                } */
+            })
     }
 
     const photoHandler = async e => {
         const photo = e.target.files[0];
         const storageRef = ref(firebaseStorage, `post/${photo.name + uuidv4()}`);
+
         uploadBytes(storageRef, photo).then(async snapshot => {
             await getDownloadURL(snapshot.ref).then(url => {
                 setPhotoUrl(url.toString());

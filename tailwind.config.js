@@ -23,7 +23,12 @@ module.exports = {
                 pagination_Shadow: "0px 15px 30px 0px rgb(119 123 146 / 20%)",
                 cardShadow: "0px 10px 5px 0px rgb(119 123 146 / 2%)",
             },
+            lineClamp: {
+                7: "7",
+                8: "8",
+                10: "10",
+            },
         },
     },
-    plugins: [],
+    plugins: [require("@tailwindcss/line-clamp")],
 };

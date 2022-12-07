@@ -120,7 +120,7 @@ export const userApi = apiSlice.injectEndpoints({
                 method: "GET",
                 headers: { authorization: `Bearer ${localStorage.getItem("accessToken")}` },
             }),
-            keepUnusedDataFor: 60,
+            keepUnusedDataFor: 20,
         }),
     }),
 });
