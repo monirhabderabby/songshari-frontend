@@ -27,7 +27,6 @@ export default function Certificate() {
                         {tabValue === 2 && <ProfessionalCertificateSidebar setSelectedImage={setSelectedImage} />}
                         {tabValue === 3 && <OthersCertificateSidebar setSelectedImage={setSelectedImage} />}
 
-
                     </div>
                     <div className='ml-2 w-9/12'>
                         <div className='p-2'>
