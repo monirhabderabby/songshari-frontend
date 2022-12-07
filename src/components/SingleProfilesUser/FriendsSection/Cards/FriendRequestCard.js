@@ -4,21 +4,11 @@ import { useAcceptFriendRequestMutation } from "../../../../Redux/features/conne
 
 export const FriendRequestCard = ({ friend }) => {
     const name = friend.firstName + " " + friend.lastName;
-    const [acceptFriendRequest] = useAcceptFriendRequestMutation();
+    const [acceptFriendRequest, { data }] = useAcceptFriendRequestMutation();
 
     const acceptHandler = async id => {
-        // await acceptFriendRequest({ id });
-        // if (data) console.log(data);
-
-        await fetch(`http://localhost:4000/member/connections/accept/${id}`, {
-            method: "POST",
-            headers: {
-                "content-type": "application/json",
-                authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-            },
-        })
-            .then(res => res.json())
-            .then(data => console.log(data));
+        await acceptFriendRequest({ id });
+        if (data) console.log(data);
     };
     return (
         <div className="p-[21px] h-[141px] min-w-[501px] mx-auto bg-white shadow-[2px_2px_8px_rgba(0,0,0,0.12)] rounded-[15px] flex justify-between items-center">

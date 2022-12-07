@@ -75,6 +75,7 @@ import { GallaryMov } from "../Wrapper/Home/mobileversion/gallarymov/GallaryMov"
 import MobileSingleProfilesUser from "../components/SingleProfilesUser/MobileSingleProfilesUser/MobileSingleProfilesUser";
 import { PersonalDetailsMobile } from "../components/SingleProfilesUser/MobileSingleProfilesUser/PersonalDetailsMobile";
 
+import Certificate from "../Wrapper/Home/mobileversion/PhotoGallery/certificate/Certificate";
 
 const Index = () => {
     return (
@@ -85,11 +86,11 @@ const Index = () => {
                     <Route path="/userprofile" element={<SingleProfile />}>
                         <Route path="" element={<Accordian />} />
                         <Route path="edit"  >
-                            <Route path="personalinfo" element={<EditPersonalInfo />} />
-                            <Route path="profesionalinfo" element={<EditProfesionalInfo />} />
-                            <Route path="educationalinfo" element={<EditEducationalInfo />} />
-                            <Route path="physicalinfo" element={<EditPhysicalInfo />} />
-                            <Route path="othersinfo" element={<EditOthersInfo />} />
+                            <Route path="personalinfo/:id" element={<EditPersonalInfo />} />
+                            <Route path="profesionalinfo/:id" element={<EditProfesionalInfo />} />
+                            <Route path="educationalinfo/:id" element={<EditEducationalInfo />} />
+                            <Route path="physicalinfo/:id" element={<EditPhysicalInfo />} />
+                            <Route path="othersinfo/:id" element={<EditOthersInfo />} />
                         </Route>
                     </Route>
                     <Route path="/mobileotherprofile" element={<MobileProfileOthers></MobileProfileOthers>}></Route>
@@ -145,7 +146,6 @@ const Index = () => {
                     <Route path="/setting" element={<Setting></Setting>}></Route>
                     <Route path="/mobileuserprofile" element={<MobileSingleProfilesUser></MobileSingleProfilesUser>}></Route>
                     <Route path="/personaldetailsmov" element={<PersonalDetailsMobile></PersonalDetailsMobile>}></Route>
-                   
                     <Route path="/aboutmov" element={<AboutMov></AboutMov>}></Route>
                     <Route path="/gallarymov" element={<GallaryMov />}></Route>
                     <Route path="/meetmov" element={<MeetMov></MeetMov>}></Route>
@@ -162,6 +162,7 @@ const Index = () => {
                     <Route path="/mobileGoldPlan" element={<MobileGoldPlan />}></Route>
                     <Route path="/mobileDiamondPlan" element={<MobileDiamondPlan />}></Route>
                     <Route path="/mobilePlatinumPlan" element={<MobilePlatinumPlan />}></Route>
+                    <Route path="/mobilecertificate" element={<Certificate />} />
                     {/* --------------- MOBILE ROUTES END --------------- */}
 
                     <Route path="*" element={<NotFound />}></Route>

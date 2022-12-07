@@ -1,14 +1,31 @@
 import React from "react";
+import { useEffect } from "react";
+import { useState } from "react";
 import love from "../../../assets/images/icons/coolicon.svg";
 import banner from "../../../assets/images/icons/s-p-img1.jpg";
 import profile from "../../../assets/images/profile/up1.png";
 
 export const DynamicActivityPage = () => {
+    const [posts, setPosts] = useState();
     const post = [
         { number: 1, img: null },
         { number: 2, img: banner },
         { number: 1, img: null },
     ];
+
+    useEffect(() => {
+        fetch(`http://localhost:4000/member/personalDetail`, {
+            method: "GET",
+            headers: {
+                "content-type": "application/json",
+                "author": localStorage.getItem("accessToken")
+            }
+        })
+            .then(res => res.json())
+            .then(data => setPosts(data))
+    }, []);
+
+
     return (
         <div className="grid grid-cols-1 gap-y-[30px]">
             {post.map(p => {

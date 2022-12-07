@@ -65,7 +65,7 @@ const Accordian = () => {
                         }}
                     >
                         <button
-                            onClick={() => navigate("/userprofile/edit/personalinfo")}
+                            onClick={() => navigate(`/userprofile/edit/personalinfo/${data?._id}`)}
                             style={{
                                 background: "linear-gradient(180deg, #E41272 0%, #942DD9 100%)",
                             }}
@@ -408,7 +408,7 @@ const Accordian = () => {
                         }}
                     >
                         <button
-                            onClick={() => navigate("/userprofile/edit/profesionalinfo")}
+                            onClick={() => navigate(`/userprofile/edit/profesionalinfo/${data?.professionalDetail[0]?._id}`)}
                             style={{
                                 background: "linear-gradient(180deg, #E41272 0%, #942DD9 100%)",
                             }}
@@ -488,7 +488,7 @@ const Accordian = () => {
                         }}
                     >
                         <button
-                            onClick={() => navigate("/userprofile/edit/educationalinfo")}
+                            onClick={() => navigate(`/userprofile/edit/educationalinfo/${data?.educationalDetail[0]?._id}`)}
                             style={{
                                 background: "linear-gradient(180deg, #E41272 0%, #942DD9 100%)",
                             }}
@@ -595,7 +595,7 @@ const Accordian = () => {
                         }}
                     >
                         <button
-                            onClick={() => navigate("/userprofile/edit/physicalinfo")}
+                            onClick={() => navigate(`/userprofile/edit/physicalinfo/${data?._id}`)}
                             style={{
                                 background: "linear-gradient(180deg, #E41272 0%, #942DD9 100%)",
                             }}
@@ -664,7 +664,7 @@ const Accordian = () => {
                         }}
                     >
                         <button
-                            onClick={() => navigate("/userprofile/edit/othersinfo")}
+                            onClick={() => navigate(`/userprofile/edit/othersinfo/${data?._id}`)}
                             style={{
                                 background: "linear-gradient(180deg, #E41272 0%, #942DD9 100%)",
                             }}

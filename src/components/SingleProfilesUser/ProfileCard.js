@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "../../assets/css/profileCards.css";
+import blackLove from "../../assets/images/icons/blackLove.png";
 import { ageCalculator } from "../../assets/utilities/AgeCalculation/ageCalculator";
 
 const ProfileCard = ({ data, isLoading }) => {
@@ -15,7 +16,7 @@ const ProfileCard = ({ data, isLoading }) => {
             <div className="card_container shadow-4xl px-2 md:px-0">
                 <div className="Card-header"></div>
                 <div className="relative w-52 h-52 rounded-full">
-                    <div className="bottom-20 left-20 lg:left-[67px] md:left-16 absolute">
+                    <div className="bottom-20 left-20 lg:left-[61px] md:left-16 absolute">
                         <div className="relative card-img w-48 h-48">
                             <img
                                 className="w-44 h-44 rounded-full img-fluid"
@@ -48,11 +49,17 @@ const ProfileCard = ({ data, isLoading }) => {
                                     />
                                 </svg>
                             </h3>
-                            <h3 className="ml-2">{data?.hometown}</h3>
+                            <h3 className="ml-2">{data?.hometown || "Not provided"}</h3>
                         </div>
                     </div>
                 </div>
                 <div className="flex items-center justify-around mt-5">
+                    <div className="flex items-center">
+                        <div className="w-[40px] h-[40px] rounded-full bg-[#F7E9F8] mr-1 flex items-center justify-center">
+                            <img src={blackLove} alt="blackLove" />
+                        </div>
+                        <span>257</span>
+                    </div>
                     <div>
                         {data ? (
                             <button className="special_profile_button">Upgrade Membership</button>
