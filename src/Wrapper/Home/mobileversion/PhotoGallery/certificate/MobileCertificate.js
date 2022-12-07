@@ -14,7 +14,8 @@ import { OthersCertificate, OthersCertificateSidebar } from './OthersCertificate
 
 const { Dragger } = Upload;
 
-export default function Certificate() {
+export default function MobileCertificate() {
+
     const [tabValue, setTabValue] = useState(1);
     const [stepScale, setStepScale] = useState(1.0);
     const [selectedImage, setSelectedImage] = useState('');

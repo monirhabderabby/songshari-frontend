@@ -1,7 +1,20 @@
 .btn-tab {
     background: rgb(208, 219, 255);
-    border-radius: 0.2rem;
+    border-radius: 10px;
+    width: 278px;
+    font-family: Fira Sans;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 31px;
+    letter-spacing: 0em;
+    text-align: center;
 
+
+
+}
+
+.shadow-certificate {
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.12);
 }
 
 .btn-certificate {
@@ -10,23 +23,19 @@
 
 
 
-.mobile-content {
-    font-size: .30rem;
-}
-
 .reupload-certificate {
     background-color: black;
 
 }
 
 .reupload-certificate-inner-box {
-    margin-top: -70%;
+    margin-top: -50%;
     color: #ffffff;
     z-index: 11111111111111111;
 }
 
 .onselect-image:focus img {
-    border: 1px solid #E52982
+    border: 2px solid #E52982
 }
 
 
@@ -37,6 +46,7 @@
 
 .onselect-image:focus .selected-btn {
     margin-top: -25%;
+    padding-bottom: 3rem;
     display: flex;
     justify-content: center;
 }
