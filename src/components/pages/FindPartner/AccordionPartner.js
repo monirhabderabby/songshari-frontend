@@ -305,7 +305,7 @@ export const AccordionPartner = ({ data, isLoading }) => {
 
     return (
         <div className="w-full">
-            <Collapse accordion ghost defaultActiveKey={"1"} expandIconPosition="end" className="mt-[10px]">
+            <Collapse accordion ghost defaultActiveKey={"1"} expandIconPosition="end" className="mt-[20px]">
                 {/* ------------ Basic Information ---------- */}
                 <Panel header={styledHeader("Basic Information")} key="1">
                     <div>

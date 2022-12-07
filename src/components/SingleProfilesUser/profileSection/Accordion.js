@@ -51,8 +51,11 @@ const Accordian = () => {
                 <div className="flex justify-between items-center	">
                     <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
                         <div>
-                            <Typography>
+                            <Typography className="hidden md:block">
                                 <h1 className="text-[24px] text-[#333333] leading-[34px] font-fira font-semibold">Personal Information</h1>
+                            </Typography>
+                            <Typography className="md:hidden">
+                                <h1 className="text-[18px] text-[#333333] leading-[34px] font-fira">Personal Details</h1>
                             </Typography>
                         </div>
                     </AccordionSummary>
@@ -472,8 +475,11 @@ const Accordian = () => {
                 <div className="flex justify-between items-center	">
                     <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
                         <div>
-                            <Typography>
+                            <Typography className="hidden md:block">
                                 <h1 className="text-[24px] text-[#333333] leading-[34px] font-fira font-semibold">Profesional Information</h1>
+                            </Typography>
+                            <Typography className='md:hidden'>
+                                <h1 className="text-[18px] text-[#333333] leading-[34px] font-fira">Profesional Information</h1>
                             </Typography>
                         </div>
                     </AccordionSummary>
@@ -573,8 +579,11 @@ const Accordian = () => {
                 <div className="flex justify-between items-center	">
                     <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
                         <div>
-                            <Typography>
+                        <Typography className="hidden md:block">
                                 <h1 className="text-[24px] text-[#333333] leading-[34px] font-fira font-semibold">Educational Information</h1>
+                            </Typography>
+                            <Typography className='md:hidden'>
+                                <h1 className="text-[18px] text-[#333333] leading-[34px] font-fira">Educational Information</h1>
                             </Typography>
                         </div>
                     </AccordionSummary>
@@ -717,8 +726,11 @@ const Accordian = () => {
                 <div className="flex justify-between items-center	">
                     <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
                         <div>
-                            <Typography>
+                        <Typography className="hidden md:block">
                                 <h1 className="text-[24px] text-[#333333] leading-[34px] font-fira font-semibold">Physical Information</h1>
+                            </Typography>
+                            <Typography className='md:hidden'>
+                                <h1 className="text-[18px] text-[#333333] leading-[34px] font-fira">Physical Information</h1>
                             </Typography>
                         </div>
                     </AccordionSummary>
@@ -801,8 +813,11 @@ const Accordian = () => {
                 <div className="flex justify-between items-center	">
                     <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
                         <div>
-                            <Typography>
-                                <h1 className="text-[24px] text-[#333333] leading-[34px] font-fira font-semibold">Others Information</h1>
+                        <Typography className="hidden md:block">
+                                <h1 className="text-[24px] text-[#333333] leading-[34px] font-fira font-semibold">Other Information</h1>
+                            </Typography>
+                            <Typography className='md:hidden'>
+                                <h1 className="text-[18px] text-[#333333] leading-[34px] font-fira">Other Information</h1>
                             </Typography>
                         </div>
                     </AccordionSummary>
