@@ -4,7 +4,7 @@ import toast from "react-hot-toast";
 import { useNavigate } from "react-router";
 import { useSetOthersDetailsMutation } from "../../Redux/features/userInfo/userApi";
 
-export const OtherDetails = () => {
+export const OtherDetails = ({ setPage }) => {
     const [setOthersDetails, { data, isLoading }] = useSetOthersDetailsMutation();
     const navigate = useNavigate();
     const {
@@ -274,11 +274,19 @@ export const OtherDetails = () => {
                         </h1>
                     </section>
                 </section>
-                <input
-                    type="submit"
-                    value={isLoading ? "Saving..." : "Submit"}
-                    className="border-2 cursor-pointer mt-3 border-primary hover:border-0 rounded-full px-12 py-2 hover:bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] hover:text-white duration-500 transition-all"
-                />
+                <div className="flex items-center w-full justify-center gap-x-[20px] mt-[20px]">
+                    <button
+                        className="border-2 cursor-pointer mt-3 border-primary hover:border-0 rounded-full px-12 py-2 hover:bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] hover:text-white duration-500 transition-all"
+                        onClick={() => setPage(4)}
+                    >
+                        Previous
+                    </button>
+                    <input
+                        type="submit"
+                        value={isLoading ? "Saving..." : "Submit"}
+                        className="border-2 cursor-pointer mt-3 border-primary hover:border-0 rounded-full px-12 py-2 hover:bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] hover:text-white duration-500 transition-all"
+                    />
+                </div>
             </form>
         </div>
     );
