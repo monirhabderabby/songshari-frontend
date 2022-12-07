@@ -562,7 +562,7 @@ const EditPersonalInfo = () => {
                                     // Regular option
                                     return option.title;
                                 }}
-                                renderOption={(props, option) => <li {...props}>{option.title}</li>}
+                                renderOption={(pro, option) => <li {...pro}>{option.title}</li>}
                                 freeSolo
                                 renderInput={(params) => (
                                     <TextField {...params} placeholder="Select Degree" />
@@ -613,7 +613,7 @@ const EditPersonalInfo = () => {
                                     // Regular option
                                     return option.title;
                                 }}
-                                renderOption={(props, option) => <li {...props}>{option.title}</li>}
+                                renderOption={(prop, option) => <li {...prop}>{option.title}</li>}
                                 freeSolo
                                 renderInput={(params) => (
                                     <TextField {...params} placeholder="Select Institute" />
@@ -669,7 +669,7 @@ const EditPersonalInfo = () => {
                                     // Regular option
                                     return option.title;
                                 }}
-                                renderOption={(props, option) => <li {...props}>{option.title}</li>}
+                                renderOption={(prop, option) => <li {...prop}>{option.title}</li>}
                                 freeSolo
                                 renderInput={(params) => (
                                     <TextField {...params} placeholder="Select Department" />
@@ -720,7 +720,7 @@ const EditPersonalInfo = () => {
                                     // Regular option
                                     return option.title;
                                 }}
-                                renderOption={(props, option) => <li {...props}>{option.title}</li>}
+                                renderOption={(prop, option) => <li {...prop}>{option.title}</li>}
                                 freeSolo
                                 renderInput={(params) => (
                                     <TextField {...params} placeholder="Select Field of study" />
@@ -772,7 +772,7 @@ const EditPersonalInfo = () => {
                                     // Regular option
                                     return option.title;
                                 }}
-                                renderOption={(props, option) => <li {...props}>{option.title}</li>}
+                                renderOption={(prop, option) => <li {...prop}>{option.title}</li>}
                                 freeSolo
                                 renderInput={(params) => (
                                     <TextField {...params} placeholder="Select CGPA" />
@@ -840,7 +840,7 @@ const EditPersonalInfo = () => {
                                     // Regular option
                                     return option.title;
                                 }}
-                                renderOption={(props, option) => <li {...props}>{option.title}</li>}
+                                renderOption={(prop, option) => <li {...prop}>{option.title}</li>}
                                 freeSolo
                                 renderInput={(params) => (
                                     <TextField {...params} placeholder="Select Position" />
@@ -891,7 +891,7 @@ const EditPersonalInfo = () => {
                                     // Regular option
                                     return option.title;
                                 }}
-                                renderOption={(props, option) => <li {...props}>{option.title}</li>}
+                                renderOption={(prop, option) => <li {...prop}>{option.title}</li>}
                                 freeSolo
                                 renderInput={(params) => (
                                     <TextField {...params} placeholder="Select Institute" />
@@ -1651,7 +1651,7 @@ const EditPersonalInfo = () => {
                         <div>
                             <label htmlFor="nid" className='text-sm block pb-2 text-slate-600	  font-medium'>NID/Passport Photo</label>
 
-                            <Dragger {...props} onChange={handleUpload}>
+                            <Dragger {...prop} onChange={handleUpload}>
                                 <div className='flex justify-center items-center'>
                                     <p>File Upload</p>
                                     <p className="ant-upload-drag-icon pl-4">
@@ -2078,9 +2078,6 @@ const EditPersonalInfo = () => {
                         />
 
                     </div>
-
-
-
                 </form>
             </div >
         </div >

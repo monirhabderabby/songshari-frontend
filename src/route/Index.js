@@ -73,11 +73,8 @@ import MobileProfileOthers from "../Wrapper/Home/mobileversion/MobileProfileOthe
 import Certificate from "../Wrapper/Home/mobileversion/PhotoGallery/certificate/Certificate";
 import { PrivacyMov } from "../Wrapper/Home/mobileversion/privacy/PrivacyMov";
 import { Setting } from "../Wrapper/Home/mobileversion/Setting";
-import { GallaryMov } from "../Wrapper/Home/mobileversion/gallarymov/GallaryMov";
 import MobileSingleProfilesUser from "../components/SingleProfilesUser/MobileSingleProfilesUser/MobileSingleProfilesUser";
 import { PersonalDetailsMobile } from "../components/SingleProfilesUser/MobileSingleProfilesUser/PersonalDetailsMobile";
-
-import Certificate from "../Wrapper/Home/mobileversion/PhotoGallery/certificate/Certificate";
 
 const Index = () => {
     return (
@@ -88,7 +85,7 @@ const Index = () => {
                     <Route path="/userprofile" element={<SingleProfile />}>
                         <Route path="" element={<Accordian />} />
                         <Route path="edit">
-                            <Route path="personalinfo/:id" element={<EditPersonalInfo />} />
+                            {/* <Route path="personalinfo/:id" element={<EditPersonalInfo />} /> */}
                             <Route path="profesionalinfo/:id" element={<EditProfesionalInfo />} />
                             <Route path="educationalinfo/:id" element={<EditEducationalInfo />} />
                             <Route path="physicalinfo/:id" element={<EditPhysicalInfo />} />
