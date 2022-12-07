@@ -5,7 +5,7 @@ import TextField from '@mui/material/TextField';
 import TextArea from 'antd/es/input/TextArea';
 import { useUpdateProfessionalDetailsMutation } from '../../../../Redux/features/userInfo/userApi';
 import { useNavigate, useParams } from 'react-router';
-import LinearProgress from 'material-ui/LinearProgress';
+
 const { RangePicker } = DatePicker;
 
 
@@ -15,7 +15,7 @@ const EditProfesionalInfo = () => {
     // institue state 
     const [currentInstitute, setCurrentInstitute] = useState(null);
     const [professionalInfo, setProfessionalInfo] = useState({});
-    const [updateProfessionalDetails, { data, isLoading, isError, isSuccess }] = useUpdateProfessionalDetailsMutation()
+    const [updateProfessionalDetails, { isSuccess }] = useUpdateProfessionalDetailsMutation()
     // current position state handler
     const handleCurrentPosition = (event, newValue) => {
         if (typeof newValue === 'string') {
@@ -235,7 +235,7 @@ const EditProfesionalInfo = () => {
                         style={{
                             background: "linear-gradient(180deg, #E41272 0%, #942DD9 100%)",
                         }}
-                        className="w-full text-center py-[8] py-[10px] text-[#fff]  text-lg font-medium rounded"
+                        className="w-full text-center py-[10px] text-[#fff]  text-lg font-medium rounded"
                     />
                     {/* {isLoading &&
                         <div className='mt-2'>
