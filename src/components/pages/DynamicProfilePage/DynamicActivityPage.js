@@ -3,8 +3,9 @@ import { useEffect } from "react";
 import { useState } from "react";
 import love from "../../../assets/images/icons/coolicon.svg";
 import profile from "../../../assets/images/profile/up1.png";
+import { getHoursMinutes } from "../../../Helper/helper";
 
-export const DynamicActivityPage = () => {
+export const DynamicActivityPage = ({ postRefetch }) => {
     const [posts, setPosts] = useState();
 
     useEffect(() => {
@@ -17,7 +18,7 @@ export const DynamicActivityPage = () => {
         })
             .then(res => res.json())
             .then(data => setPosts(data))
-    }, []);
+    }, [postRefetch]);
 
     return (
         <div className="grid grid-cols-1 gap-y-[30px]">
@@ -37,7 +38,7 @@ export const DynamicActivityPage = () => {
                                 <div className="w-[20px] h-[20px] bg-[#FCE9F3] rounded-full mr-[14px]"></div>
                                 <div>
                                     <span className="text-[14px] font-normal text-[#333333]">
-                                        @albertdon . <span>19h</span>
+                                        @albertdon . <span>{getHoursMinutes(post?.createdAt).hours}h &nbsp;{getHoursMinutes(post?.createdAt).minutes}min</span>
                                     </span>
                                 </div>
                             </div>

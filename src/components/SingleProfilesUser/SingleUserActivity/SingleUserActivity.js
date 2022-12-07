@@ -11,7 +11,7 @@ const SingleUserActivity = () => {
 
     const ref = useRef(null);
     const [photoURL, setPhotoUrl] = useState("");
-    const [postRefetch, setPostRefetch] = ('0');
+    const [postRefetch, setPostRefetch] = useState(0);
 
     const handleMessage = event => {
         event.preventDefault();
@@ -29,8 +29,8 @@ const SingleUserActivity = () => {
         })
             .then(res => res.json())
             .then(data => {
-                /* event.target.reset();
-                setPostRefetch(postRefetch + 1); */
+                ref.current.value = '';
+                setPostRefetch(postRefetch + 1);
             })
     }
 
@@ -50,7 +50,7 @@ const SingleUserActivity = () => {
             <div className="w-[457px] mx-auto shadow-[2px_2px_4px_rgba(0,0,0,0.12)] bg-white rounded-[10px] p-[30px] font-Inter font-normal text-[11px]">
                 <div className="flex w-full h-[100px] gap-[19px]">
                     <img className="w-12 h-10 rounded-full" src={profile} alt="profile" />
-                    <textarea ref={ref} id="message" className='text-[#757575] w-full focus:outline-none resize-none' placeholder='Write somethiings here......'></textarea>
+                    <textarea ref={ref} id="message" className='text-[#757575] w-full focus:outline-none resize-none' name='post_description' placeholder='Write somethiings here......'></textarea>
                 </div>
                 <hr />
                 <div className="flex w-full justify-between mt-[30px]">
@@ -74,7 +74,7 @@ const SingleUserActivity = () => {
                     </button>
                 </div>
             </div>
-            <DynamicActivityPage></DynamicActivityPage>
+            <DynamicActivityPage postRefetch={postRefetch}></DynamicActivityPage>
         </div>
     );
 };
