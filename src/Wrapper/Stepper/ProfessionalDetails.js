@@ -29,7 +29,10 @@ export const ProfessionalDetails = ({ setPage }) => {
 
     return (
         <div className="w-full h-auto">
-            <h1 className="text-left text-[32px] my-[21px}]">Professional</h1>
+            <section className="col-span-1 md:col-span-2 lg:col-span-3 text-2xl text-[#2F3659] mb-8">
+                <p>Professional Info</p>
+                <hr className="w-1/2 mt-2 mx-auto" />
+            </section>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <section className="md:w-full w-64 mx-auto grid grid-cols-1 md:grid-cols-2 gap-3 lg:grid-cols-3">
                     {/* ---------- Position ---------- */}
@@ -124,21 +127,21 @@ export const ProfessionalDetails = ({ setPage }) => {
                     <section>
                         <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
                             <input
-                                {...register("caseCompleted", {
+                                {...register("serviceYearDuration", {
                                     required: {
                                         value: true,
-                                        message: "Case Completed is required",
+                                        message: "Service Year Duration is required",
                                     },
                                 })}
                                 type="number"
-                                placeholder="Case Completed"
+                                placeholder="Service Year Duration"
                                 className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
-                                id="caseCompleted"
+                                id="serviceYearDuration"
                             />
                         </div>
                         <h1 className="text-left ml-2">
-                            {errors.caseCompleted?.type === "required" && (
-                                <span className="w-full text-left text-red-400 text-sm">{errors?.caseCompleted.message}</span>
+                            {errors.serviceYearDuration?.type === "required" && (
+                                <span className="w-full text-left text-red-400 text-sm">{errors?.serviceYearDuration.message}</span>
                             )}
                         </h1>
                     </section>

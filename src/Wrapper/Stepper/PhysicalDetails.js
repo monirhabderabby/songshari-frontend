@@ -24,7 +24,7 @@ export const PhysicalDetails = ({ setPage }) => {
 
     return (
         <div className="w-full h-auto">
-            <section className="col-span-1 md:col-span-2 lg:col-span-3 text-2xl text-[#2F3659] mb-4">
+            <section className="col-span-1 md:col-span-2 lg:col-span-3 text-2xl text-[#2F3659] mb-8">
                 <p>Physical Information Form</p>
                 <hr className="w-1/2 mt-2 mx-auto" />
             </section>

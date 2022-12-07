@@ -19,7 +19,7 @@ export const UserCard = ({ profile, isLoading }) => {
                     />
                     <div className="absolute h-[100px] w-full top-[300px] right-0 inset-0 bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] opacity-90 text-white px-4 py-2 font-serif group-hover:top-[370px] transition ease-out duration-500 rounded-bl-[12px] rounded-br-[12px]">
                         <div className="flex gap-x-4 items-center">
-                            <p className="text-[20px] text-white font-bold drop-shadow-lg">{profile?.firstName + " " + profile?.lastName}</p>
+                            <p className="text-[20px] text-white font-bold drop-shadow-lg">{profile?.firstName}</p>
                             <p className="text-[18px] text-[#87ceeb]">{ageCalculator(profile?.dateOfBirth ? profile?.dateOfBirth : 0)}</p>
                         </div>
                         <p>{profile?.designation ? profile?.designation : "Not Provided"}</p>
@@ -73,8 +73,6 @@ export const UserCard = ({ profile, isLoading }) => {
                         </div>
                     </div>
                 </div>
-                
-               
             )}
             {profile && (
                 <div className="h-[400px]  relative group overflow-hidden Suggested-card  md:hidden ml-4 mr-4 mb-4">
@@ -139,8 +137,6 @@ export const UserCard = ({ profile, isLoading }) => {
                         </div>
                     </div>
                 </div>
-                
-               
             )}
             {isLoading &&
                 array.map(a => {
