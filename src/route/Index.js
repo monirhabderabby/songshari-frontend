@@ -72,6 +72,8 @@ import MobileProfileOthers from "../Wrapper/Home/mobileversion/MobileProfileOthe
 import { PrivacyMov } from "../Wrapper/Home/mobileversion/privacy/PrivacyMov";
 import { Setting } from "../Wrapper/Home/mobileversion/Setting";
 import { GallaryMov } from "../Wrapper/Home/mobileversion/gallarymov/GallaryMov";
+import MobileSingleProfilesUser from "../components/SingleProfilesUser/MobileSingleProfilesUser/MobileSingleProfilesUser";
+import { PersonalDetailsMobile } from "../components/SingleProfilesUser/MobileSingleProfilesUser/PersonalDetailsMobile";
 
 
 const Index = () => {
@@ -141,6 +143,8 @@ const Index = () => {
                     {/* --------------- MOBILE ROUTES START --------------- */}
                     <Route path="/mobileHomePage" element={<MobileHome />}></Route>
                     <Route path="/setting" element={<Setting></Setting>}></Route>
+                    <Route path="/mobileuserprofile" element={<MobileSingleProfilesUser></MobileSingleProfilesUser>}></Route>
+                    <Route path="/personaldetailsmov" element={<PersonalDetailsMobile></PersonalDetailsMobile>}></Route>
                    
                     <Route path="/aboutmov" element={<AboutMov></AboutMov>}></Route>
                     <Route path="/gallarymov" element={<GallaryMov />}></Route>

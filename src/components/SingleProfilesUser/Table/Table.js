@@ -14,7 +14,7 @@ const Table = ({ data, isLoading }) => {
 
     return (
         <div>
-            <div className="mb-4">
+            <div className="mb-4 mt-4">
                 <div className="notification-bar">
                     <div className="flex justify-center items-center h-full gap-4">
                         <button
