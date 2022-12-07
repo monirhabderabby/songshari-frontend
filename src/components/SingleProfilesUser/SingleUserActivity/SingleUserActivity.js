@@ -11,29 +11,26 @@ const SingleUserActivity = () => {
 
     const ref = useRef(null);
     const [photoURL, setPhotoUrl] = useState("");
+    const [postRefetch, setPostRefetch] = useState(0);
 
     const handleMessage = event => {
         event.preventDefault();
         const post_info = {
             postBody: ref.current.value
         }
-        // console.log(ref.current.value);
 
-        fetch(`http://localhost:4000/member/personalDetail`, {
+        fetch(`http://localhost:4000/member/post/add`, {
             method: "POST",
             headers: {
                 "content-type": "application/json",
-                "author": localStorage.getItem("accessToken")
+                authorization: `Bearer ${localStorage.getItem("accessToken")}`
             },
             body: JSON.stringify(post_info)
         })
             .then(res => res.json())
             .then(data => {
-                /* if(){
-    
-                }else{
-    
-                } */
+                ref.current.value = '';
+                setPostRefetch(postRefetch + 1);
             })
     }
 
@@ -53,7 +50,7 @@ const SingleUserActivity = () => {
             <div className="w-[457px] mx-auto shadow-[2px_2px_4px_rgba(0,0,0,0.12)] bg-white rounded-[10px] p-[30px] font-Inter font-normal text-[11px]">
                 <div className="flex w-full h-[100px] gap-[19px]">
                     <img className="w-12 h-10 rounded-full" src={profile} alt="profile" />
-                    <textarea ref={ref} id="message" className='text-[#757575] w-full focus:outline-none resize-none' placeholder='Write somethiings here......'></textarea>
+                    <textarea ref={ref} id="message" className='text-[#757575] w-full focus:outline-none resize-none' name='post_description' placeholder='Write somethiings here......'></textarea>
                 </div>
                 <hr />
                 <div className="flex w-full justify-between mt-[30px]">
@@ -77,7 +74,7 @@ const SingleUserActivity = () => {
                     </button>
                 </div>
             </div>
-            <DynamicActivityPage></DynamicActivityPage>
+            <DynamicActivityPage postRefetch={postRefetch}></DynamicActivityPage>
         </div>
     );
 };

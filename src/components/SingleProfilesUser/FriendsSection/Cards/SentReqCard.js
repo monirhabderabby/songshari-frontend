@@ -18,10 +18,10 @@ export const SentReqCard = ({ friend }) => {
         if (friend) {
             console.log(friend);
         }
-    }, [isError, error, data]);
+    }, [isError, error, data, friend]);
 
     return (
-        <div className="p-[21px] h-[141px] min-w-[501px] mx-auto bg-white shadow-[2px_2px_8px_rgba(0,0,0,0.12)] rounded-[15px] flex justify-between items-center">
+        <div className="p-[21px] h-[141px] w-full mx-auto bg-white shadow-[2px_2px_8px_rgba(0,0,0,0.12)] rounded-[15px] flex justify-between items-center">
             <div className="h-full flex items-center">
                 <div
                     className="w-[83px] h-[100px] rounded-[15px] mr-[21px] bg-center bg-cover"

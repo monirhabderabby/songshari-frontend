@@ -71,7 +71,7 @@ export const userApi = apiSlice.injectEndpoints({
             }),
         }),
         updatePersonalDetails: builder.mutation({
-            query: (data) => ({
+            query: data => ({
                 url: `/member/personalDetail`,
                 method: "PUT",
                 headers: { authorization: `Bearer ${localStorage.getItem("accessToken")}` },

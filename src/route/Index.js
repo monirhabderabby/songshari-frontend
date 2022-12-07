@@ -25,6 +25,10 @@ import TopBride from "../components/pages/TopProfile/TopBride";
 import TopGroom from "../components/pages/TopProfile/TopGroom";
 import Accordian from "../components/SingleProfilesUser/profileSection/Accordion";
 // import EditProfile from "../components/SingleProfilesUser/profileSection/EditProfile";
+import EditEducationalInfo from "../components/SingleProfilesUser/profileSection/EditprofileSection/EditEducationalInfo";
+import EditOthersInfo from "../components/SingleProfilesUser/profileSection/EditprofileSection/EditOthersInfo";
+import EditPhysicalInfo from "../components/SingleProfilesUser/profileSection/EditprofileSection/EditPhysicalInfo";
+import EditProfesionalInfo from "../components/SingleProfilesUser/profileSection/EditprofileSection/EditProfesionalInfo";
 import About from "../Wrapper/About/About";
 import Agent from "../Wrapper/Agent/Agent";
 import Community from "../Wrapper/Community/Community";
@@ -39,11 +43,6 @@ import Shop from "../Wrapper/Shop/Shop";
 import SingleProduct from "../Wrapper/SingleProduct/SingleProduct";
 import SingleProfile from "../Wrapper/SingleProfilesUser/SingleProfile";
 import { Container } from "../Wrapper/Stepper/Container";
-import EditPersonalInfo from "../components/SingleProfilesUser/profileSection/EditprofileSection/EditPersonalInfo";
-import EditProfesionalInfo from "../components/SingleProfilesUser/profileSection/EditprofileSection/EditProfesionalInfo";
-import EditEducationalInfo from "../components/SingleProfilesUser/profileSection/EditprofileSection/EditEducationalInfo";
-import EditPhysicalInfo from "../components/SingleProfilesUser/profileSection/EditprofileSection/EditPhysicalInfo";
-import EditOthersInfo from "../components/SingleProfilesUser/profileSection/EditprofileSection/EditOthersInfo";
 // import { UsersProfile } from "../components/SingleProfilesUser/profileSection/UsersProfile";
 import { FilterResults } from "../components/pages/FindPartner/FilterResults/FilterResults";
 import MobileDiamondPlan from "../components/pages/Membership/MobileVersion/MobileDiamondPlan";
@@ -59,6 +58,7 @@ import { FindAPartnerSuggested } from "../components/pages/FindPartner/FindAPart
 import { AboutMov } from "../Wrapper/Home/mobileversion/about/AboutMov";
 import { CertificateMov } from "../Wrapper/Home/mobileversion/CertificateMov";
 import { CommunityMov } from "../Wrapper/Home/mobileversion/comminuty/CommunityMov";
+import { GallaryMov } from "../Wrapper/Home/mobileversion/gallarymov/GallaryMov";
 import { HistoryMov } from "../Wrapper/Home/mobileversion/history/HistoryMov";
 import { Like } from "../Wrapper/Home/mobileversion/Like";
 import { MatchesMov } from "../Wrapper/Home/mobileversion/MatchesMov";
@@ -69,10 +69,11 @@ import { NavCase } from "../Wrapper/Home/mobileversion/mobilelawyeractivity/NavC
 import { PendingCaseMov } from "../Wrapper/Home/mobileversion/mobilelawyeractivity/PendingCase";
 import { RunningCaseMov } from "../Wrapper/Home/mobileversion/mobilelawyeractivity/RunningCase";
 import MobileProfileOthers from "../Wrapper/Home/mobileversion/MobileProfileOthers";
+import Certificate from "../Wrapper/Home/mobileversion/PhotoGallery/certificate/Certificate";
 import { PrivacyMov } from "../Wrapper/Home/mobileversion/privacy/PrivacyMov";
 import { Setting } from "../Wrapper/Home/mobileversion/Setting";
-import { GallaryMov } from "../Wrapper/Home/mobileversion/gallarymov/GallaryMov";
-import Certificate from "../Wrapper/Home/mobileversion/PhotoGallery/certificate/Certificate";
+import MobileSingleProfilesUser from "../components/SingleProfilesUser/MobileSingleProfilesUser/MobileSingleProfilesUser";
+import { PersonalDetailsMobile } from "../components/SingleProfilesUser/MobileSingleProfilesUser/PersonalDetailsMobile";
 
 const Index = () => {
     return (
@@ -82,8 +83,8 @@ const Index = () => {
                     <Route path="/about" element={<About></About>}></Route>
                     <Route path="/userprofile" element={<SingleProfile />}>
                         <Route path="" element={<Accordian />} />
-                        <Route path="edit"  >
-                            <Route path="personalinfo/:id" element={<EditPersonalInfo />} />
+                        <Route path="edit">
+                            {/* <Route path="personalinfo/:id" element={<EditPersonalInfo />} /> */}
                             <Route path="profesionalinfo/:id" element={<EditProfesionalInfo />} />
                             <Route path="educationalinfo/:id" element={<EditEducationalInfo />} />
                             <Route path="physicalinfo/:id" element={<EditPhysicalInfo />} />
@@ -141,7 +142,8 @@ const Index = () => {
                     {/* --------------- MOBILE ROUTES START --------------- */}
                     <Route path="/mobileHomePage" element={<MobileHome />}></Route>
                     <Route path="/setting" element={<Setting></Setting>}></Route>
-
+                    <Route path="/mobileuserprofile" element={<MobileSingleProfilesUser></MobileSingleProfilesUser>}></Route>
+                    <Route path="/personaldetailsmov" element={<PersonalDetailsMobile></PersonalDetailsMobile>}></Route>
                     <Route path="/aboutmov" element={<AboutMov></AboutMov>}></Route>
                     <Route path="/gallarymov" element={<GallaryMov />}></Route>
                     <Route path="/meetmov" element={<MeetMov></MeetMov>}></Route>

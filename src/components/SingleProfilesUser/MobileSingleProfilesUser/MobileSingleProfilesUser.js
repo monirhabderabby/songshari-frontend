@@ -5,6 +5,7 @@ import { auth } from "../../../firebase.init";
 import { BottomNav } from "../../../Wrapper/Home/mobileversion/BottomNav";
 import Accordian from "../profileSection/Accordion";
 import MobileAccordion from "./MobileAccordion";
+import { MobileAccordionLink } from "./MobileAccordionLink";
 import MobileUsersProfile from "./MobileUsersProfile";
 
 const MobileSingleProfilesUser = () => {
@@ -26,8 +27,10 @@ const MobileSingleProfilesUser = () => {
             </div>
             <MobileUsersProfile />
             <div className="py-[20px]">
-              <Accordian></Accordian>
+             <MobileAccordionLink></MobileAccordionLink>
             </div>
+            <br></br>
+            <br></br>
             <BottomNav></BottomNav>
         </section>
 
