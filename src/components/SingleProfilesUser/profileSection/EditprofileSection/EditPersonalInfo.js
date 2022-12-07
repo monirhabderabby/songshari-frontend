@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import { v4 as uuidv4 } from "uuid";
 import { InputNumber, Select, Upload, message, DatePicker, Radio, Space, Slider } from 'antd';
 import { FileAddFilled } from '@ant-design/icons';
 import TextArea from 'antd/es/input/TextArea';
@@ -6,7 +8,10 @@ import { useNavigate, useParams } from 'react-router';
 import Autocomplete, { createFilterOptions } from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
 import { useUpdatePersonalDetailsMutation } from '../../../../Redux/features/userInfo/userApi';
+import { firebaseStorage } from '../../../../firebase.init';
+import { async } from '@firebase/util';
 const { RangePicker } = DatePicker;
+
 
 const { Option } = Select;
 const { Dragger } = Upload;
@@ -41,7 +46,8 @@ const EditPersonalInfo = () => {
     const [brother, setBrother] = useState(0);
     const [sister, setSister] = useState(0);
     const [parentStatus, setParentStatus] = useState('');
-
+    //uploaded image url data state
+    const [nidOrPassportPhoto, setNidOrPassportPhoto] = useState({})
     const { id } = useParams();
     const [updatePersonalDetails, { isError, isLoading, isSuccess }] = useUpdatePersonalDetailsMutation()
     useEffect(() => {
@@ -77,26 +83,40 @@ const EditPersonalInfo = () => {
             <Option value="+966">KSA</Option>
         </Select>);
     //for file upload 
-    const props = {
-        name: 'file',
-        multiple: true,
-        // action: '',
-        onChange(info) {
-            const { status } = info.file;
-            console.log(info)
-            if (status !== 'uploading') {
-                console.log(info.file, info.fileList);
-            }
-            if (status === 'done') {
-                message.success(`${info.file.name} file uploaded successfully.`);
-            } else if (status === 'error') {
-                message.error(`${info.file.name} file upload failed.`);
-            }
-        },
-        onDrop(e) {
-            console.log('Dropped files', e.dataTransfer.files);
-        },
-    };
+    // const props = {
+    //     name: 'file',
+    //     multiple: false,
+    //     // action: '',
+    //     onChange(info) {
+    //         const { status } = info.file;
+    //         console.log(info)
+    //         if (status !== 'uploading') {
+    //             console.log(info.file, info.fileList);
+    //         }
+    //         if (status === 'done') {
+    //             message.success(`${info.file.name} file uploaded successfully.`);
+    //         } else if (status === 'error') {
+    //             message.error(`${info.file.name} file upload failed.`);
+    //         }
+    //     },
+    //     onDrop(e) {
+    //         console.log('Dropped files', e.dataTransfer.files);
+    //     },
+    // };
+
+    // handle file upload change data
+    const handleUpload = async (event) => {
+
+        const file = event.file;
+        const storageRef = ref(firebaseStorage, `nidOrPassport/${file?.name}`);
+        await uploadBytes(storageRef, file).then(async snapshot => {
+            await getDownloadURL(snapshot.ref).then(url => {
+                setNidOrPassportPhoto({ frontSide: url })
+
+            });
+        });
+
+    }
 
     // some data collection handler function like name,email etc
     const handleData = (e) => {
@@ -303,10 +323,7 @@ const EditPersonalInfo = () => {
     const handleZodiacSign = (value) => {
         setPersonalInfo({ ...personalInfo, zodaicSign: value })
     }
-    // handle file upload change data
-    const handleUpload = (event) => {
-        setPersonalInfo({ ...personalInfo, nidOrPassportFile: event?.file })
-    }
+
 
     //phycsical information data change handler
     const onHeightChange = (value) => {
@@ -425,11 +442,12 @@ const EditPersonalInfo = () => {
             gpaOrCgpa: cgpa?.title,
             ...physicalInfo,
             height: height?.toString(),
-            weight: weight?.toString()
+            weight: weight?.toString(),
+            NidOrPassportPhoto: nidOrPassportPhoto,
         };
 
         await updatePersonalDetails(data)
-
+        // console.log(data)
 
 
     }
@@ -485,7 +503,7 @@ const EditPersonalInfo = () => {
                         <div>
                             <label htmlFor="nid" className='text-sm block pb-2 text-slate-600	  font-medium'>NID/Passport Photo</label>
 
-                            <Dragger {...props} onChange={handleUpload}>
+                            <Dragger onChange={handleUpload}>
                                 <div className='flex justify-center items-center'>
                                     <p>File Upload</p>
                                     <p className="ant-upload-drag-icon pl-4">
