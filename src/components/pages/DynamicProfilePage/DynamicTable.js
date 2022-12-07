@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "../../../App.css";
-import "../../../assets/css/table.css";
 import { DynamicActivityPage } from "./DynamicActivityPage";
 import { DynamicMatches } from "./DynamicMaches";
 import { DynamicProfileInfo } from "./DynamicProfileInfo";
@@ -9,8 +8,8 @@ const DynamicTable = ({ data, isLoading }) => {
     const [page, setPage] = useState(2);
     return (
         <div>
-            <div className="px-2 md:px-0 mx-4 mb-4">
-                <div className="notification-bar">
+            <div className="px-2 md:px-0 mb-4">
+                <div className="w-full h-[60px] bg-white mb-[20px] shadow-[rgba(100,100,111,0.2)_0px_7px_29px_0px] rounded-[4px]">
                     <div className="flex justify-center items-center gap-4">
                         <button
                             className={`mt-4 font-medium leading-tight ${page === 1 ? "text-primary font-bold" : "text-gray-800"}`}
