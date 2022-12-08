@@ -43,6 +43,7 @@ export const connectionApi = apiSlice.injectEndpoints({
                 method: "GET",
                 headers: { authorization: `Bearer ${localStorage.getItem("accessToken")}` },
             }),
+            keepUnusedDataFor: 20,
         }),
         cancleSentRequest: builder.mutation({
             query: ({ id }) => ({
