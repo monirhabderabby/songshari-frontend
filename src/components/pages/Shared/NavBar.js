@@ -103,7 +103,7 @@ const NavBar = ({ bg }) => {
                             <li className={`${NavBarCSS.hasTooltip}`}>
                                 <div className="flex flex-col items-center cursor-pointer">
                                     {user?.photoURL ? (
-                                        <img className="w-[60px] h-[60px] rounded-[100%]" src={user?.photoURL} />
+                                        <img className="w-[60px] h-[60px] rounded-[100%]" src={user?.photoURL} alt="" />
                                     ) : (
                                         <img className="w-14" src={register} alt="Not Available" />
                                     )}

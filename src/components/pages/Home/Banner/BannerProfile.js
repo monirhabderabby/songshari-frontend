@@ -33,7 +33,7 @@ const BannerProfile = () => {
                 >
                     {swipematch.map(data => (
                         <SwiperSlide key={data._id}>
-                            <div className="w-[280px] h-[400px] relative overflow-hidden">
+                            <div className="max-w-[280px] h-[400px] relative overflow-hidden">
                                 <img
                                     src={data?.profilePhoto}
                                     className="h-[400px] w-[280px] rounded-tr-[12px] rounded-tl-[12px] rounded-bl-[12px] rounded-br-[12px] object-cover"

@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
 import "../../../App.css";
-import "../../../assets/css/table.css";
 import { Friends } from "../FriendsSection/Friends";
 import { Matches } from "../profileSection/Matches";
 import { Profile } from "../profileSection/Profile";
@@ -15,9 +14,9 @@ const Table = ({ data, isLoading }) => {
 
     return (
         <div>
-            <div className="mb-4 mx-8">
-                <div className="notification-bar">
-                    <div className="flex justify-center items-center h-full gap-4">
+            <div className="mb-4">
+                <div className="w-full h-[60px] bg-white mb-[20px] shadow-[rgba(100,100,111,0.2)_0px_7px_29px_0px] rounded-[4px]">
+                    <div className="flex justify-center items-center h-full w-full gap-4">
                         <button
                             className={`font-medium text-[15px] leading-tight ${page === 1 ? "text-primary font-bold" : "text-gray-800"}`}
                             onClick={() => setPage(1)}
@@ -27,8 +26,8 @@ const Table = ({ data, isLoading }) => {
                         <button
                             className={`font-medium text-[15px] leading-tight ${page === 2 ? "text-primary font-bold" : "text-gray-800"}`}
                             onClick={() => {
-                                navigate("/userprofile")
-                                setPage(2)
+                                navigate("/userprofile");
+                                setPage(2);
                             }}
                         >
                             Profile

@@ -16,7 +16,7 @@ export const AccountSettingMov = () => {
 
     <div className='mt-10'>
       <h1 className='font-bold ml-8 text-xl mb-12'>Account</h1>
-      <Link to='/userprofile'>
+      <Link to='/mobileuserprofile'>
         <div className='grid grid-cols-6 mt-5 mb-10 he'>
           <div className='setting-mov'>
             <img src='https://i.ibb.co/WxB9SbQ/Vector.png' className='ml-8 mr-6' alt="Not Available"></img>
@@ -178,10 +178,11 @@ export const AccountSettingMov = () => {
 
         </div>
       </Link>
-     
 
-      <button aria-describedby={id} type="button" onClick={handleClick} className='ml-6 mt-4'>
-      <i class="fa-solid fa-ban mr-4"></i> About Shongshari
+
+      <button aria-describedby={id} type="button" onClick={handleClick} className='ml-6 mt-8 flex items-center'>
+        <i class="fa-solid fa-ban mr-6 text-xl text-gray-700"></i>
+        <p>About Shongshari</p>
       </button>
       <Popper id={id} open={open} anchorEl={anchorEl}>
         <Box sx={{ border: 1, p: 1, bgcolor: 'background.paper' }} className='p-12'>
@@ -194,7 +195,7 @@ export const AccountSettingMov = () => {
           <Link to='/historymov'>History</Link>
           <br></br>
           <Link to='/communitymov'>Community</Link>
-         
+
         </Box>
       </Popper>
     </div>

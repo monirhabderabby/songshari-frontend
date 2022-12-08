@@ -1,9 +1,11 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
+import { apiBaseUrl } from "../../config/index"
+
 const apiSlice = createApi({
     reducerPath: "api",
     baseQuery: fetchBaseQuery({
-        baseUrl: "https://api-shongshari.onrender.com",
+        baseUrl: apiBaseUrl,
     }),
     endpoints: builder => ({}),
     tagTypes: ["allGetFriendRequest"],

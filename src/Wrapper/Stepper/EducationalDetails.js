@@ -1,12 +1,26 @@
 import React, { useEffect, useState } from "react";
 import { useForm, useFieldArray } from "react-hook-form";
+// import { v4 as uuidv4 } from "uuid";
+// import { firebaseStorage } from "../../firebase.init";
 import { useSetEducationalDetailsMutation } from "../../Redux/features/userInfo/userApi";
 import CreatableSelect from "react-select/creatable";
 import { DatePicker } from "antd";
 
 export const EducationalDetails = ({ setPage }) => {
-    const [photoURL, setPhotoUrl] = useState("");
+    // const [photoURL, setPhotoUrl] = useState("");
     const [setEducationalDetails, { data, isLoading }] = useSetEducationalDetailsMutation();
+
+    const [degreeName, setDegreeName] = useState("");
+    const [eduDepartment, setEduDepartment] = useState("");
+    const [eduInstitute, setEduInstitute] = useState("");
+    const [eduFieldOfStudy, setEduFieldOfStudy] = useState("");
+    const [eduYearOfPassing, setEduYearOfPassing] = useState("");
+
+    const [addedDegreeName, setAddedDegreeName] = useState([]);
+    const [addedDepartment, setAddedDepartment] = useState([]);
+    const [addedInstitute, setAddedInstitute] = useState([]);
+    const [addedFieldOfStudy, setAddedFieldOfStudy] = useState([]);
+    const [addedYearOfPassing, setAddedYearOfPassing] = useState([]);
 
     const {
         register,
@@ -21,9 +35,43 @@ export const EducationalDetails = ({ setPage }) => {
     });
 
     const onSubmit = async data => {
-        data.caseCompleted = parseInt(data.caseCompleted);
-        data.photoCertificate = photoURL;
+        // data.caseCompleted = parseInt(data.caseCompleted);
+
+        data.educations.map(p => delete p.degreeName);
+        data.educations.map(p => delete p.eduInstitute);
+        data.educations.map(p => delete p.eduDepartment);
+        data.educations.map(p => delete p.eduFieldOfStudy);
+        data.educations.map(p => delete p.eduYearOfPassing);
+
+        data.educations.map((p, index) => (p.degreeName = addedDegreeName[index]));
+        data.educations.map((p, index) => (p.eduInstitute = addedInstitute[index]));
+        data.educations.map((p, index) => (p.eduDepartment = addedDepartment[index]));
+        data.educations.map((p, index) => (p.eduFieldOfStudy = addedFieldOfStudy[index]));
+        data.educations.map((p, index) => (p.eduYearOfPassing = addedYearOfPassing[index]));
+
+        delete data.degreeName;
+        delete data.eduInstitute;
+        delete data.eduDepartment;
+        delete data.eduFieldOfStudy;
+        delete data.eduYearOfPassing;
+
+        const newObject = Object.create(data);
+        newObject.degreeName = degreeName;
+        newObject.eduDepartment = eduDepartment;
+        newObject.eduFieldOfStudy = eduFieldOfStudy;
+        newObject.eduInstitute = eduInstitute;
+        newObject.eduYearOfPassing = eduYearOfPassing;
+        newObject.eduGpaOrCgpa = data.gpaOrCgpa;
+        newObject.specialEducationalAchievement = data.specialEducationalAchievement;
+
+        delete data.gpaOrCgpa;
+        delete data.specialEducationalAchievement;
+        console.log(newObject);
+        data.educations.push(newObject);
+
+        // data.photoCertificate = photoURL;
         await setEducationalDetails(data);
+        console.log(data);
     };
 
     useEffect(() => {
@@ -44,7 +92,7 @@ export const EducationalDetails = ({ setPage }) => {
 
     return (
         <div className="w-full h-auto">
-            <section className="col-span-1 md:col-span-2 lg:col-span-3 text-2xl text-[#2F3659] mb-4">
+            <section className="col-span-1 md:col-span-2 lg:col-span-3 text-2xl text-[#2F3659] mb-8">
                 <p>Educational Information Form</p>
                 <hr className="w-1/2 mt-2 mx-auto" />
             </section>
@@ -55,7 +103,7 @@ export const EducationalDetails = ({ setPage }) => {
                         <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
                             <CreatableSelect
                                 {...register("degreeName")}
-                                // onChange={val => setDegreeName(val.value)}
+                                onChange={val => setDegreeName(val.value)}
                                 type="text"
                                 placeholder="Degree Name"
                                 // options={options}
@@ -84,7 +132,7 @@ export const EducationalDetails = ({ setPage }) => {
                         <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
                             <CreatableSelect
                                 {...register("eduInstitute")}
-                                // onChange={val => setEduInstitute(val.value)}
+                                onChange={val => setEduInstitute(val.value)}
                                 type="text"
                                 placeholder="Institution"
                                 // options={options}
@@ -108,7 +156,7 @@ export const EducationalDetails = ({ setPage }) => {
                         <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
                             <CreatableSelect
                                 {...register("eduDepartment")}
-                                // onChange={val => setEduDepartment(val.value)}
+                                onChange={val => setEduDepartment(val.value)}
                                 type="text"
                                 placeholder="Department Name"
                                 // options={options}
@@ -137,7 +185,7 @@ export const EducationalDetails = ({ setPage }) => {
                         <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
                             <CreatableSelect
                                 {...register("eduFieldOfStudy")}
-                                // onChange={val => setEduFieldOfStudy(val.value)}
+                                onChange={val => setEduFieldOfStudy(val.value)}
                                 type="text"
                                 placeholder="Field of Study"
                                 // options={options}
@@ -172,7 +220,7 @@ export const EducationalDetails = ({ setPage }) => {
                                     },
                                 })}
                                 type="text"
-                                placeholder="Special Achievement"
+                                placeholder="GPA Or CGPA"
                                 className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
                                 id="gpaOrCgpa"
                             />
@@ -188,7 +236,7 @@ export const EducationalDetails = ({ setPage }) => {
                         <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
                             <DatePicker
                                 {...register("eduYearOfPassing")}
-                                // onChange={(date, dateString) => setEduYearOfPassing(dateString)}
+                                onChange={(date, dateString) => setEduYearOfPassing(dateString)}
                                 placeholder="Year of Passing"
                                 className="flex-1 px-2 py-2 outline-none h-full bg-transparent text-sm text-gray-400"
                                 id="yearOfPassing"
@@ -205,23 +253,13 @@ export const EducationalDetails = ({ setPage }) => {
                     <section>
                         <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
                             <input
-                                {...register("specialEducationalAchievement", {
-                                    required: {
-                                        value: true,
-                                        message: "Special Educational Achievement is required",
-                                    },
-                                })}
+                                {...register("specialEducationalAchievement")}
                                 type="text"
                                 placeholder="Special Achievement"
                                 className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
                                 id="specialEducationalAchievement"
                             />
                         </div>
-                        <h1 className="text-left ml-2">
-                            {errors.specialEducationalAchievement?.type === "required" && (
-                                <span className="w-full text-left text-red-400 text-sm">{errors?.specialEducationalAchievement.message}</span>
-                            )}
-                        </h1>
                     </section>
 
                     {/* ---------- Add More Educational Info */}
@@ -230,33 +268,12 @@ export const EducationalDetails = ({ setPage }) => {
                     {fields.map((field, index) => {
                         return (
                             <section className="col-span-1 md:col-span-2 lg:col-span-3 grid grid-cols-3 gap-3" key={field.id}>
-                                <section>
-                                    <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
-                                        <input
-                                            {...register(`professions.${index}.addedProfessionPosition`, {
-                                                required: {
-                                                    value: true,
-                                                    message: "Position is required",
-                                                },
-                                            })}
-                                            type="text"
-                                            placeholder="Position"
-                                            className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
-                                            id="position"
-                                        />
-                                    </div>
-                                    <h1 className="text-left ml-2">
-                                        {errors.addedProfessionPosition?.type === "required" && (
-                                            <span className="w-full text-left text-red-400 text-sm">{errors?.addedProfessionPosition.message}</span>
-                                        )}
-                                    </h1>
-                                </section>
                                 {/* ---------- Degree Name ---------- */}
                                 <section>
                                     <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
                                         <CreatableSelect
                                             {...register(`educations.${index}.degreeName`)}
-                                            // onChange={val => setDegreeName(val.value)}
+                                            onChange={val => setAddedDegreeName([...addedDegreeName, val.value])}
                                             type="text"
                                             placeholder="Degree Name"
                                             // options={options}
@@ -285,7 +302,7 @@ export const EducationalDetails = ({ setPage }) => {
                                     <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
                                         <CreatableSelect
                                             {...register(`educations.${index}.eduInstitute`)}
-                                            // onChange={val => setEduInstitute(val.value)}
+                                            onChange={val => setAddedInstitute([...addedInstitute, val.value])}
                                             type="text"
                                             placeholder="Institution"
                                             // options={options}
@@ -309,7 +326,7 @@ export const EducationalDetails = ({ setPage }) => {
                                     <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
                                         <CreatableSelect
                                             {...register(`educations.${index}.eduDepartment`)}
-                                            // onChange={val => setEduDepartment(val.value)}
+                                            onChange={val => setAddedDepartment([...addedDepartment, val.value])}
                                             type="text"
                                             placeholder="Department Name"
                                             // options={options}
@@ -333,7 +350,7 @@ export const EducationalDetails = ({ setPage }) => {
                                     <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
                                         <CreatableSelect
                                             {...register(`educations.${index}.eduFieldOfStudy`)}
-                                            // onChange={val => setEduFieldOfStudy(val.value)}
+                                            onChange={val => setAddedFieldOfStudy([...addedFieldOfStudy, val.value])}
                                             type="text"
                                             placeholder="Field of Study"
                                             // options={options}
@@ -379,7 +396,7 @@ export const EducationalDetails = ({ setPage }) => {
                                     <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
                                         <DatePicker
                                             {...register(`educations.${index}.eduYearOfPassing`)}
-                                            // onChange={(date, dateString) => setEduYearOfPassing(dateString)}
+                                            onChange={(date, dateString) => setAddedYearOfPassing([...addedYearOfPassing, dateString])}
                                             placeholder="Year of Passing"
                                             className="flex-1 px-2 py-2 outline-none h-full bg-transparent text-sm text-gray-400"
                                             id="yearOfPassing"
@@ -473,11 +490,19 @@ export const EducationalDetails = ({ setPage }) => {
                     </section> */}
 
                 </section>
-                <input
-                    type="submit"
-                    value={isLoading ? "Saving..." : "Submit"}
-                    className="border-2 cursor-pointer mt-3 border-primary hover:border-0 rounded-full px-12 py-2 hover:bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] hover:text-white duration-500 transition-all"
-                />
+                <div className="flex items-center w-full justify-center gap-x-[20px] mt-[20px]">
+                    <button
+                        className="border-2 cursor-pointer mt-3 border-primary hover:border-0 rounded-full px-12 py-2 hover:bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] hover:text-white duration-500 transition-all"
+                        onClick={() => setPage(1)}
+                    >
+                        Previous
+                    </button>
+                    <input
+                        type="submit"
+                        value={isLoading ? "Saving..." : "Next"}
+                        className="border-2 cursor-pointer mt-3 border-primary hover:border-0 rounded-full px-12 py-2 hover:bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] hover:text-white duration-500 transition-all"
+                    />
+                </div>
             </form>
         </div>
     );

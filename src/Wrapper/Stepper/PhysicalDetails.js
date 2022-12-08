@@ -1,9 +1,24 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useSetPhysicalDetailsMutation } from "../../Redux/features/userInfo/userApi";
 import CreatableSelect from "react-select/creatable";
 
 export const PhysicalDetails = ({ setPage }) => {
+    const [phyAncestry, setPhyAncestry] = useState("");
+    const [phySkinTone, setPhySkinTone] = useState("");
+    const [phyEyeColor, setPhyEyeColor] = useState("");
+    const [phyHairColor, setPhyHairColor] = useState("");
+    const [phyHairType, setPhyHairType] = useState("");
+    const [phyNumberTeeth, setPhyNumberTeeth] = useState("");
+
+    // Ancestry data
+    const [ancestryData, setAncestryData] = useState([]);
+    useEffect(() => {
+        fetch("json/ancestry.json")
+            .then(res => res.json())
+            .then(data => setAncestryData(data));
+    }, []);
+
     const {
         register,
         formState: { errors },
@@ -13,8 +28,33 @@ export const PhysicalDetails = ({ setPage }) => {
     const [setPhysicalDetails, { data, isLoading }] = useSetPhysicalDetailsMutation();
 
     const onSubmit = async data => {
-        data.numberOfTeeth = Number(data.numberOfTeeth);
+
+        delete data.phyAncestry;
+        delete data.phyEyeColor;
+        delete data.phyHairColor;
+        delete data.phyHairType;
+        delete data.phyNumberTeeth;
+        delete data.phySkinTone;
+
+        // const physicalInfo = Object.create(data);
+
+        // physicalInfo.height = data.height;
+        // physicalInfo.weight = data.weight;
+        // physicalInfo.phyAncestry = phyAncestry;
+        // physicalInfo.phySkinTone = phySkinTone;
+        // physicalInfo.phyHairColor = phyHairColor;
+        // physicalInfo.phyHairType = phyHairType;
+        // physicalInfo.phyEyeColor = phyEyeColor;
+        // physicalInfo.phyNumberTeeth = phyNumberTeeth;
+
+        // delete data.height;
+        // delete data.weight;
+
+        data = { ...data, phyAncestry, phySkinTone, phyHairColor, phyHairType, phyEyeColor, phyNumberTeeth };
+
+        // data.numberOfTeeth = Number(data.numberOfTeeth);
         await setPhysicalDetails(data);
+        console.log(data);
     };
 
     useEffect(() => {
@@ -25,7 +65,7 @@ export const PhysicalDetails = ({ setPage }) => {
 
     return (
         <div className="w-full h-auto">
-            <section className="col-span-1 md:col-span-2 lg:col-span-3 text-2xl text-[#2F3659] mb-4">
+            <section className="col-span-1 md:col-span-2 lg:col-span-3 text-2xl text-[#2F3659] mb-8">
                 <p>Physical Information Form</p>
                 <hr className="w-1/2 mt-2 mx-auto" />
             </section>
@@ -80,10 +120,10 @@ export const PhysicalDetails = ({ setPage }) => {
                         <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
                             <CreatableSelect
                                 {...register("phyAncestry")}
-                                // onChange={val => setPhyAncestry(val.value)}
+                                onChange={val => setPhyAncestry(val.value)}
                                 type="text"
                                 placeholder="Ancestry"
-                                // options={ancestryData}
+                                options={ancestryData}
                                 styles={{
                                     control: (baseStyles, state) => ({
                                         ...baseStyles,
@@ -104,7 +144,7 @@ export const PhysicalDetails = ({ setPage }) => {
                         <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
                             <CreatableSelect
                                 {...register("phySkinTone")}
-                                // onChange={val => setPhySkinTone(val.value)}
+                                onChange={val => setPhySkinTone(val.value)}
                                 type="text"
                                 placeholder="Skin Tone"
                                 options={[
@@ -141,7 +181,7 @@ export const PhysicalDetails = ({ setPage }) => {
                         <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
                             <CreatableSelect
                                 {...register("phyHairColor")}
-                                // onChange={val => setPhyHairColor(val.value)}
+                                onChange={val => setPhyHairColor(val.value)}
                                 type="text"
                                 placeholder="Hair Color"
                                 // options={options}
@@ -165,7 +205,7 @@ export const PhysicalDetails = ({ setPage }) => {
                         <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
                             <CreatableSelect
                                 {...register("phyHairType")}
-                                // onChange={val => setPhyHairType(val.value)}
+                                onChange={val => setPhyHairType(val.value)}
                                 type="text"
                                 placeholder="Hair Type"
                                 // options={options}
@@ -189,7 +229,7 @@ export const PhysicalDetails = ({ setPage }) => {
                         <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
                             <CreatableSelect
                                 {...register("phyEyeColor")}
-                                // onChange={val => setPhyEyeColor(val.value)}
+                                onChange={val => setPhyEyeColor(val.value)}
                                 type="text"
                                 placeholder="Eye Color"
                                 // options={options}
@@ -213,7 +253,7 @@ export const PhysicalDetails = ({ setPage }) => {
                         <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
                             <CreatableSelect
                                 {...register("phyNumberTeeth")}
-                                // onChange={val => setPhyNumberTeeth(val.value)}
+                                onChange={val => setPhyNumberTeeth(val.value)}
                                 type="number"
                                 placeholder="Number of Teeth"
                                 // options={options}
@@ -233,11 +273,19 @@ export const PhysicalDetails = ({ setPage }) => {
                         </div>
                     </section>
                 </section>
-                <input
-                    type="submit"
-                    value={isLoading ? "Saving..." : "Submit"}
-                    className="border-2 cursor-pointer mt-3 border-primary hover:border-0 rounded-full px-12 py-2 hover:bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] hover:text-white duration-500 transition-all"
-                />
+                <div className="flex items-center w-full justify-center gap-x-[20px] mt-[20px]">
+                    <button
+                        className="border-2 cursor-pointer mt-3 border-primary hover:border-0 rounded-full px-12 py-2 hover:bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] hover:text-white duration-500 transition-all"
+                        onClick={() => setPage(3)}
+                    >
+                        Previous
+                    </button>
+                    <input
+                        type="submit"
+                        value={isLoading ? "Saving..." : "Next"}
+                        className="border-2 cursor-pointer mt-3 border-primary hover:border-0 rounded-full px-12 py-2 hover:bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] hover:text-white duration-500 transition-all"
+                    />
+                </div>
             </form>
         </div>
     );

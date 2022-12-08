@@ -16,7 +16,6 @@ import MobileSignUp from "./MobileDesign/MobileSignUp";
 
 const Signup = () => {
     const [regAsMember, { data: response, isLoading: serverLoading }] = useRegAsMemberMutation();
-    const [photoURL, setPhotoUrl] = useState("");
     const [customError, setCustomError] = useState("");
     const [createUserWithEmailAndPassword, user, loading, error] = useCreateUserWithEmailAndPassword(auth);
     const [signInWithGoogle, googleUser, googleLoading] = useSignInWithGoogle(auth);
