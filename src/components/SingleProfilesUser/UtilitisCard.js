@@ -2,7 +2,7 @@ import React from "react";
 import { FiSettings } from "react-icons/fi";
 import { HiOutlineMail } from "react-icons/hi";
 import { MdOutlineNotificationsActive } from "react-icons/md";
-import { Button, Popover } from 'antd'
+import { Popover } from 'antd'
 import { useState } from "react";
 import Notification from "./Notification/Notification";
 import DoneAllIcon from '@mui/icons-material/DoneAll';

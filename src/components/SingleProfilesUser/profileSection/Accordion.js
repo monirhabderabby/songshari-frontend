@@ -6,8 +6,7 @@ import { styled } from "@mui/material/styles";
 import Typography from "@mui/material/Typography";
 import moment from "moment";
 import React from "react";
-import { useNavigate, useOutletContext } from "react-router";
-import { useGetProfileDetailsQuery, useGetProfileDetailsWIthAuthQuery } from "../../../Redux/features/userInfo/userApi";
+import { useNavigate } from "react-router";
 import "./Accordion.css";
 const Accordion = styled(props => <MuiAccordion disableGutters elevation={0} square {...props} />)(({ theme }) => ({
     paddingTop: "23px",
@@ -44,15 +43,18 @@ const Accordian = ({ data, isLoading }) => {
     };
     const navigate = useNavigate();
     // if (isLoading) return false;
-
+    console.log(data);
     return (
         <div className="mb-[69px] max-w-[523px] mx-auto">
             <Accordion expanded={expanded === "panel1"} onChange={handleChange("panel1")}>
                 <div className="flex justify-between items-center	">
                     <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
                         <div>
-                            <Typography>
+                            <Typography className="hidden md:block">
                                 <h1 className="text-[24px] text-[#333333] leading-[34px] font-fira font-semibold">Personal Information</h1>
+                            </Typography>
+                            <Typography className="md:hidden">
+                                <h1 className="text-[18px] text-[#333333] leading-[34px] font-fira">Personal Details</h1>
                             </Typography>
                         </div>
                     </AccordionSummary>
@@ -102,7 +104,7 @@ const Accordian = ({ data, isLoading }) => {
                             </div>
                         )}
 
-                        {data?.citizenShip && (
+                        {data?.citizenShip.length !== 0 && (
                             <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                                 <span className="font-medium">CitizenShip</span>
                                 <p className="font-normal">{data ? data?.citizenShip.toString() : "Not Provided"}</p>
@@ -180,71 +182,116 @@ const Accordian = ({ data, isLoading }) => {
                                 </p>
                             </div>
                         )}
-                        <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                            <span className="font-medium">Special Achievement</span>
-                            <p className="font-normal">{data ? hightestEducationalQualification?.specialAchievement : "Not Provided"}</p>
-                        </div>
-                        <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                            <span className="font-medium">What are you looking for</span>
-                            <p className="font-normal">{data ? data.whatAreYouLookingFor : "Not Provided"}</p>
-                        </div>
-
-                        <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                            <span className="font-medium">Height</span>
-                            <p className="font-normal">{data ? data.height : "Not Provided"}</p>
-                        </div>
-                        <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                            <span className="font-medium">Weight</span>
-                            <p className="font-normal">{data ? data.weight : "Not Provided"}</p>
-                        </div>
-                        <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                            <span className="font-medium">Ancestry</span>
-                            <p className="font-normal">{data ? data.ancestry : "Not Provided"}</p>
-                        </div>
-                        <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                            <span className="font-medium">Skin Tone</span>
-                            <p className="font-normal">{data ? data.SkinTone : "Not Provided"}</p>
-                        </div>
-                        <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                            <span className="font-medium">Hair Color</span>
-                            <p className="font-normal">{data ? data.hairColour : "Not Provided"}</p>
-                        </div>
-                        <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                            <span className="font-medium"> Hair Type</span>
-                            <p className="font-normal">{data ? data.hairType : "Not Provided"}</p>
-                        </div>
-                        <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                            <span className="font-medium">Eye Color</span>
-                            <p className="font-normal">{data ? data.eyeColor : "Not Provided"}</p>
-                        </div>
-                        <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                            <span className="font-medium">Number Of Teeth</span>
-                            <p className="font-normal">{data ? data.numberOfTeeth : "Not Provided"}</p>
-                        </div>
-                        <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                            <span className="font-medium">Monthly Income</span>
-                            <p className="font-normal">{data ? data.monthlyIncome : "Not Provided"}</p>
-                        </div>
-                        <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                            <span className="font-medium">Hometown</span>
-                            <p className="font-normal">{data ? data.hometown : "Not Provided"}</p>
-                        </div>
-                        <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                            <span className="font-medium">Permanent Adress</span>
-                            <p className="font-normal">{data ? data.permanentAdress : "Not Provided"}</p>
-                        </div>
-                        <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                            <span className="font-medium">Current Adress</span>
-                            <p className="font-normal">{data ? data.currentAdress : "Not Provided"}</p>
-                        </div>
-                        <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                            <span className="font-medium">Merital status</span>
-                            <p className="font-normal">{data ? data.maritalStatus : "Not Provided"}</p>
-                        </div>
-                        <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                            <span className="font-medium">Designation</span>
-                            <p className="font-normal">{data ? data.designation : "Not Provided"}</p>
-                        </div>
+                        {
+                            data?.hightestEducationalQualification?.specialAchievement &&
+                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                                <span className="font-medium">Special Achievement</span>
+                                <p className="font-normal">{data ? hightestEducationalQualification?.specialAchievement : "Not Provided"}</p>
+                            </div>
+                        }
+                        {
+                            data?.whatAreYouLookingFor && <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                                <span className="font-medium">What are you looking for</span>
+                                <p className="font-normal">{data ? data.whatAreYouLookingFor : "Not Provided"}</p>
+                            </div>
+                        }
+                        {
+                            data?.height && <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                                <span className="font-medium">Height</span>
+                                <p className="font-normal">{data ? data.height : "Not Provided"}</p>
+                            </div>
+                        }
+                        {
+                            data?.weight &&
+                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                                <span className="font-medium">Weight</span>
+                                <p className="font-normal">{data ? data.weight : "Not Provided"}</p>
+                            </div>
+                        }
+                        {
+                            data?.ancestry &&
+                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                                <span className="font-medium">Ancestry</span>
+                                <p className="font-normal">{data ? data.ancestry : "Not Provided"}</p>
+                            </div>
+                        }
+                        {
+                            data?.SkinTone &&
+                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                                <span className="font-medium">Skin Tone</span>
+                                <p className="font-normal">{data ? data.SkinTone : "Not Provided"}</p>
+                            </div>
+                        }
+                        {
+                            data?.hairColour &&
+                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                                <span className="font-medium">Hair Color</span>
+                                <p className="font-normal">{data ? data.hairColour : "Not Provided"}</p>
+                            </div>
+                        }
+                        {
+                            data?.hairType &&
+                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                                <span className="font-medium"> Hair Type</span>
+                                <p className="font-normal">{data ? data.hairType : "Not Provided"}</p>
+                            </div>
+                        }
+                        {
+                            data?.eyeColor &&
+                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                                <span className="font-medium">Eye Color</span>
+                                <p className="font-normal">{data ? data.eyeColor : "Not Provided"}</p>
+                            </div>
+                        }
+                        {
+                            data?.numberOfTeeth &&
+                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                                <span className="font-medium">Number Of Teeth</span>
+                                <p className="font-normal">{data ? data.numberOfTeeth : "Not Provided"}</p>
+                            </div>
+                        }
+                        {
+                            data?.monthlyIncome &&
+                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                                <span className="font-medium">Monthly Income</span>
+                                <p className="font-normal">{data ? data.monthlyIncome : "Not Provided"}</p>
+                            </div>
+                        }
+                        {
+                            data?.hometown &&
+                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                                <span className="font-medium">Hometown</span>
+                                <p className="font-normal">{data ? data.hometown : "Not Provided"}</p>
+                            </div>
+                        }
+                        {
+                            data?.permanentAdress &&
+                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                                <span className="font-medium">Permanent Adress</span>
+                                <p className="font-normal">{data ? data.permanentAdress : "Not Provided"}</p>
+                            </div>
+                        }
+                        {
+                            data?.currentAdress &&
+                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                                <span className="font-medium">Current Adress</span>
+                                <p className="font-normal">{data ? data.currentAdress : "Not Provided"}</p>
+                            </div>
+                        }
+                        {
+                            data?.maritalStatus &&
+                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                                <span className="font-medium">Merital status</span>
+                                <p className="font-normal">{data ? data.maritalStatus : "Not Provided"}</p>
+                            </div>
+                        }
+                        {
+                            data?.designation &&
+                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                                <span className="font-medium">Designation</span>
+                                <p className="font-normal">{data ? data.designation : "Not Provided"}</p>
+                            </div>
+                        }
                         {data?.numberOfPartner && (
                             <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                                 <span className="font-medium">Number Of Partner</span>
@@ -287,7 +334,7 @@ const Accordian = ({ data, isLoading }) => {
                                 <p className="font-normal">{data ? data.numberOfBoy : "Not Provided"}</p>
                             </div>
                         )}
-                        {data?.agesOfBoy && (
+                        {data?.agesOfBoy.length !== 0 && (
                             <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                                 <span className="font-medium">Ages Of Boy</span>
                                 <p className="font-normal">{data ? data.agesOfBoy : "Not Provided"}</p>
@@ -299,48 +346,75 @@ const Accordian = ({ data, isLoading }) => {
                                 <p className="font-normal">{data ? data.numberOfGirl : "Not Provided"}</p>
                             </div>
                         )}
-                        {data?.agesOfGirl && (
+                        {data?.agesOfGirl.length !== 0 && (
                             <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                                 <span className="font-medium"> Ages Of Girl</span>
                                 <p className="font-normal">{data ? data.agesOfGirl : "Not Provided"}</p>
                             </div>
                         )}
-                        <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                            <span className="font-medium">Partner Death Day</span>
-                            <p className="font-normal">{data ? data.partnerDeathDay : "Not Provided"}</p>
-                        </div>
-                        <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                            <span className="font-medium">Position</span>
-                            <p className="font-normal">{data?.currentProfession ? data?.currentProfession?.position : "Not Provided"}</p>
-                        </div>
-                        <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                            <span className="font-medium">Institute</span>
-                            <p className="font-normal">{data?.currentProfession ? data?.currentProfession?.institute : "Not Provided"}</p>
-                        </div>
-                        <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                            <span className="font-medium">Work Period</span>
-                            <p className="font-normal">{data?.currentProfession ? data?.currentProfession?.workPeriod : "Not Provided"}</p>
-                        </div>
-                        <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                            <span className="font-medium">Special Achievement</span>
-                            <p className="font-normal">{data?.currentProfession ? data?.currentProfession?.specialAchievement : "Not Provided"}</p>
-                        </div>
-                        <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                            <span className="font-medium">Year Of Experience</span>
-                            <p className="font-normal">{data ? data.yearOfExperience : "Not Provided"}</p>
-                        </div>
-                        <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                            <span className="font-medium">Office Location</span>
-                            <p className="font-normal">{data ? data.officeLocation : "Not Provided"}</p>
-                        </div>
-                        <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                            <span className="font-medium">Service Category</span>
-                            <p className="font-normal">{data ? data.serviceCategory : "Not Provided"}</p>
-                        </div>
-                        <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                            <span className="font-medium">Service Provide</span>
-                            <p className="font-normal">{data ? data.serviceProvide : "Not Provided"}</p>
-                        </div>
+                        {
+                            data?.partnerDeathDay &&
+                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                                <span className="font-medium">Partner Death Day</span>
+                                <p className="font-normal">{data ? data.partnerDeathDay : "Not Provided"}</p>
+                            </div>
+                        }
+                        {
+                            data?.data?.currentProfession?.position &&
+                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                                <span className="font-medium">Position</span>
+                                <p className="font-normal">{data?.currentProfession ? data?.currentProfession?.position : "Not Provided"}</p>
+                            </div>
+                        }
+                        {
+                            data?.currentProfession?.institute &&
+                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                                <span className="font-medium">Institute</span>
+                                <p className="font-normal">{data?.currentProfession ? data?.currentProfession?.institute : "Not Provided"}</p>
+                            </div>
+                        }
+                        {
+                            data?.currentProfession?.workPeriod &&
+                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                                <span className="font-medium">Work Period</span>
+                                <p className="font-normal">{data?.currentProfession ? data?.currentProfession?.workPeriod : "Not Provided"}</p>
+                            </div>
+                        }
+                        {
+                            data?.currentProfession?.specialAchievement &&
+                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                                <span className="font-medium">Special Achievement</span>
+                                <p className="font-normal">{data?.currentProfession ? data?.currentProfession?.specialAchievement : "Not Provided"}</p>
+                            </div>
+                        }
+                        {
+                            data?.yearOfExperience &&
+                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                                <span className="font-medium">Year Of Experience</span>
+                                <p className="font-normal">{data ? data.yearOfExperience : "Not Provided"}</p>
+                            </div>
+                        }
+                        {
+                            data?.officeLocation &&
+                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                                <span className="font-medium">Office Location</span>
+                                <p className="font-normal">{data ? data.officeLocation : "Not Provided"}</p>
+                            </div>
+                        }
+                        {
+                            data?.serviceCategory &&
+                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                                <span className="font-medium">Service Category</span>
+                                <p className="font-normal">{data ? data.serviceCategory : "Not Provided"}</p>
+                            </div>
+                        }
+                        {
+                            data?.serviceProvide &&
+                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                                <span className="font-medium">Service Provide</span>
+                                <p className="font-normal">{data ? data.serviceProvide : "Not Provided"}</p>
+                            </div>
+                        }
                         {data?.parents && (
                             <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                                 <span className="font-medium">Parents</span>
@@ -359,14 +433,20 @@ const Accordian = ({ data, isLoading }) => {
                                 <p className="font-normal">{data ? data.haveStepFather : "Not Provided"}</p>
                             </div>
                         )}
-                        <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                            <span className="font-medium">number Of Brother</span>
-                            <p className="font-normal">{data ? data.numberOfBrother : "Not Provided"}</p>
-                        </div>
-                        <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                            <span className="font-medium">number Of Sister</span>
-                            <p className="font-normal">{data ? data.numberOfSister : "Not Provided"}</p>
-                        </div>
+                        {
+                            data?.numberOfBrother &&
+                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                                <span className="font-medium">number Of Brother</span>
+                                <p className="font-normal">{data ? data.numberOfBrother : "Not Provided"}</p>
+                            </div>
+                        }
+                        {
+                            data?.numberOfSister &&
+                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                                <span className="font-medium">number Of Sister</span>
+                                <p className="font-normal">{data ? data.numberOfSister : "Not Provided"}</p>
+                            </div>
+                        }
                         {/* <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                                 <span className="font-medium">Linkedin Id</span>
                                 <p className="font-normal">{data ? data.LinkedInId : "Not Provided"}</p>
@@ -379,10 +459,13 @@ const Accordian = ({ data, isLoading }) => {
                                 <span className="font-medium">Instagram Id</span>
                                 <p className="font-normal">{data ? data.instagramId : "Not Provided"}</p>
                             </div> */}
-                        <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                            <span className="font-medium">Hobbies</span>
-                            <p className="font-normal">{data ? data.hobbies : "Not Provided"}</p>
-                        </div>
+                        {
+                            data?.hobbies.length !== 0 &&
+                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                                <span className="font-medium">Hobbies</span>
+                                <p className="font-normal">{data ? data.hobbies : "Not Provided"}</p>
+                            </div>
+                        }
                     </Typography>
                 </AccordionDetails>
             </Accordion>
@@ -391,8 +474,11 @@ const Accordian = ({ data, isLoading }) => {
                 <div className="flex justify-between items-center	">
                     <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
                         <div>
-                            <Typography>
+                            <Typography className="hidden md:block">
                                 <h1 className="text-[24px] text-[#333333] leading-[34px] font-fira font-semibold">Profesional Information</h1>
+                            </Typography>
+                            <Typography className='md:hidden'>
+                                <h1 className="text-[18px] text-[#333333] leading-[34px] font-fira">Profesional Information</h1>
                             </Typography>
                         </div>
                     </AccordionSummary>
@@ -418,46 +504,70 @@ const Accordian = ({ data, isLoading }) => {
                             data?.professionalDetail.map((d, index) => {
                                 return (
                                     <>
-                                        <div
-                                            key={index}
-                                            className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]"
-                                        >
-                                            <span className="font-medium">Position</span>
-                                            <p className="font-normal">{data?.professionalDetail ? d?.position : "Not Provided"}</p>
-                                        </div>
-                                        <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                                            <span className="font-medium">Duty</span>
-                                            <p className="font-normal">{data?.professionalDetail ? d?.duty : "Not Provided"}</p>
-                                        </div>
-                                        <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                                            <span className="font-medium">Institute</span>
-                                            <p className="font-normal">{data?.professionalDetail ? d?.institute : "Not Provided"}</p>
-                                        </div>
-                                        <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                                            <span className="font-medium">Special Achievement</span>
-                                            <p className="font-normal">{data?.professionalDetail ? d?.specialAchievement : "Not Provided"}</p>
-                                        </div>
+                                        {
+                                            data?.professionalDetail.length !== 0 &&
+                                            <div
+                                                key={index}
+                                                className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]"
+                                            >
+                                                <span className="font-medium">Position</span>
+                                                <p className="font-normal">{data?.professionalDetail ? d?.position : "Not Provided"}</p>
+                                            </div>
+                                        }
+                                        {
+                                            data?.professionalDetail.length !== 0 &&
+                                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                                                <span className="font-medium">Duty</span>
+                                                <p className="font-normal">{data?.professionalDetail ? d?.duty : "Not Provided"}</p>
+                                            </div>
+                                        }
+                                        {
+                                            data?.professionalDetail.length !== 0 &&
+                                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                                                <span className="font-medium">Institute</span>
+                                                <p className="font-normal">{data?.professionalDetail ? d?.institute : "Not Provided"}</p>
+                                            </div>
+                                        }
+                                        {
+                                            data?.professionalDetail.length !== 0 &&
+                                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                                                <span className="font-medium">Special Achievement</span>
+                                                <p className="font-normal">{data?.professionalDetail ? d?.specialAchievement : "Not Provided"}</p>
+                                            </div>
+                                        }
                                     </>
                                 );
                             })
                         ) : (
                             <>
-                                <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                                    <span className="font-medium">Position</span>
-                                    <p className="font-normal">Not Provided</p>
-                                </div>
-                                <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                                    <span className="font-medium">Duty</span>
-                                    <p className="font-normal">Not Provided</p>
-                                </div>
-                                <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                                    <span className="font-medium">Institute</span>
-                                    <p className="font-normal">Not Provided</p>
-                                </div>
-                                <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                                    <span className="font-medium">Special Achievement</span>
-                                    <p className="font-normal">Not Provided</p>
-                                </div>
+                                {
+                                    data?.professionalDetail.length !== 0 &&
+                                    <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                                        <span className="font-medium">Position</span>
+                                        <p className="font-normal">{data?.professionalDetail ? data?.professionalDetail?.position : "Not Provided"}</p>
+                                    </div>
+                                }
+                                {
+                                    data?.professionalDetail.length !== 0 &&
+                                    <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                                        <span className="font-medium">Duty</span>
+                                        <p className="font-normal">{data?.professionalDetail ? data?.professionalDetail?.duty : "Not Provided"}</p>
+                                    </div>
+                                }
+                                {
+                                    data?.professionalDetail.length !== 0 &&
+                                    <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                                        <span className="font-medium">Institute</span>
+                                        <p className="font-normal">{data?.professionalDetail ? data?.professionalDetail?.institute : "Not Provided"}</p>
+                                    </div>
+                                }
+                                {
+                                    data?.professionalDetail.length !== 0 &&
+                                    <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                                        <span className="font-medium">Special Achievement</span>
+                                        <p className="font-normal">{data?.professionalDetail ? data?.professionalDetail?.specialAchievement : "Not Provided"}</p>
+                                    </div>
+                                }
                             </>
                         )}
                     </Typography>
@@ -468,8 +578,11 @@ const Accordian = ({ data, isLoading }) => {
                 <div className="flex justify-between items-center	">
                     <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
                         <div>
-                            <Typography>
+                            <Typography className="hidden md:block">
                                 <h1 className="text-[24px] text-[#333333] leading-[34px] font-fira font-semibold">Educational Information</h1>
+                            </Typography>
+                            <Typography className='md:hidden'>
+                                <h1 className="text-[18px] text-[#333333] leading-[34px] font-fira">Educational Information</h1>
                             </Typography>
                         </div>
                     </AccordionSummary>
@@ -495,74 +608,114 @@ const Accordian = ({ data, isLoading }) => {
                             data?.educationalDetail.map((edu, index) => {
                                 return (
                                     <>
-                                        <div
-                                            key={index}
-                                            className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]"
-                                        >
-                                            <span className="font-medium">Degree</span>
-                                            <p className="font-normal">{data?.educationalDetail ? edu?.degree : "Not Provided"}</p>
-                                        </div>
-                                        <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                                            <span className="font-medium">Institute</span>
-                                            <p className="font-normal">{data?.educationalDetail ? edu?.institute : "Not Provided"}</p>
-                                        </div>
-                                        <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                                            <span className="font-medium">Department</span>
-                                            <p className="font-normal">{data?.educationalDetail ? edu?.department : "Not Provided"}</p>
-                                        </div>
-
-                                        <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                                            <span className="font-medium">Field of Study</span>
-                                            <p className="font-normal">{data?.educationalDetail ? edu?.feildOfStudy : "Not Provided"}</p>
-                                        </div>
-                                        <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                                            <span className="font-medium">GPA / CGPA</span>
-                                            <p className="font-normal">{data?.educationalDetail ? edu?.gpaOrCgpa : "Not Provided"}</p>
-                                        </div>
-                                        <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                                            <span className="font-medium">Year of Study</span>
-                                            <p className="font-normal">
-                                                {data?.educationalDetail ? moment(edu?.yearOfStudy).format("YYYY") : "Not Provided"}
-                                            </p>
-                                        </div>
-                                        <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                                            <span className="font-medium">Special Achievement</span>
-                                            <p className="font-normal">{data?.educationalDetail ? edu?.specialAchievement : "Not Provided"}</p>
-                                        </div>
+                                        {
+                                            data?.educationalDetail.length !== 0 &&
+                                            <div
+                                                key={index}
+                                                className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]"
+                                            >
+                                                <span className="font-medium">Degree</span>
+                                                <p className="font-normal">{data?.educationalDetail ? edu?.degree : "Not Provided"}</p>
+                                            </div>
+                                        }
+                                        {
+                                            data?.educationalDetail.length !== 0 &&
+                                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                                                <span className="font-medium">Institute</span>
+                                                <p className="font-normal">{data?.educationalDetail ? edu?.institute : "Not Provided"}</p>
+                                            </div>
+                                        }
+                                        {
+                                            data?.educationalDetail.length !== 0 &&
+                                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                                                <span className="font-medium">Department</span>
+                                                <p className="font-normal">{data?.educationalDetail ? edu?.department : "Not Provided"}</p>
+                                            </div>
+                                        }
+                                        {
+                                            data?.educationalDetail.length !== 0 &&
+                                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                                                <span className="font-medium">Field of Study</span>
+                                                <p className="font-normal">{data?.educationalDetail ? edu?.feildOfStudy : "Not Provided"}</p>
+                                            </div>
+                                        }
+                                        {
+                                            data?.educationalDetail.length !== 0 &&
+                                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                                                <span className="font-medium">GPA / CGPA</span>
+                                                <p className="font-normal">{data?.educationalDetail ? edu?.gpaOrCgpa : "Not Provided"}</p>
+                                            </div>
+                                        }
+                                        {
+                                            data?.educationalDetail.length !== 0 &&
+                                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                                                <span className="font-medium">Year of Study</span>
+                                                <p className="font-normal">
+                                                    {data?.educationalDetail ? moment(edu?.yearOfStudy).format("YYYY") : "Not Provided"}
+                                                </p>
+                                            </div>
+                                        }
+                                        {
+                                            data?.educationalDetail.length !== 0 &&
+                                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                                                <span className="font-medium">Special Achievement</span>
+                                                <p className="font-normal">{data?.educationalDetail ? edu?.specialAchievement : "Not Provided"}</p>
+                                            </div>
+                                        }
                                     </>
                                 );
                             })
                         ) : (
                             <>
-                                <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                                    <span className="font-medium">Degree</span>
-                                    <p className="font-normal">Not Provided</p>
-                                </div>
-                                <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                                    <span className="font-medium">Institute</span>
-                                    <p className="font-normal">Not Provided</p>
-                                </div>
-                                <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                                    <span className="font-medium">Department</span>
-                                    <p className="font-normal">Not Provided</p>
-                                </div>
-
-                                <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                                    <span className="font-medium">Field of Study</span>
-                                    <p className="font-normal">Not Provided</p>
-                                </div>
-                                <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                                    <span className="font-medium">GPA / CGPA</span>
-                                    <p className="font-normal">Not Provided</p>
-                                </div>
-                                <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                                    <span className="font-medium">Year of Study</span>
-                                    <p className="font-normal">Not Provided</p>
-                                </div>
-                                <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                                    <span className="font-medium">Special Achievement</span>
-                                    <p className="font-normal">Not Provided</p>
-                                </div>
+                                {
+                                    data?.educationalDetail.length !== 0 &&
+                                    <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                                        <span className="font-medium">Degree</span>
+                                        <p className="font-normal">{data?.educationalDetail ? data?.educationalDetail?.degree : "Not Provided"}</p>
+                                    </div>
+                                }
+                                {
+                                    data?.educationalDetail.length !== 0 &&
+                                    <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                                        <span className="font-medium">Institute</span>
+                                        <p className="font-normal">{data?.educationalDetail ? data?.educationalDetail?.institute : "Not Provided"}</p>
+                                    </div>
+                                }
+                                {
+                                    data?.educationalDetail.length !== 0 &&
+                                    <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                                        <span className="font-medium">Department</span>
+                                        <p className="font-normal">{data?.educationalDetail ? data?.educationalDetail?.department : "Not Provided"}</p>
+                                    </div>
+                                }
+                                {
+                                    data?.educationalDetail.length !== 0 &&
+                                    <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                                        <span className="font-medium">Field of Study</span>
+                                        <p className="font-normal">{data?.educationalDetail ? data?.educationalDetail?.fieldOfStudy : "Not Provided"}</p>
+                                    </div>
+                                }
+                                {
+                                    data?.educationalDetail.length !== 0 &&
+                                    <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                                        <span className="font-medium">GPA / CGPA</span>
+                                        <p className="font-normal">{data?.educationalDetail ? data?.educationalDetail?.gpaCgpa : "Not Provided"}</p>
+                                    </div>
+                                }
+                                {
+                                    data?.educationalDetail.length !== 0 &&
+                                    <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                                        <span className="font-medium">Year of Study</span>
+                                        <p className="font-normal">{data?.educationalDetail ? data?.educationalDetail?.yearOfStudy : "Not Provided"}</p>
+                                    </div>
+                                }
+                                {
+                                    data?.educationalDetail.length !== 0 &&
+                                    <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                                        <span className="font-medium">Special Achievement</span>
+                                        <p className="font-normal">{data?.educationalDetail ? data?.educationalDetail?.specialAchievement : "Not Provided"}</p>
+                                    </div>
+                                }
                             </>
                         )}
                     </Typography>
@@ -572,8 +725,11 @@ const Accordian = ({ data, isLoading }) => {
                 <div className="flex justify-between items-center	">
                     <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
                         <div>
-                            <Typography>
+                            <Typography className="hidden md:block">
                                 <h1 className="text-[24px] text-[#333333] leading-[34px] font-fira font-semibold">Physical Information</h1>
+                            </Typography>
+                            <Typography className='md:hidden'>
+                                <h1 className="text-[18px] text-[#333333] leading-[34px] font-fira">Physical Information</h1>
                             </Typography>
                         </div>
                     </AccordionSummary>
@@ -595,18 +751,27 @@ const Accordian = ({ data, isLoading }) => {
                 </div>
                 <AccordionDetails>
                     <Typography>
-                        <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                            <span className="font-medium">Height</span>
-                            <p className="font-normal">{data?.physicalDetail ? data?.physicalDetail?.height : "Not Provided"}</p>
-                        </div>
-                        <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                            <span className="font-medium">Weight</span>
-                            <p className="font-normal">{data?.physicalDetail ? data?.physicalDetail?.weight : "Not Provided"}</p>
-                        </div>
-                        <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                            <span className="font-medium">Ancestry</span>
-                            <p className="font-normal">{data?.physicalDetail ? data?.physicalDetail?.ancestry : "Not Provided"}</p>
-                        </div>
+                        {
+                            data?.physicalDetail?.height &&
+                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                                <span className="font-medium">Height</span>
+                                <p className="font-normal">{data?.physicalDetail ? data?.physicalDetail?.height : "Not Provided"}</p>
+                            </div>
+                        }
+                        {
+                            data?.physicalDetail?.weight &&
+                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                                <span className="font-medium">Weight</span>
+                                <p className="font-normal">{data?.physicalDetail ? data?.physicalDetail?.weight : "Not Provided"}</p>
+                            </div>
+                        }
+                        {
+                            data?.physicalDetail?.ancestry &&
+                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                                <span className="font-medium">Ancestry</span>
+                                <p className="font-normal">{data?.physicalDetail ? data?.physicalDetail?.ancestry : "Not Provided"}</p>
+                            </div>
+                        }
                         {data?.physicalDetail?.skinTone && (
                             <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                                 <span className="font-medium">Skin Tone</span>
@@ -619,18 +784,27 @@ const Accordian = ({ data, isLoading }) => {
                                 <p className="font-normal">{data?.physicalDetail ? data?.physicalDetail?.hairColor : "Not Provided"}</p>
                             </div>
                         )}
-                        <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                            <span className="font-medium">Hair Type</span>
-                            <p className="font-normal">{data?.physicalDetail ? data?.physicalDetail?.hairType : "Not Provided"}</p>
-                        </div>
-                        <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                            <span className="font-medium">Eye Color</span>
-                            <p className="font-normal">{data?.physicalDetail ? data?.physicalDetail?.eyeColor : "Not Provided"}</p>
-                        </div>
-                        <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                            <span className="font-medium">Number of Teeth</span>
-                            <p className="font-normal">{data?.physicalDetail ? data?.physicalDetail?.numberOfTeeth : "Not Provided"}</p>
-                        </div>
+                        {
+                            data?.physicalDetail?.hairType &&
+                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                                <span className="font-medium">Hair Type</span>
+                                <p className="font-normal">{data?.physicalDetail ? data?.physicalDetail?.hairType : "Not Provided"}</p>
+                            </div>
+                        }
+                        {
+                            data?.physicalDetail?.eyeColor &&
+                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                                <span className="font-medium">Eye Color</span>
+                                <p className="font-normal">{data?.physicalDetail ? data?.physicalDetail?.eyeColor : "Not Provided"}</p>
+                            </div>
+                        }
+                        {
+                            data?.physicalDetail?.numberOfTeeth &&
+                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                                <span className="font-medium">Number of Teeth</span>
+                                <p className="font-normal">{data?.physicalDetail ? data?.physicalDetail?.numberOfTeeth : "Not Provided"}</p>
+                            </div>
+                        }
                     </Typography>
                 </AccordionDetails>
             </Accordion>
@@ -638,8 +812,11 @@ const Accordian = ({ data, isLoading }) => {
                 <div className="flex justify-between items-center	">
                     <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
                         <div>
-                            <Typography>
-                                <h1 className="text-[24px] text-[#333333] leading-[34px] font-fira font-semibold">Others Information</h1>
+                            <Typography className="hidden md:block">
+                                <h1 className="text-[24px] text-[#333333] leading-[34px] font-fira font-semibold">Other Information</h1>
+                            </Typography>
+                            <Typography className='md:hidden'>
+                                <h1 className="text-[18px] text-[#333333] leading-[34px] font-fira">Other Information</h1>
                             </Typography>
                         </div>
                     </AccordionSummary>
@@ -661,39 +838,62 @@ const Accordian = ({ data, isLoading }) => {
                 </div>
                 <AccordionDetails>
                     <Typography>
-                        <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                            <span className="font-medium">Do smoke</span>
-                            <p className="font-normal">{data?.othersDetail ? data?.othersDetail?.doSmoke : "Not Provided"}</p>
-                        </div>
-                        <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                            <span className="font-medium">Do drink</span>
-                            <p className="font-normal">{data?.othersDetail ? data?.othersDetail?.doDrink : "Not Provided"}</p>
-                        </div>
-                        <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                            <span className="font-medium">Have pet</span>
-                            <p className="font-normal">{data?.othersDetail ? data?.othersDetail?.doDrink : "Not Provided"}</p>
-                        </div>
-
-                        <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                            <span className="font-medium">Have tattos</span>
-                            <p className="font-normal">{data?.othersDetail ? data?.othersDetail?.haveTattos : "Not Provided"}</p>
-                        </div>
-                        <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                            <span className="font-medium">Have voluntary Exp</span>
-                            <p className="font-normal">{data?.othersDetail ? data?.othersDetail?.haveVoluntaryExp : "Not Provided"}</p>
-                        </div>
-                        <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                            <span className="font-medium">Travelled outside Bangladesh</span>
-                            <p className="font-normal">{data?.othersDetail ? data?.othersDetail?.travelledOutsideBangladesh : "Not Provided"}</p>
-                        </div>
-                        <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                            <span className="font-medium">Like Join Family</span>
-                            <p className="font-normal">{data?.othersDetail ? data?.othersDetail?.likeJoinFamily : "Not Provided"}</p>
-                        </div>
-                        <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                            <span className="font-medium">Believe in God</span>
-                            <p className="font-normal">{data?.othersDetail ? data?.othersDetail?.believeInGod : "Not Provided"}</p>
-                        </div>
+                        {
+                            data?.othersDetail?.doSmoke &&
+                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                                <span className="font-medium">Do smoke</span>
+                                <p className="font-normal">{data?.othersDetail ? data?.othersDetail?.doSmoke : "Not Provided"}</p>
+                            </div>
+                        }
+                        {
+                            data?.othersDetail?.doDrink &&
+                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                                <span className="font-medium">Do drink</span>
+                                <p className="font-normal">{data?.othersDetail ? data?.othersDetail?.doDrink : "Not Provided"}</p>
+                            </div>
+                        }
+                        {
+                            data?.othersDetail?.doDrink &&
+                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                                <span className="font-medium">Have pet</span>
+                                <p className="font-normal">{data?.othersDetail ? data?.othersDetail?.doDrink : "Not Provided"}</p>
+                            </div>
+                        }
+                        {
+                            data?.othersDetail?.haveTattos &&
+                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                                <span className="font-medium">Have tattos</span>
+                                <p className="font-normal">{data?.othersDetail ? data?.othersDetail?.haveTattos : "Not Provided"}</p>
+                            </div>
+                        }
+                        {
+                            data?.othersDetail?.haveVoluntaryExp &&
+                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                                <span className="font-medium">Have voluntary Exp</span>
+                                <p className="font-normal">{data?.othersDetail ? data?.othersDetail?.haveVoluntaryExp : "Not Provided"}</p>
+                            </div>
+                        }
+                        {
+                            data?.othersDetail?.travelledOutsideBangladesh &&
+                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                                <span className="font-medium">Travelled outside Bangladesh</span>
+                                <p className="font-normal">{data?.othersDetail ? data?.othersDetail?.travelledOutsideBangladesh : "Not Provided"}</p>
+                            </div>
+                        }
+                        {
+                            data?.othersDetail?.likeJoinFamily &&
+                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                                <span className="font-medium">Like Join Family</span>
+                                <p className="font-normal">{data?.othersDetail ? data?.othersDetail?.likeJoinFamily : "Not Provided"}</p>
+                            </div>
+                        }
+                        {
+                            data?.othersDetail?.believeInGod &&
+                            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                                <span className="font-medium">Believe in God</span>
+                                <p className="font-normal">{data?.othersDetail ? data?.othersDetail?.believeInGod : "Not Provided"}</p>
+                            </div>
+                        }
                     </Typography>
                 </AccordionDetails>
             </Accordion>

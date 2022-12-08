@@ -7,7 +7,7 @@ import { useUpdateOthersDetailsMutation } from '../../../../Redux/features/userI
 const EditOthersInfo = () => {
     const [othersInfo, setOthersInfo] = useState({});
     // update query function 
-    const [updateOthersDetails, { isSuccess, isLoading, isError }] = useUpdateOthersDetailsMutation();
+    const [updateOthersDetails, { isSuccess }] = useUpdateOthersDetailsMutation();
 
     const handleDoSmoke = (value) => {
         setOthersInfo({ ...othersInfo, doSmoke: value })

@@ -12,7 +12,7 @@ const EditPhysicalInfo = () => {
     const [height, setHeight] = useState(10);
     const [weight, setWeight] = useState(10);
 
-    const [updatePhysicalDetails, { isLoading, isError, isSuccess }] = useUpdatePhysicalDetailsMutation();
+    const [updatePhysicalDetails, { isLoading, isSuccess }] = useUpdatePhysicalDetailsMutation();
 
     //phycsical information data change handler
     const onHeightChange = (value) => {
@@ -59,10 +59,9 @@ const EditPhysicalInfo = () => {
     const navigate = useNavigate();
     //data submission function
     const handleSubmit = async (e) => {
-        e.preventDefault()
         const data = { ...physicalInfo, height, weight }
-        const response = await updatePhysicalDetails(data);
-
+        await updatePhysicalDetails(data)
+        e.preventDefault()
     }
     if (isSuccess) {
         navigate("/userprofile")
@@ -347,7 +346,7 @@ const EditPhysicalInfo = () => {
                         style={{
                             background: "linear-gradient(180deg, #E41272 0%, #942DD9 100%)",
                         }}
-                        className="w-full text-center py-[8] py-[10px] text-[#fff]  text-lg font-medium rounded"
+                        className="w-full text-center py-[10px] text-[#fff]  text-lg font-medium rounded"
                     />
                     {isLoading &&
                         <div className='mt-2'>

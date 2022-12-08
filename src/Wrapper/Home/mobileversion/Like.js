@@ -3,24 +3,16 @@ import React from 'react'
 // import certificate from "../../../assets/images/certificate.jpg";
 // import { TbMessageCircle2 } from "react-icons/tb";
 import { BsCommand } from 'react-icons/bs';
-import { MdMessage } from 'react-icons/md';
-import { BiUserPlus } from 'react-icons/bi';
+
 // import ChartBoardCSS from '../../../assets/css/chartBoard.module.css';
-import profilePhoto from "../../../assets/images/profileSmile.jpg";
 import { BottomNav } from './BottomNav';
 import { Link } from 'react-router-dom';
-const suggestedProfiles = [
-    { id: 1, name: "Mr. Sherlock", img: profilePhoto },
-    { id: 2, name: "Mr. Sherlock", img: profilePhoto },
-    { id: 3, name: "Mr. Sherlock", img: profilePhoto },
-    { id: 4, name: "Mr. Sherlock", img: profilePhoto },
-    { id: 5, name: "Mr. Sherlock", img: profilePhoto },
-    { id: 6, name: "Mr. Sherlock", img: profilePhoto },
-    { id: 7, name: "Mr. Sherlock", img: profilePhoto },
-    { id: 8, name: "Mr. Sherlock", img: profilePhoto },
-];
+import { useGetSuggestedUsersQuery } from '../../../Redux/features/AllRecentData/recentApi';
+import MayLikeSingle from './MayLikeSingle';
 
 export const Like = () => {
+    const { data } = useGetSuggestedUsersQuery();
+
     return (
         <div>
             <div className='mt-5'>
@@ -40,24 +32,9 @@ export const Like = () => {
                 </div>
                 <div className='grid grid-cols-2 gap-3'>
                     {
-                        suggestedProfiles.map(profile => <div
-                            key={profile.id}
-                            className="bg-white ggg rounded-[20px] flex flex-col items-center justify-center  py-2"
-                            style={{ boxShadow: "0px 4px 4px rgba(62, 73, 84, 0.04)" }}
-                        >
-                            <img className='w-[45px] h-[45px] rounded-full' src='https://i.ibb.co/djmzvNG/placeholder.png' alt="Not Available" />
-                            <h4 className='text-xs leading-5 font-semibold'>
-                                {profile.name}
-                            </h4>
-                            <div className='flex justify-between items-center gap-4'>
-                                <span className='bg-[#FFDFF4] p-3 rounded-full'>
-                                    <MdMessage className='text-[#E41272] text-xl' />
-                                </span>
-                                <span className='bg-[#FFDFF4] p-3 rounded-full'>
-                                    <BiUserPlus className='text-[#E41272] text-xl' />
-                                </span>
-                            </div>
-                        </div>)
+                        data?.suggestion.map(profile => {
+                            return <MayLikeSingle key={profile._id} {...{ data: profile }} />
+                        })
                     }
                 </div>
             </div>
