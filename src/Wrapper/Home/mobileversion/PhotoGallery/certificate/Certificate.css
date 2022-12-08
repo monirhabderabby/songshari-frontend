@@ -1,6 +1,9 @@
-.btn-tab {
+.btn-tab-mobile {
     background: rgb(208, 219, 255);
     border-radius: 0.2rem;
+    width: 159px;
+    font-size: 14px;
+    font-weight: 400;
 
 }
 
@@ -10,22 +13,11 @@
 
 
 
-.mobile-content {
-    font-size: .30rem;
-}
 
-.reupload-certificate {
-    background-color: black;
 
-}
 
-.reupload-certificate-inner-box {
-    margin-top: -70%;
-    color: #ffffff;
-    z-index: 11111111111111111;
-}
 
-.onselect-image:focus img {
+.onselect-image-mobile:focus img {
     border: 1px solid #E52982
 }
 
@@ -35,8 +27,8 @@
     display: none;
 }
 
-.onselect-image:focus .selected-btn {
-    margin-top: -25%;
+.onselect-image-mobile:focus .selected-btn {
+    margin-top: -50%;
     display: flex;
     justify-content: center;
 }

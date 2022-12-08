@@ -4,6 +4,7 @@ import { Upload } from 'antd';
 import { v4 as uuidv4 } from "uuid";
 import "../../assets/css/photogelary.css";
 import { firebaseStorage } from "../../firebase.init";
+import { useUpdatePersonalDetailsMutation } from "../../Redux/features/userInfo/userApi";
 const { Dragger } = Upload;
 
 
@@ -11,14 +12,14 @@ const PhotoGelary = () => {
     const [photos, setPhotos] = useState([]);
     const [images, setImages] = useState([]);
     const [urls, setUrls] = useState([]);
-
+    const [updatePersonalDetails, { isSuccess }] = useUpdatePersonalDetailsMutation()
     useEffect(() => {
         fetch("json/userImage.json")
             .then(res => res.json())
             .then(data => {
                 setPhotos(data);
             });
-    }, []);
+    }, [urls]);
 
 
     const handleChange = async (e) => {
@@ -34,22 +35,39 @@ const PhotoGelary = () => {
 
     const handleUpload = async () => {
         const promises = [];
+        const allUrl = []
         images.map(async photo => {
-            const storageRef = ref(firebaseStorage, `profile/${photo.name + uuidv4()}`);
+            const storageRef = ref(firebaseStorage, `profile/${uuidv4()}+${photo.name}`);
             promises.push(uploadBytes);
             await uploadBytes(storageRef, photo).then(async snapshot => {
-                await getDownloadURL(snapshot.ref).then(url => {
-                    setUrls(prevState => [prevState, url.toString()]);
+                await getDownloadURL(snapshot.ref).then((url) => {
+
+                    allUrl.push(url)
+
                 });
             });
         });
 
         Promise.all(promises)
-            .then(() => console.log("photo uploded succesfully"))
+            .then((values) => {
+
+                setUrls(allUrl)
+
+            })
             .catch(err => console.log(err));
     };
+    //update photoes in personal details
+    useEffect(() => {
+        const upload = async () => {
+            const data = { photos: urls }
+            const response = await updatePersonalDetails(data)
+            if (response?.data && isSuccess) {
+                window.alert("Photo updated succesfully")
+            }
+        }
+        upload()
+    }, [urls])
 
-    console.log(urls)
 
     return (
         <div>

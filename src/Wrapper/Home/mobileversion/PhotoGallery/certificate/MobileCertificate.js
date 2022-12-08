@@ -3,47 +3,36 @@ import './Certificate.css'
 
 
 import { useState } from 'react';
-import EducationalCertificate, { EducationalCertificateSidebar } from './EducationalCertificate';
-import { Button, Image, Tooltip } from 'antd';
-import { CloudUploadOutlined, ZoomInOutlined, ZoomInRounded, ZoomOutOutlined } from '@material-ui/icons';
-import { message, Upload } from 'antd';
-import { InboxOutlined } from '@ant-design/icons';
-import { ProfessionalCertificate, ProfessionalCertificateSidebar } from './ProfessionalCertificate';
-import { OthersCertificate, OthersCertificateSidebar } from './OthersCertificate';
+import EducationalCertificate from './EducationalCertificate';
+import ProfessionalCertificate from './ProfessionalCertificate';
+import OthersCertificate from './OthersCertificate';
 
 
-const { Dragger } = Upload;
 
 export default function MobileCertificate() {
 
     const [tabValue, setTabValue] = useState(1);
-    const [stepScale, setStepScale] = useState(1.0);
-    const [selectedImage, setSelectedImage] = useState('');
+    const [selectedImage, setSelectedImage] = useState('https://img.freepik.com/free-vector/elegant-blue-gold-diploma-certificate-template_1017-17257.jpg?w=2000');
     return (
-        <div className='flex justify-center items-center'>
-            <div className='max-w-[337px] p-2 '>
-                <div className='flex '>
-                    <div className='w-3/12'>
-                        {tabValue === 1 && <EducationalCertificateSidebar setSelectedImage={setSelectedImage} />}
-                        {tabValue === 2 && <ProfessionalCertificateSidebar setSelectedImage={setSelectedImage} />}
-                        {tabValue === 3 && <OthersCertificateSidebar setSelectedImage={setSelectedImage} />}
+        <div className='flex justify-center'>
+            <div className='max-w-[337px] p-2  '>
+                <div className=' '>
 
-                    </div>
-                    <div className='ml-2 w-9/12'>
+                    <div >
                         <div className='p-2'>
                             <div>
-                                <h1 className='title'>Certificate</h1>
+                                <h1 className='font-bold text-sm'>Certificate</h1>
                             </div>
-                            <div className='flex justify-between'>
-                                <button className="p-1 font-bold btn-tab" style={tabValue === 1 ? {
+                            <div className='grid grid-cols-2 gap-2'>
+                                <button className="p-1  btn-tab-mobile" style={tabValue === 1 ? {
                                     background: 'linear-gradient(106.79deg, #E52982 25.24%, #A72BC3 88.25%)',
                                     color: '#fff'
                                 } : {}} onClick={() => setTabValue(1)}>Educational Certificate</button>
-                                <button className="p-1 font-bold btn-tab mx-2" style={tabValue === 2 ? {
+                                <button className="p-1  btn-tab-mobile mx-2" style={tabValue === 2 ? {
                                     background: 'linear-gradient(106.79deg, #E52982 25.24%, #A72BC3 88.25%)',
                                     color: '#fff'
                                 } : {}} onClick={() => setTabValue(2)}>Professional Certificate</button>
-                                <button className="p-1 font-bold btn-tab" style={tabValue === 3 ? {
+                                <button className="p-1  btn-tab-mobile" style={tabValue === 3 ? {
                                     background: 'linear-gradient(106.79deg, #E52982 25.24%, #A72BC3 88.25%)',
                                     color: '#fff'
                                 } : {}} onClick={() => setTabValue(3)}>Others Certificate</button>
@@ -52,7 +41,7 @@ export default function MobileCertificate() {
 
                         </div>
                         <div>
-                            {tabValue === 1 && <EducationalCertificate selectedImage={selectedImage} />}
+                            {tabValue === 1 && <EducationalCertificate selectedImage={selectedImage} setSelectedImage={setSelectedImage} />}
                             {tabValue === 2 && <ProfessionalCertificate selectedImage={selectedImage} />}
                             {tabValue === 3 && <OthersCertificate selectedImage={selectedImage} />}
                         </div>
