@@ -23,7 +23,6 @@ import TopProfessionKazi from "../components/pages/TopProfession/TopProfessionKa
 import Suggested from "../components/pages/TopProfile/Suggested";
 import TopBride from "../components/pages/TopProfile/TopBride";
 import TopGroom from "../components/pages/TopProfile/TopGroom";
-import Accordian from "../components/SingleProfilesUser/profileSection/Accordion";
 // import EditProfile from "../components/SingleProfilesUser/profileSection/EditProfile";
 import About from "../Wrapper/About/About";
 import Agent from "../Wrapper/Agent/Agent";
@@ -74,6 +73,7 @@ import { Setting } from "../Wrapper/Home/mobileversion/Setting";
 import { GallaryMov } from "../Wrapper/Home/mobileversion/gallarymov/GallaryMov";
 import Certificate from "../components/SingleProfilesUser/CertificateSection/Certificate";
 import MobileCertificate from "../Wrapper/Home/mobileversion/PhotoGallery/certificate/MobileCertificate";
+import ProfileDetails from "../components/SingleProfilesUser/profileSection/ProfileDetails";
 
 const Index = () => {
     return (
@@ -82,7 +82,7 @@ const Index = () => {
                 <Routes>
                     <Route path="/about" element={<About></About>}></Route>
                     <Route path="/userprofile" element={<SingleProfile />}>
-                        <Route path="" element={<Accordian />} />
+                        <Route path="" element={<ProfileDetails />} />
                         <Route path="edit"  >
                             <Route path="personalinfo/:id" element={<EditPersonalInfo />} />
                             <Route path="profesionalinfo/:id" element={<EditProfesionalInfo />} />
