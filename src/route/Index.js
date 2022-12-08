@@ -162,7 +162,6 @@ const Index = () => {
                     <Route path="/mobilecertificate" element={<MobileCertificate />} />
                     <Route path="/certificate" element={<Certificate />} />
                     {/* --------------- MOBILE ROUTES END --------------- */}
-
                     <Route path="*" element={<NotFound />}></Route>
                 </Routes>
             </BrowserRouter>

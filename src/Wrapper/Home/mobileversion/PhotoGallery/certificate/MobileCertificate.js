@@ -15,7 +15,7 @@ export default function MobileCertificate() {
     const [selectedImage, setSelectedImage] = useState('https://img.freepik.com/free-vector/elegant-blue-gold-diploma-certificate-template_1017-17257.jpg?w=2000');
     return (
         <div className='flex justify-center'>
-            <div className='max-w-[337px] p-2  '>
+            <div className='max-w-[337px] p-2 '>
                 <div className=' '>
 
                     <div >
