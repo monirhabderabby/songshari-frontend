@@ -27,7 +27,7 @@ const AboutHeaderBanner = () => {
                     <img src={aboutUsBanner} alt="Not Available" />
                 </div>
             </div>
-            <img className='absolute bottom-0' src={waveImg} alt="Not Available" />
+            <img className='absolute bottom-0 w-full' src={waveImg} alt="Not Available" />
         </div>
     );
 };
