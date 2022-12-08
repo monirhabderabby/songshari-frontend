@@ -55,6 +55,9 @@ import MobileActivityPost from "../components/pages/MobileActivity/MobileActivit
 // import MobileSingleProfilesUser from "../components/SingleProfilesUser/MobileSingleProfilesUser/MobileSingleProfilesUser";
 import { DynamicPhotosGallary } from "../components/pages/DynamicProfilePage/DynamicPhotosGallary";
 import { FindAPartnerSuggested } from "../components/pages/FindPartner/FindAPartnerSuggested";
+import MobileSingleProfilesUser from "../components/SingleProfilesUser/MobileSingleProfilesUser/MobileSingleProfilesUser";
+import { PersonalDetailsMobile } from "../components/SingleProfilesUser/MobileSingleProfilesUser/PersonalDetailsMobile";
+import EditPersonalInfo from "../components/SingleProfilesUser/profileSection/EditprofileSection/EditPersonalInfo";
 import { AboutMov } from "../Wrapper/Home/mobileversion/about/AboutMov";
 import { CertificateMov } from "../Wrapper/Home/mobileversion/CertificateMov";
 import { CommunityMov } from "../Wrapper/Home/mobileversion/comminuty/CommunityMov";
@@ -72,8 +75,6 @@ import MobileProfileOthers from "../Wrapper/Home/mobileversion/MobileProfileOthe
 import Certificate from "../Wrapper/Home/mobileversion/PhotoGallery/certificate/Certificate";
 import { PrivacyMov } from "../Wrapper/Home/mobileversion/privacy/PrivacyMov";
 import { Setting } from "../Wrapper/Home/mobileversion/Setting";
-import MobileSingleProfilesUser from "../components/SingleProfilesUser/MobileSingleProfilesUser/MobileSingleProfilesUser";
-import { PersonalDetailsMobile } from "../components/SingleProfilesUser/MobileSingleProfilesUser/PersonalDetailsMobile";
 
 const Index = () => {
     return (
@@ -84,7 +85,7 @@ const Index = () => {
                     <Route path="/userprofile" element={<SingleProfile />}>
                         <Route path="" element={<Accordian />} />
                         <Route path="edit">
-                            {/* <Route path="personalinfo/:id" element={<EditPersonalInfo />} /> */}
+                            <Route path="personalinfo/:id" element={<EditPersonalInfo />} />
                             <Route path="profesionalinfo/:id" element={<EditProfesionalInfo />} />
                             <Route path="educationalinfo/:id" element={<EditEducationalInfo />} />
                             <Route path="physicalinfo/:id" element={<EditPhysicalInfo />} />
