@@ -1,7 +1,6 @@
 import React, { Suspense, useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import Anexecutive from "../../components/CardComopents/Anexecutive";
-import ThreeEasySteps from "../../components/pages/Home/Banner/ThreeEasySteps";
 import BeginFamilyJourney from "../../components/pages/Home/BeginFamilyJourney/BeginFamilyJourney";
 import FindSoleMate from "../../components/pages/Home/FindSoleMate/FindSoleMate";
 import SecureVerified from "../../components/pages/Home/SecureVerified/SecureVerified";
