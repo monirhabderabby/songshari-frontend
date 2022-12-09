@@ -70,7 +70,7 @@ const Signup = () => {
                         <div className="w-full lg:w-3/5 p-5 my-auto">
                             <div className="text-left font-bold">
                                 <span className="gradient_text font-george">
-                                    <img className="w-[150px]" src={logo} alt="logo" />
+                                    <img className="w-[150px]" src={logo} alt="logo" crossOrigin="anonymous" />
                                 </span>
                             </div>
                             <div className="py-10">
@@ -101,7 +101,7 @@ const Signup = () => {
                                                     type="text"
                                                     placeholder="First name"
                                                     className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
-                                                    id="name"
+                                                    id="firstName"
                                                 />
                                             </div>
                                             <h1 className="text-left ml-2">
@@ -285,6 +285,7 @@ const Signup = () => {
                                                 <MdLockOutline className=" m-2 text-gray-400" />
                                                 <select
                                                     name="gender"
+                                                    id="gender"
                                                     className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
                                                     required
                                                     onChange={e => setGender(e.target.value)}
