@@ -12,6 +12,7 @@ import { auth } from "../../../firebase.init";
 import { useRegAsMemberMutation } from "../../../Redux/features/userInfo/userApi";
 import { loadUserData } from "../../../Redux/features/userInfo/userInfo";
 import Error from "../../ui/error/Error";
+import { TextField } from "./InputFields/TextField";
 import MobileSignUp from "./MobileDesign/MobileSignUp";
 
 const Signup = () => {
@@ -88,7 +89,18 @@ const Signup = () => {
                                 <p className="text-gray-400 my-3">or use your email account</p>
                                 <div>
                                     <form className="lg:w-full w-64 mx-auto lg:grid lg:gap-x-3 lg:grid-cols-2" onSubmit={handleSubmit(onSubmit)}>
-                                        <section>
+                                        <TextField
+                                            {...{
+                                                register,
+                                                errors,
+                                                icon: <FaRegUser className=" m-2 text-gray-400" />,
+                                                id: "firstName",
+                                                placeholder: "First name",
+                                                name: "firstName",
+                                                requiredMessage: "First name is required",
+                                            }}
+                                        />
+                                        {/* <section>
                                             <div className="flex items-center bg-gray-100 p-2 w-full rounded-xl">
                                                 <FaRegUser className=" m-2 text-gray-400" />
                                                 <input
@@ -110,7 +122,7 @@ const Signup = () => {
                                                 )}
                                             </h1>
                                         </section>{" "}
-                                        {/*first name field*/}
+                                        first name field */}
                                         <section>
                                             <div className="flex items-center bg-gray-100 p-2 w-full rounded-xl mt-3 lg:mt-0">
                                                 <FaRegUser className=" m-2 text-gray-400" />

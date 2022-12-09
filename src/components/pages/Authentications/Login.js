@@ -18,11 +18,11 @@ import { loadUserData } from "../../../Redux/features/userInfo/userInfo";
 import Error from "../../ui/error/Error";
 import ForgetPasswordModal from "./ForgetPassword/ForgetPasswordModal";
 import { PasswordField } from "./InputFields/PasswordField";
-import { TextField } from "./InputFields/TextField";
 import MobileLogin from "./MobileDesign/MobileLogin";
 
 // css files
 import "../../../App.css";
+import { EmailField } from "./InputFields/EmailField";
 
 const Login = () => {
     const [customError, setCustomError] = useState("");
@@ -101,12 +101,11 @@ const Login = () => {
                                 <p className="text-gray-400 my-3">or use your email account</p>
                                 <div>
                                     <form className="w-64 mx-auto" onSubmit={handleSubmit(onSubmit)}>
-                                        <TextField
+                                        <EmailField
                                             {...{
                                                 errors,
                                                 register,
                                                 icon: <FaRegEnvelope className="m-2 text-gray-400" />,
-                                                type: "email",
                                                 name: "email",
                                                 placeholder: "Email",
                                                 id: "email",
