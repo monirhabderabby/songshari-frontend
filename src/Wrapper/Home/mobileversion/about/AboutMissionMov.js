@@ -1,8 +1,4 @@
 import React from "react";
-import aboutUsMission1 from "../../../../assets/images/AboutUs/aboutUsMission1.jpg";
-import aboutUsMission2 from "../../../../assets/images/AboutUs/aboutUsMission2.jpg";
-import aboutUsBanner from "../../../../assets/images/AboutUs/aboutUsBanner.jpg";
-import waveImg from "../../../../assets/images/AboutUs/waveImg.png";
 
 const AboutMission = () => {
     return (
@@ -34,19 +30,19 @@ const AboutMission = () => {
                     <img className="absolute -bottom-12 rounded-tr-[128px] rounded-bl-[127px] w-72 z-10" src={aboutUsMission2} alt="" />
                 </div>
             </div> */}
-<h3 className="text-lg font-semibold mt-8 ml-4">Our Mission</h3>
-<div className='grid grid-cols-2 ml-4 mr-4 gap-4'>
+            <h3 className="text-lg font-semibold mt-8 ml-4">Our Mission</h3>
+            <div className='grid grid-cols-2 ml-4 mr-4 gap-4'>
                 <div className='flex items-center justify-center mb-14'>
                     <h4
                         className='text-black  text-sm mt-4'
-                        
+
                     >
-                        Lorem ipsum dolor sit amet consectetur. Suspendisse sit duis platea dapibus urna aliquet. Massa fringilla mauris morbi tincidunt vitae in. 
+                        Lorem ipsum dolor sit amet consectetur. Suspendisse sit duis platea dapibus urna aliquet. Massa fringilla mauris morbi tincidunt vitae in.
                     </h4>
                 </div>
                 <div className="">
-                    <img  src='https://i.ibb.co/FbBNMVj/Capture.png' alt="" />
-                
+                    <img src='https://i.ibb.co/FbBNMVj/Capture.png' alt="" />
+
                 </div>
             </div>
 

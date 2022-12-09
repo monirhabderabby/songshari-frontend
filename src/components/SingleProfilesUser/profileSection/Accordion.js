@@ -44,7 +44,6 @@ const Accordian = () => {
     };
     const navigate = useNavigate();
     // if (isLoading) return false;
-    console.log(data);
     return (
         <div className="mb-[69px] max-w-[523px] mx-auto">
             <Accordion expanded={expanded === "panel1"} onChange={handleChange("panel1")}>
@@ -52,10 +51,10 @@ const Accordian = () => {
                     <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
                         <div>
                             <Typography className="hidden md:block">
-                                <h1 className="text-[24px] text-[#333333] leading-[34px] font-fira font-semibold">Personal Information</h1>
+                                <span className="text-[24px] text-[#333333] leading-[34px] font-fira font-semibold">Personal Information</span>
                             </Typography>
                             <Typography className="md:hidden">
-                                <h1 className="text-[18px] text-[#333333] leading-[34px] font-fira">Personal Details</h1>
+                                <span className="text-[18px] text-[#333333] leading-[34px] font-fira">Personal Details</span>
                             </Typography>
                         </div>
                     </AccordionSummary>
@@ -579,7 +578,7 @@ const Accordian = () => {
                 <div className="flex justify-between items-center	">
                     <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
                         <div>
-                        <Typography className="hidden md:block">
+                            <Typography className="hidden md:block">
                                 <h1 className="text-[24px] text-[#333333] leading-[34px] font-fira font-semibold">Educational Information</h1>
                             </Typography>
                             <Typography className='md:hidden'>
@@ -726,7 +725,7 @@ const Accordian = () => {
                 <div className="flex justify-between items-center	">
                     <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
                         <div>
-                        <Typography className="hidden md:block">
+                            <Typography className="hidden md:block">
                                 <h1 className="text-[24px] text-[#333333] leading-[34px] font-fira font-semibold">Physical Information</h1>
                             </Typography>
                             <Typography className='md:hidden'>
@@ -813,7 +812,7 @@ const Accordian = () => {
                 <div className="flex justify-between items-center	">
                     <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
                         <div>
-                        <Typography className="hidden md:block">
+                            <Typography className="hidden md:block">
                                 <h1 className="text-[24px] text-[#333333] leading-[34px] font-fira font-semibold">Other Information</h1>
                             </Typography>
                             <Typography className='md:hidden'>

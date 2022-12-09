@@ -3,16 +3,8 @@ import aboutUsBanner from "../../../assets/images/AboutUs/aboutUsBanner.jpg";
 import waveImg from "../../../assets/images/AboutUs/waveImg.png";
 
 const AboutHeaderBanner = () => {
-    // const fontFamily = () => {
-    //     return (
-    //         {
-    //             fontFamily: 'Courier New, Courier, monospace'
-    //         }
-    //     )
-    // }
     return (
         <div
-            // style={fontFamily()} 
             className='relative'>
             <div className='grid grid-cols-1 md:grid-cols-2'>
                 <div className='flex items-center justify-center mb-32'>
