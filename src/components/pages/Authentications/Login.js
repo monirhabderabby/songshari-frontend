@@ -6,7 +6,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useSignInWithEmailAndPassword, useSignInWithGoogle } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
 import { Toaster } from "react-hot-toast";
-import { FaFacebookF, FaGoogle, FaRegEnvelope } from "react-icons/fa";
+import { FaGoogle, FaRegEnvelope } from "react-icons/fa";
 import { MdLockOutline } from "react-icons/md";
 import { useDispatch } from "react-redux";
 
@@ -90,9 +90,6 @@ const Login = () => {
                                 <h2 className="text-3xl font-bold gradient_text">Member Login</h2>
                                 <div className="border-2 w-10 border-primary inline-block"></div>
                                 <div className="flex justify-center items-center my-2">
-                                    <p className="border-2 cursor-pointer border-gray-200 rounded-full p-3 mx-1 hover:bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] hover:text-white duration-400 transition-all">
-                                        <FaFacebookF className="text-sm" />
-                                    </p>
                                     <p
                                         className="border-2 cursor-pointer border-gray-200 rounded-full p-3 mx-1 hover:bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] hover:text-white duration-400 transition-all"
                                         onClick={() => signInWithGoogle()}
