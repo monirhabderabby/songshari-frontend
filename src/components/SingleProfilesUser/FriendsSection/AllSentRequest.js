@@ -25,20 +25,26 @@ export const AllSentRequest = () => {
                 <SkeletonLoader />
             </div>
         );
-    } else if (!isLoading && isError) {
-        content = <p>{error?.message}</p>;
-    } else if (!isLoading && !isError && data?.data?.length === 0) {
+    } else if (!isLoading && data?.data?.length === 0) {
         content = (
             <div className="flex flex-col items-center justify-center mt-[30%]">
                 <FiUsers className="text-[48px] text-gray-400" />
                 <p className="mt-[10px] text-[22px] font-Inter font-medium text-gray-500">No Request sent</p>
             </div>
         );
-    } else if (!isLoading && !isError && data?.data?.length > 0) {
+    } else if (!isLoading && data?.data?.length > 0) {
         content = data?.data?.map(friend => {
             return <SentReqCard key={friend._id} {...{ friend }} />;
         });
     }
+
+    if (data) {
+        console.log("data", data);
+    }
+    if (isError) {
+        console.log("isError", isError);
+    }
+    if (error) console.log("error", error);
 
     return (
         <div>
