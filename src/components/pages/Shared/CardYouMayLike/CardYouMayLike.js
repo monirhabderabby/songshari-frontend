@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { AiFillHeart } from "react-icons/ai";
 import { BiUserCheck, BiUserPlus } from "react-icons/bi";
 import loveIcon from "../../../../assets/images/icons/love.png";
 import { useAddFriendMutation, useLikeSingleProfileMutation } from "../../../../Redux/features/connections/connectionApi";
@@ -38,8 +39,7 @@ export const CardYouMayLike = ({ data }) => {
                         {
                             likeSent ? (
                                 <div>
-                                    <BiUserCheck className="text-green-400 w-[20px] h-[20px] text-xl transition-all duration-500 " />
-                                    <p>done like</p>
+                                    <AiFillHeart className="text-green-400 w-[20px] h-[20px] text-xl transition-all duration-500 " />
                                 </div>
                             ) : likeLoading ? (
                                 <div className="h-[16px] bg-[#E41272] rounded-full animate-ping w-[16px] text-[#E41272] transition-all duration-500 "></div>
