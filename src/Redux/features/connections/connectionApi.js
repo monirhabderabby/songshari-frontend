@@ -57,6 +57,13 @@ export const connectionApi = apiSlice.injectEndpoints({
                 headers: { authorization: `Bearer ${localStorage.getItem("accessToken")}` },
             }),
         }),
+        likeSingleProfile: builder.mutation({
+            query: id => ({
+                url: `/member/like/profile/${id}`,
+                method: "PUT",
+                headers: { authorization: `Bearer ${localStorage.getItem("accessToken")}` },
+            }),
+        }),
     }),
 });
 
@@ -68,4 +75,5 @@ export const {
     useGetAllConnectedConnectionsQuery,
     useCancleSentRequestMutation,
     useGetMatchedUsersQuery,
+    useLikeSingleProfileMutation,
 } = connectionApi;

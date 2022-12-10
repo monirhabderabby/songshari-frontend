@@ -1,6 +1,8 @@
 import React from 'react';
 import aboutUsBanner from "../../../assets/images/AboutUs/aboutUsBanner.jpg";
-import waveImg from "../../../assets/images/AboutUs/waveImg.png";
+
+// CSS files
+import WaveEffectCSS from "../../../assets/css/aboutUsWaveEffect.module.css";
 
 const AboutHeaderBanner = () => {
     return (
@@ -19,7 +21,11 @@ const AboutHeaderBanner = () => {
                     <img src={aboutUsBanner} alt="Not Available" />
                 </div>
             </div>
-            <img className='absolute bottom-0' src={waveImg} alt="Not Available" />
+            <div className={WaveEffectCSS.ocean}>
+                <div className={WaveEffectCSS.wave}></div>
+                <div className={WaveEffectCSS.wave}></div>
+                <div className={WaveEffectCSS.wave}></div>
+            </div>
         </div>
     );
 };

@@ -74,6 +74,9 @@ import { PrivacyMov } from "../Wrapper/Home/mobileversion/privacy/PrivacyMov";
 import { Setting } from "../Wrapper/Home/mobileversion/Setting";
 import MobileSingleProfilesUser from "../components/SingleProfilesUser/MobileSingleProfilesUser/MobileSingleProfilesUser";
 import { PersonalDetailsMobile } from "../components/SingleProfilesUser/MobileSingleProfilesUser/PersonalDetailsMobile";
+import { OthersCertificate } from "../Wrapper/Home/mobileversion/PhotoGallery/certificate/OthersCertificate";
+import { ProfessionalCertificate } from "../Wrapper/Home/mobileversion/PhotoGallery/certificate/ProfessionalCertificate";
+import EducationalCertificate from "../Wrapper/Home/mobileversion/PhotoGallery/certificate/EducationalCertificate";
 
 const Index = () => {
     return (
@@ -138,6 +141,9 @@ const Index = () => {
                     <Route path="/admin-analytics" element={<AdminAnalytics />}></Route>
                     <Route path="/stepper" element={<Container></Container>}></Route>
                     <Route path="/upgrade" element={<UpgradePlan></UpgradePlan>}></Route>
+                    <Route path="/personalCertificate" element={<OthersCertificate />}></Route>
+                    <Route path="/professionalCertificate" element={<ProfessionalCertificate />}></Route>
+                    <Route path="/educationalCertificate" element={<EducationalCertificate />}></Route>
 
                     {/* --------------- MOBILE ROUTES START --------------- */}
                     <Route path="/mobileHomePage" element={<MobileHome />}></Route>
