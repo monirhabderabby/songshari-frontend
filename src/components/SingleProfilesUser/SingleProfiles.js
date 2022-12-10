@@ -12,7 +12,6 @@ import { VerificationCard } from "./VerificationCard";
 
 const SingleProfiles = () => {
     const { data, isLoading } = useGetProfileDetailsWIthAuthQuery();
-
     return (
         <div className="bg-[#FAFBFF]">
             <CustomHeader title="Profile" />
