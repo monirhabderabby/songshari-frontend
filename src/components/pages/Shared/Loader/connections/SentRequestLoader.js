@@ -1,6 +1,6 @@
 import React from "react";
 
-export const SkeletonLoader = () => {
+export const SentRequestLoader = () => {
     return (
         <div>
             <div class="shadow-[2px_2px_8px_rgba(0,0,0,0.12)] w-[501px] h-[141px] bg-white rounded-[15px] p-[21px] flex justify-between items-center">

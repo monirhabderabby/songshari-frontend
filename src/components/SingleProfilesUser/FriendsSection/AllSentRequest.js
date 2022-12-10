@@ -6,8 +6,8 @@ import { FiUsers } from "react-icons/fi";
 
 // components
 import { useGetAllSentRequestQuery } from "../../../Redux/features/connections/connectionApi";
+import { SentRequestLoader } from "../../pages/Shared/Loader/connections/SentRequestLoader";
 import { SentReqCard } from "./Cards/SentReqCard";
-import { SkeletonLoader } from "./SkeletonLoader";
 
 export const AllSentRequest = () => {
     // varible declation
@@ -20,9 +20,9 @@ export const AllSentRequest = () => {
     if (isLoading) {
         content = (
             <div className="w-full grid grid-cols-1 gap-y-4 px-4">
-                <SkeletonLoader />
-                <SkeletonLoader />
-                <SkeletonLoader />
+                <SentRequestLoader />
+                <SentRequestLoader />
+                <SentRequestLoader />
             </div>
         );
     } else if (!isLoading && data?.data?.length === 0) {

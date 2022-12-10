@@ -1,20 +1,22 @@
+// configuration, ex: react-router
 import React from "react";
+
+// Third party packages, ex: redux
 import { FiUsers } from "react-icons/fi";
+import { FriendRequestLoader } from "../../pages/Shared/Loader/connections/FriendRequestLoader";
+
+// components
 import { FriendRequestCard } from "./Cards/FriendRequestCard";
-import { SkeletonLoader } from "./SkeletonLoader";
 
 export const AllFriendRequest = ({ data, isLoading, isError, error }) => {
-    if (data) {
-        console.log(data);
-    }
     // js variables
     let content = null;
     if (isLoading) {
         content = (
-            <div className="w-full grid grid-cols-1 gap-y-4 px-4">
-                <SkeletonLoader />
-                <SkeletonLoader />
-                <SkeletonLoader />
+            <div className="w-full grid grid-cols-1 gap-y-4 px-4 mx-auto">
+                <FriendRequestLoader />
+                <FriendRequestLoader />
+                <FriendRequestLoader />
             </div>
         );
     } else if (!isLoading && data?.data?.length === 0) {
@@ -29,6 +31,8 @@ export const AllFriendRequest = ({ data, isLoading, isError, error }) => {
             return <FriendRequestCard key={friend._id} {...{ friend }} />;
         });
     }
+
+    if (data) console.log(data);
 
     return <div className="w-full grid grid-cols-1 gap-y-4">{content}</div>;
 };
