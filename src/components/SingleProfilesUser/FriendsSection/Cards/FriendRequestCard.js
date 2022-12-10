@@ -1,15 +1,22 @@
-import moment from "moment";
+// configuration, ex: react-router
 import React from "react";
+
+// Third party packages, ex: redux
+import moment from "moment";
+
+// components
 import tick from "../../../../assets/images/icons/tick.png";
 import { useAcceptFriendRequestMutation } from "../../../../Redux/features/connections/connectionApi";
 
 export const FriendRequestCard = ({ friend }) => {
-    const name = friend?.user?.firstName + " " + friend?.user?.lastName;
-    if (friend) {
-        console.log(friend);
-    }
+    // varible declation
+    // hook variables
     const [acceptFriendRequest, { data }] = useAcceptFriendRequestMutation();
 
+    // js variables
+    const name = friend?.user?.firstName + " " + friend?.user?.lastName;
+
+    // function declation
     const acceptHandler = async id => {
         await acceptFriendRequest({ id });
         if (data) console.log(data);

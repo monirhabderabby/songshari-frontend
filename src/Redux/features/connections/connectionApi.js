@@ -11,7 +11,7 @@ export const connectionApi = apiSlice.injectEndpoints({
         }),
         getAllSentRequest: builder.query({
             query: () => ({
-                url: "/member/connections/sentRequests",
+                url: "/member/connections/requests",
                 method: "GET",
                 headers: { authorization: `Bearer ${localStorage.getItem("accessToken")}` },
             }),
