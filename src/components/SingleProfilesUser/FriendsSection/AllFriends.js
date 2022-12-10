@@ -1,6 +1,6 @@
 import React from "react";
 import { useGetAllConnectedConnectionsQuery } from "../../../Redux/features/connections/connectionApi";
-import { ConnectedConnectionLoader } from "../../pages/Shared/Loader/ConnectedConnectionLoader";
+import { ConnectedConnectionLoader } from "../../pages/Shared/Loader/connections/ConnectedConnectionLoader";
 
 import { FriendCard } from "./Cards/FriendCard";
 

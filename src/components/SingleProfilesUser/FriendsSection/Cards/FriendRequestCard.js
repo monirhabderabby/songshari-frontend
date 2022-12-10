@@ -1,9 +1,13 @@
+import moment from "moment";
 import React from "react";
 import tick from "../../../../assets/images/icons/tick.png";
 import { useAcceptFriendRequestMutation } from "../../../../Redux/features/connections/connectionApi";
 
 export const FriendRequestCard = ({ friend }) => {
-    const name = friend.firstName + " " + friend.lastName;
+    const name = friend?.user?.firstName + " " + friend?.user?.lastName;
+    if (friend) {
+        console.log(friend);
+    }
     const [acceptFriendRequest, { data }] = useAcceptFriendRequestMutation();
 
     const acceptHandler = async id => {
@@ -11,7 +15,7 @@ export const FriendRequestCard = ({ friend }) => {
         if (data) console.log(data);
     };
     return (
-        <div className="p-[21px] h-[141px] min-w-[501px] mx-auto bg-white shadow-[2px_2px_8px_rgba(0,0,0,0.12)] rounded-[15px] flex justify-between items-center">
+        <div className="p-[21px] h-[141px] w-full mx-auto bg-white shadow-[2px_2px_8px_rgba(0,0,0,0.12)] rounded-[15px] flex justify-between items-center">
             <div className="h-full flex items-center">
                 <div
                     className="w-[100px] h-[100px] rounded-full mr-[21px] bg-center bg-cover"
@@ -19,10 +23,10 @@ export const FriendRequestCard = ({ friend }) => {
                 ></div>
                 <div>
                     <div className="flex items-center">
-                        <h1 className="text-[20px] leading-[30px] text-[#333333] font-bold mr-[4px]">{name}</h1>
+                        <h1 className="text-[20px] leading-[30px] text-[#333333] font-bold mr-[4px]">{name || "Not provided"}</h1>
                         <img src={tick} alt="icon" />
                     </div>
-                    <span className="text-[16px] leading-[26px] text-[#333333] font-normal">A month ago</span>
+                    <span className="text-[16px] leading-[26px] text-[#333333] font-normal">{moment(friend?.date).fromNow() || "No Data Found"}</span>
                 </div>
             </div>
             <div className="flex flex-col gap-y-[14px]">
