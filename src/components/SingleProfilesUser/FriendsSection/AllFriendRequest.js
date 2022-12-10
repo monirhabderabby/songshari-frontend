@@ -12,7 +12,7 @@ export const AllFriendRequest = () => {
 
     return (
         <div className="grid grid-cols-1 gap-y-4 w-full">
-            {data?.connectionRequests.map(friend => {
+            {arr.map(friend => {
                 return <FriendRequestCard key={friend._id} {...{ friend }} />;
             })}
         </div>
