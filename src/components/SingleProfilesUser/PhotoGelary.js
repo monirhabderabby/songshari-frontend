@@ -81,9 +81,8 @@ const PhotoGelary = ({ data, isLoading }) => {
 
     console.log(urls)
     return (
-        <div>
+        <div className="w-full">
             <div className="px-6">
-
                 <Dragger onChange={handleChange} style={{ border: 'none', background: 'none' }} multiple={true} showUploadList={false} >
                     <div className="flex">
                         <div>
@@ -166,7 +165,7 @@ const PhotoGelary = ({ data, isLoading }) => {
                     })}
                 </div>
             </div>
-            <div className="w-full flex justify-center mt-[30px]">
+            <div className="w-full flex justify-center mt-[30px] py-3">
                 <button className="py-[5px] px-[15px] shadow-[0px_5px_20px_0px_rgb(139_122_132/50%)]  bg-[linear-gradient(171deg,rgba(233,11,200,0.6979166666666667)_41%,rgba(166,2,241,0.79)_100%)] text-white rounded-[50px]">
                     See All
                 </button>

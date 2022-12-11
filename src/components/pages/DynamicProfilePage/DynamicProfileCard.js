@@ -15,8 +15,8 @@ const DynamicProfileCard = ({ data, isLoading }) => {
         <div>
             <div className="card_container shadow-[0px_10px_5px_rgba(119,123,146,0.02)] px-2 md:px-0">
                 <div className="Card-header"></div>
-                <div className="relative w-52 h-52 rounded-full">
-                    <div className="bottom-20 left-20 lg:left-20 md:left-16 absolute">
+                <div className="relative lg:w-52 h-52 rounded-full">
+                    <div className="bottom-20 left-20 lg:left-20 left-[28%] lg:left-16 md:left-[33%] absolute">
                         <div className="relative card-img w-48 h-48">
                             <img
                                 className="w-44 h-44 rounded-full img-fluid"

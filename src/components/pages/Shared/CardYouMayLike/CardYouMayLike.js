@@ -40,7 +40,7 @@ export const CardYouMayLike = ({ data }) => {
         // </div>
         //     </div>
         // </div>
-        <div className="w-[263px] h-[179px] bg-white shadow-[2px_2px_8px_rgba(0,0,0,0.12)] rounded-[20px] px-[20px] py-[17px]">
+        <div className="lg:w-[263px] h-[179px] bg-white shadow-[2px_2px_8px_rgba(0,0,0,0.12)] rounded-[20px] px-[20px] py-[17px]">
             <div className="flex items-center justify-between">
                 <div className="w-[67px] h-[67px] rounded-full bg-cover bg-center" style={{ backgroundImage: `url(${data?.profilePhoto})` }}></div>
                 <div className="flex items-center gap-x-[10px]">
@@ -48,9 +48,8 @@ export const CardYouMayLike = ({ data }) => {
                         <img src={loveIcon} alt="loveIcon" />
                     </div>
                     <div
-                        className={`${
-                            sent ? "bg-green-100" : "bg-[#FFDFF4]"
-                        } h-[43px] w-[43px] flex justify-center items-center rounded-full transition-all duration-500`}
+                        className={`${sent ? "bg-green-100" : "bg-[#FFDFF4]"
+                            } h-[43px] w-[43px] flex justify-center items-center rounded-full transition-all duration-500`}
                     >
                         {sent ? (
                             <BiUserCheck className="text-green-400 w-[20px] h-[20px] text-xl transition-all duration-500 " />

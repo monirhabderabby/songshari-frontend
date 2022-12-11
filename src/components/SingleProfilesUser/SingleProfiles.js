@@ -15,12 +15,12 @@ const SingleProfiles = () => {
     return (
         <div className="bg-[#FAFBFF]">
             <CustomHeader title="Profile" />
-            <div className="custom-container mx-auto bg-[#FAFBFF] pt-[30px]">
+            <div className="custom-container mx-auto bg-[#FAFBFF] pt-[30px] ">
                 <div className="block lg:flex">
-                    <div className="md:w-full w-full lg:w-9/12">
+                    <div className=" w-full lg:w-9/12 ">
                         <div>
-                            <div className="block md:flex">
-                                <div className="w-full md:w-2/5 mr-4">
+                            <div className="block lg:flex">
+                                <div className="w-full  lg:mr-4">
                                     <div>
                                         <ProfileCard {...{ data, isLoading }} />
                                         <VerificationCard />
@@ -30,7 +30,7 @@ const SingleProfiles = () => {
                                         <PhotoGelary {...{ data, isLoading }} />
                                     </div>
                                 </div>
-                                <div className="w-full md:w-3/4">
+                                <div className="lg:w-full">
                                     <div>
                                         <Table {...{ data, isLoading }} />
                                     </div>
