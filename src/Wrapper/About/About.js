@@ -7,24 +7,22 @@ import CustomHeader from "../../components/shared/CustomHeader/CustomHeader";
 import Footer from "../../components/shared/Footer/Footer";
 
 const About = () => {
-    useEffect(() => {
-        window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-    }, []);
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  }, []);
 
-    return (
-        <>
-            <div className="hidden md:block">
-                <CustomHeader title={"About Us"} />
-                <AboutHeaderBanner />
-                <AboutOurMission />
-                <AboutUsStory />
-                <AboutUsOurHistory />
-                <Footer />
-            </div>
-            <div className="md:hidden">
-
-            </div>
-        </>
-    );
+  return (
+    <>
+      <div className="hidden md:block">
+        <CustomHeader title={"About Us"} />
+        <AboutHeaderBanner />
+        <AboutOurMission />
+        <AboutUsStory />
+        <AboutUsOurHistory />
+        <Footer />
+      </div>
+      <div className="md:hidden"></div>
+    </>
+  );
 };
 export default About;
