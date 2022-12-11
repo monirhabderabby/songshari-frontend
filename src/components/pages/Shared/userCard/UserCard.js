@@ -11,7 +11,8 @@ export const UserCard = ({ profile, isLoading }) => {
     return (
         <div className="col-span-1" data-aos="fade-up" data-aos-easing="ease-out-cubic" data-aos-duration="2000">
             {profile && (
-                <div className="h-[400px]  relative group overflow-hidden Suggested-card hidden md:block">
+            
+                <div className="h-[400px]  relative group overflow-hidden Suggested-card hidden md:block ml-6">
                     <img
                         className="h-[400px] rounded-tr-[12px] rounded-tl-[12px] rounded-bl-[12px] rounded-br-[12px] object-cover w-full"
                         src={profile?.profilePhoto}

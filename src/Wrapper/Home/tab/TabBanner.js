@@ -17,13 +17,13 @@ export const TabBanner = () => {
 
         </div>
         <div>
-        <img src='https://i.ibb.co/FDC2838/Rectangle-4464.png' className='mx-auto w-full' alt="Not Available"></img>
+        <img src='https://i.ibb.co/FDC2838/Rectangle-4464.png' className='mx-auto w-3/4' alt="Not Available"></img>
         </div>
         <div>
-        <img src='https://i.ibb.co/FDC2838/Rectangle-4464.png' className='mx-auto w-full' alt="Not Available"></img>
+        <img src='https://i.ibb.co/FDC2838/Rectangle-4464.png' className='mx-auto w-3/4' alt="Not Available"></img>
         </div>
         <div>
-        <img src='https://i.ibb.co/FDC2838/Rectangle-4464.png' className='mx-auto w-full' alt="Not Available"></img>
+        <img src='https://i.ibb.co/FDC2838/Rectangle-4464.png' className='mx-auto w-3/4' alt="Not Available"></img>
         </div>
 
       </Slider>
