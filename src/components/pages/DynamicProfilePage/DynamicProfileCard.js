@@ -11,6 +11,7 @@ const DynamicProfileCard = ({ data, isLoading }) => {
             setAge(age);
         }
     }, [data]);
+
     return (
         <div>
             <div className="card_container shadow-[0px_10px_5px_rgba(119,123,146,0.02)] px-2 md:px-0">
