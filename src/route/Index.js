@@ -76,6 +76,7 @@ import Certificate from "../Wrapper/Home/mobileversion/PhotoGallery/certificate/
 import { PrivacyMov } from "../Wrapper/Home/mobileversion/privacy/PrivacyMov";
 import { Setting } from "../Wrapper/Home/mobileversion/Setting";
 import { SendNotificationPayment } from "../Admin__Portion/Components/SendNotificationPayment";
+import { SendNotificationUpgrade } from "../Admin__Portion/Components/SendNotificationUpgrade";
 
 const Index = () => {
     return (
@@ -138,6 +139,7 @@ const Index = () => {
                     </Route>
                     <Route path="/singleViewRequest" element={<SingleRequestView />} />
                     <Route path="/NotificationPayment" element={<SendNotificationPayment></SendNotificationPayment>} />
+                    <Route path="/NotificationUpgrade" element={<SendNotificationUpgrade></SendNotificationUpgrade>} />
                     <Route path="/admin-analytics" element={<AdminAnalytics />}></Route>
                     
                     <Route path="/stepper" element={<Container></Container>}></Route>
