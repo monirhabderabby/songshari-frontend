@@ -11,7 +11,7 @@ export const connectionApi = apiSlice.injectEndpoints({
         }),
         getAllSentRequest: builder.query({
             query: () => ({
-                url: "/member/connections/sentRequests",
+                url: "/member/connections/requests",
                 method: "GET",
                 headers: { authorization: `Bearer ${localStorage.getItem("accessToken")}` },
             }),
@@ -29,13 +29,6 @@ export const connectionApi = apiSlice.injectEndpoints({
                 method: "POST",
                 headers: { authorization: `Bearer ${localStorage.getItem("accessToken")}` },
             }),
-            async onQueryStarted(arg, { queryFulfilled, dispatch }) {
-                dispatch(
-                    apiSlice.util.updateQueryData("getAllFriendRequest", localStorage.getItem("accessToken"), draft => {
-                        draft = draft.data.connectionRequests.filter(c => c._id !== arg.id);
-                    })
-                );
-            },
         }),
         getAllConnectedConnections: builder.query({
             query: () => ({
@@ -43,12 +36,36 @@ export const connectionApi = apiSlice.injectEndpoints({
                 method: "GET",
                 headers: { authorization: `Bearer ${localStorage.getItem("accessToken")}` },
             }),
+            keepUnusedDataFor: 20,
         }),
         cancleSentRequest: builder.mutation({
             query: ({ id }) => ({
                 url: `/member/connections/sentRequest/${id}`,
                 method: "DELETE",
+                headers: { authorization: `Bearer ${localStorage.getItem("accessToken")}` },
             }),
+
+            async onQueryStarted(arg, { dispatch, queryFulfilled }) {
+                // Optimistic cache update start
+                const updateResult = dispatch(
+                    apiSlice.util.updateQueryData("getAllSentRequest", undefined, draft => {
+                        const result = draft?.data?.filter(d => d?.user?._id !== arg.id);
+
+                        return {
+                            success: true,
+                            data: result,
+                            message: "Data found",
+                        };
+                    })
+                );
+
+                // Final Decison of cache update
+                try {
+                    await queryFulfilled;
+                } catch (error) {
+                    updateResult.undo();
+                }
+            },
         }),
         getMatchedUsers: builder.query({
             query: () => ({

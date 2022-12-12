@@ -53,7 +53,7 @@ const PhotoGelary = () => {
 
     return (
         <div>
-            <div className="photo-gelary p-6 text-left shadow">
+            <div className="photo-gelary p-6 text-left shadow hidden md:block">
 
                 <div className="mb-2">
                     <Dragger onChange={handleChange} style={{ border: 'none', background: 'none' }} multiple={true} >
@@ -102,7 +102,7 @@ const PhotoGelary = () => {
                     })}
                 </div>
             </div>
-            <div className="w-full flex justify-center mt-[30px]">
+            <div className="w-full flex justify-center mt-[30px] hidden md:block">
                 <button className="py-[5px] px-[15px] shadow-[0px_5px_20px_0px_rgb(139_122_132/50%)]  bg-[linear-gradient(171deg,rgba(233,11,200,0.6979166666666667)_41%,rgba(166,2,241,0.79)_100%)] text-white rounded-[50px]">
                     See All
                 </button>

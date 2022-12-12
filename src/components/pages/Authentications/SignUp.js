@@ -12,6 +12,7 @@ import { auth } from "../../../firebase.init";
 import { useRegAsMemberMutation } from "../../../Redux/features/userInfo/userApi";
 import { loadUserData } from "../../../Redux/features/userInfo/userInfo";
 import Error from "../../ui/error/Error";
+import { TextField } from "./InputFields/TextField";
 import MobileSignUp from "./MobileDesign/MobileSignUp";
 
 const Signup = () => {
@@ -70,7 +71,7 @@ const Signup = () => {
                         <div className="w-full lg:w-3/5 p-5 my-auto">
                             <div className="text-left font-bold">
                                 <span className="gradient_text font-george">
-                                    <img className="w-[150px]" src={logo} alt="logo" />
+                                    <img className="w-[150px]" src={logo} alt="logo" crossOrigin="anonymous" />
                                 </span>
                             </div>
                             <div className="py-10">
@@ -88,7 +89,18 @@ const Signup = () => {
                                 <p className="text-gray-400 my-3">or use your email account</p>
                                 <div>
                                     <form className="lg:w-full w-64 mx-auto lg:grid lg:gap-x-3 lg:grid-cols-2" onSubmit={handleSubmit(onSubmit)}>
-                                        <section>
+                                        <TextField
+                                            {...{
+                                                register,
+                                                errors,
+                                                icon: <FaRegUser className=" m-2 text-gray-400" />,
+                                                id: "firstName",
+                                                placeholder: "First name",
+                                                name: "firstName",
+                                                requiredMessage: "First name is required",
+                                            }}
+                                        />
+                                        {/* <section>
                                             <div className="flex items-center bg-gray-100 p-2 w-full rounded-xl">
                                                 <FaRegUser className=" m-2 text-gray-400" />
                                                 <input
@@ -101,7 +113,7 @@ const Signup = () => {
                                                     type="text"
                                                     placeholder="First name"
                                                     className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
-                                                    id="name"
+                                                    id="firstName"
                                                 />
                                             </div>
                                             <h1 className="text-left ml-2">
@@ -110,7 +122,7 @@ const Signup = () => {
                                                 )}
                                             </h1>
                                         </section>{" "}
-                                        {/*first name field*/}
+                                        first name field */}
                                         <section>
                                             <div className="flex items-center bg-gray-100 p-2 w-full rounded-xl mt-3 lg:mt-0">
                                                 <FaRegUser className=" m-2 text-gray-400" />
@@ -285,6 +297,7 @@ const Signup = () => {
                                                 <MdLockOutline className=" m-2 text-gray-400" />
                                                 <select
                                                     name="gender"
+                                                    id="gender"
                                                     className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
                                                     required
                                                     onChange={e => setGender(e.target.value)}
