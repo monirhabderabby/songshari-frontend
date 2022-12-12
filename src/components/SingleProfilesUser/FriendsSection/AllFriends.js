@@ -1,5 +1,7 @@
 // configuration, ex: react-router
 import React from "react";
+import { useGetAllConnectedConnectionsQuery } from "../../../Redux/features/connections/connectionApi";
+import { ConnectedConnectionLoader } from "../../pages/Shared/Loader/ConnectedConnectionLoader";
 
 // components
 import { useGetAllConnectedConnectionsQuery } from "../../../Redux/features/connections/connectionApi";
@@ -7,16 +9,25 @@ import { ConnectedConnectionLoader } from "../../pages/Shared/Loader/connections
 import { FriendCard } from "./Cards/FriendCard";
 
 export const AllFriends = () => {
-    // varible declation
-    // hook variables
+    const friends = [1, 2, 3, 4, 5, 6, 7];
     const { data, isLoading, isError, error } = useGetAllConnectedConnectionsQuery();
 
-    // js variables
+    // useEffect(() => {
+    //     fetch(`http://localhost:4000/member/connections`, {
+    //         method: "GET",
+    //         headers: {
+    //             Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+    //         },
+    //     })
+    //         .then(res => res.json())
+    //         .then(data => console.log(data));
+    // }, []);
+
     let content = null;
 
     if (isLoading) {
         content = (
-            <div className="w-full grid grid-cols-1 gap-y-4 px-4">
+            <div className="w-full grid grid-cols-1 gap-y-4">
                 <ConnectedConnectionLoader />
                 <ConnectedConnectionLoader />
                 <ConnectedConnectionLoader />

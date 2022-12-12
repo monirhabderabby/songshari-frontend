@@ -7,7 +7,6 @@ import Typography from "@mui/material/Typography";
 import moment from "moment";
 import React from "react";
 import { useNavigate, useOutletContext } from "react-router";
-import { useGetProfileDetailsQuery, useGetProfileDetailsWIthAuthQuery } from "../../../Redux/features/userInfo/userApi";
 import "./Accordion.css";
 const Accordion = styled(props => <MuiAccordion disableGutters elevation={0} square {...props} />)(({ theme }) => ({
     paddingTop: "23px",
@@ -35,10 +34,13 @@ const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({}));
 <<<<<<< HEAD
 const Accordian = () => {
     const [data, isLoading] = useOutletContext();
+<<<<<<< HEAD
 =======
 const Accordian = ({ data, isLoading }) => {
 
 >>>>>>> 064834acae66446bf538ee4daebdbc3e5078b0f5
+=======
+>>>>>>> 26ffc8bf1a743e966869d2e083f2ea5f3f3b5976
     // const { phone, email, NidOrPassportNumber, citizenShip, zodiacSign, barRegistrationNumber, licenceNo, yearOfBarRegistration, dateOfBirth } = data;
     const hightestEducationalQualification = data?.hightestEducationalQualification;
 

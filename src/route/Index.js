@@ -74,10 +74,13 @@ import MobileProfileOthers from "../Wrapper/Home/mobileversion/MobileProfileOthe
 import Certificate from "../Wrapper/Home/mobileversion/PhotoGallery/certificate/Certificate";
 import { PrivacyMov } from "../Wrapper/Home/mobileversion/privacy/PrivacyMov";
 import { Setting } from "../Wrapper/Home/mobileversion/Setting";
+<<<<<<< HEAD
 import { GallaryMov } from "../Wrapper/Home/mobileversion/gallarymov/GallaryMov";
 import Certificate from "../components/SingleProfilesUser/CertificateSection/Certificate";
 import MobileCertificate from "../Wrapper/Home/mobileversion/PhotoGallery/certificate/MobileCertificate";
 import ProfileDetails from "../components/SingleProfilesUser/profileSection/ProfileDetails";
+=======
+>>>>>>> 26ffc8bf1a743e966869d2e083f2ea5f3f3b5976
 
 const Index = () => {
     return (
@@ -86,8 +89,13 @@ const Index = () => {
                 <Routes>
                     <Route path="/about" element={<About></About>}></Route>
                     <Route path="/userprofile" element={<SingleProfile />}>
+<<<<<<< HEAD
                         <Route path="" element={<ProfileDetails />} />
                         <Route path="edit"  >
+=======
+                        <Route path="" element={<Accordian />} />
+                        <Route path="edit">
+>>>>>>> 26ffc8bf1a743e966869d2e083f2ea5f3f3b5976
                             <Route path="personalinfo/:id" element={<EditPersonalInfo />} />
                             <Route path="profesionalinfo/:id" element={<EditProfesionalInfo />} />
                             <Route path="educationalinfo/:id" element={<EditEducationalInfo />} />
