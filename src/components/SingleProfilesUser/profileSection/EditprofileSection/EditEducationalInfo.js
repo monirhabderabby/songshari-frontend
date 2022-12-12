@@ -14,9 +14,7 @@ const EditEducationalInfo = () => {
     const [departmentName, setDepartmentName] = useState(null);
     const [fieldOfStudy, setFieldOfStudy] = useState(null);
     const [cgpa, setCgpa] = useState(null);
-
     const [updateEducationalDetails, { isSuccess }] = useUpdateEducationalDetailsMutation();
-
     //educational qualifitaion data handler function
     const handleDegreeName = (event, newValue) => {
         if (typeof newValue === 'string') {
@@ -141,6 +139,7 @@ const EditEducationalInfo = () => {
     const { id } = useParams();
     const navigate = useNavigate()
     //data submission handler
+
     const handleSubmit = async (e) => {
         e.preventDefault()
         const data = { ...educationalInfo, degree: degreeName?.title, institute: instituteName?.title, department: departmentName?.title, feildOfStudy: fieldOfStudy?.title, gpaOrCgpa: cgpa?.title }

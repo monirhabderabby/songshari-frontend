@@ -13,7 +13,6 @@ import { VerificationCard } from "./VerificationCard";
 
 const SingleProfiles = () => {
     const { data, isLoading } = useGetProfileDetailsWIthAuthQuery();
-
     return (
         <div className="bg-[#FAFBFF]">
             <div className="hidden md:block">

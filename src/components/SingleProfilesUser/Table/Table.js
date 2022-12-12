@@ -11,7 +11,6 @@ const Table = ({ data, isLoading }) => {
     const [page, setPage] = useState(2);
     //here navigate use for manage edit proofile information route
     const navigate = useNavigate();
-
     return (
         <div>
             <div className="mb-4">
