@@ -2,30 +2,29 @@ import {
     ref,
     uploadBytes,
     getDownloadURL,
-    listAll,
-    list,
+
 } from "firebase/storage";
 import React, { useEffect, useState } from "react";
-import { Image, Upload } from 'antd';
+import { Upload } from 'antd';
 import { v4 as uuidv4 } from "uuid";
 import "../../assets/css/photogelary.css";
 import { firebaseStorage } from "../../firebase.init";
-import { useUpdatePersonalDetailsMutation } from "../../Redux/features/userInfo/userApi";
+// import { useUpdatePersonalDetailsMutation } from "../../Redux/features/userInfo/userApi";
 const { Dragger } = Upload;
 
 
 const PhotoGelary = ({ data, isLoading }) => {
+    // const [updatePersonalDetails, { isSuccess }] = useUpdatePersonalDetailsMutation();
     const [photos, setPhotos] = useState([]);
     const [images, setImages] = useState([]);
     const [urls, setUrls] = useState([]);
-    const [updatePersonalDetails, { isSuccess }] = useUpdatePersonalDetailsMutation()
 
     useEffect(() => {
         if (data) {
-            console.log(data.photos)
+            console.log(photos)
             setPhotos(data?.photos)
         }
-    }, [data])
+    }, [data, photos])
 
     const handleChange = async (e) => {
         const fileList = e.fileList;
@@ -37,7 +36,6 @@ const PhotoGelary = ({ data, isLoading }) => {
         }
         handleUpload();
     };
-    const imagesListRef = ref(firebaseStorage, "profile/");
 
 
     const handleUpload = async () => {
@@ -56,17 +54,17 @@ const PhotoGelary = ({ data, isLoading }) => {
                 });
             });
         });
+
+        Promise.all(promises)
+            .then((values) => {
+
+                setUrls(allUrl)
+
+
+            })
+            .catch(err => console.log(err));
     }
-    //     Promise.all(promises)
-    //         .then((values) => {
-
-    //             setUrls(allUrl)
-
-
-    //         })
-    //         .catch(err => console.log(err));
-    // };
-    //update photoes in personal details
+    // update photoes in personal details
     // useEffect(() => {
     //     const upload = async () => {
     //         const data = { photos: urls }
@@ -76,19 +74,11 @@ const PhotoGelary = ({ data, isLoading }) => {
     //         }
     //     }
     //     upload()
-    // }, [urls])
+    // }, [])
 
 
 
-    useEffect(() => {
-        Promise.all(imagesListRef).then((response) => {
-            response.items.forEach((item) => {
-                getDownloadURL(item).then((url) => {
-                    setUrls((prev) => [...prev, url]);
-                });
-            });
-        });
-    }, []);
+
     console.log(urls)
     return (
         <div>
@@ -118,7 +108,7 @@ const PhotoGelary = ({ data, isLoading }) => {
                                 />
                             </svg>
                         </div>
-                        <h1 className="text-lg font-bold ml-2">21 Photo Uploaded</h1>
+                        <h1 className="text-lg font-bold ml-2"> Uploaded Photoes</h1>
 
                     </div>
 
@@ -160,8 +150,8 @@ const PhotoGelary = ({ data, isLoading }) => {
 
                 </div>
                 <div className="grid grid-cols-3 gap-2 mt-2  ">
-                    {urls?.map((p, i) => {
-                        console.log(p)
+                    {photos?.map((p, i) => {
+
                         return (
                             <div key={i + p} className="borderd m-1 main-box">
                                 <div className="box ">

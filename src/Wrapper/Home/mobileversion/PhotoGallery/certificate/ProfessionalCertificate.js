@@ -3,12 +3,6 @@ import { useState } from 'react';
 
 import { ZoomInOutlined, ZoomOutOutlined } from '@material-ui/icons';
 
-
-
-
-
-
-
 export default function ProfessionalCertificate({ selectedImage, setSelectedImage }) {
     const [stepScale, setStepScale] = useState(1.0)
 
@@ -49,10 +43,6 @@ export default function ProfessionalCertificate({ selectedImage, setSelectedImag
 
                     </div>
                 </div>
-
-
-
-
 
                 <section>
                     <div className='grid grid-cols-3 gap-4' >
@@ -117,7 +107,6 @@ export default function ProfessionalCertificate({ selectedImage, setSelectedImag
                             <div>
                                 <h1 className=" text-[9px] font-bold mb-2 text-center">
                                     Employment certificate 5
-
                                 </h1>
                                 <div tabIndex="5" className='onselect-image-mobile rounded'>
                                     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsCmvTUfjQJROGRqRimmATQIgD4ESoPp-kXA&usqp=CAU" alt="" className='rounded-xl w-full h-full' onClick={handleImage} />

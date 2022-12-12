@@ -15,7 +15,7 @@ const EditEducationalInfo = () => {
     const [fieldOfStudy, setFieldOfStudy] = useState(null);
     const [cgpa, setCgpa] = useState(null);
 
-    const [updateEducationalDetails, { isSuccess, isLoading, isError }] = useUpdateEducationalDetailsMutation();
+    const [updateEducationalDetails, { isSuccess }] = useUpdateEducationalDetailsMutation();
 
     //educational qualifitaion data handler function
     const handleDegreeName = (event, newValue) => {

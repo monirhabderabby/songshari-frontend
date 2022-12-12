@@ -6,7 +6,7 @@ import { styled } from "@mui/material/styles";
 import Typography from "@mui/material/Typography";
 import moment from "moment";
 import React from "react";
-import { useNavigate, useOutletContext } from "react-router";
+import { useNavigate } from "react-router";
 import "./Accordion.css";
 const Accordion = styled(props => <MuiAccordion disableGutters elevation={0} square {...props} />)(({ theme }) => ({
     paddingTop: "23px",
