@@ -15,6 +15,8 @@ export const OtherDetails = ({ setPage }) => {
 
     const onSubmit = async data => {
         await setOthersDetails(data);
+
+        console.log(data);
     };
 
     useEffect(() => {

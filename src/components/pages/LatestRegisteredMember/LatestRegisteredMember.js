@@ -10,7 +10,7 @@ const LatestRegisteredMember = () => {
                 <img className={LatestRegisteredMemberCSS.shape} src={shape} alt="Not Available" />
                 <div className="max-w-[1200px] mx-auto">
                     <div className="flex justify-between items-center w-full px-0">
-                        <div className="w-[30%] z-50">
+                        <div className="w-[30%] ">
                             <div className={LatestRegisteredMemberCSS.content}>
                                 <div className={LatestRegisteredMemberCSS.sectionHeader}>
                                     <h6 className="text-[#ff317b] text-[24px] mb-[5px] font-bold">Latest Registered</h6>
@@ -18,7 +18,7 @@ const LatestRegisteredMember = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="w-[65%] overflow-hidden">
+                        <div className="w-[62%] overflow-hidden">
                             <Swiper
                                 breakpoints={{
                                     0: {

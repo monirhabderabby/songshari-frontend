@@ -1,6 +1,4 @@
 import React from "react";
-// import ChatGelary from './ChatGelary';
-// import ChatRequest from './ChatRequest';
 import { BiUserPlus } from "react-icons/bi";
 import { BsCommand } from "react-icons/bs";
 import { MdMessage } from "react-icons/md";
@@ -29,9 +27,6 @@ const DynamicCertificate = () => {
 
     return (
         <div>
-            {/* <ChatGelary />
-            <ChatRequest /> */}
-
             {/* ----- Certificate ----- */}
             <div className="rounded-xl p-5" style={{ backgroundImage: "linear-gradient(180deg, #FFD7F6 0%, #FFC1E6 100%)" }}>
                 <div className="flex justify-start items-center mx-1 gap-6">

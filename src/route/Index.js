@@ -23,7 +23,6 @@ import TopProfessionKazi from "../components/pages/TopProfession/TopProfessionKa
 import Suggested from "../components/pages/TopProfile/Suggested";
 import TopBride from "../components/pages/TopProfile/TopBride";
 import TopGroom from "../components/pages/TopProfile/TopGroom";
-import Accordian from "../components/SingleProfilesUser/profileSection/Accordion";
 // import EditProfile from "../components/SingleProfilesUser/profileSection/EditProfile";
 import EditEducationalInfo from "../components/SingleProfilesUser/profileSection/EditprofileSection/EditEducationalInfo";
 import EditOthersInfo from "../components/SingleProfilesUser/profileSection/EditprofileSection/EditOthersInfo";
@@ -110,6 +109,62 @@ const Index = () => {
                         <Route path="add" element={<CompletedCaseMov />} />
                     </Route>
 
+          <Route
+            path="/singleproduct"
+            element={<SingleProduct></SingleProduct>}
+          ></Route>
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/regAsProfessional" element={<RegAsProfessional />} />
+          <Route
+            path="/loginAsProfessional"
+            element={<LoginAsProfessional />}
+          />
+          <Route path="/contact" element={<Contact />}></Route>
+          <Route
+            path="/lawyeractivity"
+            element={<LawyerActivity></LawyerActivity>}
+          ></Route>
+          <Route path="/members" element={<Members />}></Route>
+          <Route path="/profile/:id" element={<DynamicProfilePage />}></Route>
+          <Route path="/gallery/:id" element={<DynamicPhotosGallary />} />
+          <Route path="/privacy-policy" element={<Privacy></Privacy>}></Route>
+          <Route path="/our-teams" element={<OurTeams />}></Route>
+          <Route path="/find-partner" element={<FindPartner />}>
+            <Route path="/find-partner" element={<FindAPartnerSuggested />} />
+            <Route path="top" element={<TopBride />} />
+            <Route path="nearest" element={<TopGroom />} />
+            <Route path="filter" element={<FilterResults />} />
+          </Route>
+          <Route path="/" element={<Homepage></Homepage>}>
+            <Route path="/" element={<Suggested />} />
+            <Route path="/top-gride" element={<TopBride />} />
+            <Route path="/top-groom" element={<TopGroom />} />
+            <Route
+              path="/top-profession/kazi"
+              element={<TopProfessionKazi />}
+            />
+            <Route
+              path="/top-profession/agent"
+              element={<TopProfessionAgent />}
+            />
+          </Route>
+          <Route path="/singleViewRequest" element={<SingleRequestView />} />
+          <Route path="/admin-analytics" element={<AdminAnalytics />}></Route>
+          <Route path="/stepper" element={<Container></Container>}></Route>
+          <Route path="/upgrade" element={<UpgradePlan></UpgradePlan>}></Route>
+          <Route
+            path="/personalCertificate"
+            element={<OthersCertificate />}
+          ></Route>
+          <Route
+            path="/professionalCertificate"
+            element={<ProfessionalCertificate />}
+          ></Route>
+          <Route
+            path="/educationalCertificate"
+            element={<EducationalCertificate />}
+          ></Route>
                     <Route path="/singleproduct" element={<SingleProduct></SingleProduct>}></Route>
                     <Route path="/login" element={<Login />} />
                     <Route path="/signup" element={<SignUp />} />
@@ -136,15 +191,71 @@ const Index = () => {
                         <Route path="/top-profession/agent" element={<TopProfessionAgent />} />
                     </Route>
                     <Route path="/singleViewRequest" element={<SingleRequestView />} />
+                    <Route path="/NotificationPayment" element={<SendNotificationPayment></SendNotificationPayment>} />
+                    <Route path="/NotificationUpgrade" element={<SendNotificationUpgrade></SendNotificationUpgrade>} />
                     <Route path="/admin-analytics" element={<AdminAnalytics />}></Route>
+                    
                     <Route path="/stepper" element={<Container></Container>}></Route>
                     <Route path="/upgrade" element={<UpgradePlan></UpgradePlan>}></Route>
 
-                    {/* --------------- MOBILE ROUTES START --------------- */}
-                    <Route path="/mobileHomePage" element={<MobileHome />}></Route>
-                    <Route path="/setting" element={<Setting></Setting>}></Route>
-                    <Route path="/mobileuserprofile" element={<MobileSingleProfilesUser></MobileSingleProfilesUser>}></Route>
-                    <Route path="/personaldetailsmov" element={<PersonalDetailsMobile></PersonalDetailsMobile>}></Route>
+          {/* --------------- MOBILE ROUTES START --------------- */}
+          <Route path="/mobileHomePage" element={<MobileHome />}></Route>
+          <Route path="/setting" element={<Setting></Setting>}></Route>
+          <Route
+            path="/mobileuserprofile"
+            element={<MobileSingleProfilesUser></MobileSingleProfilesUser>}
+          ></Route>
+          <Route
+            path="/personaldetailsmov"
+            element={<PersonalDetailsMobile></PersonalDetailsMobile>}
+          ></Route>
+          <Route path="/aboutmov" element={<AboutMov></AboutMov>}></Route>
+          <Route path="/gallarymov" element={<GallaryMov />}></Route>
+          <Route path="/meetmov" element={<MeetMov></MeetMov>}></Route>
+          <Route path="/matchesmov" element={<MatchesMov></MatchesMov>}></Route>
+          <Route
+            path="/mobileActivityPage"
+            element={<MobileActivity />}
+          ></Route>
+          <Route
+            path="/mobileActivityNextPage"
+            element={<MobileActivityPost />}
+          ></Route>
+          <Route path="/historymov" element={<HistoryMov></HistoryMov>}></Route>
+          <Route path="/privacymov" element={<PrivacyMov></PrivacyMov>}></Route>
+          <Route
+            path="/communitymov"
+            element={<CommunityMov></CommunityMov>}
+          ></Route>
+          <Route
+            path="/certificatemov"
+            element={<CertificateMov></CertificateMov>}
+          ></Route>
+          <Route path="/like" element={<Like></Like>}></Route>
+          <Route
+            path="/mobileUpgrade"
+            element={<UpgradePlan></UpgradePlan>}
+          ></Route>
+          <Route path="/mobileFreePlan" element={<MobileFreePlan />}></Route>
+          <Route path="/mobileGoldPlan" element={<MobileGoldPlan />}></Route>
+          <Route
+            path="/mobileDiamondPlan"
+            element={<MobileDiamondPlan />}
+          ></Route>
+          <Route
+            path="/mobilePlatinumPlan"
+            element={<MobilePlatinumPlan />}
+          ></Route>
+          <Route path="/mobilecertificate" element={<Certificate />} />
+          {/* --------------- MOBILE ROUTES END --------------- */}
+
+
+          {/* --------------- Dashboard ROUTES START --------------- */}
+          <Route path="dashboard" element={<Dashboard />}></Route>
+          <Route path="dashboard-home" element={<DashboardHome />}></Route>
+
+          {/* --------------- Dashboard ROUTES END --------------- */}
+
                     <Route path="/aboutmov" element={<AboutMov></AboutMov>}></Route>
                     <Route path="/gallarymov" element={<GallaryMov />}></Route>
                     <Route path="/meetmov" element={<MeetMov></MeetMov>}></Route>
@@ -161,14 +272,15 @@ const Index = () => {
                     <Route path="/mobileGoldPlan" element={<MobileGoldPlan />}></Route>
                     <Route path="/mobileDiamondPlan" element={<MobileDiamondPlan />}></Route>
                     <Route path="/mobilePlatinumPlan" element={<MobilePlatinumPlan />}></Route>
-                    <Route path="/mobilecertificate" element={<Certificate />} />
+                    <Route path="/mobilecertificate" element={<MobileCertificate />} />
+                    <Route path="/certificate" element={<Certificate />} />
                     {/* --------------- MOBILE ROUTES END --------------- */}
 
-                    <Route path="*" element={<NotFound />}></Route>
-                </Routes>
-            </BrowserRouter>
-        </div>
-    );
+          <Route path="*" element={<NotFound />}></Route>
+        </Routes>
+      </BrowserRouter>
+    </div>
+  );
 };
 
 export default Index;

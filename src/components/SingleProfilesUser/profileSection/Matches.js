@@ -1,12 +1,15 @@
 import React from "react";
+import { useState } from "react";
 import { BiUserCircle } from "react-icons/bi";
 import { TbMessage } from "react-icons/tb";
 import { ageCalculator } from "../../../assets/utilities/AgeCalculation/ageCalculator";
 import { useGetMatchedUsersQuery } from "../../../Redux/features/connections/connectionApi";
+import MatchersModalForm from "../MatchPreference/MatchersModalForm";
 import "./Matches.css";
 
 export const Matches = () => {
     const { data, isLoading, error } = useGetMatchedUsersQuery();
+    const [mathchesModalOpen, setMatchesModalOpen] = useState(false);
     if (isLoading) {
         return;
     }
@@ -14,8 +17,9 @@ export const Matches = () => {
 
     return (
         <div>
+            <button className="btn-certificate text-white p-2 rounded" onClick={() => setMatchesModalOpen(true)}>Matches Modal</button>
             <div className="grid lg:grid-cols-2 gap-4">
-                {data.map((info, index) => {
+                {data?.map((info, index) => {
                     return (
                         <div key={index} className=" rounded-lg lg:max-w-lg shadow-xl colorrrrrr">
                             <p className="bg-white w-28 text-center ml-3 mt-3 text-[12px] py-[6px] px-[8px] rounded-[8px]">{info.percentage}% Match</p>
@@ -41,6 +45,7 @@ export const Matches = () => {
                     );
                 })}
             </div>
+            <MatchersModalForm {...{ mathchesModalOpen, setMatchesModalOpen }} />
         </div>
     );
 };

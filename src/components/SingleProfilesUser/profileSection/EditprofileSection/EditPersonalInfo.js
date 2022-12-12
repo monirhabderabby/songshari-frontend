@@ -4,10 +4,14 @@ import TextField from "@mui/material/TextField";
 import { DatePicker, InputNumber, Radio, Select, Slider, Space, Upload } from "antd";
 import TextArea from "antd/es/input/TextArea";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
-import React, { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router";
-import { firebaseStorage } from "../../../../firebase.init";
-import { useUpdatePersonalDetailsMutation } from "../../../../Redux/features/userInfo/userApi";
+import { InputNumber, Select, Upload, DatePicker, Radio, Space, Slider } from 'antd';
+import { FileAddFilled } from '@ant-design/icons';
+import TextArea from 'antd/es/input/TextArea';
+import { useNavigate } from 'react-router';
+import Autocomplete, { createFilterOptions } from '@mui/material/Autocomplete';
+import TextField from '@mui/material/TextField';
+import { useUpdatePersonalDetailsMutation } from '../../../../Redux/features/userInfo/userApi';
+import { firebaseStorage } from '../../../../firebase.init';
 const { RangePicker } = DatePicker;
 
 const { Option } = Select;
@@ -43,9 +47,14 @@ const EditPersonalInfo = () => {
     const [sister, setSister] = useState(0);
     const [parentStatus, setParentStatus] = useState("");
     //uploaded image url data state
+<<<<<<< HEAD
     const [nidOrPassportPhoto, setNidOrPassportPhoto] = useState({});
     const { id } = useParams();
     const [updatePersonalDetails, { isError, isLoading, isSuccess }] = useUpdatePersonalDetailsMutation();
+=======
+    const [nidOrPassportPhoto, setNidOrPassportPhoto] = useState({})
+    const [updatePersonalDetails, { isSuccess }] = useUpdatePersonalDetailsMutation()
+>>>>>>> 4ae7aa34dfc0be51daac68a302e5e8eed4ebd003
     useEffect(() => {
         fetch("/json/countries.json")
             .then(res => res.json())
@@ -77,6 +86,7 @@ const EditPersonalInfo = () => {
         >
             <Option value="+880">BD</Option>
             <Option value="+966">KSA</Option>
+<<<<<<< HEAD
         </Select>
     );
     //for file upload
@@ -100,6 +110,10 @@ const EditPersonalInfo = () => {
     //         console.log('Dropped files', e.dataTransfer.files);
     //     },
     // };
+=======
+        </Select>);
+
+>>>>>>> 4ae7aa34dfc0be51daac68a302e5e8eed4ebd003
 
     // handle file upload change data
     const handleUpload = async event => {
@@ -372,7 +386,6 @@ const EditPersonalInfo = () => {
             position: currentPosition?.title,
             ...educationalInfo,
             degree: degreeName?.title,
-            institute: instituteName?.title,
             department: departmentName?.title,
             feildOfStudy: fieldOfStudy?.title,
             gpaOrCgpa: cgpa?.title,
@@ -1702,7 +1715,7 @@ const EditPersonalInfo = () => {
                             </label>
 
                             <Dragger onChange={handleUpload}>
-                                <div className="flex justify-center items-center">
+                                <div className='flex justify-center items-center'>
                                     <p>File Upload</p>
                                     <p className="ant-upload-drag-icon pl-4">
                                         <FileAddFilled style={{ color: "#E41272" }} onChange={handleUpload} />

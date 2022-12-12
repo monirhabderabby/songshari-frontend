@@ -1,18 +1,12 @@
 import React from 'react';
 import aboutUsBanner from "../../../assets/images/AboutUs/aboutUsBanner.jpg";
-import waveImg from "../../../assets/images/AboutUs/waveImg.png";
+
+// CSS files
+import WaveEffectCSS from "../../../assets/css/aboutUsWaveEffect.module.css";
 
 const AboutHeaderBanner = () => {
-    // const fontFamily = () => {
-    //     return (
-    //         {
-    //             fontFamily: 'Courier New, Courier, monospace'
-    //         }
-    //     )
-    // }
     return (
         <div
-            // style={fontFamily()} 
             className='relative'>
             <div className='grid grid-cols-1 md:grid-cols-2'>
                 <div className='flex items-center justify-center mb-32'>
@@ -27,7 +21,7 @@ const AboutHeaderBanner = () => {
                     <img src={aboutUsBanner} alt="Not Available" />
                 </div>
             </div>
-            <img className='absolute bottom-0' src={waveImg} alt="Not Available" />
+            <img className='absolute bottom-0 w-full' src={waveImg} alt="Not Available" />
         </div>
     );
 };

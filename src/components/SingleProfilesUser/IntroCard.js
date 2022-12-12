@@ -3,7 +3,7 @@ import introIcon from "../../assets/images/icons/IntroIcon.png";
 
 export const IntroCard = () => {
     return (
-        <div className="mt-[24px] w-[360px] h-[356px] bg-white shadow-[0px_10px_5px_rgba(119,123,146,0.02)] rounded-[10px] p-[24px]">
+        <div className="mt-[24px] lg:w-[360px] h-[356px] bg-white shadow-[0px_10px_5px_rgba(119,123,146,0.02)] rounded-[10px] p-[24px]">
             <div className="flex items-center gap-x-[9px]">
                 <img src={introIcon} alt="" />
                 <p className="text-[#000000] text-[24px] leading-[20px] font-semibold font-fira">Intro</p>

@@ -4,19 +4,13 @@ import './Certificate.css'
 
 import { useState } from 'react';
 import EducationalCertificate, { EducationalCertificateSidebar } from './EducationalCertificate';
-import { Button, Image, Tooltip } from 'antd';
-import { CloudUploadOutlined, ZoomInOutlined, ZoomInRounded, ZoomOutOutlined } from '@material-ui/icons';
-import { message, Upload } from 'antd';
-import { InboxOutlined } from '@ant-design/icons';
 import { ProfessionalCertificate, ProfessionalCertificateSidebar } from './ProfessionalCertificate';
 import { OthersCertificate, OthersCertificateSidebar } from './OthersCertificate';
 
 
-const { Dragger } = Upload;
-
 export default function Certificate() {
     const [tabValue, setTabValue] = useState(1);
-    const [stepScale, setStepScale] = useState(1.0);
+    // const [stepScale, setStepScale] = useState(1.0);
     const [selectedImage, setSelectedImage] = useState('');
     return (
         <div className='flex justify-center items-center'>
