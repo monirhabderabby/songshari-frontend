@@ -75,11 +75,16 @@ import MobileProfileOthers from "../Wrapper/Home/mobileversion/MobileProfileOthe
 import Certificate from "../Wrapper/Home/mobileversion/PhotoGallery/certificate/Certificate";
 import { PrivacyMov } from "../Wrapper/Home/mobileversion/privacy/PrivacyMov";
 import { Setting } from "../Wrapper/Home/mobileversion/Setting";
+<<<<<<< HEAD
 import { OthersCertificate } from "../Wrapper/Home/mobileversion/PhotoGallery/certificate/OthersCertificate";
 import { ProfessionalCertificate } from "../Wrapper/Home/mobileversion/PhotoGallery/certificate/ProfessionalCertificate";
 import EducationalCertificate from "../Wrapper/Home/mobileversion/PhotoGallery/certificate/EducationalCertificate";
 import { SendNotificationPayment } from "../Admin__Portion/Components/SendNotificationPayment";
 import { SendNotificationUpgrade } from "../Admin__Portion/Components/SendNotificationUpgrade";
+=======
+import { Dashboard } from "../Admin__Portion/Dashboard/Dashboard";
+import { DashboardHome } from "../Admin__Portion/Components/DashboardHome/DashboardHome";
+>>>>>>> 89a4db48493ac950f5eb8e10ac036fc3d51499c8
 
 const Index = () => {
   return (
@@ -177,6 +182,7 @@ const Index = () => {
           <Route path="/admin-analytics" element={<AdminAnalytics />}></Route>
           <Route path="/stepper" element={<Container></Container>}></Route>
           <Route path="/upgrade" element={<UpgradePlan></UpgradePlan>}></Route>
+<<<<<<< HEAD
           <Route
             path="/personalCertificate"
             element={<OthersCertificate />}
@@ -273,6 +279,66 @@ const Index = () => {
           <Route path="/mobilecertificate" element={<Certificate />} />
           {/* --------------- MOBILE ROUTES END --------------- */}
 
+=======
+
+          {/* --------------- Dashboard ROUTES START --------------- */}
+          <Route path="dashboard" element={<Dashboard />}></Route>
+          <Route path="dashboard-home" element={<DashboardHome />}></Route>
+
+          {/* --------------- Dashboard ROUTES END --------------- */}
+
+          {/* --------------- MOBILE ROUTES START --------------- */}
+          <Route path="/mobileHomePage" element={<MobileHome />}></Route>
+          <Route path="/setting" element={<Setting></Setting>}></Route>
+          <Route
+            path="/mobileuserprofile"
+            element={<MobileSingleProfilesUser></MobileSingleProfilesUser>}
+          ></Route>
+          <Route
+            path="/personaldetailsmov"
+            element={<PersonalDetailsMobile></PersonalDetailsMobile>}
+          ></Route>
+          <Route path="/aboutmov" element={<AboutMov></AboutMov>}></Route>
+          <Route path="/gallarymov" element={<GallaryMov />}></Route>
+          <Route path="/meetmov" element={<MeetMov></MeetMov>}></Route>
+          <Route path="/matchesmov" element={<MatchesMov></MatchesMov>}></Route>
+          <Route
+            path="/mobileActivityPage"
+            element={<MobileActivity />}
+          ></Route>
+          <Route
+            path="/mobileActivityNextPage"
+            element={<MobileActivityPost />}
+          ></Route>
+          <Route path="/historymov" element={<HistoryMov></HistoryMov>}></Route>
+          <Route path="/privacymov" element={<PrivacyMov></PrivacyMov>}></Route>
+          <Route
+            path="/communitymov"
+            element={<CommunityMov></CommunityMov>}
+          ></Route>
+          <Route
+            path="/certificatemov"
+            element={<CertificateMov></CertificateMov>}
+          ></Route>
+          <Route path="/like" element={<Like></Like>}></Route>
+          <Route
+            path="/mobileUpgrade"
+            element={<UpgradePlan></UpgradePlan>}
+          ></Route>
+          <Route path="/mobileFreePlan" element={<MobileFreePlan />}></Route>
+          <Route path="/mobileGoldPlan" element={<MobileGoldPlan />}></Route>
+          <Route
+            path="/mobileDiamondPlan"
+            element={<MobileDiamondPlan />}
+          ></Route>
+          <Route
+            path="/mobilePlatinumPlan"
+            element={<MobilePlatinumPlan />}
+          ></Route>
+          <Route path="/mobilecertificate" element={<Certificate />} />
+          {/* --------------- MOBILE ROUTES END --------------- */}
+
+>>>>>>> 89a4db48493ac950f5eb8e10ac036fc3d51499c8
           <Route path="*" element={<NotFound />}></Route>
         </Routes>
       </BrowserRouter>
