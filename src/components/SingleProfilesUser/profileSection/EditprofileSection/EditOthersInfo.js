@@ -39,7 +39,6 @@ const EditOthersInfo = () => {
         e.preventDefault();
         const data = { ...othersInfo }
         await updateOthersDetails(data);
-
     }
     if (isSuccess) {
         navigate("/userprofile")

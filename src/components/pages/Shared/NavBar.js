@@ -60,9 +60,8 @@ const NavBar = ({ bg }) => {
     return (
         <>
             <header
-                className={`${bg ? "bg-transparent" : "bg-white"} sticky hidden lg:block top-0 lg:h-[90px] z-50 shadow-md body-font ${
-                    NavBarCSS.navbar
-                }`}
+                className={`${bg ? "bg-transparent" : "bg-white"} sticky hidden lg:block top-0 lg:h-[90px] z-50 shadow-md body-font ${NavBarCSS.navbar
+                    }`}
             >
                 <div className=" lg:max-w-[1000px]  xl:max-w-[1200px] mx-auto flex flex-wrap  flex-col md:flex-row items-center">
                     <Link to="/" className="flex cursor-pointer title-font font-medium items-center text-gray-900 mb-4 md:mb-0 ">

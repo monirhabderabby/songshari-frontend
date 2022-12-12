@@ -5,9 +5,7 @@ import TextField from '@mui/material/TextField';
 import TextArea from 'antd/es/input/TextArea';
 import { useUpdateProfessionalDetailsMutation } from '../../../../Redux/features/userInfo/userApi';
 import { useNavigate, useParams } from 'react-router';
-
 const { RangePicker } = DatePicker;
-
 
 const EditProfesionalInfo = () => {
     // current position state
@@ -27,10 +25,8 @@ const EditProfesionalInfo = () => {
             setCurrentPosition({
                 title: newValue.inputValue,
             });
-
         } else {
             setCurrentPosition(newValue);
-
         }
     }
     // currnent institue hanler function
@@ -47,7 +43,6 @@ const EditProfesionalInfo = () => {
 
         } else {
             setCurrentInstitute(newValue);
-
         }
     }
     // working period data handler
@@ -81,17 +76,13 @@ const EditProfesionalInfo = () => {
     //data submission
     const handleSubmit = async (e) => {
         e.preventDefault()
-
         const data = { ...professionalInfo, institute: currentInstitute?.title, position: currentPosition?.title }
         await updateProfessionalDetails({ data, id })
-
-
     }
-
     if (isSuccess) {
         navigate("/userprofile")
     }
-
+    // filter for mui autocomplete
     const filter = createFilterOptions();
     return (
         <div className='max-w-[523px] mx-auto bg-white drop-shadow-lg px-4 py-6 mb-4 rounded'>

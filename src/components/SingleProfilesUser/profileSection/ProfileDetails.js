@@ -6,7 +6,7 @@ const ProfileDetails = () => {
     const [data, isLoading] = useOutletContext();
     return (
 
-        <Accordian {...{ data, isLoading }} >
+        <Accordian {...{ data, isLoading, edit: true }} >
 
         </Accordian>
 
