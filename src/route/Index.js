@@ -78,6 +78,8 @@ import { Setting } from "../Wrapper/Home/mobileversion/Setting";
 import { OthersCertificate } from "../Wrapper/Home/mobileversion/PhotoGallery/certificate/OthersCertificate";
 import { ProfessionalCertificate } from "../Wrapper/Home/mobileversion/PhotoGallery/certificate/ProfessionalCertificate";
 import EducationalCertificate from "../Wrapper/Home/mobileversion/PhotoGallery/certificate/EducationalCertificate";
+import { SendNotificationPayment } from "../Admin__Portion/Components/SendNotificationPayment";
+import { SendNotificationUpgrade } from "../Admin__Portion/Components/SendNotificationUpgrade";
 
 const Index = () => {
   return (
@@ -187,6 +189,38 @@ const Index = () => {
             path="/educationalCertificate"
             element={<EducationalCertificate />}
           ></Route>
+                    <Route path="/singleproduct" element={<SingleProduct></SingleProduct>}></Route>
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/signup" element={<SignUp />} />
+                    <Route path="/regAsProfessional" element={<RegAsProfessional />} />
+                    <Route path="/loginAsProfessional" element={<LoginAsProfessional />} />
+                    <Route path="/contact" element={<Contact />}></Route>
+                    <Route path="/lawyeractivity" element={<LawyerActivity></LawyerActivity>}></Route>
+                    <Route path="/members" element={<Members />}></Route>
+                    <Route path="/profile/:id" element={<DynamicProfilePage />}></Route>
+                    <Route path="/gallery/:id" element={<DynamicPhotosGallary />} />
+                    <Route path="/privacy-policy" element={<Privacy></Privacy>}></Route>
+                    <Route path="/our-teams" element={<OurTeams />}></Route>
+                    <Route path="/find-partner" element={<FindPartner />}>
+                        <Route path="/find-partner" element={<FindAPartnerSuggested />} />
+                        <Route path="top" element={<TopBride />} />
+                        <Route path="nearest" element={<TopGroom />} />
+                        <Route path="filter" element={<FilterResults />} />
+                    </Route>
+                    <Route path="/" element={<Homepage></Homepage>}>
+                        <Route path="/" element={<Suggested />} />
+                        <Route path="/top-gride" element={<TopBride />} />
+                        <Route path="/top-groom" element={<TopGroom />} />
+                        <Route path="/top-profession/kazi" element={<TopProfessionKazi />} />
+                        <Route path="/top-profession/agent" element={<TopProfessionAgent />} />
+                    </Route>
+                    <Route path="/singleViewRequest" element={<SingleRequestView />} />
+                    <Route path="/NotificationPayment" element={<SendNotificationPayment></SendNotificationPayment>} />
+                    <Route path="/NotificationUpgrade" element={<SendNotificationUpgrade></SendNotificationUpgrade>} />
+                    <Route path="/admin-analytics" element={<AdminAnalytics />}></Route>
+                    
+                    <Route path="/stepper" element={<Container></Container>}></Route>
+                    <Route path="/upgrade" element={<UpgradePlan></UpgradePlan>}></Route>
 
           {/* --------------- MOBILE ROUTES START --------------- */}
           <Route path="/mobileHomePage" element={<MobileHome />}></Route>
