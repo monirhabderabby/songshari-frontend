@@ -5,26 +5,12 @@ export const ContactForm = () => {
     const [checked, setChecked] = useState(false);
     return (
         <>
-            <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3649.472937096036!2d90.3680889150866!3d23.837334284546543!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c1da28248e65%3A0x3dbe73c739c2fb09!2sMirpur%20DOHS%20-%20Dhaka!5e0!3m2!1sen!2sbd!4v1669390569029!5m2!1sen!2sbd"
-                width="100%"
-                height="450"
-                allowfullscreen=""
-                title="Google Map"
-                loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade"
-            ></iframe>
             <div className="container my-24 px-6 mx-auto">
                 <section className="mb-32 text-gray-800">
                     <div className="flex flex-wrap">
                         <div className="grow-0 shrink-0 basis-auto mb-6 md:mb-0 w-full md:w-6/12 px-3 lg:px-6">
                             <h2 className="text-3xl font-bold mb-6">Contact us</h2>
-                            <p className="text-gray-500 mb-6">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium, modi accusantium ipsum corporis quia asperiores
-                                dolorem nisi corrupti eveniet dolores ad maiores repellendus enim autem omnis fugiat perspiciatis? Ad, veritatis.
-                            </p>
-                            <p className="text-gray-500 mb-2">884, A-2, Mirpur DOHS, Dhaka</p>
-                            <p className="text-gray-500 mb-2">+ 01 234 567 89</p>
+                            <p className="text-gray-500 mb-2">You can react us at</p>
                             <p className="text-gray-500 mb-2">itco.com.bd@gmail.com</p>
                         </div>
                         <div className="grow-0 shrink-0 basis-auto mb-12 md:mb-0 w-full md:w-6/12 px-3 lg:px-6">
@@ -47,7 +33,28 @@ export const ContactForm = () => {
               m-0
               focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                                         id="exampleInput7"
-                                        placeholder="Name"
+                                        placeholder="First Name"
+                                    />
+                                </div>
+                                <div className="form-group mb-6">
+                                    <input
+                                        type="text"
+                                        className="form-control block
+              w-full
+              px-3
+              py-1.5
+              text-base
+              font-normal
+              text-gray-700
+              bg-white bg-clip-padding
+              border border-solid border-gray-300
+              rounded
+              transition
+              ease-in-out
+              m-0
+              focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                                        id="exampleInput7"
+                                        placeholder="Last Name"
                                     />
                                 </div>
                                 <div className="form-group mb-6">
