@@ -75,16 +75,13 @@ import MobileProfileOthers from "../Wrapper/Home/mobileversion/MobileProfileOthe
 import Certificate from "../Wrapper/Home/mobileversion/PhotoGallery/certificate/Certificate";
 import { PrivacyMov } from "../Wrapper/Home/mobileversion/privacy/PrivacyMov";
 import { Setting } from "../Wrapper/Home/mobileversion/Setting";
-<<<<<<< HEAD
 import { OthersCertificate } from "../Wrapper/Home/mobileversion/PhotoGallery/certificate/OthersCertificate";
 import { ProfessionalCertificate } from "../Wrapper/Home/mobileversion/PhotoGallery/certificate/ProfessionalCertificate";
 import EducationalCertificate from "../Wrapper/Home/mobileversion/PhotoGallery/certificate/EducationalCertificate";
 import { SendNotificationPayment } from "../Admin__Portion/Components/SendNotificationPayment";
 import { SendNotificationUpgrade } from "../Admin__Portion/Components/SendNotificationUpgrade";
-=======
 import { Dashboard } from "../Admin__Portion/Dashboard/Dashboard";
 import { DashboardHome } from "../Admin__Portion/Components/DashboardHome/DashboardHome";
->>>>>>> 89a4db48493ac950f5eb8e10ac036fc3d51499c8
 
 const Index = () => {
   return (
@@ -182,7 +179,6 @@ const Index = () => {
           <Route path="/admin-analytics" element={<AdminAnalytics />}></Route>
           <Route path="/stepper" element={<Container></Container>}></Route>
           <Route path="/upgrade" element={<UpgradePlan></UpgradePlan>}></Route>
-<<<<<<< HEAD
           <Route
             path="/personalCertificate"
             element={<OthersCertificate />}
@@ -279,7 +275,6 @@ const Index = () => {
           <Route path="/mobilecertificate" element={<Certificate />} />
           {/* --------------- MOBILE ROUTES END --------------- */}
 
-=======
 
           {/* --------------- Dashboard ROUTES START --------------- */}
           <Route path="dashboard" element={<Dashboard />}></Route>
@@ -338,7 +333,6 @@ const Index = () => {
           <Route path="/mobilecertificate" element={<Certificate />} />
           {/* --------------- MOBILE ROUTES END --------------- */}
 
->>>>>>> 89a4db48493ac950f5eb8e10ac036fc3d51499c8
           <Route path="*" element={<NotFound />}></Route>
         </Routes>
       </BrowserRouter>

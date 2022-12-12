@@ -30,6 +30,31 @@ export const CardYouMayLike = ({ data }) => {
     }
 
     return (
+        // <div
+        //     className="bg-white rounded-[20px] flex flex-col items-center justify-center px-3 py-2"
+        //     style={{ boxShadow: "0px 4px 4px rgba(62, 73, 84, 0.04)" }}
+        // >
+        //     <img className="w-[45px] h-[45px] rounded-full" src={data?.profilePhoto} alt="Not Available" />
+        //     <h4 className="text-[15px] leading-[15px] text-[#000000] font-outfit my-2">{data?.firstName}</h4>
+        //     <div className="flex justify-between items-center gap-4">
+        //         <div className="bg-[#FFDFF4] h-[43px] w-[43px] flex justify-center items-center rounded-full">
+        //             <MdMessage className="text-[#E41272] w-[20px] h-[20px] text-xl" />
+        //         </div>
+        // <div
+        //     className={`${
+        //         sent ? "bg-green-100" : "bg-[#FFDFF4]"
+        //     } h-[43px] w-[43px] flex justify-center items-center rounded-full transition-all duration-500`}
+        // >
+        //     {sent ? (
+        //         <BiUserCheck className="text-green-400 w-[20px] h-[20px] text-xl transition-all duration-500 " />
+        //     ) : responseLoading ? (
+        //         <div className="h-[16px] bg-[#E41272] rounded-full animate-ping w-[16px] text-[#E41272] transition-all duration-500 "></div>
+        //     ) : (
+        //         <BiUserPlus className="text-[#E41272] w-[20px] h-[20px] text-xl transition-all duration-500" onClick={handleSentRequest} />
+        //     )}
+        // </div>
+        //     </div>
+        // </div>
         <div className="w-[263px] h-[179px] bg-white shadow-[2px_2px_8px_rgba(0,0,0,0.12)] rounded-[20px] px-[20px] py-[17px]">
             <div className="flex items-center justify-between">
                 <div className="w-[67px] h-[67px] rounded-full bg-cover bg-center" style={{ backgroundImage: `url(${data?.profilePhoto})` }}></div>
