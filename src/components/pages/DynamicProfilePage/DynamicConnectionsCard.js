@@ -29,7 +29,7 @@ export const DynamicConnectionsCard = ({ data, isLoading }) => {
                     {sent ? (
                         <BiUserCheck className="h-[36px] w-[36px] text-green-400 transition-all duration-500 " />
                     ) : responseLoading ? (
-                        <div class="h-[16px] bg-[#E41272] rounded-full animate-ping w-[16px] text-[#E41272] transition-all duration-500 "></div>
+                        <div className="h-[16px] bg-[#E41272] rounded-full animate-ping w-[16px] text-[#E41272] transition-all duration-500 "></div>
                     ) : (
                         <BiUserPlus className="h-[36px] w-[36px] text-[#E41272] transition-all duration-500 " onClick={handleSentRequest} />
                     )}

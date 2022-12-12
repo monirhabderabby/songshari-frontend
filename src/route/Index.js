@@ -53,6 +53,7 @@ import UpgradePlan from "../components/pages/Membership/MobileVersion/UpgradePla
 import MobileActivity from "../components/pages/MobileActivity/MobileActivity";
 import MobileActivityPost from "../components/pages/MobileActivity/MobileActivityPost";
 // import MobileSingleProfilesUser from "../components/SingleProfilesUser/MobileSingleProfilesUser/MobileSingleProfilesUser";
+import { ViewRegistrationRequest } from "../Admin__Portion/Components/User/View__Registration__Request/ViewRegistrationRequest";
 import { DynamicPhotosGallary } from "../components/pages/DynamicProfilePage/DynamicPhotosGallary";
 import { FindAPartnerSuggested } from "../components/pages/FindPartner/FindAPartnerSuggested";
 import MobileSingleProfilesUser from "../components/SingleProfilesUser/MobileSingleProfilesUser/MobileSingleProfilesUser";
@@ -139,6 +140,9 @@ const Index = () => {
                     <Route path="/admin-analytics" element={<AdminAnalytics />}></Route>
                     <Route path="/stepper" element={<Container></Container>}></Route>
                     <Route path="/upgrade" element={<UpgradePlan></UpgradePlan>}></Route>
+
+                    {/* Admin portion */}
+                    <Route path="/admin" element={<ViewRegistrationRequest />} />
 
                     {/* --------------- MOBILE ROUTES START --------------- */}
                     <Route path="/mobileHomePage" element={<MobileHome />}></Route>
