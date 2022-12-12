@@ -10,6 +10,7 @@ const AboutComponents = () => {
             }
         )
     }
+
     return (
         <div className='py-10 my-12' style={{ backgroundColor: '#f3f6fd' }}>
             <div className='container mx-auto'>

@@ -21,11 +21,7 @@ const AboutHeaderBanner = () => {
                     <img src={aboutUsBanner} alt="Not Available" />
                 </div>
             </div>
-            <div className={WaveEffectCSS.ocean}>
-                <div className={WaveEffectCSS.wave}></div>
-                <div className={WaveEffectCSS.wave}></div>
-                <div className={WaveEffectCSS.wave}></div>
-            </div>
+            <img className='absolute bottom-0 w-full' src={waveImg} alt="Not Available" />
         </div>
     );
 };
