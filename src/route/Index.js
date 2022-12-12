@@ -75,6 +75,7 @@ import MobileProfileOthers from "../Wrapper/Home/mobileversion/MobileProfileOthe
 import Certificate from "../Wrapper/Home/mobileversion/PhotoGallery/certificate/Certificate";
 import { PrivacyMov } from "../Wrapper/Home/mobileversion/privacy/PrivacyMov";
 import { Setting } from "../Wrapper/Home/mobileversion/Setting";
+import { SendNotificationPayment } from "../Admin__Portion/Components/SendNotificationPayment";
 
 const Index = () => {
     return (
@@ -136,7 +137,9 @@ const Index = () => {
                         <Route path="/top-profession/agent" element={<TopProfessionAgent />} />
                     </Route>
                     <Route path="/singleViewRequest" element={<SingleRequestView />} />
+                    <Route path="/NotificationPayment" element={<SendNotificationPayment></SendNotificationPayment>} />
                     <Route path="/admin-analytics" element={<AdminAnalytics />}></Route>
+                    
                     <Route path="/stepper" element={<Container></Container>}></Route>
                     <Route path="/upgrade" element={<UpgradePlan></UpgradePlan>}></Route>
 
