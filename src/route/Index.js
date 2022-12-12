@@ -57,6 +57,8 @@ import MobileActivityPost from "../components/pages/MobileActivity/MobileActivit
 // import MobileSingleProfilesUser from "../components/SingleProfilesUser/MobileSingleProfilesUser/MobileSingleProfilesUser";
 import { DynamicPhotosGallary } from "../components/pages/DynamicProfilePage/DynamicPhotosGallary";
 import { FindAPartnerSuggested } from "../components/pages/FindPartner/FindAPartnerSuggested";
+import MobileSingleProfilesUser from "../components/SingleProfilesUser/MobileSingleProfilesUser/MobileSingleProfilesUser";
+import { PersonalDetailsMobile } from "../components/SingleProfilesUser/MobileSingleProfilesUser/PersonalDetailsMobile";
 import { AboutMov } from "../Wrapper/Home/mobileversion/about/AboutMov";
 import { CertificateMov } from "../Wrapper/Home/mobileversion/CertificateMov";
 import { CommunityMov } from "../Wrapper/Home/mobileversion/comminuty/CommunityMov";
@@ -74,8 +76,6 @@ import MobileProfileOthers from "../Wrapper/Home/mobileversion/MobileProfileOthe
 import { PrivacyMov } from "../Wrapper/Home/mobileversion/privacy/PrivacyMov";
 import { Setting } from "../Wrapper/Home/mobileversion/Setting";
 import MobileCertificate from "../Wrapper/Home/mobileversion/PhotoGallery/certificate/MobileCertificate";
-import MobileSingleProfilesUser from "../components/SingleProfilesUser/MobileSingleProfilesUser/MobileSingleProfilesUser";
-import { PersonalDetailsMobile } from "../components/SingleProfilesUser/MobileSingleProfilesUser/PersonalDetailsMobile";
 import Certificate from "../components/SingleProfilesUser/CertificateSection/Certificate";
 
 const Index = () => {
