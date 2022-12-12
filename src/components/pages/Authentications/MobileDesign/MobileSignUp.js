@@ -110,7 +110,7 @@ const MobileSignUp = () => {
                                 type="text"
                                 placeholder="First name"
                                 className="flex-1 outline-none h-full text-sm text-[#1E2022]"
-                                id="firstName"
+                                id="firstName1"
                             />
                         </div>
                         <h1 className="text-left ml-2">
@@ -132,7 +132,7 @@ const MobileSignUp = () => {
                                 type="text"
                                 placeholder="Last name"
                                 className="flex-1 outline-none h-full text-sm text-[#1E2022]"
-                                id="lastName"
+                                id="lastName1"
                             />
                         </div>
                         <h1 className="text-left ml-2">
@@ -158,7 +158,7 @@ const MobileSignUp = () => {
                                 type="email"
                                 placeholder="Email"
                                 className="flex-1 outline-none h-full text-sm text-[#1E2022]"
-                                id="email"
+                                id="email1"
                             />
                         </div>
                         <h1 className="text-left ml-2">
@@ -183,7 +183,7 @@ const MobileSignUp = () => {
                                 type="text"
                                 placeholder="Number"
                                 className="flex-1 outline-none h-full text-sm text-[#1E2022]"
-                                id="phone"
+                                id="phone1"
                             />
                         </div>
                         <h1 className="text-left ml-2">
@@ -209,7 +209,7 @@ const MobileSignUp = () => {
                                 type="password"
                                 placeholder="Password"
                                 className="flex-1 outline-none h-full text-sm text-[#1E2022]"
-                                id="password"
+                                id="password1"
                                 onChange={() => setCustomError("")}
                             />
                         </div>
@@ -239,7 +239,7 @@ const MobileSignUp = () => {
                                 type="password"
                                 placeholder="Confirm Password"
                                 className="flex-1 outline-none h-full text-sm text-[#1E2022]"
-                                id="confirmPassword"
+                                id="confirmPassword1"
                                 onChange={() => setCustomError("")}
                             />
                         </div>
@@ -269,7 +269,7 @@ const MobileSignUp = () => {
                                 type="text"
                                 placeholder="NID or Passport Number"
                                 className="flex-1 outline-none h-full text-sm text-[#1E2022]"
-                                id="NidOrPassportNumber"
+                                id="NidOrPassportNumber1"
                             />
                         </div>
                         <h1 className="text-left ml-2">

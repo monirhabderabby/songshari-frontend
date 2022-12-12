@@ -1,13 +1,55 @@
-import React from "react";
+import React, { useState } from 'react';
+import { useRef } from 'react';
 import profile from "../../../assets/images/activity/profile-user-sm.png.png";
 import coolicon from "../../../assets/images/activity/coolicon.png";
 import { Select } from "antd";
 import banner from "../../../assets/images/activity/postBanner.png";
 import { Link } from "react-router-dom";
+import { firebaseStorage } from '../../../firebase.init';
+import { getDownloadURL, uploadBytes } from 'firebase/storage';
+import { v4 as uuidv4 } from "uuid";
 import { BottomNav } from "../../../Wrapper/Home/mobileversion/BottomNav";
+
 
 const handleChange = () => { };
 const MobileActivity = () => {
+  const ref = useRef(null);
+    const [photoURL, setPhotoUrl] = useState("");
+    const [postRefetch, setPostRefetch] = useState(0);
+
+    const handleMessage = event => {
+        event.preventDefault();
+        const post_info = {
+            postBody: ref.current.value
+        }
+
+        fetch(`http://localhost:4000/member/post/add`, {
+            method: "POST",
+            headers: {
+                "content-type": "application/json",
+                authorization: `Bearer ${localStorage.getItem("accessToken")}`
+            },
+            body: JSON.stringify(post_info)
+        })
+            .then(res => res.json())
+            .then(data => {
+              console.log(data);
+                ref.current.value = '';
+                setPostRefetch(postRefetch + 1);
+            })
+    }
+
+    const photoHandler = async e => {
+        const photo = e.target.files[0];
+        const storageRef = ref(firebaseStorage, `post/${photo.name + uuidv4()}`);
+
+        uploadBytes(storageRef, photo).then(async snapshot => {
+            await getDownloadURL(snapshot.ref).then(url => {
+                setPhotoUrl(url.toString());
+            });
+        });
+    };
+
   return (
     <section className=" bg-[#F8F8FF] py-[5px]">
       <div className="max-w-[390px] mx-auto">
@@ -24,9 +66,7 @@ const MobileActivity = () => {
               />
             </div>
             <div className="ml-[25px]">
-              <textarea className="text-xs w-full text-[#757575] font-normal">
-                Write somethiings here......
-              </textarea>
+            <textarea ref={ref} id="message" className='text-[#757575] w-full focus:outline-none resize-none' name='post_description' placeholder='Write somethiings here......'></textarea>
             </div>
           </div>
           <div className="flex max-w-[338px] mt-[20px] mx-auto justify-between items-center px-6">
@@ -61,15 +101,9 @@ const MobileActivity = () => {
                 />
               </div>
             </div>
-            <button
-              style={{
-                background: "linear-gradient(166deg, #F22876 0%, #942DD9 100%)",
-                boxShadow: " 0.872px 9.962px 20px rgba(12, 78, 165, 0.3)",
-              }}
-              className="w-[65px] rounded-[50px] text-xs font-bold text-[#fff] h-[30px]"
-            >
-              Post
-            </button>
+            <button className="border-[1px] border-[rgba(0,0,0,0.1)] rounded-[50px] py-[6px] px-5 font-bold text-[17px] text-[#FFFFFF] bg-gradient-to-t from-[#942DD9] to-[#F22876] shadow-[0.872px_9.962px_20px_rgba(12, 78, 165, 0.3)]" >
+                        Post
+                    </button>
           </div>
         </div>
 

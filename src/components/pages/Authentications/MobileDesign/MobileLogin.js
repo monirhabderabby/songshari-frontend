@@ -77,7 +77,7 @@ const MobileLogin = () => {
                                 type="email"
                                 placeholder="Email"
                                 className="flex-1 outline-none h-full text-sm text-[#1E2022]"
-                                id="email"
+                                id="email1"
                             />
                         </div>
                         <h1 className="text-left ml-2">
@@ -105,7 +105,7 @@ const MobileLogin = () => {
                                 type="password"
                                 placeholder="Password"
                                 className="flex-1 outline-none h-full text-sm text-[#1E2022]"
-                                id="password"
+                                id="password1"
                                 onChange={() => setCustomError("")}
                             />
                         </div>
