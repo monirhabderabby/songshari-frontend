@@ -21,7 +21,7 @@ export const UserCard = ({ profile }) => {
                         src={profile?.profilePhoto}
                         alt="profile"
                     />
-                    <div className="absolute h-[100px] w-full top-[300px] right-0 inset-0 bg-[linear-gradient(180deg,rgba(173,38,81,0)_0%,_#ff317b_42.19%,_#5650ce_100%)] opacity-90 text-white px-4 py-2 font-serif group-hover:top-[370px] transition ease-out duration-500 rounded-bl-[12px] rounded-br-[12px]">
+                    <div className="absolute h-[100px] w-full top-[300px] right-0 inset-0 bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] opacity-90 text-white px-4 py-2 font-serif group-hover:top-[370px] transition ease-out duration-500 rounded-bl-[12px] rounded-br-[12px]">
                         <div className="flex gap-x-4 items-center">
                             <p className="text-[20px] text-white font-bold drop-shadow-lg">{profile?.firstName}</p>
                             <p className="text-[18px] text-[#87ceeb]">{ageCalculator(profile?.dateOfBirth ? profile?.dateOfBirth : 0)}</p>
