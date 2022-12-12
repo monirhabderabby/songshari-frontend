@@ -1,25 +1,31 @@
-import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import {
+    ref,
+    uploadBytes,
+    getDownloadURL,
+    listAll,
+    list,
+} from "firebase/storage";
 import React, { useEffect, useState } from "react";
-import { Upload } from 'antd';
+import { Image, Upload } from 'antd';
 import { v4 as uuidv4 } from "uuid";
 import "../../assets/css/photogelary.css";
 import { firebaseStorage } from "../../firebase.init";
+import { useUpdatePersonalDetailsMutation } from "../../Redux/features/userInfo/userApi";
 const { Dragger } = Upload;
 
 
-const PhotoGelary = () => {
+const PhotoGelary = ({ data, isLoading }) => {
     const [photos, setPhotos] = useState([]);
     const [images, setImages] = useState([]);
     const [urls, setUrls] = useState([]);
+    const [updatePersonalDetails, { isSuccess }] = useUpdatePersonalDetailsMutation()
 
     useEffect(() => {
-        fetch("json/userImage.json")
-            .then(res => res.json())
-            .then(data => {
-                setPhotos(data);
-            });
-    }, []);
-
+        if (data) {
+            console.log(data.photos)
+            setPhotos(data?.photos)
+        }
+    }, [data])
 
     const handleChange = async (e) => {
         const fileList = e.fileList;
@@ -31,68 +37,136 @@ const PhotoGelary = () => {
         }
         handleUpload();
     };
+    const imagesListRef = ref(firebaseStorage, "profile/");
+
 
     const handleUpload = async () => {
         const promises = [];
+        const allUrl = []
         images.map(async photo => {
-            const storageRef = ref(firebaseStorage, `profile/${photo.name + uuidv4()}`);
+            const storageRef = ref(firebaseStorage, `profile/${photo.name}` + uuidv4());
+
             promises.push(uploadBytes);
             await uploadBytes(storageRef, photo).then(async snapshot => {
-                await getDownloadURL(snapshot.ref).then(url => {
-                    setUrls(prevState => [prevState, url.toString()]);
+                await getDownloadURL(snapshot.ref).then((url) => {
+
+                    // allUrl.push(url)
+                    setUrls((prev) => [...prev, url])
+
                 });
             });
         });
+    }
+    //     Promise.all(promises)
+    //         .then((values) => {
 
-        Promise.all(promises)
-            .then(() => console.log("photo uploded succesfully"))
-            .catch(err => console.log(err));
-    };
+    //             setUrls(allUrl)
 
+
+    //         })
+    //         .catch(err => console.log(err));
+    // };
+    //update photoes in personal details
+    // useEffect(() => {
+    //     const upload = async () => {
+    //         const data = { photos: urls }
+    //         const response = await updatePersonalDetails(data)
+    //         if (response?.data && isSuccess) {
+    //             window.alert("Photo updated succesfully")
+    //         }
+    //     }
+    //     upload()
+    // }, [urls])
+
+
+
+    useEffect(() => {
+        Promise.all(imagesListRef).then((response) => {
+            response.items.forEach((item) => {
+                getDownloadURL(item).then((url) => {
+                    setUrls((prev) => [...prev, url]);
+                });
+            });
+        });
+    }, []);
     console.log(urls)
-
     return (
         <div>
-            <div className="photo-gelary p-6 text-left shadow hidden md:block">
+            <div className="px-6">
+
+                <Dragger onChange={handleChange} style={{ border: 'none', background: 'none' }} multiple={true} showUploadList={false} >
+                    <div className="flex">
+                        <div>
+                            <svg
+                                color="#FF1D8E"
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="white"
+                                viewBox="0 0 24 24"
+                                strokeWidth="1.5"
+                                stroke="currentColor"
+                                className="w-6 h-6"
+                            >
+                                <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    d="M6.827 6.175A2.31 2.31 0 015.186 7.23c-.38.054-.757.112-1.134.175C2.999 7.58 2.25 8.507 2.25 9.574V18a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9.574c0-1.067-.75-1.994-1.802-2.169a47.865 47.865 0 00-1.134-.175 2.31 2.31 0 01-1.64-1.055l-.822-1.316a2.192 2.192 0 00-1.736-1.039 48.774 48.774 0 00-5.232 0 2.192 2.192 0 00-1.736 1.039l-.821 1.316z"
+                                />
+                                <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    d="M16.5 12.75a4.5 4.5 0 11-9 0 4.5 4.5 0 019 0zM18.75 10.5h.008v.008h-.008V10.5z"
+                                />
+                            </svg>
+                        </div>
+                        <h1 className="text-lg font-bold ml-2">21 Photo Uploaded</h1>
+
+                    </div>
+
+
+                </Dragger>
+            </div>
+            <div className="photo-gelary p-6 text-left shadow">
 
                 <div className="mb-2">
-                    <Dragger onChange={handleChange} style={{ border: 'none', background: 'none' }} multiple={true} >
-                        <div className="flex">
-                            <div>
-                                <svg
-                                    color="#FF1D8E"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    fill="white"
-                                    viewBox="0 0 24 24"
-                                    strokeWidth="1.5"
-                                    stroke="currentColor"
-                                    className="w-6 h-6"
-                                >
-                                    <path
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        d="M6.827 6.175A2.31 2.31 0 015.186 7.23c-.38.054-.757.112-1.134.175C2.999 7.58 2.25 8.507 2.25 9.574V18a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9.574c0-1.067-.75-1.994-1.802-2.169a47.865 47.865 0 00-1.134-.175 2.31 2.31 0 01-1.64-1.055l-.822-1.316a2.192 2.192 0 00-1.736-1.039 48.774 48.774 0 00-5.232 0 2.192 2.192 0 00-1.736 1.039l-.821 1.316z"
-                                    />
-                                    <path
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        d="M16.5 12.75a4.5 4.5 0 11-9 0 4.5 4.5 0 019 0zM18.75 10.5h.008v.008h-.008V10.5z"
-                                    />
-                                </svg>
-                            </div>
-                            <h1 className="text-xl font-bold ml-2">21 Photo Uploaded</h1>
 
+                    <div className="flex">
+                        <div>
+                            <svg
+                                color="#FF1D8E"
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="white"
+                                viewBox="0 0 24 24"
+                                strokeWidth="1.5"
+                                stroke="currentColor"
+                                className="w-6 h-6"
+                            >
+                                <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    d="M6.827 6.175A2.31 2.31 0 015.186 7.23c-.38.054-.757.112-1.134.175C2.999 7.58 2.25 8.507 2.25 9.574V18a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9.574c0-1.067-.75-1.994-1.802-2.169a47.865 47.865 0 00-1.134-.175 2.31 2.31 0 01-1.64-1.055l-.822-1.316a2.192 2.192 0 00-1.736-1.039 48.774 48.774 0 00-5.232 0 2.192 2.192 0 00-1.736 1.039l-.821 1.316z"
+                                />
+                                <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    d="M16.5 12.75a4.5 4.5 0 11-9 0 4.5 4.5 0 019 0zM18.75 10.5h.008v.008h-.008V10.5z"
+                                />
+                            </svg>
                         </div>
+                        <h1 className="text-lg font-bold ml-2">21 Photo Uploaded</h1>
+
+                    </div>
 
 
-                    </Dragger>
+
                 </div>
                 <div className="grid grid-cols-3 gap-2 mt-2  ">
-                    {photos?.map((p, i) => {
+                    {urls?.map((p, i) => {
+                        console.log(p)
                         return (
                             <div key={i + p} className="borderd m-1 main-box">
                                 <div className="box ">
-                                    <img className="rounded-md" src={p.img} alt="Not Available" />
+                                    <img className="rounded-md" src={p} alt="Not Available" />
+
                                 </div>
                                 <div className="intro text-center w-full flex justify-center items-center">
                                     <button className="py-1 px-2 btn btn-sm text-5xl rounded-lg font-extrabold">+</button>

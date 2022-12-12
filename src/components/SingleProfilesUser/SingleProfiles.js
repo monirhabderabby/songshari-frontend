@@ -28,8 +28,7 @@ const SingleProfiles = () => {
                                         <Badges />
                                         <UtilitisCard />
                                         <IntroCard />
-                                        <PhotoUploadCard /> */}
-                                        <PhotoGelary />
+                                        <PhotoGelary {...{ data, isLoading }} />
                                     </div>
                                 </div>
                                 <div className="w-full md:w-3/4">
