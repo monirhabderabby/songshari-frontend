@@ -55,7 +55,7 @@ export const CardYouMayLike = ({ data }) => {
         // </div>
         //     </div>
         // </div>
-        <div className="w-[263px] h-[179px] bg-white shadow-[2px_2px_8px_rgba(0,0,0,0.12)] rounded-[20px] px-[20px] py-[17px]">
+        <div className="lg:w-[263px] h-[179px] bg-white shadow-[2px_2px_8px_rgba(0,0,0,0.12)] rounded-[20px] px-[20px] py-[17px]">
             <div className="flex items-center justify-between">
                 <div className="w-[67px] h-[67px] rounded-full bg-cover bg-center" style={{ backgroundImage: `url(${data?.profilePhoto})` }}></div>
                 <div className="flex items-center gap-x-[10px]">

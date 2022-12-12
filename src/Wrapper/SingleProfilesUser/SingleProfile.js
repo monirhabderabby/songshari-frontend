@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import "../../assets/css/singleprofilepage.css";
-import MobileSingleProfilesUser from "../../components/SingleProfilesUser/MobileSingleProfilesUser/MobileSingleProfilesUser";
 import SingleProfiles from "../../components/SingleProfilesUser/SingleProfiles";
 
 const SingleProfile = () => {
@@ -14,7 +13,7 @@ const SingleProfile = () => {
         <SingleProfiles />
       </div>
       <div className="md:hidden">
-      <SingleProfiles />
+        <SingleProfiles />
       </div>
     </div>
   );

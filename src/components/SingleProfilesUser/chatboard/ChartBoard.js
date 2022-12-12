@@ -49,7 +49,7 @@ const ChartBoard = () => {
                     <BsCommand className="text-[#2E3A59] text-2xl" />
                     <h1 className="text-[#333333] text-2xl leading-[34px] font-bold">You May Like</h1>
                 </div>
-                <div className="grid grid-cols-1 gap-y-[19px] p-5">
+                <div className="grid  grid-cols-1 gap-y-[19px] gap-x-4 p-5">
                     {data
                         ? data.suggestion.map(profile => {
                             return <CardYouMayLike key={profile._id} {...{ data: profile }} />;
@@ -58,9 +58,15 @@ const ChartBoard = () => {
                             return (
                                 <div
                                     key={n}
+<<<<<<< HEAD
                                     className="flex flex-col  items-center justify-center rounded-[20px] bg-white p-2 shadow-[0px_4px_4px_rgba(62,73,84,0.04)]"
                                 >
                                     `<div className="h-[35px] w-[35px] rounded-full bg-gray-200 animate-pulse"></div>
+=======
+                                    className="flex flex-col  items-center justify-center rounded-[20px] bg-white p-2 shadow-[0px_4px_4px_rgba(62,73,84,0.04)] w-full"
+                                >
+                                    <div className="h-[35px] w-full lg:w-[35px] rounded-full bg-gray-200 animate-pulse"></div>
+>>>>>>> 13b60cf6e64635d380a6f6dc735c6155a2a8be23
                                     <div className="h-4 w-full animate-pulse bg-gray-200 leading-5 mt-2 rounded-3xl"></div>
                                     <div className="flex items-center justify-between gap-4">
                                         <div className="w-[45px] h-[45px] bg-gray-200 rounded-full mt-2 animate-pulse"></div>
