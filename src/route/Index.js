@@ -77,6 +77,9 @@ import { PrivacyMov } from "../Wrapper/Home/mobileversion/privacy/PrivacyMov";
 import { Setting } from "../Wrapper/Home/mobileversion/Setting";
 import MobileCertificate from "../Wrapper/Home/mobileversion/PhotoGallery/certificate/MobileCertificate";
 import Certificate from "../components/SingleProfilesUser/CertificateSection/Certificate";
+import UpgradeUserPlan from "../Admin__Portion/Components/User/UpgradeUserPlan";
+import DownGradeUserPlan from "../Admin__Portion/Components/User/DownGradeUserPlan";
+import MarkPriorityUser from "../Admin__Portion/Components/User/PriorityUser/MarkPriorityUser";
 
 const Index = () => {
     return (
@@ -141,6 +144,9 @@ const Index = () => {
                     <Route path="/admin-analytics" element={<AdminAnalytics />}></Route>
                     <Route path="/stepper" element={<Container></Container>}></Route>
                     <Route path="/upgrade" element={<UpgradePlan></UpgradePlan>}></Route>
+                    <Route path="/upgradeuserplan" element={<UpgradeUserPlan />} />
+                    <Route path="/downgradeuserplan" element={<DownGradeUserPlan />} />
+                    <Route path="/markpriority" element={<MarkPriorityUser />} />
 
                     {/* --------------- MOBILE ROUTES START --------------- */}
                     <Route path="/mobileHomePage" element={<MobileHome />}></Route>
