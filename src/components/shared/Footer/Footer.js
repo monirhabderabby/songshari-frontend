@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "../../../App.css";
 import "../../../assets/css/footer.css";
+import { VersionTrack } from "../VersionTrack/VersionTrack";
 import flower from "./../../../assets/images/footer/flower01.png";
 import icon from "./../../../assets/images/footer/icon.png";
 import rightShape from "./../../../assets/images/footer/right-shape.png";
@@ -162,6 +163,7 @@ const Footer = () => {
                                     shongshari.com
                                 </Link>
                             </div>
+                            <VersionTrack />
                         </div>
                         <div>
                             <ul className="footer-social-links flex  ">

@@ -1,22 +1,23 @@
+// configuration, ex: react-router
 import React from "react";
+
+// components
 import { useGetRecentMembersQuery } from "../../../Redux/features/userInfo/withoutLoginApi";
 import { UserCard } from "../Shared/userCard/UserCard";
 
 export const FindAPartnerSuggested = () => {
-    const { data, isSuccess, isLoading } = useGetRecentMembersQuery();
+  // varible declation
+  // hook variables
+  const { data, isSuccess, isLoading } = useGetRecentMembersQuery();
 
-    if (isSuccess) {
-        console.log(data);
-    }
-    return (
-        <div className="mt-[30px] max-w-[950px] mx-auto">
-            <div className="grid grid-cols-3 gap-[30px]">
-                {isSuccess &&
-                    data?.map(profile => {
-                        return <UserCard {...{ profile }} />;
-                    })}
-                {isLoading && <UserCard {...{ isLoading }} />}
-            </div>
-        </div>
-    );
+  return (
+    <div className="mt-[30px] max-w-[950px] mx-auto">
+      <div className="grid grid-cols-3 gap-[30px]">
+        {isSuccess &&
+          data.data.members?.map((profile) => {
+            return <UserCard key={profile._id} {...{ profile }} />;
+          })}
+      </div>
+    </div>
+  );
 };

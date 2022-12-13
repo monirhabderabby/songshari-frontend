@@ -12,6 +12,7 @@ import { auth } from "../../../firebase.init";
 import { useRegAsMemberMutation } from "../../../Redux/features/userInfo/userApi";
 import { loadUserData } from "../../../Redux/features/userInfo/userInfo";
 import Error from "../../ui/error/Error";
+import { TextField } from "./InputFields/TextField";
 import MobileSignUp from "./MobileDesign/MobileSignUp";
 
 const Signup = () => {
@@ -37,7 +38,6 @@ const Signup = () => {
     };
 
     const onSubmit = async data => {
-        delete data.image;
         data.role = "member";
         data.gender = gender;
         console.log(data);
@@ -49,7 +49,7 @@ const Signup = () => {
 
     useEffect(() => {
         if (response) {
-            localStorage.setItem("accessToken", response.token);
+            localStorage.setItem("accessToken", response?.data?.token);
             dispatch(loadUserData(response));
             reset();
             navigate("/userProfile");
@@ -66,11 +66,11 @@ const Signup = () => {
         <div>
             <div className="min-h-screen hidden md:block">
                 <section className="flex justify-center items-center w-full flex-1 text-center px-3 md:px-20  min-h-screen">
-                    <div className="bg-white rounded-2xl shadow-2xl md:flex w-[100%] md:w-3/4 lg:w-4/5 max-w-6xl relative">
+                    <div className="bg-white rounded-2xl shadow-2xl lg:flex w-[100%] md:w-3/4 lg:w-4/5 max-w-6xl relative">
                         <div className="w-full lg:w-3/5 p-5 my-auto">
                             <div className="text-left font-bold">
                                 <span className="gradient_text font-george">
-                                    <img className="w-[150px]" src={logo} alt="logo" />
+                                    <img className="w-[150px]" src={logo} alt="logo" crossOrigin="anonymous" />
                                 </span>
                             </div>
                             <div className="py-10">
@@ -88,7 +88,18 @@ const Signup = () => {
                                 <p className="text-gray-400 my-3">or use your email account</p>
                                 <div>
                                     <form className="lg:w-full w-64 mx-auto lg:grid lg:gap-x-3 lg:grid-cols-2" onSubmit={handleSubmit(onSubmit)}>
-                                        <section>
+                                        <TextField
+                                            {...{
+                                                register,
+                                                errors,
+                                                icon: <FaRegUser className=" m-2 text-gray-400" />,
+                                                id: "firstName",
+                                                placeholder: "First name",
+                                                name: "firstName",
+                                                requiredMessage: "First name is required",
+                                            }}
+                                        />
+                                        {/* <section>
                                             <div className="flex items-center bg-gray-100 p-2 w-full rounded-xl">
                                                 <FaRegUser className=" m-2 text-gray-400" />
                                                 <input
@@ -101,7 +112,7 @@ const Signup = () => {
                                                     type="text"
                                                     placeholder="First name"
                                                     className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
-                                                    id="name"
+                                                    id="firstName"
                                                 />
                                             </div>
                                             <h1 className="text-left ml-2">
@@ -110,7 +121,7 @@ const Signup = () => {
                                                 )}
                                             </h1>
                                         </section>{" "}
-                                        {/*first name field*/}
+                                        first name field */}
                                         <section>
                                             <div className="flex items-center bg-gray-100 p-2 w-full rounded-xl mt-3 lg:mt-0">
                                                 <FaRegUser className=" m-2 text-gray-400" />
@@ -285,13 +296,14 @@ const Signup = () => {
                                                 <MdLockOutline className=" m-2 text-gray-400" />
                                                 <select
                                                     name="gender"
+                                                    id="gender"
                                                     className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
                                                     required
                                                     onChange={e => setGender(e.target.value)}
                                                 >
                                                     <option value="">Select Gender</option>
                                                     <option value="man">Man</option>
-                                                    <option value="women">Women</option>
+                                                    <option value="woman">Women</option>
                                                 </select>
                                             </div>
                                             <h1 className="text-left ml-2">
@@ -320,7 +332,7 @@ const Signup = () => {
                                 {/*Input Field*/}
                             </div>
                         </div>{" "}
-                        <div className="h-[200px] w-full bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] rounded-br-2xl rounded-bl-2xl p-2 md:hidden text-white">
+                        <div className="h-[200px] w-full bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] rounded-br-2xl rounded-bl-2xl p-2 lg:hidden text-white">
                             <h2 className="font-bold text-3xl mb-2">Hello, Friend!</h2>
                             <div className="border-2 w-10 border-white inline-block"></div>
                             <p className="mb-4">Fill up your information and start journey with us</p>

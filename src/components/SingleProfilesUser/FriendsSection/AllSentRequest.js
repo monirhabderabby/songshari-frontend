@@ -1,38 +1,61 @@
+// configuration, ex: react-router
 import React from "react";
+
+// Third party packages, ex: redux
+import { AiOutlineWarning } from "react-icons/ai";
+import { FiUsers } from "react-icons/fi";
+
+// components
 import { useGetAllSentRequestQuery } from "../../../Redux/features/connections/connectionApi";
+import { SentRequestLoader } from "../../pages/Shared/Loader/connections/SentRequestLoader";
 import { SentReqCard } from "./Cards/SentReqCard";
-import { SkeletonLoader } from "./SkeletonLoader";
 
 export const AllSentRequest = () => {
-    const friends = [1, 2, 3, 4, 5, 6, 7];
+    // varible declation
+    // hook variables
     const { data, isLoading, isError, error } = useGetAllSentRequestQuery();
 
-    if (data) {
-        console.log(data);
-    }
+    // js variables
     let content = null;
 
     if (isLoading) {
         content = (
-            <div className="w-full grid grid-cols-1 gap-y-4">
-                <SkeletonLoader />
-                <SkeletonLoader />
-                <SkeletonLoader />
+            <div className="w-full grid grid-cols-1 gap-y-4 px-4">
+                <SentRequestLoader />
+                <SentRequestLoader />
+                <SentRequestLoader />
+            </div>
+        );
+    } else if (!isLoading && isError && error?.data?.message.includes("Cannot check authentication")) {
+        content = (
+            <div className="flex flex-col items-center justify-center mt-[30%]">
+                <AiOutlineWarning className="text-[48px] text-gray-400" />
+                <p className="mt-[10px] text-[22px] font-Inter font-medium text-gray-500">Authentication failed! Try again.</p>
             </div>
         );
     } else if (!isLoading && isError) {
-        content = <p>{error?.message}</p>;
-    } else if (!isLoading && !isError && data?.user?.connectionSentRequests?.length === 0) {
-        content = <p>No Request found!</p>;
-    } else if (!isLoading && !isError && data?.user?.connectionSentRequests?.length > 0) {
-        content = data?.user?.connectionSentRequests?.map(friend => {
-            return <SentReqCard key={friend._id} {...{ friend }} />;
-        });
+        content = (
+            <div className="flex flex-col items-center justify-center mt-[30%]">
+                <AiOutlineWarning className="text-[48px] text-gray-400" />
+                <p className="mt-[10px] text-[22px] font-Inter font-medium text-gray-500">Server Error</p>
+            </div>
+        );
+    } else if (!isLoading && data?.data?.user?.length === 0) {
+        content = (
+            <div className="flex flex-col items-center justify-center mt-[30%]">
+                <FiUsers className="text-[48px] text-gray-400" />
+                <p className="mt-[10px] text-[22px] font-Inter font-medium text-gray-500">No Request sent</p>
+            </div>
+        );
+    } else if (!isLoading && data?.data?.user.length > 0) {
+        content = (
+            <div className="w-full grid grid-cols-1 gap-y-4 px-4">
+                {data?.data?.user.map(friend => {
+                    return <SentReqCard {...{ friend }} />;
+                })}
+            </div>
+        );
     }
 
-    return (
-        <div>
-            <div className="w-full grid grid-cols-1 gap-y-4">{content}</div>
-        </div>
-    );
+    return <div>{content}</div>;
 };
