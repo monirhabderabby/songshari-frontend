@@ -20,7 +20,7 @@ const SingleProfiles = () => {
                     <div className=" w-full lg:w-9/12 ">
                         <div>
                             <div className="block lg:flex">
-                                <div className="w-full lg:w-[360px]">
+                                <div className="w-full  lg:mr-4">
                                     <div>
                                         <ProfileCard {...{ data, isLoading }} />
                                         <VerificationCard />
@@ -30,7 +30,7 @@ const SingleProfiles = () => {
                                         <PhotoGelary {...{ data, isLoading }} />
                                     </div>
                                 </div>
-                                <div className="w-full lg:w-[512px]">
+                                <div className="lg:w-full">
                                     <div>
                                         <Table {...{ data, isLoading }} />
                                     </div>

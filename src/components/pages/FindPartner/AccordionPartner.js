@@ -263,12 +263,12 @@ export const AccordionPartner = ({ data, isLoading }) => {
         setHeight(value);
         setOthersInfo({ ...othersInfo, height: value });
     };
-    const onAfterHeightChange = value => {};
+    const onAfterHeightChange = value => { };
     const onWeightChange = value => {
         setWeight(value);
         setOthersInfo({ ...othersInfo, weight: value });
     };
-    const onAfterWeightChange = value => {};
+    const onAfterWeightChange = value => { };
     const handleUserAncestryChange = value => {
         setOthersInfo({ ...othersInfo, ancestry: value });
     };
@@ -305,931 +305,1946 @@ export const AccordionPartner = ({ data, isLoading }) => {
 
     return (
         <div className="w-full">
-            <Collapse accordion ghost defaultActiveKey={"1"} expandIconPosition="end" className="mt-[20px]">
-                {/* ------------ Basic Information ---------- */}
-                <Panel header={styledHeader("Basic Information")} key="1">
-                    <div>
-                        <h1 className="text-base leading-6 font-medium mb-2">Looking For</h1>
-                        <Select
-                            defaultValue="bride"
-                            className="w-full mb-4"
-                            onChange={handleLookingForChange}
-                            showSearch
-                            filterOption={(input, option) => (option?.label ?? "").toLowerCase().includes(input.toLowerCase())}
-                            options={[
-                                {
-                                    value: "bride",
-                                    label: "Bride",
-                                },
-                                {
-                                    value: "groom",
-                                    label: "Groom",
-                                },
-                            ]}
-                        />
-                    </div>
-                    <div>
-                        <h1 className="text-base leading-6 font-medium mb-2">For</h1>
-                        <Select
-                            defaultValue="myself"
-                            className="w-full mb-4"
-                            onChange={handleForChange}
-                            showSearch
-                            filterOption={(input, option) => (option?.label ?? "").toLowerCase().includes(input.toLowerCase())}
-                            options={[
-                                {
-                                    value: "myself",
-                                    label: "Myself",
-                                },
-                                {
-                                    value: "brother",
-                                    label: "My Brother",
-                                },
-                                {
-                                    value: "sister",
-                                    label: "My Sister",
-                                },
-                                {
-                                    value: "cousin",
-                                    label: "My Cousin",
-                                },
-                                {
-                                    value: "friend",
-                                    label: "My Friend",
-                                },
-                                {
-                                    value: "relative",
-                                    label: "My Relative",
-                                },
-                            ]}
-                        />
-                    </div>
-                    <div>
-                        <h1 className="text-base leading-6 font-medium mb-2">Age</h1>
-                        <p className="text-left text-base font-medium">
-                            {" "}
-                            {age[0]} to {age[1]}{" "}
-                        </p>
-                        <Slider
-                            className="mb-4"
-                            range={{ draggableTrack: true }}
-                            defaultValue={[20, 50]}
-                            onChange={onAgeChange}
-                            onAfterChange={onAfterAgeChange}
-                        />
-                    </div>
-                    <div>
-                        <h1 className="text-base leading-6 font-medium mb-2">Religion</h1>
-                        <Radio.Group onChange={handleReligionChange} value={religionValue} className="mb-4">
-                            <Space direction="vertical">
-                                <Radio value="Islam">Islam</Radio>
-                                <Radio value="Hinduism">Hinduism</Radio>
-                                <Radio value="Christian">Christian</Radio>
-                                <Radio value="Buddhist">Buddhist</Radio>
-                                <Radio value="Atheist">Atheist</Radio>
-                                <Radio value={6}>
-                                    Add New
-                                    {religionValue === 6 ? (
-                                        <Input
-                                            style={{
-                                                width: 100,
-                                                marginLeft: 10,
-                                            }}
-                                        />
-                                    ) : null}
-                                </Radio>
-                            </Space>
-                        </Radio.Group>
-                    </div>
-                    <div>
-                        <h1 className="text-base leading-6 font-medium mt-2 mb-2">Hometown</h1>
-                        <Select
-                            className="w-full mb-4"
-                            onChange={handleHometownChange}
-                            placeholder="Select Hometown"
-                            showSearch
-                            filterOption={(input, option) => (option?.children ?? "").toLowerCase().includes(input.toLowerCase())}
-                        >
-                            {homeTowns.map(town => {
-                                return (
-                                    <Select.Option key={town.id} value={town.value}>
-                                        {town.name}
-                                    </Select.Option>
-                                );
-                            })}
-                        </Select>
-                    </div>
-                    <div>
-                        <h1 className="text-base leading-6 font-medium mb-2">Current Location</h1>
-                        <Select
-                            className="w-full mb-4"
-                            onChange={handleCurrentLocationChange}
-                            placeholder="Select current location"
-                            showSearch
-                            filterOption={(input, option) => (option?.children ?? "").toLowerCase().includes(input.toLowerCase())}
-                        >
-                            {homeTowns.map(town => {
-                                return (
-                                    <Select.Option key={town.id} value={town.value}>
-                                        {town.name}
-                                    </Select.Option>
-                                );
-                            })}
-                        </Select>
-                    </div>
-                    <div>
-                        <h1 className="text-base leading-6 font-medium mb-2">Citizenship</h1>
-                        <Select
-                            className="w-full mb-4"
-                            onChange={handleCitizenshipChange}
-                            placeholder="Select Citizenship"
-                            mode="multiple"
-                            maxTagCount={2}
-                            allowClear
-                            showSearch
-                            filterOption={(input, option) => (option?.children ?? "").toLowerCase().includes(input.toLowerCase())}
-                        >
-                            {countries.map(country => (
-                                <Select.Option key={country.id} value={country.value}>
-                                    {country.label}
-                                </Select.Option>
-                            ))}
-                        </Select>
-                    </div>
-                    <div>
-                        <h1 className="text-base leading-6 font-medium mb-2">Marital Status</h1>
-                        <Select
-                            className="w-full mb-4"
-                            onChange={handleMaritalStatusChange}
-                            placeholder="Select Status"
-                            showSearch
-                            filterOption={(input, option) => (option?.label ?? "").toLowerCase().includes(input.toLowerCase())}
-                            options={[
-                                {
-                                    value: "single",
-                                    label: "Never Married",
-                                },
-                                {
-                                    value: "married",
-                                    label: "Married",
-                                },
-                                {
-                                    value: "divorced",
-                                    label: "Divorced",
-                                },
-                                {
-                                    value: "widowed",
-                                    label: "Widowed",
-                                },
-                            ]}
-                        />
-                    </div>
-                    {maritalStatus === "married" && (
+            <div className="hidden md:hidden">
+                <Collapse accordion ghost defaultActiveKey={"1"} expandIconPosition="end" className="mt-[20px]">
+                    {/* ------------ Basic Information ---------- */}
+                    <Panel header={styledHeader("Basic Information")} key="1">
                         <div>
-                            <h1 className="text-base leading-6 font-medium mb-2">How Many Partner Do You Have</h1>
-                            <div className="flex justify-center items-center mb-4">
-                                <button onClick={handleDecreasePartner} className="px-4 py-2 text-3xl bg-gray-300 leading-6 rounded-l-lg">
-                                    -
-                                </button>
-                                <div className="text-base text-center leading-6 font-medium w-24 py-2 bg-gray-200">{partnerQuantity}</div>
-                                <button onClick={handleIncreasePartner} className="px-4 py-2 text-3xl bg-gray-300 leading-6 rounded-r-lg">
-                                    +
-                                </button>
-                            </div>
+                            <h1 className="text-base leading-6 font-medium mb-2">Looking For</h1>
+                            <Select
+                                defaultValue="bride"
+                                className="w-full mb-4"
+                                onChange={handleLookingForChange}
+                                showSearch
+                                filterOption={(input, option) => (option?.label ?? "").toLowerCase().includes(input.toLowerCase())}
+                                options={[
+                                    {
+                                        value: "bride",
+                                        label: "Bride",
+                                    },
+                                    {
+                                        value: "groom",
+                                        label: "Groom",
+                                    },
+                                ]}
+                            />
                         </div>
-                    )}
-                    {maritalStatus === "married" && (
                         <div>
-                            <h1 className="text-base leading-6 font-medium mb-2">Reason For Another Marriage</h1>
-                            <Input className="w-full mb-4" onChange={handleMarriageReasonChange} placeholder="Type reason" />
+                            <h1 className="text-base leading-6 font-medium mb-2">For</h1>
+                            <Select
+                                defaultValue="myself"
+                                className="w-full mb-4"
+                                onChange={handleForChange}
+                                showSearch
+                                filterOption={(input, option) => (option?.label ?? "").toLowerCase().includes(input.toLowerCase())}
+                                options={[
+                                    {
+                                        value: "myself",
+                                        label: "Myself",
+                                    },
+                                    {
+                                        value: "brother",
+                                        label: "My Brother",
+                                    },
+                                    {
+                                        value: "sister",
+                                        label: "My Sister",
+                                    },
+                                    {
+                                        value: "cousin",
+                                        label: "My Cousin",
+                                    },
+                                    {
+                                        value: "friend",
+                                        label: "My Friend",
+                                    },
+                                    {
+                                        value: "relative",
+                                        label: "My Relative",
+                                    },
+                                ]}
+                            />
                         </div>
-                    )}
-                    {maritalStatus === "married" && (
                         <div>
-                            <h1 className="text-base leading-6 font-medium mb-4">
-                                Is Your Current Partner Aware Of Your Decision About Another Marriage?
-                            </h1>
-                            <Radio.Group onChange={handlePartnerAwareChange} value={partnerAwareValue} className="mb-4">
+                            <h1 className="text-base leading-6 font-medium mb-2">Age</h1>
+                            <p className="text-left text-base font-medium">
+                                {" "}
+                                {age[0]} to {age[1]}{" "}
+                            </p>
+                            <Slider
+                                className="mb-4"
+                                range={{ draggableTrack: true }}
+                                defaultValue={[20, 50]}
+                                onChange={onAgeChange}
+                                onAfterChange={onAfterAgeChange}
+                            />
+                        </div>
+                        <div>
+                            <h1 className="text-base leading-6 font-medium mb-2">Religion</h1>
+                            <Radio.Group onChange={handleReligionChange} value={religionValue} className="mb-4">
                                 <Space direction="vertical">
-                                    <Radio value={"yes"}>Yes</Radio>
-                                    <Radio value={"no"}>No</Radio>
+                                    <Radio value="Islam">Islam</Radio>
+                                    <Radio value="Hinduism">Hinduism</Radio>
+                                    <Radio value="Christian">Christian</Radio>
+                                    <Radio value="Buddhist">Buddhist</Radio>
+                                    <Radio value="Atheist">Atheist</Radio>
+                                    <Radio value={6}>
+                                        Add New
+                                        {religionValue === 6 ? (
+                                            <Input
+                                                style={{
+                                                    width: 100,
+                                                    marginLeft: 10,
+                                                }}
+                                            />
+                                        ) : null}
+                                    </Radio>
                                 </Space>
                             </Radio.Group>
                         </div>
-                    )}
-                    {maritalStatus === "divorced" && (
                         <div>
-                            <h1 className="text-base leading-6 font-medium mb-2">Marriage Date</h1>
-                            <DatePicker placeholder="Marriage Date" className="w-full mb-4" onChange={onMarriageDateChange} />
+                            <h1 className="text-base leading-6 font-medium mt-2 mb-2">Hometown</h1>
+                            <Select
+                                className="w-full mb-4"
+                                onChange={handleHometownChange}
+                                placeholder="Select Hometown"
+                                showSearch
+                                filterOption={(input, option) => (option?.children ?? "").toLowerCase().includes(input.toLowerCase())}
+                            >
+                                {homeTowns.map(town => {
+                                    return (
+                                        <Select.Option key={town.id} value={town.value}>
+                                            {town.name}
+                                        </Select.Option>
+                                    );
+                                })}
+                            </Select>
                         </div>
-                    )}
-                    {maritalStatus === "divorced" && (
                         <div>
-                            <h1 className="text-base leading-6 font-medium mb-2">Divorce Date</h1>
-                            <DatePicker placeholder="Divorce Date" className="w-full mb-4" onChange={onDivorceDateChange} />
+                            <h1 className="text-base leading-6 font-medium mb-2">Current Location</h1>
+                            <Select
+                                className="w-full mb-4"
+                                onChange={handleCurrentLocationChange}
+                                placeholder="Select current location"
+                                showSearch
+                                filterOption={(input, option) => (option?.children ?? "").toLowerCase().includes(input.toLowerCase())}
+                            >
+                                {homeTowns.map(town => {
+                                    return (
+                                        <Select.Option key={town.id} value={town.value}>
+                                            {town.name}
+                                        </Select.Option>
+                                    );
+                                })}
+                            </Select>
                         </div>
-                    )}
-                    {maritalStatus === "divorced" && (
                         <div>
-                            <h1 className="text-base leading-6 font-medium mb-2">Reason of Divorce</h1>
-                            <Input className="w-full mb-4" onChange={handleDivorceReasonChange} placeholder="Type reason" />
+                            <h1 className="text-base leading-6 font-medium mb-2">Citizenship</h1>
+                            <Select
+                                className="w-full mb-4"
+                                onChange={handleCitizenshipChange}
+                                placeholder="Select Citizenship"
+                                mode="multiple"
+                                maxTagCount={2}
+                                allowClear
+                                showSearch
+                                filterOption={(input, option) => (option?.children ?? "").toLowerCase().includes(input.toLowerCase())}
+                            >
+                                {countries.map(country => (
+                                    <Select.Option key={country.id} value={country.value}>
+                                        {country.label}
+                                    </Select.Option>
+                                ))}
+                            </Select>
                         </div>
-                    )}
+                        <div>
+                            <h1 className="text-base leading-6 font-medium mb-2">Marital Status</h1>
+                            <Select
+                                className="w-full mb-4"
+                                onChange={handleMaritalStatusChange}
+                                placeholder="Select Status"
+                                showSearch
+                                filterOption={(input, option) => (option?.label ?? "").toLowerCase().includes(input.toLowerCase())}
+                                options={[
+                                    {
+                                        value: "single",
+                                        label: "Never Married",
+                                    },
+                                    {
+                                        value: "married",
+                                        label: "Married",
+                                    },
+                                    {
+                                        value: "divorced",
+                                        label: "Divorced",
+                                    },
+                                    {
+                                        value: "widowed",
+                                        label: "Widowed",
+                                    },
+                                ]}
+                            />
+                        </div>
+                        {maritalStatus === "married" && (
+                            <div>
+                                <h1 className="text-base leading-6 font-medium mb-2">How Many Partner Do You Have</h1>
+                                <div className="flex justify-center items-center mb-4">
+                                    <button onClick={handleDecreasePartner} className="px-4 py-2 text-3xl bg-gray-300 leading-6 rounded-l-lg">
+                                        -
+                                    </button>
+                                    <div className="text-base text-center leading-6 font-medium w-24 py-2 bg-gray-200">{partnerQuantity}</div>
+                                    <button onClick={handleIncreasePartner} className="px-4 py-2 text-3xl bg-gray-300 leading-6 rounded-r-lg">
+                                        +
+                                    </button>
+                                </div>
+                            </div>
+                        )}
+                        {maritalStatus === "married" && (
+                            <div>
+                                <h1 className="text-base leading-6 font-medium mb-2">Reason For Another Marriage</h1>
+                                <Input className="w-full mb-4" onChange={handleMarriageReasonChange} placeholder="Type reason" />
+                            </div>
+                        )}
+                        {maritalStatus === "married" && (
+                            <div>
+                                <h1 className="text-base leading-6 font-medium mb-4">
+                                    Is Your Current Partner Aware Of Your Decision About Another Marriage?
+                                </h1>
+                                <Radio.Group onChange={handlePartnerAwareChange} value={partnerAwareValue} className="mb-4">
+                                    <Space direction="vertical">
+                                        <Radio value={"yes"}>Yes</Radio>
+                                        <Radio value={"no"}>No</Radio>
+                                    </Space>
+                                </Radio.Group>
+                            </div>
+                        )}
+                        {maritalStatus === "divorced" && (
+                            <div>
+                                <h1 className="text-base leading-6 font-medium mb-2">Marriage Date</h1>
+                                <DatePicker placeholder="Marriage Date" className="w-full mb-4" onChange={onMarriageDateChange} />
+                            </div>
+                        )}
+                        {maritalStatus === "divorced" && (
+                            <div>
+                                <h1 className="text-base leading-6 font-medium mb-2">Divorce Date</h1>
+                                <DatePicker placeholder="Divorce Date" className="w-full mb-4" onChange={onDivorceDateChange} />
+                            </div>
+                        )}
+                        {maritalStatus === "divorced" && (
+                            <div>
+                                <h1 className="text-base leading-6 font-medium mb-2">Reason of Divorce</h1>
+                                <Input className="w-full mb-4" onChange={handleDivorceReasonChange} placeholder="Type reason" />
+                            </div>
+                        )}
 
-                    {maritalStatus === "widowed" && (
-                        <div>
-                            <h1 className="text-base leading-6 font-medium mb-2">Marriage Date</h1>
-                            <DatePicker placeholder="Marriage Date" className="w-full mb-4" onChange={onMarriageDateChange} />
-                        </div>
-                    )}
-                    {maritalStatus === "widowed" && (
-                        <div>
-                            <h1 className="text-base leading-6 font-medium mb-2">Partner's Death Date</h1>
-                            <DatePicker placeholder="Partner's Death Date" className="w-full mb-4" onChange={onPartnerDeathDateChange} />
-                        </div>
-                    )}
-                    {maritalStatus === "married" && maritalStatus !== "" && maritalStatus !== "single" && (
-                        <div>
-                            <h1 className="text-base leading-6 font-medium mb-2">Do You Have children</h1>
-                            <Select
-                                className="w-full mb-4"
-                                onChange={handleHaveChildrenChange}
-                                placeholder="Have any children?"
-                                options={[
-                                    {
-                                        value: "yes",
-                                        label: "Yes",
-                                    },
-                                    {
-                                        value: "no",
-                                        label: "No",
-                                    },
-                                ]}
-                            />
-                        </div>
-                    )}
-                    {maritalStatus === "divorced" && maritalStatus !== "" && maritalStatus !== "single" && (
-                        <div>
-                            <h1 className="text-base leading-6 font-medium mb-2">Do You Have children</h1>
-                            <Select
-                                className="w-full mb-4"
-                                onChange={handleHaveChildrenChange}
-                                placeholder="Have any children?"
-                                options={[
-                                    {
-                                        value: "yes",
-                                        label: "Yes",
-                                    },
-                                    {
-                                        value: "no",
-                                        label: "No",
-                                    },
-                                ]}
-                            />
-                        </div>
-                    )}
-                    {maritalStatus === "widowed" && maritalStatus !== "" && maritalStatus !== "single" && (
-                        <div>
-                            <h1 className="text-base leading-6 font-medium mb-2">Do You Have children</h1>
-                            <Select
-                                className="w-full mb-4"
-                                onChange={handleHaveChildrenChange}
-                                placeholder="Have any children?"
-                                options={[
-                                    {
-                                        value: "yes",
-                                        label: "Yes",
-                                    },
-                                    {
-                                        value: "no",
-                                        label: "No",
-                                    },
-                                ]}
-                            />
-                        </div>
-                    )}
-                    {haveChildren === "yes" && maritalStatus !== "single" && (
-                        <div>
+                        {maritalStatus === "widowed" && (
                             <div>
-                                <h1 className="text-base leading-6 font-medium mb-2">Number of Boy</h1>
-                                <div className="flex justify-center items-center mb-4">
-                                    <button onClick={handleDecreaseBoy} className="px-4 py-2 text-3xl bg-gray-300 leading-6 rounded-l-lg">
-                                        -
-                                    </button>
-                                    <div className="text-base text-center leading-6 font-medium w-24 py-2 bg-gray-200">{boyQuantity}</div>
-                                    <button onClick={handleIncreaseBoy} className="px-4 py-2 text-3xl bg-gray-300 leading-6 rounded-r-lg">
-                                        +
-                                    </button>
+                                <h1 className="text-base leading-6 font-medium mb-2">Marriage Date</h1>
+                                <DatePicker placeholder="Marriage Date" className="w-full mb-4" onChange={onMarriageDateChange} />
+                            </div>
+                        )}
+                        {maritalStatus === "widowed" && (
+                            <div>
+                                <h1 className="text-base leading-6 font-medium mb-2">Partner's Death Date</h1>
+                                <DatePicker placeholder="Partner's Death Date" className="w-full mb-4" onChange={onPartnerDeathDateChange} />
+                            </div>
+                        )}
+                        {maritalStatus === "married" && maritalStatus !== "" && maritalStatus !== "single" && (
+                            <div>
+                                <h1 className="text-base leading-6 font-medium mb-2">Do You Have children</h1>
+                                <Select
+                                    className="w-full mb-4"
+                                    onChange={handleHaveChildrenChange}
+                                    placeholder="Have any children?"
+                                    options={[
+                                        {
+                                            value: "yes",
+                                            label: "Yes",
+                                        },
+                                        {
+                                            value: "no",
+                                            label: "No",
+                                        },
+                                    ]}
+                                />
+                            </div>
+                        )}
+                        {maritalStatus === "divorced" && maritalStatus !== "" && maritalStatus !== "single" && (
+                            <div>
+                                <h1 className="text-base leading-6 font-medium mb-2">Do You Have children</h1>
+                                <Select
+                                    className="w-full mb-4"
+                                    onChange={handleHaveChildrenChange}
+                                    placeholder="Have any children?"
+                                    options={[
+                                        {
+                                            value: "yes",
+                                            label: "Yes",
+                                        },
+                                        {
+                                            value: "no",
+                                            label: "No",
+                                        },
+                                    ]}
+                                />
+                            </div>
+                        )}
+                        {maritalStatus === "widowed" && maritalStatus !== "" && maritalStatus !== "single" && (
+                            <div>
+                                <h1 className="text-base leading-6 font-medium mb-2">Do You Have children</h1>
+                                <Select
+                                    className="w-full mb-4"
+                                    onChange={handleHaveChildrenChange}
+                                    placeholder="Have any children?"
+                                    options={[
+                                        {
+                                            value: "yes",
+                                            label: "Yes",
+                                        },
+                                        {
+                                            value: "no",
+                                            label: "No",
+                                        },
+                                    ]}
+                                />
+                            </div>
+                        )}
+                        {haveChildren === "yes" && maritalStatus !== "single" && (
+                            <div>
+                                <div>
+                                    <h1 className="text-base leading-6 font-medium mb-2">Number of Boy</h1>
+                                    <div className="flex justify-center items-center mb-4">
+                                        <button onClick={handleDecreaseBoy} className="px-4 py-2 text-3xl bg-gray-300 leading-6 rounded-l-lg">
+                                            -
+                                        </button>
+                                        <div className="text-base text-center leading-6 font-medium w-24 py-2 bg-gray-200">{boyQuantity}</div>
+                                        <button onClick={handleIncreaseBoy} className="px-4 py-2 text-3xl bg-gray-300 leading-6 rounded-r-lg">
+                                            +
+                                        </button>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h1 className="text-base leading-6 font-medium mb-2">Boy Age</h1>
+                                    <div className="flex justify-center items-center mb-4">
+                                        <button onClick={handleDecreaseBoyAge} className="px-4 py-2 text-3xl bg-gray-300 leading-6 rounded-l-lg">
+                                            -
+                                        </button>
+                                        <div className="text-base text-center leading-6 font-medium w-24 py-2 bg-gray-200">{boyAge}</div>
+                                        <button onClick={handleIncreaseBoyAge} className="px-4 py-2 text-3xl bg-gray-300 leading-6 rounded-r-lg">
+                                            +
+                                        </button>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h1 className="text-base leading-6 font-medium mb-2">Number of Girl</h1>
+                                    <div className="flex justify-center items-center mb-4">
+                                        <button onClick={handleDecreaseGirl} className="px-4 py-2 text-3xl bg-gray-300 leading-6 rounded-l-lg">
+                                            -
+                                        </button>
+                                        <div className="text-base text-center leading-6 font-medium w-24 py-2 bg-gray-200">{girlQuantity}</div>
+                                        <button onClick={handleIncreaseGirl} className="px-4 py-2 text-3xl bg-gray-300 leading-6 rounded-r-lg">
+                                            +
+                                        </button>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h1 className="text-base leading-6 font-medium mb-2">Girl Age</h1>
+                                    <div className="flex justify-center items-center mb-4">
+                                        <button onClick={handleDecreaseGirlAge} className="px-4 py-2 text-3xl bg-gray-300 leading-6 rounded-l-lg">
+                                            -
+                                        </button>
+                                        <div className="text-base text-center leading-6 font-medium w-24 py-2 bg-gray-200">{girlAge}</div>
+                                        <button onClick={handleIncreaseGirlAge} className="px-4 py-2 text-3xl bg-gray-300 leading-6 rounded-r-lg">
+                                            +
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
+                        )}
+                        {maritalStatus === "divorced" && haveChildren === "yes" && (
                             <div>
-                                <h1 className="text-base leading-6 font-medium mb-2">Boy Age</h1>
-                                <div className="flex justify-center items-center mb-4">
-                                    <button onClick={handleDecreaseBoyAge} className="px-4 py-2 text-3xl bg-gray-300 leading-6 rounded-l-lg">
-                                        -
-                                    </button>
-                                    <div className="text-base text-center leading-6 font-medium w-24 py-2 bg-gray-200">{boyAge}</div>
-                                    <button onClick={handleIncreaseBoyAge} className="px-4 py-2 text-3xl bg-gray-300 leading-6 rounded-r-lg">
-                                        +
-                                    </button>
-                                </div>
+                                <h1 className="text-base leading-6 font-medium mb-2">Do Your Children Live with You</h1>
+                                <Radio.Group onChange={handleChildrenLiveChange} value={childrenLiveStatus} className="mb-4">
+                                    <Space direction="vertical">
+                                        <Radio value="yes">Yes</Radio>
+                                        <Radio value="no">No</Radio>
+                                        <Radio value="sometimes">Sometimes</Radio>
+                                    </Space>
+                                </Radio.Group>
                             </div>
-                            <div>
-                                <h1 className="text-base leading-6 font-medium mb-2">Number of Girl</h1>
-                                <div className="flex justify-center items-center mb-4">
-                                    <button onClick={handleDecreaseGirl} className="px-4 py-2 text-3xl bg-gray-300 leading-6 rounded-l-lg">
-                                        -
-                                    </button>
-                                    <div className="text-base text-center leading-6 font-medium w-24 py-2 bg-gray-200">{girlQuantity}</div>
-                                    <button onClick={handleIncreaseGirl} className="px-4 py-2 text-3xl bg-gray-300 leading-6 rounded-r-lg">
-                                        +
-                                    </button>
-                                </div>
-                            </div>
-                            <div>
-                                <h1 className="text-base leading-6 font-medium mb-2">Girl Age</h1>
-                                <div className="flex justify-center items-center mb-4">
-                                    <button onClick={handleDecreaseGirlAge} className="px-4 py-2 text-3xl bg-gray-300 leading-6 rounded-l-lg">
-                                        -
-                                    </button>
-                                    <div className="text-base text-center leading-6 font-medium w-24 py-2 bg-gray-200">{girlAge}</div>
-                                    <button onClick={handleIncreaseGirlAge} className="px-4 py-2 text-3xl bg-gray-300 leading-6 rounded-r-lg">
-                                        +
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    )}
-                    {maritalStatus === "divorced" && haveChildren === "yes" && (
+                        )}
+                    </Panel>
+                    {/* ---------- Family Information ---------- */}
+                    <Panel header={styledHeader("Family Information")} key="2">
                         <div>
-                            <h1 className="text-base leading-6 font-medium mb-2">Do Your Children Live with You</h1>
-                            <Radio.Group onChange={handleChildrenLiveChange} value={childrenLiveStatus} className="mb-4">
+                            <h1 className="text-base leading-6 font-medium mb-2">Father Status</h1>
+                            <Radio.Group onChange={handleFatherStatusChange} value={fatherStatusValue} className="mb-4">
                                 <Space direction="vertical">
-                                    <Radio value="yes">Yes</Radio>
-                                    <Radio value="no">No</Radio>
-                                    <Radio value="sometimes">Sometimes</Radio>
+                                    <Radio value={"alive"}>Alive</Radio>
+                                    <Radio value={"dead"}>Dead</Radio>
                                 </Space>
                             </Radio.Group>
                         </div>
-                    )}
-                </Panel>
-                {/* ---------- Family Information ---------- */}
-                <Panel header={styledHeader("Family Information")} key="2">
-                    <div>
-                        <h1 className="text-base leading-6 font-medium mb-2">Father Status</h1>
-                        <Radio.Group onChange={handleFatherStatusChange} value={fatherStatusValue} className="mb-4">
-                            <Space direction="vertical">
-                                <Radio value={"alive"}>Alive</Radio>
-                                <Radio value={"dead"}>Dead</Radio>
-                            </Space>
-                        </Radio.Group>
-                    </div>
-                    <div>
-                        <h1 className="text-base leading-6 font-medium mb-2">Father Profession</h1>
-                        <AutoComplete
-                            placeholder="Input profession"
-                            className="w-full mb-4"
-                            onChange={handleFatherProfessionChange}
-                            filterOption={true}
-                        >
-                            {professions.map((prof, index) => {
-                                return (
-                                    <AutoComplete.Option key={index} value={prof}>
-                                        {prof}
-                                    </AutoComplete.Option>
-                                );
-                            })}
-                        </AutoComplete>
-                    </div>
-                    <div>
-                        <h1 className="text-base leading-6 font-medium mt-2 mb-2">Father Income</h1>
-                        <Radio.Group onChange={handleFatherIncomeChange} value={fatherIncomeValue} className="mb-4">
-                            <Space direction="vertical">
-                                <Radio value={"Below 15,000 BDT"}>Below 15,000 BDT</Radio>
-                                <Radio value={"15000-20000 BDT"}>15000-20000 BDT</Radio>
-                                <Radio value={"20000-25000 BDT"}>20000-25000 BDT</Radio>
-                                <Radio value={"25000-30000 BDT"}>25000-30000 BDT</Radio>
-                                <Radio value={"30000-35000 BDT"}>30000-35000 BDT</Radio>
-                                <Radio value={"35000-40000 BDT"}>35000-40000 BDT</Radio>
-                                <Radio value={"45000-50000 BDT"}>45000-50000 BDT</Radio>
-                                <Radio value={"50000-60000 BDT"}>50000-60000 BDT</Radio>
-                                <Radio value={"60000-70000 BDT"}>60000-70000 BDT</Radio>
-                                <Radio value={"70000-80000 BDT"}>70000-80000 BDT</Radio>
-                                <Radio value={"80000-90000 BDT"}>80000-90000 BDT</Radio>
-                                <Radio value={"90000-100000 BDT"}>90000-100000 BDT</Radio>
-                                <Radio value={"100000-150000 BDT"}>100000-150000 BDT</Radio>
-                                <Radio value={"150000-200000 BDT"}>150000-200000 BDT</Radio>
-                                <Radio value={"200000-250000 BDT"}>200000-250000 BDT</Radio>
-                                <Radio value={"300000+ BDT"}>300000+ BDT</Radio>
-                            </Space>
-                        </Radio.Group>
-                    </div>
-                    <div>
-                        <h1 className="text-base leading-6 font-medium mt-2 mb-2">Mother Status</h1>
-                        <Radio.Group onChange={handleMotherStatusChange} value={motherStatusValue} className="mb-4">
-                            <Space direction="vertical">
-                                <Radio value={"alive"}>Alive</Radio>
-                                <Radio value={"dead"}>Dead</Radio>
-                            </Space>
-                        </Radio.Group>
-                    </div>
-                    <div>
-                        <h1 className="text-base leading-6 font-medium mt-2 mb-2">Mother Profession</h1>
-                        <AutoComplete
-                            placeholder="Input profession"
-                            className="w-full mb-4"
-                            onChange={handleMotherProfessionChange}
-                            filterOption={true}
-                        >
-                            {professions.map((prof, index) => {
-                                return (
-                                    <AutoComplete.Option key={index} value={prof}>
-                                        {prof}
-                                    </AutoComplete.Option>
-                                );
-                            })}
-                        </AutoComplete>
-                    </div>
-                    <div>
-                        <h1 className="text-base leading-6 font-medium mt-2 mb-2">Mother Income</h1>
-                        <Radio.Group onChange={handleMotherIncomeChange} value={motherIncomeValue} className="mb-4">
-                            <Space direction="vertical">
-                                <Radio value={"Below 15,000 BDT"}>Below 15,000 BDT</Radio>
-                                <Radio value={"15000-20000 BDT"}>15000-20000 BDT</Radio>
-                                <Radio value={"20000-25000 BDT"}>20000-25000 BDT</Radio>
-                                <Radio value={"25000-30000 BDT"}>25000-30000 BDT</Radio>
-                                <Radio value={"30000-35000 BDT"}>30000-35000 BDT</Radio>
-                                <Radio value={"35000-40000 BDT"}>35000-40000 BDT</Radio>
-                                <Radio value={"45000-50000 BDT"}>45000-50000 BDT</Radio>
-                                <Radio value={"50000-60000 BDT"}>50000-60000 BDT</Radio>
-                                <Radio value={"60000-70000 BDT"}>60000-70000 BDT</Radio>
-                                <Radio value={"70000-80000 BDT"}>70000-80000 BDT</Radio>
-                                <Radio value={"80000-90000 BDT"}>80000-90000 BDT</Radio>
-                                <Radio value={"90000-100000 BDT"}>90000-100000 BDT</Radio>
-                                <Radio value={"100000-150000 BDT"}>100000-150000 BDT</Radio>
-                                <Radio value={"150000-200000 BDT"}>150000-200000 BDT</Radio>
-                                <Radio value={"200000-250000 BDT"}>200000-250000 BDT</Radio>
-                                <Radio value={"300000+ BDT"}>300000+ BDT</Radio>
-                            </Space>
-                        </Radio.Group>
-                    </div>
-                    <div>
-                        <h1 className="text-base leading-6 font-medium mb-2">Number of Siblings</h1>
                         <div>
-                            <h1 className="text-base leading-6 font-medium mb-2">Brothers</h1>
-                            <div className="flex justify-center items-center mb-4">
-                                <button
-                                    onClick={() => setBrother(prevCount => prevCount - 1)}
-                                    className="px-4 py-2 text-3xl bg-gray-300 leading-6 rounded-l-lg"
-                                >
-                                    -
-                                </button>
-                                <div className="text-base text-center leading-6 font-medium w-24 py-2 bg-gray-200">{brother}</div>
-                                <button
-                                    onClick={() => setBrother(prevCount => prevCount + 1)}
-                                    className="px-4 py-2 text-3xl bg-gray-300 leading-6 rounded-r-lg"
-                                >
-                                    +
-                                </button>
-                            </div>
+                            <h1 className="text-base leading-6 font-medium mb-2">Father Profession</h1>
+                            <AutoComplete
+                                placeholder="Input profession"
+                                className="w-full mb-4"
+                                onChange={handleFatherProfessionChange}
+                                filterOption={true}
+                            >
+                                {professions.map((prof, index) => {
+                                    return (
+                                        <AutoComplete.Option key={index} value={prof}>
+                                            {prof}
+                                        </AutoComplete.Option>
+                                    );
+                                })}
+                            </AutoComplete>
                         </div>
                         <div>
-                            <h1 className="text-base leading-6 font-medium mb-2">Sisters</h1>
-                            <div className="flex justify-center items-center mb-4">
-                                <button
-                                    onClick={() => setSister(prevCount => prevCount - 1)}
-                                    className="px-4 py-2 text-3xl bg-gray-300 leading-6 rounded-l-lg"
-                                >
-                                    -
-                                </button>
-                                <div className="text-base text-center leading-6 font-medium w-24 py-2 bg-gray-200">{sister}</div>
-                                <button
-                                    onClick={() => setSister(prevCount => prevCount + 1)}
-                                    className="px-4 py-2 text-3xl bg-gray-300 leading-6 rounded-r-lg"
-                                >
-                                    +
-                                </button>
+                            <h1 className="text-base leading-6 font-medium mt-2 mb-2">Father Income</h1>
+                            <Radio.Group onChange={handleFatherIncomeChange} value={fatherIncomeValue} className="mb-4">
+                                <Space direction="vertical">
+                                    <Radio value={"Below 15,000 BDT"}>Below 15,000 BDT</Radio>
+                                    <Radio value={"15000-20000 BDT"}>15000-20000 BDT</Radio>
+                                    <Radio value={"20000-25000 BDT"}>20000-25000 BDT</Radio>
+                                    <Radio value={"25000-30000 BDT"}>25000-30000 BDT</Radio>
+                                    <Radio value={"30000-35000 BDT"}>30000-35000 BDT</Radio>
+                                    <Radio value={"35000-40000 BDT"}>35000-40000 BDT</Radio>
+                                    <Radio value={"45000-50000 BDT"}>45000-50000 BDT</Radio>
+                                    <Radio value={"50000-60000 BDT"}>50000-60000 BDT</Radio>
+                                    <Radio value={"60000-70000 BDT"}>60000-70000 BDT</Radio>
+                                    <Radio value={"70000-80000 BDT"}>70000-80000 BDT</Radio>
+                                    <Radio value={"80000-90000 BDT"}>80000-90000 BDT</Radio>
+                                    <Radio value={"90000-100000 BDT"}>90000-100000 BDT</Radio>
+                                    <Radio value={"100000-150000 BDT"}>100000-150000 BDT</Radio>
+                                    <Radio value={"150000-200000 BDT"}>150000-200000 BDT</Radio>
+                                    <Radio value={"200000-250000 BDT"}>200000-250000 BDT</Radio>
+                                    <Radio value={"300000+ BDT"}>300000+ BDT</Radio>
+                                </Space>
+                            </Radio.Group>
+                        </div>
+                        <div>
+                            <h1 className="text-base leading-6 font-medium mt-2 mb-2">Mother Status</h1>
+                            <Radio.Group onChange={handleMotherStatusChange} value={motherStatusValue} className="mb-4">
+                                <Space direction="vertical">
+                                    <Radio value={"alive"}>Alive</Radio>
+                                    <Radio value={"dead"}>Dead</Radio>
+                                </Space>
+                            </Radio.Group>
+                        </div>
+                        <div>
+                            <h1 className="text-base leading-6 font-medium mt-2 mb-2">Mother Profession</h1>
+                            <AutoComplete
+                                placeholder="Input profession"
+                                className="w-full mb-4"
+                                onChange={handleMotherProfessionChange}
+                                filterOption={true}
+                            >
+                                {professions.map((prof, index) => {
+                                    return (
+                                        <AutoComplete.Option key={index} value={prof}>
+                                            {prof}
+                                        </AutoComplete.Option>
+                                    );
+                                })}
+                            </AutoComplete>
+                        </div>
+                        <div>
+                            <h1 className="text-base leading-6 font-medium mt-2 mb-2">Mother Income</h1>
+                            <Radio.Group onChange={handleMotherIncomeChange} value={motherIncomeValue} className="mb-4">
+                                <Space direction="vertical">
+                                    <Radio value={"Below 15,000 BDT"}>Below 15,000 BDT</Radio>
+                                    <Radio value={"15000-20000 BDT"}>15000-20000 BDT</Radio>
+                                    <Radio value={"20000-25000 BDT"}>20000-25000 BDT</Radio>
+                                    <Radio value={"25000-30000 BDT"}>25000-30000 BDT</Radio>
+                                    <Radio value={"30000-35000 BDT"}>30000-35000 BDT</Radio>
+                                    <Radio value={"35000-40000 BDT"}>35000-40000 BDT</Radio>
+                                    <Radio value={"45000-50000 BDT"}>45000-50000 BDT</Radio>
+                                    <Radio value={"50000-60000 BDT"}>50000-60000 BDT</Radio>
+                                    <Radio value={"60000-70000 BDT"}>60000-70000 BDT</Radio>
+                                    <Radio value={"70000-80000 BDT"}>70000-80000 BDT</Radio>
+                                    <Radio value={"80000-90000 BDT"}>80000-90000 BDT</Radio>
+                                    <Radio value={"90000-100000 BDT"}>90000-100000 BDT</Radio>
+                                    <Radio value={"100000-150000 BDT"}>100000-150000 BDT</Radio>
+                                    <Radio value={"150000-200000 BDT"}>150000-200000 BDT</Radio>
+                                    <Radio value={"200000-250000 BDT"}>200000-250000 BDT</Radio>
+                                    <Radio value={"300000+ BDT"}>300000+ BDT</Radio>
+                                </Space>
+                            </Radio.Group>
+                        </div>
+                        <div>
+                            <h1 className="text-base leading-6 font-medium mb-2">Number of Siblings</h1>
+                            <div>
+                                <h1 className="text-base leading-6 font-medium mb-2">Brothers</h1>
+                                <div className="flex justify-center items-center mb-4">
+                                    <button
+                                        onClick={() => setBrother(prevCount => prevCount - 1)}
+                                        className="px-4 py-2 text-3xl bg-gray-300 leading-6 rounded-l-lg"
+                                    >
+                                        -
+                                    </button>
+                                    <div className="text-base text-center leading-6 font-medium w-24 py-2 bg-gray-200">{brother}</div>
+                                    <button
+                                        onClick={() => setBrother(prevCount => prevCount + 1)}
+                                        className="px-4 py-2 text-3xl bg-gray-300 leading-6 rounded-r-lg"
+                                    >
+                                        +
+                                    </button>
+                                </div>
+                            </div>
+                            <div>
+                                <h1 className="text-base leading-6 font-medium mb-2">Sisters</h1>
+                                <div className="flex justify-center items-center mb-4">
+                                    <button
+                                        onClick={() => setSister(prevCount => prevCount - 1)}
+                                        className="px-4 py-2 text-3xl bg-gray-300 leading-6 rounded-l-lg"
+                                    >
+                                        -
+                                    </button>
+                                    <div className="text-base text-center leading-6 font-medium w-24 py-2 bg-gray-200">{sister}</div>
+                                    <button
+                                        onClick={() => setSister(prevCount => prevCount + 1)}
+                                        className="px-4 py-2 text-3xl bg-gray-300 leading-6 rounded-r-lg"
+                                    >
+                                        +
+                                    </button>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </Panel>
-                {/* ---------- Professional Information ------------- */}
-                <Panel header={styledHeader("Professional Information")} key="3">
-                    <div>
-                        <h1 className="text-base leading-6 font-medium mb-2">Profession</h1>
-                        <Autocomplete
-                            className="mb-4"
-                            value={professionalStatus}
-                            onChange={handleUserProfessionChange}
-                            filterOptions={(options, params) => {
-                                const filtered = filter(options, params);
+                    </Panel>
+                    {/* ---------- Professional Information ------------- */}
+                    <Panel header={styledHeader("Professional Information")} key="3">
+                        <div>
+                            <h1 className="text-base leading-6 font-medium mb-2">Profession</h1>
+                            <Autocomplete
+                                className="mb-4"
+                                value={professionalStatus}
+                                onChange={handleUserProfessionChange}
+                                filterOptions={(options, params) => {
+                                    const filtered = filter(options, params);
 
-                                const { inputValue } = params;
-                                // Suggest the creation of a new value
-                                const isExisting = options.some(option => inputValue === option.title);
-                                if (inputValue !== "" && !isExisting) {
-                                    filtered.push({
-                                        inputValue,
-                                        title: `Add "${inputValue}"`,
-                                    });
-                                }
+                                    const { inputValue } = params;
+                                    // Suggest the creation of a new value
+                                    const isExisting = options.some(option => inputValue === option.title);
+                                    if (inputValue !== "" && !isExisting) {
+                                        filtered.push({
+                                            inputValue,
+                                            title: `Add "${inputValue}"`,
+                                        });
+                                    }
 
-                                return filtered;
+                                    return filtered;
+                                }}
+                                selectOnFocus
+                                clearOnBlur
+                                handleHomeEndKeys
+                                id="free-solo-with-text-demo"
+                                options={professionalStatusOptions}
+                                getOptionLabel={option => {
+                                    // Value selected with enter, right from the input
+                                    if (typeof option === "string") {
+                                        return option;
+                                    }
+                                    // Add "xxx" option created dynamically
+                                    if (option.inputValue) {
+                                        return option.inputValue;
+                                    }
+                                    // Regular option
+                                    return option.title;
+                                }}
+                                renderOption={(props, option) => <li {...props}>{option.title}</li>}
+                                freeSolo
+                                renderInput={params => <TextField {...params} placeholder="Professional Experience" />}
+                                sx={{
+                                    "& input": {
+                                        height: 6,
+                                        padding: 0,
+                                    },
+                                }}
+                            />
+                        </div>
+                        <div>
+                            <h1 className="text-base leading-6 font-medium mb-2">Professional Experience</h1>
+                            <Radio.Group
+                                onChange={handleUserProfessionalExperienceChange}
+                                value={professionalInfo?.professionalExperience}
+                                className="mb-4"
+                            >
+                                <Space direction="vertical">
+                                    <Radio value="Less Than 1 Year">Less Than 1 Year</Radio>
+                                    <Radio value="1-2 Years">1-2 Years</Radio>
+                                    <Radio value="2-3 Years">2-3 Years</Radio>
+                                    <Radio value="3-5 Years">3-5 Years</Radio>
+                                    <Radio value="5-10 Years">5-10 Years</Radio>
+                                    <Radio value="10-15 Years">10-15 Years </Radio>
+                                    <Radio value="15 Years+">15 Years+</Radio>
+                                </Space>
+                            </Radio.Group>
+                        </div>
+                        <div>
+                            <h1 className="text-base leading-6 font-medium mb-2">Educational Qualification</h1>
+                            <Autocomplete
+                                value={educationalInfo}
+                                className="w-full mb-4"
+                                onChange={handleUserEducationalQualificationChange}
+                                filterOptions={(options, params) => {
+                                    const filtered = filter(options, params);
+
+                                    const { inputValue } = params;
+                                    // Suggest the creation of a new value
+                                    const isExisting = options.some(option => inputValue === option.title);
+                                    if (inputValue !== "" && !isExisting) {
+                                        filtered.push({
+                                            inputValue,
+                                            title: `Add "${inputValue}"`,
+                                        });
+                                    }
+
+                                    return filtered;
+                                }}
+                                selectOnFocus
+                                clearOnBlur
+                                handleHomeEndKeys
+                                id="free-solo-with-text-demo"
+                                options={educationalInfoOptions}
+                                getOptionLabel={option => {
+                                    // Value selected with enter, right from the input
+                                    if (typeof option === "string") {
+                                        return option;
+                                    }
+                                    // Add "xxx" option created dynamically
+                                    if (option.inputValue) {
+                                        return option.inputValue;
+                                    }
+                                    // Regular option
+                                    return option.title;
+                                }}
+                                renderOption={(props, option) => <li {...props}>{option.title}</li>}
+                                freeSolo
+                                renderInput={params => <TextField {...params} placeholder="Educational Qualification" />}
+                                sx={{
+                                    "& input": {
+                                        height: 6,
+                                        padding: 0,
+                                    },
+                                }}
+                            />
+                        </div>
+
+                        <div>
+                            <h1 className="text-base leading-6 font-medium mb-2">Monthly Income</h1>
+                            <Radio.Group onChange={handleUserIncomeChange} value={monthlyIncome} className="mb-4">
+                                <Space direction="vertical">
+                                    <Radio value={"Below 15,000 BDT"}>Below 15,000 BDT</Radio>
+                                    <Radio value={"15000-20000 BDT"}>15000-20000 BDT</Radio>
+                                    <Radio value={"20000-25000 BDT"}>20000-25000 BDT</Radio>
+                                    <Radio value={"25000-30000 BDT"}>25000-30000 BDT</Radio>
+                                    <Radio value={"30000-35000 BDT"}>30000-35000 BDT</Radio>
+                                    <Radio value={"35000-40000 BDT"}>35000-40000 BDT</Radio>
+                                    <Radio value={"45000-50000 BDT"}>45000-50000 BDT</Radio>
+                                    <Radio value={"50000-60000 BDT"}>50000-60000 BDT</Radio>
+                                    <Radio value={"60000-70000 BDT"}>60000-70000 BDT</Radio>
+                                    <Radio value={"70000-80000 BDT"}>70000-80000 BDT</Radio>
+                                    <Radio value={"80000-90000 BDT"}>80000-90000 BDT</Radio>
+                                    <Radio value={"90000-100000 BDT"}>90000-100000 BDT</Radio>
+                                    <Radio value={"100000-150000 BDT"}>100000-150000 BDT</Radio>
+                                    <Radio value={"150000-200000 BDT"}>150000-200000 BDT</Radio>
+                                    <Radio value={"200000-250000 BDT"}>200000-250000 BDT</Radio>
+                                    <Radio value={"300000+ BDT"}>300000+ BDT</Radio>
+                                </Space>
+                            </Radio.Group>
+                        </div>
+                    </Panel>
+                    {/*---------------- Others Information --------------*/}
+                    <Panel header={styledHeader("Other Info")} key="4">
+                        <div>
+                            <h1 className="text-base leading-6 font-medium mb-2">Height</h1>
+                            <p className="text-left text-base font-medium">
+                                {" "}
+                                {height ? height[0] : "0"}" - {height ? height[1] : "0"}"{" "}
+                            </p>
+                            <Slider
+                                range={{ draggableTrack: true }}
+                                defaultValue={[5, 6]}
+                                step={0.01}
+                                min={0}
+                                max={10}
+                                onChange={onHeightChange}
+                                onAfterChange={onAfterHeightChange}
+                                className="mb-4"
+                            />
+                        </div>
+                        <div>
+                            <h1 className="text-base leading-6 font-medium mb-2">Weight</h1>
+                            <p className="text-left text-base font-medium">
+                                {" "}
+                                {weight[0]} Kg - {weight[1]} Kg{" "}
+                            </p>
+                            <Slider
+                                range={{ draggableTrack: true }}
+                                defaultValue={[50, 70]}
+                                step={1}
+                                min={0}
+                                max={150}
+                                onChange={onWeightChange}
+                                onAfterChange={onAfterWeightChange}
+                                className="mb-4"
+                            />
+                        </div>
+                        <div>
+                            <h1 className="text-base leading-6 font-medium mb-2">Ancestry</h1>
+                            <Select
+                                className="w-full mb-4"
+                                onChange={handleUserAncestryChange}
+                                placeholder="Select Ancestry"
+                                options={[
+                                    {
+                                        value: "option",
+                                        label: "option",
+                                    },
+                                    {
+                                        value: "option",
+                                        label: "option",
+                                    },
+                                    {
+                                        value: "option",
+                                        label: "option",
+                                    },
+                                ]}
+                            />
+                        </div>
+                        <div>
+                            <h1 className="text-base leading-6 font-medium mb-2">Skin Tone</h1>
+                            <Select
+                                className="w-full mb-4"
+                                onChange={handleUserSkinToneChange}
+                                placeholder="Select skin tone"
+                                mode="multiple"
+                                allowClear
+                                options={[
+                                    {
+                                        value: "light",
+                                        label: "Light",
+                                    },
+                                    {
+                                        value: "fair",
+                                        label: "Fair",
+                                    },
+                                    {
+                                        value: "medium",
+                                        label: "Medium",
+                                    },
+                                    {
+                                        value: "deep",
+                                        label: "Deep (Dark)",
+                                    },
+                                ]}
+                            />
+                        </div>
+                        <div>
+                            <h1 className="text-base leading-6 font-medium mb-2">Hair Color</h1>
+                            <Select
+                                className="w-full mb-4"
+                                onChange={handleUserHairColorChange}
+                                placeholder="Select hair color"
+                                mode="multiple"
+                                allowClear
+                                options={[
+                                    {
+                                        value: "black",
+                                        label: "Black",
+                                    },
+                                    {
+                                        value: "brown",
+                                        label: "Brown",
+                                    },
+                                    {
+                                        value: "blond",
+                                        label: "Blond",
+                                    },
+                                    {
+                                        value: "white",
+                                        label: "White",
+                                    },
+                                    {
+                                        value: "gray",
+                                        label: "Gray",
+                                    },
+                                    {
+                                        value: "rarely red",
+                                        label: "Rarely Red",
+                                    },
+                                ]}
+                            />
+                        </div>
+                        <div>
+                            <h1 className="text-base leading-6 font-medium mb-2">Hair Type</h1>
+                            <Select
+                                className="w-full mb-4"
+                                onChange={handleUserHairTypeChange}
+                                placeholder="Select hair type"
+                                mode="multiple"
+                                allowClear
+                                options={[
+                                    {
+                                        value: "fine",
+                                        label: "Fine",
+                                    },
+                                    {
+                                        value: "thick",
+                                        label: "Thick",
+                                    },
+                                    {
+                                        value: "long",
+                                        label: "Long",
+                                    },
+                                    {
+                                        value: "short",
+                                        label: "Short",
+                                    },
+                                    {
+                                        value: "matte",
+                                        label: "Matte",
+                                    },
+                                    {
+                                        value: "glossy",
+                                        label: "Glossy",
+                                    },
+                                    {
+                                        value: "curly",
+                                        label: "Curly",
+                                    },
+                                    {
+                                        value: "coily",
+                                        label: "Coily",
+                                    },
+                                    {
+                                        value: "straight",
+                                        label: "Straight",
+                                    },
+                                    {
+                                        value: "wavy",
+                                        label: "Wavy",
+                                    },
+                                ]}
+                            />
+                        </div>
+                        <div>
+                            <h1 className="text-base leading-6 font-medium mb-2">Eye Color</h1>
+                            <Select
+                                className="w-full mb-4"
+                                onChange={handleUserEyeColorChange}
+                                placeholder="Select hair type"
+                                mode="multiple"
+                                allowClear
+                                options={[
+                                    {
+                                        value: "brown",
+                                        label: "Brown",
+                                    },
+                                    {
+                                        value: "hazel",
+                                        label: "Hazel",
+                                    },
+                                    {
+                                        value: "blue",
+                                        label: "Blue",
+                                    },
+                                    {
+                                        value: "green",
+                                        label: "Green",
+                                    },
+                                    {
+                                        value: "gray",
+                                        label: "Gray",
+                                    },
+                                    {
+                                        value: "amber",
+                                        label: "Amber",
+                                    },
+                                ]}
+                            />
+                        </div>
+                        <div>
+                            <h1 className="text-base leading-6 font-medium mb-2">Number of Teeth</h1>
+                            <Select
+                                className='w-full mb-2'
+                                onChange={handleNumberOfTeeth}
+                                placeholder="Select teeth number"
+                                mode="multiple"
+                                allowClear
+                                options={[
+                                    {
+                                        value: "20",
+                                        label: "20",
+                                    },
+                                    {
+                                        value: "21",
+                                        label: "21",
+                                    },
+                                    {
+                                        value: "22",
+                                        label: "22",
+                                    },
+                                    {
+                                        value: "23",
+                                        label: "23",
+                                    },
+                                    {
+                                        value: "24",
+                                        label: "24",
+                                    },
+                                    {
+                                        value: "25",
+                                        label: "25",
+                                    },
+                                    {
+                                        value: "26",
+                                        label: "26",
+                                    },
+                                    {
+                                        value: "27",
+                                        label: "27",
+                                    },
+                                    {
+                                        value: "28",
+                                        label: "28",
+                                    },
+                                    {
+                                        value: "29",
+                                        label: "29",
+                                    },
+                                    {
+                                        value: "30",
+                                        label: "30",
+                                    },
+                                    {
+                                        value: "31",
+                                        label: "31",
+                                    },
+                                    {
+                                        value: "32",
+                                        label: "32",
+                                    },
+                                ]}
+                            />
+                        </div>
+                    </Panel>
+                </Collapse>
+                <div className="flex justify-center items-center ] mt-[30px] hidden md:block">
+                    <button
+                        onClick={handleSubmit}
+                        style={{
+                            background: "linear-gradient(180deg, #E41272 0%, #942DD9 100%)",
+                        }}
+                        className="w-[179px] text-center py-[8] px-[10px] text-[#fff] h-[54px] text-2xl font-medium rounded-xl"
+                    >
+                        Submit
+                    </button>
+                </div>
+
+                <div className="flex justify-center items-center ] mt-[30px] md:hidden ">
+                    <button
+                        onClick={handleSubmit}
+                        style={{
+                            background: "linear-gradient(180deg, #E41272 0%, #942DD9 100%)",
+                        }}
+                        className="w-[139px] text-center py-[4] px-[6px] text-[#fff] h-[34px] text-lg font-medium rounded-xl"
+                    >
+                        Submit
+                    </button>
+                </div>
+            </div>
+            {/* Tablet responsive */}
+            <div className="lg:hidden">
+                <Collapse accordion ghost defaultActiveKey={"1"} expandIconPosition="end" className="mt-[20px]">
+                    {/* ------------ Basic Information ---------- */}
+                    <Panel header={styledHeader("Basic Information")} key="1">
+                        <div className="grid grid-cols-2">
+                            <div>
+                                <h1 className="text-base leading-6 font-medium mb-2">Looking For</h1>
+                                <Select
+                                    defaultValue="bride"
+                                    className="w-full mb-4"
+                                    onChange={handleLookingForChange}
+                                    showSearch
+                                    filterOption={(input, option) => (option?.label ?? "").toLowerCase().includes(input.toLowerCase())}
+                                    options={[
+                                        {
+                                            value: "bride",
+                                            label: "Bride",
+                                        },
+                                        {
+                                            value: "groom",
+                                            label: "Groom",
+                                        },
+                                    ]}
+                                />
+                            </div>
+                            <div>
+                                <h1 className="text-base leading-6 font-medium mb-2">For</h1>
+                                <Select
+                                    defaultValue="myself"
+                                    className="w-full mb-4"
+                                    onChange={handleForChange}
+                                    showSearch
+                                    filterOption={(input, option) => (option?.label ?? "").toLowerCase().includes(input.toLowerCase())}
+                                    options={[
+                                        {
+                                            value: "myself",
+                                            label: "Myself",
+                                        },
+                                        {
+                                            value: "brother",
+                                            label: "My Brother",
+                                        },
+                                        {
+                                            value: "sister",
+                                            label: "My Sister",
+                                        },
+                                        {
+                                            value: "cousin",
+                                            label: "My Cousin",
+                                        },
+                                        {
+                                            value: "friend",
+                                            label: "My Friend",
+                                        },
+                                        {
+                                            value: "relative",
+                                            label: "My Relative",
+                                        },
+                                    ]}
+                                />
+                            </div>
+                        </div>
+
+                        <div className="grid grid-cols-2">
+                            <div>
+                                <h1 className="text-base leading-6 font-medium mb-2">Age</h1>
+                                <p className="text-left text-base font-medium">
+                                    {" "}
+                                    {age[0]} to {age[1]}{" "}
+                                </p>
+                                <Slider
+                                    className="mb-4"
+                                    range={{ draggableTrack: true }}
+                                    defaultValue={[20, 50]}
+                                    onChange={onAgeChange}
+                                    onAfterChange={onAfterAgeChange}
+                                />
+                            </div>
+                            <div>
+                                <h1 className="text-base leading-6 font-medium mb-2">Religion</h1>
+                                <Radio.Group onChange={handleReligionChange} value={religionValue} className="mb-4">
+                                    <Space direction="vertical">
+                                        <Radio value="Islam">Islam</Radio>
+                                        <Radio value="Hinduism">Hinduism</Radio>
+                                        <Radio value="Christian">Christian</Radio>
+                                        <Radio value="Buddhist">Buddhist</Radio>
+                                        <Radio value="Atheist">Atheist</Radio>
+                                        <Radio value={6}>
+                                            Add New
+                                            {religionValue === 6 ? (
+                                                <Input
+                                                    style={{
+                                                        width: 100,
+                                                        marginLeft: 10,
+                                                    }}
+                                                />
+                                            ) : null}
+                                        </Radio>
+                                    </Space>
+                                </Radio.Group>
+                            </div>
+                        </div>
+
+                        <div className="grid grid-cols-2">
+                            <div>
+                                <h1 className="text-base leading-6 font-medium mt-2 mb-2">Hometown</h1>
+                                <Select
+                                    className="w-full mb-4"
+                                    onChange={handleHometownChange}
+                                    placeholder="Select Hometown"
+                                    showSearch
+                                    filterOption={(input, option) => (option?.children ?? "").toLowerCase().includes(input.toLowerCase())}
+                                >
+                                    {homeTowns.map(town => {
+                                        return (
+                                            <Select.Option key={town.id} value={town.value}>
+                                                {town.name}
+                                            </Select.Option>
+                                        );
+                                    })}
+                                </Select>
+                            </div>
+                            <div>
+                                <h1 className="text-base leading-6 font-medium mb-2">Current Location</h1>
+                                <Select
+                                    className="w-full mb-4"
+                                    onChange={handleCurrentLocationChange}
+                                    placeholder="Select current location"
+                                    showSearch
+                                    filterOption={(input, option) => (option?.children ?? "").toLowerCase().includes(input.toLowerCase())}
+                                >
+                                    {homeTowns.map(town => {
+                                        return (
+                                            <Select.Option key={town.id} value={town.value}>
+                                                {town.name}
+                                            </Select.Option>
+                                        );
+                                    })}
+                                </Select>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h1 className="text-base leading-6 font-medium mb-2">Citizenship</h1>
+                            <Select
+                                className="w-full mb-4"
+                                onChange={handleCitizenshipChange}
+                                placeholder="Select Citizenship"
+                                mode="multiple"
+                                maxTagCount={2}
+                                allowClear
+                                showSearch
+                                filterOption={(input, option) => (option?.children ?? "").toLowerCase().includes(input.toLowerCase())}
+                            >
+                                {countries.map(country => (
+                                    <Select.Option key={country.id} value={country.value}>
+                                        {country.label}
+                                    </Select.Option>
+                                ))}
+                            </Select>
+                        </div>
+                        <div>
+                            <h1 className="text-base leading-6 font-medium mb-2">Marital Status</h1>
+                            <Select
+                                className="w-full mb-4"
+                                onChange={handleMaritalStatusChange}
+                                placeholder="Select Status"
+                                showSearch
+                                filterOption={(input, option) => (option?.label ?? "").toLowerCase().includes(input.toLowerCase())}
+                                options={[
+                                    {
+                                        value: "single",
+                                        label: "Never Married",
+                                    },
+                                    {
+                                        value: "married",
+                                        label: "Married",
+                                    },
+                                    {
+                                        value: "divorced",
+                                        label: "Divorced",
+                                    },
+                                    {
+                                        value: "widowed",
+                                        label: "Widowed",
+                                    },
+                                ]}
+                            />
+                        </div>
+                        {maritalStatus === "married" && (
+                            <div>
+                                <h1 className="text-base leading-6 font-medium mb-2">How Many Partner Do You Have</h1>
+                                <div className="flex justify-center items-center mb-4">
+                                    <button onClick={handleDecreasePartner} className="px-4 py-2 text-3xl bg-gray-300 leading-6 rounded-l-lg">
+                                        -
+                                    </button>
+                                    <div className="text-base text-center leading-6 font-medium w-24 py-2 bg-gray-200">{partnerQuantity}</div>
+                                    <button onClick={handleIncreasePartner} className="px-4 py-2 text-3xl bg-gray-300 leading-6 rounded-r-lg">
+                                        +
+                                    </button>
+                                </div>
+                            </div>
+                        )}
+                        {maritalStatus === "married" && (
+                            <div>
+                                <h1 className="text-base leading-6 font-medium mb-2">Reason For Another Marriage</h1>
+                                <Input className="w-full mb-4" onChange={handleMarriageReasonChange} placeholder="Type reason" />
+                            </div>
+                        )}
+                        {maritalStatus === "married" && (
+                            <div>
+                                <h1 className="text-base leading-6 font-medium mb-4">
+                                    Is Your Current Partner Aware Of Your Decision About Another Marriage?
+                                </h1>
+                                <Radio.Group onChange={handlePartnerAwareChange} value={partnerAwareValue} className="mb-4">
+                                    <Space direction="vertical">
+                                        <Radio value={"yes"}>Yes</Radio>
+                                        <Radio value={"no"}>No</Radio>
+                                    </Space>
+                                </Radio.Group>
+                            </div>
+                        )}
+                        {maritalStatus === "divorced" && (
+                            <div>
+                                <h1 className="text-base leading-6 font-medium mb-2">Marriage Date</h1>
+                                <DatePicker placeholder="Marriage Date" className="w-full mb-4" onChange={onMarriageDateChange} />
+                            </div>
+                        )}
+                        {maritalStatus === "divorced" && (
+                            <div>
+                                <h1 className="text-base leading-6 font-medium mb-2">Divorce Date</h1>
+                                <DatePicker placeholder="Divorce Date" className="w-full mb-4" onChange={onDivorceDateChange} />
+                            </div>
+                        )}
+                        {maritalStatus === "divorced" && (
+                            <div>
+                                <h1 className="text-base leading-6 font-medium mb-2">Reason of Divorce</h1>
+                                <Input className="w-full mb-4" onChange={handleDivorceReasonChange} placeholder="Type reason" />
+                            </div>
+                        )}
+
+                        {maritalStatus === "widowed" && (
+                            <div>
+                                <h1 className="text-base leading-6 font-medium mb-2">Marriage Date</h1>
+                                <DatePicker placeholder="Marriage Date" className="w-full mb-4" onChange={onMarriageDateChange} />
+                            </div>
+                        )}
+                        {maritalStatus === "widowed" && (
+                            <div>
+                                <h1 className="text-base leading-6 font-medium mb-2">Partner's Death Date</h1>
+                                <DatePicker placeholder="Partner's Death Date" className="w-full mb-4" onChange={onPartnerDeathDateChange} />
+                            </div>
+                        )}
+                        {maritalStatus === "married" && maritalStatus !== "" && maritalStatus !== "single" && (
+                            <div>
+                                <h1 className="text-base leading-6 font-medium mb-2">Do You Have children</h1>
+                                <Select
+                                    className="w-full mb-4"
+                                    onChange={handleHaveChildrenChange}
+                                    placeholder="Have any children?"
+                                    options={[
+                                        {
+                                            value: "yes",
+                                            label: "Yes",
+                                        },
+                                        {
+                                            value: "no",
+                                            label: "No",
+                                        },
+                                    ]}
+                                />
+                            </div>
+                        )}
+                        {maritalStatus === "divorced" && maritalStatus !== "" && maritalStatus !== "single" && (
+                            <div>
+                                <h1 className="text-base leading-6 font-medium mb-2">Do You Have children</h1>
+                                <Select
+                                    className="w-full mb-4"
+                                    onChange={handleHaveChildrenChange}
+                                    placeholder="Have any children?"
+                                    options={[
+                                        {
+                                            value: "yes",
+                                            label: "Yes",
+                                        },
+                                        {
+                                            value: "no",
+                                            label: "No",
+                                        },
+                                    ]}
+                                />
+                            </div>
+                        )}
+                        {maritalStatus === "widowed" && maritalStatus !== "" && maritalStatus !== "single" && (
+                            <div>
+                                <h1 className="text-base leading-6 font-medium mb-2">Do You Have children</h1>
+                                <Select
+                                    className="w-full mb-4"
+                                    onChange={handleHaveChildrenChange}
+                                    placeholder="Have any children?"
+                                    options={[
+                                        {
+                                            value: "yes",
+                                            label: "Yes",
+                                        },
+                                        {
+                                            value: "no",
+                                            label: "No",
+                                        },
+                                    ]}
+                                />
+                            </div>
+                        )}
+                        {haveChildren === "yes" && maritalStatus !== "single" && (
+                            <div>
+                                <div>
+                                    <h1 className="text-base leading-6 font-medium mb-2">Number of Boy</h1>
+                                    <div className="flex justify-center items-center mb-4">
+                                        <button onClick={handleDecreaseBoy} className="px-4 py-2 text-3xl bg-gray-300 leading-6 rounded-l-lg">
+                                            -
+                                        </button>
+                                        <div className="text-base text-center leading-6 font-medium w-24 py-2 bg-gray-200">{boyQuantity}</div>
+                                        <button onClick={handleIncreaseBoy} className="px-4 py-2 text-3xl bg-gray-300 leading-6 rounded-r-lg">
+                                            +
+                                        </button>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h1 className="text-base leading-6 font-medium mb-2">Boy Age</h1>
+                                    <div className="flex justify-center items-center mb-4">
+                                        <button onClick={handleDecreaseBoyAge} className="px-4 py-2 text-3xl bg-gray-300 leading-6 rounded-l-lg">
+                                            -
+                                        </button>
+                                        <div className="text-base text-center leading-6 font-medium w-24 py-2 bg-gray-200">{boyAge}</div>
+                                        <button onClick={handleIncreaseBoyAge} className="px-4 py-2 text-3xl bg-gray-300 leading-6 rounded-r-lg">
+                                            +
+                                        </button>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h1 className="text-base leading-6 font-medium mb-2">Number of Girl</h1>
+                                    <div className="flex justify-center items-center mb-4">
+                                        <button onClick={handleDecreaseGirl} className="px-4 py-2 text-3xl bg-gray-300 leading-6 rounded-l-lg">
+                                            -
+                                        </button>
+                                        <div className="text-base text-center leading-6 font-medium w-24 py-2 bg-gray-200">{girlQuantity}</div>
+                                        <button onClick={handleIncreaseGirl} className="px-4 py-2 text-3xl bg-gray-300 leading-6 rounded-r-lg">
+                                            +
+                                        </button>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h1 className="text-base leading-6 font-medium mb-2">Girl Age</h1>
+                                    <div className="flex justify-center items-center mb-4">
+                                        <button onClick={handleDecreaseGirlAge} className="px-4 py-2 text-3xl bg-gray-300 leading-6 rounded-l-lg">
+                                            -
+                                        </button>
+                                        <div className="text-base text-center leading-6 font-medium w-24 py-2 bg-gray-200">{girlAge}</div>
+                                        <button onClick={handleIncreaseGirlAge} className="px-4 py-2 text-3xl bg-gray-300 leading-6 rounded-r-lg">
+                                            +
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+                        {maritalStatus === "divorced" && haveChildren === "yes" && (
+                            <div>
+                                <h1 className="text-base leading-6 font-medium mb-2">Do Your Children Live with You</h1>
+                                <Radio.Group onChange={handleChildrenLiveChange} value={childrenLiveStatus} className="mb-4">
+                                    <Space direction="vertical">
+                                        <Radio value="yes">Yes</Radio>
+                                        <Radio value="no">No</Radio>
+                                        <Radio value="sometimes">Sometimes</Radio>
+                                    </Space>
+                                </Radio.Group>
+                            </div>
+                        )}
+                    </Panel>
+                    {/* ---------- Family Information ---------- */}
+                    <Panel header={styledHeader("Family Information")} key="2">
+                        <div className="grid grid-cols-2">
+                            <div>
+                                <h1 className="text-base leading-6 font-medium mb-2">Father Status</h1>
+                                <Radio.Group onChange={handleFatherStatusChange} value={fatherStatusValue} className="mb-4">
+                                    <Space direction="vertical">
+                                        <Radio value={"alive"}>Alive</Radio>
+                                        <Radio value={"dead"}>Dead</Radio>
+                                    </Space>
+                                </Radio.Group>
+                            </div>
+                            <div>
+                                <h1 className="text-base leading-6 font-medium mb-2">Father Profession</h1>
+                                <AutoComplete
+                                    placeholder="Input profession"
+                                    className="w-full mb-4"
+                                    onChange={handleFatherProfessionChange}
+                                    filterOption={true}
+                                >
+                                    {professions.map((prof, index) => {
+                                        return (
+                                            <AutoComplete.Option key={index} value={prof}>
+                                                {prof}
+                                            </AutoComplete.Option>
+                                        );
+                                    })}
+                                </AutoComplete>
+                            </div>
+                        </div>
+
+                        <div className="grid grid-cols-2">
+                            <div>
+                                <h1 className="text-base leading-6 font-medium mt-2 mb-2">Father Income</h1>
+                                <Radio.Group onChange={handleFatherIncomeChange} value={fatherIncomeValue} className="mb-4">
+                                    <Space direction="vertical">
+                                        <Radio value={"Below 15,000 BDT"}>Below 15,000 BDT</Radio>
+                                        <Radio value={"15000-20000 BDT"}>15000-20000 BDT</Radio>
+                                        <Radio value={"20000-25000 BDT"}>20000-25000 BDT</Radio>
+                                        <Radio value={"25000-30000 BDT"}>25000-30000 BDT</Radio>
+                                        <Radio value={"30000-35000 BDT"}>30000-35000 BDT</Radio>
+                                        <Radio value={"35000-40000 BDT"}>35000-40000 BDT</Radio>
+                                        <Radio value={"45000-50000 BDT"}>45000-50000 BDT</Radio>
+                                        <Radio value={"50000-60000 BDT"}>50000-60000 BDT</Radio>
+                                        <Radio value={"60000-70000 BDT"}>60000-70000 BDT</Radio>
+                                        <Radio value={"70000-80000 BDT"}>70000-80000 BDT</Radio>
+                                        <Radio value={"80000-90000 BDT"}>80000-90000 BDT</Radio>
+                                        <Radio value={"90000-100000 BDT"}>90000-100000 BDT</Radio>
+                                        <Radio value={"100000-150000 BDT"}>100000-150000 BDT</Radio>
+                                        <Radio value={"150000-200000 BDT"}>150000-200000 BDT</Radio>
+                                        <Radio value={"200000-250000 BDT"}>200000-250000 BDT</Radio>
+                                        <Radio value={"300000+ BDT"}>300000+ BDT</Radio>
+                                    </Space>
+                                </Radio.Group>
+                            </div>
+                            <div>
+                                <h1 className="text-base leading-6 font-medium mt-2 mb-2">Mother Status</h1>
+                                <Radio.Group onChange={handleMotherStatusChange} value={motherStatusValue} className="mb-4">
+                                    <Space direction="vertical">
+                                        <Radio value={"alive"}>Alive</Radio>
+                                        <Radio value={"dead"}>Dead</Radio>
+                                    </Space>
+                                </Radio.Group>
+                            </div>
+                        </div>
+
+                        <div className="grid grid-cols-2">
+                            <div>
+                                <h1 className="text-base leading-6 font-medium mt-2 mb-2">Mother Profession</h1>
+                                <AutoComplete
+                                    placeholder="Input profession"
+                                    className="w-full mb-4"
+                                    onChange={handleMotherProfessionChange}
+                                    filterOption={true}
+                                >
+                                    {professions.map((prof, index) => {
+                                        return (
+                                            <AutoComplete.Option key={index} value={prof}>
+                                                {prof}
+                                            </AutoComplete.Option>
+                                        );
+                                    })}
+                                </AutoComplete>
+                            </div>
+                            <div>
+                                <h1 className="text-base leading-6 font-medium mt-2 mb-2">Mother Income</h1>
+                                <Radio.Group onChange={handleMotherIncomeChange} value={motherIncomeValue} className="mb-4">
+                                    <Space direction="vertical">
+                                        <Radio value={"Below 15,000 BDT"}>Below 15,000 BDT</Radio>
+                                        <Radio value={"15000-20000 BDT"}>15000-20000 BDT</Radio>
+                                        <Radio value={"20000-25000 BDT"}>20000-25000 BDT</Radio>
+                                        <Radio value={"25000-30000 BDT"}>25000-30000 BDT</Radio>
+                                        <Radio value={"30000-35000 BDT"}>30000-35000 BDT</Radio>
+                                        <Radio value={"35000-40000 BDT"}>35000-40000 BDT</Radio>
+                                        <Radio value={"45000-50000 BDT"}>45000-50000 BDT</Radio>
+                                        <Radio value={"50000-60000 BDT"}>50000-60000 BDT</Radio>
+                                        <Radio value={"60000-70000 BDT"}>60000-70000 BDT</Radio>
+                                        <Radio value={"70000-80000 BDT"}>70000-80000 BDT</Radio>
+                                        <Radio value={"80000-90000 BDT"}>80000-90000 BDT</Radio>
+                                        <Radio value={"90000-100000 BDT"}>90000-100000 BDT</Radio>
+                                        <Radio value={"100000-150000 BDT"}>100000-150000 BDT</Radio>
+                                        <Radio value={"150000-200000 BDT"}>150000-200000 BDT</Radio>
+                                        <Radio value={"200000-250000 BDT"}>200000-250000 BDT</Radio>
+                                        <Radio value={"300000+ BDT"}>300000+ BDT</Radio>
+                                    </Space>
+                                </Radio.Group>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h1 className="text-base leading-6 font-medium mb-2">Number of Siblings</h1>
+                            <div>
+                                <h1 className="text-base leading-6 font-medium mb-2">Brothers</h1>
+                                <div className="flex justify-center items-center mb-4">
+                                    <button
+                                        onClick={() => setBrother(prevCount => prevCount - 1)}
+                                        className="px-4 py-2 text-3xl bg-gray-300 leading-6 rounded-l-lg"
+                                    >
+                                        -
+                                    </button>
+                                    <div className="text-base text-center leading-6 font-medium w-24 py-2 bg-gray-200">{brother}</div>
+                                    <button
+                                        onClick={() => setBrother(prevCount => prevCount + 1)}
+                                        className="px-4 py-2 text-3xl bg-gray-300 leading-6 rounded-r-lg"
+                                    >
+                                        +
+                                    </button>
+                                </div>
+                            </div>
+                            <div>
+                                <h1 className="text-base leading-6 font-medium mb-2">Sisters</h1>
+                                <div className="flex justify-center items-center mb-4">
+                                    <button
+                                        onClick={() => setSister(prevCount => prevCount - 1)}
+                                        className="px-4 py-2 text-3xl bg-gray-300 leading-6 rounded-l-lg"
+                                    >
+                                        -
+                                    </button>
+                                    <div className="text-base text-center leading-6 font-medium w-24 py-2 bg-gray-200">{sister}</div>
+                                    <button
+                                        onClick={() => setSister(prevCount => prevCount + 1)}
+                                        className="px-4 py-2 text-3xl bg-gray-300 leading-6 rounded-r-lg"
+                                    >
+                                        +
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </Panel>
+                    {/* ---------- Professional Information ------------- */}
+                    <Panel header={styledHeader("Professional Information")} key="3">
+                        <div className="grid grid-cols-2">
+                            <div>
+                                <h1 className="text-base leading-6 font-medium mb-2">Profession</h1>
+                                <Autocomplete
+                                    className="mb-4"
+                                    value={professionalStatus}
+                                    onChange={handleUserProfessionChange}
+                                    filterOptions={(options, params) => {
+                                        const filtered = filter(options, params);
+
+                                        const { inputValue } = params;
+                                        // Suggest the creation of a new value
+                                        const isExisting = options.some(option => inputValue === option.title);
+                                        if (inputValue !== "" && !isExisting) {
+                                            filtered.push({
+                                                inputValue,
+                                                title: `Add "${inputValue}"`,
+                                            });
+                                        }
+
+                                        return filtered;
+                                    }}
+                                    selectOnFocus
+                                    clearOnBlur
+                                    handleHomeEndKeys
+                                    id="free-solo-with-text-demo"
+                                    options={professionalStatusOptions}
+                                    getOptionLabel={option => {
+                                        // Value selected with enter, right from the input
+                                        if (typeof option === "string") {
+                                            return option;
+                                        }
+                                        // Add "xxx" option created dynamically
+                                        if (option.inputValue) {
+                                            return option.inputValue;
+                                        }
+                                        // Regular option
+                                        return option.title;
+                                    }}
+                                    renderOption={(props, option) => <li {...props}>{option.title}</li>}
+                                    freeSolo
+                                    renderInput={params => <TextField {...params} placeholder="Professional Experience" />}
+                                    sx={{
+                                        "& input": {
+                                            height: 6,
+                                            padding: 0,
+                                        },
+                                    }}
+                                />
+                            </div>
+                            <div>
+                                <h1 className="text-base leading-6 font-medium mb-2">Professional Experience</h1>
+                                <Radio.Group
+                                    onChange={handleUserProfessionalExperienceChange}
+                                    value={professionalInfo?.professionalExperience}
+                                    className="mb-4"
+                                >
+                                    <Space direction="vertical">
+                                        <Radio value="Less Than 1 Year">Less Than 1 Year</Radio>
+                                        <Radio value="1-2 Years">1-2 Years</Radio>
+                                        <Radio value="2-3 Years">2-3 Years</Radio>
+                                        <Radio value="3-5 Years">3-5 Years</Radio>
+                                        <Radio value="5-10 Years">5-10 Years</Radio>
+                                        <Radio value="10-15 Years">10-15 Years </Radio>
+                                        <Radio value="15 Years+">15 Years+</Radio>
+                                    </Space>
+                                </Radio.Group>
+                            </div>
+                        </div>
+
+                        <div className="grid grid-cols-2">
+                            <div>
+                                <h1 className="text-base leading-6 font-medium mb-2">Educational Qualification</h1>
+                                <Autocomplete
+                                    value={educationalInfo}
+                                    className="w-full mb-4"
+                                    onChange={handleUserEducationalQualificationChange}
+                                    filterOptions={(options, params) => {
+                                        const filtered = filter(options, params);
+
+                                        const { inputValue } = params;
+                                        // Suggest the creation of a new value
+                                        const isExisting = options.some(option => inputValue === option.title);
+                                        if (inputValue !== "" && !isExisting) {
+                                            filtered.push({
+                                                inputValue,
+                                                title: `Add "${inputValue}"`,
+                                            });
+                                        }
+
+                                        return filtered;
+                                    }}
+                                    selectOnFocus
+                                    clearOnBlur
+                                    handleHomeEndKeys
+                                    id="free-solo-with-text-demo"
+                                    options={educationalInfoOptions}
+                                    getOptionLabel={option => {
+                                        // Value selected with enter, right from the input
+                                        if (typeof option === "string") {
+                                            return option;
+                                        }
+                                        // Add "xxx" option created dynamically
+                                        if (option.inputValue) {
+                                            return option.inputValue;
+                                        }
+                                        // Regular option
+                                        return option.title;
+                                    }}
+                                    renderOption={(props, option) => <li {...props}>{option.title}</li>}
+                                    freeSolo
+                                    renderInput={params => <TextField {...params} placeholder="Educational Qualification" />}
+                                    sx={{
+                                        "& input": {
+                                            height: 6,
+                                            padding: 0,
+                                        },
+                                    }}
+                                />
+                            </div>
+
+                            <div>
+                                <h1 className="text-base leading-6 font-medium mb-2">Monthly Income</h1>
+                                <Radio.Group onChange={handleUserIncomeChange} value={monthlyIncome} className="mb-4">
+                                    <Space direction="vertical">
+                                        <Radio value={"Below 15,000 BDT"}>Below 15,000 BDT</Radio>
+                                        <Radio value={"15000-20000 BDT"}>15000-20000 BDT</Radio>
+                                        <Radio value={"20000-25000 BDT"}>20000-25000 BDT</Radio>
+                                        <Radio value={"25000-30000 BDT"}>25000-30000 BDT</Radio>
+                                        <Radio value={"30000-35000 BDT"}>30000-35000 BDT</Radio>
+                                        <Radio value={"35000-40000 BDT"}>35000-40000 BDT</Radio>
+                                        <Radio value={"45000-50000 BDT"}>45000-50000 BDT</Radio>
+                                        <Radio value={"50000-60000 BDT"}>50000-60000 BDT</Radio>
+                                        <Radio value={"60000-70000 BDT"}>60000-70000 BDT</Radio>
+                                        <Radio value={"70000-80000 BDT"}>70000-80000 BDT</Radio>
+                                        <Radio value={"80000-90000 BDT"}>80000-90000 BDT</Radio>
+                                        <Radio value={"90000-100000 BDT"}>90000-100000 BDT</Radio>
+                                        <Radio value={"100000-150000 BDT"}>100000-150000 BDT</Radio>
+                                        <Radio value={"150000-200000 BDT"}>150000-200000 BDT</Radio>
+                                        <Radio value={"200000-250000 BDT"}>200000-250000 BDT</Radio>
+                                        <Radio value={"300000+ BDT"}>300000+ BDT</Radio>
+                                    </Space>
+                                </Radio.Group>
+                            </div>
+                        </div>
+                    </Panel>
+                    {/*---------------- Others Information --------------*/}
+                    <Panel header={styledHeader("Other Info")} key="4">
+                        <div className="grid grid-cols-2">
+                            <div>
+                                <h1 className="text-base leading-6 font-medium mb-2">Height</h1>
+                                <p className="text-left text-base font-medium">
+                                    {" "}
+                                    {height ? height[0] : "0"}" - {height ? height[1] : "0"}"{" "}
+                                </p>
+                                <Slider
+                                    range={{ draggableTrack: true }}
+                                    defaultValue={[5, 6]}
+                                    step={0.01}
+                                    min={0}
+                                    max={10}
+                                    onChange={onHeightChange}
+                                    onAfterChange={onAfterHeightChange}
+                                    className="mb-4"
+                                />
+                            </div>
+                            <div>
+                                <h1 className="text-base leading-6 font-medium mb-2">Weight</h1>
+                                <p className="text-left text-base font-medium">
+                                    {" "}
+                                    {weight[0]} Kg - {weight[1]} Kg{" "}
+                                </p>
+                                <Slider
+                                    range={{ draggableTrack: true }}
+                                    defaultValue={[50, 70]}
+                                    step={1}
+                                    min={0}
+                                    max={150}
+                                    onChange={onWeightChange}
+                                    onAfterChange={onAfterWeightChange}
+                                    className="mb-4"
+                                />
+                            </div>
+                        </div>
+
+                        <div className="grid grid-cols-2">
+                            <div>
+                                <h1 className="text-base leading-6 font-medium mb-2">Ancestry</h1>
+                                <Select
+                                    className="w-full mb-4"
+                                    onChange={handleUserAncestryChange}
+                                    placeholder="Select Ancestry"
+                                    options={[
+                                        {
+                                            value: "option",
+                                            label: "option",
+                                        },
+                                        {
+                                            value: "option",
+                                            label: "option",
+                                        },
+                                        {
+                                            value: "option",
+                                            label: "option",
+                                        },
+                                    ]}
+                                />
+                            </div>
+                            <div>
+                                <h1 className="text-base leading-6 font-medium mb-2">Skin Tone</h1>
+                                <Select
+                                    className="w-full mb-4"
+                                    onChange={handleUserSkinToneChange}
+                                    placeholder="Select skin tone"
+                                    mode="multiple"
+                                    allowClear
+                                    options={[
+                                        {
+                                            value: "light",
+                                            label: "Light",
+                                        },
+                                        {
+                                            value: "fair",
+                                            label: "Fair",
+                                        },
+                                        {
+                                            value: "medium",
+                                            label: "Medium",
+                                        },
+                                        {
+                                            value: "deep",
+                                            label: "Deep (Dark)",
+                                        },
+                                    ]}
+                                />
+                            </div>
+                        </div>
+
+                        <div className="grid grid-cols-2">
+                            <div>
+                                <h1 className="text-base leading-6 font-medium mb-2">Hair Color</h1>
+                                <Select
+                                    className="w-full mb-4"
+                                    onChange={handleUserHairColorChange}
+                                    placeholder="Select hair color"
+                                    mode="multiple"
+                                    allowClear
+                                    options={[
+                                        {
+                                            value: "black",
+                                            label: "Black",
+                                        },
+                                        {
+                                            value: "brown",
+                                            label: "Brown",
+                                        },
+                                        {
+                                            value: "blond",
+                                            label: "Blond",
+                                        },
+                                        {
+                                            value: "white",
+                                            label: "White",
+                                        },
+                                        {
+                                            value: "gray",
+                                            label: "Gray",
+                                        },
+                                        {
+                                            value: "rarely red",
+                                            label: "Rarely Red",
+                                        },
+                                    ]}
+                                />
+                            </div>
+                            <div>
+                                <h1 className="text-base leading-6 font-medium mb-2">Hair Type</h1>
+                                <Select
+                                    className="w-full mb-4"
+                                    onChange={handleUserHairTypeChange}
+                                    placeholder="Select hair type"
+                                    mode="multiple"
+                                    allowClear
+                                    options={[
+                                        {
+                                            value: "fine",
+                                            label: "Fine",
+                                        },
+                                        {
+                                            value: "thick",
+                                            label: "Thick",
+                                        },
+                                        {
+                                            value: "long",
+                                            label: "Long",
+                                        },
+                                        {
+                                            value: "short",
+                                            label: "Short",
+                                        },
+                                        {
+                                            value: "matte",
+                                            label: "Matte",
+                                        },
+                                        {
+                                            value: "glossy",
+                                            label: "Glossy",
+                                        },
+                                        {
+                                            value: "curly",
+                                            label: "Curly",
+                                        },
+                                        {
+                                            value: "coily",
+                                            label: "Coily",
+                                        },
+                                        {
+                                            value: "straight",
+                                            label: "Straight",
+                                        },
+                                        {
+                                            value: "wavy",
+                                            label: "Wavy",
+                                        },
+                                    ]}
+                                />
+                            </div>
+                        </div>
+
+                        <div className="grid grid-cols-2">
+                            <div>
+                                <h1 className="text-base leading-6 font-medium mb-2">Eye Color</h1>
+                                <Select
+                                    className="w-full mb-4"
+                                    onChange={handleUserEyeColorChange}
+                                    placeholder="Select hair type"
+                                    mode="multiple"
+                                    allowClear
+                                    options={[
+                                        {
+                                            value: "brown",
+                                            label: "Brown",
+                                        },
+                                        {
+                                            value: "hazel",
+                                            label: "Hazel",
+                                        },
+                                        {
+                                            value: "blue",
+                                            label: "Blue",
+                                        },
+                                        {
+                                            value: "green",
+                                            label: "Green",
+                                        },
+                                        {
+                                            value: "gray",
+                                            label: "Gray",
+                                        },
+                                        {
+                                            value: "amber",
+                                            label: "Amber",
+                                        },
+                                    ]}
+                                />
+                            </div>
+                            <div>
+                                <h1 className="text-base leading-6 font-medium mb-2">Number of Teeth</h1>
+                                <Select
+                                    className='w-full mb-2'
+                                    onChange={handleNumberOfTeeth}
+                                    placeholder="Select teeth number"
+                                    mode="multiple"
+                                    allowClear
+                                    options={[
+                                        {
+                                            value: "20",
+                                            label: "20",
+                                        },
+                                        {
+                                            value: "21",
+                                            label: "21",
+                                        },
+                                        {
+                                            value: "22",
+                                            label: "22",
+                                        },
+                                        {
+                                            value: "23",
+                                            label: "23",
+                                        },
+                                        {
+                                            value: "24",
+                                            label: "24",
+                                        },
+                                        {
+                                            value: "25",
+                                            label: "25",
+                                        },
+                                        {
+                                            value: "26",
+                                            label: "26",
+                                        },
+                                        {
+                                            value: "27",
+                                            label: "27",
+                                        },
+                                        {
+                                            value: "28",
+                                            label: "28",
+                                        },
+                                        {
+                                            value: "29",
+                                            label: "29",
+                                        },
+                                        {
+                                            value: "30",
+                                            label: "30",
+                                        },
+                                        {
+                                            value: "31",
+                                            label: "31",
+                                        },
+                                        {
+                                            value: "32",
+                                            label: "32",
+                                        },
+                                    ]}
+                                />
+                            </div>
+                        </div>
+                    </Panel>
+                </Collapse>
+                <div className="grid grid-cols-2">
+                    <div className="flex justify-center items-center ] mt-[30px] hidden md:block">
+                        <button
+                            onClick={handleSubmit}
+                            style={{
+                                background: "linear-gradient(180deg, #E41272 0%, #942DD9 100%)",
                             }}
-                            selectOnFocus
-                            clearOnBlur
-                            handleHomeEndKeys
-                            id="free-solo-with-text-demo"
-                            options={professionalStatusOptions}
-                            getOptionLabel={option => {
-                                // Value selected with enter, right from the input
-                                if (typeof option === "string") {
-                                    return option;
-                                }
-                                // Add "xxx" option created dynamically
-                                if (option.inputValue) {
-                                    return option.inputValue;
-                                }
-                                // Regular option
-                                return option.title;
-                            }}
-                            renderOption={(props, option) => <li {...props}>{option.title}</li>}
-                            freeSolo
-                            renderInput={params => <TextField {...params} placeholder="Professional Experience" />}
-                            sx={{
-                                "& input": {
-                                    height: 6,
-                                    padding: 0,
-                                },
-                            }}
-                        />
-                    </div>
-                    <div>
-                        <h1 className="text-base leading-6 font-medium mb-2">Professional Experience</h1>
-                        <Radio.Group
-                            onChange={handleUserProfessionalExperienceChange}
-                            value={professionalInfo?.professionalExperience}
-                            className="mb-4"
+                            className="w-[179px] text-center py-[8] px-[10px] text-[#fff] h-[54px] text-2xl font-medium rounded-xl"
                         >
-                            <Space direction="vertical">
-                                <Radio value="Less Than 1 Year">Less Than 1 Year</Radio>
-                                <Radio value="1-2 Years">1-2 Years</Radio>
-                                <Radio value="2-3 Years">2-3 Years</Radio>
-                                <Radio value="3-5 Years">3-5 Years</Radio>
-                                <Radio value="5-10 Years">5-10 Years</Radio>
-                                <Radio value="10-15 Years">10-15 Years </Radio>
-                                <Radio value="15 Years+">15 Years+</Radio>
-                            </Space>
-                        </Radio.Group>
-                    </div>
-                    <div>
-                        <h1 className="text-base leading-6 font-medium mb-2">Educational Qualification</h1>
-                        <Autocomplete
-                            value={educationalInfo}
-                            className="w-full mb-4"
-                            onChange={handleUserEducationalQualificationChange}
-                            filterOptions={(options, params) => {
-                                const filtered = filter(options, params);
-
-                                const { inputValue } = params;
-                                // Suggest the creation of a new value
-                                const isExisting = options.some(option => inputValue === option.title);
-                                if (inputValue !== "" && !isExisting) {
-                                    filtered.push({
-                                        inputValue,
-                                        title: `Add "${inputValue}"`,
-                                    });
-                                }
-
-                                return filtered;
-                            }}
-                            selectOnFocus
-                            clearOnBlur
-                            handleHomeEndKeys
-                            id="free-solo-with-text-demo"
-                            options={educationalInfoOptions}
-                            getOptionLabel={option => {
-                                // Value selected with enter, right from the input
-                                if (typeof option === "string") {
-                                    return option;
-                                }
-                                // Add "xxx" option created dynamically
-                                if (option.inputValue) {
-                                    return option.inputValue;
-                                }
-                                // Regular option
-                                return option.title;
-                            }}
-                            renderOption={(props, option) => <li {...props}>{option.title}</li>}
-                            freeSolo
-                            renderInput={params => <TextField {...params} placeholder="Educational Qualification" />}
-                            sx={{
-                                "& input": {
-                                    height: 6,
-                                    padding: 0,
-                                },
-                            }}
-                        />
+                            Submit
+                        </button>
                     </div>
 
-                    <div>
-                        <h1 className="text-base leading-6 font-medium mb-2">Monthly Income</h1>
-                        <Radio.Group onChange={handleUserIncomeChange} value={monthlyIncome} className="mb-4">
-                            <Space direction="vertical">
-                                <Radio value={"Below 15,000 BDT"}>Below 15,000 BDT</Radio>
-                                <Radio value={"15000-20000 BDT"}>15000-20000 BDT</Radio>
-                                <Radio value={"20000-25000 BDT"}>20000-25000 BDT</Radio>
-                                <Radio value={"25000-30000 BDT"}>25000-30000 BDT</Radio>
-                                <Radio value={"30000-35000 BDT"}>30000-35000 BDT</Radio>
-                                <Radio value={"35000-40000 BDT"}>35000-40000 BDT</Radio>
-                                <Radio value={"45000-50000 BDT"}>45000-50000 BDT</Radio>
-                                <Radio value={"50000-60000 BDT"}>50000-60000 BDT</Radio>
-                                <Radio value={"60000-70000 BDT"}>60000-70000 BDT</Radio>
-                                <Radio value={"70000-80000 BDT"}>70000-80000 BDT</Radio>
-                                <Radio value={"80000-90000 BDT"}>80000-90000 BDT</Radio>
-                                <Radio value={"90000-100000 BDT"}>90000-100000 BDT</Radio>
-                                <Radio value={"100000-150000 BDT"}>100000-150000 BDT</Radio>
-                                <Radio value={"150000-200000 BDT"}>150000-200000 BDT</Radio>
-                                <Radio value={"200000-250000 BDT"}>200000-250000 BDT</Radio>
-                                <Radio value={"300000+ BDT"}>300000+ BDT</Radio>
-                            </Space>
-                        </Radio.Group>
+                    <div className="flex justify-center items-center ] mt-[30px] md:hidden ">
+                        <button
+                            onClick={handleSubmit}
+                            style={{
+                                background: "linear-gradient(180deg, #E41272 0%, #942DD9 100%)",
+                            }}
+                            className="w-[139px] text-center py-[4] px-[6px] text-[#fff] h-[34px] text-lg font-medium rounded-xl"
+                        >
+                            Submit
+                        </button>
                     </div>
-                </Panel>
-                {/*---------------- Others Information --------------*/}
-                <Panel header={styledHeader("Other Info")} key="4">
-                    <div>
-                        <h1 className="text-base leading-6 font-medium mb-2">Height</h1>
-                        <p className="text-left text-base font-medium">
-                            {" "}
-                            {height ? height[0] : "0"}" - {height ? height[1] : "0"}"{" "}
-                        </p>
-                        <Slider
-                            range={{ draggableTrack: true }}
-                            defaultValue={[5, 6]}
-                            step={0.01}
-                            min={0}
-                            max={10}
-                            onChange={onHeightChange}
-                            onAfterChange={onAfterHeightChange}
-                            className="mb-4"
-                        />
-                    </div>
-                    <div>
-                        <h1 className="text-base leading-6 font-medium mb-2">Weight</h1>
-                        <p className="text-left text-base font-medium">
-                            {" "}
-                            {weight[0]} Kg - {weight[1]} Kg{" "}
-                        </p>
-                        <Slider
-                            range={{ draggableTrack: true }}
-                            defaultValue={[50, 70]}
-                            step={1}
-                            min={0}
-                            max={150}
-                            onChange={onWeightChange}
-                            onAfterChange={onAfterWeightChange}
-                            className="mb-4"
-                        />
-                    </div>
-                    <div>
-                        <h1 className="text-base leading-6 font-medium mb-2">Ancestry</h1>
-                        <Select
-                            className="w-full mb-4"
-                            onChange={handleUserAncestryChange}
-                            placeholder="Select Ancestry"
-                            options={[
-                                {
-                                    value: "option",
-                                    label: "option",
-                                },
-                                {
-                                    value: "option",
-                                    label: "option",
-                                },
-                                {
-                                    value: "option",
-                                    label: "option",
-                                },
-                            ]}
-                        />
-                    </div>
-                    <div>
-                        <h1 className="text-base leading-6 font-medium mb-2">Skin Tone</h1>
-                        <Select
-                            className="w-full mb-4"
-                            onChange={handleUserSkinToneChange}
-                            placeholder="Select skin tone"
-                            mode="multiple"
-                            allowClear
-                            options={[
-                                {
-                                    value: "light",
-                                    label: "Light",
-                                },
-                                {
-                                    value: "fair",
-                                    label: "Fair",
-                                },
-                                {
-                                    value: "medium",
-                                    label: "Medium",
-                                },
-                                {
-                                    value: "deep",
-                                    label: "Deep (Dark)",
-                                },
-                            ]}
-                        />
-                    </div>
-                    <div>
-                        <h1 className="text-base leading-6 font-medium mb-2">Hair Color</h1>
-                        <Select
-                            className="w-full mb-4"
-                            onChange={handleUserHairColorChange}
-                            placeholder="Select hair color"
-                            mode="multiple"
-                            allowClear
-                            options={[
-                                {
-                                    value: "black",
-                                    label: "Black",
-                                },
-                                {
-                                    value: "brown",
-                                    label: "Brown",
-                                },
-                                {
-                                    value: "blond",
-                                    label: "Blond",
-                                },
-                                {
-                                    value: "white",
-                                    label: "White",
-                                },
-                                {
-                                    value: "gray",
-                                    label: "Gray",
-                                },
-                                {
-                                    value: "rarely red",
-                                    label: "Rarely Red",
-                                },
-                            ]}
-                        />
-                    </div>
-                    <div>
-                        <h1 className="text-base leading-6 font-medium mb-2">Hair Type</h1>
-                        <Select
-                            className="w-full mb-4"
-                            onChange={handleUserHairTypeChange}
-                            placeholder="Select hair type"
-                            mode="multiple"
-                            allowClear
-                            options={[
-                                {
-                                    value: "fine",
-                                    label: "Fine",
-                                },
-                                {
-                                    value: "thick",
-                                    label: "Thick",
-                                },
-                                {
-                                    value: "long",
-                                    label: "Long",
-                                },
-                                {
-                                    value: "short",
-                                    label: "Short",
-                                },
-                                {
-                                    value: "matte",
-                                    label: "Matte",
-                                },
-                                {
-                                    value: "glossy",
-                                    label: "Glossy",
-                                },
-                                {
-                                    value: "curly",
-                                    label: "Curly",
-                                },
-                                {
-                                    value: "coily",
-                                    label: "Coily",
-                                },
-                                {
-                                    value: "straight",
-                                    label: "Straight",
-                                },
-                                {
-                                    value: "wavy",
-                                    label: "Wavy",
-                                },
-                            ]}
-                        />
-                    </div>
-                    <div>
-                        <h1 className="text-base leading-6 font-medium mb-2">Eye Color</h1>
-                        <Select
-                            className="w-full mb-4"
-                            onChange={handleUserEyeColorChange}
-                            placeholder="Select hair type"
-                            mode="multiple"
-                            allowClear
-                            options={[
-                                {
-                                    value: "brown",
-                                    label: "Brown",
-                                },
-                                {
-                                    value: "hazel",
-                                    label: "Hazel",
-                                },
-                                {
-                                    value: "blue",
-                                    label: "Blue",
-                                },
-                                {
-                                    value: "green",
-                                    label: "Green",
-                                },
-                                {
-                                    value: "gray",
-                                    label: "Gray",
-                                },
-                                {
-                                    value: "amber",
-                                    label: "Amber",
-                                },
-                            ]}
-                        />
-                    </div>
-                    <div>
-                        <h1 className="text-base leading-6 font-medium mb-2">Number of Teeth</h1>
-                        <Select
-                            className='w-full mb-2'
-                            onChange={handleNumberOfTeeth}
-                            placeholder="Select teeth number"
-                            mode="multiple"
-                            allowClear
-                            options={[
-                                {
-                                    value: "20",
-                                    label: "20",
-                                },
-                                {
-                                    value: "21",
-                                    label: "21",
-                                },
-                                {
-                                    value: "22",
-                                    label: "22",
-                                },
-                                {
-                                    value: "23",
-                                    label: "23",
-                                },
-                                {
-                                    value: "24",
-                                    label: "24",
-                                },
-                                {
-                                    value: "25",
-                                    label: "25",
-                                },
-                                {
-                                    value: "26",
-                                    label: "26",
-                                },
-                                {
-                                    value: "27",
-                                    label: "27",
-                                },
-                                {
-                                    value: "28",
-                                    label: "28",
-                                },
-                                {
-                                    value: "29",
-                                    label: "29",
-                                },
-                                {
-                                    value: "30",
-                                    label: "30",
-                                },
-                                {
-                                    value: "31",
-                                    label: "31",
-                                },
-                                {
-                                    value: "32",
-                                    label: "32",
-                                },
-                            ]}
-                        />
-                    </div>
+<<<<<<< HEAD
                 </Panel>
             </Collapse>
             <div className="flex justify-center items-center ] mt-[30px] hidden md:block">
@@ -1242,6 +2257,9 @@ export const AccordionPartner = ({ data, isLoading }) => {
                 >
                     Submit
                 </button>
+=======
+                </div>
+>>>>>>> 845f006e1e6b4cb0ffd21b3cc49ebf76f077c313
             </div>
 
             <div className="flex justify-center items-center ] mt-[30px] md:hidden ">

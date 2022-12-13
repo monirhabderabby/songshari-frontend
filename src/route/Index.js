@@ -146,9 +146,6 @@ const Index = () => {
                     <Route path="/admin-analytics" element={<AdminAnalytics />}></Route>
                     <Route path="/stepper" element={<Container></Container>}></Route>
                     <Route path="/upgrade" element={<UpgradePlan></UpgradePlan>}></Route>
-                    <Route path="/upgradeuserplan" element={<UpgradeUserPlan />} />
-                    <Route path="/downgradeuserplan" element={<DownGradeUserPlan />} />
-                    <Route path="/markpriority" element={<MarkPriorityUser />} />
                     <Route path="/personalCertificate" element={<OthersCertificate />}></Route>
                     <Route path="/professionalCertificate" element={<ProfessionalCertificate />}></Route>
                     <Route path="/educationalCertificate" element={<EducationalCertificate />}></Route>
