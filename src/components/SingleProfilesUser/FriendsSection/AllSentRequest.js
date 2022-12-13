@@ -1,9 +1,9 @@
 // configuration, ex: react-router
 import React from "react";
-import { AiOutlineWarning } from "react-icons/ai";
-import { FiUsers } from "react-icons/fi";
 
 // Third party packages, ex: redux
+import { AiOutlineWarning } from "react-icons/ai";
+import { FiUsers } from "react-icons/fi";
 
 // components
 import { useGetAllSentRequestQuery } from "../../../Redux/features/connections/connectionApi";
@@ -48,22 +48,14 @@ export const AllSentRequest = () => {
             </div>
         );
     } else if (!isLoading && data?.data?.user.length > 0) {
-        content = data?.data?.user.map(friend => {
-            return <SentReqCard {...{ friend }} />;
-        });
+        content = (
+            <div className="w-full grid grid-cols-1 gap-y-4 px-4">
+                {data?.data?.user.map(friend => {
+                    return <SentReqCard {...{ friend }} />;
+                })}
+            </div>
+        );
     }
 
-    // if (data) {
-    //     console.log("data", data);
-    // }
-    // if (isError) {
-    //     console.log("isError", isError);
-    // }
-    // if (error) console.log("error", error);
-
-    return (
-        <div>
-            <div className="w-full grid grid-cols-1 gap-y-4 px-4">{content}</div>
-        </div>
-    );
+    return <div>{content}</div>;
 };

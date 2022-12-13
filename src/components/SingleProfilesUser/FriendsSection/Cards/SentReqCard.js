@@ -18,16 +18,16 @@ export const SentReqCard = ({ friend }) => {
     //handle cancle sent request
     const handleCancleRequest = async id => {
         console.log(id);
-        await fetch(`http://localhost:4000/member/connections/sentRequest/${id}`, {
-            method: "DELETE",
-            headers: {
-                "content-type": "application/json",
-                authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-            },
-        })
-            .then(res => res.json())
-            .then(data => console.log(data));
-        // await cancleSentRequest({ id });
+        // await fetch(`http://localhost:4000/member/connections/sentRequest/${id}`, {
+        //     method: "DELETE",
+        //     headers: {
+        //         "content-type": "application/json",
+        //         authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        //     },
+        // })
+        //     .then(res => res.json())
+        //     .then(data => console.log(data));
+        await cancleSentRequest({ id });
     };
 
     if (data) console.log(data);
