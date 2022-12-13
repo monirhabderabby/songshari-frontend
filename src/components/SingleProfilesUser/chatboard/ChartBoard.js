@@ -10,7 +10,7 @@ import { useGetSuggestedUsersQuery } from "../../../Redux/features/AllRecentData
 import { CardYouMayLike } from "../../pages/Shared/CardYouMayLike/CardYouMayLike";
 
 const ChartBoard = () => {
-  const { data, error } = useGetSuggestedUsersQuery();
+  const { data } = useGetSuggestedUsersQuery();
   const number6 = [1, 2, 3, 4, 5, 6];
 
   const certificateInfo = [
@@ -33,12 +33,6 @@ const ChartBoard = () => {
       link: "/educationalCertificate",
     },
   ];
-  if (data) {
-    console.log(data);
-  }
-  if (error) {
-    console.log(error);
-  }
   return (
     <div>
       {/* ----- Certificate ----- */}
