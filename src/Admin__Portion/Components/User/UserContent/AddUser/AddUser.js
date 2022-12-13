@@ -70,7 +70,7 @@ const AddUser = () => {
                     {/* Date of Birth field should be changed here before Integrating API */}
                     <div className='mt-8 font-medium text-[#344054]'>
                         <label htmlFor="dob">Date of Birth</label>
-                        <div className='flex gap-2'>
+                        <div className='flex gap-2 mt-[6px]'>
                             <div>
                                 <select id="month" className="font-medium text-base text-[#222222] focus:outline-none block w-full h-full">
                                     <option selected>09</option>
@@ -100,7 +100,7 @@ const AddUser = () => {
                     {/* Year Of Experience field should be changed here before Integrating API */}
                     <div className='mt-8 font-medium text-[#344054]'>
                         <label htmlFor="experience">Year Of Experience</label>
-                        <div className='flex gap-2'>
+                        <div className='flex gap-2 mt-[6px]'>
                             <div>
                                 <select id="expMonth" className="font-medium text-base text-[#222222] focus:outline-none block w-full h-full">
                                     <option selected>5 Month</option>
@@ -145,7 +145,7 @@ const AddUser = () => {
                     {/* Year of Bar Registration field should be changed here before Integrating API */}
                     <div className='mt-8 font-medium text-[#344054]'>
                         <label htmlFor="yearOfBar">Year Of BAR Registration</label>
-                        <div className='flex gap-2'>
+                        <div className='flex gap-2  mt-[15px]'>
                             <div>
                                 <select id="barMonth" className="font-medium text-base text-[#222222] focus:outline-none block w-full h-full">
                                     <option selected>July</option>
@@ -245,7 +245,7 @@ const AddUser = () => {
                     {/* Work period field should be changed here before Integrating API */}
                     <div className='mt-8 font-medium text-[#344054]'>
                         <label htmlFor="workPeriod">Work Period</label>
-                        <div className='flex gap-4'>
+                        <div className='flex gap-4 mt-3'>
                             <div className='flex gap-4'>
                                 <div>
                                     <select id="month" className="font-medium text-base text-[#222222] focus:outline-none block w-full h-full">
@@ -302,7 +302,7 @@ const AddUser = () => {
 
                     <div className='mt-8 font-medium text-[#344054]'>
                         <label htmlFor="qualification">Highest Educational Qualification</label>
-                        <div className='grid grid-cols-3 gap-2 mt-[29px]'>
+                        <div className='grid grid-cols-3 gap-x-2 gap-y-2 mt-[29px]'>
                             <div>
                                 <select id="degreeName" className="font-medium text-[10px] text-[#757575] focus:outline-none block w-full h-full">
                                     <option selected>select degree name</option>
@@ -346,15 +346,34 @@ const AddUser = () => {
                         </div>
                     </div>
 
+                    {/* Your of passing field should be changed here before Integrating API */}
                     <div className='grid grid-cols-2 items-center gap-2 mt-[23px] font-medium text-xs text-[#344054]'>
                         <div>
                             <label htmlFor="passingYear">Year of passing</label>
-                            <div>
-                                <select id="passingYear" className=" text-gray-900 text-sm focus:outline-none block w-full h-full">
-                                    <option selected>select degree name</option>
-                                    <option value="hons">Hons</option>
-                                    <option value="masters">Masters</option>
-                                </select>
+                            <div className='flex gap-2 mt-[6px]'>
+                                <div>
+                                    <select id="month" className="font-medium text-base text-[#222222] focus:outline-none block w-full h-full">
+                                        <option selected>09</option>
+                                        <option value="10">10</option>
+                                        <option value="11">11</option>
+                                    </select>
+                                </div>
+
+                                <div>
+                                    <select id="date" className="font-medium text-base text-[#222222] focus:outline-none block w-full h-full">
+                                        <option selected>26</option>
+                                        <option value="27">27</option>
+                                        <option value="28">28</option>
+                                    </select>
+                                </div>
+
+                                <div>
+                                    <select id="year" className="font-medium text-base text-[#222222] focus:outline-none block w-full h-full">
+                                        <option selected>1986</option>
+                                        <option value="1987">1987</option>
+                                        <option value="1988">1988</option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
                         <div>
@@ -468,7 +487,7 @@ const AddUser = () => {
 
                     <div className='mt-8 font-medium text-[#344054]'>
                         <label htmlFor="siblings">Siblings</label>
-                        <div className='flex gap-2'>
+                        <div className='flex justify-center gap-16'>
                             <div>
                                 <select id="brother" className="font-medium text-base text-[#757575] focus:outline-none block w-full h-full">
                                     <option selected>Brother</option>
@@ -515,7 +534,7 @@ const AddUser = () => {
                         </div>
                     </div>
 
-                    <div className='flex items-center w-full mt-8 mb-[30px]'>
+                    <div className='flex justify-center w-full mt-8 mb-[30px]'>
                         <button className='' type="submit">Save</button>
                     </div>
                 </form>

@@ -3,8 +3,6 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { Link } from "react-router-dom";
 import { auth } from "../../../firebase.init";
 import { BottomNav } from "../../../Wrapper/Home/mobileversion/BottomNav";
-import Accordian from "../profileSection/Accordion";
-import MobileAccordion from "./MobileAccordion";
 import { MobileAccordionLink } from "./MobileAccordionLink";
 import MobileUsersProfile from "./MobileUsersProfile";
 
@@ -27,7 +25,7 @@ const MobileSingleProfilesUser = () => {
             </div>
             <MobileUsersProfile />
             <div className="py-[20px]">
-             <MobileAccordionLink></MobileAccordionLink>
+                <MobileAccordionLink></MobileAccordionLink>
             </div>
             <br></br>
             <br></br>

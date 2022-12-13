@@ -1,50 +1,45 @@
 import React from "react";
 import CustomHeader from "../../components/shared/CustomHeader/CustomHeader";
 import { useGetProfileDetailsWIthAuthQuery } from "../../Redux/features/userInfo/userApi";
+import { Badges } from "./Badges";
 import ChartBoard from "./chatboard/ChartBoard";
+import { IntroCard } from "./IntroCard";
 import PhotoGelary from "./PhotoGelary";
 import ProfileCard from "./ProfileCard";
-import SingleUserActivity from "./SingleUserActivity/SingleUserActivity";
 import Table from "./Table/Table";
+import UtilitisCard from "./UtilitisCard";
+import { VerificationCard } from "./VerificationCard";
 
 const SingleProfiles = () => {
     const { data, isLoading } = useGetProfileDetailsWIthAuthQuery();
-
     return (
         <div className="bg-[#FAFBFF]">
-            <div className="hidden md:block">
             <CustomHeader title="Profile" />
-            </div>
-            
-            <div className="custom-container mx-auto bg-[#FAFBFF] pt-[30px]">
+            <div className="custom-container mx-auto bg-[#FAFBFF] pt-[30px] ">
                 <div className="block lg:flex">
-                    <div className="md:w-full w-full lg:w-9/12">
+                    <div className=" w-full lg:w-9/12 ">
                         <div>
-                            <div className="block md:flex">
-                                <div className="w-full md:w-2/5 mr-4">
+                            <div className="block lg:flex">
+                                <div className="w-full  lg:mr-4">
                                     <div>
                                         <ProfileCard {...{ data, isLoading }} />
-                                        {/* <VerificationCard />
+                                        <VerificationCard />
                                         <Badges />
                                         <UtilitisCard />
                                         <IntroCard />
-                                        <PhotoUploadCard /> */}
-                                        <PhotoGelary />
+                                        <PhotoGelary {...{ data, isLoading }} />
                                     </div>
                                 </div>
-                                <div className="w-full md:w-3/4">
-                                    <div className="hidden md:block">
-                                        <Table {...{ data, isLoading }} />
-                                    </div>
+                                <div className="lg:w-full">
                                     <div>
-                                        <SingleUserActivity></SingleUserActivity>
+                                        <Table {...{ data, isLoading }} />
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div className="md:w-full lg:w-3/12 ml-4">
-                        <div className="flex justify-center hidden md:block">
+                        <div className="flex justify-center">
                             <ChartBoard />
                         </div>
                     </div>

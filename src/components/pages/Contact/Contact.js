@@ -1,6 +1,4 @@
 import React, { useEffect } from "react";
-import CustomHeader from "../../shared/CustomHeader/CustomHeader";
-import Footer from "../../shared/Footer/Footer";
 import { ContactForm } from "./ContactForm";
 
 const Contact = () => {
@@ -10,9 +8,8 @@ const Contact = () => {
 
     return (
         <div>
-            <CustomHeader title="Contact" />
             <ContactForm></ContactForm>
-            <Footer />
+
         </div>
     );
 };

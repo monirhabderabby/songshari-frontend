@@ -19,17 +19,17 @@ export const DynamicProfilePage = () => {
             <CustomHeader title="Profile" />
             <div className="custom-container mx-auto pb-12 pt-[30px]">
                 <div className="block lg:flex">
-                    <div className="md:w-full lg:w-9/12">
+                    <div className="w-full lg:w-9/12">
                         <div>
-                            <div className="block md:flex">
-                                <div className="w-full md:w-2/5 mr-2">
+                            <div className="block lg:flex">
+                                <div className="w-full lg:w-2/5 lg:mr-2">
                                     <div>
                                         <DynamicProfileCard {...{ data, isLoading }} />
                                         <DynamicConnectionsCard {...{ data, isLoading }} />
                                         <DynamicPhotosContainer />
                                     </div>
                                 </div>
-                                <div className="w-full md:w-3/5">
+                                <div className="w-full lg:w-3/5">
                                     <div>
                                         <DynamicTable {...{ data, isLoading }} />
                                     </div>
