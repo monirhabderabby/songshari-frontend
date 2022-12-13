@@ -210,7 +210,7 @@ const MobileNav = ({ bg }) => {
                   </Link>
                 </li>
 
-                <li>
+                <ul>
                   <li
                     className={`relative cursor-pointer ${NavBarCSS.engDropdown}`}
                   >
@@ -250,7 +250,7 @@ const MobileNav = ({ bg }) => {
                       </div>
                     </div>
                   </li>
-                </li>
+                </ul>
               </ul>
               <button
                 onClick={menubarOpen}

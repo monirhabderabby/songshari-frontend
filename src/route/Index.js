@@ -28,9 +28,6 @@ import EditEducationalInfo from "../components/SingleProfilesUser/profileSection
 import EditOthersInfo from "../components/SingleProfilesUser/profileSection/EditprofileSection/EditOthersInfo";
 import EditPhysicalInfo from "../components/SingleProfilesUser/profileSection/EditprofileSection/EditPhysicalInfo";
 import EditProfesionalInfo from "../components/SingleProfilesUser/profileSection/EditprofileSection/EditProfesionalInfo";
-import ProfileDetails from "../components/SingleProfilesUser/profileSection/ProfileDetails";
-import EditPersonalInfo from "../components/SingleProfilesUser/profileSection/EditprofileSection/EditPersonalInfo";
-
 import About from "../Wrapper/About/About";
 import Agent from "../Wrapper/Agent/Agent";
 import Community from "../Wrapper/Community/Community";
@@ -55,10 +52,13 @@ import UpgradePlan from "../components/pages/Membership/MobileVersion/UpgradePla
 import MobileActivity from "../components/pages/MobileActivity/MobileActivity";
 import MobileActivityPost from "../components/pages/MobileActivity/MobileActivityPost";
 // import MobileSingleProfilesUser from "../components/SingleProfilesUser/MobileSingleProfilesUser/MobileSingleProfilesUser";
+import { Dashboard } from "../Admin__Portion/Dashboard/Dashboard";
 import { DynamicPhotosGallary } from "../components/pages/DynamicProfilePage/DynamicPhotosGallary";
 import { FindAPartnerSuggested } from "../components/pages/FindPartner/FindAPartnerSuggested";
+import EducationalCertificate from "../components/SingleProfilesUser/CertificateSection/EducationalCertificate";
 import MobileSingleProfilesUser from "../components/SingleProfilesUser/MobileSingleProfilesUser/MobileSingleProfilesUser";
 import { PersonalDetailsMobile } from "../components/SingleProfilesUser/MobileSingleProfilesUser/PersonalDetailsMobile";
+import EditPersonalInfo from "../components/SingleProfilesUser/profileSection/EditprofileSection/EditPersonalInfo";
 import { AboutMov } from "../Wrapper/Home/mobileversion/about/AboutMov";
 import { CertificateMov } from "../Wrapper/Home/mobileversion/CertificateMov";
 import { CommunityMov } from "../Wrapper/Home/mobileversion/comminuty/CommunityMov";
@@ -73,13 +73,16 @@ import { NavCase } from "../Wrapper/Home/mobileversion/mobilelawyeractivity/NavC
 import { PendingCaseMov } from "../Wrapper/Home/mobileversion/mobilelawyeractivity/PendingCase";
 import { RunningCaseMov } from "../Wrapper/Home/mobileversion/mobilelawyeractivity/RunningCase";
 import MobileProfileOthers from "../Wrapper/Home/mobileversion/MobileProfileOthers";
+import Certificate from "../Wrapper/Home/mobileversion/PhotoGallery/certificate/Certificate";
+import MobileCertificate from "../Wrapper/Home/mobileversion/PhotoGallery/certificate/MobileCertificate";
+import OthersCertificate from "../Wrapper/Home/mobileversion/PhotoGallery/certificate/OthersCertificate";
+import ProfessionalCertificate from "../Wrapper/Home/mobileversion/PhotoGallery/certificate/ProfessionalCertificate";
 import { PrivacyMov } from "../Wrapper/Home/mobileversion/privacy/PrivacyMov";
 import { Setting } from "../Wrapper/Home/mobileversion/Setting";
-import MobileCertificate from "../Wrapper/Home/mobileversion/PhotoGallery/certificate/MobileCertificate";
-import Certificate from "../components/SingleProfilesUser/CertificateSection/Certificate";
 import UpgradeUserPlan from "../Admin__Portion/Components/User/UpgradeUserPlan";
 import DownGradeUserPlan from "../Admin__Portion/Components/User/DownGradeUserPlan";
 import MarkPriorityUser from "../Admin__Portion/Components/User/PriorityUser/MarkPriorityUser";
+import ProfileDetails from "../components/SingleProfilesUser/profileSection/ProfileDetails";
 
 const Index = () => {
     return (
@@ -147,6 +150,38 @@ const Index = () => {
                     <Route path="/upgradeuserplan" element={<UpgradeUserPlan />} />
                     <Route path="/downgradeuserplan" element={<DownGradeUserPlan />} />
                     <Route path="/markpriority" element={<MarkPriorityUser />} />
+                    <Route path="/personalCertificate" element={<OthersCertificate />}></Route>
+                    <Route path="/professionalCertificate" element={<ProfessionalCertificate />}></Route>
+                    <Route path="/educationalCertificate" element={<EducationalCertificate />}></Route>
+                    <Route path="/singleproduct" element={<SingleProduct></SingleProduct>}></Route>
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/signup" element={<SignUp />} />
+                    <Route path="/regAsProfessional" element={<RegAsProfessional />} />
+                    <Route path="/loginAsProfessional" element={<LoginAsProfessional />} />
+                    <Route path="/contact" element={<Contact />}></Route>
+                    <Route path="/lawyeractivity" element={<LawyerActivity></LawyerActivity>}></Route>
+                    <Route path="/members" element={<Members />}></Route>
+                    <Route path="/profile/:id" element={<DynamicProfilePage />}></Route>
+                    <Route path="/gallery/:id" element={<DynamicPhotosGallary />} />
+                    <Route path="/privacy-policy" element={<Privacy></Privacy>}></Route>
+                    <Route path="/our-teams" element={<OurTeams />}></Route>
+                    <Route path="/find-partner" element={<FindPartner />}>
+                        <Route path="/find-partner" element={<FindAPartnerSuggested />} />
+                        <Route path="top" element={<TopBride />} />
+                        <Route path="nearest" element={<TopGroom />} />
+                        <Route path="filter" element={<FilterResults />} />
+                    </Route>
+                    <Route path="/" element={<Homepage></Homepage>}>
+                        <Route path="/" element={<Suggested />} />
+                        <Route path="/top-gride" element={<TopBride />} />
+                        <Route path="/top-groom" element={<TopGroom />} />
+                        <Route path="/top-profession/kazi" element={<TopProfessionKazi />} />
+                        <Route path="/top-profession/agent" element={<TopProfessionAgent />} />
+                    </Route>
+                    <Route path="/admin-analytics" element={<AdminAnalytics />}></Route>
+
+                    <Route path="/stepper" element={<Container></Container>}></Route>
+                    <Route path="/upgrade" element={<UpgradePlan></UpgradePlan>}></Route>
 
                     {/* --------------- MOBILE ROUTES START --------------- */}
                     <Route path="/mobileHomePage" element={<MobileHome />}></Route>
@@ -169,9 +204,34 @@ const Index = () => {
                     <Route path="/mobileGoldPlan" element={<MobileGoldPlan />}></Route>
                     <Route path="/mobileDiamondPlan" element={<MobileDiamondPlan />}></Route>
                     <Route path="/mobilePlatinumPlan" element={<MobilePlatinumPlan />}></Route>
+                    <Route path="/mobilecertificate" element={<Certificate />} />
+                    {/* --------------- MOBILE ROUTES END --------------- */}
+
+                    {/* --------------- Dashboard ROUTES START --------------- */}
+                    <Route path="dashboard" element={<Dashboard />}></Route>
+
+                    {/* --------------- Dashboard ROUTES END --------------- */}
+
+                    <Route path="/aboutmov" element={<AboutMov></AboutMov>}></Route>
+                    <Route path="/gallarymov" element={<GallaryMov />}></Route>
+                    <Route path="/meetmov" element={<MeetMov></MeetMov>}></Route>
+                    <Route path="/matchesmov" element={<MatchesMov></MatchesMov>}></Route>
+                    <Route path="/mobileActivityPage" element={<MobileActivity />}></Route>
+                    <Route path="/mobileActivityNextPage" element={<MobileActivityPost />}></Route>
+                    <Route path="/historymov" element={<HistoryMov></HistoryMov>}></Route>
+                    <Route path="/privacymov" element={<PrivacyMov></PrivacyMov>}></Route>
+                    <Route path="/communitymov" element={<CommunityMov></CommunityMov>}></Route>
+                    <Route path="/certificatemov" element={<CertificateMov></CertificateMov>}></Route>
+                    <Route path="/like" element={<Like></Like>}></Route>
+                    <Route path="/mobileUpgrade" element={<UpgradePlan></UpgradePlan>}></Route>
+                    <Route path="/mobileFreePlan" element={<MobileFreePlan />}></Route>
+                    <Route path="/mobileGoldPlan" element={<MobileGoldPlan />}></Route>
+                    <Route path="/mobileDiamondPlan" element={<MobileDiamondPlan />}></Route>
+                    <Route path="/mobilePlatinumPlan" element={<MobilePlatinumPlan />}></Route>
                     <Route path="/mobilecertificate" element={<MobileCertificate />} />
                     <Route path="/certificate" element={<Certificate />} />
                     {/* --------------- MOBILE ROUTES END --------------- */}
+
                     <Route path="*" element={<NotFound />}></Route>
                 </Routes>
             </BrowserRouter>

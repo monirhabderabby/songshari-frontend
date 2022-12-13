@@ -6,7 +6,7 @@ import { styled } from "@mui/material/styles";
 import Typography from "@mui/material/Typography";
 import moment from "moment";
 import React from "react";
-import { useNavigate } from "react-router";
+import { useNavigate, useOutletContext } from "react-router";
 import "./Accordion.css";
 const Accordion = styled(props => <MuiAccordion disableGutters elevation={0} square {...props} />)(({ theme }) => ({
     paddingTop: "23px",
@@ -32,12 +32,17 @@ const AccordionSummary = styled(props => <MuiAccordionSummary expandIcon={<Arrow
 const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({}));
 
 const Accordian = ({ data, isLoading, edit }) => {
+    // const { phone, email, NidOrPassportNumber, citizenShip, zodiacSign, barRegistrationNumber, licenceNo, yearOfBarRegistration, dateOfBirth } = data;
     const hightestEducationalQualification = data?.hightestEducationalQualification;
+
     const [expanded, setExpanded] = React.useState("panel1");
+
     const handleChange = panel => (event, newExpanded) => {
         setExpanded(newExpanded ? panel : false);
     };
     const navigate = useNavigate();
+    // if (isLoading) return false;
+    console.log(data);
     return (
         <div className="mb-[69px] max-w-[523px] mx-auto">
             <Accordion expanded={expanded === "panel1"} onChange={handleChange("panel1")}>
@@ -54,7 +59,7 @@ const Accordian = ({ data, isLoading, edit }) => {
                     </AccordionSummary>
                     <div
                         style={{
-                            display: `${expanded === "panel1" && edit ? "block" : "none"}`,
+                            display: `${expanded === "panel1" ? "block" : "none"}`,
                         }}
                     >
                         <button
@@ -454,7 +459,7 @@ const Accordian = ({ data, isLoading, edit }) => {
                     </AccordionSummary>
                     <div
                         style={{
-                            display: `${expanded === "panel2" && edit ? "block" : "none"}`,
+                            display: `${expanded === "panel2" ? "block" : "none"}`,
                         }}
                     >
                         <button
@@ -556,7 +561,7 @@ const Accordian = ({ data, isLoading, edit }) => {
                     </AccordionSummary>
                     <div
                         style={{
-                            display: `${expanded === "panel3" && edit ? "block" : "none"}`,
+                            display: `${expanded === "panel3" ? "block" : "none"}`,
                         }}
                     >
                         <button
@@ -697,7 +702,7 @@ const Accordian = ({ data, isLoading, edit }) => {
                     </AccordionSummary>
                     <div
                         style={{
-                            display: `${expanded === "panel4" && edit ? "block" : "none"}`,
+                            display: `${expanded === "panel4" ? "block" : "none"}`,
                         }}
                     >
                         <button
@@ -778,7 +783,7 @@ const Accordian = ({ data, isLoading, edit }) => {
                     </AccordionSummary>
                     <div
                         style={{
-                            display: `${expanded === "panel5" && edit ? "block" : "none"}`,
+                            display: `${expanded === "panel5" ? "block" : "none"}`,
                         }}
                     >
                         <button

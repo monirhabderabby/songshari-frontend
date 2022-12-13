@@ -15,7 +15,7 @@ export const CustomHeader = ({ title }) => {
                     <Link to="/" className="hover:text-white font-bold">
                         HOME
                     </Link>{" "}
-                    <IoIosArrowForward /> {title}
+                    <IoIosArrowForward className="mx-2 text-xl" /> {title}
                 </div>
             </div>
         </div>

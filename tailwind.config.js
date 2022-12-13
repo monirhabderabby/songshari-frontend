@@ -9,6 +9,7 @@ module.exports = {
                 fira: ["Fira Sans", "sans-serif"],
                 outfit: ["Outfit", "sans-serif"],
                 Inter: ["Inter", "sans-serif"],
+                Nunito: ["Nunito", "sans-serif"],
             },
             colors: {
                 transparent: "transparent",

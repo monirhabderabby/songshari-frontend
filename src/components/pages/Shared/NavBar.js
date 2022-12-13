@@ -185,7 +185,7 @@ const NavBar = ({ bg }) => {
                                 </Link> */}
                             </li>
 
-                            <li>
+                            <ul>
                                 <li className={`relative cursor-pointer ${NavBarCSS.engDropdown}`}>
                                     <div>
                                         <img className="w-[60px]" src={language ? eng : bng} alt="Not Available" />
@@ -219,7 +219,7 @@ const NavBar = ({ bg }) => {
                                         </div>
                                     </div>
                                 </li>
-                            </li>
+                            </ul>
                         </ul>
                     </div>
                 </div>

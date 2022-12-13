@@ -1,17 +1,11 @@
-import {
-    ref,
-    uploadBytes,
-    getDownloadURL,
-
-} from "firebase/storage";
+import { Upload } from "antd";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import React, { useEffect, useState } from "react";
-import { Upload } from 'antd';
 import { v4 as uuidv4 } from "uuid";
 import "../../assets/css/photogelary.css";
 import { firebaseStorage } from "../../firebase.init";
 // import { useUpdatePersonalDetailsMutation } from "../../Redux/features/userInfo/userApi";
 const { Dragger } = Upload;
-
 
 const PhotoGelary = ({ data, isLoading }) => {
     // const [updatePersonalDetails, { isSuccess }] = useUpdatePersonalDetailsMutation();
@@ -21,12 +15,12 @@ const PhotoGelary = ({ data, isLoading }) => {
 
     useEffect(() => {
         if (data) {
-            console.log(photos)
-            setPhotos(data?.photos)
+            console.log(photos);
+            setPhotos(data?.photos);
         }
-    }, [data, photos])
+    }, [data, photos]);
 
-    const handleChange = async (e) => {
+    const handleChange = async e => {
         const fileList = e.fileList;
 
         for (let i = 0; i < fileList.length; i++) {
@@ -37,33 +31,27 @@ const PhotoGelary = ({ data, isLoading }) => {
         handleUpload();
     };
 
-
     const handleUpload = async () => {
         const promises = [];
-        const allUrl = []
+        const allUrl = [];
         images.map(async photo => {
             const storageRef = ref(firebaseStorage, `profile/${photo.name}` + uuidv4());
 
             promises.push(uploadBytes);
             await uploadBytes(storageRef, photo).then(async snapshot => {
-                await getDownloadURL(snapshot.ref).then((url) => {
-
+                await getDownloadURL(snapshot.ref).then(url => {
                     // allUrl.push(url)
-                    setUrls((prev) => [...prev, url])
-
+                    setUrls(prev => [...prev, url]);
                 });
             });
         });
 
         Promise.all(promises)
-            .then((values) => {
-
-                setUrls(allUrl)
-
-
+            .then(values => {
+                setUrls(allUrl);
             })
             .catch(err => console.log(err));
-    }
+    };
     // update photoes in personal details
     // useEffect(() => {
     //     const upload = async () => {
@@ -76,14 +64,11 @@ const PhotoGelary = ({ data, isLoading }) => {
     //     upload()
     // }, [])
 
-
-
-
-    console.log(urls)
+    console.log(urls);
     return (
         <div className="w-full">
             <div className="px-6">
-                <Dragger onChange={handleChange} style={{ border: 'none', background: 'none' }} multiple={true} showUploadList={false} >
+                <Dragger onChange={handleChange} style={{ border: "none", background: "none" }} multiple={true} showUploadList={false}>
                     <div className="flex">
                         <div>
                             <svg
@@ -108,16 +93,11 @@ const PhotoGelary = ({ data, isLoading }) => {
                             </svg>
                         </div>
                         <h1 className="text-lg font-bold ml-2"> Uploaded Photoes</h1>
-
                     </div>
-
-
                 </Dragger>
             </div>
             <div className="photo-gelary p-6 text-left shadow">
-
                 <div className="mb-2">
-
                     <div className="flex">
                         <div>
                             <svg
@@ -142,20 +122,14 @@ const PhotoGelary = ({ data, isLoading }) => {
                             </svg>
                         </div>
                         <h1 className="text-lg font-bold ml-2">21 Photo Uploaded</h1>
-
                     </div>
-
-
-
                 </div>
                 <div className="grid grid-cols-3 gap-2 mt-2  ">
                     {photos?.map((p, i) => {
-
                         return (
                             <div key={i + p} className="borderd m-1 main-box">
                                 <div className="box ">
                                     <img className="rounded-md" src={p} alt="Not Available" />
-
                                 </div>
                                 <div className="intro text-center w-full flex justify-center items-center">
                                     <button className="py-1 px-2 btn btn-sm text-5xl rounded-lg font-extrabold">+</button>
@@ -165,7 +139,7 @@ const PhotoGelary = ({ data, isLoading }) => {
                     })}
                 </div>
             </div>
-            <div className="w-full flex justify-center mt-[30px] py-3">
+            <div className="w-full flex justify-center mt-[30px] md:block">
                 <button className="py-[5px] px-[15px] shadow-[0px_5px_20px_0px_rgb(139_122_132/50%)]  bg-[linear-gradient(171deg,rgba(233,11,200,0.6979166666666667)_41%,rgba(166,2,241,0.79)_100%)] text-white rounded-[50px]">
                     See All
                 </button>
