@@ -31,7 +31,7 @@ const BannerProfile = () => {
                     }}
                     modules={[Autoplay]}
                 >
-                    {swipematch.map(data => (
+                    {swipematch?.data?.members.map(data => (
                         <SwiperSlide key={data._id}>
                             <div className="max-w-[280px] h-[400px] relative overflow-hidden">
                                 <img
