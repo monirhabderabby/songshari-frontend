@@ -92,8 +92,8 @@ const Index = () => {
                 <Routes>
                     <Route path="/about" element={<About></About>}></Route>
                     <Route path="/userprofile" element={<SingleProfile />}>
-                        <Route path="" element={<Accordian />} />
-                        <Route path="edit">
+                        <Route path="" element={<ProfileDetails />} />
+                        <Route path="edit"  >
                             <Route path="personalinfo/:id" element={<EditPersonalInfo />} />
                             <Route path="profesionalinfo/:id" element={<EditProfesionalInfo />} />
                             <Route path="educationalinfo/:id" element={<EditEducationalInfo />} />
@@ -184,6 +184,11 @@ const Index = () => {
 
                     <Route path="/stepper" element={<Container></Container>}></Route>
                     <Route path="/upgrade" element={<UpgradePlan></UpgradePlan>}></Route>
+
+                    {/* Admin routes */}
+                    <Route path="/admin" element={<User></User>}>
+                        <Route path="addUser" element={<AddUser></AddUser>}></Route>
+                    </Route>
 
                     {/* --------------- MOBILE ROUTES START --------------- */}
                     <Route path="/mobileHomePage" element={<MobileHome />}></Route>
