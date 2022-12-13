@@ -130,6 +130,7 @@ const Index = () => {
                         <Route path="nearest" element={<TopGroom />} />
                         <Route path="filter" element={<FilterResults />} />
                     </Route>
+                    
                     <Route path="/" element={<Homepage></Homepage>}>
                         <Route path="/" element={<Suggested />} />
                         <Route path="/top-gride" element={<TopBride />} />
