@@ -11,6 +11,10 @@ import { UserCard } from "../Shared/userCard/UserCard";
 const Suggested = () => {
     const { data, isSuccess, isLoading } = useGetRecentMembersQuery();
 
+    if (data) {
+        console.log(data);
+    }
+
     // js variables
     const arr = [1, 2, 3, 4, 5, 6, 7, 8];
 
@@ -46,7 +50,7 @@ const Suggested = () => {
                 className="mySwiper"
             >
                 {isSuccess &&
-                    data.map(profile => (
+                    data?.data?.members.map(profile => (
                         <SwiperSlide key={profile._id}>
                             <UserCard {...{ profile }} />
                         </SwiperSlide>
