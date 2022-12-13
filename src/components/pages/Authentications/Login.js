@@ -50,13 +50,14 @@ const Login = () => {
             setCustomError("User not found");
         }
         if (responseError) {
-            setCustomError(responseError.message);
+            setCustomError(responseError);
         }
     }, [error, setCustomError, responseError]);
 
     useEffect(() => {
         if (response) {
-            localStorage.setItem("accessToken", response.data?.token);
+            console.log(response);
+            localStorage.setItem("accessToken", response?.data?.token);
             dispatch(loadUserData(response?.data));
             reset();
         }
@@ -73,9 +74,9 @@ const Login = () => {
                     <div className="bg-white rounded-2xl shadow-2xl md:flex w-[100%] md:w-3/4 lg:w-2/3 max-w-4xl">
                         <div className="w-full lg:w-3/5 p-5">
                             <div className="text-left font-bold">
-                                <span className="gradient_text font-george">
+                                <div className="gradient_text font-george">
                                     <img className="w-[150px]" src={logo} alt="logo" />
-                                </span>
+                                </div>
                             </div>
                             <div className="py-10">
                                 <h2 className="text-3xl font-bold gradient_text">Member Login</h2>

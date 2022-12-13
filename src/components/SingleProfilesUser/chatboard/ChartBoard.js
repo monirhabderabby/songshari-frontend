@@ -19,6 +19,10 @@ const ChartBoard = () => {
         { id: 3, text: "Educational Certificate", img: certificate, link: "/educationalCertificate" },
     ];
 
+    if (data) {
+        console.log(data);
+    }
+
     return (
         <div>
             {/* ----- Certificate ----- */}

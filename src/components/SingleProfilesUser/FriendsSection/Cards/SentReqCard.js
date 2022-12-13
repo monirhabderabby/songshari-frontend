@@ -9,7 +9,7 @@ import { useCancleSentRequestMutation } from "../../../../Redux/features/connect
 export const SentReqCard = ({ friend }) => {
     // varible declation
     // hook variables
-    const [cancleSentRequest] = useCancleSentRequestMutation();
+    const [cancleSentRequest, data, error] = useCancleSentRequestMutation();
 
     // js variables
     const { firstName, lastName, profilePhoto, _id } = friend;
@@ -18,8 +18,20 @@ export const SentReqCard = ({ friend }) => {
     //handle cancle sent request
     const handleCancleRequest = async id => {
         console.log(id);
-        await cancleSentRequest({ id });
+        await fetch(`http://localhost:4000/member/connections/sentRequest/${id}`, {
+            method: "DELETE",
+            headers: {
+                "content-type": "application/json",
+                authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+            },
+        })
+            .then(res => res.json())
+            .then(data => console.log(data));
+        // await cancleSentRequest({ id });
     };
+
+    if (data) console.log(data);
+    if (error) console.log(error);
 
     return (
         <div className="p-[21px] h-[141px] w-full mx-auto bg-white shadow-[2px_2px_8px_rgba(0,0,0,0.12)] rounded-[15px] flex justify-between items-center">
