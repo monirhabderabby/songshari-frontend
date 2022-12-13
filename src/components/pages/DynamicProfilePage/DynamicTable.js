@@ -9,7 +9,7 @@ const DynamicTable = ({ data, isLoading }) => {
     return (
         <div>
             <div className="px-2 md:px-0 mb-4">
-                <div className="w-full h-[60px] bg-white mb-[20px] shadow-[rgba(100,100,111,0.2)_0px_7px_29px_0px] rounded-[4px]">
+                <div className="w-full h-[60px] bg-white mb-[20px] lg:w-[512px] shadow-[rgba(100,100,111,0.2)_0px_7px_29px_0px] rounded-[4px]">
                     <div className="flex justify-center items-center gap-4">
                         <button
                             className={`mt-4 font-medium leading-tight ${page === 1 ? "text-primary font-bold" : "text-gray-800"}`}

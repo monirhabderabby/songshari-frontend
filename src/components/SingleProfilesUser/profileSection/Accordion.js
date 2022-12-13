@@ -31,8 +31,12 @@ const AccordionSummary = styled(props => <MuiAccordionSummary expandIcon={<Arrow
 );
 const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({}));
 
+<<<<<<< HEAD
 const Accordian = () => {
     const [data, isLoading] = useOutletContext();
+=======
+const Accordian = ({ data, isLoading, edit }) => {
+>>>>>>> 36e1469666dd9679877e4c919856f43d1098cef2
     // const { phone, email, NidOrPassportNumber, citizenShip, zodiacSign, barRegistrationNumber, licenceNo, yearOfBarRegistration, dateOfBirth } = data;
     const hightestEducationalQualification = data?.hightestEducationalQualification;
 
