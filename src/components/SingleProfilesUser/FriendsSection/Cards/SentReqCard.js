@@ -12,11 +12,12 @@ export const SentReqCard = ({ friend }) => {
     const [cancleSentRequest] = useCancleSentRequestMutation();
 
     // js variables
-    const { firstName, lastName, profilePhoto, _id } = friend?.user;
+    const { firstName, lastName, profilePhoto, _id } = friend;
 
     // function declation
     //handle cancle sent request
     const handleCancleRequest = async id => {
+        console.log(id);
         await cancleSentRequest({ id });
     };
 

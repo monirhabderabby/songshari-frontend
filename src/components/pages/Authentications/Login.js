@@ -56,8 +56,8 @@ const Login = () => {
 
     useEffect(() => {
         if (response) {
-            localStorage.setItem("accessToken", response.token);
-            dispatch(loadUserData(response));
+            localStorage.setItem("accessToken", response.data?.token);
+            dispatch(loadUserData(response?.data));
             reset();
         }
         if (response && user) {

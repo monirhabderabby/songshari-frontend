@@ -49,11 +49,13 @@ export const connectionApi = apiSlice.injectEndpoints({
                 // Optimistic cache update start
                 const updateResult = dispatch(
                     apiSlice.util.updateQueryData("getAllSentRequest", undefined, draft => {
-                        const result = draft?.data?.filter(d => d?.user?._id !== arg.id);
+                        const result = draft?.data?.user?.filter(d => d?._id !== arg.id);
 
                         return {
                             success: true,
-                            data: result,
+                            data: {
+                                user: result,
+                            },
                             message: "Data found",
                         };
                     })
