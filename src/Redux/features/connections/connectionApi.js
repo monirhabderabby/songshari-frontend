@@ -57,25 +57,21 @@ export const connectionApi = apiSlice.injectEndpoints({
         },
       }),
 
-      async onQueryStarted(arg, { dispatch, queryFulfilled }) {
-        // Optimistic cache update start
-        const updateResult = dispatch(
-          apiSlice.util.updateQueryData(
-            "getAllSentRequest",
-            undefined,
-            (draft) => {
-              const result = draft?.data?.filter(
-                (d) => d?.user?._id !== arg.id
-              );
+            async onQueryStarted(arg, { dispatch, queryFulfilled }) {
+                // Optimistic cache update start
+                const updateResult = dispatch(
+                    apiSlice.util.updateQueryData("getAllSentRequest", undefined, draft => {
+                        const result = draft?.data?.user?.filter(d => d?._id !== arg.id);
 
-              return {
-                success: true,
-                data: result,
-                message: "Data found",
-              };
-            }
-          )
-        );
+                        return {
+                            success: true,
+                            data: {
+                                user: result,
+                            },
+                            message: "Data found",
+                        };
+                    })
+                );
 
         // Final Decison of cache update
         try {
@@ -107,12 +103,11 @@ export const connectionApi = apiSlice.injectEndpoints({
 });
 
 export const {
-  useAddFriendMutation,
-  useGetAllSentRequestQuery,
-  useGetAllFriendRequestQuery,
-  useAcceptFriendRequestMutation,
-  useGetAllConnectedConnectionsQuery,
-  useCancleSentRequestMutation,
-  useGetMatchedUsersQuery,
-  useLikeSingleProfileMutation,
+    useAddFriendMutation,
+    useGetAllSentRequestQuery,
+    useGetAllFriendRequestQuery,
+    useAcceptFriendRequestMutation,
+    useGetAllConnectedConnectionsQuery,
+    useCancleSentRequestMutation,
+    useGetMatchedUsersQuery,
 } = connectionApi;

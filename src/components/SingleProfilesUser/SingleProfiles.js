@@ -20,7 +20,7 @@ const SingleProfiles = () => {
                     <div className=" w-full lg:w-9/12 ">
                         <div>
                             <div className="block lg:flex">
-                                <div className="w-full  lg:mr-4">
+                                <div className="max-w-[360px]">
                                     <div>
                                         <ProfileCard {...{ data, isLoading }} />
                                         <VerificationCard />
