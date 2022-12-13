@@ -2244,24 +2244,8 @@ export const AccordionPartner = ({ data, isLoading }) => {
                             Submit
                         </button>
                     </div>
-<<<<<<< HEAD
-                </Panel>
-            </Collapse>
-            <div className="flex justify-center items-center ] mt-[30px] hidden md:block">
-                <button
-                    onClick={handleSubmit}
-                    style={{
-                        background: "linear-gradient(180deg, #E41272 0%, #942DD9 100%)",
-                    }}
-                    className="w-[179px] text-center py-[8] px-[10px] text-[#fff] h-[54px] text-2xl font-medium rounded-xl"
-                >
-                    Submit
-                </button>
-=======
                 </div>
->>>>>>> 845f006e1e6b4cb0ffd21b3cc49ebf76f077c313
             </div>
-
             <div className="flex justify-center items-center ] mt-[30px] md:hidden ">
                 <button
                     onClick={handleSubmit}

@@ -110,4 +110,5 @@ export const {
     useGetAllConnectedConnectionsQuery,
     useCancleSentRequestMutation,
     useGetMatchedUsersQuery,
+    useLikeSingleProfileMutation
 } = connectionApi;

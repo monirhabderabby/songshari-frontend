@@ -83,6 +83,7 @@ import { Setting } from "../Wrapper/Home/mobileversion/Setting";
 import { SendNotificationOffer } from "../Admin__Portion/Components/SendNotificationOffer";
 import { RegistrationRequest } from "../Admin__Portion/Components/User/View__Registration__Request/Registration__Request/RegistrationRequest";
 import ViewUserActivities from "../Admin__Portion/Components/ViewUserActivities/ViewUserActivities";
+import  SendForPayment  from "../Admin__Portion/Components/User/View_Payment/SendForPayment";
 
 const Index = () => {
     return (
@@ -91,7 +92,7 @@ const Index = () => {
                 <Routes>
                     <Route path="/about" element={<About></About>}></Route>
                     <Route path="/userprofile" element={<SingleProfile />}>
-                        <Route path="" element={<ProfileDetails />} />
+                        {/* <Route path="" element={<ProfileDetails />} /> */}
                         <Route path="edit"  >
                             <Route path="personalinfo/:id" element={<EditPersonalInfo />} />
                             <Route path="profesionalinfo/:id" element={<EditProfesionalInfo />} />
@@ -146,6 +147,7 @@ const Index = () => {
                     </Route>
                     <Route path="/singleViewRequest" element={<SingleRequestView />} />
                     <Route path="/notificationPay" element={<ViewUserActivities></ViewUserActivities>} />
+                    <Route path="/sendPay" element={<SendForPayment></SendForPayment>} />
 
                     <Route path="/admin-analytics" element={<AdminAnalytics />}></Route>
                     <Route path="/stepper" element={<Container></Container>}></Route>
@@ -184,10 +186,9 @@ const Index = () => {
                     <Route path="/upgrade" element={<UpgradePlan></UpgradePlan>}></Route>
 
                     {/* Admin routes */}
-                    <Route path="/admin" element={<User></User>}>
+                    {/* <Route path="/admin" element={<User></User>}>
                         <Route path="addUser" element={<AddUser></AddUser>}></Route>
-                    </Route>
-
+                    </Route> */}
                     {/* --------------- MOBILE ROUTES START --------------- */}
                     <Route path="/mobileHomePage" element={<MobileHome />}></Route>
                     <Route path="/setting" element={<Setting></Setting>}></Route>
