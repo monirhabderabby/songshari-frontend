@@ -14,13 +14,14 @@ export const FriendRequestCard = ({ friend }) => {
     const [acceptFriendRequest, { data }] = useAcceptFriendRequestMutation();
 
     // js variables
-    const name = friend?.user?.firstName + " " + friend?.user?.lastName;
+    const name = friend?.firstName + " " + friend?.lastName;
 
     // function declation
     const acceptHandler = async id => {
         await acceptFriendRequest({ id });
-        if (data) console.log(data);
     };
+
+    if (data) console.log(data);
     return (
         <div className="p-[21px] h-[141px] w-full mx-auto bg-white shadow-[2px_2px_8px_rgba(0,0,0,0.12)] rounded-[15px] flex justify-between items-center">
             <div className="h-full flex items-center">
