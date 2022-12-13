@@ -59,6 +59,8 @@ const EditPhysicalInfo = () => {
     const navigate = useNavigate();
     //data submission function
     const handleSubmit = async (e) => {
+        const data = { ...physicalInfo, height, weight }
+        await updatePhysicalDetails(data)
         e.preventDefault()
     }
     if (isSuccess) {

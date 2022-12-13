@@ -231,7 +231,6 @@
   line-height: 44px;
   position: absolute;
   right: 125px;
-
   top: 5px;
   width: 44px;
 }
@@ -278,6 +277,7 @@
   .footer-section .newslater-section .newslater-wrapper .newslater-form button {
     right: 110px;
   }
+
   .footer-section .newslater-section .newslater-wrapper .icon {
     left: 40%;
   }
@@ -287,9 +287,11 @@
   .footer-section .newslater-section .newslater-wrapper .newslater-form button {
     right: 105px;
   }
+
   .footer-section .newslater-section .newslater-wrapper .newslater-form input {
     width: 60%;
   }
+
   .ocean,
   .ocean2 {
     height: 83px;
@@ -300,6 +302,7 @@
   .footer-section .newslater-section .newslater-wrapper .newslater-form button {
     right: 5px;
   }
+
   .footer-section .newslater-section .newslater-wrapper .newslater-form input {
     width: 100%;
   }
@@ -309,6 +312,7 @@
   .footer-section .newslater-section .newslater-wrapper .icon {
     left: 28%;
   }
+
   .ocean,
   .ocean2 {
     height: 60px;

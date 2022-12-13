@@ -1,42 +1,34 @@
-@import url("https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&family=Outfit:wght@400;500;700&family=Syne:wght@400;500;600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Nunito:wght@400;500;600;700&family=Outfit:wght@400;500;600;700&family=Syne:wght@400;500;600;700&display=swap");
 
 .custom-container {
-  max-width: 1200px;
-  margin: 0 auto;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 .banner::before {
-  content: "";
-  background-color: #000000;
+    content: "";
+    background-color: #000000;
 }
 
 .bg_Color {
-  background-image: linear-gradient(
-    166deg,
-    rgb(242, 40, 118) 0%,
-    rgb(148, 45, 217) 100%
-  );
+    background-image: linear-gradient(166deg, rgb(242, 40, 118) 0%, rgb(148, 45, 217) 100%);
 }
 
 .pink_Gradient {
-  background: linear-gradient(309deg, #f664bc 0%, #fb7bbc 35%, #ff92bb 100%);
+    background: linear-gradient(309deg, #f664bc 0%, #fb7bbc 35%, #ff92bb 100%);
 }
 
 .button_shadow {
-  box-shadow: 0px 5px 10px 0px rgb(143 175 202 / 50%);
+    box-shadow: 0px 5px 10px 0px rgb(143 175 202 / 50%);
 }
 .gradient_text {
-  font-size: 16px;
-  background: -webkit-linear-gradient(
-    166deg,
-    rgb(242, 40, 118) 0%,
-    rgb(148, 45, 217) 100%
-  );
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+    font-size: 16px;
+    background: -webkit-linear-gradient(166deg, rgb(242, 40, 118) 0%, rgb(148, 45, 217) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 .swiper-slide {
-  background-color: transparent !important;
+    background-color: transparent !important;
 }
 
 /* .gradient_border {

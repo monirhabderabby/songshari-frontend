@@ -52,7 +52,7 @@ const MobileLogin = () => {
     }, [response, dispatch, user, navigate, reset, from]);
 
     return (
-        <div className="bg-[#F8F8FF] min-h-screen pt-2">
+        <div className="bg-[#F8F8FF] min-h-screen">
             <div className="text-[#1E2022] flex justify-start items-center gap-[33%] bg-white font-medium text-center text-lg leading-[18px] py-4 px-6  mb-10">
                 <span>
                     <AiOutlineLeft onClick={() => navigate("/")} />
@@ -122,9 +122,12 @@ const MobileLogin = () => {
                         Forgot Password?
                     </Link>
                     <div className="col-span-2">{customError && <Error message={customError} />}</div>
-                    <p className="text-[#1E2022] mt-14 mb-5 text-xs leading-4">
-                        By continuing, you agree to our Terms of Service and Privacy Policy.
-                    </p>
+                    <div className="flex">
+                        <input type="checkbox" className="focus:outline-none checked:bg-pink-500 mr-2 mt-6" />
+                        <p className="text-[#1E2022] mt-14 mb-5 text-xs leading-4">
+                            By continuing, you agree to our Terms of Service and Privacy Policy.
+                        </p>
+                    </div>
                     <input
                         className="rounded-[48px] pt-3 pb-4 mb-5 w-full font-medium leading-4 text-white"
                         style={{ backgroundImage: "linear-gradient(180deg, #D21878 0%, #4F42A3 100%)" }}

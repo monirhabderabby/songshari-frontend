@@ -1,7 +1,6 @@
 import React, { Suspense, useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import Anexecutive from "../../components/CardComopents/Anexecutive";
-import ThreeEasySteps from "../../components/pages/Home/Banner/ThreeEasySteps";
 import BeginFamilyJourney from "../../components/pages/Home/BeginFamilyJourney/BeginFamilyJourney";
 import FindSoleMate from "../../components/pages/Home/FindSoleMate/FindSoleMate";
 import SecureVerified from "../../components/pages/Home/SecureVerified/SecureVerified";
@@ -13,8 +12,8 @@ import TopProfile from "../../components/pages/TopProfile/TopProfile";
 import Footer from "../../components/shared/Footer/Footer";
 import { auth } from "../../firebase.init";
 import { MobileHome } from "./mobileversion/MobileHome";
+import { TabHome } from "./tab/TabHome";
 const Banner = React.lazy(() => import("../../components/pages/Home/Banner/Banner"));
-// import NavBar from "../../components/shared/NavBar/NavBar";
 const Homepage = () => {
     const [user, loading] = useAuthState(auth);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -30,26 +29,26 @@ const Homepage = () => {
     }, [user, loading, setIsLoggedIn]);
     return (
         <div className="font-george">
-            <div className="hidden md:block">
+            <div className="hidden md:hidden lg:block">
                 <Suspense fallback={<div>Loading...</div>}>
                     <NavBar></NavBar>
                     <Banner></Banner>
-                    {/* <ThreeEasySteps></ThreeEasySteps> */}
                     <LatestRegisteredMember />
                     <SecureVerified></SecureVerified>
                     <BeginFamilyJourney></BeginFamilyJourney>
                     <TopProfile />
-                    {/* <TopProfession /> */}
                     <PeopleJoinedAlready />
                     <MeetNewPeople />
                     <FindSoleMate />
-                    {/* <Membership /> */}
                     {!isLoggedIn && <Anexecutive />}
                     <Footer />
                 </Suspense>
             </div>
-            <div className="md:hidden">
+            <div className="lg:hidden md:hidden">
                 <MobileHome></MobileHome>
+            </div>
+            <div className="lg:hidden hidden md:block">
+                <TabHome></TabHome>
             </div>
         </div>
     );

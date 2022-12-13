@@ -67,7 +67,7 @@ const Signup = () => {
         <div>
             <div className="min-h-screen hidden md:block">
                 <section className="flex justify-center items-center w-full flex-1 text-center px-3 md:px-20  min-h-screen">
-                    <div className="bg-white rounded-2xl shadow-2xl md:flex w-[100%] md:w-3/4 lg:w-4/5 max-w-6xl relative">
+                    <div className="bg-white rounded-2xl shadow-2xl lg:flex w-[100%] md:w-3/4 lg:w-4/5 max-w-6xl relative">
                         <div className="w-full lg:w-3/5 p-5 my-auto">
                             <div className="text-left font-bold">
                                 <span className="gradient_text font-george">
@@ -333,7 +333,7 @@ const Signup = () => {
                                 {/*Input Field*/}
                             </div>
                         </div>{" "}
-                        <div className="h-[200px] w-full bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] rounded-br-2xl rounded-bl-2xl p-2 md:hidden text-white">
+                        <div className="h-[200px] w-full bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] rounded-br-2xl rounded-bl-2xl p-2 lg:hidden text-white">
                             <h2 className="font-bold text-3xl mb-2">Hello, Friend!</h2>
                             <div className="border-2 w-10 border-white inline-block"></div>
                             <p className="mb-4">Fill up your information and start journey with us</p>

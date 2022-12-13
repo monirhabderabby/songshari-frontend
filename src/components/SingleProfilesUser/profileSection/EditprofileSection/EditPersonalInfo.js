@@ -4,7 +4,7 @@ import TextField from "@mui/material/TextField";
 import { DatePicker, InputNumber, Radio, Select, Slider, Space, Upload } from "antd";
 import TextArea from "antd/es/input/TextArea";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import { firebaseStorage } from "../../../../firebase.init";
 import { useUpdatePersonalDetailsMutation } from "../../../../Redux/features/userInfo/userApi";
@@ -372,7 +372,6 @@ const EditPersonalInfo = () => {
             position: currentPosition?.title,
             ...educationalInfo,
             degree: degreeName?.title,
-            institute: instituteName?.title,
             department: departmentName?.title,
             feildOfStudy: fieldOfStudy?.title,
             gpaOrCgpa: cgpa?.title,
