@@ -9,14 +9,13 @@ export const FindAPartnerSuggested = () => {
     // varible declation
     // hook variables
     const { data, isSuccess, isLoading } = useGetRecentMembersQuery();
-
     // js variables
     const arr = [1, 2, 3, 4, 5, 6, 7, 8];
     return (
         <div className="mt-[30px] max-w-[950px] mx-auto">
             <div className="grid grid-cols-3 gap-[30px]">
                 {isSuccess &&
-                    data?.map(profile => {
+                    data.data.members?.map(profile => {
                         return <UserCard {...{ profile, isLoading }} />;
                     })}
                 {isLoading &&

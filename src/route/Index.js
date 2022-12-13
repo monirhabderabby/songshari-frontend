@@ -75,6 +75,8 @@ import MobileProfileOthers from "../Wrapper/Home/mobileversion/MobileProfileOthe
 import Certificate from "../Wrapper/Home/mobileversion/PhotoGallery/certificate/Certificate";
 import { PrivacyMov } from "../Wrapper/Home/mobileversion/privacy/PrivacyMov";
 import { Setting } from "../Wrapper/Home/mobileversion/Setting";
+import { User } from "../Admin__Portion/Components/User/User";
+import AddUser from "../Admin__Portion/Components/User/UserContent/AddUser/AddUser";
 
 const Index = () => {
     return (
@@ -139,6 +141,11 @@ const Index = () => {
                     <Route path="/admin-analytics" element={<AdminAnalytics />}></Route>
                     <Route path="/stepper" element={<Container></Container>}></Route>
                     <Route path="/upgrade" element={<UpgradePlan></UpgradePlan>}></Route>
+
+                    {/* Admin routes */}
+                    <Route path="/admin" element={<User></User>}>
+                        <Route path="addUser" element={<AddUser></AddUser>}></Route>
+                    </Route>
 
                     {/* --------------- MOBILE ROUTES START --------------- */}
                     <Route path="/mobileHomePage" element={<MobileHome />}></Route>
