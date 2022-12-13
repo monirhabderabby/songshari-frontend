@@ -9,7 +9,7 @@ export const FindAPartnerSuggested = () => {
     // varible declation
     // hook variables
     const { data, isSuccess, isLoading } = useGetRecentMembersQuery();
-    console.log(data.data)
+
     return (
         <div className="mt-[30px] max-w-[950px] mx-auto">
             <div className="grid grid-cols-3 gap-[30px]">
