@@ -80,10 +80,8 @@ import OthersCertificate from "../Wrapper/Home/mobileversion/PhotoGallery/certif
 import ProfessionalCertificate from "../Wrapper/Home/mobileversion/PhotoGallery/certificate/ProfessionalCertificate";
 import { PrivacyMov } from "../Wrapper/Home/mobileversion/privacy/PrivacyMov";
 import { Setting } from "../Wrapper/Home/mobileversion/Setting";
-import UpgradeUserPlan from "../Admin__Portion/Components/User/UpgradeUserPlan";
-import DownGradeUserPlan from "../Admin__Portion/Components/User/DownGradeUserPlan";
-import MarkPriorityUser from "../Admin__Portion/Components/User/PriorityUser/MarkPriorityUser";
-import ProfileDetails from "../components/SingleProfilesUser/profileSection/ProfileDetails";
+import { User } from "../Admin__Portion/Components/User/User";
+import AddUser from "../Admin__Portion/Components/User/UserContent/AddUser/AddUser";
 
 const Index = () => {
     return (
@@ -183,6 +181,11 @@ const Index = () => {
 
                     <Route path="/stepper" element={<Container></Container>}></Route>
                     <Route path="/upgrade" element={<UpgradePlan></UpgradePlan>}></Route>
+
+                    {/* Admin routes */}
+                    <Route path="/admin" element={<User></User>}>
+                        <Route path="addUser" element={<AddUser></AddUser>}></Route>
+                    </Route>
 
                     {/* --------------- MOBILE ROUTES START --------------- */}
                     <Route path="/mobileHomePage" element={<MobileHome />}></Route>

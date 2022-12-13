@@ -1,5 +1,11 @@
 import React from "react";
+import { Outlet } from "react-router";
+import UserNav from "./UserNav/UserNav";
 
 export const User = () => {
-    return <div>User</div>;
+    return (
+        <UserNav>
+            <Outlet />
+        </UserNav>
+    );
 };
