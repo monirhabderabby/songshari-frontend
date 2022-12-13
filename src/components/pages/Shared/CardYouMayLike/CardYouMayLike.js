@@ -1,33 +1,36 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { AiFillHeart } from "react-icons/ai";
 import { BiUserCheck, BiUserPlus } from "react-icons/bi";
 import loveIcon from "../../../../assets/images/icons/love.png";
-import { useAddFriendMutation, useLikeSingleProfileMutation } from "../../../../Redux/features/connections/connectionApi";
+import { useAddFriendMutation } from "../../../../Redux/features/connections/connectionApi";
 export const CardYouMayLike = ({ data }) => {
     const [sent, setSent] = useState(false);
     const [likeSent, setLikeSent] = useState(false);
     const [addFriend, { data: response, isLoading: responseLoading }] = useAddFriendMutation();
-    const [likeSingleProfile, { data: likeResponse, isLoading: likeLoading, error: errorLike }] = useLikeSingleProfileMutation();
+    // const [likeSingleProfile, { data: likeResponse, isLoading: likeLoading, error: errorLike }] = useLikeSingleProfileMutation();
+
+    // testing variables
+    let likeLoading = false;
 
     const handleSentRequest = async () => {
         await addFriend(data?._id);
     };
 
-    const handleLikeProfile = async () => {
-        await likeSingleProfile(data?._id);
-    };
+    // const handleLikeProfile = async () => {
+    //     await likeSingleProfile(data?._id);
+    // };
 
-    useEffect(() => {
-        if (response) setSent(true);
-    }, [response]);
+    // useEffect(() => {
+    //     if (response) setSent(true);
+    // }, [response]);
 
-    useEffect(() => {
-        if (likeResponse) setLikeSent(true);
-    }, [likeResponse]);
+    // useEffect(() => {
+    //     if (likeResponse) setLikeSent(true);
+    // }, [likeResponse]);
 
-    if (errorLike) {
-        console.log(errorLike)
-    }
+    // if (errorLike) {
+    //     console.log(errorLike);
+    // }
 
     return (
         // <div
@@ -61,21 +64,20 @@ export const CardYouMayLike = ({ data }) => {
                 <div className="flex items-center gap-x-[10px]">
                     <div className="w-[44px] h-[44px] bg-[#FFDFF4] rounded-full flex justify-center items-center">
                         {/* <img src={loveIcon} alt="loveIcon" /> */}
-                        {
-                            likeSent ? (
-                                <div>
-                                    <AiFillHeart className="text-green-400 w-[20px] h-[20px] text-xl transition-all duration-500 " />
-                                </div>
-                            ) : likeLoading ? (
-                                <div className="h-[16px] bg-[#E41272] rounded-full animate-ping w-[16px] text-[#E41272] transition-all duration-500 "></div>
-                            ) : (
-                                <img onClick={handleLikeProfile} src={loveIcon} alt="loveIcon" />
-                            )
-                        }
+                        {likeSent ? (
+                            <div>
+                                <AiFillHeart className="text-green-400 w-[20px] h-[20px] text-xl transition-all duration-500 " />
+                            </div>
+                        ) : likeLoading ? (
+                            <div className="h-[16px] bg-[#E41272] rounded-full animate-ping w-[16px] text-[#E41272] transition-all duration-500 "></div>
+                        ) : (
+                            <img src={loveIcon} alt="loveIcon" />
+                        )}
                     </div>
                     <div
-                        className={`${sent ? "bg-green-100" : "bg-[#FFDFF4]"
-                            } h-[43px] w-[43px] flex justify-center items-center rounded-full transition-all duration-500`}
+                        className={`${
+                            sent ? "bg-green-100" : "bg-[#FFDFF4]"
+                        } h-[43px] w-[43px] flex justify-center items-center rounded-full transition-all duration-500`}
                     >
                         {sent ? (
                             <BiUserCheck className="text-green-400 w-[20px] h-[20px] text-xl transition-all duration-500 " />
