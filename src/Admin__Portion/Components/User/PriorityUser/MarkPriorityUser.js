@@ -2,6 +2,7 @@ import { Search } from '@mui/icons-material'
 import React, { useState } from 'react'
 import RecentUserCard from './RecentUserCard';
 import UserCard from './UserCard';
+import './MarkPriorityUser.css'
 
 export default function MarkPriorityUser() {
     const [day, setDay] = useState('');
@@ -63,13 +64,13 @@ export default function MarkPriorityUser() {
                 </section>
                 <section className='my-8'>
                     <div className='mb-4'>
-                        <h1 className='text-xl font-semibold'>Mark As Priority User For :</h1>
+                        <h1 className='text-2xl font-bold'>Mark As Priority User For :</h1>
                     </div>
                     <div className='grid grid-cols-4 gap-2'>
                         {
                             tableData?.map(item => {
                                 return (
-                                    <button key={item.id} value={item.day} tabIndex={item.id} className="p-2 shadow-lg active:bg-[#E22989] active:text-white font-semibold hover:bg-[#E22989] hover:text-white " onClick={handleDay}
+                                    <button key={item.id} value={item.day} tabIndex={item.id} className="p-2 shadow-lg w-[189px] h-[65px] rounded day-btn active:text-white font-semibold hover:text-white text-base " onClick={handleDay}
                                         style={item.day === day ? { background: "linear-gradient(180deg, #E41272 0%, #942DD9 100%)", color: 'white' } : {}}
                                     >{item.day}</button>
                                 )
@@ -77,26 +78,31 @@ export default function MarkPriorityUser() {
                         }
                     </div>
                     <div className='mt-8'>
-                        <label htmlFor="custom" className=''>Custom:</label>
-                        <input type="number" name='custom' className='py-2 px-4 border-1 border-gray-300' placeholder='27 Day' onChange={(e) => setDay(e.target.value + 'Day')} />
+                        <label htmlFor="custom" className='font-bold text-2xl'>Custom:</label>
+                        <input type="number" name='custom' className='py-2 px-4 outline outline-1 ml-2 focus:outline-none focus:ring focus:border-blue-500' placeholder='27 Day' onChange={(e) => setDay(e.target.value + 'Day')} />
                     </div>
                     <div className='flex justify-center my-4 mt-4'>
-                        <button className='px-6 py-1 rounded  text-white' style={{
+                        <button className='px-6 py-1 rounded  text-white  w-[189px] h-[65px] font-semibold text-base]' style={{
                             background: "linear-gradient(180deg, #E41272 0%, #942DD9 100%)",
                         }}>Save</button>
                     </div>
                 </section>
                 <section>
                     <div>
-                        <div className='my-4'>
-                            <h1 className='text-xl text-semibold'>Recent Priority User</h1>
+                        <div className='mb-4 mt-8'>
+                            <h1 className='text-2xl font-bold'>Recent Priority User</h1>
                         </div>
                         <div className='grid grid-cols-2 gap-4'>
                             {users?.map(user => {
                                 return (
-                                    <RecentUserCard user={user.id} />
+                                    <RecentUserCard user={user} key={user.id} />
                                 )
                             })}
+                        </div>
+                        <div className='flex justify-center my-4'>
+                            <button className='px-4 py-1 rounded text-white' style={{
+                                background: "linear-gradient(180deg, #E41272 0%, #942DD9 100%)",
+                            }}>Load All</button>
                         </div>
                     </div>
                 </section>

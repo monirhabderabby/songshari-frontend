@@ -32,21 +32,20 @@ export default function PlanCard({ data }) {
                             </div>
                         </div>
                         <div className='ml-4'>
-                            <p><small>{data?.planName} plan</small></p>
-                            <p className='text-[#E41272] text-sm font-semibold'>{data?.planName}</p>
+                            <p className='text-2xl font-medium'><small>{data?.planName} plan</small></p>
+                            <p className='text-[#E41272] text-xl font-semibold'>{data?.planName}</p>
 
                         </div>
                     </div>
                     <div className='mt-8 mb-4'>
-                        <p> <span className='text-4xl text-[#E41272]'>৳{data?.amount}</span> <span> /monthly</span></p>
+                        <p> <span className='text-4xl font-bold text-[#E41272]'>৳{data?.amount}</span> <span> /monthly</span></p>
                         <p className='mt-4 text-xl text-[#E41272]'>What's included</p>
                     </div>
                     <div>
-                        <p className='mb-2 hover:ml-[-20px]'><CheckCircle style={{ color: '#2F3659' }} /> 10 Chat request</p>
                         {
                             data?.included?.map(item => {
                                 return (
-                                    <p className='mb-2 hover:ml-[-20px]'><CheckCircle style={{ color: '#2F3659' }} /> {item}</p>
+                                    <p className='mb-2 hover:ml-[-20px] text-lg font-medium text-[#2F3659]'><CheckCircle style={{ color: '#2F3659' }} /> {item}</p>
                                 );
                             })
                         }
