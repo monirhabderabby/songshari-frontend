@@ -14,9 +14,9 @@ const ChartBoard = () => {
     const number6 = [1, 2, 3, 4, 5, 6];
 
     const certificateInfo = [
-        { id: 1, text: "Personal Certificate", img: certificate, link: '/personalCertificate' },
-        { id: 2, text: "Professional Certificate", img: certificate, link: '/professionalCertificate' },
-        { id: 3, text: "Educational Certificate", img: certificate, link: '/educationalCertificate' },
+        { id: 1, text: "Personal Certificate", img: certificate, link: "/personalCertificate" },
+        { id: 2, text: "Professional Certificate", img: certificate, link: "/professionalCertificate" },
+        { id: 3, text: "Educational Certificate", img: certificate, link: "/educationalCertificate" },
     ];
 
     return (
@@ -52,29 +52,23 @@ const ChartBoard = () => {
                 <div className="grid  grid-cols-1 gap-y-[19px] gap-x-4 p-5">
                     {data
                         ? data.suggestion.map(profile => {
-                            return <CardYouMayLike key={profile._id} {...{ data: profile }} />;
-                        })
+                              return <CardYouMayLike key={profile._id} {...{ data: profile }} />;
+                          })
                         : number6.map(n => {
-                            return (
-                                <div
-                                    key={n}
-<<<<<<< HEAD
-                                    className="flex flex-col  items-center justify-center rounded-[20px] bg-white p-2 shadow-[0px_4px_4px_rgba(62,73,84,0.04)]"
-                                >
-                                    `<div className="h-[35px] w-[35px] rounded-full bg-gray-200 animate-pulse"></div>
-=======
-                                    className="flex flex-col  items-center justify-center rounded-[20px] bg-white p-2 shadow-[0px_4px_4px_rgba(62,73,84,0.04)] w-full"
-                                >
-                                    <div className="h-[35px] w-full lg:w-[35px] rounded-full bg-gray-200 animate-pulse"></div>
->>>>>>> 13b60cf6e64635d380a6f6dc735c6155a2a8be23
-                                    <div className="h-4 w-full animate-pulse bg-gray-200 leading-5 mt-2 rounded-3xl"></div>
-                                    <div className="flex items-center justify-between gap-4">
-                                        <div className="w-[45px] h-[45px] bg-gray-200 rounded-full mt-2 animate-pulse"></div>
-                                        <div className="w-[45px] h-[45px] bg-gray-200 rounded-full mt-2 animate-pulse"></div>
-                                    </div>
-                                </div>
-                            );
-                        })}
+                              return (
+                                  <div
+                                      key={n}
+                                      className="flex flex-col  items-center justify-center rounded-[20px] bg-white p-2 shadow-[0px_4px_4px_rgba(62,73,84,0.04)]"
+                                  >
+                                      `<div className="h-[35px] w-[35px] rounded-full bg-gray-200 animate-pulse"></div>
+                                      <div className="h-4 w-full animate-pulse bg-gray-200 leading-5 mt-2 rounded-3xl"></div>
+                                      <div className="flex items-center justify-between gap-4">
+                                          <div className="w-[45px] h-[45px] bg-gray-200 rounded-full mt-2 animate-pulse"></div>
+                                          <div className="w-[45px] h-[45px] bg-gray-200 rounded-full mt-2 animate-pulse"></div>
+                                      </div>
+                                  </div>
+                              );
+                          })}
                 </div>
             </div>
         </div>
