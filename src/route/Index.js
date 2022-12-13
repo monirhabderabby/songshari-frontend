@@ -80,6 +80,10 @@ import OthersCertificate from "../Wrapper/Home/mobileversion/PhotoGallery/certif
 import ProfessionalCertificate from "../Wrapper/Home/mobileversion/PhotoGallery/certificate/ProfessionalCertificate";
 import { PrivacyMov } from "../Wrapper/Home/mobileversion/privacy/PrivacyMov";
 import { Setting } from "../Wrapper/Home/mobileversion/Setting";
+import UpgradeUserPlan from "../Admin__Portion/Components/User/UpgradeUserPlan";
+import DownGradeUserPlan from "../Admin__Portion/Components/User/DownGradeUserPlan";
+import MarkPriorityUser from "../Admin__Portion/Components/User/PriorityUser/MarkPriorityUser";
+import ProfileDetails from "../components/SingleProfilesUser/profileSection/ProfileDetails";
 
 const Index = () => {
     return (
@@ -88,8 +92,8 @@ const Index = () => {
                 <Routes>
                     <Route path="/about" element={<About></About>}></Route>
                     <Route path="/userprofile" element={<SingleProfile />}>
-                        <Route path="" element={<Accordian />} />
-                        <Route path="edit">
+                        <Route path="" element={<ProfileDetails />} />
+                        <Route path="edit"  >
                             <Route path="personalinfo/:id" element={<EditPersonalInfo />} />
                             <Route path="profesionalinfo/:id" element={<EditProfesionalInfo />} />
                             <Route path="educationalinfo/:id" element={<EditEducationalInfo />} />
@@ -144,6 +148,9 @@ const Index = () => {
                     <Route path="/admin-analytics" element={<AdminAnalytics />}></Route>
                     <Route path="/stepper" element={<Container></Container>}></Route>
                     <Route path="/upgrade" element={<UpgradePlan></UpgradePlan>}></Route>
+                    <Route path="/upgradeuserplan" element={<UpgradeUserPlan />} />
+                    <Route path="/downgradeuserplan" element={<DownGradeUserPlan />} />
+                    <Route path="/markpriority" element={<MarkPriorityUser />} />
                     <Route path="/personalCertificate" element={<OthersCertificate />}></Route>
                     <Route path="/professionalCertificate" element={<ProfessionalCertificate />}></Route>
                     <Route path="/educationalCertificate" element={<EducationalCertificate />}></Route>

@@ -1,9 +1,9 @@
 import { FileAddFilled } from "@ant-design/icons";
 import Autocomplete, { createFilterOptions } from "@mui/material/Autocomplete";
-import TextField from "@mui/material/TextField";
 import { DatePicker, InputNumber, Radio, Select, Slider, Space, Upload } from "antd";
 import TextArea from "antd/es/input/TextArea";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import { TextField } from "material-ui";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import { firebaseStorage } from "../../../../firebase.init";
@@ -307,11 +307,11 @@ const EditPersonalInfo = () => {
     const onHeightChange = value => {
         setHeight(value);
     };
-    const onAfterHeightChange = value => {};
+    const onAfterHeightChange = value => { };
     const onWeightChange = value => {
         setWeight(value);
     };
-    const onAfterWeightChange = value => {};
+    const onAfterWeightChange = value => { };
     const handleUserAncestryChange = value => {
         setPhysicalInfo({ ...physicalInfo, ancestry: value });
     };
@@ -1006,7 +1006,7 @@ const EditPersonalInfo = () => {
                                         </div>
                                     )}
 
-                                    {}
+                                    { }
                                 </div>
                             </div>
                         )}
@@ -1708,8 +1708,8 @@ const EditPersonalInfo = () => {
                                     </p>
                                 </div>
                             </Dragger>
-                        </div>
-                    </div>
+                        </div >
+                    </div >
 
                     <div className="pb-4">
                         <div>
@@ -1844,7 +1844,7 @@ const EditPersonalInfo = () => {
                                         </div>
                                     )}
 
-                                    {}
+                                    { }
                                 </div>
                             </div>
                         )}
@@ -2210,9 +2210,9 @@ const EditPersonalInfo = () => {
                             className="w-full text-center py-[8] py-[10px] text-[#fff]  text-lg font-medium rounded"
                         />
                     </div>
-                </form>
-            </div>
-        </div>
+                </form >
+            </div >
+        </div >
     );
 };
 
