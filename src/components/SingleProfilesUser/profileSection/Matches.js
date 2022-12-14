@@ -45,7 +45,7 @@ export const Matches = () => {
                     );
                 })}
             </div>
-            <MatchersModalForm {...{ mathchesModalOpen, setMatchesModalOpen }} />
+            {/* <MatchersModalForm {...{ mathchesModalOpen, setMatchesModalOpen }} /> */}
         </div>
     );
 };
