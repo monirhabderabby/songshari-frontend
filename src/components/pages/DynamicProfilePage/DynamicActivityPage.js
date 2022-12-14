@@ -6,11 +6,7 @@ import profile from "../../../assets/images/profile/up1.png";
 import { getHoursMinutes } from "../../../Helper/helper";
 
 export const DynamicActivityPage = ({ postRefetch }) => {
-<<<<<<< HEAD
     const [posts, setPosts] = useState([]);
-=======
-  const [posts, setPosts] = useState([]);
->>>>>>> 3f3fd1942a818bb773b2d696f97ac0bc2fe23631
 
   useEffect(() => {
     fetch(`http://localhost:4000/member/post/myposts`, {

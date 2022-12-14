@@ -1,3 +1,4 @@
+// normal import 
 import React from "react";
 import { useState } from "react";
 import { BiUserCircle } from "react-icons/bi";
@@ -5,11 +6,15 @@ import { TbMessage } from "react-icons/tb";
 import { ageCalculator } from "../../../assets/utilities/AgeCalculation/ageCalculator";
 import { useGetMatchedUsersQuery } from "../../../Redux/features/connections/connectionApi";
 import MatchersModalForm from "../MatchPreference/MatchersModalForm";
+
+// css files 
 import "./Matches.css";
 
 export const Matches = () => {
+  // variables 
   const { data, isLoading, error } = useGetMatchedUsersQuery();
   const [mathchesModalOpen, setMatchesModalOpen] = useState(false);
+
   if (isLoading) {
     return;
   }
@@ -56,12 +61,6 @@ export const Matches = () => {
                 </div>
               </div>
             </div>
-<<<<<<< HEAD
-            {/* <MatchersModalForm {...{ mathchesModalOpen, setMatchesModalOpen }} /> */}
-        </div>
-    );
-};
-=======
           );
         })}
       </div>
@@ -69,4 +68,3 @@ export const Matches = () => {
     </div>
   );
 };
->>>>>>> 3f3fd1942a818bb773b2d696f97ac0bc2fe23631
