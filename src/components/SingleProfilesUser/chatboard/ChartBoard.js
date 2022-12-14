@@ -77,9 +77,9 @@ const ChartBoard = () => {
                 </div>
                 <div className="grid  grid-cols-1 gap-y-[19px] gap-x-4 p-5">
                     {data
-                        ? data?.data?.suggestion.map(profile => {
-                              return <CardYouMayLike key={profile._id} {...{ data: profile }} />;
-                          })
+                        ? data?.data?.suggestion.slice(0, 4).map(profile => {
+                            return <CardYouMayLike key={profile._id} {...{ data: profile }} />;
+                        })
                         : number6.map(n => {
                               return (
                                   <div

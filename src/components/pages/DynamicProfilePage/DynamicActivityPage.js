@@ -22,7 +22,6 @@ export const DynamicActivityPage = ({ postRefetch }) => {
       .then((res) => res.json())
       .then((data) => setPosts(data));
   }, [postRefetch]);
-
   return (
     <div className="grid grid-cols-1 gap-y-[30px]">
       {posts

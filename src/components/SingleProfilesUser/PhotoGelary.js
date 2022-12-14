@@ -69,8 +69,8 @@ const PhotoGelary = ({ data, isLoading }) => {
         <div className="w-full">
             <div className="px-6">
                 <Dragger onChange={handleChange} style={{ border: "none", background: "none" }} multiple={true} showUploadList={false}>
-                    <div className="flex">
-                        <div>
+                    <div className="flex bg-white shadow-[0px_10px_5px_rgba(119,123,146,0.02)] rounded-[10px] py-1.5">
+                        <div className="ml-2">
                             <svg
                                 color="#FF1D8E"
                                 xmlns="http://www.w3.org/2000/svg"
@@ -92,7 +92,7 @@ const PhotoGelary = ({ data, isLoading }) => {
                                 />
                             </svg>
                         </div>
-                        <h1 className="text-lg font-bold ml-2"> Uploaded Photoes</h1>
+                        <h1 className="text-lg font-bold ml-2"> Upload Photos</h1>
                     </div>
                 </Dragger>
             </div>
@@ -121,7 +121,11 @@ const PhotoGelary = ({ data, isLoading }) => {
                                 />
                             </svg>
                         </div>
-                        <h1 className="text-lg font-bold ml-2">21 Photo Uploaded</h1>
+                        <h1 className="text-lg font-bold ml-2">
+                            {
+                                photos?.length ? <p>{photos.length} Photos Uploaded</p> : <p>No Photos Uploaded</p>
+                            }
+                        </h1>
                     </div>
                 </div>
                 <div className="grid grid-cols-3 gap-2 mt-2  ">
