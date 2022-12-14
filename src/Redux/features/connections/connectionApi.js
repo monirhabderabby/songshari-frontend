@@ -66,6 +66,7 @@ export const connectionApi = apiSlice.injectEndpoints({
                     apiSlice.util.updateQueryData("getAllSentRequest", undefined, draft => {
                         const result = draft?.data?.user?.filter(d => d?._id !== arg.id);
 
+                        // return new array
                         return {
                             success: true,
                             data: {
