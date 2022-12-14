@@ -26,6 +26,10 @@
     border-radius: 10%;
    
 }
+.select-mov-home{
+    background-color: #efeef0;
+    font-weight: bold;
+}
 .mov-res{
     overflow-x: hidden;
 }

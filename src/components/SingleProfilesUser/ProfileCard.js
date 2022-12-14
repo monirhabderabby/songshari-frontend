@@ -12,7 +12,7 @@ const ProfileCard = ({ data, isLoading }) => {
         }
     }, [data]);
     return (
-        <div style={{ boxShadow: "0px 10px 5px rgba(119, 123, 146, 0.02)" }} className="rounded-xl">
+        <div style={{ boxShadow: "0px 10px 5px rgba(119, 123, 146, 0.02)" }} className="rounded-xl w-full bg-white">
             <div className="card_container shadow-4xl px-2 md:px-0 hidden md:block">
                 <div className="Card-header"></div>
                 <div className="relative lg:w-52 h-52 rounded-full">

@@ -38,7 +38,6 @@ const Signup = () => {
     };
 
     const onSubmit = async data => {
-        delete data.image;
         data.role = "member";
         data.gender = gender;
         console.log(data);
@@ -50,7 +49,7 @@ const Signup = () => {
 
     useEffect(() => {
         if (response) {
-            localStorage.setItem("accessToken", response.token);
+            localStorage.setItem("accessToken", response?.data?.token);
             dispatch(loadUserData(response));
             reset();
             navigate("/userProfile");
@@ -304,7 +303,7 @@ const Signup = () => {
                                                 >
                                                     <option value="">Select Gender</option>
                                                     <option value="man">Man</option>
-                                                    <option value="women">Women</option>
+                                                    <option value="woman">Women</option>
                                                 </select>
                                             </div>
                                             <h1 className="text-left ml-2">

@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { DatePicker } from 'antd';
+import React, { useEffect, useState } from 'react';
+import { DatePicker, message } from 'antd';
 import Autocomplete, { createFilterOptions } from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
 import TextArea from 'antd/es/input/TextArea';
@@ -8,12 +8,14 @@ import { useNavigate, useParams } from 'react-router';
 const { RangePicker } = DatePicker;
 
 const EditProfesionalInfo = () => {
+    //success and error message co
+    const [messageApi, contextHolder] = message.useMessage();
     // current position state
     const [currentPosition, setCurrentPosition] = useState(null);
     // institue state 
     const [currentInstitute, setCurrentInstitute] = useState(null);
     const [professionalInfo, setProfessionalInfo] = useState({});
-    const [updateProfessionalDetails, { isSuccess }] = useUpdateProfessionalDetailsMutation()
+    const [updateProfessionalDetails, { isSuccess, isLoading, isError }] = useUpdateProfessionalDetailsMutation();
     // current position state handler
     const handleCurrentPosition = (event, newValue) => {
         if (typeof newValue === 'string') {
@@ -77,11 +79,45 @@ const EditProfesionalInfo = () => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         const data = { ...professionalInfo, institute: currentInstitute?.title, position: currentPosition?.title }
-        await updateProfessionalDetails({ data, id })
+        await updateProfessionalDetails({ data, id });
     }
-    if (isSuccess) {
-        navigate("/userprofile")
-    }
+
+    useEffect(() => {
+        const key = 'updated'
+        if (isLoading) {
+            messageApi.open({
+                key,
+                type: 'loading',
+                content: 'Loading...',
+            });
+        }
+
+        if (isSuccess) {
+            messageApi.open({
+                key,
+                type: 'success',
+                content: 'Data updated succesfully',
+                duration: 2,
+            });
+        }
+
+        if (isError) {
+            messageApi.open({
+                key,
+                type: 'error',
+                content: 'Server error! try again!!'
+            })
+        }
+        if (!isLoading && !isError && isSuccess) {
+
+            setTimeout(() => {
+                navigate('/userprofile')
+
+            }, 2000)
+
+
+        }
+    }, [isSuccess, isLoading, isError])
     // filter for mui autocomplete
     const filter = createFilterOptions();
     return (
@@ -228,12 +264,11 @@ const EditProfesionalInfo = () => {
                         }}
                         className="w-full text-center py-[10px] text-[#fff]  text-lg font-medium rounded"
                     />
-                    {/* {isLoading &&
-                        <div className='mt-2'>
-                            <LinearProgress color="secondary" />
-                        </div>
 
-                    } */}
+                    <div className='mt-2'>
+                        {contextHolder}
+                    </div>
+
                 </div>
             </form>
 

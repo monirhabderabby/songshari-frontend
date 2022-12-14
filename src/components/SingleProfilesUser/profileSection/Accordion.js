@@ -42,7 +42,6 @@ const Accordian = ({ data, isLoading, edit }) => {
     };
     const navigate = useNavigate();
     // if (isLoading) return false;
-    console.log(data);
     return (
         <div className="mb-[69px] max-w-[523px] mx-auto">
             <Accordion expanded={expanded === "panel1"} onChange={handleChange("panel1")}>
