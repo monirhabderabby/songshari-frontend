@@ -6,7 +6,7 @@ import profile from "../../../assets/images/profile/up1.png";
 import { getHoursMinutes } from "../../../Helper/helper";
 
 export const DynamicActivityPage = ({ postRefetch }) => {
-    const [posts, setPosts] = useState();
+    const [posts, setPosts] = useState([]);
 
     useEffect(() => {
         fetch(`http://localhost:4000/member/post/myposts`, {
@@ -23,7 +23,7 @@ export const DynamicActivityPage = ({ postRefetch }) => {
     return (
         <div className="grid grid-cols-1 gap-y-[30px]">
             {
-                posts?.map(post => {
+                posts?.data?.data?.map(post => {
                     return (
                         <div>
 <div key={post?._id} className="max-w-[457px] mx-auto shadow-[2px_2px_4px_rgba(0,0,0,0.12)] bg-white rounded-[10px] p-[30px] hidden md:block">
