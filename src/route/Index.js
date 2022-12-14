@@ -83,7 +83,9 @@ import { Setting } from "../Wrapper/Home/mobileversion/Setting";
 import { SendNotificationOffer } from "../Admin__Portion/Components/SendNotificationOffer";
 import { RegistrationRequest } from "../Admin__Portion/Components/User/View__Registration__Request/Registration__Request/RegistrationRequest";
 import ViewUserActivities from "../Admin__Portion/Components/ViewUserActivities/ViewUserActivities";
-import  SendForPayment  from "../Admin__Portion/Components/User/View_Payment/SendForPayment";
+import SendForPayment from "../Admin__Portion/Components/User/View_Payment/SendForPayment";
+import { User } from "../Admin__Portion/Components/User/User";
+import AddUser from "../Admin__Portion/Components/User/UserContent/AddUser/AddUser";
 
 const Index = () => {
     return (
@@ -137,7 +139,7 @@ const Index = () => {
                         <Route path="nearest" element={<TopGroom />} />
                         <Route path="filter" element={<FilterResults />} />
                     </Route>
-                    
+
                     <Route path="/" element={<Homepage></Homepage>}>
                         <Route path="/" element={<Suggested />} />
                         <Route path="/top-gride" element={<TopBride />} />
@@ -186,9 +188,9 @@ const Index = () => {
                     <Route path="/upgrade" element={<UpgradePlan></UpgradePlan>}></Route>
 
                     {/* Admin routes */}
-                    {/* <Route path="/admin" element={<User></User>}>
+                    <Route path="/admin" element={<User></User>}>
                         <Route path="addUser" element={<AddUser></AddUser>}></Route>
-                    </Route> */}
+                    </Route>
                     {/* --------------- MOBILE ROUTES START --------------- */}
                     <Route path="/mobileHomePage" element={<MobileHome />}></Route>
                     <Route path="/setting" element={<Setting></Setting>}></Route>
