@@ -88,9 +88,8 @@ const UserNav = ({ children }) => {
                     <ul className='grid grid-cols-3 gap-[41px] font-poppins font-normal text-base text-[#000000]'>
                         {
                             routes.map(route =>
-                                <li className='bg-[#FFFFFF] text-center py-[5px] rounded' key={route.id}>
-                                    <NavLink className={({ isActive }) => (`cursor-pointer text-[15px] font-semibold  ${isActive ? 'text-white bg-[#E41272] rounded py-[5px]' : 'text-[#000000]'}`)} to={route.path}>{route.name}</NavLink>
-                                </li>
+                                <NavLink key={route.id} className={({ isActive }) => (`w-full  text-center py-[5px] rounded cursor-pointer text-[15px] font-semibold ${isActive ? ' text-white bg-[#E41272]' : 'text-[#000000] bg-[#FFFFFF]'}`)} to={route.path}>{route.name}
+                                </NavLink>
                             )}
                     </ul>
                 </div>

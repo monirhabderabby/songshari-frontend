@@ -26,6 +26,16 @@ export const AllSentRequest = () => {
                 <SentRequestLoader />
             </div>
         );
+<<<<<<< HEAD
+=======
+    } else if (!isLoading && isError && error?.data?.message.includes("No connections found")) {
+        content = (
+            <div className="flex flex-col items-center justify-center mt-[30%]">
+                <FiUsers className="text-[48px] text-gray-400" />
+                <p className="mt-[10px] text-[22px] font-Inter font-medium text-gray-500">No connections found.</p>
+            </div>
+        );
+>>>>>>> a1244e129eac7b57f6e290ad57835160c44dc267
     } else if (!isLoading && isError && error?.data?.message.includes("Cannot check authentication")) {
         content = (
             <div className="flex flex-col items-center justify-center mt-[30%]">
@@ -57,5 +67,11 @@ export const AllSentRequest = () => {
         );
     }
 
+<<<<<<< HEAD
+=======
+    if (data) console.log(data);
+    if (error) console.log(error);
+
+>>>>>>> a1244e129eac7b57f6e290ad57835160c44dc267
     return <div>{content}</div>;
 };

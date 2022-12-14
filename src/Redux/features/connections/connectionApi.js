@@ -1,9 +1,9 @@
 import apiSlice from "../../api/apiSlice";
 
 export const connectionApi = apiSlice.injectEndpoints({
-  endpoints: (builder) => ({
+  endpoints: builder => ({
     addFriend: builder.mutation({
-      query: (id) => ({
+      query: id => ({
         url: `/member/connections/add/${id}`,
         method: "POST",
         headers: {
@@ -28,6 +28,7 @@ export const connectionApi = apiSlice.injectEndpoints({
           authorization: `Bearer ${localStorage.getItem("accessToken")}`,
         },
       }),
+      keepUnusedDataFor: 600,
     }),
     acceptFriendRequest: builder.mutation({
       query: ({ id }) => ({
@@ -37,6 +38,29 @@ export const connectionApi = apiSlice.injectEndpoints({
           authorization: `Bearer ${localStorage.getItem("accessToken")}`,
         },
       }),
+      async onQueryStarted(arg, { dispatch, queryFulfilled }) {
+        // Ontimistic cache update
+        const updatePatch = dispatch(
+          apiSlice.util.updateQueryData("getAllFriendRequest", undefined, draft => {
+            const result = draft?.data?.user?.filter(d => d._id !== arg?.id);
+            return {
+              success: true,
+              data: {
+                user: result,
+              },
+              message: "Data found",
+            };
+          })
+        );
+
+        try {
+          const result = await queryFulfilled;
+          console.log(result);
+        } catch (error) {
+          console.log("cache Error", error);
+          updatePatch.undo();
+        }
+      },
     }),
     getAllConnectedConnections: builder.query({
       query: () => ({
@@ -57,21 +81,22 @@ export const connectionApi = apiSlice.injectEndpoints({
         },
       }),
 
-            async onQueryStarted(arg, { dispatch, queryFulfilled }) {
-                // Optimistic cache update start
-                const updateResult = dispatch(
-                    apiSlice.util.updateQueryData("getAllSentRequest", undefined, draft => {
-                        const result = draft?.data?.user?.filter(d => d?._id !== arg.id);
+      async onQueryStarted(arg, { dispatch, queryFulfilled }) {
+        // Optimistic cache update start
+        const updateResult = dispatch(
+          apiSlice.util.updateQueryData("getAllSentRequest", undefined, draft => {
+            const result = draft?.data?.user?.filter(d => d?._id !== arg.id);
 
-                        return {
-                            success: true,
-                            data: {
-                                user: result,
-                            },
-                            message: "Data found",
-                        };
-                    })
-                );
+            // return new array
+            return {
+              success: true,
+              data: {
+                user: result,
+              },
+              message: "Data found",
+            };
+          })
+        );
 
         // Final Decison of cache update
         try {
@@ -91,7 +116,7 @@ export const connectionApi = apiSlice.injectEndpoints({
       }),
     }),
     likeSingleProfile: builder.mutation({
-      query: (id) => ({
+      query: id => ({
         url: `/member/like/profile/${id}`,
         method: "PUT",
         headers: {
@@ -99,16 +124,47 @@ export const connectionApi = apiSlice.injectEndpoints({
         },
       }),
     }),
+    rejectFriendReqeust: builder.mutation({
+      query: ({ id }) => ({
+        url: `/member/connections/sentRequest/${id}`,
+        method: "DELETE",
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+      }),
+      async onQueryStarted(arg, { dispatch, queryFulfilled }) {
+        // Ontimistic cache update
+        const updateResult = dispatch(
+          apiSlice.util.updateQueryData("getAllFriendRequest", undefined, draft => {
+            const result = draft?.data?.user?.filter(d => d?._id !== arg?.id);
+            return {
+              success: true,
+              data: {
+                user: result,
+              },
+              message: "Data found",
+            };
+          })
+        );
+
+        try {
+          await queryFulfilled;
+        } catch (error) {
+          updateResult.undo();
+        }
+      },
+    }),
   }),
 });
 
 export const {
-    useAddFriendMutation,
-    useGetAllSentRequestQuery,
-    useGetAllFriendRequestQuery,
-    useAcceptFriendRequestMutation,
-    useGetAllConnectedConnectionsQuery,
-    useCancleSentRequestMutation,
-    useGetMatchedUsersQuery,
-    useLikeSingleProfileMutation
+  useAddFriendMutation,
+  useGetAllSentRequestQuery,
+  useGetAllFriendRequestQuery,
+  useAcceptFriendRequestMutation,
+  useGetAllConnectedConnectionsQuery,
+  useCancleSentRequestMutation,
+  useGetMatchedUsersQuery,
+  useLikeSingleProfileMutation,
+  useRejectFriendReqeustMutation,
 } = connectionApi;

@@ -60,7 +60,7 @@ import { FindAPartnerSuggested } from "../components/pages/FindPartner/FindAPart
 import EducationalCertificate from "../components/SingleProfilesUser/CertificateSection/EducationalCertificate";
 import MobileSingleProfilesUser from "../components/SingleProfilesUser/MobileSingleProfilesUser/MobileSingleProfilesUser";
 import { PersonalDetailsMobile } from "../components/SingleProfilesUser/MobileSingleProfilesUser/PersonalDetailsMobile";
-// import Accordian from "../components/SingleProfilesUser/profileSection/Accordion";
+import Accordian from "../components/SingleProfilesUser/profileSection/Accordion";
 import EditPersonalInfo from "../components/SingleProfilesUser/profileSection/EditprofileSection/EditPersonalInfo";
 import { AboutMov } from "../Wrapper/Home/mobileversion/about/AboutMov";
 import { CertificateMov } from "../Wrapper/Home/mobileversion/CertificateMov";
@@ -82,10 +82,12 @@ import OthersCertificate from "../Wrapper/Home/mobileversion/PhotoGallery/certif
 import ProfessionalCertificate from "../Wrapper/Home/mobileversion/PhotoGallery/certificate/ProfessionalCertificate";
 import { PrivacyMov } from "../Wrapper/Home/mobileversion/privacy/PrivacyMov";
 import { Setting } from "../Wrapper/Home/mobileversion/Setting";
-// import { SendNotificationOffer } from "../Admin__Portion/Components/SendNotificationOffer";
-// import { RegistrationRequest } from "../Admin__Portion/Components/User/View__Registration__Request/Registration__Request/RegistrationRequest";
+import { SendNotificationOffer } from "../Admin__Portion/Components/SendNotificationOffer";
+import { RegistrationRequest } from "../Admin__Portion/Components/User/View__Registration__Request/Registration__Request/RegistrationRequest";
 import ViewUserActivities from "../Admin__Portion/Components/ViewUserActivities/ViewUserActivities";
 import SendForPayment from "../Admin__Portion/Components/User/View_Payment/SendForPayment";
+import { User } from "../Admin__Portion/Components/User/User";
+import AddUser from "../Admin__Portion/Components/User/UserContent/AddUser/AddUser";
 
 const Index = () => {
     return (
@@ -188,9 +190,9 @@ const Index = () => {
                     <Route path="/upgrade" element={<UpgradePlan></UpgradePlan>}></Route>
 
                     {/* Admin routes */}
-                    {/* <Route path="/admin" element={<User></User>}>
+                    <Route path="/admin" element={<User></User>}>
                         <Route path="addUser" element={<AddUser></AddUser>}></Route>
-                    </Route> */}
+                    </Route>
                     {/* --------------- MOBILE ROUTES START --------------- */}
                     <Route path="/mobileHomePage" element={<MobileHome />}></Route>
                     <Route path="/setting" element={<Setting></Setting>}></Route>
@@ -241,9 +243,9 @@ const Index = () => {
                     {/* --------------- MOBILE ROUTES END --------------- */}
 
                     <Route path="*" element={<NotFound />}></Route>
-                </Routes>
-            </BrowserRouter>
-        </div>
+                </Routes >
+            </BrowserRouter >
+        </div >
     );
 };
 
