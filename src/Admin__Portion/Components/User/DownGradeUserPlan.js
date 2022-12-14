@@ -9,7 +9,7 @@ export default function DownGradeUserPlan() {
                 <div>
                     <section>
                         <div className='flex justify-center mb-8'>
-                            <h1 className='font-semibold text-xl font-Nunito  '>Downgrade User Plan</h1>
+                            <h1 className='font-semibold text-4xl font-Nunito  '>Downgrade User Plan</h1>
                         </div>
                         <UserPlanHeader data={{ userName: 'John Willliam', age: 26 }} />
                     </section>

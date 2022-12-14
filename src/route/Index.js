@@ -51,6 +51,8 @@ import MobilePlatinumPlan from "../components/pages/Membership/MobileVersion/Mob
 import UpgradePlan from "../components/pages/Membership/MobileVersion/UpgradePlan";
 import MobileActivity from "../components/pages/MobileActivity/MobileActivity";
 import MobileActivityPost from "../components/pages/MobileActivity/MobileActivityPost";
+import ProfileDetails from "../components/SingleProfilesUser/profileSection/ProfileDetails";
+
 // import MobileSingleProfilesUser from "../components/SingleProfilesUser/MobileSingleProfilesUser/MobileSingleProfilesUser";
 import { Dashboard } from "../Admin__Portion/Dashboard/Dashboard";
 import { DynamicPhotosGallary } from "../components/pages/DynamicProfilePage/DynamicPhotosGallary";
@@ -94,7 +96,7 @@ const Index = () => {
                 <Routes>
                     <Route path="/about" element={<About></About>}></Route>
                     <Route path="/userprofile" element={<SingleProfile />}>
-                        {/* <Route path="" element={<ProfileDetails />} /> */}
+                        <Route path="" element={<ProfileDetails />} />
                         <Route path="edit"  >
                             <Route path="personalinfo/:id" element={<EditPersonalInfo />} />
                             <Route path="profesionalinfo/:id" element={<EditProfesionalInfo />} />
@@ -241,9 +243,9 @@ const Index = () => {
                     {/* --------------- MOBILE ROUTES END --------------- */}
 
                     <Route path="*" element={<NotFound />}></Route>
-                </Routes>
-            </BrowserRouter>
-        </div>
+                </Routes >
+            </BrowserRouter >
+        </div >
     );
 };
 

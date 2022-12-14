@@ -19,8 +19,8 @@ export default function UserPlanHeader({ data }) {
                             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlqRw_wsr3Ns2jNI2drFdP6VaS191Gm23iqEoLKODroVa_WsKqNHlsG6pyvrC17mLyHC8&usqp=CAU" className='w-[85px] h-[85px] rounded-full' alt="" />
                         </div>
                         <div>
-                            <h1 className='text-xl'>{data?.userName}</h1>
-                            <p>Age:{data?.age}</p>
+                            <h1 className='text-2xl font-medium'>{data?.userName}</h1>
+                            <p className='font-xl font-normal'>Age:{data?.age}</p>
                         </div>
                     </div>
                     <div className='flex justify-center'>

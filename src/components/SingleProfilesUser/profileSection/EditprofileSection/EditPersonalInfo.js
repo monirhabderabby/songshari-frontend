@@ -1,18 +1,18 @@
 import { FileAddFilled } from "@ant-design/icons";
 import Autocomplete, { createFilterOptions } from "@mui/material/Autocomplete";
-import { DatePicker, InputNumber, Radio, Select, Slider, Space, Upload } from "antd";
+import { DatePicker, InputNumber, Radio, Select, Slider, Space, Upload, message } from "antd";
 import TextArea from "antd/es/input/TextArea";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
-import { TextField } from "material-ui";
+import TextField from '@mui/material/TextField';
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import { firebaseStorage } from "../../../../firebase.init";
 import { useUpdatePersonalDetailsMutation } from "../../../../Redux/features/userInfo/userApi";
 const { RangePicker } = DatePicker;
-
 const { Option } = Select;
 const { Dragger } = Upload;
 const EditPersonalInfo = () => {
+    const [messageApi, contextHolder] = message.useMessage();
     const [personalInfo, setPersonalInfo] = useState({});
     const [physicalInfo, setPhysicalInfo] = useState({});
     const [educationalInfo, setEducationalInfo] = useState({});
@@ -44,7 +44,6 @@ const EditPersonalInfo = () => {
     const [parentStatus, setParentStatus] = useState("");
     //uploaded image url data state
     const [nidOrPassportPhoto, setNidOrPassportPhoto] = useState({});
-    const { id } = useParams();
     const [updatePersonalDetails, { isError, isLoading, isSuccess }] = useUpdatePersonalDetailsMutation();
     useEffect(() => {
         fetch("/json/countries.json")
@@ -79,27 +78,6 @@ const EditPersonalInfo = () => {
             <Option value="+966">KSA</Option>
         </Select>
     );
-    //for file upload
-    // const props = {
-    //     name: 'file',
-    //     multiple: false,
-    //     // action: '',
-    //     onChange(info) {
-    //         const { status } = info.file;
-    //         console.log(info)
-    //         if (status !== 'uploading') {
-    //             console.log(info.file, info.fileList);
-    //         }
-    //         if (status === 'done') {
-    //             message.success(`${info.file.name} file uploaded successfully.`);
-    //         } else if (status === 'error') {
-    //             message.error(`${info.file.name} file upload failed.`);
-    //         }
-    //     },
-    //     onDrop(e) {
-    //         console.log('Dropped files', e.dataTransfer.files);
-    //     },
-    // };
 
     // handle file upload change data
     const handleUpload = async event => {
@@ -380,15 +358,44 @@ const EditPersonalInfo = () => {
             weight: weight?.toString(),
             NidOrPassportPhoto: nidOrPassportPhoto,
         };
-
         await updatePersonalDetails(data);
-        // console.log(data)
     };
 
-    //after success update data redirect to the userprofile page
-    if (isSuccess) {
-        navigate("/userprofile");
-    }
+    // error success and loading handler
+    useEffect(() => {
+        const key = 'updated'
+        if (isLoading) {
+            messageApi.open({
+                key,
+                type: 'loading',
+                content: 'Loading...',
+            });
+        }
+
+        if (isSuccess) {
+            messageApi.open({
+                key,
+                type: 'success',
+                content: 'Data updated succesfully',
+                duration: 2,
+            });
+        }
+
+        if (isError) {
+            messageApi.open({
+                key,
+                type: 'error',
+                content: 'Server error! try again!!'
+            })
+        }
+        if (!isLoading && !isError && isSuccess) {
+            setTimeout(() => {
+                navigate('/userprofile')
+
+            }, 2000)
+        }
+    }, [isSuccess, isLoading, isError])
+
     //this filter for mui autocomplete
     const filter = createFilterOptions();
 
@@ -403,7 +410,7 @@ const EditPersonalInfo = () => {
                             </label>
                             <input
                                 type="text"
-                                name="fristName"
+                                name="firstName"
                                 id="fristName"
                                 placeholder="Frist Name"
                                 className=" focus:outline-none p-2 border focus:border-blue-500 shadow rounded-lg hover:border-blue-500 w-56 "
@@ -536,17 +543,12 @@ const EditPersonalInfo = () => {
                                         return option.inputValue;
                                     }
                                     // Regular option
-                                    return option.title;
+                                    return option?.title;
                                 }}
-                                renderOption={(pro, option) => <li {...pro}>{option.title}</li>}
+                                renderOption={(props, option) => <li {...props}>{option?.title}</li>}
                                 freeSolo
                                 renderInput={params => <TextField {...params} placeholder="Select Degree" />}
-                                sx={{
-                                    "& input": {
-                                        height: 6,
-                                        padding: 0,
-                                    },
-                                }}
+
                             />
 
                             <Autocomplete
@@ -585,7 +587,7 @@ const EditPersonalInfo = () => {
                                     // Regular option
                                     return option.title;
                                 }}
-                                renderOption={(prop, option) => <li {...prop}>{option.title}</li>}
+                                renderOption={(props, option) => <li {...props}>{option.title}</li>}
                                 freeSolo
                                 renderInput={params => <TextField {...params} placeholder="Select Institute" />}
                                 sx={{
@@ -634,7 +636,7 @@ const EditPersonalInfo = () => {
                                     // Regular option
                                     return option.title;
                                 }}
-                                renderOption={(prop, option) => <li {...prop}>{option.title}</li>}
+                                renderOption={(props, option) => <li {...props}>{option.title}</li>}
                                 freeSolo
                                 renderInput={params => <TextField {...params} placeholder="Select Department" />}
                                 sx={{
@@ -681,7 +683,7 @@ const EditPersonalInfo = () => {
                                     // Regular option
                                     return option.title;
                                 }}
-                                renderOption={(prop, option) => <li {...prop}>{option.title}</li>}
+                                renderOption={(props, option) => <li {...props}>{option.title}</li>}
                                 freeSolo
                                 renderInput={params => <TextField {...params} placeholder="Select Field of study" />}
                                 sx={{
@@ -2212,6 +2214,9 @@ const EditPersonalInfo = () => {
                     </div>
                 </form >
             </div >
+            <div>
+                {contextHolder}
+            </div>
         </div >
     );
 };
