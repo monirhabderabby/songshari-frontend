@@ -6,21 +6,29 @@ import moment from "moment";
 
 // components
 import tick from "../../../../assets/images/icons/tick.png";
-import { useAcceptFriendRequestMutation } from "../../../../Redux/features/connections/connectionApi";
+import { useAcceptFriendRequestMutation, useRejectFriendReqeustMutation } from "../../../../Redux/features/connections/connectionApi";
 
 export const FriendRequestCard = ({ friend }) => {
     // varible declation
     // hook variables
-    const [acceptFriendRequest, { data }] = useAcceptFriendRequestMutation();
+    const [acceptFriendRequest, { data, error }] = useAcceptFriendRequestMutation();
+    const [rejectFriendReqeust] = useRejectFriendReqeustMutation();
 
     // js variables
-    const name = friend?.user?.firstName + " " + friend?.user?.lastName;
+    const name = friend?.firstName + " " + friend?.lastName;
 
     // function declation
     const acceptHandler = async id => {
         await acceptFriendRequest({ id });
-        if (data) console.log(data);
     };
+
+    const rejectFriendReqeustHandler = async id => {
+        await rejectFriendReqeust({ id });
+    };
+
+    if (data) console.log("data", data);
+    if (error) console.log("error", error);
+
     return (
         <div className="p-[21px] h-[141px] w-full mx-auto bg-white shadow-[2px_2px_8px_rgba(0,0,0,0.12)] rounded-[15px] flex justify-between items-center">
             <div className="h-full flex items-center">
@@ -43,7 +51,10 @@ export const FriendRequestCard = ({ friend }) => {
                 >
                     Accept
                 </button>
-                <button className="h-[42px] w-[111px] border-[1px] border-[rgba(0,0,0,0.15)] hover:border-[rgba(0,0,0,0.11)] cursor-pointer rounded-[50px] text-[#E41272] text-[17px] font-normal font-Inter">
+                <button
+                    className="h-[42px] w-[111px] border-[1px] border-[rgba(0,0,0,0.15)] hover:border-[rgba(0,0,0,0.11)] cursor-pointer rounded-[50px] text-[#E41272] text-[17px] font-normal font-Inter"
+                    onClick={() => rejectFriendReqeustHandler(friend?._id)}
+                >
                     Reject
                 </button>
             </div>

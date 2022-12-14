@@ -1,8 +1,17 @@
+// configuration, ex: react-router
 import React from "react";
+
+// Third party packages, ex: redux
+import moment from "moment";
+
+// components
 import tick from "../../../../assets/images/icons/tick.png";
 
 export const FriendCard = ({ friend }) => {
+    // varible declation
+    // js variables
     const name = friend.firstName + " " + friend.lastName;
+
     return (
         <div className="p-[21px] h-[141px] w-full mx-auto bg-white shadow-[2px_2px_8px_rgba(0,0,0,0.12)] rounded-[15px] flex justify-between items-center">
             <div className="h-full flex items-center">
@@ -15,7 +24,7 @@ export const FriendCard = ({ friend }) => {
                         <h1 className="text-[20px] leading-[30px] text-[#333333] font-bold mr-[4px]">{name}</h1>
                         <img src={tick} alt="Not Available" />
                     </div>
-                    <span className="text-[16px] leading-[26px] text-[#333333] font-normal">A month ago</span>
+                    <span className="text-[16px] leading-[26px] text-[#333333] font-normal">{moment(friend?.date).fromNow() || "No Data Found"}</span>
                 </div>
             </div>
             <button
