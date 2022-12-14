@@ -1,12 +1,16 @@
+// configuration, ex: react-router
 import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+
+// Third party packages, ex: redux
 import { useCreateUserWithEmailAndPassword, useSignInWithGoogle, useUpdateProfile } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
 import { AiOutlineIdcard } from "react-icons/ai";
 import { FaGoogle, FaRegEnvelope, FaRegUser } from "react-icons/fa";
 import { MdLockOutline, MdPhone } from "react-icons/md";
 import { useDispatch } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
-import "../../../App.css";
+
+// components
 import logo from "../../../assets/images/Logo/logoBlack.png";
 import { auth } from "../../../firebase.init";
 import { useRegAsMemberMutation } from "../../../Redux/features/userInfo/userApi";
@@ -15,7 +19,12 @@ import Error from "../../ui/error/Error";
 import { TextField } from "./InputFields/TextField";
 import MobileSignUp from "./MobileDesign/MobileSignUp";
 
+// css files
+import "../../../App.css";
+
 const Signup = () => {
+    // varible declation
+    // hook variables
     const [regAsMember, { data: response, isLoading: serverLoading }] = useRegAsMemberMutation();
     const [customError, setCustomError] = useState("");
     const [createUserWithEmailAndPassword, user, loading, error] = useCreateUserWithEmailAndPassword(auth);
@@ -33,23 +42,8 @@ const Signup = () => {
         reset,
     } = useForm();
 
-    const emailHandler = () => {
-        setCustomError("");
-    };
-
-    const onSubmit = async data => {
-        data.role = "member";
-        data.gender = gender;
-        console.log(data);
-        // Implement firebase registration
-        await createUserWithEmailAndPassword(data.email, data.password);
-        await updateProfile({ displayName: data.firstName + " " + data.lastName });
-        await regAsMember(data);
-    };
-
     useEffect(() => {
         if (response) {
-            console.log(response);
             localStorage.setItem("accessToken", response?.token);
             dispatch(loadUserData(response));
             reset();
@@ -62,6 +56,21 @@ const Signup = () => {
             setCustomError("email already in use");
         }
     }, [error]);
+
+    // js variables
+
+    const emailHandler = () => {
+        setCustomError("");
+    };
+
+    const onSubmit = async data => {
+        data.role = "member";
+        data.gender = gender;
+        // Implement firebase registration
+        await createUserWithEmailAndPassword(data.email, data.password);
+        await updateProfile({ displayName: data.firstName + " " + data.lastName });
+        await regAsMember(data);
+    };
 
     return (
         <div>
