@@ -1,15 +1,21 @@
+// normal import 
 import React from "react";
 import { useState } from "react";
 import { BiUserCircle } from "react-icons/bi";
 import { TbMessage } from "react-icons/tb";
+// components import 
 import { ageCalculator } from "../../../assets/utilities/AgeCalculation/ageCalculator";
-import { useGetMatchedUsersQuery } from "../../../Redux/features/connections/connectionApi";
 import MatchersModalForm from "../MatchPreference/MatchersModalForm";
+// 3rd party package 
+import { useGetMatchedUsersQuery } from "../../../Redux/features/connections/connectionApi";
+// css files 
 import "./Matches.css";
 
 export const Matches = () => {
+  // hooks variables 
   const { data, isLoading, error } = useGetMatchedUsersQuery();
   const [mathchesModalOpen, setMatchesModalOpen] = useState(false);
+
   if (isLoading) {
     return;
   }
