@@ -49,7 +49,8 @@ const Signup = () => {
 
     useEffect(() => {
         if (response) {
-            localStorage.setItem("accessToken", response?.data?.token);
+            console.log(response);
+            localStorage.setItem("accessToken", response?.token);
             dispatch(loadUserData(response));
             reset();
             navigate("/userProfile");
