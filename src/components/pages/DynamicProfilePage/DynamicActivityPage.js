@@ -1,6 +1,9 @@
+// configuration
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
+
+// components
 import love from "../../../assets/images/icons/coolicon.svg";
 import profile from "../../../assets/images/profile/up1.png";
 import { getHoursMinutes } from "../../../Helper/helper";
@@ -19,8 +22,6 @@ export const DynamicActivityPage = ({ postRefetch }) => {
       .then((res) => res.json())
       .then((data) => setPosts(data));
   }, [postRefetch]);
-
-  console.log(posts);
 
   return (
     <div className="grid grid-cols-1 gap-y-[30px]">

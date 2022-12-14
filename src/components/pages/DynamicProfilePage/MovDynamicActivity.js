@@ -1,9 +1,13 @@
+// configuration
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
+
+// components
 import { getHoursMinutes } from "../../../Helper/helper";
 import profile from "../../../assets/images/profile/up1.png";
 import love from "../../../assets/images/icons/coolicon.svg";
+
 export const MovDynamicActivity = ({ postRefetch }) => {
   const [posts, setPosts] = useState();
 
