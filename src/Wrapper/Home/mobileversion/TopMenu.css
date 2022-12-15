@@ -5,26 +5,22 @@
     margin-left: -30px;
     margin-top: 5px;
 }
-
 .shongshari-mov{
     margin-left: -16px;
 }
 .mov-top{
-    background-color: black;
-
-   
+    background-color: black;   
 }
 .bg-home-suggested{
     background: linear-gradient(155deg, #E41272 0%, #4844A5 100%);
-    border-radius: 10%;
+    font-size-adjust: 10px;
+   
 }
 .bg-gome-2{
-    border-radius: 10%;
-   
+    border-radius: 10%;   
 }
 .bg-gome-3{
-    border-radius: 10%;
-   
+    border-radius: 10%;   
 }
 .select-mov-home{
     background-color: #efeef0;
@@ -33,16 +29,13 @@
 .mov-res{
     overflow-x: hidden;
 }
-
 .setting-mov{
     display: flex;
-
 }
 .profile-tit{
     color: #1E2022;
     font-weight: 500;
-    font-size: 17px;
-   
+    font-size: 17px;   
 }
 .ggg{
     margin-left: -30px;
@@ -73,21 +66,15 @@
     left: 0;
     right: 0;
 }
-.bg-setting-mov{
-
-}
 .bg-service-mov{
     background: linear-gradient(180deg, #EE4B96 0%, #BC3DE3 100%);
-
 }
 .heu{
-    display: flex;
-    
+    display: flex;    
 }
 .accordion-top-banner{
     margin-left: -30px;
-    margin-right: 50px;
-   
+    margin-right: 50px;   
 }
 .text-text{
     font-size: 12px;
@@ -97,4 +84,11 @@
 }
 .hee{
     margin-top: -30px;
+}
+.login-signup{
+    display: flex;
+}
+.bg-login-mov-home{
+    background: linear-gradient(155deg, #E41272 0%, #4844A5 100%);
+
 }

@@ -1,68 +1,74 @@
+// normal import 
 import React, { useState } from "react";
+
+// configuration 
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Link } from "react-router-dom";
 import { auth } from "../../../firebase.init";
-// import { MovSelect } from './movselect/MovSelect';
+
+// material ui 
+import Button from '@mui/material/Button';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+
+// css import 
 import "./TopMenu.css";
+
 export const TopMenu = () => {
+    // hooks variables 
     const [user] = useAuthState(auth);
-    const [state, setState] = useState(false);
-    const handleClick = () => {
-        setState(true);
-    };
+
+    const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
     return (
         <div>
             <div className="grid grid-cols-5  bg-top rounded  pt-2 pb-2">
                 <div className="ml-4 mov-top w-8 rounded-full mt-1 col-span-1">
                     <img src="https://i.ibb.co/pZFRdCB/512-512-Icon-1.png" alt="Not Available"></img>
                 </div>
-                {/* <div onClick={handleClick} className="col-span-3">
-                    <p className="font-bold text-sm mt-3 shongshari-mov">
-                        shongshari.com{" "}
-                        <span>
-                            <i className="fa-solid fa-angle-down"></i>
-                        </span>
-                    </p>
-                </div> */}
-                <select className="col-span-2 select-mov-home">
-                <option>Shongshari.com</option>
-                    
-                <option className='font-bold text-3xl'>{user && user.displayName}</option>
-                    <option className='bg-red-600 font-bold text-xl text-white'>
-                        <div className="ml-4 mr-4 font-xl font-bold pl-8">{user && 'Logout'}</div>
-                    </option>
-                   
-                </select>
+                
 
-                <div className="col-span-1">
-                   
+
+                <div className="col-span-3">
+                   <Button
+        id="basic-button"
+        aria-controls={open ? 'basic-menu' : undefined}
+        aria-haspopup="true"
+        aria-expanded={open ? 'true' : undefined}
+        onClick={handleClick}
+        className='font-bold text-black'
+      >
+       <span className="text-black font-bold"> Shongshari.com <i class="fa-solid fa-angle-down"></i></span>
+      </Button>
+      <Menu
+        id="basic-menu"
+        anchorEl={anchorEl}
+        open={open}
+        onClose={handleClose}
+        MenuListProps={{
+          'aria-labelledby': 'basic-button',
+        }}
+      >
+        <MenuItem onClick={handleClose}>
+            <div className="login-signup">
+<button className="bg-login-mov-home rounded-full text-white px-3">Log In</button>
+<p className="mx-2">Or</p>
+<button className="bg-login-mov-home rounded-full text-white px-3">Sign Up</button>
+            </div>
+        </MenuItem>
+      </Menu>
                 </div>
                 <div className="col-span-1 mt-2">
                     <i className="fa-regular fa-bell mr-4"></i>
                     <i className="fa-solid fa-bars"></i>
                 </div>
             </div>
-         
-            {user && state && (
-                <div className="` ">
-                    <Link to="" className="mt-4">
-                        <span className="bg-red-500 text-white pt-2   pb-2  ml-8">{user.displayName}</span>
-                    </Link>
-
-                </div>
-            )}
-            {!user && state && (
-                <div className="` ">
-                    <Link to="/login" className="mt-4">
-                        <span className="bg-red-500 text-white pt-2 pl-4 pr-4 pb-2 mr-4 rounded-full ml-8">Login</span>
-                    </Link>
-
-                    <span className="  pr-4">or</span>
-                    <Link to={"/signup"} className="bg-red-500 text-white pt-2 pl-4 pr-4 pb-2 mr-4 rounded-full">
-                        
-                    </Link>
-                </div>
-            )}
         </div>
     );
 };

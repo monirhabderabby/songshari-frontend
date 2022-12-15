@@ -4,7 +4,7 @@ import { Link, Outlet } from "react-router-dom";
 
 const TopProfileMov = () => {
   return (
-    <div className="bg-[#F8F8FF]">
+    <div>
      <div className="mt-8 pt-8 md:hidden lg:hidden">
         <Link to="" className='bg-home-suggested pr-4 pt-2 pb-2 pl-2 ml-2  text-white'> Suggested For You </Link>
         <Link to="/" className='pl-4  pt-2 pb-2   bg-gome-2 '> Top Profile </Link>
