@@ -81,13 +81,14 @@ import MobileCertificate from "../Wrapper/Home/mobileversion/PhotoGallery/certif
 import OthersCertificate from "../Wrapper/Home/mobileversion/PhotoGallery/certificate/OthersCertificate";
 import ProfessionalCertificate from "../Wrapper/Home/mobileversion/PhotoGallery/certificate/ProfessionalCertificate";
 import { PrivacyMov } from "../Wrapper/Home/mobileversion/privacy/PrivacyMov";
-import { Setting } from "../Wrapper/Home/mobileversion/Setting";
+import { Setting } from "../Wrapper/Home/mobileversion/setting/Setting";
 import { SendNotificationOffer } from "../Admin__Portion/Components/SendNotificationOffer";
 import { RegistrationRequest } from "../Admin__Portion/Components/User/View__Registration__Request/Registration__Request/RegistrationRequest";
 import ViewUserActivities from "../Admin__Portion/Components/ViewUserActivities/ViewUserActivities";
 import SendForPayment from "../Admin__Portion/Components/User/View_Payment/SendForPayment";
 import { User } from "../Admin__Portion/Components/User/User";
 import AddUser from "../Admin__Portion/Components/User/UserContent/AddUser/AddUser";
+import ProfileServices from "../components/SingleProfilesUser/ServicesSection/ProfileServices";
 
 const Index = () => {
     return (
@@ -196,6 +197,7 @@ const Index = () => {
                     {/* --------------- MOBILE ROUTES START --------------- */}
                     <Route path="/mobileHomePage" element={<MobileHome />}></Route>
                     <Route path="/setting" element={<Setting></Setting>}></Route>
+                    <Route path="/servicemov" element={<ProfileServices></ProfileServices>}></Route>
                     <Route path="/mobileuserprofile" element={<MobileSingleProfilesUser></MobileSingleProfilesUser>}></Route>
                     <Route path="/personaldetailsmov" element={<PersonalDetailsMobile></PersonalDetailsMobile>}></Route>
                     <Route path="/aboutmov" element={<AboutMov></AboutMov>}></Route>
@@ -207,7 +209,7 @@ const Index = () => {
                     <Route path="/historymov" element={<HistoryMov></HistoryMov>}></Route>
                     <Route path="/privacymov" element={<PrivacyMov></PrivacyMov>}></Route>
                     <Route path="/communitymov" element={<CommunityMov></CommunityMov>}></Route>
-                    <Route path="/certificatemov" element={<CertificateMov></CertificateMov>}></Route>
+                    <Route path="/certificatemov" element={<MobileCertificate></MobileCertificate>}></Route>
                     <Route path="/like" element={<Like></Like>}></Route>
                     <Route path="/mobileUpgrade" element={<UpgradePlan></UpgradePlan>}></Route>
                     <Route path="/mobileFreePlan" element={<MobileFreePlan />}></Route>
