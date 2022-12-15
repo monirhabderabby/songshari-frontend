@@ -67,9 +67,9 @@ const PhotoGelary = ({ data, isLoading }) => {
     console.log(urls);
     return (
         <div className="w-full">
-            <div className="px-6">
+            <div>
                 <Dragger onChange={handleChange} style={{ border: "none", background: "none" }} multiple={true} showUploadList={false}>
-                    <div className="flex bg-white shadow-[0px_10px_5px_rgba(119,123,146,0.02)] rounded-[10px] py-1.5">
+                    <div className="flex bg-white shadow-[0px_10px_5px_rgba(119,123,146,0.02)] rounded-[10px] p-6 w-[320px]">
                         <div className="ml-2">
                             <svg
                                 color="#FF1D8E"
@@ -96,7 +96,7 @@ const PhotoGelary = ({ data, isLoading }) => {
                     </div>
                 </Dragger>
             </div>
-            <div className="photo-gelary p-6 text-left shadow">
+            <div className="photo-gelary bg-white shadow-[0px_10px_5px_rgba(119,123,146,0.02)] rounded-[10px] p-6 w-[320px] text-left">
                 <div className="mb-2">
                     <div className="flex">
                         <div>
