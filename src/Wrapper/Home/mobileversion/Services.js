@@ -1,5 +1,6 @@
 // normal import 
 import React from 'react'
+
 // components import 
 import agent from '../../../assets/images/Logo/Agent.svg'
 import partner from '../../../assets/images/Logo/partner.svg'
@@ -23,7 +24,7 @@ export const Services = () => {
         <img src={Lawyer} className='w-8 mx-auto mt-1'  alt="Not Available"></img>
         <h1 className='text-xs text-white font-bold text-center pb-1'>Lawyer</h1>
         </div>
-        
+
         <div className=' bg-service-mov rounded-lg'>
         <img src={agent} className='w-8 mx-auto mt-1' alt="Not Available"></img>
         <h1 className='text-xs text-white font-bold text-center pb-1'>Agent</h1>
@@ -48,6 +49,7 @@ export const Services = () => {
         <img src={Blog} className='w-8 mx-auto mt-1' alt="Not Available"></img>
         <h1 className='text-xs text-white font-bold text-center pb-1'>Blog</h1>
         </div> 
+        
       </div>
     </div>
   )

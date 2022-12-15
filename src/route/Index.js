@@ -207,7 +207,7 @@ const Index = () => {
                     <Route path="/historymov" element={<HistoryMov></HistoryMov>}></Route>
                     <Route path="/privacymov" element={<PrivacyMov></PrivacyMov>}></Route>
                     <Route path="/communitymov" element={<CommunityMov></CommunityMov>}></Route>
-                    <Route path="/certificatemov" element={<CertificateMov></CertificateMov>}></Route>
+                    <Route path="/certificatemov" element={<MobileCertificate></MobileCertificate>}></Route>
                     <Route path="/like" element={<Like></Like>}></Route>
                     <Route path="/mobileUpgrade" element={<UpgradePlan></UpgradePlan>}></Route>
                     <Route path="/mobileFreePlan" element={<MobileFreePlan />}></Route>
