@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../../../App.css";
 import { useGetAllFriendRequestQuery } from "../../../Redux/features/connections/connectionApi";
 
@@ -8,7 +8,14 @@ import { AllSentRequest } from "./AllSentRequest";
 
 export const Friends = () => {
     const [page, setPage] = useState(2);
-    const { data, isLoading, isError, error } = useGetAllFriendRequestQuery();
+    const [fetch, setFetch] = useState(true);
+    const { data, isLoading, isError, error } = useGetAllFriendRequestQuery(undefined, {
+        skip: fetch,
+    });
+
+    useEffect(() => {
+        setFetch(false);
+    }, [setFetch]);
 
     return (
         <>
@@ -54,7 +61,7 @@ export const Friends = () => {
                 </button>
             </div>
             {page === 1 && <AllFriends />}
-            {page === 2 && <AllFriendRequest {...{ data, isLoading, isError, error }} />}
+            {page === 2 && <AllFriendRequest {...{ data, isLoading, isError, error, setFetch }} />}
             {page === 3 && <AllSentRequest />}
         </>
     );

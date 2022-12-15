@@ -13,7 +13,9 @@ import { FriendCard } from "./Cards/FriendCard";
 export const AllFriends = () => {
     // varible declation
     // hook variables
-    const { data, isLoading, isError, error } = useGetAllConnectedConnectionsQuery();
+    const { data, isLoading, isError, error } = useGetAllConnectedConnectionsQuery(undefined, {
+        skip: false,
+    });
 
     // js variables
     let content = null;
