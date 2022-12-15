@@ -1,10 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { Container } from '../../Stepper/Container'
 import { AccountSettingMov } from './AccountSettingMov'
-import { BottomNav } from './BottomNav'
-import { LogoutMov } from './LogoutMov'
-import { StepperMov } from './StepperMov'
+import { BottomNav } from '../BottomNav'
+
 
 export const Setting = () => {
   return (
