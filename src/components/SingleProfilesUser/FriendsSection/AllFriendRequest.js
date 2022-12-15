@@ -4,12 +4,18 @@ import React from "react";
 // Third party packages, ex: redux
 import { AiOutlineWarning } from "react-icons/ai";
 import { FiUsers } from "react-icons/fi";
+import { useGetAllFriendRequestQuery } from "../../../Redux/features/connections/connectionApi";
 import { FriendRequestLoader } from "../../pages/Shared/Loader/connections/FriendRequestLoader";
 
 // components
 import { FriendRequestCard } from "./Cards/FriendRequestCard";
 
-export const AllFriendRequest = ({ data, isLoading, isError, error }) => {
+export const AllFriendRequest = () => {
+    // hook variables
+    const { data, isLoading, isError, error } = useGetAllFriendRequestQuery(undefined, {
+        skip: false,
+    });
+
     // js variables
     let content = null;
     if (isLoading) {

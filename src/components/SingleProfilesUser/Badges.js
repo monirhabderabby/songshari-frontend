@@ -5,7 +5,7 @@ import verificationBadge from "../../assets/images/icons/verification.png";
 export const Badges = () => {
     const arr = [1, 2, 3, 4, 5];
     return (
-        <div className="mt-[24px] lg:w-[360px] h-[125px] bg-white shadow-[0px_10px_5px_rgba(119,123,146,0.02)] rounded-[10px] py-[16px] px-[20px]">
+        <div className="mt-[24px] lg:w-full h-[125px] bg-white shadow-[0px_10px_5px_rgba(119,123,146,0.02)] rounded-[10px] py-[16px] px-[20px]">
             <div>
                 <div className="flex items-center gap-x-[9px]">
                     <img src={badgesIcon} alt="badgesIcon" />
@@ -19,7 +19,6 @@ export const Badges = () => {
                     </div>
                 </div>
             </div>
-
         </div>
     );
 };
