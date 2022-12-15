@@ -37,7 +37,7 @@ export const TopMenu = () => {
                 <div className="col-span-1">
                    
                 </div>
-                <div className="col-span-1">
+                <div className="col-span-1 mt-2">
                     <i className="fa-regular fa-bell mr-4"></i>
                     <i className="fa-solid fa-bars"></i>
                 </div>

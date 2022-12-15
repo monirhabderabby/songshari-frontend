@@ -13,7 +13,7 @@ import Blog from '../../../assets/images/Logo/Blog.svg'
 export const Services = () => {
   return (
     <div>
-      <h1 className='font-bold ml-10 mt-8'>All Services</h1>
+      <h1 className='font-bold ml-6 mt-10 mb-4'>All Services</h1>
       <div className='grid grid-cols-4 ml-6 gap-3 mr-3'>
         <div className='bg-service-mov rounded-lg'>
         <img src={partner} className='w-8 mx-auto mt-1' alt="Not Available"></img>
