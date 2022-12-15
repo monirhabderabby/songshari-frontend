@@ -77,7 +77,8 @@
 
 }
 .bg-service-mov{
-    background-color: #ede4f7;
+    background: linear-gradient(180deg, #EE4B96 0%, #BC3DE3 100%);
+
 }
 .heu{
     display: flex;
