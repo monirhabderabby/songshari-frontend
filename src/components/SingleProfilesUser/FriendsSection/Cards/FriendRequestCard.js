@@ -8,10 +8,10 @@ import moment from "moment";
 import tick from "../../../../assets/images/icons/tick.png";
 import { useAcceptFriendRequestMutation, useRejectFriendReqeustMutation } from "../../../../Redux/features/connections/connectionApi";
 
-export const FriendRequestCard = ({ friend }) => {
+export const FriendRequestCard = ({ friend, refetch }) => {
     // varible declation
     // hook variables
-    const [acceptFriendRequest, { data, error }] = useAcceptFriendRequestMutation();
+    const [acceptFriendRequest] = useAcceptFriendRequestMutation();
     const [rejectFriendReqeust] = useRejectFriendReqeustMutation();
 
     // js variables
@@ -25,9 +25,6 @@ export const FriendRequestCard = ({ friend }) => {
     const rejectFriendReqeustHandler = async id => {
         await rejectFriendReqeust({ id });
     };
-
-    if (data) console.log("data", data);
-    if (error) console.log("error", error);
 
     return (
         <div className="p-[21px] h-[141px] w-full mx-auto bg-white shadow-[2px_2px_8px_rgba(0,0,0,0.12)] rounded-[15px] flex justify-between items-center">
