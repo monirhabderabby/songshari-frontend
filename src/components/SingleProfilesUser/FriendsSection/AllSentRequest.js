@@ -4,16 +4,18 @@ import React from "react";
 // Third party packages, ex: redux
 import { AiOutlineWarning } from "react-icons/ai";
 import { FiUsers } from "react-icons/fi";
+import { useGetAllSentRequestQuery } from "../../../Redux/features/connections/connectionApi";
 
 // components
-import { useGetAllSentRequestQuery } from "../../../Redux/features/connections/connectionApi";
 import { SentRequestLoader } from "../../pages/Shared/Loader/connections/SentRequestLoader";
 import { SentReqCard } from "./Cards/SentReqCard";
 
 export const AllSentRequest = () => {
     // varible declation
     // hook variables
-    const { data, isLoading, isError, error } = useGetAllSentRequestQuery();
+    const { data, isLoading, isError, error } = useGetAllSentRequestQuery(undefined, {
+        skip: false,
+    });
 
     // js variables
     let content = null;
@@ -54,7 +56,7 @@ export const AllSentRequest = () => {
                 <p className="mt-[10px] text-[22px] font-Inter font-medium text-gray-500">No Request sent</p>
             </div>
         );
-    } else if (!isLoading && data?.data?.user.length > 0) {
+    } else if (!isLoading && data?.data?.user?.length > 0) {
         content = (
             <div className="w-full grid grid-cols-1 gap-y-4 px-4">
                 {data?.data?.user.map(friend => {
@@ -63,9 +65,6 @@ export const AllSentRequest = () => {
             </div>
         );
     }
-
-    if (data) console.log(data);
-    if (error) console.log(error);
 
     return <div>{content}</div>;
 };

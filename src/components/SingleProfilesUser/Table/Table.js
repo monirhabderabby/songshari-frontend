@@ -13,8 +13,8 @@ const Table = ({ data, isLoading }) => {
     const navigate = useNavigate();
     return (
         <div>
-            <div className="mb-4">
-                <div className="w-full h-[60px] lg:w-[512px] bg-white mb-[20px] shadow-[rgba(100,100,111,0.2)_0px_7px_29px_0px] rounded-[4px]">
+            <div className="mb-4 w-full">
+                <div className="w-full h-[60px] lg:max-w-[512px] mx-auto bg-white mb-[20px] shadow-[rgba(100,100,111,0.2)_0px_7px_29px_0px] rounded-[4px]">
                     <div className="flex justify-center items-center h-full  gap-4">
                         <button
                             className={`font-medium text-[15px] leading-tight ${page === 1 ? "text-primary font-bold" : "text-gray-800"}`}

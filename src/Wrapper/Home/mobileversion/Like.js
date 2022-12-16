@@ -27,7 +27,7 @@ export const Like = () => {
       {/* ----- You may like ----- */}
       <div className="mt-[20px] px-6">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-y-8">
-          {data?.suggestion.map((profile) => {
+          {data?.data?.suggestion.map((profile) => {
             return <MayLikeSingle key={profile._id} {...{ data: profile }} />;
           })}
         </div>
