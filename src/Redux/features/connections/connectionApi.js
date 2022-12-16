@@ -19,7 +19,7 @@ export const connectionApi = apiSlice.injectEndpoints({
                     authorization: `Bearer ${localStorage.getItem("accessToken")}`,
                 },
             }),
-            keepUnusedDataFor: 5,
+            keepUnusedDataFor: 0,
         }),
         getAllFriendRequest: builder.query({
             query: () => ({
@@ -29,7 +29,7 @@ export const connectionApi = apiSlice.injectEndpoints({
                     authorization: `Bearer ${localStorage.getItem("accessToken")}`,
                 },
             }),
-            keepUnusedDataFor: 600,
+            keepUnusedDataFor: 0,
         }),
         acceptFriendRequest: builder.mutation({
             query: ({ id }) => ({
@@ -41,25 +41,25 @@ export const connectionApi = apiSlice.injectEndpoints({
             }),
             async onQueryStarted(arg, { dispatch, queryFulfilled }) {
                 // Ontimistic cache update
-                const updatePatch = dispatch(
-                    apiSlice.util.updateQueryData("getAllFriendRequest", undefined, draft => {
-                        const result = draft?.data?.user?.filter(d => d._id !== arg?.id);
-                        return {
-                            success: true,
-                            data: {
-                                user: result,
-                            },
-                            message: "Data found",
-                        };
-                    })
-                );
+                // const updatePatch = dispatch(
+                //     apiSlice.util.updateQueryData("getAllFriendRequest", undefined, draft => {
+                //         const result = draft?.data?.user?.filter(d => d._id !== arg?.id);
+                //         console.log("result", result);
+                //         return {
+                //             success: true,
+                //             data: {
+                //                 user: result,
+                //             },
+                //             message: "Data found",
+                //         };
+                //     })
+                // );
 
                 try {
                     const result = await queryFulfilled;
                     console.log(result);
                 } catch (error) {
                     console.log("cache Error", error);
-                    updatePatch.undo();
                 }
             },
         }),
@@ -71,7 +71,7 @@ export const connectionApi = apiSlice.injectEndpoints({
                     authorization: `Bearer ${localStorage.getItem("accessToken")}`,
                 },
             }),
-            keepUnusedDataFor: 20,
+            keepUnusedDataFor: 0,
         }),
         cancleSentRequest: builder.mutation({
             query: ({ id }) => ({
