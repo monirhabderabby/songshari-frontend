@@ -89,6 +89,7 @@ import SendForPayment from "../Admin__Portion/Components/User/View_Payment/SendF
 import { User } from "../Admin__Portion/Components/User/User";
 import AddUser from "../Admin__Portion/Components/User/UserContent/AddUser/AddUser";
 import ProfileServices from "../components/SingleProfilesUser/ServicesSection/ProfileServices";
+import { ServiceDetailsMov } from "../Wrapper/Home/mobileversion/allservices/ServiceDetailsMov";
 
 const Index = () => {
     return (
@@ -202,6 +203,7 @@ const Index = () => {
                     <Route path="/personaldetailsmov" element={<PersonalDetailsMobile></PersonalDetailsMobile>}></Route>
                     <Route path="/aboutmov" element={<AboutMov></AboutMov>}></Route>
                     <Route path="/gallarymov" element={<GallaryMov />}></Route>
+                    <Route path="/servicedetailsmov" element={<ServiceDetailsMov />}></Route>
                     <Route path="/meetmov" element={<MeetMov></MeetMov>}></Route>
                     <Route path="/matchesmov" element={<MatchesMov></MatchesMov>}></Route>
                     <Route path="/mobileActivityPage" element={<MobileActivity />}></Route>
