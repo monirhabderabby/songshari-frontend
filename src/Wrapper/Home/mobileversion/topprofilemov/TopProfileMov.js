@@ -8,7 +8,7 @@ const TopProfileMov = () => {
   return (
     <div>
      <h1 className='font-bold ml-5 mt-10 mb-4'>Top Profile</h1>
-    <div className="hello11  mx-5">
+    <div className="hello11  ml-[18px] mr-[14px]">
 <div className="bg-suggested-mov rounded">
   <button className="text-[12px] text-white px-2">Suggested For You</button>
 </div>
