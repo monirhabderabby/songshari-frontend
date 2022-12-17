@@ -23,8 +23,8 @@ export const EmailField = ({ register, errors, icon, name, placeholder, id }) =>
                 />
             </div>
             <h1 className="text-left ml-2">
-                {errors.email?.type === "required" && <span className="w-full text-left text-red-400 text-sm">{errors?.email.message}</span>}
-                {errors.email?.type === "pattern" && <span className="w-full text-left text-red-400 text-sm">{errors?.email.message}</span>}
+                {errors.email?.type === "required" && <span className="w-full text-left text-red-400 text-sm">{errors[name].message}</span>}
+                {errors.email?.type === "pattern" && <span className="w-full text-left text-red-400 text-sm">{errors[name].message}</span>}
             </h1>
         </section>
     );
