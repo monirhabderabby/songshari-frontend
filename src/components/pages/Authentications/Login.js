@@ -44,13 +44,13 @@ const Login = () => {
 
     useEffect(() => {
         if (error?.message === "Firebase: Error (auth/wrong-password).") {
-            setCustomError("You are entering the wrong password");
+            setCustomError("You entered the wrong password");
         }
         if (error?.message === "Firebase: Error (auth/user-not-found).") {
             setCustomError("User not found");
         }
         if (responseError) {
-            setCustomError(responseError);
+            console.log(responseError);
         }
     }, [error, setCustomError, responseError]);
 
@@ -155,13 +155,14 @@ const Login = () => {
                                                 )}
                                             </h1>
                                         </section>
+                                        <div className="col-span-2">{customError && <Error message={customError} />}</div>
                                         <span
                                             className="text-gray-400 float-right mt-3 hover:text-gray-500 duration-500 cursor-pointer"
                                             onClick={modalControll}
                                         >
                                             Forgot Password
                                         </span>
-                                        <div className="col-span-2">{customError && <Error message={customError} />}</div>
+
                                         <input
                                             type="submit"
                                             value={loading || isLoading ? "Loading..." : "LOGIN"}
