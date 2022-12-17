@@ -1,9 +1,13 @@
-import React from "react";
+// configuration
+import React, { useState } from "react";
+
+// Third party packages
 import { Input } from "antd";
-import { FiSearch } from "react-icons/fi";
 import Pagination from "@mui/material/Pagination";
-import userImg from "../../../assets/images/AdminRuffImage/adminRuffImg.jpg";
-import { useState } from "react";
+
+// components
+import { FiSearch } from "react-icons/fi";
+import userImg from "../../../../assets/images/AdminRuffImage/adminRuffImg.jpg";
 import ActivitiesTable from "./ActivitiesTable";
 
 const ViewUserActivities = () => {
