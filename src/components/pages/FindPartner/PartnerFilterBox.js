@@ -9,7 +9,7 @@ const PartnerFilterBox = () => {
         <>
             <div
                 id="join-now-box2"
-                className={`bg-[#fff]  ${FindPartner.partnerFilterBox} w-[300px] mt-5 lg:w-full mx-auto rounded-[10px] px-[30px] pt-[20px] pb-[30px] hidden`}
+                className={`bg-[#fff]  ${FindPartner.partnerFilterBox} w-[300px] mt-5 lg:w-full mx-auto rounded-[10px] px-[30px] pt-[20px] pb-[30px]`}
                 style={{
                     visibility: "visible",
                     boxShadow: " 2px 2px 10px rgba(0, 0, 0, 0.12)",
@@ -22,7 +22,7 @@ const PartnerFilterBox = () => {
             </div>
 
             {/* mobile device  */}
-            
+
             <div
                 id="join-now-box2"
                 className={`bg-[#fff]  ${FindPartner.partnerFilterBox} w-[350px] mt-5 lg:w-full mx-auto rounded-[10px] px-[30px] pt-[20px] pb-[30px] lg:hidden md:hidden`}
