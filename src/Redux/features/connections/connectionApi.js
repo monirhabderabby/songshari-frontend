@@ -1,9 +1,9 @@
 import apiSlice from "../../api/apiSlice";
 
 export const connectionApi = apiSlice.injectEndpoints({
-  endpoints: builder => ({
+  endpoints: (builder) => ({
     addFriend: builder.mutation({
-      query: id => ({
+      query: (id) => ({
         url: `/member/connections/add/${id}`,
         method: "POST",
         headers: {
@@ -13,12 +13,13 @@ export const connectionApi = apiSlice.injectEndpoints({
     }),
     getAllSentRequest: builder.query({
       query: () => ({
-        url: "/member/connections/requests",
+        url: "/member/connections/sentRequests",
         method: "GET",
         headers: {
           authorization: `Bearer ${localStorage.getItem("accessToken")}`,
         },
       }),
+      keepUnusedDataFor: 0,
     }),
     getAllFriendRequest: builder.query({
       query: () => ({
@@ -28,7 +29,7 @@ export const connectionApi = apiSlice.injectEndpoints({
           authorization: `Bearer ${localStorage.getItem("accessToken")}`,
         },
       }),
-      keepUnusedDataFor: 600,
+      keepUnusedDataFor: 0,
     }),
     acceptFriendRequest: builder.mutation({
       query: ({ id }) => ({
@@ -41,23 +42,27 @@ export const connectionApi = apiSlice.injectEndpoints({
       async onQueryStarted(arg, { dispatch, queryFulfilled }) {
         // Ontimistic cache update
         const updatePatch = dispatch(
-          apiSlice.util.updateQueryData("getAllFriendRequest", undefined, draft => {
-            const result = draft?.data?.user?.filter(d => d._id !== arg?.id);
-            return {
-              success: true,
-              data: {
-                user: result,
-              },
-              message: "Data found",
-            };
-          })
+          apiSlice.util.updateQueryData(
+            "getAllFriendRequest",
+            undefined,
+            (draft) => {
+              const result = draft?.data?.user?.filter(
+                (d) => d._id !== arg?.id
+              );
+              return {
+                success: true,
+                data: {
+                  user: result,
+                },
+                message: "Data found",
+              };
+            }
+          )
         );
 
         try {
-          const result = await queryFulfilled;
-          console.log(result);
+          await queryFulfilled;
         } catch (error) {
-          console.log("cache Error", error);
           updatePatch.undo();
         }
       },
@@ -70,7 +75,7 @@ export const connectionApi = apiSlice.injectEndpoints({
           authorization: `Bearer ${localStorage.getItem("accessToken")}`,
         },
       }),
-      keepUnusedDataFor: 20,
+      keepUnusedDataFor: 0,
     }),
     cancleSentRequest: builder.mutation({
       query: ({ id }) => ({
@@ -84,18 +89,24 @@ export const connectionApi = apiSlice.injectEndpoints({
       async onQueryStarted(arg, { dispatch, queryFulfilled }) {
         // Optimistic cache update start
         const updateResult = dispatch(
-          apiSlice.util.updateQueryData("getAllSentRequest", undefined, draft => {
-            const result = draft?.data?.user?.filter(d => d?._id !== arg.id);
+          apiSlice.util.updateQueryData(
+            "getAllSentRequest",
+            undefined,
+            (draft) => {
+              const result = draft?.data?.user?.filter(
+                (d) => d?._id !== arg.id
+              );
 
-            // return new array
-            return {
-              success: true,
-              data: {
-                user: result,
-              },
-              message: "Data found",
-            };
-          })
+              // return new array
+              return {
+                success: true,
+                data: {
+                  user: result,
+                },
+                message: "Data found",
+              };
+            }
+          )
         );
 
         // Final Decison of cache update
@@ -116,7 +127,7 @@ export const connectionApi = apiSlice.injectEndpoints({
       }),
     }),
     likeSingleProfile: builder.mutation({
-      query: id => ({
+      query: (id) => ({
         url: `/member/like/profile/${id}`,
         method: "PUT",
         headers: {
@@ -135,16 +146,22 @@ export const connectionApi = apiSlice.injectEndpoints({
       async onQueryStarted(arg, { dispatch, queryFulfilled }) {
         // Ontimistic cache update
         const updateResult = dispatch(
-          apiSlice.util.updateQueryData("getAllFriendRequest", undefined, draft => {
-            const result = draft?.data?.user?.filter(d => d?._id !== arg?.id);
-            return {
-              success: true,
-              data: {
-                user: result,
-              },
-              message: "Data found",
-            };
-          })
+          apiSlice.util.updateQueryData(
+            "getAllFriendRequest",
+            undefined,
+            (draft) => {
+              const result = draft?.data?.user?.filter(
+                (d) => d?._id !== arg?.id
+              );
+              return {
+                success: true,
+                data: {
+                  user: result,
+                },
+                message: "Data found",
+              };
+            }
+          )
         );
 
         try {
@@ -153,6 +170,24 @@ export const connectionApi = apiSlice.injectEndpoints({
           updateResult.undo();
         }
       },
+    }),
+    getMyPosts: builder.query({
+      query: () => ({
+        url: "/member/post/myposts",
+        method: "GET",
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+      }),
+    }),
+    likeSinglePost: builder.mutation({
+      query: (id) => ({
+        url: `/member/like/post/${id}`,
+        method: "PUT",
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+      }),
     }),
   }),
 });
@@ -166,5 +201,7 @@ export const {
   useCancleSentRequestMutation,
   useGetMatchedUsersQuery,
   useLikeSingleProfileMutation,
+  useGetMyPostsQuery,
+  useLikeSinglePostMutation,
   useRejectFriendReqeustMutation,
 } = connectionApi;

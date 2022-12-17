@@ -26,7 +26,7 @@ export const AllSentRequest = () => {
                 <SentRequestLoader />
             </div>
         );
-    } else if (!isLoading && isError && error?.data?.message.includes("No connections found")) {
+    } else if (!isLoading && error?.data?.message?.includes("No connection found")) {
         content = (
             <div className="flex flex-col items-center justify-center mt-[30%]">
                 <FiUsers className="text-[48px] text-gray-400" />
@@ -40,11 +40,11 @@ export const AllSentRequest = () => {
                 <p className="mt-[10px] text-[22px] font-Inter font-medium text-gray-500">Authentication failed! Try again.</p>
             </div>
         );
-    } else if (!isLoading && isError) {
+    } else if (!isLoading && error?.status.includes("FETCH_ERROR")) {
         content = (
             <div className="flex flex-col items-center justify-center mt-[30%]">
                 <AiOutlineWarning className="text-[48px] text-gray-400" />
-                <p className="mt-[10px] text-[22px] font-Inter font-medium text-gray-500">Server Error</p>
+                <p className="mt-[10px] text-[22px] font-Inter font-medium text-gray-500">server Error</p>
             </div>
         );
     } else if (!isLoading && data?.data?.user?.length === 0) {
@@ -54,7 +54,7 @@ export const AllSentRequest = () => {
                 <p className="mt-[10px] text-[22px] font-Inter font-medium text-gray-500">No Request sent</p>
             </div>
         );
-    } else if (!isLoading && data?.data?.user.length > 0) {
+    } else if (!isLoading && data?.data?.user?.length > 0) {
         content = (
             <div className="w-full grid grid-cols-1 gap-y-4 px-4">
                 {data?.data?.user.map(friend => {
@@ -63,9 +63,6 @@ export const AllSentRequest = () => {
             </div>
         );
     }
-
-    if (data) console.log(data);
-    if (error) console.log(error);
 
     return <div>{content}</div>;
 };

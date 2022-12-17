@@ -1,11 +1,16 @@
+// configuration
 import React from "react";
+
+// Third party packages
 import { Input } from "antd";
+import Pagination from "@mui/material/Pagination";
+
+// components
 import { BiUserCircle } from "react-icons/bi";
 import { FiSearch } from "react-icons/fi";
 import { HiChatBubbleBottomCenterText } from "react-icons/hi2";
 import { MdEdit } from "react-icons/md";
-import Pagination from "@mui/material/Pagination";
-import userImg from "../../../assets/images/AdminRuffImage/adminRuffImg.jpg";
+import userImg from "../../../../assets/images/AdminRuffImage/adminRuffImg.jpg";
 
 const ViewEditProfile = () => {
   const usersInfo = [
@@ -33,8 +38,8 @@ const ViewEditProfile = () => {
         {usersInfo.map((user) => (
           <div
             key={user.id}
-            className="rounded-[20px] w-96 py-8 shadow-md shadow-[rgba(62, 73, 84, 0.04)]"
-            // style={{ boxShadow: "2px 0px 4px 4px rgba(62, 73, 84, 0.04)" }}
+            className="rounded-[20px] w-96 py-8 shadow-md"
+            style={{ boxShadow: "0px 4px 4px rgba(62, 73, 84, 0.04)" }}
           >
             <img
               className="w-36 h-36 rounded-full mx-auto"

@@ -7,6 +7,7 @@ import { useCreateUserWithEmailAndPassword, useSignInWithGoogle, useUpdateProfil
 import { useForm } from "react-hook-form";
 import { AiOutlineIdcard } from "react-icons/ai";
 import { FaGoogle, FaRegEnvelope, FaRegUser } from "react-icons/fa";
+import { ImUsers } from "react-icons/im";
 import { MdLockOutline, MdPhone } from "react-icons/md";
 import { useDispatch } from "react-redux";
 
@@ -20,7 +21,9 @@ import { TextField } from "./InputFields/TextField";
 import MobileSignUp from "./MobileDesign/MobileSignUp";
 
 // css files
+import { Select } from "antd";
 import "../../../App.css";
+import "../../../assets/css/SignUp.css";
 
 const Signup = () => {
     // varible declation
@@ -66,6 +69,7 @@ const Signup = () => {
     const onSubmit = async data => {
         data.role = "member";
         data.gender = gender;
+        console.log(data);
         // Implement firebase registration
         await createUserWithEmailAndPassword(data.email, data.password);
         await updateProfile({ displayName: data.firstName + " " + data.lastName });
@@ -109,29 +113,6 @@ const Signup = () => {
                                                 requiredMessage: "First name is required",
                                             }}
                                         />
-                                        {/* <section>
-                                            <div className="flex items-center bg-gray-100 p-2 w-full rounded-xl">
-                                                <FaRegUser className=" m-2 text-gray-400" />
-                                                <input
-                                                    {...register("firstName", {
-                                                        required: {
-                                                            value: true,
-                                                            message: "First name is required",
-                                                        },
-                                                    })}
-                                                    type="text"
-                                                    placeholder="First name"
-                                                    className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
-                                                    id="firstName"
-                                                />
-                                            </div>
-                                            <h1 className="text-left ml-2">
-                                                {errors.firstName?.type === "required" && (
-                                                    <span className="w-full text-left text-red-400 text-sm">{errors?.firstName.message}</span>
-                                                )}
-                                            </h1>
-                                        </section>{" "}
-                                        first name field */}
                                         <section>
                                             <div className="flex items-center bg-gray-100 p-2 w-full rounded-xl mt-3 lg:mt-0">
                                                 <FaRegUser className=" m-2 text-gray-400" />
@@ -301,29 +282,30 @@ const Signup = () => {
                                                 )}
                                             </h1>
                                         </section>
-                                        <section>
-                                            <div className="flex items-center bg-gray-100 p-2 w-full rounded-xl mt-3">
-                                                <MdLockOutline className=" m-2 text-gray-400" />
-                                                <select
-                                                    name="gender"
-                                                    id="gender"
+                                        <section className="relative">
+                                            <div className="flex items-center bg-gray-100 w-full p-2 rounded-xl mt-3">
+                                                <ImUsers className=" m-2 text-gray-400 absolute left-[8px]" />
+                                                <Select
                                                     className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
-                                                    required
-                                                    onChange={e => setGender(e.target.value)}
-                                                >
-                                                    <option value="">Select Gender</option>
-                                                    <option value="man">Man</option>
-                                                    <option value="woman">Women</option>
-                                                </select>
+                                                    bordered={false}
+                                                    onSelect={value => setGender(value)}
+                                                    allowClear
+                                                    placeholder="Select Gender"
+                                                    options={[
+                                                        {
+                                                            value: "man",
+                                                            label: "Man",
+                                                        },
+                                                        {
+                                                            value: "woman",
+                                                            label: "Women",
+                                                        },
+                                                    ]}
+                                                ></Select>
                                             </div>
-                                            <h1 className="text-left ml-2">
-                                                {errors.image?.type === "required" && (
-                                                    <span className="w-full text-left text-red-400 text-sm">{errors?.image.message}</span>
-                                                )}
-                                            </h1>
-                                        </section>{" "}
+                                        </section>
                                         {/*attach file*/}
-                                        <div className="col-span-2">{customError && <Error message={customError} />}</div>
+                                        <div className="col-span-2 w-full">{customError && <Error message={customError} />}</div>
                                         <div className="col-span-2">
                                             <input
                                                 type="submit"
