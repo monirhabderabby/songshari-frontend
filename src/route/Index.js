@@ -89,6 +89,8 @@ import SendForPayment from "../Admin__Portion/Components/User/View_Payment/SendF
 import { User } from "../Admin__Portion/Components/User/User";
 import AddUser from "../Admin__Portion/Components/User/UserContent/AddUser/AddUser";
 import ProfileServices from "../components/SingleProfilesUser/ServicesSection/ProfileServices";
+//admin components
+import DashboardHome from "../Admin__Portion/Dashboard/DashboardHome/DashboardHome";
 
 const Index = () => {
   return (
@@ -310,7 +312,9 @@ const Index = () => {
           {/* --------------- MOBILE ROUTES END --------------- */}
 
           {/* --------------- Dashboard ROUTES START --------------- */}
-          <Route path="dashboard" element={<Dashboard />}></Route>
+          <Route path="dashboard" element={<Dashboard />}>
+            <Route path="" element={<DashboardHome />} />
+          </Route>
 
           {/* --------------- Dashboard ROUTES END --------------- */}
 

@@ -1,125 +1,118 @@
-import React from "react";
-import DashboardOutlinedIcon from "@mui/icons-material/DashboardOutlined";
-import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
-import LayersOutlinedIcon from "@mui/icons-material/LayersOutlined";
-import RecordVoiceOverOutlinedIcon from "@mui/icons-material/RecordVoiceOverOutlined";
-import ContactPhoneOutlinedIcon from "@mui/icons-material/ContactPhoneOutlined";
-import LocalMallOutlinedIcon from "@mui/icons-material/LocalMallOutlined";
-import ContentPasteOutlinedIcon from "@mui/icons-material/ContentPasteOutlined";
-import TableChartOutlinedIcon from "@mui/icons-material/TableChartOutlined";
-import VerifiedOutlinedIcon from "@mui/icons-material/VerifiedOutlined";
-import GroupOutlinedIcon from "@mui/icons-material/GroupOutlined";
-import ColorLensOutlinedIcon from "@mui/icons-material/ColorLensOutlined";
-import { Button, Stack } from "@mui/material";
-export const Dashboard = () => {
+//configurition like react
+import * as React from "react";
+import { Outlet } from "react-router";
+//Third party components
+import Drawer from "@mui/material/Drawer";
+// Mui icons
+import Box from "@mui/material/Box";
+import IconButton from "@mui/material/IconButton";
+import MenuIcon from "@mui/icons-material/Menu";
+//components
+import { DrawerItem } from "./drawerItem";
+
+//set drawer width
+const drawerWidth = 350;
+
+export function Dashboard(props) {
+  //data from props
+  const { window } = props;
+  //hooks variables
+  const [mobileOpen, setMobileOpen] = React.useState(false);
+  //functions for toggle open
+  const handleDrawerToggle = () => {
+    setMobileOpen(!mobileOpen);
+  };
+  //for maintain container responsive
+  const container = window !== undefined ? () => window().document.body : undefined;
   return (
-    <Stack direction="column" spacing={2} sx={{ width: 300, marginLeft: 20 }}>
-      <Button
-        to="/"
-        color="warning"
-        variant="contained"
-        startIcon={<DashboardOutlinedIcon />}
-        padding={5}
+    <Box sx={{ display: "flex" }}>
+      <Box
+        component="nav"
+        sx={{
+          width: { xs: 0, sm: 50, md: 50, lg: drawerWidth },
+          flexShrink: { sm: 0 },
+        }}
+        aria-label="mailbox folders"
+        className="shadow-lg"
       >
-        Dashboard
-      </Button>
+        {/* Drawer for mobile tablet and dextop version */}
+        <Drawer
+          container={container}
+          variant="temporary"
+          open={mobileOpen}
+          onClose={handleDrawerToggle}
+          ModalProps={{
+            keepMounted: true // Better open performance on mobile.
+          }}
+          sx={{
+            display: { xs: "block", sm: "none", lg: 'none', md: 'none' },
+            "& .MuiDrawer-paper": {
+              boxShadow: '2px 2px 10px 2px #0000001F',
+              width: 200
+            }
+          }}
+        >
+          {<DrawerItem />}
+        </Drawer>
+        <Drawer
+          variant="permanent"
+          sx={{
+            display: { xs: "none", sm: "none", lg: "block" },
+            "& .MuiDrawer-paper": {
+              border: 'none',
+              width: drawerWidth,
+              boxShadow: '2px 2px 10px 2px #0000001F',
 
-      <Button
-        to="/"
-        color="warning"
-        variant="outlined"
-        startIcon={<PersonOutlineOutlinedIcon />}
-        padding={5}
-      >
-        User
-      </Button>
+            }
+          }}
+          open
+        >
+          {<DrawerItem />}
+        </Drawer>
+        <Drawer
+          variant="permanent"
+          sx={{
+            display: { xs: "none", sm: "block", md: "block", lg: 'none' },
+            "& .MuiDrawer-paper": {
+              width: 50, boxShadow: '2px 2px 10px 2px #0000001F',
+            }
+          }}
+          open
+        >
+          {<DrawerItem />}
+        </Drawer>
+      </Box>
+      <Box
+        component="main"
+        sx={{
+          flexGrow: 1,
 
-      <Button
-        to="/"
-        color="warning"
-        variant="outlined"
-        startIcon={<LayersOutlinedIcon />}
-        padding={5}
+          width: { sm: `calc(100% - ${drawerWidth}px)` }
+        }}
       >
-        Lawyer
-      </Button>
-
-      <Button
-        to="/"
-        color="warning"
-        variant="outlined"
-        startIcon={<RecordVoiceOverOutlinedIcon />}
-        padding={5}
-      >
-        Agent
-      </Button>
-      <Button
-        to="/"
-        color="warning"
-        variant="outlined"
-        startIcon={<ContactPhoneOutlinedIcon />}
-        padding={5}
-      >
-        Kazi
-      </Button>
-      <Button
-        to="/"
-        color="warning"
-        variant="outlined"
-        startIcon={<LocalMallOutlinedIcon />}
-        padding={5}
-      >
-        Shop
-      </Button>
-      <Button
-        to="/"
-        color="warning"
-        variant="outlined"
-        startIcon={<ContentPasteOutlinedIcon />}
-        padding={5}
-      >
-        Courses
-      </Button>
-
-      <Button
-        to="/"
-        color="warning"
-        variant="outlined"
-        startIcon={<TableChartOutlinedIcon />}
-        padding={5}
-      >
-        Packages
-      </Button>
-
-      <Button
-        to="/"
-        color="warning"
-        variant="outlined"
-        startIcon={<VerifiedOutlinedIcon />}
-        padding={5}
-      >
-        Badges
-      </Button>
-
-      <Button
-        to="/"
-        color="warning"
-        variant="outlined"
-        startIcon={<GroupOutlinedIcon />}
-        padding={5}
-      >
-        Employee
-      </Button>
-
-      <Button
-        to="/"
-        color="warning"
-        variant="outlined"
-        startIcon={<ColorLensOutlinedIcon />}
-        padding={5}
-      >
-        Sponsor
-      </Button>
-    </Stack>
+        <Box className="p-2" sx={{
+          display: { sm: "none", xs: "flex", md: 'none', lg: 'none' },
+          background: "linear-gradient(83.26deg, #E41272 17.33%, #C94964 98.93%)",
+          alignItems: 'center'
+        }}>
+          <IconButton
+            color="white"
+            aria-label="open drawer"
+            edge="start"
+            onClick={handleDrawerToggle}
+            sx={{ mr: 4, ml: 4, }}
+          >
+            <MenuIcon style={{ color: 'white' }} />
+          </IconButton>
+          <h2 className="text-white">Dashboard</h2>
+        </Box>
+        <div className="ml-4">
+          <Outlet />
+        </div>
+      </Box>
+    </Box>
   );
-};
+}
+
+
+
