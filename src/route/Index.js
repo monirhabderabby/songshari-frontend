@@ -92,6 +92,7 @@ import ProfileServices from "../components/SingleProfilesUser/ServicesSection/Pr
 import { ServiceDetailsMov } from "../Wrapper/Home/mobileversion/allservices/ServiceDetailsMov";
 import ChartBoard from "../components/SingleProfilesUser/chatboard/ChartBoard";
 import SingleUserActivity from "../components/SingleProfilesUser/SingleUserActivity/SingleUserActivity";
+import { AllPosts } from "../Wrapper/Home/mobileversion/allposts/AllPosts";
 
 const Index = () => {
     return (
@@ -210,6 +211,7 @@ const Index = () => {
                     <Route path="/matchesmov" element={<MatchesMov></MatchesMov>}></Route>
                     <Route path="/mobileActivityPage" element={<SingleUserActivity></SingleUserActivity>}></Route>
                     <Route path="/mobileActivityNextPage" element={<MobileActivityPost />}></Route>
+                    <Route path="/allposts" element={<AllPosts></AllPosts>}></Route>
                     <Route path="/historymov" element={<HistoryMov></HistoryMov>}></Route>
                     <Route path="/privacymov" element={<PrivacyMov></PrivacyMov>}></Route>
                     <Route path="/communitymov" element={<CommunityMov></CommunityMov>}></Route>
