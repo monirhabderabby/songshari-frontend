@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FiSearch } from "react-icons/fi";
 import person1 from '../../../../../assets/images/usersActivity/person1.png';
 import person2 from '../../../../../assets/images/usersActivity/person2.png';
@@ -8,6 +8,7 @@ import rightArrow from '../../../../../assets/images/usersActivity/rightArrow.pn
 import AllUsers from './AllUsers/AllUsers';
 
 const UserActivities = () => {
+    const [value, setValue] = useState(0)
 
     const users = [
         {
@@ -73,10 +74,10 @@ const UserActivities = () => {
                                 <h1 className='font-medium text-xl text-[#101828] text-start mt-6 mb-1'>{user?.name}</h1>
                                 <h3 className='font-normal text-[18px] text-[#E41272] text-start'>{user?.membership}</h3>
                                 <p className='mt-4 font-normal text-[16px] text-[#667085] text-start'>{user.occupation}</p>
-                                <div className='flex justify-center items-center text-white bg-[#D9D9D9] rounded-lg mt-6 py-[7px] px-[94px]'>
-                                    <button>Select</button>
+
+                                <div className={`flex justify-center items-center text-white bg-[#D9D9D9] rounded-lg mt-6 py-[7px] px-[94px] ${user.id === value ? 'text-white  bg-gradient-to-r from-[#E41272] to-[#942DD9]' : 'text-[#000000] bg-[#FFFFFF]'}`} onClick={() => setValue(user.id)}>
+                                    <button>{user.id === value ? 'Selected' : 'Select'}</button>
                                 </div>
-                                <div className={({ isActive }) => (`w-full  text-center py-[5px] rounded cursor-pointer text-[15px] font-semibold ${isActive ? ' text-white bg-[#E41272]' : 'text-[#000000] bg-[#FFFFFF]'}`)}></div>
                             </div>
                         )}
                 </div>
