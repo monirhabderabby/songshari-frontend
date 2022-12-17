@@ -41,25 +41,23 @@ export const connectionApi = apiSlice.injectEndpoints({
             }),
             async onQueryStarted(arg, { dispatch, queryFulfilled }) {
                 // Ontimistic cache update
-                // const updatePatch = dispatch(
-                //     apiSlice.util.updateQueryData("getAllFriendRequest", undefined, draft => {
-                //         const result = draft?.data?.user?.filter(d => d._id !== arg?.id);
-                //         console.log("result", result);
-                //         return {
-                //             success: true,
-                //             data: {
-                //                 user: result,
-                //             },
-                //             message: "Data found",
-                //         };
-                //     })
-                // );
+                const updatePatch = dispatch(
+                    apiSlice.util.updateQueryData("getAllFriendRequest", undefined, draft => {
+                        const result = draft?.data?.user?.filter(d => d._id !== arg?.id);
+                        return {
+                            success: true,
+                            data: {
+                                user: result,
+                            },
+                            message: "Data found",
+                        };
+                    })
+                );
 
                 try {
-                    const result = await queryFulfilled;
-                    console.log(result);
+                    await queryFulfilled;
                 } catch (error) {
-                    console.log("cache Error", error);
+                    updatePatch.undo();
                 }
             },
         }),
