@@ -28,7 +28,7 @@ export const MovDynamicActivity = ({ postRefetch }) => {
         ? posts?.data?.posts.length !== 0
           ? posts?.data?.posts.map((post) => {
               return (
-                <div className="ml-8 mr-8 mb-4">
+                <div key={post?._id} className="ml-8 mr-8 mb-4">
                   <div className="grid grid-cols-4 gap-2">
                     {post?.author?.profilePhoto === null ? (
                       <img
