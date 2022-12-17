@@ -179,6 +179,7 @@ export const connectionApi = apiSlice.injectEndpoints({
           authorization: `Bearer ${localStorage.getItem("accessToken")}`,
         },
       }),
+      keepUnusedDataFor: 0,
     }),
     likeSinglePost: builder.mutation({
       query: (id) => ({

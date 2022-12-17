@@ -1,5 +1,5 @@
 // configuration
-import React from "react";
+import React, { useState } from "react";
 
 // components
 import { AiOutlineWarning } from "react-icons/ai";
@@ -8,7 +8,14 @@ import { useGetMyPostsQuery } from "../../../Redux/features/connections/connecti
 import SinglePostCard from "./SinglePostCard";
 
 export const DynamicActivityPage = ({ postRefetch }) => {
-  const { data: posts, isLoading, error } = useGetMyPostsQuery();
+  const [fetch, setFetch] = useState(true);
+  const {
+    data: posts,
+    isLoading,
+    error,
+  } = useGetMyPostsQuery(undefined, {
+    skip: fetch,
+  });
 
   if (isLoading) {
     return (
