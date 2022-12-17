@@ -5,7 +5,7 @@ import "../../../assets/css/topProfile.css";
 const TopProfile = () => {
   return (
     <div className="bg-[#F8F8FF]">
-      <div className=" pt-10 custom-container ">
+      <div className=" pt-10 custom-container hidden">
         <h1 className="text-center text-[50px] text-[#ff317b] pb-[30px]">
           Top Profile
         </h1>
