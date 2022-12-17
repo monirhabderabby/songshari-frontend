@@ -1,13 +1,18 @@
+// configuration
 import React from "react";
-// import ChatGelary from './ChatGelary';
-// import ChatRequest from './ChatRequest';
+
+// Third party packages, ex: redux
+import { Link } from "react-router-dom";
+
+// components
 import { BsCommand } from "react-icons/bs";
 import { TbMessageCircle2 } from "react-icons/tb";
-import { Link } from "react-router-dom";
-import ChartBoardCSS from "../../../assets/css/chartBoard.module.css";
 import certificate from "../../../assets/images/certificate.jpg";
 import { useGetSuggestedUsersQuery } from "../../../Redux/features/AllRecentData/recentApi";
 import { CardYouMayLike } from "../../pages/Shared/CardYouMayLike/CardYouMayLike";
+
+// css files
+import ChartBoardCSS from "../../../assets/css/chartBoard.module.css";
 
 const ChartBoard = () => {
   const { data } = useGetSuggestedUsersQuery();
@@ -73,28 +78,33 @@ const ChartBoard = () => {
       <div className="mt-[70px]">
         <div className="flex justify-start items-center mx-1 gap-6 mb-6">
           <BsCommand className="text-[#2E3A59] text-2xl" />
-          <h1 className="text-[#333333] text-2xl leading-[34px] font-bold">You May Like</h1>
+          <h1 className="text-[#333333] text-2xl leading-[34px] font-bold">
+            You May Like
+          </h1>
         </div>
         <div className="grid  grid-cols-1 gap-y-[19px] gap-x-4 p-5">
           {data
-            ? data?.data?.suggestion.slice(0, 4).map(profile => {
-              return <CardYouMayLike key={profile._id} {...{ data: profile }} />;
-            })
-            : number6.map(n => {
-              return (
-                <div
-                  key={n}
-                  className="flex flex-col  items-center justify-center rounded-[20px] bg-white p-2 shadow-[0px_4px_4px_rgba(62,73,84,0.04)]"
-                >
-                  `<div className="h-[35px] w-[35px] rounded-full bg-gray-200 animate-pulse"></div>
-                  <div className="h-4 w-full animate-pulse bg-gray-200 leading-5 mt-2 rounded-3xl"></div>
-                  <div className="flex items-center justify-between gap-4">
-                    <div className="w-[45px] h-[45px] bg-gray-200 rounded-full mt-2 animate-pulse"></div>
-                    <div className="w-[45px] h-[45px] bg-gray-200 rounded-full mt-2 animate-pulse"></div>
+            ? data?.data?.suggestion.slice(0, 4).map((profile) => {
+                return (
+                  <CardYouMayLike key={profile._id} {...{ data: profile }} />
+                );
+              })
+            : number6.map((n) => {
+                return (
+                  <div
+                    key={n}
+                    className="flex flex-col  items-center justify-center rounded-[20px] bg-white p-2 shadow-[0px_4px_4px_rgba(62,73,84,0.04)]"
+                  >
+                    `
+                    <div className="h-[35px] w-[35px] rounded-full bg-gray-200 animate-pulse"></div>
+                    <div className="h-4 w-full animate-pulse bg-gray-200 leading-5 mt-2 rounded-3xl"></div>
+                    <div className="flex items-center justify-between gap-4">
+                      <div className="w-[45px] h-[45px] bg-gray-200 rounded-full mt-2 animate-pulse"></div>
+                      <div className="w-[45px] h-[45px] bg-gray-200 rounded-full mt-2 animate-pulse"></div>
+                    </div>
                   </div>
-                </div>
-              );
-            })}
+                );
+              })}
         </div>
       </div>
       {/* ----- You may like ----- */}
@@ -108,26 +118,26 @@ const ChartBoard = () => {
         <div className="grid  grid-cols-1 gap-y-[19px] gap-x-4 p-5">
           {data
             ? data?.data?.suggestion.map((profile) => {
-              return (
-                <CardYouMayLike key={profile._id} {...{ data: profile }} />
-              );
-            })
+                return (
+                  <CardYouMayLike key={profile._id} {...{ data: profile }} />
+                );
+              })
             : number6.map((n) => {
-              return (
-                <div
-                  key={n}
-                  className="flex flex-col  items-center justify-center rounded-[20px] bg-white p-2 shadow-[0px_4px_4px_rgba(62,73,84,0.04)]"
-                >
-                  `
-                  <div className="h-[35px] w-[35px] rounded-full bg-gray-200 animate-pulse"></div>
-                  <div className="h-4 w-full animate-pulse bg-gray-200 leading-5 mt-2 rounded-3xl"></div>
-                  <div className="flex items-center justify-between gap-4">
-                    <div className="w-[45px] h-[45px] bg-gray-200 rounded-full mt-2 animate-pulse"></div>
-                    <div className="w-[45px] h-[45px] bg-gray-200 rounded-full mt-2 animate-pulse"></div>
+                return (
+                  <div
+                    key={n}
+                    className="flex flex-col  items-center justify-center rounded-[20px] bg-white p-2 shadow-[0px_4px_4px_rgba(62,73,84,0.04)]"
+                  >
+                    `
+                    <div className="h-[35px] w-[35px] rounded-full bg-gray-200 animate-pulse"></div>
+                    <div className="h-4 w-full animate-pulse bg-gray-200 leading-5 mt-2 rounded-3xl"></div>
+                    <div className="flex items-center justify-between gap-4">
+                      <div className="w-[45px] h-[45px] bg-gray-200 rounded-full mt-2 animate-pulse"></div>
+                      <div className="w-[45px] h-[45px] bg-gray-200 rounded-full mt-2 animate-pulse"></div>
+                    </div>
                   </div>
-                </div>
-              );
-            })}
+                );
+              })}
         </div>
       </div>
     </div>
