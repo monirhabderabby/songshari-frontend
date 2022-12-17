@@ -38,7 +38,7 @@ const ChartBoard = () => {
     <div>
       {/* ----- Certificate ----- */}
       <div
-        className="rounded-xl p-5"
+        className="rounded-xl p-5 hidden md:hidden lg:block"
         style={{
           backgroundImage: "linear-gradient(180deg, #FFD7F6 0%, #FFC1E6 100%)",
         }}
@@ -70,7 +70,7 @@ const ChartBoard = () => {
       </div>
 
       {/* ----- You may like ----- */}
-      <div className="mt-[70px]">
+      <div className="mt-[70px] hidden md:hidden lg:block">
         <div className="flex justify-start items-center mx-1 gap-6 mb-6">
           <BsCommand className="text-[#2E3A59] text-2xl" />
           <h1 className="text-[#333333] text-2xl leading-[34px] font-bold">You May Like</h1>
@@ -98,14 +98,17 @@ const ChartBoard = () => {
         </div>
       </div>
       {/* ----- You may like ----- */}
-      <div className="mt-[70px]">
-        <div className="flex justify-start items-center mx-1 gap-6 mb-6">
-          <BsCommand className="text-[#2E3A59] text-2xl" />
-          <h1 className="text-[#333333] text-2xl leading-[34px] font-bold">
-            You May Like
-          </h1>
+      <div className="lg:hidden bg-[#f8f8ff]">
+      <div className="pt-2 bg-white">
+        <div className="grid grid-cols-3">
+          <Link to="/setting">
+            <i className="fa-solid fa-chevron-left ml-6 mt-3"></i>
+          </Link>
+          <h1 className="text-center  mb-5 text-lg pt-2">You May Like</h1>
+          <div></div>
         </div>
-        <div className="grid  grid-cols-1 gap-y-[19px] gap-x-4 p-5">
+      </div>
+        <div className="grid  grid-cols-1 ml-[32px] mr-[32px] gap-y-[19px] gap-x-4 p-5">
           {data
             ? data?.data?.suggestion.map((profile) => {
               return (
@@ -118,7 +121,6 @@ const ChartBoard = () => {
                   key={n}
                   className="flex flex-col  items-center justify-center rounded-[20px] bg-white p-2 shadow-[0px_4px_4px_rgba(62,73,84,0.04)]"
                 >
-                  `
                   <div className="h-[35px] w-[35px] rounded-full bg-gray-200 animate-pulse"></div>
                   <div className="h-4 w-full animate-pulse bg-gray-200 leading-5 mt-2 rounded-3xl"></div>
                   <div className="flex items-center justify-between gap-4">

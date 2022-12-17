@@ -90,6 +90,8 @@ import { User } from "../Admin__Portion/Components/User/User";
 import AddUser from "../Admin__Portion/Components/User/UserContent/AddUser/AddUser";
 import ProfileServices from "../components/SingleProfilesUser/ServicesSection/ProfileServices";
 import { ServiceDetailsMov } from "../Wrapper/Home/mobileversion/allservices/ServiceDetailsMov";
+import ChartBoard from "../components/SingleProfilesUser/chatboard/ChartBoard";
+import SingleUserActivity from "../components/SingleProfilesUser/SingleUserActivity/SingleUserActivity";
 
 const Index = () => {
     return (
@@ -206,13 +208,13 @@ const Index = () => {
                     <Route path="/servicedetailsmov" element={<ServiceDetailsMov />}></Route>
                     <Route path="/meetmov" element={<MeetMov></MeetMov>}></Route>
                     <Route path="/matchesmov" element={<MatchesMov></MatchesMov>}></Route>
-                    <Route path="/mobileActivityPage" element={<MobileActivity />}></Route>
+                    <Route path="/mobileActivityPage" element={<SingleUserActivity></SingleUserActivity>}></Route>
                     <Route path="/mobileActivityNextPage" element={<MobileActivityPost />}></Route>
                     <Route path="/historymov" element={<HistoryMov></HistoryMov>}></Route>
                     <Route path="/privacymov" element={<PrivacyMov></PrivacyMov>}></Route>
                     <Route path="/communitymov" element={<CommunityMov></CommunityMov>}></Route>
                     <Route path="/certificatemov" element={<MobileCertificate></MobileCertificate>}></Route>
-                    <Route path="/like" element={<Like></Like>}></Route>
+                    <Route path="/like" element={<ChartBoard></ChartBoard>}></Route>
                     <Route path="/mobileUpgrade" element={<UpgradePlan></UpgradePlan>}></Route>
                     <Route path="/mobileFreePlan" element={<MobileFreePlan />}></Route>
                     <Route path="/mobileGoldPlan" element={<MobileGoldPlan />}></Route>
