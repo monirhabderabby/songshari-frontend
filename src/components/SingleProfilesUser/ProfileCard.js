@@ -15,7 +15,7 @@ const ProfileCard = ({ data, isLoading }) => {
         <div className="rounded-xl w-full">
             <div
                 style={{ boxShadow: "0px 10px 5px rgba(119, 123, 146, 0.02)" }}
-                className="card_container w-full mr-0 bg-white px-2 md:px-0 hidden md:block"
+                className="card_container w-full mr-0 bg-white px-2 md:px-0 hidden md:block relative"
             >
                 <div className="Card-header"></div>
                 <div className="relative lg:w-52 h-52 rounded-full">
@@ -29,7 +29,7 @@ const ProfileCard = ({ data, isLoading }) => {
                         </div>
                     </div>
                 </div>
-                <div>
+                <div className="absolute bottom-4 left-10">
                     <div className="text-center">
                         <h2 className="text-2xl font-semibold">{data?.firstName + " " + data?.lastName}</h2>
                         <div className="flex justify-center  my-2">
