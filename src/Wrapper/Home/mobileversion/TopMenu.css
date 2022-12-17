@@ -108,3 +108,7 @@
     font-weight: 500;
     letter-spacing: 0.8;
 }
+.shadow-allposts{
+    box-shadow: 2px 2px 4px 0px #0000001F;
+
+}
