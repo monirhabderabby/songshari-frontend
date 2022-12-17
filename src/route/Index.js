@@ -92,6 +92,7 @@ import ProfileServices from "../components/SingleProfilesUser/ServicesSection/Pr
 import CancelOrder from "../Wrapper/Home/mobileversion/AllServices/CancelOrder/CancelOrder";
 import CompleteOrder from "../Wrapper/Home/mobileversion/AllServices/CompleteOrder/CompleteOrder";
 import ConfirmCancel from "../Wrapper/Home/mobileversion/AllServices/ConfirmCancel/ConfirmCancel";
+import UserActivities from "../Admin__Portion/Components/User/UserContent/UserActivities/UserActivities";
 
 const Index = () => {
     return (
@@ -196,6 +197,7 @@ const Index = () => {
                     {/* Admin routes */}
                     <Route path="/admin" element={<User></User>}>
                         <Route path="addUser" element={<AddUser></AddUser>}></Route>
+                        <Route path="usersActivities" element={<UserActivities></UserActivities>}></Route>
                     </Route>
                     {/* --------------- MOBILE ROUTES START --------------- */}
                     <Route path="/mobileHomePage" element={<MobileHome />}></Route>

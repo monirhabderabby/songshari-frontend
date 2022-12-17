@@ -54,7 +54,7 @@ const AddUser = () => {
 
             {/* User Search */}
             <div className='flex mx-auto items-center w-[492px] h-[52px] bg-[#FFFFFF] border border-[#FFE8F3] py-[14px] px-[21px] text-base rounded-lg gap-6'>
-                <FiSearch className='text-[#353751] p-6' />
+                <FiSearch className='text-[#353751] text-2xl' />
                 <input className='font-poppins font-normal text-[#AAAAAA] focus: outline-none h-full w-full' type="search" name="searchUser" id="" placeholder='Search user name' />
             </div>
 
