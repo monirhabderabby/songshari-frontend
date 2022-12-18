@@ -54,14 +54,13 @@ import MobileActivityPost from "../components/pages/MobileActivity/MobileActivit
 import ProfileDetails from "../components/SingleProfilesUser/profileSection/ProfileDetails";
 
 // import MobileSingleProfilesUser from "../components/SingleProfilesUser/MobileSingleProfilesUser/MobileSingleProfilesUser";
-import { Dashboard } from "../Admin__Portion/Dashboard/Dashboard";
 import { DynamicPhotosGallary } from "../components/pages/DynamicProfilePage/DynamicPhotosGallary";
 import { FindAPartnerSuggested } from "../components/pages/FindPartner/FindAPartnerSuggested";
 import EducationalCertificate from "../components/SingleProfilesUser/CertificateSection/EducationalCertificate";
 import MobileSingleProfilesUser from "../components/SingleProfilesUser/MobileSingleProfilesUser/MobileSingleProfilesUser";
 import { PersonalDetailsMobile } from "../components/SingleProfilesUser/MobileSingleProfilesUser/PersonalDetailsMobile";
-import Accordian from "../components/SingleProfilesUser/profileSection/Accordion";
 import EditPersonalInfo from "../components/SingleProfilesUser/profileSection/EditprofileSection/EditPersonalInfo";
+import ProfileServices from "../components/SingleProfilesUser/ServicesSection/ProfileServices";
 import { AboutMov } from "../Wrapper/Home/mobileversion/about/AboutMov";
 import { CertificateMov } from "../Wrapper/Home/mobileversion/CertificateMov";
 import { CommunityMov } from "../Wrapper/Home/mobileversion/comminuty/CommunityMov";
@@ -82,13 +81,6 @@ import OthersCertificate from "../Wrapper/Home/mobileversion/PhotoGallery/certif
 import ProfessionalCertificate from "../Wrapper/Home/mobileversion/PhotoGallery/certificate/ProfessionalCertificate";
 import { PrivacyMov } from "../Wrapper/Home/mobileversion/privacy/PrivacyMov";
 import { Setting } from "../Wrapper/Home/mobileversion/setting/Setting";
-import { SendNotificationOffer } from "../Admin__Portion/Components/SendNotificationOffer";
-import { RegistrationRequest } from "../Admin__Portion/Components/User/View__Registration__Request/Registration__Request/RegistrationRequest";
-import ViewUserActivities from "../Admin__Portion/Components/ViewUserActivities/ViewUserActivities";
-import SendForPayment from "../Admin__Portion/Components/User/View_Payment/SendForPayment";
-import { User } from "../Admin__Portion/Components/User/User";
-import AddUser from "../Admin__Portion/Components/User/UserContent/AddUser/AddUser";
-import ProfileServices from "../components/SingleProfilesUser/ServicesSection/ProfileServices";
 
 const Index = () => {
     return (
@@ -98,7 +90,7 @@ const Index = () => {
                     <Route path="/about" element={<About></About>}></Route>
                     <Route path="/userprofile" element={<SingleProfile />}>
                         <Route path="" element={<ProfileDetails />} />
-                        <Route path="edit"  >
+                        <Route path="edit">
                             <Route path="personalinfo/:id" element={<EditPersonalInfo />} />
                             <Route path="profesionalinfo/:id" element={<EditProfesionalInfo />} />
                             <Route path="educationalinfo/:id" element={<EditEducationalInfo />} />
@@ -151,8 +143,6 @@ const Index = () => {
                         <Route path="/top-profession/agent" element={<TopProfessionAgent />} />
                     </Route>
                     <Route path="/singleViewRequest" element={<SingleRequestView />} />
-                    <Route path="/notificationPay" element={<ViewUserActivities></ViewUserActivities>} />
-                    <Route path="/sendPay" element={<SendForPayment></SendForPayment>} />
 
                     <Route path="/admin-analytics" element={<AdminAnalytics />}></Route>
                     <Route path="/stepper" element={<Container></Container>}></Route>
@@ -161,39 +151,7 @@ const Index = () => {
                     <Route path="/professionalCertificate" element={<ProfessionalCertificate />}></Route>
                     <Route path="/educationalCertificate" element={<EducationalCertificate />}></Route>
                     <Route path="/singleproduct" element={<SingleProduct></SingleProduct>}></Route>
-                    <Route path="/login" element={<Login />} />
-                    <Route path="/signup" element={<SignUp />} />
-                    <Route path="/regAsProfessional" element={<RegAsProfessional />} />
-                    <Route path="/loginAsProfessional" element={<LoginAsProfessional />} />
-                    <Route path="/contact" element={<Contact />}></Route>
-                    <Route path="/lawyeractivity" element={<LawyerActivity></LawyerActivity>}></Route>
-                    <Route path="/members" element={<Members />}></Route>
-                    <Route path="/profile/:id" element={<DynamicProfilePage />}></Route>
-                    <Route path="/gallery/:id" element={<DynamicPhotosGallary />} />
-                    <Route path="/privacy-policy" element={<Privacy></Privacy>}></Route>
-                    <Route path="/our-teams" element={<OurTeams />}></Route>
-                    <Route path="/find-partner" element={<FindPartner />}>
-                        <Route path="/find-partner" element={<FindAPartnerSuggested />} />
-                        <Route path="top" element={<TopBride />} />
-                        <Route path="nearest" element={<TopGroom />} />
-                        <Route path="filter" element={<FilterResults />} />
-                    </Route>
-                    <Route path="/" element={<Homepage></Homepage>}>
-                        <Route path="/" element={<Suggested />} />
-                        <Route path="/top-gride" element={<TopBride />} />
-                        <Route path="/top-groom" element={<TopGroom />} />
-                        <Route path="/top-profession/kazi" element={<TopProfessionKazi />} />
-                        <Route path="/top-profession/agent" element={<TopProfessionAgent />} />
-                    </Route>
-                    <Route path="/admin-analytics" element={<AdminAnalytics />}></Route>
 
-                    <Route path="/stepper" element={<Container></Container>}></Route>
-                    <Route path="/upgrade" element={<UpgradePlan></UpgradePlan>}></Route>
-
-                    {/* Admin routes */}
-                    <Route path="/admin" element={<User></User>}>
-                        <Route path="addUser" element={<AddUser></AddUser>}></Route>
-                    </Route>
                     {/* --------------- MOBILE ROUTES START --------------- */}
                     <Route path="/mobileHomePage" element={<MobileHome />}></Route>
                     <Route path="/setting" element={<Setting></Setting>}></Route>
@@ -219,11 +177,6 @@ const Index = () => {
                     <Route path="/mobilecertificate" element={<Certificate />} />
                     {/* --------------- MOBILE ROUTES END --------------- */}
 
-                    {/* --------------- Dashboard ROUTES START --------------- */}
-                    <Route path="dashboard" element={<Dashboard />}></Route>
-
-                    {/* --------------- Dashboard ROUTES END --------------- */}
-
                     <Route path="/aboutmov" element={<AboutMov></AboutMov>}></Route>
                     <Route path="/gallarymov" element={<GallaryMov />}></Route>
                     <Route path="/meetmov" element={<MeetMov></MeetMov>}></Route>
@@ -245,9 +198,9 @@ const Index = () => {
                     {/* --------------- MOBILE ROUTES END --------------- */}
 
                     <Route path="*" element={<NotFound />}></Route>
-                </Routes >
-            </BrowserRouter >
-        </div >
+                </Routes>
+            </BrowserRouter>
+        </div>
     );
 };
 
