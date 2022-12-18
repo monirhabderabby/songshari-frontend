@@ -9,10 +9,8 @@ import { DynamicProfilePage } from "../../components/pages/DynamicProfilePage/Dy
 import FindPartners from "../../components/pages/FindPartner/FindPartners";
 import { OurTeams } from "../../components/pages/OurTeams/OurTeams";
 import { Privacy } from "../../components/pages/Privacy/Privacy";
-import SingleProfiles from "../../components/SingleProfilesUser/SingleProfiles";
 import About from "../../Wrapper/About/About";
 import Homepage from "../../Wrapper/Home/Homepage";
-import { Container } from "../../Wrapper/Stepper/Container";
 
 const matrimonyRoutes = [
     {
@@ -26,10 +24,6 @@ const matrimonyRoutes = [
     {
         path: "/signup",
         element: Signup,
-    },
-    {
-        path: "/userprofile",
-        element: SingleProfiles,
     },
     {
         path: "/about",
@@ -70,9 +64,5 @@ const matrimonyRoutes = [
     {
         path: "/find-partner",
         element: FindPartners,
-    },
-    {
-        path: "/stepper",
-        element: Container,
     },
 ];
