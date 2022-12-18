@@ -69,8 +69,8 @@ const ChartBoard = () => {
         ))}
       </div>
 
-      {/* ----- You may like ----- */}
       <YouMayLike />
+
     </div>
   );
 };
