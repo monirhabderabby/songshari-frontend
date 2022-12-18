@@ -53,7 +53,7 @@ const UserAllServices = () => {
 
     return (
         <div>
-            <h1 className='text-3xl leading-10 font-bold mb-5'>
+            <h1 className='text-3xl leading-10 font-bold mb-5 ml-6'>
                 All Service
             </h1>
             <section>
