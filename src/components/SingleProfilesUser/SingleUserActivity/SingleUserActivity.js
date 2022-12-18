@@ -14,14 +14,11 @@ const SingleUserActivity = () => {
   const ref = useRef(null);
   const [photoURL, setPhotoUrl] = useState("");
   const [postRefetch, setPostRefetch] = useState(0);
-  const [boss, setBoss] = useState("");
-  const newBoss = { postBody: boss };
+  const [postText, setPostText] = useState("");
+  const newPostText = { postBody: postText };
 
   const handleMessage = (event) => {
     event.preventDefault();
-    // const post_info = {
-    //   postBody: ref.current.value,
-    // };
 
     fetch(`http://localhost:4000/member/post/add`, {
       method: "POST",
@@ -29,12 +26,12 @@ const SingleUserActivity = () => {
         "content-type": "application/json",
         authorization: `Bearer ${localStorage.getItem("accessToken")}`,
       },
-      body: JSON.stringify(newBoss),
+      body: JSON.stringify(newPostText),
     })
       .then((res) => res.json())
       .then((data) => {
         // ref.current.value = "";
-        setBoss("");
+        setPostText("");
         setPostRefetch(postRefetch + 1);
       });
   };
@@ -64,11 +61,11 @@ const SingleUserActivity = () => {
               <textarea
                 // ref={ref}
                 id="message"
-                value={boss}
+                value={postText}
                 className="text-[#757575] w-full focus:outline-none resize-none"
                 name="post_description"
                 placeholder="Write somethings here......"
-                onChange={(e) => setBoss(e.target.value)}
+                onChange={(e) => setPostText(e.target.value)}
               ></textarea>
             </div>
             <hr />
@@ -88,7 +85,7 @@ const SingleUserActivity = () => {
                 </label>
                 <div className="flex items-center cursor-pointer border border-[rgba(0, 0, 0, 0.2)] rounded-[50px] px-3 py-2 text-[#333333]">
                   <select id="" className="focus:outline-none cursor-pointer">
-                    <option selected>PUBLIC</option>
+                    <option defaultChecked={true}>PUBLIC</option>
                     <option value="friends">Friends</option>
                     <option value="me">Only Me</option>
                   </select>
@@ -102,7 +99,7 @@ const SingleUserActivity = () => {
               </button>
             </div>
           </div>
-          <DynamicActivityPage postRefetch={postRefetch}></DynamicActivityPage>
+          <DynamicActivityPage></DynamicActivityPage>
         </div>
       </div>
       <div className="md:hidden w-full">
@@ -166,7 +163,6 @@ const SingleUserActivity = () => {
               Post
             </button>
           </div>
-
           <MovDynamicActivity postRefetch={postRefetch}></MovDynamicActivity>
         </div>
       </div>

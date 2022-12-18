@@ -1,4 +1,7 @@
+// configuration
 import React from "react";
+
+// Third party packages, ex: redux
 import Pagination from "@mui/material/Pagination";
 
 const ActivitiesTable = ({ data }) => {

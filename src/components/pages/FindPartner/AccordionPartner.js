@@ -263,12 +263,12 @@ export const AccordionPartner = ({ data, isLoading }) => {
         setHeight(value);
         setOthersInfo({ ...othersInfo, height: value });
     };
-    const onAfterHeightChange = value => { };
+    const onAfterHeightChange = value => {};
     const onWeightChange = value => {
         setWeight(value);
         setOthersInfo({ ...othersInfo, weight: value });
     };
-    const onAfterWeightChange = value => { };
+    const onAfterWeightChange = value => {};
     const handleUserAncestryChange = value => {
         setOthersInfo({ ...othersInfo, ancestry: value });
     };
@@ -284,9 +284,9 @@ export const AccordionPartner = ({ data, isLoading }) => {
     const handleUserEyeColorChange = value => {
         setOthersInfo({ ...othersInfo, eyeColor: value });
     };
-    const handleNumberOfTeeth = (value) => {
+    const handleNumberOfTeeth = value => {
         setOthersInfo({ ...othersInfo, numberOfTeeth: value });
-    }
+    };
 
     //handle data submission
     const handleSubmit = () => {
@@ -305,7 +305,7 @@ export const AccordionPartner = ({ data, isLoading }) => {
 
     return (
         <div className="w-full">
-            <div className="hidden md:hidden">
+            <div className=" ">
                 <Collapse accordion ghost defaultActiveKey={"1"} expandIconPosition="end" className="mt-[20px]">
                     {/* ------------ Basic Information ---------- */}
                     <Panel header={styledHeader("Basic Information")} key="1">
@@ -1170,7 +1170,7 @@ export const AccordionPartner = ({ data, isLoading }) => {
                         <div>
                             <h1 className="text-base leading-6 font-medium mb-2">Number of Teeth</h1>
                             <Select
-                                className='w-full mb-2'
+                                className="w-full mb-2"
                                 onChange={handleNumberOfTeeth}
                                 placeholder="Select teeth number"
                                 mode="multiple"
@@ -2156,7 +2156,7 @@ export const AccordionPartner = ({ data, isLoading }) => {
                             <div>
                                 <h1 className="text-base leading-6 font-medium mb-2">Number of Teeth</h1>
                                 <Select
-                                    className='w-full mb-2'
+                                    className="w-full mb-2"
                                     onChange={handleNumberOfTeeth}
                                     placeholder="Select teeth number"
                                     mode="multiple"
