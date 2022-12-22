@@ -66,3 +66,4 @@ const matrimonyRoutes = [
         element: FindPartners,
     },
 ];
+export default matrimonyRoutes
