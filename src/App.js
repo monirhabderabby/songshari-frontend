@@ -8,12 +8,11 @@ import "swiper/css/pagination";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-function App() {
 
+function App() {
   return (
-    <div>
-      <Index></Index>
-    </div>
+      // <MasterRoute />
+      <Index />
   );
 }
 

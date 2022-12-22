@@ -1,20 +1,20 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+
 // Routes
-import mobileRoutes from './mobileRoutes';
+import matrimoniRoutes from './Matrimony/matrimonyRoutes'
 
 // Components
-import RouteWithSubRoutes from './RouteWithSubRoutes';
 
 const MasterRoute = () => {
     return (
-        <Router>
+        <BrowserRouter>
             <Routes>
-                {mobileRoutes.map(
-                    (route, i) => <RouteWithSubRoutes key={i} {...route} />)
-                }
+                {matrimoniRoutes.map(
+                    (rout, i) => <Route path={rout.path} element={<rout.element/>} />
+                )}
             </Routes>
-        </Router>
+        </BrowserRouter>
     )
 }
 

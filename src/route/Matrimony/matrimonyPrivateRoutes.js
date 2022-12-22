@@ -11,3 +11,5 @@ const matrimonyPrivateRoutes = [
         element: Container,
     },
 ];
+
+export default matrimonyPrivateRoutes

@@ -1,8 +1,8 @@
 import { Route } from "react-router-dom";
 
-const RouteWithSubRoutes = (route) => {
+const RouteWithSubRoutes = ({ path, Element }) => {
     return (
-        <Route path={route.path} element={route.element} />
+        <Route path={path} element={<Element/>} />
     );
 };
 
