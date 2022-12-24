@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useForm, useFieldArray } from "react-hook-form";
-// import { v4 as uuidv4 } from "uuid";
-// import { firebaseStorage } from "../../firebase.init";
+import { v4 as uuidv4 } from "uuid";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import { firebaseStorage } from "../../firebase.init";
 import { useSetEducationalDetailsMutation } from "../../Redux/features/userInfo/userApi";
 import CreatableSelect from "react-select/creatable";
 import { DatePicker } from "antd";
+import { AiOutlineCloudUpload } from "react-icons/ai";
 
 export const EducationalDetails = ({ setPage }) => {
   // const [photoURL, setPhotoUrl] = useState("");
@@ -16,12 +18,16 @@ export const EducationalDetails = ({ setPage }) => {
   const [eduInstitute, setEduInstitute] = useState("");
   const [eduFieldOfStudy, setEduFieldOfStudy] = useState("");
   const [eduYearOfPassing, setEduYearOfPassing] = useState("");
+  const [eduAchievementMoment, setEduAchievementMoment] = useState("");
 
   const [addedDegreeName, setAddedDegreeName] = useState([]);
   const [addedDepartment, setAddedDepartment] = useState([]);
   const [addedInstitute, setAddedInstitute] = useState([]);
   const [addedFieldOfStudy, setAddedFieldOfStudy] = useState([]);
   const [addedYearOfPassing, setAddedYearOfPassing] = useState([]);
+  const [eduAddedAchievementMoment, setEduAddedAchievementMoment] = useState(
+    []
+  );
 
   const {
     register,
@@ -43,6 +49,7 @@ export const EducationalDetails = ({ setPage }) => {
     data.educations.map((p) => delete p.eduDepartment);
     data.educations.map((p) => delete p.eduFieldOfStudy);
     data.educations.map((p) => delete p.eduYearOfPassing);
+    data.educations.map((p) => delete p.educationalAchievementMoment);
 
     data.educations.map((p, index) => (p.degreeName = addedDegreeName[index]));
     data.educations.map((p, index) => (p.eduInstitute = addedInstitute[index]));
@@ -55,12 +62,17 @@ export const EducationalDetails = ({ setPage }) => {
     data.educations.map(
       (p, index) => (p.eduYearOfPassing = addedYearOfPassing[index])
     );
+    data.educations.map(
+      (p, index) =>
+        (p.educationalAchievementMoment = eduAddedAchievementMoment[index])
+    );
 
     delete data.degreeName;
     delete data.eduInstitute;
     delete data.eduDepartment;
     delete data.eduFieldOfStudy;
     delete data.eduYearOfPassing;
+    delete data.educationalAchievementMoment;
 
     const newObject = Object.create(data);
     newObject.degreeName = degreeName;
@@ -71,6 +83,7 @@ export const EducationalDetails = ({ setPage }) => {
     newObject.eduGpaOrCgpa = data.gpaOrCgpa;
     newObject.specialEducationalAchievement =
       data.specialEducationalAchievement;
+    newObject.educationalAchievementMoment = eduAchievementMoment;
     delete data.gpaOrCgpa;
     delete data.specialEducationalAchievement;
     console.log(newObject);
@@ -79,6 +92,29 @@ export const EducationalDetails = ({ setPage }) => {
     // data.photoCertificate = photoURL;
     await setEducationalDetails(data);
     console.log(data);
+  };
+
+  const educationalAchievementMomentHandler = async (e) => {
+    const photo = e.target.files[0];
+    const storageRef = ref(firebaseStorage, `cover/${photo?.name + uuidv4()}`);
+    uploadBytes(storageRef, photo).then(async (snapshot) => {
+      await getDownloadURL(snapshot.ref).then((url) => {
+        setEduAchievementMoment(url.toString());
+      });
+    });
+  };
+
+  const educAddedAchievementMomentHandler = async (e) => {
+    const photo = e.target.files[0];
+    const storageRef = ref(firebaseStorage, `cover/${photo?.name + uuidv4()}`);
+    uploadBytes(storageRef, photo).then(async (snapshot) => {
+      await getDownloadURL(snapshot.ref).then((url) => {
+        setEduAddedAchievementMoment([
+          ...eduAddedAchievementMoment,
+          url.toString(),
+        ]);
+      });
+    });
   };
 
   useEffect(() => {
@@ -254,11 +290,6 @@ export const EducationalDetails = ({ setPage }) => {
                 bordered={false}
               />
             </div>
-            {/* <h1 className="text-left ml-2">
-                            {errors.yearOfPassing?.type === "required" && (
-                                <span className="w-full text-left text-red-400 text-sm">{errors?.yearOfPassing.message}</span>
-                            )}
-                        </h1> */}
           </section>
           {/* ---------- Special Educational Achievement ---------- */}
           <section>
@@ -272,10 +303,34 @@ export const EducationalDetails = ({ setPage }) => {
               />
             </div>
           </section>
+          {/* ---------- Educational Achievement Moment ---------- */}
+          <section>
+            <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
+              <AiOutlineCloudUpload className=" mr-2 text-gray-400" />
+              <label
+                htmlFor="educationalAchievementMoment"
+                className="outline-none h-full text-sm text-gray-400 bg-gray-100"
+              >
+                {eduAchievementMoment ? (
+                  <>
+                    <span className="text-green-400">Moments added</span>
+                  </>
+                ) : (
+                  "Upload Achievement Moments"
+                )}
+              </label>
+              <input
+                {...register("educationalAchievementMoment")}
+                type="file"
+                id="educationalAchievementMoment"
+                className="hidden"
+                onChange={educationalAchievementMomentHandler}
+              />
+            </div>
+          </section>
 
-          {/* ---------- Add More Educational Info */}
+          {/* ---------- Add More Educational Info -------------*/}
           <br />
-          <div></div>
           {fields.map((field, index) => {
             return (
               <section
@@ -463,6 +518,33 @@ export const EducationalDetails = ({ setPage }) => {
                       </span>
                     )}
                   </h1>
+                </section>
+                {/* ---------- Educational Achievement Moment ---------- */}
+                <section>
+                  <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
+                    <AiOutlineCloudUpload className=" mr-2 text-gray-400" />
+                    <label
+                      htmlFor="eduAddedAchievementMoment"
+                      className="outline-none h-full text-sm text-gray-400 bg-gray-100"
+                    >
+                      {eduAchievementMoment ? (
+                        <>
+                          <span className="text-green-400">Moments added</span>
+                        </>
+                      ) : (
+                        "Upload Achievement Moments"
+                      )}
+                    </label>
+                    <input
+                      {...register(
+                        `educations.${index}.educationalAchievementMoment`
+                      )}
+                      type="file"
+                      id="eduAddedAchievementMoment"
+                      className="hidden"
+                      onChange={educAddedAchievementMomentHandler}
+                    />
+                  </div>
                 </section>
                 <button
                   className="p-3 text-sm text-center font-medium bg-red-100 text-red-500 rounded-lg"

@@ -164,75 +164,6 @@ const Index = () => {
             <Route path="filter" element={<FilterResults />} />
           </Route>
 
-<<<<<<< HEAD
-                    <Route path="/" element={<Homepage></Homepage>}>
-                        <Route path="/" element={<Suggested />} />
-                        <Route path="/top-gride" element={<TopBride />} />
-                        <Route path="/top-groom" element={<TopGroom />} />
-                        <Route path="/top-profession/kazi" element={<TopProfessionKazi />} />
-                        <Route path="/top-profession/agent" element={<TopProfessionAgent />} />
-                    </Route>
-                    <Route path="/singleViewRequest" element={<SingleRequestView />} />
-
-                    <Route path="/admin-analytics" element={<AdminAnalytics />}></Route>
-                    <Route path="/stepper" element={<Container></Container>}></Route>
-                    <Route path="/upgrade" element={<UpgradePlan></UpgradePlan>}></Route>
-                    <Route path="/personalCertificate" element={<OthersCertificate />}></Route>
-                    <Route path="/professionalCertificate" element={<ProfessionalCertificate />}></Route>
-                    <Route path="/educationalCertificate" element={<EducationalCertificate />}></Route>
-                    <Route path="/singleproduct" element={<SingleProduct></SingleProduct>}></Route>
-
-                    {/* --------------- MOBILE ROUTES START --------------- */}
-                    <Route path="/mobileHomePage" element={<MobileHome />}></Route>
-                    <Route path="/setting" element={<Setting></Setting>}></Route>
-                    <Route path="/servicemov" element={<ProfileServices></ProfileServices>}></Route>
-                    <Route path="/mobileuserprofile" element={<MobileSingleProfilesUser></MobileSingleProfilesUser>}></Route>
-                    <Route path="/personaldetailsmov" element={<PersonalDetailsMobile></PersonalDetailsMobile>}></Route>
-                    <Route path="/aboutmov" element={<AboutMov></AboutMov>}></Route>
-                    <Route path="/gallarymov" element={<GallaryMov />}></Route>
-                    <Route path="/meetmov" element={<MeetMov></MeetMov>}></Route>
-                    <Route path="/matchesmov" element={<MatchesMov></MatchesMov>}></Route>
-                    <Route path="/mobileActivityPage" element={<MobileActivity />}></Route>
-                    <Route path="/mobileActivityNextPage" element={<MobileActivityPost />}></Route>
-                    <Route path="/historymov" element={<HistoryMov></HistoryMov>}></Route>
-                    <Route path="/privacymov" element={<PrivacyMov></PrivacyMov>}></Route>
-                    <Route path="/communitymov" element={<CommunityMov></CommunityMov>}></Route>
-                    <Route path="/certificatemov" element={<MobileCertificate></MobileCertificate>}></Route>
-                    <Route path="/like" element={<Like></Like>}></Route>
-                    <Route path="/mobileUpgrade" element={<UpgradePlan></UpgradePlan>}></Route>
-                    <Route path="/mobileFreePlan" element={<MobileFreePlan />}></Route>
-                    <Route path="/mobileGoldPlan" element={<MobileGoldPlan />}></Route>
-                    <Route path="/mobileDiamondPlan" element={<MobileDiamondPlan />}></Route>
-                    <Route path="/mobilePlatinumPlan" element={<MobilePlatinumPlan />}></Route>
-                    <Route path="/mobilecertificate" element={<Certificate />} />
-                    {/* --------------- MOBILE ROUTES END --------------- */}
-
-                    <Route path="/aboutmov" element={<AboutMov></AboutMov>}></Route>
-                    <Route path="/gallarymov" element={<GallaryMov />}></Route>
-                    <Route path="/meetmov" element={<MeetMov></MeetMov>}></Route>
-                    <Route path="/matchesmov" element={<MatchesMov></MatchesMov>}></Route>
-                    <Route path="/mobileActivityPage" element={<MobileActivity />}></Route>
-                    <Route path="/mobileActivityNextPage" element={<MobileActivityPost />}></Route>
-                    <Route path="/historymov" element={<HistoryMov></HistoryMov>}></Route>
-                    <Route path="/privacymov" element={<PrivacyMov></PrivacyMov>}></Route>
-                    <Route path="/communitymov" element={<CommunityMov></CommunityMov>}></Route>
-                    <Route path="/certificatemov" element={<CertificateMov></CertificateMov>}></Route>
-                    <Route path="/like" element={<Like></Like>}></Route>
-                    <Route path="/mobileUpgrade" element={<UpgradePlan></UpgradePlan>}></Route>
-                    <Route path="/mobileFreePlan" element={<MobileFreePlan />}></Route>
-                    <Route path="/mobileGoldPlan" element={<MobileGoldPlan />}></Route>
-                    <Route path="/mobileDiamondPlan" element={<MobileDiamondPlan />}></Route>
-                    <Route path="/mobilePlatinumPlan" element={<MobilePlatinumPlan />}></Route>
-                    <Route path="/mobilecertificate" element={<MobileCertificate />} />
-                    <Route path="/certificate" element={<Certificate />} />
-                    {/* --------------- MOBILE ROUTES END --------------- */}
-
-                    <Route path="*" element={<NotFound />}></Route>
-                </Routes>
-            </BrowserRouter>
-        </div>
-    );
-=======
           <Route path="/" element={<Homepage></Homepage>}>
             <Route path="/" element={<Suggested />} />
             <Route path="/top-gride" element={<TopBride />} />
@@ -247,11 +178,6 @@ const Index = () => {
             />
           </Route>
           <Route path="/singleViewRequest" element={<SingleRequestView />} />
-          <Route
-            path="/notificationPay"
-            element={<ViewUserActivities></ViewUserActivities>}
-          />
-          <Route path="/sendPay" element={<SendForPayment></SendForPayment>} />
 
           <Route path="/admin-analytics" element={<AdminAnalytics />}></Route>
           <Route path="/stepper" element={<Container></Container>}></Route>
@@ -313,10 +239,6 @@ const Index = () => {
           <Route path="/stepper" element={<Container></Container>}></Route>
           <Route path="/upgrade" element={<UpgradePlan></UpgradePlan>}></Route>
 
-          {/* Admin routes */}
-          <Route path="/admin" element={<User></User>}>
-            <Route path="addUser" element={<AddUser></AddUser>}></Route>
-          </Route>
           {/* --------------- MOBILE ROUTES START --------------- */}
           <Route path="/mobileHomePage" element={<MobileHome />}></Route>
           <Route path="/setting" element={<Setting></Setting>}></Route>
@@ -370,14 +292,6 @@ const Index = () => {
             element={<MobilePlatinumPlan />}
           ></Route>
           <Route path="/mobilecertificate" element={<Certificate />} />
-          {/* --------------- MOBILE ROUTES END --------------- */}
-
-          {/* --------------- Dashboard ROUTES START --------------- */}
-          <Route path="dashboard" element={<Dashboard />}>
-            <Route path="" element={<DashboardHome />} />
-          </Route>
-
-          {/* --------------- Dashboard ROUTES END --------------- */}
 
           <Route path="/aboutmov" element={<AboutMov></AboutMov>}></Route>
           <Route path="/gallarymov" element={<GallaryMov />}></Route>
@@ -425,7 +339,6 @@ const Index = () => {
       </BrowserRouter>
     </div>
   );
->>>>>>> 69fcc983cf1a7f5baeea7488ba7d8e25636a23eb
 };
 
 export default Index;
