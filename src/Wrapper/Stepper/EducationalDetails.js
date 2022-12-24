@@ -1,17 +1,21 @@
+// configuration
 import React, { useEffect, useState } from "react";
+
+// Third party packages
 import { useForm, useFieldArray } from "react-hook-form";
 import { v4 as uuidv4 } from "uuid";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import { DatePicker } from "antd";
+import CreatableSelect from "react-select/creatable";
+
+// components
 import { firebaseStorage } from "../../firebase.init";
 import { useSetEducationalDetailsMutation } from "../../Redux/features/userInfo/userApi";
-import CreatableSelect from "react-select/creatable";
-import { DatePicker } from "antd";
 import { AiOutlineCloudUpload } from "react-icons/ai";
 
 export const EducationalDetails = ({ setPage }) => {
-  // const [photoURL, setPhotoUrl] = useState("");
-  const [setEducationalDetails, { data: response, isLoading }] =
-    useSetEducationalDetailsMutation();
+  // const [setEducationalDetails, { data: response, isLoading }] =
+  //   useSetEducationalDetailsMutation();
 
   const [degreeName, setDegreeName] = useState("");
   const [eduDepartment, setEduDepartment] = useState("");
@@ -25,9 +29,7 @@ export const EducationalDetails = ({ setPage }) => {
   const [addedInstitute, setAddedInstitute] = useState([]);
   const [addedFieldOfStudy, setAddedFieldOfStudy] = useState([]);
   const [addedYearOfPassing, setAddedYearOfPassing] = useState([]);
-  const [eduAddedAchievementMoment, setEduAddedAchievementMoment] = useState(
-    []
-  );
+  const [eduAddedPhotoCertificate, setEduAddedPhotoCertificate] = useState([]);
 
   const {
     register,
@@ -44,53 +46,48 @@ export const EducationalDetails = ({ setPage }) => {
   const onSubmit = async (data) => {
     // data.caseCompleted = parseInt(data.caseCompleted);
 
-    data.educations.map((p) => delete p.degreeName);
-    data.educations.map((p) => delete p.eduInstitute);
-    data.educations.map((p) => delete p.eduDepartment);
-    data.educations.map((p) => delete p.eduFieldOfStudy);
-    data.educations.map((p) => delete p.eduYearOfPassing);
-    data.educations.map((p) => delete p.educationalAchievementMoment);
+    data.educations.map((p) => delete p.degree);
+    data.educations.map((p) => delete p.institute);
+    data.educations.map((p) => delete p.department);
+    data.educations.map((p) => delete p.feildOfStudy);
+    data.educations.map((p) => delete p.yearOfPassing);
+    data.educations.map((p) => delete p.photoCertificate);
 
-    data.educations.map((p, index) => (p.degreeName = addedDegreeName[index]));
-    data.educations.map((p, index) => (p.eduInstitute = addedInstitute[index]));
+    data.educations.map((p, index) => (p.degree = addedDegreeName[index]));
+    data.educations.map((p, index) => (p.institute = addedInstitute[index]));
+    data.educations.map((p, index) => (p.department = addedDepartment[index]));
     data.educations.map(
-      (p, index) => (p.eduDepartment = addedDepartment[index])
+      (p, index) => (p.feildOfStudy = addedFieldOfStudy[index])
     );
     data.educations.map(
-      (p, index) => (p.eduFieldOfStudy = addedFieldOfStudy[index])
+      (p, index) => (p.yearOfPassing = addedYearOfPassing[index])
     );
     data.educations.map(
-      (p, index) => (p.eduYearOfPassing = addedYearOfPassing[index])
+      (p, index) => (p.photoCertificate = eduAddedPhotoCertificate[index])
     );
-    data.educations.map(
-      (p, index) =>
-        (p.educationalAchievementMoment = eduAddedAchievementMoment[index])
-    );
-
-    delete data.degreeName;
-    delete data.eduInstitute;
-    delete data.eduDepartment;
-    delete data.eduFieldOfStudy;
-    delete data.eduYearOfPassing;
-    delete data.educationalAchievementMoment;
 
     const newObject = Object.create(data);
-    newObject.degreeName = degreeName;
-    newObject.eduDepartment = eduDepartment;
-    newObject.eduFieldOfStudy = eduFieldOfStudy;
-    newObject.eduInstitute = eduInstitute;
-    newObject.eduYearOfPassing = eduYearOfPassing;
+    newObject.degree = degreeName;
+    newObject.institute = eduInstitute;
+    newObject.department = eduDepartment;
+    newObject.feildOfStudy = eduFieldOfStudy;
+    newObject.yearOfPassing = eduYearOfPassing;
     newObject.eduGpaOrCgpa = data.gpaOrCgpa;
-    newObject.specialEducationalAchievement =
-      data.specialEducationalAchievement;
-    newObject.educationalAchievementMoment = eduAchievementMoment;
+    newObject.specialAchievement = data.specialAchievement;
+    newObject.photoCertificate = eduAchievementMoment;
+
+    delete data.degree;
+    delete data.institute;
+    delete data.department;
+    delete data.feildOfStudy;
+    delete data.yearOfPassing;
+    delete data.photoCertificate;
     delete data.gpaOrCgpa;
-    delete data.specialEducationalAchievement;
-    console.log(newObject);
+    delete data.specialAchievement;
     data.educations.push(newObject);
 
     // data.photoCertificate = photoURL;
-    await setEducationalDetails(data);
+    // await setEducationalDetails(data);
     console.log(data);
   };
 
@@ -104,34 +101,24 @@ export const EducationalDetails = ({ setPage }) => {
     });
   };
 
-  const educAddedAchievementMomentHandler = async (e) => {
+  const eduAddedAchievementMomentHandler = async (e) => {
     const photo = e.target.files[0];
     const storageRef = ref(firebaseStorage, `cover/${photo?.name + uuidv4()}`);
     uploadBytes(storageRef, photo).then(async (snapshot) => {
       await getDownloadURL(snapshot.ref).then((url) => {
-        setEduAddedAchievementMoment([
-          ...eduAddedAchievementMoment,
+        setEduAddedPhotoCertificate([
+          ...eduAddedPhotoCertificate,
           url.toString(),
         ]);
       });
     });
   };
 
-  useEffect(() => {
-    if (response) {
-      setPage(3);
-    }
-  }, [response, setPage]);
-
-  // const photoHandler = async e => {
-  //     const photo = e.target.files[0];
-  //     const storageRef = ref(firebaseStorage, `certificate/${photo.name + uuidv4()}`);
-  //     uploadBytes(storageRef, photo).then(async snapshot => {
-  //         await getDownloadURL(snapshot.ref).then(url => {
-  //             setPhotoUrl(url.toString());
-  //         });
-  //     });
-  // };
+  // useEffect(() => {
+  //   if (response) {
+  //     setPage(3);
+  //   }
+  // }, [response, setPage]);
 
   return (
     <div className="w-full h-auto">
@@ -145,7 +132,7 @@ export const EducationalDetails = ({ setPage }) => {
           <section>
             <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
               <CreatableSelect
-                {...register("degreeName")}
+                {...register("degree")}
                 onChange={(val) => setDegreeName(val.value)}
                 type="text"
                 placeholder="Degree Name"
@@ -164,19 +151,12 @@ export const EducationalDetails = ({ setPage }) => {
                 id="degreeName"
               />
             </div>
-            <h1 className="text-left ml-2">
-              {errors.degreeName?.type === "required" && (
-                <span className="w-full text-left text-red-400 text-sm">
-                  {errors?.degreeName.message}
-                </span>
-              )}
-            </h1>
           </section>
           {/* ---------- Institution ---------- */}
           <section>
             <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
               <CreatableSelect
-                {...register("eduInstitute")}
+                {...register("institute")}
                 onChange={(val) => setEduInstitute(val.value)}
                 type="text"
                 placeholder="Institution"
@@ -200,7 +180,7 @@ export const EducationalDetails = ({ setPage }) => {
           <section>
             <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
               <CreatableSelect
-                {...register("eduDepartment")}
+                {...register("department")}
                 onChange={(val) => setEduDepartment(val.value)}
                 type="text"
                 placeholder="Department Name"
@@ -219,17 +199,12 @@ export const EducationalDetails = ({ setPage }) => {
                 id="Department"
               />
             </div>
-            {/* <h1 className="text-left ml-2">
-                            {errors.Department?.type === "required" && (
-                                <span className="w-full text-left text-red-400 text-sm">{errors?.Department.message}</span>
-                            )}
-                        </h1> */}
           </section>
           {/* ---------- Field of Study ---------- */}
           <section>
             <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
               <CreatableSelect
-                {...register("eduFieldOfStudy")}
+                {...register("feildOfStudy")}
                 onChange={(val) => setEduFieldOfStudy(val.value)}
                 type="text"
                 placeholder="Field of Study"
@@ -248,41 +223,24 @@ export const EducationalDetails = ({ setPage }) => {
                 id="fieldOfStudy"
               />
             </div>
-            {/* <h1 className="text-left ml-2">
-                            {errors.fieldOfStudy?.type === "required" && (
-                                <span className="w-full text-left text-red-400 text-sm">{errors?.fieldOfStudy.message}</span>
-                            )}
-                        </h1> */}
           </section>
           {/* ---------- GPA or CGPA ---------- */}
           <section>
             <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
               <input
-                {...register("gpaOrCgpa", {
-                  required: {
-                    value: true,
-                    message: "GPA or CGPA is required",
-                  },
-                })}
+                {...register("gpaOrCgpa")}
                 type="text"
                 placeholder="GPA Or CGPA"
                 className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
                 id="gpaOrCgpa"
               />
             </div>
-            <h1 className="text-left ml-2">
-              {errors.gpaOrCgpa?.type === "required" && (
-                <span className="w-full text-left text-red-400 text-sm">
-                  {errors?.gpaOrCgpa.message}
-                </span>
-              )}
-            </h1>
           </section>
           {/* ---------- Year of Passing ---------- */}
           <section>
             <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
               <DatePicker
-                {...register("eduYearOfPassing")}
+                {...register("yearOfPassing")}
                 onChange={(date, dateString) => setEduYearOfPassing(dateString)}
                 placeholder="Year of Passing"
                 className="flex-1 px-2 py-2 outline-none h-full bg-transparent text-sm text-gray-400"
@@ -295,11 +253,11 @@ export const EducationalDetails = ({ setPage }) => {
           <section>
             <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
               <input
-                {...register("specialEducationalAchievement")}
+                {...register("specialAchievement")}
                 type="text"
                 placeholder="Special Achievement"
                 className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
-                id="specialEducationalAchievement"
+                id="specialAchievement"
               />
             </div>
           </section>
@@ -320,7 +278,7 @@ export const EducationalDetails = ({ setPage }) => {
                 )}
               </label>
               <input
-                {...register("educationalAchievementMoment")}
+                {...register("photoCertificate")}
                 type="file"
                 id="educationalAchievementMoment"
                 className="hidden"
@@ -341,7 +299,7 @@ export const EducationalDetails = ({ setPage }) => {
                 <section>
                   <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
                     <CreatableSelect
-                      {...register(`educations.${index}.degreeName`)}
+                      {...register(`educations.${index}.degree`)}
                       onChange={(val) =>
                         setAddedDegreeName([...addedDegreeName, val.value])
                       }
@@ -362,19 +320,12 @@ export const EducationalDetails = ({ setPage }) => {
                       id="degreeName"
                     />
                   </div>
-                  <h1 className="text-left ml-2">
-                    {errors.degreeName?.type === "required" && (
-                      <span className="w-full text-left text-red-400 text-sm">
-                        {errors?.degreeName.message}
-                      </span>
-                    )}
-                  </h1>
                 </section>
                 {/* ---------- Institution ---------- */}
                 <section>
                   <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
                     <CreatableSelect
-                      {...register(`educations.${index}.eduInstitute`)}
+                      {...register(`educations.${index}.institute`)}
                       onChange={(val) =>
                         setAddedInstitute([...addedInstitute, val.value])
                       }
@@ -400,7 +351,7 @@ export const EducationalDetails = ({ setPage }) => {
                 <section>
                   <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
                     <CreatableSelect
-                      {...register(`educations.${index}.eduDepartment`)}
+                      {...register(`educations.${index}.department`)}
                       onChange={(val) =>
                         setAddedDepartment([...addedDepartment, val.value])
                       }
@@ -426,7 +377,7 @@ export const EducationalDetails = ({ setPage }) => {
                 <section>
                   <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
                     <CreatableSelect
-                      {...register(`educations.${index}.eduFieldOfStudy`)}
+                      {...register(`educations.${index}.feildOfStudy`)}
                       onChange={(val) =>
                         setAddedFieldOfStudy([...addedFieldOfStudy, val.value])
                       }
@@ -452,31 +403,19 @@ export const EducationalDetails = ({ setPage }) => {
                 <section>
                   <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
                     <input
-                      {...register(`educations.${index}.eduGpaOrCgpa`, {
-                        required: {
-                          value: true,
-                          message: "GPA or CGPA is required",
-                        },
-                      })}
+                      {...register(`educations.${index}.gpaOrCgpa`)}
                       type="text"
                       placeholder="Special Achievement"
                       className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
                       id="eduGpaOrCgpa"
                     />
                   </div>
-                  <h1 className="text-left ml-2">
-                    {errors.eduGpaOrCgpa?.type === "required" && (
-                      <span className="w-full text-left text-red-400 text-sm">
-                        {errors?.eduGpaOrCgpa.message}
-                      </span>
-                    )}
-                  </h1>
                 </section>
                 {/* ---------- Year of Passing ---------- */}
                 <section>
                   <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
                     <DatePicker
-                      {...register(`educations.${index}.eduYearOfPassing`)}
+                      {...register(`educations.${index}.yearOfPassing`)}
                       onChange={(date, dateString) =>
                         setAddedYearOfPassing([
                           ...addedYearOfPassing,
@@ -494,30 +433,13 @@ export const EducationalDetails = ({ setPage }) => {
                 <section>
                   <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
                     <input
-                      {...register(
-                        `educations.${index}.specialEducationalAchievement`,
-                        {
-                          required: {
-                            value: true,
-                            message:
-                              "Special Educational Achievement is required",
-                          },
-                        }
-                      )}
+                      {...register(`educations.${index}.specialAchievement`)}
                       type="text"
                       placeholder="Special Achievement"
                       className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
-                      id="specialEducationalAchievement"
+                      id="specialAchievement"
                     />
                   </div>
-                  <h1 className="text-left ml-2">
-                    {errors.specialEducationalAchievement?.type ===
-                      "required" && (
-                      <span className="w-full text-left text-red-400 text-sm">
-                        {errors?.specialEducationalAchievement.message}
-                      </span>
-                    )}
-                  </h1>
                 </section>
                 {/* ---------- Educational Achievement Moment ---------- */}
                 <section>
@@ -527,22 +449,21 @@ export const EducationalDetails = ({ setPage }) => {
                       htmlFor="eduAddedAchievementMoment"
                       className="outline-none h-full text-sm text-gray-400 bg-gray-100"
                     >
-                      {eduAchievementMoment ? (
+                      {/* {eduAchievementMoment ? (
                         <>
                           <span className="text-green-400">Moments added</span>
                         </>
                       ) : (
                         "Upload Achievement Moments"
-                      )}
+                      )} */}
+                      Upload Achievement Moments
                     </label>
                     <input
-                      {...register(
-                        `educations.${index}.educationalAchievementMoment`
-                      )}
+                      {...register(`educations.${index}.photoCertificate`)}
                       type="file"
                       id="eduAddedAchievementMoment"
                       className="hidden"
-                      onChange={educAddedAchievementMomentHandler}
+                      onChange={eduAddedAchievementMomentHandler}
                     />
                   </div>
                 </section>
@@ -561,13 +482,14 @@ export const EducationalDetails = ({ setPage }) => {
             className="p-3 text-sm text-center font-medium text-gray-400 bg-gray-100 rounded-lg"
             onClick={() => {
               append({
-                degreeName: "",
-                eduInstitute: "",
-                eduDepartment: "",
-                eduFieldOfStudy: "",
-                eduGpaOrCgpa: "",
-                eduYearOfPassing: "",
-                specialEducationalAchievement: "",
+                degree: "",
+                institute: "",
+                department: "",
+                feildOfStudy: "",
+                gpaOrCgpa: "",
+                yearOfPassing: "",
+                specialAchievement: "",
+                photoCertificate: "",
               });
             }}
           >
@@ -575,39 +497,6 @@ export const EducationalDetails = ({ setPage }) => {
           </button>
 
           {/* ---------- Add More Educational Info End */}
-
-          {/* ---------- Photo of Certificate ---------- */}
-          {/* <section>
-                        <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
-                            <AiOutlineCloudUpload className=" mr-2 text-gray-400" />
-                            <label htmlFor="photoCertificate" className="outline-none h-full text-sm text-gray-400 bg-gray-100">
-                                {photoURL ? (
-                                    <>
-                                        <span className="text-green-400">Photo added</span>
-                                    </>
-                                ) : (
-                                    "Upload Certificate Photo"
-                                )}
-                            </label>
-                            <input
-                                {...register("photoCertificate", {
-                                    required: {
-                                        value: true,
-                                        message: "Certificate Photo is Required",
-                                    },
-                                })}
-                                type="file"
-                                id="photoCertificate"
-                                className="hidden"
-                                onChange={photoHandler}
-                            />
-                        </div>
-                        <h1 className="text-left ml-2">
-                            {errors.photoCertificate?.type === "required" && (
-                                <span className="w-full text-left text-red-400 text-sm">{errors?.photoCertificate.message}</span>
-                            )}
-                        </h1>
-                    </section> */}
         </section>
         <div className="flex items-center w-full justify-center gap-x-[20px] mt-[20px]">
           <button
@@ -618,7 +507,8 @@ export const EducationalDetails = ({ setPage }) => {
           </button>
           <input
             type="submit"
-            value={isLoading ? "Saving..." : "Next"}
+            // value={isLoading ? "Saving..." : "Next"}
+            value={"Next"}
             className="border-2 cursor-pointer mt-3 border-primary hover:border-0 rounded-full px-12 py-2 hover:bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] hover:text-white duration-500 transition-all"
           />
         </div>
