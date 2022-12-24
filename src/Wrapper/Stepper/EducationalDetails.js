@@ -14,8 +14,8 @@ import { useSetEducationalDetailsMutation } from "../../Redux/features/userInfo/
 import { AiOutlineCloudUpload } from "react-icons/ai";
 
 export const EducationalDetails = ({ setPage }) => {
-  // const [setEducationalDetails, { data: response, isLoading }] =
-  //   useSetEducationalDetailsMutation();
+  const [setEducationalDetails, { data: response, isLoading }] =
+    useSetEducationalDetailsMutation();
 
   const [degreeName, setDegreeName] = useState("");
   const [eduDepartment, setEduDepartment] = useState("");
@@ -31,12 +31,7 @@ export const EducationalDetails = ({ setPage }) => {
   const [addedYearOfPassing, setAddedYearOfPassing] = useState([]);
   const [eduAddedPhotoCertificate, setEduAddedPhotoCertificate] = useState([]);
 
-  const {
-    register,
-    formState: { errors },
-    handleSubmit,
-    control,
-  } = useForm();
+  const { register, handleSubmit, control } = useForm();
 
   const { fields, append, remove } = useFieldArray({
     name: "educations",
@@ -86,9 +81,7 @@ export const EducationalDetails = ({ setPage }) => {
     delete data.specialAchievement;
     data.educations.push(newObject);
 
-    // data.photoCertificate = photoURL;
-    // await setEducationalDetails(data);
-    console.log(data);
+    await setEducationalDetails(data);
   };
 
   const educationalAchievementMomentHandler = async (e) => {
@@ -114,11 +107,11 @@ export const EducationalDetails = ({ setPage }) => {
     });
   };
 
-  // useEffect(() => {
-  //   if (response) {
-  //     setPage(3);
-  //   }
-  // }, [response, setPage]);
+  useEffect(() => {
+    if (response) {
+      setPage(3);
+    }
+  }, [response, setPage]);
 
   return (
     <div className="w-full h-auto">
@@ -507,8 +500,7 @@ export const EducationalDetails = ({ setPage }) => {
           </button>
           <input
             type="submit"
-            // value={isLoading ? "Saving..." : "Next"}
-            value={"Next"}
+            value={isLoading ? "Saving..." : "Next"}
             className="border-2 cursor-pointer mt-3 border-primary hover:border-0 rounded-full px-12 py-2 hover:bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] hover:text-white duration-500 transition-all"
           />
         </div>

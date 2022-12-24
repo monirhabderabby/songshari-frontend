@@ -16,6 +16,9 @@ export const PhysicalDetails = ({ setPage }) => {
   const [hairType, setHairType] = useState("");
   const [numberOfTeeth, setNumberOfTeeth] = useState("");
 
+  const [setPhysicalDetails, { data: response, isLoading }] =
+    useSetPhysicalDetailsMutation();
+
   // Ancestry data
   const [ancestryData, setAncestryData] = useState([]);
   useEffect(() => {
@@ -29,9 +32,6 @@ export const PhysicalDetails = ({ setPage }) => {
     formState: { errors },
     handleSubmit,
   } = useForm();
-
-  // const [setPhysicalDetails, { data, isLoading }] =
-  //   useSetPhysicalDetailsMutation();
 
   const onSubmit = async (data) => {
     delete data.ancestry;
@@ -51,16 +51,15 @@ export const PhysicalDetails = ({ setPage }) => {
       numberOfTeeth,
     };
 
-    // data.numberOfTeeth = Number(data.numberOfTeeth);
-    // await setPhysicalDetails(data);
-    console.log(data);
+    data.numberOfTeeth = Number(data.numberOfTeeth);
+    await setPhysicalDetails(data);
   };
 
-  // useEffect(() => {
-  //   if (data) {
-  //     setPage(5);
-  //   }
-  // }, [data, setPage]);
+  useEffect(() => {
+    if (response) {
+      setPage(5);
+    }
+  }, [response, setPage]);
 
   return (
     <div className="w-full h-auto">
@@ -285,8 +284,7 @@ export const PhysicalDetails = ({ setPage }) => {
           </button>
           <input
             type="submit"
-            // value={isLoading ? "Saving..." : "Next"}
-            value={"Next"}
+            value={isLoading ? "Saving..." : "Next"}
             className="border-2 cursor-pointer mt-3 border-primary hover:border-0 rounded-full px-12 py-2 hover:bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] hover:text-white duration-500 transition-all"
           />
         </div>

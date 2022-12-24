@@ -190,8 +190,7 @@ export const PersonalDetails = ({ setPage }) => {
       partnerDeathDate,
       citizenShip,
     };
-    // await setPersonalDetails(data);
-    console.log(data);
+    await setPersonalDetails(data);
   };
 
   useEffect(() => {

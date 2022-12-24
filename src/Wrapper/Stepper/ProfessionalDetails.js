@@ -1,5 +1,5 @@
 // configuration
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 // Third party packages
 import { DatePicker } from "antd";
@@ -10,6 +10,7 @@ import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 // components
 import { AiOutlineCloudUpload } from "react-icons/ai";
 import { firebaseStorage } from "../../firebase.init";
+import { useSetProfessionalDetailsMutation } from "../../Redux/features/userInfo/userApi";
 
 export const ProfessionalDetails = ({ setPage }) => {
   const [workPeriod, setWorkPeriod] = useState();
@@ -18,12 +19,10 @@ export const ProfessionalDetails = ({ setPage }) => {
     useState("");
   const [addedAchievementMoment, setAddedAchievementMoment] = useState([]);
 
-  const {
-    register,
-    formState: { errors },
-    handleSubmit,
-    control,
-  } = useForm();
+  const [setProfessionalDetails, { data: response, isLoading }] =
+    useSetProfessionalDetailsMutation();
+
+  const { register, handleSubmit, control } = useForm();
 
   const { fields, append, remove } = useFieldArray({
     name: "professions",
@@ -70,25 +69,7 @@ export const ProfessionalDetails = ({ setPage }) => {
 
     data.professions.push(newObject);
 
-    // await fetch(
-    //   "https://shanshari-temp.onrender.com/member/register/professionalDetail",
-    //   {
-    //     method: "POST",
-    //     headers: {
-    //       "content-type": "application/json",
-    //       authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-    //     },
-    //     body: JSON.stringify(data),
-    //   }
-    // )
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     if (data) {
-    //       setPage(4);
-    //     }
-    //   });
-
-    console.log(data);
+    await setProfessionalDetails(data);
   };
 
   const specialAchievementMomentHandler = async (e) => {
@@ -110,6 +91,12 @@ export const ProfessionalDetails = ({ setPage }) => {
       });
     });
   };
+
+  useEffect(() => {
+    if (response) {
+      setPage(4);
+    }
+  }, [response, setPage]);
 
   return (
     <div className="w-full h-auto">
@@ -334,7 +321,7 @@ export const ProfessionalDetails = ({ setPage }) => {
           </button>
           <input
             type="submit"
-            value={"Next"}
+            value={isLoading ? "Saving..." : "Next"}
             className="border-2 cursor-pointer mt-3 border-primary hover:border-0 rounded-full px-12 py-2 hover:bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] hover:text-white duration-500 transition-all"
           />
         </div>

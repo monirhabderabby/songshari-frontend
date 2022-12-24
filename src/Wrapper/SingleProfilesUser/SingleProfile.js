@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import "../../assets/css/singleprofilepage.css";
-import SingleProfiles from "../../components/SingleProfilesUser/SingleProfiles";
+import { SingleProfiles } from "../../components/SingleProfilesUser/SingleProfiles";
 
 const SingleProfile = () => {
   useEffect(() => {

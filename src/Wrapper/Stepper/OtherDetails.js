@@ -10,8 +10,9 @@ import { useNavigate } from "react-router";
 import { useSetOthersDetailsMutation } from "../../Redux/features/userInfo/userApi";
 
 export const OtherDetails = ({ setPage }) => {
-  // const [setOthersDetails, { data, isLoading }] = useSetOthersDetailsMutation();
-  // const navigate = useNavigate();
+  const [setOthersDetails, { data: response, isLoading }] =
+    useSetOthersDetailsMutation();
+  const navigate = useNavigate();
   const {
     register,
     formState: { errors },
@@ -19,16 +20,15 @@ export const OtherDetails = ({ setPage }) => {
   } = useForm();
 
   const onSubmit = async (data) => {
-    // await setOthersDetails(data);
-    console.log(data);
+    await setOthersDetails(data);
   };
 
-  // useEffect(() => {
-  //   if (data) {
-  //     toast.success("Successfully updated your profile");
-  //     navigate("/");
-  //   }
-  // }, [data, navigate]);
+  useEffect(() => {
+    if (response) {
+      toast.success("Successfully updated your profile");
+      navigate("/");
+    }
+  }, [response, navigate]);
 
   return (
     <div className="w-full h-auto">
@@ -321,8 +321,7 @@ export const OtherDetails = ({ setPage }) => {
           </button>
           <input
             type="submit"
-            // value={isLoading ? "Saving..." : "Submit"}
-            value={"Submit"}
+            value={isLoading ? "Saving..." : "Submit"}
             className="border-2 cursor-pointer mt-3 border-primary hover:border-0 rounded-full px-12 py-2 hover:bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] hover:text-white duration-500 transition-all"
           />
         </div>
