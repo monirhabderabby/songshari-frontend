@@ -1,4 +1,7 @@
+// configuration
 import React, { useState } from "react";
+
+// components
 import NavBar from "../../components/pages/Shared/NavBar";
 import { EducationalDetails } from "./EducationalDetails";
 import { OtherDetails } from "./OtherDetails";
