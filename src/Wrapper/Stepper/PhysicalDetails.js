@@ -14,7 +14,7 @@ export const PhysicalDetails = ({ setPage }) => {
   const [eyeColor, setEyeColor] = useState("");
   const [hairColor, setHairColor] = useState("");
   const [hairType, setHairType] = useState("");
-  const [numberOfTeeth, setNumberOfTeeth] = useState("");
+  const [numberOfTeeth, setNumberOfTeeth] = useState(null);
 
   const [setPhysicalDetails, { data: response, isLoading }] =
     useSetPhysicalDetailsMutation();
