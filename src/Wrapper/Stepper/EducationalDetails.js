@@ -442,13 +442,13 @@ export const EducationalDetails = ({ setPage }) => {
                       htmlFor="eduAddedAchievementMoment"
                       className="outline-none h-full text-sm text-gray-400 bg-gray-100"
                     >
-                      {/* {eduAchievementMoment ? (
+                      {eduAchievementMoment ? (
                         <>
                           <span className="text-green-400">Moments added</span>
                         </>
                       ) : (
                         "Upload Achievement Moments"
-                      )} */}
+                      )}
                       Upload Achievement Moments
                     </label>
                     <input
@@ -460,6 +460,13 @@ export const EducationalDetails = ({ setPage }) => {
                     />
                   </div>
                 </section>
+                {/* <EduAddedMomentsField
+                  {...register(`educations.${index}.photoCertificate`)}
+                  {...{
+                    eduAddedPhotoCertificate,
+                    setEduAddedPhotoCertificate,
+                  }}
+                /> */}
                 <button
                   className="p-3 text-sm text-center font-medium bg-red-100 text-red-500 rounded-lg"
                   type="button"
