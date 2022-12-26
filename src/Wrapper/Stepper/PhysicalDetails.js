@@ -1,15 +1,23 @@
+// configuration
 import React, { useEffect, useState } from "react";
+
+// Third party packages
 import { useForm } from "react-hook-form";
-import { useSetPhysicalDetailsMutation } from "../../Redux/features/userInfo/userApi";
 import CreatableSelect from "react-select/creatable";
 
+// components
+import { useSetPhysicalDetailsMutation } from "../../Redux/features/userInfo/userApi";
+
 export const PhysicalDetails = ({ setPage }) => {
-  const [phyAncestry, setPhyAncestry] = useState("");
-  const [phySkinTone, setPhySkinTone] = useState("");
-  const [phyEyeColor, setPhyEyeColor] = useState("");
-  const [phyHairColor, setPhyHairColor] = useState("");
-  const [phyHairType, setPhyHairType] = useState("");
-  const [phyNumberTeeth, setPhyNumberTeeth] = useState("");
+  const [ancestry, setAncestry] = useState("");
+  const [skinTone, setSkinTone] = useState("");
+  const [eyeColor, setEyeColor] = useState("");
+  const [hairColor, setHairColor] = useState("");
+  const [hairType, setHairType] = useState("");
+  const [numberOfTeeth, setNumberOfTeeth] = useState(null);
+
+  const [setPhysicalDetails, { data: response, isLoading }] =
+    useSetPhysicalDetailsMutation();
 
   // Ancestry data
   const [ancestryData, setAncestryData] = useState([]);
@@ -25,51 +33,33 @@ export const PhysicalDetails = ({ setPage }) => {
     handleSubmit,
   } = useForm();
 
-  const [setPhysicalDetails, { data, isLoading }] =
-    useSetPhysicalDetailsMutation();
-
   const onSubmit = async (data) => {
-    delete data.phyAncestry;
-    delete data.phyEyeColor;
-    delete data.phyHairColor;
-    delete data.phyHairType;
-    delete data.phyNumberTeeth;
-    delete data.phySkinTone;
-
-    // const physicalInfo = Object.create(data);
-
-    // physicalInfo.height = data.height;
-    // physicalInfo.weight = data.weight;
-    // physicalInfo.phyAncestry = phyAncestry;
-    // physicalInfo.phySkinTone = phySkinTone;
-    // physicalInfo.phyHairColor = phyHairColor;
-    // physicalInfo.phyHairType = phyHairType;
-    // physicalInfo.phyEyeColor = phyEyeColor;
-    // physicalInfo.phyNumberTeeth = phyNumberTeeth;
-
-    // delete data.height;
-    // delete data.weight;
+    delete data.ancestry;
+    delete data.eyeColor;
+    delete data.hairColor;
+    delete data.hairType;
+    delete data.numberOfTeeth;
+    delete data.skinTone;
 
     data = {
       ...data,
-      phyAncestry,
-      phySkinTone,
-      phyHairColor,
-      phyHairType,
-      phyEyeColor,
-      phyNumberTeeth,
+      ancestry,
+      skinTone,
+      hairColor,
+      hairType,
+      eyeColor,
+      numberOfTeeth,
     };
 
-    // data.numberOfTeeth = Number(data.numberOfTeeth);
+    data.numberOfTeeth = Number(data.numberOfTeeth);
     await setPhysicalDetails(data);
-    console.log(data);
   };
 
   useEffect(() => {
-    if (data) {
+    if (response) {
       setPage(5);
     }
-  }, [data, setPage]);
+  }, [response, setPage]);
 
   return (
     <div className="w-full h-auto">
@@ -131,8 +121,8 @@ export const PhysicalDetails = ({ setPage }) => {
           <section>
             <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
               <CreatableSelect
-                {...register("phyAncestry")}
-                onChange={(val) => setPhyAncestry(val.value)}
+                {...register("ancestry")}
+                onChange={(val) => setAncestry(val.value)}
                 type="text"
                 placeholder="Ancestry"
                 options={ancestryData}
@@ -155,8 +145,8 @@ export const PhysicalDetails = ({ setPage }) => {
           <section>
             <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
               <CreatableSelect
-                {...register("phySkinTone")}
-                onChange={(val) => setPhySkinTone(val.value)}
+                {...register("skinTone")}
+                onChange={(val) => setSkinTone(val.value)}
                 type="text"
                 placeholder="Skin Tone"
                 options={[
@@ -192,8 +182,8 @@ export const PhysicalDetails = ({ setPage }) => {
           <section>
             <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
               <CreatableSelect
-                {...register("phyHairColor")}
-                onChange={(val) => setPhyHairColor(val.value)}
+                {...register("hairColor")}
+                onChange={(val) => setHairColor(val.value)}
                 type="text"
                 placeholder="Hair Color"
                 // options={options}
@@ -216,8 +206,8 @@ export const PhysicalDetails = ({ setPage }) => {
           <section>
             <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
               <CreatableSelect
-                {...register("phyHairType")}
-                onChange={(val) => setPhyHairType(val.value)}
+                {...register("hairType")}
+                onChange={(val) => setHairType(val.value)}
                 type="text"
                 placeholder="Hair Type"
                 // options={options}
@@ -240,8 +230,8 @@ export const PhysicalDetails = ({ setPage }) => {
           <section>
             <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
               <CreatableSelect
-                {...register("phyEyeColor")}
-                onChange={(val) => setPhyEyeColor(val.value)}
+                {...register("eyeColor")}
+                onChange={(val) => setEyeColor(val.value)}
                 type="text"
                 placeholder="Eye Color"
                 // options={options}
@@ -264,8 +254,8 @@ export const PhysicalDetails = ({ setPage }) => {
           <section>
             <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
               <CreatableSelect
-                {...register("phyNumberTeeth")}
-                onChange={(val) => setPhyNumberTeeth(val.value)}
+                {...register("numberOfTeeth")}
+                onChange={(val) => setNumberOfTeeth(val.value)}
                 type="number"
                 placeholder="Number of Teeth"
                 // options={options}

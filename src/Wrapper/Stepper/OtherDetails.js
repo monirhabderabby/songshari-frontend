@@ -1,11 +1,17 @@
+// configuration
 import React, { useEffect } from "react";
+
+// Third party packages
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router";
+
+// components
 import { useSetOthersDetailsMutation } from "../../Redux/features/userInfo/userApi";
 
 export const OtherDetails = ({ setPage }) => {
-  const [setOthersDetails, { data, isLoading }] = useSetOthersDetailsMutation();
+  const [setOthersDetails, { data: response, isLoading }] =
+    useSetOthersDetailsMutation();
   const navigate = useNavigate();
   const {
     register,
@@ -15,15 +21,14 @@ export const OtherDetails = ({ setPage }) => {
 
   const onSubmit = async (data) => {
     await setOthersDetails(data);
-    console.log(data);
   };
 
   useEffect(() => {
-    if (data) {
+    if (response) {
       toast.success("Successfully updated your profile");
       navigate("/");
     }
-  }, [data, navigate]);
+  }, [response, navigate]);
 
   return (
     <div className="w-full h-auto">
@@ -247,11 +252,11 @@ export const OtherDetails = ({ setPage }) => {
               )}
             </h1>
           </section>
-          {/* ---------- Do you like Join children ---------- */}
+          {/* ---------- Do you like children ---------- */}
           <section>
             <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
               <select
-                {...register("likeJoinFamily", {
+                {...register("likeChildren", {
                   required: {
                     value: true,
                     message: "Answer is required",
@@ -259,7 +264,7 @@ export const OtherDetails = ({ setPage }) => {
                 })}
                 type="text"
                 className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
-                id="likeJoinFamily"
+                id="likeChildren"
               >
                 <option value="">Do you like children?</option>
                 <option value="1">1</option>

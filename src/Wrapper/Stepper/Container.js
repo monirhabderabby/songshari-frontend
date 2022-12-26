@@ -1,4 +1,7 @@
+// configuration
 import React, { useState } from "react";
+
+// components
 import NavBar from "../../components/pages/Shared/NavBar";
 import { EducationalDetails } from "./EducationalDetails";
 import { OtherDetails } from "./OtherDetails";
@@ -7,7 +10,7 @@ import { PhysicalDetails } from "./PhysicalDetails";
 import { ProfessionalDetails } from "./ProfessionalDetails";
 
 export const Container = () => {
-  const [page, setPage] = useState(5);
+  const [page, setPage] = useState(1);
   return (
     <div className="min-h-screen">
       <NavBar />
