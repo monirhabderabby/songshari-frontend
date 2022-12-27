@@ -17,10 +17,14 @@ const ProfileCard = ({ data, isLoading }) => {
         if (data) {
             const age = ageCalculator(data?.dateOfBirth);
             setAge(age);
+            console.log(age);
         }
     }, [data]);
 
     // js variable declare
+    const name = data?.firstName + " " + data?.lastName || "Not Available";
+    const likes = data?.likes.length || 0;
+    const UserAge = data?.dateOfBirth ? age + "Years old" : "Not provided yet";
     let content = null;
 
     if (isLoading) {
@@ -40,10 +44,10 @@ const ProfileCard = ({ data, isLoading }) => {
                         ></div>
                     </div>
                 </div>
-                <h2 className="text-center mt-[85px] text-[28px] font-semibold font-fira">Lionel Messi</h2>
+                <h2 className="text-center mt-[85px] text-[28px] font-semibold font-fira">{name}</h2>
                 {/* content */}
                 <div className="w-full flex justify-center items-center absolute top-[70%]">
-                    <div className="text-[17px] font-normal font-Inter">{age} Years old</div>
+                    <div className="text-[17px] font-normal font-Inter">{UserAge}</div>
                     <div className="h-[28px] w-[5px] bg-gray-200 rounded-[4px] mx-[20px]"></div>
                     <div className="flex items-center">
                         <svg
@@ -62,7 +66,7 @@ const ProfileCard = ({ data, isLoading }) => {
                                 d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"
                             />
                         </svg>
-                        <h3 className="ml-2 text-[17px] font-normal font-Inter">{data?.hometown || "Not provided"}</h3>
+                        <h3 className="ml-2 text-[17px] font-normal font-Inter">{data?.hometown || "Not Available"}</h3>
                     </div>
                 </div>
                 <div class="absolute top-[82%] w-full flex justify-center items-center gap-x-[20px]">
@@ -70,7 +74,7 @@ const ProfileCard = ({ data, isLoading }) => {
                         <div className="w-[40px] h-[40px] rounded-full bg-[#F7E9F8] mr-1 flex items-center justify-center">
                             <img src={blackLove} alt="blackLove" />
                         </div>
-                        <span>257</span>
+                        <span>{likes}</span>
                     </div>
                     <div>
                         {data ? (
