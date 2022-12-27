@@ -1,5 +1,5 @@
 // normal import 
-import React, { useState } from "react";
+import React from "react";
 
 // configuration 
 import { useAuthState } from "react-firebase-hooks/auth";
@@ -19,10 +19,12 @@ export const TopMenu = () => {
     const [user] = useAuthState(auth);
 
     const [anchorEl, setAnchorEl] = React.useState(null);
-  const open = Boolean(anchorEl);
-  const handleClick = (event) => {
+    const open = Boolean(anchorEl);
+    const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
+
+  // function 
   const handleClose = () => {
     setAnchorEl(null);
   };
@@ -57,16 +59,19 @@ export const TopMenu = () => {
       >
         <MenuItem onClick={handleClose}>
             <div className="login-signup">
-<button className="bg-login-mov-home rounded-full text-white px-3">Log In</button>
+<Link to='/mobilelogin'><button className="bg-login-mov-home rounded-full text-white px-3">Log In</button></Link>
 <p className="mx-2">Or</p>
+<Link to='/mobilesignup'>
 <button className="bg-login-mov-home rounded-full text-white px-3">Sign Up</button>
+</Link>
+
             </div>
         </MenuItem>
       </Menu>
                 </div>
                 <div className="col-span-1 mt-2">
                     <i className="fa-regular fa-bell mr-4"></i>
-                    <i className="fa-solid fa-bars"></i>
+                   <Link to='/setting'> <i className="fa-solid fa-bars"></i></Link>
                 </div>
             </div>
         </div>
