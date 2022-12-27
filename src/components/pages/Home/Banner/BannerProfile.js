@@ -1,24 +1,22 @@
-import { Fragment, useEffect, useState } from "react";
+// configuration
+import { Fragment } from "react";
+
+// Third party packages
 import { Autoplay } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
+
+// components
 import profileS1 from "../../../../assets/images/banner/profileS1.png";
 import profileS2 from "../../../../assets/images/banner/profileS2.png";
 import profileS3 from "../../../../assets/images/banner/profileS3.png";
 import img1 from "../../../../assets/images/HomeImage/bottom-img.png";
 import img2 from "../../../../assets/images/HomeImage/bottom-img1.png";
 import bgImg from "../../../../assets/images/HomeImage/Rectangle .png";
+import { useGetRecentUsersQuery } from "../../../../Redux/features/AllRecentData/recentApi";
 
 const BannerProfile = () => {
-    const [swipematch, setSwipeMatch] = useState([]);
-    useEffect(() => {
-        fetch("http://localhost:4000/withoutLogin/recentMembers")
-            .then(res => res.json())
-            .then(data => setSwipeMatch(data));
-    }, [setSwipeMatch]);
-
-    if (swipematch) {
-        console.log(swipematch);
-    }
+    // hook variables
+    const { data: swipematch } = useGetRecentUsersQuery();
 
     return (
         <Fragment>

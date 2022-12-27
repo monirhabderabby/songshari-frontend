@@ -55,7 +55,7 @@ const MayLikeSingle = ({ data }) => {
             {sent ? (
               <BiUserCheck className="text-green-400 w-[20px] h-[20px] text-xl transition-all duration-500 " />
             ) : responseLoading ? (
-              <div class="h-[16px] bg-[#E41272] rounded-full animate-ping w-[16px] text-[#E41272] transition-all duration-500 "></div>
+              <div className="h-[16px] bg-[#E41272] rounded-full animate-ping w-[16px] text-[#E41272] transition-all duration-500 "></div>
             ) : (
               <BiUserPlus
                 className="text-[#E41272] w-[20px] h-[20px] text-xl transition-all duration-500"

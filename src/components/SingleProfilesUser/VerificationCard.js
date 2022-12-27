@@ -1,8 +1,17 @@
+// configuration
 import React from "react";
+import { useNavigate } from "react-router";
+
+// Third party packages
 import { MdKeyboardArrowRight } from "react-icons/md";
+
+// components
 import verificationIcon from "../../assets/images/icons/verification.png";
 
 export const VerificationCard = () => {
+    // hook variables
+    const navigate = useNavigate();
+
     return (
         <div className="mt-[24px] lg:w-full h-[125px] bg-white shadow-[0px_10px_5px_rgba(119,123,146,0.02)] rounded-[10px] py-[16px] px-[20px]">
             <section className="flex flex-col   justify-center h-full w-full">
@@ -17,7 +26,9 @@ export const VerificationCard = () => {
                     <p>90%</p>
                 </div>
                 <div className="flex items-center">
-                    <p className="text-[#942DD9] text-[16px] font-normal font-fira leading-[20px]">Complete Verification</p>
+                    <button className="text-[#942DD9] text-[16px] font-normal font-fira leading-[20px]" onClick={() => navigate("/stepper")}>
+                        Complete Verification
+                    </button>
                     <MdKeyboardArrowRight className="text-[#942DD9]" />
                 </div>
             </section>
