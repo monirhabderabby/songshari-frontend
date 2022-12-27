@@ -81,6 +81,8 @@ import OthersCertificate from "../Wrapper/Home/mobileversion/PhotoGallery/certif
 import ProfessionalCertificate from "../Wrapper/Home/mobileversion/PhotoGallery/certificate/ProfessionalCertificate";
 import { PrivacyMov } from "../Wrapper/Home/mobileversion/privacy/PrivacyMov";
 import { Setting } from "../Wrapper/Home/mobileversion/setting/Setting";
+import MobileLogin from "../components/pages/Authentications/MobileDesign/MobileLogin";
+import MobileSignUp from "../components/pages/Authentications/MobileDesign/MobileSignUp";
 
 //admin components
 
@@ -185,6 +187,8 @@ const Index = () => {
                     {/* --------------- MOBILE ROUTES START --------------- */}
                     <Route path="/mobileHomePage" element={<MobileHome />}></Route>
                     <Route path="/setting" element={<Setting></Setting>}></Route>
+                    <Route path="/mobilelogin" element={<MobileLogin />}></Route>
+                    <Route path="/mobilesignup" element={<MobileSignUp />}></Route>
                     <Route path="/servicemov" element={<ProfileServices></ProfileServices>}></Route>
                     <Route path="/mobileuserprofile" element={<MobileSingleProfilesUser></MobileSingleProfilesUser>}></Route>
                     <Route path="/personaldetailsmov" element={<PersonalDetailsMobile></PersonalDetailsMobile>}></Route>
