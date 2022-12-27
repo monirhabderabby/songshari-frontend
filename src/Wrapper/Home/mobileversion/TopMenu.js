@@ -22,6 +22,8 @@ export const TopMenu = () => {
     const handleClick = event => {
         setAnchorEl(event.currentTarget);
     };
+
+    // function
     const handleClose = () => {
         setAnchorEl(null);
     };
@@ -43,7 +45,7 @@ export const TopMenu = () => {
                     >
                         <span className="text-black font-bold">
                             {" "}
-                            Shongshari.com <i className="fa-solid fa-angle-down"></i>
+                            Shongshari.com <i class="fa-solid fa-angle-down"></i>
                         </span>
                     </Button>
                     <Menu
@@ -57,16 +59,23 @@ export const TopMenu = () => {
                     >
                         <MenuItem onClick={handleClose}>
                             <div className="login-signup">
-                                <button className="bg-login-mov-home rounded-full text-white px-3">Log In</button>
+                                <Link to="/mobilelogin">
+                                    <button className="bg-login-mov-home rounded-full text-white px-3">Log In</button>
+                                </Link>
                                 <p className="mx-2">Or</p>
-                                <button className="bg-login-mov-home rounded-full text-white px-3">Sign Up</button>
+                                <Link to="/mobilesignup">
+                                    <button className="bg-login-mov-home rounded-full text-white px-3">Sign Up</button>
+                                </Link>
                             </div>
                         </MenuItem>
                     </Menu>
                 </div>
                 <div className="col-span-1 mt-2">
                     <i className="fa-regular fa-bell mr-4"></i>
-                    <i className="fa-solid fa-bars"></i>
+                    <Link to="/setting">
+                        {" "}
+                        <i className="fa-solid fa-bars"></i>
+                    </Link>
                 </div>
             </div>
         </div>
