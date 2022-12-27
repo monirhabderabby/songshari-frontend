@@ -6,7 +6,6 @@ const PhotoGelary = ({ data, isLoading }) => {
 
     useEffect(() => {
         if (data) {
-            console.log(photos);
             setPhotos(data?.photos);
         }
     }, [data, photos]);

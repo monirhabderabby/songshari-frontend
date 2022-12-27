@@ -76,9 +76,7 @@ export const UserCard = ({ profile }) => {
                             </h4>
                             <ul className="text-white font-Inter">
                                 <li>
-                                    <p className="text-[14px] font-normal">
-                                        Lorem ipsum dolor sit amet gfdgfgd sdfdsfs consectetur adipisicing elit. Minus dolor dolore sint ea. Non,
-                                    </p>
+                                    <p className="text-[14px] font-normal">Lorem ipsum dolor sit amet.</p>
                                 </li>
                             </ul>
                             <div className="h-[30px] w-full flex items-center justify-evenly absolute -bottom-[40px]">

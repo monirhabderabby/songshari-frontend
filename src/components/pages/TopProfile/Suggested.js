@@ -11,10 +11,7 @@ import { UserCard } from "../Shared/userCard/UserCard";
 const Suggested = () => {
     const { data, isSuccess, isLoading } = useGetRecentMembersQuery();
 
-    if (data) {
-        console.log(data);
-    }
-
+    if (data) console.log(data);
     // js variables
     const arr = [1, 2, 3, 4, 5, 6, 7, 8];
 
