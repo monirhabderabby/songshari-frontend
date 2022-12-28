@@ -58,7 +58,7 @@ export const AllSentRequest = () => {
         content = (
             <div className="w-full grid grid-cols-1 gap-y-4 px-4">
                 {data?.data?.user.map(friend => {
-                    return <SentReqCard {...{ friend }} />;
+                    return <SentReqCard key={friend._id} {...{ friend }} />;
                 })}
             </div>
         );
