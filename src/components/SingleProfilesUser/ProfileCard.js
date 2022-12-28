@@ -10,21 +10,19 @@ import { ProfileSkeletonLoader } from "../pages/Shared/Loader/Cards/Profile__Car
 import "../../assets/css/profileCards.css";
 
 const ProfileCard = ({ data, isLoading }) => {
-    // varible declation
     // hook variables
-    const [age, setAge] = useState("");
+    const [age, setAge] = useState(0);
     useEffect(() => {
         if (data) {
             const age = ageCalculator(data?.dateOfBirth);
             setAge(age);
-            console.log(age);
         }
     }, [data]);
 
     // js variable declare
     const name = data?.firstName + " " + data?.lastName || "Not Available";
     const likes = data?.likes.length || 0;
-    const UserAge = data?.dateOfBirth ? age + "Years old" : "Not provided yet";
+    const UserAge = data?.dateOfBirth ? `${age + "Years old"}` : "Not provided yet";
     let content = null;
 
     if (isLoading) {
@@ -32,15 +30,15 @@ const ProfileCard = ({ data, isLoading }) => {
     } else if (!isLoading && data) {
         content = (
             <div className="max-w-[360px] h-[400px] shadow-[0px_10px_5px_rgba(119,123,146,0.02)] bg-white rounded-[10px] relative">
-                <div class="bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] relative h-[150px] w-full rounded-tl-[10px] rounded-tr-[10px]">
-                    <div class="h-[135px] absolute -bottom-[50%] left-[110px] w-[135px] z-50 bg-white shadow-sm border-[1px] rounded-full flex justify-center items-center">
+                <div className="bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] relative h-[150px] w-full rounded-tl-[10px] rounded-tr-[10px]">
+                    <div className="h-[135px] absolute -bottom-[50%] left-[110px] w-[135px] z-50 bg-white shadow-sm border-[1px] rounded-full flex justify-center items-center">
                         <div
                             style={{
                                 backgroundImage: `url(${
                                     data?.profilePhoto ? data?.profilePhoto : "https://cdn-icons-png.flaticon.com/512/194/194938.png"
                                 })`,
                             }}
-                            class="h-[120px] w-[120px] bg-gray-200 rounded-full bg-center bg-cover"
+                            className="h-[120px] w-[120px] bg-gray-200 rounded-full bg-center bg-cover"
                         ></div>
                     </div>
                 </div>
@@ -69,7 +67,7 @@ const ProfileCard = ({ data, isLoading }) => {
                         <h3 className="ml-2 text-[17px] font-normal font-Inter">{data?.hometown || "Not Available"}</h3>
                     </div>
                 </div>
-                <div class="absolute top-[82%] w-full flex justify-center items-center gap-x-[20px]">
+                <div className="absolute top-[82%] w-full flex justify-center items-center gap-x-[20px]">
                     <div className="flex items-center">
                         <div className="w-[40px] h-[40px] rounded-full bg-[#F7E9F8] mr-1 flex items-center justify-center">
                             <img src={blackLove} alt="blackLove" />

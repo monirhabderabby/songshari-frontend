@@ -24,10 +24,19 @@ import Suggested from "../components/pages/TopProfile/Suggested";
 import TopBride from "../components/pages/TopProfile/TopBride";
 import TopGroom from "../components/pages/TopProfile/TopGroom";
 // import EditProfile from "../components/SingleProfilesUser/profileSection/EditProfile";
+import { FilterResults } from "../components/pages/FindPartner/FilterResults/FilterResults";
+import MobileDiamondPlan from "../components/pages/Membership/MobileVersion/MobileDiamondPlan";
+import MobileFreePlan from "../components/pages/Membership/MobileVersion/MobileFreePlan";
+import MobileGoldPlan from "../components/pages/Membership/MobileVersion/MobileGoldPlan";
+import MobilePlatinumPlan from "../components/pages/Membership/MobileVersion/MobilePlatinumPlan";
+import UpgradePlan from "../components/pages/Membership/MobileVersion/UpgradePlan";
+import MobileActivity from "../components/pages/MobileActivity/MobileActivity";
+import MobileActivityPost from "../components/pages/MobileActivity/MobileActivityPost";
 import EditEducationalInfo from "../components/SingleProfilesUser/profileSection/EditprofileSection/EditEducationalInfo";
 import EditOthersInfo from "../components/SingleProfilesUser/profileSection/EditprofileSection/EditOthersInfo";
 import EditPhysicalInfo from "../components/SingleProfilesUser/profileSection/EditprofileSection/EditPhysicalInfo";
 import EditProfesionalInfo from "../components/SingleProfilesUser/profileSection/EditprofileSection/EditProfesionalInfo";
+import ProfileDetails from "../components/SingleProfilesUser/profileSection/ProfileDetails";
 import About from "../Wrapper/About/About";
 import Agent from "../Wrapper/Agent/Agent";
 import Community from "../Wrapper/Community/Community";
@@ -42,18 +51,10 @@ import Shop from "../Wrapper/Shop/Shop";
 import SingleProduct from "../Wrapper/SingleProduct/SingleProduct";
 import SingleProfile from "../Wrapper/SingleProfilesUser/SingleProfile";
 import { Container } from "../Wrapper/Stepper/Container";
-// import { UsersProfile } from "../components/SingleProfilesUser/profileSection/UsersProfile";
-import { FilterResults } from "../components/pages/FindPartner/FilterResults/FilterResults";
-import MobileDiamondPlan from "../components/pages/Membership/MobileVersion/MobileDiamondPlan";
-import MobileFreePlan from "../components/pages/Membership/MobileVersion/MobileFreePlan";
-import MobileGoldPlan from "../components/pages/Membership/MobileVersion/MobileGoldPlan";
-import MobilePlatinumPlan from "../components/pages/Membership/MobileVersion/MobilePlatinumPlan";
-import UpgradePlan from "../components/pages/Membership/MobileVersion/UpgradePlan";
-import MobileActivity from "../components/pages/MobileActivity/MobileActivity";
-import MobileActivityPost from "../components/pages/MobileActivity/MobileActivityPost";
-import ProfileDetails from "../components/SingleProfilesUser/profileSection/ProfileDetails";
 
 // import MobileSingleProfilesUser from "../components/SingleProfilesUser/MobileSingleProfilesUser/MobileSingleProfilesUser";
+import MobileLogin from "../components/pages/Authentications/MobileDesign/MobileLogin";
+import MobileSignUp from "../components/pages/Authentications/MobileDesign/MobileSignUp";
 import { DynamicPhotosGallary } from "../components/pages/DynamicProfilePage/DynamicPhotosGallary";
 import { FindAPartnerSuggested } from "../components/pages/FindPartner/FindAPartnerSuggested";
 import EducationalCertificate from "../components/SingleProfilesUser/CertificateSection/EducationalCertificate";
@@ -81,8 +82,6 @@ import OthersCertificate from "../Wrapper/Home/mobileversion/PhotoGallery/certif
 import ProfessionalCertificate from "../Wrapper/Home/mobileversion/PhotoGallery/certificate/ProfessionalCertificate";
 import { PrivacyMov } from "../Wrapper/Home/mobileversion/privacy/PrivacyMov";
 import { Setting } from "../Wrapper/Home/mobileversion/setting/Setting";
-import MobileLogin from "../components/pages/Authentications/MobileDesign/MobileLogin";
-import MobileSignUp from "../components/pages/Authentications/MobileDesign/MobileSignUp";
 
 //admin components
 

@@ -1,3 +1,8 @@
+// configuration
+import React from "react";
+import { useNavigate } from "react-router";
+
+// Third party packages
 import ArrowForwardIosSharpIcon from "@material-ui/icons/ArrowForwardIosSharp";
 import MuiAccordion from "@mui/material/Accordion";
 import MuiAccordionDetails from "@mui/material/AccordionDetails";
@@ -5,9 +10,10 @@ import MuiAccordionSummary from "@mui/material/AccordionSummary";
 import { styled } from "@mui/material/styles";
 import Typography from "@mui/material/Typography";
 import moment from "moment";
-import React from "react";
-import { useNavigate } from "react-router";
+
+// css files
 import "./Accordion.css";
+
 const Accordion = styled(props => <MuiAccordion disableGutters elevation={0} square {...props} />)(({ theme }) => ({
     paddingTop: "23px",
     paddingLeft: "53px",
@@ -41,17 +47,17 @@ const Accordian = ({ data, isLoading, edit }) => {
         setExpanded(newExpanded ? panel : false);
     };
     const navigate = useNavigate();
-    // if (isLoading) return false;
+
     return (
         <div className="mb-[69px] max-w-[523px] mx-auto">
             <Accordion expanded={expanded === "panel1"} onChange={handleChange("panel1")}>
                 <div className="flex justify-between items-center	">
                     <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
                         <div>
-                            <Typography className="hidden md:block">
+                            <Typography component={"span"} variant={"body2"} className="hidden md:block">
                                 <h1 className="text-[24px] text-[#333333] leading-[34px] font-fira font-semibold">Personal Information</h1>
                             </Typography>
-                            <Typography className="md:hidden">
+                            <Typography component={"span"} variant={"body2"} className="md:hidden">
                                 <h1 className="text-[18px] text-[#333333] leading-[34px] font-fira">Personal Details</h1>
                             </Typography>
                         </div>
@@ -73,7 +79,7 @@ const Accordian = ({ data, isLoading, edit }) => {
                     </div>
                 </div>
                 <AccordionDetails>
-                    <Typography>
+                    <Typography component={"span"} variant={"body2"}>
                         {data?.firstName && (
                             <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                                 <span className="font-medium">Name</span>
@@ -368,7 +374,7 @@ const Accordian = ({ data, isLoading, edit }) => {
                                 </p>
                             </div>
                         )}
-                        {data?.yearOfExperience && (
+                        {data?.yearOfExperience.length > 0 && (
                             <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                                 <span className="font-medium">Year Of Experience</span>
                                 <p className="font-normal">{data ? data.yearOfExperience : "Not Provided"}</p>
@@ -448,10 +454,10 @@ const Accordian = ({ data, isLoading, edit }) => {
                 <div className="flex justify-between items-center	">
                     <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
                         <div>
-                            <Typography className="hidden md:block">
+                            <Typography component={"span"} variant={"body2"} className="hidden md:block">
                                 <h1 className="text-[24px] text-[#333333] leading-[34px] font-fira font-semibold">Profesional Information</h1>
                             </Typography>
-                            <Typography className="md:hidden">
+                            <Typography component={"span"} variant={"body2"} className="md:hidden">
                                 <h1 className="text-[18px] text-[#333333] leading-[34px] font-fira">Profesional Information</h1>
                             </Typography>
                         </div>
@@ -473,7 +479,7 @@ const Accordian = ({ data, isLoading, edit }) => {
                     </div>
                 </div>
                 <AccordionDetails>
-                    <Typography>
+                    <Typography component={"span"} variant={"body2"}>
                         {data?.professionalDetail.length !== 0 ? (
                             data?.professionalDetail.map((d, index) => {
                                 return (
@@ -550,10 +556,10 @@ const Accordian = ({ data, isLoading, edit }) => {
                 <div className="flex justify-between items-center	">
                     <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
                         <div>
-                            <Typography className="hidden md:block">
+                            <Typography component={"span"} variant={"body2"} className="hidden md:block">
                                 <h1 className="text-[24px] text-[#333333] leading-[34px] font-fira font-semibold">Educational Information</h1>
                             </Typography>
-                            <Typography className="md:hidden">
+                            <Typography component={"span"} variant={"body2"} className="md:hidden">
                                 <h1 className="text-[18px] text-[#333333] leading-[34px] font-fira">Educational Information</h1>
                             </Typography>
                         </div>
@@ -575,7 +581,7 @@ const Accordian = ({ data, isLoading, edit }) => {
                     </div>
                 </div>
                 <AccordionDetails>
-                    <Typography>
+                    <Typography component={"span"} variant={"body2"}>
                         {data?.educationalDetail.length !== 0 ? (
                             data?.educationalDetail.map((edu, index) => {
                                 return (
@@ -691,10 +697,10 @@ const Accordian = ({ data, isLoading, edit }) => {
                 <div className="flex justify-between items-center	">
                     <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
                         <div>
-                            <Typography className="hidden md:block">
+                            <Typography component={"span"} variant={"body2"} className="hidden md:block">
                                 <h1 className="text-[24px] text-[#333333] leading-[34px] font-fira font-semibold">Physical Information</h1>
                             </Typography>
-                            <Typography className="md:hidden">
+                            <Typography component={"span"} variant={"body2"} className="md:hidden">
                                 <h1 className="text-[18px] text-[#333333] leading-[34px] font-fira">Physical Information</h1>
                             </Typography>
                         </div>
@@ -716,7 +722,7 @@ const Accordian = ({ data, isLoading, edit }) => {
                     </div>
                 </div>
                 <AccordionDetails>
-                    <Typography>
+                    <Typography component={"span"} variant={"body2"}>
                         {data?.physicalDetail?.height && (
                             <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                                 <span className="font-medium">Height</span>
@@ -772,10 +778,10 @@ const Accordian = ({ data, isLoading, edit }) => {
                 <div className="flex justify-between items-center	">
                     <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
                         <div>
-                            <Typography className="hidden md:block">
+                            <Typography component={"span"} variant={"body2"} className="hidden md:block">
                                 <h1 className="text-[24px] text-[#333333] leading-[34px] font-fira font-semibold">Other Information</h1>
                             </Typography>
-                            <Typography className="md:hidden">
+                            <Typography component={"span"} variant={"body2"} className="md:hidden">
                                 <h1 className="text-[18px] text-[#333333] leading-[34px] font-fira">Other Information</h1>
                             </Typography>
                         </div>
@@ -797,7 +803,7 @@ const Accordian = ({ data, isLoading, edit }) => {
                     </div>
                 </div>
                 <AccordionDetails>
-                    <Typography>
+                    <Typography component={"span"} variant={"body2"}>
                         {data?.othersDetail?.doSmoke && (
                             <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                                 <span className="font-medium">Do smoke</span>

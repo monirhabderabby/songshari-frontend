@@ -14,14 +14,11 @@ import "./Matches.css";
 
 export const Matches = () => {
     // hooks variables
-    const { data, isLoading, error } = useGetMatchedUsersQuery();
+    const { data, isLoading } = useGetMatchedUsersQuery();
     const [mathchesModalOpen, setMatchesModalOpen] = useState(false);
 
     if (isLoading) {
         return;
-    }
-    if (error) {
-        console.log(error.message);
     }
 
     return (
