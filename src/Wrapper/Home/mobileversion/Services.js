@@ -9,6 +9,7 @@ import Kazi from '../../../assets/images/Logo/Kazi.svg'
 import Shop from '../../../assets/images/Logo/Shop.svg'
 import courses from '../../../assets/images/Logo/online.svg'
 import Blog from '../../../assets/images/Logo/Blog.svg'
+import { Link } from 'react-router-dom'
 
 export const Services = () => {
   return (
@@ -46,8 +47,11 @@ export const Services = () => {
        </div>
         
         <div className='bg-service-mov rounded-lg'>
-        <img src={Blog} className='w-8 mx-auto mt-1' alt="Not Available"></img>
-        <h1 className='text-[11px] text-white font-bold text-center pb-1'>Blog</h1>
+          <Link to='/allposts'>
+          <img src='https://i.ibb.co/kyBKkbT/Vector.png' className='w-8 mx-auto mt-1 rounded-full' alt="Not Available"></img>
+        <h1 className='text-[11px] text-white font-bold text-center pb-1'>Posts</h1>
+          </Link>
+       
         </div> 
         
         <div className='bg-service-mov rounded-lg'>

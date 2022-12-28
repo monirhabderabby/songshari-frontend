@@ -35,9 +35,10 @@ export const UserCard = ({ profile }) => {
     };
 
     return (
-        <div data-aos="fade-up" data-aos-easing="ease-out-cubic" data-aos-duration="2000">
+       <div>
+         <div data-aos="fade-up" data-aos-easing="ease-out-cubic" data-aos-duration="2000" className="hidden md:block">
             {profile && (
-                <div className="h-[400px]  relative group overflow-hidden Suggested-card hidden md:block ml-6">
+                <div className="h-[400px]  relative group overflow-hidden Suggested-card  ml-6">
                     <img
                         className="h-[400px] rounded-tr-[12px] bg-white rounded-tl-[12px] rounded-bl-[12px] rounded-br-[12px] object-cover w-full"
                         src={profilePhoto}
@@ -105,5 +106,26 @@ export const UserCard = ({ profile }) => {
                 </div>
             )}
         </div>
+        {/* mobile device  */}
+         <div data-aos="fade-up" data-aos-easing="ease-out-cubic" data-aos-duration="2000" className=" md:hidden w-[340px]">
+            {profile && (
+                <div className="h-[400px]  relative group overflow-hidden  ml-[10px] ">
+                    <img
+                        className="h-[200px] rounded-tr-[12px] bg-white  object-cover w-full"
+                        src={profilePhoto}
+                        alt="profile"
+                    />
+                    <div className="absolute h-[100px] w-full top-[200px] right-0 inset-0 bg-white opacity-90 text-black px-4 py-2 font-serif group-hover:top-[370px] transition ease-out duration-500 rounded-bl-[12px] rounded-br-[12px]">
+                        <div className="flex gap-x-4 items-center">
+                            <p className="text-[20px] text-black font-bold drop-shadow-lg">{name}</p>
+                            <p className="text-[18px] text-[#E41272] pl-[50px]">{ageCalculator(profile?.dateOfBirth ? profile?.dateOfBirth : 0)}</p>
+                        </div>
+                        <p className='text-[14px]'>Student</p>
+                        <p className="font-semibold text-[16px]">{hometown}</p>
+                    </div>
+                </div>
+            )}
+        </div>
+       </div>
     );
 };
