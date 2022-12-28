@@ -123,57 +123,6 @@ export const UserCard = ({ profile }) => {
                         <p className='text-[14px]'>Student</p>
                         <p className="font-semibold text-[16px]">{hometown}</p>
                     </div>
-                    <div
-                        style={{
-                            backgroundImage: `url(${bg})`,
-                            position: "absolute",
-                            left: 0,
-                            width: "100%",
-                            height: "100%",
-                            backgroundPosition: "top",
-                            backgroundSize: "cover",
-                            backgroundRepeat: "no-repeat",
-                        }}
-                        className="Suggested-info__cardUp"
-                    >
-                        <img
-                            src={profilePhoto}
-                            alt="profile"
-                            className="w-[94px] h-[94px] rounded-full relative left-[35%] bg-white border-white border-4"
-                        />
-                        <div className="p-2 relative">
-                            <h4 className="text-white text-[25px] font-bold text-center overflow-hidden">
-                                <span className="font-george">{name}</span>
-                                <span style={{ color: "rgb(135, 206, 235)" }}> 27</span>
-                            </h4>
-                            <ul className="text-white font-Inter">
-                                <li>
-                                    <p className="text-[14px] font-normal">Lorem ipsum dolor sit amet.</p>
-                                </li>
-                            </ul>
-                            <div className="h-[30px] w-full flex items-center justify-evenly absolute -bottom-[40px]">
-                                <p
-                                    onClick={() => navigate(`/profile/${profile?._id}`)}
-                                    className="bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] rounded-full cursor-pointer"
-                                >
-                                    <i className="fas fa-user text-white p-3" aria-hidden="true"></i>
-                                </p>
-
-                                <a href="!#" className="bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] rounded-full">
-                                    <i className="fas fa-comment text-white p-3" aria-hidden="true"></i>
-                                </a>
-                                <div className="bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] rounded-full h-[40px] w-[40px] flex items-center justify-center">
-                                    {likeLoading ? (
-                                        <div className="h-[16px] bg-[#FFFFFF] rounded-full animate-ping w-[16px] text-[#E41272] transition-all duration-500 "></div>
-                                    ) : likeSent ? (
-                                        <AiFillHeart className="text-green-400 w-[20px] h-[20px] text-xl transition-all duration-500 " />
-                                    ) : (
-                                        <i className="fas fa-heart text-white" aria-hidden="true" onClick={() => addProfileLike()}></i>
-                                    )}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             )}
         </div>
