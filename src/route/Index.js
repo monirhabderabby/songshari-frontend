@@ -86,6 +86,7 @@ import MobileSignUp from "../components/pages/Authentications/MobileDesign/Mobil
 import TopProfileMov from "../Wrapper/Home/mobileversion/topprofilemov/TopProfileMov";
 import SuggestedMov from "../components/pages/TopProfile/SuggestedMov";
 import { AllPosts } from "../Wrapper/Home/mobileversion/allposts/AllPosts";
+import SingleUserActivity from "../components/SingleProfilesUser/SingleUserActivity/SingleUserActivity";
 
 //admin components
 
@@ -194,18 +195,20 @@ const Index = () => {
                     <Route path="top-groom" element={<TopGroom />} />
                     </Route>
                    
+                
                     <Route path="/setting" element={<Setting></Setting>}></Route>
                     <Route path="/mobilelogin" element={<MobileLogin />}></Route>
                     <Route path="/mobilesignup" element={<MobileSignUp />}></Route>
                     <Route path="/servicemov" element={<ProfileServices></ProfileServices>}></Route>
                     <Route path="/mobileuserprofile" element={<MobileSingleProfilesUser></MobileSingleProfilesUser>}></Route>
                     <Route path="/personaldetailsmov" element={<PersonalDetailsMobile></PersonalDetailsMobile>}></Route>
+                    <Route path="/otherpersonaldetailsmov" element={<PersonalDetailsMobile></PersonalDetailsMobile>}></Route>
                     <Route path="/aboutmov" element={<AboutMov></AboutMov>}></Route>
                     <Route path="/gallarymov" element={<GallaryMov />}></Route>
                     <Route path="/meetmov" element={<MeetMov></MeetMov>}></Route>
                     <Route path="/matchesmov" element={<MatchesMov></MatchesMov>}></Route>
-                    <Route path="/mobileActivityPage" element={<MobileActivity />}></Route>
-                    <Route path="/mobileActivityNextPage" element={<MobileActivityPost />}></Route>
+                    {/* <Route path="/mobileActivityPage" element={<MobileActivity />}></Route> */}
+                    <Route path="/mobileActivityPage" element={<SingleUserActivity />}></Route>
                     <Route path="/historymov" element={<HistoryMov></HistoryMov>}></Route>
                     <Route path="/privacymov" element={<PrivacyMov></PrivacyMov>}></Route>
                     <Route path="/communitymov" element={<CommunityMov></CommunityMov>}></Route>

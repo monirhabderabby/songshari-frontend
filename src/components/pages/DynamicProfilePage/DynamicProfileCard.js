@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
 import "../../../assets/css/profileCards.css";
 import blackLove from "../../../assets/images/icons/blackLove.png";
 import { ageCalculator } from "../../../assets/utilities/AgeCalculation/ageCalculator";
+import { auth } from "../../../firebase.init";
 import { ProfileSkeletonLoader } from "../Shared/Loader/Cards/Profile__Card__Skeleton__Loader/ProfileSkeletonLoader";
 
 const DynamicProfileCard = ({ data, isLoading }) => {
+    const [user] = useAuthState(auth);
+    
     // hook variables
     const [age, setAge] = useState(0);
 
@@ -27,7 +31,8 @@ const DynamicProfileCard = ({ data, isLoading }) => {
         content = <ProfileSkeletonLoader />;
     } else if (!isLoading && data) {
         content = (
-            <div className="max-w-[360px] h-[400px] shadow-[0px_10px_5px_rgba(119,123,146,0.02)] bg-white rounded-[10px] relative">
+            <>
+            <div className="max-w-[360px] h-[400px] shadow-[0px_10px_5px_rgba(119,123,146,0.02)] bg-white rounded-[10px] relative hidden lg:block">
                 <div className="bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] relative h-[150px] w-full rounded-tl-[10px] rounded-tr-[10px]">
                     <div className="h-[135px] absolute -bottom-[50%] left-[110px] w-[135px] z-50 bg-white shadow-sm border-[1px] rounded-full flex justify-center items-center">
                         <div
@@ -81,6 +86,35 @@ const DynamicProfileCard = ({ data, isLoading }) => {
                     </div>
                 </div>
             </div>
+      <div className="lg:hidden">
+      <div className="bg-[#D9D9D9] max-w-[337px] flex justify-center items-center flex-col  mx-auto h-[92px] ">
+                <img src='https://i.ibb.co/YD5hC1J/Rectangle-4471.png' alt="Not Available"></img>
+            </div>
+            <div style={{ boxShadow: " 0px 10px 40px rgba(0, 0, 0, 0.03)" }} className="max-w-[337px] px-[23px]  rounded-sm mx-auto bg-[#ffffff]">
+                <div>
+                    <div className="flex justify-start items-center">
+                        <img src={data.photoURL} className="mt-[-20px] w-16 h-16 rounded-full" alt="Not Available" />
+                        <h2 className="pl-[7px] text-sm font-semibold text-[#000000]">Marvis Ighedosa</h2>
+                    </div>
+                    <div className="grid grid-cols-3">
+                        <div className='heu col-span-1'>
+                            <h1 className="">21 years old</h1>
+                            <img src='https://i.ibb.co/HNrqrcw/image.png' className="ml-2" alt="Not Available"></img>
+                        </div>
+
+                        <div>
+                            <h1 className=" ml-6">Paris,France</h1>
+                        </div>
+
+                        <div>
+                            <h1 className="ml-8"> <i className="fa-regular fa-heart"></i> 257</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+      </div>
+            
+        </>
         );
     }
     return content;
