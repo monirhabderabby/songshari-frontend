@@ -16,7 +16,8 @@ export const MobileHome = () => {
             <Services></Services>
             <TopProfileMov />
             <br></br>
-            
+            <br></br>
+            <br></br>   
             <BottomNav></BottomNav>
         </div>
     );
