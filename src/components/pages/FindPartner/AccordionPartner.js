@@ -14,9 +14,9 @@ export const AccordionPartner = ({ data, isLoading }) => {
     const [motherStatusValue, setMotherStatusValue] = useState("");
     const [fatherIncomeValue, setFatherIncomeValue] = useState("");
     const [motherIncomeValue, setMotherIncomeValue] = useState("");
-    const [age, setAge] = useState(0);
-    const [height, setHeight] = useState(10);
-    const [weight, setWeight] = useState(10);
+    const [age, setAge] = useState([20, 30]);
+    const [height, setHeight] = useState([5, 6]);
+    const [weight, setWeight] = useState([50, 70]);
     const [brother, setBrother] = useState(0);
     const [sister, setSister] = useState(0);
     const [maritalStatus, setMaritalStatus] = useState("");
@@ -96,15 +96,9 @@ export const AccordionPartner = ({ data, isLoading }) => {
     const handleForChange = value => {
         setBasicInfo({ ...basicInfo, forWhom: value });
     };
-    // const handleAgeChange = (value) => {
-    //     console.log(`selected ${value}`);
-    // };
     const onAgeChange = value => {
         setAge(value);
         setBasicInfo({ ...basicInfo, age: value });
-    };
-    const onAfterAgeChange = value => {
-        console.log("onAfterChange: ", value);
     };
     const handleReligionChange = e => {
         setReligionValue(e.target.value);
@@ -215,7 +209,6 @@ export const AccordionPartner = ({ data, isLoading }) => {
 
     // ------- Professional Info -------------
     const handleUserProfessionChange = (event, newValue) => {
-        console.log(newValue);
         if (typeof newValue === "string") {
             setProfessionalStatus({
                 title: newValue,
@@ -330,54 +323,12 @@ export const AccordionPartner = ({ data, isLoading }) => {
                             />
                         </div>
                         <div>
-                            <h1 className="text-base leading-6 font-medium mb-2">For</h1>
-                            <Select
-                                defaultValue="myself"
-                                className="w-full mb-4"
-                                onChange={handleForChange}
-                                showSearch
-                                filterOption={(input, option) => (option?.label ?? "").toLowerCase().includes(input.toLowerCase())}
-                                options={[
-                                    {
-                                        value: "myself",
-                                        label: "Myself",
-                                    },
-                                    {
-                                        value: "brother",
-                                        label: "My Brother",
-                                    },
-                                    {
-                                        value: "sister",
-                                        label: "My Sister",
-                                    },
-                                    {
-                                        value: "cousin",
-                                        label: "My Cousin",
-                                    },
-                                    {
-                                        value: "friend",
-                                        label: "My Friend",
-                                    },
-                                    {
-                                        value: "relative",
-                                        label: "My Relative",
-                                    },
-                                ]}
-                            />
-                        </div>
-                        <div>
                             <h1 className="text-base leading-6 font-medium mb-2">Age</h1>
                             <p className="text-left text-base font-medium">
                                 {" "}
                                 {age[0]} to {age[1]}{" "}
                             </p>
-                            <Slider
-                                className="mb-4"
-                                range={{ draggableTrack: true }}
-                                defaultValue={[20, 50]}
-                                onChange={onAgeChange}
-                                onAfterChange={onAfterAgeChange}
-                            />
+                            <Slider className="mb-4" range={{ draggableTrack: true }} defaultValue={age} onChange={onAgeChange} />
                         </div>
                         <div>
                             <h1 className="text-base leading-6 font-medium mb-2">Religion</h1>
@@ -972,7 +923,6 @@ export const AccordionPartner = ({ data, isLoading }) => {
                                 min={0}
                                 max={10}
                                 onChange={onHeightChange}
-                                onAfterChange={onAfterHeightChange}
                                 className="mb-4"
                             />
                         </div>
@@ -1233,7 +1183,7 @@ export const AccordionPartner = ({ data, isLoading }) => {
                         </div>
                     </Panel>
                 </Collapse>
-                <div className="flex justify-center items-center ] mt-[30px] hidden md:block">
+                <div className=" justify-center items-center ] mt-[30px] hidden md:block">
                     <button
                         onClick={handleSubmit}
                         style={{
@@ -1328,13 +1278,7 @@ export const AccordionPartner = ({ data, isLoading }) => {
                                     {" "}
                                     {age[0]} to {age[1]}{" "}
                                 </p>
-                                <Slider
-                                    className="mb-4"
-                                    range={{ draggableTrack: true }}
-                                    defaultValue={[20, 50]}
-                                    onChange={onAgeChange}
-                                    onAfterChange={onAfterAgeChange}
-                                />
+                                <Slider className="mb-4" range={{ draggableTrack: true }} defaultValue={[20, 50]} onChange={onAgeChange} />
                             </div>
                             <div>
                                 <h1 className="text-base leading-6 font-medium mb-2">Religion</h1>
@@ -1944,7 +1888,7 @@ export const AccordionPartner = ({ data, isLoading }) => {
                                 </p>
                                 <Slider
                                     range={{ draggableTrack: true }}
-                                    defaultValue={[5, 6]}
+                                    defaultValue={height}
                                     step={0.01}
                                     min={0}
                                     max={10}
@@ -1961,7 +1905,7 @@ export const AccordionPartner = ({ data, isLoading }) => {
                                 </p>
                                 <Slider
                                     range={{ draggableTrack: true }}
-                                    defaultValue={[50, 70]}
+                                    defaultValue={weight}
                                     step={1}
                                     min={0}
                                     max={150}
@@ -2221,7 +2165,7 @@ export const AccordionPartner = ({ data, isLoading }) => {
                     </Panel>
                 </Collapse>
                 <div className="grid grid-cols-2">
-                    <div className="flex justify-center items-center ] mt-[30px] hidden md:block">
+                    <div className="flex justify-center items-center ] mt-[30px] md:block">
                         <button
                             onClick={handleSubmit}
                             style={{
