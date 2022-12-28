@@ -9,15 +9,17 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import { Link } from "react-router-dom";
 
-// css import;
-import "./TopMenu.css";
+// components 
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../../../firebase.init";
 
-export const TopMenu = () => {
-    const [user, loading, error] = useAuthState(auth);
-    // hooks variables
+// css import;
+import "./TopMenu.css";
 
+
+export const TopMenu = () => {
+    // hooks variables
+    const [user] = useAuthState(auth);
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
     const handleClick = event => {

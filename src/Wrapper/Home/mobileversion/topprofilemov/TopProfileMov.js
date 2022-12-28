@@ -1,5 +1,9 @@
 import React from "react";
+
+// congiguration 
 import { NavLink, Outlet } from "react-router-dom";
+
+// css 
 import "../../../../assets/css/topProfile.css";
 
 const TopProfileMov = () => {
