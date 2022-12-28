@@ -186,6 +186,13 @@ const Index = () => {
 
                     {/* --------------- MOBILE ROUTES START --------------- */}
                     <Route path="/mobileHomePage" element={<MobileHome />}></Route>
+                    <Route path="/" element={<MobileHome />}>
+                        <Route path="/" element={<Suggested />} />
+                        <Route path="/top-gride" element={<TopBride />} />
+                        <Route path="/top-groom" element={<TopGroom />} />
+                        <Route path="/top-profession/kazi" element={<TopProfessionKazi />} />
+                        <Route path="/top-profession/agent" element={<TopProfessionAgent />} />
+                    </Route>
                     <Route path="/setting" element={<Setting></Setting>}></Route>
                     <Route path="/mobilelogin" element={<MobileLogin />}></Route>
                     <Route path="/mobilesignup" element={<MobileSignUp />}></Route>
