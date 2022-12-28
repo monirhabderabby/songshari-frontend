@@ -1,19 +1,43 @@
+// configuration
 import React from "react";
+import { Link } from "react-router-dom";
+
+// Third party packages
 import { Autoplay } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-// Import Swiper styles
-import { Link } from "react-router-dom";
+// components
+import { useGetRecentMembersQuery } from "../../../Redux/features/userInfo/withoutLoginApi";
+import { ProfileCardSkeletonLoader } from "../../shared/Cards/Loader/ProfileCardSkeletonLoader";
+import { UserCard } from "../Shared/userCard/UserCard";
+
+// css
 import "swiper/css";
 import "swiper/css/pagination";
-import { useGetRecentMembersQuery } from "../../../Redux/features/userInfo/withoutLoginApi";
-import { UserCard } from "../Shared/userCard/UserCard";
 const Suggested = () => {
-    const { data, isSuccess, isLoading } = useGetRecentMembersQuery();
+    const { data, isLoading } = useGetRecentMembersQuery();
 
-    if (data) console.log(data);
     // js variables
     const arr = [1, 2, 3, 4, 5, 6, 7, 8];
+    let content = null;
+
+    if (isLoading) {
+        content = arr.map(k => {
+            return (
+                <SwiperSlide key={k}>
+                    <ProfileCardSkeletonLoader />
+                </SwiperSlide>
+            );
+        });
+    } else if (data?.data?.members?.length > 0) {
+        content = data?.data?.members?.map(profile => {
+            return (
+                <SwiperSlide key={profile._id}>
+                    <UserCard {...{ profile }} />
+                </SwiperSlide>
+            );
+        });
+    }
 
     return (
         // w-80 mx-auto
@@ -46,35 +70,13 @@ const Suggested = () => {
                 modules={[Autoplay]}
                 className="mySwiper"
             >
-                {isSuccess &&
-                    data?.data?.members.map(profile => (
-                        <SwiperSlide key={profile._id}>
-                            <UserCard {...{ profile }} />
-                        </SwiperSlide>
-                    ))}
-
-                {!isSuccess &&
-                    isLoading &&
-                    arr.map(k => {
-                        return (
-                            <SwiperSlide key={k}>
-                                <div className="h-[400px] w-[300px] shadow-2xl rounded-[12px]">
-                                    <div className="h-[290px] w-full bg-gray-100"></div>
-                                    <div className="px-[15px] py-[15px] h-[110px] bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] rounded-[12px]">
-                                        <div className="flex items-center justify-start gap-x-5">
-                                            <div className="w-[200px] h-[15px] bg-gray-200 animate-pulse"></div>
-                                            <div className="h-[30px] w-[30px] bg-gray-200 rounded-full animate-pulse"></div>
-                                        </div>
-                                        <div className="w-[150px] h-[10px] mt-2 bg-gray-200 animate-pulse"></div>
-                                        <div className="w-[100px] h-[10px] mt-2 bg-gray-200 animate-pulse"></div>
-                                    </div>
-                                </div>
-                            </SwiperSlide>
-                        );
-                    })}
+                {content}
 
                 <div className="text-center py-[40px] hidden md:block">
-                    <Link to="/find-partner" className="top-profile-btn">
+                    <Link
+                        to="/find-partner"
+                        className="bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] px-6 py-2 rounded-[4px] text-white"
+                    >
                         See More
                     </Link>
                 </div>

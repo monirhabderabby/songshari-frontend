@@ -2,21 +2,18 @@
 import React from "react";
 
 // configuration
-import { useAuthState } from "react-firebase-hooks/auth";
-import { auth } from "../../../firebase.init";
 
 // material ui
 import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
+import { Link } from "react-router-dom";
 
-// css import
+// css import;
 import "./TopMenu.css";
 
 export const TopMenu = () => {
     // hooks variables
-    //fsfd
-    const [user] = useAuthState(auth);
 
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
@@ -46,7 +43,7 @@ export const TopMenu = () => {
                     >
                         <span className="text-black font-bold">
                             {" "}
-                            Shongshari.com <i class="fa-solid fa-angle-down"></i>
+                            Shongshari.com <i className="fa-solid fa-angle-down"></i>
                         </span>
                     </Button>
                     <Menu
