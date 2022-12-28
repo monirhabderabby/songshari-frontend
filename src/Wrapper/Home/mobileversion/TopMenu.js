@@ -11,8 +11,11 @@ import { Link } from "react-router-dom";
 
 // css import;
 import "./TopMenu.css";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "../../../firebase.init";
 
 export const TopMenu = () => {
+    const [user, loading, error] = useAuthState(auth);
     // hooks variables
 
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -28,11 +31,33 @@ export const TopMenu = () => {
     return (
         <div>
             <div className="grid grid-cols-5  bg-top rounded  pt-2 pb-2">
-                <div className="ml-4 mov-top w-8 rounded-full mt-1 col-span-1">
+                {
+                    user && 
+                    <img src={user.photoURL} className='rounded-full w-8 ml-4' alt="Not Available"></img>
+                
+            
+                
+                }       
+
+                {
+                    !user &&  <div className="ml-4 mov-top w-8 rounded-full mt-1 col-span-1">
                     <img src="https://i.ibb.co/pZFRdCB/512-512-Icon-1.png" alt="Not Available"></img>
-                </div>
+                    </div>
+                }
 
                 <div className="col-span-3">
+                    {
+                        user ? <Button
+                        
+                        
+                        className="font-bold text-black"
+                    >
+                        <span className="text-black font-bold">
+                            {" "}
+                            {user.displayName} <i className="fa-solid fa-angle-down"></i>
+                        </span>
+                    </Button>
+                    :
                     <Button
                         id="basic-button"
                         aria-controls={open ? "basic-menu" : undefined}
@@ -46,6 +71,10 @@ export const TopMenu = () => {
                             Shongshari.com <i className="fa-solid fa-angle-down"></i>
                         </span>
                     </Button>
+                       
+                       
+                    }
+                    
                     <Menu
                         id="basic-menu"
                         anchorEl={anchorEl}

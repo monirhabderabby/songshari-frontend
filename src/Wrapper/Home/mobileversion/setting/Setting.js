@@ -30,6 +30,9 @@ export const Setting = () => {
     <br></br>
     <br></br>
 
+    <br></br>
+    <br></br>
+
     {/* bottom navigation  */}
     <BottomNav></BottomNav>
     </div>

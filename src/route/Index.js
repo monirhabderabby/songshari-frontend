@@ -24,19 +24,10 @@ import Suggested from "../components/pages/TopProfile/Suggested";
 import TopBride from "../components/pages/TopProfile/TopBride";
 import TopGroom from "../components/pages/TopProfile/TopGroom";
 // import EditProfile from "../components/SingleProfilesUser/profileSection/EditProfile";
-import { FilterResults } from "../components/pages/FindPartner/FilterResults/FilterResults";
-import MobileDiamondPlan from "../components/pages/Membership/MobileVersion/MobileDiamondPlan";
-import MobileFreePlan from "../components/pages/Membership/MobileVersion/MobileFreePlan";
-import MobileGoldPlan from "../components/pages/Membership/MobileVersion/MobileGoldPlan";
-import MobilePlatinumPlan from "../components/pages/Membership/MobileVersion/MobilePlatinumPlan";
-import UpgradePlan from "../components/pages/Membership/MobileVersion/UpgradePlan";
-import MobileActivity from "../components/pages/MobileActivity/MobileActivity";
-import MobileActivityPost from "../components/pages/MobileActivity/MobileActivityPost";
 import EditEducationalInfo from "../components/SingleProfilesUser/profileSection/EditprofileSection/EditEducationalInfo";
 import EditOthersInfo from "../components/SingleProfilesUser/profileSection/EditprofileSection/EditOthersInfo";
 import EditPhysicalInfo from "../components/SingleProfilesUser/profileSection/EditprofileSection/EditPhysicalInfo";
 import EditProfesionalInfo from "../components/SingleProfilesUser/profileSection/EditprofileSection/EditProfesionalInfo";
-import ProfileDetails from "../components/SingleProfilesUser/profileSection/ProfileDetails";
 import About from "../Wrapper/About/About";
 import Agent from "../Wrapper/Agent/Agent";
 import Community from "../Wrapper/Community/Community";
@@ -51,10 +42,18 @@ import Shop from "../Wrapper/Shop/Shop";
 import SingleProduct from "../Wrapper/SingleProduct/SingleProduct";
 import SingleProfile from "../Wrapper/SingleProfilesUser/SingleProfile";
 import { Container } from "../Wrapper/Stepper/Container";
+// import { UsersProfile } from "../components/SingleProfilesUser/profileSection/UsersProfile";
+import { FilterResults } from "../components/pages/FindPartner/FilterResults/FilterResults";
+import MobileDiamondPlan from "../components/pages/Membership/MobileVersion/MobileDiamondPlan";
+import MobileFreePlan from "../components/pages/Membership/MobileVersion/MobileFreePlan";
+import MobileGoldPlan from "../components/pages/Membership/MobileVersion/MobileGoldPlan";
+import MobilePlatinumPlan from "../components/pages/Membership/MobileVersion/MobilePlatinumPlan";
+import UpgradePlan from "../components/pages/Membership/MobileVersion/UpgradePlan";
+import MobileActivity from "../components/pages/MobileActivity/MobileActivity";
+import MobileActivityPost from "../components/pages/MobileActivity/MobileActivityPost";
+import ProfileDetails from "../components/SingleProfilesUser/profileSection/ProfileDetails";
 
 // import MobileSingleProfilesUser from "../components/SingleProfilesUser/MobileSingleProfilesUser/MobileSingleProfilesUser";
-import MobileLogin from "../components/pages/Authentications/MobileDesign/MobileLogin";
-import MobileSignUp from "../components/pages/Authentications/MobileDesign/MobileSignUp";
 import { DynamicPhotosGallary } from "../components/pages/DynamicProfilePage/DynamicPhotosGallary";
 import { FindAPartnerSuggested } from "../components/pages/FindPartner/FindAPartnerSuggested";
 import EducationalCertificate from "../components/SingleProfilesUser/CertificateSection/EducationalCertificate";
@@ -82,6 +81,11 @@ import OthersCertificate from "../Wrapper/Home/mobileversion/PhotoGallery/certif
 import ProfessionalCertificate from "../Wrapper/Home/mobileversion/PhotoGallery/certificate/ProfessionalCertificate";
 import { PrivacyMov } from "../Wrapper/Home/mobileversion/privacy/PrivacyMov";
 import { Setting } from "../Wrapper/Home/mobileversion/setting/Setting";
+import MobileLogin from "../components/pages/Authentications/MobileDesign/MobileLogin";
+import MobileSignUp from "../components/pages/Authentications/MobileDesign/MobileSignUp";
+import TopProfileMov from "../Wrapper/Home/mobileversion/topprofilemov/TopProfileMov";
+import SuggestedMov from "../components/pages/TopProfile/SuggestedMov";
+import { AllPosts } from "../Wrapper/Home/mobileversion/allposts/AllPosts";
 
 //admin components
 
@@ -140,10 +144,9 @@ const Index = () => {
 
                     <Route path="/" element={<Homepage></Homepage>}>
                         <Route path="/" element={<Suggested />} />
-                        <Route path="/top-gride" element={<TopBride />} />
-                        <Route path="/top-groom" element={<TopGroom />} />
-                        <Route path="/top-profession/kazi" element={<TopProfessionKazi />} />
-                        <Route path="/top-profession/agent" element={<TopProfessionAgent />} />
+                        <Route path="/top-bride" element={<TopBride />} />
+                        <Route path="/top-broom" element={<TopGroom />} />
+                        
                     </Route>
                     <Route path="/singleViewRequest" element={<SingleRequestView />} />
 
@@ -171,12 +174,12 @@ const Index = () => {
                         <Route path="nearest" element={<TopGroom />} />
                         <Route path="filter" element={<FilterResults />} />
                     </Route>
-                    <Route path="/" element={<Homepage></Homepage>}>
+                    <Route path="/" element={<TopProfileMov></TopProfileMov>}>
                         <Route path="/" element={<Suggested />} />
-                        <Route path="/top-gride" element={<TopBride />} />
-                        <Route path="/top-groom" element={<TopGroom />} />
-                        <Route path="/top-profession/kazi" element={<TopProfessionKazi />} />
-                        <Route path="/top-profession/agent" element={<TopProfessionAgent />} />
+                        <Route path="top-gride" element={<TopBride />} />
+                        <Route path="top-groom" element={<TopGroom />} />
+                        <Route path="top-profession/kazi" element={<TopProfessionKazi />} />
+                        <Route path="top-profession/agent" element={<TopProfessionAgent />} />
                     </Route>
                     <Route path="/admin-analytics" element={<AdminAnalytics />}></Route>
 
@@ -184,14 +187,13 @@ const Index = () => {
                     <Route path="/upgrade" element={<UpgradePlan></UpgradePlan>}></Route>
 
                     {/* --------------- MOBILE ROUTES START --------------- */}
-                    <Route path="/mobileHomePage" element={<MobileHome />}></Route>
+                   
                     <Route path="/" element={<MobileHome />}>
-                        <Route path="/" element={<Suggested />} />
-                        <Route path="/top-gride" element={<TopBride />} />
-                        <Route path="/top-groom" element={<TopGroom />} />
-                        <Route path="/top-profession/kazi" element={<TopProfessionKazi />} />
-                        <Route path="/top-profession/agent" element={<TopProfessionAgent />} />
+                    <Route path="/" element={<Suggested/>} />
+                    <Route path="top-gride" element={<TopBride />} />
+                    <Route path="top-groom" element={<TopGroom />} />
                     </Route>
+                   
                     <Route path="/setting" element={<Setting></Setting>}></Route>
                     <Route path="/mobilelogin" element={<MobileLogin />}></Route>
                     <Route path="/mobilesignup" element={<MobileSignUp />}></Route>
@@ -234,6 +236,7 @@ const Index = () => {
                     <Route path="/mobilePlatinumPlan" element={<MobilePlatinumPlan />}></Route>
                     <Route path="/mobilecertificate" element={<MobileCertificate />} />
                     <Route path="/certificate" element={<Certificate />} />
+                    <Route path="/allposts" element={<AllPosts/>} />
                     {/* --------------- MOBILE ROUTES END --------------- */}
 
                     <Route path="*" element={<NotFound />}></Route>

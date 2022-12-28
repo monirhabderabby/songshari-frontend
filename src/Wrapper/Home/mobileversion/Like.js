@@ -8,10 +8,11 @@ import { BsCommand } from "react-icons/bs";
 import { BottomNav } from "./BottomNav";
 import { Link } from "react-router-dom";
 import { useGetSuggestedUsersQuery } from "../../../Redux/features/AllRecentData/recentApi";
-import MayLikeSingle from "./MayLikeSingle";
+import {MayLikeSingle} from "./MayLikeSingle";
 
 export const Like = () => {
-  const { data } = useGetSuggestedUsersQuery();
+  const { data , error} = useGetSuggestedUsersQuery();
+console.log(error);
 
   return (
     <div className="bg-[#F8F8FF]">
