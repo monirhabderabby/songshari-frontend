@@ -11,9 +11,7 @@ import UtilitisCard from "./UtilitisCard";
 import { VerificationCard } from "./VerificationCard";
 
 export const SingleProfiles = () => {
-  const { data, isLoading, error } = useGetProfileDetailsWIthAuthQuery();
-  console.log(data);
-  console.log(error);
+  const { data, isLoading } = useGetProfileDetailsWIthAuthQuery();
   return (
     <div className="bg-[#FAFBFF]">
       <CustomHeader title="Profile" />
