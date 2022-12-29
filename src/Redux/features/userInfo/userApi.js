@@ -144,6 +144,16 @@ export const userApi = apiSlice.injectEndpoints({
       }),
       keepUnusedDataFor: 0,
     }),
+    addUserPost: builder.mutation({
+      query: (data) => ({
+        url: "/member/post/add",
+        method: "POST",
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+        body: data,
+      }),
+    }),
   }),
 });
 
@@ -164,4 +174,5 @@ export const {
   useUpdateOthersDetailsMutation,
   useUpdateProfessionalDetailsMutation,
   useGetProfileDetailsWIthAuthQuery,
+  useAddUserPostMutation,
 } = userApi;

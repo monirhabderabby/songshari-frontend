@@ -51,15 +51,15 @@ const EditPersonalInfo = () => {
   //phone number managing state
   const [countryCode, setCountryCode] = useState("+880");
   //others physical information state
-  const [height, setHeight] = useState(10);
-  const [weight, setWeight] = useState(10);
+  const [height, setHeight] = useState(0);
+  const [weight, setWeight] = useState(0);
 
   const [brother, setBrother] = useState(0);
   const [sister, setSister] = useState(0);
   const [parentStatus, setParentStatus] = useState("");
   //uploaded image url data state
   const [nidOrPassportPhoto, setNidOrPassportPhoto] = useState({});
-  const [updatePersonalDetails, { isError, isLoading, isSuccess }] =
+  const [updatePersonalDetails, { data: updateResponse, isLoading, error }] =
     useUpdatePersonalDetailsMutation();
   useEffect(() => {
     fetch("/json/countries.json")
@@ -374,7 +374,6 @@ const EditPersonalInfo = () => {
   //form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     const data = {
       ...personalInfo,
       numberOfBrother: brother?.toString(),
@@ -409,28 +408,24 @@ const EditPersonalInfo = () => {
       });
     }
 
-    if (isSuccess) {
-      messageApi.open({
-        key,
-        type: "success",
-        content: "Data updated succesfully",
-        duration: 2,
-      });
-    }
-
-    if (isError) {
+    if (error) {
       messageApi.open({
         key,
         type: "error",
         content: "Server error! try again!!",
       });
     }
-    if (!isLoading && !isError && isSuccess) {
-      setTimeout(() => {
-        navigate("/userprofile");
-      }, 2000);
+
+    if (updateResponse) {
+      messageApi.open({
+        key,
+        type: "success",
+        content: "Data updated successfully",
+        duration: 2,
+      });
+      navigate("/userprofile");
     }
-  }, [isSuccess, isLoading, isError, messageApi, navigate]);
+  }, [updateResponse, isLoading, error, messageApi, navigate]);
 
   //this filter for mui autocomplete
   const filter = createFilterOptions();
@@ -1393,8 +1388,6 @@ const EditPersonalInfo = () => {
             </label>
             <p className="text-left text-base font-medium"> {height}" </p>
             <Slider
-              defaultValue={5}
-              key={weight}
               min={0}
               max={200}
               onChange={onHeightChange}
@@ -1408,7 +1401,6 @@ const EditPersonalInfo = () => {
             </label>
             <p className="text-left text-base font-medium"> {weight} Kg </p>
             <Slider
-              defaultValue={50}
               onChange={onWeightChange}
               onAfterChange={onAfterWeightChange}
               min={0}
@@ -1739,20 +1731,21 @@ const EditPersonalInfo = () => {
           <div className="pb-4">
             <div>
               <label
-                htmlFor="nid"
+                htmlFor="siblings"
                 className="text-sm block pb-2 text-slate-600 font-medium"
               >
                 Siblings
               </label>
-              <div>
+              <div id="siblings">
                 <p>Brother</p>
                 <div className="flex justify-center items-center mb-2">
                   <button
-                    onClick={() =>
-                      brother === 0 || brother > 0
-                        ? setBrother(brother - 1)
-                        : setBrother(brother)
-                    }
+                    // onClick={() =>
+                    //   brother === 0 || brother > 0
+                    //     ? setBrother(brother - 1)
+                    //     : setBrother(brother)
+                    // }
+                    onClick={() => setBrother((prevCount) => prevCount - 1)}
                     className="px-4 py-2 text-3xl bg-gray-300 leading-6 rounded-l-lg"
                   >
                     -
@@ -1761,7 +1754,7 @@ const EditPersonalInfo = () => {
                     {brother}
                   </div>
                   <button
-                    onClick={() => setBrother(brother + 1)}
+                    onClick={() => setBrother((prevCount) => prevCount + 1)}
                     className="px-4 py-2 text-3xl bg-gray-300 leading-6 rounded-r-lg"
                   >
                     +
@@ -1769,7 +1762,7 @@ const EditPersonalInfo = () => {
                 </div>
               </div>
 
-              <div>
+              <div id="siblings">
                 <p>Sister</p>
                 <div className="flex justify-center items-center mb-2">
                   <button
@@ -1906,7 +1899,7 @@ const EditPersonalInfo = () => {
               style={{
                 background: "linear-gradient(180deg, #E41272 0%, #942DD9 100%)",
               }}
-              className="w-full text-center py-[8] py-[10px] text-[#fff]  text-lg font-medium rounded"
+              className="w-full text-center py-[10px] text-[#fff]  text-lg font-medium rounded"
             />
           </div>
         </form>
@@ -2487,11 +2480,12 @@ const EditPersonalInfo = () => {
                 <p>Brother</p>
                 <div className="flex justify-center items-center mb-2">
                   <button
-                    onClick={() =>
-                      brother === 0 || brother > 0
-                        ? setBrother(brother - 1)
-                        : setBrother(brother)
-                    }
+                    // onClick={() =>
+                    //   brother === 0 || brother > 0
+                    //     ? setBrother(brother - 1)
+                    //     : setBrother(brother)
+                    // }
+                    onClick={() => setBrother((prevCount) => prevCount - 1)}
                     className="px-4 py-2 text-3xl bg-gray-300 leading-6 rounded-l-lg"
                   >
                     -
@@ -2500,7 +2494,7 @@ const EditPersonalInfo = () => {
                     {brother}
                   </div>
                   <button
-                    onClick={() => setBrother(brother + 1)}
+                    onClick={() => setBrother((prevCount) => prevCount + 1)}
                     className="px-4 py-2 text-3xl bg-gray-300 leading-6 rounded-r-lg"
                   >
                     +
