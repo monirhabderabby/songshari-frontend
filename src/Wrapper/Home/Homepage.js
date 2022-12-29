@@ -28,7 +28,7 @@ const Homepage = () => {
         }
     }, [user, loading, setIsLoggedIn]);
     return (
-        <div className="font-george">
+        <div className="font-george overflow-x-hidden">
             <div className="hidden md:hidden lg:block">
                 <Suspense fallback={<div>Loading...</div>}>
                     <NavBar></NavBar>
