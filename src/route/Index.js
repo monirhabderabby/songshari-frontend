@@ -87,6 +87,7 @@ import TopProfileMov from "../Wrapper/Home/mobileversion/topprofilemov/TopProfil
 import SuggestedMov from "../components/pages/TopProfile/SuggestedMov";
 import { AllPosts } from "../Wrapper/Home/mobileversion/allposts/AllPosts";
 import SingleUserActivity from "../components/SingleProfilesUser/SingleUserActivity/SingleUserActivity";
+import AccordianAnik from "../components/SingleProfilesUser/profileSection/Hello";
 
 //admin components
 
@@ -197,6 +198,7 @@ const Index = () => {
                    
                 
                     <Route path="/setting" element={<Setting></Setting>}></Route>
+                    <Route path="/tteesst" element={<AccordianAnik></AccordianAnik>}></Route>
                     <Route path="/mobilelogin" element={<MobileLogin />}></Route>
                     <Route path="/mobilesignup" element={<MobileSignUp />}></Route>
                     <Route path="/servicemov" element={<ProfileServices></ProfileServices>}></Route>

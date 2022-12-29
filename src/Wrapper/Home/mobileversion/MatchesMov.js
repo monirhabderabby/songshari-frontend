@@ -1,16 +1,36 @@
+// configuration 
 import React from "react";
-import "../../../components/SingleProfilesUser/profileSection/Matches.css";
-import { BottomNav } from "./BottomNav";
 import { Link } from "react-router-dom";
+
+// Third party packages 
+import { AiOutlineWarning } from "react-icons/ai";
+
+// components 
+import { BottomNav } from "./BottomNav";
 import { useGetMatchedUsersQuery } from "../../../Redux/features/connections/connectionApi";
 import { ageCalculator } from "../../../assets/utilities/AgeCalculation/ageCalculator";
+import { MobileProfileCardSkeletonLoader } from "../../../components/shared/Cards/Loader/MobileProfileCardSkeletonLoader";
+
+// css 
+import "../../../components/SingleProfilesUser/profileSection/Matches.css";
 
 export const MatchesMov = () => {
-  const { data, isLoading } = useGetMatchedUsersQuery();
+  const { data, isLoading , error } = useGetMatchedUsersQuery();
   console.log(data);
-  if (isLoading) {
-    return;
+
+  if(isLoading){
+    return <MobileProfileCardSkeletonLoader></MobileProfileCardSkeletonLoader>
   }
+  
+  if(error){
+    return  <div className="flex flex-col items-center justify-center mt-40">
+    <AiOutlineWarning className="text-[48px] text-gray-400" />
+    <p className="mt-[10px] text-[22px] font-Inter font-medium text-gray-500">
+      Server Error
+    </p>
+  </div>
+  }
+
   return (
     <div>
       <div className="mt-5">

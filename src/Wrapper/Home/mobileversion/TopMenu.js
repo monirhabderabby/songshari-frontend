@@ -88,11 +88,11 @@ export const TopMenu = () => {
                     >
                         <MenuItem onClick={handleClose}>
                             <div className="login-signup">
-                                <Link to="/mobilelogin">
+                                <Link to="/login">
                                     <button className="bg-login-mov-home rounded-full text-white px-3">Log In</button>
                                 </Link>
                                 <p className="mx-2">Or</p>
-                                <Link to="/mobilesignup">
+                                <Link to="/signup">
                                     <button className="bg-login-mov-home rounded-full text-white px-3">Sign Up</button>
                                 </Link>
                             </div>
