@@ -32,6 +32,8 @@ export const PersonalDetails = ({ setPage }) => {
   const [dicorceDate, setdicorceDate] = useState();
   const [partnerDeathDate, setPartnerDeathDate] = useState();
   const [hobbies, setHobbies] = useState([]);
+  const [profilePhotoName, setProfilePhotoName] = useState();
+  const [coverPhotoName, setCoverPhotoName] = useState();
 
   const {
     register,
@@ -201,6 +203,7 @@ export const PersonalDetails = ({ setPage }) => {
 
   const profilePhotoHandler = async (e) => {
     const photo = e.target.files[0];
+    setProfilePhotoName(photo?.name);
     const storageRef = ref(
       firebaseStorage,
       `profile/${photo?.name + uuidv4()}`
@@ -214,6 +217,7 @@ export const PersonalDetails = ({ setPage }) => {
 
   const coverPhotoHandler = async (e) => {
     const photo = e.target.files[0];
+    setCoverPhotoName(photo?.name);
     const storageRef = ref(firebaseStorage, `cover/${photo?.name + uuidv4()}`);
     uploadBytes(storageRef, photo).then(async (snapshot) => {
       await getDownloadURL(snapshot.ref).then((url) => {
@@ -403,7 +407,11 @@ export const PersonalDetails = ({ setPage }) => {
               >
                 {profilePhoto ? (
                   <>
-                    <span className="text-green-400">Profile Photo added</span>
+                    <span className="text-green-400">
+                      {profilePhotoName
+                        ? profilePhotoName
+                        : "Profile Photo added"}
+                    </span>
                   </>
                 ) : (
                   "Upload Profile Photo"
@@ -440,7 +448,9 @@ export const PersonalDetails = ({ setPage }) => {
               >
                 {coverPhoto ? (
                   <>
-                    <span className="text-green-400">Cover Photo added</span>
+                    <span className="text-green-400">
+                      {coverPhotoName ? coverPhotoName : "Cover Photo added"}
+                    </span>
                   </>
                 ) : (
                   "Upload Cover Photo"
@@ -575,7 +585,7 @@ export const PersonalDetails = ({ setPage }) => {
           </section>
           {/* ---------- Citizenship ---------- */}
           <section>
-            <div className="flex items-center bg-gray-100  w-full rounded-lg mt-3 lg:mt-0">
+            <div className="flex items-center bg-gray-100 p-[3px] w-full rounded-lg mt-3 lg:mt-0">
               <Controller
                 {...register("citizenShip")}
                 control={control}
@@ -619,7 +629,7 @@ export const PersonalDetails = ({ setPage }) => {
           {/* ---------- Zodiac Sign ---------- */}
           <section className="relative">
             <div
-              className={`flex items-center  p-3 w-full rounded-lg mt-3 lg:mt-0 ${
+              className={`flex items-center p-3 w-full rounded-lg mt-3 lg:mt-0 ${
                 zodiacSignSuggestion.length > 0
                   ? "rounded-br-none rounded-bl-none shadow-lg bg-white"
                   : "bg-gray-100"
@@ -1864,12 +1874,6 @@ export const PersonalDetails = ({ setPage }) => {
           </section>
         </section>
         <div className="flex items-center w-full justify-center gap-x-[20px] mt-[20px]">
-          <button
-            className="border-2 cursor-pointer mt-3 border-primary hover:border-0 rounded-full px-12 py-2 hover:bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] hover:text-white duration-500 transition-all"
-            onClick={() => setPage(1)}
-          >
-            Previous
-          </button>
           <input
             type="submit"
             value={isLoading ? "Saving..." : "Next"}

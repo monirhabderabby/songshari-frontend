@@ -54,7 +54,7 @@ const Table = ({ data, isLoading }) => {
             >
               Connections{" "}
               <sup className="text-white bg_Color px-2 py-1 rounded-full text-[10px]">
-                5
+                {data?.connectionRequests?.length}
               </sup>
             </button>
             <button
