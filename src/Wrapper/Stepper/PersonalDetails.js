@@ -871,7 +871,7 @@ export const PersonalDetails = ({ setPage }) => {
                       key={suggetion?.id}
                       className="h-[40px] flex justify-start items-center text-[14px] hover:bg-gray-100 px-3 cursor-pointer text-gray-500 rounded-br-lg rounded-bl-lg"
                       onClick={() => {
-                        setPermanentCountryValue(suggetion?.name);
+                        setPermanentCountryValue(suggetion?.value);
                         setCountriesSuggestionForParmanent([]);
                       }}
                     >
@@ -1094,7 +1094,7 @@ export const PersonalDetails = ({ setPage }) => {
                       key={suggetion?.id}
                       className="h-[40px] flex justify-start items-center text-[14px] hover:bg-gray-100 px-3 cursor-pointer text-gray-500 rounded-br-lg rounded-bl-lg"
                       onClick={() => {
-                        setCurrentCountryValue(suggetion?.name);
+                        setCurrentCountryValue(suggetion?.value);
                         setCountriesSuggestionForCurrent([]);
                       }}
                     >
