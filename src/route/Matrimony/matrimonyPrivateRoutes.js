@@ -1,15 +1,15 @@
-import SingleProfiles from "../../components/SingleProfilesUser/SingleProfiles";
+import { SingleProfiles } from "../../components/SingleProfilesUser/SingleProfiles";
 import { Container } from "../../Wrapper/Stepper/Container";
 
 const matrimonyPrivateRoutes = [
     {
         path: "/userprofile",
-        element: SingleProfiles,
+        element: <SingleProfiles />,
     },
     {
         path: "/stepper",
-        element: Container,
+        element: <Container />,
     },
 ];
 
-export default matrimonyPrivateRoutes
+export default matrimonyPrivateRoutes;
