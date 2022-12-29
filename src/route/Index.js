@@ -87,6 +87,7 @@ import TopProfileMov from "../Wrapper/Home/mobileversion/topprofilemov/TopProfil
 import SuggestedMov from "../components/pages/TopProfile/SuggestedMov";
 import { AllPosts } from "../Wrapper/Home/mobileversion/allposts/AllPosts";
 import SingleUserActivity from "../components/SingleProfilesUser/SingleUserActivity/SingleUserActivity";
+import CertificateSectionUpdate from "../components/SingleProfilesUser/CertificateSectionUpdate/CertificateSectionUpdate";
 
 //admin components
 
@@ -147,8 +148,12 @@ const Index = () => {
                         <Route path="/" element={<Suggested />} />
                         <Route path="/top-bride" element={<TopBride />} />
                         <Route path="/top-broom" element={<TopGroom />} />
-                        
+
                     </Route>
+
+                    {/* testing route */}
+                    <Route path="/updateCertificate" element={<CertificateSectionUpdate />} />
+
                     <Route path="/singleViewRequest" element={<SingleRequestView />} />
 
                     <Route path="/admin-analytics" element={<AdminAnalytics />}></Route>
@@ -188,14 +193,14 @@ const Index = () => {
                     <Route path="/upgrade" element={<UpgradePlan></UpgradePlan>}></Route>
 
                     {/* --------------- MOBILE ROUTES START --------------- */}
-                   
+
                     <Route path="/" element={<MobileHome />}>
-                    <Route path="/" element={<Suggested/>} />
-                    <Route path="top-gride" element={<TopBride />} />
-                    <Route path="top-groom" element={<TopGroom />} />
+                        <Route path="/" element={<Suggested />} />
+                        <Route path="top-gride" element={<TopBride />} />
+                        <Route path="top-groom" element={<TopGroom />} />
                     </Route>
-                   
-                
+
+
                     <Route path="/setting" element={<Setting></Setting>}></Route>
                     <Route path="/mobilelogin" element={<MobileLogin />}></Route>
                     <Route path="/mobilesignup" element={<MobileSignUp />}></Route>
@@ -239,7 +244,7 @@ const Index = () => {
                     <Route path="/mobilePlatinumPlan" element={<MobilePlatinumPlan />}></Route>
                     <Route path="/mobilecertificate" element={<MobileCertificate />} />
                     <Route path="/certificate" element={<Certificate />} />
-                    <Route path="/allposts" element={<AllPosts/>} />
+                    <Route path="/allposts" element={<AllPosts />} />
                     {/* --------------- MOBILE ROUTES END --------------- */}
 
                     <Route path="*" element={<NotFound />}></Route>
