@@ -1,5 +1,4 @@
 import React from "react";
-import { useNavigate } from 'react-router';
 import CustomHeader from "../../components/shared/CustomHeader/CustomHeader";
 import { useGetProfileDetailsWIthAuthQuery } from "../../Redux/features/userInfo/userApi";
 import ChartBoard from "./chatboard/ChartBoard";
@@ -12,7 +11,6 @@ import UtilitisCard from "./UtilitisCard";
 import { VerificationCard } from "./VerificationCard";
 
 export const SingleProfiles = () => {
-    const navigate = useNavigate();
     const { data, isLoading } = useGetProfileDetailsWIthAuthQuery();
     return (
         <div className="bg-[#FAFBFF]">
@@ -45,7 +43,6 @@ export const SingleProfiles = () => {
                         <div className="flex justify-center">
                             <ChartBoard />
                         </div>
-                        <button className='bg-red-100' onClick={() => navigate('/updateCertificate')}>view certificate</button>
                     </div>
                 </div>
             </div>

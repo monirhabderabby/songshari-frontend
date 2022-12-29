@@ -7,10 +7,13 @@ import certificate4 from '../../../../assets/images/user profile/certificate4.pn
 import certificate5 from '../../../../assets/images/user profile/certificate5.png';
 import certificate6 from '../../../../assets/images/user profile/certificate6.png';
 import certificate7 from '../../../../assets/images/user profile/certificate7.png';
+/* component */
+import AllCertificateImg from './AllCertificateImg/AllCertificateImg';
 import FileUploadSection from './FileUploadSection/FileUploadSection';
 
 const UpdateCertificateSection = () => {
     const [certificateId, setCertificateId] = useState(0);
+    /* all img data */
     const allData = [
         {
             id: 1,
@@ -103,8 +106,9 @@ const UpdateCertificateSection = () => {
             type: 'others'
         }
     ]
+    /* used to filter img data */
     const [certificateData, setCertificateData] = useState(allData);
-    console.log(certificateData);
+    /* filtering img data */
     const filterData = (type) => {
         if (type === 'education') {
             setCertificateData(allData.filter(data => data.type === 'education'))
@@ -119,7 +123,9 @@ const UpdateCertificateSection = () => {
             setCertificateData(allData)
         }
     }
-    const newImg = certificateData.filter(cr => cr.id === certificateId + 1)
+    /* filtering img to show single img */
+    const selectCertificate = certificateData.filter(newCertficate => newCertficate.id === certificateId + 1)
+
     return (
         <div className='mx-auto max-w-[1200px] bg-[#FAFBFF] pt-[58px] font-sans '>
             <div className='flex gap-[51px]'>
@@ -127,10 +133,12 @@ const UpdateCertificateSection = () => {
                 <div className='w-[360px]'>
                     {
                         certificateData.map(certificate =>
-                            <div key={certificate.id} className='flex flex-col w-full font-medium text-2xl text-[#000000]'>
-                                <h1 className='mb-6 text-left'>{certificate.name}</h1>
-                                <img onClick={() => setCertificateId(certificate.id - 1)} className={`mb-10 h-[243px] rounded-[12px] ${(certificate.id === (newImg[0] ? newImg[0]?.id : certificateData[0].id)) ? 'border-[2px] border-[#E41272] boxShadow: [3px 3px 12px rgba(0, 0, 0, 0.12)]' : ''}`} src={certificate?.img} alt="certificate" />
-                            </div>
+                            <AllCertificateImg key={certificate.id}
+                                certificate={certificate}
+                                certificateData={certificateData}
+                                setCertificateId={setCertificateId}
+                                selectCertificate={selectCertificate}
+                            />
                         )
                     }
                 </div>
@@ -144,7 +152,7 @@ const UpdateCertificateSection = () => {
                     </div>
                     {/* Main img showing */}
                     <div style={{ boxShadow: '2px 2px 10px rgba(0, 0, 0, 0.12)' }} className='bg-[#FFFFFF] py-[15px] px-[18px] rounded-[16px]'>
-                        <img className='h-[1187px] w-[800px] rounded-[16px]' src={newImg[0] ? newImg[0]?.img : certificateData[0].img} alt="view certificate" />
+                        <img className='h-[1187px] w-[800px] rounded-[16px]' src={selectCertificate[0] ? selectCertificate[0]?.img : certificateData[0].img} alt="view certificate" />
                     </div>
                     {/* New certificate upload */}
                     <FileUploadSection />

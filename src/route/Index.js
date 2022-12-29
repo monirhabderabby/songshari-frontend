@@ -87,7 +87,6 @@ import TopProfileMov from "../Wrapper/Home/mobileversion/topprofilemov/TopProfil
 import SuggestedMov from "../components/pages/TopProfile/SuggestedMov";
 import { AllPosts } from "../Wrapper/Home/mobileversion/allposts/AllPosts";
 import SingleUserActivity from "../components/SingleProfilesUser/SingleUserActivity/SingleUserActivity";
-import CertificateSectionUpdate from "../components/SingleProfilesUser/CertificateSectionUpdate/CertificateSectionUpdate";
 
 //admin components
 
@@ -150,10 +149,6 @@ const Index = () => {
                         <Route path="/top-broom" element={<TopGroom />} />
 
                     </Route>
-
-                    {/* testing route */}
-                    <Route path="/updateCertificate" element={<CertificateSectionUpdate />} />
-
                     <Route path="/singleViewRequest" element={<SingleRequestView />} />
 
                     <Route path="/admin-analytics" element={<AdminAnalytics />}></Route>
