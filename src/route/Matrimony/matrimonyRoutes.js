@@ -15,55 +15,55 @@ import Homepage from "../../Wrapper/Home/Homepage";
 const matrimonyRoutes = [
     {
         path: "/",
-        element: Homepage,
+        element: <Homepage />,
     },
     {
         path: "/login",
-        element: Login,
+        element: <Login />,
     },
     {
         path: "/signup",
-        element: Signup,
+        element: <Signup />,
     },
     {
         path: "/about",
-        element: About,
+        element: <About />,
     },
     {
         path: "/membership",
-        element: Membership,
+        element: <Membership />,
     },
     {
         path: "/regAsProfessional",
-        element: RegAsProfessional,
+        element: <RegAsProfessional />,
     },
     {
         path: "/loginAsProfessional",
-        element: LoginAsProfessional,
+        element: <LoginAsProfessional />,
     },
     {
         path: "/contact",
-        element: Contact,
+        element: <Contact />,
     },
     {
         path: "/profile/:id",
-        element: DynamicProfilePage,
+        element: <DynamicProfilePage />,
     },
     {
         path: "/gallery/:id",
-        element: DynamicPhotosGallary,
+        element: <DynamicPhotosGallary />,
     },
     {
         path: "/privacy-policy",
-        element: Privacy,
+        element: <Privacy />,
     },
     {
         path: "/our-teams",
-        element: OurTeams,
+        element: <OurTeams />,
     },
     {
         path: "/find-partner",
-        element: FindPartners,
+        element: <FindPartners />,
     },
 ];
-export default matrimonyRoutes
+export default matrimonyRoutes;

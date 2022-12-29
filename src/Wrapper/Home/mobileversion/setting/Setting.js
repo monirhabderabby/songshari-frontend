@@ -12,24 +12,20 @@ export const Setting = () => {
             <i className="fa-solid fa-chevron-left ml-8  text-xl"></i>
             <h1 className='ml-20 profile-tit'>Profile</h1>
           </div>
-
           <div>
-
           </div>
-         
           <div>
-
           </div>
-
         </div>
       </Link>
 
       {/* menus  */}
      <AccountSettingMov></AccountSettingMov>
-
     <br></br>
     <br></br>
-
+    <br></br>
+    <br></br>
+    
     {/* bottom navigation  */}
     <BottomNav></BottomNav>
     </div>

@@ -1,8 +1,12 @@
 import React from "react";
+
+// congiguration 
 import { NavLink, Outlet } from "react-router-dom";
+
+// css 
 import "../../../../assets/css/topProfile.css";
 
-const TopProfile = () => {
+const TopProfileMov = () => {
   return (
     <div className="">
         <h1 className='font-bold ml-5 mt-10 mb-4'>Top Profile</h1>
@@ -12,11 +16,11 @@ const TopProfile = () => {
             <p className="text-[11px] text-center">Suggested For You</p>
           </NavLink>
 
-          <NavLink to="/top-gride" className='mr-2'>
+          <NavLink to="/top-bride" className='mr-2'>
             <p className="text-[11px] text-center pl-[16px] pr-[16px] font-semibold">Top Bride</p>
           </NavLink>
 
-          <NavLink to="/top-groom">
+          <NavLink to="/top-broom">
             <p className="text-[11px] text-center pl-[16px] pr-[16px] font-semibold">Top Groom</p>
           </NavLink>
         </div>
@@ -30,4 +34,4 @@ const TopProfile = () => {
   );
 };
 
-export default TopProfile;
+export default TopProfileMov;
