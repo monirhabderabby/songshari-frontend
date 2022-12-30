@@ -16,7 +16,7 @@ const MasterRoute = () => {
                     <Route key={route.path} path={route.path} element={route.element} />
                 ))}
                 {matrimonyPrivateRoutes.map(route => (
-                    <Route key={route.path} path={route.path} element={<RequireAuth>`${route.element}`</RequireAuth>} />
+                    <Route key={route.path} path={route.path} element={<RequireAuth>{route.element}</RequireAuth>} />
                 ))}
             </Routes>
         </BrowserRouter>
