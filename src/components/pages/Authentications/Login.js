@@ -21,7 +21,7 @@ const Login = () => {
     const [customError, setCustomError] = useState("");
     const [open, setOpen] = useState(false);
     const [signInWithEmailAndPassword, user, loading, error] = useSignInWithEmailAndPassword(auth);
-    const [loginAsMember, { data: response, isLoading, error: responseError }] = useLoginAsMemberMutation();
+    const [loginAsMember, { data: response, isLoading }] = useLoginAsMemberMutation();
     const [signInWithGoogle] = useSignInWithGoogle(auth);
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -51,20 +51,15 @@ const Login = () => {
         if (error?.message === "Firebase: Error (auth/user-not-found).") {
             setCustomError("User not found");
         }
-        if (responseError) {
-            console.log(responseError);
-        }
-    }, [error, setCustomError, responseError]);
+    }, [error, setCustomError]);
 
     useEffect(() => {
         if (response) {
-            console.log(response);
             localStorage.setItem("accessToken", response?.data?.token);
             dispatch(loadUserData(response?.data));
             reset();
         }
         if (response && user) {
-            // navigate("/userProfile");
             navigate(from, { replace: true });
         }
     }, [response, dispatch, user, navigate, reset, from]);

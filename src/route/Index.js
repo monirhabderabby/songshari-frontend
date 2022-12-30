@@ -54,6 +54,8 @@ import MobileActivityPost from "../components/pages/MobileActivity/MobileActivit
 import ProfileDetails from "../components/SingleProfilesUser/profileSection/ProfileDetails";
 
 // import MobileSingleProfilesUser from "../components/SingleProfilesUser/MobileSingleProfilesUser/MobileSingleProfilesUser";
+import MobileLogin from "../components/pages/Authentications/MobileDesign/MobileLogin";
+import MobileSignUp from "../components/pages/Authentications/MobileDesign/MobileSignUp";
 import { DynamicPhotosGallary } from "../components/pages/DynamicProfilePage/DynamicPhotosGallary";
 import { FindAPartnerSuggested } from "../components/pages/FindPartner/FindAPartnerSuggested";
 import EducationalCertificate from "../components/SingleProfilesUser/CertificateSection/EducationalCertificate";
@@ -61,7 +63,9 @@ import MobileSingleProfilesUser from "../components/SingleProfilesUser/MobileSin
 import { PersonalDetailsMobile } from "../components/SingleProfilesUser/MobileSingleProfilesUser/PersonalDetailsMobile";
 import EditPersonalInfo from "../components/SingleProfilesUser/profileSection/EditprofileSection/EditPersonalInfo";
 import ProfileServices from "../components/SingleProfilesUser/ServicesSection/ProfileServices";
+import SingleUserActivity from "../components/SingleProfilesUser/SingleUserActivity/SingleUserActivity";
 import { AboutMov } from "../Wrapper/Home/mobileversion/about/AboutMov";
+import { AllPosts } from "../Wrapper/Home/mobileversion/allposts/AllPosts";
 import { CertificateMov } from "../Wrapper/Home/mobileversion/CertificateMov";
 import { CommunityMov } from "../Wrapper/Home/mobileversion/comminuty/CommunityMov";
 import { GallaryMov } from "../Wrapper/Home/mobileversion/gallarymov/GallaryMov";
@@ -81,8 +85,6 @@ import OthersCertificate from "../Wrapper/Home/mobileversion/PhotoGallery/certif
 import ProfessionalCertificate from "../Wrapper/Home/mobileversion/PhotoGallery/certificate/ProfessionalCertificate";
 import { PrivacyMov } from "../Wrapper/Home/mobileversion/privacy/PrivacyMov";
 import { Setting } from "../Wrapper/Home/mobileversion/setting/Setting";
-import MobileLogin from "../components/pages/Authentications/MobileDesign/MobileLogin";
-import MobileSignUp from "../components/pages/Authentications/MobileDesign/MobileSignUp";
 import TopProfileMov from "../Wrapper/Home/mobileversion/topprofilemov/TopProfileMov";
 import SuggestedMov from "../components/pages/TopProfile/SuggestedMov";
 import { AllPosts } from "../Wrapper/Home/mobileversion/allposts/AllPosts";
@@ -148,7 +150,6 @@ const Index = () => {
                         <Route path="/" element={<Suggested />} />
                         <Route path="/top-bride" element={<TopBride />} />
                         <Route path="/top-broom" element={<TopGroom />} />
-                        
                     </Route>
                     <Route path="/singleViewRequest" element={<SingleRequestView />} />
 
@@ -189,14 +190,13 @@ const Index = () => {
                     <Route path="/upgrade" element={<UpgradePlan></UpgradePlan>}></Route>
 
                     {/* --------------- MOBILE ROUTES START --------------- */}
-                   
+
                     <Route path="/" element={<MobileHome />}>
-                    <Route path="/" element={<Suggested/>} />
-                    <Route path="top-gride" element={<TopBride />} />
-                    <Route path="top-groom" element={<TopGroom />} />
+                        <Route path="/" element={<Suggested />} />
+                        <Route path="top-gride" element={<TopBride />} />
+                        <Route path="top-groom" element={<TopGroom />} />
                     </Route>
-                   
-                
+
                     <Route path="/setting" element={<Setting></Setting>}></Route>
                     <Route path="/tteesst" element={<AccordianAnik></AccordianAnik>}></Route>
                     <Route path="/mobilelogin" element={<MobileLogin />}></Route>
@@ -241,7 +241,7 @@ const Index = () => {
                     <Route path="/mobilePlatinumPlan" element={<MobilePlatinumPlan />}></Route>
                     <Route path="/mobilecertificate" element={<MobileCertificate />} />
                     <Route path="/certificate" element={<Certificate />} />
-                    <Route path="/allposts" element={<AllPosts/>} />
+                    <Route path="/allposts" element={<AllPosts />} />
                     {/* --------------- MOBILE ROUTES END --------------- */}
 
                     <Route path="*" element={<NotFound />}></Route>

@@ -18,6 +18,7 @@ export const ProfessionalDetails = ({ setPage }) => {
   const [professionalAchievementMoment, setProfessionalAchievementMoment] =
     useState("");
   const [addedAchievementMoment, setAddedAchievementMoment] = useState([]);
+  const [achievementMomentName, setAchievementMomentName] = useState();
 
   const [setProfessionalDetails, { data: response, isLoading }] =
     useSetProfessionalDetailsMutation();
@@ -74,6 +75,7 @@ export const ProfessionalDetails = ({ setPage }) => {
 
   const specialAchievementMomentHandler = async (e) => {
     const photo = e.target.files[0];
+    setAchievementMomentName(photo?.name);
     const storageRef = ref(firebaseStorage, `cover/${photo?.name + uuidv4()}`);
     uploadBytes(storageRef, photo).then(async (snapshot) => {
       await getDownloadURL(snapshot.ref).then((url) => {
@@ -177,7 +179,11 @@ export const ProfessionalDetails = ({ setPage }) => {
               >
                 {professionalAchievementMoment ? (
                   <>
-                    <span className="text-green-400">Moments added</span>
+                    <span className="text-green-400">
+                      {achievementMomentName
+                        ? achievementMomentName
+                        : "Moments added"}
+                    </span>
                   </>
                 ) : (
                   "Upload Achievement Moments"
