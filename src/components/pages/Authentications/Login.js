@@ -58,6 +58,7 @@ const Login = () => {
             localStorage.setItem("accessToken", response?.data?.token);
             dispatch(loadUserData(response?.data));
             reset();
+            console.log(response);
         }
         if (response && user) {
             navigate(from, { replace: true });

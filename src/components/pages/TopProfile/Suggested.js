@@ -3,9 +3,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 // Third party packages
+import { AiOutlineWarning } from "react-icons/ai";
 import { Autoplay } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { AiOutlineWarning } from "react-icons/ai";
 
 // components
 import { useGetRecentMembersQuery } from "../../../Redux/features/userInfo/withoutLoginApi";
@@ -19,15 +19,11 @@ import "swiper/css/pagination";
 
 const Suggested = () => {
     //hook variable declaration
-    const { data, isLoading } = useGetRecentMembersQuery();
+    const { data, isLoading, error } = useGetRecentMembersQuery();
 
     // js variables
     const arr = [1, 2, 3, 4, 5, 6, 7, 8];
     let content = null;
-    
-
-    // data fetching 
-    const { data, isLoading, error } = useGetRecentMembersQuery();
 
     if (isLoading) {
         content = arr.map(k => {
@@ -37,26 +33,18 @@ const Suggested = () => {
                 </SwiperSlide>
             );
         });
-    } 
-  
-    else if (error) {
+    } else if (error) {
         content = arr.map(k => {
             return (
                 <SwiperSlide key={k}>
-                   <div className="flex flex-col items-center justify-center">
-                <AiOutlineWarning className="text-[48px] text-gray-400" />
-                <p className="mt-[10px] text-[22px] font-Inter font-medium text-gray-500">
-                  Server Error
-                </p>
-              </div>
-            </SwiperSlide>
-           
+                    <div className="flex flex-col items-center justify-center">
+                        <AiOutlineWarning className="text-[48px] text-gray-400" />
+                        <p className="mt-[10px] text-[22px] font-Inter font-medium text-gray-500">Server Error</p>
+                    </div>
+                </SwiperSlide>
             );
         });
-    } 
-    
-    
-    else if (data?.data?.members?.length > 0) {
+    } else if (data?.data?.members?.length > 0) {
         content = data?.data?.members?.map(profile => {
             return (
                 <SwiperSlide key={profile._id}>
