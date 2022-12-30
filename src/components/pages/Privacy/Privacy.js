@@ -13,7 +13,7 @@ export const Privacy = () => {
   const links = [
     {
       id: 1,
-      name: "Intregation and Definitions",
+      name: "Integration and Definitions",
       link: "/privacy-policy",
     },
     {
