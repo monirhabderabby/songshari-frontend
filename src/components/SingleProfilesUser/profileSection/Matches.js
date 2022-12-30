@@ -23,7 +23,10 @@ export const Matches = () => {
 
     return (
         <div className="w-full lg:max-w-[521px] mx-auto">
-            <button className="btn-certificate text-white p-2 rounded" onClick={() => setMatchesModalOpen(true)}>
+            <button
+                className="bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] text-white p-2 rounded"
+                onClick={() => setMatchesModalOpen(true)}
+            >
                 Matches Modal
             </button>
             <div className="grid lg:grid-cols-2 gap-4">
