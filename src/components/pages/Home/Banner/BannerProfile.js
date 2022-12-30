@@ -2,7 +2,7 @@
 import { Fragment } from "react";
 
 // Third party packages
-import { Autoplay } from "swiper";
+import { Autoplay, Navigation } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 // components
@@ -14,6 +14,11 @@ import img2 from "../../../../assets/images/HomeImage/bottom-img1.png";
 import bgImg from "../../../../assets/images/HomeImage/Rectangle .png";
 import { useGetRecentUsersQuery } from "../../../../Redux/features/AllRecentData/recentApi";
 
+//css
+import "swiper/css";
+import "swiper/css/navigation";
+import { ageCalculator } from "../../../../assets/utilities/AgeCalculation/ageCalculator";
+
 const BannerProfile = () => {
     // hook variables
     const { data: swipematch } = useGetRecentUsersQuery();
@@ -21,19 +26,16 @@ const BannerProfile = () => {
     return (
         <Fragment>
             <div>
-                <Swiper
-                    loop={true}
-                    autoplay={{
-                        delay: 3500,
-                        disableOnInteraction: false,
-                    }}
-                    modules={[Autoplay]}
-                >
+                <Swiper data-swiper-autoplay="2000" modules={[Navigation, Autoplay]} className="max-w-[280px] h-[400px]" navigation={true}>
                     {swipematch?.data?.members.map(data => (
                         <SwiperSlide key={data._id}>
                             <div className="max-w-[280px] h-[400px] relative overflow-hidden">
                                 <img
-                                    src={data?.profilePhoto}
+                                    src={
+                                        data?.profilePhoto
+                                            ? data.profilePhoto
+                                            : "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+                                    }
                                     className="h-[400px] w-[280px] rounded-tr-[12px] rounded-tl-[12px] rounded-bl-[12px] rounded-br-[12px] object-cover"
                                     alt="profile"
                                 />
@@ -44,12 +46,18 @@ const BannerProfile = () => {
                                     className="h-[140px] w-full absolute top-[260px] rounded-bl-[12px] rounded-br-[12px] px-[22px] py-[10px]"
                                 >
                                     <div className="flex items-center gap-x-[12px]">
-                                        <h1 className="font-Inter text-[18px] font-bold leading-[22px] text-[#FFFFFF]">Crystina</h1>
-                                        <p className="text-[18px] font-normal leading-[22px] font-Inter text-[#FFFFFF]">20</p>
+                                        <h1 className="font-Inter text-[18px] font-bold leading-[22px] text-[#FFFFFF]">{data?.firstName}</h1>
+                                        <p className="text-[18px] font-normal leading-[22px] font-Inter text-[#FFFFFF]">
+                                            {ageCalculator(data?.dateOfBirth) || 0}
+                                        </p>
                                     </div>
                                     <div className="flex flex-col mt-[4px]">
-                                        <p className="text-[14px] text-[#FFFFFF] font-normal leading-[17px] font-Inter">New Work</p>
-                                        <p className="text-[14px] text-[#FFFFFF] font-normal leading-[17px] font-Inter">Doctor</p>
+                                        <p className="text-[14px] text-[#FFFFFF] font-normal leading-[17px] font-Inter">
+                                            {data?.hometown || "Not Available"}
+                                        </p>
+                                        <p className="text-[14px] text-[#FFFFFF] font-normal leading-[17px] font-Inter">
+                                            {data?.designation || "Not Provided"}
+                                        </p>
                                     </div>
                                     <div className="w-full flex justify-center items-center relative -bottom-4">
                                         <div
