@@ -11,7 +11,7 @@ import UtilitisCard from "./UtilitisCard";
 import { VerificationCard } from "./VerificationCard";
 
 export const SingleProfiles = () => {
-    const { data, isLoading } = useGetProfileDetailsWIthAuthQuery();
+    const { data, isLoading, error } = useGetProfileDetailsWIthAuthQuery();
     return (
         <div className="bg-[#FAFBFF]">
             <CustomHeader title="Profile" />
@@ -26,7 +26,7 @@ export const SingleProfiles = () => {
                                         <VerificationCard />
                                         {/* <Badges /> */}
                                         <UtilitisCard />
-                                        <IntroCard />
+                                        <IntroCard {...{ data, isLoading, error }} />
                                         <PhotoUploadCard />
                                         <PhotoGelary {...{ data, isLoading }} />
                                     </div>
