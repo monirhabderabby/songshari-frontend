@@ -1,9 +1,10 @@
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import React, { useCallback, useEffect, useState } from "react";
 import { useDropzone } from "react-dropzone";
-import { useCreateUserWithEmailAndPassword, useUpdateProfile } from "react-firebase-hooks/auth";
+import { useCreateUserWithEmailAndPassword, useSignInWithGoogle, useUpdateProfile } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
 import { AiFillFileAdd, AiOutlineLeft } from "react-icons/ai";
+import { FaGoogle} from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
@@ -18,6 +19,7 @@ const MobileSignUp = () => {
     const [photoURL, setPhotoUrl] = useState("");
     const [customError, setCustomError] = useState("");
     const [createUserWithEmailAndPassword, user, loading, error] = useCreateUserWithEmailAndPassword(auth);
+    const [signInWithGoogle, googleUser] = useSignInWithGoogle(auth);
     const [updateProfile] = useUpdateProfile(auth);
 
     const dispatch = useDispatch();
@@ -70,7 +72,7 @@ const MobileSignUp = () => {
         if (user && response) {
             navigate("/userProfile");
         }
-    }, [response, dispatch, reset, navigate, user]);
+    }, [response, dispatch, reset, navigate, user, googleUser]);
 
     useEffect(() => {
         if (error?.message === "Firebase: Error (auth/email-already-in-use).") {
@@ -92,9 +94,20 @@ const MobileSignUp = () => {
                 </span>
                 <p>Sign Up</p>
             </div>
-            <div className="flex justify-center mb-16">
+            <div className="flex justify-center mb-6">
                 <img src={logo} alt="Not Available" />
             </div>
+
+            {/* google sign up  */}
+            <div className="flex justify-center items-center my-3">
+                                    <p
+                                        className="border-2 cursor-pointer border-gray-200 rounded-full p-3 mx-1 hover:bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] hover:text-white duration-400 transition-all"
+                                        onClick={() => signInWithGoogle()}
+                                    >
+                                        <FaGoogle className="text-sm" />
+                                    </p>
+                                </div>{" "}
+
             <section>
                 <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col mx-8">
                     {/* ---------- First Name ---------- */}

@@ -6,10 +6,11 @@ import "slick-carousel/slick/slick.css";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+import Index from "./route/Index";
 import MasterRoute from "./route/MasterRoute";
 
 function App() {
-    return <MasterRoute />;
+    return <Index />;
 }
 
 export default App;
