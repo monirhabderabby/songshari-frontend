@@ -154,6 +154,16 @@ export const userApi = apiSlice.injectEndpoints({
         body: data,
       }),
     }),
+    getMemberAllPost: builder.query({
+      query: () => ({
+        url: "/member/post",
+        method: "GET",
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+      }),
+      keepUnusedDataFor: 0,
+    }),
   }),
 });
 
@@ -175,4 +185,5 @@ export const {
   useUpdateProfessionalDetailsMutation,
   useGetProfileDetailsWIthAuthQuery,
   useAddUserPostMutation,
+  useGetMemberAllPostQuery,
 } = userApi;
