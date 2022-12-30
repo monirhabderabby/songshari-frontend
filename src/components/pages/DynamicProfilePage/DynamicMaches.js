@@ -1,204 +1,95 @@
 import React from "react";
-import img1 from "../../../assets/images/coolicon.png";
-import img from "../../../assets/images/Vector.png";
+import { BiUserCircle } from "react-icons/bi";
+import { TbMessage } from "react-icons/tb";
 import "../../SingleProfilesUser/profileSection/Matches.css";
 
 export const DynamicMatches = () => {
-    return (
-        <div>
-            <div className="grid lg:grid-cols-2 gap-4">
-                <div className=" rounded-lg lg:max-w-lg shadow-xl ">
-                    {/* ----------Image-------- */}
-                    <div className="flex flex-wrap justify-center px-10 pt-5"></div>
-                    {/* ------------percent----------- */}
-                    <p className="bg-white w-28 text-center ml-3">80% Match</p>
-                    <img
-                        src="https://www.creative-tim.com/learning-lab/tailwind-starter-kit/img/team-2-800x800.jpg"
-                        className="w-20 mx-auto rounded-full mt-2" alt="Not Available"
-                    ></img>
-                    <div className="card-body items-center text-center">
-                        <h2 className="card-title text-white">Anamika</h2>
-                        <p className="text-white">Age : 28 </p>
-                        <p className="text-white">Dhaka , Bangladesh </p>
-                        <div className="card-actions justify-end pt-5 gap-10">
-                            <button className="btn bg-white rounded-full ">
-                                <img src={img} alt="Not Available" />
-                            </button>
-                            <button className="btn bg-white rounded-full">
-                                <img src={img1} alt="Not Available" />
-                            </button>
-                        </div>
-                    </div>
+  const matchedUsers = [
+    {
+      id: 1,
+      percentage: 40,
+      img: "https://www.creative-tim.com/learning-lab/tailwind-starter-kit/img/team-2-800x800.jpg",
+      firstName: "John Henry",
+      age: 23,
+      hometown: "Chittagong",
+    },
+    {
+      id: 2,
+      percentage: 40,
+      img: "https://www.creative-tim.com/learning-lab/tailwind-starter-kit/img/team-2-800x800.jpg",
+      firstName: "John Henry",
+      age: 23,
+      hometown: "Chittagong",
+    },
+    {
+      id: 3,
+      percentage: 40,
+      img: "https://www.creative-tim.com/learning-lab/tailwind-starter-kit/img/team-2-800x800.jpg",
+      firstName: "John Henry",
+      age: 23,
+      hometown: "Chittagong",
+    },
+    {
+      id: 4,
+      percentage: 40,
+      img: "https://www.creative-tim.com/learning-lab/tailwind-starter-kit/img/team-2-800x800.jpg",
+      firstName: "John Henry",
+      age: 23,
+      hometown: "Chittagong",
+    },
+    {
+      id: 5,
+      percentage: 40,
+      img: "https://www.creative-tim.com/learning-lab/tailwind-starter-kit/img/team-2-800x800.jpg",
+      firstName: "John Henry",
+      age: 23,
+      hometown: "Chittagong",
+    },
+    {
+      id: 6,
+      percentage: 40,
+      img: "https://www.creative-tim.com/learning-lab/tailwind-starter-kit/img/team-2-800x800.jpg",
+      firstName: "John Henry",
+      age: 23,
+      hometown: "Chittagong",
+    },
+  ];
+  return (
+    <div>
+      <div>
+        <div className="grid lg:grid-cols-2 gap-4">
+          {matchedUsers.map((user) => {
+            return (
+              <div
+                key={user.id}
+                className=" rounded-lg lg:max-w-lg shadow-xl colorrrrrr"
+              >
+                <p className="bg-white w-28 text-center ml-3 mt-3 text-[12px] py-[6px] px-[8px] rounded-[8px]">
+                  {user.percentage}% Match
+                </p>
+                <img
+                  src={user.img}
+                  className="w-20 h-20 mx-auto rounded-full mt-4"
+                  alt="profile"
+                ></img>
+                <div className="card-body items-center text-center">
+                  <h2 className="card-title text-white">{user.firstName}</h2>
+                  <p className="text-white">Age : {user.age}</p>
+                  <p className="text-white">{user.hometown}, Bangladesh </p>
+                  <div className="flex justify-center pt-5 gap-x-[24px] mb-[15px]">
+                    <button className="flex justify-center items-center h-[44px] w-[44px] hover:bg-white bg-[#FFDFF4] rounded-full ">
+                      <TbMessage className="text-[#E41272] h-[20px] w-[20px]" />
+                    </button>
+                    <button className="flex justify-center items-center h-[44px] w-[44px] hover:bg-white bg-[#FFDFF4] rounded-full ">
+                      <BiUserCircle className="text-[#E41272] h-[20px] w-[20px]" />
+                    </button>
+                  </div>
                 </div>
-                <div className=" rounded-lg lg:max-w-lg shadow-xl colorrrrrr">
-                    {/* ----------Image-------- */}
-
-                    {/* ------------percent----------- */}
-                    <div>
-                        {/* <p className="color-1 text-gray-900 bg-white font-bold inline text-xs py-1 px-4  rounded-lg my-1 absolute top-1  ">
-            80% Match
-          </p> */}
-
-                        <p className="bg-white w-28 text-center ml-3 mt-3">80% Match</p>
-                    </div>
-                    <img
-                        src="https://www.creative-tim.com/learning-lab/tailwind-starter-kit/img/team-2-800x800.jpg"
-                        className="w-20 mx-auto rounded-full mt-4" alt="Not Available"
-                    ></img>
-
-                    <div className="card-body items-center text-center">
-                        <h2 className="card-title text-white">Anamika</h2>
-                        <p className="text-white">Age : 28 </p>
-                        <p className="text-white">Dhaka , Bangladesh </p>
-                        <div className="card-actions justify-end pt-5 gap-10">
-                            <button className="btn bg-white rounded-full ">
-                                <img src={img} alt="Not Available" className="lg:max-w-lg" />
-                            </button>
-                            <button className="btn bg-white rounded-full">
-                                <img src={img1} alt="Not Available" />
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div className=" rounded-lg lg:max-w-lg shadow-xl colorrrrrr">
-                    {/* ----------Image-------- */}
-                    {/* ------------percent----------- */}
-                    <p className="bg-white w-28 text-center ml-3 mt-3">80% Match</p>
-                    <img
-                        src="https://www.creative-tim.com/learning-lab/tailwind-starter-kit/img/team-2-800x800.jpg"
-                        className="w-20 mx-auto rounded-full mt-4" alt="Not Available"
-                    ></img>
-
-                    <div className="card-body items-center text-center">
-                        <h2 className="card-title text-white">Anamika</h2>
-                        <p className="text-white">Age : 28 </p>
-                        <p className="text-white">Dhaka , Bangladesh </p>
-                        <div className="card-actions justify-end pt-5 gap-10">
-                            <button className="btn bg-white rounded-full ">
-                                <img src={img} alt="Not Available" />
-                            </button>
-                            <button className="btn bg-white rounded-full">
-                                <img src={img1} alt="Not Available" />
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div className=" rounded-lg lg:max-w-lg shadow-xl colorrrrrr">
-                    {/* ----------Image-------- */}
-                    {/* ------------percent----------- */}
-                    <p className="bg-white w-28 text-center ml-3 mt-3">80% Match</p>
-                    <img
-                        src="https://www.creative-tim.com/learning-lab/tailwind-starter-kit/img/team-2-800x800.jpg"
-                        className="w-20 mx-auto rounded-full mt-4" alt="Not Available"
-                    ></img>
-
-                    <div className="card-body items-center text-center">
-                        <h2 className="card-title text-white">Anamika</h2>
-                        <p className="text-white">Age : 28 </p>
-                        <p className="text-white">Dhaka , Bangladesh </p>
-                        <div className="card-actions justify-end pt-5 gap-10">
-                            <button className="btn bg-white rounded-full ">
-                                <img src={img} alt="Not Available" />
-                            </button>
-                            <button className="btn bg-white rounded-full">
-                                <img src={img1} alt="Not Available" />
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div className=" rounded-lg lg:max-w-lg shadow-xl colorrrrrr">
-                    {/* ----------Image-------- */}
-                    {/* ------------percent----------- */}
-                    <p className="bg-white w-28 text-center ml-3 mt-3">80% Match</p>
-                    <img
-                        src="https://www.creative-tim.com/learning-lab/tailwind-starter-kit/img/team-2-800x800.jpg"
-                        className="w-20 mx-auto rounded-full mt-4" alt="Not Available"
-                    ></img>
-
-                    <div className="card-body items-center text-center">
-                        <h2 className="card-title text-white">Anamika</h2>
-                        <p className="text-white">Age : 28 </p>
-                        <p className="text-white">Dhaka , Bangladesh </p>
-                        <div className="card-actions justify-end pt-5 gap-10">
-                            <button className="btn bg-white rounded-full ">
-                                <img src={img} alt="Not Available" />
-                            </button>
-                            <button className="btn bg-white rounded-full">
-                                <img src={img1} alt="Not Available" />
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div className=" rounded-lg lg:max-w-lg shadow-xl colorrrrrr">
-                    {/* ----------Image-------- */}
-                    {/* ------------percent----------- */}
-                    <p className="bg-white w-28 text-center ml-3 mt-3">80% Match</p>
-                    <img
-                        src="https://www.creative-tim.com/learning-lab/tailwind-starter-kit/img/team-2-800x800.jpg"
-                        className="w-20 mx-auto rounded-full mt-4" alt="Not Available"
-                    ></img>
-
-                    <div className="card-body items-center text-center">
-                        <h2 className="card-title text-white">Anamika</h2>
-                        <p className="text-white">Age : 28 </p>
-                        <p className="text-white">Dhaka , Bangladesh </p>
-                        <div className="card-actions justify-end pt-5 gap-10">
-                            <button className="btn bg-white rounded-full ">
-                                <img src={img} alt="Not Available" />
-                            </button>
-                            <button className="btn  rounded-full">
-                                <img src={img1} alt="Not Available" />
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div className=" rounded-lg lg:max-w-lg shadow-xl colorrrrrr">
-                    {/* ----------Image-------- */}
-                    {/* ------------percent----------- */}
-                    <p className="bg-white w-28 text-center ml-3 mt-3">80% Match</p>
-                    <img
-                        src="https://www.creative-tim.com/learning-lab/tailwind-starter-kit/img/team-2-800x800.jpg"
-                        className="w-20 mx-auto rounded-full mt-4" alt="Not Available"
-                    ></img>
-
-                    <div className="card-body items-center text-center">
-                        <h2 className="card-title text-white">Anamika</h2>
-                        <p className="text-white">Age : 28 </p>
-                        <p className="text-white">Dhaka , Bangladesh </p>
-                        <div className="card-actions justify-end pt-5 gap-10">
-                            <button className="btn bg-white rounded-full ">
-                                <img src={img} alt="Not Available" />
-                            </button>
-                            <button className="btn bg-white rounded-full">
-                                <img src={img1} alt="Not Available" />
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div className=" rounded-lg lg:max-w-lg shadow-xl colorrrrrr">
-                    {/* ----------Image-------- */}
-                    {/* ------------percent----------- */}
-                    <p className="bg-white w-28 text-center ml-3 mt-3">80% Match</p>
-                    <img
-                        src="https://www.creative-tim.com/learning-lab/tailwind-starter-kit/img/team-2-800x800.jpg"
-                        className="w-20 mx-auto rounded-full mt-4" alt="Not Available"
-                    ></img>
-
-                    <div className="card-body items-center text-center">
-                        <h2 className="card-title text-white">Anamika</h2>
-                        <p className="text-white">Age : 28 </p>
-                        <p className="text-white">Dhaka , Bangladesh </p>
-                        <div className="card-actions justify-end pt-5 gap-10">
-                            <button className="btn bg-white rounded-full ">
-                                <img src={img} alt="Not Available" />
-                            </button>
-                            <button className="btn bg-white rounded-full">
-                                <img src={img1} alt="Not Available" />
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+              </div>
+            );
+          })}
         </div>
-    );
+      </div>
+    </div>
+  );
 };

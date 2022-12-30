@@ -22,7 +22,7 @@ const MasterRoute = () => {
                 {matrimonyPrivateRoutes.map(route => (
                     <Route key={route.path} path={route.path} element={<RequireAuth>{route.element}</RequireAuth>}>
                         {route.nestedRoutes?.map(route => (
-                            <Route path={route?.path && route.path} element={route?.element && route.element} />
+                            <Route key={route.path} path={route?.path && route.path} element={route?.element && route.element} />
                         ))}
                     </Route>
                 ))}

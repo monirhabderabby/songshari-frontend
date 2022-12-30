@@ -7,6 +7,7 @@ import { BiUserCheck, BiUserPlus } from "react-icons/bi";
 
 // components
 import loveIcon from "../../../../assets/images/icons/love.png";
+import { ageCalculator } from "../../../../assets/utilities/AgeCalculation/ageCalculator";
 import {
   useAddFriendMutation,
   useLikeSingleProfileMutation,
@@ -15,6 +16,8 @@ import {
 export const CardYouMayLike = ({ data }) => {
   const [sent, setSent] = useState(false);
   const [likeSent, setLikeSent] = useState(false);
+  const [age, setAge] = useState();
+
   const [addFriend, { data: response, isLoading: responseLoading }] =
     useAddFriendMutation();
   const [likeSingleProfile, { data: likeResponse, isLoading: likeLoading }] =
@@ -35,6 +38,13 @@ export const CardYouMayLike = ({ data }) => {
   useEffect(() => {
     if (likeResponse) setLikeSent(true);
   }, [likeResponse]);
+
+  useEffect(() => {
+    if (data) {
+      const age = ageCalculator(data?.dateOfBirth);
+      setAge(age);
+    }
+  }, [data]);
 
   return (
     <div className="lg:w-[263px] h-[179px] bg-white shadow-[2px_2px_8px_rgba(0,0,0,0.12)] rounded-[20px] px-[20px] py-[17px]">
@@ -77,13 +87,17 @@ export const CardYouMayLike = ({ data }) => {
         <h1 className="text-[24px] text-[#000000] leading-[36px] font-medium font-Inter">
           {data?.firstName}
         </h1>
-        <div className="">
+        <div className="flex items-center gap-2">
           <span className="text-[20px] leading-[30px] tracking-[-0.24px] text-[#000000] font-medium font-Inter">
-            26
+            {age ? age : <span className="text-sm">Not available</span>}
           </span>
-          <span className=""> | </span>
+          <span className="block mb-1"> | </span>
           <span className="text-[20px] leading-[30px] tracking-[-0.24px] text-[#000000] font-medium font-Inter">
-            Doctor
+            {data?.designation ? (
+              data?.designation
+            ) : (
+              <span className="text-sm">Not available</span>
+            )}
           </span>
         </div>
       </div>

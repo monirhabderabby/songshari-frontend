@@ -17,7 +17,7 @@ const SingleUserActivity = () => {
   const [postText, setPostText] = useState("");
   const newPostText = { postBody: postText };
 
-  const [addUserPost, { data: response, error }] = useAddUserPostMutation();
+  const [addUserPost, { data: response }] = useAddUserPostMutation();
 
   const handleMessage = async (event) => {
     event.preventDefault();
@@ -34,13 +34,6 @@ const SingleUserActivity = () => {
       });
     });
   };
-
-  if (response) {
-    console.log(response);
-  }
-  if (error) {
-    console.log(error);
-  }
 
   return (
     <div>
