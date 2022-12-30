@@ -17,13 +17,12 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 
 const Suggested = () => {
+    //hook variable declaration
     const { data, isLoading } = useGetRecentMembersQuery();
 
     // js variables
     const arr = [1, 2, 3, 4, 5, 6, 7, 8];
     let content = null;
-
-    if (data) console.log(data);
 
     if (isLoading) {
         content = arr.map(k => {

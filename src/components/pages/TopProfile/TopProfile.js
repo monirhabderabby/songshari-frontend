@@ -14,7 +14,7 @@ const TopProfile = () => {
                             <p className="text-[0.8rem] text-center">Suggested For You</p>
                         </NavLink>
 
-                        <NavLink to="/top-gride">
+                        <NavLink to="/top-bride">
                             <p className="text-[0.8rem] text-center">Top Bride</p>
                         </NavLink>
                         <NavLink to="/top-groom">

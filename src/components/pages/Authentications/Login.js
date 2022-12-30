@@ -51,9 +51,6 @@ const Login = () => {
         if (error?.message === "Firebase: Error (auth/user-not-found).") {
             setCustomError("User not found");
         }
-        if (responseError) {
-            console.log(responseError);
-        }
     }, [error, setCustomError, responseError]);
 
     useEffect(() => {
