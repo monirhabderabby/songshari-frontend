@@ -1,7 +1,6 @@
 import React from "react";
 import CustomHeader from "../../components/shared/CustomHeader/CustomHeader";
 import { useGetProfileDetailsWIthAuthQuery } from "../../Redux/features/userInfo/userApi";
-import { Badges } from "./Badges";
 import ChartBoard from "./chatboard/ChartBoard";
 import { IntroCard } from "./IntroCard";
 import PhotoGelary from "./PhotoGelary";
@@ -11,8 +10,8 @@ import Table from "./Table/Table";
 import UtilitisCard from "./UtilitisCard";
 import { VerificationCard } from "./VerificationCard";
 
-const SingleProfiles = () => {
-    const { data, isLoading } = useGetProfileDetailsWIthAuthQuery();
+export const SingleProfiles = () => {
+    const { data, isLoading, error } = useGetProfileDetailsWIthAuthQuery();
     return (
         <div className="bg-[#FAFBFF]">
             <CustomHeader title="Profile" />
@@ -25,9 +24,9 @@ const SingleProfiles = () => {
                                     <div>
                                         <ProfileCard {...{ data, isLoading }} />
                                         <VerificationCard />
-                                        <Badges />
+                                        {/* <Badges /> */}
                                         <UtilitisCard />
-                                        <IntroCard />
+                                        <IntroCard {...{ data, isLoading, error }} />
                                         <PhotoUploadCard />
                                         <PhotoGelary {...{ data, isLoading }} />
                                     </div>
@@ -50,5 +49,3 @@ const SingleProfiles = () => {
         </div>
     );
 };
-
-export default SingleProfiles;

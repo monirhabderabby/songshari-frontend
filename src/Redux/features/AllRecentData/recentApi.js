@@ -4,7 +4,7 @@ export const recentApi = apiSlice.injectEndpoints({
     endpoints: builder => ({
         getRecentUsers: builder.query({
             query: () => "/withoutLogin/recentMembers",
-            keepUnusedDataFor: 1200,
+            keepUnusedDataFor: 0,
         }),
         getRecentLawyers: builder.query({
             query: () => "/withoutLogin/recentLawyers",

@@ -4,7 +4,7 @@ import "../../../assets/css/ContactForm.css";
 export const ContactForm = () => {
     const [checked, setChecked] = useState(false);
     return (
-        <>
+        <div className="max-w-[1200px] mx-auto">
             <div className="container my-24 px-6 mx-auto">
                 <section className="mb-32 text-gray-800">
                     <div className="flex flex-wrap">
@@ -136,6 +136,6 @@ export const ContactForm = () => {
                     </div>
                 </section>
             </div>
-        </>
+        </div>
     );
 };

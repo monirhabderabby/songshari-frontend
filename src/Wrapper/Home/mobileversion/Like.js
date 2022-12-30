@@ -1,17 +1,36 @@
 import React from "react";
-// import ChartBoard from '../../../components/SingleProfilesUser/chatboard/ChartBoard'
-// import certificate from "../../../assets/images/certificate.jpg";
-// import { TbMessageCircle2 } from "react-icons/tb";
-import { BsCommand } from "react-icons/bs";
 
-// import ChartBoardCSS from '../../../assets/css/chartBoard.module.css';
-import { BottomNav } from "./BottomNav";
+// configuration 
 import { Link } from "react-router-dom";
+
+// Third party packages 
+import { AiOutlineWarning } from "react-icons/ai";
+
+// components 
 import { useGetSuggestedUsersQuery } from "../../../Redux/features/AllRecentData/recentApi";
-import MayLikeSingle from "./MayLikeSingle";
+import {MayLikeSingle} from "./MayLikeSingle";
+import { BottomNav } from "./BottomNav";
+import { YouMayLikeSkeletionLoader } from "../../../components/pages/Shared/Loader/Cards/YouMayLikeSkeletionLoader";
 
 export const Like = () => {
-  const { data } = useGetSuggestedUsersQuery();
+  // fetching 
+  const { data , error, isLoading} = useGetSuggestedUsersQuery();
+console.log(error);
+
+if(isLoading){
+  return <div className="flex flex-col items-center justify-center mt-40">
+  <YouMayLikeSkeletionLoader></YouMayLikeSkeletionLoader>
+</div>
+}
+
+if(error){
+  return  <div className="flex flex-col items-center justify-center mt-40">
+  <AiOutlineWarning className="text-[48px] text-gray-400" />
+  <p className="mt-[10px] text-[22px] font-Inter font-medium text-gray-500">
+    Server Error
+  </p>
+</div>
+}
 
   return (
     <div className="bg-[#F8F8FF]">

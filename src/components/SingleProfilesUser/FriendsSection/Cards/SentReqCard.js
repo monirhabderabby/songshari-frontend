@@ -1,6 +1,8 @@
 // configuration, ex: react-router
-import moment from "moment";
 import React from "react";
+
+// Third party packages
+import moment from "moment";
 
 // components
 import tick from "../../../../assets/images/icons/tick.png";
@@ -9,7 +11,7 @@ import { useCancleSentRequestMutation } from "../../../../Redux/features/connect
 export const SentReqCard = ({ friend }) => {
     // varible declation
     // hook variables
-    const [cancleSentRequest, data, error] = useCancleSentRequestMutation();
+    const [cancleSentRequest] = useCancleSentRequestMutation();
 
     // js variables
     const { firstName, lastName, profilePhoto, _id } = friend;
@@ -17,12 +19,8 @@ export const SentReqCard = ({ friend }) => {
     // function declation
     //handle cancle sent request
     const handleCancleRequest = async id => {
-        console.log(id);
         await cancleSentRequest({ id });
     };
-
-    if (data) console.log(data);
-    if (error) console.log(error);
 
     return (
         <div className="p-[21px] h-[141px] w-full mx-auto bg-white shadow-[2px_2px_8px_rgba(0,0,0,0.12)] rounded-[15px] flex justify-between items-center">

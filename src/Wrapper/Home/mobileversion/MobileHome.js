@@ -1,26 +1,24 @@
-// normal import 
+// normal import
 import React from "react";
 
-// components import 
-import { TopMenu } from "./TopMenu";
-import { MobileBanner } from "./MobileBanner";
-import TopProfile from "../../../components/pages/TopProfile/TopProfile";
+// components import
 import { BottomNav } from "./BottomNav";
+import { MobileBanner } from "./MobileBanner";
 import { Services } from "./Services";
+import { TopMenu } from "./TopMenu";
 import TopProfileMov from "./topprofilemov/TopProfileMov";
 
 export const MobileHome = () => {
-  return (
-    <div className="mov-res">
-      <TopMenu></TopMenu>
-      <MobileBanner></MobileBanner>
-      <Services></Services>
-      <TopProfileMov></TopProfileMov>
-      <TopProfile></TopProfile>
-      <br></br>
-      <br></br>
-      <br></br>
-      <BottomNav></BottomNav>
-    </div>
-  );
+    return (
+        <div className="mov-res">
+            <TopMenu></TopMenu>
+            <MobileBanner></MobileBanner>
+            <Services></Services>
+            <TopProfileMov />
+            <br></br>
+            <br></br>
+            <br></br>   
+            <BottomNav></BottomNav>
+        </div>
+    );
 };

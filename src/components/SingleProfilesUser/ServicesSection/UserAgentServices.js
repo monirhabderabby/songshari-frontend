@@ -1,11 +1,11 @@
-import React from 'react';
+import React from "react";
 
 const UserAgentServices = () => {
-    return (
-        <div>
-            <h1>This is user agent services</h1>
-        </div>
-    );
+  return (
+    <div className="max-w-[512px] mx-auto">
+      <h1>This is user agent services</h1>
+    </div>
+  );
 };
 
 export default UserAgentServices;

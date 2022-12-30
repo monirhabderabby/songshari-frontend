@@ -1,16 +1,15 @@
+import { Select, Slider } from "antd";
 import React from "react";
-import { Select, Slider, } from "antd";
+import BasicInfoForm from "./BasicInfoForm";
 
 export default function OthersInfoForm({ othersInfo, setOthersInfo }) {
     // --------- Others Information ------------
     const onHeightChange = value => {
         setOthersInfo({ ...othersInfo, height: value });
     };
-    const onAfterHeightChange = value => { };
     const onWeightChange = value => {
         setOthersInfo({ ...othersInfo, weight: value });
     };
-    const onAfterWeightChange = value => { };
     const handleUserAncestryChange = value => {
         setOthersInfo({ ...othersInfo, ancestry: value });
     };
@@ -26,25 +25,24 @@ export default function OthersInfoForm({ othersInfo, setOthersInfo }) {
     const handleUserEyeColorChange = value => {
         setOthersInfo({ ...othersInfo, eyeColor: value });
     };
-    const handleNumberOfTeeth = (value) => {
+    const handleNumberOfTeeth = value => {
         setOthersInfo({ ...othersInfo, numberOfTeeth: value });
-    }
+    };
     return (
         <div className="w-full">
             <div>
                 <h1 className="text-base leading-6 font-medium mb-2">Height</h1>
                 <p className="text-left text-base font-medium">
                     {" "}
-                    {othersInfo?.height ? othersInfo.height[0] : "0"}" - {othersInfo?.height ? othersInfo?.height[1] : "0"}"{" "}
+                    {othersInfo?.height[0]}' - {othersInfo?.height[1]}'{" "}
                 </p>
                 <Slider
                     range={{ draggableTrack: true }}
-                    defaultValue={[5, 6]}
+                    defaultValue={othersInfo.height}
                     step={0.01}
                     min={0}
                     max={10}
                     onChange={onHeightChange}
-                    onAfterChange={onAfterHeightChange}
                     className="mb-4"
                 />
             </div>
@@ -56,12 +54,11 @@ export default function OthersInfoForm({ othersInfo, setOthersInfo }) {
                 </p>
                 <Slider
                     range={{ draggableTrack: true }}
-                    defaultValue={[50, 70]}
+                    defaultValue={BasicInfoForm.weight}
                     step={1}
                     min={0}
                     max={150}
                     onChange={onWeightChange}
-                    onAfterChange={onAfterWeightChange}
                     className="mb-4"
                 />
             </div>
@@ -80,7 +77,6 @@ export default function OthersInfoForm({ othersInfo, setOthersInfo }) {
                             value: "options",
                             label: "Options",
                         },
-
                     ]}
                 />
             </div>
@@ -239,7 +235,7 @@ export default function OthersInfoForm({ othersInfo, setOthersInfo }) {
             <div>
                 <h1 className="text-base leading-6 font-medium mb-2">Number of Teeth</h1>
                 <Select
-                    className='w-full mb-2'
+                    className="w-full mb-2"
                     onChange={handleNumberOfTeeth}
                     placeholder="Select teeth number"
                     mode="multiple"
@@ -303,4 +299,3 @@ export default function OthersInfoForm({ othersInfo, setOthersInfo }) {
         </div>
     );
 }
-
