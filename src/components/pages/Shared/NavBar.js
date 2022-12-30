@@ -60,8 +60,9 @@ const NavBar = ({ bg }) => {
     return (
         <>
             <header
-                className={`${bg ? "bg-transparent" : "bg-white"} sticky hidden lg:block top-0 lg:h-[90px] z-50 shadow-md body-font ${NavBarCSS.navbar
-                    }`}
+                className={`${bg ? "bg-transparent" : "bg-white"} sticky hidden lg:block top-0 lg:h-[90px] z-50 shadow-md body-font ${
+                    NavBarCSS.navbar
+                }`}
             >
                 <div className=" lg:max-w-[1000px]  xl:max-w-[1200px] mx-auto flex flex-wrap  flex-col md:flex-row items-center">
                     <Link to="/" className="flex cursor-pointer title-font font-medium items-center text-gray-900 mb-4 md:mb-0 ">
@@ -158,33 +159,6 @@ const NavBar = ({ bg }) => {
                                     )}
                                 </div>
                             </li>
-                            <li className="relative ">
-                                {/* <Link to="/cart" className={`${NavBarCSS.hasTooltip}`}>
-                                    <div className="flex flex-col items-center ">
-                                        <img src={cart} className="w-[40px]"  alt="Not Available" />
-                                        <span className="absolute top-[-7px] right-[-1px] text-white px-[6px] py-[2px] text-xs font-bold bg-[#dc3545] rounded">
-                                            0
-                                        </span>
-
-                                        <span
-                                            className={`${NavBarCSS.tooltip} z-50 h-[15px] w-[15px] mt-10 ml-[14px]`}
-                                            style={{
-                                                transform: "translateX(-50%) rotate(45deg)",
-                                                backgroundImage: "linear-gradient( 103deg, rgba(228, 18, 114, 1) 0%, #4844a5 100%)",
-                                            }}
-                                        ></span>
-                                        <span
-                                            className={`${NavBarCSS.tooltip} z-50 rounded-[40px] shadow-lg px-3 py-1 text-white text-xs whitespace-nowrap uppercase mt-[50px]`}
-                                            style={{
-                                                backgroundImage: "linear-gradient(155deg, rgba(228, 18, 114, 1) 0%, #4844a5 100%)",
-                                            }}
-                                        >
-                                            Cart
-                                        </span>
-                                    </div>
-                                </Link> */}
-                            </li>
-
                             <ul>
                                 <li className={`relative cursor-pointer ${NavBarCSS.engDropdown}`}>
                                     <div>
