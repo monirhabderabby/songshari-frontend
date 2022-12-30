@@ -1,8 +1,15 @@
+// configuration
 import React from "react";
+
+// Third party packages
 import { HiOutlineAdjustmentsHorizontal } from "react-icons/hi2";
-import "../../../App.css";
+
+// components
 import FindPartner from "../../../assets/css/FindPartner.module.css";
 import { AccordionPartner } from "./AccordionPartner";
+
+// css files
+import "../../../App.css";
 
 const PartnerFilterBox = () => {
     return (

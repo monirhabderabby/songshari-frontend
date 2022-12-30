@@ -9,31 +9,19 @@ import { v4 as uuidv4 } from "uuid";
 import coolicon from "../../../assets/images/activity/coolicon.png";
 import { Select } from "antd";
 import { MovDynamicActivity } from "../../pages/DynamicProfilePage/MovDynamicActivity";
+import { useAddUserPostMutation } from "../../../Redux/features/userInfo/userApi";
 
 const SingleUserActivity = () => {
   const ref = useRef(null);
-  const [photoURL, setPhotoUrl] = useState("");
-  const [postRefetch, setPostRefetch] = useState(0);
+  // const [photoURL, setPhotoUrl] = useState("");
   const [postText, setPostText] = useState("");
   const newPostText = { postBody: postText };
 
-  const handleMessage = (event) => {
-    event.preventDefault();
+  const [addUserPost, { data: response, error }] = useAddUserPostMutation();
 
-    fetch(`http://localhost:4000/member/post/add`, {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-      },
-      body: JSON.stringify(newPostText),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        // ref.current.value = "";
-        setPostText("");
-        setPostRefetch(postRefetch + 1);
-      });
+  const handleMessage = async (event) => {
+    event.preventDefault();
+    await addUserPost(newPostText);
   };
 
   const photoHandler = async (e) => {
@@ -42,10 +30,17 @@ const SingleUserActivity = () => {
 
     uploadBytes(storageRef, photo).then(async (snapshot) => {
       await getDownloadURL(snapshot.ref).then((url) => {
-        setPhotoUrl(url.toString());
+        // setPhotoUrl(url.toString());
       });
     });
   };
+
+  if (response) {
+    console.log(response);
+  }
+  if (error) {
+    console.log(error);
+  }
 
   return (
     <div>
@@ -163,7 +158,7 @@ const SingleUserActivity = () => {
               Post
             </button>
           </div>
-          <MovDynamicActivity postRefetch={postRefetch}></MovDynamicActivity>
+          <MovDynamicActivity postRefetch={response}></MovDynamicActivity>
         </div>
       </div>
     </div>

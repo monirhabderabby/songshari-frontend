@@ -7,6 +7,7 @@ import { ageCalculator } from "../../../assets/utilities/AgeCalculation/ageCalcu
 
 export const MatchesMov = () => {
   const { data, isLoading } = useGetMatchedUsersQuery();
+  console.log(data);
   if (isLoading) {
     return;
   }

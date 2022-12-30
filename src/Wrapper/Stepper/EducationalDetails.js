@@ -23,6 +23,7 @@ export const EducationalDetails = ({ setPage }) => {
   const [eduFieldOfStudy, setEduFieldOfStudy] = useState("");
   const [eduYearOfPassing, setEduYearOfPassing] = useState("");
   const [eduAchievementMoment, setEduAchievementMoment] = useState("");
+  const [achievementMomentName, setAchievementMomentName] = useState();
 
   const [addedDegreeName, setAddedDegreeName] = useState([]);
   const [addedDepartment, setAddedDepartment] = useState([]);
@@ -86,6 +87,7 @@ export const EducationalDetails = ({ setPage }) => {
 
   const educationalAchievementMomentHandler = async (e) => {
     const photo = e.target.files[0];
+    setAchievementMomentName(photo?.name);
     const storageRef = ref(firebaseStorage, `cover/${photo?.name + uuidv4()}`);
     uploadBytes(storageRef, photo).then(async (snapshot) => {
       await getDownloadURL(snapshot.ref).then((url) => {
@@ -264,7 +266,11 @@ export const EducationalDetails = ({ setPage }) => {
               >
                 {eduAchievementMoment ? (
                   <>
-                    <span className="text-green-400">Moments added</span>
+                    <span className="text-green-400">
+                      {achievementMomentName
+                        ? achievementMomentName
+                        : "Moments added"}
+                    </span>
                   </>
                 ) : (
                   "Upload Achievement Moments"
@@ -460,13 +466,6 @@ export const EducationalDetails = ({ setPage }) => {
                     />
                   </div>
                 </section>
-                {/* <EduAddedMomentsField
-                  {...register(`educations.${index}.photoCertificate`)}
-                  {...{
-                    eduAddedPhotoCertificate,
-                    setEduAddedPhotoCertificate,
-                  }}
-                /> */}
                 <button
                   className="p-3 text-sm text-center font-medium bg-red-100 text-red-500 rounded-lg"
                   type="button"

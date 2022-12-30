@@ -25,7 +25,6 @@ export const OthersCertificateSidebar = ({ setSelectedImage }) => {
                             <button className='btn-certificate  text-white text-lg py-1 px-2 rounded'>Selected</button>
                         </div>
                     </div>
-
                 </div>
             </div>
             <div className='mt-6'>
@@ -39,7 +38,6 @@ export const OthersCertificateSidebar = ({ setSelectedImage }) => {
                             <button className='btn-certificate  text-white text-lg py-1 px-2 rounded'>Selected</button>
                         </div>
                     </div>
-
                 </div>
             </div>
             <div className='mt-6'>
@@ -53,7 +51,6 @@ export const OthersCertificateSidebar = ({ setSelectedImage }) => {
                             <button className='btn-certificate  text-white text-lg py-1 px-2 rounded'>Selected</button>
                         </div>
                     </div>
-
                 </div>
             </div>
             <div className='mt-6'>
@@ -67,7 +64,6 @@ export const OthersCertificateSidebar = ({ setSelectedImage }) => {
                             <button className='btn-certificate  text-white text-lg py-1 px-2 rounded'>Selected</button>
                         </div>
                     </div>
-
                 </div>
             </div>
             <div className='mt-6'>
@@ -81,7 +77,6 @@ export const OthersCertificateSidebar = ({ setSelectedImage }) => {
                             <button className='btn-certificate  text-white text-lg py-1 px-2 rounded'>Selected</button>
                         </div>
                     </div>
-
                 </div>
             </div>
 
@@ -102,10 +97,8 @@ export function OthersCertificate({ selectedImage }) {
                                 style={{ transform: `scale(${stepScale})`, zIndex: '1' }}
                                 className="w-full rounded-2xl"
                                 alt=''
-
                             />
                         </div>
-
                     </div>
 
                     <div className='flex justify-center py-4'>
@@ -120,8 +113,6 @@ export function OthersCertificate({ selectedImage }) {
                                 </button>
                             </div>
                         </div>
-
-
                     </div>
                 </div>
 
@@ -134,13 +125,12 @@ export function OthersCertificate({ selectedImage }) {
                         <Dragger style={{ border: 'none', background: 'none' }}>
                             <p className='font-bold text-base mb-2'>Click or drag file to this area to upload</p>
                             <div className='flex justify-center mt-1 px-4'>
-                                <p className='btn-certificate  flex  p-1 px-2 rounded text-white font-bold flex justify-center items-center' >
+                                <p className='btn-certificate p-1 px-2 rounded text-white font-bold flex justify-center items-center' >
                                     <CloudUploadOutlined className=' text-white mr-1  ' /> upload
                                 </p>
                             </div>
                         </Dragger>
                     </div>
-
                 </section>
 
                 <section className='pt-5'>
@@ -179,12 +169,8 @@ export function OthersCertificate({ selectedImage }) {
                                 </Dragger>
                             </div>
                         </div>
-
-
-
                     </div>
                 </section>
-
             </div>
         </div>
 
