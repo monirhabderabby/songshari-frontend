@@ -4,6 +4,7 @@ import { Container } from "../../Wrapper/Stepper/Container";
 
 const matrimonyPrivateRoutes = [
     {
+        id: 1,
         path: "/userprofile",
         element: <SingleProfiles />,
         nestedRoutes: [
@@ -19,6 +20,7 @@ const matrimonyPrivateRoutes = [
         ],
     },
     {
+        id: 2,
         path: "/stepper",
         element: <Container />,
     },
