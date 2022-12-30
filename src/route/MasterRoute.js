@@ -15,7 +15,7 @@ const MasterRoute = () => {
                 {matrimonyRoutes.map(route => (
                     <Route key={route.path} path={route.path} element={route.element}>
                         {route?.nestedRoutes?.map(route => (
-                            <Route path={route?.path && route.path} element={route?.element && route.element} />
+                            <Route key={route.id} path={route?.path && route.path} element={route?.element && route.element} />
                         ))}
                     </Route>
                 ))}

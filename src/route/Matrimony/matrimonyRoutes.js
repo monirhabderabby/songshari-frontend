@@ -10,6 +10,8 @@ import FindPartners from "../../components/pages/FindPartner/FindPartners";
 import { OurTeams } from "../../components/pages/OurTeams/OurTeams";
 import { Privacy } from "../../components/pages/Privacy/Privacy";
 import Suggested from "../../components/pages/TopProfile/Suggested";
+import TopBride from "../../components/pages/TopProfile/TopBride";
+import TopGroom from "../../components/pages/TopProfile/TopGroom";
 import About from "../../Wrapper/About/About";
 import Homepage from "../../Wrapper/Home/Homepage";
 
@@ -22,6 +24,16 @@ const matrimonyRoutes = [
                 id: 1,
                 path: "/",
                 element: <Suggested />,
+            },
+            {
+                id: 2,
+                path: "top-bride",
+                element: <TopBride />,
+            },
+            {
+                id: 3,
+                path: "top-groom",
+                element: <TopGroom />,
             },
         ],
     },

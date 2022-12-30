@@ -49,6 +49,7 @@ const Login = () => {
     loginAsMember(data);
   };
 
+
   useEffect(() => {
     if (error?.message === "Firebase: Error (auth/wrong-password).") {
       setCustomError("You entered the wrong password");
@@ -56,10 +57,7 @@ const Login = () => {
     if (error?.message === "Firebase: Error (auth/user-not-found).") {
       setCustomError("User not found");
     }
-    if (responseError) {
-      console.log(responseError);
-    }
-  }, [error, setCustomError, responseError]);
+  }, [error, setCustomError]);
 
   useEffect(() => {
     if (response) {
