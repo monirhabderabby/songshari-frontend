@@ -1,8 +1,8 @@
 import React from "react";
 
-export const ProfileCardSkeletonLoader = () => {
+export const LikeSkeletonLoader = () => {
     return (
-        <div className="h-[250px] w-[300px] shadow-2xl rounded-[12px] mx-6 mb-10">
+        <div className="h-[250px] w-[300px] shadow-2xl rounded-[12px] mx-8  mt-12">
             <div className="h-[200px] w-full bg-gray-100"></div>
             <div className="px-[15px] py-[15px] h-[110px] bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] rounded-[12px]">
                 <div className="flex items-center justify-start gap-x-5">
