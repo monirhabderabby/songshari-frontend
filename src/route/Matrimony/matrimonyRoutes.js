@@ -9,6 +9,7 @@ import { DynamicProfilePage } from "../../components/pages/DynamicProfilePage/Dy
 import FindPartners from "../../components/pages/FindPartner/FindPartners";
 import { OurTeams } from "../../components/pages/OurTeams/OurTeams";
 import { Privacy } from "../../components/pages/Privacy/Privacy";
+import Suggested from "../../components/pages/TopProfile/Suggested";
 import About from "../../Wrapper/About/About";
 import Homepage from "../../Wrapper/Home/Homepage";
 
@@ -16,6 +17,13 @@ const matrimonyRoutes = [
     {
         path: "/",
         element: <Homepage />,
+        nestedRoutes: [
+            {
+                id: 1,
+                path: "/",
+                element: <Suggested />,
+            },
+        ],
     },
     {
         path: "/login",

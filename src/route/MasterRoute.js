@@ -13,7 +13,11 @@ const MasterRoute = () => {
         <BrowserRouter>
             <Routes>
                 {matrimonyRoutes.map(route => (
-                    <Route key={route.path} path={route.path} element={route.element} />
+                    <Route key={route.path} path={route.path} element={route.element}>
+                        {route?.nestedRoutes?.map(route => (
+                            <Route path={route?.path && route.path} element={route?.element && route.element} />
+                        ))}
+                    </Route>
                 ))}
                 {matrimonyPrivateRoutes.map(route => (
                     <Route key={route.path} path={route.path} element={<RequireAuth>{route.element}</RequireAuth>}>
