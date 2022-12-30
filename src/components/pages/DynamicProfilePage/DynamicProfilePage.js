@@ -1,12 +1,14 @@
+// Configuration
 import React, { useEffect } from "react";
 import { useParams } from "react-router";
+
+// Components
 import CustomHeader from "../../../components/shared/CustomHeader/CustomHeader";
 import { useGetProfileDetailsQuery } from "../../../Redux/features/userInfo/userApi";
 import DynamicCertificate from "./DynamicCertificate";
 import { DynamicConnectionsCard } from "./DynamicConnectionsCard";
 import { DynamicPhotosContainer } from "./DynamicPhotosContainer";
 import DynamicProfileCard from "./DynamicProfileCard";
-import { DynamicProfileInfo } from "./DynamicProfileInfo";
 import DynamicTable from "./DynamicTable";
 import { MobileDynamicProfile } from "./MobileDynamicProfile";
 
