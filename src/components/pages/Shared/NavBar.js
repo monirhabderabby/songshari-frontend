@@ -9,7 +9,7 @@ import course from "../../../assets/images/NavIcons/Online-Course.svg";
 // import shop from '../../../assets/images/NavIcons/Shop.svg';
 import { useState } from "react";
 import { useAuthState, useSignOut } from "react-firebase-hooks/auth";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import agent from "../../../assets/images/NavIcons/Agent.svg";
 // import cart from "../../../assets/images/NavIcons/cart.png";
 import kazi from "../../../assets/images/NavIcons/Kazi.svg";
@@ -27,6 +27,14 @@ const NavBar = ({ bg }) => {
     const [signOut] = useSignOut(auth);
     const dispatch = useDispatch();
     const navigate = useNavigate();
+
+    const userInfo = useSelector(state => state?.persistedReducer?.userInfo?.userInfo?.user);
+
+    // js variable
+    let { profilePhoto } = userInfo || {};
+
+    // decision about profile photo
+    profilePhoto = profilePhoto ? profilePhoto : "https://placeimg.com/192/192/people";
 
     const logoutButton = async () => {
         dispatch(loadUserData(null));
@@ -102,8 +110,8 @@ const NavBar = ({ bg }) => {
                         <ul className={"flex justify-end items-center gap-2 h-32"}>
                             <li className={`${NavBarCSS.hasTooltip}`}>
                                 <div className="flex flex-col items-center cursor-pointer">
-                                    {user?.photoURL ? (
-                                        <img className="w-[60px] h-[60px] rounded-[100%]" src={user?.photoURL} alt="" />
+                                    {user ? (
+                                        <img className="w-[60px] h-[60px] rounded-[100%] object-cover" src={profilePhoto} alt="" />
                                     ) : (
                                         <img className="w-14" src={register} alt="Not Available" />
                                     )}
