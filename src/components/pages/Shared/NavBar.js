@@ -52,7 +52,7 @@ const NavBar = ({ bg }) => {
         { id: 8, to: "/agent", icon: agent, tooltip: "Agent" },
     ];
 
-    // function declaration
+    // function declaration for logout
     const logoutButton = async () => {
         dispatch(loadUserData(null));
         await signOut();
