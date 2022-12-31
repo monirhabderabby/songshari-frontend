@@ -1,4 +1,7 @@
+// configuration
 import React from "react";
+
+// components
 import CustomHeader from "../../components/shared/CustomHeader/CustomHeader";
 import { useGetProfileDetailsWIthAuthQuery } from "../../Redux/features/userInfo/userApi";
 import ChartBoard from "./chatboard/ChartBoard";
@@ -6,6 +9,7 @@ import { IntroCard } from "./IntroCard";
 import PhotoGelary from "./PhotoGelary";
 import { PhotoUploadCard } from "./PhotoUploadCard";
 import ProfileCard from "./ProfileCard";
+import { SocialMediaBox } from "./SocialMediaBox/SocialMediaBox";
 import Table from "./Table/Table";
 import UtilitisCard from "./UtilitisCard";
 import { VerificationCard } from "./VerificationCard";
@@ -23,6 +27,7 @@ export const SingleProfiles = () => {
                                 <div className="max-w-[360px]">
                                     <div>
                                         <ProfileCard {...{ data, isLoading }} />
+                                        <SocialMediaBox />
                                         <VerificationCard />
                                         {/* <Badges /> */}
                                         <UtilitisCard />

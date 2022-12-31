@@ -56,14 +56,14 @@ const Accordian = ({ data, isLoading, edit }) => {
                     <div className="flex justify-between items-center ">
                         <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
                             <div>
+                                <Typography component={"span"} variant={"body2"} className="hidden md:block">
+                                    <h1 className="text-[24px] text-[#333333] leading-[34px] font-fira font-semibold">Personal Information</h1>
+                                </Typography>
                                 <Link to="/tteesst">
-                                    <Typography component={"span"} variant={"body2"} className="hidden md:block">
-                                        <h1 className="text-[24px] text-[#333333] leading-[34px] font-fira font-semibold">Personal Information</h1>
+                                    <Typography component={"span"} variant={"body2"} className="md:hidden">
+                                        <h1 className="text-[18px] text-[#333333] leading-[34px] font-fira">Personal Details</h1>
                                     </Typography>
                                 </Link>
-                                <Typography component={"span"} variant={"body2"} className="md:hidden">
-                                    <h1 className="text-[18px] text-[#333333] leading-[34px] font-fira">Personal Details</h1>
-                                </Typography>
                             </div>
                         </AccordionSummary>
                         <div
