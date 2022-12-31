@@ -36,12 +36,6 @@ const NavBar = ({ bg }) => {
     // decision about profile photo
     profilePhoto = profilePhoto ? profilePhoto : "https://placeimg.com/192/192/people";
 
-    const logoutButton = async () => {
-        dispatch(loadUserData(null));
-        await signOut();
-        navigate("/");
-        localStorage.removeItem("accessToken");
-    };
     const allMenu = [
         {
             id: 1,
@@ -57,6 +51,14 @@ const NavBar = ({ bg }) => {
         { id: 7, to: "/kazi", icon: kazi, tooltip: "Kazi" },
         { id: 8, to: "/agent", icon: agent, tooltip: "Agent" },
     ];
+
+    // function declaration
+    const logoutButton = async () => {
+        dispatch(loadUserData(null));
+        await signOut();
+        navigate("/");
+        localStorage.removeItem("accessToken");
+    };
 
     const banglaHandler = () => {
         setLanguage(false);
