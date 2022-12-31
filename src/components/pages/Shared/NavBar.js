@@ -1,25 +1,30 @@
-import React from "react";
+// Configuration
+import React, { useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
-import NavBarCSS from "../../../assets/css/navbar.module.css";
-import blackLogo from "../../../assets/images/Logo/logoBlack.png";
-import blog from "../../../assets/images/NavIcons/Blog.svg";
-import findPartner from "../../../assets/images/NavIcons/Find-Your-Partner.svg";
-import membership from "../../../assets/images/NavIcons/Membership.svg";
-import course from "../../../assets/images/NavIcons/Online-Course.svg";
-// import shop from '../../../assets/images/NavIcons/Shop.svg';
-import { useState } from "react";
+
+// Third party packages
 import { useAuthState, useSignOut } from "react-firebase-hooks/auth";
 import { useDispatch, useSelector } from "react-redux";
+
+// Components
+import blackLogo from "../../../assets/images/Logo/logoBlack.png";
 import agent from "../../../assets/images/NavIcons/Agent.svg";
-// import cart from "../../../assets/images/NavIcons/cart.png";
+import blog from "../../../assets/images/NavIcons/Blog.svg";
+import findPartner from "../../../assets/images/NavIcons/Find-Your-Partner.svg";
 import kazi from "../../../assets/images/NavIcons/Kazi.svg";
 import bng from "../../../assets/images/NavIcons/Language-Switcher-Bangla.svg";
 import eng from "../../../assets/images/NavIcons/Language-Switcher-English.svg";
 import findALawyer from "../../../assets/images/NavIcons/Lawyer.svg";
+import membership from "../../../assets/images/NavIcons/Membership.svg";
+import course from "../../../assets/images/NavIcons/Online-Course.svg";
 import register from "../../../assets/images/NavIcons/Profile-Login-Icon.svg";
 import { auth } from "../../../firebase.init";
+import { useGetProfileDetailsWIthAuthQuery } from "../../../Redux/features/userInfo/userApi";
 import { loadUserData } from "../../../Redux/features/userInfo/userInfo";
 import MobileNav from "./MobileNav";
+
+// CSS files
+import NavBarCSS from "../../../assets/css/navbar.module.css";
 
 const NavBar = ({ bg }) => {
     const [language, setLanguage] = useState(true);
@@ -28,13 +33,13 @@ const NavBar = ({ bg }) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
+    // Logged in user
+    const { data: loggedInUser } = useGetProfileDetailsWIthAuthQuery();
+
     const userInfo = useSelector(state => state?.persistedReducer?.userInfo?.userInfo?.user);
 
     // js variable
     let { profilePhoto } = userInfo || {};
-
-    // decision about profile photo
-    profilePhoto = profilePhoto ? profilePhoto : "https://placeimg.com/192/192/people";
 
     const allMenu = [
         {
