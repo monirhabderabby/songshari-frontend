@@ -9,7 +9,7 @@ import rightShape from "./../../../assets/images/footer/right-shape.png";
 
 const Footer = () => {
   return (
-    <footer className="footer-section mt-3">
+    <footer className="footer-section">
       <div className="ocean">
         <div className="wave"></div>
         <div className="wave"></div>
