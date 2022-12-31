@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Outlet } from "react-router";
 import CustomHeader from "../../shared/CustomHeader/CustomHeader";
 import Footer from "../../shared/Footer/Footer";
@@ -6,6 +6,9 @@ import FindPartnersHeader from "./FindPartnersHeader";
 import PartnerFilterBox from "./PartnerFilterBox";
 
 const FindPartners = () => {
+    useEffect(() => {
+        window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+    }, []);
     return (
         <div className="bg-[#fafbff]">
             <div className="hidden md:block">
