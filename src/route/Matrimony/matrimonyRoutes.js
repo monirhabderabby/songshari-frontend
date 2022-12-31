@@ -1,4 +1,3 @@
-import Membership from "../../components/membership/Membership";
 import Login from "../../components/pages/Authentications/Login";
 import LoginAsProfessional from "../../components/pages/Authentications/LoginAsProfessional";
 import RegAsProfessional from "../../components/pages/Authentications/RegAsProfessional";
@@ -15,6 +14,7 @@ import TopBride from "../../components/pages/TopProfile/TopBride";
 import TopGroom from "../../components/pages/TopProfile/TopGroom";
 import About from "../../Wrapper/About/About";
 import Homepage from "../../Wrapper/Home/Homepage";
+import MemberShip from "../../Wrapper/Membership/MemberShip";
 
 const matrimonyRoutes = [
     {
@@ -57,7 +57,7 @@ const matrimonyRoutes = [
     {
         id: 5,
         path: "/membership",
-        element: <Membership />,
+        element: <MemberShip />,
     },
     {
         id: 6,
