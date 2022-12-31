@@ -7,19 +7,32 @@ import React from "react";
 import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 // components 
-import { useAuthState } from "react-firebase-hooks/auth";
+import { useAuthState, useSignOut } from "react-firebase-hooks/auth";
 import { auth } from "../../../firebase.init";
 
 // css import;
 import "./TopMenu.css";
+import { useDispatch } from "react-redux";
+import { loadUserData } from "../../../Redux/features/userInfo/userInfo";
 
 
 export const TopMenu = () => {
     // hooks variables
     const [user] = useAuthState(auth);
+    
+    const [signOut] = useSignOut(auth);
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    const logoutButton = async () => {
+        dispatch(loadUserData(null));
+        await signOut();
+        navigate("/");
+        localStorage.removeItem("accessToken");
+    };
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
     const handleClick = event => {
@@ -50,8 +63,11 @@ export const TopMenu = () => {
                 <div className="col-span-3">
                     {
                         user ? <Button
-                        
-                        
+                        id="basic-button"
+                        aria-controls={open ? "basic-menu" : undefined}
+                        aria-haspopup="true"
+                        aria-expanded={open ? "true" : undefined}
+                        onClick={handleClick}
                         className="font-bold text-black"
                     >
                         <span className="text-black font-bold">
@@ -87,15 +103,25 @@ export const TopMenu = () => {
                         }}
                     >
                         <MenuItem onClick={handleClose}>
-                            <div className="login-signup">
-                                <Link to="/login">
-                                    <button className="bg-login-mov-home rounded-full text-white px-3">Log In</button>
+                            {
+                                user ? <div>
+                                    <Link to="/login">
+                                    <button  onClick={logoutButton} className="bg-login-mov-home rounded-full text-white px-3">LogOut</button>
                                 </Link>
-                                <p className="mx-2">Or</p>
-                                <Link to="/signup">
-                                    <button className="bg-login-mov-home rounded-full text-white px-3">Sign Up</button>
-                                </Link>
-                            </div>
+                              
+                                </div>
+                                 :
+                                 <div className="login-signup">
+                                  <Link to="/login">
+                                      <button className="bg-login-mov-home rounded-full text-white px-3">Log In</button>
+                                  </Link>
+                                  <p className="mx-2">Or</p>
+                                  <Link to="/signup">
+                                      <button className="bg-login-mov-home rounded-full text-white px-3">Sign Up</button>
+                                  </Link>
+                              </div>
+                            }
+                           
                         </MenuItem>
                     </Menu>
                 </div>

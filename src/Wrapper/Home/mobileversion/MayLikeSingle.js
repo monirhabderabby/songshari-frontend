@@ -67,7 +67,7 @@ export const MayLikeSingle = ({ data }) => {
                 </div>
             </div>
             <div className="mt-[10px] ml-[-30px]">
-                <h1 className="text-[24px] text-[#000000] leading-[36px] font-medium font-Inter">{data?.firstName}</h1>
+                <h1 className="text-[24px] text-[#000000] leading-[36px] font-medium font-poppins">{data?.firstName}</h1>
                 <div className="">
                     <span className="text-[20px] leading-[30px] tracking-[-0.24px] text-[#000000] font-medium font-Inter">26</span>
                     <span className=""> | </span>

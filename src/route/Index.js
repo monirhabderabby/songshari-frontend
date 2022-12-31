@@ -86,7 +86,6 @@ import ProfessionalCertificate from "../Wrapper/Home/mobileversion/PhotoGallery/
 import { PrivacyMov } from "../Wrapper/Home/mobileversion/privacy/PrivacyMov";
 import { Setting } from "../Wrapper/Home/mobileversion/setting/Setting";
 import TopProfileMov from "../Wrapper/Home/mobileversion/topprofilemov/TopProfileMov";
-import AccordianAnik from "../components/SingleProfilesUser/profileSection/Hello";
 
 //admin components
 
@@ -195,7 +194,6 @@ const Index = () => {
                     </Route>
 
                     <Route path="/setting" element={<Setting></Setting>}></Route>
-                    <Route path="/tteesst" element={<AccordianAnik></AccordianAnik>}></Route>
                     <Route path="/mobilelogin" element={<MobileLogin />}></Route>
                     <Route path="/mobilesignup" element={<MobileSignUp />}></Route>
                     <Route path="/servicemov" element={<ProfileServices></ProfileServices>}></Route>
