@@ -45,7 +45,7 @@ const NavBar = ({ bg }) => {
     const allMenu = [
         {
             id: 1,
-            to: "/find-partner",
+            to: "/find-partner/suggested",
             icon: findPartner,
             tooltip: "Find Your Partner",
         },
