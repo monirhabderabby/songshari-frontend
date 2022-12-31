@@ -447,7 +447,8 @@ const Accordian = ({ data, isLoading, edit }) => {
                         {data?.hobbies.length !== 0 && (
                             <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                                 <span className="font-medium">Hobbies</span>
-                                <p className="font-normal">{data ? data.hobbies : "Not Provided"}</p>
+                                <p className="font-normal">{data ? <p className="mt-4">data.hobbies</p> : 
+                                <p>Not Provided</p>}</p>
                             </div>
                         )}
                     </Typography>

@@ -15,7 +15,7 @@ import { YouMayLikeSkeletionLoader } from "../../../components/pages/Shared/Load
 export const Like = () => {
   // fetching 
   const { data , error, isLoading} = useGetSuggestedUsersQuery();
-console.log(error);
+console.log(data);
 
 if(isLoading){
   return <div className="flex flex-col items-center justify-center mt-40">
