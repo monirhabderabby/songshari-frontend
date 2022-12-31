@@ -1,12 +1,16 @@
+// configuration
 import React, { useEffect, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+
+// Third party packages
 import { useSignInWithEmailAndPassword, useSignInWithGoogle } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
 import { Toaster } from "react-hot-toast";
 import { FaGoogle, FaRegEnvelope } from "react-icons/fa";
 import { MdLockOutline } from "react-icons/md";
 import { useDispatch } from "react-redux";
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import "../../../App.css";
+
+// components
 import logo from "../../../assets/images/Logo/logoBlack.png";
 import { auth } from "../../../firebase.init";
 import { useLoginAsMemberMutation } from "../../../Redux/features/userInfo/userApi";
@@ -17,11 +21,14 @@ import { EmailField } from "./InputFields/EmailField";
 import { PasswordField } from "./InputFields/PasswordField";
 import MobileLogin from "./MobileDesign/MobileLogin";
 
+// css files
+import "../../../App.css";
+
 const Login = () => {
     const [customError, setCustomError] = useState("");
     const [open, setOpen] = useState(false);
     const [signInWithEmailAndPassword, user, loading, error] = useSignInWithEmailAndPassword(auth);
-    const [loginAsMember, { data: response, isLoading }] = useLoginAsMemberMutation();
+    const [loginAsMember, { data: response, isLoading, error: responseError }] = useLoginAsMemberMutation();
     const [signInWithGoogle] = useSignInWithGoogle(auth);
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -58,12 +65,19 @@ const Login = () => {
             localStorage.setItem("accessToken", response?.data?.token);
             dispatch(loadUserData(response?.data));
             reset();
-            console.log(response);
         }
         if (response && user) {
             navigate(from, { replace: true });
         }
     }, [response, dispatch, user, navigate, reset, from]);
+
+    useEffect(() => {
+        if (responseError?.status === 401 && responseError?.data?.success === true && user) {
+            localStorage.setItem("accessToken", responseError?.data?.data?.token);
+            dispatch(loadUserData(responseError?.data?.data));
+            navigate(from, { replace: true });
+        }
+    }, [responseError, user, navigate, from, dispatch]);
 
     return (
         <div>
