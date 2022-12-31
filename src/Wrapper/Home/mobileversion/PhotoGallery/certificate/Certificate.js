@@ -5,7 +5,7 @@ import { useState } from "react";
 import EducationalCertificate, {
     EducationalCertificateSidebar,
 } from "../../../../../components/SingleProfilesUser/CertificateSection/EducationalCertificate";
-import OthersCertificate from "./OthersCertificate";
+import PersonalCertificate from "./PersonalCertificate";
 import ProfessionalCertificate from "./ProfessionalCertificate";
 
 export default function Certificate() {
@@ -28,9 +28,9 @@ export default function Certificate() {
                                     style={
                                         tabValue === 1
                                             ? {
-                                                  background: "linear-gradient(106.79deg, #E52982 25.24%, #A72BC3 88.25%)",
-                                                  color: "#fff",
-                                              }
+                                                background: "linear-gradient(106.79deg, #E52982 25.24%, #A72BC3 88.25%)",
+                                                color: "#fff",
+                                            }
                                             : {}
                                     }
                                     onClick={() => setTabValue(1)}
@@ -42,9 +42,9 @@ export default function Certificate() {
                                     style={
                                         tabValue === 2
                                             ? {
-                                                  background: "linear-gradient(106.79deg, #E52982 25.24%, #A72BC3 88.25%)",
-                                                  color: "#fff",
-                                              }
+                                                background: "linear-gradient(106.79deg, #E52982 25.24%, #A72BC3 88.25%)",
+                                                color: "#fff",
+                                            }
                                             : {}
                                     }
                                     onClick={() => setTabValue(2)}
@@ -56,9 +56,9 @@ export default function Certificate() {
                                     style={
                                         tabValue === 3
                                             ? {
-                                                  background: "linear-gradient(106.79deg, #E52982 25.24%, #A72BC3 88.25%)",
-                                                  color: "#fff",
-                                              }
+                                                background: "linear-gradient(106.79deg, #E52982 25.24%, #A72BC3 88.25%)",
+                                                color: "#fff",
+                                            }
                                             : {}
                                     }
                                     onClick={() => setTabValue(3)}
@@ -70,7 +70,7 @@ export default function Certificate() {
                         <div>
                             {tabValue === 1 && <EducationalCertificate selectedImage={selectedImage} />}
                             {tabValue === 2 && <ProfessionalCertificate selectedImage={selectedImage} />}
-                            {tabValue === 3 && <OthersCertificate selectedImage={selectedImage} />}
+                            {tabValue === 3 && <PersonalCertificate selectedImage={selectedImage} />}
                         </div>
                     </div>
                 </div>

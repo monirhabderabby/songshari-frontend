@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 /* certificate img */
-import certificate1 from "../../../../../assets/images/user profile/certificate3.png";
+import certificate1 from "../../../../../assets/images/user profile/certificate1.png";
 import certificate2 from "../../../../../assets/images/user profile/certificate2.png";
 import certificate3 from "../../../../../assets/images/user profile/certificate3.png";
 import certificate4 from "../../../../../assets/images/user profile/certificate4.png";
 import certificate5 from "../../../../../assets/images/user profile/certificate5.png";
+import certificate6 from "../../../../../assets/images/user profile/certificate6.png";
+import certificate7 from "../../../../../assets/images/user profile/certificate7.png";
 /* component */
 import AllCertificateImg from "../../../../../components/SingleProfilesUser/CertificateSection/UpdateCertificateSection/AllCertificateImg/AllCertificateImg";
 import UpdateCertificateSection from "../../../../../components/SingleProfilesUser/CertificateSection/UpdateCertificateSection/UpdateCertificateSection";
@@ -47,13 +49,13 @@ const PersonalCertificate = () => {
         {
             id: 6,
             name: "Employment Certificate 1",
-            img: certificate4,
+            img: certificate6,
             type: "proffession",
         },
         {
             id: 7,
             name: "Employment Certificate 2",
-            img: certificate3,
+            img: certificate1,
             type: "proffession",
         },
         {
@@ -77,13 +79,13 @@ const PersonalCertificate = () => {
         {
             id: 11,
             name: "Certificate 1",
-            img: certificate2,
+            img: certificate7,
             type: "others",
         },
         {
             id: 12,
             name: "Certificate 2",
-            img: certificate3,
+            img: certificate1,
             type: "others",
         },
         {

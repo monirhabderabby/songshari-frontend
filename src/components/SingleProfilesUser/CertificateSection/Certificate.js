@@ -1,13 +1,10 @@
 import React from 'react'
 import './Certificate.css'
 
-
 import { useState } from 'react';
 import EducationalCertificate, { EducationalCertificateSidebar } from './EducationalCertificate';
 import { ProfessionalCertificate, ProfessionalCertificateSidebar } from './ProfessionalCertificate';
-import { OthersCertificate, OthersCertificateSidebar } from './OthersCertificate';
-
-
+import { PersonalCertificate, OthersCertificateSidebar } from './PersonalCertificate';
 
 export default function Certificate() {
     const [tabValue, setTabValue] = useState(1);
@@ -20,7 +17,6 @@ export default function Certificate() {
                         {tabValue === 1 && <EducationalCertificateSidebar setSelectedImage={setSelectedImage} />}
                         {tabValue === 2 && <ProfessionalCertificateSidebar setSelectedImage={setSelectedImage} />}
                         {tabValue === 3 && <OthersCertificateSidebar setSelectedImage={setSelectedImage} />}
-
                     </div>
                     <div className='ml-8 w-9/12'>
                         <div className='p-2'>
@@ -41,16 +37,13 @@ export default function Certificate() {
                                         background: 'linear-gradient(106.79deg, #E52982 25.24%, #A72BC3 88.25%)',
                                         color: '#fff'
                                     } : {}} onClick={() => setTabValue(3)}>Others Certificate</button>
-
                                 </div>
                             </div>
-
-
                         </div>
                         <div className='my-4'>
                             {tabValue === 1 && <EducationalCertificate selectedImage={selectedImage} />}
                             {tabValue === 2 && <ProfessionalCertificate selectedImage={selectedImage} />}
-                            {tabValue === 3 && <OthersCertificate selectedImage={selectedImage} />}
+                            {tabValue === 3 && <PersonalCertificate selectedImage={selectedImage} />}
                         </div>
                     </div>
                 </div>

@@ -1,48 +1,50 @@
 import React from 'react';
-import { CloudUploadOutlined } from '@material-ui/icons';
-import { Upload } from 'antd';
+/* reacr icon */
+import { GrUploadOption } from "react-icons/gr";
+/* reupload section background img */
+import reUpload from '../../../../../assets/images/user profile/certificate2.png';
+import reUpload1 from '../../../../../assets/images/user profile/certificate3.png';
 
 const FileReuploadSection = () => {
-    const { Dragger } = Upload;
     return (
-        <section className='pt-5'>
-            <div className='mb-4'>
-                <h className="font-bold text-xl text-slate-800">Re-Upload Certificate</h>
-                <p className="">Admin ask you to upload your Certificate again</p>
-            </div>
-            <div className='mt-4 flex'>
-                <div className='mr-2 '>
-                    <div className='reupload-certificate rounded-2xl'>
-                        <img src="https://img.freepik.com/free-vector/modern-employee-month-certificate_52683-75428.jpg?w=2000" className='rounded-2xl' alt="" style={{ opacity: '.5' }} />
-                    </div>
-                    <div className='reupload-certificate-inner-box text-white px-8 '>
-                        <Dragger style={{ border: 'none' }}>
-                            <p className=" text-white font-bold">Drag and drop or click on the uploadd button to add new certificate</p>
-                            <div className='flex justify-center mt-1'>
-                                <p className='btn-certificate text-lg  p-1 px-2 rounded text-white flex justify-center items-center' >
-                                    <CloudUploadOutlined className='text-white mr-1 font-bold' /> upload
-                                </p>
+        <div className='font-sans mb-[145px]'>
+            <h1 className='font-semibold text-[32px] text-[#333333]'>Re-Upload Certificate</h1>
+            <p className='mt-4 mb-8 font-normal text-base text-[#000000]'>Admin Ask You to upload your Certificate again</p>
+
+            <label className="cursor-pointer">
+                <div className=' lg:flex items-center justify-center gap-10 grid grid-cols-1'>
+                    <div className='relative overflow-hidden h-[380px] w-[411px] rounded-2xl mx-auto lg:mx-0'>
+                        <div className='h-full w-full absolute -z-10 bg-[#000000] bg-opacity-50'>
+                        </div>
+                        <img className='absolute -z-20 w-full h-full' src={reUpload} alt="background" />
+                        <div className='z-30 w-full h-full flex flex-col items-center justify-center'>
+                            <p className='font-medium text-base text-[#FFFFFF] text-center mb-5'>Drag and drop or clilck on the upload <br /> button to add new certificate</p>
+                            <div className='flex items-center justify-center font-medium text-base text-[#FFFFFF] gap-[13px] bg-gradient-to-r from-[#E52982] to-[#A72BC3] rounded-[10px] w-[144px] h-[47px]'>
+                                <GrUploadOption className='text-xl text-white' />
+                                <p>Re-Upload</p>
                             </div>
-                        </Dragger>
+                        </div>
+                    </div>
+                    <div className='relative overflow-hidden h-[380px] w-[411px] rounded-2xl mx-auto lg:mx-0'>
+                        <div className='h-full w-full absolute -z-10 bg-[#000000] bg-opacity-50'>
+                        </div>
+                        <img className='absolute -z-20 w-full h-full' src={reUpload1} alt="background" />
+                        <div className='z-30 w-full h-full flex flex-col items-center justify-center'>
+                            <p className='font-medium text-base text-[#FFFFFF] text-center mb-5'>Drag and drop or clilck on the upload <br /> button to add new certificate</p>
+                            <div className='flex items-center justify-center font-medium text-base text-[#FFFFFF] gap-[13px] bg-gradient-to-r from-[#E52982] to-[#A72BC3] rounded-[10px] w-[144px] h-[47px]'>
+                                <GrUploadOption className='text-xl text-white' />
+                                <p>Re-Upload</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div >
-                    <div className='reupload-certificate rounded-2xl'>
-                        <img src="https://img.freepik.com/free-vector/modern-employee-month-certificate_52683-75428.jpg?w=2000" className='rounded-2xl' alt="" style={{ opacity: '.5' }} />
-                    </div>
-                    <div className='reupload-certificate-inner-box text-white px-8 '>
-                        <Dragger style={{ border: 'none' }}>
-                            <p className=" text-white font-bold">Drag and drop or click on the uploadd button to add new certificate</p>
-                            <div className='flex justify-center mt-1'>
-                                <p className='btn-certificate text-lg  p-1 px-2 rounded text-white flex justify-center items-center' >
-                                    <CloudUploadOutlined className='text-white mr-1 font-bold' /> upload
-                                </p>
-                            </div>
-                        </Dragger>
-                    </div>
-                </div>
-            </div>
-        </section>
+                <input
+                    id="reUploadPhoto"
+                    type="file"
+                    className="hidden"
+                />
+            </label>
+        </div>
     );
 };
 
