@@ -5,6 +5,7 @@ import EditPhysicalInfo from "../../components/SingleProfilesUser/profileSection
 import EditProfesionalInfo from "../../components/SingleProfilesUser/profileSection/EditprofileSection/EditProfesionalInfo";
 import ProfileDetails from "../../components/SingleProfilesUser/profileSection/ProfileDetails";
 import { SingleProfiles } from "../../components/SingleProfilesUser/SingleProfiles";
+import OthersCertificate from "../../Wrapper/Home/mobileversion/PhotoGallery/certificate/OthersCertificate";
 import { Container } from "../../Wrapper/Stepper/Container";
 
 const matrimonyPrivateRoutes = [
@@ -55,6 +56,11 @@ const matrimonyPrivateRoutes = [
         id: 2,
         path: "/stepper",
         element: <Container />,
+    },
+    {
+        id: 3,
+        path: "/personalCertificate",
+        element: <OthersCertificate />,
     },
 ];
 

@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 /* certificate img */
-import certificate1 from '../../../../assets/images/user profile/certificate1.png';
-import certificate2 from '../../../../assets/images/user profile/certificate2.png';
-import certificate3 from '../../../../assets/images/user profile/certificate3.png';
-import certificate4 from '../../../../assets/images/user profile/certificate4.png';
-import certificate5 from '../../../../assets/images/user profile/certificate5.png';
-import certificate6 from '../../../../assets/images/user profile/certificate6.png';
-import certificate7 from '../../../../assets/images/user profile/certificate7.png';
+import certificate1 from "../../../../assets/images/user profile/certificate1.png";
+import certificate2 from "../../../../assets/images/user profile/certificate2.png";
+import certificate3 from "../../../../assets/images/user profile/certificate3.png";
+import certificate4 from "../../../../assets/images/user profile/certificate4.png";
+import certificate5 from "../../../../assets/images/user profile/certificate5.png";
+import certificate6 from "../../../../assets/images/user profile/certificate6.png";
+import certificate7 from "../../../../assets/images/user profile/certificate7.png";
 /* component */
-import AllCertificateImg from './AllCertificateImg/AllCertificateImg';
-import FileUploadSection from './FileUploadSection/FileUploadSection';
+import AllCertificateImg from "./AllCertificateImg/AllCertificateImg";
+import FileUploadSection from "./FileUploadSection/FileUploadSection";
 
 const UpdateCertificateSection = () => {
     const [certificateId, setCertificateId] = useState(0);
@@ -17,142 +17,148 @@ const UpdateCertificateSection = () => {
     const allData = [
         {
             id: 1,
-            name: 'SSC Certificate',
+            name: "SSC Certificate",
             img: certificate1,
-            type: 'education'
+            type: "education",
         },
         {
             id: 2,
-            name: 'HSC Certificate',
+            name: "HSC Certificate",
             img: certificate2,
-            type: 'education'
+            type: "education",
         },
         {
             id: 3,
-            name: 'Bachelor Certificate ',
+            name: "Bachelor Certificate ",
             img: certificate3,
-            type: 'education'
+            type: "education",
         },
         {
             id: 4,
-            name: 'Masters Certificate',
+            name: "Masters Certificate",
             img: certificate4,
-            type: 'education'
+            type: "education",
         },
         {
             id: 5,
-            name: 'PHD Certificate',
+            name: "PHD Certificate",
             img: certificate5,
-            type: 'education'
+            type: "education",
         },
         {
             id: 6,
-            name: 'Employment Certificate 1',
+            name: "Employment Certificate 1",
             img: certificate6,
-            type: 'proffession'
+            type: "proffession",
         },
         {
             id: 7,
-            name: 'Employment Certificate 2',
+            name: "Employment Certificate 2",
             img: certificate1,
-            type: 'proffession'
+            type: "proffession",
         },
         {
             id: 8,
-            name: 'Employment Certificate 3',
+            name: "Employment Certificate 3",
             img: certificate2,
-            type: 'proffession'
+            type: "proffession",
         },
         {
             id: 9,
-            name: 'Employment Certificate 4',
+            name: "Employment Certificate 4",
             img: certificate3,
-            type: 'proffession'
+            type: "proffession",
         },
         {
             id: 10,
-            name: 'Employment Certificate 5',
+            name: "Employment Certificate 5",
             img: certificate4,
-            type: 'proffession'
+            type: "proffession",
         },
         {
             id: 11,
-            name: 'Certificate 1',
+            name: "Certificate 1",
             img: certificate7,
-            type: 'others'
+            type: "others",
         },
         {
             id: 12,
-            name: 'Certificate 2',
+            name: "Certificate 2",
             img: certificate1,
-            type: 'others'
+            type: "others",
         },
         {
             id: 13,
-            name: 'Certificate 3',
+            name: "Certificate 3",
             img: certificate2,
-            type: 'others'
+            type: "others",
         },
         {
             id: 14,
-            name: 'Certificate 4',
+            name: "Certificate 4",
             img: certificate3,
-            type: 'others'
+            type: "others",
         },
         {
             id: 15,
-            name: 'Certificate 5',
+            name: "Certificate 5",
             img: certificate4,
-            type: 'others'
-        }
-    ]
+            type: "others",
+        },
+    ];
     /* used to filter img data */
     const [certificateData, setCertificateData] = useState(allData);
     /* filtering img data */
-    const filterData = (type) => {
-        if (type === 'education') {
-            setCertificateData(allData.filter(data => data.type === 'education'))
+    const filterData = type => {
+        if (type === "education") {
+            setCertificateData(allData.filter(data => data.type === "education"));
+        } else if (type === "profession") {
+            setCertificateData(allData.filter(data => data.type === "proffession"));
+        } else if (type === "others") {
+            setCertificateData(allData.filter(data => data.type === "others"));
+        } else {
+            setCertificateData(allData);
         }
-        else if (type === 'profession') {
-            setCertificateData(allData.filter(data => data.type === 'proffession'))
-        }
-        else if (type === 'others') {
-            setCertificateData(allData.filter(data => data.type === 'others'))
-        }
-        else {
-            setCertificateData(allData)
-        }
-    }
+    };
     /* filtering img to show single img */
-    const selectCertificate = certificateData.filter(newCertficate => newCertficate.id === certificateId + 1)
+    const selectCertificate = certificateData.filter(newCertficate => newCertficate.id === certificateId + 1);
 
     return (
-        <div className='mx-auto max-w-[1200px] bg-[#FAFBFF] pt-[58px] font-sans '>
-            <div className='flex gap-[51px]'>
+        <div className="mx-auto max-w-[1200px] bg-[#FAFBFF] pt-[58px] font-sans ">
+            <div className="flex gap-[51px]">
                 {/* Left side filtered img */}
-                <div className='w-[360px]'>
-                    {
-                        certificateData.map(certificate =>
-                            <AllCertificateImg key={certificate.id}
-                                certificate={certificate}
-                                certificateData={certificateData}
-                                setCertificateId={setCertificateId}
-                                selectCertificate={selectCertificate}
-                            />
-                        )
-                    }
+                <div className="w-[360px]">
+                    {certificateData.map(certificate => (
+                        <AllCertificateImg
+                            key={certificate.id}
+                            certificate={certificate}
+                            certificateData={certificateData}
+                            setCertificateId={setCertificateId}
+                            selectCertificate={selectCertificate}
+                        />
+                    ))}
                 </div>
                 {/* Filtering button */}
-                <div className='w-[835px]'>
-                    <h1 className='text-left font-semibold text-[32px] text-[#333333]'>Certificate</h1>
-                    <div className='grid grid-cols-3 gap-[25px] my-10 w-full font-normal text-2xl text-[#000000]'>
-                        <button onClick={() => filterData('education')} className='bg-[#D0DBFF] py-[13px] rounded-[10px]'>Educational Certificate</button>
-                        <button onClick={() => filterData('profession')} className='bg-[#D0DBFF] py-[13px] rounded-[10px]'>Professional Certificate</button>
-                        <button onClick={() => filterData('others')} className='bg-[#D0DBFF] py-[13px] rounded-[10px]'>Others Certificate</button>
+                <div className="w-[835px]">
+                    <h1 className="text-left font-semibold text-[32px] text-[#333333]">Certificate</h1>
+                    <div className="grid grid-cols-3 gap-[25px] my-10 w-full font-normal text-2xl text-[#000000]">
+                        <button onClick={() => filterData("education")} className="bg-[#D0DBFF] py-[13px] rounded-[10px]">
+                            Educational Certificate
+                        </button>
+                        <button onClick={() => filterData("profession")} className="bg-[#D0DBFF] py-[13px] rounded-[10px]">
+                            Professional Certificate
+                        </button>
+                        <button onClick={() => filterData("others")} className="bg-[#D0DBFF] py-[13px] rounded-[10px]">
+                            Others Certificate
+                        </button>
                     </div>
                     {/* Main img showing */}
-                    <div style={{ boxShadow: '2px 2px 10px rgba(0, 0, 0, 0.12)' }} className='bg-[#FFFFFF] py-[15px] px-[18px] rounded-[16px]'>
-                        <img className='h-[1187px] w-[800px] rounded-[16px]' src={selectCertificate[0] ? selectCertificate[0]?.img : certificateData[0].img} alt="view certificate" />
+                    <div style={{ boxShadow: "2px 2px 10px rgba(0, 0, 0, 0.12)" }} className="bg-[#FFFFFF] py-[15px] px-[18px] rounded-[16px]">
+                        <img
+                            className="h-[1187px] w-[800px] rounded-[16px]"
+                            src={selectCertificate[0] ? selectCertificate[0]?.img : certificateData[0].img}
+                            alt="view certificate"
+                        />
                     </div>
                     {/* New certificate upload */}
                     <FileUploadSection />
