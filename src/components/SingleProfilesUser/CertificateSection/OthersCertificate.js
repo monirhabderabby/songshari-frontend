@@ -5,8 +5,6 @@ import { CloudUploadOutlined, ZoomInOutlined, ZoomOutOutlined } from '@material-
 import { Upload } from 'antd';
 const { Dragger } = Upload;
 
-
-
 export const OthersCertificateSidebar = ({ setSelectedImage }) => {
     const handleImage = (e) => {
         setSelectedImage(e.target.currentSrc)
@@ -79,12 +77,11 @@ export const OthersCertificateSidebar = ({ setSelectedImage }) => {
                     </div>
                 </div>
             </div>
-
         </div>
     )
 }
 
-export function OthersCertificate({ selectedImage }) {
+export function PersonalCertificate({ selectedImage }) {
     const [stepScale, setStepScale] = useState(1.0)
     return (
         <div>
@@ -173,6 +170,5 @@ export function OthersCertificate({ selectedImage }) {
                 </section>
             </div>
         </div>
-
     )
 }

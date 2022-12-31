@@ -81,7 +81,7 @@ import { RunningCaseMov } from "../Wrapper/Home/mobileversion/mobilelawyeractivi
 import MobileProfileOthers from "../Wrapper/Home/mobileversion/MobileProfileOthers";
 import Certificate from "../Wrapper/Home/mobileversion/PhotoGallery/certificate/Certificate";
 import MobileCertificate from "../Wrapper/Home/mobileversion/PhotoGallery/certificate/MobileCertificate";
-import OthersCertificate from "../Wrapper/Home/mobileversion/PhotoGallery/certificate/OthersCertificate";
+import PersonalCertificate from "../Wrapper/Home/mobileversion/PhotoGallery/certificate/PersonalCertificate";
 import ProfessionalCertificate from "../Wrapper/Home/mobileversion/PhotoGallery/certificate/ProfessionalCertificate";
 import { PrivacyMov } from "../Wrapper/Home/mobileversion/privacy/PrivacyMov";
 import { Setting } from "../Wrapper/Home/mobileversion/setting/Setting";
@@ -153,7 +153,7 @@ const Index = () => {
                     <Route path="/admin-analytics" element={<AdminAnalytics />}></Route>
                     <Route path="/stepper" element={<Container></Container>}></Route>
                     <Route path="/upgrade" element={<UpgradePlan></UpgradePlan>}></Route>
-                    <Route path="/personalCertificate" element={<OthersCertificate />}></Route>
+                    <Route path="/personalCertificate" element={<PersonalCertificate />}></Route>
                     <Route path="/professionalCertificate" element={<ProfessionalCertificate />}></Route>
                     <Route path="/educationalCertificate" element={<EducationalCertificate />}></Route>
                     <Route path="/singleproduct" element={<SingleProduct></SingleProduct>}></Route>
