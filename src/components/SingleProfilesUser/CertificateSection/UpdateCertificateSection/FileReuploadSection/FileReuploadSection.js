@@ -10,9 +10,9 @@ const FileReuploadSection = () => {
         <div className='font-sans mb-[145px]'>
             <h1 className='font-semibold text-[32px] text-[#333333]'>Re-Upload Certificate</h1>
             <p className='mt-4 mb-8 font-normal text-base text-[#000000]'>Admin Ask You to upload your Certificate again</p>
-
-            <label className="cursor-pointer">
-                <div className=' lg:flex items-center justify-center gap-10 grid grid-cols-1'>
+            {/* reupload section */}
+            <div className=' lg:flex items-center justify-center gap-10 grid grid-cols-1'>
+                <label className="cursor-pointer">
                     <div className='relative overflow-hidden h-[380px] w-[411px] rounded-2xl mx-auto lg:mx-0'>
                         <div className='h-full w-full absolute -z-10 bg-[#000000] bg-opacity-50'>
                         </div>
@@ -25,6 +25,10 @@ const FileReuploadSection = () => {
                             </div>
                         </div>
                     </div>
+                    <input id="reUploadPhoto" type="file" className="hidden" />
+                </label>
+
+                <label className="cursor-pointer">
                     <div className='relative overflow-hidden h-[380px] w-[411px] rounded-2xl mx-auto lg:mx-0'>
                         <div className='h-full w-full absolute -z-10 bg-[#000000] bg-opacity-50'>
                         </div>
@@ -37,13 +41,9 @@ const FileReuploadSection = () => {
                             </div>
                         </div>
                     </div>
-                </div>
-                <input
-                    id="reUploadPhoto"
-                    type="file"
-                    className="hidden"
-                />
-            </label>
+                    <input id="reUploadPhoto" type="file" className="hidden" />
+                </label>
+            </div>
         </div>
     );
 };
