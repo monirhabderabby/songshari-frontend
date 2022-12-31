@@ -13,9 +13,8 @@ export const DynamicActivityPage = ({ postRefetch }) => {
     data: posts,
     isLoading,
     error,
-  } = useGetMyPostsQuery(undefined, {
-    skip: fetch,
-  });
+  } = useGetMyPostsQuery();
+  console.log(posts);
 
   if (isLoading) {
     return (

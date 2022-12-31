@@ -18,6 +18,7 @@ const SingleUserActivity = () => {
   const newPostText = { postBody: postText };
 
   const [addUserPost, { data: response }] = useAddUserPostMutation();
+  console.log(response);
 
   const handleMessage = async (event) => {
     event.preventDefault();

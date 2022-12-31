@@ -7,21 +7,43 @@ import { useState } from "react";
 import { getHoursMinutes } from "../../../Helper/helper";
 import profile from "../../../assets/images/profile/up1.png";
 import love from "../../../assets/images/icons/coolicon.svg";
+import { useGetMyPostsQuery } from "../../../Redux/features/connections/connectionApi";
 
 export const MovDynamicActivity = ({ postRefetch }) => {
-  const [posts, setPosts] = useState();
+  const [fetch, setFetch] = useState(true);
+  const {
+    data: posts,
+    isLoading,
+    error,
+  } = useGetMyPostsQuery();
+  console.log(posts);
+  if(isLoading)
+    {
+      return (
+        <div className="border border-blue-50 shadow rounded-md p-4 max-w-[457px] h-40 w-full mx-auto">
+          <div className="animate-pulse flex space-x-4">
+            <div className="rounded-full bg-slate-200 h-10 w-10"></div>
+            <div className="flex-1 space-y-6 py-1">
+              <div className="h-3 bg-slate-200 rounded"></div>
+              <div className="space-y-4">
+                <div className="grid grid-cols-3 gap-5">
+                  <div className="h-3 bg-slate-200 rounded col-span-2 mb-1"></div>
+                  <div className="h-3 bg-slate-200 rounded col-span-2 mb-1"></div>
+                  <div className="h-3 bg-slate-200 rounded col-span-1"></div>
+                </div>
+                <div className="h-3 bg-slate-200 rounded"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    
+  }
 
-  useEffect(() => {
-    fetch(`http://localhost:4000/member/post/myposts`, {
-      method: "GET",
-      headers: {
-        "content-type": "application/json",
-        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => setPosts(data));
-  }, [postRefetch]);
+  if (error) {
+    console.log(error);
+  }
+
   return (
     <div>
       {posts

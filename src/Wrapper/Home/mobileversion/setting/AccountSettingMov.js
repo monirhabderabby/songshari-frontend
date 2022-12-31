@@ -135,20 +135,20 @@ export const AccountSettingMov = () => {
           <Typography> <i className="fa-solid fa-ban mr-5 ml-8 mt-[25px]"></i> About Shongshari</Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Typography className="bg-[#D9D9D9] pt-[15px] pb-[15px]">
-          <Link to="/meetmov" className="ml-[50px] ">Team Member</Link>
+          <Typography className="pt-[15px] pb-[15px]">
+          <Link to="/meetmov" className="ml-[100px] ">Team Member</Link>
                     <br></br>
                     <br></br>
-                    <Link to="/privacymov" className="ml-[50px] ">Privacy Policy</Link>
+                    <Link to="/privacymov" className="ml-[100px] ">Privacy Policy</Link>
                     <br></br>
                     <br></br>
-                    <Link to="/aboutmov" className="ml-[50px]">About Us</Link>
+                    <Link to="/aboutmov" className="ml-[100px]">About Us</Link>
                     <br></br>
                     <br></br>
-                    <Link to="/historymov" className="ml-[50px]">History</Link>
+                    <Link to="/historymov" className="ml-[100px]">History</Link>
                     <br></br>
                     <br></br>
-                    <Link to="/communitymov" className="ml-[50px]">Community</Link>
+                    <Link to="/communitymov" className="ml-[100px]">Community</Link>
           </Typography>
         </AccordionDetails>
       </Accordion>

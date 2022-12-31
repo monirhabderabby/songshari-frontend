@@ -17,13 +17,13 @@ export const MobileBanner = () => {
 
         </div>
         <div>
-          <h3>2</h3>
+        <img src='https://i.ibb.co/FDC2838/Rectangle-4464.png' className='mx-auto' alt="Not Available"></img>
         </div>
         <div>
-          <h3>3</h3>
+        <img src='https://i.ibb.co/FDC2838/Rectangle-4464.png' className='mx-auto' alt="Not Available"></img>
         </div>
         <div>
-          <h3>4</h3>
+        <img src='https://i.ibb.co/FDC2838/Rectangle-4464.png' className='mx-auto' alt="Not Available"></img>
         </div>
 
       </Slider>
