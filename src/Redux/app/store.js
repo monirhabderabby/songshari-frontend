@@ -14,6 +14,7 @@ const persistConfig = {
 
 const reducer = combineReducers({
     userInfo: userInfo,
+    filter: filterSlice,
 });
 
 const persistedReducer = persistReducer(persistConfig, reducer);
@@ -22,7 +23,6 @@ const store = configureStore({
     reducer: {
         [apiSlice.reducerPath]: apiSlice.reducer,
         persistedReducer,
-        filter: filterSlice,
     },
     devTools: process.env.NODE_ENV !== "production",
     middleware: getDefaultMiddleware =>
