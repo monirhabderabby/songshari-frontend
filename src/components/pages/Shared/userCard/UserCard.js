@@ -40,9 +40,9 @@ export const UserCard = ({ profile }) => {
     intro = aboutYou?.slice(0, 100);
   } else if (!aboutYou) {
     intro = (
-      <p className="h-[100px] flex items-center justify-center text-gray-400">
+      <div className="h-[100px] flex items-center justify-center text-gray-400">
         No Intro Added
-      </p>
+      </div>
     );
   }
 
