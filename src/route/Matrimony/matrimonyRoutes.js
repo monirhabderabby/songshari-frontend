@@ -7,6 +7,7 @@ import { DynamicPhotosGallary } from "../../components/pages/DynamicProfilePage/
 import { DynamicProfilePage } from "../../components/pages/DynamicProfilePage/DynamicProfilePage";
 import { FindAPartnerSuggested } from "../../components/pages/FindPartner/FindAPartnerSuggested";
 import FindPartners from "../../components/pages/FindPartner/FindPartners";
+import { TopPartners } from "../../components/pages/FindPartner/TopPartner/TopPartners";
 import { OurTeams } from "../../components/pages/OurTeams/OurTeams";
 import { Privacy } from "../../components/pages/Privacy/Privacy";
 import Suggested from "../../components/pages/TopProfile/Suggested";
@@ -101,8 +102,13 @@ const matrimonyRoutes = [
         nestedRoutes: [
             {
                 id: 1,
-                path: "/find-partner",
+                path: "/find-partner/suggested",
                 element: <FindAPartnerSuggested />,
+            },
+            {
+                id: 2,
+                path: "top",
+                element: <TopPartners />,
             },
         ],
     },
