@@ -1,5 +1,5 @@
 // configuration
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 // components
 import CustomHeader from "../../components/shared/CustomHeader/CustomHeader";
@@ -15,7 +15,21 @@ import UtilitisCard from "./UtilitisCard";
 import { VerificationCard } from "./VerificationCard";
 
 export const SingleProfiles = () => {
+    // hook variable declaration
+    const [SocialBoxOpen, setSocialBoxOpen] = useState(false);
     const { data, isLoading, error } = useGetProfileDetailsWIthAuthQuery();
+
+    // decision making about social Box
+    const { LinkedInId } = data || {};
+    const { faceBookId } = data || {};
+    const { instagramId } = data || {};
+
+    useEffect(() => {
+        if (LinkedInId || faceBookId || instagramId) {
+            setSocialBoxOpen(true);
+        }
+    }, [LinkedInId, faceBookId, instagramId, setSocialBoxOpen]);
+
     return (
         <div className="bg-[#FAFBFF]">
             <CustomHeader title="Profile" />
@@ -27,7 +41,7 @@ export const SingleProfiles = () => {
                                 <div className="max-w-[360px]">
                                     <div>
                                         <ProfileCard {...{ data, isLoading }} />
-                                        <SocialMediaBox />
+                                        {SocialBoxOpen && <SocialMediaBox {...{ LinkedInId, faceBookId, instagramId }} />}
                                         <VerificationCard />
                                         {/* <Badges /> */}
                                         <UtilitisCard />
