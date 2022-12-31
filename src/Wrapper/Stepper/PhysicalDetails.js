@@ -52,6 +52,8 @@ export const PhysicalDetails = ({ setPage }) => {
     };
 
     data.numberOfTeeth = Number(data.numberOfTeeth);
+    data.height = Number(data.height);
+    data.weight = Number(data.weight);
     await setPhysicalDetails(data);
   };
 
@@ -79,7 +81,8 @@ export const PhysicalDetails = ({ setPage }) => {
                     message: "Height is required",
                   },
                 })}
-                type="text"
+                type="number"
+                step="0.01"
                 placeholder="Height"
                 className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
                 id="height"
@@ -103,7 +106,8 @@ export const PhysicalDetails = ({ setPage }) => {
                     message: "Weight is required",
                   },
                 })}
-                type="text"
+                type="number"
+                step="0.01"
                 placeholder="Weight"
                 className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
                 id="weight"
