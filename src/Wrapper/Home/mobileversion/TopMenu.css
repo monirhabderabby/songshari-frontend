@@ -34,6 +34,12 @@
 }
 .setting-mov{
     display: flex;
+    height: 16px;
+    font-family: 'Inter';
+    font-size: 16px;
+    font-weight: 400;
+    margin-left: 25px;
+    
 }
 .profile-tit{
     color: #1E2022;

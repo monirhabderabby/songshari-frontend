@@ -8,7 +8,7 @@ import { UserCard } from "../Shared/userCard/UserCard";
 export const FindAPartnerSuggested = () => {
   // varible declation
   // hook variables
-  const { data, isSuccess, isLoading } = useGetRecentMembersQuery();
+  const { data, isSuccess} = useGetRecentMembersQuery();
 
   return (
     <div className="mt-[30px] max-w-[950px] mx-auto">

@@ -121,7 +121,7 @@ export const UserCard = ({ profile }) => {
             {/* mobile version  */}
             <div data-aos="fade-up" data-aos-easing="ease-out-cubic" data-aos-duration="2000" className="md:hidden">
                 {profile && (
-                    <div className="h-[350px]  relative group overflow-hidden Suggested-card mx-3">
+                    <div className="h-[350px] w-[324px]  relative group overflow-hidden Suggested-card mx-3">
                         <img
                             className="h-[200px] rounded-tr-[12px] bg-white rounded-tl-[12px] rounded-bl-[12px] rounded-br-[12px] object-cover w-full"
                             src={profilePhoto}
