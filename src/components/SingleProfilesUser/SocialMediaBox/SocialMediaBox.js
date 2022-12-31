@@ -12,10 +12,10 @@ export const SocialMediaBox = ({ LinkedInId, faceBookId, instagramId }) => {
             <a href={LinkedInId} target="_linkedIn">
                 <img src={linkedIn} alt="linkedIn" className="hover:scale-105 duration-300" />
             </a>
-            <a href={faceBookId} target="_linkedIn">
+            <a href={faceBookId} target="_facebook">
                 <img src={facebook} alt="facebook" className="hover:scale-105 duration-300" />
             </a>
-            <a href={instagramId} target="_linkedIn">
+            <a href={instagramId} target="_instagram">
                 <img src={instagram} alt="instagram" className="hover:scale-105 duration-300" />
             </a>
         </div>

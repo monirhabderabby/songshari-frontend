@@ -30,7 +30,7 @@ const FindPartnersHeader = () => {
                 {" "}
                 <NavLink
                     style={{ boxShadow: "2px 2px 8px rgba(0, 0, 0, 0.1)" }}
-                    to="/find-partner"
+                    to="/find-partner/suggested"
                     className="w-[242px] bg-[#FFFFFF] text-[#000] font-semibold flex justify-center rounded items-center h-[50px]"
                 >
                     Suggested For You

@@ -2,14 +2,13 @@
 import React from "react";
 
 // components
-import { useGetRecentMembersQuery } from "../../../Redux/features/userInfo/withoutLoginApi";
-import { UserCard } from "../Shared/userCard/UserCard";
+import { useGetRecentMembersQuery } from "../../../../Redux/features/userInfo/withoutLoginApi";
+import { UserCard } from "../../Shared/userCard/UserCard";
 
-export const FindAPartnerSuggested = () => {
+export const TopPartners = () => {
     // varible declation
     // hook variables
     const { data, isSuccess } = useGetRecentMembersQuery();
-
     return (
         <div className="mt-[30px] max-w-[950px] mx-auto">
             <div className="grid grid-cols-3 gap-[30px]">

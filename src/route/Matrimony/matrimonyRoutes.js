@@ -1,4 +1,3 @@
-import Membership from "../../components/membership/Membership";
 import Login from "../../components/pages/Authentications/Login";
 import LoginAsProfessional from "../../components/pages/Authentications/LoginAsProfessional";
 import RegAsProfessional from "../../components/pages/Authentications/RegAsProfessional";
@@ -8,6 +7,7 @@ import { DynamicPhotosGallary } from "../../components/pages/DynamicProfilePage/
 import { DynamicProfilePage } from "../../components/pages/DynamicProfilePage/DynamicProfilePage";
 import { FindAPartnerSuggested } from "../../components/pages/FindPartner/FindAPartnerSuggested";
 import FindPartners from "../../components/pages/FindPartner/FindPartners";
+import { TopPartners } from "../../components/pages/FindPartner/TopPartner/TopPartners";
 import { OurTeams } from "../../components/pages/OurTeams/OurTeams";
 import { Privacy } from "../../components/pages/Privacy/Privacy";
 import Suggested from "../../components/pages/TopProfile/Suggested";
@@ -15,6 +15,7 @@ import TopBride from "../../components/pages/TopProfile/TopBride";
 import TopGroom from "../../components/pages/TopProfile/TopGroom";
 import About from "../../Wrapper/About/About";
 import Homepage from "../../Wrapper/Home/Homepage";
+import MemberShip from "../../Wrapper/Membership/MemberShip";
 
 const matrimonyRoutes = [
     {
@@ -57,7 +58,7 @@ const matrimonyRoutes = [
     {
         id: 5,
         path: "/membership",
-        element: <Membership />,
+        element: <MemberShip />,
     },
     {
         id: 6,
@@ -101,8 +102,13 @@ const matrimonyRoutes = [
         nestedRoutes: [
             {
                 id: 1,
-                path: "/find-partner",
+                path: "/find-partner/suggested",
                 element: <FindAPartnerSuggested />,
+            },
+            {
+                id: 2,
+                path: "top",
+                element: <TopPartners />,
             },
         ],
     },
