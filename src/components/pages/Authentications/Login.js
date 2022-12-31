@@ -73,9 +73,11 @@ const Login = () => {
 
     useEffect(() => {
         if (responseError?.status === 401 && responseError?.data?.success === true && user) {
+            localStorage.setItem("accessToken", responseError?.data?.data?.token);
+            dispatch(loadUserData(responseError?.data?.data));
             navigate(from, { replace: true });
         }
-    }, [responseError, user, navigate, from]);
+    }, [responseError, user, navigate, from, dispatch]);
 
     return (
         <div>
