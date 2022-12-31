@@ -304,11 +304,11 @@ const EditPersonalInfo = () => {
   const onHeightChange = (value) => {
     setHeight(value);
   };
-  const onAfterHeightChange = (value) => {};
+  const onAfterHeightChange = (value) => { };
   const onWeightChange = (value) => {
     setWeight(value);
   };
-  const onAfterWeightChange = (value) => {};
+  const onAfterWeightChange = (value) => { };
   const handleUserAncestryChange = (value) => {
     setPhysicalInfo({ ...physicalInfo, ancestry: value });
   };
@@ -1148,7 +1148,7 @@ const EditPersonalInfo = () => {
                     </div>
                   )}
 
-                  {}
+                  { }
                 </div>
               </div>
             )}
@@ -1827,16 +1827,16 @@ const EditPersonalInfo = () => {
           <div className="pb-4">
             <div>
               <label
-                htmlFor="istragram"
+                htmlFor="instagram"
                 className="text-sm block pb-2 text-slate-600	  font-medium"
               >
-                Istragram
+                instagram
               </label>
               <input
                 type="text"
                 name="instagramId"
-                id="istragram"
-                placeholder="your istragram profile link"
+                id="instagram"
+                placeholder="your instagram profile link"
                 className=" focus:outline-none p-2 border focus:border-blue-500 shadow rounded-lg hover:border-blue-500 w-full "
                 onChange={handleData}
               />
@@ -2164,7 +2164,7 @@ const EditPersonalInfo = () => {
                     </div>
                   )}
 
-                  {}
+                  { }
                 </div>
               </div>
             )}
@@ -2567,16 +2567,16 @@ const EditPersonalInfo = () => {
           <div className="pb-4">
             <div>
               <label
-                htmlFor="istragram"
+                htmlFor="instagram"
                 className="text-sm block pb-2 text-slate-600	  font-medium"
               >
-                Istragram
+                Instagram
               </label>
               <input
                 type="text"
-                name="istragram"
-                id="istragram"
-                placeholder="your istragram profile link"
+                name="instagram"
+                id="instagram"
+                placeholder="your instagram profile link"
                 className=" focus:outline-none p-2 border focus:border-blue-500 shadow rounded-lg hover:border-blue-500 w-full "
                 onChange={handleData}
               />
