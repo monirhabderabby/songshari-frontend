@@ -1830,7 +1830,7 @@ const EditPersonalInfo = () => {
                 htmlFor="instagram"
                 className="text-sm block pb-2 text-slate-600	  font-medium"
               >
-                instagram
+                Instagram
               </label>
               <input
                 type="text"
