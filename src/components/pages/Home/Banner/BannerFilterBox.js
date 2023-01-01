@@ -1,20 +1,18 @@
 import { AutoComplete, Select, Slider } from "antd";
 
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import {
-    setAge,
-    setCurrentLocation,
-    setEducation,
-    setfor,
-    setHomeTown,
-    setLookingFor,
-    setProfession,
-    setReligion,
-} from "../../../../Redux/features/filter/filterSlice";
+import { setFilterObject } from "../../../../Redux/features/filter/filterSlice";
 
 const BannerFilterBox = () => {
+    const [looking, setLooking] = useState("");
+    const [age, setAge] = useState([]);
+    const [religion, setReligion] = useState("");
+    const [currentLocation, setCurrentLocation] = useState("");
+    const [professionalStatus, setProfessionalStatus] = useState("");
+    const [homeTown, setHomeTown] = useState("");
+    const [educationalQualification, seteducationalQualification] = useState("");
     const dispatch = useDispatch();
 
     const options = [
@@ -291,32 +289,22 @@ const BannerFilterBox = () => {
     ];
     const navigate = useNavigate();
 
-    const lookingForHandler = val => {
-        dispatch(setLookingFor({ lookingFor: val }));
-    };
-    const forHandler = val => {
-        dispatch(setfor({ for: val }));
-    };
-    const ageHandler = val => {
-        dispatch(setAge({ age: val }));
-    };
-    const professionHandler = val => {
-        dispatch(setProfession({ profession: val }));
-    };
-    const religionHandler = val => {
-        dispatch(setReligion({ religion: val }));
-    };
-    const homeTownHandler = val => {
-        dispatch(setHomeTown({ homeTown: val }));
-    };
-    const currentLocationHandler = val => {
-        dispatch(setCurrentLocation({ currentLocation: val }));
-    };
-    const educationHandler = val => {
-        dispatch(setEducation({ education: val }));
-    };
-
     const handleFilter = () => {
+        const filterObject = {
+            basicInfo: {
+                religion,
+                homeTown,
+                age,
+                currentLocation,
+                looking,
+            },
+            professionalInfo: {
+                educationalQualification,
+                professionalStatus,
+            },
+        };
+        dispatch(setFilterObject(filterObject));
+
         navigate("/find-partner/filter");
     };
 
@@ -335,7 +323,7 @@ const BannerFilterBox = () => {
                                     boxShadow: "2px 2px 8px 2px rgba(0, 0, 0, 0.1)",
                                     borderRadius: "5px",
                                 }}
-                                onSelect={val => lookingForHandler(val)}
+                                onSelect={val => setLooking(val)}
                                 options={[
                                     {
                                         value: "Bride",
@@ -355,7 +343,7 @@ const BannerFilterBox = () => {
                                 <Slider
                                     className="text-[#E41272]"
                                     range={{ draggableTrack: true }}
-                                    onChange={val => ageHandler(val)}
+                                    onChange={val => setAge(val)}
                                     defaultValue={[20, 50]}
                                 />
                             </div>
@@ -370,7 +358,7 @@ const BannerFilterBox = () => {
                                     boxShadow: "2px 2px 8px 2px rgba(0, 0, 0, 0.1)",
                                     borderRadius: "5px",
                                 }}
-                                onSelect={val => religionHandler(val)}
+                                onSelect={val => setReligion(val)}
                                 options={[
                                     {
                                         value: "Islam",
@@ -404,52 +392,13 @@ const BannerFilterBox = () => {
                                 }}
                                 options={division}
                                 placeholder="Location"
-                                onSelect={val => currentLocationHandler(val)}
+                                onSelect={val => setCurrentLocation(val)}
                                 filterOption={(inputValue, option) => option.value.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1}
                             />
                         </div>
                     </div>
                     <div className="ml-[25px]">
-                        <div>
-                            <h2 className=" text-[#000000] font-medium">For</h2>
-                            <Select
-                                className="mt-[5px] text-xs text-[#72777A]"
-                                defaultValue="My Self"
-                                style={{
-                                    width: 101,
-                                    boxShadow: "2px 2px 8px 2px rgba(0, 0, 0, 0.1)",
-                                    borderRadius: "5px",
-                                }}
-                                onSelect={val => forHandler(val)}
-                                options={[
-                                    {
-                                        value: "My Self",
-                                        label: "My Self",
-                                    },
-                                    {
-                                        value: "My Brother",
-                                        label: "My Brother",
-                                    },
-                                    {
-                                        value: "My Sister",
-                                        label: "My Sister",
-                                    },
-                                    {
-                                        value: "My Cousin",
-                                        label: "My Cousin",
-                                    },
-                                    {
-                                        value: "My Friend",
-                                        label: "My Friend",
-                                    },
-                                    {
-                                        value: "My Relative",
-                                        label: "My Relative",
-                                    },
-                                ]}
-                            />
-                        </div>
-                        <div className="mt-[30px]">
+                        <div className="">
                             <h2 className=" text-[#000000] font-medium">Profession</h2>
                             <AutoComplete
                                 style={{
@@ -457,7 +406,7 @@ const BannerFilterBox = () => {
                                 }}
                                 options={options}
                                 placeholder="Profession"
-                                onSelect={val => professionHandler(val)}
+                                onSelect={val => setProfessionalStatus(val)}
                                 filterOption={(inputValue, option) => option.value.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1}
                             />
                         </div>
@@ -469,7 +418,7 @@ const BannerFilterBox = () => {
                                 }}
                                 options={hometown}
                                 placeholder="Home Town"
-                                onSelect={val => homeTownHandler(val)}
+                                onSelect={val => setHomeTown(val)}
                                 filterOption={(inputValue, option) => option.value.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1}
                             />
                         </div>
@@ -481,7 +430,7 @@ const BannerFilterBox = () => {
                                 }}
                                 options={educations}
                                 placeholder="Education"
-                                onSelect={val => educationHandler(val)}
+                                onSelect={val => seteducationalQualification(val)}
                                 filterOption={(inputValue, option) => option.value.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1}
                             />
                         </div>
