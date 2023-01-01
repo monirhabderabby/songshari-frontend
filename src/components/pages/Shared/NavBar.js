@@ -19,7 +19,6 @@ import membership from "../../../assets/images/NavIcons/Membership.svg";
 import course from "../../../assets/images/NavIcons/Online-Course.svg";
 import register from "../../../assets/images/NavIcons/Profile-Login-Icon.svg";
 import { auth } from "../../../firebase.init";
-import { useGetProfileDetailsWIthAuthQuery } from "../../../Redux/features/userInfo/userApi";
 import { loadUserData } from "../../../Redux/features/userInfo/userInfo";
 import MobileNav from "./MobileNav";
 
@@ -33,13 +32,12 @@ const NavBar = ({ bg }) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    // Logged in user
-    const { data: loggedInUser } = useGetProfileDetailsWIthAuthQuery();
-
     const userInfo = useSelector(state => state?.persistedReducer?.userInfo?.userInfo?.user);
 
     // js variable
     let { profilePhoto } = userInfo || {};
+
+    profilePhoto = profilePhoto ? profilePhoto : "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png";
 
     const allMenu = [
         {
