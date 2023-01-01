@@ -13,8 +13,8 @@ import profile from "../../../assets/images/profile/up1.png";
 import { firebaseStorage } from "../../../firebase.init";
 import { useGetMyPostsQuery } from "../../../Redux/features/connections/connectionApi";
 import { useAddUserPostMutation } from "../../../Redux/features/userInfo/userApi";
-import { DynamicActivityPage } from "../../pages/DynamicProfilePage/DynamicActivityPage";
 import { MovDynamicActivity } from "../../pages/DynamicProfilePage/MovDynamicActivity";
+import { AllPostsOfLoggedInUser } from "./AllPostsOfLoggedInUser/AllPostsOfLoggedInUser";
 
 const SingleUserActivity = () => {
     // hook variable declaration
@@ -91,7 +91,7 @@ const SingleUserActivity = () => {
                             </button>
                         </div>
                     </div>
-                    <DynamicActivityPage {...{ posts, isLoading, error }}></DynamicActivityPage>
+                    <AllPostsOfLoggedInUser {...{ posts, isLoading, error }} />
                 </div>
             </div>
             <div className="md:hidden w-full">
