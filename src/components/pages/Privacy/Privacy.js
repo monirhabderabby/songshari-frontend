@@ -59,7 +59,7 @@ export const Privacy = () => {
               </span>
               <input
                 type="text"
-                className="h-full w-full bg-[#FAFBFF] px-[8px]"
+                className="h-full w-full bg-[#FAFBFF] px-[8px] outline-none"
               />
             </div>
           </section>
