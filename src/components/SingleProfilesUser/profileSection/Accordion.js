@@ -147,11 +147,13 @@ const Accordian = ({ data, isLoading, edit }) => {
               )}
 
               {data?.citizenShip?.length !== 0 && (
-                <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                <div className="flex justify-between border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333] py-3">
                   <span className="font-medium">CitizenShip</span>
-                  <p className="font-normal">
-                    {data ? data?.citizenShip.toString() : "Not Provided"}
-                  </p>
+                  <div className="grid grid-cols-3 gap-1">
+                    {data ? data?.citizenShip.map((citizen, index) =>
+                      <p className="font-normal font-Inter text-xs text-[#2B52DD] py-[6px] px-2 bg-[#E5E7EB] rounded" key={index}>{citizen}</p>
+                    ) : "Not Provided"}
+                  </div>
                 </div>
               )}
 
@@ -587,9 +589,9 @@ const Accordian = ({ data, isLoading, edit }) => {
                 </div>
               )}
               {data?.hobbies?.length !== 0 && (
-                <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                <div className="flex justify-between border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333] py-3">
                   <span className="font-medium">Hobbies</span>
-                  <div className='flex gap-1 items-center'>
+                  <div className='grid grid-cols-3 gap-1'>
                     {data?.hobbies && data?.hobbies.map((hobby, index) =>
                       <p className="font-normal font-Inter text-xs text-[#2B52DD] py-[6px] px-2 bg-[#E5E7EB] rounded" key={index}>{hobby}</p>
                     )}
@@ -690,11 +692,13 @@ const Accordian = ({ data, isLoading, edit }) => {
               )}
 
               {data?.citizenShip?.length !== 0 && (
-                <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                <div className="flex justify-between border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333] py-3">
                   <span className="font-medium">CitizenShip</span>
-                  <p className="font-normal">
-                    {data ? data?.citizenShip.toString() : "Not Provided"}
-                  </p>
+                  <div className="grid grid-cols-3 gap-1">
+                    {data ? data?.citizenShip.map((citizen, index) =>
+                      <p className="font-normal font-Inter text-xs text-[#2B52DD] py-[6px] px-2 bg-[#E5E7EB] rounded" key={index}>{citizen}</p>
+                    ) : "Not Provided"}
+                  </div>
                 </div>
               )}
 
@@ -1142,9 +1146,9 @@ const Accordian = ({ data, isLoading, edit }) => {
                                 <p className="font-normal">{data ? data.instagramId : "Not Provided"}</p>
                             </div> */}
               {data?.hobbies?.length !== 0 && (
-                <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                <div className="flex justify-between items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333] py-3">
                   <span className="font-medium">Hobbies</span>
-                  <div className='flex gap-1 items-center'>
+                  <div className='grid grid-cols-3 gap-1'>
                     {data?.hobbies && data?.hobbies.map((hobby, index) =>
                       <p className="font-normal font-Inter text-xs text-[#2B52DD] py-[6px] px-2 bg-[#E5E7EB] rounded" key={index}>{hobby}</p>
                     )}
