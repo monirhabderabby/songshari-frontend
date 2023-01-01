@@ -4,14 +4,14 @@ import React from "react";
 // components
 import { AiOutlineWarning } from "react-icons/ai";
 import { MdOutlinePostAdd } from "react-icons/md";
-import { useGetMyPostsQuery } from "../../../Redux/features/connections/connectionApi";
 import SinglePostCard from "./SinglePostCard";
 
-export const DynamicActivityPage = ({ postRefetch }) => {
-    const { data: posts, isLoading } = useGetMyPostsQuery();
+export const DynamicActivityPage = ({ posts, isLoading, error }) => {
+    // js variables
+    let content = null;
 
     if (isLoading) {
-        return (
+        content = (
             <div className="border border-blue-50 shadow rounded-md p-4 max-w-[457px] h-40 w-full mx-auto">
                 <div className="animate-pulse flex space-x-4">
                     <div className="rounded-full bg-slate-200 h-10 w-10"></div>
@@ -29,25 +29,31 @@ export const DynamicActivityPage = ({ postRefetch }) => {
                 </div>
             </div>
         );
-    }
-
-    return (
-        <div className="grid grid-cols-1 gap-y-[30px]">
-            {posts ? (
-                posts?.data?.posts.length === 0 ? (
-                    <div className="flex flex-col items-center justify-center mt-[15%]">
-                        <MdOutlinePostAdd className="text-[48px] text-gray-400" />
-                        <p className="mt-[10px] text-[22px] font-Inter font-medium text-gray-500">No Posts Found!</p>
-                    </div>
-                ) : (
-                    posts?.data?.posts.map(post => <SinglePostCard key={post?._id} post={post} />)
-                )
-            ) : (
+    } else if (!isLoading && posts?.data?.posts?.length === 0) {
+        content = (
+            <div className="flex flex-col items-center justify-center mt-[15%] w-full">
+                <MdOutlinePostAdd className="text-[48px] text-gray-400" />
+                <p className="mt-[10px] text-[22px] font-Inter font-medium text-gray-500">No Posts Found!</p>
+            </div>
+        );
+    } else if (!isLoading && error) {
+        content = (
+            <div className="grid grid-cols-1 gap-y-[30px]">
                 <div className="flex flex-col items-center justify-center mt-[15%]">
                     <AiOutlineWarning className="text-[48px] text-gray-400" />
                     <p className="mt-[10px] text-[22px] font-Inter font-medium text-gray-500">Server Error</p>
                 </div>
-            )}
-        </div>
-    );
+            </div>
+        );
+    } else if (!isLoading && posts?.data?.posts?.length > 0) {
+        content = (
+            <div className="grid grid-cols-1 gap-y-[30px]">
+                {posts?.data?.posts.map(post => (
+                    <SinglePostCard key={post?._id} post={post} />
+                ))}
+            </div>
+        );
+    }
+
+    return content;
 };
