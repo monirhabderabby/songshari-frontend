@@ -316,6 +316,10 @@ const BannerFilterBox = () => {
         dispatch(setEducation({ education: val }));
     };
 
+    const handleFilter = () => {
+        navigate("/find-partner/filter");
+    };
+
     return (
         <Fragment>
             <div style={{ boxShadow: "2px 2px 10px rgba(0, 0, 0, 0.12)" }} className="min-w-[280px] rounded-[12px] h-[400px] bg-[#FFFFFF] p-5">
@@ -484,7 +488,7 @@ const BannerFilterBox = () => {
                     </div>
                 </div>
                 <button
-                    onClick={() => navigate("/find-partner/filter")}
+                    onClick={handleFilter}
                     className="rounded-[48px] w-[121px] h-[31px]  block mt-[25px] mx-auto text-[#fff] text-sm font-medium"
                     style={{
                         background: "linear-gradient(180deg, #D21878 0%, #4F42A3 100%)",
