@@ -46,7 +46,7 @@ const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({}));
 const Accordian = ({ data, isLoading, edit }) => {
   const hightestEducationalQualification =
     data?.hightestEducationalQualification;
-  console.log(data);
+
   const [expanded, setExpanded] = React.useState("panel1");
 
   const handleChange = (panel) => (event, newExpanded) => {
@@ -589,9 +589,11 @@ const Accordian = ({ data, isLoading, edit }) => {
               {data?.hobbies?.length !== 0 && (
                 <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                   <span className="font-medium">Hobbies</span>
-                  <p className="font-normal">
-                    {data ? data.hobbies : "Not Provided"}
-                  </p>
+                  <div className='flex gap-1 items-center'>
+                    {data?.hobbies && data?.hobbies.map((hobby, index) =>
+                      <p className="font-normal font-Inter text-xs text-[#2B52DD] py-[6px] px-2 bg-[#E5E7EB] rounded" key={index}>{hobby}</p>
+                    )}
+                  </div>
                 </div>
               )}
             </Typography>
@@ -1142,9 +1144,11 @@ const Accordian = ({ data, isLoading, edit }) => {
               {data?.hobbies?.length !== 0 && (
                 <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                   <span className="font-medium">Hobbies</span>
-                  <p className="font-normal">
-                    {data ? data.hobbies : "Not Provided"}
-                  </p>
+                  <div className='flex gap-1 items-center'>
+                    {data?.hobbies && data?.hobbies.map((hobby, index) =>
+                      <p className="font-normal font-Inter text-xs text-[#2B52DD] py-[6px] px-2 bg-[#E5E7EB] rounded" key={index}>{hobby}</p>
+                    )}
+                  </div>
                 </div>
               )}
             </Typography>
