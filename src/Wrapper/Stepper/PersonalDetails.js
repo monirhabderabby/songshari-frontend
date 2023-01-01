@@ -1860,8 +1860,8 @@ export const PersonalDetails = ({ setPage }) => {
                 id="whatAreYouLookingFor"
               >
                 <option value="">What Are You Looking For?</option>
-                <option value="men">Men</option>
-                <option value="women">Women</option>
+                <option value="man">Men</option>
+                <option value="woman">Women</option>
               </select>
             </div>
             <h1 className="text-left ml-2">

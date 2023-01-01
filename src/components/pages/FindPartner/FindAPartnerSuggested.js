@@ -6,7 +6,7 @@ import { useGetRecentMembersQuery } from "../../../Redux/features/userInfo/witho
 import { UserCard } from "../Shared/userCard/UserCard";
 
 export const FindAPartnerSuggested = () => {
-  // varible declation
+  // variable declaration
   // hook variables
   const { data, isSuccess } = useGetRecentMembersQuery();
 
