@@ -326,11 +326,11 @@ const BannerFilterBox = () => {
                                 onSelect={val => setLooking(val)}
                                 options={[
                                     {
-                                        value: "Bride",
+                                        value: "woman",
                                         label: "Bride",
                                     },
                                     {
-                                        value: "Groom",
+                                        value: "man",
                                         label: "Groom",
                                     },
                                 ]}
