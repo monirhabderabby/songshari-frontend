@@ -1,8 +1,13 @@
+// configuration
+import React, { useState } from "react";
+
+// Third party packages
 import { Select } from "antd";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
-import React, { useState } from "react";
 import { MdCreateNewFolder } from "react-icons/md";
 import { v4 as uuidv4 } from "uuid";
+
+// components
 import coolicon from "../../../assets/images/activity/coolicon.png";
 import profile from "../../../assets/images/profile/up1.png";
 import { firebaseStorage } from "../../../firebase.init";
@@ -12,12 +17,14 @@ import { DynamicActivityPage } from "../../pages/DynamicProfilePage/DynamicActiv
 import { MovDynamicActivity } from "../../pages/DynamicProfilePage/MovDynamicActivity";
 
 const SingleUserActivity = () => {
+    // hook variable declaration
     const [photoURL, setPhotoUrl] = useState("");
     const [postText, setPostText] = useState("");
 
     const [addUserPost, { data: response }] = useAddUserPostMutation();
     const { data: posts, isLoading, error } = useGetMyPostsQuery();
 
+    // function declarations
     const addPost = async event => {
         event.preventDefault();
 

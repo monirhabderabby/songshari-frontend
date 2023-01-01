@@ -7,7 +7,6 @@ import { MdOutlinePostAdd } from "react-icons/md";
 import SinglePostCard from "./SinglePostCard";
 
 export const DynamicActivityPage = ({ posts, isLoading, error }) => {
-    if (posts) console.log(posts);
     // js variables
     let content = null;
 
