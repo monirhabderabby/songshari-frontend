@@ -46,7 +46,7 @@ const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({}));
 const Accordian = ({ data, isLoading, edit }) => {
   const hightestEducationalQualification =
     data?.hightestEducationalQualification;
-
+  console.log(data);
   const [expanded, setExpanded] = React.useState("panel1");
 
   const handleChange = (panel) => (event, newExpanded) => {
@@ -202,7 +202,7 @@ const Accordian = ({ data, isLoading, edit }) => {
 
               {data?.hightestEducationalQualification?.degreeName && (
                 <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                  <span className="font-medium"> Degree Name</span>
+                  <span className="font-medium">Degree Name</span>
                   <p className="font-normal">
                     {data?.hightestEducationalQualification?.degreeName
                       ? hightestEducationalQualification?.degreeName
@@ -248,8 +248,8 @@ const Accordian = ({ data, isLoading, edit }) => {
                   <p className="font-normal">
                     {data
                       ? moment(
-                          hightestEducationalQualification?.yearOfPassing
-                        ).format("ll")
+                        hightestEducationalQualification?.yearOfPassing
+                      ).format("ll")
                       : "Not Provided"}
                   </p>
                 </div>
@@ -312,9 +312,9 @@ const Accordian = ({ data, isLoading, edit }) => {
                   </p>
                 </div>
               )}
-              {data?.hairType && (
+              {data?.hairType?.length && (
                 <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                  <span className="font-medium"> Hair Type</span>
+                  <span className="font-medium">Hair Type</span>
                   <p className="font-normal">
                     {data ? data.hairType : "Not Provided"}
                   </p>
@@ -370,7 +370,7 @@ const Accordian = ({ data, isLoading, edit }) => {
               )}
               {data?.maritalStatus && (
                 <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                  <span className="font-medium">Merital status</span>
+                  <span className="font-medium">Marital status</span>
                   <p className="font-normal">
                     {data ? data.maritalStatus : "Not Provided"}
                   </p>
@@ -460,7 +460,7 @@ const Accordian = ({ data, isLoading, edit }) => {
               )}
               {data?.agesOfGirl?.length !== 0 && (
                 <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                  <span className="font-medium"> Ages Of Girl</span>
+                  <span className="font-medium">Ages Of Girl</span>
                   <p className="font-normal">
                     {data ? data.agesOfGirl : "Not Provided"}
                   </p>
@@ -572,7 +572,7 @@ const Accordian = ({ data, isLoading, edit }) => {
               )}
               {data?.numberOfBrother && (
                 <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                  <span className="font-medium">number Of Brother</span>
+                  <span className="font-medium">Number Of Brother</span>
                   <p className="font-normal">
                     {data ? data.numberOfBrother : "Not Provided"}
                   </p>
@@ -580,7 +580,7 @@ const Accordian = ({ data, isLoading, edit }) => {
               )}
               {data?.numberOfSister && (
                 <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                  <span className="font-medium">number Of Sister</span>
+                  <span className="font-medium">Number Of Sister</span>
                   <p className="font-normal">
                     {data ? data.numberOfSister : "Not Provided"}
                   </p>
@@ -743,7 +743,7 @@ const Accordian = ({ data, isLoading, edit }) => {
 
               {data?.hightestEducationalQualification?.degreeName && (
                 <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                  <span className="font-medium"> Degree Name</span>
+                  <span className="font-medium">Degree Name</span>
                   <p className="font-normal">
                     {data?.hightestEducationalQualification?.degreeName
                       ? hightestEducationalQualification?.degreeName
@@ -789,8 +789,8 @@ const Accordian = ({ data, isLoading, edit }) => {
                   <p className="font-normal">
                     {data
                       ? moment(
-                          hightestEducationalQualification?.yearOfPassing
-                        ).format("ll")
+                        hightestEducationalQualification?.yearOfPassing
+                      ).format("ll")
                       : "Not Provided"}
                   </p>
                 </div>
@@ -853,9 +853,9 @@ const Accordian = ({ data, isLoading, edit }) => {
                   </p>
                 </div>
               )}
-              {data?.hairType && (
+              {data?.hairType?.length && (
                 <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                  <span className="font-medium"> Hair Type</span>
+                  <span className="font-medium">Hair Type</span>
                   <p className="font-normal">
                     {data ? data.hairType : "Not Provided"}
                   </p>
@@ -911,7 +911,7 @@ const Accordian = ({ data, isLoading, edit }) => {
               )}
               {data?.maritalStatus && (
                 <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                  <span className="font-medium">Merital status</span>
+                  <span className="font-medium">Marital status</span>
                   <p className="font-normal">
                     {data ? data.maritalStatus : "Not Provided"}
                   </p>
@@ -944,7 +944,7 @@ const Accordian = ({ data, isLoading, edit }) => {
               {data?.isPartnerAwarOfMarriage && (
                 <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                   <span className="font-medium">
-                    Is Partner Awar Of Marriage
+                    Is Partner Aware Of Marriage
                   </span>
                   <p className="font-normal">
                     {data ? data.isPartnerAwarOfMarriage : "Not Provided"}
@@ -1001,7 +1001,7 @@ const Accordian = ({ data, isLoading, edit }) => {
               )}
               {data?.agesOfGirl?.length !== 0 && (
                 <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                  <span className="font-medium"> Ages Of Girl</span>
+                  <span className="font-medium">Ages Of Girl</span>
                   <p className="font-normal">
                     {data ? data.agesOfGirl : "Not Provided"}
                   </p>
@@ -1113,7 +1113,7 @@ const Accordian = ({ data, isLoading, edit }) => {
               )}
               {data?.numberOfBrother && (
                 <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                  <span className="font-medium">number Of Brother</span>
+                  <span className="font-medium">Number Of Brother</span>
                   <p className="font-normal">
                     {data ? data.numberOfBrother : "Not Provided"}
                   </p>
@@ -1121,7 +1121,7 @@ const Accordian = ({ data, isLoading, edit }) => {
               )}
               {data?.numberOfSister && (
                 <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                  <span className="font-medium">number Of Sister</span>
+                  <span className="font-medium">Number Of Sister</span>
                   <p className="font-normal">
                     {data ? data.numberOfSister : "Not Provided"}
                   </p>
@@ -1165,7 +1165,7 @@ const Accordian = ({ data, isLoading, edit }) => {
                 className="hidden md:block"
               >
                 <h1 className="text-[24px] text-[#333333] leading-[34px] font-fira font-semibold">
-                  Profesional Information
+                  Professional Information
                 </h1>
               </Typography>
               <Typography
@@ -1174,7 +1174,7 @@ const Accordian = ({ data, isLoading, edit }) => {
                 className="md:hidden"
               >
                 <h1 className="text-[18px] text-[#333333] leading-[34px] font-fira">
-                  Profesional Information
+                  Professional Information
                 </h1>
               </Typography>
             </div>
