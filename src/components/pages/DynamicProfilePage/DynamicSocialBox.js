@@ -1,7 +1,7 @@
 // configuration
 import React from "react";
 
-export const SocialMediaBox = ({ LinkedInId, faceBookId, instagramId }) => {
+export const DynamicSocialBox = ({ LinkedInId, faceBookId, instagramId }) => {
     return (
         <div className="mt-[24px] h-[100px] max-w-[360px] bg-white shadow-[0px_10px_5px_rgba(119,123,146,0.02)] rounded-[10px] flex justify-around items-center">
             <a href={LinkedInId} target="_linkedIn">

@@ -19,6 +19,7 @@ export const SingleProfiles = () => {
     const [SocialBoxOpen, setSocialBoxOpen] = useState(false);
     const { data, isLoading, error } = useGetProfileDetailsWIthAuthQuery();
 
+    // JS Variables
     // decision making about social Box
     const { LinkedInId } = data || {};
     const { faceBookId } = data || {};

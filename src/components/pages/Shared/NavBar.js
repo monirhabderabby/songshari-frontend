@@ -8,10 +8,8 @@ import { useDispatch, useSelector } from "react-redux";
 
 // Components
 import blackLogo from "../../../assets/images/Logo/logoBlack.png";
-import agent from "../../../assets/images/NavIcons/Agent.svg";
 import blog from "../../../assets/images/NavIcons/Blog.svg";
 import findPartner from "../../../assets/images/NavIcons/Find-Your-Partner.svg";
-import kazi from "../../../assets/images/NavIcons/Kazi.svg";
 import bng from "../../../assets/images/NavIcons/Language-Switcher-Bangla.svg";
 import eng from "../../../assets/images/NavIcons/Language-Switcher-English.svg";
 import findALawyer from "../../../assets/images/NavIcons/Lawyer.svg";
@@ -51,8 +49,8 @@ const NavBar = ({ bg }) => {
         { id: 4, to: "/course", icon: course, tooltip: "Course" },
         // { id: 5, to: '/shop', icon: shop, tooltip: "Shop" },
         { id: 6, to: "/findalawyer", icon: findALawyer, tooltip: "Find a Lawyer" },
-        { id: 7, to: "/kazi", icon: kazi, tooltip: "Kazi" },
-        { id: 8, to: "/agent", icon: agent, tooltip: "Agent" },
+        { id: 7, to: "/kazi", icon: "https://svgshare.com/i/p9U.svg", tooltip: "Kazi" },
+        { id: 8, to: "/agent", icon: "https://svgshare.com/i/pDa.svg", tooltip: "Agent" },
     ];
 
     // function declaration for logout

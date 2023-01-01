@@ -1,15 +1,12 @@
 // configuration
 import React from "react";
-import { useParams } from "react-router";
 
 // components
 import { AiOutlineWarning } from "react-icons/ai";
 import { MdOutlinePostAdd } from "react-icons/md";
-import SinglePostCard from "./SinglePostCard";
+import SinglePostCard from "../../../pages/DynamicProfilePage/SinglePostCard";
 
-export const DynamicActivityPage = ({ posts, isLoading, error }) => {
-    const { id } = useParams();
-
+export const AllPostsOfLoggedInUser = ({ posts, isLoading, error }) => {
     // js variables
     let content = null;
 
