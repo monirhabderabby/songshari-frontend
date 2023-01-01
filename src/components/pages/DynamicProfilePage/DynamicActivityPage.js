@@ -4,12 +4,10 @@ import React from "react";
 // components
 import { AiOutlineWarning } from "react-icons/ai";
 import { MdOutlinePostAdd } from "react-icons/md";
-import { useGetMyPostsQuery } from "../../../Redux/features/connections/connectionApi";
 import SinglePostCard from "./SinglePostCard";
 
-export const DynamicActivityPage = ({ postRefetch }) => {
-    const { data: posts, isLoading, error } = useGetMyPostsQuery();
-
+export const DynamicActivityPage = ({ posts, isLoading, error }) => {
+    if (posts) console.log(posts);
     // js variables
     let content = null;
 

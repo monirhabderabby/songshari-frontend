@@ -6,6 +6,7 @@ import { v4 as uuidv4 } from "uuid";
 import coolicon from "../../../assets/images/activity/coolicon.png";
 import profile from "../../../assets/images/profile/up1.png";
 import { firebaseStorage } from "../../../firebase.init";
+import { useGetMyPostsQuery } from "../../../Redux/features/connections/connectionApi";
 import { useAddUserPostMutation } from "../../../Redux/features/userInfo/userApi";
 import { DynamicActivityPage } from "../../pages/DynamicProfilePage/DynamicActivityPage";
 import { MovDynamicActivity } from "../../pages/DynamicProfilePage/MovDynamicActivity";
@@ -13,15 +14,16 @@ import { MovDynamicActivity } from "../../pages/DynamicProfilePage/MovDynamicAct
 const SingleUserActivity = () => {
     const [photoURL, setPhotoUrl] = useState("");
     const [postText, setPostText] = useState("");
-    const newPostText = { postBody: postText };
 
     const [addUserPost, { data: response }] = useAddUserPostMutation();
+    const { data: posts, isLoading, error } = useGetMyPostsQuery();
 
     const addPost = async event => {
         event.preventDefault();
+
         await addUserPost({
-            attachment: [photoURL],
-            postBody: newPostText,
+            attachment: photoURL,
+            postBody: postText,
         });
     };
 
@@ -56,8 +58,12 @@ const SingleUserActivity = () => {
                         <hr />
                         <div className="flex w-full justify-between mt-[30px]">
                             <div className="flex items-center">
-                                <label className="mr-[10px] bg-[#F7E9F8] rounded-[20px] cursor-pointer">
-                                    <div className="flex items-center justify-center h-[30px] w-[60px] text-2xl text-[#E41272]">
+                                <label className={`mr-[10px] ${photoURL ? "bg-green-100" : "bg-[#F7E9F8]"} rounded-[20px] cursor-pointer`}>
+                                    <div
+                                        className={`flex items-center justify-center h-[30px] w-[60px] text-2xl ${
+                                            photoURL ? "text-green-400" : "text-[#E41272]"
+                                        }`}
+                                    >
                                         <MdCreateNewFolder />
                                     </div>
                                     <input className="hidden" type="file" id="postPhoto" accept=".png, .jpg, .jpeg" onChange={photoHandler} />
@@ -78,7 +84,7 @@ const SingleUserActivity = () => {
                             </button>
                         </div>
                     </div>
-                    <DynamicActivityPage></DynamicActivityPage>
+                    <DynamicActivityPage {...{ posts, isLoading, error }}></DynamicActivityPage>
                 </div>
             </div>
             <div className="md:hidden w-full">
