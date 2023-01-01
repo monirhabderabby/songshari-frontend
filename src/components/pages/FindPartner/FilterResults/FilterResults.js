@@ -3,7 +3,7 @@ import React from "react";
 export const FilterResults = () => {
   return (
     <div>
-      <p>Something</p>
+      <p>Something done</p>
     </div>
   );
 };
