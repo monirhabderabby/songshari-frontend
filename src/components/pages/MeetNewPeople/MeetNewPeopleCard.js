@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import meetNewPeople from "../../../assets/css/MeetNewPeople.module.css";
 
 const MeetNewPeopleCard = ({ data }) => {
@@ -11,9 +12,13 @@ const MeetNewPeopleCard = ({ data }) => {
             <div className={meetNewPeople.number}>{data.number}</div>
           </div>
           <h4 className={meetNewPeople.title}>{data.title}</h4>
-          <a href="!#" className={meetNewPeople.customButton}>
+
+          <Link to='/login'>
+          <a  className={meetNewPeople.customButton}>
             Join Now !
           </a>
+          </Link>
+          
         </div>
       </div>
     </>

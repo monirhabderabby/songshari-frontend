@@ -20,7 +20,7 @@ const DynamicProfileCard = ({ data, isLoading }) => {
   // js variable declare
   const name = data?.firstName + " " + data?.lastName || "Not Available";
   const likes = data?.likes.length || 0;
-  const UserAge = data?.dateOfBirth ? age + "Years old" : "Not provided yet";
+  const UserAge = data?.dateOfBirth ? age + "Years old" : "Not provided";
   let content = null;
 
   if (isLoading) {
@@ -96,6 +96,7 @@ const DynamicProfileCard = ({ data, isLoading }) => {
             </div>
           </div>
         </div>
+        {/* mobile version  */}
         <div className="lg:hidden">
           <div className="bg-[#D9D9D9] max-w-[337px] flex justify-center items-center flex-col  mx-auto h-[92px] ">
             <img
@@ -115,12 +116,12 @@ const DynamicProfileCard = ({ data, isLoading }) => {
                   alt="Not Available"
                 />
                 <h2 className="pl-[7px] text-sm font-semibold text-[#000000]">
-                  Marvis Ighedosa
+                  {name}
                 </h2>
               </div>
-              <div className="grid grid-cols-3">
+              <div className="grid grid-cols-4">
                 <div className="heu col-span-1">
-                  <h1 className="">21 years old</h1>
+                  <h1 className="">{UserAge}</h1>
                   <img
                     src="https://i.ibb.co/HNrqrcw/image.png"
                     className="ml-2"
@@ -132,12 +133,15 @@ const DynamicProfileCard = ({ data, isLoading }) => {
                   <h1 className=" ml-6">Paris,France</h1>
                 </div>
 
-                <div>
-                  <h1 className="ml-8">
-                    {" "}
-                    <i className="fa-regular fa-heart"></i> 257
-                  </h1>
+                <div className="ml-4">
+                  <img className="ml-8" src={blackLove} alt="blackLove">
+                  </img>
+                  
                 </div>
+                <div>
+                <span>{likes}</span>
+                </div>
+               
               </div>
             </div>
           </div>
