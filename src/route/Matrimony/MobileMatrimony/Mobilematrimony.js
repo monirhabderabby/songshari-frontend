@@ -1,10 +1,13 @@
-
+// components 
 import Login from "../../../components/pages/Authentications/Login";
+import MobileLogin from "../../../components/pages/Authentications/MobileDesign/MobileLogin";
+import MobileSignUp from "../../../components/pages/Authentications/MobileDesign/MobileSignUp";
 import Signup from "../../../components/pages/Authentications/SignUp";
 import MobileDiamondPlan from "../../../components/pages/Membership/MobileVersion/MobileDiamondPlan";
 import MobileFreePlan from "../../../components/pages/Membership/MobileVersion/MobileFreePlan";
 import MobileGoldPlan from "../../../components/pages/Membership/MobileVersion/MobileGoldPlan";
 import UpgradePlan from "../../../components/pages/Membership/MobileVersion/UpgradePlan";
+import MobileSuggested from "../../../components/pages/TopProfile/MobileTopProfile/MobileSuggested";
 import Suggested from "../../../components/pages/TopProfile/Suggested";
 import TopBride from "../../../components/pages/TopProfile/TopBride";
 import TopGroom from "../../../components/pages/TopProfile/TopGroom";
@@ -19,10 +22,10 @@ import { MatchesMov } from "../../../Wrapper/Home/mobileversion/MatchesMov";
 import { MeetMov } from "../../../Wrapper/Home/mobileversion/meet/MeetMov";
 import { MobileHome } from "../../../Wrapper/Home/mobileversion/MobileHome";
 import Certificate from "../../../Wrapper/Home/mobileversion/PhotoGallery/certificate/Certificate";
-import MobileCertificate from "../../../Wrapper/Home/mobileversion/PhotoGallery/certificate/MobileCertificate";
 import { PrivacyMov } from "../../../Wrapper/Home/mobileversion/privacy/PrivacyMov";
 import { Setting } from "../../../Wrapper/Home/mobileversion/setting/Setting";
 
+// routes 
 const MobileMatrimony = [
     {
         id: 1,
@@ -32,29 +35,29 @@ const MobileMatrimony = [
             {
                 id: 1,
                 path: "/",
-                element: <Suggested />,
+                element: <MobileSuggested />,
             },
             {
                 id: 2,
-                path: "top-bride",
+                path: "mobile-top-bride",
                 element: <TopBride />,
             },
             {
                 id: 3,
-                path: "top-groom",
+                path: "mobile-top-groom",
                 element: <TopGroom />,
             },
         ],
     },
     {
         id: 2,
-        path: "/login",
-        element: <Login />,
+        path: "/mobile-login",
+        element: <MobileLogin />,
     },
     {
         id: 3,
-        path: "/signup",
-        element: <Signup />,
+        path: "/mobile-signup",
+        element: <MobileSignUp />,
     },
     {
         id: 4,

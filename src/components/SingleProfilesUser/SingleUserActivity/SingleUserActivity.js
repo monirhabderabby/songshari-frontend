@@ -12,7 +12,7 @@ import coolicon from "../../../assets/images/activity/coolicon.png";
 import profile from "../../../assets/images/profile/up1.png";
 import { firebaseStorage } from "../../../firebase.init";
 import { useAddUserPostMutation, useGetMyPostsWithAuthQuery } from "../../../Redux/features/Post/postApi";
-import { MovDynamicActivity } from "../../pages/DynamicProfilePage/MovDynamicActivity";
+import { MovDynamicActivity } from "../../pages/DynamicProfilePage/MobileDynamicActivity/MovDynamicActivity";
 import { AllPostsOfLoggedInUser } from "./AllPostsOfLoggedInUser/AllPostsOfLoggedInUser";
 
 const SingleUserActivity = () => {

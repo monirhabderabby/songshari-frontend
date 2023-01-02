@@ -16,9 +16,7 @@ const reducer = combineReducers({
     userInfo: userInfo,
     filter: filterSlice,
 });
-
 const persistedReducer = persistReducer(persistConfig, reducer);
-
 const store = configureStore({
     reducer: {
         [apiSlice.reducerPath]: apiSlice.reducer,

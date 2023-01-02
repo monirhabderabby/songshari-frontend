@@ -11,7 +11,6 @@ import { DynamicPhotosContainer } from "./DynamicPhotosContainer";
 import DynamicProfileCard from "./DynamicProfileCard";
 import { DynamicSocialBox } from "./DynamicSocialBox";
 import DynamicTable from "./DynamicTable";
-import { MobileDynamicProfile } from "./MobileDynamicProfile";
 
 export const DynamicProfilePage = () => {
     // hook variable declaration
@@ -52,10 +51,6 @@ export const DynamicProfilePage = () => {
                                         {SocialBoxOpen && <DynamicSocialBox {...{ LinkedInId, faceBookId, instagramId }} />}
                                         <DynamicConnectionsCard {...{ data, isLoading }} />
                                         <DynamicPhotosContainer />
-                                    </div>
-                                    <div className="lg:hidden">
-                                        <DynamicProfileCard {...{ data, isLoading }} />
-                                        <MobileDynamicProfile {...{ data, isLoading }} />
                                     </div>
                                 </div>
                                 <div className="w-full lg:w-3/5">

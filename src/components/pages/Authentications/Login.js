@@ -179,9 +179,6 @@ const Login = () => {
                 {open && <ForgetPasswordModal {...{ open, modalControll }} />}
                 <Toaster />
             </div>
-            <div className="lg:hidden md:block">
-                <MobileLogin />
-            </div>
         </div>
     );
 };
