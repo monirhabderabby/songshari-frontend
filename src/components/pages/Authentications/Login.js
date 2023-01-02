@@ -19,7 +19,6 @@ import Error from "../../ui/error/Error";
 import ForgetPasswordModal from "./ForgetPassword/ForgetPasswordModal";
 import { EmailField } from "./InputFields/EmailField";
 import { PasswordField } from "./InputFields/PasswordField";
-import MobileLogin from "./MobileDesign/MobileLogin";
 
 // css files
 import "../../../App.css";
