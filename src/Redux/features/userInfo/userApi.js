@@ -144,26 +144,6 @@ export const userApi = apiSlice.injectEndpoints({
             }),
             keepUnusedDataFor: 0,
         }),
-        addUserPost: builder.mutation({
-            query: data => ({
-                url: "/member/post/add",
-                method: "POST",
-                headers: {
-                    authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-                },
-                body: data,
-            }),
-        }),
-        getMemberAllPost: builder.query({
-            query: () => ({
-                url: "/member/post",
-                method: "GET",
-                headers: {
-                    authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-                },
-            }),
-            keepUnusedDataFor: 0,
-        }),
         findFilteredUser: builder.mutation({
             query: data => ({
                 url: "/member/connections/search",
@@ -194,7 +174,5 @@ export const {
     useUpdateOthersDetailsMutation,
     useUpdateProfessionalDetailsMutation,
     useGetProfileDetailsWIthAuthQuery,
-    useAddUserPostMutation,
-    useGetMemberAllPostQuery,
     useFindFilteredUserMutation,
 } = userApi;

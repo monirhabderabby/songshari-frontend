@@ -11,8 +11,7 @@ import { v4 as uuidv4 } from "uuid";
 import coolicon from "../../../assets/images/activity/coolicon.png";
 import profile from "../../../assets/images/profile/up1.png";
 import { firebaseStorage } from "../../../firebase.init";
-import { useGetMyPostsQuery } from "../../../Redux/features/connections/connectionApi";
-import { useAddUserPostMutation } from "../../../Redux/features/userInfo/userApi";
+import { useAddUserPostMutation, useGetMyPostsWithAuthQuery } from "../../../Redux/features/Post/postApi";
 import { MovDynamicActivity } from "../../pages/DynamicProfilePage/MovDynamicActivity";
 import { AllPostsOfLoggedInUser } from "./AllPostsOfLoggedInUser/AllPostsOfLoggedInUser";
 
@@ -22,7 +21,7 @@ const SingleUserActivity = () => {
     const [postText, setPostText] = useState("");
 
     const [addUserPost, { data: response }] = useAddUserPostMutation();
-    const { data: posts, isLoading, error } = useGetMyPostsQuery();
+    const { data: posts, isLoading, error } = useGetMyPostsWithAuthQuery();
 
     // function declarations
     const addPost = async event => {

@@ -1,64 +1,63 @@
-import { Select, message } from 'antd';
-import React from 'react';
-import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router';
-import { useUpdateOthersDetailsMutation } from '../../../../Redux/features/userInfo/userApi';
+import { message, Select } from "antd";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
+import { useUpdateOthersDetailsMutation } from "../../../../Redux/features/userInfo/userApi";
 
 const EditOthersInfo = () => {
     const [messageApi, contextHolder] = message.useMessage();
 
     const [othersInfo, setOthersInfo] = useState({});
-    // update query function 
+    // update query function
     const [updateOthersDetails, { isSuccess, isError, isLoading }] = useUpdateOthersDetailsMutation();
 
-    const handleDoSmoke = (value) => {
-        setOthersInfo({ ...othersInfo, doSmoke: value })
-    }
-    const handleDoDrink = (value) => {
-        setOthersInfo({ ...othersInfo, doDrink: value })
-    }
-    const handleHavePet = (value) => {
-        setOthersInfo({ ...othersInfo, havePet: value })
-    }
-    const handleHaveTattos = (value) => {
-        setOthersInfo({ ...othersInfo, haveTattos: value })
-    }
-    const handleHaveVoluntaryExp = (value) => {
-        setOthersInfo({ ...othersInfo, haveVoluntaryExp: value })
-    }
-    const handleDoTravelledOutsiteBD = (value) => {
-        setOthersInfo({ ...othersInfo, travelledOutsideBangladesh: value })
-    }
-    const handleJoinFamily = (value) => {
-        setOthersInfo({ ...othersInfo, likeJoinFamily: value })
-    }
-    const handleBelieveInGod = (value) => {
-        setOthersInfo({ ...othersInfo, believeInGod: value })
-    }
+    const handleDoSmoke = value => {
+        setOthersInfo({ ...othersInfo, doSmoke: value });
+    };
+    const handleDoDrink = value => {
+        setOthersInfo({ ...othersInfo, doDrink: value });
+    };
+    const handleHavePet = value => {
+        setOthersInfo({ ...othersInfo, havePet: value });
+    };
+    const handleHaveTattos = value => {
+        setOthersInfo({ ...othersInfo, haveTattos: value });
+    };
+    const handleHaveVoluntaryExp = value => {
+        setOthersInfo({ ...othersInfo, haveVoluntaryExp: value });
+    };
+    const handleDoTravelledOutsiteBD = value => {
+        setOthersInfo({ ...othersInfo, travelledOutsideBangladesh: value });
+    };
+    const handleJoinFamily = value => {
+        setOthersInfo({ ...othersInfo, likeJoinFamily: value });
+    };
+    const handleBelieveInGod = value => {
+        setOthersInfo({ ...othersInfo, believeInGod: value });
+    };
     //for navigate to user profile after update data
-    const navigate = useNavigate()
-    const handleSubmit = async (e) => {
+    const navigate = useNavigate();
+    const handleSubmit = async e => {
         e.preventDefault();
-        const data = { ...othersInfo }
+        const data = { ...othersInfo };
         await updateOthersDetails(data);
-    }
+    };
 
     // error success and loading handler
     useEffect(() => {
-        const key = 'updated'
+        const key = "updated";
         if (isLoading) {
             messageApi.open({
                 key,
-                type: 'loading',
-                content: 'Loading...',
+                type: "loading",
+                content: "Loading...",
             });
         }
 
         if (isSuccess) {
             messageApi.open({
                 key,
-                type: 'success',
-                content: 'Data updated succesfully',
+                type: "success",
+                content: "Data updated succesfully",
                 duration: 2,
             });
         }
@@ -66,146 +65,140 @@ const EditOthersInfo = () => {
         if (isError) {
             messageApi.open({
                 key,
-                type: 'error',
-                content: 'Server error! try again!!'
-            })
+                type: "error",
+                content: "Server error! try again!!",
+            });
         }
         if (!isLoading && !isError && isSuccess) {
             setTimeout(() => {
-                navigate('/userprofile')
-
-            }, 2000)
+                navigate("/userprofile");
+            }, 2000);
         }
-    }, [isSuccess, isLoading, isError]);
+    }, [isSuccess, isLoading, isError, messageApi, navigate]);
     //all data handler function
     return (
         <div>
-            <div className='max-w-[523px] mx-auto bg-white drop-shadow-lg px-4 py-6 mb-4 rounded'>
+            <div className="max-w-[523px] mx-auto bg-white drop-shadow-lg px-4 py-6 mb-4 rounded">
                 <form onSubmit={handleSubmit}>
-                    <div className='pb-4'>
-                        <h1 className='text-sm block pb-2 text-slate-600 font-medium'>Do you smoke?</h1>
+                    <div className="pb-4">
+                        <h1 className="text-sm block pb-2 text-slate-600 font-medium">Do you smoke?</h1>
                         <Select
-                            className='w-full'
-                            size='large'
+                            className="w-full"
+                            size="large"
                             placeholder="Do you somoke?"
                             onChange={handleDoSmoke}
                             options={[
-                                { value: 'yes', label: 'Yes' },
-                                { value: 'no', label: 'No' }
+                                { value: "yes", label: "Yes" },
+                                { value: "no", label: "No" },
                             ]}
                         />
                     </div>
-                    <div className='pb-4'>
-                        <h1 className='text-sm block pb-2 text-slate-600 font-medium'>Do you Drink?</h1>
+                    <div className="pb-4">
+                        <h1 className="text-sm block pb-2 text-slate-600 font-medium">Do you Drink?</h1>
                         <Select
-                            className='w-full'
-                            size='large'
+                            className="w-full"
+                            size="large"
                             placeholder="Do you Drink?"
                             onChange={handleDoDrink}
                             options={[
-                                { value: 'yes', label: 'Yes' },
-                                { value: 'no', label: 'No' }
+                                { value: "yes", label: "Yes" },
+                                { value: "no", label: "No" },
                             ]}
                         />
                     </div>
-                    <div className='pb-4'>
-                        <h1 className='text-sm block pb-2 text-slate-600 font-medium'>Do you have pet?</h1>
+                    <div className="pb-4">
+                        <h1 className="text-sm block pb-2 text-slate-600 font-medium">Do you have pet?</h1>
                         <Select
-                            className='w-full'
-                            size='large'
+                            className="w-full"
+                            size="large"
                             placeholder=">Do you have pet?"
                             onChange={handleHavePet}
                             options={[
-                                { value: 'yes', label: 'Yes' },
-                                { value: 'no', label: 'No' }
+                                { value: "yes", label: "Yes" },
+                                { value: "no", label: "No" },
                             ]}
                         />
                     </div>
-                    <div className='pb-4'>
-                        <h1 className='text-sm block pb-2 text-slate-600 font-medium'>Do you have tattos?</h1>
+                    <div className="pb-4">
+                        <h1 className="text-sm block pb-2 text-slate-600 font-medium">Do you have tattos?</h1>
                         <Select
-                            className='w-full'
-                            size='large'
+                            className="w-full"
+                            size="large"
                             placeholder="Do you have tattos??"
                             onChange={handleHaveTattos}
                             options={[
-                                { value: 'yes', label: 'Yes' },
-                                { value: 'no', label: 'No' }
+                                { value: "yes", label: "Yes" },
+                                { value: "no", label: "No" },
                             ]}
                         />
                     </div>
-                    <div className='pb-4'>
-                        <h1 className='text-sm block pb-2 text-slate-600 font-medium'>Do you voluntary experience?</h1>
+                    <div className="pb-4">
+                        <h1 className="text-sm block pb-2 text-slate-600 font-medium">Do you voluntary experience?</h1>
                         <Select
-                            className='w-full'
-                            size='large'
+                            className="w-full"
+                            size="large"
                             placeholder="Do you voluntary experience?"
                             onChange={handleHaveVoluntaryExp}
                             options={[
-                                { value: 'yes', label: 'Yes' },
-                                { value: 'no', label: 'No' }
+                                { value: "yes", label: "Yes" },
+                                { value: "no", label: "No" },
                             ]}
                         />
                     </div>
-                    <div className='pb-4'>
-                        <h1 className='text-sm block pb-2 text-slate-600 font-medium'>Do you Travel Outsite Bangladesh?</h1>
+                    <div className="pb-4">
+                        <h1 className="text-sm block pb-2 text-slate-600 font-medium">Do you Travel Outsite Bangladesh?</h1>
                         <Select
-                            className='w-full'
-                            size='large'
+                            className="w-full"
+                            size="large"
                             placeholder="Do you travel outsite Bangladesh?"
                             onChange={handleDoTravelledOutsiteBD}
                             options={[
-                                { value: 'yes', label: 'Yes' },
-                                { value: 'no', label: 'No' }
+                                { value: "yes", label: "Yes" },
+                                { value: "no", label: "No" },
                             ]}
                         />
                     </div>
-                    <div className='pb-4'>
-                        <h1 className='text-sm block pb-2 text-slate-600 font-medium'>Do you Like Join Family?</h1>
+                    <div className="pb-4">
+                        <h1 className="text-sm block pb-2 text-slate-600 font-medium">Do you Like Join Family?</h1>
                         <Select
-                            className='w-full'
-                            size='large'
+                            className="w-full"
+                            size="large"
                             placeholder="Do you like join family?"
                             onChange={handleJoinFamily}
                             options={[
-                                { value: 'yes', label: 'Yes' },
-                                { value: 'no', label: 'No' }
+                                { value: "yes", label: "Yes" },
+                                { value: "no", label: "No" },
                             ]}
                         />
                     </div>
-                    <div className='pb-4'>
-                        <h1 className='text-sm block pb-2 text-slate-600 font-medium'>Do you Believe in God?</h1>
+                    <div className="pb-4">
+                        <h1 className="text-sm block pb-2 text-slate-600 font-medium">Do you Believe in God?</h1>
                         <Select
-                            className='w-full'
-                            size='large'
+                            className="w-full"
+                            size="large"
                             placeholder="Do you Believe in God?"
                             onChange={handleBelieveInGod}
                             options={[
-                                { value: 'yes', label: 'Yes' },
-                                { value: 'no', label: 'No' }
+                                { value: "yes", label: "Yes" },
+                                { value: "no", label: "No" },
                             ]}
                         />
                     </div>
                     <div>
                         <input
-                            type='submit'
+                            type="submit"
                             value="Save"
                             style={{
                                 background: "linear-gradient(180deg, #E41272 0%, #942DD9 100%)",
                             }}
-                            className="w-full text-center py-[8] py-[10px] text-[#fff]  text-lg font-medium rounded"
+                            className="w-full text-center py-[10px] text-[#fff]  text-lg font-medium rounded"
                         />
-
                     </div>
                 </form>
-
             </div>
-            <div>
-                {contextHolder}
-            </div>
+            <div>{contextHolder}</div>
         </div>
-
     );
-}
+};
 
 export default EditOthersInfo;

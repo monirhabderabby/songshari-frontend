@@ -5,10 +5,13 @@ import { useParams } from "react-router";
 // components
 import { AiOutlineWarning } from "react-icons/ai";
 import { MdOutlinePostAdd } from "react-icons/md";
+import { useGetDynamicPostsQuery } from "../../../Redux/features/Post/postApi";
 import SinglePostCard from "./SinglePostCard";
 
-export const DynamicActivityPage = ({ posts, isLoading, error }) => {
+export const DynamicActivityPage = () => {
+    // hook variable declaration
     const { id } = useParams();
+    const { data: posts, isLoading, error } = useGetDynamicPostsQuery(id);
 
     // js variables
     let content = null;

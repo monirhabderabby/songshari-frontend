@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
+import { ThreeDots } from "react-loader-spinner";
+import { useAddMatrimonyUserMatchPreferenceMutation } from "../../../Redux/features/MatchesPreferences/matchesPreferenceApi";
 import BasicInfoForm from "./BasicInfoForm";
 import FamilyInfoForm from "./FamilyInfoForm";
 import OthersInfoForm from "./OthersInfoForm";
 import ProfessionalInfoForm from "./ProfessionalInfoForm";
 
-export default function MatchPreferenceForm() {
+export default function MatchPreferenceForm({ setMatchesModalOpen }) {
+    // hook variable declaration
     const [familyInfo, setFamilyInfo] = useState({
         fatherStatus: "",
         fatherProfession: "",
@@ -39,6 +42,9 @@ export default function MatchPreferenceForm() {
     const [countries, setCountries] = useState([]);
     const [professions, setProfessions] = useState([]);
 
+    // api
+    const [addMatrimonyUserMatchPreference, { data, isLoading }] = useAddMatrimonyUserMatchPreferenceMutation();
+
     useEffect(() => {
         fetch("json/district.json")
             .then(res => res.json())
@@ -57,11 +63,19 @@ export default function MatchPreferenceForm() {
             .then(data => setProfessions(data));
     }, []);
 
+    useEffect(() => {
+        if (data?.success) {
+            setMatchesModalOpen(false);
+        }
+    }, [data, setMatchesModalOpen]);
+
+    // function declaration
     const handleSubmit = e => {
         const data = { familyInfo, basicInfo, othersInfo, professionalInfo };
-        console.log("matche form Object", data);
         e.preventDefault();
+        addMatrimonyUserMatchPreference(data);
     };
+
     return (
         <div>
             <form onSubmit={handleSubmit}>
@@ -77,15 +91,21 @@ export default function MatchPreferenceForm() {
                     </div>
                 </div>
                 <div className="flex justify-center items-center ] mt-[30px] ">
-                    <input
-                        type="submit"
-                        value="Submit"
-                        // onClick={handleSubmit}
-                        style={{
-                            background: "linear-gradient(180deg, #E41272 0%, #942DD9 100%)",
-                        }}
-                        className=" text-center px-6 py-2 text-[#fff]  text-xl font-medium rounded"
-                    />
+                    <div className="bg-[linear-gradient(180deg,_#E41272_0%,_#942DD9_100%)] text-center px-6 py-2 text-[#fff]  text-xl font-medium rounded">
+                        {isLoading && (
+                            <ThreeDots
+                                height="30"
+                                width="70"
+                                radius="9"
+                                color="#FFFFFF"
+                                ariaLabel="three-dots-loading"
+                                wrapperStyle={{}}
+                                wrapperClassName=""
+                                visible={true}
+                            />
+                        )}
+                        {!isLoading && <input type="submit" value="Submit" />}
+                    </div>
                 </div>
             </form>
         </div>
