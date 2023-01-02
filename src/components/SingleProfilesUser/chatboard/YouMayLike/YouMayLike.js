@@ -8,8 +8,8 @@ import { MdOutlineRecommend } from "react-icons/md";
 
 // components
 import { useGetSuggestedUsersQuery } from "../../../../Redux/features/AllRecentData/recentApi";
-import { CardYouMayLike } from "../../../pages/Shared/CardYouMayLike/CardYouMayLike";
-import { YouMayLikeSkeletionLoader } from "../../../pages/Shared/Loader/Cards/YouMayLikeSkeletionLoader";
+import { CardYouMayLike } from "../../../shared/Cards/CardYouMayLike/CardYouMayLike";
+import { YouMayLikeSkeletionLoader } from "../../../shared/Cards/Loader/YouMayLikeSkeletionLoader";
 
 export const YouMayLike = () => {
     // varible declation
