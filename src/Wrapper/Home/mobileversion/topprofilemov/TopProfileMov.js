@@ -16,11 +16,11 @@ const TopProfileMov = () => {
             <p className="text-[11px] text-center">Suggested For You</p>
           </NavLink>
 
-          <NavLink to="/top-bride" className='mr-2'>
+          <NavLink to="/mobile-top-bride" className='mr-2'>
             <p className="text-[11px] text-center pl-[16px] pr-[16px] font-semibold">Top Bride</p>
           </NavLink>
 
-          <NavLink to="/top-broom">
+          <NavLink to="/mobile-top-groom">
             <p className="text-[11px] text-center pl-[16px] pr-[16px] font-semibold">Top Groom</p>
           </NavLink>
         </div>

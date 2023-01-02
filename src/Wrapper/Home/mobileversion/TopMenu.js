@@ -105,18 +105,18 @@ export const TopMenu = () => {
                         <MenuItem onClick={handleClose}>
                             {
                                 user ? <div>
-                                    <Link to="/login">
+                                    <Link to="/mobile-login">
                                     <button  onClick={logoutButton} className="bg-login-mov-home rounded-full text-white px-3">LogOut</button>
                                 </Link>
                               
                                 </div>
                                  :
                                  <div className="login-signup">
-                                  <Link to="/login">
+                                  <Link to="/mobile-login">
                                       <button className="bg-login-mov-home rounded-full text-white px-3">Log In</button>
                                   </Link>
                                   <p className="mx-2">Or</p>
-                                  <Link to="/signup">
+                                  <Link to="/mobile-signup">
                                       <button className="bg-login-mov-home rounded-full text-white px-3">Sign Up</button>
                                   </Link>
                               </div>

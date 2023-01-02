@@ -2,10 +2,10 @@
 import React from "react";
 
 // components
-import love from "../../../assets/images/icons/coolicon.svg";
-import profile from "../../../assets/images/profile/up1.png";
-import { getHoursMinutes } from "../../../Helper/helper";
-import { useGetMyPostsQuery } from "../../../Redux/features/connections/connectionApi";
+import love from "../../../../assets/images/icons/coolicon.svg";
+import profile from "../../../../assets/images/profile/up1.png";
+import { getHoursMinutes } from "../../../../Helper/helper";
+import { useGetMyPostsQuery } from "../../../../Redux/features/connections/connectionApi";   
 
 export const MovDynamicActivity = ({ postRefetch }) => {
     const { data: posts, isLoading } = useGetMyPostsQuery();
