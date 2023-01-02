@@ -5,6 +5,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
 import { setFilterObject } from "../../../Redux/features/filter/filterSlice";
+import { hometown } from "../../shared/AutoSuggestion/homeTown";
 
 export const AccordionPartner = ({ data, isLoading }) => {
     const hightestEducationalQualification = data?.hightestEducationalQualification;
@@ -404,16 +405,9 @@ export const AccordionPartner = ({ data, isLoading }) => {
                                 onChange={handleHometownChange}
                                 placeholder="Select Hometown"
                                 showSearch
-                                filterOption={(input, option) => (option?.children ?? "").toLowerCase().includes(input.toLowerCase())}
-                            >
-                                {homeTowns.map(town => {
-                                    return (
-                                        <Select.Option key={town.id} value={town.value}>
-                                            {town.name}
-                                        </Select.Option>
-                                    );
-                                })}
-                            </Select>
+                                filterOption={(inputValue, option) => option.value.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1}
+                                options={hometown}
+                            ></Select>
                         </div>
                         <div>
                             <h1 className="text-base leading-6 font-medium mb-2">Current Location</h1>
@@ -422,16 +416,9 @@ export const AccordionPartner = ({ data, isLoading }) => {
                                 onChange={handleCurrentLocationChange}
                                 placeholder="Select current location"
                                 showSearch
-                                filterOption={(input, option) => (option?.children ?? "").toLowerCase().includes(input.toLowerCase())}
-                            >
-                                {homeTowns.map(town => {
-                                    return (
-                                        <Select.Option key={town.id} value={town.value}>
-                                            {town.name}
-                                        </Select.Option>
-                                    );
-                                })}
-                            </Select>
+                                filterOption={(inputValue, option) => option.value.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1}
+                                options={hometown}
+                            ></Select>
                         </div>
                         <div>
                             <h1 className="text-base leading-6 font-medium mb-2">Citizenship</h1>
