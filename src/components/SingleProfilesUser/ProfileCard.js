@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 // components
 import blackLove from "../../assets/images/icons/blackLove.png";
 import { ageCalculator } from "../../assets/utilities/AgeCalculation/ageCalculator";
-import { ProfileSkeletonLoader } from "../pages/Shared/Loader/Cards/Profile__Card__Skeleton__Loader/ProfileSkeletonLoader";
+import { ProfileSkeletonLoader } from "../shared/Cards/Loader/Profile__Card__Skeleton__Loader/ProfileSkeletonLoader";
 
 // css files
 import "../../assets/css/profileCards.css";

@@ -1,4 +1,3 @@
-
 import Login from "../../../components/pages/Authentications/Login";
 import Signup from "../../../components/pages/Authentications/SignUp";
 import MobileDiamondPlan from "../../../components/pages/Membership/MobileVersion/MobileDiamondPlan";
@@ -19,11 +18,10 @@ import { MatchesMov } from "../../../Wrapper/Home/mobileversion/MatchesMov";
 import { MeetMov } from "../../../Wrapper/Home/mobileversion/meet/MeetMov";
 import { MobileHome } from "../../../Wrapper/Home/mobileversion/MobileHome";
 import Certificate from "../../../Wrapper/Home/mobileversion/PhotoGallery/certificate/Certificate";
-import MobileCertificate from "../../../Wrapper/Home/mobileversion/PhotoGallery/certificate/MobileCertificate";
 import { PrivacyMov } from "../../../Wrapper/Home/mobileversion/privacy/PrivacyMov";
 import { Setting } from "../../../Wrapper/Home/mobileversion/setting/Setting";
 
-const MobileMatrimony = [
+const mobileMatrimony = [
     {
         id: 1,
         path: "/",
@@ -141,7 +139,5 @@ const MobileMatrimony = [
         path: "/like",
         element: <Like />,
     },
-
- 
 ];
-export default MobileMatrimony;
+export default mobileMatrimony;
