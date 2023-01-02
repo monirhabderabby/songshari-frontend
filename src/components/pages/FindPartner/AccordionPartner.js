@@ -5,13 +5,14 @@ import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
 import { setFilterObject } from "../../../Redux/features/filter/filterSlice";
+import { countries } from "../../shared/AutoSuggestion/countries";
+import { hometown } from "../../shared/AutoSuggestion/homeTown";
 
 export const AccordionPartner = ({ data, isLoading }) => {
     const hightestEducationalQualification = data?.hightestEducationalQualification;
     const { Panel } = Collapse;
     const [religionValue, setReligionValue] = useState("");
     const [homeTowns, setHomeTown] = useState([]);
-    const [countries, setCountries] = useState([]);
     const [professions, setProfessions] = useState([]);
     const [fatherStatusValue, setFatherStatusValue] = useState("");
     const [motherStatusValue, setMotherStatusValue] = useState("");
@@ -40,12 +41,6 @@ export const AccordionPartner = ({ data, isLoading }) => {
             .then(res => res.json())
             .then(data => setHomeTown(data));
     }, [setHomeTown]);
-
-    useEffect(() => {
-        fetch("json/countries.json")
-            .then(res => res.json())
-            .then(data => setCountries(data));
-    }, []);
 
     useEffect(() => {
         fetch("json/professions.json")
@@ -349,7 +344,6 @@ export const AccordionPartner = ({ data, isLoading }) => {
                         <div>
                             <h1 className="text-base leading-6 font-medium mb-2">Looking For</h1>
                             <Select
-                                defaultValue="bride"
                                 className="w-full mb-4"
                                 onChange={handleLookingForChange}
                                 showSearch
@@ -364,6 +358,7 @@ export const AccordionPartner = ({ data, isLoading }) => {
                                         label: "Groom",
                                     },
                                 ]}
+                                placeholder="select"
                             />
                         </div>
                         <div>
@@ -404,16 +399,9 @@ export const AccordionPartner = ({ data, isLoading }) => {
                                 onChange={handleHometownChange}
                                 placeholder="Select Hometown"
                                 showSearch
-                                filterOption={(input, option) => (option?.children ?? "").toLowerCase().includes(input.toLowerCase())}
-                            >
-                                {homeTowns.map(town => {
-                                    return (
-                                        <Select.Option key={town.id} value={town.value}>
-                                            {town.name}
-                                        </Select.Option>
-                                    );
-                                })}
-                            </Select>
+                                filterOption={(inputValue, option) => option.value.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1}
+                                options={hometown}
+                            ></Select>
                         </div>
                         <div>
                             <h1 className="text-base leading-6 font-medium mb-2">Current Location</h1>
@@ -422,16 +410,9 @@ export const AccordionPartner = ({ data, isLoading }) => {
                                 onChange={handleCurrentLocationChange}
                                 placeholder="Select current location"
                                 showSearch
-                                filterOption={(input, option) => (option?.children ?? "").toLowerCase().includes(input.toLowerCase())}
-                            >
-                                {homeTowns.map(town => {
-                                    return (
-                                        <Select.Option key={town.id} value={town.value}>
-                                            {town.name}
-                                        </Select.Option>
-                                    );
-                                })}
-                            </Select>
+                                filterOption={(inputValue, option) => option.value.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1}
+                                options={hometown}
+                            ></Select>
                         </div>
                         <div>
                             <h1 className="text-base leading-6 font-medium mb-2">Citizenship</h1>
@@ -443,14 +424,9 @@ export const AccordionPartner = ({ data, isLoading }) => {
                                 maxTagCount={2}
                                 allowClear
                                 showSearch
-                                filterOption={(input, option) => (option?.children ?? "").toLowerCase().includes(input.toLowerCase())}
-                            >
-                                {countries.map(country => (
-                                    <Select.Option key={country.id} value={country.value}>
-                                        {country.label}
-                                    </Select.Option>
-                                ))}
-                            </Select>
+                                filterOption={(inputValue, option) => option.value.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1}
+                                options={countries}
+                            ></Select>
                         </div>
                         <div>
                             <h1 className="text-base leading-6 font-medium mb-2">Marital Status</h1>

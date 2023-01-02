@@ -7,7 +7,7 @@ import { FiUsers } from "react-icons/fi";
 
 // components
 import { useGetAllConnectedConnectionsQuery } from "../../../Redux/features/connections/connectionApi";
-import { ConnectedConnectionLoader } from "../../pages/Shared/Loader/connections/ConnectedConnectionLoader";
+import { ConnectedConnectionLoader } from "../../shared/Cards/Loader/Connections/ConnectedConnectionLoader";
 import { FriendCard } from "./Cards/FriendCard";
 
 export const AllFriends = () => {

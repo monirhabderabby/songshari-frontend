@@ -5,7 +5,7 @@ import React from "react";
 import { AiOutlineWarning } from "react-icons/ai";
 import { FiUsers } from "react-icons/fi";
 import { useGetAllFriendRequestQuery } from "../../../Redux/features/connections/connectionApi";
-import { FriendRequestLoader } from "../../pages/Shared/Loader/connections/FriendRequestLoader";
+import { FriendRequestLoader } from "../../shared/Cards/Loader/Connections/FriendRequestLoader";
 
 // components
 import { FriendRequestCard } from "./Cards/FriendRequestCard";

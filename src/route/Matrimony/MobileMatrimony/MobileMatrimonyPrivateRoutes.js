@@ -2,9 +2,8 @@
 import MobileSingleProfilesUser from "../../../components/SingleProfilesUser/MobileSingleProfilesUser/MobileSingleProfilesUser";
 import { PersonalDetailsMobile } from "../../../components/SingleProfilesUser/MobileSingleProfilesUser/PersonalDetailsMobile";
 
-// private routes 
-
 const MobileMatrimonyPrivateRoutes = [
+
     {
         id: 1,
         path: "/mobileuserprofile",
@@ -20,4 +19,5 @@ const MobileMatrimonyPrivateRoutes = [
     }
 ]
 
-export default MobileMatrimonyPrivateRoutes;
+
+export default mobileMatrimonyPrivateRoutes;

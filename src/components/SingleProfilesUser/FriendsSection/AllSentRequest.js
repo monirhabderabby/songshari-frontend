@@ -7,7 +7,7 @@ import { FiUsers } from "react-icons/fi";
 
 // components
 import { useGetAllSentRequestQuery } from "../../../Redux/features/connections/connectionApi";
-import { SentRequestLoader } from "../../pages/Shared/Loader/connections/SentRequestLoader";
+import { SentRequestLoader } from "../../shared/Cards/Loader/Connections/SentRequestLoader";
 import { SentReqCard } from "./Cards/SentReqCard";
 
 export const AllSentRequest = () => {

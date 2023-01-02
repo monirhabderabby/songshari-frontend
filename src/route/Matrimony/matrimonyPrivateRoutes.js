@@ -1,3 +1,4 @@
+import EducationalCertificate from "../../components/SingleProfilesUser/CertificateSection/EducationalCertificate";
 import EditEducationalInfo from "../../components/SingleProfilesUser/profileSection/EditprofileSection/EditEducationalInfo";
 import EditOthersInfo from "../../components/SingleProfilesUser/profileSection/EditprofileSection/EditOthersInfo";
 import EditPersonalInfo from "../../components/SingleProfilesUser/profileSection/EditprofileSection/EditPersonalInfo";
@@ -6,6 +7,7 @@ import EditProfesionalInfo from "../../components/SingleProfilesUser/profileSect
 import ProfileDetails from "../../components/SingleProfilesUser/profileSection/ProfileDetails";
 import { SingleProfiles } from "../../components/SingleProfilesUser/SingleProfiles";
 import PersonalCertificate from "../../Wrapper/Home/mobileversion/PhotoGallery/certificate/PersonalCertificate";
+import ProfessionalCertificate from "../../Wrapper/Home/mobileversion/PhotoGallery/certificate/ProfessionalCertificate";
 import { Container } from "../../Wrapper/Stepper/Container";
 
 const matrimonyPrivateRoutes = [
@@ -61,6 +63,16 @@ const matrimonyPrivateRoutes = [
         id: 3,
         path: "/personalCertificate",
         element: <PersonalCertificate />,
+    },
+    {
+        id: 4,
+        path: "/professionalCertificate",
+        element: <ProfessionalCertificate />,
+    },
+    {
+        id: 5,
+        path: "EducationalCertificate",
+        element: <EducationalCertificate />,
     },
 ];
 

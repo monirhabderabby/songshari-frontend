@@ -1,3 +1,4 @@
+
 // components 
 import Login from "../../../components/pages/Authentications/Login";
 import MobileLogin from "../../../components/pages/Authentications/MobileDesign/MobileLogin";
@@ -144,7 +145,5 @@ const MobileMatrimony = [
         path: "/like",
         element: <Like />,
     },
-
- 
 ];
-export default MobileMatrimony;
+export default mobileMatrimony;
