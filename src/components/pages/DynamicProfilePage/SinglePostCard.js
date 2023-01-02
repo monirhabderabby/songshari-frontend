@@ -14,6 +14,8 @@ const SinglePostCard = ({ post }) => {
         await likeSinglePost(post?._id);
     };
 
+    if (post) console.log(post);
+
     useEffect(() => {
         if (likeResponse) {
             setPostLiked(true);
