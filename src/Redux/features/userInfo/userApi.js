@@ -154,6 +154,22 @@ export const userApi = apiSlice.injectEndpoints({
                 body: data,
             }),
         }),
+        updateProfilePhoto: builder.mutation({
+            query: photoURL => ({
+                url: "/merhje",
+                method: "PUT",
+            }),
+            async onQueryStarted(arg, { dispatch, queryFulfilled }) {
+                dispatch(
+                    apiSlice.util.updateQueryData("getProfileDetailsWIthAuth", undefined, draft => {
+                        return {
+                            ...draft,
+                            profilePhoto: arg,
+                        };
+                    })
+                );
+            },
+        }),
     }),
 });
 
@@ -175,4 +191,5 @@ export const {
     useUpdateProfessionalDetailsMutation,
     useGetProfileDetailsWIthAuthQuery,
     useFindFilteredUserMutation,
+    useUpdateProfilePhotoMutation,
 } = userApi;

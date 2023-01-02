@@ -1,6 +1,11 @@
 // configuration, ex: react-router
 import React, { useEffect, useState } from "react";
 
+// Third party packages
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import { AiFillCamera } from "react-icons/ai";
+import { v4 as uuidv4 } from "uuid";
+
 // components
 import blackLove from "../../assets/images/icons/blackLove.png";
 import { ageCalculator } from "../../assets/utilities/AgeCalculation/ageCalculator";
@@ -8,10 +13,13 @@ import { ProfileSkeletonLoader } from "../shared/Cards/Loader/Profile__Card__Ske
 
 // css files
 import "../../assets/css/profileCards.css";
+import { firebaseStorage } from "../../firebase.init";
+import { useUpdateProfilePhotoMutation } from "../../Redux/features/userInfo/userApi";
 
 const ProfileCard = ({ data, isLoading }) => {
     // hook variables
     const [age, setAge] = useState(0);
+    const [updateProfilePhoto] = useUpdateProfilePhotoMutation();
     useEffect(() => {
         if (data) {
             const age = ageCalculator(data?.dateOfBirth);
@@ -24,7 +32,20 @@ const ProfileCard = ({ data, isLoading }) => {
     const likes = data?.likes.length || 0;
     const UserAge = data?.dateOfBirth ? `${age + "Years old"}` : "Not provided yet";
     const coverPhoto = (data?.coverPhoto && data.coverPhoto) || "";
+    let profilePhoto = data?.profilePhoto ? data?.profilePhoto : "https://cdn-icons-png.flaticon.com/512/194/194938.png";
     let content = null;
+
+    // function declaration
+    const profilePhotoUploadHandler = e => {
+        const photo = e.target.files[0];
+        const storageRef = ref(firebaseStorage, `profile/${photo?.name + uuidv4()}`);
+        uploadBytes(storageRef, photo).then(async snapshot => {
+            await getDownloadURL(snapshot.ref).then(url => {
+                updateProfilePhoto(url.toString());
+                console.log(url.toString());
+            });
+        });
+    };
 
     if (isLoading) {
         content = <ProfileSkeletonLoader />;
@@ -38,14 +59,19 @@ const ProfileCard = ({ data, isLoading }) => {
                     } bg-center bg-cover`}
                 >
                     <div className="h-[135px] absolute -bottom-[50%] left-[110px] w-[135px] z-50 bg-white shadow-sm border-[1px] rounded-full flex justify-center items-center">
-                        <div
+                        <label
+                            htmlFor="uploadPhoto"
                             style={{
-                                backgroundImage: `url(${
-                                    data?.profilePhoto ? data?.profilePhoto : "https://cdn-icons-png.flaticon.com/512/194/194938.png"
-                                })`,
+                                backgroundImage: `url(${profilePhoto})`,
                             }}
-                            className="h-[120px] w-[120px] bg-gray-200 rounded-full bg-center bg-cover"
-                        ></div>
+                            className="h-[120px] w-[120px] group rounded-full bg-center bg-cover"
+                        >
+                            <div className="h-[120px] w-[120px] top-[7px] left-[7.3px] group-hover:absolute inset-0 group-hover:bg-black/20 rounded-full"></div>
+                            <input type="file" id="uploadPhoto" name="uploadPhoto" className="hidden" onChange={profilePhotoUploadHandler} />
+                        </label>
+                        <div className="absolute right-1 bg-[#DADBE1] group rounded-full bottom-[15%]">
+                            <AiFillCamera className="text-[20px] m-[4px]" />
+                        </div>
                     </div>
                 </div>
                 <h2 className="text-center mt-[85px] text-[28px] font-semibold font-fira">{name}</h2>
