@@ -23,6 +23,7 @@ const ProfileCard = ({ data, isLoading }) => {
     const name = data?.firstName + " " + data?.lastName || "Not Available";
     const likes = data?.likes.length || 0;
     const UserAge = data?.dateOfBirth ? `${age + "Years old"}` : "Not provided yet";
+    const coverPhoto = (data?.coverPhoto && data.coverPhoto) || "";
     let content = null;
 
     if (isLoading) {
@@ -30,7 +31,12 @@ const ProfileCard = ({ data, isLoading }) => {
     } else if (!isLoading && data) {
         content = (
             <div className="max-w-[360px] h-[400px] shadow-[0px_10px_5px_rgba(119,123,146,0.02)] bg-white rounded-[10px] relative">
-                <div className="bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] relative h-[150px] w-full rounded-tl-[10px] rounded-tr-[10px]">
+                <div
+                    style={{ backgroundImage: `url(${coverPhoto})` }}
+                    className={`relative h-[150px] w-full rounded-tl-[10px] rounded-tr-[10px] ${
+                        !coverPhoto && "bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)]"
+                    } bg-center bg-cover`}
+                >
                     <div className="h-[135px] absolute -bottom-[50%] left-[110px] w-[135px] z-50 bg-white shadow-sm border-[1px] rounded-full flex justify-center items-center">
                         <div
                             style={{
