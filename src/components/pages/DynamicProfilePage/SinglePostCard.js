@@ -23,8 +23,6 @@ const SinglePostCard = ({ post }) => {
         }
     }, [likeResponse, errorLike]);
 
-    if (post) console.log(post);
-
     return (
         <div>
             <div className="max-w-[457px] mx-auto shadow-[2px_2px_4px_rgba(0,0,0,0.12)] bg-white rounded-[10px] p-[30px] hidden md:block">
