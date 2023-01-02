@@ -19,11 +19,11 @@ export default function BasicInfoForm({ homeTowns, countries, basicInfo, setBasi
                     filterOption={(input, option) => (option?.label ?? "").toLowerCase().includes(input.toLowerCase())}
                     options={[
                         {
-                            value: "bride",
+                            value: "man",
                             label: "Bride",
                         },
                         {
-                            value: "groom",
+                            value: "woman",
                             label: "Groom",
                         },
                     ]}
