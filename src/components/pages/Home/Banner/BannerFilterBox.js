@@ -223,38 +223,6 @@ const BannerFilterBox = () => {
             value: "Manikganj",
         },
     ];
-    const division = [
-        {
-            value: "Dhaka",
-        },
-        {
-            value: "Borishal",
-        },
-        {
-            value: "Chattogram",
-        },
-        {
-            value: "Khulna",
-        },
-        {
-            value: "Rajshahi",
-        },
-        {
-            value: "Rangpur",
-        },
-        {
-            value: "Rangpur",
-        },
-        {
-            value: "Rangpur",
-        },
-        {
-            value: "Mymensingh",
-        },
-        {
-            value: "Sylhet",
-        },
-    ];
     const educations = [
         {
             value: "SSC",
@@ -390,7 +358,7 @@ const BannerFilterBox = () => {
                                 style={{
                                     width: 101,
                                 }}
-                                options={division}
+                                options={hometown}
                                 placeholder="Location"
                                 onSelect={val => setCurrentLocation(val)}
                                 filterOption={(inputValue, option) => option.value.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1}
