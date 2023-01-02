@@ -12,8 +12,12 @@ import certificate7 from "../../../../../assets/images/user profile/certificate7
 /* component */
 import AllCertificateImg from "../../../../../components/SingleProfilesUser/CertificateSection/UpdateCertificateSection/AllCertificateImg/AllCertificateImg";
 import UpdateCertificateSection from "../../../../../components/SingleProfilesUser/CertificateSection/UpdateCertificateSection/UpdateCertificateSection";
+import { useGetCertificatesWithAuthQuery } from "../../../../../Redux/features/Documents/documentsApi";
 
 const PersonalCertificate = () => {
+    const { data: allCertificates } = useGetCertificatesWithAuthQuery();
+    const certificates = allCertificates?.data;
+    console.log(certificates)
     const [certificateId, setCertificateId] = useState(0);
     /* all img data */
     const allData = [
@@ -51,31 +55,31 @@ const PersonalCertificate = () => {
             id: 6,
             name: "Employment Certificate 1",
             img: certificate6,
-            type: "proffession",
+            type: "profession",
         },
         {
             id: 7,
             name: "Employment Certificate 2",
             img: certificate1,
-            type: "proffession",
+            type: "profession",
         },
         {
             id: 8,
             name: "Employment Certificate 3",
             img: certificate2,
-            type: "proffession",
+            type: "profession",
         },
         {
             id: 9,
             name: "Employment Certificate 4",
             img: certificate3,
-            type: "proffession",
+            type: "profession",
         },
         {
             id: 10,
             name: "Employment Certificate 5",
             img: certificate4,
-            type: "proffession",
+            type: "profession",
         },
         {
             id: 11,
@@ -115,7 +119,7 @@ const PersonalCertificate = () => {
         if (type === "education") {
             setCertificateData(allData.filter(data => data.type === "education"));
         } else if (type === "profession") {
-            setCertificateData(allData.filter(data => data.type === "proffession"));
+            setCertificateData(allData.filter(data => data.type === "profession"));
         } else if (type === "others") {
             setCertificateData(allData.filter(data => data.type === "others"));
         } else {
@@ -129,7 +133,7 @@ const PersonalCertificate = () => {
         <div className="mx-auto max-w-[1200px] bg-[#FAFBFF] pt-[58px] font-sans ">
             <div className="flex gap-[51px]">
                 {/* Left side filtered img */}
-                <div className="w-[360px]">
+                <div className="w-[349px]">
                     {certificateData.map(certificate => (
                         <AllCertificateImg
                             key={certificate.id}
@@ -141,7 +145,7 @@ const PersonalCertificate = () => {
                     ))}
                 </div>
                 {/* Filtering button */}
-                <div className="w-[835px]">
+                <div className="w-[800px]">
                     <h1 className="text-left font-semibold text-[32px] text-[#333333]">Certificate</h1>
                     <div className="grid grid-cols-3 gap-[25px] my-10 w-full font-sans font-normal text-2xl text-[#000000] text-center">
                         <NavLink to={'/educationalCertificate'} onClick={() => filterData("education")} className={({ isActive }) =>
