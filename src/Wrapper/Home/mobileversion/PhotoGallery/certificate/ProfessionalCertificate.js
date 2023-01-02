@@ -126,7 +126,7 @@ const PersonalCertificate = () => {
         <div className="mx-auto max-w-[1200px] bg-[#FAFBFF] pt-[58px] font-sans ">
             <div className="flex gap-[51px]">
                 {/* Left side filtered img */}
-                <div className="w-[360px]">
+                <div className="w-[349px]">
                     {certificateData.map(certificate => (
                         <AllCertificateImg
                             key={certificate.id}
@@ -138,7 +138,7 @@ const PersonalCertificate = () => {
                     ))}
                 </div>
                 {/* Filtering button */}
-                <div className="w-[835px]">
+                <div className="w-[800px]">
                     <h1 className="text-left font-semibold text-[32px] text-[#333333]">Certificate</h1>
                     <div className="grid grid-cols-3 gap-[25px] my-10 w-full font-sans font-normal text-2xl text-[#000000] text-center">
                         <NavLink to={'/educationalCertificate'} onClick={() => filterData("education")} className={({ isActive }) =>
