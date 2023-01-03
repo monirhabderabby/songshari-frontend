@@ -2,6 +2,8 @@
 import MobileLogin from "../../../components/pages/Authentications/MobileDesign/MobileLogin";
 import MobileSignUp from "../../../components/pages/Authentications/MobileDesign/MobileSignUp";
 import { DynamicProfilePage } from "../../../components/pages/DynamicProfilePage/DynamicProfilePage";
+import { MobileDynamicProfile } from "../../../components/pages/DynamicProfilePage/MobileDynamicProfile/MobileDynamicProfile";
+import { MobilePersonalDetails } from "../../../components/pages/DynamicProfilePage/MobileDynamicProfile/MobilePersonalDetails";
 import MobileDiamondPlan from "../../../components/pages/Membership/MobileVersion/MobileDiamondPlan";
 import MobileFreePlan from "../../../components/pages/Membership/MobileVersion/MobileFreePlan";
 import MobileGoldPlan from "../../../components/pages/Membership/MobileVersion/MobileGoldPlan";
@@ -146,7 +148,12 @@ const MobileMatrimony = [
     {
         id: 21,
         path: "/mobileprofile/:id",
-        element: <h1>Hello</h1>,
+        element: <MobileDynamicProfile></MobileDynamicProfile>,
+      },
+    {
+        id: 21,
+        path: "/personalprofile/:id",
+        element: <MobilePersonalDetails />,
       },
 ];
 export default MobileMatrimony;

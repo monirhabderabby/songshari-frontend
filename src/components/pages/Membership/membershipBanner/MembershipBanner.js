@@ -10,7 +10,5 @@ export const MembershipBanner = () => {
     <Link className='text-lg'>MemberShip</Link>
  </div>
     </div>
-   
-
   )
 }

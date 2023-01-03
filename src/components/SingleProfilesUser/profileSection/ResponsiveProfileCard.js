@@ -132,15 +132,9 @@ const ResponsiveProfileCard = ({ data, isLoading }) => {
                     </div>
                 </div>
                 <div className="">
-                                        {SocialBoxOpen && <ResponsiveSocialMediaBox {...{ LinkedInId, faceBookId, instagramId }} />}
-                                        </div>
+                 {SocialBoxOpen && <ResponsiveSocialMediaBox {...{ LinkedInId, faceBookId, instagramId }} />}  </div>
             </div>
-
-
-            </div>
-            
-
-           
+            </div>   
         );
     }
     return <div>
