@@ -154,7 +154,7 @@ const PersonalCertificate = () => {
                         <NavLink to={'/personalCertificate'} onClick={() => filterData("others")} className={({ isActive }) =>
                             `bg-[#D0DBFF] py-[13px] rounded-[10px] text-center ${isActive ? "font-semibold text-[#FFFFFF] bg-gradient-to-r from-[#E52982] to-[#A72BC3]" : "text-[#000000] bg-[#D0DBFF]"
                             }`}>
-                            Others Certificate
+                            Personal Certificate
                         </NavLink>
                     </div>
                     {/* Main img showing */}
