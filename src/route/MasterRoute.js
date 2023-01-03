@@ -3,8 +3,8 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import RequireAuth from "../components/shared/RequireAuth/RequireAuth";
 import matrimonyPrivateRoutes from "./Matrimony/matrimonyPrivateRoutes";
 import matrimonyRoutes from "./Matrimony/matrimonyRoutes";
-import mobileMatrimony from "./Matrimony/MobileMatrimony/mobilematrimony";
-import mobileMatrimonyPrivateRoutes from "./Matrimony/MobileMatrimony/mobileMatrimonyPrivateRoutes";
+import mobileMatrimony from '../route/Matrimony/MobileMatrimony/Mobilematrimony'
+import mobileMatrimonyPrivateRoutes from '../route/Matrimony/MobileMatrimony/MobileMatrimonyPrivateRoutes'
 
 // Routes
 

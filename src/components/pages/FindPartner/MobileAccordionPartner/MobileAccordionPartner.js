@@ -8,7 +8,7 @@ import { setFilterObject } from "../../../Redux/features/filter/filterSlice";
 import { countries } from "../../shared/AutoSuggestion/countries";
 import { hometown } from "../../shared/AutoSuggestion/homeTown";
 
-export const AccordionPartner = ({ data, isLoading }) => {
+export const MobileAccordionPartner = ({ data, isLoading }) => {
     const hightestEducationalQualification = data?.hightestEducationalQualification;
     const { Panel } = Collapse;
     const [religionValue, setReligionValue] = useState("");
@@ -342,7 +342,7 @@ export const AccordionPartner = ({ data, isLoading }) => {
                     {/* ------------ Basic Information ---------- */}
                     <Panel header={styledHeader("Basic Information")} key="1">
                         <div>
-                            <h1 className="text-base leading-6 font-medium mb-2">Looking For</h1>
+                            <h1 className="text-base leading-6 font-medium mb-2">Looking For you</h1>
                             <Select
                                 className="w-full mb-4"
                                 onChange={handleLookingForChange}
@@ -1203,8 +1203,19 @@ export const AccordionPartner = ({ data, isLoading }) => {
                         </div>
                     </Panel>
                 </Collapse>
-               
-                <div className="flex justify-center items-center ] mt-[30px] ">
+                <div className=" justify-center items-center ] mt-[30px] hidden md:block">
+                    <button
+                        onClick={handleSubmit}
+                        style={{
+                            background: "linear-gradient(180deg, #E41272 0%, #942DD9 100%)",
+                        }}
+                        className="w-[179px] text-center py-[8] px-[10px] text-[#fff] h-[54px] text-2xl font-medium rounded-xl"
+                    >
+                        Submit
+                    </button>
+                </div>
+
+                <div className="flex justify-center items-center ] mt-[30px] md:hidden ">
                     <button
                         onClick={handleSubmit}
                         style={{

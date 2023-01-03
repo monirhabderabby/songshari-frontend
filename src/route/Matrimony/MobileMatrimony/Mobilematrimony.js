@@ -1,17 +1,15 @@
-
 // components 
-import Login from "../../../components/pages/Authentications/Login";
 import MobileLogin from "../../../components/pages/Authentications/MobileDesign/MobileLogin";
 import MobileSignUp from "../../../components/pages/Authentications/MobileDesign/MobileSignUp";
-import Signup from "../../../components/pages/Authentications/SignUp";
+import { DynamicProfilePage } from "../../../components/pages/DynamicProfilePage/DynamicProfilePage";
 import MobileDiamondPlan from "../../../components/pages/Membership/MobileVersion/MobileDiamondPlan";
 import MobileFreePlan from "../../../components/pages/Membership/MobileVersion/MobileFreePlan";
 import MobileGoldPlan from "../../../components/pages/Membership/MobileVersion/MobileGoldPlan";
 import UpgradePlan from "../../../components/pages/Membership/MobileVersion/UpgradePlan";
 import MobileSuggested from "../../../components/pages/TopProfile/MobileTopProfile/MobileSuggested";
+import MobileTopBride from "../../../components/pages/TopProfile/MobileTopProfile/MobileTopBride";
+import MobileTopGroom from "../../../components/pages/TopProfile/MobileTopProfile/MobileTopGroom";
 import Suggested from "../../../components/pages/TopProfile/Suggested";
-import TopBride from "../../../components/pages/TopProfile/TopBride";
-import TopGroom from "../../../components/pages/TopProfile/TopGroom";
 import ProfileServices from "../../../components/SingleProfilesUser/ServicesSection/ProfileServices";
 import { AboutMov } from "../../../Wrapper/Home/mobileversion/about/AboutMov";
 import { AllPosts } from "../../../Wrapper/Home/mobileversion/allposts/AllPosts";
@@ -36,17 +34,17 @@ const MobileMatrimony = [
             {
                 id: 1,
                 path: "/",
-                element: <MobileSuggested />,
+                element: <Suggested />,
             },
             {
                 id: 2,
                 path: "mobile-top-bride",
-                element: <TopBride />,
+                element: <MobileTopBride />,
             },
             {
                 id: 3,
                 path: "mobile-top-groom",
-                element: <TopGroom />,
+                element: <MobileTopGroom />,
             },
         ],
     },
@@ -145,5 +143,10 @@ const MobileMatrimony = [
         path: "/like",
         element: <Like />,
     },
+    {
+        id: 21,
+        path: "/mobileprofile/:id",
+        element: <h1>Hello</h1>,
+      },
 ];
-export default mobileMatrimony;
+export default MobileMatrimony;

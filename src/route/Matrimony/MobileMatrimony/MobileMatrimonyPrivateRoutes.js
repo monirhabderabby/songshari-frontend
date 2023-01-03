@@ -20,4 +20,4 @@ const MobileMatrimonyPrivateRoutes = [
 ]
 
 
-export default mobileMatrimonyPrivateRoutes;
+export default MobileMatrimonyPrivateRoutes;
