@@ -3,6 +3,7 @@ import React, { useState } from "react";
 
 // Third party packages
 import { decodeToken, isExpired } from "react-jwt";
+import hideemail from "../../../../assets/utilities/hideEmail/hideEmail";
 
 // components
 import getCookie from "../../../../Helper/cookies/getCookie";
@@ -41,7 +42,7 @@ export const OTP = () => {
                             <p>Email Verification</p>
                         </div>
                         <div className="flex flex-row text-sm font-medium text-gray-400">
-                            <p>We have sent a code to your email ba**@dipainhouse.com</p>
+                            <p>We have sent a code to your email {hideemail(myDocodeToken?.email)}</p>
                         </div>
                     </div>
                     <form action="">
