@@ -59,7 +59,7 @@ const ChartBoard = () => {
         }}
       >
         <div className="flex justify-start items-center mx-1 gap-6">
-          <TbMessageCircle2 className="text-[#333333] text-2xl" />
+          
           <h1 className="text-[#333333] text-2xl leading-[34px] font-bold">
             Certificate
           </h1>
@@ -83,6 +83,7 @@ const ChartBoard = () => {
           </div>
         ))}
       </div>
+      
       {/* responsive for mobile  */}
       <div
         className="rounded-xl p-5 px-16 ml-28 md:hidden lg:hidden"
@@ -91,7 +92,7 @@ const ChartBoard = () => {
         }}
       >
         <div className="flex justify-start items-center mx-1 gap-6">
-          <TbMessageCircle2 className="text-[#333333] text-2xl" />
+          
           <h1 className="text-[#333333] text-2xl leading-[34px] font-bold">
             Certificate
           </h1>
@@ -116,7 +117,7 @@ const ChartBoard = () => {
         ))}
       </div>
     <div>
-<div className='hidden md:hidden'>
+<div className='hidden md:hidden lg:block'>
 <YouMayLike />
 </div>
 <div className="lg:hidden md:block">
