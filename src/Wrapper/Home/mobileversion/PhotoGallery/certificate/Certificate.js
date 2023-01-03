@@ -2,18 +2,18 @@ import React from "react";
 import "./Certificate.css";
 
 import { useState } from "react";
-import EducationalCertificate, {
+/* import EducationalCertificate, {
     EducationalCertificateSidebar,
 } from "../../../../../components/SingleProfilesUser/CertificateSection/EducationalCertificate";
 import PersonalCertificate from "./PersonalCertificate";
-import ProfessionalCertificate from "./ProfessionalCertificate";
+import ProfessionalCertificate from "./ProfessionalCertificate"; */
 
 export default function Certificate() {
     const [tabValue, setTabValue] = useState(1);
     // const [stepScale, setStepScale] = useState(1.0);
     const [selectedImage, setSelectedImage] = useState("");
     return (
-        <div className="flex justify-center items-center">
+        {/* <div className="flex justify-center items-center">
             <div className="max-w-[337px] p-2 ">
                 <div className="flex ">
                     <div className="w-3/12">{tabValue === 1 && <EducationalCertificateSidebar setSelectedImage={setSelectedImage} />}</div>
@@ -63,7 +63,7 @@ export default function Certificate() {
                                     }
                                     onClick={() => setTabValue(3)}
                                 >
-                                    Others Certificate
+                                    Personal Certificate
                                 </button>
                             </div>
                         </div>
@@ -75,6 +75,6 @@ export default function Certificate() {
                     </div>
                 </div>
             </div>
-        </div>
+        </div> */}
     );
 }
