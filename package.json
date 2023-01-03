@@ -22,6 +22,7 @@
         "aos": "^3.0.0-beta.6",
         "axios": "^1.2.1",
         "firebase": "^9.14.0",
+        "js-cookie": "^3.0.1",
         "lottie-web": "^5.9.6",
         "material-ui": "^0.20.2",
         "moment": "^2.29.4",

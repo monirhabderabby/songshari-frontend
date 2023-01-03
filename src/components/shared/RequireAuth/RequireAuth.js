@@ -1,18 +1,12 @@
-import React from 'react';
-import { useAuthState } from 'react-firebase-hooks/auth';
-import { Navigate, useLocation } from 'react-router';
-import { auth } from '../../../firebase.init';
+import React from "react";
+import { Navigate, useLocation } from "react-router";
+import getCookie from "../../../Helper/cookies/getCookie";
 
 const RequireAuth = ({ children }) => {
-
-    const [user, loading, error] = useAuthState(auth);
+    const token = getCookie("token");
     let location = useLocation();
 
-    if (loading || error) {
-        return;
-    };
-
-    if (!user) {
+    if (!token) {
         return <Navigate to="/login" state={{ from: location }} replace />;
     } else {
         return children;

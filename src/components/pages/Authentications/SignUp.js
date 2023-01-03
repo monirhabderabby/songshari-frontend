@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 // Third party packages, ex: redux
-import { useCreateUserWithEmailAndPassword, useSignInWithGoogle, useUpdateProfile } from "react-firebase-hooks/auth";
+import { useSignInWithGoogle } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
 import { AiOutlineIdcard } from "react-icons/ai";
 import { FaGoogle, FaRegEnvelope, FaRegUser } from "react-icons/fa";
@@ -14,6 +14,7 @@ import { useDispatch } from "react-redux";
 // components
 import logo from "../../../assets/images/Logo/logoBlack.png";
 import { auth } from "../../../firebase.init";
+import setCookie from "../../../Helper/cookies/setCookie";
 import { useRegAsMemberMutation } from "../../../Redux/features/userInfo/userApi";
 import { loadUserData } from "../../../Redux/features/userInfo/userInfo";
 import Error from "../../ui/error/Error";
@@ -30,11 +31,8 @@ const Signup = () => {
     // hook variables
     const [regAsMember, { data: response, isLoading: serverLoading }] = useRegAsMemberMutation();
     const [customError, setCustomError] = useState("");
-    const [createUserWithEmailAndPassword, user, loading, error] = useCreateUserWithEmailAndPassword(auth);
-    const [signInWithGoogle, googleUser, googleLoading] = useSignInWithGoogle(auth);
-    const [updateProfile, updating] = useUpdateProfile(auth);
+    const [signInWithGoogle] = useSignInWithGoogle(auth);
     const [gender, setGender] = useState("");
-
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -47,20 +45,12 @@ const Signup = () => {
 
     useEffect(() => {
         if (response) {
-            localStorage.setItem("accessToken", response?.token);
+            setCookie("token", response?.token);
             dispatch(loadUserData(response));
             reset();
             navigate("/userProfile");
         }
-    }, [response, dispatch, reset, navigate, user, googleUser]);
-
-    useEffect(() => {
-        if (error?.message === "Firebase: Error (auth/email-already-in-use).") {
-            setCustomError("email already in use");
-        }
-    }, [error]);
-
-    // js variables
+    }, [response, dispatch, reset, navigate, setCookie]);
 
     const emailHandler = () => {
         setCustomError("");
@@ -69,10 +59,6 @@ const Signup = () => {
     const onSubmit = async data => {
         data.role = "member";
         data.gender = gender;
-        console.log(data);
-        // Implement firebase registration
-        await createUserWithEmailAndPassword(data.email, data.password);
-        await updateProfile({ displayName: data.firstName + " " + data.lastName });
         await regAsMember(data);
     };
 
@@ -309,7 +295,7 @@ const Signup = () => {
                                         <div className="col-span-2">
                                             <input
                                                 type="submit"
-                                                value={loading || updating || googleLoading || serverLoading ? "Loading..." : "SIGN UP"}
+                                                value={serverLoading ? "Loading..." : "SIGN UP"}
                                                 className="border-2 cursor-pointer mt-6 border-primary hover:border-0 rounded-full px-12 py-2 hover:bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] hover:text-white duration-500 transition-all"
                                             />
                                         </div>
