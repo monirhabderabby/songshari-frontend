@@ -8,10 +8,11 @@ import { MdCreateNewFolder } from "react-icons/md";
 import { v4 as uuidv4 } from "uuid";
 
 // components
+import { useSelector } from "react-redux";
 import coolicon from "../../../assets/images/activity/coolicon.png";
 import profile from "../../../assets/images/profile/up1.png";
 import { firebaseStorage } from "../../../firebase.init";
-import { useAddUserPostMutation, useGetMyPostsWithAuthQuery } from "../../../Redux/features/Post/postApi";
+import { useAddUserPostMutation, useGetDynamicPostsQuery } from "../../../Redux/features/Post/postApi";
 import { MovDynamicActivity } from "../../pages/DynamicProfilePage/MobileDynamicActivity/MovDynamicActivity";
 import { AllPostsOfLoggedInUser } from "./AllPostsOfLoggedInUser/AllPostsOfLoggedInUser";
 
@@ -19,9 +20,10 @@ const SingleUserActivity = () => {
     // hook variable declaration
     const [photoURL, setPhotoUrl] = useState("");
     const [postText, setPostText] = useState("");
+    const id = useSelector(state => state?.persistedReducer?.userInfo?.userInfo?.user?._id);
 
     const [addUserPost, { data: response }] = useAddUserPostMutation();
-    const { data: posts, isLoading, error } = useGetMyPostsWithAuthQuery();
+    const { data: posts, isLoading, error } = useGetDynamicPostsQuery(id);
 
     // function declarations
     const addPost = async event => {

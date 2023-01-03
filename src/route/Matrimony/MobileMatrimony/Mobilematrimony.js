@@ -26,7 +26,7 @@ import Certificate from "../../../Wrapper/Home/mobileversion/PhotoGallery/certif
 import { PrivacyMov } from "../../../Wrapper/Home/mobileversion/privacy/PrivacyMov";
 import { Setting } from "../../../Wrapper/Home/mobileversion/setting/Setting";
 
-// routes 
+// routes
 const MobileMatrimony = [
     {
         id: 1,

@@ -15,14 +15,14 @@ import moment from "moment";
 import { Link } from "react-router-dom";
 import "./Accordion.css";
 
-const Accordion = styled((props) => (
-  <MuiAccordion  square {...props} />
-))(({ theme }) => ({
-  paddingTop: "23px",
-  paddingLeft: "53px",
-  paddingBottom: "23px",
-  paddingRight: "53px",
-}));
+const Accordion = styled((props) => <MuiAccordion square {...props} />)(
+  ({ theme }) => ({
+    paddingTop: "23px",
+    paddingLeft: "53px",
+    paddingBottom: "23px",
+    paddingRight: "53px",
+  })
+);
 const AccordionSummary = styled((props) => (
   <MuiAccordionSummary
     expandIcon={<ArrowForwardIosSharpIcon sx={{ fontSize: "0.9rem" }} />}
@@ -44,7 +44,6 @@ const AccordionSummary = styled((props) => (
 const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({}));
 
 const Accordian = ({ data, isLoading, edit }) => {
-  console.log(typeof(data?.zodiacSign))
   const hightestEducationalQualification =
     data?.hightestEducationalQualification;
 
@@ -76,7 +75,6 @@ const Accordian = ({ data, isLoading, edit }) => {
                   <h1 className="text-[24px] text-[#333333] leading-[34px] font-fira font-semibold">
                     Personal Information
                   </h1>
-                  
                 </Typography>
                 <Link to="/tteesst">
                   <Typography
@@ -148,13 +146,17 @@ const Accordian = ({ data, isLoading, edit }) => {
                 </div>
               )}
 
-              {data?.citizenShip?.length!==0 && (
+              {data?.citizenShip?.length !== 0 && (
                 <div className="flex justify-between border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333] py-3">
                   <span className="font-medium">CitizenShip</span>
                   <div className=" flex gap-1">
-                    {data ? data?.citizenShip.map((citizen) =>
-                      <p className="font-normal  col-start-3 font-Inter text-right text-xs text-[#2B52DD] py-[6px] px-2 bg-[#E5E7EB] rounded">{citizen}</p>
-                    ) : "Not Provided"}
+                    {data
+                      ? data?.citizenShip.map((citizen) => (
+                          <p className="font-normal  col-start-3 font-Inter text-right text-xs text-[#2B52DD] py-[6px] px-2 bg-[#E5E7EB] rounded">
+                            {citizen}
+                          </p>
+                        ))
+                      : "Not Provided"}
                   </div>
                 </div>
               )}
@@ -252,8 +254,8 @@ const Accordian = ({ data, isLoading, edit }) => {
                   <p className="font-normal">
                     {data
                       ? moment(
-                        hightestEducationalQualification?.yearOfPassing
-                      ).format("ll")
+                          hightestEducationalQualification?.yearOfPassing
+                        ).format("ll")
                       : "Not Provided"}
                   </p>
                 </div>
@@ -316,7 +318,7 @@ const Accordian = ({ data, isLoading, edit }) => {
                   </p>
                 </div>
               )}
-              {data?.hairType?.length!==0 && (
+              {data?.hairType?.length !== 0 && (
                 <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                   <span className="font-medium">Hair Type</span>
                   <p className="font-normal">
@@ -593,10 +595,16 @@ const Accordian = ({ data, isLoading, edit }) => {
               {data?.hobbies?.length !== 0 && (
                 <div className="flex justify-between border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333] py-3">
                   <span className="font-medium">Hobbies</span>
-                  <div className='flex gap-1'>
-                    {data?.hobbies && data?.hobbies.map((hobby, index) =>
-                      <p className="font-normal font-Inter col-start-3 text-xs text-[#2B52DD] py-[6px] px-2 bg-[#E5E7EB] rounded" key={index}>{hobby}</p>
-                    )}
+                  <div className="flex gap-1">
+                    {data?.hobbies &&
+                      data?.hobbies.map((hobby, index) => (
+                        <p
+                          className="font-normal font-Inter col-start-3 text-xs text-[#2B52DD] py-[6px] px-2 bg-[#E5E7EB] rounded"
+                          key={index}
+                        >
+                          {hobby}
+                        </p>
+                      ))}
                   </div>
                 </div>
               )}
