@@ -1,8 +1,7 @@
-import Cookies from "universal-cookie";
+import Cookies from "js-cookie";
 
-const cookies = new Cookies();
 const getCookie = cookiesName => {
-    return cookies.get(cookiesName);
+    return Cookies.get(cookiesName);
 };
 
 export default getCookie;

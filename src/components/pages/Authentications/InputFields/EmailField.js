@@ -1,9 +1,9 @@
 import React from "react";
 
-export const EmailField = ({ register, errors, icon, name, placeholder, id }) => {
+export const EmailField = ({ register, errors, icon, name, placeholder, id, emailHandler }) => {
     return (
         <section>
-            <div className="flex items-center bg-gray-100 p-2 w-full rounded-xl">
+            <div className="flex items-center bg-gray-100 p-2 w-full rounded-xl mt-3">
                 {icon}
                 <input
                     {...register(name, {
@@ -20,6 +20,7 @@ export const EmailField = ({ register, errors, icon, name, placeholder, id }) =>
                     placeholder={placeholder}
                     className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
                     id={id}
+                    onChange={emailHandler}
                 />
             </div>
             <h1 className="text-left ml-2">

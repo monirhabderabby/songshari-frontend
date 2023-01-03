@@ -25,16 +25,18 @@ import MobileSignUp from "./MobileDesign/MobileSignUp";
 import { Select } from "antd";
 import "../../../App.css";
 import "../../../assets/css/SignUp.css";
+import { EmailField } from "./InputFields/EmailField";
 
 const Signup = () => {
-    // varible declation
     // hook variables
     const [regAsMember, { data: response, isLoading: serverLoading }] = useRegAsMemberMutation();
-    const [customError, setCustomError] = useState("");
     const [signInWithGoogle] = useSignInWithGoogle(auth);
-    const [gender, setGender] = useState("");
     const dispatch = useDispatch();
     const navigate = useNavigate();
+
+    // state declarations
+    const [gender, setGender] = useState("");
+    const [customError, setCustomError] = useState("");
 
     const {
         register,
@@ -48,10 +50,11 @@ const Signup = () => {
             setCookie("token", response?.token);
             dispatch(loadUserData(response));
             reset();
-            navigate("/userProfile");
+            navigate("/otp");
         }
-    }, [response, dispatch, reset, navigate, setCookie]);
+    }, [response, dispatch, reset, navigate]);
 
+    // function handler
     const emailHandler = () => {
         setCustomError("");
     };
@@ -99,60 +102,28 @@ const Signup = () => {
                                                 requiredMessage: "First name is required",
                                             }}
                                         />
-                                        <section>
-                                            <div className="flex items-center bg-gray-100 p-2 w-full rounded-xl mt-3 lg:mt-0">
-                                                <FaRegUser className=" m-2 text-gray-400" />
-                                                <input
-                                                    {...register("lastName", {
-                                                        required: {
-                                                            value: true,
-                                                            message: "Last name is required",
-                                                        },
-                                                    })}
-                                                    type="text"
-                                                    placeholder="Last name"
-                                                    className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
-                                                    id="lastName"
-                                                />
-                                            </div>
-                                            <h1 className="text-left ml-2">
-                                                {errors.lastName?.type === "required" && (
-                                                    <span className="w-full text-left text-red-400 text-sm">{errors?.lastName.message}</span>
-                                                )}
-                                            </h1>
-                                        </section>{" "}
-                                        {/*last name field*/}
-                                        <section>
-                                            <div className="flex items-center bg-gray-100 p-2 w-full rounded-xl mt-3">
-                                                <FaRegEnvelope className=" m-2 text-gray-400" />
-                                                <input
-                                                    {...register("email", {
-                                                        required: {
-                                                            value: true,
-                                                            message: "Email is required",
-                                                        },
-                                                        pattern: {
-                                                            value: /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/,
-                                                            message: "Provide a Valid Email",
-                                                        },
-                                                    })}
-                                                    type="email"
-                                                    placeholder="Email"
-                                                    className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
-                                                    onChange={emailHandler}
-                                                    id="email"
-                                                />
-                                            </div>
-                                            <h1 className="text-left ml-2">
-                                                {errors.email?.type === "required" && (
-                                                    <span className="w-full text-left text-red-400 text-sm">{errors?.email.message}</span>
-                                                )}
-                                                {errors.email?.type === "pattern" && (
-                                                    <span className="w-full text-left text-red-400 text-sm">{errors?.email.message}</span>
-                                                )}
-                                            </h1>
-                                        </section>
-                                        {/*Email field*/}
+                                        <TextField
+                                            {...{
+                                                register,
+                                                errors,
+                                                icon: <FaRegUser className=" m-2 text-gray-400" />,
+                                                id: "lastName",
+                                                placeholder: "Last name",
+                                                name: "lastName",
+                                                requiredMessage: "Last name is required",
+                                            }}
+                                        />
+                                        <EmailField
+                                            {...{
+                                                register,
+                                                errors,
+                                                icon: <FaRegEnvelope className=" m-2 text-gray-400" />,
+                                                placeholder: "Email",
+                                                emailHandler,
+                                                name: "email",
+                                                id: "email",
+                                            }}
+                                        />
                                         <section>
                                             <div className="flex items-center bg-gray-100 p-2 w-full rounded-xl mt-3">
                                                 <MdPhone className=" m-2 text-gray-400" />
