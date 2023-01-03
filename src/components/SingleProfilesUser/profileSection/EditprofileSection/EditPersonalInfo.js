@@ -1,66 +1,49 @@
 // configuration
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 
 // Third party packages
 import { FileAddFilled } from "@ant-design/icons";
-import Autocomplete, { createFilterOptions } from "@mui/material/Autocomplete";
 import {
   DatePicker,
   InputNumber,
   Radio,
   Select,
-  Slider,
   Space,
   Upload,
   message,
 } from "antd";
 import TextArea from "antd/es/input/TextArea";
-import TextField from "@mui/material/TextField";
+import { useForm } from "react-hook-form";
 
 // Components
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { firebaseStorage } from "../../../../firebase.init";
 import { useUpdatePersonalDetailsMutation } from "../../../../Redux/features/userInfo/userApi";
-const { RangePicker } = DatePicker;
-const { Option } = Select;
 const { Dragger } = Upload;
 
 const EditPersonalInfo = () => {
   const [messageApi, contextHolder] = message.useMessage();
   const [personalInfo, setPersonalInfo] = useState({});
-  const [physicalInfo, setPhysicalInfo] = useState({});
-  const [educationalInfo, setEducationalInfo] = useState({});
-  //educational qualification state
-  const [degreeName, setDegreeName] = useState(null);
-  const [instituteName, setInstituteName] = useState(null);
-  const [departmentName, setDepartmentName] = useState(null);
-  const [fieldOfStudy, setFieldOfStudy] = useState(null);
-  const [cgpa, setCgpa] = useState(null);
-  // current position state
-  const [currentPosition, setCurrentPosition] = useState(null);
-  // institue state
-  const [currentInstitute, setCurrentInstitute] = useState(null);
-  const [professionalInfo, setProfessionalInfo] = useState({});
 
   const [countries, setCountries] = useState([]);
   const [city, setCity] = useState([]);
   const [marriageDetails, setMarriageDetails] = useState({});
   const [divorceDetails, setDivorceDetails] = useState({});
   const [widowedDetails, setWidowedDetails] = useState({});
-  //phone number managing state
-  const [countryCode, setCountryCode] = useState("+880");
-  //others physical information state
-  const [height, setHeight] = useState(0);
-  const [weight, setWeight] = useState(0);
 
   const [brother, setBrother] = useState(0);
   const [sister, setSister] = useState(0);
   const [parentStatus, setParentStatus] = useState("");
+  const [lookingFor, setLookingFor] = useState("");
   //uploaded image url data state
   const [nidOrPassportPhoto, setNidOrPassportPhoto] = useState({});
+  // API from redux
   const [updatePersonalDetails, { data: updateResponse, isLoading, error }] =
     useUpdatePersonalDetailsMutation();
+
+  const { register, handleSubmit } = useForm();
+
   useEffect(() => {
     fetch("/json/countries.json")
       .then((res) => res.json())
@@ -72,28 +55,6 @@ const EditPersonalInfo = () => {
       .then((res) => res.json())
       .then((data) => setCity(data));
   }, []);
-
-  //handle mobile number
-  const handlePhoneNumber = (value) => {
-    const phone = countryCode + value;
-    setPersonalInfo({ ...personalInfo, phone: phone });
-  };
-  const handleCountryCode = (value) => {
-    setCountryCode(value);
-  };
-  // Mobile number country code selection option
-  const CountryCode = (
-    <Select
-      defaultValue="+880"
-      style={{
-        width: 70,
-      }}
-      onChange={handleCountryCode}
-    >
-      <Option value="+880">BD</Option>
-      <Option value="+966">KSA</Option>
-    </Select>
-  );
 
   // handle file upload change data
   const handleUpload = async (event) => {
@@ -114,133 +75,14 @@ const EditPersonalInfo = () => {
     console.log(data);
     e.preventDefault();
   };
-  //educational qualification data handler function
-  const handleDegreeName = (event, newValue) => {
-    if (typeof newValue === "string") {
-      setDegreeName({
-        title: newValue,
-      });
-    } else if (newValue && newValue.inputValue) {
-      // Create a new value from the user input
-      setDegreeName({
-        title: newValue.inputValue,
-      });
-    } else {
-      setDegreeName(newValue);
-    }
+
+  const handleLookingForChange = (value) => {
+    setLookingFor(value);
   };
 
-  const handleInstituteName = (event, newValue) => {
-    if (typeof newValue === "string") {
-      setInstituteName({
-        title: newValue,
-      });
-    } else if (newValue && newValue.inputValue) {
-      // Create a new value from the user input
-      setInstituteName({
-        title: newValue.inputValue,
-      });
-    } else {
-      setInstituteName(newValue);
-    }
-  };
-
-  const handleDepartmentName = (event, newValue) => {
-    if (typeof newValue === "string") {
-      setDepartmentName({
-        title: newValue,
-      });
-    } else if (newValue && newValue.inputValue) {
-      // Create a new value from the user input
-      setDepartmentName({
-        title: newValue.inputValue,
-      });
-    } else {
-      setDepartmentName(newValue);
-    }
-  };
-
-  const handleStudyField = (event, newValue) => {
-    if (typeof newValue === "string") {
-      setFieldOfStudy({
-        title: newValue,
-      });
-    } else if (newValue && newValue.inputValue) {
-      // Create a new value from the user input
-      setFieldOfStudy({
-        title: newValue.inputValue,
-      });
-    } else {
-      setFieldOfStudy(newValue);
-    }
-  };
-
-  const handleCgpa = (event, newValue) => {
-    if (typeof newValue === "string") {
-      setCgpa({
-        title: newValue,
-      });
-    } else if (newValue && newValue.inputValue) {
-      // Create a new value from the user input
-      setCgpa({
-        title: newValue.inputValue,
-      });
-    } else {
-      setCgpa(newValue);
-    }
-  };
-  //passing year handler
-  const handlePassingYear = (date, dateString) => {
-    setEducationalInfo({ ...educationalInfo, yearOfPassing: date });
-  };
-
-  // current position state handler
-  const handleCurrentPosition = (event, newValue) => {
-    if (typeof newValue === "string") {
-      setCurrentPosition({
-        title: newValue,
-      });
-    } else if (newValue && newValue.inputValue) {
-      // Create a new value from the user input
-      setCurrentPosition({
-        title: newValue.inputValue,
-      });
-    } else {
-      setCurrentPosition(newValue);
-    }
-  };
-  // current institute handler function
-  const handleCurrentInstitute = (event, newValue) => {
-    if (typeof newValue === "string") {
-      setCurrentInstitute({
-        title: newValue,
-      });
-    } else if (newValue && newValue.inputValue) {
-      // Create a new value from the user input
-      setCurrentInstitute({
-        title: newValue.inputValue,
-      });
-    } else {
-      setCurrentInstitute(newValue);
-    }
-  };
-  // working period data handler
-  const handleWorkingPeriod = (date, dateString) => {
-    setProfessionalInfo({ ...professionalInfo, workingPeriod: dateString });
-  };
-  // handle achievements data change
-  const handleAchivements = (e) => {
-    setProfessionalInfo({
-      ...professionalInfo,
-      specialAchievement: e?.target.value,
-    });
-  };
-
-  //handle marriage reason data
-
-  //martial status change handler
+  //marital status change handler
   const handleMaritalStatusChange = (value) => {
-    setPersonalInfo({ ...personalInfo, maritialStatus: value });
+    setPersonalInfo({ ...personalInfo, maritalStatus: value });
   };
   const handleMarriageReason = (e) => {
     const data = { ...marriageDetails };
@@ -248,7 +90,7 @@ const EditPersonalInfo = () => {
     setMarriageDetails(data);
   };
   const handleAwareOFMarriage = (value) => {
-    setMarriageDetails({ ...marriageDetails, isPartnerAwarOfMarriage: value });
+    setMarriageDetails({ ...marriageDetails, isPartnerAwareOfMarriage: value });
   };
   const handleMarriageDate = (date, dateString) => {
     setMarriageDetails({ ...marriageDetails, marriageDate: dateString });
@@ -257,7 +99,7 @@ const EditPersonalInfo = () => {
     setMarriageDetails({ ...marriageDetails, childrenStatus: value });
   };
 
-  // handle devorce data change
+  // handle divorce data change
   const handleDivorceReason = (e) => {
     const data = { ...divorceDetails };
     data[e.target.name] = e.target.name;
@@ -270,7 +112,7 @@ const EditPersonalInfo = () => {
     setDivorceDetails({ ...divorceDetails, childrenStatus: value });
   };
 
-  // widwed details data change handler function
+  // widowed details data change handler function
   const handleWidowed = (e) => {
     const data = { ...widowedDetails };
     data[e?.target?.name] = e?.target?.value;
@@ -284,7 +126,7 @@ const EditPersonalInfo = () => {
   };
   //date of birth handle data function
   const handleDateOfBirth = (date, dateString) => {
-    setPersonalInfo({ ...personalInfo, dateOfBirth: date });
+    setPersonalInfo({ ...personalInfo, dateOfBirth: dateString });
   };
 
   // handle citizenship status
@@ -295,37 +137,9 @@ const EditPersonalInfo = () => {
   const handleCurrentCity = (value) => {
     setPersonalInfo({ ...personalInfo, hometown: value });
   };
-  //zodaic sign change handler
+  //zodiac sign change handler
   const handleZodiacSign = (value) => {
-    setPersonalInfo({ ...personalInfo, zodaicSign: value });
-  };
-
-  //phycsical information data change handler
-  const onHeightChange = (value) => {
-    setHeight(value);
-  };
-  const onAfterHeightChange = (value) => { };
-  const onWeightChange = (value) => {
-    setWeight(value);
-  };
-  const onAfterWeightChange = (value) => { };
-  const handleUserAncestryChange = (value) => {
-    setPhysicalInfo({ ...physicalInfo, ancestry: value });
-  };
-  const handleUserSkinToneChange = (value) => {
-    setPhysicalInfo({ ...physicalInfo, skinTune: value });
-  };
-  const handleUserHairColorChange = (value) => {
-    setPhysicalInfo({ ...physicalInfo, hairColor: value });
-  };
-  const handleUserHairTypeChange = (value) => {
-    setPhysicalInfo({ ...physicalInfo, hairType: value });
-  };
-  const handleUserEyeColorChange = (value) => {
-    setPhysicalInfo({ ...physicalInfo, eyeColor: value });
-  };
-  const handleNumberOfTeeth = (value) => {
-    setPhysicalInfo({ ...physicalInfo, teethNumber: value });
+    setPersonalInfo({ ...personalInfo, zodiacSign: value });
   };
 
   // --------- Others Information ------------
@@ -335,66 +149,36 @@ const EditPersonalInfo = () => {
     setPersonalInfo({ ...personalInfo, parentStatus: e?.target.value });
   };
 
-  // hanlde hoby
-  const handleHoby = (value) => {
+  // handle hobby
+  const handleHobby = (value) => {
     setPersonalInfo({ ...personalInfo, hobbies: value });
   };
 
-  // current position options (MUI Autocomplete)
-  const currentPositionOptions = [
-    { title: "Deveoper" },
-    { title: "Hr" },
-    { title: "Accouantant" },
-    { title: "Office assitanat" },
-  ];
-  // current institue option (MUI Autocomplete)
-  const currentInstituteOptions = [
-    { title: "Developer company" },
-    { title: "ItCO " },
-    { title: "Microsoft" },
-    { title: "Google" },
-  ];
-  // educational qualifitaions options Autocomplete (MUI)
-  const degreeOptions = [
-    { title: "SSC" },
-    { title: "HSC" },
-    { title: "HOns" },
-    { title: "Masters" },
-  ];
-  const instituteNameOptions = [
-    { title: "Model College" },
-    { title: "Brac University" },
-  ];
-  const departmentOptions = [{ title: "BBA" }, { title: "MBA" }];
-  const studyFieldOptions = [{ title: "CSE" }, { title: "Accounting" }];
-  const cgpaOptions = [{ title: "1.0 out of 4" }, { title: "2.0 out of 4" }];
-
   const navigate = useNavigate();
 
+  const brotherDecreaseHandler = () => {
+    setBrother((prevCount) => prevCount - 1);
+  };
+
+  const brotherIncreaseHandler = () => {
+    setBrother((prevCount) => prevCount + 1);
+  };
+
   //form submission
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const data = {
+  const onSubmit = async (data) => {
+    data = {
+      ...data,
       ...personalInfo,
-      numberOfBrother: brother?.toString(),
-      numberOfSister: sister?.toString(),
+      numberOfBrother: brother,
+      numberOfSister: sister,
       ...marriageDetails,
       ...divorceDetails,
       ...widowedDetails,
-      ...professionalInfo,
-      institute: currentInstitute?.title,
-      position: currentPosition?.title,
-      ...educationalInfo,
-      degree: degreeName?.title,
-      department: departmentName?.title,
-      feildOfStudy: fieldOfStudy?.title,
-      gpaOrCgpa: cgpa?.title,
-      ...physicalInfo,
-      height: height?.toString(),
-      weight: weight?.toString(),
       NidOrPassportPhoto: nidOrPassportPhoto,
+      whatAreYouLookingFor: lookingFor,
     };
-    await updatePersonalDetails(data);
+    // await updatePersonalDetails(data);
+    console.log(data);
   };
 
   // error success and loading handler
@@ -427,13 +211,10 @@ const EditPersonalInfo = () => {
     }
   }, [updateResponse, isLoading, error, messageApi, navigate]);
 
-  //this filter for mui autocomplete
-  const filter = createFilterOptions();
-
   return (
     <div className="max-w-[523px] mx-auto bg-white drop-shadow-lg px-4 py-6 mb-4 rounded">
       <div className="hidden md:block">
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <div className="flex justify-between pb-4">
             <div>
               <label
@@ -444,11 +225,10 @@ const EditPersonalInfo = () => {
               </label>
               <input
                 type="text"
-                name="firstName"
+                {...register("firstName")}
                 id="firstName"
                 placeholder="First Name"
                 className=" focus:outline-none p-2 border focus:border-blue-500 shadow rounded-lg hover:border-blue-500 w-56 "
-                onChange={handleData}
               />
             </div>
             <div>
@@ -460,11 +240,10 @@ const EditPersonalInfo = () => {
               </label>
               <input
                 type="text"
-                name="lastName"
+                {...register("lastName")}
                 id="lastName"
                 placeholder="Last Name"
                 className=" focus:outline-none p-2 border focus:border-blue-500 shadow rounded-lg hover:border-blue-500 w-56 "
-                onChange={handleData}
               />
             </div>
           </div>
@@ -479,11 +258,10 @@ const EditPersonalInfo = () => {
               </label>
               <input
                 type="text"
-                name="email"
+                {...register("email")}
                 id="email"
                 placeholder="example@email.com"
                 className=" focus:outline-none p-2 border focus:border-blue-500 shadow rounded-lg hover:border-blue-500 w-full "
-                onChange={handleData}
               />
             </div>
           </div>
@@ -494,15 +272,13 @@ const EditPersonalInfo = () => {
                 htmlFor="number"
                 className="text-sm block pb-2 text-slate-600 font-medium"
               >
-                Phone Nmber
+                Phone Number
               </label>
-              <InputNumber
+              <input
                 placeholder="17000000000"
-                className="w-full p-1 "
                 id="number"
-                name="phone"
-                addonBefore={CountryCode}
-                onChange={handlePhoneNumber}
+                {...register("phone")}
+                className=" focus:outline-none p-2 border focus:border-blue-500 shadow rounded-lg hover:border-blue-500 w-full "
               />
             </div>
           </div>
@@ -517,11 +293,10 @@ const EditPersonalInfo = () => {
               </label>
               <input
                 type="text"
-                name="NidOrPassportNumber"
+                {...register("NidOrPassportNumber")}
                 id="nid"
                 placeholder="000000000/A025615"
                 className=" focus:outline-none p-2 border focus:border-blue-500 shadow rounded-lg hover:border-blue-500 w-full "
-                onChange={handleData}
               />
             </div>
           </div>
@@ -553,7 +328,7 @@ const EditPersonalInfo = () => {
             <div>
               <label
                 htmlFor="nid"
-                className="text-sm block pb-2 text-slate-600	  font-medium"
+                className="text-sm block pb-2 text-slate-600 font-medium"
               >
                 Date of Birth
               </label>
@@ -564,450 +339,10 @@ const EditPersonalInfo = () => {
               />
             </div>
           </div>
-          {/* educational qualification */}
+
           <div className="pb-4">
             <label className="text-sm block pb-2 text-slate-600	  font-medium">
-              Educational Qualification
-            </label>
-            <div className="flex justify-between">
-              <Autocomplete
-                className="mb-2 w-56"
-                value={degreeName}
-                onChange={handleDegreeName}
-                filterOptions={(options, params) => {
-                  const filtered = filter(options, params);
-
-                  const { inputValue } = params;
-                  // Suggest the creation of a new value
-                  const isExisting = options.some(
-                    (option) => inputValue === option.title
-                  );
-                  if (inputValue !== "" && !isExisting) {
-                    filtered.push({
-                      inputValue,
-                      title: `Add "${inputValue}"`,
-                    });
-                  }
-
-                  return filtered;
-                }}
-                selectOnFocus
-                clearOnBlur
-                handleHomeEndKeys
-                id="free-solo-with-text-demo"
-                options={degreeOptions}
-                getOptionLabel={(option) => {
-                  // Value selected with enter, right from the input
-                  if (typeof option === "string") {
-                    return option;
-                  }
-                  // Add "xxx" option created dynamically
-                  if (option.inputValue) {
-                    return option.inputValue;
-                  }
-                  // Regular option
-                  return option?.title;
-                }}
-                renderOption={(props, option) => (
-                  <li {...props}>{option?.title}</li>
-                )}
-                freeSolo
-                renderInput={(params) => (
-                  <TextField {...params} placeholder="Select Degree" />
-                )}
-              />
-
-              <Autocomplete
-                className="mb-2 w-56"
-                value={instituteName}
-                onChange={handleInstituteName}
-                filterOptions={(options, params) => {
-                  const filtered = filter(options, params);
-
-                  const { inputValue } = params;
-                  // Suggest the creation of a new value
-                  const isExisting = options.some(
-                    (option) => inputValue === option.title
-                  );
-                  if (inputValue !== "" && !isExisting) {
-                    filtered.push({
-                      inputValue,
-                      title: `Add "${inputValue}"`,
-                    });
-                  }
-
-                  return filtered;
-                }}
-                selectOnFocus
-                clearOnBlur
-                handleHomeEndKeys
-                id="free-solo-with-text-demo"
-                options={instituteNameOptions}
-                getOptionLabel={(option) => {
-                  // Value selected with enter, right from the input
-                  if (typeof option === "string") {
-                    return option;
-                  }
-                  // Add "xxx" option created dynamically
-                  if (option.inputValue) {
-                    return option.inputValue;
-                  }
-                  // Regular option
-                  return option.title;
-                }}
-                renderOption={(props, option) => (
-                  <li {...props}>{option.title}</li>
-                )}
-                freeSolo
-                renderInput={(params) => (
-                  <TextField {...params} placeholder="Select Institute" />
-                )}
-                sx={{
-                  "& input": {
-                    height: 6,
-                    padding: 0,
-                  },
-                }}
-              />
-            </div>
-
-            <div className="flex justify-between">
-              <Autocomplete
-                className="mb-2 w-36"
-                value={departmentName}
-                onChange={handleDepartmentName}
-                filterOptions={(options, params) => {
-                  const filtered = filter(options, params);
-
-                  const { inputValue } = params;
-                  // Suggest the creation of a new value
-                  const isExisting = options.some(
-                    (option) => inputValue === option.title
-                  );
-                  if (inputValue !== "" && !isExisting) {
-                    filtered.push({
-                      inputValue,
-                      title: `Add "${inputValue}"`,
-                    });
-                  }
-
-                  return filtered;
-                }}
-                selectOnFocus
-                clearOnBlur
-                handleHomeEndKeys
-                id="free-solo-with-text-demo"
-                options={departmentOptions}
-                getOptionLabel={(option) => {
-                  // Value selected with enter, right from the input
-                  if (typeof option === "string") {
-                    return option;
-                  }
-                  // Add "xxx" option created dynamically
-                  if (option.inputValue) {
-                    return option.inputValue;
-                  }
-                  // Regular option
-                  return option.title;
-                }}
-                renderOption={(props, option) => (
-                  <li {...props}>{option.title}</li>
-                )}
-                freeSolo
-                renderInput={(params) => (
-                  <TextField {...params} placeholder="Select Department" />
-                )}
-                sx={{
-                  "& input": {
-                    height: 6,
-                    padding: 0,
-                  },
-                }}
-              />
-
-              <Autocomplete
-                className="mb-2 w-36"
-                value={fieldOfStudy}
-                onChange={handleStudyField}
-                filterOptions={(options, params) => {
-                  const filtered = filter(options, params);
-
-                  const { inputValue } = params;
-                  // Suggest the creation of a new value
-                  const isExisting = options.some(
-                    (option) => inputValue === option.title
-                  );
-                  if (inputValue !== "" && !isExisting) {
-                    filtered.push({
-                      inputValue,
-                      title: `Add "${inputValue}"`,
-                    });
-                  }
-
-                  return filtered;
-                }}
-                selectOnFocus
-                clearOnBlur
-                handleHomeEndKeys
-                id="free-solo-with-text-demo"
-                options={studyFieldOptions}
-                getOptionLabel={(option) => {
-                  // Value selected with enter, right from the input
-                  if (typeof option === "string") {
-                    return option;
-                  }
-                  // Add "xxx" option created dynamically
-                  if (option.inputValue) {
-                    return option.inputValue;
-                  }
-                  // Regular option
-                  return option.title;
-                }}
-                renderOption={(props, option) => (
-                  <li {...props}>{option.title}</li>
-                )}
-                freeSolo
-                renderInput={(params) => (
-                  <TextField {...params} placeholder="Select Field of study" />
-                )}
-                sx={{
-                  "& input": {
-                    height: 6,
-                    padding: 0,
-                  },
-                }}
-              />
-
-              <Autocomplete
-                className="mb-2 w-36"
-                value={cgpa}
-                onChange={handleCgpa}
-                filterOptions={(options, params) => {
-                  const filtered = filter(options, params);
-
-                  const { inputValue } = params;
-                  // Suggest the creation of a new value
-                  const isExisting = options.some(
-                    (option) => inputValue === option.title
-                  );
-                  if (inputValue !== "" && !isExisting) {
-                    filtered.push({
-                      inputValue,
-                      title: `Add "${inputValue}"`,
-                    });
-                  }
-
-                  return filtered;
-                }}
-                selectOnFocus
-                clearOnBlur
-                handleHomeEndKeys
-                id="free-solo-with-text-demo"
-                options={cgpaOptions}
-                getOptionLabel={(option) => {
-                  // Value selected with enter, right from the input
-                  if (typeof option === "string") {
-                    return option;
-                  }
-                  // Add "xxx" option created dynamically
-                  if (option.inputValue) {
-                    return option.inputValue;
-                  }
-                  // Regular option
-                  return option.title;
-                }}
-                renderOption={(prop, option) => (
-                  <li {...prop}>{option.title}</li>
-                )}
-                freeSolo
-                renderInput={(params) => (
-                  <TextField {...params} placeholder="Select CGPA" />
-                )}
-                sx={{
-                  "& input": {
-                    height: 6,
-                    padding: 0,
-                  },
-                }}
-              />
-            </div>
-          </div>
-
-          <div className="pb-4">
-            <div>
-              <label
-                htmlFor="nid"
-                className="text-sm block pb-2 text-slate-600 font-medium"
-              >
-                Year of passing
-              </label>
-              <DatePicker onChange={handlePassingYear} className="w-full" />
-            </div>
-          </div>
-
-          {/* some professional information */}
-          <div className="pb-4">
-            <label className="text-sm block pb-2 text-slate-600	  font-medium">
-              Current Position
-            </label>
-            <div className="flex justify-between">
-              <Autocomplete
-                className="mb-2 w-56"
-                value={currentPosition}
-                onChange={handleCurrentPosition}
-                filterOptions={(options, params) => {
-                  const filtered = filter(options, params);
-
-                  const { inputValue } = params;
-                  // Suggest the creation of a new value
-                  const isExisting = options.some(
-                    (option) => inputValue === option.title
-                  );
-                  if (inputValue !== "" && !isExisting) {
-                    filtered.push({
-                      inputValue,
-                      title: `Add "${inputValue}"`,
-                    });
-                  }
-
-                  return filtered;
-                }}
-                selectOnFocus
-                clearOnBlur
-                handleHomeEndKeys
-                id="free-solo-with-text-demo"
-                options={currentPositionOptions}
-                getOptionLabel={(option) => {
-                  // Value selected with enter, right from the input
-                  if (typeof option === "string") {
-                    return option;
-                  }
-                  // Add "xxx" option created dynamically
-                  if (option.inputValue) {
-                    return option.inputValue;
-                  }
-                  // Regular option
-                  return option.title;
-                }}
-                renderOption={(prop, option) => (
-                  <li {...prop}>{option.title}</li>
-                )}
-                freeSolo
-                renderInput={(params) => (
-                  <TextField {...params} placeholder="Select Position" />
-                )}
-                sx={{
-                  "& input": {
-                    height: 6,
-                    padding: 0,
-                  },
-                }}
-              />
-
-              <Autocomplete
-                className="mb-2 w-56"
-                value={currentInstitute}
-                onChange={handleCurrentInstitute}
-                filterOptions={(options, params) => {
-                  const filtered = filter(options, params);
-
-                  const { inputValue } = params;
-                  // Suggest the creation of a new value
-                  const isExisting = options.some(
-                    (option) => inputValue === option.title
-                  );
-                  if (inputValue !== "" && !isExisting) {
-                    filtered.push({
-                      inputValue,
-                      title: `Add "${inputValue}"`,
-                    });
-                  }
-
-                  return filtered;
-                }}
-                selectOnFocus
-                clearOnBlur
-                handleHomeEndKeys
-                id="free-solo-with-text-demo"
-                options={currentInstituteOptions}
-                getOptionLabel={(option) => {
-                  // Value selected with enter, right from the input
-                  if (typeof option === "string") {
-                    return option;
-                  }
-                  // Add "xxx" option created dynamically
-                  if (option.inputValue) {
-                    return option.inputValue;
-                  }
-                  // Regular option
-                  return option.title;
-                }}
-                renderOption={(prop, option) => (
-                  <li {...prop}>{option.title}</li>
-                )}
-                freeSolo
-                renderInput={(params) => (
-                  <TextField {...params} placeholder="Select Institute" />
-                )}
-                sx={{
-                  "& input": {
-                    height: 6,
-                    padding: 0,
-                  },
-                }}
-              />
-            </div>
-          </div>
-
-          <div className="pb-4">
-            <div>
-              <label
-                htmlFor="nid"
-                className="text-sm block pb-2 text-slate-600	  font-medium"
-              >
-                Working Period
-              </label>
-              <RangePicker className="w-full" onChange={handleWorkingPeriod} />
-            </div>
-          </div>
-
-          <div className="pb-4">
-            <div>
-              <label
-                htmlFor="nid"
-                className="text-sm block pb-2 text-slate-600 font-medium"
-              >
-                Monthly Income
-              </label>
-              <input
-                type="number"
-                name="monthlyIncome"
-                placeholder="Monthly Income"
-                className=" focus:outline-none p-2 border focus:border-blue-500 shadow rounded-lg hover:border-blue-500 w-full "
-                onChange={handleData}
-              />
-            </div>
-          </div>
-
-          <div className="pb-4">
-            <div>
-              <label
-                htmlFor="nid"
-                className="text-sm block pb-2 text-slate-600 font-medium"
-              >
-                Special Achievements
-              </label>
-              <TextArea
-                rows={4}
-                placeholder="Text Here"
-                name="achivements"
-                onChange={handleAchivements}
-              />
-            </div>
-          </div>
-          <div className="pb-4">
-            <label className="text-sm block pb-2 text-slate-600	  font-medium">
-              Martial Status
+              Marital Status
             </label>
             <Select
               className="w-full mb-2"
@@ -1040,24 +375,22 @@ const EditPersonalInfo = () => {
               ]}
             />
             {/* married details  */}
-            {personalInfo?.maritialStatus === "married" && (
+            {personalInfo?.maritalStatus === "married" && (
               <div className="py-4">
                 <div className="mb-2">
                   <input
                     type="number"
-                    name="numberOfPartner"
+                    {...register("numberOfPartner")}
                     placeholder="Number of Partner"
-                    className=" focus:outline-none p-2 border focus:border-blue-500 shadow rounded-lg hover:border-blue-500 w-full "
-                    onChange={handleMarriageReason}
+                    className=" focus:outline-none p-2 border focus:border-blue-500 shadow rounded-lg hover:border-blue-500 w-full"
                   />
                 </div>
                 <div className="mb-2">
                   <input
                     type="text"
-                    name="reasonOfMarriage"
+                    {...register("reasonOfMarriage")}
                     placeholder="Reason of Marriage"
-                    className=" focus:outline-none p-2 border focus:border-blue-500 shadow rounded-lg hover:border-blue-500 w-full "
-                    onChange={handleMarriageReason}
+                    className=" focus:outline-none p-2 border focus:border-blue-500 shadow rounded-lg hover:border-blue-500 w-full"
                   />
                 </div>
 
@@ -1119,41 +452,39 @@ const EditPersonalInfo = () => {
                     <div>
                       <input
                         type="number"
-                        name="numberOfBoy"
+                        {...register("numberOfBoy")}
                         placeholder="Number of Boy"
                         className=" focus:outline-none p-2 border focus:border-blue-500 shadow rounded-lg hover:border-blue-500 w-52 mr-10 "
-                        onChange={handleMarriageReason}
                       />
                       <input
                         type="number"
                         name="agesOfBoy"
+                        {...register("agesOfBoy")}
                         placeholder="Age of Boy"
                         className=" focus:outline-none p-2 border focus:border-blue-500 shadow rounded-lg hover:border-blue-500 w-52 "
-                        onChange={handleMarriageReason}
                       />
                       <input
                         type="number"
-                        name="numberOfGirl"
+                        {...register("numberOfGirl")}
                         placeholder="Number of Girl"
                         className=" focus:outline-none p-2 border focus:border-blue-500 shadow rounded-lg hover:border-blue-500 w-52 mr-10 mt-2"
-                        onChange={handleMarriageReason}
                       />
                       <input
                         type="number"
                         name="agesOfGirl"
+                        {...register("agesOfGirl")}
                         placeholder="Age of Girl"
                         className=" focus:outline-none p-2 border focus:border-blue-500 shadow rounded-lg hover:border-blue-500 w-52 "
-                        onChange={handleMarriageReason}
                       />
                     </div>
                   )}
 
-                  { }
+                  {}
                 </div>
               </div>
             )}
             {/* divorced details  */}
-            {personalInfo?.maritialStatus === "divorced" && (
+            {personalInfo?.maritalStatus === "divorced" && (
               <div>
                 <div className="mb-2">
                   <input
@@ -1229,7 +560,7 @@ const EditPersonalInfo = () => {
               </div>
             )}
 
-            {personalInfo?.maritialStatus === "widowed" && (
+            {personalInfo?.maritalStatus === "widowed" && (
               <div>
                 <div className="mb-2">
                   <DatePicker
@@ -1380,286 +711,6 @@ const EditPersonalInfo = () => {
             />
           </div>
 
-          {/* some physical information  */}
-
-          <div className="pb-4">
-            <label className="text-sm block pb-2 text-slate-600 font-medium">
-              Height
-            </label>
-            <p className="text-left text-base font-medium"> {height}" </p>
-            <Slider
-              min={0}
-              max={200}
-              onChange={onHeightChange}
-              onAfterChange={onAfterHeightChange}
-            />
-          </div>
-
-          <div className="pb-4">
-            <label className="text-sm block pb-2 text-slate-600 font-medium">
-              Weight
-            </label>
-            <p className="text-left text-base font-medium"> {weight} Kg </p>
-            <Slider
-              onChange={onWeightChange}
-              onAfterChange={onAfterWeightChange}
-              min={0}
-              max={200}
-            />
-          </div>
-
-          <div className="pb-4">
-            <label className="text-sm block pb-2 text-slate-600 font-medium">
-              Ancestry
-            </label>
-            <Select
-              className="w-full mb-2"
-              onChange={handleUserAncestryChange}
-              size="large"
-              placeholder="Select Ancestry"
-              options={[
-                {
-                  value: "option",
-                  label: "no options",
-                },
-                {
-                  value: "option no",
-                  label: "others options",
-                },
-              ]}
-            />
-          </div>
-
-          <div className="pb-4">
-            <label className="text-sm block pb-2 text-slate-600 font-medium">
-              Skin Tone
-            </label>
-            <Select
-              className="w-full mb-2"
-              onChange={handleUserSkinToneChange}
-              placeholder="Select skin tone"
-              size="large"
-              allowClear
-              options={[
-                {
-                  value: "light",
-                  label: "Light",
-                },
-                {
-                  value: "fair",
-                  label: "Fair",
-                },
-                {
-                  value: "medium",
-                  label: "Medium",
-                },
-                {
-                  value: "deep",
-                  label: "Deep (Dark)",
-                },
-              ]}
-            />
-          </div>
-          <div className="pb-4">
-            <label className="text-sm block pb-2 text-slate-600 font-medium">
-              Hair Color
-            </label>
-            <Select
-              className="w-full mb-2"
-              onChange={handleUserHairColorChange}
-              placeholder="Select hair color"
-              size="large"
-              allowClear
-              options={[
-                {
-                  value: "black",
-                  label: "Black",
-                },
-                {
-                  value: "brown",
-                  label: "Brown",
-                },
-                {
-                  value: "blond",
-                  label: "Blond",
-                },
-                {
-                  value: "white",
-                  label: "White",
-                },
-                {
-                  value: "gray",
-                  label: "Gray",
-                },
-                {
-                  value: "rarely red",
-                  label: "Rarely Red",
-                },
-              ]}
-            />
-          </div>
-
-          <div className="pb-4">
-            <label className="text-sm block pb-2 text-slate-600 font-medium">
-              Hair Type
-            </label>
-            <Select
-              className="w-full mb-2"
-              onChange={handleUserHairTypeChange}
-              placeholder="Select hair type"
-              size="large"
-              allowClear
-              options={[
-                {
-                  value: "fine",
-                  label: "Fine",
-                },
-                {
-                  value: "thick",
-                  label: "Thick",
-                },
-                {
-                  value: "long",
-                  label: "Long",
-                },
-                {
-                  value: "short",
-                  label: "Short",
-                },
-                {
-                  value: "matte",
-                  label: "Matte",
-                },
-                {
-                  value: "glossy",
-                  label: "Glossy",
-                },
-                {
-                  value: "curly",
-                  label: "Curly",
-                },
-                {
-                  value: "coily",
-                  label: "Coily",
-                },
-                {
-                  value: "straight",
-                  label: "Straight",
-                },
-                {
-                  value: "wavy",
-                  label: "Wavy",
-                },
-              ]}
-            />
-          </div>
-
-          <div className="pb-4">
-            <label className="text-sm block pb-2 text-slate-600 font-medium">
-              Eye Color
-            </label>
-            <Select
-              className="w-full mb-2"
-              onChange={handleUserEyeColorChange}
-              placeholder="Select hair type"
-              allowClear
-              size="large"
-              options={[
-                {
-                  value: "brown",
-                  label: "Brown",
-                },
-                {
-                  value: "hazel",
-                  label: "Hazel",
-                },
-                {
-                  value: "blue",
-                  label: "Blue",
-                },
-                {
-                  value: "green",
-                  label: "Green",
-                },
-                {
-                  value: "gray",
-                  label: "Gray",
-                },
-                {
-                  value: "amber",
-                  label: "Amber",
-                },
-              ]}
-            />
-          </div>
-
-          <div className="pb-4">
-            <label className="text-sm block pb-2 text-slate-600 font-medium">
-              Number of Teeth
-            </label>
-            <Select
-              className="w-full mb-2"
-              onChange={handleNumberOfTeeth}
-              placeholder="Select teeth number"
-              size="large"
-              allowClear
-              options={[
-                {
-                  value: "20",
-                  label: "20",
-                },
-                {
-                  value: "21",
-                  label: "21",
-                },
-                {
-                  value: "22",
-                  label: "22",
-                },
-                {
-                  value: "23",
-                  label: "23",
-                },
-                {
-                  value: "24",
-                  label: "24",
-                },
-                {
-                  value: "25",
-                  label: "25",
-                },
-                {
-                  value: "26",
-                  label: "26",
-                },
-                {
-                  value: "27",
-                  label: "27",
-                },
-                {
-                  value: "28",
-                  label: "28",
-                },
-                {
-                  value: "29",
-                  label: "29",
-                },
-                {
-                  value: "30",
-                  label: "30",
-                },
-                {
-                  value: "31",
-                  label: "31",
-                },
-                {
-                  value: "32",
-                  label: "32",
-                },
-              ]}
-            />
-          </div>
-
           <div className="pb-4">
             <div>
               <label
@@ -1668,11 +719,12 @@ const EditPersonalInfo = () => {
               >
                 About You
               </label>
-              <TextArea
-                rows={4}
+              <textarea
+                rows={3}
                 placeholder="Text Here"
+                {...register("aboutYou")}
                 name="aboutYou"
-                onChange={handleData}
+                className=" focus:outline-none p-2 border focus:border-blue-500 shadow rounded-lg hover:border-blue-500 w-full "
               />
             </div>
           </div>
@@ -1680,16 +732,26 @@ const EditPersonalInfo = () => {
           <div className="pb-4">
             <div>
               <label
-                htmlFor="nid"
+                htmlFor="looking"
                 className="text-sm block pb-2 text-slate-600 font-medium"
               >
                 What are you looking for
               </label>
-              <TextArea
-                rows={4}
-                placeholder="Text Here"
-                name="whatAreYouLookingFor"
-                onChange={handleData}
+              <Select
+                className="w-full mb-2"
+                onChange={handleLookingForChange}
+                placeholder="Select looking for"
+                size="large"
+                options={[
+                  {
+                    value: "man",
+                    label: "Man",
+                  },
+                  {
+                    value: "woman",
+                    label: "Woman",
+                  },
+                ]}
               />
             </div>
           </div>
@@ -1730,60 +792,54 @@ const EditPersonalInfo = () => {
 
           <div className="pb-4">
             <div>
-              <label
-                htmlFor="siblings"
-                className="text-sm block pb-2 text-slate-600 font-medium"
-              >
+              <label className="text-sm block pb-2 text-slate-600 font-medium">
                 Siblings
               </label>
-              <div id="siblings">
-                <p>Brother</p>
-                <div className="flex justify-center items-center mb-2">
-                  <button
-                    // onClick={() =>
-                    //   brother === 0 || brother > 0
-                    //     ? setBrother(brother - 1)
-                    //     : setBrother(brother)
-                    // }
-                    onClick={() => setBrother((prevCount) => prevCount - 1)}
+              <div>
+                <h1 className="text-sm leading-6 text-slate-600 font-medium mb-2">
+                  Brothers
+                </h1>
+                <div className="flex justify-center items-center mb-4">
+                  <p
+                    // onClick={() => setBrother((prevCount) => prevCount - 1)}
+                    onClick={brotherDecreaseHandler}
                     className="px-4 py-2 text-3xl bg-gray-300 leading-6 rounded-l-lg"
                   >
                     -
-                  </button>
-                  <div className="text-lg text-center leading-6 font-medium w-24 py-2 bg-gray-200">
+                  </p>
+                  <div className="text-base text-center leading-6 font-medium w-24 py-2 bg-gray-200">
                     {brother}
                   </div>
-                  <button
-                    onClick={() => setBrother((prevCount) => prevCount + 1)}
+                  <p
+                    // onClick={() => setBrother((prevCount) => prevCount + 1)}
+                    onClick={brotherIncreaseHandler}
                     className="px-4 py-2 text-3xl bg-gray-300 leading-6 rounded-r-lg"
                   >
                     +
-                  </button>
+                  </p>
                 </div>
               </div>
 
-              <div id="siblings">
-                <p>Sister</p>
-                <div className="flex justify-center items-center mb-2">
-                  <button
-                    onClick={() =>
-                      sister === 0 || sister > 0
-                        ? setSister(sister - 1)
-                        : setBrother(brother)
-                    }
+              <div>
+                <h1 className="text-sm leading-6 text-slate-600 font-medium mb-2">
+                  Sisters
+                </h1>
+                <div className="flex justify-center items-center mb-4">
+                  <p
+                    onClick={() => setSister((prevCount) => prevCount - 1)}
                     className="px-4 py-2 text-3xl bg-gray-300 leading-6 rounded-l-lg"
                   >
                     -
-                  </button>
-                  <div className="text-lg text-center leading-6 font-medium w-24 py-2 bg-gray-200">
+                  </p>
+                  <div className="text-base text-center leading-6 font-medium w-24 py-2 bg-gray-200">
                     {sister}
                   </div>
-                  <button
-                    onClick={() => setSister(sister + 1)}
+                  <p
+                    onClick={() => setSister((prevCount) => prevCount + 1)}
                     className="px-4 py-2 text-3xl bg-gray-300 leading-6 rounded-r-lg"
                   >
                     +
-                  </button>
+                  </p>
                 </div>
               </div>
             </div>
@@ -1809,7 +865,7 @@ const EditPersonalInfo = () => {
           <div className="pb-4">
             <div>
               <label
-                htmlFor="linkdin"
+                htmlFor="linkedin"
                 className="text-sm block pb-2 text-slate-600	  font-medium"
               >
                 Linkedin
@@ -1817,10 +873,10 @@ const EditPersonalInfo = () => {
               <input
                 type="text"
                 name="LinkedInId"
-                id="linkdin"
-                placeholder="your linkdin profile link"
+                {...register("LinkedInId")}
+                id="linkedin"
+                placeholder="your linkedin profile link"
                 className=" focus:outline-none p-2 border focus:border-blue-500 shadow rounded-lg hover:border-blue-500 w-full "
-                onChange={handleData}
               />
             </div>
           </div>
@@ -1834,29 +890,27 @@ const EditPersonalInfo = () => {
               </label>
               <input
                 type="text"
-                name="instagramId"
+                {...register("instagramId")}
                 id="instagram"
                 placeholder="your instagram profile link"
                 className=" focus:outline-none p-2 border focus:border-blue-500 shadow rounded-lg hover:border-blue-500 w-full "
-                onChange={handleData}
               />
             </div>
           </div>
           <div className="pb-4">
             <div>
               <label
-                htmlFor="facebook"
+                htmlFor="faceBookId"
                 className="text-sm block pb-2 text-slate-600	  font-medium"
               >
                 Facebook
               </label>
               <input
                 type="text"
-                name="faceBookId"
-                id="facebook"
+                {...register("faceBookId")}
+                id="faceBookId"
                 placeholder="your facebook profile link"
                 className=" focus:outline-none p-2 border focus:border-blue-500 shadow rounded-lg hover:border-blue-500 w-full "
-                onChange={handleData}
               />
             </div>
           </div>
@@ -1870,8 +924,8 @@ const EditPersonalInfo = () => {
                 size="large"
                 mode="multiple"
                 className="w-full"
-                onChange={handleHoby}
-                placeholder="select hoby"
+                onChange={handleHobby}
+                placeholder="select hobby"
                 showSearch
                 filterOption={(input, option) =>
                   (option?.label ?? "")
@@ -1904,8 +958,10 @@ const EditPersonalInfo = () => {
           </div>
         </form>
       </div>
+
+      {/* Mobile device */}
       <div className="md:hidden">
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <div className="flex justify-between pb-4">
             <div>
               <label
@@ -1950,15 +1006,13 @@ const EditPersonalInfo = () => {
                 htmlFor="number"
                 className="text-sm block pb-2 text-slate-600 font-medium"
               >
-                Phone Nmber
+                Phone Number
               </label>
               <InputNumber
                 placeholder="17000000000"
                 className="w-full p-1 "
                 id="number"
                 name="phone"
-                addonBefore={CountryCode}
-                onChange={handlePhoneNumber}
               />
             </div>
           </div>
@@ -2023,7 +1077,7 @@ const EditPersonalInfo = () => {
 
           <div className="pb-4">
             <label className="text-sm block pb-2 text-slate-600	  font-medium">
-              Martial Status
+              Marital Status
             </label>
             <Select
               className="w-full mb-2"
@@ -2164,7 +1218,7 @@ const EditPersonalInfo = () => {
                     </div>
                   )}
 
-                  { }
+                  {}
                 </div>
               </div>
             )}
@@ -2344,7 +1398,7 @@ const EditPersonalInfo = () => {
 
           <div className="pb-4">
             <label className="text-sm block pb-2 text-slate-600 font-medium">
-              Current City
+              Home Town
             </label>
             <Select
               className="w-full mb-2"
@@ -2370,7 +1424,7 @@ const EditPersonalInfo = () => {
 
           <div className="pb-4">
             <label className="text-sm block pb-2 text-slate-600	  font-medium">
-              Zodaic Sign
+              Zodiac Sign
             </label>
             <Select
               className="w-full mb-2 "
@@ -2428,42 +1482,6 @@ const EditPersonalInfo = () => {
                 maxLength={6}
                 name="lookingFor"
                 onChange={handleData}
-              />
-            </div>
-          </div>
-
-          <div className="pb-4">
-            <div>
-              <label
-                htmlFor="nid"
-                className="text-sm block pb-2 text-slate-600 font-medium"
-              >
-                Permanent Address
-              </label>
-              <TextArea
-                rows={4}
-                placeholder="Text Here"
-                maxLength={6}
-                onChange={handleData}
-                name="permanentAddress"
-              />
-            </div>
-          </div>
-
-          <div className="pb-4">
-            <div>
-              <label
-                htmlFor="nid"
-                className="text-sm block pb-2 text-slate-600 font-medium"
-              >
-                Present Address
-              </label>
-              <TextArea
-                rows={4}
-                placeholder="Text Here"
-                maxLength={6}
-                onChange={handleData}
-                name="present Address"
               />
             </div>
           </div>
@@ -2610,8 +1628,8 @@ const EditPersonalInfo = () => {
                 size="large"
                 mode="multiple"
                 className="w-full"
-                onChange={handleHoby}
-                placeholder="select hoby"
+                onChange={handleHobby}
+                placeholder="select hobby"
                 showSearch
                 filterOption={(input, option) =>
                   (option?.label ?? "")
