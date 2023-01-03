@@ -383,13 +383,13 @@ export const PersonalDetails = ({ setPage }) => {
                     </section>
                     {/* ---------- Profile Photo ---------- */}
                     <section>
-                        <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
+                        <div className="flex items-center overflow-x-scroll bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
                             <AiOutlineCloudUpload className=" mr-2 text-gray-400" />
                             <label htmlFor="profilePhoto" className="outline-none h-full text-sm text-gray-400 bg-gray-100">
                                 {profilePhoto ? (
-                                    <>
+                                    <div>
                                         <span className="text-green-400">{profilePhotoName ? profilePhotoName : "Profile Photo added"}</span>
-                                    </>
+                                    </div>
                                 ) : (
                                     "Upload Profile Photo"
                                 )}

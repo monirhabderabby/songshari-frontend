@@ -17,4 +17,4 @@ const mobileMatrimonyPrivateRoutes = [
     },
 ];
 
-export default mobileMatrimonyPrivateRoutes;
+export default MobileMatrimonyPrivateRoutes;

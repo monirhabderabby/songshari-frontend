@@ -1,25 +1,24 @@
-// configuration
+// configuration 
 import React from "react";
-import { Link } from "react-router-dom";
 
 // Third party packages
-import { AiOutlineWarning } from "react-icons/ai";
 import { Autoplay } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
-
-// components
-import { useGetRecentMembersQuery } from "../../../../Redux/features/userInfo/withoutLoginApi";
 
 // css
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+
+// components 
+import { useGetRecentMembersQuery } from "../../../../Redux/features/userInfo/withoutLoginApi";
 import { ProfileCardSkeletonLoader } from "../../../shared/Cards/Loader/ProfileCardSkeletonLoader";
 import { UserCard } from "../../Shared/userCard/UserCard";
 
+
 const MobileSuggested = () => {
-    //hook variable declaration
-    const { data, isLoading, error } = useGetRecentMembersQuery();
+    // hook variable declaration
+    const { data, isLoading } = useGetRecentMembersQuery();
 
     // js variables
     const arr = [1, 2, 3, 4, 5, 6, 7, 8];
@@ -30,17 +29,6 @@ const MobileSuggested = () => {
             return (
                 <SwiperSlide key={k}>
                     <ProfileCardSkeletonLoader />
-                </SwiperSlide>
-            );
-        });
-    } else if (error) {
-        content = arr.map(k => {
-            return (
-                <SwiperSlide key={k}>
-                    <div className="flex flex-col items-center justify-center">
-                        <AiOutlineWarning className="text-[48px] text-gray-400" />
-                        <p className="mt-[10px] text-[22px] font-Inter font-medium text-gray-500">Server Error</p>
-                    </div>
                 </SwiperSlide>
             );
         });
@@ -55,8 +43,7 @@ const MobileSuggested = () => {
     }
 
     return (
-
-        <div>
+       <div>
             <div className="mt-[30px] w-[350px] mx-auto md:hidden ">
                 <Swiper
                     spaceBetween={30}
