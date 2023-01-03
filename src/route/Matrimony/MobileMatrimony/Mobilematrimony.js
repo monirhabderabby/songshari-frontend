@@ -1,15 +1,11 @@
-
-// components 
-import Login from "../../../components/pages/Authentications/Login";
+// components
 import MobileLogin from "../../../components/pages/Authentications/MobileDesign/MobileLogin";
 import MobileSignUp from "../../../components/pages/Authentications/MobileDesign/MobileSignUp";
-import Signup from "../../../components/pages/Authentications/SignUp";
 import MobileDiamondPlan from "../../../components/pages/Membership/MobileVersion/MobileDiamondPlan";
 import MobileFreePlan from "../../../components/pages/Membership/MobileVersion/MobileFreePlan";
 import MobileGoldPlan from "../../../components/pages/Membership/MobileVersion/MobileGoldPlan";
 import UpgradePlan from "../../../components/pages/Membership/MobileVersion/UpgradePlan";
 import MobileSuggested from "../../../components/pages/TopProfile/MobileTopProfile/MobileSuggested";
-import Suggested from "../../../components/pages/TopProfile/Suggested";
 import TopBride from "../../../components/pages/TopProfile/TopBride";
 import TopGroom from "../../../components/pages/TopProfile/TopGroom";
 import ProfileServices from "../../../components/SingleProfilesUser/ServicesSection/ProfileServices";
@@ -26,8 +22,8 @@ import Certificate from "../../../Wrapper/Home/mobileversion/PhotoGallery/certif
 import { PrivacyMov } from "../../../Wrapper/Home/mobileversion/privacy/PrivacyMov";
 import { Setting } from "../../../Wrapper/Home/mobileversion/setting/Setting";
 
-// routes 
-const MobileMatrimony = [
+// routes
+const mobileMatrimony = [
     {
         id: 1,
         path: "/",

@@ -21,7 +21,7 @@ export const YouMayLike = () => {
 
     if (isLoading) {
         content = (
-            <div className="w-full flex flex-col">
+            <div className="w-full flex flex-col gap-y-[20px]">
                 <YouMayLikeSkeletionLoader />
                 <YouMayLikeSkeletionLoader />
                 <YouMayLikeSkeletionLoader />
