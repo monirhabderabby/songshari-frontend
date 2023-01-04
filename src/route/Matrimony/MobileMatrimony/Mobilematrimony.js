@@ -179,30 +179,6 @@ const MobileMatrimony = [
         element: <MobileOthersDetails />,
       },
 
-    {
-        id: 27,
-        path: "/mobile-find-partner",
-        element: <FindPartner />,
-      },
-    {
-        id: 28,
-        path: "/otherprofile/:id",
-        element: <MobileOthersDetails />,
-      },
-    {
-        id: 29,
-        path: "/otherprofile/:id",
-        element: <MobileOthersDetails />,
-      },
-    {
-        id: 30,
-        path: "/otherprofile/:id",
-        element: <MobileOthersDetails />,
-      },
-    {
-        id: 31,
-        path: "/otherprofile/:id",
-        element: <MobileOthersDetails />,
-      },
+    
 ];
 export default MobileMatrimony;
