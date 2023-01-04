@@ -1,14 +1,17 @@
+// configuration 
 import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
+
+// images 
 import profile from "../../../assets/images/profile/Ellipse 8.png";
+
+// components 
 import { auth } from "../../../firebase.init";
-import { useGetProfileDetailsWIthAuthQuery } from "../../../Redux/features/userInfo/userApi";
-import Accordian from "../profileSection/Accordion";
 
 const MobileUsersProfile = () => {
+  // hooks variables 
   const [user] = useAuthState(auth);
-  const { data, isLoading } = useGetProfileDetailsWIthAuthQuery();
-
+ 
   return (
     <div className="flex justify-center">
       <div className="w-full mx-7">
