@@ -29,7 +29,7 @@ import { EmailField } from "./InputFields/EmailField";
 
 const Signup = () => {
     // hook variables
-    const [regAsMember, { data: response, isLoading: serverLoading }] = useRegAsMemberMutation();
+    const [regAsMember, { data: response, isLoading: serverLoading, error }] = useRegAsMemberMutation();
     const [signInWithGoogle] = useSignInWithGoogle(auth);
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -47,12 +47,19 @@ const Signup = () => {
 
     useEffect(() => {
         if (response) {
+            console.log(response);
             setCookie("token", response?.token);
             dispatch(loadUserData(response));
             reset();
             navigate("/otp");
         }
     }, [response, dispatch, reset, navigate]);
+
+    useEffect(() => {
+        if (error) {
+            console.log(error);
+        }
+    }, [error]);
 
     // function handler
     const emailHandler = () => {

@@ -1,5 +1,7 @@
-import React, { Suspense, useEffect, useState } from "react";
-import { useAuthState } from "react-firebase-hooks/auth";
+// configuration
+import React, { Suspense } from "react";
+
+// components
 import Anexecutive from "../../components/CardComopents/Anexecutive";
 import BeginFamilyJourney from "../../components/pages/Home/BeginFamilyJourney/BeginFamilyJourney";
 import FindSoleMate from "../../components/pages/Home/FindSoleMate/FindSoleMate";
@@ -10,23 +12,15 @@ import PeopleJoinedAlready from "../../components/pages/PeopleJoinedAlready/Peop
 import NavBar from "../../components/pages/Shared/NavBar";
 import TopProfile from "../../components/pages/TopProfile/TopProfile";
 import Footer from "../../components/shared/Footer/Footer";
-import { auth } from "../../firebase.init";
+import isLoggedIn from "../../Helper/hooks/checkLoggerPersestency/isLoggedIn";
 import { MobileHome } from "./mobileversion/MobileHome";
 import { TabHome } from "./tab/TabHome";
 const Banner = React.lazy(() => import("../../components/pages/Home/Banner/Banner"));
-const Homepage = () => {
-    const [user, loading] = useAuthState(auth);
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-    useEffect(() => {
-        if (loading) {
-            setIsLoggedIn(false);
-        } else if (user) {
-            setIsLoggedIn(true);
-        } else {
-            setIsLoggedIn(false);
-        }
-    }, [user, loading, setIsLoggedIn]);
+const Homepage = () => {
+    // js variables
+    const logged = isLoggedIn();
+
     return (
         <div className="font-george overflow-x-hidden">
             <div className="hidden md:hidden lg:block">
@@ -40,7 +34,7 @@ const Homepage = () => {
                     <PeopleJoinedAlready />
                     <MeetNewPeople />
                     <FindSoleMate />
-                    {!isLoggedIn && <Anexecutive />}
+                    {!logged && <Anexecutive />}
                     <Footer />
                 </Suspense>
             </div>
