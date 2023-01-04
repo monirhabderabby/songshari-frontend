@@ -92,7 +92,7 @@ export const EducationalDetails = ({ setPage }) => {
         });
     };
 
-    const moreEduAddedAchievementMomentHandler = async (photo, id) => {
+    const moreEduAddedAchievementMomentHandler = async photo => {
         const storageRef = ref(firebaseStorage, `educationalCertificates/${photo?.name + uuidv4()}`);
         uploadBytes(storageRef, photo).then(async snapshot => {
             await getDownloadURL(snapshot.ref).then(url => {
@@ -439,7 +439,7 @@ export const EducationalDetails = ({ setPage }) => {
                                             className="hidden"
                                             onChange={e => {
                                                 const photo = e.target.files[0];
-                                                moreEduAddedAchievementMomentHandler(photo, field.id);
+                                                moreEduAddedAchievementMomentHandler(photo);
                                             }}
                                         />
                                     </div>
