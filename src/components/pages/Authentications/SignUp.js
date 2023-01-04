@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 // Third party packages, ex: redux
-import { useCreateUserWithEmailAndPassword, useSignInWithGoogle, useUpdateProfile } from "react-firebase-hooks/auth";
+import { useSignInWithGoogle } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
 import { AiOutlineIdcard } from "react-icons/ai";
 import { FaGoogle, FaRegEnvelope, FaRegUser } from "react-icons/fa";
@@ -14,6 +14,7 @@ import { useDispatch } from "react-redux";
 // components
 import logo from "../../../assets/images/Logo/logoBlack.png";
 import { auth } from "../../../firebase.init";
+import setCookie from "../../../Helper/cookies/setCookie";
 import { useRegAsMemberMutation } from "../../../Redux/features/userInfo/userApi";
 import { loadUserData } from "../../../Redux/features/userInfo/userInfo";
 import Error from "../../ui/error/Error";
@@ -24,19 +25,18 @@ import MobileSignUp from "./MobileDesign/MobileSignUp";
 import { Select } from "antd";
 import "../../../App.css";
 import "../../../assets/css/SignUp.css";
+import { EmailField } from "./InputFields/EmailField";
 
 const Signup = () => {
-    // varible declation
     // hook variables
-    const [regAsMember, { data: response, isLoading: serverLoading }] = useRegAsMemberMutation();
-    const [customError, setCustomError] = useState("");
-    const [createUserWithEmailAndPassword, user, loading, error] = useCreateUserWithEmailAndPassword(auth);
-    const [signInWithGoogle, googleUser, googleLoading] = useSignInWithGoogle(auth);
-    const [updateProfile, updating] = useUpdateProfile(auth);
-    const [gender, setGender] = useState("");
-
+    const [regAsMember, { data: response, isLoading: serverLoading, error }] = useRegAsMemberMutation();
+    const [signInWithGoogle] = useSignInWithGoogle(auth);
     const dispatch = useDispatch();
     const navigate = useNavigate();
+
+    // state declarations
+    const [gender, setGender] = useState("");
+    const [customError, setCustomError] = useState("");
 
     const {
         register,
@@ -47,21 +47,21 @@ const Signup = () => {
 
     useEffect(() => {
         if (response) {
-            localStorage.setItem("accessToken", response?.token);
+            console.log(response);
+            setCookie("token", response?.token);
             dispatch(loadUserData(response));
             reset();
-            navigate("/userProfile");
+            navigate("/otp");
         }
-    }, [response, dispatch, reset, navigate, user, googleUser]);
+    }, [response, dispatch, reset, navigate]);
 
     useEffect(() => {
-        if (error?.message === "Firebase: Error (auth/email-already-in-use).") {
-            setCustomError("email already in use");
+        if (error) {
+            console.log(error);
         }
     }, [error]);
 
-    // js variables
-
+    // function handler
     const emailHandler = () => {
         setCustomError("");
     };
@@ -69,10 +69,6 @@ const Signup = () => {
     const onSubmit = async data => {
         data.role = "member";
         data.gender = gender;
-        console.log(data);
-        // Implement firebase registration
-        await createUserWithEmailAndPassword(data.email, data.password);
-        await updateProfile({ displayName: data.firstName + " " + data.lastName });
         await regAsMember(data);
     };
 
@@ -113,60 +109,28 @@ const Signup = () => {
                                                 requiredMessage: "First name is required",
                                             }}
                                         />
-                                        <section>
-                                            <div className="flex items-center bg-gray-100 p-2 w-full rounded-xl mt-3 lg:mt-0">
-                                                <FaRegUser className=" m-2 text-gray-400" />
-                                                <input
-                                                    {...register("lastName", {
-                                                        required: {
-                                                            value: true,
-                                                            message: "Last name is required",
-                                                        },
-                                                    })}
-                                                    type="text"
-                                                    placeholder="Last name"
-                                                    className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
-                                                    id="lastName"
-                                                />
-                                            </div>
-                                            <h1 className="text-left ml-2">
-                                                {errors.lastName?.type === "required" && (
-                                                    <span className="w-full text-left text-red-400 text-sm">{errors?.lastName.message}</span>
-                                                )}
-                                            </h1>
-                                        </section>{" "}
-                                        {/*last name field*/}
-                                        <section>
-                                            <div className="flex items-center bg-gray-100 p-2 w-full rounded-xl mt-3">
-                                                <FaRegEnvelope className=" m-2 text-gray-400" />
-                                                <input
-                                                    {...register("email", {
-                                                        required: {
-                                                            value: true,
-                                                            message: "Email is required",
-                                                        },
-                                                        pattern: {
-                                                            value: /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/,
-                                                            message: "Provide a Valid Email",
-                                                        },
-                                                    })}
-                                                    type="email"
-                                                    placeholder="Email"
-                                                    className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
-                                                    onChange={emailHandler}
-                                                    id="email"
-                                                />
-                                            </div>
-                                            <h1 className="text-left ml-2">
-                                                {errors.email?.type === "required" && (
-                                                    <span className="w-full text-left text-red-400 text-sm">{errors?.email.message}</span>
-                                                )}
-                                                {errors.email?.type === "pattern" && (
-                                                    <span className="w-full text-left text-red-400 text-sm">{errors?.email.message}</span>
-                                                )}
-                                            </h1>
-                                        </section>
-                                        {/*Email field*/}
+                                        <TextField
+                                            {...{
+                                                register,
+                                                errors,
+                                                icon: <FaRegUser className=" m-2 text-gray-400" />,
+                                                id: "lastName",
+                                                placeholder: "Last name",
+                                                name: "lastName",
+                                                requiredMessage: "Last name is required",
+                                            }}
+                                        />
+                                        <EmailField
+                                            {...{
+                                                register,
+                                                errors,
+                                                icon: <FaRegEnvelope className=" m-2 text-gray-400" />,
+                                                placeholder: "Email",
+                                                emailHandler,
+                                                name: "email",
+                                                id: "email",
+                                            }}
+                                        />
                                         <section>
                                             <div className="flex items-center bg-gray-100 p-2 w-full rounded-xl mt-3">
                                                 <MdPhone className=" m-2 text-gray-400" />
@@ -309,7 +273,7 @@ const Signup = () => {
                                         <div className="col-span-2">
                                             <input
                                                 type="submit"
-                                                value={loading || updating || googleLoading || serverLoading ? "Loading..." : "SIGN UP"}
+                                                value={serverLoading ? "Loading..." : "SIGN UP"}
                                                 className="border-2 cursor-pointer mt-6 border-primary hover:border-0 rounded-full px-12 py-2 hover:bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] hover:text-white duration-500 transition-all"
                                             />
                                         </div>

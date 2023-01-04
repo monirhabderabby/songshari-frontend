@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 
 // Third party packages
-import { useAuthState, useSignOut } from "react-firebase-hooks/auth";
 import { useDispatch, useSelector } from "react-redux";
 
 // Components
@@ -16,20 +15,19 @@ import findALawyer from "../../../assets/images/NavIcons/Lawyer.svg";
 import membership from "../../../assets/images/NavIcons/Membership.svg";
 import course from "../../../assets/images/NavIcons/Online-Course.svg";
 import register from "../../../assets/images/NavIcons/Profile-Login-Icon.svg";
-import { auth } from "../../../firebase.init";
 import { loadUserData } from "../../../Redux/features/userInfo/userInfo";
 import MobileNav from "./MobileNav";
 
 // CSS files
 import NavBarCSS from "../../../assets/css/navbar.module.css";
+import removeCookie from "../../../Helper/cookies/removeCookie";
+import isLoggedIn from "../../../Helper/hooks/checkLoggerPersestency/isLoggedIn";
 
 const NavBar = ({ bg }) => {
     const [language, setLanguage] = useState(true);
-    const [user] = useAuthState(auth);
-    const [signOut] = useSignOut(auth);
     const dispatch = useDispatch();
     const navigate = useNavigate();
-
+    const user = isLoggedIn();
     const userInfo = useSelector(state => state?.persistedReducer?.userInfo?.userInfo?.user);
 
     // js variable
@@ -54,11 +52,10 @@ const NavBar = ({ bg }) => {
     ];
 
     // function declaration for logout
-    const logoutButton = async () => {
+    let logoutButton = async () => {
         dispatch(loadUserData(null));
-        await signOut();
         navigate("/");
-        localStorage.removeItem("accessToken");
+        removeCookie("token");
     };
 
     const banglaHandler = () => {

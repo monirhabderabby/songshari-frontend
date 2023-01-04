@@ -1,3 +1,4 @@
+import getCookie from "../../../Helper/cookies/getCookie";
 import apiSlice from "../../api/apiSlice";
 
 export const postApi = apiSlice.injectEndpoints({
@@ -7,7 +8,7 @@ export const postApi = apiSlice.injectEndpoints({
                 url: `/member/post/myposts/${id}`,
                 method: "GET",
                 headers: {
-                    authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+                    authorization: `Bearer ${getCookie("token")}`,
                 },
             }),
             keepUnusedDataFor: 0,
@@ -17,7 +18,7 @@ export const postApi = apiSlice.injectEndpoints({
                 url: "/member/post",
                 method: "GET",
                 headers: {
-                    authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+                    authorization: `Bearer ${getCookie("token")}`,
                 },
             }),
             keepUnusedDataFor: 0,
@@ -27,7 +28,7 @@ export const postApi = apiSlice.injectEndpoints({
                 url: "/member/post/add",
                 method: "POST",
                 headers: {
-                    authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+                    authorization: `Bearer ${getCookie("token")}`,
                 },
                 body: data,
             }),

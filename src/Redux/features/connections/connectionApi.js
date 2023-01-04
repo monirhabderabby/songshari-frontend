@@ -1,3 +1,4 @@
+import getCookie from "../../../Helper/cookies/getCookie";
 import apiSlice from "../../api/apiSlice";
 
 export const connectionApi = apiSlice.injectEndpoints({
@@ -7,7 +8,7 @@ export const connectionApi = apiSlice.injectEndpoints({
                 url: `/member/connections/add/${id}`,
                 method: "POST",
                 headers: {
-                    authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+                    authorization: `Bearer ${getCookie("token")}`,
                 },
             }),
         }),
@@ -16,7 +17,7 @@ export const connectionApi = apiSlice.injectEndpoints({
                 url: "/member/connections/sentRequests",
                 method: "GET",
                 headers: {
-                    authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+                    authorization: `Bearer ${getCookie("token")}`,
                 },
             }),
             keepUnusedDataFor: 0,
@@ -26,7 +27,7 @@ export const connectionApi = apiSlice.injectEndpoints({
                 url: "/member/connections/requests",
                 method: "GET",
                 headers: {
-                    authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+                    authorization: `Bearer ${getCookie("token")}`,
                 },
             }),
             keepUnusedDataFor: 0,
@@ -36,7 +37,7 @@ export const connectionApi = apiSlice.injectEndpoints({
                 url: `/member/connections/accept/${id}`,
                 method: "POST",
                 headers: {
-                    authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+                    authorization: `Bearer ${getCookie("token")}`,
                 },
             }),
             async onQueryStarted(arg, { dispatch, queryFulfilled }) {
@@ -66,7 +67,7 @@ export const connectionApi = apiSlice.injectEndpoints({
                 url: "/member/connections",
                 method: "GET",
                 headers: {
-                    authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+                    authorization: `Bearer ${getCookie("token")}`,
                 },
             }),
             keepUnusedDataFor: 0,
@@ -76,7 +77,7 @@ export const connectionApi = apiSlice.injectEndpoints({
                 url: `/member/connections/sentRequest/${id}`,
                 method: "DELETE",
                 headers: {
-                    authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+                    authorization: `Bearer ${getCookie("token")}`,
                 },
             }),
 
@@ -110,7 +111,7 @@ export const connectionApi = apiSlice.injectEndpoints({
                 url: "/member/connections/matchesAndPercentage",
                 method: "GET",
                 headers: {
-                    authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+                    authorization: `Bearer ${getCookie("token")}`,
                 },
             }),
         }),
@@ -119,7 +120,7 @@ export const connectionApi = apiSlice.injectEndpoints({
                 url: `/member/like/profile/${id}`,
                 method: "PUT",
                 headers: {
-                    authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+                    authorization: `Bearer ${getCookie("token")}`,
                 },
             }),
         }),
@@ -128,7 +129,7 @@ export const connectionApi = apiSlice.injectEndpoints({
                 url: `/member/connections/sentRequest/${id}`,
                 method: "DELETE",
                 headers: {
-                    authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+                    authorization: `Bearer ${getCookie("token")}`,
                 },
             }),
             async onQueryStarted(arg, { dispatch, queryFulfilled }) {
@@ -158,7 +159,7 @@ export const connectionApi = apiSlice.injectEndpoints({
                 url: "/member/post/myposts",
                 method: "GET",
                 headers: {
-                    authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+                    authorization: `Bearer ${getCookie("token")}`,
                 },
             }),
             keepUnusedDataFor: 0,
@@ -168,7 +169,7 @@ export const connectionApi = apiSlice.injectEndpoints({
                 url: `/member/like/post/${id}`,
                 method: "PUT",
                 headers: {
-                    authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+                    authorization: `Bearer ${getCookie("token")}`,
                 },
             }),
         }),

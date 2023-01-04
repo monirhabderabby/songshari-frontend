@@ -1,3 +1,4 @@
+import getCookie from "../../../Helper/cookies/getCookie";
 import apiSlice from "../../api/apiSlice";
 
 export const matchesPreferenceApi = apiSlice.injectEndpoints({
@@ -7,7 +8,7 @@ export const matchesPreferenceApi = apiSlice.injectEndpoints({
                 url: "/member/register/matchPreference",
                 method: "POST",
                 headers: {
-                    authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+                    authorization: `Bearer ${getCookie("token")}`,
                 },
                 body: data,
             }),

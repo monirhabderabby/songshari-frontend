@@ -1,3 +1,4 @@
+import getCookie from "../../../Helper/cookies/getCookie";
 import apiSlice from "../../api/apiSlice";
 
 export const documentsApi = apiSlice.injectEndpoints({
@@ -7,7 +8,7 @@ export const documentsApi = apiSlice.injectEndpoints({
                 url: "/member/certificates",
                 method: "GET",
                 headers: {
-                    authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+                    authorization: `Bearer ${getCookie("token")}`,
                 },
             }),
             keepUnusedDataFor: 0,
