@@ -45,7 +45,7 @@ export const EducationalDetails = ({ setPage }) => {
     data.educations.map((p) => delete p.degree);
     data.educations.map((p) => delete p.institute);
     data.educations.map((p) => delete p.department);
-    data.educations.map((p) => delete p.feildOfStudy);
+    data.educations.map((p) => delete p.fieldOfStudy);
     data.educations.map((p) => delete p.yearOfPassing);
     data.educations.map((p) => delete p.photoCertificate);
 
@@ -53,7 +53,7 @@ export const EducationalDetails = ({ setPage }) => {
     data.educations.map((p, index) => (p.institute = addedInstitute[index]));
     data.educations.map((p, index) => (p.department = addedDepartment[index]));
     data.educations.map(
-      (p, index) => (p.feildOfStudy = addedFieldOfStudy[index])
+      (p, index) => (p.fieldOfStudy = addedFieldOfStudy[index])
     );
     data.educations.map(
       (p, index) => (p.yearOfPassing = addedYearOfPassing[index])
@@ -61,21 +61,22 @@ export const EducationalDetails = ({ setPage }) => {
     data.educations.map(
       (p, index) => (p.photoCertificate = eduAddedPhotoCertificate[index])
     );
+    data.educations.map((p) => (p.gpaOrCgpa = Number(p.gpaOrCgpa)));
 
     const newObject = Object.create(data);
     newObject.degree = degreeName;
     newObject.institute = eduInstitute;
     newObject.department = eduDepartment;
-    newObject.feildOfStudy = eduFieldOfStudy;
+    newObject.fieldOfStudy = eduFieldOfStudy;
     newObject.yearOfPassing = eduYearOfPassing;
-    newObject.eduGpaOrCgpa = data.gpaOrCgpa;
+    newObject.gpaOrCgpa = Number(data.gpaOrCgpa);
     newObject.specialAchievement = data.specialAchievement;
     newObject.photoCertificate = eduAchievementMoment;
 
     delete data.degree;
     delete data.institute;
     delete data.department;
-    delete data.feildOfStudy;
+    delete data.fieldOfStudy;
     delete data.yearOfPassing;
     delete data.photoCertificate;
     delete data.gpaOrCgpa;
@@ -199,7 +200,7 @@ export const EducationalDetails = ({ setPage }) => {
           <section>
             <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
               <CreatableSelect
-                {...register("feildOfStudy")}
+                {...register("fieldOfStudy")}
                 onChange={(val) => setEduFieldOfStudy(val.value)}
                 type="text"
                 placeholder="Field of Study"
@@ -224,7 +225,8 @@ export const EducationalDetails = ({ setPage }) => {
             <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
               <input
                 {...register("gpaOrCgpa")}
-                type="text"
+                type="number"
+                step="0.01"
                 placeholder="GPA Or CGPA"
                 className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
                 id="gpaOrCgpa"
@@ -376,7 +378,7 @@ export const EducationalDetails = ({ setPage }) => {
                 <section>
                   <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
                     <CreatableSelect
-                      {...register(`educations.${index}.feildOfStudy`)}
+                      {...register(`educations.${index}.fieldOfStudy`)}
                       onChange={(val) =>
                         setAddedFieldOfStudy([...addedFieldOfStudy, val.value])
                       }
@@ -403,8 +405,9 @@ export const EducationalDetails = ({ setPage }) => {
                   <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
                     <input
                       {...register(`educations.${index}.gpaOrCgpa`)}
-                      type="text"
-                      placeholder="Special Achievement"
+                      type="number"
+                      step="0.01"
+                      placeholder="GPA or CGPA"
                       className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
                       id="eduGpaOrCgpa"
                     />
@@ -484,8 +487,8 @@ export const EducationalDetails = ({ setPage }) => {
                 degree: "",
                 institute: "",
                 department: "",
-                feildOfStudy: "",
-                gpaOrCgpa: "",
+                fieldOfStudy: "",
+                gpaOrCgpa: null,
                 yearOfPassing: "",
                 specialAchievement: "",
                 photoCertificate: "",
