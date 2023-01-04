@@ -1,3 +1,4 @@
+import getCookie from "../../../Helper/cookies/getCookie";
 import apiSlice from "../../api/apiSlice";
 
 export const userApi = apiSlice.injectEndpoints({
@@ -35,7 +36,7 @@ export const userApi = apiSlice.injectEndpoints({
                 url: "/member/personalDetail",
                 method: "PUT",
                 headers: {
-                    authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+                    authorization: `Bearer ${getCookie("token")}`,
                 },
                 body: data,
             }),
@@ -45,7 +46,7 @@ export const userApi = apiSlice.injectEndpoints({
                 url: "/member/register/professionalDetail",
                 method: "POST",
                 headers: {
-                    authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+                    authorization: `Bearer ${getCookie("token")}`,
                 },
                 body: data,
             }),
@@ -55,7 +56,7 @@ export const userApi = apiSlice.injectEndpoints({
                 url: "/member/register/educationalDetail",
                 method: "POST",
                 headers: {
-                    authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+                    authorization: `Bearer ${getCookie("token")}`,
                 },
                 body: data,
             }),
@@ -65,7 +66,7 @@ export const userApi = apiSlice.injectEndpoints({
                 url: "/member/register/physicalDetail",
                 method: "POST",
                 headers: {
-                    authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+                    authorization: `Bearer ${getCookie("token")}`,
                 },
                 body: data,
             }),
@@ -75,7 +76,7 @@ export const userApi = apiSlice.injectEndpoints({
                 url: "/member/register/othersDetail",
                 method: "POST",
                 headers: {
-                    authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+                    authorization: `Bearer ${getCookie("token")}`,
                 },
                 body: data,
             }),
@@ -85,7 +86,7 @@ export const userApi = apiSlice.injectEndpoints({
                 url: `/member/personalDetail`,
                 method: "PUT",
                 headers: {
-                    authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+                    authorization: `Bearer ${getCookie("token")}`,
                 },
                 body: data,
             }),
@@ -95,7 +96,7 @@ export const userApi = apiSlice.injectEndpoints({
                 url: `/member/professionalDetail/${id}`,
                 method: "PUT",
                 headers: {
-                    authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+                    authorization: `Bearer ${getCookie("token")}`,
                 },
                 body: data,
             }),
@@ -105,7 +106,7 @@ export const userApi = apiSlice.injectEndpoints({
                 url: `/member/educationalDetail/${id}`,
                 method: "PUT",
                 headers: {
-                    authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+                    authorization: `Bearer ${getCookie("token")}`,
                 },
                 body: data,
             }),
@@ -115,7 +116,7 @@ export const userApi = apiSlice.injectEndpoints({
                 url: `/member/physicalDetail`,
                 method: "PUT",
                 headers: {
-                    authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+                    authorization: `Bearer ${getCookie("token")}`,
                 },
                 body: data,
             }),
@@ -125,7 +126,7 @@ export const userApi = apiSlice.injectEndpoints({
                 url: `/member/othersDetail`,
                 method: "PUT",
                 headers: {
-                    authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+                    authorization: `Bearer ${getCookie("token")}`,
                 },
                 body: data,
             }),
@@ -139,7 +140,7 @@ export const userApi = apiSlice.injectEndpoints({
                 url: "/member/personalDetail",
                 method: "GET",
                 headers: {
-                    authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+                    authorization: `Bearer ${getCookie("token")}`,
                 },
             }),
             keepUnusedDataFor: 0,
@@ -149,7 +150,7 @@ export const userApi = apiSlice.injectEndpoints({
                 url: "/member/connections/search",
                 method: "POST",
                 headers: {
-                    authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+                    authorization: `Bearer ${getCookie("token")}`,
                 },
                 body: data,
             }),
