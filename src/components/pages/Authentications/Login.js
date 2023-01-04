@@ -68,7 +68,7 @@ const Login = () => {
 
     return (
         <div>
-            <div className="hidden lg:block">
+            <div className="">
                 <section className="flex justify-center items-center w-full px-3 flex-1 text-center md:px-20 bg-gray-100 min-h-screen">
                     <div className="bg-white rounded-2xl shadow-2xl md:flex w-[100%] md:w-3/4 lg:w-2/3 max-w-4xl">
                         <div className="w-full lg:w-3/5 p-5">

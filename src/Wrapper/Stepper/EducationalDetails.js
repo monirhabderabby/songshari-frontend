@@ -47,36 +47,46 @@ export const EducationalDetails = ({ setPage }) => {
         data.educations.map(p => delete p.yearOfPassing);
         data.educations.map(p => delete p.photoCertificate);
 
-        data.educations.map((p, index) => (p.degree = addedDegreeName[index]));
-        data.educations.map((p, index) => (p.institute = addedInstitute[index]));
-        data.educations.map((p, index) => (p.department = addedDepartment[index]));
-        data.educations.map((p, index) => (p.feildOfStudy = addedFieldOfStudy[index]));
-        data.educations.map((p, index) => (p.yearOfPassing = addedYearOfPassing[index]));
-        data.educations.map((p, index) => {
-            return (p.photoCertificate = eduAddedPhotoCertificate[index]);
-        });
+    data.educations.map((p) => delete p.degree);
+    data.educations.map((p) => delete p.institute);
+    data.educations.map((p) => delete p.department);
+    data.educations.map((p) => delete p.fieldOfStudy);
+    data.educations.map((p) => delete p.yearOfPassing);
+    data.educations.map((p) => delete p.photoCertificate);
 
-        const newObject = Object.create(data);
-        newObject.degree = degreeName;
-        newObject.institute = eduInstitute;
-        newObject.department = eduDepartment;
-        newObject.feildOfStudy = eduFieldOfStudy;
-        newObject.yearOfPassing = eduYearOfPassing;
-        newObject.eduGpaOrCgpa = data.gpaOrCgpa;
-        newObject.specialAchievement = data.specialAchievement;
-        newObject.photoCertificate = eduAchievementMoment;
+    data.educations.map((p, index) => (p.degree = addedDegreeName[index]));
+    data.educations.map((p, index) => (p.institute = addedInstitute[index]));
+    data.educations.map((p, index) => (p.department = addedDepartment[index]));
+    data.educations.map(
+      (p, index) => (p.fieldOfStudy = addedFieldOfStudy[index])
+    );
+    data.educations.map(
+      (p, index) => (p.yearOfPassing = addedYearOfPassing[index])
+    );
+    data.educations.map(
+      (p, index) => (p.photoCertificate = eduAddedPhotoCertificate[index])
+    );
+    data.educations.map((p) => (p.gpaOrCgpa = Number(p.gpaOrCgpa)));
 
-        delete data.degree;
-        delete data.institute;
-        delete data.department;
-        delete data.feildOfStudy;
-        delete data.yearOfPassing;
-        delete data.photoCertificate;
-        delete data.gpaOrCgpa;
-        delete data.specialAchievement;
-        data.educations.push(newObject);
+    const newObject = Object.create(data);
+    newObject.degree = degreeName;
+    newObject.institute = eduInstitute;
+    newObject.department = eduDepartment;
+    newObject.fieldOfStudy = eduFieldOfStudy;
+    newObject.yearOfPassing = eduYearOfPassing;
+    newObject.gpaOrCgpa = Number(data.gpaOrCgpa);
+    newObject.specialAchievement = data.specialAchievement;
+    newObject.photoCertificate = eduAchievementMoment;
 
-        console.log(data);
+    delete data.degree;
+    delete data.institute;
+    delete data.department;
+    delete data.fieldOfStudy;
+    delete data.yearOfPassing;
+    delete data.photoCertificate;
+    delete data.gpaOrCgpa;
+    delete data.specialAchievement;
+    data.educations.push(newObject);
 
         await setEducationalDetails(data);
     };

@@ -15,6 +15,11 @@ const MobileMatrimonyPrivateRoutes = [
             },
         ],
     },
+    {
+        id: 2,
+        path: "/dynamicpersonaldetails/:id",
+        element: <PersonalDetailsMobile />,
+      },
 ];
 
 export default MobileMatrimonyPrivateRoutes;

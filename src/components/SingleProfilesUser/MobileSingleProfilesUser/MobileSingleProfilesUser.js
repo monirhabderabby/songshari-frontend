@@ -1,13 +1,14 @@
+// components 
 import React from "react";
-import { useAuthState } from "react-firebase-hooks/auth";
 import { Link } from "react-router-dom";
-import { auth } from "../../../firebase.init";
+
+// components 
 import { BottomNav } from "../../../Wrapper/Home/mobileversion/BottomNav";
 import { MobileAccordionLink } from "./MobileAccordionLink";
 import MobileUsersProfile from "./MobileUsersProfile";
 
 const MobileSingleProfilesUser = () => {
-    const [user] = useAuthState(auth);
+
     return (
         <section>
             <div className="bg-[#FFFFFF] py-[10px] mb-[15px]">

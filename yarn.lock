@@ -7546,6 +7546,11 @@
     "import-local" "^3.0.2"
     "jest-cli" "^27.5.1"
 
+"js-cookie@^3.0.1":
+  "integrity" "sha512-+0rgsUXZu4ncpPxRL+lNEptWMOWl9etvPHc/koSRp6MPwpRYAhmk0dUG00J4bxVV3r9uUzfo24wW0knS07SKSw=="
+  "resolved" "https://registry.npmjs.org/js-cookie/-/js-cookie-3.0.1.tgz"
+  "version" "3.0.1"
+
 "js-sdsl@^4.1.4":
   "integrity" "sha512-dyBIzQBDkCqCu+0upx25Y2jGdbTGxE9fshMsCdK0ViOongpV+n5tXRcZY9v7CaVQ79AGS9KA1KHtojxiM7aXSQ=="
   "resolved" "https://registry.npmjs.org/js-sdsl/-/js-sdsl-4.2.0.tgz"
@@ -9906,6 +9911,13 @@
   "integrity" "sha512-xWGDIW6x921xtzPkhiULtthJHoJvBbF3q26fzloPCK0hsvxtPVelvftw3zjbHWSkR2km9Z+4uxbDDK/6Zw9B8w=="
   "resolved" "https://registry.npmjs.org/react-is/-/react-is-18.2.0.tgz"
   "version" "18.2.0"
+
+"react-jwt@^1.1.7":
+  "integrity" "sha512-SUwQMyy9DolR6m1UsUzqVH7Wjz4dakCG++UtTvZFCswYTjNpC45znEsyawgNZDfOeBMbA5+5byWxmfUtMZLvvQ=="
+  "resolved" "https://registry.npmjs.org/react-jwt/-/react-jwt-1.1.7.tgz"
+  "version" "1.1.7"
+  optionalDependencies:
+    "fsevents" "^2.3.2"
 
 "react-lifecycles-compat@^3.0.4":
   "integrity" "sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA=="
