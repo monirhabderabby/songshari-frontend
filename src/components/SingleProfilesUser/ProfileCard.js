@@ -9,17 +9,20 @@ import { v4 as uuidv4 } from "uuid";
 // components
 import blackLove from "../../assets/images/icons/blackLove.png";
 import { ageCalculator } from "../../assets/utilities/AgeCalculation/ageCalculator";
+import { firebaseStorage } from "../../firebase.init";
+import { useUpdateProfilePhotoMutation } from "../../Redux/features/userInfo/userApi";
 import { ProfileSkeletonLoader } from "../shared/Cards/Loader/Profile__Card__Skeleton__Loader/ProfileSkeletonLoader";
 
 // css files
 import "../../assets/css/profileCards.css";
-import { firebaseStorage } from "../../firebase.init";
-import { useUpdateProfilePhotoMutation } from "../../Redux/features/userInfo/userApi";
 
 const ProfileCard = ({ data, isLoading }) => {
     // hook variables
     const [age, setAge] = useState(0);
+
+    // Redux API
     const [updateProfilePhoto] = useUpdateProfilePhotoMutation();
+
     useEffect(() => {
         if (data) {
             const age = ageCalculator(data?.dateOfBirth);
