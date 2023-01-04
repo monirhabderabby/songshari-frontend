@@ -15,7 +15,7 @@ const EditOthersInfo = () => {
 
   const { handleSubmit } = useForm();
   // update query function
-  const [updateOthersDetails, { isSuccess, isError, isLoading, error }] =
+  const [updateOthersDetails, { isSuccess, isError, isLoading }] =
     useUpdateOthersDetailsMutation();
 
   const handleDoSmoke = (value) => {
@@ -86,9 +86,6 @@ const EditOthersInfo = () => {
     }
   }, [isSuccess, isLoading, isError, messageApi, navigate]);
 
-  if (error) {
-    console.log(error);
-  }
   //all data handler function
   return (
     <div>
@@ -226,7 +223,7 @@ const EditOthersInfo = () => {
               options={[
                 { value: "yes", label: "Yes" },
                 { value: "no", label: "No" },
-                { value: `I Wouldn\'t Mind`, label: `I Wouldn't Mind` },
+                { value: `I Wouldn't Mind`, label: `I Wouldn't Mind` },
               ]}
             />
           </div>
@@ -262,14 +259,14 @@ const EditOthersInfo = () => {
               options={[
                 { value: "yes", label: "Yes" },
                 { value: "no", label: "No" },
-                { value: `I Don\'t Care`, label: `I Don't Care` },
+                { value: `I Don't Care`, label: `I Don't Care` },
               ]}
             />
           </div>
           <div>
             <input
               type="submit"
-              value={isLoading ? "Loading..." : "Save"}
+              value="Save"
               style={{
                 background: "linear-gradient(180deg, #E41272 0%, #942DD9 100%)",
               }}
