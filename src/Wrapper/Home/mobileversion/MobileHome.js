@@ -3,7 +3,6 @@ import React from "react";
 import { BottomBar } from "./BottomBar";
 
 // components import
-import { BottomNav } from "./BottomNav";
 import { MobileBanner } from "./MobileBanner";
 import { Services } from "./Services";
 import { TopMenu } from "./TopMenu";
