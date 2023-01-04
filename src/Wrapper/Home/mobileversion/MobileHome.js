@@ -1,5 +1,6 @@
 // normal import
 import React from "react";
+import { BottomBar } from "./BottomBar";
 
 // components import
 import { BottomNav } from "./BottomNav";
@@ -18,7 +19,7 @@ export const MobileHome = () => {
             <br></br>
             <br></br>
             <br></br>   
-            <BottomNav></BottomNav>
+            <BottomBar></BottomBar>
         </div>
     );
 };

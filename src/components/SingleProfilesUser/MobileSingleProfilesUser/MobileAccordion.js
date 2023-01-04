@@ -38,6 +38,7 @@ const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
 }));
 const MobileAccordion = () => {
   const { data, isLoading } = useGetProfileDetailsWIthAuthQuery();
+  console.log(data);
   const [expanded, setExpanded] = React.useState("panel1");
 
 
