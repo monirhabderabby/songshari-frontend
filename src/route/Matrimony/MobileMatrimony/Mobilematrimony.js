@@ -1,14 +1,16 @@
 // components 
-import MobileLogin from "../../../components/pages/Authentications/MobileDesign/MobileLogin";
-import MobileSignUp from "../../../components/pages/Authentications/MobileDesign/MobileSignUp";
-import { DynamicProfilePage } from "../../../components/pages/DynamicProfilePage/DynamicProfilePage";
+import Login from "../../../components/pages/Authentications/Login";
+import Signup from "../../../components/pages/Authentications/SignUp";
 import { MobileDynamicProfile } from "../../../components/pages/DynamicProfilePage/MobileDynamicProfile/MobileDynamicProfile";
+import { MobileEducationalDetails } from "../../../components/pages/DynamicProfilePage/MobileDynamicProfile/MobileEducationalDetails";
+import { MobileOthersDetails } from "../../../components/pages/DynamicProfilePage/MobileDynamicProfile/MobileOthersDetails";
 import { MobilePersonalDetails } from "../../../components/pages/DynamicProfilePage/MobileDynamicProfile/MobilePersonalDetails";
+import { MobilePhysicalDetails } from "../../../components/pages/DynamicProfilePage/MobileDynamicProfile/MobilePhysicalDetails";
+import { MobileProfessionalDetails } from "../../../components/pages/DynamicProfilePage/MobileDynamicProfile/MobileProfessionalDetails";
 import MobileDiamondPlan from "../../../components/pages/Membership/MobileVersion/MobileDiamondPlan";
 import MobileFreePlan from "../../../components/pages/Membership/MobileVersion/MobileFreePlan";
 import MobileGoldPlan from "../../../components/pages/Membership/MobileVersion/MobileGoldPlan";
 import UpgradePlan from "../../../components/pages/Membership/MobileVersion/UpgradePlan";
-import MobileSuggested from "../../../components/pages/TopProfile/MobileTopProfile/MobileSuggested";
 import MobileTopBride from "../../../components/pages/TopProfile/MobileTopProfile/MobileTopBride";
 import MobileTopGroom from "../../../components/pages/TopProfile/MobileTopProfile/MobileTopGroom";
 import Suggested from "../../../components/pages/TopProfile/Suggested";
@@ -53,12 +55,12 @@ const MobileMatrimony = [
     {
         id: 2,
         path: "/mobile-login",
-        element: <MobileLogin />,
+        element: <Login />,
     },
     {
         id: 3,
         path: "/mobile-signup",
-        element: <MobileSignUp />,
+        element: <Signup />,
     },
     {
         id: 4,
@@ -137,7 +139,7 @@ const MobileMatrimony = [
     },
     {
         id: 19,
-        path: "/allposts",
+        path: "/mobile-allposts",
         element: <AllPosts />,
     },
     {
@@ -151,9 +153,32 @@ const MobileMatrimony = [
         element: <MobileDynamicProfile></MobileDynamicProfile>,
       },
     {
-        id: 21,
+        id: 22,
         path: "/personalprofile/:id",
         element: <MobilePersonalDetails />,
       },
+    {
+        id: 23,
+        path: "/professionalprofile/:id",
+        element: <MobileProfessionalDetails />,
+      },
+    {
+        id: 24,
+        path: "/educationalprofile/:id",
+        element: <MobileEducationalDetails />,
+      },
+    {
+        id: 25,
+        path: "/physicalprofile/:id",
+        element: <MobilePhysicalDetails />,
+      },
+
+    {
+        id: 26,
+        path: "/otherprofile/:id",
+        element: <MobileOthersDetails />,
+      },
+
+    
 ];
 export default MobileMatrimony;
