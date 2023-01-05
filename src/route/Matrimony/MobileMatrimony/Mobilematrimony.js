@@ -1,6 +1,6 @@
 // components 
-import Login from "../../../components/pages/Authentications/Login";
-import Signup from "../../../components/pages/Authentications/SignUp";
+import MobileLogin from "../../../components/pages/Authentications/MobileDesign/MobileLogin";
+import MobileSignUp from "../../../components/pages/Authentications/MobileDesign/MobileSignUp";
 import { MobileDynamicProfile } from "../../../components/pages/DynamicProfilePage/MobileDynamicProfile/MobileDynamicProfile";
 import { MobileEducationalDetails } from "../../../components/pages/DynamicProfilePage/MobileDynamicProfile/MobileEducationalDetails";
 import { MobileOthersDetails } from "../../../components/pages/DynamicProfilePage/MobileDynamicProfile/MobileOthersDetails";
@@ -15,6 +15,7 @@ import MobileTopBride from "../../../components/pages/TopProfile/MobileTopProfil
 import MobileTopGroom from "../../../components/pages/TopProfile/MobileTopProfile/MobileTopGroom";
 import Suggested from "../../../components/pages/TopProfile/Suggested";
 import ProfileServices from "../../../components/SingleProfilesUser/ServicesSection/ProfileServices";
+import SingleUserActivity from "../../../components/SingleProfilesUser/SingleUserActivity/SingleUserActivity";
 import { AboutMov } from "../../../Wrapper/Home/mobileversion/about/AboutMov";
 import { AllPosts } from "../../../Wrapper/Home/mobileversion/allposts/AllPosts";
 import { CertificateMov } from "../../../Wrapper/Home/mobileversion/CertificateMov";
@@ -55,12 +56,12 @@ const MobileMatrimony = [
     {
         id: 2,
         path: "/mobile-login",
-        element: <Login />,
+        element: <MobileLogin />,
     },
     {
         id: 3,
         path: "/mobile-signup",
-        element: <Signup />,
+        element: <MobileSignUp />,
     },
     {
         id: 4,
@@ -178,6 +179,12 @@ const MobileMatrimony = [
         path: "/otherprofile/:id",
         element: <MobileOthersDetails />,
       },
+    {
+        id: 27,
+        path: "/mobileActivityPage",
+        element: <SingleUserActivity />,
+      },
+    
 
     
 ];
