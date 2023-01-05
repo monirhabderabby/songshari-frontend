@@ -1,6 +1,7 @@
-// components 
+// components
 import MobileLogin from "../../../components/pages/Authentications/MobileDesign/MobileLogin";
 import MobileSignUp from "../../../components/pages/Authentications/MobileDesign/MobileSignUp";
+import { MobileOTP } from "../../../components/pages/Authentications/OTP/MobileOTP";
 import { MobileDynamicProfile } from "../../../components/pages/DynamicProfilePage/MobileDynamicProfile/MobileDynamicProfile";
 import { MobileEducationalDetails } from "../../../components/pages/DynamicProfilePage/MobileDynamicProfile/MobileEducationalDetails";
 import { MobileOthersDetails } from "../../../components/pages/DynamicProfilePage/MobileDynamicProfile/MobileOthersDetails";
@@ -152,40 +153,42 @@ const MobileMatrimony = [
         id: 21,
         path: "/mobileprofile/:id",
         element: <MobileDynamicProfile></MobileDynamicProfile>,
-      },
+    },
     {
         id: 22,
         path: "/personalprofile/:id",
         element: <MobilePersonalDetails />,
-      },
+    },
     {
         id: 23,
         path: "/professionalprofile/:id",
         element: <MobileProfessionalDetails />,
-      },
+    },
     {
         id: 24,
         path: "/educationalprofile/:id",
         element: <MobileEducationalDetails />,
-      },
+    },
     {
         id: 25,
         path: "/physicalprofile/:id",
         element: <MobilePhysicalDetails />,
-      },
+    },
 
     {
         id: 26,
         path: "/otherprofile/:id",
         element: <MobileOthersDetails />,
-      },
+    },
     {
         id: 27,
         path: "/mobileActivityPage",
         element: <SingleUserActivity />,
-      },
-    
-
-    
+    },
+    {
+        id: 28,
+        path: "/mobileOtp",
+        element: <MobileOTP />,
+    },
 ];
 export default MobileMatrimony;

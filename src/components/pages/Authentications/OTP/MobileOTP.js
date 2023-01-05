@@ -12,7 +12,7 @@ import getCookie from "../../../../Helper/cookies/getCookie";
 import { useReSendOtpMutation, useVerifyEmailMutation } from "../../../../Redux/features/userInfo/userApi";
 import Error from "../../../ui/error/Error";
 
-export const OTP = () => {
+export const MobileOTP = () => {
     // hook variables
     const [otp, setOtp] = useState(new Array(6).fill(""));
     const [verifyEmail, { data, isLoading, error }] = useVerifyEmailMutation();
@@ -26,7 +26,7 @@ export const OTP = () => {
 
     useEffect(() => {
         if (data?.message === "Email verified") {
-            navigate("/userProfile");
+            navigate("/mobileuserprofile");
         }
     }, [navigate, data?.message]);
 
@@ -66,7 +66,7 @@ export const OTP = () => {
     return (
         <>
             <div className="fixed w-full h-full inset-0 z-10 bg-black/50 cursor-pointer"></div>
-            <div className="rounded sm:max-w-full w-[400px] space-y-4 bg-white absolute top-1/2 left-1/2 z-20 -translate-x-1/2 -translate-y-1/2">
+            <div className="rounded sm:max-w-full w-full space-y-4 bg-white absolute top-1/2 left-1/2 z-20 -translate-x-1/2 -translate-y-1/2">
                 <div className="relative max-w-lg mx-auto bg-white shadow-xl rounded-2xl px-6 pt-10 pb-9">
                     <div className="flex flex-col items-center justify-center text-center space-y-2">
                         <div className="font-semibold text-3xl">
@@ -78,11 +78,11 @@ export const OTP = () => {
                     </div>
                     <form action="">
                         <div className="flex flex-col">
-                            <div className="flex flex-row gap-x-[6px] items-center justify-between mx-auto w-full max-w-lg my-4">
+                            <div className="flex flex-row gap-x-[4px] items-center justify-between mx-auto w-full max-w-lg my-4">
                                 {otp.map((data, index) => {
                                     return (
                                         <input
-                                            className="w-full h-10 flex flex-col items-center justify-center text-black text-center px-5 outline-none rounded-xl border border-gray-200 text-md bg-white focus:bg-gray-50 focus:ring-1 ring-blue-700"
+                                            className="w-full h-10 flex flex-col items-center justify-center text-black text-center outline-none rounded-xl border border-gray-200 text-md bg-white focus:bg-gray-50 focus:ring-1 ring-blue-700"
                                             type="text"
                                             name="otp"
                                             maxLength="1"

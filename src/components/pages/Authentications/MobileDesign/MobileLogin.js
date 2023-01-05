@@ -1,21 +1,18 @@
 import React, { useEffect, useState } from "react";
-import { useSignInWithEmailAndPassword, useSignInWithGoogle } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
 import { AiOutlineLeft } from "react-icons/ai";
-import { FaGoogle} from "react-icons/fa";
+import { FaGoogle } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import { useLocation, useNavigate } from "react-router";
 import { Link } from "react-router-dom";
-import { auth } from "../../../../firebase.init";
+import setCookie from "../../../../Helper/cookies/setCookie";
 import { useLoginAsMemberMutation } from "../../../../Redux/features/userInfo/userApi";
 import { loadUserData } from "../../../../Redux/features/userInfo/userInfo";
 import Error from "../../../ui/error/Error";
 
 const MobileLogin = () => {
     const [customError, setCustomError] = useState("");
-    const [signInWithEmailAndPassword, user, loading, error] = useSignInWithEmailAndPassword(auth);
-    const [signInWithGoogle] = useSignInWithGoogle(auth);
-    const [loginAsMember, { data: response, isLoading }] = useLoginAsMemberMutation();
+    const [loginAsMember, { data: response, isLoading, error: responseError }] = useLoginAsMemberMutation();
     const dispatch = useDispatch();
     const navigate = useNavigate();
     let location = useLocation();
@@ -29,29 +26,29 @@ const MobileLogin = () => {
     } = useForm();
     const onSubmit = async data => {
         data.role = "member";
-        await signInWithEmailAndPassword(data.email, data.password);
         loginAsMember(data);
     };
 
     useEffect(() => {
-        if (error?.message === "Firebase: Error (auth/wrong-password).") {
-            setCustomError("You are entering the wrong password");
-        }
-        if (error?.message === "Firebase: Error (auth/user-not-found).") {
-            setCustomError("User not found");
-        }
-    }, [error, setCustomError]);
-
-    useEffect(() => {
         if (response) {
-            localStorage.setItem("accessToken", response.token);
-            dispatch(loadUserData(response));
+            setCookie("token", response?.data?.token);
+            dispatch(loadUserData(response?.data));
             reset();
-        }
-        if (response && user) {
             navigate(from, { replace: true });
         }
-    }, [response, dispatch, user, navigate, reset, from]);
+    }, [response, dispatch, navigate, reset, from]);
+
+    useEffect(() => {
+        if (responseError?.status === 401 && responseError?.data?.success === true) {
+            setCookie("token", responseError?.data?.data?.token);
+            dispatch(loadUserData(responseError?.data?.data));
+            navigate(from, { replace: true });
+        } else if (responseError?.status === 404) {
+            setCustomError(responseError?.data?.message);
+        } else if (responseError?.data?.message.includes("Invalid credential")) {
+            setCustomError("Passwords do not match");
+        }
+    }, [responseError, navigate, from, dispatch]);
 
     return (
         <div className="bg-[#F8F8FF] min-h-screen">
@@ -61,18 +58,12 @@ const MobileLogin = () => {
                 </span>
                 <p>Log In</p>
             </div>
-
             {/* google login  */}
             <div className="flex justify-center items-center my-2">
-                                    <p
-                                        className="border-2 cursor-pointer border-gray-200 rounded-full p-3 mx-1 hover:bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] hover:text-white duration-400 transition-all"
-                                        onClick={() => signInWithGoogle()}
-                                    >
-                                        <FaGoogle className="text-sm" />
-                                    </p>
-                                </div>{" "}
-
-
+                <p className="border-2 cursor-pointer border-gray-200 rounded-full p-3 mx-1 hover:bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] hover:text-white duration-400 transition-all">
+                    <FaGoogle className="text-sm" />
+                </p>
+            </div>{" "}
             <section>
                 <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col mx-8">
                     <section className="mb-4">
@@ -146,7 +137,7 @@ const MobileLogin = () => {
                         className="rounded-[48px] pt-3 pb-4 mb-5 w-full font-medium leading-4 text-white"
                         style={{ backgroundImage: "linear-gradient(180deg, #D21878 0%, #4F42A3 100%)" }}
                         type="submit"
-                        value={loading || isLoading ? "Loading..." : "LOGIN"}
+                        value={isLoading ? "Loading..." : "LOGIN"}
                     />
                     <p className="text-[#202325] text-xs leading-6 mb-5">
                         Don't have an account?

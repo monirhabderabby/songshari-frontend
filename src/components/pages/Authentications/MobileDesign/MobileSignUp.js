@@ -1,7 +1,6 @@
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import React, { useCallback, useEffect, useState } from "react";
 import { useDropzone } from "react-dropzone";
-import { useCreateUserWithEmailAndPassword, useSignInWithGoogle, useUpdateProfile } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
 import { AiFillFileAdd, AiOutlineLeft } from "react-icons/ai";
 import { FaGoogle } from "react-icons/fa";
@@ -9,18 +8,16 @@ import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import logo from "../../../../assets/images/Logo/logoBlack.png";
-import { auth, firebaseStorage } from "../../../../firebase.init";
+import { firebaseStorage } from "../../../../firebase.init";
+import setCookie from "../../../../Helper/cookies/setCookie";
 import { useRegAsMemberMutation } from "../../../../Redux/features/userInfo/userApi";
 import { loadUserData } from "../../../../Redux/features/userInfo/userInfo";
 import Error from "../../../ui/error/Error";
 
 const MobileSignUp = () => {
-    const [regAsMember, { data: response, isLoading: serverLoading }] = useRegAsMemberMutation();
+    const [regAsMember, { data: response, isLoading: serverLoading, error: responseError }] = useRegAsMemberMutation();
     const [photoURL, setPhotoUrl] = useState("");
     const [customError, setCustomError] = useState("");
-    const [createUserWithEmailAndPassword, user, loading, error] = useCreateUserWithEmailAndPassword(auth);
-    const [signInWithGoogle, googleUser] = useSignInWithGoogle(auth);
-    const [updateProfile] = useUpdateProfile(auth);
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -56,29 +53,34 @@ const MobileSignUp = () => {
             delete data.image;
             data.profilePhoto = photoURL;
             data.role = "member";
+
+            if (data.password !== data.confirmPassword) {
+                setCustomError("Passwords do not match");
+                return;
+            }
             // Implement firebase registration
-            await createUserWithEmailAndPassword(data.email, data.password);
-            await updateProfile({ displayName: data.firstName + " " + data.lastName, photoURL: photoURL });
             await regAsMember(data);
         }
     };
 
-    useEffect(() => {
-        if (response) {
-            localStorage.setItem("accessToken", response.token);
-            dispatch(loadUserData(response));
-            reset();
-        }
-        if (user && response) {
-            navigate("/userProfile");
-        }
-    }, [response, dispatch, reset, navigate, user, googleUser]);
+    const emailHandler = () => {
+        setCustomError("");
+    };
 
     useEffect(() => {
-        if (error?.message === "Firebase: Error (auth/email-already-in-use).") {
-            setCustomError("email already in use");
+        if (response) {
+            setCookie("token", response?.data?.token);
+            dispatch(loadUserData(response));
+            reset();
+            navigate("/mobileOtp");
         }
-    }, [error]);
+    }, [response, dispatch, reset, navigate]);
+
+    useEffect(() => {
+        if (responseError) {
+            setCustomError(responseError.data.message);
+        }
+    }, [responseError]);
 
     useEffect(() => {
         if (photoURL) {
@@ -99,17 +101,14 @@ const MobileSignUp = () => {
             </div>
             {/* google sign up  */}
             <div className="flex justify-center items-center my-3">
-                <p
-                    className="border-2 cursor-pointer border-gray-200 rounded-full p-3 mx-1 hover:bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] hover:text-white duration-400 transition-all"
-                    onClick={() => signInWithGoogle()}
-                >
+                <p className="border-2 cursor-pointer border-gray-200 rounded-full p-3 mx-1 hover:bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] hover:text-white duration-400 transition-all">
                     <FaGoogle className="text-sm" />
                 </p>
             </div>{" "}
             <section>
                 <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col mx-8">
                     {/* ---------- First Name ---------- */}
-                    <section className="mb-8">
+                    <section className="mb-4">
                         <div className="flex items-center bg-white p-4 w-full rounded-lg">
                             <input
                                 {...register("firstName", {
@@ -131,7 +130,7 @@ const MobileSignUp = () => {
                         </h1>
                     </section>
                     {/* ---------- Last Name ---------- */}
-                    <section className="mt-4">
+                    <section className="mb-4">
                         <div className="flex items-center bg-white p-4 w-full rounded-lg">
                             <input
                                 {...register("lastName", {
@@ -170,6 +169,7 @@ const MobileSignUp = () => {
                                 placeholder="Email"
                                 className="flex-1 outline-none h-full text-sm text-[#1E2022]"
                                 id="email1"
+                                onChange={emailHandler}
                             />
                         </div>
                         <h1 className="text-left ml-2">
@@ -297,7 +297,7 @@ const MobileSignUp = () => {
                         <div className="flex items-center bg-white p-2 w-full mt-3 h-[197px]  justify-center rounded-[8px]">
                             <div
                                 {...getRootProps()}
-                                className="w-[242px] h-[132px] bg-white flex justify-center items-center shadow-[2px_2px_8px_2px_rgba(0,0,0,0.1)]"
+                                className="w-[242px] h-[132px] bg-white flex justify-center items-center shadow-[2px_2px_8px_2px_rgba(0,0,0,0.1)] cursor-pointer"
                             >
                                 <input {...getInputProps()} />
                                 {isDragActive ? (
@@ -320,7 +320,7 @@ const MobileSignUp = () => {
                         className="rounded-[48px] pt-3 pb-4 mb-5 w-full font-medium leading-4 text-white"
                         style={{ backgroundImage: "linear-gradient(180deg, #D21878 0%, #4F42A3 100%)" }}
                         type="submit"
-                        value={loading || serverLoading ? "Loading..." : "Complete Sign Up"}
+                        value={serverLoading ? "Loading..." : "Complete Sign Up"}
                     />
                     <p className="text-[#202325] text-xs leading-6 mb-5">
                         Have an account?
