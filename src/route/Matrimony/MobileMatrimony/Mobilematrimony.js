@@ -185,11 +185,7 @@ const MobileMatrimony = [
         path: "/mobileActivityPage",
         element: <SingleUserActivity />,
       },
-    {
-        id: 28,
-        path: "/test",
-        element: <MobilePersonalInfoEdit />,
-      },
+    
 
     
 ];
