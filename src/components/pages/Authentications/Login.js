@@ -63,6 +63,10 @@ const Login = () => {
             setCookie("token", responseError?.data?.data?.token);
             dispatch(loadUserData(responseError?.data?.data));
             navigate(from, { replace: true });
+        } else if (responseError?.status === 404) {
+            setCustomError(responseError?.data?.message);
+        } else if (responseError?.data?.message.includes("Invalid credential")) {
+            setCustomError("Passwords do not match");
         }
     }, [responseError, navigate, from, dispatch]);
 

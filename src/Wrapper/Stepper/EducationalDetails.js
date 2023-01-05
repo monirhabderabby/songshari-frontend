@@ -47,46 +47,42 @@ export const EducationalDetails = ({ setPage }) => {
         data.educations.map(p => delete p.yearOfPassing);
         data.educations.map(p => delete p.photoCertificate);
 
-    data.educations.map((p) => delete p.degree);
-    data.educations.map((p) => delete p.institute);
-    data.educations.map((p) => delete p.department);
-    data.educations.map((p) => delete p.fieldOfStudy);
-    data.educations.map((p) => delete p.yearOfPassing);
-    data.educations.map((p) => delete p.photoCertificate);
+        data.educations.map(p => delete p.degree);
+        data.educations.map(p => delete p.institute);
+        data.educations.map(p => delete p.department);
+        data.educations.map(p => delete p.fieldOfStudy);
+        data.educations.map(p => delete p.yearOfPassing);
+        data.educations.map(p => delete p.photoCertificate);
 
-    data.educations.map((p, index) => (p.degree = addedDegreeName[index]));
-    data.educations.map((p, index) => (p.institute = addedInstitute[index]));
-    data.educations.map((p, index) => (p.department = addedDepartment[index]));
-    data.educations.map(
-      (p, index) => (p.fieldOfStudy = addedFieldOfStudy[index])
-    );
-    data.educations.map(
-      (p, index) => (p.yearOfPassing = addedYearOfPassing[index])
-    );
-    data.educations.map(
-      (p, index) => (p.photoCertificate = eduAddedPhotoCertificate[index])
-    );
-    data.educations.map((p) => (p.gpaOrCgpa = Number(p.gpaOrCgpa)));
+        data.educations.map((p, index) => (p.degree = addedDegreeName[index]));
+        data.educations.map((p, index) => (p.institute = addedInstitute[index]));
+        data.educations.map((p, index) => (p.department = addedDepartment[index]));
+        data.educations.map((p, index) => (p.fieldOfStudy = addedFieldOfStudy[index]));
+        data.educations.map((p, index) => (p.yearOfPassing = addedYearOfPassing[index]));
+        data.educations.map((p, index) => (p.certificatePhoto = eduAddedPhotoCertificate[index]));
+        data.educations.map(p => (p.gpaOrCgpa = Number(p.gpaOrCgpa)));
 
-    const newObject = Object.create(data);
-    newObject.degree = degreeName;
-    newObject.institute = eduInstitute;
-    newObject.department = eduDepartment;
-    newObject.fieldOfStudy = eduFieldOfStudy;
-    newObject.yearOfPassing = eduYearOfPassing;
-    newObject.gpaOrCgpa = Number(data.gpaOrCgpa);
-    newObject.specialAchievement = data.specialAchievement;
-    newObject.photoCertificate = eduAchievementMoment;
+        const newObject = Object.create(data);
+        newObject.degree = degreeName;
+        newObject.institute = eduInstitute;
+        newObject.department = eduDepartment;
+        newObject.fieldOfStudy = eduFieldOfStudy;
+        newObject.yearOfPassing = eduYearOfPassing;
+        newObject.gpaOrCgpa = Number(data.gpaOrCgpa);
+        newObject.specialAchievement = data.specialAchievement;
+        newObject.photoCertificate = eduAchievementMoment;
 
-    delete data.degree;
-    delete data.institute;
-    delete data.department;
-    delete data.fieldOfStudy;
-    delete data.yearOfPassing;
-    delete data.photoCertificate;
-    delete data.gpaOrCgpa;
-    delete data.specialAchievement;
-    data.educations.push(newObject);
+        delete data.degree;
+        delete data.institute;
+        delete data.department;
+        delete data.fieldOfStudy;
+        delete data.yearOfPassing;
+        delete data.photoCertificate;
+        delete data.gpaOrCgpa;
+        delete data.specialAchievement;
+        data.educations.push(newObject);
+
+        console.log(data);
 
         await setEducationalDetails(data);
     };
@@ -213,7 +209,7 @@ export const EducationalDetails = ({ setPage }) => {
                     <section>
                         <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
                             <CreatableSelect
-                                {...register("feildOfStudy")}
+                                {...register("fieldOfStudy")}
                                 onChange={val => setEduFieldOfStudy(val.value)}
                                 type="text"
                                 placeholder="Field of Study"
@@ -284,7 +280,7 @@ export const EducationalDetails = ({ setPage }) => {
                                 )}
                             </label>
                             <input
-                                {...register("photoCertificate")}
+                                {...register("certificatePhoto")}
                                 type="file"
                                 id="educationalAchievementMoment"
                                 className="hidden"
@@ -443,7 +439,7 @@ export const EducationalDetails = ({ setPage }) => {
                                             )}
                                         </label>
                                         <input
-                                            {...register(`educations.${index}.photoCertificate`)}
+                                            {...register(`educations.${index}.certificatePhoto`)}
                                             type="file"
                                             id="eduAddedAchievementMoment"
                                             className="hidden"

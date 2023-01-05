@@ -57,7 +57,7 @@ const Signup = () => {
 
     useEffect(() => {
         if (error) {
-            console.log(error);
+            setCustomError(error.data.message);
         }
     }, [error]);
 
@@ -65,15 +65,22 @@ const Signup = () => {
     const emailHandler = () => {
         setCustomError("");
     };
+    const passwordAndCOnfirmPasswordHandler = () => {
+        setCustomError("");
+    };
 
     const onSubmit = async data => {
+        if (data.password !== data.confirmPassword) {
+            setCustomError("Passwords do not match");
+            return;
+        }
         data.role = "member";
         data.gender = gender;
         await regAsMember(data);
     };
 
     return (
-        <div>
+        <div className="hidden md:block">
             <div className="min-h-screen">
                 <section className="flex justify-center items-center w-full flex-1 text-center px-3 md:px-20  min-h-screen">
                     <div className="bg-white rounded-2xl shadow-2xl lg:flex w-[100%] md:w-3/4 lg:w-4/5 max-w-6xl relative">
@@ -206,6 +213,7 @@ const Signup = () => {
                                                     placeholder="Password"
                                                     className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
                                                     id="password"
+                                                    onChange={passwordAndCOnfirmPasswordHandler}
                                                 />
                                             </div>
                                             <h1 className="text-left ml-2">
@@ -235,6 +243,7 @@ const Signup = () => {
                                                     placeholder="Confirm Password"
                                                     className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
                                                     id="confirmPassword"
+                                                    onChange={passwordAndCOnfirmPasswordHandler}
                                                 />
                                             </div>
                                             <h1 className="text-left ml-2">
