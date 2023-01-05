@@ -30,7 +30,7 @@ import { EmailField } from "./InputFields/EmailField";
 const Signup = () => {
     // hook variables
     const [regAsMember, { data: response, isLoading: serverLoading, error }] = useRegAsMemberMutation();
-    const [signInWithGoogle] = useSignInWithGoogle(auth);
+    const [signInWithGoogle, user] = useSignInWithGoogle(auth);
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -50,13 +50,29 @@ const Signup = () => {
             setCookie("token", response?.data?.token);
             dispatch(loadUserData(response));
             reset();
+        }
+        if (response?.data?.user?.googleLogin === false) {
             navigate("/otp");
+        } else if (response?.data?.user?.googleLogin === true) {
+            navigate("/userprofile");
         }
     }, [response, dispatch, reset, navigate]);
 
     useEffect(() => {
+        if (user) {
+            const userEmail = user?.user?.email;
+            const data = {
+                email: userEmail,
+                googleLogin: true,
+            };
+
+            regAsMember(data);
+        }
+    }, [user, regAsMember]);
+
+    useEffect(() => {
         if (error) {
-            setCustomError(error.data.message);
+            setCustomError(error?.data?.message);
         }
     }, [error]);
 
@@ -65,6 +81,10 @@ const Signup = () => {
         setCustomError("");
     };
     const passwordAndCOnfirmPasswordHandler = () => {
+        setCustomError("");
+    };
+
+    const NidOrPassportNumberHandler = () => {
         setCustomError("");
     };
 
@@ -178,6 +198,7 @@ const Signup = () => {
                                                     placeholder="NID or Passport Number"
                                                     className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
                                                     id="NidOrPassportNumber"
+                                                    onChange={NidOrPassportNumberHandler}
                                                 />
                                             </div>
                                             <h1 className="text-left ml-2">

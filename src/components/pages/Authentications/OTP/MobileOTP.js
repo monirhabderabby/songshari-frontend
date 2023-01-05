@@ -26,7 +26,7 @@ export const MobileOTP = () => {
 
     useEffect(() => {
         if (data?.message === "Email verified") {
-            navigate("/userProfile");
+            navigate("/mobileuserprofile");
         }
     }, [navigate, data?.message]);
 
