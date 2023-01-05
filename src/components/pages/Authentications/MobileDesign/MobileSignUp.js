@@ -69,10 +69,10 @@ const MobileSignUp = () => {
 
     useEffect(() => {
         if (response) {
-            console.log(response);
             setCookie("token", response?.data?.token);
             dispatch(loadUserData(response));
             reset();
+            navigate("/mobileOtp");
         }
     }, [response, dispatch, reset, navigate]);
 

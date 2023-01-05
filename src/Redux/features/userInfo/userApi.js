@@ -183,12 +183,21 @@ export const userApi = apiSlice.injectEndpoints({
         }),
         verifyEmail: builder.mutation({
             query: otp => ({
-                url: `/verify/verifyEmail/userVerification`,
+                url: `/verify/verifyEmail/id`,
                 method: "POST",
                 headers: {
                     authorization: `Bearer ${getCookie("token")}`,
                 },
                 body: otp,
+            }),
+        }),
+        reSendOtp: builder.mutation({
+            query: () => ({
+                url: `/verify/sendOtpByToken`,
+                method: "POST",
+                headers: {
+                    authorization: `Bearer ${getCookie("token")}`,
+                },
             }),
         }),
     }),
@@ -214,4 +223,5 @@ export const {
     useFindFilteredUserMutation,
     useUpdateProfilePhotoMutation,
     useVerifyEmailMutation,
+    useReSendOtpMutation,
 } = userApi;
