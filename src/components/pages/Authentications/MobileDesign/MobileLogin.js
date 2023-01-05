@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSignInWithEmailAndPassword, useSignInWithGoogle } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
 import { AiOutlineLeft } from "react-icons/ai";
-import { FaGoogle} from "react-icons/fa";
+import { FaGoogle } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import { useLocation, useNavigate } from "react-router";
 import { Link } from "react-router-dom";
@@ -61,18 +61,15 @@ const MobileLogin = () => {
                 </span>
                 <p>Log In</p>
             </div>
-
             {/* google login  */}
             <div className="flex justify-center items-center my-2">
-                                    <p
-                                        className="border-2 cursor-pointer border-gray-200 rounded-full p-3 mx-1 hover:bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] hover:text-white duration-400 transition-all"
-                                        onClick={() => signInWithGoogle()}
-                                    >
-                                        <FaGoogle className="text-sm" />
-                                    </p>
-                                </div>{" "}
-
-
+                <p
+                    className="border-2 cursor-pointer border-gray-200 rounded-full p-3 mx-1 hover:bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] hover:text-white duration-400 transition-all"
+                    onClick={() => signInWithGoogle()}
+                >
+                    <FaGoogle className="text-sm" />
+                </p>
+            </div>{" "}
             <section>
                 <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col mx-8">
                     <section className="mb-4">

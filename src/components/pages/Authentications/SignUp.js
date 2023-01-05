@@ -47,8 +47,7 @@ const Signup = () => {
 
     useEffect(() => {
         if (response) {
-            console.log(response);
-            setCookie("token", response?.token);
+            setCookie("token", response?.data?.token);
             dispatch(loadUserData(response));
             reset();
             navigate("/otp");
