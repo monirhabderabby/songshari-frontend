@@ -17,11 +17,11 @@ import { useForm } from "react-hook-form";
 
 // Components
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
-import { firebaseStorage } from "../../../../firebase.init";
-import { useUpdatePersonalDetailsMutation } from "../../../../Redux/features/userInfo/userApi";
+import { firebaseStorage } from "../../../../../firebase.init";
+import { useUpdatePersonalDetailsMutation } from "../../../../../Redux/features/userInfo/userApi";
 const { Dragger } = Upload;
 
-const EditPersonalInfo = () => {
+const MobilePersonalInfoEdit = () => {
   const [messageApi, contextHolder] = message.useMessage();
   const [personalInfo, setPersonalInfo] = useState({});
 
@@ -38,7 +38,7 @@ const EditPersonalInfo = () => {
   //uploaded image url data state
   const [nidOrPassportPhoto, setNidOrPassportPhoto] = useState({});
   // API from redux
-  const [{ data: updateResponse, isLoading, error }] =
+  const [ { data: updateResponse, isLoading, error }] =
     useUpdatePersonalDetailsMutation();
 
   const { register, handleSubmit } = useForm();
@@ -208,7 +208,7 @@ const EditPersonalInfo = () => {
 
   return (
     <div className="max-w-[523px] mx-auto bg-white drop-shadow-lg px-4 py-6 mb-4 rounded">
-      <div className="hidden md:block">
+      <div className="">
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="flex justify-between pb-4">
             <div>
@@ -223,7 +223,7 @@ const EditPersonalInfo = () => {
                 {...register("firstName")}
                 id="firstName"
                 placeholder="First Name"
-                className=" focus:outline-none p-2 border focus:border-blue-500 shadow rounded-lg hover:border-blue-500 w-56 "
+                className=" focus:outline-none p-2 border focus:border-blue-500 shadow rounded-lg hover:border-blue-500 w-36 "
               />
             </div>
             <div>
@@ -238,7 +238,7 @@ const EditPersonalInfo = () => {
                 {...register("lastName")}
                 id="lastName"
                 placeholder="Last Name"
-                className=" focus:outline-none p-2 border focus:border-blue-500 shadow rounded-lg hover:border-blue-500 w-56 "
+                className=" focus:outline-none p-2 border focus:border-blue-500 shadow rounded-lg hover:border-blue-500 w-36 "
               />
             </div>
           </div>
@@ -958,4 +958,4 @@ const EditPersonalInfo = () => {
   );
 };
 
-export default EditPersonalInfo;
+export default MobilePersonalInfoEdit;

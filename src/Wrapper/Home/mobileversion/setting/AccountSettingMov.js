@@ -7,14 +7,7 @@ import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 export const AccountSettingMov = () => {
-    const [anchorEl, setAnchorEl] = React.useState(null);
 
-    const handleClick = event => {
-        setAnchorEl(anchorEl ? null : event.currentTarget);
-    };
-
-    const open = Boolean(anchorEl);
-    const id = open ? "simple-popper" : undefined;
     return (
         <div className="mt-10">
             <h1 className="font-bold ml-8 text-xl mb-12">Account</h1>
@@ -63,7 +56,7 @@ export const AccountSettingMov = () => {
                     </div>
                 </div>
             </Link>
-            <Link to="/mobileActivityPage">
+            <Link to="/servicemov">
                 <div className="grid grid-cols-6 mt-5 mb-10 he">
                     <div className="setting-mov">
                         <img src="https://i.ibb.co/FnGQ6bg/Vector.png" className="ml-8 mr-6" alt="Not Available"></img>
