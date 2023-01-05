@@ -1,25 +1,43 @@
 // configuration
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 // Third party packages
-import { decodeToken, isExpired } from "react-jwt";
+import { decodeToken } from "react-jwt";
+import { useNavigate } from "react-router";
 import hideemail from "../../../../assets/utilities/hideEmail/hideEmail";
 
 // components
 import getCookie from "../../../../Helper/cookies/getCookie";
+import { useVerifyEmailMutation } from "../../../../Redux/features/userInfo/userApi";
+import Error from "../../../ui/error/Error";
 
 export const OTP = () => {
     // hook variables
     const [otp, setOtp] = useState(new Array(6).fill(""));
+    const [verifyEmail, { data, isLoading, error }] = useVerifyEmailMutation();
+    const [customError, setCustomError] = useState("");
+    const navigate = useNavigate();
 
     //js variables
     const token = getCookie("token");
     const myDocodeToken = decodeToken(token);
-    console.log(isExpired(token));
+
+    useEffect(() => {
+        if (data?.message === "Email verified") {
+            navigate("/userProfile");
+        }
+    }, [navigate, data?.message]);
+
+    useEffect(() => {
+        if (error && error?.data?.success === false) {
+            setCustomError(error?.data?.message);
+        }
+    }, [error]);
 
     // function declation
     const handleChange = (element, index) => {
         if (isNaN(element.value)) return false;
+        setCustomError("");
 
         setOtp([...otp.map((d, idx) => (idx === index ? element.value : d))]);
 
@@ -30,7 +48,11 @@ export const OTP = () => {
 
     const verifyHandler = e => {
         e.preventDefault();
-        console.log(otp);
+        const proceedOtp = otp.join("");
+        const result = {
+            otp: proceedOtp,
+        };
+        verifyEmail(result);
     };
     return (
         <>
@@ -47,7 +69,7 @@ export const OTP = () => {
                     </div>
                     <form action="">
                         <div className="flex flex-col">
-                            <div className="flex flex-row gap-x-[6px] items-center justify-between mx-auto w-full max-w-lg my-8">
+                            <div className="flex flex-row gap-x-[6px] items-center justify-between mx-auto w-full max-w-lg my-4">
                                 {otp.map((data, index) => {
                                     return (
                                         <input
@@ -63,6 +85,11 @@ export const OTP = () => {
                                     );
                                 })}
                             </div>
+                            {customError && (
+                                <div className="mb-4">
+                                    <Error message={customError} />
+                                </div>
+                            )}
 
                             <div className="flex flex-col space-y-5">
                                 <div>
@@ -70,7 +97,7 @@ export const OTP = () => {
                                         className="flex flex-row items-center justify-center text-center w-full border rounded-xl outline-none py-5 bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] border-none text-white text-sm shadow-sm"
                                         onClick={verifyHandler}
                                     >
-                                        Verify Account
+                                        {isLoading ? "Verifying..." : "Verify Account"}
                                     </button>
                                 </div>
                                 <div className="flex flex-row items-center justify-center text-center text-sm font-medium space-x-1 text-gray-500">

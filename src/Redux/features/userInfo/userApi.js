@@ -182,8 +182,8 @@ export const userApi = apiSlice.injectEndpoints({
             },
         }),
         verifyEmail: builder.mutation({
-            query: ({ otp, id }) => ({
-                url: `/verify/verifyEmail/${id}`,
+            query: otp => ({
+                url: `/verify/verifyEmail/userVerification`,
                 method: "POST",
                 headers: {
                     authorization: `Bearer ${getCookie("token")}`,
