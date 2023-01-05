@@ -149,13 +149,13 @@ const Accordian = ({ data, isLoading, edit }) => {
               {data?.citizenShip?.length !== 0 && (
                 <div className="flex justify-between border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333] py-3">
                   <span className="font-medium">CitizenShip</span>
-                  <div className=" flex gap-1">
+                  <div className="flex justify-end gap-1 flex-wrap w-[70%]">
                     {data
-                      ? data?.citizenShip.map((citizen) => (
-                          <p className="font-normal  col-start-3 font-Inter text-right text-xs text-[#2B52DD] py-[6px] px-2 bg-[#E5E7EB] rounded">
-                            {citizen}
-                          </p>
-                        ))
+                      ? data?.citizenShip.map((citizen, index) => (
+                        <p key={index} className="font-normal font-Inter text-right text-xs text-[#2B52DD] py-[6px] px-2 bg-[#E5E7EB] rounded">
+                          {citizen}
+                        </p>
+                      ))
                       : "Not Provided"}
                   </div>
                 </div>
@@ -254,8 +254,8 @@ const Accordian = ({ data, isLoading, edit }) => {
                   <p className="font-normal">
                     {data
                       ? moment(
-                          hightestEducationalQualification?.yearOfPassing
-                        ).format("ll")
+                        hightestEducationalQualification?.yearOfPassing
+                      ).format("ll")
                       : "Not Provided"}
                   </p>
                 </div>
@@ -511,9 +511,9 @@ const Accordian = ({ data, isLoading, edit }) => {
                 </div>
               )}
               {data?.currentProfession?.specialAchievement && (
-                <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                  <span className="font-medium">Special Achievement</span>
-                  <p className="font-normal">
+                <div className="flex justify-between py-3 border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                  <span className="font-medium whitespace-nowrap">Special Achievement</span>
+                  <p className="font-normal text-right w-[50%]">
                     {data?.currentProfession
                       ? data?.currentProfession?.specialAchievement
                       : "Not Provided"}
@@ -595,11 +595,11 @@ const Accordian = ({ data, isLoading, edit }) => {
               {data?.hobbies?.length !== 0 && (
                 <div className="flex justify-between border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333] py-3">
                   <span className="font-medium">Hobbies</span>
-                  <div className="flex gap-1">
+                  <div className="flex justify-end gap-1 flex-wrap w-[70%]">
                     {data?.hobbies &&
                       data?.hobbies.map((hobby, index) => (
                         <p
-                          className="font-normal font-Inter col-start-3 text-xs text-[#2B52DD] py-[6px] px-2 bg-[#E5E7EB] rounded"
+                          className="font-normal font-Inter text-xs text-[#2B52DD] py-[6px] px-2 bg-[#E5E7EB] rounded"
                           key={index}
                         >
                           {hobby}
@@ -694,9 +694,9 @@ const Accordian = ({ data, isLoading, edit }) => {
                       </div>
                     )}
                     {data?.professionalDetail?.length !== 0 && (
-                      <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                        <span className="font-medium">Special Achievement</span>
-                        <p className="font-normal">
+                      <div className="flex justify-between py-3 border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                        <span className="font-medium whitespace-nowrap">Special Achievement</span>
+                        <p className="font-normal text-right w-[50%]">
                           {data?.professionalDetail
                             ? d?.specialAchievement
                             : "Not Provided"}
@@ -739,9 +739,9 @@ const Accordian = ({ data, isLoading, edit }) => {
                   </div>
                 )}
                 {data?.professionalDetail?.length !== 0 && (
-                  <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                    <span className="font-medium">Special Achievement</span>
-                    <p className="font-normal">
+                  <div className="flex justify-between py-3 border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                    <span className="font-medium whitespace-nowrap">Special Achievement</span>
+                    <p className="font-normal text-right w-[50%]">
                       {data?.professionalDetail
                         ? data?.professionalDetail?.specialAchievement
                         : "Not Provided"}
@@ -868,9 +868,9 @@ const Accordian = ({ data, isLoading, edit }) => {
                       </div>
                     )}
                     {data?.educationalDetail.length !== 0 && (
-                      <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                        <span className="font-medium">Special Achievement</span>
-                        <p className="font-normal">
+                      <div className="flex justify-between py-3 border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                        <span className="font-medium whitespace-nowrap">Special Achievement</span>
+                        <p className="font-normal text-right w-[50%]">
                           {data?.educationalDetail
                             ? edu?.specialAchievement
                             : "Not Provided"}
@@ -943,9 +943,9 @@ const Accordian = ({ data, isLoading, edit }) => {
                   </div>
                 )}
                 {data?.educationalDetail.length !== 0 && (
-                  <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                    <span className="font-medium">Special Achievement</span>
-                    <p className="font-normal">
+                  <div className="flex justify-between py-3 items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                    <span className="font-medium whitespace-nowrap">Special Achievement</span>
+                    <p className="font-normal text-right w-[50%]">
                       {data?.educationalDetail
                         ? data?.educationalDetail?.specialAchievement
                         : "Not Provided"}

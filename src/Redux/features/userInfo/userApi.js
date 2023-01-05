@@ -156,12 +156,16 @@ export const userApi = apiSlice.injectEndpoints({
             }),
         }),
         updateProfilePhoto: builder.mutation({
-            query: photoURL => ({
-                url: "/merhje",
+            query: data => ({
+                url: "/member/personalDetail",
                 method: "PUT",
+                headers: {
+                    authorization: `Bearer ${getCookie("token")}`,
+                },
+                body: data,
             }),
             async onQueryStarted(arg, { dispatch, queryFulfilled }) {
-                dispatch(
+                const updateResult = dispatch(
                     apiSlice.util.updateQueryData("getProfileDetailsWIthAuth", undefined, draft => {
                         return {
                             ...draft,
@@ -169,6 +173,12 @@ export const userApi = apiSlice.injectEndpoints({
                         };
                     })
                 );
+
+                try {
+                    await queryFulfilled;
+                } catch (error) {
+                    updateResult.undo();
+                }
             },
         }),
     }),
