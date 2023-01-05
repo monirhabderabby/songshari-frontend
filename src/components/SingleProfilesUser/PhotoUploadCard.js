@@ -2,6 +2,9 @@ import React from "react";
 import camera from "../../assets/images/icons/camera.svg";
 
 export const PhotoUploadCard = () => {
+    // const [photosUploadOnServer] = usePhotosUploadOnServerMutation();
+    const photosHandler = e => {};
+
     return (
         <>
             <label
@@ -11,7 +14,7 @@ export const PhotoUploadCard = () => {
                 <img src={camera} alt="camera" />
                 <p className="text-[#000000] text-[24px] leading-[20px] font-semibold font-fira">Upload Photo</p>
             </label>
-            <input type="file" id="photos" className="hidden" multiple />
+            <input type="file" id="photos" className="hidden" multiple onChange={photosHandler} />
         </>
     );
 };
