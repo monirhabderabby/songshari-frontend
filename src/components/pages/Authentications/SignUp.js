@@ -80,7 +80,7 @@ const Signup = () => {
     };
 
     return (
-        <div>
+        <div className="hidden md:block">
             <div className="min-h-screen">
                 <section className="flex justify-center items-center w-full flex-1 text-center px-3 md:px-20  min-h-screen">
                     <div className="bg-white rounded-2xl shadow-2xl lg:flex w-[100%] md:w-3/4 lg:w-4/5 max-w-6xl relative">
