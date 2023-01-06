@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 /* certificate img */
 import certificate1 from "../../../assets/images/user profile/certificate1.png";
 import { default as certificate2, default as certificate5 } from "../../../assets/images/user profile/certificate2.png";
 import certificate3 from "../../../assets/images/user profile/certificate3.png";
 import certificate4 from "../../../assets/images/user profile/certificate4.png";
 /* component */
-import { useGetCertificatesWithAuthQuery } from "../../../Redux/features/Documents/documentsApi";
 import CustomHeader from "../../shared/CustomHeader/CustomHeader";
 import CertificateNav from "./CertificateNav";
 import AllCertificateImg from "./UpdateCertificateSection/AllCertificateImg/AllCertificateImg";
@@ -13,12 +12,8 @@ import UpdateCertificateSection from "./UpdateCertificateSection/UpdateCertifica
 
 const PersonalCertificateWeb = () => {
     const [certificateId, setCertificateId] = useState(0);
-    const { data, isLoading, error } = useGetCertificatesWithAuthQuery();
+    const [certificates, setCertificates] = useState([]);
 
-    useEffect(() => {
-        // if (data) console.log(data);
-        // if (error) console.log(error);
-    }, [data, error]);
     /* certificate dummy data */
     const certificateData = [
         {

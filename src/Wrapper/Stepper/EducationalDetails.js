@@ -45,14 +45,14 @@ export const EducationalDetails = ({ setPage }) => {
         data.educations.map(p => delete p.department);
         data.educations.map(p => delete p.feildOfStudy);
         data.educations.map(p => delete p.yearOfPassing);
-        data.educations.map(p => delete p.photoCertificate);
+        data.educations.map(p => delete p.certificatePhoto);
 
         data.educations.map(p => delete p.degree);
         data.educations.map(p => delete p.institute);
         data.educations.map(p => delete p.department);
         data.educations.map(p => delete p.fieldOfStudy);
         data.educations.map(p => delete p.yearOfPassing);
-        data.educations.map(p => delete p.photoCertificate);
+        data.educations.map(p => delete p.certificatePhoto);
 
         data.educations.map((p, index) => (p.degree = addedDegreeName[index]));
         data.educations.map((p, index) => (p.institute = addedInstitute[index]));
@@ -70,7 +70,7 @@ export const EducationalDetails = ({ setPage }) => {
         newObject.yearOfPassing = eduYearOfPassing;
         newObject.gpaOrCgpa = Number(data.gpaOrCgpa);
         newObject.specialAchievement = data.specialAchievement;
-        newObject.photoCertificate = eduAchievementMoment;
+        newObject.certificatePhoto = eduAchievementMoment;
 
         delete data.degree;
         delete data.institute;
@@ -79,10 +79,9 @@ export const EducationalDetails = ({ setPage }) => {
         delete data.yearOfPassing;
         delete data.photoCertificate;
         delete data.gpaOrCgpa;
+        delete data.certificatePhoto;
         delete data.specialAchievement;
         data.educations.push(newObject);
-
-        console.log(data);
 
         await setEducationalDetails(data);
     };
@@ -98,7 +97,8 @@ export const EducationalDetails = ({ setPage }) => {
         });
     };
 
-    const moreEduAddedAchievementMomentHandler = async photo => {
+    const moreEduAddedAchievementMomentHandler = async e => {
+        const photo = e.target.files[0];
         const storageRef = ref(firebaseStorage, `educationalCertificates/${photo?.name + uuidv4()}`);
         uploadBytes(storageRef, photo).then(async snapshot => {
             await getDownloadURL(snapshot.ref).then(url => {
@@ -114,13 +114,15 @@ export const EducationalDetails = ({ setPage }) => {
     }, [response, setPage]);
 
     const isPhotoUploaded = index => {
-        const arrayOfResult = eduAddedPhotoCertificate.forEach((p, idx) => {
+        const arrayOfResult = eduAddedPhotoCertificate.map((p, idx) => {
             if (idx === index) {
                 return true;
+            } else {
+                return false;
             }
         });
 
-        const result = arrayOfResult?.indexOf(true) !== -1;
+        const result = arrayOfResult.indexOf(true) !== -1;
 
         return result;
     };
@@ -431,7 +433,7 @@ export const EducationalDetails = ({ setPage }) => {
                                 <section>
                                     <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
                                         <AiOutlineCloudUpload className=" mr-2 text-gray-400" />
-                                        <label htmlFor="eduAddedAchievementMoment" className="outline-none h-full text-sm text-gray-400 bg-gray-100">
+                                        <label htmlFor="certificatePhoto" className="outline-none h-full text-sm text-gray-400 bg-gray-100">
                                             {isPhotoUploaded(index) ? (
                                                 <span className="text-green-400">Moments added</span>
                                             ) : (
@@ -441,12 +443,9 @@ export const EducationalDetails = ({ setPage }) => {
                                         <input
                                             {...register(`educations.${index}.certificatePhoto`)}
                                             type="file"
-                                            id="eduAddedAchievementMoment"
+                                            id="certificatePhoto"
                                             className="hidden"
-                                            onChange={e => {
-                                                const photo = e.target.files[0];
-                                                moreEduAddedAchievementMomentHandler(photo);
-                                            }}
+                                            onChange={moreEduAddedAchievementMomentHandler}
                                         />
                                     </div>
                                 </section>
