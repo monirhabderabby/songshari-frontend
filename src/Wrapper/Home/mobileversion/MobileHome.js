@@ -9,16 +9,18 @@ import { TopMenu } from "./TopMenu";
 import TopProfileMov from "./topprofilemov/TopProfileMov";
 
 export const MobileHome = () => {
-    return (
-        <div className="mov-res">
-            <TopMenu></TopMenu>
-            <MobileBanner></MobileBanner>
-            <Services></Services>
-            <TopProfileMov />
-            <br></br>
-            <br></br>
-            <br></br>   
-            <BottomBar></BottomBar>
-        </div>
-    );
+  return (
+    <div className="mov-res">
+      <TopMenu></TopMenu>
+      <MobileBanner></MobileBanner>
+      <Services></Services>
+      <TopProfileMov />
+      <br></br>
+      <br></br>
+      <br></br>
+      <div className="z-50">
+        <BottomBar></BottomBar>
+      </div>
+    </div>
+  );
 };

@@ -4,14 +4,7 @@ import { useNavigate } from "react-router";
 
 // Third party packages
 import { FileAddFilled } from "@ant-design/icons";
-import {
-  DatePicker,
-  Radio,
-  Select,
-  Space,
-  Upload,
-  message,
-} from "antd";
+import { DatePicker, Radio, Select, Space, Upload, message } from "antd";
 import TextArea from "antd/es/input/TextArea";
 import { useForm } from "react-hook-form";
 
@@ -38,7 +31,7 @@ const EditPersonalInfo = () => {
   //uploaded image url data state
   const [nidOrPassportPhoto, setNidOrPassportPhoto] = useState({});
   // API from redux
-  const [{ data: updateResponse, isLoading, error }] =
+  const [updatePersonalDetails, { data: updateResponse, isLoading, error }] =
     useUpdatePersonalDetailsMutation();
 
   const { register, handleSubmit } = useForm();
@@ -152,11 +145,22 @@ const EditPersonalInfo = () => {
   const navigate = useNavigate();
 
   const brotherDecreaseHandler = () => {
-    setBrother((prevCount) => prevCount - 1);
+    if (brother > 0) {
+      setBrother((prevCount) => prevCount - 1);
+    }
   };
 
   const brotherIncreaseHandler = () => {
     setBrother((prevCount) => prevCount + 1);
+  };
+  const sisterDecreaseHandler = () => {
+    if (sister > 0) {
+      setSister((prevCount) => prevCount - 1);
+    }
+  };
+
+  const sisterIncreaseHandler = () => {
+    setSister((prevCount) => prevCount + 1);
   };
 
   //form submission
@@ -172,8 +176,7 @@ const EditPersonalInfo = () => {
       NidOrPassportPhoto: nidOrPassportPhoto,
       whatAreYouLookingFor: lookingFor,
     };
-    // await updatePersonalDetails(data);
-    console.log(data);
+    await updatePersonalDetails(data);
   };
 
   // error success and loading handler
@@ -796,9 +799,8 @@ const EditPersonalInfo = () => {
                 </h1>
                 <div className="flex justify-center items-center mb-4">
                   <p
-                    // onClick={() => setBrother((prevCount) => prevCount - 1)}
                     onClick={brotherDecreaseHandler}
-                    className="px-4 py-2 text-3xl bg-gray-300 leading-6 rounded-l-lg"
+                    className="px-4 py-2 text-3xl bg-gray-300 leading-6 rounded-l-lg cursor-pointer"
                   >
                     -
                   </p>
@@ -806,9 +808,8 @@ const EditPersonalInfo = () => {
                     {brother}
                   </div>
                   <p
-                    // onClick={() => setBrother((prevCount) => prevCount + 1)}
                     onClick={brotherIncreaseHandler}
-                    className="px-4 py-2 text-3xl bg-gray-300 leading-6 rounded-r-lg"
+                    className="px-4 py-2 text-3xl bg-gray-300 leading-6 rounded-r-lg cursor-pointer"
                   >
                     +
                   </p>
@@ -821,8 +822,8 @@ const EditPersonalInfo = () => {
                 </h1>
                 <div className="flex justify-center items-center mb-4">
                   <p
-                    onClick={() => setSister((prevCount) => prevCount - 1)}
-                    className="px-4 py-2 text-3xl bg-gray-300 leading-6 rounded-l-lg"
+                    onClick={sisterDecreaseHandler}
+                    className="px-4 py-2 text-3xl bg-gray-300 leading-6 rounded-l-lg cursor-pointer"
                   >
                     -
                   </p>
@@ -830,8 +831,8 @@ const EditPersonalInfo = () => {
                     {sister}
                   </div>
                   <p
-                    onClick={() => setSister((prevCount) => prevCount + 1)}
-                    className="px-4 py-2 text-3xl bg-gray-300 leading-6 rounded-r-lg"
+                    onClick={sisterIncreaseHandler}
+                    className="px-4 py-2 text-3xl bg-gray-300 leading-6 rounded-r-lg cursor-pointer"
                   >
                     +
                   </p>
@@ -948,7 +949,7 @@ const EditPersonalInfo = () => {
               style={{
                 background: "linear-gradient(180deg, #E41272 0%, #942DD9 100%)",
               }}
-              className="w-full text-center py-[10px] text-[#fff]  text-lg font-medium rounded"
+              className="w-full text-center py-[10px] text-[#fff] cursor-pointer text-lg font-medium rounded"
             />
           </div>
         </form>
