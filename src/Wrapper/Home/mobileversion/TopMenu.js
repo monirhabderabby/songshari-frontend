@@ -9,27 +9,33 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import { Link, useNavigate } from "react-router-dom";
 
-// components 
-import { useAuthState, useSignOut } from "react-firebase-hooks/auth";
-import { auth } from "../../../firebase.init";
+// components
 
 // css import;
-import "./TopMenu.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import removeCookie from "../../../Helper/cookies/removeCookie";
+import isLoggedIn from "../../../Helper/hooks/checkLoggerPersestency/isLoggedIn";
 import { loadUserData } from "../../../Redux/features/userInfo/userInfo";
-
+import "./TopMenu.css";
 
 export const TopMenu = () => {
     // hooks variables
-    const [user] = useAuthState(auth);
-    
-    const [signOut] = useSignOut(auth);
+    const user = isLoggedIn();
+    const userInfo = useSelector(state => state?.persistedReducer?.userInfo?.userInfo?.user);
+    let { profilePhoto } = userInfo || {};
+    profilePhoto = profilePhoto ? profilePhoto : "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png";
+
+    let name;
+    if (userInfo?.firstName) {
+        name = userInfo?.firstName || "Empty";
+    }
+
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
     const logoutButton = async () => {
+        removeCookie("token");
         dispatch(loadUserData(null));
-        await signOut();
         navigate("/");
         localStorage.removeItem("accessToken");
     };
@@ -46,53 +52,45 @@ export const TopMenu = () => {
     return (
         <div>
             <div className="grid grid-cols-5  bg-top rounded  pt-2 pb-2">
-                {
-                    user && 
-                    <img src={user.photoURL} className='rounded-full w-8 ml-4' alt="Not Available"></img>
-                
-            
-                
-                }       
+                {user && <img src={profilePhoto} className="rounded-full w-8 ml-4" alt="Not Available"></img>}
 
-                {
-                    !user &&  <div className="ml-4 mov-top w-8 rounded-full mt-1 col-span-1">
-                    <img src="https://i.ibb.co/pZFRdCB/512-512-Icon-1.png" alt="Not Available"></img>
+                {!user && (
+                    <div className="ml-4 mov-top w-8 rounded-full mt-1 col-span-1">
+                        <img src="https://i.ibb.co/pZFRdCB/512-512-Icon-1.png" alt="Not Available"></img>
                     </div>
-                }
+                )}
 
                 <div className="col-span-3">
-                    {
-                        user ? <Button
-                        id="basic-button"
-                        aria-controls={open ? "basic-menu" : undefined}
-                        aria-haspopup="true"
-                        aria-expanded={open ? "true" : undefined}
-                        onClick={handleClick}
-                        className="font-bold text-black"
-                    >
-                        <span className="text-black font-bold">
-                            {" "}
-                            {user.displayName} <i className="fa-solid fa-angle-down"></i>
-                        </span>
-                    </Button>
-                    :
-                    <Button
-                        id="basic-button"
-                        aria-controls={open ? "basic-menu" : undefined}
-                        aria-haspopup="true"
-                        aria-expanded={open ? "true" : undefined}
-                        onClick={handleClick}
-                        className="font-bold text-black"
-                    >
-                        <span className="text-black font-bold">
-                            {" "}
-                            Shongshari.com <i className="fa-solid fa-angle-down"></i>
-                        </span>
-                    </Button>
-                       
-                       
-                    }
-                    
+                    {user ? (
+                        <Button
+                            id="basic-button"
+                            aria-controls={open ? "basic-menu" : undefined}
+                            aria-haspopup="true"
+                            aria-expanded={open ? "true" : undefined}
+                            onClick={handleClick}
+                            className="font-bold text-black"
+                        >
+                            <span className="text-black font-bold">
+                                {" "}
+                                {name} <i className="fa-solid fa-angle-down"></i>
+                            </span>
+                        </Button>
+                    ) : (
+                        <Button
+                            id="basic-button"
+                            aria-controls={open ? "basic-menu" : undefined}
+                            aria-haspopup="true"
+                            aria-expanded={open ? "true" : undefined}
+                            onClick={handleClick}
+                            className="font-bold text-black"
+                        >
+                            <span className="text-black font-bold">
+                                {" "}
+                                Shongshari.com <i className="fa-solid fa-angle-down"></i>
+                            </span>
+                        </Button>
+                    )}
+
                     <Menu
                         id="basic-menu"
                         anchorEl={anchorEl}
@@ -103,25 +101,23 @@ export const TopMenu = () => {
                         }}
                     >
                         <MenuItem onClick={handleClose}>
-                            {
-                                user ? <div>
-                                    <Link to="/mobile-login">
-                                    <button  onClick={logoutButton} className="bg-login-mov-home rounded-full text-white px-3">LogOut</button>
-                                </Link>
-                              
+                            {user ? (
+                                <div>
+                                    <button onClick={logoutButton} className="bg-login-mov-home rounded-full text-white px-3">
+                                        LogOut
+                                    </button>
                                 </div>
-                                 :
-                                 <div className="login-signup">
-                                  <Link to="/mobile-login">
-                                      <button className="bg-login-mov-home rounded-full text-white px-3">Log In</button>
-                                  </Link>
-                                  <p className="mx-2">Or</p>
-                                  <Link to="/mobile-signup">
-                                      <button className="bg-login-mov-home rounded-full text-white px-3">Sign Up</button>
-                                  </Link>
-                              </div>
-                            }
-                           
+                            ) : (
+                                <div className="login-signup">
+                                    <Link to="/mobile-login">
+                                        <button className="bg-login-mov-home rounded-full text-white px-3">Log In</button>
+                                    </Link>
+                                    <p className="mx-2">Or</p>
+                                    <Link to="/mobile-signup">
+                                        <button className="bg-login-mov-home rounded-full text-white px-3">Sign Up</button>
+                                    </Link>
+                                </div>
+                            )}
                         </MenuItem>
                     </Menu>
                 </div>
