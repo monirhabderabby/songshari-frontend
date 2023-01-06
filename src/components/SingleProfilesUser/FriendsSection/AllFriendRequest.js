@@ -17,7 +17,6 @@ export const AllFriendRequest = () => {
     // js variables
     let content = null;
 
-    if (error) console.log(error);
     if (isLoading) {
         content = (
             <div className="w-full grid grid-cols-1 gap-y-4 px-4">
