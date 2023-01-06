@@ -13,7 +13,8 @@ import { useDispatch } from "react-redux";
 // components
 import logo from "../../../assets/images/Logo/logoBlack.png";
 import { auth } from "../../../firebase.init";
-import { useLoginAsMemberMutation } from "../../../Redux/features/userInfo/userApi";
+import setCookie from "../../../Helper/cookies/setCookie";
+import { useLoginAsMemberMutation, useRegAsMemberMutation } from "../../../Redux/features/userInfo/userApi";
 import { loadUserData } from "../../../Redux/features/userInfo/userInfo";
 import Error from "../../ui/error/Error";
 import ForgetPasswordModal from "./ForgetPassword/ForgetPasswordModal";
@@ -22,12 +23,12 @@ import { PasswordField } from "./InputFields/PasswordField";
 
 // css files
 import "../../../App.css";
-import setCookie from "../../../Helper/cookies/setCookie";
 
 const Login = () => {
     const [customError, setCustomError] = useState("");
     const [open, setOpen] = useState(false);
     const [loginAsMember, { data: response, isLoading, error: responseError }] = useLoginAsMemberMutation();
+    const [regAsMember, { data: googleLoginResponse, isLoading: googleLoginLoading }] = useRegAsMemberMutation();
     const [signInWithGoogle, user] = useSignInWithGoogle(auth);
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -43,13 +44,17 @@ const Login = () => {
 
     useEffect(() => {
         if (response) {
-            console.log(response);
             setCookie("token", response?.data?.token);
             dispatch(loadUserData(response?.data));
             reset();
             navigate(from, { replace: true });
         }
-    }, [response, dispatch, navigate, reset, from]);
+        if (googleLoginResponse) {
+            setCookie("token", response?.data?.token);
+            dispatch(loadUserData(response));
+            navigate(from, { replace: true });
+        }
+    }, [response, dispatch, navigate, reset, from, googleLoginResponse]);
 
     useEffect(() => {
         if (responseError?.status === 401 && responseError?.data?.success === true) {
@@ -72,9 +77,9 @@ const Login = () => {
                 googleLogin: true,
             };
 
-            loginAsMember(data);
+            regAsMember(data);
         }
-    }, [user, loginAsMember]);
+    }, [user, regAsMember]);
 
     // function declaration
     const modalControll = () => {
@@ -144,6 +149,7 @@ const Login = () => {
                                             type="submit"
                                             value={isLoading ? "Loading..." : "LOGIN"}
                                             className="border-2 cursor-pointer mt-3 border-primary hover:border-0 rounded-full px-12 py-2 hover:bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] hover:text-white duration-500 transition-all"
+                                            disabled={googleLoginLoading}
                                         />
                                     </form>
                                     <p className="mt-3">
