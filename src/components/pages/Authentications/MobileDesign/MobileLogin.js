@@ -1,10 +1,15 @@
+// configuration
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { useLocation, useNavigate } from "react-router";
+import { Link } from "react-router-dom";
+
+// Third party packages
 import { AiOutlineLeft } from "react-icons/ai";
 import { FaGoogle } from "react-icons/fa";
 import { useDispatch } from "react-redux";
-import { useLocation, useNavigate } from "react-router";
-import { Link } from "react-router-dom";
+
+// components
 import setCookie from "../../../../Helper/cookies/setCookie";
 import { useLoginAsMemberMutation } from "../../../../Redux/features/userInfo/userApi";
 import { loadUserData } from "../../../../Redux/features/userInfo/userInfo";
@@ -12,11 +17,11 @@ import Error from "../../../ui/error/Error";
 
 const MobileLogin = () => {
     const [customError, setCustomError] = useState("");
-    const [loginAsMember, { data: response, isLoading, error: responseError }] = useLoginAsMemberMutation();
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    let location = useLocation();
-    let from = location.state?.from?.pathname || "/";
+
+    // Redux API Call
+    const [loginAsMember, { data: response, isLoading, error: responseError }] = useLoginAsMemberMutation();
 
     const {
         register,
@@ -24,11 +29,12 @@ const MobileLogin = () => {
         handleSubmit,
         reset,
     } = useForm();
-    const onSubmit = async data => {
-        data.role = "member";
-        loginAsMember(data);
-    };
 
+    // js variable declare
+    let location = useLocation();
+    let from = location.state?.from?.pathname || "/";
+
+    // useEffect Declaration
     useEffect(() => {
         if (response) {
             setCookie("token", response?.data?.token);
@@ -49,6 +55,12 @@ const MobileLogin = () => {
             setCustomError("Passwords do not match");
         }
     }, [responseError, navigate, from, dispatch]);
+
+    // function declaration
+    const onSubmit = async data => {
+        data.role = "member";
+        loginAsMember(data);
+    };
 
     return (
         <div className="bg-[#F8F8FF] min-h-screen">
