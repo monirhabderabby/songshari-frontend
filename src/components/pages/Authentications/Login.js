@@ -32,8 +32,6 @@ const Login = () => {
     const [signInWithGoogle, user] = useSignInWithGoogle(auth);
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    let location = useLocation();
-    let from = location.state?.from?.pathname || "/";
 
     const {
         register,
@@ -42,6 +40,11 @@ const Login = () => {
         reset,
     } = useForm();
 
+    // js variables
+    let location = useLocation();
+    let from = location.state?.from?.pathname || "/";
+
+    // useEffect declaration
     useEffect(() => {
         if (response) {
             setCookie("token", response?.data?.token);

@@ -1,12 +1,17 @@
-import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+// configuration
 import React, { useCallback, useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+
+// Third party packages
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { useDropzone } from "react-dropzone";
 import { useForm } from "react-hook-form";
 import { AiFillFileAdd, AiOutlineLeft } from "react-icons/ai";
 import { FaGoogle } from "react-icons/fa";
 import { useDispatch } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
+
+// components
 import logo from "../../../../assets/images/Logo/logoBlack.png";
 import { firebaseStorage } from "../../../../firebase.init";
 import setCookie from "../../../../Helper/cookies/setCookie";
@@ -15,12 +20,15 @@ import { loadUserData } from "../../../../Redux/features/userInfo/userInfo";
 import Error from "../../../ui/error/Error";
 
 const MobileSignUp = () => {
-    const [regAsMember, { data: response, isLoading: serverLoading, error: responseError }] = useRegAsMemberMutation();
+    // hook variable declaration
     const [photoURL, setPhotoUrl] = useState("");
     const [customError, setCustomError] = useState("");
-
+    const [agreement, setAgreement] = useState(false);
     const dispatch = useDispatch();
     const navigate = useNavigate();
+
+    // Redux Api Call
+    const [regAsMember, { data: response, isLoading: serverLoading, error: responseError }] = useRegAsMemberMutation();
 
     const {
         register,
@@ -43,7 +51,34 @@ const MobileSignUp = () => {
 
     const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
+    // Effect Declaration
+    useEffect(() => {
+        if (response) {
+            setCookie("token", response?.data?.token);
+            dispatch(loadUserData(response));
+            reset();
+            navigate("/mobileOtp");
+        }
+    }, [response, dispatch, reset, navigate]);
+
+    useEffect(() => {
+        if (responseError) {
+            setCustomError(responseError.data.message);
+        }
+    }, [responseError]);
+
+    useEffect(() => {
+        if (photoURL) {
+            setCustomError("");
+        }
+    }, [photoURL]);
+
+    // function declaration
     const onSubmit = async data => {
+        if (!agreement) {
+            setCustomError("Please make sure you agree with our terms and conditions");
+            return;
+        }
         if (!photoURL) {
             setCustomError("Please wait a second for added your photo");
             return;
@@ -67,26 +102,10 @@ const MobileSignUp = () => {
         setCustomError("");
     };
 
-    useEffect(() => {
-        if (response) {
-            setCookie("token", response?.data?.token);
-            dispatch(loadUserData(response));
-            reset();
-            navigate("/mobileOtp");
-        }
-    }, [response, dispatch, reset, navigate]);
-
-    useEffect(() => {
-        if (responseError) {
-            setCustomError(responseError.data.message);
-        }
-    }, [responseError]);
-
-    useEffect(() => {
-        if (photoURL) {
-            setCustomError("");
-        }
-    }, [photoURL]);
+    const handleAgreement = e => {
+        setCustomError("");
+        setAgreement(e.target.checked);
+    };
 
     return (
         <div className="bg-[#F8F8FF] pt-2">
@@ -315,7 +334,16 @@ const MobileSignUp = () => {
                     </section>
                     {/* ---------------Input data end------------ */}
                     <div className="col-span-2">{customError && <Error message={customError} />}</div>
-                    <p className="text-[#1E2022] mt-5 mb-5 text-xs leading-4">By continuing, you agree to our Terms of Service and Privacy Policy.</p>
+                    <div className="flex">
+                        <input type="checkbox" className="focus:outline-none checked:bg-pink-500 mr-2 mt-6" onChange={handleAgreement} />
+                        <p className="text-[#1E2022] mt-14 mb-5 text-xs leading-4">
+                            By continuing, you agree to our <span className="text-blue-700">Terms of Service</span> and{" "}
+                            <span className="text-blue-700" onClick={() => navigate("/privacymov")}>
+                                Privacy Policy
+                            </span>
+                            .
+                        </p>
+                    </div>
                     <input
                         className="rounded-[48px] pt-3 pb-4 mb-5 w-full font-medium leading-4 text-white"
                         style={{ backgroundImage: "linear-gradient(180deg, #D21878 0%, #4F42A3 100%)" }}

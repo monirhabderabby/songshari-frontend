@@ -1,10 +1,15 @@
+// configuration
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { useLocation, useNavigate } from "react-router";
+import { Link } from "react-router-dom";
+
+// Third party packages
 import { AiOutlineLeft } from "react-icons/ai";
 import { FaGoogle } from "react-icons/fa";
 import { useDispatch } from "react-redux";
-import { useLocation, useNavigate } from "react-router";
-import { Link } from "react-router-dom";
+
+// components
 import setCookie from "../../../../Helper/cookies/setCookie";
 import { useLoginAsMemberMutation } from "../../../../Redux/features/userInfo/userApi";
 import { loadUserData } from "../../../../Redux/features/userInfo/userInfo";
@@ -12,11 +17,11 @@ import Error from "../../../ui/error/Error";
 
 const MobileLogin = () => {
     const [customError, setCustomError] = useState("");
-    const [loginAsMember, { data: response, isLoading, error: responseError }] = useLoginAsMemberMutation();
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    let location = useLocation();
-    let from = location.state?.from?.pathname || "/";
+
+    // Redux API Call
+    const [loginAsMember, { data: response, isLoading, error: responseError }] = useLoginAsMemberMutation();
 
     const {
         register,
@@ -24,11 +29,12 @@ const MobileLogin = () => {
         handleSubmit,
         reset,
     } = useForm();
-    const onSubmit = async data => {
-        data.role = "member";
-        loginAsMember(data);
-    };
 
+    // js variable declare
+    let location = useLocation();
+    let from = location.state?.from?.pathname || "/";
+
+    // useEffect Declaration
     useEffect(() => {
         if (response) {
             setCookie("token", response?.data?.token);
@@ -49,6 +55,12 @@ const MobileLogin = () => {
             setCustomError("Passwords do not match");
         }
     }, [responseError, navigate, from, dispatch]);
+
+    // function declaration
+    const onSubmit = async data => {
+        data.role = "member";
+        loginAsMember(data);
+    };
 
     return (
         <div className="bg-[#F8F8FF] min-h-screen">
@@ -123,16 +135,10 @@ const MobileLogin = () => {
                             )}
                         </h1>
                     </section>
-                    <Link to={"/mobileForgetPassword"} className="text-[#E41272] text-xs leading-4 font-medium mt-6">
+                    <Link to={"/mobileForgetPassword"} className="text-[#E41272] text-xs leading-4 font-medium my-6">
                         Forgot Password?
                     </Link>
                     <div className="col-span-2">{customError && <Error message={customError} />}</div>
-                    <div className="flex">
-                        <input type="checkbox" className="focus:outline-none checked:bg-pink-500 mr-2 mt-6" />
-                        <p className="text-[#1E2022] mt-14 mb-5 text-xs leading-4">
-                            By continuing, you agree to our Terms of Service and Privacy Policy.
-                        </p>
-                    </div>
                     <input
                         className="rounded-[48px] pt-3 pb-4 mb-5 w-full font-medium leading-4 text-white"
                         style={{ backgroundImage: "linear-gradient(180deg, #D21878 0%, #4F42A3 100%)" }}
