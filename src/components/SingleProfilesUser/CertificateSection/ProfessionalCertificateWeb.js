@@ -1,6 +1,7 @@
+// configuration
 import React, { useEffect, useState } from "react";
-/* certificate img */
-/* component */
+
+// Third party packages
 import { useGetCertificatesWithAuthQuery } from "../../../Redux/features/Documents/documentsApi";
 import CustomHeader from "../../shared/CustomHeader/CustomHeader";
 import CertificateNav from "./CertificateNav";
@@ -8,13 +9,18 @@ import AllCertificateImg from "./UpdateCertificateSection/AllCertificateImg/AllC
 import UpdateCertificateSection from "./UpdateCertificateSection/UpdateCertificateSection";
 
 const ProfessionalCertificateWeb = () => {
+    // hook variable declaration
     const [certificateId, setCertificateId] = useState(0);
     const [certificates, setCertificates] = useState([]);
+
+    // Redux API calls
     const { data: response } = useGetCertificatesWithAuthQuery();
 
+    // useEffect declaration
     useEffect(() => {
         if (response) {
             setCertificates(response?.data?.professions);
+            console.log(response);
         }
     }, [response]);
 
@@ -31,6 +37,7 @@ const ProfessionalCertificateWeb = () => {
                             <AllCertificateImg
                                 key={certificate._id}
                                 index={index}
+                                certificateFor="professional"
                                 certificate={certificate}
                                 setCertificateId={setCertificateId}
                                 certificateId={certificateId}

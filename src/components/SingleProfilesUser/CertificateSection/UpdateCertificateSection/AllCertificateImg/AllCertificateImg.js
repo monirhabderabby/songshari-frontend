@@ -1,16 +1,29 @@
+// configuration
 import React from "react";
 
-const AllCertificateImg = ({ certificate, setCertificateId, certificateId, index }) => {
+const AllCertificateImg = ({ certificateFor, certificate, setCertificateId, certificateId, index }) => {
+    // js variable declaration
+    let name;
+    let certificateImage;
+
+    if (certificateFor === "education") {
+        name = certificate?.degree;
+        certificateImage = certificate?.certificatePhoto;
+    }
+    if (certificateFor === "professional") {
+        name = certificate?.position;
+        certificateImage = certificate?.specialAchievementMoment;
+    }
     return (
         <div key={certificate._id} className="flex flex-col w-full font-sans font-medium text-2xl text-[#000000]">
-            <h1 className="mb-6 text-left lg:text-2xl md:text-xl text-lg">{certificate.position}</h1>
+            <h1 className="mb-6 text-left lg:text-2xl md:text-xl text-lg">{name}</h1>
             <div className="h-[243px] lg:w-[349px] w-full relative mb-10">
                 <img
                     onClick={() => setCertificateId(index)}
                     className={`h-full w-full rounded-[12px] ${
                         index === certificateId ? "border-[2px] border-[#E41272] boxShadow: [3px 3px 12px rgba(0, 0, 0, 0.12)]" : ""
                     }`}
-                    src={certificate?.specialAchievementMoment}
+                    src={certificateImage}
                     alt="certificate"
                 />
                 <p
