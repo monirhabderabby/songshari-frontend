@@ -28,7 +28,7 @@ const Login = () => {
     const [customError, setCustomError] = useState("");
     const [open, setOpen] = useState(false);
     const [loginAsMember, { data: response, isLoading, error: responseError }] = useLoginAsMemberMutation();
-    const [signInWithGoogle] = useSignInWithGoogle(auth);
+    const [signInWithGoogle, user] = useSignInWithGoogle(auth);
     const dispatch = useDispatch();
     const navigate = useNavigate();
     let location = useLocation();
@@ -41,16 +41,9 @@ const Login = () => {
         reset,
     } = useForm();
 
-    const modalControll = () => {
-        setOpen(!open);
-    };
-
-    const onSubmit = async data => {
-        await loginAsMember(data);
-    };
-
     useEffect(() => {
         if (response) {
+            console.log(response);
             setCookie("token", response?.data?.token);
             dispatch(loadUserData(response?.data));
             reset();
@@ -69,6 +62,28 @@ const Login = () => {
             setCustomError("Passwords do not match");
         }
     }, [responseError, navigate, from, dispatch]);
+
+    // Google Login
+    useEffect(() => {
+        if (user) {
+            const userEmail = user?.user?.email;
+            const data = {
+                email: userEmail,
+                googleLogin: true,
+            };
+
+            loginAsMember(data);
+        }
+    }, [user, loginAsMember]);
+
+    // function declaration
+    const modalControll = () => {
+        setOpen(!open);
+    };
+
+    const onSubmit = async data => {
+        await loginAsMember(data);
+    };
 
     return (
         <div>
