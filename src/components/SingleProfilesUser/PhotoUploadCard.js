@@ -1,9 +1,27 @@
-import React from "react";
+import React, { useEffect } from "react";
 import camera from "../../assets/images/icons/camera.svg";
+import { usePhotosUploadOnServerMutation } from "../../Redux/features/fileUpload/fileUploadApi";
 
 export const PhotoUploadCard = () => {
-    // const [photosUploadOnServer] = usePhotosUploadOnServerMutation();
-    const photosHandler = e => {};
+    const [photosUploadOnServer, { data, error }] = usePhotosUploadOnServerMutation();
+
+    const photosHandler = e => {
+        const files = e.target.files;
+        const data = {
+            photos: files,
+        };
+        console.log(data);
+        photosUploadOnServer(data);
+    };
+
+    useEffect(() => {
+        if (data) {
+            console.log(data);
+        }
+        if (error) {
+            console.log(error);
+        }
+    }, [data, error]);
 
     return (
         <>

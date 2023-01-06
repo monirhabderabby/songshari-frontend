@@ -120,7 +120,7 @@ export const EducationalDetails = ({ setPage }) => {
             }
         });
 
-        const result = arrayOfResult.indexOf(true) !== -1;
+        const result = arrayOfResult?.indexOf(true) !== -1;
 
         return result;
     };

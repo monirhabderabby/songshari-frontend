@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 /* certificate img */
 import certificate1 from "../../../assets/images/user profile/certificate1.png";
-import certificate2 from "../../../assets/images/user profile/certificate2.png";
+import { default as certificate2, default as certificate5 } from "../../../assets/images/user profile/certificate2.png";
 import certificate3 from "../../../assets/images/user profile/certificate3.png";
 import certificate4 from "../../../assets/images/user profile/certificate4.png";
-import certificate5 from "../../../assets/images/user profile/certificate2.png";
 /* component */
+import { useGetCertificatesWithAuthQuery } from "../../../Redux/features/Documents/documentsApi";
 import CustomHeader from "../../shared/CustomHeader/CustomHeader";
 import CertificateNav from "./CertificateNav";
 import AllCertificateImg from "./UpdateCertificateSection/AllCertificateImg/AllCertificateImg";
@@ -13,33 +13,39 @@ import UpdateCertificateSection from "./UpdateCertificateSection/UpdateCertifica
 
 const PersonalCertificateWeb = () => {
     const [certificateId, setCertificateId] = useState(0);
+    const { data, isLoading, error } = useGetCertificatesWithAuthQuery();
+
+    useEffect(() => {
+        // if (data) console.log(data);
+        // if (error) console.log(error);
+    }, [data, error]);
     /* certificate dummy data */
     const certificateData = [
         {
             id: 1,
             name: "Certificate 1",
-            img: certificate1
+            img: certificate1,
         },
         {
             id: 2,
             name: "Certificate 2",
-            img: certificate2
+            img: certificate2,
         },
         {
             id: 3,
             name: "Certificate 3",
-            img: certificate3
+            img: certificate3,
         },
         {
             id: 4,
             name: "Certificate 4",
-            img: certificate4
+            img: certificate4,
         },
         {
             id: 5,
             name: "Certificate 5",
-            img: certificate5
-        }
+            img: certificate5,
+        },
     ];
 
     return (
@@ -49,7 +55,6 @@ const PersonalCertificateWeb = () => {
 
             <div className="mx-auto max-w-[1200px] font-sans ">
                 <div className="flex pt-[58px] gap-[51px]">
-
                     {/* Left side all certificates img */}
                     <div className="w-[349px]">
                         {certificateData.map(certificate => (
@@ -69,11 +74,7 @@ const PersonalCertificateWeb = () => {
 
                         {/* Selected certificate img showing */}
                         <div style={{ boxShadow: "2px 2px 10px rgba(0, 0, 0, 0.12)" }} className="bg-[#FFFFFF] py-[15px] px-[18px] rounded-[16px]">
-                            <img
-                                className="h-[1187px] w-[800px] rounded-[16px]"
-                                src={certificateData[certificateId].img}
-                                alt="view certificate"
-                            />
+                            <img className="h-[1187px] w-[800px] rounded-[16px]" src={certificateData[certificateId].img} alt="view certificate" />
                         </div>
 
                         {/* file uploading section */}
