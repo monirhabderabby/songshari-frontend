@@ -33,6 +33,7 @@ const Signup = () => {
     const [signInWithGoogle, user] = useSignInWithGoogle(auth);
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const [agreement, setAgreement] = useState(false);
 
     // state declarations
     const [gender, setGender] = useState("");
@@ -88,7 +89,16 @@ const Signup = () => {
         setCustomError("");
     };
 
+    const handleAgreement = e => {
+        setCustomError("");
+        setAgreement(e.target.checked);
+    };
+
     const onSubmit = async data => {
+        if (!agreement) {
+            setCustomError("Please agree to the terms and conditions");
+            return;
+        }
         if (data.password !== data.confirmPassword) {
             setCustomError("Passwords do not match");
             return;
@@ -297,7 +307,20 @@ const Signup = () => {
                                                 ></Select>
                                             </div>
                                         </section>
-                                        {/*attach file*/}
+
+                                        <section className="col-span-2 items-center mt-3 pl-2">
+                                            <div className="flex h-full items-center">
+                                                <input type="checkbox" name="" className="mr-2" onChange={handleAgreement} />{" "}
+                                                <p className="text-[#1E2022] text-[14px]">
+                                                    {" "}
+                                                    By continuing, you agree to our{" "}
+                                                    <span className="text-blue-700 cursor-pointer">Terms of Service</span> and{" "}
+                                                    <span className="text-blue-700 cursor-pointer" onClick={() => navigate("/privacy-policy")}>
+                                                        Privacy Policy
+                                                    </span>
+                                                </p>
+                                            </div>
+                                        </section>
                                         <div className="col-span-2 w-full">{customError && <Error message={customError} />}</div>
                                         <div className="col-span-2">
                                             <input
