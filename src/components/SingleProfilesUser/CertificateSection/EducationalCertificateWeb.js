@@ -1,46 +1,27 @@
-import React, { useState } from "react";
-/* certificate img */
-import certificate1 from "../../../assets/images/user profile/certificate4.png";
-import certificate2 from "../../../assets/images/user profile/certificate3.png";
-import certificate3 from "../../../assets/images/user profile/certificate2.png";
-import certificate4 from "../../../assets/images/user profile/certificate1.png";
-import certificate5 from "../../../assets/images/user profile/certificate3.png";
-/* component */
+// configuration
+import React, { useEffect, useState } from "react";
+
+// components
+import { useGetCertificatesWithAuthQuery } from "../../../Redux/features/Documents/documentsApi";
 import CustomHeader from "../../shared/CustomHeader/CustomHeader";
 import CertificateNav from "./CertificateNav";
 import AllCertificateImg from "./UpdateCertificateSection/AllCertificateImg/AllCertificateImg";
 import UpdateCertificateSection from "./UpdateCertificateSection/UpdateCertificateSection";
 
 const EducationalCertificateWeb = () => {
+    // hook variable declaration
     const [certificateId, setCertificateId] = useState(0);
-    /* certificate dummy data */
-    const certificateData = [
-        {
-            id: 1,
-            name: "SSC Certificate",
-            img: certificate1
-        },
-        {
-            id: 2,
-            name: "HSC Certificate",
-            img: certificate2
-        },
-        {
-            id: 3,
-            name: "Bachelor Certificate ",
-            img: certificate3
-        },
-        {
-            id: 4,
-            name: "Masters Certificate",
-            img: certificate4
-        },
-        {
-            id: 5,
-            name: "PHD Certificate",
-            img: certificate5
+    const [certificates, setCertificates] = useState([]);
+
+    //Redux API calls
+    const { data: response } = useGetCertificatesWithAuthQuery();
+
+    // useEffect declaration
+    useEffect(() => {
+        if (response) {
+            setCertificates(response?.data?.educations);
         }
-    ];
+    }, [response]);
 
     return (
         <div className="bg-[#FAFBFF]">
@@ -49,12 +30,13 @@ const EducationalCertificateWeb = () => {
 
             <div className="mx-auto max-w-[1200px] font-sans ">
                 <div className="flex pt-[58px] gap-[51px]">
-
                     {/* Left side all certificates img */}
                     <div className="w-[349px]">
-                        {certificateData.map(certificate => (
+                        {certificates.map((certificate, index) => (
                             <AllCertificateImg
-                                key={certificate.id}
+                                key={certificate._id}
+                                index={index}
+                                certificateFor="education"
                                 certificate={certificate}
                                 setCertificateId={setCertificateId}
                                 certificateId={certificateId}
@@ -71,7 +53,7 @@ const EducationalCertificateWeb = () => {
                         <div style={{ boxShadow: "2px 2px 10px rgba(0, 0, 0, 0.12)" }} className="bg-[#FFFFFF] py-[15px] px-[18px] rounded-[16px]">
                             <img
                                 className="h-[1187px] w-[800px] rounded-[16px]"
-                                src={certificateData[certificateId].img}
+                                src={certificates[certificateId]?.certificatePhoto}
                                 alt="view certificate"
                             />
                         </div>
