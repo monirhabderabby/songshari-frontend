@@ -1,11 +1,14 @@
+import React, { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router";
+
+// Third party components
 import Autocomplete, { createFilterOptions } from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
 import { DatePicker, message } from "antd";
 import TextArea from "antd/es/input/TextArea";
-import React, { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router";
+
+// Components
 import { useUpdateProfessionalDetailsMutation } from "../../../../Redux/features/userInfo/userApi";
-import EditFamilyInfo from "./EditFamilyInfo";
 const { RangePicker } = DatePicker;
 
 const EditProfesionalInfo = () => {
@@ -293,8 +296,6 @@ const EditProfesionalInfo = () => {
           <div className="mt-2">{contextHolder}</div>
         </div>
       </form>
-      {/* ----------- This is for testing purpose ------------------ */}
-      <EditFamilyInfo />
     </div>
   );
 };

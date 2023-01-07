@@ -1,3 +1,4 @@
+// Configuration
 import React, { useState } from "react";
 
 // Third party packages
@@ -200,7 +201,6 @@ const EditFamilyInfo = () => {
                   return filtered;
                 }}
                 selectOnFocus
-                clearOnBlur
                 handleHomeEndKeys
                 id="free-solo-with-text-demo"
                 options={professionNameOptions}
@@ -286,7 +286,6 @@ const EditFamilyInfo = () => {
                   return filtered;
                 }}
                 selectOnFocus
-                clearOnBlur
                 handleHomeEndKeys
                 id="free-solo-with-text-demo"
                 options={educationalInfoOptions}
@@ -398,7 +397,6 @@ const EditFamilyInfo = () => {
                   return filtered;
                 }}
                 selectOnFocus
-                clearOnBlur
                 handleHomeEndKeys
                 id="free-solo-with-text-demo"
                 options={professionNameOptions}
@@ -484,7 +482,6 @@ const EditFamilyInfo = () => {
                   return filtered;
                 }}
                 selectOnFocus
-                clearOnBlur
                 handleHomeEndKeys
                 id="free-solo-with-text-demo"
                 options={educationalInfoOptions}
