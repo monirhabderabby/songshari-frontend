@@ -4,7 +4,7 @@ import member from "../../../assets/images/Logo/Membership.svg";
 import cart from "../../../assets/images/Logo/Cart.svg";
 import { NavLink } from "react-router-dom";
 
-export const BottomBar = () => {
+export const BottomBar = ({ activeRoute }) => {
   return (
     <div className="rounded bg-bottom-nav mt-4 z-50">
       <div className="grid grid-cols-4 gap-4 bottom-bar">
