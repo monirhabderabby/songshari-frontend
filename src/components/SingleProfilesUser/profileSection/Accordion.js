@@ -152,10 +152,13 @@ const Accordian = ({ data, isLoading, edit }) => {
                   <div className="flex justify-end gap-1 flex-wrap w-[70%]">
                     {data
                       ? data?.citizenShip.map((citizen, index) => (
-                        <p key={index} className="font-normal font-Inter text-right text-xs text-[#2B52DD] py-[6px] px-2 bg-[#E5E7EB] rounded">
-                          {citizen}
-                        </p>
-                      ))
+                          <p
+                            key={index}
+                            className="font-normal font-Inter text-right text-xs text-[#2B52DD] py-[6px] px-2 bg-[#E5E7EB] rounded"
+                          >
+                            {citizen}
+                          </p>
+                        ))
                       : "Not Provided"}
                   </div>
                 </div>
@@ -254,8 +257,8 @@ const Accordian = ({ data, isLoading, edit }) => {
                   <p className="font-normal">
                     {data
                       ? moment(
-                        hightestEducationalQualification?.yearOfPassing
-                      ).format("ll")
+                          hightestEducationalQualification?.yearOfPassing
+                        ).format("ll")
                       : "Not Provided"}
                   </p>
                 </div>
@@ -512,7 +515,9 @@ const Accordian = ({ data, isLoading, edit }) => {
               )}
               {data?.currentProfession?.specialAchievement && (
                 <div className="flex justify-between py-3 border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                  <span className="font-medium whitespace-nowrap">Special Achievement</span>
+                  <span className="font-medium whitespace-nowrap">
+                    Special Achievement
+                  </span>
                   <p className="font-normal text-right w-[50%]">
                     {data?.currentProfession
                       ? data?.currentProfession?.specialAchievement
@@ -695,7 +700,9 @@ const Accordian = ({ data, isLoading, edit }) => {
                     )}
                     {data?.professionalDetail?.length !== 0 && (
                       <div className="flex justify-between py-3 border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                        <span className="font-medium whitespace-nowrap">Special Achievement</span>
+                        <span className="font-medium whitespace-nowrap">
+                          Special Achievement
+                        </span>
                         <p className="font-normal text-right w-[50%]">
                           {data?.professionalDetail
                             ? d?.specialAchievement
@@ -740,7 +747,9 @@ const Accordian = ({ data, isLoading, edit }) => {
                 )}
                 {data?.professionalDetail?.length !== 0 && (
                   <div className="flex justify-between py-3 border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                    <span className="font-medium whitespace-nowrap">Special Achievement</span>
+                    <span className="font-medium whitespace-nowrap">
+                      Special Achievement
+                    </span>
                     <p className="font-normal text-right w-[50%]">
                       {data?.professionalDetail
                         ? data?.professionalDetail?.specialAchievement
@@ -842,7 +851,7 @@ const Accordian = ({ data, isLoading, edit }) => {
                         <span className="font-medium">Field of Study</span>
                         <p className="font-normal">
                           {data?.educationalDetail
-                            ? edu?.feildOfStudy
+                            ? edu?.fieldOfStudy
                             : "Not Provided"}
                         </p>
                       </div>
@@ -869,7 +878,9 @@ const Accordian = ({ data, isLoading, edit }) => {
                     )}
                     {data?.educationalDetail.length !== 0 && (
                       <div className="flex justify-between py-3 border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                        <span className="font-medium whitespace-nowrap">Special Achievement</span>
+                        <span className="font-medium whitespace-nowrap">
+                          Special Achievement
+                        </span>
                         <p className="font-normal text-right w-[50%]">
                           {data?.educationalDetail
                             ? edu?.specialAchievement
@@ -944,7 +955,9 @@ const Accordian = ({ data, isLoading, edit }) => {
                 )}
                 {data?.educationalDetail.length !== 0 && (
                   <div className="flex justify-between py-3 items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                    <span className="font-medium whitespace-nowrap">Special Achievement</span>
+                    <span className="font-medium whitespace-nowrap">
+                      Special Achievement
+                    </span>
                     <p className="font-normal text-right w-[50%]">
                       {data?.educationalDetail
                         ? data?.educationalDetail?.specialAchievement

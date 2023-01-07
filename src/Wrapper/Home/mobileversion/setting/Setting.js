@@ -7,13 +7,14 @@ export const Setting = () => {
   return (
     <div>
       <Link to="/">
-        <div className="grid grid-cols-3 mt-5">
-          <div className="setting-mov">
+        <div className="grid grid-cols-6 mt-5">
+          <div className="setting-mov col-span-1">
             <i className="fa-solid fa-chevron-left ml-4  text-xl"></i>
-            <h1 className="ml-20 profile-tit">Profile</h1>
           </div>
-          <div></div>
-          <div></div>
+          <div className="col-span-4">
+            <h1 className="text-center profile-tit">Setting</h1>
+          </div>
+          <div className="col-span-1"></div>
         </div>
       </Link>
 
