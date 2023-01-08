@@ -1,12 +1,6 @@
-// configuration
 import React from "react";
 
-// images
-import { useGetProfileDetailsWIthAuthQuery } from "../../../Redux/features/userInfo/userApi";
-
-const MobileUsersProfile = () => {
-  const { data } = useGetProfileDetailsWIthAuthQuery();
-
+const MobileDynamicProfileHeader = ({ data }) => {
   return (
     <div>
       <div className="flex justify-center">
@@ -55,4 +49,4 @@ const MobileUsersProfile = () => {
   );
 };
 
-export default MobileUsersProfile;
+export default MobileDynamicProfileHeader;
