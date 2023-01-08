@@ -1,17 +1,38 @@
+// Configuration
 import React from "react";
-import certificate from "../../../assets/images/certificate.jpg";
+import { Link, useNavigate } from "react-router-dom";
+
+// Components
 import { TbMessageCircle2 } from "react-icons/tb";
-import ChartBoardCSS from "../../../assets/css/chartBoard.module.css";
+import certificate from "../../../assets/images/certificate.jpg";
 import { BottomNav } from "./BottomNav";
-import { Link } from "react-router-dom";
+
+// Css files
+import ChartBoardCSS from "../../../assets/css/chartBoard.module.css";
 
 const certificateInfo = [
-  { id: 1, text: "Personal Certificate", img: certificate },
-  { id: 2, text: "Professional Certificate", img: certificate },
-  { id: 3, text: "Educational Certificate", img: certificate },
+  {
+    id: 1,
+    text: "Personal Certificate",
+    img: certificate,
+    link: "/personalCertificateMov",
+  },
+  {
+    id: 2,
+    text: "Professional Certificate",
+    img: certificate,
+    link: "/professionalCertificateMov",
+  },
+  {
+    id: 3,
+    text: "Educational Certificate",
+    img: certificate,
+    link: "/educationalCertificateMov",
+  },
 ];
 
 export const CertificateMov = () => {
+  const navigate = useNavigate();
   return (
     <div className="px-6">
       <div className="mt-5">
@@ -50,6 +71,7 @@ export const CertificateMov = () => {
                 />
                 <button
                   className={`${ChartBoardCSS.showViewButton} top-[35%] left-[35%] rounded block bg-white text-sm font-medium leading-[26px] px-4 py-1 duration-300`}
+                  onClick={() => navigate(certificate.link)}
                 >
                   View
                 </button>
