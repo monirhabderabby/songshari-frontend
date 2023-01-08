@@ -25,6 +25,7 @@ import { HistoryMov } from "../../../Wrapper/Home/mobileversion/history/HistoryM
 import { Like } from "../../../Wrapper/Home/mobileversion/Like";
 import { MatchesMov } from "../../../Wrapper/Home/mobileversion/MatchesMov";
 import { MeetMov } from "../../../Wrapper/Home/mobileversion/meet/MeetMov";
+import MobileFindPartner from "../../../Wrapper/Home/mobileversion/MobileFindPartner/MobileFindPartner";
 import { MobileHome } from "../../../Wrapper/Home/mobileversion/MobileHome";
 import Certificate from "../../../Wrapper/Home/mobileversion/PhotoGallery/certificate/Certificate";
 import { PrivacyMov } from "../../../Wrapper/Home/mobileversion/privacy/PrivacyMov";
@@ -32,163 +33,168 @@ import { Setting } from "../../../Wrapper/Home/mobileversion/setting/Setting";
 
 // routes
 const MobileMatrimony = [
-    {
+  {
+    id: 1,
+    path: "/",
+    element: <MobileHome />,
+    nestedRoutes: [
+      {
         id: 1,
         path: "/",
-        element: <MobileHome />,
-        nestedRoutes: [
-            {
-                id: 1,
-                path: "/",
-                element: <Suggested />,
-            },
-            {
-                id: 2,
-                path: "mobile-top-bride",
-                element: <MobileTopBride />,
-            },
-            {
-                id: 3,
-                path: "mobile-top-groom",
-                element: <MobileTopGroom />,
-            },
-        ],
-    },
-    {
+        element: <Suggested />,
+      },
+      {
         id: 2,
-        path: "/mobile-login",
-        element: <MobileLogin />,
-    },
-    {
+        path: "mobile-top-bride",
+        element: <MobileTopBride />,
+      },
+      {
         id: 3,
-        path: "/mobile-signup",
-        element: <MobileSignUp />,
-    },
-    {
-        id: 4,
-        path: "/setting",
-        element: <Setting />,
-    },
-    {
-        id: 5,
-        path: "/servicemov",
-        element: <ProfileServices />,
-    },
-    {
-        id: 6,
-        path: "/aboutmov",
-        element: <AboutMov />,
-    },
-    {
-        id: 7,
-        path: "/meetmov",
-        element: <MeetMov />,
-    },
-    {
-        id: 8,
-        path: "/machesmov",
-        element: <MatchesMov />,
-    },
-    {
-        id: 9,
-        path: "/certificatemov",
-        element: <CertificateMov />,
-    },
-    {
-        id: 10,
-        path: "/like",
-        element: <Like />,
-    },
-    {
-        id: 11,
-        path: "/historymov",
-        element: <HistoryMov />,
-    },
-    {
-        id: 12,
-        path: "/privacymov",
-        element: <PrivacyMov />,
-    },
-    {
-        id: 13,
-        path: "/communitymov",
-        element: <CommunityMov />,
-    },
-    {
-        id: 14,
-        path: "/mobilecertificate",
-        element: <Certificate />,
-    },
-    {
-        id: 15,
-        path: "/mobileupgrade",
-        element: <UpgradePlan />,
-    },
-    {
-        id: 16,
-        path: "/mobileFreePlan",
-        element: <MobileFreePlan />,
-    },
-    {
-        id: 17,
-        path: "/mobileGoldPlan",
-        element: <MobileGoldPlan />,
-    },
-    {
-        id: 18,
-        path: "/mobileDiamondPlan",
-        element: <MobileDiamondPlan />,
-    },
-    {
-        id: 19,
-        path: "/mobile-allposts",
-        element: <AllPosts />,
-    },
-    {
-        id: 20,
-        path: "/like",
-        element: <Like />,
-    },
-    {
-        id: 21,
-        path: "/mobileprofile/:id",
-        element: <MobileDynamicProfile></MobileDynamicProfile>,
-    },
-    {
-        id: 22,
-        path: "/personalprofile/:id",
-        element: <MobilePersonalDetails />,
-    },
-    {
-        id: 23,
-        path: "/professionalprofile/:id",
-        element: <MobileProfessionalDetails />,
-    },
-    {
-        id: 24,
-        path: "/educationalprofile/:id",
-        element: <MobileEducationalDetails />,
-    },
-    {
-        id: 25,
-        path: "/physicalprofile/:id",
-        element: <MobilePhysicalDetails />,
-    },
+        path: "mobile-top-groom",
+        element: <MobileTopGroom />,
+      },
+    ],
+  },
+  {
+    id: 2,
+    path: "/mobile-login",
+    element: <MobileLogin />,
+  },
+  {
+    id: 3,
+    path: "/mobile-signup",
+    element: <MobileSignUp />,
+  },
+  {
+    id: 4,
+    path: "/setting",
+    element: <Setting />,
+  },
+  {
+    id: 5,
+    path: "/servicemov",
+    element: <ProfileServices />,
+  },
+  {
+    id: 6,
+    path: "/aboutmov",
+    element: <AboutMov />,
+  },
+  {
+    id: 7,
+    path: "/meetmov",
+    element: <MeetMov />,
+  },
+  {
+    id: 8,
+    path: "/machesmov",
+    element: <MatchesMov />,
+  },
+  {
+    id: 9,
+    path: "/certificatemov",
+    element: <CertificateMov />,
+  },
+  {
+    id: 10,
+    path: "/like",
+    element: <Like />,
+  },
+  {
+    id: 11,
+    path: "/historymov",
+    element: <HistoryMov />,
+  },
+  {
+    id: 12,
+    path: "/privacymov",
+    element: <PrivacyMov />,
+  },
+  {
+    id: 13,
+    path: "/communitymov",
+    element: <CommunityMov />,
+  },
+  {
+    id: 14,
+    path: "/mobilecertificate",
+    element: <Certificate />,
+  },
+  {
+    id: 15,
+    path: "/mobileupgrade",
+    element: <UpgradePlan />,
+  },
+  {
+    id: 16,
+    path: "/mobileFreePlan",
+    element: <MobileFreePlan />,
+  },
+  {
+    id: 17,
+    path: "/mobileGoldPlan",
+    element: <MobileGoldPlan />,
+  },
+  {
+    id: 18,
+    path: "/mobileDiamondPlan",
+    element: <MobileDiamondPlan />,
+  },
+  {
+    id: 19,
+    path: "/mobile-allposts",
+    element: <AllPosts />,
+  },
+  {
+    id: 20,
+    path: "/like",
+    element: <Like />,
+  },
+  {
+    id: 21,
+    path: "/mobileprofile/:id",
+    element: <MobileDynamicProfile></MobileDynamicProfile>,
+  },
+  {
+    id: 22,
+    path: "/personalprofile/:id",
+    element: <MobilePersonalDetails />,
+  },
+  {
+    id: 23,
+    path: "/professionalprofile/:id",
+    element: <MobileProfessionalDetails />,
+  },
+  {
+    id: 24,
+    path: "/educationalprofile/:id",
+    element: <MobileEducationalDetails />,
+  },
+  {
+    id: 25,
+    path: "/physicalprofile/:id",
+    element: <MobilePhysicalDetails />,
+  },
 
-    {
-        id: 26,
-        path: "/otherprofile/:id",
-        element: <MobileOthersDetails />,
-    },
-    {
-        id: 27,
-        path: "/mobileActivityPage",
-        element: <SingleUserActivity />,
-    },
-    {
-        id: 28,
-        path: "/mobileOtp",
-        element: <MobileOTP />,
-    },
+  {
+    id: 26,
+    path: "/otherprofile/:id",
+    element: <MobileOthersDetails />,
+  },
+  {
+    id: 27,
+    path: "/mobileActivityPage",
+    element: <SingleUserActivity />,
+  },
+  {
+    id: 28,
+    path: "/mobileOtp",
+    element: <MobileOTP />,
+  },
+  {
+    id: 29,
+    path: "/mobile-find-partner",
+    element: <MobileFindPartner />,
+  },
 ];
 export default MobileMatrimony;
