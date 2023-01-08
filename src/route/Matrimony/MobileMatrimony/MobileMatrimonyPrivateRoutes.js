@@ -1,6 +1,8 @@
 // components
 import MobileSingleProfilesUser from "../../../components/SingleProfilesUser/MobileSingleProfilesUser/MobileSingleProfilesUser";
 import { PersonalDetailsMobile } from "../../../components/SingleProfilesUser/MobileSingleProfilesUser/PersonalDetailsMobile";
+import EducationalCertificateMobile from "../../../Wrapper/Home/mobileversion/CertificateMobile/EducationalCertificateMobile/EducationalCertificateMobile";
+import PersonalCertificateMobile from "../../../Wrapper/Home/mobileversion/CertificateMobile/PersonalCertificateMobile/PersonalCertificateMobile";
 import ProfessionalCertificateMobile from "../../../Wrapper/Home/mobileversion/CertificateMobile/ProfessionalCertificateMobile/ProfessionalCertificateMobile";
 
 const MobileMatrimonyPrivateRoutes = [
@@ -23,8 +25,18 @@ const MobileMatrimonyPrivateRoutes = [
   },
   {
     id: 3,
+    path: "/educationalCertificateMov",
+    element: <EducationalCertificateMobile />,
+  },
+  {
+    id: 4,
     path: "/professionalCertificateMov",
     element: <ProfessionalCertificateMobile />,
+  },
+  {
+    id: 5,
+    path: "/personalCertificateMov",
+    element: <PersonalCertificateMobile />,
   },
 ];
 

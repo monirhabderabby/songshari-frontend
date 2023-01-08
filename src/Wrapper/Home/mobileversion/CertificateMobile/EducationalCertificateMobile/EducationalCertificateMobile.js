@@ -7,7 +7,7 @@ import { BottomNav } from "../../BottomNav";
 import AllCertificateImgMobile from "../AllCertificateImgMobile/AllCertificateImgMobile";
 import MobileCertificateNav from "../MobileCertificateNav/MobileCertificateNav";
 
-const ProfessionalCertificateMobile = () => {
+const EducationalCertificateMobile = () => {
   // hook variable declaration
   const [certificateId, setCertificateId] = useState(0);
   const [certificates, setCertificates] = useState([]);
@@ -18,7 +18,7 @@ const ProfessionalCertificateMobile = () => {
   // useEffect declaration
   useEffect(() => {
     if (response) {
-      setCertificates(response?.data?.professions);
+      setCertificates(response?.data?.educations);
     }
   }, [response]);
 
@@ -40,7 +40,7 @@ const ProfessionalCertificateMobile = () => {
             >
               <img
                 className="max-h-[335px]"
-                src={certificates[certificateId]?.specialAchievementMoment}
+                src={certificates[certificateId]?.certificatePhoto}
                 alt="view certificate"
               />
             </div>
@@ -50,7 +50,7 @@ const ProfessionalCertificateMobile = () => {
               <AllCertificateImgMobile
                 key={certificate._id}
                 index={index}
-                certificateFor="professional"
+                certificateFor="education"
                 certificate={certificate}
                 setCertificateId={setCertificateId}
                 certificateId={certificateId}
@@ -65,4 +65,4 @@ const ProfessionalCertificateMobile = () => {
   );
 };
 
-export default ProfessionalCertificateMobile;
+export default EducationalCertificateMobile;
