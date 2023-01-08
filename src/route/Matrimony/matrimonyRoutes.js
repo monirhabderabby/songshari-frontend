@@ -1,3 +1,5 @@
+import { Inbox } from "../../components/Features/Messege/Inbox/Inbox";
+import { MessegeBox } from "../../components/Features/Messege/Messeges/MessegeBox";
 import Login from "../../components/pages/Authentications/Login";
 import LoginAsProfessional from "../../components/pages/Authentications/LoginAsProfessional";
 import { OTP } from "../../components/pages/Authentications/OTP/OTP";
@@ -129,6 +131,18 @@ const matrimonyRoutes = [
         id: 14,
         path: "/otp",
         element: <OTP />,
+    },
+    {
+        id: 15,
+        path: "/inbox",
+        element: <Inbox />,
+        nestedRoutes: [
+            {
+                id: 1,
+                path: ":id",
+                element: <MessegeBox />,
+            },
+        ],
     },
 ];
 export default matrimonyRoutes;

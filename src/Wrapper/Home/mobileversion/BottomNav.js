@@ -1,25 +1,64 @@
-import React from 'react'
-import Shop from '../../../assets/images/Logo/Shop.svg'
-import member from '../../../assets/images/Logo/Membership.svg'
-import cart from '../../../assets/images/Logo/Cart.svg'
-// import HOME from '../../../assets/images/Logo/HOME.svg'
-import { Link } from 'react-router-dom'
+// Configuration
+import React from "react";
+import { NavLink } from "react-router-dom";
+
+// Components
+import Shop from "../../../assets/images/Logo/Shop.svg";
+import member from "../../../assets/images/Logo/Membership.svg";
+import cart from "../../../assets/images/Logo/Cart.svg";
+import { useState } from "react";
 
 export const BottomNav = () => {
+  const [mobileUpgradeActive, setMobileUpgradeActive] = useState(false);
+  const [homeActive, setHomeActive] = useState(false);
+  const [settingActive, setSettingActive] = useState(false);
+
   return (
-    <div className='rounded bg-bottom-nav mt-4'>
-      <div className='grid grid-cols-4 gap-4 bottom-bar'>
-        <Link to='/mobileUpgrade'>
-          <img src={member} alt='Not Available' className='w-10 mt-1'></img>
-        </Link>
-        <Link to='/'>
-          <img src='https://i.ibb.co/d5yyNd6/512-512-Icon.png' alt='Not Available' className='w-12'></img>
-        </Link>
-        <img src={Shop} alt='Not Available' className='w-10 mt-1'></img>
-        {/* <img src={cart} alt='Not Available' className='w-10 mt-1'></img> */}
-        <Link to='/setting'><img src={cart} alt='Not Available' className='w-10 mt-1'></img></Link>
+    <div className="rounded bg-bottom-nav mt-4 z-50 pl-0">
+      <div className="flex items-center justify-between px-4">
+        <NavLink
+          to="/mobileUpgrade"
+          className={
+            ({ isActive }) => setMobileUpgradeActive(isActive)
+            // isActive ? "-mt-6 border-2 border-black" : ""
+          }
+        >
+          <img
+            src={member}
+            alt="Not Available"
+            className={`w-10 mt-1 ${
+              mobileUpgradeActive &&
+              "-mt-14 border-4 border-[#F8F8FF] bg-[#E8E8E8] rounded-full w-14"
+            }`}
+          ></img>
+        </NavLink>
+        <NavLink to="/" className={({ isActive }) => setHomeActive(isActive)}>
+          <img
+            src="https://i.ibb.co/d5yyNd6/512-512-Icon.png"
+            alt="Not Available"
+            className={`w-12 ${
+              homeActive &&
+              "-mt-14 border-4 border-[#EBDEF4] rounded-full w-14 pl-[2px] bg-[#E8E8E8]"
+            }`}
+          ></img>
+        </NavLink>
+        <NavLink>
+          <img src={Shop} alt="Not Available" className="w-10 mt-1"></img>
+        </NavLink>
+        <NavLink
+          to="/setting"
+          className={({ isActive }) => setSettingActive(isActive)}
+        >
+          <img
+            src={cart}
+            alt="Not Available"
+            className={`w-10 mt-1 ${
+              settingActive &&
+              "-mt-14 border-4 border-white rounded-full w-14 bg-[#E8E8E8]"
+            }`}
+          ></img>
+        </NavLink>
       </div>
     </div>
-  )
-}
-
+  );
+};
