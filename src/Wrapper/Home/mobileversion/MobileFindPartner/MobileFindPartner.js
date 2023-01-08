@@ -366,7 +366,7 @@ const MobileFindPartner = ({ data, isLoading }) => {
 
   return (
     <div>
-      <div>
+      <div className="mb-20 px-7">
         <Collapse
           accordion
           ghost
