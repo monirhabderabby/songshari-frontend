@@ -18,10 +18,7 @@ export const BottomNav = () => {
       <div className="flex items-center justify-between px-4">
         <NavLink
           to="/mobileUpgrade"
-          className={
-            ({ isActive }) => setMobileUpgradeActive(isActive)
-            // isActive ? "-mt-6 border-2 border-black" : ""
-          }
+          className={({ isActive }) => setMobileUpgradeActive(isActive)}
         >
           <img
             src={member}
