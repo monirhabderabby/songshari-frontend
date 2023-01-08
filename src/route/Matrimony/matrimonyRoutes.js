@@ -134,7 +134,7 @@ const matrimonyRoutes = [
     },
     {
         id: 15,
-        path: "/indox",
+        path: "/inbox",
         element: <Inbox />,
         nestedRoutes: [
             {

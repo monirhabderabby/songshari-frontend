@@ -14,7 +14,7 @@ export const ConversationHeader = () => {
                 <div className="flex flex-col justify-center">
                     <p className="text-[#000000] font-semibold text-[18px] font-">Monir Hossain</p>
                     <Select
-                        defaultValue="lucy"
+                        defaultValue="Active"
                         className="m-0"
                         style={{
                             width: 100,

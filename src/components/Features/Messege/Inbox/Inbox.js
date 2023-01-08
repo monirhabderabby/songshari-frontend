@@ -1,7 +1,6 @@
 import React from "react";
 import { Outlet } from "react-router";
 import CustomHeader from "../../../shared/CustomHeader/CustomHeader";
-import Footer from "../../../shared/Footer/Footer";
 import { Sidebar } from "../Sidebar/Sidebar";
 
 export const Inbox = () => {
@@ -16,7 +15,6 @@ export const Inbox = () => {
                     <Outlet />
                 </div>
             </div>
-            <Footer />
         </div>
     );
 };
