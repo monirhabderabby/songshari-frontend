@@ -34,18 +34,19 @@ export const MessegeList = () => {
         },
     ];
     return (
-        <div className="relative">
-            <div className="max-h-[600px] bg-white px-[15px] overflow-auto">
-                {messeges.map(messege => {
-                    const email = "raj021159@gmail.com";
-                    if (messege.sender === email) {
-                        return <MessegeLeft key={messege.id} />;
-                    } else {
-                        return <MessegeRight key={messege.id} />;
-                    }
-                })}
+        <div className="relative rounded-br-[20px] rounded-bl-[20px]">
+            <div className="h-full px-[15px] overflow-auto rounded-br-[20px] rounded-bl-[20px] pb-[50px]">
+                <div className="h-[60vh] overflow-auto">
+                    {messeges.map(messege => {
+                        const email = "raj021159@gmail.com";
+                        if (messege.sender === email) {
+                            return <MessegeLeft key={messege.id} />;
+                        } else {
+                            return <MessegeRight key={messege.id} />;
+                        }
+                    })}
+                </div>
             </div>
-            {/* <MessegeInputBox /> */}
         </div>
     );
 };
