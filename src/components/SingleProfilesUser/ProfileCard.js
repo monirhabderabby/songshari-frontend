@@ -44,8 +44,10 @@ const ProfileCard = ({ data, isLoading }) => {
         const storageRef = ref(firebaseStorage, `profile/${photo?.name + uuidv4()}`);
         uploadBytes(storageRef, photo).then(async snapshot => {
             await getDownloadURL(snapshot.ref).then(url => {
-                updateProfilePhoto(url.toString());
-                console.log(url.toString());
+                const data = {
+                    profilePhoto: url.toString(),
+                };
+                updateProfilePhoto(data);
             });
         });
     };
