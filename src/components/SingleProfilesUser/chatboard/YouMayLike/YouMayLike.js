@@ -60,14 +60,12 @@ export const YouMayLike = () => {
 
     return (
         <div>
-            <div className="mt-[70px]">
-                <div className="flex justify-start items-center mx-1 gap-6 mb-6">
-                    <BsCommand className="text-[#2E3A59] text-2xl" />
-                    <h1 className="text-[#333333] text-2xl leading-[34px] font-bold">You May Like</h1>
-                </div>
-                {/* Render Data from content variable */}
-                <div>{content}</div>
+            <div className="flex justify-start items-center mx-1 gap-6 mb-6">
+                <BsCommand className="text-[#2E3A59] text-2xl" />
+                <h1 className="text-[#333333] text-2xl leading-[34px] font-bold">You May Like</h1>
             </div>
+            {/* Render Data from content variable */}
+            <div>{content}</div>
         </div>
     );
 };

@@ -10,10 +10,7 @@ import { IntroCard } from "./IntroCard";
 import PhotoGelary from "./PhotoGelary";
 import { PhotoUploadCard } from "./PhotoUploadCard";
 import ProfileCard from "./ProfileCard";
-import ResponsiveProfileCard from "./profileSection/ResponsiveProfileCard";
-import { ResponsiveVerificationCard } from "./ResponsiveVerificationCard";
 import { SocialMediaBox } from "./SocialMediaBox/SocialMediaBox";
-import ResponsiveTable from "./Table/ResponsiveTable";
 import Table from "./Table/Table";
 import UtilitisCard from "./UtilitisCard";
 import { VerificationCard } from "./VerificationCard";
@@ -54,38 +51,10 @@ export const SingleProfiles = () => {
                                         <PhotoUploadCard />
                                         <PhotoGelary {...{ data, isLoading }} />
                                     </div>
-                                    <div className="lg:hidden md:block hidden w-full">
-                                        <ResponsiveProfileCard {...{ data, isLoading }}></ResponsiveProfileCard>
-
-                                        <ResponsiveVerificationCard />
-                                        {/* <Badges /> */}
-                                        <div className="ml-24">
-                                            <UtilitisCard />
-                                        </div>
-                                        <div className="text-4xl ml-20">
-                                            <IntroCard {...{ data, isLoading, error }} />
-                                        </div>
-                                    </div>
-
-                                    <div className="lg:hidden md:hidden w-full">
-                                        <ProfileCard {...{ data, isLoading }} />
-                                        {SocialBoxOpen && <SocialMediaBox {...{ LinkedInId, faceBookId, instagramId }} />}
-                                        <VerificationCard />
-                                        {/* <Badges /> */}
-                                        <UtilitisCard />
-                                        <IntroCard {...{ data, isLoading, error }} />
-                                        <PhotoUploadCard />
-                                        <PhotoGelary {...{ data, isLoading }} />
-                                    </div>
                                 </div>
                                 <div className="w-full hidden md:hidden lg:block">
                                     <div>
                                         <Table {...{ data, isLoading }} />
-                                    </div>
-                                </div>
-                                <div className="w-full  lg:hidden">
-                                    <div>
-                                        <ResponsiveTable {...{ data, isLoading }} />
                                     </div>
                                 </div>
                             </div>
@@ -93,7 +62,7 @@ export const SingleProfiles = () => {
                     </div>
                     <div className="max-w-[263px]">
                         <div className="flex justify-center">
-                            <ChartBoard />
+                            <ChartBoard {...{ data, isLoading }} />
                         </div>
                     </div>
                 </div>
