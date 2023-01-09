@@ -66,8 +66,6 @@ const Accordian = ({ data, isLoading, edit }) => {
         );
     }
 
-    console.log(data);
-
     return (
         <div className="mb-[69px] max-w-[523px] mx-auto">
             <div className="hidden lg:block" id="fdhjf">
@@ -102,7 +100,7 @@ const Accordian = ({ data, isLoading, edit }) => {
                         </div>
                     </div>
                     <AccordionDetails>
-                        <Typography variant={"body2"}>
+                        <Typography component={"span"} variant={"body2"}>
                             {data?.firstName && (
                                 <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                                     <span className="font-medium">Name</span>

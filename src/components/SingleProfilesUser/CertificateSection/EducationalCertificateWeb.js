@@ -52,7 +52,7 @@ const EducationalCertificateWeb = () => {
                         {/* Selected certificate img showing */}
                         <div style={{ boxShadow: "2px 2px 10px rgba(0, 0, 0, 0.12)" }} className="bg-[#FFFFFF] py-[15px] px-[18px] rounded-[16px]">
                             <img
-                                className="h-[1187px] w-[800px] rounded-[16px]"
+                                className="max-h-[1187px] max-w-[800px] rounded-[16px]"
                                 src={certificates[certificateId]?.certificatePhoto}
                                 alt="view certificate"
                             />

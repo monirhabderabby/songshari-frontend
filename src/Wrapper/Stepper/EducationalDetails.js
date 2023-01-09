@@ -398,7 +398,7 @@ export const EducationalDetails = ({ setPage }) => {
                                         <input
                                             {...register(`educations.${index}.gpaOrCgpa`)}
                                             type="text"
-                                            placeholder="Special Achievement"
+                                            placeholder="GPA Or CGPA"
                                             className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
                                             id="eduGpaOrCgpa"
                                         />

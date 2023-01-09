@@ -169,7 +169,7 @@ export const userApi = apiSlice.injectEndpoints({
                     apiSlice.util.updateQueryData("getProfileDetailsWIthAuth", undefined, draft => {
                         return {
                             ...draft,
-                            profilePhoto: arg,
+                            profilePhoto: arg.profilePhoto,
                         };
                     })
                 );
