@@ -48,24 +48,6 @@ const Accordian = ({ data, isLoading, edit }) => {
     };
     const navigate = useNavigate();
 
-    let hobbiesContent;
-
-    if (data?.hobbies?.length > 0) {
-        hobbiesContent = (
-            <div className="flex justify-between border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333] py-3">
-                <span className="font-medium">Hobbies</span>
-                <div className="flex justify-end gap-1 flex-wrap w-[70%]">
-                    {data?.hobbies &&
-                        data?.hobbies.map((hobby, index) => (
-                            <p className="font-normal font-Inter text-xs text-[#2B52DD] py-[6px] px-2 bg-[#E5E7EB] rounded" key={index}>
-                                {hobby}
-                            </p>
-                        ))}
-                </div>
-            </div>
-        );
-    }
-
     return (
         <div className="mb-[69px] max-w-[523px] mx-auto">
             <div className="hidden lg:block" id="fdhjf">
@@ -460,7 +442,21 @@ const Accordian = ({ data, isLoading, edit }) => {
                                     <p className="font-normal">{data ? data.numberOfSister : "Not Provided"}</p>
                                 </div>
                             )}
-                            {hobbiesContent}
+                            {data?.hobbies?.length > 0 && (
+                                <div className="flex justify-between border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333] py-3">
+                                    <span className="font-medium">Hobbies</span>
+                                    <div className="flex justify-end gap-1 flex-wrap w-[70%]">
+                                        {data?.hobbies.map((hobby, index) => (
+                                            <p
+                                                className="font-normal font-Inter text-xs text-[#2B52DD] py-[6px] px-2 bg-[#E5E7EB] rounded"
+                                                key={index}
+                                            >
+                                                {hobby}
+                                            </p>
+                                        ))}
+                                    </div>
+                                </div>
+                            )}
                         </Typography>
                     </AccordionDetails>
                 </Accordion>
