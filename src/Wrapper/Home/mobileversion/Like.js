@@ -15,7 +15,6 @@ import { MayLikeSingle } from "./MayLikeSingle";
 export const Like = () => {
     // fetching
     const { data, error, isLoading } = useGetSuggestedUsersQuery();
-    console.log(data);
 
     if (isLoading) {
         return (
