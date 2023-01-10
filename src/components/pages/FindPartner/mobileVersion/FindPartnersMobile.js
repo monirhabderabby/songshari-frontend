@@ -3,6 +3,7 @@ import React from "react";
 import { Outlet } from "react-router";
 
 // Third party packages
+import { BottomNav } from "../../../../Wrapper/Home/mobileversion/BottomNav";
 import { FindPartnerHeaderButton } from "./FindPartnerHeaderButton";
 import { FindPartnerSearchBox } from "./FindPartnerSearchBox";
 
@@ -12,6 +13,8 @@ export const FindPartnersMobile = () => {
             <FindPartnerSearchBox />
             <FindPartnerHeaderButton />
             <Outlet />
+            <div className="h-20"></div>
+            <BottomNav />
         </div>
     );
 };
