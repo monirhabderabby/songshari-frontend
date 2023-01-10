@@ -1,8 +1,8 @@
 // configuration
 import React from "react";
+import { Outlet } from "react-router";
 
 // Third party packages
-import { AllPartnersCards } from "./AllPartnersCards";
 import { FindPartnerHeaderButton } from "./FindPartnerHeaderButton";
 import { FindPartnerSearchBox } from "./FindPartnerSearchBox";
 
@@ -11,8 +11,7 @@ export const FindPartnersMobile = () => {
         <div className=" lg:hidden px-[26px] bg-[#F8F8FF] min-h-screen">
             <FindPartnerSearchBox />
             <FindPartnerHeaderButton />
-
-            <AllPartnersCards />
+            <Outlet />
         </div>
     );
 };
