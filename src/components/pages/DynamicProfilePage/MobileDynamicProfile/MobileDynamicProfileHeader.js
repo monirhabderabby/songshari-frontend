@@ -5,12 +5,22 @@ const MobileDynamicProfileHeader = ({ data }) => {
     <div>
       <div className="flex justify-center">
         <div className="w-full mx-7">
-          <div className="bg-[#D9D9D9] rounded-t-[4px] flex justify-center items-center flex-col  mx-auto h-[92px]">
-            <h1 className="text-[#979C9E] pb-[10px] text-xs">
-              Upload a cover photo
-            </h1>
-            <i className="fa-solid text-[#979C9E]  fa-camera"></i>
-          </div>
+          {data?.coverPhoto ? (
+            <div>
+              <img
+                className="max-h-28 md:max-h-52 w-full border border-gray-100 rounded-t-[4px]"
+                src={data?.coverPhoto}
+                alt=""
+              />
+            </div>
+          ) : (
+            <div className="bg-[#D9D9D9] rounded-t-[4px] flex justify-center items-center flex-col  mx-auto h-[92px]">
+              <h1 className="text-[#979C9E] pb-[10px] text-xs">
+                Upload a cover photo
+              </h1>
+              <i className="fa-solid text-[#979C9E]  fa-camera"></i>
+            </div>
+          )}
           <div
             style={{ boxShadow: " 0px 10px 40px rgba(0, 0, 0, 0.03)" }}
             className="px-[23px] w-full rounded-sm mx-auto bg-[#ffffff]"
