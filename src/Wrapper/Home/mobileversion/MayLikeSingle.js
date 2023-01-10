@@ -50,7 +50,13 @@ export const MayLikeSingle = ({ data }) => {
       <div className="flex items-center justify-between px-5">
         <div
           className="w-[67px] h-[67px] rounded-full bg-cover bg-center"
-          style={{ backgroundImage: `url(${data?.profilePhoto})` }}
+          style={{
+            backgroundImage: `url(${
+              data?.profilePhoto
+                ? data?.profilePhoto
+                : "https://cdn-icons-png.flaticon.com/512/194/194938.png"
+            })`,
+          }}
         ></div>
         <div className="flex items-center gap-x-[10px]">
           <div className="w-[44px] h-[44px] bg-[#FFDFF4] rounded-full flex justify-center items-center">
