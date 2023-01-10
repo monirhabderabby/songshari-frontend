@@ -20,10 +20,7 @@ export const Setting = () => {
 
       {/* menus  */}
       <AccountSettingMov></AccountSettingMov>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
+      <div className="h-24"></div>
 
       {/* bottom navigation  */}
       <BottomNav></BottomNav>

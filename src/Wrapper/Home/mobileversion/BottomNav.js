@@ -1,12 +1,14 @@
 // Configuration
-import React from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 
 // Components
 import Shop from "../../../assets/images/Logo/Shop.svg";
 import member from "../../../assets/images/Logo/Membership.svg";
 import cart from "../../../assets/images/Logo/Cart.svg";
-import { useState } from "react";
+
+// CSS files
+import "../mobileversion/TopMenu.css";
 
 export const BottomNav = () => {
   const [mobileUpgradeActive, setMobileUpgradeActive] = useState(false);
@@ -14,7 +16,7 @@ export const BottomNav = () => {
   const [settingActive, setSettingActive] = useState(false);
 
   return (
-    <div className="rounded bg-bottom-nav mt-4 z-50 pl-0">
+    <div className="rounded bg-bottom-nav z-50">
       <div className="flex items-center justify-between px-4">
         <NavLink
           to="/mobileUpgrade"

@@ -15,12 +15,8 @@ export const MobileHome = () => {
       <MobileBanner></MobileBanner>
       <Services></Services>
       <TopProfileMov />
-      <br></br>
-      <br></br>
-      <br></br>
-      <div className="z-50">
-        <BottomNav />
-      </div>
+      <div className="h-12"></div>
+      <BottomNav />
     </div>
   );
 };
