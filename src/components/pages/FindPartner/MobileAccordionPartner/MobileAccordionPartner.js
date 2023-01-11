@@ -4,15 +4,14 @@ import { AutoComplete, Collapse, DatePicker, Input, Radio, Select, Slider, Space
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
-import { setFilterObject } from "../../../Redux/features/filter/filterSlice";
-import { countries } from "../../shared/AutoSuggestion/countries";
-import { hometown } from "../../shared/AutoSuggestion/homeTown";
+import { setFilterObject } from "../../../../Redux/features/filter/filterSlice";
+import { countries } from "../../../shared/AutoSuggestion/countries";
+import { hometown } from "../../../shared/AutoSuggestion/homeTown";
 
 export const MobileAccordionPartner = ({ data, isLoading }) => {
     const hightestEducationalQualification = data?.hightestEducationalQualification;
     const { Panel } = Collapse;
     const [religionValue, setReligionValue] = useState("");
-    const [homeTowns, setHomeTown] = useState([]);
     const [professions, setProfessions] = useState([]);
     const [fatherStatusValue, setFatherStatusValue] = useState("");
     const [motherStatusValue, setMotherStatusValue] = useState("");
@@ -35,12 +34,6 @@ export const MobileAccordionPartner = ({ data, isLoading }) => {
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
-
-    useEffect(() => {
-        fetch("json/district.json")
-            .then(res => res.json())
-            .then(data => setHomeTown(data));
-    }, [setHomeTown]);
 
     useEffect(() => {
         fetch("json/professions.json")
@@ -101,9 +94,6 @@ export const MobileAccordionPartner = ({ data, isLoading }) => {
     // ----------- Basic Information ----------
     const handleLookingForChange = value => {
         setBasicInfo({ ...basicInfo, looking: value });
-    };
-    const handleForChange = value => {
-        setBasicInfo({ ...basicInfo, forWhom: value });
     };
     const onAgeChange = value => {
         setAge(value);
@@ -286,7 +276,6 @@ export const MobileAccordionPartner = ({ data, isLoading }) => {
         setHeight(value);
         setOthersInfo({ ...othersInfo, height: value });
     };
-    const onAfterHeightChange = value => {};
     const onWeightChange = value => {
         setWeight(value);
         setOthersInfo({ ...othersInfo, weight: value });
@@ -329,7 +318,7 @@ export const MobileAccordionPartner = ({ data, isLoading }) => {
 
         // set filter object in redux state
         dispatch(setFilterObject(data));
-        navigate("filter");
+        navigate("/mobile-find-partner/filter-results");
     };
 
     //filter options for type search select (Autocomplete MUI)

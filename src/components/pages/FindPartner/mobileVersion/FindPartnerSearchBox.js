@@ -1,9 +1,11 @@
 import { Input } from "antd";
 import React from "react";
 import { AiOutlineSearch } from "react-icons/ai";
+import { useNavigate } from "react-router";
 import filterIcon from "../../../../assets/images/findPartner/filter.svg";
 
 export const FindPartnerSearchBox = () => {
+    const navigate = useNavigate();
     const userSearchHandler = () => {
         console.log("clicked");
     };
@@ -15,7 +17,10 @@ export const FindPartnerSearchBox = () => {
                 placeholder="Search user name"
                 prefix={<AiOutlineSearch onClick={userSearchHandler} />}
             />
-            <button className="w-[93px] h-[43px] bg-[linear-gradient(180deg,_#EA5FA4_0%,#A52BC7_100%)] flex justify-center items-center text-white gap-x-[9px] shadow-[2px_2px_12px_rgba(0,0,0,0.12)] rounded-[10px] ml-[13px]">
+            <button
+                className="w-[93px] h-[43px] bg-[linear-gradient(180deg,_#EA5FA4_0%,#A52BC7_100%)] flex justify-center items-center text-white gap-x-[9px] shadow-[2px_2px_12px_rgba(0,0,0,0.12)] rounded-[10px] ml-[13px]"
+                onClick={() => navigate("/mobile-find-partner/filter-box")}
+            >
                 <img src={filterIcon} alt="filter" />
                 <span>Filter</span>
             </button>
