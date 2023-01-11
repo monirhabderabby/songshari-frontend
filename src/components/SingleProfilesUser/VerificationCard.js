@@ -15,7 +15,7 @@ export const VerificationCard = () => {
     const { data, isLoading } = useGetPercentageOfProfileCompleteQuery();
     let percentage;
     if (data) {
-        percentage = data?.data?.percentage;
+        percentage = `w-[${data?.data?.percentage}%]`;
     }
 
     return (
@@ -27,9 +27,9 @@ export const VerificationCard = () => {
                 </div>
                 <div className="flex items-center gap-x-[9px]">
                     <div className={`w-[153px] rounded-[6px] bg-[#D9D9D9] h-[9px] ${isLoading && "animate-pulse"}`}>
-                        <div className={`bg-[#E41272] h-full w-[${percentage}%] rounded-[6px]`}></div>
+                        <div className={`bg-[#E41272] ${percentage} h-full rounded-[6px]`}></div>
                     </div>
-                    <p>{percentage}%</p>
+                    <p>{data?.data?.percentage}%</p>
                 </div>
                 <div className="flex items-center">
                     <button className="text-[#942DD9] text-[16px] font-normal font-fira leading-[20px]" onClick={() => navigate("/stepper")}>
