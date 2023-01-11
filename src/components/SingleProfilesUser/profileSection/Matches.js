@@ -35,7 +35,6 @@ export const Matches = () => {
         content = (
             <div className="w-full grid grid-cols-2 gap-y-4 gap-2">
                 {data?.matchedData?.map((info, index) => {
-                    console.log(info);
                     let name;
                     let profilePhoto;
                     let age;
