@@ -245,4 +245,5 @@ export const {
     useVerifyEmailMutation,
     useReSendOtpMutation,
     useFindFilteredUserByAdminMutation,
+    useGetPercentageOfProfileCompleteQuery,
 } = userApi;
