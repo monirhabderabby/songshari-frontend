@@ -14,12 +14,7 @@ const MobileDynamicProfileHeader = ({ data }) => {
               />
             </div>
           ) : (
-            <div className="bg-[#D9D9D9] rounded-t-[4px] flex justify-center items-center flex-col  mx-auto h-[92px]">
-              <h1 className="text-[#979C9E] pb-[10px] text-xs">
-                Upload a cover photo
-              </h1>
-              <i className="fa-solid text-[#979C9E]  fa-camera"></i>
-            </div>
+            <div className="bg-[#D9D9D9] rounded-t-[4px] flex justify-center items-center flex-col  mx-auto h-[92px]"></div>
           )}
           <div
             style={{ boxShadow: " 0px 10px 40px rgba(0, 0, 0, 0.03)" }}
