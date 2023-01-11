@@ -211,6 +211,15 @@ export const userApi = apiSlice.injectEndpoints({
                 },
             }),
         }),
+        getPercentageOfProfileComplete: builder.query({
+            query: () => ({
+                url: "/member/completed",
+                method: "GET",
+                headers: {
+                    authorization: `Bearer ${getCookie("token")}`,
+                },
+            }),
+        }),
     }),
 });
 
