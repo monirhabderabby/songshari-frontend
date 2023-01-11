@@ -53,11 +53,12 @@ const Login = () => {
             navigate(from, { replace: true });
         }
         if (googleLoginResponse) {
-            setCookie("token", response?.data?.token);
+            setCookie("token", googleLoginResponse?.data?.token);
             dispatch(loadUserData(response));
-            navigate(from, { replace: true });
+            navigate("/userprofile");
+            reset();
         }
-    }, [response, dispatch, navigate, reset, from, googleLoginResponse]);
+    }, [response, googleLoginResponse, dispatch, from, navigate, regAsMember, reset]);
 
     useEffect(() => {
         if (responseError?.status === 401 && responseError?.data?.success === true) {
