@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 export const FindPartnerHeaderButton = () => {
     return (
         <div className="flex items-center h-[65px] justify-between md:justify-evenly gap-x-[25px] sticky top-[65px] bg-[#F8F8FF]">
-            <NavLink to="/mobile-find-partner">
+            <NavLink to="/mobile-find-partner/suggested">
                 {({ isActive }) => (
                     <span
                         className={
@@ -17,7 +17,7 @@ export const FindPartnerHeaderButton = () => {
                     </span>
                 )}
             </NavLink>
-            <NavLink to="/">
+            <NavLink to="/mobile-find-partner/new-partners">
                 {({ isActive }) => (
                     <span
                         className={
@@ -30,7 +30,7 @@ export const FindPartnerHeaderButton = () => {
                     </span>
                 )}
             </NavLink>
-            <NavLink to="/">
+            <NavLink to="/mobile-find-partner/top-partners">
                 {({ isActive }) => (
                     <span
                         className={

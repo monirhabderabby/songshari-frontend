@@ -155,6 +155,17 @@ export const userApi = apiSlice.injectEndpoints({
                 body: data,
             }),
         }),
+        findFilteredUserByAdmin: builder.mutation({
+            query: data => ({
+                url: "/member/connections/search",
+                method: "POST",
+                headers: {
+                    authorization: `Bearer ${getCookie("adminToken")}`,
+                },
+                body: data,
+            }),
+        }),
+
         updateProfilePhoto: builder.mutation({
             query: data => ({
                 url: "/member/personalDetail",
@@ -200,6 +211,15 @@ export const userApi = apiSlice.injectEndpoints({
                 },
             }),
         }),
+        getPercentageOfProfileComplete: builder.query({
+            query: () => ({
+                url: "/member/completed",
+                method: "GET",
+                headers: {
+                    authorization: `Bearer ${getCookie("token")}`,
+                },
+            }),
+        }),
     }),
 });
 
@@ -224,4 +244,5 @@ export const {
     useUpdateProfilePhotoMutation,
     useVerifyEmailMutation,
     useReSendOtpMutation,
+    useFindFilteredUserByAdminMutation,
 } = userApi;

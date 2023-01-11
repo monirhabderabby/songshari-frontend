@@ -22,7 +22,7 @@ export const FilterResults = () => {
     }, [filterObject, findFilteredUser]);
 
     // js variable declaration
-    let content = null;
+    let content;
     const loaderArray = [1, 2, 3, 4, 5, 6];
 
     if (isLoading) {
@@ -34,6 +34,13 @@ export const FilterResults = () => {
             </div>
         );
     } else if (!isLoading && filteredUser?.data?.totalResult === 0) {
+        content = (
+            <div className="mt-[100px] flex flex-col w-full justify-center items-center">
+                <MdOutlineFilterHdr className="text-[50px]" />
+                <p className="text-gray-400 text-[24px]">Please change your filters or try different keywords</p>
+            </div>
+        );
+    } else if (!isLoading && error?.data?.message === "No user found") {
         content = (
             <div className="mt-[100px] flex flex-col w-full justify-center items-center">
                 <MdOutlineFilterHdr className="text-[50px]" />

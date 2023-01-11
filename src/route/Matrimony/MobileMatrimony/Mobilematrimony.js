@@ -8,7 +8,12 @@ import { MobileOthersDetails } from "../../../components/pages/DynamicProfilePag
 import { MobilePersonalDetails } from "../../../components/pages/DynamicProfilePage/MobileDynamicProfile/MobilePersonalDetails";
 import { MobilePhysicalDetails } from "../../../components/pages/DynamicProfilePage/MobileDynamicProfile/MobilePhysicalDetails";
 import { MobileProfessionalDetails } from "../../../components/pages/DynamicProfilePage/MobileDynamicProfile/MobileProfessionalDetails";
+import { MobileAccordionPartner } from "../../../components/pages/FindPartner/MobileAccordionPartner/MobileAccordionPartner";
+import { FilterResultsMobile } from "../../../components/pages/FindPartner/mobileVersion/FilterResultsMobile";
 import { FindPartnersMobile } from "../../../components/pages/FindPartner/mobileVersion/FindPartnersMobile";
+import { NewPartnersForMobile } from "../../../components/pages/FindPartner/mobileVersion/NewPartnersForMobile";
+import { SuggestedpartnersForMobile } from "../../../components/pages/FindPartner/mobileVersion/SuggestedpartnersForMobile";
+import { TopPartnersForMobile } from "../../../components/pages/FindPartner/mobileVersion/TopPartnersForMobile";
 import MobileDiamondPlan from "../../../components/pages/Membership/MobileVersion/MobileDiamondPlan";
 import MobileFreePlan from "../../../components/pages/Membership/MobileVersion/MobileFreePlan";
 import MobileGoldPlan from "../../../components/pages/Membership/MobileVersion/MobileGoldPlan";
@@ -26,7 +31,6 @@ import { HistoryMov } from "../../../Wrapper/Home/mobileversion/history/HistoryM
 import { Like } from "../../../Wrapper/Home/mobileversion/Like";
 import { MatchesMov } from "../../../Wrapper/Home/mobileversion/MatchesMov";
 import { MeetMov } from "../../../Wrapper/Home/mobileversion/meet/MeetMov";
-import MobileFindPartner from "../../../Wrapper/Home/mobileversion/MobileFindPartner/MobileFindPartner";
 import { MobileHome } from "../../../Wrapper/Home/mobileversion/MobileHome";
 import Certificate from "../../../Wrapper/Home/mobileversion/PhotoGallery/certificate/Certificate";
 import { PrivacyMov } from "../../../Wrapper/Home/mobileversion/privacy/PrivacyMov";
@@ -176,7 +180,6 @@ const MobileMatrimony = [
     path: "/physicalprofile/:id",
     element: <MobilePhysicalDetails />,
   },
-
   {
     id: 26,
     path: "/otherprofile/:id",
@@ -194,13 +197,35 @@ const MobileMatrimony = [
   },
   {
     id: 29,
-    path: "/mobile-find-partner-filter",
-    element: <MobileFindPartner />,
-  },
-  {
-    id: 30,
     path: "/mobile-find-partner",
     element: <FindPartnersMobile />,
+    nestedRoutes: [
+      {
+        id: 1,
+        path: "suggested",
+        element: <SuggestedpartnersForMobile />,
+      },
+      {
+        id: 2,
+        path: "top-partners",
+        element: <TopPartnersForMobile />,
+      },
+      {
+        id: 3,
+        path: "new-partners",
+        element: <NewPartnersForMobile />,
+      },
+      {
+        id: 4,
+        path: "filter-box",
+        element: <MobileAccordionPartner />,
+      },
+      {
+        id: 5,
+        path: "filter-results",
+        element: <FilterResultsMobile />,
+      },
+    ],
   },
 ];
 export default MobileMatrimony;
