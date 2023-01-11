@@ -11,6 +11,7 @@ import { MatchesLoader } from "../../shared/Cards/Loader/Matches/MatchesLoader";
 import MatchersModalForm from "../MatchPreference/MatchersModalForm";
 
 // css files
+import { ageCalculator } from "../../../assets/utilities/AgeCalculation/ageCalculator";
 import { useGetMatchPreferencesQuery } from "../../../Redux/features/MatchesPreferences/matchesPreferenceApi";
 import "./Matches.css";
 
@@ -34,8 +35,12 @@ export const Matches = () => {
         content = (
             <div className="w-full grid grid-cols-2 gap-y-4 gap-2">
                 {data?.matchedData?.map((info, index) => {
+                    console.log(info);
                     let name;
                     let profilePhoto;
+                    let age;
+
+                    age = info?.data?.dateOfBirth ? ageCalculator(info?.data?.dateOfBirth) : "20";
                     name = info.data.firstName + " " + info.data.lastName;
                     if (name.length > 13) {
                         name = name.slice(0, 12) + " ...";
@@ -52,7 +57,7 @@ export const Matches = () => {
                             <img src={profilePhoto} className="w-20 h-20 mx-auto rounded-full mt-4" alt="profile"></img>
                             <div className="card-body items-center text-center">
                                 <h2 className="card-title text-white">{name}</h2>
-                                <p className="text-white">Age : 25 </p>
+                                <p className="text-white">Age : {age} </p>
                                 <p className="text-white">Dhaka, Bangladesh </p>
                                 <div className="flex justify-center pt-5 gap-x-[24px] mb-[15px]">
                                     <button className="flex justify-center items-center h-[44px] w-[44px] hover:bg-white bg-[#FFDFF4] rounded-full ">
