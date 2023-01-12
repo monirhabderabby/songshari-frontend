@@ -23,18 +23,17 @@ export const SingleProfiles = () => {
     const { data, isLoading, error } = useGetProfileDetailsWIthAuthQuery();
     const dispatch = useDispatch();
 
-    // JS Variables
-    // decision making about social Box
-    const { LinkedInId } = data || {};
-    const { faceBookId } = data || {};
-    const { instagramId } = data || {};
+  // JS Variables
+  // decision making about social Box
+  const { LinkedInId } = data || {};
+  const { faceBookId } = data || {};
+  const { instagramId } = data || {};
 
-    useEffect(() => {
-        if (LinkedInId || faceBookId || instagramId) {
-            setSocialBoxOpen(true);
-        }
-    }, [LinkedInId, faceBookId, instagramId, setSocialBoxOpen]);
-
+  useEffect(() => {
+    if (LinkedInId || faceBookId || instagramId) {
+      setSocialBoxOpen(true);
+    }
+  }, [LinkedInId, faceBookId, instagramId, setSocialBoxOpen]);
     useEffect(() => {
         if (data) {
             const photos = data?.photos;
@@ -76,8 +75,22 @@ export const SingleProfiles = () => {
                         </div>
                     </div>
                 </div>
+                <div className="w-full hidden md:hidden lg:block">
+                  <div>
+                    <Table {...{ data, isLoading }} />
+                  </div>
+                </div>
+              </div>
             </div>
-            <Footer />
+          </div>
+          <div className="max-w-[263px]">
+            <div className="flex justify-center">
+              <ChartBoard {...{ data, isLoading }} />
+            </div>
+          </div>
         </div>
-    );
+      </div>
+      <Footer />
+    </div>
+  );
 };
