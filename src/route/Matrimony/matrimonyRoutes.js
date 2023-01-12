@@ -6,7 +6,6 @@ import { OTP } from "../../components/pages/Authentications/OTP/OTP";
 import RegAsProfessional from "../../components/pages/Authentications/RegAsProfessional";
 import Signup from "../../components/pages/Authentications/SignUp";
 import Contact from "../../components/pages/Contact/Contact";
-import { DynamicPhotosGallary } from "../../components/pages/DynamicProfilePage/DynamicPhotosGallary";
 import { DynamicProfilePage } from "../../components/pages/DynamicProfilePage/DynamicProfilePage";
 import { FilterResults } from "../../components/pages/FindPartner/FilterResults/FilterResults";
 import { FindAPartnerSuggested } from "../../components/pages/FindPartner/FindAPartnerSuggested";
@@ -87,21 +86,16 @@ const matrimonyRoutes = [
     },
     {
         id: 10,
-        path: "/gallery/:id",
-        element: <DynamicPhotosGallary />,
-    },
-    {
-        id: 11,
         path: "/privacy-policy",
         element: <Privacy />,
     },
     {
-        id: 12,
+        id: 11,
         path: "/our-teams",
         element: <OurTeams />,
     },
     {
-        id: 13,
+        id: 12,
         path: "/find-partner",
         element: <FindPartners />,
         nestedRoutes: [
@@ -128,12 +122,12 @@ const matrimonyRoutes = [
         ],
     },
     {
-        id: 14,
+        id: 13,
         path: "/otp",
         element: <OTP />,
     },
     {
-        id: 15,
+        id: 14,
         path: "/inbox",
         element: <Inbox />,
         nestedRoutes: [
