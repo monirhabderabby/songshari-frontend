@@ -15,6 +15,8 @@ import CustomHeader from "../CustomHeader/CustomHeader";
 export const Gallery = () => {
     // hook variable declaration
     const { id } = useParams();
+
+    // Redux api calls
     const { data, isLoading, error } = useGetProfileDetailsQuery(id);
 
     // js variable declaration
