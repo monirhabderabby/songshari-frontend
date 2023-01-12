@@ -7,7 +7,10 @@ import { FaUserAltSlash } from "react-icons/fa";
 import { useSelector } from "react-redux";
 
 // components
+import { decodeToken } from "react-jwt";
+import { useNavigate } from "react-router";
 import liveLinkGenerator from "../../assets/utilities/liveLink/liveLinkGenerator";
+import getCookie from "../../Helper/cookies/getCookie";
 
 // css files
 import "../../assets/css/photogelary.css";
@@ -15,6 +18,11 @@ import "../../assets/css/photogelary.css";
 const PhotoGelary = ({ isLoading, error }) => {
     // hook variable declaration
     const photos = useSelector(state => state?.persistedReducer?.userInfo?.photos);
+    const navigate = useNavigate();
+
+    // get id of logged in user
+    const token = getCookie("token");
+    const { _id } = decodeToken(token) || {};
 
     // js variable declaration
     const loaderArr = [1, 2, 3, 4, 5, 6];
@@ -40,7 +48,7 @@ const PhotoGelary = ({ isLoading, error }) => {
         content = (
             <div className="h-[calc(333px-94px)] w-full flex flex-col justify-center items-center">
                 <FaUserAltSlash className="text-[20px] text-gray-400" />
-                <p className="text-[18px] text-gray-400 tracking-wider">Server Error</p>
+                <p className="text-[18px] text-gray-400 tracking-wider">No photos found</p>
             </div>
         );
     } else if (photos.length > 0) {
@@ -105,7 +113,10 @@ const PhotoGelary = ({ isLoading, error }) => {
             </div>
             {photos.length > 6 && (
                 <div className="w-full mt-[24px] flex justify-center">
-                    <button className="w-[215px] h-[38px] bg-[linear-gradient(309deg,#F664BC_0%,_#FB7BBC_35%,_#FF92BB_100%)] rounded-[50px] flex items-center justify-center text-white text-[18px] font-normal font-Inter">
+                    <button
+                        className="w-[215px] h-[38px] bg-[linear-gradient(309deg,#F664BC_0%,_#FB7BBC_35%,_#FF92BB_100%)] rounded-[50px] flex items-center justify-center text-white text-[18px] font-normal font-Inter"
+                        onClick={() => navigate(`/gallery/${_id}`)}
+                    >
                         View All Photos
                     </button>
                 </div>

@@ -16,7 +16,7 @@ export const DynamicProfilePage = () => {
     // hook variable declaration
     const { id } = useParams();
     const [SocialBoxOpen, setSocialBoxOpen] = useState(false);
-    const { data, isLoading } = useGetProfileDetailsQuery(id);
+    const { data, isLoading, error } = useGetProfileDetailsQuery(id);
 
     // JS Variables
     // decision making about social Box
@@ -50,7 +50,7 @@ export const DynamicProfilePage = () => {
                                         <DynamicProfileCard {...{ data, isLoading }} />
                                         {SocialBoxOpen && <DynamicSocialBox {...{ LinkedInId, faceBookId, instagramId }} />}
                                         <DynamicConnectionsCard {...{ data, isLoading }} />
-                                        <DynamicPhotosContainer />
+                                        <DynamicPhotosContainer {...{ data, isLoading, error }} />
                                     </div>
                                 </div>
                                 <div className="w-full lg:w-3/5">
