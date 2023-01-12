@@ -13,7 +13,15 @@ export const matchesPreferenceApi = apiSlice.injectEndpoints({
                 body: data,
             }),
         }),
+        getMatchPreferences: builder.query({
+            query: () => ({
+                url: "/member/matchPreference",
+                headers: {
+                    authorization: `Bearer ${getCookie("token")}`,
+                },
+            }),
+        }),
     }),
 });
 
-export const { useAddMatrimonyUserMatchPreferenceMutation } = matchesPreferenceApi;
+export const { useAddMatrimonyUserMatchPreferenceMutation, useGetMatchPreferencesQuery } = matchesPreferenceApi;

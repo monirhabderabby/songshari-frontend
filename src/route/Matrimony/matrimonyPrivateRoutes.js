@@ -1,3 +1,4 @@
+import { Gallery } from "../../components/shared/Components/Gallery";
 import EducationalCertificateWeb from "../../components/SingleProfilesUser/CertificateSection/EducationalCertificateWeb";
 import PersonalCertificateWeb from "../../components/SingleProfilesUser/CertificateSection/PersonalCertificateWeb";
 import ProfessionalCertificateWeb from "../../components/SingleProfilesUser/CertificateSection/ProfessionalCertificateWeb";
@@ -76,6 +77,11 @@ const matrimonyPrivateRoutes = [
         id: 5,
         path: "/educationalCertificate",
         element: <EducationalCertificateWeb />,
+    },
+    {
+        id: 6,
+        path: "/gallery/:id",
+        element: <Gallery />,
     },
 ];
 

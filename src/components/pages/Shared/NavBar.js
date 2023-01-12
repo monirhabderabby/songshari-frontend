@@ -15,7 +15,7 @@ import findALawyer from "../../../assets/images/NavIcons/Lawyer.svg";
 import membership from "../../../assets/images/NavIcons/Membership.svg";
 import course from "../../../assets/images/NavIcons/Online-Course.svg";
 import register from "../../../assets/images/NavIcons/Profile-Login-Icon.svg";
-import { loadUserData } from "../../../Redux/features/userInfo/userInfo";
+import { loadPhotos, loadUserData } from "../../../Redux/features/userInfo/userInfo";
 import MobileNav from "./MobileNav";
 
 // CSS files
@@ -54,6 +54,7 @@ const NavBar = ({ bg }) => {
     // function declaration for logout
     let logoutButton = async () => {
         dispatch(loadUserData(null));
+        dispatch(loadPhotos([]));
         navigate("/");
         removeCookie("token");
     };

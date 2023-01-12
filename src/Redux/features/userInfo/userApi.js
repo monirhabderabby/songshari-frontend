@@ -218,69 +218,77 @@ export const userApi = apiSlice.injectEndpoints({
             }
           )
         );
-
-        try {
-          await queryFulfilled;
-        } catch (error) {
-          updateResult.undo();
-        }
-      },
-    }),
-    verifyEmail: builder.mutation({
-      query: (otp) => ({
-        url: `/verify/verifyEmail/id`,
-        method: "POST",
-        headers: {
-          authorization: `Bearer ${getCookie("token")}`,
-        },
-        body: otp,
-      }),
-    }),
-    reSendOtp: builder.mutation({
-      query: () => ({
-        url: `/verify/sendOtpByToken`,
-        method: "POST",
-        headers: {
-          authorization: `Bearer ${getCookie("token")}`,
-        },
-      }),
-    }),
-    getPercentageOfProfileComplete: builder.query({
-      query: () => ({
-        url: "/member/completed",
-        method: "GET",
-        headers: {
-          authorization: `Bearer ${getCookie("token")}`,
-        },
-      }),
+                try {
+                    await queryFulfilled;
+                } catch (error) {
+                    updateResult.undo();
+                }
+            },
+        }),
+        verifyEmail: builder.mutation({
+            query: otp => ({
+                url: `/verify/verifyEmail/id`,
+                method: "POST",
+                headers: {
+                    authorization: `Bearer ${getCookie("token")}`,
+                },
+                body: otp,
+            }),
+        }),
+        reSendOtp: builder.mutation({
+            query: () => ({
+                url: `/verify/sendOtpByToken`,
+                method: "POST",
+                headers: {
+                    authorization: `Bearer ${getCookie("token")}`,
+                },
+            }),
+        }),
+        getPercentageOfProfileComplete: builder.query({
+            query: () => ({
+                url: "/member/completed",
+                method: "GET",
+                headers: {
+                    authorization: `Bearer ${getCookie("token")}`,
+                },
+            }),
+        }),
+        updatePhotosOnProfile: builder.mutation({
+            query: photos => ({
+                url: `/member/personalDetail`,
+                method: "PUT",
+                headers: {
+                    authorization: `Bearer ${getCookie("token")}`,
+                },
+                body: photos,
+            }),
+        }),
     }),
   }),
 });
 
 export const {
-  useRegAsMemberMutation,
-  useLoginAsMemberMutation,
-  useLoginAsProfessionalMutation,
-  useRegAsProfessionalMutation,
-  useSetPersonalDetailsMutation,
-  useSetProfessionalDetailsMutation,
-  useSetEducationalDetailsMutation,
-  useSetPhysicalDetailsMutation,
-  useSetOthersDetailsMutation,
-  useSetSiblingDetailMutation,
-  useGetProfileDetailsQuery,
-  useUpdatePersonalDetailsMutation,
-  useUpdateEducationalDetailsMutation,
-  useUpdatePhysicalDetailsMutation,
-  useUpdateOthersDetailsMutation,
-  useUpdateProfessionalDetailsMutation,
-  useUpdateFamilyDetailsMutation,
-  useUpdateSiblingDetailMutation,
-  useGetProfileDetailsWIthAuthQuery,
-  useFindFilteredUserMutation,
-  useUpdateProfilePhotoMutation,
-  useVerifyEmailMutation,
-  useReSendOtpMutation,
-  useFindFilteredUserByAdminMutation,
-  useGetPercentageOfProfileCompleteQuery,
+    useRegAsMemberMutation,
+    useLoginAsMemberMutation,
+    useLoginAsProfessionalMutation,
+    useRegAsProfessionalMutation,
+    useSetPersonalDetailsMutation,
+    useSetProfessionalDetailsMutation,
+    useSetEducationalDetailsMutation,
+    useSetPhysicalDetailsMutation,
+    useSetOthersDetailsMutation,
+    useGetProfileDetailsQuery,
+    useUpdatePersonalDetailsMutation,
+    useUpdateEducationalDetailsMutation,
+    useUpdatePhysicalDetailsMutation,
+    useUpdateOthersDetailsMutation,
+    useUpdateProfessionalDetailsMutation,
+    useGetProfileDetailsWIthAuthQuery,
+    useFindFilteredUserMutation,
+    useUpdateProfilePhotoMutation,
+    useVerifyEmailMutation,
+    useReSendOtpMutation,
+    useFindFilteredUserByAdminMutation,
+    useGetPercentageOfProfileCompleteQuery,
+    useUpdatePhotosOnProfileMutation,
 } = userApi;
