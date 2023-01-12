@@ -220,6 +220,16 @@ export const userApi = apiSlice.injectEndpoints({
                 },
             }),
         }),
+        updatePhotosOnProfile: builder.mutation({
+            query: photos => ({
+                url: `/member/personalDetail`,
+                method: "PUT",
+                headers: {
+                    authorization: `Bearer ${getCookie("token")}`,
+                },
+                body: photos,
+            }),
+        }),
     }),
 });
 
@@ -246,4 +256,5 @@ export const {
     useReSendOtpMutation,
     useFindFilteredUserByAdminMutation,
     useGetPercentageOfProfileCompleteQuery,
+    useUpdatePhotosOnProfileMutation,
 } = userApi;

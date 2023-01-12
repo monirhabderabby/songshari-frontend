@@ -1,9 +1,11 @@
 // configuration
 import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 
 // components
 import CustomHeader from "../../components/shared/CustomHeader/CustomHeader";
 import { useGetProfileDetailsWIthAuthQuery } from "../../Redux/features/userInfo/userApi";
+import { loadPhotos } from "../../Redux/features/userInfo/userInfo";
 import Footer from "../shared/Footer/Footer";
 import ChartBoard from "./chatboard/ChartBoard";
 import { IntroCard } from "./IntroCard";
@@ -19,6 +21,7 @@ export const SingleProfiles = () => {
     // hook variable declaration
     const [SocialBoxOpen, setSocialBoxOpen] = useState(false);
     const { data, isLoading, error } = useGetProfileDetailsWIthAuthQuery();
+    const dispatch = useDispatch();
 
     // JS Variables
     // decision making about social Box
@@ -31,6 +34,13 @@ export const SingleProfiles = () => {
             setSocialBoxOpen(true);
         }
     }, [LinkedInId, faceBookId, instagramId, setSocialBoxOpen]);
+
+    useEffect(() => {
+        if (data) {
+            const photos = data?.photos;
+            dispatch(loadPhotos(photos));
+        }
+    }, [data, dispatch]);
 
     return (
         <div className="bg-[#FAFBFF]">
@@ -49,7 +59,7 @@ export const SingleProfiles = () => {
                                         <UtilitisCard />
                                         <IntroCard {...{ data, isLoading, error }} />
                                         <PhotoUploadCard />
-                                        <PhotoGelary {...{ data, isLoading }} />
+                                        <PhotoGelary {...{ isLoading, error }} />
                                     </div>
                                 </div>
                                 <div className="w-full hidden md:hidden lg:block">
