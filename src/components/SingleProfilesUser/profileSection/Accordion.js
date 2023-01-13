@@ -55,7 +55,7 @@ const Accordian = ({ data, isLoading, edit }) => {
     setExpanded(newExpanded ? panel : false);
   };
   const navigate = useNavigate();
-  console.log(data);
+
   return (
     <div className="mb-[69px] max-w-[523px] mx-auto">
       <div className="hidden lg:block" id="fdhjf">
