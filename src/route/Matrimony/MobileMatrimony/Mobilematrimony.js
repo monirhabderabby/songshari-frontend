@@ -32,7 +32,6 @@ import { Like } from "../../../Wrapper/Home/mobileversion/Like";
 import { MatchesMov } from "../../../Wrapper/Home/mobileversion/MatchesMov";
 import { MeetMov } from "../../../Wrapper/Home/mobileversion/meet/MeetMov";
 import { MobileHome } from "../../../Wrapper/Home/mobileversion/MobileHome";
-import Certificate from "../../../Wrapper/Home/mobileversion/PhotoGallery/certificate/Certificate";
 import { PrivacyMov } from "../../../Wrapper/Home/mobileversion/privacy/PrivacyMov";
 import { Setting } from "../../../Wrapper/Home/mobileversion/setting/Setting";
 
@@ -119,11 +118,6 @@ const MobileMatrimony = [
         id: 13,
         path: "/communitymov",
         element: <CommunityMov />,
-    },
-    {
-        id: 14,
-        path: "/mobilecertificate",
-        element: <Certificate />,
     },
     {
         id: 15,

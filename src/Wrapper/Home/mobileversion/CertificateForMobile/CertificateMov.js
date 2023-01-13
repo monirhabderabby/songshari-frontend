@@ -1,6 +1,7 @@
 // Configuration
 import React, { useEffect, useState } from "react";
 import { useGetCertificatesWithAuthQuery } from "../../../../Redux/features/Documents/documentsApi";
+import { BottomNav } from "../BottomNav";
 
 // Components
 import { CertificateMobileHeaderButton } from "./CertificateMobileHeaderButton";
@@ -45,6 +46,7 @@ export const CertificateMov = () => {
                     {...{ setSelectedCertificate, selectedCertificate, educationalCertificates, setSelectedCertificateName }}
                 />
             )}
+            <BottomNav />
         </div>
     );
 };
