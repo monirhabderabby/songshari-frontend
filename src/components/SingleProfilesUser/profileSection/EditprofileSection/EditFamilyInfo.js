@@ -58,7 +58,7 @@ const EditFamilyInfo = () => {
       setFatherProfession(newValue.title);
     } else if (newValue && newValue.inputValue) {
       // Create a new value from the user input
-      setFatherProfession(newValue.inputValue.title);
+      setFatherProfession(newValue.inputValue);
     } else {
       setFatherProfession(newValue.title);
     }
@@ -69,7 +69,7 @@ const EditFamilyInfo = () => {
       setFatherEducationalQualification(newValue.title);
     } else if (newValue && newValue.inputValue) {
       // Create a new value from the user input
-      setFatherEducationalQualification(newValue.inputValue.title);
+      setFatherEducationalQualification(newValue.inputValue);
     } else {
       setFatherEducationalQualification(newValue.title);
     }
@@ -96,7 +96,7 @@ const EditFamilyInfo = () => {
       setMotherProfession(newValue.title);
     } else if (newValue && newValue.inputValue) {
       // Create a new value from the user input
-      setMotherProfession(newValue.inputValue.title);
+      setMotherProfession(newValue.inputValue);
     } else {
       setMotherProfession(newValue.title);
     }
@@ -107,7 +107,7 @@ const EditFamilyInfo = () => {
       setMotherEducationalQualification(newValue.title);
     } else if (newValue && newValue.inputValue) {
       // Create a new value from the user input
-      setMotherEducationalQualification(newValue.inputValue.title);
+      setMotherEducationalQualification(newValue.inputValue);
     } else {
       setMotherEducationalQualification(newValue.title);
     }

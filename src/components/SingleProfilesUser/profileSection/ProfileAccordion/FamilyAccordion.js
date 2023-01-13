@@ -21,12 +21,6 @@ const FamilyAccordion = ({ data }) => {
           <p className="font-normal">{data?.familyDetail?.fatherDateOfBirth}</p>
         </div>
       )}
-      {data?.familyDetail?.fatherDeathDate && (
-        <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-          <span className="font-medium">Father Death Date</span>
-          <p className="font-normal">{data?.familyDetail?.fatherDeathDate}</p>
-        </div>
-      )}
       {data?.familyDetail?.fatherEducationalQualification && (
         <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
           <span className="font-medium">Father Educational Qualification</span>
@@ -47,6 +41,13 @@ const FamilyAccordion = ({ data }) => {
           <p className="font-normal">{data?.familyDetail?.fatherIncome}</p>
         </div>
       )}
+      {data?.familyDetail?.fatherDeathDate && (
+        <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+          <span className="font-medium">Father Death Date</span>
+          <p className="font-normal">{data?.familyDetail?.fatherDeathDate}</p>
+        </div>
+      )}
+
       {/* ----- Mother ----- */}
       {data?.familyDetail?.isMotherAlive && (
         <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
@@ -64,12 +65,6 @@ const FamilyAccordion = ({ data }) => {
         <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
           <span className="font-medium">Mother Date Of Birth</span>
           <p className="font-normal">{data?.familyDetail?.motherDateOfBirth}</p>
-        </div>
-      )}
-      {data?.familyDetail?.motherDeathDate && (
-        <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-          <span className="font-medium">Mother Death Date</span>
-          <p className="font-normal">{data?.familyDetail?.motherDeathDate}</p>
         </div>
       )}
       {data?.familyDetail?.motherEducationalQualification && (
@@ -90,6 +85,12 @@ const FamilyAccordion = ({ data }) => {
         <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
           <span className="font-medium">Mother Income</span>
           <p className="font-normal">{data?.familyDetail?.motherIncome}</p>
+        </div>
+      )}
+      {data?.familyDetail?.motherDeathDate && (
+        <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+          <span className="font-medium">Mother Death Date</span>
+          <p className="font-normal">{data?.familyDetail?.motherDeathDate}</p>
         </div>
       )}
     </div>

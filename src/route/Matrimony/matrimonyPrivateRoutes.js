@@ -8,6 +8,7 @@ import EditOthersInfo from "../../components/SingleProfilesUser/profileSection/E
 import EditPersonalInfo from "../../components/SingleProfilesUser/profileSection/EditprofileSection/EditPersonalInfo";
 import EditPhysicalInfo from "../../components/SingleProfilesUser/profileSection/EditprofileSection/EditPhysicalInfo";
 import EditProfesionalInfo from "../../components/SingleProfilesUser/profileSection/EditprofileSection/EditProfesionalInfo";
+import EditSiblingsInfo from "../../components/SingleProfilesUser/profileSection/EditprofileSection/EditSiblingsInfo";
 import ProfileDetails from "../../components/SingleProfilesUser/profileSection/ProfileDetails";
 import { SingleProfiles } from "../../components/SingleProfilesUser/SingleProfiles";
 import { Container } from "../../Wrapper/Stepper/Container";
@@ -56,6 +57,11 @@ const matrimonyPrivateRoutes = [
             id: 6,
             path: "familyInfo/:id",
             element: <EditFamilyInfo />,
+          },
+          {
+            id: 7,
+            path: "siblingsInfo/:id",
+            element: <EditSiblingsInfo />,
           },
         ],
       },

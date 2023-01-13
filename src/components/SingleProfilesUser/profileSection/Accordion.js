@@ -15,6 +15,7 @@ import moment from "moment";
 import { Link } from "react-router-dom";
 import "./Accordion.css";
 import FamilyAccordion from "./ProfileAccordion/FamilyAccordion";
+import SiblingsAccordion from "./ProfileAccordion/SiblingsAccordion";
 
 const Accordion = styled((props) => <MuiAccordion square {...props} />)(
   ({ theme }) => ({
@@ -54,7 +55,6 @@ const Accordian = ({ data, isLoading, edit }) => {
     setExpanded(newExpanded ? panel : false);
   };
   const navigate = useNavigate();
-  console.log(data);
 
   return (
     <div className="mb-[69px] max-w-[523px] mx-auto">
@@ -1101,6 +1101,7 @@ const Accordian = ({ data, isLoading, edit }) => {
           </Typography>
         </AccordionDetails>
       </Accordion>
+      {/* ---------- Family Info ---------- */}
       <Accordion
         expanded={expanded === "panel5"}
         onChange={handleChange("panel5")}
@@ -1139,9 +1140,54 @@ const Accordian = ({ data, isLoading, edit }) => {
           </Typography>
         </AccordionDetails>
       </Accordion>
+      {/* ---------- Siblings Info ---------- */}
       <Accordion
         expanded={expanded === "panel6"}
         onChange={handleChange("panel6")}
+      >
+        <div className="flex justify-between items-center	">
+          <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
+            <div>
+              <Typography component={"span"} variant={"body2"}>
+                <h1 className="text-[24px] text-[#333333] leading-[34px] font-fira font-semibold">
+                  Siblings Information
+                </h1>
+              </Typography>
+            </div>
+          </AccordionSummary>
+          <div
+            style={{
+              display: `${expanded === "panel6" && edit ? "block" : "none"}`,
+            }}
+          >
+            <button
+              onClick={() =>
+                navigate(`/userprofile/edit/siblingsInfo/${data?._id}`)
+              }
+              style={{
+                background: "linear-gradient(180deg, #E41272 0%, #942DD9 100%)",
+              }}
+              className="w-[64px] text-center py-[8] px-[10px] text-[#fff] h-[28px] text-lg font-medium rounded"
+            >
+              Edit
+            </button>
+          </div>
+        </div>
+        <AccordionDetails>
+          <Typography component={"span"} variant={"body2"}>
+            {data?.siblingDetail?.length > 0 &&
+              data?.siblingDetail?.map((sibling) => (
+                <div key={sibling?._id} className="mb-6">
+                  <SiblingsAccordion {...{ sibling }} />
+                </div>
+              ))}
+          </Typography>
+        </AccordionDetails>
+      </Accordion>
+      {/* ---------- Other Details ---------- */}
+      <Accordion
+        expanded={expanded === "panel7"}
+        onChange={handleChange("panel7")}
       >
         <div className="flex justify-between items-center	">
           <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
@@ -1168,7 +1214,7 @@ const Accordian = ({ data, isLoading, edit }) => {
           </AccordionSummary>
           <div
             style={{
-              display: `${expanded === "panel6" && edit ? "block" : "none"}`,
+              display: `${expanded === "panel7" && edit ? "block" : "none"}`,
             }}
           >
             <button
