@@ -14,6 +14,8 @@ import moment from "moment";
 // css files
 import { Link } from "react-router-dom";
 import "./Accordion.css";
+import FamilyAccordion from "./ProfileAccordion/FamilyAccordion";
+import SiblingsAccordion from "./ProfileAccordion/SiblingsAccordion";
 
 const Accordion = styled((props) => <MuiAccordion square {...props} />)(
   ({ theme }) => ({
@@ -616,6 +618,7 @@ const Accordian = ({ data, isLoading, edit }) => {
           </AccordionDetails>
         </Accordion>
       </div>
+      {/* ---------- Professional info ---------- */}
       <Accordion
         expanded={expanded === "panel2"}
         onChange={handleChange("panel2")}
@@ -643,125 +646,78 @@ const Accordian = ({ data, isLoading, edit }) => {
               </Typography>
             </div>
           </AccordionSummary>
-          <div
-            style={{
-              display: `${expanded === "panel2" && edit ? "block" : "none"}`,
-            }}
-          >
-            <button
-              onClick={() =>
-                navigate(
-                  `/userprofile/edit/profesionalinfo/${data?.professionalDetail[0]?._id}`
-                )
-              }
-              style={{
-                background: "linear-gradient(180deg, #E41272 0%, #942DD9 100%)",
-              }}
-              className="w-[64px] text-center py-[8] px-[10px] text-[#fff] h-[28px] text-lg font-medium rounded"
-            >
-              Edit
-            </button>
-          </div>
         </div>
         <AccordionDetails>
           <Typography component={"span"} variant={"body2"}>
-            {data?.professionalDetail?.length !== 0 ? (
-              data?.professionalDetail.map((d, index) => {
+            {data?.professionalDetail?.length !== 0 &&
+              data?.professionalDetail.map((profession) => {
                 return (
-                  <div key={index}>
-                    {data?.professionalDetail?.length !== 0 && (
-                      <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                        <span className="font-medium">Position</span>
-                        <p className="font-normal">
-                          {data?.professionalDetail
-                            ? d?.position
-                            : "Not Provided"}
-                        </p>
-                      </div>
-                    )}
-                    {data?.professionalDetail?.length !== 0 && (
-                      <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                        <span className="font-medium">Duty</span>
-                        <p className="font-normal">
-                          {data?.professionalDetail ? d?.duty : "Not Provided"}
-                        </p>
-                      </div>
-                    )}
-                    {data?.professionalDetail?.length !== 0 && (
-                      <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                        <span className="font-medium">Institute</span>
-                        <p className="font-normal">
-                          {data?.professionalDetail
-                            ? d?.institute
-                            : "Not Provided"}
-                        </p>
-                      </div>
-                    )}
-                    {data?.professionalDetail?.length !== 0 && (
-                      <div className="flex justify-between py-3 border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                        <span className="font-medium whitespace-nowrap">
-                          Special Achievement
-                        </span>
-                        <p className="font-normal text-right w-[50%]">
-                          {data?.professionalDetail
-                            ? d?.specialAchievement
-                            : "Not Provided"}
-                        </p>
-                      </div>
-                    )}
+                  <div key={profession?._id} className="mb-6">
+                    <div className="flex justify-end mt-2">
+                      <button
+                        onClick={() =>
+                          navigate(
+                            `/userprofile/edit/profesionalinfo/${profession?._id}`
+                          )
+                        }
+                        style={{
+                          background:
+                            "linear-gradient(180deg, #E41272 0%, #942DD9 100%)",
+                        }}
+                        className="w-[64px] text-center py-[8] px-[10px] text-[#fff] h-[28px] text-lg font-medium rounded"
+                      >
+                        Edit
+                      </button>
+                    </div>
+                    <div>
+                      {profession?.position && (
+                        <div className="flex justify-between py-[6px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                          <span className="font-medium">Position</span>
+                          <p className="font-normal">{profession?.position}</p>
+                        </div>
+                      )}
+                      {profession?.duty && (
+                        <div className="flex justify-between py-[6px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                          <span className="font-medium">Duty</span>
+                          <p className="font-normal">{profession?.duty}</p>
+                        </div>
+                      )}
+                      {profession?.institute && (
+                        <div className="flex justify-between py-[6px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                          <span className="font-medium">Institute</span>
+                          <p className="font-normal">{profession?.institute}</p>
+                        </div>
+                      )}
+                      {profession?.specialAchievement && (
+                        <div className="flex justify-between py-[6px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                          <span className="font-medium">
+                            Special Achievement
+                          </span>
+                          <p className="font-normal">
+                            {profession?.specialAchievement}
+                          </p>
+                        </div>
+                      )}
+                      {profession?.workPeriod?.length !== 0 && (
+                        <div className="flex justify-between py-[6px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                          <span className="font-medium">
+                            Special Achievement
+                          </span>
+                          <p className="font-normal">
+                            {profession?.workPeriod[0] +
+                              " to " +
+                              profession?.workPeriod[1]}
+                          </p>
+                        </div>
+                      )}
+                    </div>
                   </div>
                 );
-              })
-            ) : (
-              <>
-                {data?.professionalDetail?.length !== 0 && (
-                  <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                    <span className="font-medium">Position</span>
-                    <p className="font-normal">
-                      {data?.professionalDetail
-                        ? data?.professionalDetail?.position
-                        : "Not Provided"}
-                    </p>
-                  </div>
-                )}
-                {data?.professionalDetail?.length !== 0 && (
-                  <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                    <span className="font-medium">Duty</span>
-                    <p className="font-normal">
-                      {data?.professionalDetail
-                        ? data?.professionalDetail?.duty
-                        : "Not Provided"}
-                    </p>
-                  </div>
-                )}
-                {data?.professionalDetail?.length !== 0 && (
-                  <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                    <span className="font-medium">Institute</span>
-                    <p className="font-normal">
-                      {data?.professionalDetail
-                        ? data?.professionalDetail?.institute
-                        : "Not Provided"}
-                    </p>
-                  </div>
-                )}
-                {data?.professionalDetail?.length !== 0 && (
-                  <div className="flex justify-between py-3 border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                    <span className="font-medium whitespace-nowrap">
-                      Special Achievement
-                    </span>
-                    <p className="font-normal text-right w-[50%]">
-                      {data?.professionalDetail
-                        ? data?.professionalDetail?.specialAchievement
-                        : "Not Provided"}
-                    </p>
-                  </div>
-                )}
-              </>
-            )}
+              })}
           </Typography>
         </AccordionDetails>
       </Accordion>
-
+      {/* ---------- Educational Info ---------- */}
       <Accordion
         expanded={expanded === "panel3"}
         onChange={handleChange("panel3")}
@@ -789,104 +745,103 @@ const Accordian = ({ data, isLoading, edit }) => {
               </Typography>
             </div>
           </AccordionSummary>
-          <div
-            style={{
-              display: `${expanded === "panel3" && edit ? "block" : "none"}`,
-            }}
-          >
-            <button
-              onClick={() =>
-                navigate(
-                  `/userprofile/edit/educationalinfo/${data?.educationalDetail[0]?._id}`
-                )
-              }
-              style={{
-                background: "linear-gradient(180deg, #E41272 0%, #942DD9 100%)",
-              }}
-              className="w-[64px] text-center py-[8] px-[10px] text-[#fff] h-[28px] text-lg font-medium rounded"
-            >
-              Edit
-            </button>
-          </div>
         </div>
         <AccordionDetails>
           <Typography component={"span"} variant={"body2"}>
             {data?.educationalDetail.length !== 0 ? (
-              data?.educationalDetail.map((edu, index) => {
+              data?.educationalDetail.map((edu) => {
                 return (
-                  <div key={index}>
-                    {data?.educationalDetail.length !== 0 && (
-                      <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                        <span className="font-medium">Degree</span>
-                        <p className="font-normal">
-                          {data?.educationalDetail
-                            ? edu?.degree
-                            : "Not Provided"}
-                        </p>
-                      </div>
-                    )}
-                    {data?.educationalDetail.length !== 0 && (
-                      <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                        <span className="font-medium">Institute</span>
-                        <p className="font-normal">
-                          {data?.educationalDetail
-                            ? edu?.institute
-                            : "Not Provided"}
-                        </p>
-                      </div>
-                    )}
-                    {data?.educationalDetail.length !== 0 && (
-                      <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                        <span className="font-medium">Department</span>
-                        <p className="font-normal">
-                          {data?.educationalDetail
-                            ? edu?.department
-                            : "Not Provided"}
-                        </p>
-                      </div>
-                    )}
-                    {data?.educationalDetail.length !== 0 && (
-                      <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                        <span className="font-medium">Field of Study</span>
-                        <p className="font-normal">
-                          {data?.educationalDetail
-                            ? edu?.feildOfStudy
-                            : "Not Provided"}
-                        </p>
-                      </div>
-                    )}
-                    {data?.educationalDetail.length !== 0 && (
-                      <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                        <span className="font-medium">GPA / CGPA</span>
-                        <p className="font-normal">
-                          {data?.educationalDetail
-                            ? edu?.gpaOrCgpa
-                            : "Not Provided"}
-                        </p>
-                      </div>
-                    )}
-                    {data?.educationalDetail.length !== 0 && (
-                      <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                        <span className="font-medium">Year of Study</span>
-                        <p className="font-normal">
-                          {data?.educationalDetail
-                            ? moment(edu?.yearOfStudy).format("YYYY")
-                            : "Not Provided"}
-                        </p>
-                      </div>
-                    )}
-                    {data?.educationalDetail.length !== 0 && (
-                      <div className="flex justify-between py-3 border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                        <span className="font-medium whitespace-nowrap">
-                          Special Achievement
-                        </span>
-                        <p className="font-normal text-right w-[50%]">
-                          {data?.educationalDetail
-                            ? edu?.specialAchievement
-                            : "Not Provided"}
-                        </p>
-                      </div>
-                    )}
+                  <div key={edu?._id} className="mb-6">
+                    <div className="flex justify-end mt-2">
+                      <button
+                        onClick={() =>
+                          navigate(
+                            `/userprofile/edit/educationalinfo/${edu?._id}`
+                          )
+                        }
+                        style={{
+                          background:
+                            "linear-gradient(180deg, #E41272 0%, #942DD9 100%)",
+                        }}
+                        className="w-[64px] text-center py-[8] px-[10px] text-[#fff] h-[28px] text-lg font-medium rounded"
+                      >
+                        Edit
+                      </button>
+                    </div>
+                    <div>
+                      {data?.educationalDetail.length !== 0 && (
+                        <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                          <span className="font-medium">Degree</span>
+                          <p className="font-normal">
+                            {data?.educationalDetail
+                              ? edu?.degree
+                              : "Not Provided"}
+                          </p>
+                        </div>
+                      )}
+                      {data?.educationalDetail.length !== 0 && (
+                        <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                          <span className="font-medium">Institute</span>
+                          <p className="font-normal">
+                            {data?.educationalDetail
+                              ? edu?.institute
+                              : "Not Provided"}
+                          </p>
+                        </div>
+                      )}
+                      {data?.educationalDetail.length !== 0 && (
+                        <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                          <span className="font-medium">Department</span>
+                          <p className="font-normal">
+                            {data?.educationalDetail
+                              ? edu?.department
+                              : "Not Provided"}
+                          </p>
+                        </div>
+                      )}
+                      {data?.educationalDetail.length !== 0 && (
+                        <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                          <span className="font-medium">Field of Study</span>
+                          <p className="font-normal">
+                            {data?.educationalDetail
+                              ? edu?.fieldOfStudy
+                              : "Not Provided"}
+                          </p>
+                        </div>
+                      )}
+                      {data?.educationalDetail.length !== 0 && (
+                        <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                          <span className="font-medium">GPA / CGPA</span>
+                          <p className="font-normal">
+                            {data?.educationalDetail
+                              ? edu?.gpaOrCgpa
+                              : "Not Provided"}
+                          </p>
+                        </div>
+                      )}
+                      {data?.educationalDetail.length !== 0 && (
+                        <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                          <span className="font-medium">Year of Study</span>
+                          <p className="font-normal">
+                            {data?.educationalDetail
+                              ? moment(edu?.yearOfStudy).format("YYYY")
+                              : "Not Provided"}
+                          </p>
+                        </div>
+                      )}
+                      {data?.educationalDetail.length !== 0 && (
+                        <div className="flex justify-between py-3 border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                          <span className="font-medium whitespace-nowrap">
+                            Special Achievement
+                          </span>
+                          <p className="font-normal text-right w-[50%]">
+                            {data?.educationalDetail
+                              ? edu?.specialAchievement
+                              : "Not Provided"}
+                          </p>
+                        </div>
+                      )}
+                    </div>
                   </div>
                 );
               })
@@ -1099,9 +1054,76 @@ const Accordian = ({ data, isLoading, edit }) => {
           </Typography>
         </AccordionDetails>
       </Accordion>
+      {/* ---------- Family Info ---------- */}
       <Accordion
         expanded={expanded === "panel5"}
         onChange={handleChange("panel5")}
+      >
+        <div className="flex justify-between items-center	">
+          <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
+            <div>
+              <Typography component={"span"} variant={"body2"} className="">
+                <h1 className="text-[24px] text-[#333333] leading-[34px] font-fira font-semibold">
+                  Family Information
+                </h1>
+              </Typography>
+            </div>
+          </AccordionSummary>
+          <div
+            style={{
+              display: `${expanded === "panel5" && edit ? "block" : "none"}`,
+            }}
+          >
+            <button
+              onClick={() =>
+                navigate(`/userprofile/edit/familyInfo/${data?._id}`)
+              }
+              style={{
+                background: "linear-gradient(180deg, #E41272 0%, #942DD9 100%)",
+              }}
+              className="w-[64px] text-center py-[8] px-[10px] text-[#fff] h-[28px] text-lg font-medium rounded"
+            >
+              Edit
+            </button>
+          </div>
+        </div>
+        <AccordionDetails>
+          <Typography component={"span"} variant={"body2"}>
+            <FamilyAccordion {...{ data }} />
+          </Typography>
+        </AccordionDetails>
+      </Accordion>
+      {/* ---------- Siblings Info ---------- */}
+      <Accordion
+        expanded={expanded === "panel6"}
+        onChange={handleChange("panel6")}
+      >
+        <div className="flex justify-between items-center	">
+          <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
+            <div>
+              <Typography component={"span"} variant={"body2"}>
+                <h1 className="text-[24px] text-[#333333] leading-[34px] font-fira font-semibold">
+                  Siblings Information
+                </h1>
+              </Typography>
+            </div>
+          </AccordionSummary>
+        </div>
+        <AccordionDetails>
+          <Typography component={"span"} variant={"body2"}>
+            {data?.siblingDetail?.length > 0 &&
+              data?.siblingDetail?.map((sibling) => (
+                <div key={sibling?._id} className="mb-6">
+                  <SiblingsAccordion {...{ sibling }} />
+                </div>
+              ))}
+          </Typography>
+        </AccordionDetails>
+      </Accordion>
+      {/* ---------- Other Details ---------- */}
+      <Accordion
+        expanded={expanded === "panel7"}
+        onChange={handleChange("panel7")}
       >
         <div className="flex justify-between items-center	">
           <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
@@ -1128,7 +1150,7 @@ const Accordian = ({ data, isLoading, edit }) => {
           </AccordionSummary>
           <div
             style={{
-              display: `${expanded === "panel5" && edit ? "block" : "none"}`,
+              display: `${expanded === "panel7" && edit ? "block" : "none"}`,
             }}
           >
             <button
