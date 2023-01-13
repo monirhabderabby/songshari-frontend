@@ -14,6 +14,7 @@ import moment from "moment";
 // css files
 import { Link } from "react-router-dom";
 import "./Accordion.css";
+import FamilyAccordion from "./ProfileAccordion/FamilyAccordion";
 
 const Accordion = styled((props) => <MuiAccordion square {...props} />)(
   ({ theme }) => ({
@@ -53,6 +54,7 @@ const Accordian = ({ data, isLoading, edit }) => {
     setExpanded(newExpanded ? panel : false);
   };
   const navigate = useNavigate();
+  console.log(data);
 
   return (
     <div className="mb-[69px] max-w-[523px] mx-auto">
@@ -1106,6 +1108,44 @@ const Accordian = ({ data, isLoading, edit }) => {
         <div className="flex justify-between items-center	">
           <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
             <div>
+              <Typography component={"span"} variant={"body2"} className="">
+                <h1 className="text-[24px] text-[#333333] leading-[34px] font-fira font-semibold">
+                  Family Information
+                </h1>
+              </Typography>
+            </div>
+          </AccordionSummary>
+          <div
+            style={{
+              display: `${expanded === "panel5" && edit ? "block" : "none"}`,
+            }}
+          >
+            <button
+              onClick={() =>
+                navigate(`/userprofile/edit/familyInfo/${data?._id}`)
+              }
+              style={{
+                background: "linear-gradient(180deg, #E41272 0%, #942DD9 100%)",
+              }}
+              className="w-[64px] text-center py-[8] px-[10px] text-[#fff] h-[28px] text-lg font-medium rounded"
+            >
+              Edit
+            </button>
+          </div>
+        </div>
+        <AccordionDetails>
+          <Typography component={"span"} variant={"body2"}>
+            <FamilyAccordion {...{ data }} />
+          </Typography>
+        </AccordionDetails>
+      </Accordion>
+      <Accordion
+        expanded={expanded === "panel6"}
+        onChange={handleChange("panel6")}
+      >
+        <div className="flex justify-between items-center	">
+          <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
+            <div>
               <Typography
                 component={"span"}
                 variant={"body2"}
@@ -1128,7 +1168,7 @@ const Accordian = ({ data, isLoading, edit }) => {
           </AccordionSummary>
           <div
             style={{
-              display: `${expanded === "panel5" && edit ? "block" : "none"}`,
+              display: `${expanded === "panel6" && edit ? "block" : "none"}`,
             }}
           >
             <button
