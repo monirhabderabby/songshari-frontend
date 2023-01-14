@@ -144,10 +144,10 @@ const MobileUsersProfile = () => {
               <div>
                 <div className="flex items-end justify-between">
                   <div>
-                    <h3 className="text-[#737373] w-[165px] md:w-48 mt-[16px] pb-[10px] border-[#737373] text-xs md:text-base font-normal border-b-[1px]">
+                    <h3 className="text-[#737373] w-[140px] md:w-48 mt-[16px] pb-[10px] border-[#737373] text-xs md:text-base font-normal border-b-[1px]">
                       {data?.email ? data?.email : "Not Provided"}
                     </h3>
-                    <h3 className="text-[#737373] w-[165px] md:w-48 mt-[16px] pb-[10px] border-[#737373] text-xs md:text-base font-normal border-b-[1px]">
+                    <h3 className="text-[#737373] w-[140px] md:w-48 mt-[16px] pb-[10px] border-[#737373] text-xs md:text-base font-normal border-b-[1px]">
                       {data?.phone ? data?.phone : "Not Provided"}
                     </h3>
                     <h3 className="text-[#737373] w-[165px] md:w-48 mt-[16px]  text-xs md:text-base font-normal pb-[20px] capitalize">
