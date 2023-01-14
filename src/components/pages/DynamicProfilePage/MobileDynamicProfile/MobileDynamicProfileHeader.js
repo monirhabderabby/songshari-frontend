@@ -1,6 +1,20 @@
-import React from "react";
+// Configuration
+import React, { useState, useEffect } from "react";
+
+// Components
+import MobileSocialMediaBox from "../../../SingleProfilesUser/MobileSingleProfilesUser/SocialMediaMobile/MobileSocialMediaBox";
 
 const MobileDynamicProfileHeader = ({ data }) => {
+  const [SocialBoxOpen, setSocialBoxOpen] = useState(false);
+  // decision making about social Box
+  const { LinkedInId } = data || {};
+  const { faceBookId } = data || {};
+  const { instagramId } = data || {};
+  useEffect(() => {
+    if (LinkedInId || faceBookId || instagramId) {
+      setSocialBoxOpen(true);
+    }
+  }, [LinkedInId, faceBookId, instagramId, setSocialBoxOpen]);
   return (
     <div>
       <div className="flex justify-center">
@@ -35,16 +49,25 @@ const MobileDynamicProfileHeader = ({ data }) => {
                   {data?.firstName + " " + data?.lastName}
                 </h2>
               </div>
-              <div>
-                <h3 className="text-[#737373] w-[165px] mt-[16px] pb-[10px] border-[#737373] text-xs font-normal border-b-[1px]">
-                  {data?.email ? data?.email : "Not Provided"}
-                </h3>
-                <h3 className="text-[#737373] w-[165px] mt-[16px] pb-[10px] border-[#737373] text-xs font-normal border-b-[1px]">
-                  {data?.phone ? data?.phone : "Not Provided"}
-                </h3>
-                <h3 className="text-[#737373] w-[165px] mt-[16px]  text-xs font-normal pb-[20px] capitalize">
-                  {data?.maritalStatus ? data?.maritalStatus : "Not Provided"}
-                </h3>
+              <div className="flex items-end justify-between">
+                <div>
+                  <h3 className="text-[#737373] w-[165px] mt-[16px] pb-[10px] border-[#737373] text-xs font-normal border-b-[1px]">
+                    {data?.email ? data?.email : "Not Provided"}
+                  </h3>
+                  <h3 className="text-[#737373] w-[165px] mt-[16px] pb-[10px] border-[#737373] text-xs font-normal border-b-[1px]">
+                    {data?.phone ? data?.phone : "Not Provided"}
+                  </h3>
+                  <h3 className="text-[#737373] w-[165px] mt-[16px]  text-xs font-normal pb-[20px] capitalize">
+                    {data?.maritalStatus ? data?.maritalStatus : "Not Provided"}
+                  </h3>
+                </div>
+                <div className="w-[125px] mr-2 pb-4">
+                  {SocialBoxOpen && (
+                    <MobileSocialMediaBox
+                      {...{ LinkedInId, faceBookId, instagramId }}
+                    />
+                  )}
+                </div>
               </div>
             </div>
           </div>

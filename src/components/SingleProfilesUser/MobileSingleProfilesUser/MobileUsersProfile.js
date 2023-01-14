@@ -1,10 +1,11 @@
 // configuration
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 // Third party packages
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { AiFillCamera } from "react-icons/ai";
 import { v4 as uuidv4 } from "uuid";
+import { toast, Toaster } from "react-hot-toast";
 
 // Components
 import {
@@ -12,9 +13,10 @@ import {
   useSetPersonalDetailsMutation,
 } from "../../../Redux/features/userInfo/userApi";
 import { firebaseStorage } from "../../../firebase.init";
-import { toast, Toaster } from "react-hot-toast";
+import MobileSocialMediaBox from "./SocialMediaMobile/MobileSocialMediaBox";
 
 const MobileUsersProfile = () => {
+  const [SocialBoxOpen, setSocialBoxOpen] = useState(false);
   const { data } = useGetProfileDetailsWIthAuthQuery();
   const [setPersonalDetails, { data: profileOrCoverPhotoResponse }] =
     useSetPersonalDetailsMutation();
@@ -56,6 +58,16 @@ const MobileUsersProfile = () => {
       toast.success("Updated successfully");
     }
   }, [profileOrCoverPhotoResponse]);
+
+  // decision making about social Box
+  const { LinkedInId } = data || {};
+  const { faceBookId } = data || {};
+  const { instagramId } = data || {};
+  useEffect(() => {
+    if (LinkedInId || faceBookId || instagramId) {
+      setSocialBoxOpen(true);
+    }
+  }, [LinkedInId, faceBookId, instagramId, setSocialBoxOpen]);
 
   return (
     <div>
@@ -123,20 +135,35 @@ const MobileUsersProfile = () => {
                     <AiFillCamera className="text-[16px] md:text-2xl m-[2px] md:m-1" />
                   </div>
                 </label>
-                <h2 className="pl-[7px] text-sm md:text-lg font-semibold text-[#000000]">
-                  {data?.firstName + " " + data?.lastName}
-                </h2>
+                <div className="flex justify-between items-center gap-12">
+                  <h2 className="pl-[7px] text-sm md:text-lg font-semibold text-[#000000]">
+                    {data?.firstName + " " + data?.lastName}
+                  </h2>
+                </div>
               </div>
               <div>
-                <h3 className="text-[#737373] w-[165px] md:w-48 mt-[16px] pb-[10px] border-[#737373] text-xs md:text-base font-normal border-b-[1px]">
-                  {data?.email ? data?.email : "Not Provided"}
-                </h3>
-                <h3 className="text-[#737373] w-[165px] md:w-48 mt-[16px] pb-[10px] border-[#737373] text-xs md:text-base font-normal border-b-[1px]">
-                  {data?.phone ? data?.phone : "Not Provided"}
-                </h3>
-                <h3 className="text-[#737373] w-[165px] md:w-48 mt-[16px]  text-xs md:text-base font-normal pb-[20px] capitalize">
-                  {data?.maritalStatus ? data?.maritalStatus : "Not Provided"}
-                </h3>
+                <div className="flex items-end justify-between">
+                  <div>
+                    <h3 className="text-[#737373] w-[165px] md:w-48 mt-[16px] pb-[10px] border-[#737373] text-xs md:text-base font-normal border-b-[1px]">
+                      {data?.email ? data?.email : "Not Provided"}
+                    </h3>
+                    <h3 className="text-[#737373] w-[165px] md:w-48 mt-[16px] pb-[10px] border-[#737373] text-xs md:text-base font-normal border-b-[1px]">
+                      {data?.phone ? data?.phone : "Not Provided"}
+                    </h3>
+                    <h3 className="text-[#737373] w-[165px] md:w-48 mt-[16px]  text-xs md:text-base font-normal pb-[20px] capitalize">
+                      {data?.maritalStatus
+                        ? data?.maritalStatus
+                        : "Not Provided"}
+                    </h3>
+                  </div>
+                  <div className="w-[125px] mr-2 pb-4">
+                    {SocialBoxOpen && (
+                      <MobileSocialMediaBox
+                        {...{ LinkedInId, faceBookId, instagramId }}
+                      />
+                    )}
+                  </div>
+                </div>
               </div>
             </div>
           </div>
