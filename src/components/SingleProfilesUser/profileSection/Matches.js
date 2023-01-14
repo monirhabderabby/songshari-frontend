@@ -15,10 +15,12 @@ import "./Matches.css";
 
 export const Matches = () => {
     // hooks variables
-    const { data, isLoading } = useGetMatchPreferencesQuery();
+    const { data, isLoading, error } = useGetMatchPreferencesQuery();
     const [mathchesModalOpen, setMatchesModalOpen] = useState(false);
 
     let content = null;
+
+    console.log(error);
 
     if (isLoading) {
         content = (
@@ -27,6 +29,12 @@ export const Matches = () => {
                 <MatchesLoader />
                 <MatchesLoader />
                 <MatchesLoader />
+            </div>
+        );
+    } else if (!isLoading && data?.matchedData?.length === 0) {
+        content = (
+            <div className="w-full h-[60vh] flex justify-center items-center">
+                <p>Not Matches Found!</p>
             </div>
         );
     } else if (!isLoading && data?.matchedData.length > 0) {
