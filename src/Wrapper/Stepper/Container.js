@@ -12,7 +12,7 @@ import { ProfessionalDetails } from "./ProfessionalDetails";
 import SiblingDetails from "./SiblingDetails";
 
 export const Container = () => {
-  const [page, setPage] = useState(6);
+  const [page, setPage] = useState(1);
   return (
     <div className="min-h-screen">
       <NavBar />
