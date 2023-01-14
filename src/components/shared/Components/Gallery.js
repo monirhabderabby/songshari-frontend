@@ -59,7 +59,7 @@ export const Gallery = () => {
                             key={index}
                             src={liveLinkGenerator(photo)}
                             alt="userPhotos"
-                            className={`rounded-[15px] ${index === 0 && "col-span-2 row-span-2"}`}
+                            className={`rounded-[15px] h-[375px] w-[370px] ${index === 0 && "col-span-2 row-span-2 h-[780px] w-[774px]"}`}
                         />
                     );
                 })}

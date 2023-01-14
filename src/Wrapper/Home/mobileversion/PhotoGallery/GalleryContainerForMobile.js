@@ -31,7 +31,7 @@ export const GalleryContainerForMobile = () => {
                             key={index}
                             src={liveLinkGenerator(photo)}
                             alt="userPhotos"
-                            className={`rounded-[15px] ${index === 0 && "col-span-2 row-span-2"}`}
+                            className={`rounded-[15px] ${index === 0 && "col-span-2 row-span-2 h-full"}`}
                         />
                     );
                 })}
