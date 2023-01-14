@@ -17,7 +17,6 @@ const SiblingDetails = ({ setPage }) => {
     useState();
   const [siblingDeathDate, setSiblingDeathDate] = useState("");
 
-  const [addedSiblingDeathDate, setAddedSiblingDeathDate] = useState([""]);
   const [addedSiblingProfession, setAddedSiblingProfession] = useState([""]);
   const [
     addedSiblingEducationalQualification,
@@ -37,9 +36,6 @@ const SiblingDetails = ({ setPage }) => {
   const onSiblingDeathDateChange = (date, dateString) => {
     setSiblingDeathDate(dateString);
   };
-  const onAddedSiblingDeathDateChange = (date, dateString) => {
-    setAddedSiblingDeathDate([...addedSiblingDeathDate, dateString]);
-  };
 
   const onSubmit = async (data) => {
     data.siblings.map((s) => delete s.siblingProfession);
@@ -54,9 +50,6 @@ const SiblingDetails = ({ setPage }) => {
       (s, i) =>
         (s.siblingEducationalQualification =
           addedSiblingEducationalQualification[i])
-    );
-    data.siblings.map(
-      (s, i) => (s.siblingDeathDate = addedSiblingDeathDate[i])
     );
 
     const newObject = Object.create(data);
@@ -331,22 +324,6 @@ const SiblingDetails = ({ setPage }) => {
                 className="col-span-1 md:col-span-2 lg:col-span-3 grid grid-cols-3 gap-3"
                 key={field.id}
               >
-                {/* ---------- Is Sibling Alive  ---------- */}
-                <section>
-                  <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
-                    <select
-                      {...register(`siblings.${index}.isSiblingAlive`)}
-                      type="text"
-                      className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
-                      id="isSiblingAlive"
-                    >
-                      <option value="">Is Sibling Alive ?</option>
-                      <option value="yes">Alive</option>
-                      <option value="no">Dead</option>
-                    </select>
-                  </div>
-                </section>
-
                 {/*------------- Sibling Name ----------------- */}
                 <section>
                   <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
@@ -539,31 +516,6 @@ const SiblingDetails = ({ setPage }) => {
                     />
                   </div>
                 </section>
-                {/* ---------- Sibling Death Date & Reason ---------- */}
-                <section>
-                  <div className="flex items-center bg-gray-100  w-full rounded-lg mt-3 lg:mt-0">
-                    <DatePicker
-                      {...register(`siblings.${index}.siblingDeathDate`)}
-                      placeholder="Sibling Death Date"
-                      className="flex-1 px-2 py-[9px] outline-none h-full bg-transparent text-sm text-gray-400"
-                      id="SiblingDeathDate"
-                      bordered={false}
-                      onChange={onAddedSiblingDeathDateChange}
-                    />
-                  </div>
-                </section>
-                <section>
-                  <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
-                    <textarea
-                      {...register(`siblings.${index}.siblingDeathReason`)}
-                      type="text"
-                      rows="1"
-                      placeholder="Sibling Death Reason"
-                      className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
-                      id="siblingDeathReason"
-                    />
-                  </div>
-                </section>
                 <button
                   className="p-3 text-sm text-center font-medium bg-red-100 text-red-500 rounded-lg"
                   type="button"
@@ -579,9 +531,6 @@ const SiblingDetails = ({ setPage }) => {
             className="p-3 text-sm text-center font-medium text-gray-400 bg-gray-100 rounded-lg"
             onClick={() => {
               append({
-                isSiblingAlive: "",
-                siblingDeathDate: "",
-                siblingDeathReason: "",
                 siblingName: "",
                 elderOrYounger: "",
                 ageGap: null,
