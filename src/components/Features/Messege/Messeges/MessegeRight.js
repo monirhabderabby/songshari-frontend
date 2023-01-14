@@ -1,14 +1,16 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 
-export const MessegeRight = () => {
+export const MessegeRight = ({message}) => {
+    // console.log(message)
+    const scrollRef=useRef();
+    useEffect(()=>{
+        scrollRef.current.scrollIntoView({behaviour:"smooth"});
+    })
     return (
-        <div className="flex w-full justify-end gap-x-[20px] my-[51px]">
+        <div ref={scrollRef} className="flex w-full justify-end gap-x-[20px] my-[51px]">
             <div className="flex flex-col flex-wrap-reverse">
                 <div className="content bg-[#A32BCA] rounded-tl-[20px] rounded-tr-[20px] rounded-bl-[20px] px-[20px] py-[9px] w-3/5">
-                    <p className="text-white text-[16px] font-normal">
-                        Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque
-                        ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptat
-                    </p>
+                    <p className="text-white text-[16px] font-normal">{message?.message}</p>
                 </div>
                 <p className="text-[#969696] text-[12px] text-right font-normal mt-[13px]">4.30 AM</p>
             </div>
