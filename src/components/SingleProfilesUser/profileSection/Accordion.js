@@ -59,6 +59,7 @@ const Accordian = ({ data, isLoading, edit }) => {
   return (
     <div className="mb-[69px] max-w-[523px] mx-auto">
       <div className="hidden lg:block" id="fdhjf">
+        {/* --------- Personal info ---------- */}
         <Accordion
           expanded={expanded === "panel1"}
           onChange={handleChange("panel1")}
@@ -653,7 +654,9 @@ const Accordian = ({ data, isLoading, edit }) => {
               data?.professionalDetail.map((profession) => {
                 return (
                   <div key={profession?._id} className="mb-6">
-                    <div className="flex justify-end mt-2">
+                    <div
+                      className={`${edit ? "flex justify-end mt-2" : "none"}`}
+                    >
                       <button
                         onClick={() =>
                           navigate(
@@ -700,9 +703,7 @@ const Accordian = ({ data, isLoading, edit }) => {
                       )}
                       {profession?.workPeriod?.length !== 0 && (
                         <div className="flex justify-between py-[6px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                          <span className="font-medium">
-                            Special Achievement
-                          </span>
+                          <span className="font-medium">Work Period</span>
                           <p className="font-normal">
                             {profession?.workPeriod[0] +
                               " to " +
@@ -752,7 +753,9 @@ const Accordian = ({ data, isLoading, edit }) => {
               data?.educationalDetail.map((edu) => {
                 return (
                   <div key={edu?._id} className="mb-6">
-                    <div className="flex justify-end mt-2">
+                    <div
+                      className={`${edit ? "flex justify-end mt-2" : "none"}`}
+                    >
                       <button
                         onClick={() =>
                           navigate(
@@ -924,6 +927,7 @@ const Accordian = ({ data, isLoading, edit }) => {
           </Typography>
         </AccordionDetails>
       </Accordion>
+      {/* ---------- Physical info ---------- */}
       <Accordion
         expanded={expanded === "panel4"}
         onChange={handleChange("panel4")}
@@ -1114,7 +1118,7 @@ const Accordian = ({ data, isLoading, edit }) => {
             {data?.siblingDetail?.length > 0 &&
               data?.siblingDetail?.map((sibling) => (
                 <div key={sibling?._id} className="mb-6">
-                  <SiblingsAccordion {...{ sibling }} />
+                  <SiblingsAccordion {...{ sibling, edit }} />
                 </div>
               ))}
           </Typography>
@@ -1218,14 +1222,12 @@ const Accordian = ({ data, isLoading, edit }) => {
                 </p>
               </div>
             )}
-            {data?.othersDetail?.travelledOutsideBangladesh && (
+            {data?.othersDetail?.traveledOutsideBangladesh && (
               <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                <span className="font-medium">
-                  Travelled outside Bangladesh
-                </span>
+                <span className="font-medium">Traveled outside Bangladesh</span>
                 <p className="font-normal">
                   {data?.othersDetail
-                    ? data?.othersDetail?.travelledOutsideBangladesh
+                    ? data?.othersDetail?.traveledOutsideBangladesh
                     : "Not Provided"}
                 </p>
               </div>
@@ -1236,6 +1238,16 @@ const Accordian = ({ data, isLoading, edit }) => {
                 <p className="font-normal">
                   {data?.othersDetail
                     ? data?.othersDetail?.likeJoinFamily
+                    : "Not Provided"}
+                </p>
+              </div>
+            )}
+            {data?.othersDetail?.likeChildren && (
+              <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                <span className="font-medium">Like Children</span>
+                <p className="font-normal">
+                  {data?.othersDetail
+                    ? data?.othersDetail?.likeChildren
                     : "Not Provided"}
                 </p>
               </div>
