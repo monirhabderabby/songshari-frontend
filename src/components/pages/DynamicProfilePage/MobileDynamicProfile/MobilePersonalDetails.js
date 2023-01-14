@@ -26,7 +26,7 @@ export const MobilePersonalDetails = () => {
 
   return (
     <div className="mx-4 mb-20">
-      <div className="bg-[#FFFFFF] py-[10px] mb-[15px]">
+      <div className="bg-[#FFFFFF] py-[10px] mb-[15px] sticky top-0 z-10">
         <div className="bg-white w-full grid grid-cols-6 h-[48px]">
           <div className="pl-1 col-span-1">
             <Link onClick={() => navigate(-1)}>
@@ -40,6 +40,17 @@ export const MobilePersonalDetails = () => {
         </div>
       </div>
       <Typography component={"span"} variant={"body2"}>
+        <div className="flex justify-end mt-2">
+          <button
+            onClick={() => navigate(`/personalInfoEdit/${data?._id}`)}
+            style={{
+              background: "linear-gradient(180deg, #E41272 0%, #942DD9 100%)",
+            }}
+            className="w-[64px] text-center py-[8] px-[10px] text-[#fff] h-[28px] text-lg font-medium rounded"
+          >
+            Edit
+          </button>
+        </div>
         {data?.firstName && (
           <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
             <span className="font-medium">Name</span>

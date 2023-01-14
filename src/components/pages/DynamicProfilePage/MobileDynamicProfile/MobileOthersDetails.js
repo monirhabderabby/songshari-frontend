@@ -36,6 +36,17 @@ export const MobileOthersDetails = () => {
           </div>
         </div>
         <Typography component={"span"} variant={"body2"}>
+          <div className="flex justify-end mt-2">
+            <button
+              onClick={() => navigate(`/othersInfoEdit/${data?._id}`)}
+              style={{
+                background: "linear-gradient(180deg, #E41272 0%, #942DD9 100%)",
+              }}
+              className="w-[64px] text-center py-[8] px-[10px] text-[#fff] h-[28px] text-lg font-medium rounded"
+            >
+              Edit
+            </button>
+          </div>
           {data?.othersDetail?.doSmoke && (
             <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
               <span className="font-medium">Do smoke</span>
@@ -88,12 +99,12 @@ export const MobileOthersDetails = () => {
               </p>
             </div>
           )}
-          {data?.othersDetail?.travelledOutsideBangladesh && (
+          {data?.othersDetail?.traveledOutsideBangladesh && (
             <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-              <span className="font-medium">Travelled outside Bangladesh</span>
+              <span className="font-medium">Traveled outside Bangladesh</span>
               <p className="font-normal">
                 {data?.othersDetail
-                  ? data?.othersDetail?.travelledOutsideBangladesh
+                  ? data?.othersDetail?.traveledOutsideBangladesh
                   : "Not Provided"}
               </p>
             </div>
@@ -104,6 +115,16 @@ export const MobileOthersDetails = () => {
               <p className="font-normal">
                 {data?.othersDetail
                   ? data?.othersDetail?.likeJoinFamily
+                  : "Not Provided"}
+              </p>
+            </div>
+          )}
+          {data?.othersDetail?.likeChildren && (
+            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+              <span className="font-medium">Like Children</span>
+              <p className="font-normal">
+                {data?.othersDetail
+                  ? data?.othersDetail?.likeChildren
                   : "Not Provided"}
               </p>
             </div>

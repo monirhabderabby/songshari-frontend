@@ -26,9 +26,9 @@ const EditSiblingsInfo = () => {
   const navigate = useNavigate();
   const [messageApi, contextHolder] = message.useMessage();
   const { id } = useParams();
-  console.log(id);
+
   // Redux api
-  const [updateSiblingDetail, { data: response, isError, isLoading, error }] =
+  const [updateSiblingDetail, { data: response, isError, isLoading }] =
     useUpdateSiblingDetailMutation();
 
   //Profession name options
@@ -148,8 +148,6 @@ const EditSiblingsInfo = () => {
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   }, []);
-
-  console.log(response, error);
 
   return (
     <div>

@@ -3,6 +3,13 @@ import MobileLogin from "../../../components/pages/Authentications/MobileDesign/
 import MobileSignUp from "../../../components/pages/Authentications/MobileDesign/MobileSignUp";
 import { MobileOTP } from "../../../components/pages/Authentications/OTP/MobileOTP";
 import { MobileDynamicProfile } from "../../../components/pages/DynamicProfilePage/MobileDynamicProfile/MobileDynamicProfile";
+import MobileEducationalInfoEdit from "../../../components/pages/DynamicProfilePage/MobileDynamicProfile/MobileEditProfile/MobileEducationalInfoEdit";
+import MobileFamilyInfoEdit from "../../../components/pages/DynamicProfilePage/MobileDynamicProfile/MobileEditProfile/MobileFamilyInfoEdit";
+import MobileOthersInfoEdit from "../../../components/pages/DynamicProfilePage/MobileDynamicProfile/MobileEditProfile/MobileOthersInfoEdit";
+import MobilePersonalInfoEdit from "../../../components/pages/DynamicProfilePage/MobileDynamicProfile/MobileEditProfile/MobilePersonalInfoEdit";
+import MobilePhysicalInfoEdit from "../../../components/pages/DynamicProfilePage/MobileDynamicProfile/MobileEditProfile/MobilePhysicalInfoEdit";
+import MobileProfessionalInfoEdit from "../../../components/pages/DynamicProfilePage/MobileDynamicProfile/MobileEditProfile/MobileProfessionalInfoEdit";
+import MobileSiblingsInfoEdit from "../../../components/pages/DynamicProfilePage/MobileDynamicProfile/MobileEditProfile/MobileSiblingsInfoEdit";
 import { MobileEducationalDetails } from "../../../components/pages/DynamicProfilePage/MobileDynamicProfile/MobileEducationalDetails";
 import MobileFamilyDetails from "../../../components/pages/DynamicProfilePage/MobileDynamicProfile/MobileFamilyDetails";
 import { MobileOthersDetails } from "../../../components/pages/DynamicProfilePage/MobileDynamicProfile/MobileOthersDetails";
@@ -238,6 +245,41 @@ const MobileMatrimony = [
         element: <FilterResultsMobile />,
       },
     ],
+  },
+  {
+    id: 32,
+    path: "/familyInfoEdit/:id",
+    element: <MobileFamilyInfoEdit />,
+  },
+  {
+    id: 33,
+    path: "/siblingsInfoEdit/:id",
+    element: <MobileSiblingsInfoEdit />,
+  },
+  {
+    id: 34,
+    path: "/othersInfoEdit/:id",
+    element: <MobileOthersInfoEdit />,
+  },
+  {
+    id: 35,
+    path: "/physicalInfoEdit/:id",
+    element: <MobilePhysicalInfoEdit />,
+  },
+  {
+    id: 36,
+    path: "/educationalInfoEdit/:id",
+    element: <MobileEducationalInfoEdit />,
+  },
+  {
+    id: 37,
+    path: "/professionalInfoEdit/:id",
+    element: <MobileProfessionalInfoEdit />,
+  },
+  {
+    id: 38,
+    path: "/personalInfoEdit/:id",
+    element: <MobilePersonalInfoEdit />,
   },
 ];
 export default MobileMatrimony;

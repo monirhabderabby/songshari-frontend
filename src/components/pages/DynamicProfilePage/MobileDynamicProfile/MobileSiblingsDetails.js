@@ -36,9 +36,7 @@ const MobileSiblingsDetails = () => {
               {/* Show data */}
               <div className="flex justify-end mt-2">
                 <button
-                  onClick={() =>
-                    navigate(`/userprofile/edit/siblingsInfo/${sibling?._id}`)
-                  }
+                  onClick={() => navigate(`/siblingsInfoEdit/${sibling?._id}`)}
                   style={{
                     background:
                       "linear-gradient(180deg, #E41272 0%, #942DD9 100%)",
