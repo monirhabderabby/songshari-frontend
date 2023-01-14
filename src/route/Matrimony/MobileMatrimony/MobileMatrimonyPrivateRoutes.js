@@ -7,43 +7,43 @@ import ProfessionalCertificateMobile from "../../../Wrapper/Home/mobileversion/C
 import { MatchesMov } from "../../../Wrapper/Home/mobileversion/MatchesMov";
 
 const MobileMatrimonyPrivateRoutes = [
-    {
+  {
+    id: 1,
+    path: "/mobileuserprofile",
+    element: <MobileSingleProfilesUser />,
+    nestedRoutes: [
+      {
         id: 1,
-        path: "/mobileuserprofile",
-        element: <MobileSingleProfilesUser />,
-        nestedRoutes: [
-            {
-                id: 1,
-                path: "personaldetailsmov",
-                element: <PersonalDetailsMobile />,
-            },
-        ],
-    },
-    {
-        id: 2,
-        path: "/dynamicpersonaldetails/:id",
+        path: "personaldetailsmov",
         element: <PersonalDetailsMobile />,
-    },
-    {
-        id: 3,
-        path: "/educationalCertificateMov",
-        element: <EducationalCertificateMobile />,
-    },
-    {
-        id: 4,
-        path: "/professionalCertificateMov",
-        element: <ProfessionalCertificateMobile />,
-    },
-    {
-        id: 5,
-        path: "/personalCertificateMov",
-        element: <PersonalCertificateMobile />,
-    },
-    {
-        id: 6,
-        path: "/matchesmov",
-        element: <MatchesMov />,
-    },
+      },
+    ],
+  },
+  {
+    id: 2,
+    path: "/dynamicpersonaldetails/:id",
+    element: <PersonalDetailsMobile />,
+  },
+  {
+    id: 3,
+    path: "/educationalCertificateMov",
+    element: <EducationalCertificateMobile />,
+  },
+  {
+    id: 4,
+    path: "/professionalCertificateMov",
+    element: <ProfessionalCertificateMobile />,
+  },
+  {
+    id: 5,
+    path: "/personalCertificateMov",
+    element: <PersonalCertificateMobile />,
+  },
+  {
+    id: 6,
+    path: "/matchesmov",
+    element: <MatchesMov />,
+  },
 ];
 
 export default MobileMatrimonyPrivateRoutes;
