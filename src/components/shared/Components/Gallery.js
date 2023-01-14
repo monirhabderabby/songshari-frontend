@@ -5,7 +5,6 @@ import { useParams } from "react-router";
 // Third party packages
 import { AiOutlineWarning } from "react-icons/ai";
 import { MdNoPhotography } from "react-icons/md";
-import { LazyLoadImage } from "react-lazy-load-image-component";
 
 // components
 import liveLinkGenerator from "../../../assets/utilities/liveLink/liveLinkGenerator";
@@ -56,11 +55,11 @@ export const Gallery = () => {
             <div className="w-full grid grid-cols-3 gap-[40px] max-w-[1200px] mx-auto px-[10px]">
                 {photos?.map((photo, index) => {
                     return (
-                        <LazyLoadImage
+                        <img
                             key={index}
                             src={liveLinkGenerator(photo)}
                             alt="userPhotos"
-                            className={`rounded-[15px] ${index === 0 && "col-span-2 row-span-2"}`}
+                            className={`rounded-[15px] h-[375px] w-[370px] ${index === 0 && "col-span-2 row-span-2 h-[780px] w-[774px]"}`}
                         />
                     );
                 })}

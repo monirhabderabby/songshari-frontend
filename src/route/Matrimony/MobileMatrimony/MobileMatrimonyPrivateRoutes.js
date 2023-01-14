@@ -5,6 +5,8 @@ import EducationalCertificateMobile from "../../../Wrapper/Home/mobileversion/Ce
 import PersonalCertificateMobile from "../../../Wrapper/Home/mobileversion/CertificateMobile/PersonalCertificateMobile/PersonalCertificateMobile";
 import ProfessionalCertificateMobile from "../../../Wrapper/Home/mobileversion/CertificateMobile/ProfessionalCertificateMobile/ProfessionalCertificateMobile";
 import { MatchesMov } from "../../../Wrapper/Home/mobileversion/MatchesMov";
+import { GalleryContainerForMobile } from "../../../Wrapper/Home/mobileversion/PhotoGallery/GalleryContainerForMobile";
+import { Setting } from "../../../Wrapper/Home/mobileversion/setting/Setting";
 
 const MobileMatrimonyPrivateRoutes = [
     {
@@ -43,6 +45,17 @@ const MobileMatrimonyPrivateRoutes = [
         id: 6,
         path: "/matchesmov",
         element: <MatchesMov />,
+    },
+    {
+        id: 7,
+        path: "/Gallery/mobile/:id",
+        element: <GalleryContainerForMobile />,
+    },
+
+    {
+        id: 8,
+        path: "/setting",
+        element: <Setting />,
     },
 ];
 

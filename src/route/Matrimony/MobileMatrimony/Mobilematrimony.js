@@ -32,9 +32,7 @@ import { Like } from "../../../Wrapper/Home/mobileversion/Like";
 import { MatchesMov } from "../../../Wrapper/Home/mobileversion/MatchesMov";
 import { MeetMov } from "../../../Wrapper/Home/mobileversion/meet/MeetMov";
 import { MobileHome } from "../../../Wrapper/Home/mobileversion/MobileHome";
-import Certificate from "../../../Wrapper/Home/mobileversion/PhotoGallery/certificate/Certificate";
 import { PrivacyMov } from "../../../Wrapper/Home/mobileversion/privacy/PrivacyMov";
-import { Setting } from "../../../Wrapper/Home/mobileversion/setting/Setting";
 
 // routes
 const MobileMatrimony = [
@@ -72,81 +70,71 @@ const MobileMatrimony = [
     },
     {
         id: 4,
-        path: "/setting",
-        element: <Setting />,
-    },
-    {
-        id: 5,
         path: "/servicemov",
         element: <ProfileServices />,
     },
     {
-        id: 6,
+        id: 5,
         path: "/aboutmov",
         element: <AboutMov />,
     },
     {
-        id: 7,
+        id: 6,
         path: "/meetmov",
         element: <MeetMov />,
     },
     {
-        id: 8,
+        id: 7,
         path: "/machesmov",
         element: <MatchesMov />,
     },
     {
-        id: 9,
+        id: 8,
         path: "/certificatemov",
         element: <CertificateMov />,
     },
     {
-        id: 10,
+        id: 9,
         path: "/like",
         element: <Like />,
     },
     {
-        id: 11,
+        id: 10,
         path: "/historymov",
         element: <HistoryMov />,
     },
     {
-        id: 12,
+        id: 11,
         path: "/privacymov",
         element: <PrivacyMov />,
     },
     {
-        id: 13,
+        id: 12,
         path: "/communitymov",
         element: <CommunityMov />,
     },
     {
-        id: 14,
-        path: "/mobilecertificate",
-        element: <Certificate />,
-    },
-    {
-        id: 15,
+        id: 13,
         path: "/mobileupgrade",
         element: <UpgradePlan />,
     },
     {
-        id: 16,
+        id: 14,
         path: "/mobileFreePlan",
         element: <MobileFreePlan />,
     },
     {
-        id: 17,
+        id: 15,
         path: "/mobileGoldPlan",
         element: <MobileGoldPlan />,
     },
     {
-        id: 18,
+        id: 16,
         path: "/mobileDiamondPlan",
         element: <MobileDiamondPlan />,
     },
     {
-        id: 19,
+        id: 17,
         path: "/mobile-allposts",
         element: <AllPosts />,
     },
