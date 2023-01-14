@@ -37,7 +37,7 @@ export const TopMenuTab = () => {
                         <Box sx={{ border: 1, p: 1, bgcolor: "background.paper" }} className="p-28">
                             {user && (
                                 <div className="` ">
-                                    <img src={user.photoURL} className="w-20 rounded-full"></img>
+                                    <img src={user.photoURL} className="w-20 rounded-full" alt="gdsf"></img>
                                     <Link to="" className="mt-4">
                                         <span className=" pt-2   pb-2 ">{user.displayName}</span>
                                     </Link>
