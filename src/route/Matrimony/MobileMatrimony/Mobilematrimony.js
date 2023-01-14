@@ -3,6 +3,13 @@ import MobileLogin from "../../../components/pages/Authentications/MobileDesign/
 import MobileSignUp from "../../../components/pages/Authentications/MobileDesign/MobileSignUp";
 import { MobileOTP } from "../../../components/pages/Authentications/OTP/MobileOTP";
 import { MobileDynamicProfile } from "../../../components/pages/DynamicProfilePage/MobileDynamicProfile/MobileDynamicProfile";
+import { MobileDynamicEducationalDetails } from "../../../components/pages/DynamicProfilePage/MobileDynamicProfile/MobileDynamicProfileDetails/MobileDynamicEducationalDetails";
+import MobileDynamicFamilyDetails from "../../../components/pages/DynamicProfilePage/MobileDynamicProfile/MobileDynamicProfileDetails/MobileDynamicFamilyDetails";
+import { MobileDynamicOtherDetails } from "../../../components/pages/DynamicProfilePage/MobileDynamicProfile/MobileDynamicProfileDetails/MobileDynamicOtherDetails";
+import { MobileDynamicPersonalDetails } from "../../../components/pages/DynamicProfilePage/MobileDynamicProfile/MobileDynamicProfileDetails/MobileDynamicPersonalDetails";
+import { MobileDynamicPhysicalDetails } from "../../../components/pages/DynamicProfilePage/MobileDynamicProfile/MobileDynamicProfileDetails/MobileDynamicPhysicalDetails";
+import { MobileDynamicProfessionalDetails } from "../../../components/pages/DynamicProfilePage/MobileDynamicProfile/MobileDynamicProfileDetails/MobileDynamicProfessionalDetails";
+import MobileDynamicSiblingsDetails from "../../../components/pages/DynamicProfilePage/MobileDynamicProfile/MobileDynamicProfileDetails/MobileDynamicSiblingsDetails";
 import MobileEducationalInfoEdit from "../../../components/pages/DynamicProfilePage/MobileDynamicProfile/MobileEditProfile/MobileEducationalInfoEdit";
 import MobileFamilyInfoEdit from "../../../components/pages/DynamicProfilePage/MobileDynamicProfile/MobileEditProfile/MobileFamilyInfoEdit";
 import MobileOthersInfoEdit from "../../../components/pages/DynamicProfilePage/MobileDynamicProfile/MobileEditProfile/MobileOthersInfoEdit";
@@ -268,6 +275,41 @@ const MobileMatrimony = [
     id: 38,
     path: "/siblingsprofile/:id",
     element: <MobileSiblingsDetails />,
+  },
+  {
+    id: 39,
+    path: "/personalProfileDynamic/:id",
+    element: <MobileDynamicPersonalDetails />,
+  },
+  {
+    id: 40,
+    path: "/professionalProfileDynamic/:id",
+    element: <MobileDynamicProfessionalDetails />,
+  },
+  {
+    id: 41,
+    path: "/educationalProfileDynamic/:id",
+    element: <MobileDynamicEducationalDetails />,
+  },
+  {
+    id: 42,
+    path: "/physicalProfileDynamic/:id",
+    element: <MobileDynamicPhysicalDetails />,
+  },
+  {
+    id: 43,
+    path: "/familyProfileDynamic/:id",
+    element: <MobileDynamicFamilyDetails />,
+  },
+  {
+    id: 44,
+    path: "/siblingsProfileDynamic/:id",
+    element: <MobileDynamicSiblingsDetails />,
+  },
+  {
+    id: 45,
+    path: "/otherProfileDynamic/:id",
+    element: <MobileDynamicOtherDetails />,
   },
 ];
 export default MobileMatrimony;

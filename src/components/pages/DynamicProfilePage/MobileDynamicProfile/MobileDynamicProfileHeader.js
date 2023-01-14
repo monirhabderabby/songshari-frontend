@@ -49,7 +49,7 @@ const MobileDynamicProfileHeader = ({ data }) => {
                   {data?.firstName + " " + data?.lastName}
                 </h2>
               </div>
-              <div className="flex items-end justify-between">
+              <div className="flex items-end justify-between gap-2">
                 <div>
                   <h3 className="text-[#737373] w-[165px] mt-[16px] pb-[10px] border-[#737373] text-xs font-normal border-b-[1px]">
                     {data?.email ? data?.email : "Not Provided"}
@@ -61,7 +61,7 @@ const MobileDynamicProfileHeader = ({ data }) => {
                     {data?.maritalStatus ? data?.maritalStatus : "Not Provided"}
                   </h3>
                 </div>
-                <div className="w-[125px] mr-2 pb-4">
+                <div className="w-[120px] mr-2 pb-4">
                   {SocialBoxOpen && (
                     <MobileSocialMediaBox
                       {...{ LinkedInId, faceBookId, instagramId }}
