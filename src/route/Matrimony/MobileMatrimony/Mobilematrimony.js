@@ -18,18 +18,12 @@ import MobileDiamondPlan from "../../../components/pages/Membership/MobileVersio
 import MobileFreePlan from "../../../components/pages/Membership/MobileVersion/MobileFreePlan";
 import MobileGoldPlan from "../../../components/pages/Membership/MobileVersion/MobileGoldPlan";
 import UpgradePlan from "../../../components/pages/Membership/MobileVersion/UpgradePlan";
-import MobileActivity from "../../../components/pages/MobileActivity/MobileActivity";
 import MobileTopBride from "../../../components/pages/TopProfile/MobileTopProfile/MobileTopBride";
 import MobileTopGroom from "../../../components/pages/TopProfile/MobileTopProfile/MobileTopGroom";
 import Suggested from "../../../components/pages/TopProfile/Suggested";
-import ProfileServices from "../../../components/SingleProfilesUser/ServicesSection/ProfileServices";
 import { AboutMov } from "../../../Wrapper/Home/mobileversion/about/AboutMov";
-import { AllPosts } from "../../../Wrapper/Home/mobileversion/allposts/AllPosts";
-import { CertificateMov } from "../../../Wrapper/Home/mobileversion/CertificateForMobile/CertificateMov";
 import { CommunityMov } from "../../../Wrapper/Home/mobileversion/comminuty/CommunityMov";
 import { HistoryMov } from "../../../Wrapper/Home/mobileversion/history/HistoryMov";
-import { Like } from "../../../Wrapper/Home/mobileversion/Like";
-import { MatchesMov } from "../../../Wrapper/Home/mobileversion/MatchesMov";
 import { MeetMov } from "../../../Wrapper/Home/mobileversion/meet/MeetMov";
 import { MobileHome } from "../../../Wrapper/Home/mobileversion/MobileHome";
 import { PrivacyMov } from "../../../Wrapper/Home/mobileversion/privacy/PrivacyMov";
@@ -69,11 +63,6 @@ const MobileMatrimony = [
         element: <MobileSignUp />,
     },
     {
-        id: 4,
-        path: "/servicemov",
-        element: <ProfileServices />,
-    },
-    {
         id: 5,
         path: "/aboutmov",
         element: <AboutMov />,
@@ -82,21 +71,6 @@ const MobileMatrimony = [
         id: 6,
         path: "/meetmov",
         element: <MeetMov />,
-    },
-    {
-        id: 7,
-        path: "/machesmov",
-        element: <MatchesMov />,
-    },
-    {
-        id: 8,
-        path: "/certificatemov",
-        element: <CertificateMov />,
-    },
-    {
-        id: 9,
-        path: "/like",
-        element: <Like />,
     },
     {
         id: 10,
@@ -134,16 +108,6 @@ const MobileMatrimony = [
         element: <MobileDiamondPlan />,
     },
     {
-        id: 17,
-        path: "/mobile-allposts",
-        element: <AllPosts />,
-    },
-    {
-        id: 20,
-        path: "/like",
-        element: <Like />,
-    },
-    {
         id: 21,
         path: "/mobileprofile/:id",
         element: <MobileDynamicProfile></MobileDynamicProfile>,
@@ -172,11 +136,6 @@ const MobileMatrimony = [
         id: 26,
         path: "/otherprofile/:id",
         element: <MobileOthersDetails />,
-    },
-    {
-        id: 27,
-        path: "/mobileActivityPage",
-        element: <MobileActivity />,
     },
     {
         id: 28,

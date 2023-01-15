@@ -122,7 +122,9 @@ export const TopMenu = () => {
                     </Menu>
                 </div>
                 <div className="col-span-1 mt-2">
-                    <i className="fa-regular fa-bell mr-4"></i>
+                    <Link to="/notifications">
+                        <i className="fa-regular fa-bell mr-4"></i>
+                    </Link>
                     <Link to="/setting">
                         {" "}
                         <i className="fa-solid fa-bars"></i>
