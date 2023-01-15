@@ -4,12 +4,12 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 
 // Third Party Packages
 import Typography from "@mui/material/Typography";
+import { useGetProfileDetailsQuery } from "../../../../../Redux/features/userInfo/userApi";
+import { BottomNav } from "../../../../../Wrapper/Home/mobileversion/BottomNav";
 
 // components
-import { useGetProfileDetailsQuery } from "../../../../Redux/features/userInfo/userApi";
-import { BottomNav } from "../../../../Wrapper/Home/mobileversion/BottomNav";
 
-export const MobilePhysicalDetails = () => {
+export const MobileDynamicPhysicalDetails = () => {
   // hooks variable
   const { id } = useParams();
   const { data } = useGetProfileDetailsQuery(id);
@@ -36,17 +36,6 @@ export const MobilePhysicalDetails = () => {
           </div>
         </div>
         <Typography component={"span"} variant={"body2"}>
-          <div className="flex justify-end mt-2">
-            <button
-              onClick={() => navigate(`/physicalInfoEdit/${data?._id}`)}
-              style={{
-                background: "linear-gradient(180deg, #E41272 0%, #942DD9 100%)",
-              }}
-              className="w-[64px] text-center py-[8] px-[10px] text-[#fff] h-[28px] text-lg font-medium rounded"
-            >
-              Edit
-            </button>
-          </div>
           {data?.physicalDetail?.height && (
             <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
               <span className="font-medium">Height</span>

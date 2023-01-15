@@ -7,10 +7,10 @@ import Typography from "@mui/material/Typography";
 import moment from "moment";
 
 // components
-import { useGetProfileDetailsQuery } from "../../../../Redux/features/userInfo/userApi";
-import { BottomNav } from "../../../../Wrapper/Home/mobileversion/BottomNav";
+import { useGetProfileDetailsQuery } from "../../../../../Redux/features/userInfo/userApi";
+import { BottomNav } from "../../../../../Wrapper/Home/mobileversion/BottomNav";
 
-export const MobileEducationalDetails = () => {
+export const MobileDynamicEducationalDetails = () => {
   // hooks variable
   const { id } = useParams();
   const { data } = useGetProfileDetailsQuery(id);
@@ -40,21 +40,7 @@ export const MobileEducationalDetails = () => {
           {data?.educationalDetail?.length !== 0 ? (
             data?.educationalDetail?.map((edu) => {
               return (
-                <div key={edu?._id}>
-                  <div className="flex justify-end mt-2">
-                    <button
-                      onClick={() =>
-                        navigate(`/educationalInfoEdit/${edu?._id}`)
-                      }
-                      style={{
-                        background:
-                          "linear-gradient(180deg, #E41272 0%, #942DD9 100%)",
-                      }}
-                      className="w-[64px] text-center py-[8] px-[10px] text-[#fff] h-[28px] text-lg font-medium rounded"
-                    >
-                      Edit
-                    </button>
-                  </div>
+                <div key={edu?._id} className="mb-6">
                   {data?.educationalDetail.length !== 0 && (
                     <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                       <span className="font-medium">Degree</span>

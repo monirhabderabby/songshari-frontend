@@ -2,11 +2,11 @@
 import React from "react";
 import { useNavigate } from "react-router";
 
-const SiblingsAccordion = ({ sibling }) => {
+const SiblingsAccordion = ({ sibling, edit }) => {
   const navigate = useNavigate();
   return (
     <div>
-      <div className="flex justify-end mt-2">
+      <div className={`${edit ? "flex justify-end mt-2" : "none"}`}>
         <button
           onClick={() =>
             navigate(`/userprofile/edit/siblingsInfo/${sibling?._id}`)

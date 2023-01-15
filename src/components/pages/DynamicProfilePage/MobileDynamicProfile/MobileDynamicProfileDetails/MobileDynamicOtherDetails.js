@@ -4,12 +4,12 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 
 // Third Party Packages
 import Typography from "@mui/material/Typography";
+import { useGetProfileDetailsQuery } from "../../../../../Redux/features/userInfo/userApi";
+import { BottomNav } from "../../../../../Wrapper/Home/mobileversion/BottomNav";
 
 // components
-import { useGetProfileDetailsQuery } from "../../../../Redux/features/userInfo/userApi";
-import { BottomNav } from "../../../../Wrapper/Home/mobileversion/BottomNav";
 
-export const MobilePhysicalDetails = () => {
+export const MobileDynamicOtherDetails = () => {
   // hooks variable
   const { id } = useParams();
   const { data } = useGetProfileDetailsQuery(id);
@@ -22,7 +22,7 @@ export const MobilePhysicalDetails = () => {
   return (
     <div>
       <div className="mx-4 mb-20">
-        <div className="bg-[#FFFFFF] py-[10px] mb-[15px] sticky top-0 z-10">
+        <div className="bg-[#FFFFFF] py-[10px] mb-[15px]">
           <div className="bg-white w-full grid grid-cols-6 h-[48px]">
             <div className="pl-1 col-span-1">
               <Link onClick={() => navigate(-1)}>
@@ -30,99 +30,100 @@ export const MobilePhysicalDetails = () => {
               </Link>
             </div>
             <div className="col-span-4 ">
-              <p className="text-center">Physical Details</p>
+              <p className="text-center">Other Details</p>
             </div>
             <div className="col-span-1"></div>
           </div>
         </div>
         <Typography component={"span"} variant={"body2"}>
-          <div className="flex justify-end mt-2">
-            <button
-              onClick={() => navigate(`/physicalInfoEdit/${data?._id}`)}
-              style={{
-                background: "linear-gradient(180deg, #E41272 0%, #942DD9 100%)",
-              }}
-              className="w-[64px] text-center py-[8] px-[10px] text-[#fff] h-[28px] text-lg font-medium rounded"
-            >
-              Edit
-            </button>
-          </div>
-          {data?.physicalDetail?.height && (
+          {data?.othersDetail?.doSmoke && (
             <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-              <span className="font-medium">Height</span>
+              <span className="font-medium">Do smoke</span>
               <p className="font-normal">
-                {data?.physicalDetail
-                  ? data?.physicalDetail?.height
+                {data?.othersDetail
+                  ? data?.othersDetail?.doSmoke
                   : "Not Provided"}
               </p>
             </div>
           )}
-          {data?.physicalDetail?.weight && (
+          {data?.othersDetail?.doDrink && (
             <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-              <span className="font-medium">Weight</span>
+              <span className="font-medium">Do drink</span>
               <p className="font-normal">
-                {data?.physicalDetail
-                  ? data?.physicalDetail?.weight
+                {data?.othersDetail
+                  ? data?.othersDetail?.doDrink
                   : "Not Provided"}
               </p>
             </div>
           )}
-          {data?.physicalDetail?.ancestry && (
+          {data?.othersDetail?.doDrink && (
             <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-              <span className="font-medium">Ancestry</span>
+              <span className="font-medium">Have pet</span>
               <p className="font-normal">
-                {data?.physicalDetail
-                  ? data?.physicalDetail?.ancestry
+                {data?.othersDetail
+                  ? data?.othersDetail?.doDrink
                   : "Not Provided"}
               </p>
             </div>
           )}
-          {data?.physicalDetail?.skinTone && (
+          {data?.othersDetail?.haveTattos && (
             <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-              <span className="font-medium">Skin Tone</span>
+              <span className="font-medium">Have tattos</span>
               <p className="font-normal">
-                {data?.physicalDetail
-                  ? data?.physicalDetail?.skinTone
+                {data?.othersDetail
+                  ? data?.othersDetail?.haveTattos
                   : "Not Provided"}
               </p>
             </div>
           )}
-          {data?.physicalDetail?.hairColor && (
-            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-              <span className="font-medium">Hair Color</span>
-              <p className="font-normal">
-                {data?.physicalDetail
-                  ? data?.physicalDetail?.hairColor
+          {data?.othersDetail?.haveVoluntaryExp && (
+            <div className="flex justify-between items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+              <span className="font-medium whitespace-nowrap">
+                Have voluntary Exp
+              </span>
+              <p className="font-normal text-right py-1">
+                {data?.othersDetail
+                  ? data?.othersDetail?.haveVoluntaryExp
                   : "Not Provided"}
               </p>
             </div>
           )}
-          {data?.physicalDetail?.hairType && (
+          {data?.othersDetail?.traveledOutsideBangladesh && (
             <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-              <span className="font-medium">Hair Type</span>
+              <span className="font-medium">Traveled outside Bangladesh</span>
               <p className="font-normal">
-                {data?.physicalDetail
-                  ? data?.physicalDetail?.hairType
+                {data?.othersDetail
+                  ? data?.othersDetail?.traveledOutsideBangladesh
                   : "Not Provided"}
               </p>
             </div>
           )}
-          {data?.physicalDetail?.eyeColor && (
+          {data?.othersDetail?.likeJoinFamily && (
             <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-              <span className="font-medium">Eye Color</span>
+              <span className="font-medium">Like Join Family</span>
               <p className="font-normal">
-                {data?.physicalDetail
-                  ? data?.physicalDetail?.eyeColor
+                {data?.othersDetail
+                  ? data?.othersDetail?.likeJoinFamily
                   : "Not Provided"}
               </p>
             </div>
           )}
-          {data?.physicalDetail?.numberOfTeeth && (
+          {data?.othersDetail?.likeChildren && (
             <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-              <span className="font-medium">Number of Teeth</span>
+              <span className="font-medium">Like Children</span>
               <p className="font-normal">
-                {data?.physicalDetail
-                  ? data?.physicalDetail?.numberOfTeeth
+                {data?.othersDetail
+                  ? data?.othersDetail?.likeChildren
+                  : "Not Provided"}
+              </p>
+            </div>
+          )}
+          {data?.othersDetail?.believeInGod && (
+            <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+              <span className="font-medium">Believe in God</span>
+              <p className="font-normal">
+                {data?.othersDetail
+                  ? data?.othersDetail?.believeInGod
                   : "Not Provided"}
               </p>
             </div>

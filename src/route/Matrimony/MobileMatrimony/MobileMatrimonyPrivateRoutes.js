@@ -15,48 +15,48 @@ import { GalleryContainerForMobile } from "../../../Wrapper/Home/mobileversion/P
 import { Setting } from "../../../Wrapper/Home/mobileversion/setting/Setting";
 
 const MobileMatrimonyPrivateRoutes = [
-    {
+  {
+    id: 1,
+    path: "/mobileuserprofile",
+    element: <MobileSingleProfilesUser />,
+    nestedRoutes: [
+      {
         id: 1,
-        path: "/mobileuserprofile",
-        element: <MobileSingleProfilesUser />,
-        nestedRoutes: [
-            {
-                id: 1,
-                path: "personaldetailsmov",
-                element: <PersonalDetailsMobile />,
-            },
-        ],
-    },
-    {
-        id: 2,
-        path: "/dynamicpersonaldetails/:id",
+        path: "personaldetailsmov",
         element: <PersonalDetailsMobile />,
-    },
-    {
-        id: 3,
-        path: "/educationalCertificateMov",
-        element: <EducationalCertificateMobile />,
-    },
-    {
-        id: 4,
-        path: "/professionalCertificateMov",
-        element: <ProfessionalCertificateMobile />,
-    },
-    {
-        id: 5,
-        path: "/personalCertificateMov",
-        element: <PersonalCertificateMobile />,
-    },
-    {
-        id: 6,
-        path: "/matchesmov",
-        element: <MatchesMov />,
-    },
-    {
-        id: 7,
-        path: "/Gallery/mobile/:id",
-        element: <GalleryContainerForMobile />,
-    },
+      },
+    ],
+  },
+  {
+    id: 2,
+    path: "/dynamicpersonaldetails/:id",
+    element: <PersonalDetailsMobile />,
+  },
+  {
+    id: 3,
+    path: "/educationalCertificateMov",
+    element: <EducationalCertificateMobile />,
+  },
+  {
+    id: 4,
+    path: "/professionalCertificateMov",
+    element: <ProfessionalCertificateMobile />,
+  },
+  {
+    id: 5,
+    path: "/personalCertificateMov",
+    element: <PersonalCertificateMobile />,
+  },
+  {
+    id: 6,
+    path: "/matchesmov",
+    element: <MatchesMov />,
+  },
+  {
+    id: 7,
+    path: "/Gallery/mobile/:id",
+    element: <GalleryContainerForMobile />,
+  },
 
     {
         id: 8,

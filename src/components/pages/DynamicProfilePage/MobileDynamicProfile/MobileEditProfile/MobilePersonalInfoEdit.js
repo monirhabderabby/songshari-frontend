@@ -4,14 +4,7 @@ import { useNavigate } from "react-router";
 
 // Third party packages
 import { FileAddFilled } from "@ant-design/icons";
-import {
-  DatePicker,
-  Radio,
-  Select,
-  Space,
-  Upload,
-  message,
-} from "antd";
+import { DatePicker, Radio, Select, Space, Upload, message } from "antd";
 import TextArea from "antd/es/input/TextArea";
 import { useForm } from "react-hook-form";
 
@@ -19,6 +12,8 @@ import { useForm } from "react-hook-form";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { firebaseStorage } from "../../../../../firebase.init";
 import { useUpdatePersonalDetailsMutation } from "../../../../../Redux/features/userInfo/userApi";
+import { BottomNav } from "../../../../../Wrapper/Home/mobileversion/BottomNav";
+import { Link } from "react-router-dom";
 const { Dragger } = Upload;
 
 const MobilePersonalInfoEdit = () => {
@@ -38,7 +33,7 @@ const MobilePersonalInfoEdit = () => {
   //uploaded image url data state
   const [nidOrPassportPhoto, setNidOrPassportPhoto] = useState({});
   // API from redux
-  const [ { data: updateResponse, isLoading, error }] =
+  const [{ data: updateResponse, isLoading, error }] =
     useUpdatePersonalDetailsMutation();
 
   const { register, handleSubmit } = useForm();
@@ -202,13 +197,27 @@ const MobilePersonalInfoEdit = () => {
         content: "Data updated successfully",
         duration: 2,
       });
-      navigate("/userprofile");
+      navigate("/mobileuserprofile");
     }
   }, [updateResponse, isLoading, error, messageApi, navigate]);
 
   return (
-    <div className="max-w-[523px] mx-auto bg-white drop-shadow-lg px-4 py-6 mb-4 rounded">
-      <div className="">
+    <div className="mx-6 mb-20">
+      {/* Navigate previous page */}
+      <div className="bg-[#FFFFFF] py-[10px] z-10 sticky top-0">
+        <div className="bg-white w-full grid grid-cols-6 h-[48px]">
+          <div className="pl-1 col-span-1">
+            <Link onClick={() => navigate(-1)}>
+              <i className="fa-solid text-sm text-[#1E2022] fa-chevron-left "></i>
+            </Link>
+          </div>
+          <div className="col-span-4 ">
+            <p className="text-center">Edit Personal Details</p>
+          </div>
+          <div className="col-span-1"></div>
+        </div>
+      </div>
+      <div className="max-w-[523px] mx-auto bg-white drop-shadow-lg px-4 py-6 mb-4 rounded">
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="flex justify-between pb-4">
             <div>
@@ -952,8 +961,9 @@ const MobilePersonalInfoEdit = () => {
             />
           </div>
         </form>
+        <div>{contextHolder}</div>
       </div>
-      <div>{contextHolder}</div>
+      <BottomNav />
     </div>
   );
 };
