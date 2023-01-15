@@ -117,15 +117,34 @@ export const TopMenu = () => {
                       onClick={logoutButton}
                       className="bg-login-mov-home rounded-full text-white px-3"
                     >
-                      LogOut
-                    </button>
-                  </div>
-                ) : (
-                  <div className="login-signup">
-                    <Link to="/mobile-login">
-                      <button className="bg-login-mov-home rounded-full text-white px-3">
-                        Log In
-                      </button>
+                        <MenuItem onClick={handleClose}>
+                            {user ? (
+                                <div>
+                                    <button onClick={logoutButton} className="bg-login-mov-home rounded-full text-white px-3">
+                                        LogOut
+                                    </button>
+                                </div>
+                            ) : (
+                                <div className="login-signup">
+                                    <Link to="/mobile-login">
+                                        <button className="bg-login-mov-home rounded-full text-white px-3">Log In</button>
+                                    </Link>
+                                    <p className="mx-2">Or</p>
+                                    <Link to="/mobile-signup">
+                                        <button className="bg-login-mov-home rounded-full text-white px-3">Sign Up</button>
+                                    </Link>
+                                </div>
+                            )}
+                        </MenuItem>
+                    </Menu>
+                </div>
+                <div className="col-span-1 mt-2">
+                    <Link to="/notifications">
+                        <i className="fa-regular fa-bell mr-4"></i>
+                    </Link>
+                    <Link to="/setting">
+                        {" "}
+                        <i className="fa-solid fa-bars"></i>
                     </Link>
                     <p className="mx-2">Or</p>
                     <Link to="/mobile-signup">

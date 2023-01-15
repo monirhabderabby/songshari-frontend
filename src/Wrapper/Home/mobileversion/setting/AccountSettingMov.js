@@ -13,7 +13,7 @@ export const AccountSettingMov = () => {
     const authInfo = decodeToken(token);
     const { _id } = authInfo || {};
     return (
-        <div className="mt-10">
+        <div className="mt-10 max-w-[1024px] mx-auto">
             <h1 className="font-bold ml-8 text-xl mb-12">Account</h1>
             <Link to="/mobileuserprofile">
                 <div className="grid grid-cols-6 mt-5 mb-10 he">
@@ -137,7 +137,12 @@ export const AccountSettingMov = () => {
                 </div>
             </Link>
             <Accordion>
-                <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel2a-content" id="panel2a-header">
+                <AccordionSummary
+                    className="max-w-[1024px] mx-auto"
+                    expandIcon={<ExpandMoreIcon />}
+                    aria-controls="panel2a-content"
+                    id="panel2a-header"
+                >
                     <Typography>
                         {" "}
                         <i className="fa-solid fa-ban mr-5 ml-8 mt-[25px]"></i> About Shongshari

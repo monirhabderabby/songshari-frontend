@@ -13,49 +13,47 @@ import { BottomNav } from "./BottomNav";
 import { MayLikeSingle } from "./MayLikeSingle";
 
 export const Like = () => {
-  // fetching
-  const { data, error, isLoading } = useGetSuggestedUsersQuery();
+    // fetching
+    const { data, error, isLoading } = useGetSuggestedUsersQuery();
 
-  if (isLoading) {
+    if (isLoading) {
+        return (
+            <div className="flex flex-col items-center justify-center mt-40">
+                <YouMayLikeSkeletionLoader></YouMayLikeSkeletionLoader>
+            </div>
+        );
+    }
+
+    if (error) {
+        return (
+            <div className="flex flex-col items-center justify-center mt-40">
+                <AiOutlineWarning className="text-[48px] text-gray-400" />
+                <p className="mt-[10px] text-[22px] font-Inter font-medium text-gray-500">Server Error</p>
+            </div>
+        );
+    }
+
     return (
-      <div className="flex flex-col items-center justify-center mt-40">
-        <YouMayLikeSkeletionLoader></YouMayLikeSkeletionLoader>
-      </div>
-    );
-  }
-
-  if (error) {
-    return (
-      <div className="flex flex-col items-center justify-center mt-40">
-        <AiOutlineWarning className="text-[48px] text-gray-400" />
-        <p className="mt-[10px] text-[22px] font-Inter font-medium text-gray-500">
-          Server Error
-        </p>
-      </div>
-    );
-  }
-
-  return (
-    <div className="bg-[#F8F8FF]">
-      <div className="bg-white sticky top-0 w-full">
-        <div className="grid grid-cols-3">
-          <Link to="/setting">
-            <i className="fa-solid fa-chevron-left ml-6 my-4"></i>
-          </Link>
-          <h1 className="profile-tit text-center mt-3 mb-3">You May Like</h1>
-          <div></div>
+        <div className="bg-[#F8F8FF]">
+            <div className="bg-white sticky top-0 w-full">
+                <div className="grid grid-cols-3 shadow-[2px_2px_8px_2px_rgba(0,0,0,0.1)]">
+                    <Link to="/setting">
+                        <i className="fa-solid fa-chevron-left ml-6 my-4"></i>
+                    </Link>
+                    <h1 className="profile-tit text-center mt-3 mb-3">You May Like</h1>
+                    <div></div>
+                </div>
+            </div>
+            {/* ----- You may like ----- */}
+            <div className="px-6 pt-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-y-8 md:px-10">
+                    {data?.data?.suggestion.map(profile => {
+                        return <MayLikeSingle key={profile._id} {...{ data: profile }} />;
+                    })}
+                </div>
+            </div>
+            <div className="h-20"></div>
+            <BottomNav></BottomNav>
         </div>
-      </div>
-      {/* ----- You may like ----- */}
-      <div className="px-6 pt-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-y-8 px-10">
-          {data?.data?.suggestion.map((profile) => {
-            return <MayLikeSingle key={profile._id} {...{ data: profile }} />;
-          })}
-        </div>
-      </div>
-      <div className="h-20"></div>
-      <BottomNav></BottomNav>
-    </div>
-  );
+    );
 };
