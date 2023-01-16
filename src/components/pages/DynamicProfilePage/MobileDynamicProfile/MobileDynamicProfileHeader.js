@@ -27,7 +27,6 @@ const MobileDynamicProfileHeader = ({ data }) => {
       setSocialBoxOpen(true);
     }
   }, [LinkedInId, faceBookId, instagramId, setSocialBoxOpen]);
-  console.log(data);
   return (
     <div>
       <div className="flex justify-center">
