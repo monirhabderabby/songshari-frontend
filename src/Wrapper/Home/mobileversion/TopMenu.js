@@ -46,51 +46,51 @@ export const TopMenu = () => {
   };
   return (
     <div>
-      <div className="grid grid-cols-5  bg-top rounded  pt-2 pb-2">
-        {user && (
-          <img
-            src={profilePhoto}
-            className="rounded-full w-8 ml-4"
-            alt="Not Available"
-          ></img>
-        )}
-        {!user && (
-          <div className="ml-4 mov-top w-8 rounded-full mt-1 col-span-1">
-            <img
-              src="https://i.ibb.co/pZFRdCB/512-512-Icon-1.png"
-              alt="Not Available"
-            ></img>
-          </div>
-        )}
-        <div className="col-span-3">
+      <div className="flex items-center justify-between bg-top rounded px-4 md:px-6 py-2">
+        <div>
           {user ? (
-            <Button
-              id="basic-button"
-              aria-controls={open ? "basic-menu" : undefined}
-              aria-haspopup="true"
-              aria-expanded={open ? "true" : undefined}
-              onClick={handleClick}
-              className="font-bold text-black"
-            >
-              <span className="text-black font-bold">
-                {" "}
-                {name} <i className="fa-solid fa-angle-down"></i>
-              </span>
-            </Button>
+            <div className="flex items-center gap-2">
+              <img
+                src={profilePhoto}
+                className="rounded-full w-8"
+                alt="Not Available"
+              ></img>
+              <Button
+                id="basic-button"
+                aria-controls={open ? "basic-menu" : undefined}
+                aria-haspopup="true"
+                aria-expanded={open ? "true" : undefined}
+                onClick={handleClick}
+                className="font-bold text-black"
+              >
+                <span className="text-black font-bold">
+                  {" "}
+                  {name} <i className="fa-solid fa-angle-down"></i>
+                </span>
+              </Button>
+            </div>
           ) : (
-            <Button
-              id="basic-button"
-              aria-controls={open ? "basic-menu" : undefined}
-              aria-haspopup="true"
-              aria-expanded={open ? "true" : undefined}
-              onClick={handleClick}
-              className="font-bold text-black"
-            >
-              <span className="text-black font-bold">
-                {" "}
-                Shongshari.com <i className="fa-solid fa-angle-down"></i>
-              </span>
-            </Button>
+            <div className="flex items-center">
+              <div className="mov-top w-8 rounded-full mt-1">
+                <img
+                  src="https://i.ibb.co/pZFRdCB/512-512-Icon-1.png"
+                  alt="Not Available"
+                ></img>
+              </div>
+              <Button
+                id="basic-button"
+                aria-controls={open ? "basic-menu" : undefined}
+                aria-haspopup="true"
+                aria-expanded={open ? "true" : undefined}
+                onClick={handleClick}
+                className="font-bold text-black"
+              >
+                <span className="text-black font-bold">
+                  {" "}
+                  Shongshari.com <i className="fa-solid fa-angle-down"></i>
+                </span>
+              </Button>
+            </div>
           )}
           <Menu
             id="basic-menu"
