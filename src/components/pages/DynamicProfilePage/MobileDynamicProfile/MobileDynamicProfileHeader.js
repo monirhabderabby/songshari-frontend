@@ -3,9 +3,21 @@ import React, { useState, useEffect } from "react";
 
 // Components
 import MobileSocialMediaBox from "../../../SingleProfilesUser/MobileSingleProfilesUser/SocialMediaMobile/MobileSocialMediaBox";
+import { ageCalculator } from "../../../../assets/utilities/AgeCalculation/ageCalculator";
+import blackLove from "../../../../assets/images/icons/blackLove.png";
+import { MobileDynamicConnectionsCard } from "./MobileDynamicConnectionsCard";
 
 const MobileDynamicProfileHeader = ({ data }) => {
   const [SocialBoxOpen, setSocialBoxOpen] = useState(false);
+  const [age, setAge] = useState(0);
+
+  useEffect(() => {
+    if (data) {
+      const age = ageCalculator(data?.dateOfBirth);
+      setAge(age);
+    }
+  }, [data]);
+
   // decision making about social Box
   const { LinkedInId } = data || {};
   const { faceBookId } = data || {};
@@ -15,10 +27,11 @@ const MobileDynamicProfileHeader = ({ data }) => {
       setSocialBoxOpen(true);
     }
   }, [LinkedInId, faceBookId, instagramId, setSocialBoxOpen]);
+  console.log(data);
   return (
     <div>
       <div className="flex justify-center">
-        <div className="w-full mx-7">
+        <div className="w-full mx-7 rounded">
           {data?.coverPhoto ? (
             <div>
               <img
@@ -49,25 +62,44 @@ const MobileDynamicProfileHeader = ({ data }) => {
                   {data?.firstName + " " + data?.lastName}
                 </h2>
               </div>
-              <div className="flex items-end justify-between gap-2">
-                <div>
-                  <h3 className="text-[#737373] w-[165px] mt-[16px] pb-[10px] border-[#737373] text-xs font-normal border-b-[1px]">
-                    {data?.email ? data?.email : "Not Provided"}
-                  </h3>
-                  <h3 className="text-[#737373] w-[165px] mt-[16px] pb-[10px] border-[#737373] text-xs font-normal border-b-[1px]">
-                    {data?.phone ? data?.phone : "Not Provided"}
-                  </h3>
-                  <h3 className="text-[#737373] w-[165px] mt-[16px]  text-xs font-normal pb-[20px] capitalize">
-                    {data?.maritalStatus ? data?.maritalStatus : "Not Provided"}
-                  </h3>
+              <div className="flex justify-between items-center mt-3 mb-4">
+                <div className="flex items-center gap-7">
+                  <p className="text-[#333333] text-xs leading-7 font-Inter whitespace-nowrap">
+                    {age} Years Old
+                  </p>
+                  <div className="w-[2px] h-4 bg-[#333333]"></div>
+                  <p className="text-[#333333] text-xs leading-7 font-Inter">
+                    {data?.hometown}
+                  </p>
                 </div>
-                <div className="w-[120px] mr-2 pb-4">
-                  {SocialBoxOpen && (
-                    <MobileSocialMediaBox
-                      {...{ LinkedInId, faceBookId, instagramId }}
-                    />
-                  )}
+                <div className="flex items-center gap-2">
+                  <div className="w-7 h-7 rounded-full bg-[#F7E9F8] mr-1 flex items-center justify-center">
+                    <img src={blackLove} alt="blackLove" />
+                  </div>
+                  <span className="text-xs leading-7 font-bold text-[#333333]">
+                    {data?.likes?.length || 0}
+                  </span>
                 </div>
+              </div>
+              <div className="flex justify-between items-center mb-4">
+                <MobileDynamicConnectionsCard {...{ data }} />
+                <button
+                  className="text-white text-xs leading-7 font-Inter px-3 py-2 rounded-[50px]"
+                  style={{
+                    backgroundImage:
+                      "linear-gradient(309deg, #F664BC 0%, #FB7BBC 35%, #FF92BB 100%)",
+                    boxShadow: "0px 5px 20px rgba(139, 122, 132, 0.5)",
+                  }}
+                >
+                  Diamond User
+                </button>
+              </div>
+              <div className="w-40 pb-4">
+                {SocialBoxOpen && (
+                  <MobileSocialMediaBox
+                    {...{ LinkedInId, faceBookId, instagramId }}
+                  />
+                )}
               </div>
             </div>
           </div>
