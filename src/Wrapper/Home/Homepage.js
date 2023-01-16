@@ -42,9 +42,6 @@ const Homepage = () => {
       <div className="block lg:hidden">
         <MobileHome></MobileHome>
       </div>
-      {/* <div className="lg:hidden hidden md:block">
-                <TabHome></TabHome>
-            </div> */}
     </div>
   );
 };
