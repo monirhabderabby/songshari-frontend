@@ -5,7 +5,10 @@ export const withoutLoginApi = apiSlice.injectEndpoints({
         getRecentMembers: builder.query({
             query: () => "withoutLogin/recentMembers",
         }),
+        getAllPlans: builder.query({
+            query: () => "admin/plan",
+        }),
     }),
 });
 
-export const { useGetRecentMembersQuery } = withoutLoginApi;
+export const { useGetRecentMembersQuery,useGetAllPlansQuery } = withoutLoginApi;
