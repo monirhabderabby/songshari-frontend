@@ -1,9 +1,12 @@
 import React from "react";
 
+// Components
+import SingleProductDetails from "./SingleProductDetails/SingleProductDetails";
+
 const ShopProducts = () => {
   return (
     <div>
-      <h1>This is Shop Products</h1>
+      <SingleProductDetails />
     </div>
   );
 };
