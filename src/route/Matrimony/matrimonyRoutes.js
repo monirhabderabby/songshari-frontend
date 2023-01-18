@@ -20,6 +20,9 @@ import TopGroom from "../../components/pages/TopProfile/TopGroom";
 import About from "../../Wrapper/About/About";
 import Homepage from "../../Wrapper/Home/Homepage";
 import MemberShip from "../../Wrapper/Membership/MemberShip";
+import Shop from "../../Wrapper/Shop/Shop";
+import ShopOrders from "../../Wrapper/Shop/ShopOrders/ShopOrders";
+import ShopProducts from "../../Wrapper/Shop/ShopProducts/ShopProducts";
 
 const matrimonyRoutes = [
   {
@@ -136,6 +139,15 @@ const matrimonyRoutes = [
         path: ":id",
         element: <MessegeBox />,
       },
+    ],
+  },
+  {
+    id: 15,
+    path: "/shop",
+    element: <Shop />,
+    nestedRoutes: [
+      { id: 1, path: "shopProducts", element: <ShopProducts /> },
+      { id: 2, path: "shopOrders", element: <ShopOrders /> },
     ],
   },
 ];
