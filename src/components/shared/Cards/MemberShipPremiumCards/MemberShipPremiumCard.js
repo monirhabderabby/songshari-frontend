@@ -23,7 +23,7 @@ const MemberShipPremiumCard = ({ item }) => {
               method="post"
             >
               <button type="submit"
-                className=" bg-member-premium-btn   text-white  "
+                className=" bg-member-premium-btn bg-gradient-to-r from-[#f22876] to-[#942dd9] text-white  "
               >
                 Buy Now
               </button>
