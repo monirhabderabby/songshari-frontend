@@ -23,6 +23,7 @@ import MemberShip from "../../Wrapper/Membership/MemberShip";
 import Shop from "../../Wrapper/Shop/Shop";
 import ShopOrders from "../../Wrapper/Shop/ShopOrders/ShopOrders";
 import ShopProducts from "../../Wrapper/Shop/ShopProducts/ShopProducts";
+import PaymentSuccess from "../../components/shared/Success/PaymentSuccess"
 
 const matrimonyRoutes = [
   {
@@ -150,5 +151,11 @@ const matrimonyRoutes = [
       { id: 2, path: "shopOrders", element: <ShopOrders /> },
     ],
   },
+  {
+    id: 16,
+    path: "/paymentSuccess",
+    element: <PaymentSuccess />
+  }
 ];
+
 export default matrimonyRoutes;
