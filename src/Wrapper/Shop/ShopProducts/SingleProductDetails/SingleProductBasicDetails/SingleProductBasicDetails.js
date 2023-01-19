@@ -18,9 +18,10 @@ const SingleProductBasicDetails = ({ data }) => {
       </h1>
       <div className="flex items-center gap-3 mb-8">
         <div className="flex items-center gap-1">
-          {data.productReviews.map((r, i) => (
-            <BsStarFill className="text-[#FECE23]" key={i} />
-          ))}
+          <BsStarFill className="text-[#FECE23]" />
+          <BsStarFill className="text-[#FECE23]" />
+          <BsStarFill className="text-[#FECE23]" />
+          <BsStarFill className="text-[#FECE23]" />
         </div>
         <p className="text-sm leading-5 font-medium text-[#52525B]">
           {data.productReviews.length} Reviews
@@ -71,7 +72,7 @@ const SingleProductBasicDetails = ({ data }) => {
         <div className="w-8 h-8 bg-green-500 rounded-lg"></div>
       </div>
       {/* Submit btn */}
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-3 mb-8">
         <button
           className="text-white w-[200px] h-[50px] rounded-md text-center font-bold"
           style={{
