@@ -1,16 +1,17 @@
+// configuration
 import React from "react";
 
+// components
+import { OnGoingOrderContainer } from "./OnGoingOrderContainer";
+import { OrderHistoryContainer } from "./OrderHistoryContainer";
+
 const ShopOrders = () => {
-  return (
-    <div>
-      <h1 className="text-center text-5xl font-thin">
-        Your Orders Page is under construction
-      </h1>
-      <h2 className="text-center text-5xl font-thin mt-3">
-        Stay with us to find your orders solution
-      </h2>
-    </div>
-  );
+    return (
+        <div className="pb-[300px]">
+            <OnGoingOrderContainer />
+            <OrderHistoryContainer />
+        </div>
+    );
 };
 
 export default ShopOrders;
