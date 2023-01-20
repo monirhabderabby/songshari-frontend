@@ -146,7 +146,7 @@ const MobileMatrimony = [
     },
     {
         id: 16,
-        path: "/mobileDiamondPlan",
+        path: "/mobile/plan",
         element: <MobileDiamondPlan />,
     },
     {
