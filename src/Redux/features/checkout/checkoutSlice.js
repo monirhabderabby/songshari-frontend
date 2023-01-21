@@ -26,6 +26,7 @@ const checkoutSlice = createSlice({
                 if (product.id === id) {
                     return product.quantity++;
                 }
+                return product;
             });
         },
     },
