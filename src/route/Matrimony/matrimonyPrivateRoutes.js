@@ -1,4 +1,5 @@
 import { Cart } from "../../components/pages/cart/Cart";
+import { CheckoutPage } from "../../components/pages/Checkout/CheckoutPage";
 import { Gallery } from "../../components/shared/Components/Gallery";
 import EducationalCertificateWeb from "../../components/SingleProfilesUser/CertificateSection/EducationalCertificateWeb";
 import PersonalCertificateWeb from "../../components/SingleProfilesUser/CertificateSection/PersonalCertificateWeb";
@@ -97,6 +98,11 @@ const matrimonyPrivateRoutes = [
         id: 7,
         path: "/cart",
         element: <Cart />,
+    },
+    {
+        id: 8,
+        path: "/checkout/:id",
+        element: <CheckoutPage />,
     },
 ];
 
