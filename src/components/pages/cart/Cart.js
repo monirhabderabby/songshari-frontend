@@ -43,7 +43,7 @@ export const Cart = () => {
     return (
         <div className="pb-[250px]">
             <CustomHeader title="Cart" />
-            <div className="mt-[72px] max-w-[1200px] mx-auto">
+            <div className="mt-[72px] max-w-[1200px] mx-auto px-[20px]">
                 <h1 className="text-[#000000] text-[40px] font-Inter font-bold text-left">Your Cart</h1>
                 <div className="mt-[59px] grid grid-cols-1 gap-y-[32px]">
                     {products?.map(product => {
