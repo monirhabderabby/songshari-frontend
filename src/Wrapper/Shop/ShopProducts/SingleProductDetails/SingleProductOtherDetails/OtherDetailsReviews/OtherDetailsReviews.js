@@ -1,8 +1,8 @@
 // Configuration
 import React from "react";
 
-// Components
-import { BsStarFill } from "react-icons/bs";
+// Third party packages
+import Rating from "@mui/material/Rating";
 
 const OtherDetailsReviews = ({ data }) => {
   return (
@@ -21,10 +21,11 @@ const OtherDetailsReviews = ({ data }) => {
           </div>
           <div>
             <div className="flex items-center gap-1 mb-6">
-              <BsStarFill className="text-[#FECE23] text-[22px]" />
-              <BsStarFill className="text-[#FECE23] text-[22px]" />
-              <BsStarFill className="text-[#FECE23] text-[22px]" />
-              <BsStarFill className="text-[#FECE23] text-[22px]" />
+              <Rating
+                name="reviewRating"
+                value={review.rating}
+                precision={0.5}
+              />
             </div>
             <div>
               <p className="mb-6 text-[#18181B]">{review.review}</p>
