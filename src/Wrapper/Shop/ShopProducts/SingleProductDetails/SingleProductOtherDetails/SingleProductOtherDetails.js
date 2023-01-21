@@ -1,12 +1,11 @@
 // Configuration
-import React from "react";
-import { useState } from "react";
-import OtherDetailsCompare from "./OtherDetailsCompare/OtherDetailsCompare";
-import OtherDetailsDescription from "./OtherDetailsDescription/OtherDetailsDescription";
-import OtherDetailsReviews from "./OtherDetailsReviews/OtherDetailsReviews";
+import React, { useState } from "react";
 
 // Components
 import SingleProductOtherDetailsNav from "./SingleProductOtherDetailsNav";
+import OtherDetailsCompare from "./OtherDetailsCompare/OtherDetailsCompare";
+import OtherDetailsDescription from "./OtherDetailsDescription/OtherDetailsDescription";
+import OtherDetailsReviews from "./OtherDetailsReviews/OtherDetailsReviews";
 
 const SingleProductOtherDetails = ({ data }) => {
   const [page, setPage] = useState(1);

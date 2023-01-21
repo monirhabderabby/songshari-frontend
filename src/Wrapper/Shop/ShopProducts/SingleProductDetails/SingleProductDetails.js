@@ -14,6 +14,7 @@ const SingleProductDetails = () => {
   const data = {
     productImages: [gentsCourt1, gentsCourt2, gentsCourt3, gentsCourt4],
     productName: "Bro's Closets - The Lawyer top for male, dark",
+    rating: 3.5,
     productReviews: [
       {
         id: 1,
@@ -31,7 +32,7 @@ const SingleProductDetails = () => {
         review:
           "You made it so simple. My new site is so much faster and easier to work with than my old site. I just choose the page, make the changes.",
         date: "March 14, 2022",
-        rating: 4,
+        rating: 4.5,
       },
       {
         id: 3,
@@ -40,7 +41,7 @@ const SingleProductDetails = () => {
         review:
           "You made it so simple. My new site is so much faster and easier to work with than my old site. I just choose the page, make the changes.",
         date: "March 14, 2022",
-        rating: 5,
+        rating: 3,
       },
     ],
     latestPrice: 4999,
@@ -56,7 +57,7 @@ const SingleProductDetails = () => {
       { type: "large", height: "160cm" },
       { type: "extra large", height: "185cm" },
     ],
-    colors: [""],
+    colors: ["#aaddbb", "#ac14e7", "#fdbe02", "#008080"],
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis soluta numquam animi odit inventore ut enim placeat pariatur veniam. Deserunt architecto omnis numquam non eveniet? Nobis animi iste iure odio ut ipsum non earum deserunt numquam voluptatibus! Asperiores rerum pariatur quod perspiciatis, neque totam, ullam repudiandae, nostrum consequatur excepturi nulla.",
     comparedProducts: [
