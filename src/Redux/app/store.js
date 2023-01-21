@@ -3,6 +3,7 @@ import { combineReducers } from "redux";
 import { persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import apiSlice from "../api/apiSlice";
+import checkoutSlice from "../features/checkout/checkoutSlice";
 import filterSlice from "../features/filter/filterSlice";
 import userInfo from "../features/userInfo/userInfo";
 
@@ -15,6 +16,7 @@ const persistConfig = {
 const reducer = combineReducers({
     userInfo: userInfo,
     filter: filterSlice,
+    checkout: checkoutSlice,
 });
 const persistedReducer = persistReducer(persistConfig, reducer);
 const store = configureStore({

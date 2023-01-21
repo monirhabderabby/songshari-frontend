@@ -8,11 +8,13 @@ import gentsCourt4 from "../../../../assets/images/shop/singleProduct/gentsCourt
 import reviewer from "../../../../assets/images/shop/singleProduct/reviewer.jpg";
 import SingleProductBasicDetails from "./SingleProductBasicDetails/SingleProductBasicDetails";
 import SingleProductImages from "./SingleProductImages/SingleProductImages";
+import SingleProductOtherDetails from "./SingleProductOtherDetails/SingleProductOtherDetails";
 
 const SingleProductDetails = () => {
   const data = {
     productImages: [gentsCourt1, gentsCourt2, gentsCourt3, gentsCourt4],
     productName: "Bro's Closets - The Lawyer top for male, dark",
+    rating: 3.5,
     productReviews: [
       {
         id: 1,
@@ -20,7 +22,7 @@ const SingleProductDetails = () => {
         reviewerName: "Kristin Khan",
         review:
           "You made it so simple. My new site is so much faster and easier to work with than my old site. I just choose the page, make the changes.",
-        data: "March 14, 2022",
+        date: "March 14, 2022",
         rating: 5,
       },
       {
@@ -29,8 +31,8 @@ const SingleProductDetails = () => {
         reviewerName: "Kristin Khan",
         review:
           "You made it so simple. My new site is so much faster and easier to work with than my old site. I just choose the page, make the changes.",
-        data: "March 14, 2022",
-        rating: 4,
+        date: "March 14, 2022",
+        rating: 4.5,
       },
       {
         id: 3,
@@ -38,8 +40,8 @@ const SingleProductDetails = () => {
         reviewerName: "Kristin Khan",
         review:
           "You made it so simple. My new site is so much faster and easier to work with than my old site. I just choose the page, make the changes.",
-        data: "March 14, 2022",
-        rating: 5,
+        date: "March 14, 2022",
+        rating: 3,
       },
     ],
     latestPrice: 4999,
@@ -55,8 +57,9 @@ const SingleProductDetails = () => {
       { type: "large", height: "160cm" },
       { type: "extra large", height: "185cm" },
     ],
-    colors: [""],
-    description: "",
+    colors: ["#aaddbb", "#ac14e7", "#fdbe02", "#008080"],
+    description:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis soluta numquam animi odit inventore ut enim placeat pariatur veniam. Deserunt architecto omnis numquam non eveniet? Nobis animi iste iure odio ut ipsum non earum deserunt numquam voluptatibus! Asperiores rerum pariatur quod perspiciatis, neque totam, ullam repudiandae, nostrum consequatur excepturi nulla.",
     comparedProducts: [
       { id: 1, img: gentsCourt1, productName: "Premium Jacket", price: 4888 },
       { id: 2, img: gentsCourt2, productName: "Premium Jacket", price: 5888 },
@@ -66,9 +69,14 @@ const SingleProductDetails = () => {
   };
   return (
     <div>
-      <div className="flex justify-between items-start">
-        <div className="max-w-[700px] mb-20">
-          <SingleProductImages {...{ data }} />
+      <div className="flex justify-between items-start mb-20">
+        <div className="max-w-[700px]">
+          <div className="mb-20">
+            <SingleProductImages {...{ data }} />
+          </div>
+          <div>
+            <SingleProductOtherDetails {...{ data }} />
+          </div>
         </div>
         <div className="max-w-[432px]">
           <SingleProductBasicDetails {...{ data }} />
