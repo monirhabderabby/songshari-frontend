@@ -1,41 +1,27 @@
+// Configuration
 import React from "react";
+import { useEffect } from "react";
 import { useCallback } from "react";
+
+// Third party package
 import { useDropzone } from "react-dropzone";
 import { useForm } from "react-hook-form";
-import CustomHeader from "../../../components/shared/CustomHeader/CustomHeader";
 
 const LawyerServiceForm = () => {
   const onDrop = useCallback((acceptedFiles) => {}, []);
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
   const { register, handleSubmit } = useForm();
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data) => {
+    console.log(data);
+  };
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  }, []);
 
   return (
     <div>
-      <CustomHeader title={"Lawyer Service Form"}></CustomHeader>
-      {/* Internal NavBar for Lawyer Service Form */}
-      <div className="flex justify-center md:h-[54px] items-center mt-[39px] z-50">
-        <div className="shadow-[0px_5px_30px_rgba(35,57,184,0.2)] bg-white rounded-[10px] h-full px-[39px]">
-          <div className="flex flex-col md:flex-row justify-center items-center gap-x-[28px]">
-            <button className="mt-4 font-medium leading-tight text-gray-800">
-              Service
-            </button>
-            <button className={"mt-4 font-medium leading-tight text-gray-800"}>
-              Profile
-            </button>
-            <button className={"mt-4 font-medium leading-tight text-gray-800"}>
-              Review
-              <sup className="text-white bg_Color px-[6px] py-1 rounded-full text-[10px]">
-                04
-              </sup>
-            </button>
-            <button className="mt-4 font-medium leading-tight text-gray-800">
-              Activity
-            </button>
-          </div>
-        </div>
-      </div>
       <h1 className="my-10 md:my-20 text-center text-2xl md:text-3xl font-bold leading-8">
         Fill the Below form to add your own lawyer service
       </h1>
@@ -288,7 +274,7 @@ const LawyerServiceForm = () => {
         {/* Submit button */}
         <input
           type="submit"
-          className="bg-[#E41272] text-white tracking-wider px-8 pt-4 pb-5 border border-[#3D66D7] rounded font-bold leading-4 mb-5"
+          className="bg-[#E41272] text-white tracking-wider px-8 pt-4 pb-5 border border-[#3D66D7] rounded font-bold leading-4 mb-5 cursor-pointer"
           value={"Submit Offer"}
         />
       </form>

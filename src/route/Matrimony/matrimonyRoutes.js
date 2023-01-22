@@ -19,10 +19,14 @@ import TopBride from "../../components/pages/TopProfile/TopBride";
 import TopGroom from "../../components/pages/TopProfile/TopGroom";
 import About from "../../Wrapper/About/About";
 import Homepage from "../../Wrapper/Home/Homepage";
+import Lawyer from "../../Wrapper/Lawyer/Lawyer";
 import MemberShip from "../../Wrapper/Membership/MemberShip";
 import Shop from "../../Wrapper/Shop/Shop";
 import ShopOrders from "../../Wrapper/Shop/ShopOrders/ShopOrders";
 import ShopProducts from "../../Wrapper/Shop/ShopProducts/ShopProducts";
+import LawyerServiceForm from "../../components/Lawyer/LawyerServiceForm/LawyerServiceForm";
+import LawyerServicesPage from "../../components/Lawyer/LawyerUserProfile/LawyerServicesPage";
+import LawyerSingleServiceDetails from "../../components/Lawyer/LawyerSingleServiceDetails/LawyerSingleServiceDetails";
 
 const matrimonyRoutes = [
   {
@@ -148,6 +152,20 @@ const matrimonyRoutes = [
     nestedRoutes: [
       { id: 1, path: "shopProducts", element: <ShopProducts /> },
       { id: 2, path: "shopOrders", element: <ShopOrders /> },
+    ],
+  },
+  {
+    id: 16,
+    path: "/lawyerProfile",
+    element: <Lawyer />,
+    nestedRoutes: [
+      { id: 1, path: "lawyerService", element: <LawyerServicesPage /> },
+      { id: 2, path: "lawyerAddForm", element: <LawyerServiceForm /> },
+      {
+        id: 3,
+        path: "lawyerSingleServiceDetails/:id",
+        element: <LawyerSingleServiceDetails />,
+      },
     ],
   },
 ];
