@@ -2,6 +2,9 @@
 import React from "react";
 import { useParams } from "react-router";
 
+// Third party package
+import { TbCurrencyTaka } from "react-icons/tb";
+
 //Components
 import service1 from "../../../assets/images/LawyerProfileImg/lawyerService1.jpg";
 import service2 from "../../../assets/images/LawyerProfileImg/lawyerService2.jpg";
@@ -74,9 +77,25 @@ const LawyerSingleServiceDetails = () => {
             <h1 className="text-2xl leading-[48px] font-bold font-Poppins mt-4 mb-4">
               Get more with Offer Add-ons
             </h1>
-            <p className="text-[#757575] text-xl leading-10 font-Poppins mb-8">
+            <p className="text-[#757575] text-xl leading-10 font-Poppins mb-12">
               {serviceDetails.offerAddOn}
             </p>
+            <div className="w-[759px] ml-auto shadow-[0px_4px_4px_rgba(0,0,0,0.25)] rounded-lg bg-[linear-gradient(104.74deg,#E41272_28.77%,#630465_76.53%,#942DD9_76.53%)] py-5 px-8 flex justify-between items-center mb-8">
+              <div className="text-white">
+                <p className="leading-[30px] font-semibold mb-1">
+                  I can design more pages for extra cost (Per Page)
+                </p>
+                <p className="text-xs leading-[18px]">
+                  Additional 1 working day
+                </p>
+              </div>
+              <div>
+                <button className="bg-white text-black py-2 px-3 rounded-lg flex justify-center items-center text-[28px] font-semibold leading-[28px]">
+                  +<TbCurrencyTaka />
+                  100
+                </button>
+              </div>
+            </div>
             <h1 className="text-2xl leading-[48px] font-bold font-Poppins mt-4 mb-4">
               What do you need from the Buyer to get started?
             </h1>
