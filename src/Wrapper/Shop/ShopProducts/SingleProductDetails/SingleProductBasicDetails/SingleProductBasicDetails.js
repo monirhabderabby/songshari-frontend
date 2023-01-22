@@ -1,28 +1,27 @@
 // Configuration
 import React, { useState } from "react";
 
+// Third party packages
+import Rating from "@mui/material/Rating";
+
 // Components
-import { BsStarFill } from "react-icons/bs";
 import { TbCurrencyTaka, TbCreditCard } from "react-icons/tb";
 import { HiTag, HiOutlineGlobe } from "react-icons/hi";
 import { AiOutlineHeart } from "react-icons/ai";
 import { BiUser } from "react-icons/bi";
 import SelectSizeCard from "./SelectSizeCard";
+import SelectColorCard from "./SelectColorCard";
 
 const SingleProductBasicDetails = ({ data }) => {
   const [selectedSize, setSelectedSize] = useState(0);
+  const [selectedColor, setSelectedColor] = useState();
   return (
     <div>
       <h1 className="text-[#18181B] text-3xl leading-10 font-bold mb-4">
         {data.productName}
       </h1>
       <div className="flex items-center gap-3 mb-8">
-        <div className="flex items-center gap-1">
-          <BsStarFill className="text-[#FECE23]" />
-          <BsStarFill className="text-[#FECE23]" />
-          <BsStarFill className="text-[#FECE23]" />
-          <BsStarFill className="text-[#FECE23]" />
-        </div>
+        <Rating name="productRating" value={data.rating} precision={0.5} />
         <p className="text-sm leading-5 font-medium text-[#52525B]">
           {data.productReviews.length} Reviews
         </p>
@@ -69,7 +68,14 @@ const SingleProductBasicDetails = ({ data }) => {
       </div>
       <div className="mb-10">
         <p className="font-bold text-[#18181B] mb-6">Colors</p>
-        <div className="w-8 h-8 bg-green-500 rounded-lg"></div>
+        <div className="flex items-center justify-start gap-3">
+          {data.colors.map((color, i) => (
+            <SelectColorCard
+              key={i}
+              {...{ color, selectedColor, setSelectedColor }}
+            />
+          ))}
+        </div>
       </div>
       {/* Submit btn */}
       <div className="flex items-center gap-3 mb-8">
