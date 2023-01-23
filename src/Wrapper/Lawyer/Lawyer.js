@@ -26,19 +26,25 @@ const Lawyer = () => {
             <NavLink className={"mt-4 font-medium leading-tight text-gray-800"}>
               Profile
             </NavLink>
-            <NavLink className={"mt-4 font-medium leading-tight text-gray-800"}>
+            <NavLink
+              to={"/lawyerProfile/lawyerReview"}
+              className={"mt-4 font-medium leading-tight text-gray-800"}
+            >
               Review
               <sup className="text-white bg_Color px-[6px] py-1 rounded-full text-[10px]">
                 04
               </sup>
             </NavLink>
-            <NavLink className="mt-4 font-medium leading-tight text-gray-800">
+            <NavLink
+              to={"/lawyerProfile/lawyerActivity"}
+              className="mt-4 font-medium leading-tight text-gray-800"
+            >
               Activity
             </NavLink>
           </div>
         </div>
       </div>
-      <div className="lg:max-w-[1000px] xl:max-w-[1200px] mx-auto">
+      <div>
         <Outlet />
       </div>
     </div>

@@ -55,7 +55,7 @@ const LawyerServicesPage = () => {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   }, []);
   return (
-    <div>
+    <div className="lg:max-w-[1000px] xl:max-w-[1200px] mx-auto">
       <div className="w-11/12 mx-auto xl:w-full">
         <div className="mt-[70px]">
           <div className="grid grid-cols-2 gap-3">

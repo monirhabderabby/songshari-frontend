@@ -60,66 +60,68 @@ const LawyerSingleServiceDetails = () => {
     ],
   };
   return (
-    <div>
-      <h1 className="text-[#32353B] text-[42px] leading-[60px] font-bold font-Poppins mb-16">
-        {serviceDetails.name} {id}
-      </h1>
-      <div className="flex justify-between items-start">
-        <div className="max-w-[819px]">
-          <LawyerSingleServiceImages {...{ serviceDetails }} />
-          <div>
-            <h1 className="text-2xl leading-[48px] font-bold font-Poppins mt-4 mb-4">
-              What you deliver with this Offer
-            </h1>
-            <p className="text-[#757575] text-xl leading-10 font-Poppins mb-8">
-              {serviceDetails.offerDetails}
-            </p>
-            <h1 className="text-2xl leading-[48px] font-bold font-Poppins mt-4 mb-4">
-              Get more with Offer Add-ons
-            </h1>
-            <p className="text-[#757575] text-xl leading-10 font-Poppins mb-12">
-              {serviceDetails.offerAddOn}
-            </p>
-            <div className="w-[759px] ml-auto shadow-[0px_4px_4px_rgba(0,0,0,0.25)] rounded-lg bg-[linear-gradient(104.74deg,#E41272_28.77%,#630465_76.53%,#942DD9_76.53%)] py-5 px-8 flex justify-between items-center mb-8">
-              <div className="text-white">
-                <p className="leading-[30px] font-semibold mb-1">
-                  I can design more pages for extra cost (Per Page)
-                </p>
-                <p className="text-xs leading-[18px]">
-                  Additional 1 working day
-                </p>
-              </div>
-              <div>
-                <button className="bg-white text-black py-2 px-3 rounded-lg flex justify-center items-center text-[28px] font-semibold leading-[28px]">
-                  +<TbCurrencyTaka />
-                  100
-                </button>
-              </div>
-            </div>
-            <h1 className="text-2xl leading-[48px] font-bold font-Poppins mt-4 mb-4">
-              What do you need from the Buyer to get started?
-            </h1>
-            <p className="text-[#757575] text-xl leading-10 font-Poppins mb-20">
-              {serviceDetails.whatNeeded}
-            </p>
-          </div>
-          {/* Reviews */}
-          <div>
-            <h1 className="text-[#707276] text-[27px] leading-[48px] font-light font-Poppins mb-12">
-              Reviews ({serviceDetails.reviews.length})
-            </h1>
+    <div className="lg:max-w-[1000px] xl:max-w-[1200px] mx-auto">
+      <div>
+        <h1 className="text-[#32353B] text-[42px] leading-[60px] font-bold font-Poppins mb-16">
+          {serviceDetails.name} {id}
+        </h1>
+        <div className="flex justify-between items-start">
+          <div className="max-w-[819px]">
+            <LawyerSingleServiceImages {...{ serviceDetails }} />
             <div>
-              {serviceDetails.reviews.map((review) => (
-                <LawyerSingleServiceReviewCard
-                  key={review.id}
-                  {...{ review }}
-                />
-              ))}
+              <h1 className="text-2xl leading-[48px] font-bold font-Poppins mt-4 mb-4">
+                What you deliver with this Offer
+              </h1>
+              <p className="text-[#757575] text-xl leading-10 font-Poppins mb-8">
+                {serviceDetails.offerDetails}
+              </p>
+              <h1 className="text-2xl leading-[48px] font-bold font-Poppins mt-4 mb-4">
+                Get more with Offer Add-ons
+              </h1>
+              <p className="text-[#757575] text-xl leading-10 font-Poppins mb-12">
+                {serviceDetails.offerAddOn}
+              </p>
+              <div className="w-[759px] ml-auto shadow-[0px_4px_4px_rgba(0,0,0,0.25)] rounded-lg bg-[linear-gradient(104.74deg,#E41272_28.77%,#630465_76.53%,#942DD9_76.53%)] py-5 px-8 flex justify-between items-center mb-8">
+                <div className="text-white">
+                  <p className="leading-[30px] font-semibold mb-1">
+                    I can design more pages for extra cost (Per Page)
+                  </p>
+                  <p className="text-xs leading-[18px]">
+                    Additional 1 working day
+                  </p>
+                </div>
+                <div>
+                  <button className="bg-white text-black py-2 px-3 rounded-lg flex justify-center items-center text-[28px] font-semibold leading-[28px]">
+                    +<TbCurrencyTaka />
+                    100
+                  </button>
+                </div>
+              </div>
+              <h1 className="text-2xl leading-[48px] font-bold font-Poppins mt-4 mb-4">
+                What do you need from the Buyer to get started?
+              </h1>
+              <p className="text-[#757575] text-xl leading-10 font-Poppins mb-20">
+                {serviceDetails.whatNeeded}
+              </p>
+            </div>
+            {/* Reviews */}
+            <div>
+              <h1 className="text-[#707276] text-[27px] leading-[48px] font-light font-Poppins mb-12">
+                Reviews ({serviceDetails.reviews.length})
+              </h1>
+              <div>
+                {serviceDetails.reviews.map((review) => (
+                  <LawyerSingleServiceReviewCard
+                    key={review.id}
+                    {...{ review }}
+                  />
+                ))}
+              </div>
             </div>
           </div>
+          {/* Prize review details */}
+          <LawyerSingleServicePrizeReviewDetails {...{ serviceDetails }} />
         </div>
-        {/* Prize review details */}
-        <LawyerSingleServicePrizeReviewDetails {...{ serviceDetails }} />
       </div>
     </div>
   );

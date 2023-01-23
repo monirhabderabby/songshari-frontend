@@ -27,6 +27,8 @@ import ShopProducts from "../../Wrapper/Shop/ShopProducts/ShopProducts";
 import LawyerServiceForm from "../../components/Lawyer/LawyerServiceForm/LawyerServiceForm";
 import LawyerServicesPage from "../../components/Lawyer/LawyerUserProfile/LawyerServicesPage";
 import LawyerSingleServiceDetails from "../../components/Lawyer/LawyerSingleServiceDetails/LawyerSingleServiceDetails";
+import LawyerReview from "../../components/Lawyer/LawyerReview/LawyerReview";
+import LawyerActivity from "../../components/Lawyer/LawyerActivity/LawyerActivity";
 
 const matrimonyRoutes = [
   {
@@ -165,6 +167,16 @@ const matrimonyRoutes = [
         id: 3,
         path: "lawyerSingleServiceDetails/:id",
         element: <LawyerSingleServiceDetails />,
+      },
+      {
+        id: 4,
+        path: "lawyerReview",
+        element: <LawyerReview />,
+      },
+      {
+        id: 5,
+        path: "lawyerActivity",
+        element: <LawyerActivity />,
       },
     ],
   },
