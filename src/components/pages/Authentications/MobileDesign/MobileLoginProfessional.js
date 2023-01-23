@@ -15,7 +15,7 @@ import { useLoginAsMemberMutation } from "../../../../Redux/features/userInfo/us
 import { loadUserData } from "../../../../Redux/features/userInfo/userInfo";
 import Error from "../../../ui/error/Error";
 
-const MobileLogin = () => {
+const MobileLoginProfessional = () => {
     const [customError, setCustomError] = useState("");
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -58,7 +58,6 @@ const MobileLogin = () => {
 
     // function declaration
     const onSubmit = async data => {
-        data.role = "member";
         loginAsMember(data);
     };
 
@@ -135,6 +134,33 @@ const MobileLogin = () => {
                             )}
                         </h1>
                     </section>
+                    <section className="mt-4">
+                        <div className="flex items-center bg-white p-4 w-full rounded-lg">
+                            <select
+                                {...register("role", {
+                                    required: {
+                                        value: true,
+                                        message: "Designation is Required",
+                                    },
+                                })}
+                                type="text"
+                                className="flex-1 outline-none h-full text-sm text-[#1E2022]"
+                                id="designation"
+                            >
+                                <option className="m-8 p-8" value="">
+                                    Select Designation
+                                </option>
+                                <option value="kazi">Kazi</option>
+                                <option value="agent">Agent</option>
+                                <option value="lower">Lawyer</option>
+                            </select>
+                        </div>
+                        <h1 className="text-left ml-2">
+                            {errors.role?.type === "required" && (
+                                <span className="w-full text-left text-red-400 text-sm">{errors?.role.message}</span>
+                            )}
+                        </h1>
+                    </section>
                     <Link to={"/mobileForgetPassword"} className="text-[#E41272] text-xs leading-4 font-medium my-6">
                         Forgot Password?
                     </Link>
@@ -146,15 +172,15 @@ const MobileLogin = () => {
                         value={isLoading ? "Loading..." : "LOGIN"}
                     />
                     <p className="text-[#202325] text-xs leading-6 mb-5">
-                        Don't have an account?
-                        <Link className="text-[#E41272] font-medium ml-1" to={"/mobile-signup"}>
-                            Sign Up
+                        Login as Member
+                        <Link className="text-[#E41272] font-medium ml-1" to={"/mobile-login"}>
+                            Login
                         </Link>
                     </p>
                     <p className="text-[#202325] text-xs leading-6 mb-5">
-                        Login as Professional
-                        <Link className="text-[#E41272] font-medium ml-1" to={"/mobile-login-professional"}>
-                            LOGIN
+                        Want to create a professional account? <br />
+                        <Link className="text-[#E41272] font-medium ml-1" to={"/mobile-signup-professional"}>
+                            Sign Up
                         </Link>
                     </p>
                 </form>
@@ -163,4 +189,4 @@ const MobileLogin = () => {
     );
 };
 
-export default MobileLogin;
+export default MobileLoginProfessional;
