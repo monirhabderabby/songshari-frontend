@@ -19,7 +19,7 @@ import { useRegAsMemberMutation } from "../../../../Redux/features/userInfo/user
 import { loadUserData } from "../../../../Redux/features/userInfo/userInfo";
 import Error from "../../../ui/error/Error";
 
-const MobileSignUp = () => {
+const MobileSignUpProfessional = () => {
     // hook variable declaration
     const [photoURL, setPhotoUrl] = useState("");
     const [customError, setCustomError] = useState("");
@@ -94,6 +94,8 @@ const MobileSignUp = () => {
                 return;
             }
             // Implement firebase registration
+            data.role = data.designation;
+            delete data.designation;
             await regAsMember(data);
         }
     };
@@ -282,32 +284,31 @@ const MobileSignUp = () => {
                             )}
                         </h1>
                     </section>
-                    {/* ---------- NID/ Passport number */}
+                    {/* ---------- Designation */}
                     <section className="mb-4">
                         <div className="flex items-center bg-white p-4 w-full rounded-lg">
-                            <input
-                                {...register("NidOrPassportNumber", {
+                            <select
+                                {...register("designation", {
                                     required: {
                                         value: true,
-                                        message: "Nid Or Passport Number is Required",
-                                    },
-                                    minLength: {
-                                        value: 10,
-                                        message: "Nid Or Passport Number should be minimum 10 characters",
+                                        message: "Designation is Required",
                                     },
                                 })}
                                 type="text"
-                                placeholder="NID or Passport Number"
                                 className="flex-1 outline-none h-full text-sm text-[#1E2022]"
-                                id="NidOrPassportNumber1"
-                            />
+                                id="designation"
+                            >
+                                <option className="m-8 p-8" value="">
+                                    Select Designation
+                                </option>
+                                <option value="kazi">Kazi</option>
+                                <option value="agent">Agent</option>
+                                <option value="lower">Lawyer</option>
+                            </select>
                         </div>
                         <h1 className="text-left ml-2">
-                            {errors.NidOrPassportNumber?.type === "required" && (
-                                <span className="w-full text-left text-red-400 text-sm">{errors?.NidOrPassportNumber.message}</span>
-                            )}
-                            {errors.NidOrPassportNumber?.type === "minLength" && (
-                                <span className="w-full text-left text-red-400 text-sm">{errors?.NidOrPassportNumber.message}</span>
+                            {errors.designation?.type === "required" && (
+                                <span className="w-full text-left text-red-400 text-sm">{errors?.designation.message}</span>
                             )}
                         </h1>
                     </section>
@@ -357,8 +358,8 @@ const MobileSignUp = () => {
                         </Link>
                     </p>
                     <p className="text-[#202325] text-xs leading-6 mb-5">
-                        Register as professional{" "}
-                        <Link to="/mobile-signup-professional" className="text-[#E41272] font-medium ml-1">
+                        Register as Member{" "}
+                        <Link to="/mobile-signup" className="text-[#E41272] font-medium ml-1">
                             REGISTER
                         </Link>
                     </p>
@@ -368,4 +369,4 @@ const MobileSignUp = () => {
     );
 };
 
-export default MobileSignUp;
+export default MobileSignUpProfessional;
