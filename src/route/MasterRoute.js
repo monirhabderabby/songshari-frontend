@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import RequireAuth from "../components/shared/RequireAuth/RequireAuth";
 import RequireAuthMobile from "../components/shared/RequireAuth/RequireAuthMobile";
+import kaziRoutes from "./Kazi/kaziRoutes";
 import matrimonyPrivateRoutes from "./Matrimony/matrimonyPrivateRoutes";
 import matrimonyRoutes from "./Matrimony/matrimonyRoutes";
 import mobileMatrimony from "./Matrimony/MobileMatrimony/Mobilematrimony";
@@ -51,6 +52,10 @@ const MasterRoute = () => {
                         ))}
                     </Route>
                 ))}
+                {/* KAZI ROUTES */}
+                {kaziRoutes.map(route => {
+                    return <Route key={route.id} path={route.path} element={route.element} />;
+                })}
             </Routes>
         </BrowserRouter>
     );

@@ -1,29 +1,32 @@
+// configuration
 import React, { useEffect, useState } from "react";
-import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+
+// Third party packages
 import { useForm } from "react-hook-form";
 import { Toaster } from "react-hot-toast";
 import { BsPersonLinesFill } from "react-icons/bs";
-import { FaFacebookF, FaGoogle, FaRegEnvelope } from "react-icons/fa";
+import { FaGoogle, FaRegEnvelope } from "react-icons/fa";
 import { MdLockOutline } from "react-icons/md";
 import { useDispatch } from "react-redux";
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import "../../../App.css";
+
+// components
 import Error from "../../../components/ui/error/Error";
-import { auth } from "../../../firebase.init";
-import { useLoginAsProfessionalMutation } from "../../../Redux/features/userInfo/userApi";
+import setCookie from "../../../Helper/cookies/setCookie";
+import { useLoginAsProfessionalMutation, useRegAsProfessionalMutation } from "../../../Redux/features/userInfo/userApi";
 import { loadUserData } from "../../../Redux/features/userInfo/userInfo";
 import ForgetPasswordModal from "./ForgetPassword/ForgetPasswordModal";
 
+// css files
+import { useSignInWithGoogle } from "react-firebase-hooks/auth";
+import "../../../App.css";
+import { auth } from "../../../firebase.init";
+
 const LoginAsProfessional = () => {
+    // hook variable declaration
     const [open, setOpen] = useState(false);
     const [customError, setCustomError] = useState("");
-    const [signInWithEmailAndPassword, user, loading, error] = useSignInWithEmailAndPassword(auth);
-    const [loginAsProfessional, { data: response, isLoading }] = useLoginAsProfessionalMutation();
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
-    let location = useLocation();
-    let from = location.state?.from?.pathname || "/";
-
+    const [designationForGoogleLogin, setDesignationForGoogleLogin] = useState("");
     const {
         register,
         formState: { errors },
@@ -31,35 +34,81 @@ const LoginAsProfessional = () => {
         reset,
     } = useForm();
 
+    // Redux api calls
+    const [loginAsProfessional, { data: response, isLoading, error: responseError }] = useLoginAsProfessionalMutation();
+    const [regAsProfessional, { data: googleLoginResponse, isLoading: googleServerLoading }] = useRegAsProfessionalMutation();
+    const [signInWithGoogle, user] = useSignInWithGoogle(auth);
+
+    // js variables
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    let location = useLocation();
+    let from = location.state?.from?.pathname || "/";
+
+    // function declaration
     const modalControll = () => {
         setOpen(!open);
     };
 
     const onSubmit = async data => {
         data.role = data.designation;
-        await signInWithEmailAndPassword(data.email, data.password);
         loginAsProfessional(data);
     };
 
-    useEffect(() => {
-        if (error?.message === "Firebase: Error (auth/wrong-password).") {
-            setCustomError("You are entering the wrong password");
+    const googleLoginHandler = () => {
+        // check designation is on the state or not
+        if (!designationForGoogleLogin) {
+            setCustomError("Please add a designation for Google Login");
+            return;
         }
-        if (error?.message === "Firebase: Error (auth/user-not-found).") {
-            setCustomError("User not found");
-        }
-    }, [error, setCustomError]);
 
+        signInWithGoogle();
+    };
+
+    // useEffect declaration
     useEffect(() => {
         if (response) {
-            localStorage.setItem("accessToken", response.token);
-            dispatch(loadUserData(response));
+            console.log(response);
+            setCookie("token", response?.data?.token);
+            dispatch(loadUserData(response?.data));
             reset();
-        }
-        if (response && user) {
             navigate(from, { replace: true });
         }
-    }, [response, dispatch, user, navigate, reset, from]);
+        if (googleLoginResponse) {
+            setCookie("token", googleLoginResponse?.data?.token);
+            dispatch(loadUserData(response));
+            navigate("/userprofile");
+            reset();
+        }
+    }, [response, dispatch, from, navigate, reset, googleLoginResponse]);
+
+    // Google Login
+    useEffect(() => {
+        if (user) {
+            const userEmail = user?.user?.email;
+            const data = {
+                email: userEmail,
+                googleLogin: true,
+                role: designationForGoogleLogin,
+            };
+
+            console.log(data);
+
+            regAsProfessional(data);
+        }
+    }, [user, regAsProfessional, designationForGoogleLogin]);
+
+    useEffect(() => {
+        if (responseError?.status === 401 && responseError?.data?.success === true) {
+            setCookie("token", responseError?.data?.data?.token);
+            dispatch(loadUserData(responseError?.data?.data));
+            navigate(from, { replace: true });
+        } else if (responseError?.status === 404) {
+            setCustomError(responseError?.data?.message);
+        } else if (responseError?.data?.message.includes("Invalid credential")) {
+            setCustomError("Passwords do not match");
+        }
+    }, [responseError, navigate, from, dispatch]);
 
     return (
         <div>
@@ -73,10 +122,10 @@ const LoginAsProfessional = () => {
                             <h2 className="text-3xl font-bold gradient_text">Professional Login</h2>
                             <div className="border-2 w-10 border-primary inline-block"></div>
                             <div className="flex justify-center items-center my-2">
-                                <p className="border-2 cursor-pointer border-gray-200 rounded-full p-3 mx-1 hover:bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] hover:text-white duration-400 transition-all">
-                                    <FaFacebookF className="text-sm" />
-                                </p>
-                                <p className="border-2 cursor-pointer border-gray-200 rounded-full p-3 mx-1 hover:bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] hover:text-white duration-400 transition-all">
+                                <p
+                                    className="border-2 cursor-pointer border-gray-200 rounded-full p-3 mx-1 hover:bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] hover:text-white duration-400 transition-all"
+                                    onClick={googleLoginHandler}
+                                >
                                     <FaGoogle className="text-sm" />
                                 </p>
                             </div>{" "}
@@ -155,11 +204,15 @@ const LoginAsProfessional = () => {
                                                 type="text"
                                                 className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
                                                 id="designation"
+                                                onChange={e => {
+                                                    setCustomError("");
+                                                    setDesignationForGoogleLogin(e.target.value);
+                                                }}
                                             >
                                                 <option value="">Select Designation</option>
-                                                <option value="Kazi">Kazi</option>
-                                                <option value="Agent">Agent</option>
-                                                <option value="Lawyer">Lawyer</option>
+                                                <option value="kazi">Kazi</option>
+                                                <option value="agent">Agent</option>
+                                                <option value="lower">Lawyer</option>
                                             </select>
                                         </div>
                                         <h1 className="text-left ml-2">
@@ -177,7 +230,7 @@ const LoginAsProfessional = () => {
                                     <div className="col-span-2">{customError && <Error message={customError} />}</div>
                                     <input
                                         type="submit"
-                                        value={loading || isLoading ? "Loading..." : "LOGIN"}
+                                        value={isLoading || googleServerLoading ? "Loading..." : "LOGIN"}
                                         className="border-2 cursor-pointer mt-3 border-primary hover:border-0 rounded-full px-12 py-2 hover:bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] hover:text-white duration-500 transition-all"
                                     />
                                 </form>

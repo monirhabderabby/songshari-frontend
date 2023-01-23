@@ -37,7 +37,5 @@ export const CheckoutPage = () => {
             <RightSideCheckoutContainer />
           </div>
         </div>
-      </section>
-    </div>
-  );
+    );
 };
