@@ -1,27 +1,34 @@
-import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+// configuration
 import React, { useEffect, useState } from "react";
-import { useCreateUserWithEmailAndPassword, useSignInWithGoogle, useUpdateProfile } from "react-firebase-hooks/auth";
+import { Link, useNavigate } from "react-router-dom";
+
+// Third party packages
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import { useSignInWithGoogle } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
 import { AiOutlineCloudUpload, AiOutlineIdcard } from "react-icons/ai";
 import { BsPersonLinesFill } from "react-icons/bs";
-import { FaFacebookF, FaGoogle, FaRegEnvelope, FaRegUser } from "react-icons/fa";
+import { FaGoogle, FaRegEnvelope, FaRegUser } from "react-icons/fa";
 import { MdLockOutline } from "react-icons/md";
 import { useDispatch } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
-import "../../../App.css";
+
+// components
 import { auth, firebaseStorage } from "../../../firebase.init";
+import setCookie from "../../../Helper/cookies/setCookie";
 import { useRegAsProfessionalMutation } from "../../../Redux/features/userInfo/userApi";
 import { loadUserData } from "../../../Redux/features/userInfo/userInfo";
 import Error from "../../ui/error/Error";
 
+// css files
+import "../../../App.css";
+
 const RegAsProfessional = () => {
-    const [regAsProfessional, { data: response, isLoading: serverLoading }] = useRegAsProfessionalMutation();
+    const [regAsProfessional, { data: response, isLoading: serverLoading, error }] = useRegAsProfessionalMutation();
     const [photoUrl, setPhotoUrl] = useState("");
     const [customError, setCustomError] = useState("");
-    const [createUserWithEmailAndPassword, user, loading, error] = useCreateUserWithEmailAndPassword(auth);
-    const [signInWithGoogle, googleLoading] = useSignInWithGoogle(auth);
-    const [updateProfile, updating] = useUpdateProfile(auth);
+    const [designationForGoogleLogin, setDesignationForGoogleLogin] = useState("");
+    const [signInWithGoogle, user] = useSignInWithGoogle(auth);
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -41,10 +48,9 @@ const RegAsProfessional = () => {
         setCustomError("");
         delete data.image;
         data.profilePhoto = photoUrl;
+        console.log(data);
 
         // Implement firebase registration
-        await createUserWithEmailAndPassword(data.email, data.password);
-        await updateProfile({ displayName: data.firstName + " " + data.lastName, photoURL: photoUrl });
         await regAsProfessional(data);
     };
 
@@ -62,20 +68,44 @@ const RegAsProfessional = () => {
         uploadPhoto(photo);
     };
 
+    const googleLoginHandler = () => {
+        if (!designationForGoogleLogin) {
+            setCustomError("Please select your designation for login with Google");
+            return;
+        }
+
+        signInWithGoogle();
+    };
+
     useEffect(() => {
         if (response) {
-            localStorage.setItem("accessToken", response.token);
+            setCookie("token", response?.data?.token);
             dispatch(loadUserData(response));
             reset();
         }
-        if (user && response) {
-            navigate("/userProfile");
+        if (response?.data?.user?.googleLogin === false) {
+            navigate("/otp");
+        } else if (response?.data?.user?.googleLogin === true) {
+            navigate("/userprofile");
         }
-    }, [response, dispatch, reset, navigate, user]);
+    }, [response, dispatch, reset, navigate]);
 
     useEffect(() => {
-        if (error?.message === "Firebase: Error (auth/email-already-in-use).") {
-            setCustomError("email already in use");
+        if (user) {
+            const userEmail = user?.user?.email;
+            const data = {
+                email: userEmail,
+                googleLogin: true,
+                role: designationForGoogleLogin,
+            };
+
+            regAsProfessional(data);
+        }
+    }, [user, regAsProfessional, designationForGoogleLogin]);
+
+    useEffect(() => {
+        if (error) {
+            setCustomError(error?.data?.message);
         }
     }, [error]);
 
@@ -97,12 +127,9 @@ const RegAsProfessional = () => {
                             <h2 className="text-3xl font-bold gradient_text">Professional Registration</h2>
                             <div className="border-2 w-10 border-primary inline-block"></div>
                             <div className="flex justify-center items-center my-2">
-                                <p className="border-2 cursor-pointer border-gray-200 rounded-full p-3 mx-1 hover:bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] hover:text-white duration-400 transition-all">
-                                    <FaFacebookF className="text-sm" />
-                                </p>
                                 <p
                                     className="border-2 cursor-pointer border-gray-200 rounded-full p-3 mx-1 hover:bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] hover:text-white duration-400 transition-all"
-                                    onClick={() => signInWithGoogle()}
+                                    onClick={googleLoginHandler}
                                 >
                                     <FaGoogle className="text-sm" />
                                 </p>
@@ -200,13 +227,17 @@ const RegAsProfessional = () => {
                                                 type="text"
                                                 className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
                                                 id="designation"
+                                                onChange={e => {
+                                                    setCustomError("");
+                                                    setDesignationForGoogleLogin(e.target.value);
+                                                }}
                                             >
                                                 <option className="m-8 p-8" value="">
                                                     Select Designation
                                                 </option>
-                                                <option value="Kazi">Kazi</option>
-                                                <option value="Agent">Agent</option>
-                                                <option value="Lawyer">Lawyer</option>
+                                                <option value="kazi">Kazi</option>
+                                                <option value="agent">Agent</option>
+                                                <option value="lower">Lawyer</option>
                                             </select>
                                         </div>
                                         <h1 className="text-left ml-2">
@@ -215,29 +246,6 @@ const RegAsProfessional = () => {
                                             )}
                                         </h1>
                                     </section>
-                                    {/* Designation Field ---------------------------------------------*/}
-                                    {/* <section>
-                                        <div className="flex items-center bg-gray-100 p-2 w-full rounded-xl mt-3">
-                                            <MdPhone className=" m-2 text-gray-400" />
-                                            <input
-                                                {...register("phone", {
-                                                    required: {
-                                                        value: true,
-                                                        message: "Phone is Required",
-                                                    },
-                                                })}
-                                                type="text"
-                                                placeholder="Phone Number"
-                                                className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
-                                                id="phone"
-                                            />
-                                        </div>
-                                        <h1 className="text-left ml-2">
-                                            {errors.phone?.type === "required" && (
-                                                <span className="w-full text-left text-red-400 text-sm">{errors?.phone.message}</span>
-                                            )}
-                                        </h1>
-                                    </section> */}
                                     {/*Phone number field*/}
                                     <section>
                                         <div className="flex items-center bg-gray-100 p-2 w-full rounded-xl mt-3">
@@ -359,7 +367,7 @@ const RegAsProfessional = () => {
                                     <div className="col-span-2">
                                         <input
                                             type="submit"
-                                            value={loading || updating || googleLoading || serverLoading ? "Loading..." : "SIGN UP"}
+                                            value={serverLoading ? "Loading..." : "SIGN UP"}
                                             className="border-2 cursor-pointer mt-6 border-primary hover:border-0 rounded-full px-12 py-2 hover:bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] hover:text-white duration-500 transition-all"
                                         />
                                     </div>

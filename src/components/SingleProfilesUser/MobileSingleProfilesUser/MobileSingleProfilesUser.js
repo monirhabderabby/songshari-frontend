@@ -10,16 +10,12 @@ import MobileUsersProfile from "./MobileUsersProfile";
 const MobileSingleProfilesUser = () => {
   return (
     <section>
-      <div className="bg-[#FFFFFF] py-[10px] mb-[15px]">
-        <div className="bg-white w-full flex justify-between items-center h-[48px]">
-          <div className="ml-7">
-            <Link to="/setting">
-              <i className="fa-solid text-sm text-[#1E2022] fa-chevron-left "></i>
-            </Link>
-          </div>
-          <div className="mr-8">
-            <span className="text-center pl-1">Profile</span>
-          </div>
+      <div className="bg-white sticky top-0 w-full z-10">
+        <div className="grid grid-cols-3">
+          <Link to="/setting">
+            <i className="fa-solid fa-chevron-left ml-6 my-4"></i>
+          </Link>
+          <h1 className="profile-tit text-center mt-3 mb-3">Profile</h1>
           <div></div>
         </div>
       </div>

@@ -108,7 +108,7 @@ const MobileSignUp = () => {
     };
 
     return (
-        <div className="bg-[#F8F8FF] pt-2">
+        <div className="bg-[#F8F8FF] pt-2 pb-2">
             <div className="text-[#1E2022] flex justify-start items-center gap-[33%] bg-white font-medium text-center text-lg leading-[18px] py-4 px-6 mx-2 mb-9">
                 <span>
                     <AiOutlineLeft onClick={() => navigate("/")} />
@@ -354,6 +354,12 @@ const MobileSignUp = () => {
                         Have an account?
                         <Link className="text-[#E41272] font-medium ml-1" to={"/login"}>
                             Log In
+                        </Link>
+                    </p>
+                    <p className="text-[#202325] text-xs leading-6 mb-5">
+                        Register as professional{" "}
+                        <Link to="/mobile-signup-professional" className="text-[#E41272] font-medium ml-1">
+                            REGISTER
                         </Link>
                     </p>
                 </form>

@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     userInfo: null,
+    photos: [],
 };
 
 const userInfoSlice = createSlice({
@@ -10,10 +11,17 @@ const userInfoSlice = createSlice({
     reducers: {
         loadUserData: (state, action) => {
             state.userInfo = action.payload;
-            state.count = undefined;
+        },
+        loadPhotos: (state = initialState, action) => {
+            state.photos = action.payload;
+        },
+        setUpdatePhotos: (state = initialState, action) => {
+            action.payload.map(photo => {
+                return state.photos.unshift(photo);
+            });
         },
     },
 });
 
 export default userInfoSlice.reducer;
-export const { loadUserData } = userInfoSlice.actions;
+export const { loadUserData, loadPhotos, setUpdatePhotos } = userInfoSlice.actions;

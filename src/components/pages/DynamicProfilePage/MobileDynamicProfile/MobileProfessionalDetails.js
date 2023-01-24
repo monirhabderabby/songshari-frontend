@@ -22,7 +22,7 @@ export const MobileProfessionalDetails = () => {
   return (
     <div>
       <div className="mx-4 mb-20">
-        <div className="bg-[#FFFFFF] py-[10px] mb-[15px]">
+        <div className="bg-[#FFFFFF] py-[10px] mb-[15px] sticky top-0 z-10">
           <div className="bg-white w-full grid grid-cols-6 h-[48px]">
             <div className="pl-1 col-span-1">
               <Link onClick={() => navigate(-1)}>
@@ -37,47 +37,61 @@ export const MobileProfessionalDetails = () => {
         </div>
         <Typography component={"span"} variant={"body2"}>
           {data?.professionalDetail?.length !== 0 ? (
-            data?.professionalDetail.map((d, index) => {
+            data?.professionalDetail.map((profession) => {
               return (
-                <div key={index}>
-                  {data?.professionalDetail?.length !== 0 && (
-                    <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                      <span className="font-medium">Position</span>
-                      <p className="font-normal">
-                        {data?.professionalDetail
-                          ? d?.position
-                          : "Not Provided"}
-                      </p>
-                    </div>
-                  )}
-                  {data?.professionalDetail?.length !== 0 && (
-                    <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                      <span className="font-medium">Duty</span>
-                      <p className="font-normal">
-                        {data?.professionalDetail ? d?.duty : "Not Provided"}
-                      </p>
-                    </div>
-                  )}
-                  {data?.professionalDetail?.length !== 0 && (
-                    <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                      <span className="font-medium">Institute</span>
-                      <p className="font-normal">
-                        {data?.professionalDetail
-                          ? d?.institute
-                          : "Not Provided"}
-                      </p>
-                    </div>
-                  )}
-                  {data?.professionalDetail?.length !== 0 && (
-                    <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                      <span className="font-medium">Special Achievement</span>
-                      <p className="font-normal">
-                        {data?.professionalDetail
-                          ? d?.specialAchievement
-                          : "Not Provided"}
-                      </p>
-                    </div>
-                  )}
+                <div key={profession?._id}>
+                  <div className="flex justify-end mt-6">
+                    <button
+                      onClick={() =>
+                        navigate(`/professionalInfoEdit/${profession?._id}`)
+                      }
+                      style={{
+                        background:
+                          "linear-gradient(180deg, #E41272 0%, #942DD9 100%)",
+                      }}
+                      className="w-[64px] text-center py-[8] px-[10px] text-[#fff] h-[28px] text-lg font-medium rounded"
+                    >
+                      Edit
+                    </button>
+                  </div>
+                  <div>
+                    {profession?.position && (
+                      <div className="flex justify-between py-[6px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                        <span className="font-medium">Position</span>
+                        <p className="font-normal">{profession?.position}</p>
+                      </div>
+                    )}
+                    {profession?.duty && (
+                      <div className="flex justify-between py-[6px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                        <span className="font-medium">Duty</span>
+                        <p className="font-normal">{profession?.duty}</p>
+                      </div>
+                    )}
+                    {profession?.institute && (
+                      <div className="flex justify-between py-[6px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                        <span className="font-medium">Institute</span>
+                        <p className="font-normal">{profession?.institute}</p>
+                      </div>
+                    )}
+                    {profession?.specialAchievement && (
+                      <div className="flex justify-between py-[6px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                        <span className="font-medium">Special Achievement</span>
+                        <p className="font-normal">
+                          {profession?.specialAchievement}
+                        </p>
+                      </div>
+                    )}
+                    {profession?.workPeriod?.length !== 0 && (
+                      <div className="flex justify-between py-[6px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                        <span className="font-medium">Work Period</span>
+                        <p className="font-normal">
+                          {profession?.workPeriod[0] +
+                            " to " +
+                            profession?.workPeriod[1]}
+                        </p>
+                      </div>
+                    )}
+                  </div>
                 </div>
               );
             })

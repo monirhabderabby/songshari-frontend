@@ -4,10 +4,12 @@ import React, { useState } from "react";
 // components
 import NavBar from "../../components/pages/Shared/NavBar";
 import { EducationalDetails } from "./EducationalDetails";
+import FamilyDetails from "./FamilyDetails";
 import { OtherDetails } from "./OtherDetails";
 import { PersonalDetails } from "./PersonalDetails";
 import { PhysicalDetails } from "./PhysicalDetails";
 import { ProfessionalDetails } from "./ProfessionalDetails";
+import SiblingDetails from "./SiblingDetails";
 
 export const Container = () => {
   const [page, setPage] = useState(1);
@@ -22,7 +24,9 @@ export const Container = () => {
               {page === 2 && <EducationalDetails {...{ setPage }} />}
               {page === 3 && <ProfessionalDetails {...{ setPage }} />}
               {page === 4 && <PhysicalDetails {...{ setPage }} />}
-              {page === 5 && <OtherDetails {...{ setPage }} />}
+              {page === 5 && <FamilyDetails {...{ setPage }} />}
+              {page === 6 && <SiblingDetails {...{ setPage }} />}
+              {page === 7 && <OtherDetails {...{ setPage }} />}
             </div>
           </div>
         </div>

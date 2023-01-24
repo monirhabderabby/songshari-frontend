@@ -12,7 +12,6 @@ import UpdateCertificateSection from "./UpdateCertificateSection/UpdateCertifica
 
 const PersonalCertificateWeb = () => {
     const [certificateId, setCertificateId] = useState(0);
-    const [certificates, setCertificates] = useState([]);
 
     /* certificate dummy data */
     const certificateData = [

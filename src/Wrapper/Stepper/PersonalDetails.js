@@ -22,14 +22,14 @@ export const PersonalDetails = ({ setPage }) => {
 
   const [profilePhoto, setProfilePhoto] = useState("");
   const [coverPhoto, setCoverPhoto] = useState("");
-  const [frontSide, setFrontSide] = useState("");
-  const [backSide, setBackSide] = useState("");
+  const [NidFrontSide, setNidFrontSide] = useState("");
+  const [NidBackSide, setNidBackSide] = useState("");
   // const [licencePhoto, setLicencePhoto] = useState("");
-  const [meritalStatus, setMeritalStatus] = useState("");
+  const [maritalStatus, setMaritalStatus] = useState("");
   const [citizenShip, setCitizenShip] = useState([]);
   const [dateOfBirth, setDateOfBirth] = useState();
   const [marriageDate, setMarriageDate] = useState();
-  const [dicorceDate, setdicorceDate] = useState();
+  const [divorceDate, setDivorceDate] = useState();
   const [partnerDeathDate, setPartnerDeathDate] = useState();
   const [hobbies, setHobbies] = useState([]);
   const [profilePhotoName, setProfilePhotoName] = useState();
@@ -178,17 +178,15 @@ export const PersonalDetails = ({ setPage }) => {
 
     delete data.frontSide;
     delete data.backSide;
-    // Nid or passport object
-    const NidOrPassportPhoto = Object.create(data);
-    NidOrPassportPhoto.frontSide = frontSide;
-    NidOrPassportPhoto.backSide = backSide;
+
     data = {
       ...data,
-      NidOrPassportPhoto,
+      NidFrontSide,
+      NidBackSide,
       dateOfBirth,
       hobbies,
       marriageDate,
-      dicorceDate,
+      divorceDate,
       partnerDeathDate,
       citizenShip,
     };
@@ -203,7 +201,11 @@ export const PersonalDetails = ({ setPage }) => {
 
   const profilePhotoHandler = async (e) => {
     const photo = e.target.files[0];
-    setProfilePhotoName(photo?.name);
+    if (photo.name.length > 26) {
+      setProfilePhotoName(photo.name.slice(0, 26) + " ...");
+    } else if (photo.name.length < 26) {
+      setProfilePhotoName(photo?.name);
+    }
     const storageRef = ref(
       firebaseStorage,
       `profile/${photo?.name + uuidv4()}`
@@ -231,7 +233,7 @@ export const PersonalDetails = ({ setPage }) => {
     const storageRef = ref(firebaseStorage, `nid/${photo?.name + uuidv4()}`);
     uploadBytes(storageRef, photo).then(async (snapshot) => {
       await getDownloadURL(snapshot.ref).then((url) => {
-        setFrontSide(url.toString());
+        setNidFrontSide(url.toString());
       });
     });
   };
@@ -240,19 +242,10 @@ export const PersonalDetails = ({ setPage }) => {
     const storageRef = ref(firebaseStorage, `nid/${photo?.name + uuidv4()}`);
     uploadBytes(storageRef, photo).then(async (snapshot) => {
       await getDownloadURL(snapshot.ref).then((url) => {
-        setBackSide(url.toString());
+        setNidBackSide(url.toString());
       });
     });
   };
-  // const licenseHandler = async e => {
-  //     const photo = e.target.files[0];
-  //     const storageRef = ref(firebaseStorage, `license/${photo.name + uuidv4()}`);
-  //     uploadBytes(storageRef, photo).then(async snapshot => {
-  //         await getDownloadURL(snapshot.ref).then(url => {
-  //             setLicencePhoto(url.toString());
-  //         });
-  //     });
-  // };
 
   const onDateOfBirthChange = (date, dateString) => {
     setDateOfBirth(dateString);
@@ -399,7 +392,7 @@ export const PersonalDetails = ({ setPage }) => {
           </section>
           {/* ---------- Profile Photo ---------- */}
           <section>
-            <div className="flex items-center overflow-x-scroll bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
+            <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
               <AiOutlineCloudUpload className=" mr-2 text-gray-400" />
               <label
                 htmlFor="profilePhoto"
@@ -515,7 +508,7 @@ export const PersonalDetails = ({ setPage }) => {
                 htmlFor="frontSide"
                 className="outline-none h-full text-sm text-gray-400 bg-gray-100"
               >
-                {frontSide ? (
+                {NidFrontSide ? (
                   <>
                     <span className="text-green-400">
                       Front side NID / PAssport added
@@ -554,7 +547,7 @@ export const PersonalDetails = ({ setPage }) => {
                 htmlFor="backSide"
                 className="outline-none h-full text-sm text-gray-400 bg-gray-100"
               >
-                {backSide ? (
+                {NidBackSide ? (
                   <>
                     <span className="text-green-400">Photo added</span>
                   </>
@@ -760,7 +753,7 @@ export const PersonalDetails = ({ setPage }) => {
           {/* ---------- Town permanent ---------- */}
           <section className="relative">
             <div
-              className={`flex items-center  p-3 w-full rounded-lg mt-3 lg:mt-0 ${
+              className={`flex items-center -z-10  p-3 w-full rounded-lg mt-3 lg:mt-0 ${
                 townPermanentSuggestion.length > 0
                   ? "rounded-br-none rounded-bl-none shadow-lg bg-white"
                   : "bg-gray-100"
@@ -981,7 +974,7 @@ export const PersonalDetails = ({ setPage }) => {
           {/* ---------- Town Current ---------- */}
           <section className="relative">
             <div
-              className={`flex items-center  p-3 w-full rounded-lg mt-3 lg:mt-0 ${
+              className={`flex items-center -z-50  p-3 w-full rounded-lg mt-3 lg:mt-0 ${
                 townCurrentSuggestion.length > 0
                   ? "rounded-br-none rounded-bl-none shadow-lg bg-white"
                   : "bg-gray-100"
@@ -1139,7 +1132,7 @@ export const PersonalDetails = ({ setPage }) => {
                   },
                 })}
                 type="text"
-                onChange={(e) => setMeritalStatus(e.target.value)}
+                onChange={(e) => setMaritalStatus(e.target.value)}
                 className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
                 id="maritalStatus"
               >
@@ -1159,7 +1152,7 @@ export const PersonalDetails = ({ setPage }) => {
             </h1>
           </section>
           {/* ---------- Number Of Partner ---------- */}
-          {meritalStatus === "married" && meritalStatus !== "single" && (
+          {maritalStatus === "married" && maritalStatus !== "single" && (
             <section>
               <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
                 <input
@@ -1185,7 +1178,7 @@ export const PersonalDetails = ({ setPage }) => {
             </section>
           )}
           {/* ---------- Reason of Marriage ---------- */}
-          {meritalStatus === "married" && meritalStatus !== "single" && (
+          {maritalStatus === "married" && maritalStatus !== "single" && (
             <section>
               <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
                 <input
@@ -1211,7 +1204,7 @@ export const PersonalDetails = ({ setPage }) => {
             </section>
           )}
           {/* ---------- Is partner aware of marriage ---------- */}
-          {meritalStatus === "married" && meritalStatus !== "single" && (
+          {maritalStatus === "married" && maritalStatus !== "single" && (
             <section>
               <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
                 <select
@@ -1240,7 +1233,7 @@ export const PersonalDetails = ({ setPage }) => {
             </section>
           )}
           {/* ---------- Date of Marriage ---------- */}
-          {meritalStatus === "married" && meritalStatus !== "single" && (
+          {maritalStatus === "married" && maritalStatus !== "single" && (
             <section>
               <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
                 <DatePicker
@@ -1254,7 +1247,7 @@ export const PersonalDetails = ({ setPage }) => {
             </section>
           )}
           {/* ---------- Reason of Divorce ---------- */}
-          {meritalStatus === "divorced" && meritalStatus !== "single" && (
+          {maritalStatus === "divorced" && maritalStatus !== "single" && (
             <section>
               <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
                 <input
@@ -1280,24 +1273,22 @@ export const PersonalDetails = ({ setPage }) => {
             </section>
           )}
           {/* ---------- Date of Divorce ---------- */}
-          {meritalStatus === "divorced" && meritalStatus !== "single" && (
+          {maritalStatus === "divorced" && maritalStatus !== "single" && (
             <section>
               <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
                 <DatePicker
-                  {...register("dicorceDate")}
-                  onChange={(date, dateString) => setdicorceDate(dateString)}
+                  onChange={(date, dateString) => setDivorceDate(dateString)}
                   placeholder="Divorce Date"
                   className="flex-1 px-2 py-[10px] outline-none h-full bg-transparent text-sm text-gray-400"
-                  id="dicorceDate"
+                  id="divorceDate"
                 />
               </div>
             </section>
           )}
           {/* ---------- Do you have children --------- */}
-          {/* {meritalStatus !== "" || meritalStatus !== "single" || ( */}
-          {meritalStatus === "married" &&
-            meritalStatus !== "" &&
-            meritalStatus !== "single" && (
+          {maritalStatus === "married" &&
+            maritalStatus !== "" &&
+            maritalStatus !== "single" && (
               <section>
                 <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
                   <select
@@ -1326,9 +1317,9 @@ export const PersonalDetails = ({ setPage }) => {
                 </h1>
               </section>
             )}
-          {meritalStatus === "divorced" &&
-            meritalStatus !== "" &&
-            meritalStatus !== "single" && (
+          {maritalStatus === "divorced" &&
+            maritalStatus !== "" &&
+            maritalStatus !== "single" && (
               <section>
                 <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
                   <select
@@ -1357,9 +1348,9 @@ export const PersonalDetails = ({ setPage }) => {
                 </h1>
               </section>
             )}
-          {meritalStatus === "widowed" &&
-            meritalStatus !== "" &&
-            meritalStatus !== "single" && (
+          {maritalStatus === "widowed" &&
+            maritalStatus !== "" &&
+            maritalStatus !== "single" && (
               <section>
                 <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
                   <select
@@ -1390,8 +1381,8 @@ export const PersonalDetails = ({ setPage }) => {
             )}
           {/* ---------- Number Of Boy ---------- */}
           {childrenStatus === "yes" &&
-            meritalStatus !== "single" &&
-            meritalStatus !== "" && (
+            maritalStatus !== "single" &&
+            maritalStatus !== "" && (
               <section>
                 <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
                   <input
@@ -1418,8 +1409,8 @@ export const PersonalDetails = ({ setPage }) => {
             )}
           {/* ---------- Ages Of Boy ---------- */}
           {childrenStatus === "yes" &&
-            meritalStatus !== "single" &&
-            meritalStatus !== "" && (
+            maritalStatus !== "single" &&
+            maritalStatus !== "" && (
               <section>
                 <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
                   <input
@@ -1446,8 +1437,8 @@ export const PersonalDetails = ({ setPage }) => {
             )}
           {/* ---------- Number Of Girl ---------- */}
           {childrenStatus === "yes" &&
-            meritalStatus !== "single" &&
-            meritalStatus !== "" && (
+            maritalStatus !== "single" &&
+            maritalStatus !== "" && (
               <section>
                 <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
                   <input
@@ -1474,8 +1465,8 @@ export const PersonalDetails = ({ setPage }) => {
             )}
           {/* ---------- Ages Of Girl ---------- */}
           {childrenStatus === "yes" &&
-            meritalStatus !== "single" &&
-            meritalStatus !== "" && (
+            maritalStatus !== "single" &&
+            maritalStatus !== "" && (
               <section>
                 <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
                   <input
@@ -1501,11 +1492,10 @@ export const PersonalDetails = ({ setPage }) => {
               </section>
             )}
           {/* ---------- Partner death date ---------- */}
-          {meritalStatus === "widowed" && meritalStatus !== "" && (
+          {maritalStatus === "widowed" && maritalStatus !== "" && (
             <section>
               <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
                 <DatePicker
-                  {...register("partnerDeathDay")}
                   onChange={(date, dateString) =>
                     setPartnerDeathDate(dateString)
                   }
@@ -1514,11 +1504,6 @@ export const PersonalDetails = ({ setPage }) => {
                   id="partnerDeathDay"
                 />
               </div>
-              {/* <h1 className="text-left ml-2">
-                                {errors.partnerDeathDay?.type === "required" && (
-                                    <span className="w-full text-left text-red-400 text-sm">{errors?.partnerDeathDay.message}</span>
-                                )}
-                            </h1> */}
             </section>
           )}
 

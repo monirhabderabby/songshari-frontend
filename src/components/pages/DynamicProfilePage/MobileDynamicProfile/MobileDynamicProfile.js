@@ -19,7 +19,7 @@ export const MobileDynamicProfile = () => {
 
   useEffect(() => {
     if (isLoading) {
-      <div class="border border-blue-300 shadow rounded-md p-4 max-w-sm w-full mx-auto">
+      <div class="border border-blue-300 px-7 shadow rounded-md p-4 max-w-sm w-full mx-auto">
         <div class="animate-pulse flex space-x-4">
           <div class="rounded-full bg-slate-200 h-10 w-10"></div>
           <div class="flex-1 space-y-6 py-1">
@@ -58,7 +58,7 @@ export const MobileDynamicProfile = () => {
           <div className="col-span-4">
             <p
               className="pl-8"
-              onClick={() => navigate(`/personalprofile/${data?._id}`)}
+              onClick={() => navigate(`/personalProfileDynamic/${data?._id}`)}
             >
               Personal Details
             </p>
@@ -68,7 +68,7 @@ export const MobileDynamicProfile = () => {
           </div>
         </div>
 
-        <Link to={`/professionalprofile/${data?._id}`}>
+        <Link to={`/professionalProfileDynamic/${data?._id}`}>
           <div className="grid grid-cols-5 mt-5 mb-10">
             <div className="col-span-4">
               <h1 className="pl-8">Professional Details</h1>
@@ -78,7 +78,7 @@ export const MobileDynamicProfile = () => {
             </div>
           </div>
         </Link>
-        <Link to={`/educationalprofile/${data?._id}`}>
+        <Link to={`/educationalProfileDynamic/${data?._id}`}>
           <div className="grid grid-cols-5 mt-5 mb-10">
             <div className="col-span-4">
               <h1 className="pl-8">Educational Details</h1>
@@ -88,7 +88,7 @@ export const MobileDynamicProfile = () => {
             </div>
           </div>
         </Link>
-        <Link to={`/physicalprofile/${data?._id}`}>
+        <Link to={`/physicalProfileDynamic/${data?._id}`}>
           <div className="grid grid-cols-5 mt-5 mb-10">
             <div className="col-span-4">
               <h1 className="pl-8">Physical Details</h1>
@@ -98,7 +98,27 @@ export const MobileDynamicProfile = () => {
             </div>
           </div>
         </Link>
-        <Link to={`/otherprofile/${data?._id}`}>
+        <Link to={`/familyProfileDynamic/${data?._id}`}>
+          <div className="grid grid-cols-5 mt-5 mb-10">
+            <div className="col-span-4">
+              <h1 className="pl-8">Family Details</h1>
+            </div>
+            <div>
+              <i className="fa-solid fa-angle-right ml-10"></i>
+            </div>
+          </div>
+        </Link>
+        <Link to={`/siblingsProfileDynamic/${data?._id}`}>
+          <div className="grid grid-cols-5 mt-5 mb-10">
+            <div className="col-span-4">
+              <h1 className="pl-8">Siblings Details</h1>
+            </div>
+            <div>
+              <i className="fa-solid fa-angle-right ml-10"></i>
+            </div>
+          </div>
+        </Link>
+        <Link to={`/otherProfileDynamic/${data?._id}`}>
           <div className="grid grid-cols-5 mt-5 mb-10">
             <div className="col-span-4">
               <h1 className="pl-8">Other Details</h1>

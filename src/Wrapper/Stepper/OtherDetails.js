@@ -315,7 +315,7 @@ export const OtherDetails = ({ setPage }) => {
         <div className="flex items-center w-full justify-center gap-x-[20px] mt-[20px]">
           <button
             className="border-2 cursor-pointer mt-3 border-primary hover:border-0 rounded-full px-12 py-2 hover:bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] hover:text-white duration-500 transition-all"
-            onClick={() => setPage(4)}
+            onClick={() => setPage(6)}
           >
             Previous
           </button>

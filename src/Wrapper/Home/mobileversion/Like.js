@@ -15,7 +15,6 @@ import { MayLikeSingle } from "./MayLikeSingle";
 export const Like = () => {
     // fetching
     const { data, error, isLoading } = useGetSuggestedUsersQuery();
-    console.log(data);
 
     if (isLoading) {
         return (
@@ -36,26 +35,24 @@ export const Like = () => {
 
     return (
         <div className="bg-[#F8F8FF]">
-            <div className="mt-5 px-6 bg-white">
-                <div className="grid grid-cols-3">
+            <div className="bg-white sticky top-0 w-full">
+                <div className="grid grid-cols-3 shadow-[2px_2px_8px_2px_rgba(0,0,0,0.1)]">
                     <Link to="/setting">
-                        <i className="fa-solid fa-chevron-left ml-2 mt-3"></i>
+                        <i className="fa-solid fa-chevron-left ml-6 my-4"></i>
                     </Link>
-                    <h1 className="profile-tit text-center mt-2 mb-5">You May Like</h1>
+                    <h1 className="profile-tit text-center mt-3 mb-3">You May Like</h1>
                     <div></div>
                 </div>
             </div>
             {/* ----- You may like ----- */}
-            <div className="mt-[20px] px-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-y-8">
+            <div className="px-6 pt-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-y-8 md:px-10">
                     {data?.data?.suggestion.map(profile => {
                         return <MayLikeSingle key={profile._id} {...{ data: profile }} />;
                     })}
                 </div>
             </div>
-            <br></br>
-            <br></br>
-            <br></br>
+            <div className="h-20"></div>
             <BottomNav></BottomNav>
         </div>
     );

@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 
 // Third party packages
+import { HiShoppingBag } from "react-icons/hi";
 import { useDispatch, useSelector } from "react-redux";
 
 // Components
@@ -15,10 +16,12 @@ import findALawyer from "../../../assets/images/NavIcons/Lawyer.svg";
 import membership from "../../../assets/images/NavIcons/Membership.svg";
 import course from "../../../assets/images/NavIcons/Online-Course.svg";
 import register from "../../../assets/images/NavIcons/Profile-Login-Icon.svg";
-import { loadUserData } from "../../../Redux/features/userInfo/userInfo";
+import shop from "../../../assets/images/NavIcons/Shop.svg";
+import { loadPhotos, loadUserData } from "../../../Redux/features/userInfo/userInfo";
 import MobileNav from "./MobileNav";
 
 // CSS files
+import "../../../App.css";
 import NavBarCSS from "../../../assets/css/navbar.module.css";
 import removeCookie from "../../../Helper/cookies/removeCookie";
 import isLoggedIn from "../../../Helper/hooks/checkLoggerPersestency/isLoggedIn";
@@ -45,15 +48,26 @@ const NavBar = ({ bg }) => {
         { id: 2, to: "/membership", icon: membership, tooltip: "Membership" },
         { id: 3, to: "/blog", icon: blog, tooltip: "Blog" },
         { id: 4, to: "/course", icon: course, tooltip: "Course" },
-        // { id: 5, to: '/shop', icon: shop, tooltip: "Shop" },
-        { id: 6, to: "/findalawyer", icon: findALawyer, tooltip: "Find a Lawyer" },
-        { id: 7, to: "/kazi", icon: "https://svgshare.com/i/p9U.svg", tooltip: "Kazi" },
-        { id: 8, to: "/agent", icon: "https://svgshare.com/i/pDa.svg", tooltip: "Agent" },
+        { id: 5, to: "/findalawyer", icon: findALawyer, tooltip: "Find a Lawyer" },
+        {
+            id: 6,
+            to: "/kazi",
+            icon: "https://svgshare.com/i/p9U.svg",
+            tooltip: "Kazi",
+        },
+        {
+            id: 7,
+            to: "/agent",
+            icon: "https://svgshare.com/i/pDa.svg",
+            tooltip: "Agent",
+        },
+        { id: 8, to: "/shop", icon: shop, tooltip: "Shop" },
     ];
 
     // function declaration for logout
     let logoutButton = async () => {
         dispatch(loadUserData(null));
+        dispatch(loadPhotos([]));
         navigate("/");
         removeCookie("token");
     };
@@ -167,6 +181,14 @@ const NavBar = ({ bg }) => {
                                     )}
                                 </div>
                             </li>
+                            <div className="h-full flex items-center relative -top-[14px]">
+                                <div className="relative hover:scale-110 duration-300 cursor-pointer" onClick={() => navigate("/cart")}>
+                                    <HiShoppingBag className="h-[60px] w-[60px] text-[#E42986] -z-20" />
+                                    <span className="w-[18px] h-[18px] rounded-full bg-[#E42986] text-white flex justify-center items-center absolute z-50 right-0 top-[10px] text-[12px]">
+                                        1
+                                    </span>
+                                </div>
+                            </div>
                             <ul>
                                 <li className={`relative cursor-pointer ${NavBarCSS.engDropdown}`}>
                                     <div>
