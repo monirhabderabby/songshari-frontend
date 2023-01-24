@@ -25,7 +25,7 @@ import Shop from "../../Wrapper/Shop/Shop";
 import ShopOrders from "../../Wrapper/Shop/ShopOrders/ShopOrders";
 import ShopProducts from "../../Wrapper/Shop/ShopProducts/ShopProducts";
 import LawyerServiceForm from "../../components/Lawyer/LawyerServiceForm/LawyerServiceForm";
-import LawyerServicesPage from "../../components/Lawyer/LawyerUserProfile/LawyerServicesPage";
+import LawyerServicesPage from "../../components/Lawyer/LawyerServicesPage/LawyerServicesPage";
 import LawyerSingleServiceDetails from "../../components/Lawyer/LawyerSingleServiceDetails/LawyerSingleServiceDetails";
 import LawyerReview from "../../components/Lawyer/LawyerReview/LawyerReview";
 import LawyerActivity from "../../components/Lawyer/LawyerActivity/LawyerActivity";
