@@ -23,12 +23,22 @@ const Lawyer = () => {
             >
               Service
             </NavLink>
-            <NavLink className={"mt-4 font-medium leading-tight text-gray-800"}>
+            <NavLink
+              className={(isActive) =>
+                isActive
+                  ? "text-[#AC216C] mt-4 font-medium leading-tight"
+                  : "mt-4 font-medium leading-tight text-gray-800"
+              }
+            >
               Profile
             </NavLink>
             <NavLink
               to={"/lawyerProfile/lawyerReview"}
-              className={"mt-4 font-medium leading-tight text-gray-800"}
+              className={(isActive) =>
+                isActive
+                  ? "text-[#AC216C] mt-4 font-medium leading-tight"
+                  : "mt-4 font-medium leading-tight text-gray-800"
+              }
             >
               Review
               <sup className="text-white bg_Color px-[6px] py-1 rounded-full text-[10px]">
@@ -37,7 +47,11 @@ const Lawyer = () => {
             </NavLink>
             <NavLink
               to={"/lawyerProfile/lawyerActivity"}
-              className="mt-4 font-medium leading-tight text-gray-800"
+              className={(isActive) =>
+                isActive
+                  ? "text-[#AC216C] mt-4 font-medium leading-tight"
+                  : "mt-4 font-medium leading-tight text-gray-800"
+              }
             >
               Activity
             </NavLink>
