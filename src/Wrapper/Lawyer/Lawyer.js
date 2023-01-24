@@ -6,43 +6,53 @@ import { NavLink, Outlet } from "react-router-dom";
 import CustomHeader from "../../components/shared/CustomHeader/CustomHeader";
 
 const Lawyer = () => {
-  return (
-    <div>
-      <CustomHeader title={"Lawyer Profile"}></CustomHeader>
-      {/* Lawyer internal nav */}
-      <div className="flex justify-center md:h-[54px] items-center mt-[39px] z-50 mb-16">
-        <div className="shadow-[0px_5px_30px_rgba(35,57,184,0.2)] bg-white rounded-[10px] h-full px-[39px]">
-          <div className="flex flex-col md:flex-row justify-center items-center gap-x-[28px]">
-            <NavLink
-              to={"/lawyerProfile/lawyerService"}
-              className={(isActive) =>
-                isActive
-                  ? "text-[#AC216C] mt-4 font-medium leading-tight"
-                  : "mt-4 font-medium leading-tight text-gray-800"
-              }
-            >
-              Service
-            </NavLink>
-            <NavLink className={"mt-4 font-medium leading-tight text-gray-800"}>
-              Profile
-            </NavLink>
-            <NavLink className={"mt-4 font-medium leading-tight text-gray-800"}>
-              Review
-              <sup className="text-white bg_Color px-[6px] py-1 rounded-full text-[10px]">
-                04
-              </sup>
-            </NavLink>
-            <NavLink className="mt-4 font-medium leading-tight text-gray-800">
-              Activity
-            </NavLink>
-          </div>
+    return (
+        <div>
+            <CustomHeader title={"Lawyer Profile"}></CustomHeader>
+            {/* Lawyer internal nav */}
+            <div className="flex justify-center md:h-[54px] items-center mt-[39px] z-50 mb-16">
+                <div className="shadow-[0px_5px_30px_rgba(35,57,184,0.2)] bg-white rounded-[10px] h-full px-[39px]">
+                    <div className="flex flex-col md:flex-row justify-center items-center gap-x-[28px]">
+                        <NavLink
+                            to={"/lawyerProfile/lawyerService"}
+                            className={isActive =>
+                                isActive ? "text-[#AC216C] mt-4 font-medium leading-tight" : "mt-4 font-medium leading-tight text-gray-800"
+                            }
+                        >
+                            Service
+                        </NavLink>
+                        <NavLink
+                            className={isActive =>
+                                isActive ? "text-[#AC216C] mt-4 font-medium leading-tight" : "mt-4 font-medium leading-tight text-gray-800"
+                            }
+                        >
+                            Profile
+                        </NavLink>
+                        <NavLink
+                            to={"/lawyerProfile/lawyerReview"}
+                            className={isActive =>
+                                isActive ? "text-[#AC216C] mt-4 font-medium leading-tight" : "mt-4 font-medium leading-tight text-gray-800"
+                            }
+                        >
+                            Review
+                            <sup className="text-white bg_Color px-[6px] py-1 rounded-full text-[10px]">04</sup>
+                        </NavLink>
+                        <NavLink
+                            to={"/lawyerProfile/lawyerActivity"}
+                            className={isActive =>
+                                isActive ? "text-[#AC216C] mt-4 font-medium leading-tight" : "mt-4 font-medium leading-tight text-gray-800"
+                            }
+                        >
+                            Activity
+                        </NavLink>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <Outlet />
+            </div>
         </div>
-      </div>
-      <div className="lg:max-w-[1000px] xl:max-w-[1200px] mx-auto">
-        <Outlet />
-      </div>
-    </div>
-  );
+    );
 };
 
 export default Lawyer;
