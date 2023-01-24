@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import RequireAuth from "../components/shared/RequireAuth/RequireAuth";
 import RequireAuthMobile from "../components/shared/RequireAuth/RequireAuthMobile";
+import kaziPrivateRoutes from "./Kazi/kaziPrivateRoutes";
 import kaziRoutes from "./Kazi/kaziRoutes";
 import matrimonyPrivateRoutes from "./Matrimony/matrimonyPrivateRoutes";
 import matrimonyRoutes from "./Matrimony/matrimonyRoutes";
@@ -55,6 +56,15 @@ const MasterRoute = () => {
                 {/* KAZI ROUTES */}
                 {kaziRoutes.map(route => {
                     return <Route key={route.id} path={route.path} element={route.element} />;
+                })}
+                {kaziPrivateRoutes.map(route => {
+                    return (
+                        <Route key={route.id} path={route.path} element={<RequireAuth>{route.element}</RequireAuth>}>
+                            {route.nestedRoutes?.map(route => {
+                                return <Route key={route.id} path={route.path} element={<RequireAuth>{route.element}</RequireAuth>} />;
+                            })}
+                        </Route>
+                    );
                 })}
             </Routes>
         </BrowserRouter>
