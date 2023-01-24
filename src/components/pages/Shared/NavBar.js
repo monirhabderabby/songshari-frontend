@@ -181,14 +181,16 @@ const NavBar = ({ bg }) => {
                                     )}
                                 </div>
                             </li>
-                            <div className="h-full flex items-center relative -top-[14px]">
-                                <div className="relative hover:scale-110 duration-300 cursor-pointer" onClick={() => navigate("/cart")}>
-                                    <HiShoppingBag className="h-[60px] w-[60px] text-[#E42986] -z-20" />
-                                    <span className="w-[18px] h-[18px] rounded-full bg-[#E42986] text-white flex justify-center items-center absolute z-50 right-0 top-[10px] text-[12px]">
-                                        1
-                                    </span>
+                            {user && (
+                                <div className="h-full flex items-center relative -top-[14px]">
+                                    <div className="relative hover:scale-110 duration-300 cursor-pointer" onClick={() => navigate("/cart")}>
+                                        <HiShoppingBag className="h-[60px] w-[60px] text-[#E42986] -z-20" />
+                                        <span className="w-[18px] h-[18px] rounded-full bg-[#E42986] text-white flex justify-center items-center absolute z-50 right-0 top-[10px] text-[12px]">
+                                            1
+                                        </span>
+                                    </div>
                                 </div>
-                            </div>
+                            )}
                             <ul>
                                 <li className={`relative cursor-pointer ${NavBarCSS.engDropdown}`}>
                                     <div>
