@@ -29,6 +29,7 @@ import MemberShip from "../../Wrapper/Membership/MemberShip";
 import Shop from "../../Wrapper/Shop/Shop";
 import ShopOrders from "../../Wrapper/Shop/ShopOrders/ShopOrders";
 import ShopProducts from "../../Wrapper/Shop/ShopProducts/ShopProducts";
+import PaymentSuccess from "../../components/shared/Success/PaymentSuccess"
 
 const matrimonyRoutes = [
     {
@@ -181,4 +182,5 @@ const matrimonyRoutes = [
         ],
     },
 ];
+
 export default matrimonyRoutes;
