@@ -10,8 +10,6 @@ import { useDispatch, useSelector } from "react-redux";
 import blackLogo from "../../../assets/images/Logo/logoBlack.png";
 import blog from "../../../assets/images/NavIcons/Blog.svg";
 import findPartner from "../../../assets/images/NavIcons/Find-Your-Partner.svg";
-import bangla from "../../../assets/images/NavIcons/Language-Switcher-Bangla.svg";
-import english from "../../../assets/images/NavIcons/Language-Switcher-English.svg";
 import findALawyer from "../../../assets/images/NavIcons/Lawyer.svg";
 import membership from "../../../assets/images/NavIcons/Membership.svg";
 import course from "../../../assets/images/NavIcons/Online-Course.svg";
@@ -21,11 +19,11 @@ import { loadPhotos, loadUserData } from "../../../Redux/features/userInfo/userI
 import MobileNav from "./MobileNav";
 
 // CSS files
-import { Select } from "antd";
 import "../../../App.css";
 import NavBarCSS from "../../../assets/css/navbar.module.css";
 import removeCookie from "../../../Helper/cookies/removeCookie";
 import isLoggedIn from "../../../Helper/hooks/checkLoggerPersestency/isLoggedIn";
+import { LanguageSwitcher } from "./LanguageSwitcher";
 
 const NavBar = ({ bg }) => {
     const dispatch = useDispatch();
@@ -37,10 +35,6 @@ const NavBar = ({ bg }) => {
     let { profilePhoto } = userInfo || {};
 
     profilePhoto = profilePhoto ? profilePhoto : "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png";
-
-    // language switcher icon style
-    const englishIcon = <img className="w-[68px] h-[68px]" src={english} alt="english" />;
-    const banglaIcon = <img className="w-[68px] h-[68px]" src={bangla} alt="bangla" />;
 
     const allMenu = [
         {
@@ -188,17 +182,7 @@ const NavBar = ({ bg }) => {
                                     </div>
                                 </div>
                             )}
-                            <div className="h-full flex items-center relative -top-[14px]">
-                                <Select
-                                    defaultValue="english"
-                                    style={{ width: 90 }}
-                                    bordered={false}
-                                    options={[
-                                        { value: "english", label: englishIcon },
-                                        { value: "bangla", label: banglaIcon },
-                                    ]}
-                                />
-                            </div>
+                            <LanguageSwitcher />
                         </ul>
                     </div>
                 </div>
