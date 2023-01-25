@@ -4,6 +4,7 @@ import KaziAddServiceForm from "../../components/pages/Kazi/KaziServices/AddServ
 import KaziServicesPage from "../../components/pages/Kazi/KaziServices/KaziServicesPages";
 import KaziServiceDetailes from "../../components/pages/Kazi/KaziServices/serviceDetailes/KaziServiceDetailes";
 import { KaziProfile } from "../../components/pages/Kazi/Profile/KaziProfile";
+import { KaziProfileContainer } from "../../components/pages/Kazi/Profile/profileContainer/KaziProfileContainer";
 
 const kaziPrivateRoutes = [
     {
@@ -35,6 +36,11 @@ const kaziPrivateRoutes = [
                 id: 5,
                 path: "activity",
                 element: <KaziActivity />,
+            },
+            {
+                id: 6,
+                path: "profile",
+                element: <KaziProfileContainer />,
             },
         ],
     },
