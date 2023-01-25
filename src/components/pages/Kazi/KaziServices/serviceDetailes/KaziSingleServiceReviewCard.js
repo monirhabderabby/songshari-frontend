@@ -4,7 +4,7 @@ import React from "react";
 // Third party packages
 import { Rating } from "@mui/material";
 
-const LawyerSingleServiceReviewCard = ({ review }) => {
+const KaziSingleServiceReviewCard = ({ review }) => {
     return (
         <div className="flex justify-start items-start gap-6 pb-8 mb-7 border-b border-[#F4F4F5]">
             <div className="w-[73px] h-[43px]">
@@ -24,4 +24,4 @@ const LawyerSingleServiceReviewCard = ({ review }) => {
     );
 };
 
-export default LawyerSingleServiceReviewCard;
+export default KaziSingleServiceReviewCard;
