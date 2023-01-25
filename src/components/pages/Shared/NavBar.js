@@ -1,5 +1,5 @@
 // Configuration
-import React, { useState } from "react";
+import React from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 
 // Third party packages
@@ -10,8 +10,8 @@ import { useDispatch, useSelector } from "react-redux";
 import blackLogo from "../../../assets/images/Logo/logoBlack.png";
 import blog from "../../../assets/images/NavIcons/Blog.svg";
 import findPartner from "../../../assets/images/NavIcons/Find-Your-Partner.svg";
-import bng from "../../../assets/images/NavIcons/Language-Switcher-Bangla.svg";
-import eng from "../../../assets/images/NavIcons/Language-Switcher-English.svg";
+import bangla from "../../../assets/images/NavIcons/Language-Switcher-Bangla.svg";
+import english from "../../../assets/images/NavIcons/Language-Switcher-English.svg";
 import findALawyer from "../../../assets/images/NavIcons/Lawyer.svg";
 import membership from "../../../assets/images/NavIcons/Membership.svg";
 import course from "../../../assets/images/NavIcons/Online-Course.svg";
@@ -21,13 +21,13 @@ import { loadPhotos, loadUserData } from "../../../Redux/features/userInfo/userI
 import MobileNav from "./MobileNav";
 
 // CSS files
+import { Select } from "antd";
 import "../../../App.css";
 import NavBarCSS from "../../../assets/css/navbar.module.css";
 import removeCookie from "../../../Helper/cookies/removeCookie";
 import isLoggedIn from "../../../Helper/hooks/checkLoggerPersestency/isLoggedIn";
 
 const NavBar = ({ bg }) => {
-    const [language, setLanguage] = useState(true);
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const user = isLoggedIn();
@@ -37,6 +37,10 @@ const NavBar = ({ bg }) => {
     let { profilePhoto } = userInfo || {};
 
     profilePhoto = profilePhoto ? profilePhoto : "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png";
+
+    // language switcher icon style
+    const englishIcon = <img className="w-[68px] h-[68px]" src={english} alt="english" />;
+    const banglaIcon = <img className="w-[68px] h-[68px]" src={bangla} alt="bangla" />;
 
     const allMenu = [
         {
@@ -70,13 +74,6 @@ const NavBar = ({ bg }) => {
         dispatch(loadPhotos([]));
         navigate("/");
         removeCookie("token");
-    };
-
-    const banglaHandler = () => {
-        setLanguage(false);
-    };
-    const englishHandler = () => {
-        setLanguage(true);
     };
 
     return (
@@ -191,41 +188,17 @@ const NavBar = ({ bg }) => {
                                     </div>
                                 </div>
                             )}
-                            <ul>
-                                <li className={`relative cursor-pointer ${NavBarCSS.engDropdown}`}>
-                                    <div>
-                                        <img className="w-[60px]" src={language ? eng : bng} alt="Not Available" />
-                                    </div>
-                                    <div
-                                        className={`absolute eng-menu border border-black left-0 z-10 top-[70px] w-[80px] origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none ${NavBarCSS.engMenu}`}
-                                        role="menu"
-                                        aria-orientation="vertical"
-                                        aria-labelledby="menu-button"
-                                        tabIndex="-1"
-                                    >
-                                        <div className="py-1 text-center" role="none">
-                                            <button
-                                                onClick={banglaHandler}
-                                                className=" text-[#f36] block px-4   text-[22px]"
-                                                role="menuitem"
-                                                tabIndex="-1"
-                                                id="menu-item-0"
-                                            >
-                                                BN
-                                            </button>
-                                            <button
-                                                onClick={englishHandler}
-                                                className="block px-4 text-[#f36]  text-[22px]"
-                                                role="menuitem"
-                                                tabIndex="-1"
-                                                id="menu-item-1"
-                                            >
-                                                EN
-                                            </button>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
+                            <div className="h-full flex items-center relative -top-[14px]">
+                                <Select
+                                    defaultValue="english"
+                                    style={{ width: 90 }}
+                                    bordered={false}
+                                    options={[
+                                        { value: "english", label: englishIcon },
+                                        { value: "bangla", label: banglaIcon },
+                                    ]}
+                                />
+                            </div>
                         </ul>
                     </div>
                 </div>
