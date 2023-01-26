@@ -16,22 +16,6 @@ const KaziTable = ({ data, isLoading }) => {
         <div>
             <div className="mb-4 w-full">
                 <div className="w-full h-[60px] lg:max-w-[512px] mx-auto bg-white mb-[20px] shadow-[rgba(100,100,111,0.2)_0px_7px_29px_0px] rounded-[4px]">
-                    {/* <div className="flex justify-center items-center h-full gap-4">
-                        <button
-                            className={`font-medium text-[15px] leading-tight ${page === 1 ? "text-primary font-bold" : "text-gray-800"}`}
-                            onClick={() => setPage(1)}
-                        >
-                            Info
-                        </button>
-                        <button
-                            className={`font-medium text-[15px] leading-tight ${page === 2 ? "text-primary font-bold" : "text-gray-800"}`}
-                            onClick={() => {
-                                setPage(2);
-                            }}
-                        >
-                            Connection
-                        </button>
-                    </div> */}
                     <div className="w-full h-full flex justify-between">
                         <button
                             className={`flex-1 text-gray-800 rounded-tl-[4px] rounded-bl-[4px] font-medium text-[15px] duration-200 ${
