@@ -15,6 +15,8 @@ export const FindAPartnerSuggested = () => {
     const searchTerm = useSelector(state => state?.persistedReducer?.filter?.searchTerm);
     const { data, isLoading, error } = useGetRecentMembersQuery();
 
+    console.log(data);
+
     let content;
     const loaderArray = [1, 2, 3, 4, 5, 6];
 
@@ -41,10 +43,11 @@ export const FindAPartnerSuggested = () => {
                 <p className="text-gray-400 text-[14px]">No User Found as {searchTerm}</p>
             </div>
         );
-    } else if (!isLoading && data?.data?.members > 0) {
+    } else if (!isLoading && data?.data?.members !== 0) {
         content = (
             <div className="grid grid-cols-3 gap-[30px]">
                 {data?.data?.members.map(profile => {
+                    console.log(profile);
                     return <UserCard key={profile._id} {...{ profile }} />;
                 })}
             </div>

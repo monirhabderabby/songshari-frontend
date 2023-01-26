@@ -107,7 +107,7 @@ const matrimonyRoutes = [
         nestedRoutes: [
             {
                 id: 1,
-                path: "/find-partner/suggested",
+                path: "suggested",
                 element: <FindAPartnerSuggested />,
             },
             {
