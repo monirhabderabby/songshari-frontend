@@ -1,23 +1,20 @@
 // Configuration
 import React from "react";
-import { useNavigate } from "react-router";
+import { Link } from "react-router-dom";
 
 const SiblingsAccordion = ({ sibling, edit }) => {
-  const navigate = useNavigate();
   return (
     <div>
       <div className={`${edit ? "flex justify-end mt-2" : "none"}`}>
-        <button
-          onClick={() =>
-            navigate(`/userprofile/edit/siblingsInfo/${sibling?._id}`)
-          }
+        <Link
+          to={`edit/siblingsInfo/${sibling?._id}`}
           style={{
             background: "linear-gradient(180deg, #E41272 0%, #942DD9 100%)",
           }}
           className="w-[64px] text-center py-[8] px-[10px] text-[#fff] h-[28px] text-lg font-medium rounded"
         >
           Edit
-        </button>
+        </Link>
       </div>
       <div>
         {sibling?.isSiblingAlive && (
