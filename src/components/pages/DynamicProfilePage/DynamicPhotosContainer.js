@@ -32,7 +32,7 @@ export const DynamicPhotosContainer = ({ data, isLoading, error }) => {
         content = (
             <div className="h-[calc(333px-94px)] w-full grid grid-cols-3 mt-[15px]">
                 {loaderArr.map(p => {
-                    return <div key={p} class="h-[101px] w-[86px] bg-gray-200 rounded-[15px] animate-pulse"></div>;
+                    return <div key={p} className="h-[101px] w-[86px] bg-gray-200 rounded-[15px] animate-pulse"></div>;
                 })}
             </div>
         );

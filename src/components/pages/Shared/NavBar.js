@@ -1,5 +1,5 @@
 // Configuration
-import React, { useState } from "react";
+import React from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 
 // Third party packages
@@ -10,8 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import blackLogo from "../../../assets/images/Logo/logoBlack.png";
 import blog from "../../../assets/images/NavIcons/Blog.svg";
 import findPartner from "../../../assets/images/NavIcons/Find-Your-Partner.svg";
-import bng from "../../../assets/images/NavIcons/Language-Switcher-Bangla.svg";
-import eng from "../../../assets/images/NavIcons/Language-Switcher-English.svg";
+import kazi from "../../../assets/images/NavIcons/Kazi.svg";
 import findALawyer from "../../../assets/images/NavIcons/Lawyer.svg";
 import membership from "../../../assets/images/NavIcons/Membership.svg";
 import course from "../../../assets/images/NavIcons/Online-Course.svg";
@@ -28,9 +27,9 @@ import "../../../App.css";
 import NavBarCSS from "../../../assets/css/navbar.module.css";
 import removeCookie from "../../../Helper/cookies/removeCookie";
 import isLoggedIn from "../../../Helper/hooks/checkLoggerPersestency/isLoggedIn";
+import { LanguageSwitcher } from "./LanguageSwitcher";
 
 const NavBar = ({ bg }) => {
-  const [language, setLanguage] = useState(true);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const user = isLoggedIn();
@@ -59,7 +58,7 @@ const NavBar = ({ bg }) => {
     {
       id: 6,
       to: "/kazi",
-      icon: "https://svgshare.com/i/p9U.svg",
+      icon: kazi,
       tooltip: "Kazi",
     },
     {
@@ -77,13 +76,6 @@ const NavBar = ({ bg }) => {
     dispatch(loadPhotos([]));
     navigate("/");
     removeCookie("token");
-  };
-
-  const banglaHandler = () => {
-    setLanguage(false);
-  };
-  const englishHandler = () => {
-    setLanguage(true);
   };
 
   return (
@@ -212,58 +204,20 @@ const NavBar = ({ bg }) => {
                   )}
                 </div>
               </li>
-              <div className="h-full flex items-center relative -top-[14px]">
-                <div
-                  className="relative hover:scale-110 duration-300 cursor-pointer"
-                  onClick={() => navigate("/cart")}
-                >
-                  <HiShoppingBag className="h-[60px] w-[60px] text-[#E42986] -z-20" />
-                  <span className="w-[18px] h-[18px] rounded-full bg-[#E42986] text-white flex justify-center items-center absolute z-50 right-0 top-[10px] text-[12px]">
-                    1
-                  </span>
-                </div>
-              </div>
-              <ul>
-                <li
-                  className={`relative cursor-pointer ${NavBarCSS.engDropdown}`}
-                >
-                  <div>
-                    <img
-                      className="w-[60px]"
-                      src={language ? eng : bng}
-                      alt="Not Available"
-                    />
-                  </div>
+              {user && (
+                <div className="h-full flex items-center relative -top-[14px]">
                   <div
-                    className={`absolute eng-menu border border-black left-0 z-10 top-[70px] w-[80px] origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none ${NavBarCSS.engMenu}`}
-                    role="menu"
-                    aria-orientation="vertical"
-                    aria-labelledby="menu-button"
-                    tabIndex="-1"
+                    className="relative hover:scale-110 duration-300 cursor-pointer"
+                    onClick={() => navigate("/cart")}
                   >
-                    <div className="py-1 text-center" role="none">
-                      <button
-                        onClick={banglaHandler}
-                        className=" text-[#f36] block px-4   text-[22px]"
-                        role="menuitem"
-                        tabIndex="-1"
-                        id="menu-item-0"
-                      >
-                        BN
-                      </button>
-                      <button
-                        onClick={englishHandler}
-                        className="block px-4 text-[#f36]  text-[22px]"
-                        role="menuitem"
-                        tabIndex="-1"
-                        id="menu-item-1"
-                      >
-                        EN
-                      </button>
-                    </div>
+                    <HiShoppingBag className="h-[60px] w-[60px] text-[#E42986] -z-20" />
+                    <span className="w-[18px] h-[18px] rounded-full bg-[#E42986] text-white flex justify-center items-center absolute z-50 right-0 top-[10px] text-[12px]">
+                      1
+                    </span>
                   </div>
-                </li>
-              </ul>
+                </div>
+              )}
+              <LanguageSwitcher />
             </ul>
           </div>
         </div>

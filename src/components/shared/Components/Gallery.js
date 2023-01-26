@@ -30,7 +30,7 @@ export const Gallery = () => {
                     return (
                         <div
                             key={p}
-                            class={`w-full max-h-[424px] bg-gray-200 rounded-[15px] animate-pulse ${index === 1 && "col-span-2 row-span-2"}`}
+                            className={`w-full max-h-[424px] bg-gray-200 rounded-[15px] animate-pulse ${index === 1 && "col-span-2 row-span-2"}`}
                         ></div>
                     );
                 })}
