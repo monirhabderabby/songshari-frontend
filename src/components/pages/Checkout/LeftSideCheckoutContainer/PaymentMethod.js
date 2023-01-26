@@ -1,21 +1,7 @@
 import { FormControl, FormControlLabel, Radio, RadioGroup } from "@material-ui/core";
-import { withStyles } from "@material-ui/core/styles";
-import React, { useState } from "react";
-
-const styles = {
-    root: {
-        color: "red",
-        "&$checked": {
-            color: "green",
-        },
-    },
-    checked: {},
-};
-
-const StyledRadio = withStyles(styles)(Radio);
+import React from "react";
 
 export const PaymentMethod = () => {
-    const [selectedValue, setSelectedValue] = useState("bkash");
     const bkash = (
         <div className="w-full">
             Bkash : <p>You will redirect to the bkash website</p>
