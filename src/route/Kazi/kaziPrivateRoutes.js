@@ -5,6 +5,7 @@ import KaziServicesPage from "../../components/pages/Kazi/KaziServices/KaziServi
 import KaziServiceDetailes from "../../components/pages/Kazi/KaziServices/serviceDetailes/KaziServiceDetailes";
 import { KaziProfile } from "../../components/pages/Kazi/Profile/KaziProfile";
 import { KaziProfileContainer } from "../../components/pages/Kazi/Profile/profileContainer/KaziProfileContainer";
+import ProfileDetails from "../../components/SingleProfilesUser/profileSection/ProfileDetails";
 
 const kaziPrivateRoutes = [
     {
@@ -41,6 +42,13 @@ const kaziPrivateRoutes = [
                 id: 6,
                 path: "profile",
                 element: <KaziProfileContainer />,
+                nestedRoutes: [
+                    {
+                        id: 1,
+                        path: "",
+                        element: <ProfileDetails />,
+                    },
+                ],
             },
         ],
     },
