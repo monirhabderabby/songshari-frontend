@@ -2,22 +2,21 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 
-// components
-import CustomHeader from "../../components/shared/CustomHeader/CustomHeader";
-import { useGetProfileDetailsWIthAuthQuery } from "../../Redux/features/userInfo/userApi";
-import { loadPhotos } from "../../Redux/features/userInfo/userInfo";
-import Footer from "../shared/Footer/Footer";
-import ChartBoard from "./chatboard/ChartBoard";
-import { IntroCard } from "./IntroCard";
-import PhotoGelary from "./PhotoGelary";
-import { PhotoUploadCard } from "./PhotoUploadCard";
-import ProfileCard from "./ProfileCard";
-import { SocialMediaBox } from "./SocialMediaBox/SocialMediaBox";
-import Table from "./Table/Table";
-import UtilitisCard from "./UtilitisCard";
-import { VerificationCard } from "./VerificationCard";
+// Components
+import { useGetProfileDetailsWIthAuthQuery } from "../../../Redux/features/userInfo/userApi";
+import { loadPhotos } from "../../../Redux/features/userInfo/userInfo";
+import Footer from "../../shared/Footer/Footer";
+import ChartBoard from "../../SingleProfilesUser/chatboard/ChartBoard";
+import { IntroCard } from "../../SingleProfilesUser/IntroCard";
+import PhotoGelary from "../../SingleProfilesUser/PhotoGelary";
+import { PhotoUploadCard } from "../../SingleProfilesUser/PhotoUploadCard";
+import ProfileCard from "../../SingleProfilesUser/ProfileCard";
+import { SocialMediaBox } from "../../SingleProfilesUser/SocialMediaBox/SocialMediaBox";
+import UtilitisCard from "../../SingleProfilesUser/UtilitisCard";
+import { VerificationCard } from "../../SingleProfilesUser/VerificationCard";
+import LawyerTable from "./LawyerTable/LawyerTable";
 
-export const SingleProfiles = () => {
+const LawyerProfileContainer = () => {
   // hook variable declaration
   const [SocialBoxOpen, setSocialBoxOpen] = useState(false);
   const { data, isLoading, error } = useGetProfileDetailsWIthAuthQuery();
@@ -43,8 +42,7 @@ export const SingleProfiles = () => {
 
   return (
     <div className="bg-[#FAFBFF]">
-      <CustomHeader title="Profile" />
-      <div className="custom-container mx-auto bg-[#FAFBFF] pt-[30px] ">
+      <div className="custom-container mx-auto bg-[#FAFBFF]">
         <div className="block lg:flex">
           <div className="w-full ">
             <div className="block lg:flex">
@@ -66,7 +64,7 @@ export const SingleProfiles = () => {
               </div>
               <div className="w-full hidden md:hidden lg:block">
                 <div>
-                  <Table {...{ data, isLoading }} />
+                  <LawyerTable {...{ data, isLoading }} />
                 </div>
               </div>
             </div>
@@ -82,3 +80,5 @@ export const SingleProfiles = () => {
     </div>
   );
 };
+
+export default LawyerProfileContainer;
