@@ -1,5 +1,3 @@
-import { Cart } from "../../components/pages/cart/Cart";
-import { CheckoutPage } from "../../components/pages/Checkout/CheckoutPage";
 import { Gallery } from "../../components/shared/Components/Gallery";
 import EducationalCertificateWeb from "../../components/SingleProfilesUser/CertificateSection/EducationalCertificateWeb";
 import PersonalCertificateWeb from "../../components/SingleProfilesUser/CertificateSection/PersonalCertificateWeb";
@@ -16,94 +14,84 @@ import { SingleProfiles } from "../../components/SingleProfilesUser/SingleProfil
 import { Container } from "../../Wrapper/Stepper/Container";
 
 const matrimonyPrivateRoutes = [
-  {
-    id: 1,
-    path: "/userprofile",
-    element: <SingleProfiles />,
-    nestedRoutes: [
-      {
+    {
         id: 1,
-        path: "",
-        element: <ProfileDetails />,
-      },
-      {
-        id: 2,
-        path: "edit",
+        path: "/userprofile",
+        element: <SingleProfiles />,
         nestedRoutes: [
-          {
-            id: 1,
-            path: "personalinfo/:id",
-            element: <EditPersonalInfo />,
-          },
-          {
-            id: 2,
-            path: "profesionalinfo/:id",
-            element: <EditProfesionalInfo />,
-          },
-          {
-            id: 3,
-            path: "educationalinfo/:id",
-            element: <EditEducationalInfo />,
-          },
-          {
-            id: 4,
-            path: "physicalinfo/:id",
-            element: <EditPhysicalInfo />,
-          },
-          {
-            id: 5,
-            path: "othersinfo/:id",
-            element: <EditOthersInfo />,
-          },
-          {
-            id: 6,
-            path: "familyInfo/:id",
-            element: <EditFamilyInfo />,
-          },
-          {
-            id: 7,
-            path: "siblingsInfo/:id",
-            element: <EditSiblingsInfo />,
-          },
+            {
+                id: 1,
+                path: "",
+                element: <ProfileDetails />,
+            },
+            {
+                id: 2,
+                path: "edit",
+                nestedRoutes: [
+                    {
+                        id: 1,
+                        path: "personalinfo/:id",
+                        element: <EditPersonalInfo />,
+                    },
+                    {
+                        id: 2,
+                        path: "profesionalinfo/:id",
+                        element: <EditProfesionalInfo />,
+                    },
+                    {
+                        id: 3,
+                        path: "educationalinfo/:id",
+                        element: <EditEducationalInfo />,
+                    },
+                    {
+                        id: 4,
+                        path: "physicalinfo/:id",
+                        element: <EditPhysicalInfo />,
+                    },
+                    {
+                        id: 5,
+                        path: "othersinfo/:id",
+                        element: <EditOthersInfo />,
+                    },
+                    {
+                        id: 6,
+                        path: "familyInfo/:id",
+                        element: <EditFamilyInfo />,
+                    },
+                    {
+                        id: 7,
+                        path: "siblingsInfo/:id",
+                        element: <EditSiblingsInfo />,
+                    },
+                ],
+            },
         ],
-      },
-    ],
-  },
-  {
-    id: 2,
-    path: "/stepper",
-    element: <Container />,
-  },
-  {
-    id: 3,
-    path: "/personalCertificate",
-    element: <PersonalCertificateWeb />,
-  },
-  {
-    id: 4,
-    path: "/professionalCertificate",
-    element: <ProfessionalCertificateWeb />,
-  },
-  {
-    id: 5,
-    path: "/educationalCertificate",
-    element: <EducationalCertificateWeb />,
-  },
-  {
-    id: 6,
-    path: "/gallery/:id",
-    element: <Gallery />,
-  },
-  {
-    id: 7,
-    path: "/cart",
-    element: <Cart />,
-  },
-  {
-    id: 8,
-    path: "/checkout/:id",
-    element: <CheckoutPage />,
-  },
+    },
+    {
+        id: 2,
+        path: "/stepper",
+        element: <Container />,
+    },
+    {
+        id: 3,
+        path: "/personalCertificate",
+        element: <PersonalCertificateWeb />,
+    },
+    {
+        id: 4,
+        path: "/professionalCertificate",
+        element: <ProfessionalCertificateWeb />,
+    },
+    {
+        id: 5,
+        path: "/educationalCertificate",
+        element: <EducationalCertificateWeb />,
+    },
+    {
+        id: 6,
+        path: "/gallery/:id",
+        element: <Gallery />,
+    },
 ];
 
 export default matrimonyPrivateRoutes;

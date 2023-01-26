@@ -21,7 +21,7 @@ const KaziServiceCard = ({ service }) => {
                 <div className="flex items-center gap-4">
                     <p className="text-base font-semibold leading-5">$ {service.price}</p>
                     <Link
-                        to={`/lawyerProfile/lawyerSingleServiceDetails/${service.id}`}
+                        to={`/kaziProfile/kaziSingleServiceDetails/${service.id}`}
                         className="text-sm text-white font-semibold leading-[18px] px-5 py-1 rounded bg-[#E41272]"
                     >
                         View
