@@ -2,16 +2,14 @@
 import React, { useState } from "react";
 
 // components
-import { Friends } from "../../../../SingleProfilesUser/FriendsSection/Friends";
-import { Profile } from "../../../../SingleProfilesUser/profileSection/Profile";
+import { Friends } from "../../../SingleProfilesUser/FriendsSection/Friends";
+import { Profile } from "../../../SingleProfilesUser/profileSection/Profile";
 
 // css files
-import "../../../../../App.css";
+import "../../../../App.css";
 
-const KaziTable = ({ data, isLoading }) => {
+const LawyerTable = ({ data, isLoading }) => {
     const [page, setPage] = useState(2);
-    //here navigate use for manage edit proofile information route
-
     return (
         <div>
             <div className="mb-4 w-full">
@@ -44,4 +42,4 @@ const KaziTable = ({ data, isLoading }) => {
     );
 };
 
-export default KaziTable;
+export default LawyerTable;

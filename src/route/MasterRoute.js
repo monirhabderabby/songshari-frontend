@@ -68,7 +68,19 @@ const MasterRoute = () => {
                                 return (
                                     <Route key={route.id} path={route.path} element={<RequireAuth>{route.element}</RequireAuth>}>
                                         {route.nestedRoutes?.map(route => {
-                                            return <Route key={route.id} path={route.path} element={route.element} />;
+                                            return (
+                                                <Route key={route.id} path={route.path} element={route.element}>
+                                                    {route.nestedRoutes?.map(route => {
+                                                        return (
+                                                            <Route
+                                                                key={route.id}
+                                                                path={route.path}
+                                                                element={<RequireAuth>{route.element}</RequireAuth>}
+                                                            />
+                                                        );
+                                                    })}
+                                                </Route>
+                                            );
                                         })}
                                     </Route>
                                 );
@@ -92,7 +104,13 @@ const MasterRoute = () => {
                     return (
                         <Route key={route.id} path={route.path} element={<RequireAuth>{route.element}</RequireAuth>}>
                             {route.nestedRoutes?.map(route => {
-                                return <Route key={route.id} path={route.path} element={<RequireAuth>{route.element}</RequireAuth>} />;
+                                return (
+                                    <Route key={route.id} path={route.path} element={<RequireAuth>{route.element}</RequireAuth>}>
+                                        {route.nestedRoutes?.map(route => {
+                                            return <Route key={route.id} path={route.path} element={<RequireAuth>{route.element}</RequireAuth>} />;
+                                        })}
+                                    </Route>
+                                );
                             })}
                         </Route>
                     );
