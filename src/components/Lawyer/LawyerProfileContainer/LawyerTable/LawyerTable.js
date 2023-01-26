@@ -4,14 +4,12 @@ import React, { useState } from "react";
 // components
 import { Friends } from "../../../SingleProfilesUser/FriendsSection/Friends";
 import { Profile } from "../../../SingleProfilesUser/profileSection/Profile";
-import LawyerProfile from "./LawyerProfile/LawyerProfile";
 
 // css files
 import "../../../../App.css";
 
 const LawyerTable = ({ data, isLoading }) => {
   const [page, setPage] = useState(2);
-
   return (
     <div>
       <div className="mb-4 w-full">
@@ -40,8 +38,7 @@ const LawyerTable = ({ data, isLoading }) => {
       </div>
 
       {/* table 1 */}
-      {/* {page === 1 && <Profile {...{ data, isLoading }} />} */}
-      {page === 1 && <LawyerProfile {...{ data, isLoading }} />}
+      {page === 1 && <Profile {...{ data, isLoading }} />}
       {page === 2 && <Friends {...{ data, isLoading }} />}
     </div>
   );

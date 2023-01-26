@@ -30,20 +30,8 @@ const lawyerPrivateRoutes = [
         path: "lawyerActivity",
         element: <LawyerActivity />,
       },
-      //   {
-      //     id: 6,
-      //     path: "",
-      //     element: <LawyerProfileContainer />,
-      //     nestedRoutes: [
-      //       {
-      //         id: 1,
-      //         path: "",
-      //         element: <ProfileDetails />,
-      //       },
-      //     ],
-      //   },
       {
-        id: 7,
+        id: 6,
         path: "profile",
         element: <LawyerProfileContainer />,
         nestedRoutes: [

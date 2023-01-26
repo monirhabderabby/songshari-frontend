@@ -5,53 +5,101 @@ import KaziServicesPage from "../../components/pages/Kazi/KaziServices/KaziServi
 import KaziServiceDetailes from "../../components/pages/Kazi/KaziServices/serviceDetailes/KaziServiceDetailes";
 import { KaziProfile } from "../../components/pages/Kazi/Profile/KaziProfile";
 import { KaziProfileContainer } from "../../components/pages/Kazi/Profile/profileContainer/KaziProfileContainer";
+import EditEducationalInfo from "../../components/SingleProfilesUser/profileSection/EditprofileSection/EditEducationalInfo";
+import EditFamilyInfo from "../../components/SingleProfilesUser/profileSection/EditprofileSection/EditFamilyInfo";
+import EditOthersInfo from "../../components/SingleProfilesUser/profileSection/EditprofileSection/EditOthersInfo";
+import EditPersonalInfo from "../../components/SingleProfilesUser/profileSection/EditprofileSection/EditPersonalInfo";
+import EditPhysicalInfo from "../../components/SingleProfilesUser/profileSection/EditprofileSection/EditPhysicalInfo";
+import EditProfesionalInfo from "../../components/SingleProfilesUser/profileSection/EditprofileSection/EditProfesionalInfo";
+import EditSiblingsInfo from "../../components/SingleProfilesUser/profileSection/EditprofileSection/EditSiblingsInfo";
 import ProfileDetails from "../../components/SingleProfilesUser/profileSection/ProfileDetails";
 
 const kaziPrivateRoutes = [
-    {
+  {
+    id: 1,
+    path: "/kaziProfile",
+    element: <KaziProfile />,
+    nestedRoutes: [
+      {
         id: 1,
-        path: "/kaziProfile",
-        element: <KaziProfile />,
+        path: "kaziServices",
+        element: <KaziServicesPage />,
+      },
+      {
+        id: 2,
+        path: "review",
+        element: <KaziReview />,
+      },
+      {
+        id: 3,
+        path: "kaziAddServiceForm",
+        element: <KaziAddServiceForm />,
+      },
+      {
+        id: 4,
+        path: "kaziSingleServiceDetails/:id",
+        element: <KaziServiceDetailes />,
+      },
+      {
+        id: 5,
+        path: "activity",
+        element: <KaziActivity />,
+      },
+      {
+        id: 6,
+        path: "profile",
+        element: <KaziProfileContainer />,
         nestedRoutes: [
-            {
+          {
+            id: 1,
+            path: "",
+            element: <ProfileDetails />,
+          },
+          {
+            id: 2,
+            path: "edit",
+            nestedRoutes: [
+              {
                 id: 1,
-                path: "kaziServices",
-                element: <KaziServicesPage />,
-            },
-            {
+                path: "personalinfo/:id",
+                element: <EditPersonalInfo />,
+              },
+              {
                 id: 2,
-                path: "review",
-                element: <KaziReview />,
-            },
-            {
+                path: "profesionalinfo/:id",
+                element: <EditProfesionalInfo />,
+              },
+              {
                 id: 3,
-                path: "kaziAddServiceForm",
-                element: <KaziAddServiceForm />,
-            },
-            {
+                path: "educationalinfo/:id",
+                element: <EditEducationalInfo />,
+              },
+              {
                 id: 4,
-                path: "kaziSingleServiceDetails/:id",
-                element: <KaziServiceDetailes />,
-            },
-            {
+                path: "physicalinfo/:id",
+                element: <EditPhysicalInfo />,
+              },
+              {
                 id: 5,
-                path: "activity",
-                element: <KaziActivity />,
-            },
-            {
+                path: "othersinfo/:id",
+                element: <EditOthersInfo />,
+              },
+              {
                 id: 6,
-                path: "profile",
-                element: <KaziProfileContainer />,
-                nestedRoutes: [
-                    {
-                        id: 1,
-                        path: "",
-                        element: <ProfileDetails />,
-                    },
-                ],
-            },
+                path: "familyInfo/:id",
+                element: <EditFamilyInfo />,
+              },
+              {
+                id: 7,
+                path: "siblingsInfo/:id",
+                element: <EditSiblingsInfo />,
+              },
+            ],
+          },
         ],
-    },
+      },
+    ],
+  },
 ];
 
 export default kaziPrivateRoutes;
