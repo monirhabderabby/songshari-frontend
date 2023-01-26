@@ -51,6 +51,7 @@ const RegAsProfessional = () => {
         console.log(data);
 
         // Implement firebase registration
+        console.log(data);
         await regAsProfessional(data);
     };
 

@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import blackLogo from "../../../assets/images/Logo/logoBlack.png";
 import blog from "../../../assets/images/NavIcons/Blog.svg";
 import findPartner from "../../../assets/images/NavIcons/Find-Your-Partner.svg";
+import kazi from "../../../assets/images/NavIcons/Kazi.svg";
 import findALawyer from "../../../assets/images/NavIcons/Lawyer.svg";
 import membership from "../../../assets/images/NavIcons/Membership.svg";
 import course from "../../../assets/images/NavIcons/Online-Course.svg";
@@ -50,7 +51,7 @@ const NavBar = ({ bg }) => {
         {
             id: 6,
             to: "/kazi",
-            icon: "https://svgshare.com/i/p9U.svg",
+            icon: kazi,
             tooltip: "Kazi",
         },
         {
