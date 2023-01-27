@@ -4,14 +4,19 @@ import React, { useCallback, useEffect } from "react";
 // Third party package
 import { useDropzone } from "react-dropzone";
 import { useForm } from "react-hook-form";
+import { useAddSingleServiceMutation } from "../../../../../Redux/features/Service/ServiceApi";
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import { CircularProgress } from "@mui/material";
 
 const KaziAddServiceForm = () => {
     const onDrop = useCallback(acceptedFiles => {}, []);
     const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
     const { register, handleSubmit } = useForm();
+    const [addSingleService, {data:Service, isLoading:serviceLoading,err}] = useAddSingleServiceMutation()
+    console.log(Service,err);
     const onSubmit = data => {
-        console.log(data);
+        addSingleService(data)
     };
 
     useEffect(() => {
@@ -213,11 +218,12 @@ const KaziAddServiceForm = () => {
                     the Buyer to a refund. See T&Cs.
                 </p>
                 {/* Submit button */}
-                <input
+                {Service && <div className="text-[#4BB543] justify-center mb-8 flex items-center"><CheckCircleIcon/><p> Submitted Successfully!</p></div>}
+                <button
                     type="submit"
                     className="bg-[#E41272] text-white tracking-wider px-8 pt-4 pb-5 border border-[#3D66D7] rounded font-bold leading-4 mb-5 cursor-pointer"
                     value={"Submit Offer"}
-                />
+                >{serviceLoading? <div className="flex justify-center items-center"><CircularProgress size="1rem"/> Submitting</div>:"Submit Offer" }</button>
             </form>
         </div>
     );
