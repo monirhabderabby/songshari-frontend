@@ -51,7 +51,6 @@ const RegAsProfessional = () => {
         data.role = designationForGoogleLogin;
 
         // Implement firebase registration
-        console.log(data);
         await regAsProfessional(data);
     };
 

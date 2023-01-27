@@ -37,7 +37,7 @@ const NavBar = ({ bg }) => {
     const token = getCookie("token");
     const tokenInfo = decodeToken(token);
 
-    console.log(tokenInfo);
+    const { role } = tokenInfo || {};
 
     // js variable
     let { profilePhoto } = userInfo || {};
