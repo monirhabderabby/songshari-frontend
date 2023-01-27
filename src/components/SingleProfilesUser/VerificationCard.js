@@ -3,6 +3,8 @@ import React from "react";
 import { useNavigate } from "react-router";
 
 // Third party packages
+import Box from "@mui/material/Box";
+import LinearProgress from "@mui/material/LinearProgress";
 import { MdKeyboardArrowRight } from "react-icons/md";
 
 // components
@@ -12,10 +14,11 @@ import { useGetPercentageOfProfileCompleteQuery } from "../../Redux/features/use
 export const VerificationCard = () => {
     // hook variables
     const navigate = useNavigate();
-    const { data, isLoading } = useGetPercentageOfProfileCompleteQuery();
+    const { data } = useGetPercentageOfProfileCompleteQuery();
+
     let percentage;
     if (data) {
-        percentage = `w-[${data?.data?.percentage}%]`;
+        percentage = `${data?.data?.percentage}`;
     }
 
     return (
@@ -25,12 +28,13 @@ export const VerificationCard = () => {
                     <img src={verificationIcon} alt="" />
                     <h1 className="text-[#000000] text-[24px] leading-[20px] font-semibold font-fira">Verification Status</h1>
                 </div>
-                <div className="flex items-center gap-x-[9px]">
-                    <div className={`w-[153px] rounded-[6px] bg-[#D9D9D9] h-[9px] ${isLoading && "animate-pulse"}`}>
-                        <div className={`bg-[#E41272] ${percentage} h-full rounded-[6px]`}></div>
+                <Box sx={{ width: "80%" }} className="my-[15px]">
+                    <div className="w-full flex justify-between text-[#000000] text-[14px] font-Poppins ">
+                        <p className="font-light">Progress</p>
+                        <p>{percentage}%</p>
                     </div>
-                    <p>{data?.data?.percentage}%</p>
-                </div>
+                    <LinearProgress variant="determinate" value={percentage} />
+                </Box>
                 <div className="flex items-center">
                     <button className="text-[#942DD9] text-[16px] font-normal font-fira leading-[20px]" onClick={() => navigate("/stepper")}>
                         Complete Verification
