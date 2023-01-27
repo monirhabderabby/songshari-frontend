@@ -1,5 +1,9 @@
+// Configuration
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+
+// Components
+import KaziServicesPage from "../components/pages/Kazi/KaziServices/KaziServicesPages";
 import RequireAuth from "../components/shared/RequireAuth/RequireAuth";
 import RequireAuthMobile from "../components/shared/RequireAuth/RequireAuthMobile";
 import ShopProducts from "../Wrapper/Shop/ShopProducts/ShopProducts";
@@ -11,10 +15,6 @@ import matrimonyRoutes from "./Matrimony/matrimonyRoutes";
 import mobileMatrimony from "./Matrimony/MobileMatrimony/Mobilematrimony";
 import mobileMatrimonyPrivateRoutes from "./Matrimony/MobileMatrimony/MobileMatrimonyPrivateRoutes";
 import shopPrivateRoutes from "./shop/shopPrivateRoutes";
-
-// Routes
-
-// Components
 
 const MasterRoute = () => {
     return (
@@ -64,6 +64,7 @@ const MasterRoute = () => {
                 {kaziPrivateRoutes.map(route => {
                     return (
                         <Route key={route.id} path={route.path} element={<RequireAuth>{route.element}</RequireAuth>}>
+                            <Route index element={<KaziServicesPage />} />
                             {route.nestedRoutes?.map(route => {
                                 return (
                                     <Route key={route.id} path={route.path} element={<RequireAuth>{route.element}</RequireAuth>}>
@@ -107,7 +108,19 @@ const MasterRoute = () => {
                                 return (
                                     <Route key={route.id} path={route.path} element={<RequireAuth>{route.element}</RequireAuth>}>
                                         {route.nestedRoutes?.map(route => {
-                                            return <Route key={route.id} path={route.path} element={<RequireAuth>{route.element}</RequireAuth>} />;
+                                            return (
+                                                <Route key={route.id} path={route.path} element={<RequireAuth>{route.element}</RequireAuth>}>
+                                                    {route.nestedRoutes?.map(route => {
+                                                        return (
+                                                            <Route
+                                                                key={route.id}
+                                                                path={route.path}
+                                                                element={<RequireAuth>{route.element}</RequireAuth>}
+                                                            />
+                                                        );
+                                                    })}
+                                                </Route>
+                                            );
                                         })}
                                     </Route>
                                 );

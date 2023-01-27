@@ -10,8 +10,8 @@ export const KaziProfile = () => {
         <div>
             <CustomHeader title="Kazi Profile" />
             {/* Kazi internal nav */}
-            <div className="flex justify-center md:h-[54px] items-center mt-[39px] z-50 mb-16">
-                <div className="shadow-[0px_5px_30px_rgba(35,57,184,0.2)] bg-white rounded-[10px] h-full px-[39px]">
+            <div className="w-full flex justify-center h-[54px] items-center ml-[51px] my-[20px]">
+                <div className="shadow-[0px_5px_30px_rgba(35,57,184,0.2)] bg-white rounded-[10px] h-full px-[39px] max-w-[511px]">
                     <div className="flex flex-col md:flex-row justify-center items-center gap-x-[28px] h-full">
                         <NavLink to="kaziServices">
                             {({ isActive }) => (

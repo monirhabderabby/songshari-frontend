@@ -1,6 +1,5 @@
 // configuration
 import React from "react";
-import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 
 // Third party packages
@@ -54,7 +53,6 @@ const Accordian = ({ data, isLoading, edit }) => {
   const handleChange = (panel) => (event, newExpanded) => {
     setExpanded(newExpanded ? panel : false);
   };
-  const navigate = useNavigate();
 
   return (
     <div className="mb-[69px] max-w-[523px] mx-auto">
@@ -654,12 +652,8 @@ const Accordian = ({ data, isLoading, edit }) => {
                 return (
                   <div key={profession?._id} className="mb-6">
                     <div className="flex justify-end mt-2">
-                      <button
-                        onClick={() =>
-                          navigate(
-                            `/userprofile/edit/profesionalinfo/${profession?._id}`
-                          )
-                        }
+                      <Link
+                        to={`edit/profesionalinfo/${profession?._id}`}
                         style={{
                           background:
                             "linear-gradient(180deg, #E41272 0%, #942DD9 100%)",
@@ -667,7 +661,7 @@ const Accordian = ({ data, isLoading, edit }) => {
                         className="w-[64px] text-center py-[8] px-[10px] text-[#fff] h-[28px] text-lg font-medium rounded"
                       >
                         Edit
-                      </button>
+                      </Link>
                     </div>
                     <div>
                       {profession?.position && (
@@ -753,12 +747,8 @@ const Accordian = ({ data, isLoading, edit }) => {
                 return (
                   <div key={edu?._id} className="mb-6">
                     <div className="flex justify-end mt-2">
-                      <button
-                        onClick={() =>
-                          navigate(
-                            `/userprofile/edit/educationalinfo/${edu?._id}`
-                          )
-                        }
+                      <Link
+                        to={`edit/educationalinfo/${edu?._id}`}
                         style={{
                           background:
                             "linear-gradient(180deg, #E41272 0%, #942DD9 100%)",
@@ -766,7 +756,7 @@ const Accordian = ({ data, isLoading, edit }) => {
                         className="w-[64px] text-center py-[8] px-[10px] text-[#fff] h-[28px] text-lg font-medium rounded"
                       >
                         Edit
-                      </button>
+                      </Link>
                     </div>
                     <div>
                       {data?.educationalDetail.length !== 0 && (
@@ -924,6 +914,7 @@ const Accordian = ({ data, isLoading, edit }) => {
           </Typography>
         </AccordionDetails>
       </Accordion>
+      {/* ---------- Physical Info ------------ */}
       <Accordion
         expanded={expanded === "panel4"}
         onChange={handleChange("panel4")}
@@ -956,17 +947,15 @@ const Accordian = ({ data, isLoading, edit }) => {
               display: `${expanded === "panel4" && edit ? "block" : "none"}`,
             }}
           >
-            <button
-              onClick={() =>
-                navigate(`/userprofile/edit/physicalinfo/${data?._id}`)
-              }
+            <Link
+              to={`edit/physicalinfo/${data?._id}`}
               style={{
                 background: "linear-gradient(180deg, #E41272 0%, #942DD9 100%)",
               }}
               className="w-[64px] text-center py-[8] px-[10px] text-[#fff] h-[28px] text-lg font-medium rounded"
             >
               Edit
-            </button>
+            </Link>
           </div>
         </div>
         <AccordionDetails>
@@ -1074,17 +1063,15 @@ const Accordian = ({ data, isLoading, edit }) => {
               display: `${expanded === "panel5" && edit ? "block" : "none"}`,
             }}
           >
-            <button
-              onClick={() =>
-                navigate(`/userprofile/edit/familyInfo/${data?._id}`)
-              }
+            <Link
+              to={`edit/familyInfo/${data?._id}`}
               style={{
                 background: "linear-gradient(180deg, #E41272 0%, #942DD9 100%)",
               }}
               className="w-[64px] text-center py-[8] px-[10px] text-[#fff] h-[28px] text-lg font-medium rounded"
             >
               Edit
-            </button>
+            </Link>
           </div>
         </div>
         <AccordionDetails>
@@ -1114,7 +1101,7 @@ const Accordian = ({ data, isLoading, edit }) => {
             {data?.siblingDetail?.length > 0 &&
               data?.siblingDetail?.map((sibling) => (
                 <div key={sibling?._id} className="mb-6">
-                  <SiblingsAccordion {...{ sibling }} />
+                  <SiblingsAccordion {...{ sibling, edit }} />
                 </div>
               ))}
           </Typography>
@@ -1153,17 +1140,15 @@ const Accordian = ({ data, isLoading, edit }) => {
               display: `${expanded === "panel7" && edit ? "block" : "none"}`,
             }}
           >
-            <button
-              onClick={() =>
-                navigate(`/userprofile/edit/othersinfo/${data?._id}`)
-              }
+            <Link
+              to={`edit/othersinfo/${data?._id}`}
               style={{
                 background: "linear-gradient(180deg, #E41272 0%, #942DD9 100%)",
               }}
               className="w-[64px] text-center py-[8] px-[10px] text-[#fff] h-[28px] text-lg font-medium rounded"
             >
               Edit
-            </button>
+            </Link>
           </div>
         </div>
         <AccordionDetails>

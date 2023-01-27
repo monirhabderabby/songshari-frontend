@@ -9,7 +9,7 @@ import { Profile } from "../../../../SingleProfilesUser/profileSection/Profile";
 import "../../../../../App.css";
 
 const KaziTable = ({ data, isLoading }) => {
-    const [page, setPage] = useState(2);
+    const [page, setPage] = useState(1);
     //here navigate use for manage edit proofile information route
 
     return (

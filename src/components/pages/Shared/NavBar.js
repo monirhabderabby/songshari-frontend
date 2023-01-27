@@ -23,6 +23,7 @@ import MobileNav from "./MobileNav";
 // CSS files
 import "../../../App.css";
 import NavBarCSS from "../../../assets/css/navbar.module.css";
+import { profilePathMaker } from "../../../assets/utilities/profilePathDecisionMaker/profilePathMaker";
 import getCookie from "../../../Helper/cookies/getCookie";
 import removeCookie from "../../../Helper/cookies/removeCookie";
 import isLoggedIn from "../../../Helper/hooks/checkLoggerPersestency/isLoggedIn";
@@ -38,6 +39,7 @@ const NavBar = ({ bg }) => {
     const tokenInfo = decodeToken(token);
 
     const { role } = tokenInfo || {};
+    const userProfilePath = profilePathMaker(role);
 
     // js variable
     let { profilePhoto } = userInfo || {};
@@ -139,7 +141,7 @@ const NavBar = ({ bg }) => {
                                     {user ? (
                                         <>
                                             <Link
-                                                to="/userprofile"
+                                                to={userProfilePath}
                                                 className={`${NavBarCSS.tooltip} rounded-xl z-50 shadow-lg px-3 py-1 text-white text-xs font-bold whitespace-nowrap uppercase mt-[66px]`}
                                                 style={{
                                                     backgroundImage: "linear-gradient(155deg, rgba(228, 18, 114, 1) 0%, #4844a5 100%)",
