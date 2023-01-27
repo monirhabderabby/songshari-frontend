@@ -1,6 +1,8 @@
 // components
 import MobileLogin from "../../../components/pages/Authentications/MobileDesign/MobileLogin";
+import MobileLoginProfessional from "../../../components/pages/Authentications/MobileDesign/MobileLoginProfessional";
 import MobileSignUp from "../../../components/pages/Authentications/MobileDesign/MobileSignUp";
+import MobileSignUpProfessional from "../../../components/pages/Authentications/MobileDesign/MobileSignUpProfessional";
 import { MobileOTP } from "../../../components/pages/Authentications/OTP/MobileOTP";
 import { MobileDynamicProfile } from "../../../components/pages/DynamicProfilePage/MobileDynamicProfile/MobileDynamicProfile";
 import { MobileDynamicEducationalDetails } from "../../../components/pages/DynamicProfilePage/MobileDynamicProfile/MobileDynamicProfileDetails/MobileDynamicEducationalDetails";
@@ -310,6 +312,16 @@ const MobileMatrimony = [
         id: 45,
         path: "/otherProfileDynamic/:id",
         element: <MobileDynamicOtherDetails />,
+    },
+    {
+        id: 46,
+        path: "/mobile-signup-professional",
+        element: <MobileSignUpProfessional />,
+    },
+    {
+        id: 47,
+        path: "/mobile-login-professional",
+        element: <MobileLoginProfessional />,
     },
 ];
 export default MobileMatrimony;

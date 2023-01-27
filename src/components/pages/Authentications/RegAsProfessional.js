@@ -48,10 +48,9 @@ const RegAsProfessional = () => {
         setCustomError("");
         delete data.image;
         data.profilePhoto = photoUrl;
-        console.log(data);
+        data.role = designationForGoogleLogin;
 
         // Implement firebase registration
-        console.log(data);
         await regAsProfessional(data);
     };
 
@@ -238,7 +237,7 @@ const RegAsProfessional = () => {
                                                 </option>
                                                 <option value="kazi">Kazi</option>
                                                 <option value="agent">Agent</option>
-                                                <option value="lower">Lawyer</option>
+                                                <option value="lawyer">Lawyer</option>
                                             </select>
                                         </div>
                                         <h1 className="text-left ml-2">

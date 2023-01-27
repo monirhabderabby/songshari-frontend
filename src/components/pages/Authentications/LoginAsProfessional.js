@@ -212,7 +212,7 @@ const LoginAsProfessional = () => {
                                                 <option value="">Select Designation</option>
                                                 <option value="kazi">Kazi</option>
                                                 <option value="agent">Agent</option>
-                                                <option value="lower">Lawyer</option>
+                                                <option value="lawyer">Lawyer</option>
                                             </select>
                                         </div>
                                         <h1 className="text-left ml-2">
