@@ -1,10 +1,13 @@
 import React from "react";
-import AgentPage from "../../components/pages/Agent/AgentPage";
+import AgentProfile from "../../components/pages/Agent/AgentProfile/AgentProfile";
+
+// Components
 
 const Agent = () => {
   return (
     <>
-      <AgentPage />
+      {/* <AgentPage /> */}
+      <AgentProfile />
     </>
   );
 };
