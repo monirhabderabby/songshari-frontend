@@ -24,6 +24,14 @@ import Shop from "../../Wrapper/Shop/Shop";
 import ShopOrders from "../../Wrapper/Shop/ShopOrders/ShopOrders";
 import ShopProducts from "../../Wrapper/Shop/ShopProducts/ShopProducts";
 import PaymentSuccess from "../../components/shared/Success/PaymentSuccess";
+import Lawyer from "../../Wrapper/Lawyer/Lawyer";
+import LawyerServicesPage from "../../components/Lawyer/LawyerServicesPage/LawyerServicesPage"
+import LawyerServiceForm from "../../components/Lawyer/LawyerServiceForm/LawyerServiceForm";
+import LawyerSingleServiceDetails from "../../components/Lawyer/LawyerSingleServiceDetails/LawyerSingleServiceDetails";
+import LawyerActivity from "../../components/Lawyer/LawyerActivity/LawyerActivity"
+import LawyerReview from "../../components/Lawyer/LawyerReview/LawyerReview"
+
+
 
 const matrimonyRoutes = [
   {
