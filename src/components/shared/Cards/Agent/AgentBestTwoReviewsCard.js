@@ -3,7 +3,7 @@ import React from "react";
 // Third party package
 import { Rating } from "@mui/material";
 
-const LawyerBestTwoReviewsCard = ({ review }) => {
+const AgentBestTwoReviewsCard = ({ review }) => {
   return (
     <div className="flex justify-between items-center">
       <div>
@@ -36,4 +36,4 @@ const LawyerBestTwoReviewsCard = ({ review }) => {
   );
 };
 
-export default LawyerBestTwoReviewsCard;
+export default AgentBestTwoReviewsCard;

@@ -5,7 +5,7 @@ import React from "react";
 import { FaCheckCircle } from "react-icons/fa";
 import { MdCancel, MdMessage } from "react-icons/md";
 
-const LawyerActivityBasicDetails = () => {
+const AgentActivityBasicDetails = () => {
   return (
     <div className="flex justify-between items-center mb-28">
       <div className="flex justify-between items-center px-8 w-[339px] h-[168px] border-t-4 border-[#E41272] rounded-b-[20px] shadow-[2px_2px_8px_rgba(0,0,0,0.12)]">
@@ -49,4 +49,4 @@ const LawyerActivityBasicDetails = () => {
   );
 };
 
-export default LawyerActivityBasicDetails;
+export default AgentActivityBasicDetails;
