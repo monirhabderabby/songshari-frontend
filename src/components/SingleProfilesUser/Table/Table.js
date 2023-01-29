@@ -48,7 +48,9 @@ const Table = ({ data, isLoading }) => {
                             onClick={() => setPage(4)}
                         >
                             Connections{" "}
-                            <sup className="text-white bg_Color px-2 py-1 rounded-full text-[10px]">{data?.connectionRequests?.length}</sup>
+                            {data?.connectionRequests?.length > 0 && (
+                                <sup className="text-white bg_Color px-2 py-1 rounded-full text-[10px]">{data?.connectionRequests?.length}</sup>
+                            )}
                         </button>
                         <button
                             className={`font-medium text-[15px] leading-tight ${page === 5 ? "text-primary font-bold" : "text-gray-800"}`}

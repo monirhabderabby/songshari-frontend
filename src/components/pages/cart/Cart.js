@@ -1,11 +1,15 @@
 // configuration
 import React from "react";
+import { useNavigate } from "react-router";
 
 // components
 import { CardOfCart } from "../../shared/Cards/Shop/Cart/CardOfCart";
 import CustomHeader from "../../shared/CustomHeader/CustomHeader";
 
 export const Cart = () => {
+    const navigate = useNavigate();
+
+    // demo data
     const products = [
         {
             id: 1,
@@ -51,7 +55,10 @@ export const Cart = () => {
                     })}
                 </div>
                 <div className="w-full flex justify-center mt-[71px]">
-                    <button className="w-[458px] h-[82px] flex justify-center items-center bg-[linear-gradient(137.27deg,_#EE2FFF_19.41%,_#CD1D5C_65.49%)] rounded-[24px] text-[32px] font-bold font-sans text-white shadow-[0px_4px_4px_rgba(14,53,191,0.25)]">
+                    <button
+                        className="w-[458px] h-[82px] flex justify-center items-center bg-[linear-gradient(137.27deg,_#EE2FFF_19.41%,_#CD1D5C_65.49%)] rounded-[24px] text-[32px] font-bold font-sans text-white shadow-[0px_4px_4px_rgba(14,53,191,0.25)]"
+                        onClick={() => navigate("/checkout/5")}
+                    >
                         Processed To Checkout
                     </button>
                 </div>
