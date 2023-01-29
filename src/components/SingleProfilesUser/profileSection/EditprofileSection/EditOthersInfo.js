@@ -8,6 +8,7 @@ import { useForm } from "react-hook-form";
 
 // Components
 import { useUpdateOthersDetailsMutation } from "../../../../Redux/features/userInfo/userApi";
+import { MdCancel } from "react-icons/md";
 
 const EditOthersInfo = () => {
   const [messageApi, contextHolder] = message.useMessage();
@@ -86,10 +87,20 @@ const EditOthersInfo = () => {
     }
   }, [isSuccess, isLoading, isError, messageApi, navigate]);
 
-  //all data handler function
+  // Scroll to top
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  }, []);
+
   return (
     <div>
-      <div className="max-w-[523px] mx-auto bg-white drop-shadow-lg px-4 py-6 mb-4 rounded">
+      <div className="max-w-[523px] mx-auto bg-white drop-shadow-lg px-4 pt-3 pb-6 mb-4 rounded">
+        <div className="flex justify-end mb-3">
+          <MdCancel
+            onClick={() => navigate(-1)}
+            className="cursor-pointer text-3xl text-slate-600"
+          />
+        </div>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="pb-4">
             <h1 className="text-sm block pb-2 text-slate-600 font-medium">

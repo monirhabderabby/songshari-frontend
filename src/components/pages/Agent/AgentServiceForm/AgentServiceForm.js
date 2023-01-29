@@ -6,10 +6,13 @@ import { useCallback } from "react";
 // Third party package
 import { useDropzone } from "react-dropzone";
 import { useForm } from "react-hook-form";
+import { MdCancel } from "react-icons/md";
+import { useNavigate } from "react-router";
 
 const AgentServiceForm = () => {
   const onDrop = useCallback((acceptedFiles) => {}, []);
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
+  const navigate = useNavigate();
 
   const { register, handleSubmit } = useForm();
   const onSubmit = (data) => {
@@ -29,9 +32,15 @@ const AgentServiceForm = () => {
         className="mb-52 max-w-4xl px-4 border mx-1 md:mx-2 lg:mx-auto bg-[#FFFFFF]"
         onSubmit={handleSubmit(onSubmit)}
       >
-        <h2 className="text-2xl md:text-3xl text-[#32353B] mt-1 mb-5 leading-8">
-          Add Your agent Service
-        </h2>
+        <div className="flex justify-between items-center mt-3 mb-5">
+          <h2 className="text-2xl md:text-3xl text-[#32353B] leading-8">
+            Add Your agent Service
+          </h2>
+          <MdCancel
+            onClick={() => navigate(-1)}
+            className="cursor-pointer text-3xl text-slate-600"
+          />
+        </div>
         <h3 className="text-lg md:text-xl leading-8 text-[#32353B]">
           Service: A packed service you can deliver for a fixed price in a set
           time frame.
