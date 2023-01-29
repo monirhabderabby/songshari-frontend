@@ -10,6 +10,7 @@ import TextField from "@mui/material/TextField";
 
 // Components
 import { useUpdateSiblingDetailMutation } from "../../../../Redux/features/userInfo/userApi";
+import { MdCancel } from "react-icons/md";
 
 const EditSiblingsInfo = () => {
   const [elderOrYounger, setElderOrYounger] = useState();
@@ -151,10 +152,13 @@ const EditSiblingsInfo = () => {
 
   return (
     <div>
-      <div className="max-w-[523px] mx-auto bg-white drop-shadow-lg px-4 py-6 mb-4 rounded">
-        {/* <h1 className="text-center text-2xl leading-5 font-bold text-[#344054] mb-10 mt-8">
-          Add Siblings
-        </h1> */}
+      <div className="max-w-[523px] mx-auto bg-white drop-shadow-lg px-4 pt-3 pb-6 mb-4 rounded">
+        <div className="flex justify-end mb-3">
+          <MdCancel
+            onClick={() => navigate(-1)}
+            className="cursor-pointer text-3xl text-slate-600"
+          />
+        </div>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="mb-6">
             <label className="text-sm block mb-2 text-[#344054] font-medium">

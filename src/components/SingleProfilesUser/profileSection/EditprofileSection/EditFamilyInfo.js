@@ -10,6 +10,7 @@ import { Radio, Space, DatePicker, message } from "antd";
 
 // Components
 import { useUpdateFamilyDetailsMutation } from "../../../../Redux/features/userInfo/userApi";
+import { MdCancel } from "react-icons/md";
 
 const EditFamilyInfo = () => {
   const [fatherProfession, setFatherProfession] = useState(null);
@@ -185,9 +186,20 @@ const EditFamilyInfo = () => {
     }
   }, [response, isLoading, isError, navigate, messageApi]);
 
+  // Scroll to top
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  }, []);
+
   return (
     <div>
-      <div className="max-w-[523px] mx-auto bg-white drop-shadow-lg px-4 py-6 mb-4 rounded">
+      <div className="max-w-[523px] mx-auto bg-white drop-shadow-lg px-4 pt-3 pb-6 mb-4 rounded">
+        <div className="flex justify-end mb-3">
+          <MdCancel
+            onClick={() => navigate(-1)}
+            className="cursor-pointer text-3xl text-slate-600"
+          />
+        </div>
         <form onSubmit={handleSubmit(onSubmit)}>
           {/* Father info */}
           <div className="mb-6">

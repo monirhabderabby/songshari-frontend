@@ -7,6 +7,7 @@ import { FileAddFilled } from "@ant-design/icons";
 import { DatePicker, Radio, Select, Space, Upload, message } from "antd";
 import TextArea from "antd/es/input/TextArea";
 import { useForm } from "react-hook-form";
+import { MdCancel } from "react-icons/md";
 
 // Components
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
@@ -209,15 +210,26 @@ const EditPersonalInfo = () => {
     }
   }, [updateResponse, isLoading, error, messageApi, navigate]);
 
+  // Scroll to top
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  }, []);
+
   return (
-    <div className="max-w-[523px] mx-auto bg-white drop-shadow-lg px-4 py-6 mb-4 rounded">
+    <div className="max-w-[523px] mx-auto bg-white drop-shadow-lg px-4 pt-3 pb-6 mb-4 rounded">
+      <div className="flex justify-end mb-3">
+        <MdCancel
+          onClick={() => navigate(-1)}
+          className="cursor-pointer text-3xl text-slate-600"
+        />
+      </div>
       <div className="hidden md:block">
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="flex justify-between pb-4">
             <div>
               <label
                 htmlFor="firstName"
-                className="text-sm block pb-2 text-slate-600	  font-medium"
+                className="text-sm block pb-2 text-slate-600 font-medium"
               >
                 First Name
               </label>

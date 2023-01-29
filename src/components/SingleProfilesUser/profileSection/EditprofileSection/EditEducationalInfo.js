@@ -3,6 +3,7 @@ import TextField from "@mui/material/TextField";
 import { DatePicker, message } from "antd";
 import TextArea from "antd/es/input/TextArea";
 import React, { useEffect, useState } from "react";
+import { MdCancel } from "react-icons/md";
 import { useNavigate, useParams } from "react-router";
 import { useUpdateEducationalDetailsMutation } from "../../../../Redux/features/userInfo/userApi";
 
@@ -168,9 +169,21 @@ const EditEducationalInfo = () => {
       }, 2000);
     }
   }, [isSuccess, isLoading, isError, messageApi, navigate]);
+
+  // Scroll to top
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  }, []);
+
   return (
     <div>
-      <div className="max-w-[523px] mx-auto bg-white drop-shadow-lg px-4 py-6 mb-4 rounded">
+      <div className="max-w-[523px] mx-auto bg-white drop-shadow-lg px-4 pt-3 pb-6 mb-4 rounded">
+        <div className="flex justify-end mb-3">
+          <MdCancel
+            onClick={() => navigate(-1)}
+            className="cursor-pointer text-3xl text-slate-600"
+          />
+        </div>
         <form onSubmit={handleSubmit}>
           {/* educational qualification */}
           <div className="pb-4">
