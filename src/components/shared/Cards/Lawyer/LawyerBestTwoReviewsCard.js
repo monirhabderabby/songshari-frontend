@@ -1,5 +1,7 @@
-import { Rating } from "@mui/material";
 import React from "react";
+
+// Third party package
+import { Rating } from "@mui/material";
 
 const LawyerBestTwoReviewsCard = ({ review }) => {
   return (

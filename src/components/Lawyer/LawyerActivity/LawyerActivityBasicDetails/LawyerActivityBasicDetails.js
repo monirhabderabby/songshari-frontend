@@ -1,8 +1,8 @@
 // Configuration
 import React from "react";
-import { FaCheckCircle } from "react-icons/fa";
 
 // Third party package
+import { FaCheckCircle } from "react-icons/fa";
 import { MdCancel, MdMessage } from "react-icons/md";
 
 const LawyerActivityBasicDetails = () => {

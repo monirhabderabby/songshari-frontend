@@ -14,9 +14,12 @@ import service4 from "../../../../../assets/images/LawyerProfileImg/lawyerServic
 import KaziSingleServiceImage from "./KaziSingleServiceImage";
 import KaziSingleServicePrizeReviewDetails from "./KaziSingleServicePriceReviewDetailes";
 import KaziSingleServiceReviewCard from "./KaziSingleServiceReviewCard";
+import { useGetServiceByIdQuery } from "../../../../../Redux/features/Service/ServiceApi";
 
 const KaziServiceDetailes = () => {
     const { id } = useParams();
+    const {data, isLoading, error} = useGetServiceByIdQuery(id)
+    console.log(data, isLoading, error);
     const serviceDetails = {
         photos: [service1, service2, service3, service4],
         name: "This Will Be Service Name",
@@ -63,32 +66,32 @@ const KaziServiceDetailes = () => {
         <div className="lg:max-w-[1000px] xl:max-w-[1200px] mx-auto">
             <div>
                 <h1 className="text-[#32353B] text-[42px] leading-[60px] font-bold font-Poppins mb-16">
-                    {serviceDetails.name} {id}
+                    {data?.data?.service?.subCategory}
                 </h1>
                 <div className="flex justify-between items-start">
                     <div className="max-w-[819px]">
                         <KaziSingleServiceImage {...{ serviceDetails }} />
                         <div>
                             <h1 className="text-2xl leading-[48px] font-bold font-Poppins mt-4 mb-4">What you deliver with this Offer</h1>
-                            <p className="text-[#757575] text-xl leading-10 font-Poppins mb-8">{serviceDetails.offerDetails}</p>
+                            <p className="text-[#757575] text-xl leading-10 font-Poppins mb-8">{data?.data?.service?.serviceDetails}</p>
                             <h1 className="text-2xl leading-[48px] font-bold font-Poppins mt-4 mb-4">Get more with Offer Add-ons</h1>
-                            <p className="text-[#757575] text-xl leading-10 font-Poppins mb-12">{serviceDetails.offerAddOn}</p>
+                            <p className="text-[#757575] text-xl leading-10 font-Poppins mb-12">{data?.data?.service?.addOnServiceDetail}</p>
                             <div className="w-[759px] ml-auto shadow-[0px_4px_4px_rgba(0,0,0,0.25)] rounded-lg bg-[linear-gradient(104.74deg,#E41272_28.77%,#630465_76.53%,#942DD9_76.53%)] py-5 px-8 flex justify-between items-center mb-8">
                                 <div className="text-white">
-                                    <p className="leading-[30px] font-semibold mb-1">I can design more pages for extra cost (Per Page)</p>
-                                    <p className="text-xs leading-[18px]">Additional 1 working day</p>
+                                    <p className="leading-[30px] font-semibold mb-1">{data?.data?.service?.addOnServiceDetail}</p>
+                                    <p className="text-xs leading-[18px]">{data?.data?.service?.addOnServiceTime}</p>
                                 </div>
                                 <div>
                                     <button className="bg-white text-black py-2 px-3 rounded-lg flex justify-center items-center text-[28px] font-semibold leading-[28px]">
                                         +<TbCurrencyTaka />
-                                        100
+                                        {data?.data?.service?.addOnServiceTime}
                                     </button>
                                 </div>
                             </div>
                             <h1 className="text-2xl leading-[48px] font-bold font-Poppins mt-4 mb-4">
                                 What do you need from the Buyer to get started?
                             </h1>
-                            <p className="text-[#757575] text-xl leading-10 font-Poppins mb-20">{serviceDetails.whatNeeded}</p>
+                            <p className="text-[#757575] text-xl leading-10 font-Poppins mb-20">{data?.data?.service?.requiredFromBuyer}</p>
                         </div>
                         {/* Reviews */}
                         <div>
