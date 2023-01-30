@@ -52,7 +52,7 @@ export const SingleProfiles = () => {
                                 <div className="md:hidden hidden lg:block">
                                     <ProfileCard {...{ data, isLoading }} />
                                     {SocialBoxOpen && <SocialMediaBox {...{ LinkedInId, faceBookId, instagramId }} />}
-                                    <VerificationCard />
+                                    <VerificationCard title={true} mt="24px" height="125px" />
                                     {/* <Badges /> */}
                                     <UtilitisCard />
                                     <IntroCard {...{ data, isLoading, error }} />
