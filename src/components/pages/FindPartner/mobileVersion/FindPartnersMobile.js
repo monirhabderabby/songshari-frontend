@@ -9,7 +9,7 @@ import { FindPartnerSearchBox } from "./FindPartnerSearchBox";
 
 export const FindPartnersMobile = () => {
     return (
-        <div className=" lg:hidden px-[26px] bg-[#F8F8FF] min-h-screen">
+        <div className=" max-w-[1024px] mx-auto px-[24px] bg-[#F8F8FF] min-h-screen">
             <FindPartnerSearchBox />
             <FindPartnerHeaderButton />
             <Outlet />
