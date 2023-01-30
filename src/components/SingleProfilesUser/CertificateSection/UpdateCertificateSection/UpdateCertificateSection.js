@@ -3,16 +3,15 @@ import React from "react";
 import FileUploadSection from "./FileUploadSection/FileUploadSection";
 import FileReuploadSection from "./FileReuploadSection/FileReuploadSection";
 
-const UpdateCertificateSection = () => {
-
-    return (
-        <div>
-            {/* New certificate upload */}
-            <FileUploadSection />
-            {/* File reupload section */}
-            <FileReuploadSection />
-        </div>
-    );
+const UpdateCertificateSection = ({ editFor, selectedCertificate }) => {
+  return (
+    <div>
+      {/* New certificate upload */}
+      <FileUploadSection />
+      {/* File reupload section */}
+      <FileReuploadSection {...{ editFor, selectedCertificate }} />
+    </div>
+  );
 };
 
 export default UpdateCertificateSection;

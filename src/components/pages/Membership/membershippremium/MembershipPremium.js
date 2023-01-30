@@ -16,27 +16,23 @@ export const MembershipPremium = () => {
             ))}
         </div>
       </div>
-      <h1 className="text-white text-3xl text-center">
-        If you have any questions Contact Us
-      </h1>
-      <div className="grid lg:grid-cols-6 sm:grid-cols-1 gap-2 mx-auto ml-14 mr-14 mt-20">
-        <div>
-          <img
-            alt="Not Available"
-            src="https://pixner.net/peyamba/peyamba/assets/images/membership/left-img.png"
-            className="hhh"
-          ></img>
-        </div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div>
-          <img
-            alt="Not Available"
-            src="https://pixner.net/peyamba/peyamba/assets/images/membership/right-img.png"
-            className="hhhh"
-          ></img>
+      <div className="relative">
+        <h1 className="text-white text-3xl text-center pb-3">
+          If you have any questions Contact Us
+        </h1>
+        <div className="absolute -top-[420px] w-full">
+          <div className="ml-10 mr-2 flex justify-between">
+            <img
+              alt="Not Available"
+              src="https://pixner.net/peyamba/peyamba/assets/images/membership/left-img.png"
+              className="w-24"
+            ></img>
+            <img
+              alt="Not Available"
+              src="https://pixner.net/peyamba/peyamba/assets/images/membership/right-img.png"
+              className="w-36"
+            ></img>
+          </div>
         </div>
       </div>
     </div>
