@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
-import { Outlet } from "react-router";
 import { io } from "socket.io-client";
 import { useGetAllMessageMutation } from "../../../../Redux/chat/chatApi";
 import CustomHeader from "../../../shared/CustomHeader/CustomHeader";
@@ -35,15 +34,14 @@ export const Inbox = () => {
     // console.log(msg)
 
     return (
-        <div className="bg-[#FAFBFF]">
+        <div className="bg-[#FAFBFF] pb-[230px]">
             <CustomHeader title="Chat" />
-            <div className="lg:w-full xl:max-w-[1400px] h-[calc(100vh-30vh)] mx-auto flex mt-[66px]">
+            <div className="lg:w-full xl:max-w-[1200px] h-[calc(100vh-30vh)] mx-auto flex mt-[66px]">
                 <div className="lg:w-[437px] xl:w-[557px] h-full">
                     <Sidebar handleChat={handleChat} />
                 </div>
-                <MessegeBox msg={msg} setMsg={setMsg} message={message} setMessage={setMessage} socket={socket} />
-                <div className="flex-1 h-[calc(100vh-30vh)]">
-                    <Outlet />
+                <div className="flex-1 h-full">
+                    <MessegeBox msg={msg} setMsg={setMsg} message={message} setMessage={setMessage} socket={socket} />
                 </div>
             </div>
         </div>

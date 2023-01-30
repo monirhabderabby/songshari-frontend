@@ -1,4 +1,5 @@
 // components
+import { MobileInbox } from "../../../components/Features/MobileMessege/MobileInbox";
 import MobileLogin from "../../../components/pages/Authentications/MobileDesign/MobileLogin";
 import MobileLoginProfessional from "../../../components/pages/Authentications/MobileDesign/MobileLoginProfessional";
 import MobileSignUp from "../../../components/pages/Authentications/MobileDesign/MobileSignUp";
@@ -322,6 +323,11 @@ const MobileMatrimony = [
         id: 47,
         path: "/mobile-login-professional",
         element: <MobileLoginProfessional />,
+    },
+    {
+        id: 48,
+        path: "/mobile-inbox",
+        element: <MobileInbox />,
     },
 ];
 export default MobileMatrimony;
