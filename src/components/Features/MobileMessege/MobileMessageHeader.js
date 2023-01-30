@@ -12,7 +12,7 @@ export const MobileMessageHeader = () => {
             <div className="absolute top-[20px]">
                 <AiOutlineArrowLeft />
             </div>
-            <div className=" pl-[30px] w-full h-full flex items-center justify-between max-w-[450px]">
+            <div className=" pl-[30px] w-full h-full flex items-center justify-between max-w-[990px]">
                 <div className="flex items-center h-full gap-x-[10px]">
                     <img
                         className="w-[36px] h-[36px] rounded-full"
