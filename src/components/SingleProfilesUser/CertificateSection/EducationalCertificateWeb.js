@@ -65,6 +65,7 @@ const EducationalCertificateWeb = () => {
 
             {/* file uploading section */}
             <UpdateCertificateSection
+              editFor="educational"
               selectedCertificate={certificates[certificateId]}
             />
           </div>
