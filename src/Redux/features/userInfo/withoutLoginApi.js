@@ -8,8 +8,15 @@ export const withoutLoginApi = apiSlice.injectEndpoints({
     getAllPlans: builder.query({
       query: () => "admin/plan",
     }),
+    getTopBrideGroom: builder.query({
+      query: (gender) =>
+        `/admin/priority-member/get-all-priority-member/?gender=${gender}`,
+    }),
   }),
 });
 
-export const { useGetRecentMembersQuery, useGetAllPlansQuery } =
-  withoutLoginApi;
+export const {
+  useGetRecentMembersQuery,
+  useGetAllPlansQuery,
+  useGetTopBrideGroomQuery,
+} = withoutLoginApi;

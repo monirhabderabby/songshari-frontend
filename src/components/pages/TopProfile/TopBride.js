@@ -9,13 +9,13 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import { useGetRecentMembersQuery } from "../../../Redux/features/userInfo/withoutLoginApi";
+import { useGetTopBrideGroomQuery } from "../../../Redux/features/userInfo/withoutLoginApi";
 import { ProfileCardSkeletonLoader } from "../../shared/Cards/Loader/ProfileCardSkeletonLoader";
 import { UserCard } from "../Shared/userCard/UserCard";
 
 const TopBride = () => {
   // hook variable declaration
-  const { data, isLoading } = useGetRecentMembersQuery();
+  const { data, isLoading } = useGetTopBrideGroomQuery("male");
 
   // js variables
   const arr = [1, 2, 3, 4, 5, 6, 7, 8];

@@ -33,7 +33,7 @@ const FileReuploadSection = ({ editFor, selectedCertificate }) => {
         if (editFor === "educational") {
           resubmitEducationalCertificate({
             id: selectedCertificate?._id,
-            specialAchievementMoment: url.toString(),
+            certificatePhoto: url.toString(),
           });
         }
         if (editFor === "professional") {
@@ -45,6 +45,7 @@ const FileReuploadSection = ({ editFor, selectedCertificate }) => {
       });
     });
   };
+
   if (responseEdu || responseProf) {
     toast.success("Successfully Re-uploaded");
   }
