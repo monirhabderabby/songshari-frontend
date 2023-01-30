@@ -64,7 +64,9 @@ const ProfessionalCertificateWeb = () => {
             </div>
 
             {/* file uploading section */}
-            <UpdateCertificateSection />
+            <UpdateCertificateSection
+              selectedCertificate={certificates[certificateId]}
+            />
           </div>
         </div>
       </div>
