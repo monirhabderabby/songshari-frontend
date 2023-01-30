@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 
 export const FindPartnerHeaderButton = () => {
     return (
-        <div className="flex items-center h-[65px] justify-between md:justify-evenly gap-x-[25px] sticky top-[65px] bg-[#F8F8FF]">
+        <div className="flex items-center h-[65px] justify-evenly md:justify-center gap-x-[25px] sticky top-[65px] bg-[#F8F8FF]">
             <NavLink to="/mobile-find-partner/suggested">
                 {({ isActive }) => (
                     <span

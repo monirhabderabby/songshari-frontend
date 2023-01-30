@@ -10,10 +10,10 @@ export const FindPartnerSearchBox = () => {
         console.log("clicked");
     };
     return (
-        <div className="flex items-center sticky top-0 bg-[#F8F8FF] z-20 h-[65px]">
+        <div className="flex items-center justify-center sticky top-0 bg-[#F8F8FF] z-20 h-[65px]">
             <Input
                 size="large"
-                className="rounded-[8px] outline-none max-w-[264px]"
+                className="rounded-[8px] outline-none max-w-[364px]"
                 placeholder="Search user name"
                 prefix={<AiOutlineSearch onClick={userSearchHandler} />}
             />

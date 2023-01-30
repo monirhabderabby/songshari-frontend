@@ -1,10 +1,6 @@
-import React from 'react'
-import { PrivacyBanner } from './PrivacyBanner'
+import React from "react";
+import { PrivacyBanner } from "./PrivacyBanner";
 
 export const PrivacyMov = () => {
-  return (
-    <div>
-        <PrivacyBanner></PrivacyBanner>
-    </div>
-  )
-}
+    return <PrivacyBanner />;
+};

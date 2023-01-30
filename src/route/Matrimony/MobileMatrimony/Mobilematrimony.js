@@ -47,6 +47,9 @@ import { AllPosts } from "../../../Wrapper/Home/mobileversion/allposts/AllPosts"
 import { CertificateMov } from "../../../Wrapper/Home/mobileversion/CertificateForMobile/CertificateMov";
 import { CommunityMov } from "../../../Wrapper/Home/mobileversion/comminuty/CommunityMov";
 import { HistoryMov } from "../../../Wrapper/Home/mobileversion/history/HistoryMov";
+import { ShongsariJourneyMobile } from "../../../Wrapper/Home/mobileversion/history/ShongsariJourneyMobile";
+import { ShongShariMissionMobile } from "../../../Wrapper/Home/mobileversion/history/ShongShariMissionMobile";
+import { ShongShariStory } from "../../../Wrapper/Home/mobileversion/history/ShongShariStory";
 import { Like } from "../../../Wrapper/Home/mobileversion/Like";
 import { MatchesMov } from "../../../Wrapper/Home/mobileversion/MatchesMov";
 import { MeetMov } from "../../../Wrapper/Home/mobileversion/meet/MeetMov";
@@ -328,6 +331,21 @@ const MobileMatrimony = [
         id: 48,
         path: "/mobile-inbox",
         element: <MobileInbox />,
+    },
+    {
+        id: 49,
+        path: "/shongshari-journey",
+        element: <ShongsariJourneyMobile />,
+    },
+    {
+        id: 50,
+        path: "/shongshari-mission",
+        element: <ShongShariMissionMobile />,
+    },
+    {
+        id: 51,
+        path: "/shongshari-story",
+        element: <ShongShariStory />,
     },
 ];
 export default MobileMatrimony;
