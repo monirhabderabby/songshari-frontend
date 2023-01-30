@@ -4,6 +4,7 @@ import { useParams } from "react-router";
 
 // components
 import liveLinkGenerator from "../../../../assets/utilities/liveLink/liveLinkGenerator";
+import { MobileBackButton } from "../../../../components/shared/Components/MobileBackButton";
 import { useGetProfileDetailsQuery } from "../../../../Redux/features/userInfo/userApi";
 import { BottomNav } from "../BottomNav";
 
@@ -39,10 +40,13 @@ export const GalleryContainerForMobile = () => {
         );
     }
     return (
-        <div className="block lg:hidden h-screen w-full px-[26px] bg-[#F8F8FF] overflow-hidden">
-            <p className="text-[24px] text-[#333333] font-semibold font-fira pt-[21px] mb-[16px]">All Photos</p>
-            {content}
-            <BottomNav />
-        </div>
+        <section className="h-screen w-full max-w-[767px] mx-auto">
+            <MobileBackButton name="Gallery" />
+            <div className="block lg:hidden h-[calc(100vh-60px)] w-full px-[26px] bg-[#F8F8FF] overflow-hidden">
+                <p className="text-[24px] text-[#333333] font-semibold font-fira pt-[21px] mb-[16px]">All Photos</p>
+                {content}
+                <BottomNav />
+            </div>
+        </section>
     );
 };

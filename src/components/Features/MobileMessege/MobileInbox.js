@@ -8,7 +8,7 @@ import { MobileMessgeSenderBox } from "./MobileMessgeSenderBox";
 
 export const MobileInbox = () => {
     return (
-        <div className="max-w-[480px] mx-auto h-screen bg-green-400 flex flex-col">
+        <div className="max-w-[1024px] mx-auto h-screen bg-green-400 flex flex-col">
             <div className="relative">
                 <MobileMessageHeader />
             </div>
