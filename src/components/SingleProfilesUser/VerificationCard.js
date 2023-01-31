@@ -50,24 +50,6 @@ export const VerificationCard = ({ title, mt, height }) => {
           <MdKeyboardArrowRight className="text-[#942DD9]" />
         </div>
       </section>
-      <section>
-        <Box sx={{ width: "80%" }} className="my-[15px]">
-          <div className="w-full flex justify-between text-[#000000] text-[14px] font-Poppins ">
-            <p className="font-light">Progress</p>
-            <p>{percentage}%</p>
-          </div>
-          <LinearProgress variant="determinate" value={percentage} />
-        </Box>
-        <div className="flex items-center">
-          <button
-            className="text-[#942DD9] text-[16px] font-normal font-fira leading-[20px]"
-            onClick={() => navigate("/stepper")}
-          >
-            Complete Verification
-          </button>
-          <MdKeyboardArrowRight className="text-[#942DD9]" />
-        </div>
-      </section>
     </div>
   );
 };
