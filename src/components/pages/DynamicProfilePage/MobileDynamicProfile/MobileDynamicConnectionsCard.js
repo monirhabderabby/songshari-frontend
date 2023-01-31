@@ -5,25 +5,35 @@ import React, { useEffect, useState } from "react";
 import { BiUserCheck, BiUserPlus } from "react-icons/bi";
 import { MdMessage } from "react-icons/md";
 import { useAddFriendMutation } from "../../../../Redux/features/connections/connectionApi";
-
+import {setUser} from '../../../../Redux/chat/chatReducer'
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router";
 export const MobileDynamicConnectionsCard = ({ data }) => {
+  const dispatch=useDispatch();
+  const navigate=useNavigate();
   const [sent, setSent] = useState(false);
+
   const [addFriend, { data: response, isLoading: responseLoading }] =
     useAddFriendMutation();
 
   const handleSentRequest = async () => {
     await addFriend(data?._id);
   };
-
+  
   useEffect(() => {
     if (response) setSent(true);
   }, [response]);
+  const handleChat=async(id)=>{
+  
+     dispatch(setUser(id));
+     navigate('/mobile-inbox')
 
+  }
   return (
     <section>
       <div className="bg-white shadow-[0px_10px_5px_rgba(119,123,146,0.02)] flex justify-start items-center gap-5">
         <div className="w-[40px] h-[40px] flex justify-center items-center bg-[#FFDFF4] rounded-full">
-          <MdMessage className="h-5 w-5 text-[#E41272]" />
+          <MdMessage onClick={()=>handleChat(data?._id)} className="h-5 w-5 text-[#E41272]" />
         </div>
         <div
           className={`w-[40px] h-[40px] flex justify-center items-center rounded-full transition-all duration-500 ${
