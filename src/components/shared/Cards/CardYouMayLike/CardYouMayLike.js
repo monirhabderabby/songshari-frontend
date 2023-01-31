@@ -1,5 +1,6 @@
 // configuration
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
 
 // Third party packages
 import { AiFillHeart } from "react-icons/ai";
@@ -17,6 +18,7 @@ export const CardYouMayLike = ({ data }) => {
   const [sent, setSent] = useState(false);
   const [likeSent, setLikeSent] = useState(false);
   const [age, setAge] = useState();
+  const navigate = useNavigate();
 
   const [addFriend, { data: response, isLoading: responseLoading }] =
     useAddFriendMutation();
@@ -50,8 +52,15 @@ export const CardYouMayLike = ({ data }) => {
     <div className="lg:w-[263px] h-[179px] bg-white shadow-[2px_2px_8px_rgba(0,0,0,0.12)] rounded-[20px] px-[20px] py-[17px]">
       <div className="flex items-center justify-between">
         <div
-          className="w-[67px] h-[67px] rounded-full bg-cover bg-center"
-          style={{ backgroundImage: `url(${data?.profilePhoto})` }}
+          onClick={() => navigate(`/profile/${data?._id}`)}
+          className="w-[67px] h-[67px] rounded-full bg-cover bg-center cursor-pointer"
+          style={{
+            backgroundImage: `url(${
+              data?.profilePhoto
+                ? data?.profilePhoto
+                : "https://cdn-icons-png.flaticon.com/512/194/194938.png"
+            })`,
+          }}
         ></div>
         <div className="flex items-center gap-x-[10px]">
           <div className="w-[44px] h-[44px] cursor-pointer bg-[#FFDFF4] rounded-full flex justify-center items-center">
@@ -84,20 +93,19 @@ export const CardYouMayLike = ({ data }) => {
         </div>
       </div>
       <div className="mt-[10px]">
-        <h1 className="text-[24px] text-[#000000] leading-[36px] font-medium font-Inter">
+        <h1
+          onClick={() => navigate(`/profile/${data?._id}`)}
+          className="cursor-pointer text-[24px] text-[#000000] leading-[36px] font-medium font-Inter"
+        >
           {data?.firstName}
         </h1>
         <div className="flex items-center gap-2">
           <span className="text-[20px] leading-[30px] tracking-[-0.24px] text-[#000000] font-medium font-Inter">
-            {age ? age : <span className="text-sm">Not available</span>}
+            {age ? age : ""}
           </span>
           <span className="block mb-1"> | </span>
           <span className="text-[20px] leading-[30px] tracking-[-0.24px] text-[#000000] font-medium font-Inter">
-            {data?.designation ? (
-              data?.designation
-            ) : (
-              <span className="text-sm">Not available</span>
-            )}
+            {data?.designation && data?.designation}
           </span>
         </div>
       </div>
