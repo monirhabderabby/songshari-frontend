@@ -54,7 +54,13 @@ export const CardYouMayLike = ({ data }) => {
         <div
           onClick={() => navigate(`/profile/${data?._id}`)}
           className="w-[67px] h-[67px] rounded-full bg-cover bg-center cursor-pointer"
-          style={{ backgroundImage: `url(${data?.profilePhoto})` }}
+          style={{
+            backgroundImage: `url(${
+              data?.profilePhoto
+                ? data?.profilePhoto
+                : "https://cdn-icons-png.flaticon.com/512/194/194938.png"
+            })`,
+          }}
         ></div>
         <div className="flex items-center gap-x-[10px]">
           <div className="w-[44px] h-[44px] cursor-pointer bg-[#FFDFF4] rounded-full flex justify-center items-center">
@@ -95,15 +101,11 @@ export const CardYouMayLike = ({ data }) => {
         </h1>
         <div className="flex items-center gap-2">
           <span className="text-[20px] leading-[30px] tracking-[-0.24px] text-[#000000] font-medium font-Inter">
-            {age ? age : <span className="text-sm">Not available</span>}
+            {age ? age : ""}
           </span>
           <span className="block mb-1"> | </span>
           <span className="text-[20px] leading-[30px] tracking-[-0.24px] text-[#000000] font-medium font-Inter">
-            {data?.designation ? (
-              data?.designation
-            ) : (
-              <span className="text-sm">Not available</span>
-            )}
+            {data?.designation && data?.designation}
           </span>
         </div>
       </div>
