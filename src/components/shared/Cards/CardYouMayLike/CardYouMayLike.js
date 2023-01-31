@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 // Third party packages
 import { AiFillHeart } from "react-icons/ai";
 import { BiUserCheck, BiUserPlus } from "react-icons/bi";
+import { useNavigate } from "react-router";
 
 // components
 import loveIcon from "../../../../assets/images/icons/love.png";
@@ -17,6 +18,7 @@ export const CardYouMayLike = ({ data }) => {
   const [sent, setSent] = useState(false);
   const [likeSent, setLikeSent] = useState(false);
   const [age, setAge] = useState();
+  const navigate = useNavigate();
 
   const [addFriend, { data: response, isLoading: responseLoading }] =
     useAddFriendMutation();
@@ -50,7 +52,8 @@ export const CardYouMayLike = ({ data }) => {
     <div className="lg:w-[263px] h-[179px] bg-white shadow-[2px_2px_8px_rgba(0,0,0,0.12)] rounded-[20px] px-[20px] py-[17px]">
       <div className="flex items-center justify-between">
         <div
-          className="w-[67px] h-[67px] rounded-full bg-cover bg-center"
+          onClick={() => navigate(`/profile/${data?._id}`)}
+          className="w-[67px] h-[67px] rounded-full bg-cover bg-center cursor-pointer"
           style={{ backgroundImage: `url(${data?.profilePhoto})` }}
         ></div>
         <div className="flex items-center gap-x-[10px]">
@@ -84,7 +87,10 @@ export const CardYouMayLike = ({ data }) => {
         </div>
       </div>
       <div className="mt-[10px]">
-        <h1 className="text-[24px] text-[#000000] leading-[36px] font-medium font-Inter">
+        <h1
+          onClick={() => navigate(`/profile/${data?._id}`)}
+          className="cursor-pointer text-[24px] text-[#000000] leading-[36px] font-medium font-Inter"
+        >
           {data?.firstName}
         </h1>
         <div className="flex items-center gap-2">

@@ -15,7 +15,7 @@ import { UserCard } from "../Shared/userCard/UserCard";
 
 const TopBride = () => {
   // hook variable declaration
-  const { data, isLoading } = useGetTopBrideGroomQuery("male");
+  const { data, isLoading } = useGetTopBrideGroomQuery("female");
 
   // js variables
   const arr = [1, 2, 3, 4, 5, 6, 7, 8];
