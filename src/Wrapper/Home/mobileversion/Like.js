@@ -1,13 +1,13 @@
 import React from "react";
 
 // configuration
-import { Link } from "react-router-dom";
 
 // Third party packages
 import { AiOutlineWarning } from "react-icons/ai";
 
 // components
 import { YouMayLikeSkeletionLoader } from "../../../components/shared/Cards/Loader/YouMayLikeSkeletionLoader";
+import { MobileBackButton } from "../../../components/shared/Components/MobileBackButton";
 import { useGetSuggestedUsersQuery } from "../../../Redux/features/AllRecentData/recentApi";
 import { BottomNav } from "./BottomNav";
 import { MayLikeSingle } from "./MayLikeSingle";
@@ -34,15 +34,9 @@ export const Like = () => {
     }
 
     return (
-        <div className="bg-[#F8F8FF]">
+        <div className="bg-[#F8F8FF] max-w-[1024px] mx-auto">
             <div className="bg-white sticky top-0 w-full">
-                <div className="grid grid-cols-3 shadow-[2px_2px_8px_2px_rgba(0,0,0,0.1)]">
-                    <Link to="/setting">
-                        <i className="fa-solid fa-chevron-left ml-6 my-4"></i>
-                    </Link>
-                    <h1 className="profile-tit text-center mt-3 mb-3">You May Like</h1>
-                    <div></div>
-                </div>
+                <MobileBackButton name="You May Like" />
             </div>
             {/* ----- You may like ----- */}
             <div className="px-6 pt-6">
