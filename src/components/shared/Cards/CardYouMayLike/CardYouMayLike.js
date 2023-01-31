@@ -1,10 +1,10 @@
 // configuration
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
 
 // Third party packages
 import { AiFillHeart } from "react-icons/ai";
 import { BiUserCheck, BiUserPlus } from "react-icons/bi";
-import { useNavigate } from "react-router";
 
 // components
 import loveIcon from "../../../../assets/images/icons/love.png";
