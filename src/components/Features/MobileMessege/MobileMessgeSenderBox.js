@@ -9,7 +9,7 @@ import { MdOutlineArrowForwardIos } from "react-icons/md";
 import mic from "../../../assets/images/messges/Audio.svg";
 import gallery from "../../../assets/images/messges/Gallery.svg";
 
-export const MobileMessgeSenderBox = () => {
+export const MobileMessgeSenderBox = ({handleMessage,message,setMessage}) => {
     const [open, setOpen] = useState(false);
     return (
         <div className="h-[52px] w-full bg-white">
@@ -24,7 +24,7 @@ export const MobileMessgeSenderBox = () => {
                     </div>
                 )}
                 <div className="h-[36px] bg-[rgba(0,0,0,0.05)] flex-1 rounded-[18px] max-w-[355px] relative transition-all duration-500">
-                    <input type="text" className="bg-transparent w-full h-full rounded-[18px] -z-30 outline-none" />
+                    <input onKeyPress={e => handleMessage(e)} onChange={e => setMessage({ ...message, message: e.target.value })} type="text" className="bg-transparent w-full h-full rounded-[18px] -z-30 outline-none" />
                     <HiOutlineEmojiHappy className="absolute right-2 top-[6px] z-50 h-[24px] w-[24px] text-[#A32BCA]" />
                 </div>
                 <div>
