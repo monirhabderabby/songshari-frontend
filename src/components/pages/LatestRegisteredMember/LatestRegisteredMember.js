@@ -55,8 +55,8 @@ const LatestRegisteredMember = () => {
               >
                 {!isLoading &&
                   !error &&
-                  data?.data?.members?.slice(0,7).map((data) => (
-                    <SwiperSlide key={data.id}>
+                  data?.data?.members?.slice(0, 7).map((data) => (
+                    <SwiperSlide key={data._id}>
                       <div className="-z-20">
                         <div className="text-center">
                           <div className="mb-[30px] relative">

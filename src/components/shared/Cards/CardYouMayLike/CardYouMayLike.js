@@ -1,5 +1,6 @@
 // configuration
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
 
 // Third party packages
 import { AiFillHeart } from "react-icons/ai";
@@ -45,7 +46,6 @@ export const CardYouMayLike = ({ data }) => {
             setAge(age);
         }
     }, [data]);
-
     return (
         <div className="lg:w-[263px] h-[179px] bg-white shadow-[2px_2px_8px_rgba(0,0,0,0.12)] rounded-[20px] px-[20px] py-[17px]">
             <div className="flex items-center justify-between">

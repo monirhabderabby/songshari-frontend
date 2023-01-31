@@ -8,20 +8,12 @@
 .card-img-membership {
     margin-left: -130px;
 }
-.hhh {
-    margin-top: -560px;
-    margin-left: -70px;
-}
-.hhhh {
-    margin-top: -530px;
-    margin-left: 180px;
-}
 .bg-member-premium-btn {
     background-image: linear-gradient(166deg, #f22876 0%, #942dd9 100%);
     padding: 10px 40px;
     border-radius: 50px;
     font-weight: 700;
-    margin: 20px auto;
+    margin: 5px auto;
     display: inline-block;
 }
 .membership-card {
