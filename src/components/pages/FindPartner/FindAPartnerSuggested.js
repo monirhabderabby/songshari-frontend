@@ -16,7 +16,7 @@ export const FindAPartnerSuggested = () => {
     // variable declaration
     // hook variables
     const searchTerm = useSelector(state => state?.persistedReducer?.findPartnerSlice?.searchTerm);
-    const { data, isLoading, error } = useGetRecentMembersQuery();
+    const { data, isLoading, error } = useGetRecentMembersQuery({ searchTerm: searchTerm });
 
     let content;
     const loaderArray = [1, 2, 3, 4, 5, 6];

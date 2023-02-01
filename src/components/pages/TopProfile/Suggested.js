@@ -21,6 +21,8 @@ const Suggested = () => {
     //hook variable declaration
     const { data, isLoading, error } = useGetRecentMembersQuery();
 
+    console.log(data?.data?.members);
+
     // js variables
     const arr = [1, 2, 3, 4, 5, 6, 7, 8];
     let content = null;

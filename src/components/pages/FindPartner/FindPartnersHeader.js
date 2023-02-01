@@ -35,6 +35,7 @@ const FindPartnersHeader = () => {
                         id="search"
                         placeholder="Search user name.."
                         onChange={e => setSearchTermState(e.target.value)}
+                        onKeyUp={handleSearchTerm}
                     />
                 </div>
             </div>
