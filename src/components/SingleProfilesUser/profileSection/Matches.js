@@ -9,6 +9,7 @@ import { MatchesLoader } from "../../shared/Cards/Loader/Matches/MatchesLoader";
 import MatchersModalForm from "../MatchPreference/MatchersModalForm";
 
 // css files
+import useDocumentTitle from "../../../assets/utilities/useDocumentTitle";
 import { useGetMatchPreferencesQuery } from "../../../Redux/features/MatchesPreferences/matchesPreferenceApi";
 import { MatchesDesktopCard } from "../../shared/Cards/Matches/MatchesDesktopCard";
 import "./Matches.css";
@@ -17,6 +18,9 @@ export const Matches = () => {
     // hooks variables
     const { data, isLoading, error } = useGetMatchPreferencesQuery();
     const [mathchesModalOpen, setMatchesModalOpen] = useState(false);
+
+    // page title
+    useDocumentTitle("Shongshari | Matches");
 
     let content = null;
 
