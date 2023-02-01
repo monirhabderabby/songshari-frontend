@@ -154,16 +154,6 @@ export const connectionApi = apiSlice.injectEndpoints({
                 }
             },
         }),
-        getMyPosts: builder.query({
-            query: () => ({
-                url: "/member/post/myposts",
-                method: "GET",
-                headers: {
-                    authorization: `Bearer ${getCookie("token")}`,
-                },
-            }),
-            keepUnusedDataFor: 0,
-        }),
         likeSinglePost: builder.mutation({
             query: id => ({
                 url: `/member/like/post/${id}`,
@@ -185,7 +175,6 @@ export const {
     useCancleSentRequestMutation,
     useGetMatchedUsersQuery,
     useLikeSingleProfileMutation,
-    useGetMyPostsQuery,
     useLikeSinglePostMutation,
     useRejectFriendReqeustMutation,
 } = connectionApi;

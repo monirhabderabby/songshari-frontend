@@ -5,7 +5,7 @@ import React from "react";
 import love from "../../../../assets/images/icons/coolicon.svg";
 import profile from "../../../../assets/images/profile/up1.png";
 import { getHoursMinutes } from "../../../../Helper/helper";
-import { useGetMyPostsQuery } from "../../../../Redux/features/connections/connectionApi";   
+import { useGetMyPostsQuery } from "../../../../Redux/features/Post/postApi";
 
 export const MovDynamicActivity = ({ postRefetch }) => {
     const { data: posts, isLoading } = useGetMyPostsQuery();
