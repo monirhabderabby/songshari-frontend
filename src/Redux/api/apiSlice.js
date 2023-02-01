@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-import { apiBaseUrl } from "../../config/index"
+import { apiBaseUrl } from "../../config/index";
 
 const apiSlice = createApi({
     reducerPath: "api",
@@ -8,7 +8,7 @@ const apiSlice = createApi({
         baseUrl: apiBaseUrl,
     }),
     endpoints: builder => ({}),
-    tagTypes: ["allGetFriendRequest"],
+    tagTypes: ["allGetFriendRequest", "posts"],
 });
 
 export default apiSlice;

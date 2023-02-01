@@ -24,7 +24,7 @@ export const postApi = apiSlice.injectEndpoints({
             keepUnusedDataFor: 0,
         }),
         addUserPost: builder.mutation({
-            query: data => ({
+            query: ({ data }) => ({
                 url: "/member/post/add",
                 method: "POST",
                 headers: {
@@ -32,8 +32,20 @@ export const postApi = apiSlice.injectEndpoints({
                 },
                 body: data,
             }),
+            invalidatesTags: ["posts"],
+        }),
+        getMyPosts: builder.query({
+            query: () => ({
+                url: "/member/post/myposts",
+                method: "GET",
+                headers: {
+                    authorization: `Bearer ${getCookie("token")}`,
+                },
+            }),
+            keepUnusedDataFor: 0,
+            providesTags: ["posts"],
         }),
     }),
 });
 
-export const { useGetDynamicPostsQuery, useGetMyPostsWithAuthQuery, useAddUserPostMutation } = postApi;
+export const { useGetDynamicPostsQuery, useGetMyPostsWithAuthQuery, useAddUserPostMutation, useGetMyPostsQuery } = postApi;
