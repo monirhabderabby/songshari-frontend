@@ -58,15 +58,23 @@ const MobileDynamicProfileHeader = ({ data }) => {
                   alt="Not Available"
                 />
                 <h2 className="pl-[7px] text-sm font-semibold text-[#000000]">
-                  {data?.firstName + " " + data?.lastName}
+                  {(data?.firstName ? data?.firstName : "") +
+                    " " +
+                    (data?.lastName ? data?.lastName : "")}
                 </h2>
               </div>
               <div className="flex justify-between items-center mt-3 mb-4">
                 <div className="flex items-center gap-7">
-                  <p className="text-[#333333] text-xs leading-7 font-Inter whitespace-nowrap">
-                    {age} Years Old
-                  </p>
-                  <div className="w-[2px] h-4 bg-[#333333]"></div>
+                  {data?.dateOfBirth ? (
+                    <>
+                      <p className="text-[#333333] text-xs leading-7 font-Inter whitespace-nowrap">
+                        {age} Years Old
+                      </p>
+                      <div className="w-[2px] h-4 bg-[#333333]"></div>
+                    </>
+                  ) : (
+                    ""
+                  )}
                   <p className="text-[#333333] text-xs leading-7 font-Inter">
                     {data?.hometown}
                   </p>
