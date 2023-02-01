@@ -1,6 +1,10 @@
 import React, { useEffect } from "react";
-import "../../assets/css/singleprofilepage.css";
+
+// Components
 import { SingleProfiles } from "../../components/SingleProfilesUser/SingleProfiles";
+
+// CSS
+import "../../assets/css/singleprofilepage.css";
 
 const SingleProfile = () => {
     useEffect(() => {

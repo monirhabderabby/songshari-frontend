@@ -9,6 +9,7 @@ import { MdCreateNewFolder } from "react-icons/md";
 // components
 import { useSelector } from "react-redux";
 import coolicon from "../../../assets/images/activity/coolicon.png";
+import useDocumentTitle from "../../../assets/utilities/useDocumentTitle";
 import { usePhotosUploadOnServerMutation } from "../../../Redux/features/fileUpload/fileUploadApi";
 import { useAddUserPostMutation, useGetMyPostsQuery } from "../../../Redux/features/Post/postApi";
 import { MovDynamicActivity } from "../../pages/DynamicProfilePage/MobileDynamicActivity/MovDynamicActivity";
@@ -19,6 +20,9 @@ const SingleUserActivity = () => {
     const [photoURL, setPhotoUrl] = useState("");
     const [postText, setPostText] = useState("");
     const [privacy, setPrivacy] = useState("");
+
+    // page title
+    useDocumentTitle("Shongshari | Activity");
 
     // Redux Api Call
     const [addUserPost, { data: response }] = useAddUserPostMutation();
