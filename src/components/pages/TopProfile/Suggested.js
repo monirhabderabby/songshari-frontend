@@ -19,7 +19,7 @@ import "swiper/css/pagination";
 
 const Suggested = () => {
     //hook variable declaration
-    const { data, isLoading, error } = useGetRecentMembersQuery();
+    const { data, isLoading, error } = useGetRecentMembersQuery({ searchTerm: "" });
 
     console.log(data?.data?.members);
 
