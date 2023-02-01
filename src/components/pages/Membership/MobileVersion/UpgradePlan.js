@@ -9,12 +9,14 @@ import "../../../../assets/css/UpgradePlan.css";
 import { BottomNav } from "../../../../Wrapper/Home/mobileversion/BottomNav";
 import { Link } from "react-router-dom";
 import { useGetAllPlansQuery } from "../../../../Redux/features/userInfo/withoutLoginApi";
+import { MobileBackButton } from "../../../shared/Components/MobileBackButton";
 
 const UpgradePlan = () => {
   const { data, isLoading, error } = useGetAllPlansQuery();
 
   return (
     <div className="bg-[#F8F8FF]">
+      <MobileBackButton name={"Upgrade"} />
       <div className="relative">
         <img className="mx-auto" src={upgradeBanner} alt="Upgrade Banner" />
         <img className="absolute -bottom-8 left-12" src={avatar} alt="Avatar" />

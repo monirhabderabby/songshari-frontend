@@ -1,31 +1,16 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import "../../../../App.css";
 import img from "../../../../assets/images/olivia.png";
 import dribble from "../../../../assets/images/Social Icons/dribble.png";
 import linkedIn from "../../../../assets/images/Social Icons/linkedIn.png";
 import twitter from "../../../../assets/images/Social Icons/twitter.jpg";
+import { MobileBackButton } from "../../../../components/shared/Components/MobileBackButton";
 import { BottomNav } from "../BottomNav";
 
 export const MeetMov = () => {
   return (
     <div>
-      <div className="flex justify-between items-center">
-        <Link to={"/"}>
-          <img
-            src="https://i.ibb.co/stTYBVf/Arrow-1.png"
-            className="col-span-2 ml-8 mt-5"
-            alt=""
-          ></img>
-        </Link>
-        <Link>
-          <img
-            src="https://i.ibb.co/x2L99Cr/Arrow-2.png"
-            className="ml-20 mt-5 mr-8"
-            alt=""
-          ></img>
-        </Link>
-      </div>
+      <MobileBackButton name={"Our Team"} />
       <div className="w-full flex flex-col items-center font-Inter gap-y-4 pt-6">
         <p className="text-[#6941C6] text-[16px] font-semibold">
           Shongshari.com
