@@ -9,7 +9,6 @@ import { MdCreateNewFolder } from "react-icons/md";
 // components
 import { useSelector } from "react-redux";
 import coolicon from "../../../assets/images/activity/coolicon.png";
-import profile from "../../../assets/images/profile/up1.png";
 import { usePhotosUploadOnServerMutation } from "../../../Redux/features/fileUpload/fileUploadApi";
 import { useAddUserPostMutation, useGetMyPostsQuery } from "../../../Redux/features/Post/postApi";
 import { MovDynamicActivity } from "../../pages/DynamicProfilePage/MobileDynamicActivity/MovDynamicActivity";
@@ -21,13 +20,18 @@ const SingleUserActivity = () => {
     const [postText, setPostText] = useState("");
     const [privacy, setPrivacy] = useState("");
 
+    // Redux Api Call
+    const [addUserPost, { data: response }] = useAddUserPostMutation();
+    const { data: posts, isLoading, error } = useGetMyPostsQuery();
+    const [photosUploadOnServer, { isSuccess, data }] = usePhotosUploadOnServerMutation();
+
     const userInfo = useSelector(state => state?.persistedReducer?.userInfo?.userInfo?.user);
 
     const { profilePhoto, firstName, lastName } = userInfo || {};
 
-    const [addUserPost, { data: response }] = useAddUserPostMutation();
-    const { data: posts, isLoading, error } = useGetMyPostsQuery();
-    const [photosUploadOnServer, { isSuccess, data }] = usePhotosUploadOnServerMutation();
+    // decision making about profile photo
+    let profile;
+    profile = profilePhoto ? profilePhoto : "https://i.postimg.cc/Hn3ghQJn/images.jpg";
 
     // function declarations
     const addPost = async event => {
