@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
-import { setSearchTerm } from "../../../Redux/features/filter/filterSlice";
+import { setFindPartnerSearchTerm } from "../../../Redux/features/filter/findPartnerSlice";
 
 const FindPartnersHeader = () => {
     // hook variable declaration
@@ -10,7 +10,7 @@ const FindPartnersHeader = () => {
 
     // function declaration
     const handleSearchTerm = () => {
-        dispatch(setSearchTerm(searchTermState));
+        dispatch(setFindPartnerSearchTerm(searchTermState));
     };
 
     return (

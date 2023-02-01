@@ -6,13 +6,14 @@ import apiSlice from "../api/apiSlice";
 import chatReducer from "../chat/chatReducer";
 import checkoutDetailsSlice from "../features/checkout/checkoutDetailsSlice";
 import filterSlice from "../features/filter/filterSlice";
+import findPartnerSlice from "../features/filter/findPartnerSlice";
 import userInfo from "../features/userInfo/userInfo";
 
 const persistConfig = {
     key: "root",
     version: 1,
     storage,
-    whiteList: ["userInfo","chat", "filter", "checkoutDetailes"],
+    whiteList: ["userInfo", "chat", "filter", "checkoutDetailes"],
 };
 
 const reducer = combineReducers({
@@ -20,6 +21,7 @@ const reducer = combineReducers({
     chat: chatReducer,
     filter: filterSlice,
     checkoutDetailes: checkoutDetailsSlice,
+    findPartnerSlice: findPartnerSlice,
 });
 const persistedReducer = persistReducer(persistConfig, reducer);
 const store = configureStore({
