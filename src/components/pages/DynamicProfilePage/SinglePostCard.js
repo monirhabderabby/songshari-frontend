@@ -2,14 +2,33 @@ import moment from "moment";
 import React, { useEffect, useState } from "react";
 
 // components
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
 import { AiFillHeart } from "react-icons/ai";
+import { BsThreeDotsVertical } from "react-icons/bs";
 import love from "../../../assets/images/icons/coolicon.svg";
 import liveLinkGenerator from "../../../assets/utilities/liveLink/liveLinkGenerator";
 import { useLikeSinglePostMutation } from "../../../Redux/features/connections/connectionApi";
+import { useDeletePostMutation } from "../../../Redux/features/Post/postApi";
 
 const SinglePostCard = ({ post }) => {
     const [postLiked, setPostLiked] = useState(false);
     const [likeSinglePost, { data: likeResponse, isLoading: likeLoading, error: errorLike }] = useLikeSinglePostMutation();
+    const [deletePost] = useDeletePostMutation();
+    // mui three dot
+    const [anchorEl, setAnchorEl] = React.useState(null);
+    const open = Boolean(anchorEl);
+    const handleClick = event => {
+        setAnchorEl(event.currentTarget);
+    };
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
+
+    const handleDelete = () => {
+        deletePost(post?._id);
+        handleClose();
+    };
 
     const handleLikePost = async () => {
         await likeSinglePost(post?._id);
@@ -27,28 +46,52 @@ const SinglePostCard = ({ post }) => {
     return (
         <div>
             <div className="max-w-[457px] mx-auto shadow-[2px_2px_4px_rgba(0,0,0,0.12)] bg-white rounded-[10px] p-[30px] hidden md:block">
-                <div className="flex items-center">
-                    {post?.author?.profilePhoto ? (
-                        <img className="w-[40px] h-[40px] rounded-full mr-[19px]" src={post?.author?.profilePhoto} alt="profile" />
-                    ) : (
-                        <img
-                            className="w-[40px] h-[40px] rounded-full mr-[19px]"
-                            src="https://cdn-icons-png.flaticon.com/512/194/194938.png"
-                            alt="profile"
-                        />
-                    )}
-                    <p className="font-semibold font-fira text-[18px] leading-7 text-[#333333] mr-[10px]">
-                        {post?.author?.firstName} {post?.author?.lastName}
-                    </p>
-                    <div className="w-[20px] h-[20px] bg-[#FCE9F3] rounded-full mr-[14px]"></div>
-                    <div>
-                        <span className="text-[14px] leading-7 font-normal text-[#333333]">
-                            <span>
-                                {/* {getHoursMinutes(post?.createdAt).hours}h &nbsp;
+                <div className="flex w-full justify-between items-center">
+                    <div className="flex items-center">
+                        {post?.author?.profilePhoto ? (
+                            <img className="w-[40px] h-[40px] rounded-full mr-[19px]" src={post?.author?.profilePhoto} alt="profile" />
+                        ) : (
+                            <img
+                                className="w-[40px] h-[40px] rounded-full mr-[19px]"
+                                src="https://cdn-icons-png.flaticon.com/512/194/194938.png"
+                                alt="profile"
+                            />
+                        )}
+                        <p className="font-semibold font-fira text-[18px] leading-7 text-[#333333] mr-[10px]">
+                            {post?.author?.firstName} {post?.author?.lastName}
+                        </p>
+                        <div className="w-[20px] h-[20px] bg-[#FCE9F3] rounded-full mr-[14px]"></div>
+                        <div>
+                            <span className="text-[14px] leading-7 font-normal text-[#333333]">
+                                <span>
+                                    {/* {getHoursMinutes(post?.createdAt).hours}h &nbsp;
                                 {getHoursMinutes(post?.createdAt).minutes}min */}
-                                {moment(post?.createdAt).startOf("day").endOf("day").fromNow()}
+                                    {moment(post?.createdAt).startOf("day").endOf("day").fromNow()}
+                                </span>
                             </span>
-                        </span>
+                        </div>
+                    </div>
+                    <div>
+                        <BsThreeDotsVertical
+                            id="long-button"
+                            aria-controls={open ? "long-button" : undefined}
+                            aria-haspopup="true"
+                            aria-expanded={open ? "true" : undefined}
+                            onClick={handleClick}
+                            className="hover:text-black cursor-pointer"
+                        />
+                        <Menu
+                            id="basic-menu"
+                            anchorEl={anchorEl}
+                            open={open}
+                            onClose={handleClose}
+                            MenuListProps={{
+                                "aria-labelledby": "basic-button",
+                            }}
+                        >
+                            <MenuItem onClick={handleClose}>Edit</MenuItem>
+                            <MenuItem onClick={handleDelete}>Delete</MenuItem>
+                        </Menu>
                     </div>
                 </div>
                 <div className="">
