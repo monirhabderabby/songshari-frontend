@@ -3,6 +3,7 @@ import React from "react";
 import { AiOutlineWarning } from "react-icons/ai";
 import { FaUserAltSlash } from "react-icons/fa";
 import { useSelector } from "react-redux";
+import useDocumentTitle from "../../../assets/utilities/useDocumentTitle";
 
 // components
 import { useGetRecentMembersQuery } from "../../../Redux/features/userInfo/withoutLoginApi";
@@ -10,6 +11,8 @@ import { ProfileCardSkeletonLoader } from "../../shared/Cards/Loader/ProfileCard
 import { UserCard } from "../Shared/userCard/UserCard";
 
 export const FindAPartnerSuggested = () => {
+    // page title
+    useDocumentTitle("Shongshari | Suggested");
     // variable declaration
     // hook variables
     const searchTerm = useSelector(state => state?.persistedReducer?.findPartnerSlice?.searchTerm);

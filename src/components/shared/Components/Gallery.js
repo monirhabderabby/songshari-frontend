@@ -8,10 +8,13 @@ import { MdNoPhotography } from "react-icons/md";
 
 // components
 import liveLinkGenerator from "../../../assets/utilities/liveLink/liveLinkGenerator";
+import useDocumentTitle from "../../../assets/utilities/useDocumentTitle";
 import { useGetProfileDetailsQuery } from "../../../Redux/features/userInfo/userApi";
 import CustomHeader from "../CustomHeader/CustomHeader";
 
 export const Gallery = () => {
+    // page title
+    useDocumentTitle("Shongshari | Gallery");
     // hook variable declaration
     const { id } = useParams();
 

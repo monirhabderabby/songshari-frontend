@@ -1,10 +1,9 @@
-import { Fragment } from "react";
 import BannerFilterBox from "./BannerFilterBox";
 import BannerProfile from "./BannerProfile";
 
 const Banner = () => {
     return (
-        <Fragment>
+        <>
             <section className="bg-[url('https://img1.picmix.com/output/stamp/normal/9/9/4/3/1503499_8efaf.gif')] h-[calc(100vh-90px)] flex items-center">
                 <div className="max-w-[1200px] mx-auto">
                     <div className="h-full w-full flex items-center gap-x-3">
@@ -19,7 +18,7 @@ const Banner = () => {
                     </div>
                 </div>
             </section>
-        </Fragment>
+        </>
     );
 };
 
