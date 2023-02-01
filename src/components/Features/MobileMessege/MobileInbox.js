@@ -5,7 +5,7 @@ import { io } from "socket.io-client";
 import { useCreateMessageMutation, useGetAllMessageMutation } from "../../../Redux/chat/chatApi";
 
 // Components
-import { MessegeList } from "../Messege/Messeges/MessegeList";
+import { MessageListMobile } from "./MessageListMobile";
 import { MobileMessageHeader } from "./MobileMessageHeader";
 import { MobileMessgeSenderBox } from "./MobileMessgeSenderBox";
 
@@ -32,14 +32,14 @@ export const MobileInbox = () => {
             socket.current.emit("addUser", receiver);
         }
     }, [message.to]);
-    const [msg,setMsg]=useState(null);
+    const [msg, setMsg] = useState(null);
     useEffect(() => {
-       (async()=>{
-         getAllMessage(message);
-         setMsg(data?.data?.message);
-       })();
+        (async () => {
+            getAllMessage(message);
+            setMsg(data?.data?.message);
+        })();
     }, [message]);
-    
+
     const handleMessage = async e => {
         // console.log(e)
         if (e.code === "Enter" || e.type === "click") {
@@ -73,12 +73,12 @@ export const MobileInbox = () => {
         setArivalMsg(null);
     }, [arivalMsg, setMsg, msg]);
     return (
-        <div className="max-w-[1024px] mx-auto h-screen bg-green-400 flex flex-col">
+        <div className="max-w-[1024px] mx-auto h-screen flex flex-col">
             <div className="relative w-full">
                 <MobileMessageHeader />
             </div>
-            <div className="flex-1 bg-blue-400 mt-[60px] h-full">
-                <MessegeList messages={msg} />
+            <div className="flex-1 mt-[60px] h-full">
+                <MessageListMobile />
             </div>
             <MobileMessgeSenderBox handleMessage={handleMessage} message={message} setMessage={setMessage} />
         </div>
