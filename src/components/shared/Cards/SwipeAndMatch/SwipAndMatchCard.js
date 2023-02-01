@@ -21,7 +21,7 @@ export const SwipAndMatchCard = ({ data }) => {
 
     // useEffect declaration
     useEffect(() => {
-        if (likeResponse) setLikeSent(true);
+        if (likeResponse) setLikeSent(prev => !prev);
     }, [likeResponse]);
 
     // function declaration
@@ -65,7 +65,7 @@ export const SwipAndMatchCard = ({ data }) => {
                         }}
                     >
                         {likeSent ? (
-                            <div>
+                            <div onClick={addProfileLike}>
                                 <AiFillHeart className="text-[20px] text-white" />
                             </div>
                         ) : likeLoading ? (
