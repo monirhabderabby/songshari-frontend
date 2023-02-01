@@ -24,7 +24,7 @@ export const postApi = apiSlice.injectEndpoints({
             keepUnusedDataFor: 0,
         }),
         addUserPost: builder.mutation({
-            query: data => ({
+            query: ({ data }) => ({
                 url: "/member/post/add",
                 method: "POST",
                 headers: {
@@ -32,8 +32,52 @@ export const postApi = apiSlice.injectEndpoints({
                 },
                 body: data,
             }),
+            invalidatesTags: ["posts"],
+        }),
+        getMyPosts: builder.query({
+            query: () => ({
+                url: "/member/post/myposts",
+                method: "GET",
+                headers: {
+                    authorization: `Bearer ${getCookie("token")}`,
+                },
+            }),
+            keepUnusedDataFor: 600,
+            providesTags: ["posts"],
+        }),
+        deletePost: builder.mutation({
+            query: id => ({
+                url: `/member/post/${id}`,
+                method: "DELETE",
+                headers: {
+                    authorization: `Bearer ${getCookie("token")}`,
+                },
+            }),
+            async onQueryStarted(id, { queryFulfilled, dispatch }) {
+                // delete post from catch
+                const pathResult = dispatch(
+                    apiSlice.util.updateQueryData("getMyPosts", undefined, draft => {
+                        console.log(draft);
+                        const updatedArray = draft?.data?.posts?.filter(item => item._id !== id);
+
+                        return {
+                            message: "success",
+                            success: true,
+                            data: {
+                                posts: updatedArray,
+                            },
+                        };
+                    })
+                );
+
+                try {
+                    await queryFulfilled;
+                } catch (error) {
+                    pathResult.undo();
+                }
+            },
         }),
     }),
 });
 
-export const { useGetDynamicPostsQuery, useGetMyPostsWithAuthQuery, useAddUserPostMutation } = postApi;
+export const { useGetDynamicPostsQuery, useGetMyPostsWithAuthQuery, useAddUserPostMutation, useGetMyPostsQuery, useDeletePostMutation } = postApi;

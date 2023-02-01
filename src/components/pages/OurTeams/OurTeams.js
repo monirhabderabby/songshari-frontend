@@ -6,6 +6,7 @@ import img from "../../../assets/images/olivia.png";
 import dribble from "../../../assets/images/Social Icons/dribble.png";
 import linkedIn from "../../../assets/images/Social Icons/linkedIn.png";
 import twitter from "../../../assets/images/Social Icons/twitter.jpg";
+import useDocumentTitle from "../../../assets/utilities/useDocumentTitle";
 import CustomHeader from "../../shared/CustomHeader/CustomHeader";
 import Footer from "../../shared/Footer/Footer";
 
@@ -13,6 +14,7 @@ import Footer from "../../shared/Footer/Footer";
 import "../../../App.css";
 
 export const OurTeams = () => {
+    useDocumentTitle("Shongshari | Teams");
     // varible declation
     // hook variables
     useEffect(() => {

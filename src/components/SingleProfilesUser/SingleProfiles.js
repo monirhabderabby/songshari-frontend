@@ -1,6 +1,7 @@
 // configuration
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
+import useDocumentTitle from "../../assets/utilities/useDocumentTitle";
 
 // components
 import CustomHeader from "../../components/shared/CustomHeader/CustomHeader";
@@ -22,6 +23,9 @@ export const SingleProfiles = () => {
     const [SocialBoxOpen, setSocialBoxOpen] = useState(false);
     const { data, isLoading, error } = useGetProfileDetailsWIthAuthQuery();
     const dispatch = useDispatch();
+
+    // page title
+    useDocumentTitle("Shongshari | Profile");
 
     // JS Variables
     // decision making about social Box

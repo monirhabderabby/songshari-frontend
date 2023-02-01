@@ -1,5 +1,6 @@
 // configuration
 import React, { Suspense } from "react";
+import useDocumentTitle from "../../assets/utilities/useDocumentTitle";
 
 // components
 import Anexecutive from "../../components/CardComopents/Anexecutive";
@@ -20,6 +21,7 @@ const Banner = React.lazy(() => import("../../components/pages/Home/Banner/Banne
 const Homepage = () => {
     // js variables
     const logged = isLoggedIn();
+    useDocumentTitle("Shongshari | Home");
 
     return (
         <div className="font-george overflow-x-hidden">

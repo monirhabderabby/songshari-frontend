@@ -3,21 +3,27 @@ import { combineReducers } from "redux";
 import { persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import apiSlice from "../api/apiSlice";
+import chatReducer from "../chat/chatReducer";
 import checkoutDetailsSlice from "../features/checkout/checkoutDetailsSlice";
 import filterSlice from "../features/filter/filterSlice";
+import findPartnerSlice from "../features/filter/findPartnerSlice";
+import pageTitleSlice from "../features/PageTitle/pageTitleSlice";
 import userInfo from "../features/userInfo/userInfo";
 
 const persistConfig = {
     key: "root",
     version: 1,
     storage,
-    whiteList: ["userInfo", "filter", "checkoutDetailes"],
+    whiteList: ["userInfo", "chat", "filter", "checkoutDetailes"],
 };
 
 const reducer = combineReducers({
     userInfo: userInfo,
+    chat: chatReducer,
     filter: filterSlice,
     checkoutDetailes: checkoutDetailsSlice,
+    findPartnerSlice: findPartnerSlice,
+    pageTitle: pageTitleSlice,
 });
 const persistedReducer = persistReducer(persistConfig, reducer);
 const store = configureStore({

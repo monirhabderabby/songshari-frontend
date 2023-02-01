@@ -9,7 +9,7 @@ import TextArea from "antd/es/input/TextArea";
 
 // Components
 import { useUpdateProfessionalDetailsMutation } from "../../../../Redux/features/userInfo/userApi";
-import { MdCancel } from "react-icons/md";
+import EditFamilyInfo from "./EditFamilyInfo";
 const { RangePicker } = DatePicker;
 
 const EditProfesionalInfo = () => {
@@ -128,20 +128,8 @@ const EditProfesionalInfo = () => {
   }, [isSuccess, isLoading, isError, messageApi, navigate]);
   // filter for mui autocomplete
   const filter = createFilterOptions();
-
-  // Scroll to top
-  useEffect(() => {
-    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-  }, []);
-
   return (
-    <div className="max-w-[523px] mx-auto bg-white drop-shadow-lg px-4 pt-3 pb-6 mb-4 rounded">
-      <div className="flex justify-end mb-3">
-        <MdCancel
-          onClick={() => navigate(-1)}
-          className="cursor-pointer text-3xl text-slate-600"
-        />
-      </div>
+    <div className="max-w-[523px] mx-auto bg-white drop-shadow-lg px-4 py-6 mb-4 rounded">
       <form onSubmit={handleSubmit}>
         <div className="pb-4">
           <label className="text-sm block pb-2 text-slate-600	  font-medium">
@@ -309,6 +297,8 @@ const EditProfesionalInfo = () => {
           <div className="mt-2">{contextHolder}</div>
         </div>
       </form>
+      {/* ----------- This is for testing purpose ------------------ */}
+      <EditFamilyInfo />
     </div>
   );
 };
