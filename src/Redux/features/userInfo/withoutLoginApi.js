@@ -22,9 +22,9 @@ export const withoutLoginApi = apiSlice.injectEndpoints({
                 },
             }),
         }),
-        reWindUser: builder.mutation({
+        rewindUser: builder.mutation({
             query: () => ({
-                url: `/member/like/profile/rewind/:id`,
+                url: `/member/like/profile/rewind`,
                 method: "PUT",
                 headers: {
                     authorization: `Bearer ${getCookie("token")}`,
@@ -39,5 +39,5 @@ export const {
     useGetAllPlansQuery,
     useGetTopBrideGroomQuery,
     useRejectSwipeAndMatchMemberMutation,
-    useReWindUserMutation,
+    useRewindUserMutation,
 } = withoutLoginApi;

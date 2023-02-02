@@ -13,13 +13,14 @@ import img2 from "../../../../assets/images/HomeImage/bottom-img1.png";
 import bgImg from "../../../../assets/images/HomeImage/Rectangle .png";
 import { ageCalculator } from "../../../../assets/utilities/AgeCalculation/ageCalculator";
 import { useLikeSingleProfileMutation } from "../../../../Redux/features/connections/connectionApi";
-import { useRejectSwipeAndMatchMemberMutation } from "../../../../Redux/features/userInfo/withoutLoginApi";
+import { useRejectSwipeAndMatchMemberMutation, useRewindUserMutation } from "../../../../Redux/features/userInfo/withoutLoginApi";
 
 export const SwipAndMatchCard = ({ data }) => {
     // hook variables declaration
     const [likeSent, setLikeSent] = useState(false);
     const [likeSingleProfile, { data: likeResponse, isLoading: likeLoading }] = useLikeSingleProfileMutation();
     const [rejectSwipeAndMatchMember] = useRejectSwipeAndMatchMemberMutation();
+    const [rewindUser] = useRewindUserMutation();
 
     // useEffect declaration
     useEffect(() => {
@@ -33,6 +34,10 @@ export const SwipAndMatchCard = ({ data }) => {
 
     const handleRejectMember = () => {
         rejectSwipeAndMatchMember(data?._id);
+    };
+
+    const handleRewindMember = () => {
+        rewindUser(data?._id);
     };
 
     return (
@@ -62,6 +67,7 @@ export const SwipAndMatchCard = ({ data }) => {
                         style={{
                             background: "linear-gradient(180deg, #D91448 0%, #603B95 100%)",
                         }}
+                        onClick={handleRewindMember}
                     >
                         <img src={profileS1} alt="Not Available" />
                     </div>
