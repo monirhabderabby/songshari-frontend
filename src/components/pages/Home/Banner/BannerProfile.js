@@ -19,9 +19,12 @@ const BannerProfile = () => {
     // hook variables
     const [clickNextButton, setClickNextButton] = useState(false);
     const [clickPreviousButton, setClickPreviousButton] = useState(false);
-    const { data: swipematch } = useGetRecentUsersQuery();
-    const [likeSingleProfile] = useLikeSingleProfileMutation();
-    const [rejectSwipeAndMatchMember] = useRejectSwipeAndMatchMemberMutation();
+    const [skip, setSkip] = useState(true);
+    const { data: swipematch } = useGetRecentUsersQuery(undefined, {
+        skip: skip,
+    });
+    const [likeSingleProfile, { isSuccess: likeSuccess }] = useLikeSingleProfileMutation();
+    const [rejectSwipeAndMatchMember, { isSuccess: rejectSuccess }] = useRejectSwipeAndMatchMemberMutation();
     const [currentUser, setCurrentUser] = useState(null);
 
     const getJustSwipeData = e => {
@@ -49,6 +52,19 @@ const BannerProfile = () => {
             rejectSwipeAndMatchMember(_id);
         }
     }, [clickNextButton, currentUser, clickPreviousButton, likeSingleProfile, rejectSwipeAndMatchMember]);
+
+    useEffect(() => {
+        setSkip(false);
+    }, []);
+
+    useEffect(() => {
+        if (likeSuccess) {
+            setSkip(false);
+        }
+        if (rejectSuccess) {
+            setSkip(false);
+        }
+    }, [likeSuccess, rejectSuccess]);
 
     return (
         <Swiper

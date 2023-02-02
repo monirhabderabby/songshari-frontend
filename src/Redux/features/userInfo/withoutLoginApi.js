@@ -6,6 +6,7 @@ export const withoutLoginApi = apiSlice.injectEndpoints({
         getRecentMembers: builder.query({
             query: ({ searchTerm, page }) => `/withoutLogin/recentMembers?_role=member&_keyword=${searchTerm}&_limit=10&_page=${page}`,
             keepUnusedDataFor: 0,
+            providesTags: ["AllRecentMembers"],
         }),
         getAllPlans: builder.query({
             query: () => "admin/plan",
@@ -21,6 +22,7 @@ export const withoutLoginApi = apiSlice.injectEndpoints({
                     authorization: `Bearer ${getCookie("token")}`,
                 },
             }),
+            invalidatesTags: ["AllRecentMembers"],
         }),
         rewindUser: builder.mutation({
             query: () => ({
@@ -30,6 +32,7 @@ export const withoutLoginApi = apiSlice.injectEndpoints({
                     authorization: `Bearer ${getCookie("token")}`,
                 },
             }),
+            invalidatesTags: ["AllRecentMembers"],
         }),
     }),
 });
