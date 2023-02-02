@@ -5,7 +5,6 @@ import { useLocation, useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 
 // Third party packages
-import { AiOutlineLeft } from "react-icons/ai";
 import { FaGoogle } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 
@@ -13,6 +12,7 @@ import { useDispatch } from "react-redux";
 import setCookie from "../../../../Helper/cookies/setCookie";
 import { useLoginAsMemberMutation } from "../../../../Redux/features/userInfo/userApi";
 import { loadUserData } from "../../../../Redux/features/userInfo/userInfo";
+import { MobileBackButton } from "../../../shared/Components/MobileBackButton";
 import Error from "../../../ui/error/Error";
 
 const MobileLogin = () => {
@@ -63,13 +63,8 @@ const MobileLogin = () => {
     };
 
     return (
-        <div className="bg-[#F8F8FF] min-h-screen">
-            <div className="text-[#1E2022] flex justify-start items-center gap-[33%] bg-white font-medium text-center text-lg leading-[18px] py-4 px-6  mb-6">
-                <span>
-                    <AiOutlineLeft onClick={() => navigate("/")} />
-                </span>
-                <p>Log In</p>
-            </div>
+        <div className="bg-[#F8F8FF] min-h-screen max-w-[1024px] mx-auto">
+            <MobileBackButton name="LOGIN" />
             {/* google login  */}
             <div className="flex justify-center items-center my-2">
                 <p className="border-2 cursor-pointer border-gray-200 rounded-full p-3 mx-1 hover:bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] hover:text-white duration-400 transition-all">

@@ -22,7 +22,22 @@ export const withoutLoginApi = apiSlice.injectEndpoints({
                 },
             }),
         }),
+        reWindUser: builder.mutation({
+            query: () => ({
+                url: `/member/like/profile/rewind/:id`,
+                method: "PUT",
+                headers: {
+                    authorization: `Bearer ${getCookie("token")}`,
+                },
+            }),
+        }),
     }),
 });
 
-export const { useGetRecentMembersQuery, useGetAllPlansQuery, useGetTopBrideGroomQuery, useRejectSwipeAndMatchMemberMutation } = withoutLoginApi;
+export const {
+    useGetRecentMembersQuery,
+    useGetAllPlansQuery,
+    useGetTopBrideGroomQuery,
+    useRejectSwipeAndMatchMemberMutation,
+    useReWindUserMutation,
+} = withoutLoginApi;

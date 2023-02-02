@@ -34,6 +34,7 @@ export const SwipAndMatchCard = ({ data }) => {
     const handleRejectMember = () => {
         rejectSwipeAndMatchMember(data?._id);
     };
+
     return (
         <div className="max-w-[280px] h-[400px] relative overflow-hidden">
             <img
