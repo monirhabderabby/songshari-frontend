@@ -34,7 +34,7 @@ export const YouMayLike = () => {
                 <p className="mt-[10px] text-[16px] text-center font-Inter font-medium text-gray-500">Authentication failed! Try Login again.</p>
             </div>
         );
-    } else if (!isLoading && error?.status?.includes("FETCH_ERROR")) {
+    } else if (!isLoading && error?.status === "FETCH_ERROR") {
         content = (
             <div className="flex flex-col items-center justify-center mt-[30%]">
                 <AiOutlineWarning className="text-[42px] text-gray-400" />

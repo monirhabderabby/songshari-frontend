@@ -24,6 +24,8 @@ export const SingleProfiles = () => {
     const { data, isLoading, error } = useGetProfileDetailsWIthAuthQuery();
     const dispatch = useDispatch();
 
+    console.log(error);
+
     // page title
     useDocumentTitle("Shongshari | Profile");
 

@@ -1,5 +1,6 @@
 // configuration
-import React from "react";
+import { Pagination } from "@mui/material";
+import React, { useEffect, useState } from "react";
 import { AiOutlineWarning } from "react-icons/ai";
 import { FaUserAltSlash } from "react-icons/fa";
 import { useSelector } from "react-redux";
@@ -15,11 +16,17 @@ export const FindAPartnerSuggested = () => {
     useDocumentTitle("Shongshari | Suggested");
     // variable declaration
     // hook variables
+    const [page, setPage] = useState(1);
     const searchTerm = useSelector(state => state?.persistedReducer?.findPartnerSlice?.searchTerm);
-    const { data, isLoading, error } = useGetRecentMembersQuery();
+    const { data, isLoading, error } = useGetRecentMembersQuery({ searchTerm: searchTerm, page: page });
 
+    let totalData = data?.data?.total / 10;
     let content;
     const loaderArray = [1, 2, 3, 4, 5, 6];
+
+    useEffect(() => {
+        window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+    }, [data]);
 
     if (isLoading) {
         content = (
@@ -54,5 +61,12 @@ export const FindAPartnerSuggested = () => {
         );
     }
 
-    return <div className="mt-[30px] max-w-[950px] mx-auto">{content}</div>;
+    return (
+        <>
+            <div className="mt-[30px] max-w-[950px] mx-auto">{content}</div>
+            <div className="my-[30px] w-full flex justify-center">
+                <Pagination count={totalData} variant="outlined" color="secondary" onChange={(e, val) => setPage(val)} />
+            </div>
+        </>
+    );
 };

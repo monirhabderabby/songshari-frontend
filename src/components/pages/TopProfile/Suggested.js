@@ -19,7 +19,7 @@ import "swiper/css/pagination";
 
 const Suggested = () => {
     //hook variable declaration
-    const { data, isLoading, error } = useGetRecentMembersQuery();
+    const { data, isLoading, error } = useGetRecentMembersQuery({ searchTerm: "" });
 
     // js variables
     const arr = [1, 2, 3, 4, 5, 6, 7, 8];
