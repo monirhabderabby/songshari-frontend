@@ -14,8 +14,6 @@ const BannerProfile = () => {
     // hook variables
     const { data: swipematch } = useGetRecentUsersQuery();
 
-    console.log(swipematch);
-
     return (
         <div>
             <Swiper

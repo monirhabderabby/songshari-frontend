@@ -1,3 +1,4 @@
+import getCookie from "../../../Helper/cookies/getCookie";
 import apiSlice from "../../api/apiSlice";
 
 export const withoutLoginApi = apiSlice.injectEndpoints({
@@ -12,7 +13,16 @@ export const withoutLoginApi = apiSlice.injectEndpoints({
         getTopBrideGroom: builder.query({
             query: gender => `/admin/priority-member/get-all-priority-member/?gender=${gender}`,
         }),
+        rejectSwipeAndMatchMember: builder.mutation({
+            query: id => ({
+                url: `/member/like/profile/reject/${id}`,
+                method: "PUT",
+                headers: {
+                    authorization: `Bearer ${getCookie("token")}`,
+                },
+            }),
+        }),
     }),
 });
 
-export const { useGetRecentMembersQuery, useGetAllPlansQuery, useGetTopBrideGroomQuery } = withoutLoginApi;
+export const { useGetRecentMembersQuery, useGetAllPlansQuery, useGetTopBrideGroomQuery, useRejectSwipeAndMatchMemberMutation } = withoutLoginApi;

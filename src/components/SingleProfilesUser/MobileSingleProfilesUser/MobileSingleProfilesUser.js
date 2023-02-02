@@ -1,4 +1,4 @@
-// components
+// configuration
 import React from "react";
 
 // Third party package
@@ -11,18 +11,18 @@ import { MobileAccordionLink } from "./MobileAccordionLink";
 import MobileUsersProfile from "./MobileUsersProfile";
 
 const MobileSingleProfilesUser = () => {
-    // js variable declaration
-    return (
-        <section className="max-w-[1024px] mx-auto">
-            <MobileBackButton name="Profile" />
-            <MobileUsersProfile />
-            <VerificationCard title={false} mt="0px" height="100px" />
-            <div className="py-[20px]">
-                <MobileAccordionLink></MobileAccordionLink>
-            </div>
-            <BottomNav></BottomNav>
-        </section>
-    );
+  // js variable declaration
+  return (
+    <section className="max-w-[1024px] mx-auto">
+      <MobileBackButton name="Profile" />
+      <MobileUsersProfile />
+      <VerificationCard title={false} mt="0px" height="100px" />
+      <div className="py-[20px]">
+        <MobileAccordionLink></MobileAccordionLink>
+      </div>
+      <BottomNav></BottomNav>
+    </section>
+  );
 };
 
 export default MobileSingleProfilesUser;

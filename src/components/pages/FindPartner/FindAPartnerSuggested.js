@@ -1,6 +1,6 @@
 // configuration
 import { Pagination } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { AiOutlineWarning } from "react-icons/ai";
 import { FaUserAltSlash } from "react-icons/fa";
 import { useSelector } from "react-redux";
@@ -23,6 +23,10 @@ export const FindAPartnerSuggested = () => {
     let totalData = data?.data?.total / 10;
     let content;
     const loaderArray = [1, 2, 3, 4, 5, 6];
+
+    useEffect(() => {
+        window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+    }, [data]);
 
     if (isLoading) {
         content = (
