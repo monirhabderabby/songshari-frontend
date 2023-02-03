@@ -7,7 +7,7 @@ const UpdateCertificateSection = ({ editFor, selectedCertificate }) => {
   return (
     <div>
       {/* New certificate upload */}
-      <FileUploadSection />
+      <FileUploadSection {...{ editFor, selectedCertificate }} />
       {/* File reupload section */}
       <FileReuploadSection {...{ editFor, selectedCertificate }} />
     </div>
