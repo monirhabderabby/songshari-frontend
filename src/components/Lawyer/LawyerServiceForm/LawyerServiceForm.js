@@ -17,15 +17,21 @@ const LawyerServiceForm = () => {
     const [category, setCategory] = useState("");
     const [subCategory, setSubCategory] = useState("");
     const [tags, setTags] = useState([]);
+    const [photos, setPhotos] = useState([]);
     const navigate = useNavigate();
 
-    const { register, handleSubmit } = useForm();
+    const { register, handleSubmit, reset } = useForm();
     const onSubmit = data => {
         data.price = Number(data.price);
         data.deadline = daedline;
         data.category = category;
         data.subCategory = subCategory;
         data.tags = tags;
+        data.photos = photos;
+
+        // reset all
+        reset();
+        setCategory("");
         console.log(data);
     };
 
@@ -50,9 +56,9 @@ const LawyerServiceForm = () => {
                 <hr className="bg-[#E9ECF2] mt-3 mb-6" />
                 {/* Service Title, Price and Deadline */}
                 <ServiceTitlePriceAndDeadline {...{ setDeadline, register }} />
-                <ServiceCategoryAndSubCategory {...{ setCategory, setSubCategory }} />
+                <ServiceCategoryAndSubCategory {...{ setCategory, setSubCategory, category }} />
                 <ServiceTags {...{ setTags }} />
-                <ServicePhotoUploadContainer />
+                <ServicePhotoUploadContainer {...{ setPhotos }} />
 
                 <div className="mb-8">
                     <label htmlFor="serviceDetails" className="text-xs font-bold leading-5 text-[#707276] ml-1 block uppercase">

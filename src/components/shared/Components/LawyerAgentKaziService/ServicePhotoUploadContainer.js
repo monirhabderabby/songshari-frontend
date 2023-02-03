@@ -7,7 +7,7 @@ import { useDropzone } from "react-dropzone";
 import { usePhotosUploadOnServerMutation } from "../../../../Redux/features/fileUpload/fileUploadApi";
 import { OvalLoader } from "../../Cards/Loader/OvalLoader/OvalLoader";
 
-export const ServicePhotoUploadContainer = () => {
+export const ServicePhotoUploadContainer = ({ setPhotos }) => {
     // Redux Api Call
     const [photosUploadOnServer, { data: uploadedPhotos, isLoading, error: uploadError }] = usePhotosUploadOnServerMutation();
 
@@ -34,9 +34,9 @@ export const ServicePhotoUploadContainer = () => {
             });
 
             // it will be return when this components will be return
-            console.log(newArray);
+            setPhotos(newArray);
         }
-    }, [uploadedPhotos]);
+    }, [uploadedPhotos, setPhotos]);
 
     return (
         <>
