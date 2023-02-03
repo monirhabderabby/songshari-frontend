@@ -7,6 +7,17 @@ export const withoutLoginApi = apiSlice.injectEndpoints({
             query: ({ searchTerm, page }) => `/withoutLogin/recentMembers?_role=member&_keyword=${searchTerm}&_limit=10&_page=${page}`,
             keepUnusedDataFor: 0,
         }),
+        getRecentMembersWithAuth: builder.query({
+            query: () => ({
+                url: `/withoutLogin/recent-members-by-me`,
+                method: "GET",
+                headers: {
+                    authorization: `Bearer ${getCookie("token")}`,
+                },
+            }),
+            keepUnusedDataFor: 0,
+            providesTags: ["AllRecentMembers"],
+        }),
         getAllPlans: builder.query({
             query: () => "admin/plan",
         }),
@@ -21,6 +32,7 @@ export const withoutLoginApi = apiSlice.injectEndpoints({
                     authorization: `Bearer ${getCookie("token")}`,
                 },
             }),
+            invalidatesTags: ["AllRecentMembers"],
         }),
         rewindUser: builder.mutation({
             query: () => ({
@@ -30,6 +42,7 @@ export const withoutLoginApi = apiSlice.injectEndpoints({
                     authorization: `Bearer ${getCookie("token")}`,
                 },
             }),
+            invalidatesTags: ["AllRecentMembers"],
         }),
     }),
 });
@@ -40,4 +53,5 @@ export const {
     useGetTopBrideGroomQuery,
     useRejectSwipeAndMatchMemberMutation,
     useRewindUserMutation,
+    useGetRecentMembersWithAuthQuery,
 } = withoutLoginApi;

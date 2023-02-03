@@ -123,6 +123,7 @@ export const connectionApi = apiSlice.injectEndpoints({
                     authorization: `Bearer ${getCookie("token")}`,
                 },
             }),
+            invalidatesTags: ["AllRecentMembers"],
         }),
         rejectFriendReqeust: builder.mutation({
             query: ({ id }) => ({

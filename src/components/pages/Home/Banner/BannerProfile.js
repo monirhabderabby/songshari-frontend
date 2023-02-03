@@ -6,9 +6,8 @@ import { Autoplay, Navigation } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 // components
-import { useGetRecentUsersQuery } from "../../../../Redux/features/AllRecentData/recentApi";
 import { useLikeSingleProfileMutation } from "../../../../Redux/features/connections/connectionApi";
-import { useRejectSwipeAndMatchMemberMutation } from "../../../../Redux/features/userInfo/withoutLoginApi";
+import { useGetRecentMembersWithAuthQuery, useRejectSwipeAndMatchMemberMutation } from "../../../../Redux/features/userInfo/withoutLoginApi";
 import { SwipAndMatchCard } from "../../../shared/Cards/SwipeAndMatch/SwipAndMatchCard";
 
 //css
@@ -19,17 +18,19 @@ const BannerProfile = () => {
     // hook variables
     const [clickNextButton, setClickNextButton] = useState(false);
     const [clickPreviousButton, setClickPreviousButton] = useState(false);
-    const { data: swipematch } = useGetRecentUsersQuery();
+
     const [likeSingleProfile] = useLikeSingleProfileMutation();
     const [rejectSwipeAndMatchMember] = useRejectSwipeAndMatchMemberMutation();
+    const { data: swipematch } = useGetRecentMembersWithAuthQuery();
     const [currentUser, setCurrentUser] = useState(null);
 
     const getJustSwipeData = e => {
         // get the current element
-        let activeEl = e.activeIndex;
+        let activeEl = e.realIndex + 1;
+        console.log("activeEl", activeEl);
         const swipeAndMatchArrau = swipematch?.data?.members;
         const result = swipeAndMatchArrau.find((item, index) => {
-            if (activeEl === index + 1) return item;
+            if (activeEl === index) return item;
             else return false;
         });
 
