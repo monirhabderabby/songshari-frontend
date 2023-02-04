@@ -10,7 +10,7 @@ import { OvalLoader } from "../../Cards/Loader/OvalLoader/OvalLoader";
 
 export const ServicePhotoUploadContainer = ({ setPhotos, photos }) => {
     // Redux Api Call
-    const [photosUploadOnServer, { data: uploadedPhotos, isLoading }] = usePhotosUploadOnServerMutation();
+    const [photosUploadOnServer, { data: uploadedPhotos, isLoading, error }] = usePhotosUploadOnServerMutation();
 
     const onDrop = useCallback(
         acceptedFiles => {
@@ -22,6 +22,9 @@ export const ServicePhotoUploadContainer = ({ setPhotos, photos }) => {
         },
         [photosUploadOnServer]
     );
+
+    if (error) console.log(error);
+
     const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
     useEffect(() => {
