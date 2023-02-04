@@ -56,7 +56,7 @@ const NavBar = ({ bg }) => {
         { id: 2, to: "/membership", icon: membership, tooltip: "Membership" },
         { id: 3, to: "/blog", icon: blog, tooltip: "Blog" },
         { id: 4, to: "/course", icon: course, tooltip: "Course" },
-        { id: 5, to: "/findalawyer", icon: findALawyer, tooltip: "Find a Lawyer" },
+        { id: 5, to: "/findLawyers/recent", icon: findALawyer, tooltip: "Find a Lawyer" },
         {
             id: 6,
             to: "/kazi",
