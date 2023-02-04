@@ -5,5 +5,7 @@ export const profilePathMaker = role => {
         return "/kaziProfile";
     } else if (role === "member") {
         return "/userprofile";
+    } else if (role === "agent") {
+        return "/agentProfile";
     }
 };
