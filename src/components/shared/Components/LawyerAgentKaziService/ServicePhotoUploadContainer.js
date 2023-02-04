@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect } from "react";
 
 // Third party packages
 import { useDropzone } from "react-dropzone";
@@ -8,10 +8,9 @@ import liveLinkGenerator from "../../../../assets/utilities/liveLink/liveLinkGen
 import { usePhotosUploadOnServerMutation } from "../../../../Redux/features/fileUpload/fileUploadApi";
 import { OvalLoader } from "../../Cards/Loader/OvalLoader/OvalLoader";
 
-export const ServicePhotoUploadContainer = ({ setPhotos }) => {
-    const [thisPhotos, setThisPhotos] = useState([]);
+export const ServicePhotoUploadContainer = ({ setPhotos, photos }) => {
     // Redux Api Call
-    const [photosUploadOnServer, { data: uploadedPhotos, isLoading, error: uploadError }] = usePhotosUploadOnServerMutation();
+    const [photosUploadOnServer, { data: uploadedPhotos, isLoading }] = usePhotosUploadOnServerMutation();
 
     const onDrop = useCallback(
         acceptedFiles => {
@@ -37,13 +36,12 @@ export const ServicePhotoUploadContainer = ({ setPhotos }) => {
 
             // it will be return when this components will be return
             setPhotos(newArray);
-            setThisPhotos(newArray);
         }
     }, [uploadedPhotos, setPhotos]);
 
     let content;
 
-    if (thisPhotos.length === 0) {
+    if (photos.length === 0) {
         content = (
             <div className="text-[#707276] text-[13px] font-Poppins font-normal text-center leading-[20px]">
                 Drop photos here to add <br /> attachments
@@ -52,11 +50,11 @@ export const ServicePhotoUploadContainer = ({ setPhotos }) => {
                 </p>
             </div>
         );
-    } else if (thisPhotos.length > 0) {
+    } else if (photos.length > 0) {
         content = (
             <div className="w-full flex flex-wrap justify-center items-center gap-5">
-                {thisPhotos?.map(photo => {
-                    return <img className="w-[80px] h-[80px] rounded-[4px]" src={liveLinkGenerator(photo)} alt="servicePhoto" />;
+                {photos?.map((photo, index) => {
+                    return <img key={index} className="w-[80px] h-[80px] rounded-[4px]" src={liveLinkGenerator(photo)} alt="servicePhoto" />;
                 })}
             </div>
         );

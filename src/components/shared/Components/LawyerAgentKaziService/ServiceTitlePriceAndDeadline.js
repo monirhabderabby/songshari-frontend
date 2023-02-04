@@ -1,19 +1,22 @@
 // Configuration
 import React from "react";
+
+// Third party packages
 import Select from "react-select";
 
 // components
-import serviceDeliverTimeOptions from "../../shared/AutoSuggestion/Lawyer/serviceDeliverTimeOption";
+import serviceDeliverTimeOptions from "../../AutoSuggestion/Lawyer/serviceDeliverTimeOption";
 
-export const ServiceTitlePriceAndDeadline = ({ setDeadline, register }) => {
+export const ServiceTitlePriceAndDeadline = ({ setDeadline, register, setCustomError }) => {
     return (
         <>
-            <div className="grid grid-cols-12 py-2 px-3 border border-[#707276] rounded">
+            <div className="grid grid-cols-12 py-2 px-3 border border-[#C3C8D4] rounded">
                 <input
                     type="text"
                     className="col-span-10 outline-none px-[15px] text-[#707276] text-[16px] font-sans font-normal"
                     {...register("title")}
                     placeholder="I can do"
+                    onChange={e => setCustomError("")}
                 />
                 <div className="col-span-2 flex items-center gap-3">
                     <label htmlFor="servicePrice">for</label>
@@ -23,6 +26,7 @@ export const ServiceTitlePriceAndDeadline = ({ setDeadline, register }) => {
                         className="w-2/3 py-2 text-center rounded bg-[#F5F7FA] border border-[#98999C] "
                         {...register("price")}
                         id="firstPrice"
+                        onChange={e => setCustomError("")}
                     />
                 </div>
             </div>
@@ -38,7 +42,10 @@ export const ServiceTitlePriceAndDeadline = ({ setDeadline, register }) => {
                     isClearable
                     name="deadline"
                     options={serviceDeliverTimeOptions}
-                    onChange={selectedValue => setDeadline(selectedValue.value)}
+                    onChange={selectedValue => {
+                        setDeadline(selectedValue.value);
+                        setCustomError("");
+                    }}
                 />
             </div>
         </>
