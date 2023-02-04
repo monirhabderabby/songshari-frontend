@@ -59,7 +59,7 @@ const NavBar = ({ bg }) => {
         { id: 5, to: "/findLawyers/recent", icon: findALawyer, tooltip: "Find a Lawyer" },
         {
             id: 6,
-            to: "/kazi",
+            to: "/kazi/recent",
             icon: kazi,
             tooltip: "Kazi",
         },

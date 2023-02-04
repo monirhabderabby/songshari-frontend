@@ -189,38 +189,6 @@ const matrimonyRoutes = [
         element: <PaymentSuccess />,
     },
     {
-        id: 1,
-        path: "/",
-        element: <Homepage />,
-        nestedRoutes: [
-            {
-                id: 1,
-                path: "/",
-                element: <Suggested />,
-            },
-            {
-                id: 2,
-                path: "top-bride",
-                element: <TopBride />,
-            },
-            {
-                id: 3,
-                path: "top-groom",
-                element: <TopGroom />,
-            },
-        ],
-    },
-    {
-        id: 2,
-        path: "/login",
-        element: <Login />,
-    },
-    {
-        id: 3,
-        path: "/signup",
-        element: <Signup />,
-    },
-    {
         id: 4,
         path: "/about",
         element: <About />,

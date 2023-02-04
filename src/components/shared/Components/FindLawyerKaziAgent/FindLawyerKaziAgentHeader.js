@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 
 // Third party packages
 import Select from "react-select";
-import { setLawyerSearchTerm } from "../../../../Redux/features/FindLawyerKaziAgentFilter/findLawyerKaziAgentFilterSlice";
+import { setKaziSearchTerm, setLawyerSearchTerm } from "../../../../Redux/features/FindLawyerKaziAgentFilter/findLawyerKaziAgentFilterSlice";
 
 export const FindLawyerKaziAgentHeader = ({ page }) => {
     const [searchTerm, setSearchTerm] = useState("");
@@ -38,6 +38,8 @@ export const FindLawyerKaziAgentHeader = ({ page }) => {
     useEffect(() => {
         if (page === "lawyer") {
             dispatch(setLawyerSearchTerm(debouncedSearchTerm));
+        } else if (page === "kazi") {
+            dispatch(setKaziSearchTerm(debouncedSearchTerm));
         }
     }, [debouncedSearchTerm, page, dispatch]);
     return (
@@ -74,6 +76,7 @@ export const FindLawyerKaziAgentHeader = ({ page }) => {
                     defaultValue={options[0]}
                     options={options}
                     onChange={selected => console.log(selected)}
+                    isDisabled
                 />
             </div>
         </div>
