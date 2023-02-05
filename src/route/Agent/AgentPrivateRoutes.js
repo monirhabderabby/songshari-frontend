@@ -3,6 +3,7 @@ import AgentProfileContainer from "../../components/pages/Agent/AgentProfile/Age
 import AgentReview from "../../components/pages/Agent/AgentReview/AgentReview";
 import AgentServiceForm from "../../components/pages/Agent/AgentServiceForm/AgentServiceForm";
 import AgentServicesPage from "../../components/pages/Agent/AgentServicesPage/AgentServicesPage";
+import { ServiceEdit } from "../../components/shared/Components/LawyerAgentKaziService/ServiceEdit/ServiceEdit";
 import SingleServicesContainer from "../../components/shared/Components/LawyerAgentKaziService/SingleServices/SingleServicesContainer";
 import EditEducationalInfo from "../../components/SingleProfilesUser/profileSection/EditprofileSection/EditEducationalInfo";
 import EditFamilyInfo from "../../components/SingleProfilesUser/profileSection/EditprofileSection/EditFamilyInfo";
@@ -89,6 +90,11 @@ const AgentPrivateRoutes = [
                         ],
                     },
                 ],
+            },
+            {
+                id: 6,
+                path: "serviceEdit/:id",
+                element: <ServiceEdit />,
             },
         ],
     },
