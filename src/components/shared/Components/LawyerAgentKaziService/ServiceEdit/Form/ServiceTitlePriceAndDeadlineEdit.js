@@ -7,7 +7,7 @@ import serviceDeliverTimeOptions from "../../../../AutoSuggestion/Lawyer/service
 
 // components
 
-export const ServiceTitlePriceAndDeadlineEdit = ({ setDeadline, register, setCustomError, title, price }) => {
+export const ServiceTitlePriceAndDeadlineEdit = ({ setDeadline, register, setCustomError, title, price, currentDeadline }) => {
     return (
         <>
             <div className="grid grid-cols-12 py-2 px-3 border border-[#C3C8D4] rounded">

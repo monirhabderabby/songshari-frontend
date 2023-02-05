@@ -1,6 +1,6 @@
 import React from "react";
 
-export const ServiceMoreDetailesFieldEdit = ({ register, description }) => {
+export const ServiceMoreDetailesFieldEdit = ({ register, details }) => {
     return (
         <div className="w-full">
             <div className="mb-8 w-full">
@@ -10,7 +10,7 @@ export const ServiceMoreDetailesFieldEdit = ({ register, description }) => {
                 <textarea
                     name="detailes"
                     id="detailes"
-                    defaultValue={description}
+                    defaultValue={details}
                     rows="5"
                     className="py-2 px-5 w-full rounded h-auto border border-[#C3C8D4]"
                     {...register("detailes")}

@@ -12,20 +12,18 @@ import { OvalLoader } from "../../../../Cards/Loader/OvalLoader/OvalLoader";
 
 export const ServicePhotoUploadContainerEdit = ({ setPhotos, photos }) => {
     // Redux Api Call
-    const [photosUploadOnServer, { data: uploadedPhotos, isLoading, error }] = usePhotosUploadOnServerMutation();
+    const [photosUploadOnServer, { data: uploadedPhotos, isLoading }] = usePhotosUploadOnServerMutation();
 
     const onDrop = useCallback(
         acceptedFiles => {
             const formData = new FormData();
-            for (let i = 0; i < acceptedFiles.length; i++) {
+            for (let i = 0; i < acceptedFiles?.length; i++) {
                 formData.append("photos", acceptedFiles[i]);
             }
             photosUploadOnServer(formData);
         },
         [photosUploadOnServer]
     );
-
-    if (error) console.log(error);
 
     const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
@@ -46,7 +44,7 @@ export const ServicePhotoUploadContainerEdit = ({ setPhotos, photos }) => {
 
     let content;
 
-    if (photos.length === 0) {
+    if (photos?.length === 0) {
         content = (
             <div className="text-[#707276] text-[13px] font-Poppins font-normal text-center leading-[20px]">
                 Drop photos here to add <br /> attachments
@@ -55,7 +53,7 @@ export const ServicePhotoUploadContainerEdit = ({ setPhotos, photos }) => {
                 </p>
             </div>
         );
-    } else if (photos.length > 0) {
+    } else if (photos?.length > 0) {
         content = (
             <div className="w-full flex flex-wrap justify-center items-center gap-5">
                 {photos?.map((photo, index) => {

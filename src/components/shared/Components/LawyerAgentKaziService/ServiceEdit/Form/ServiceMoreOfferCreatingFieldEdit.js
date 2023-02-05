@@ -7,7 +7,7 @@ import serviceDeliverTimeOptions from "../../../../AutoSuggestion/Lawyer/service
 
 // Components
 
-export const ServiceMoreOfferCreatingFieldEdit = ({ register, setExtraOfferDeadline }) => {
+export const ServiceMoreOfferCreatingFieldEdit = ({ register, setExtraOfferDeadline, extraOffer }) => {
     return (
         <>
             <div className="mb-20">
@@ -17,6 +17,7 @@ export const ServiceMoreOfferCreatingFieldEdit = ({ register, setExtraOfferDeadl
                 <div className="grid grid-cols-12 py-2 px-3 border border-[#C3C8D4] rounded">
                     <input
                         type="text"
+                        defaultValue={extraOffer && extraOffer[0]?.title}
                         name="extraOfferTitle"
                         className="col-span-7 outline-none"
                         {...register("extraOfferTitle")}
@@ -27,6 +28,7 @@ export const ServiceMoreOfferCreatingFieldEdit = ({ register, setExtraOfferDeadl
                         <input
                             type="number"
                             name="extraOfferPrice"
+                            defaultValue={extraOffer && extraOffer[0]?.price}
                             className="w-2/3 py-2 text-center rounded bg-[#F5F7FA] border border-[#98999C] "
                             {...register("extraOfferPrice")}
                             id=""

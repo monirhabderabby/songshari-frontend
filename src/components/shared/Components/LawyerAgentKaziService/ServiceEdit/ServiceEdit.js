@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { TbFaceIdError } from "react-icons/tb";
 import { useParams } from "react-router";
 import { useGetServiceByIdQuery } from "../../../../../Redux/features/Service/ServiceApi";
+import { LineWaveLoader } from "../../../Cards/Loader/lineWaveLoader/LineWaveLoader";
 import { ServiceEditForm } from "./Form/ServiceEditForm";
 
 export const ServiceEdit = () => {
@@ -17,17 +19,36 @@ export const ServiceEdit = () => {
 
     const { service } = data || {};
 
-    const { title, price, description, recuirements } = service || {};
+    console.log(service);
+
+    const {
+        title,
+        price,
+        description,
+        recuirements,
+        details,
+        photos: currentPhotos,
+        extraOffer,
+        category: currentCategory,
+        deadline: currentDeadline,
+        subCategory: currentSubCategory,
+        tags: currentTags,
+    } = service || {};
+
+    // set CurrentPhotos as default
+    useEffect(() => {
+        setPhotos(currentPhotos);
+    }, [currentPhotos]);
 
     const { register, handleSubmit, reset } = useForm();
 
     const onSubmit = data => {
         setCustomError("");
         data.price = Number(data.price);
-        data.deadline = daedline;
-        data.category = category;
-        data.subCategory = subCategory;
-        data.tags = tags;
+        data.deadline = daedline || currentDeadline;
+        data.category = category || currentCategory;
+        data.subCategory = subCategory || currentSubCategory;
+        data.tags = tags.length > 0 ? tags : currentTags;
         data.photos = photos;
         data.extraOffer = [
             {
@@ -37,16 +58,6 @@ export const ServiceEdit = () => {
             },
         ];
 
-        if (!data.title || !data.price) {
-            setCustomError("Please provide a service title and price");
-            return;
-        }
-
-        if (!daedline) {
-            setCustomError("Please provide a service deadline");
-            return;
-        }
-
         // delete which already used
         delete data?.extraOfferTitle;
         delete data?.extraOfferPrice;
@@ -55,9 +66,22 @@ export const ServiceEdit = () => {
         console.log(data);
     };
 
-    console.log(service);
-    return (
-        <div>
+    let content;
+    if (isLoading) {
+        content = (
+            <div className="h-[200px] w-full flex justify-center items-center">
+                <LineWaveLoader />
+            </div>
+        );
+    } else if (!isLoading && error) {
+        content = content = (
+            <div className="h-[100px] w-full flex justify-center items-center flex-col">
+                <TbFaceIdError className="text-[45px] text-[#FF3366]" />
+                <h3 className="text-[16px] text-gray-400 font-medium font-syne">SomeThing went wrong. Please try again later</h3>
+            </div>
+        );
+    } else if (!isLoading && data) {
+        content = (
             <ServiceEditForm
                 {...{
                     register,
@@ -79,8 +103,14 @@ export const ServiceEdit = () => {
                     price,
                     description,
                     recuirements,
+                    details,
+                    extraOffer,
+                    currentCategory,
+                    currentDeadline,
+                    currentSubCategory,
                 }}
             />
-        </div>
-    );
+        );
+    }
+    return <div>{content}</div>;
 };

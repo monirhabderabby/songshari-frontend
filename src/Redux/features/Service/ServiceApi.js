@@ -16,7 +16,7 @@ export const serviceApi = apiSlice.injectEndpoints({
         }),
         updateSingleService: builder.mutation({
             query: ({ id, data }) => ({
-                url: `/member/service/${id}`,
+                url: `/service/${id}`,
                 method: "PUT",
                 headers: {
                     authorization: `Bearer ${getCookie("token")}`,

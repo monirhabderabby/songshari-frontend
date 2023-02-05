@@ -31,11 +31,15 @@ export const ServiceEditForm = props => {
         setExtraOfferDeadline,
         customError,
         name,
-        category,
         title,
         price,
         description,
         recuirements,
+        details,
+        extraOffer,
+        currentCategory,
+        currentDeadline,
+        currentSubCategory,
     } = props || {};
 
     const navigate = useNavigate();
@@ -51,15 +55,15 @@ export const ServiceEditForm = props => {
             </h3>
             <hr className="bg-[#E9ECF2] mt-3 mb-6" />
             {/* Service Title, Price and Deadline */}
-            <ServiceTitlePriceAndDeadlineEdit {...{ setDeadline, register, setCustomError, title, price }} />
-            <ServiceCategoryAndSubCategoryEdit {...{ setCategory, setSubCategory, category }} />
+            <ServiceTitlePriceAndDeadlineEdit {...{ setDeadline, register, setCustomError, title, price, currentDeadline }} />
+            <ServiceCategoryAndSubCategoryEdit {...{ setCategory, setSubCategory, currentCategory, currentSubCategory }} />
             <ServiceTagsEdit {...{ setTags, tags }} />
             <ServicePhotoUploadContainerEdit {...{ setPhotos, photos }} />
             <div className="w-full">
-                <ServiceMoreDetailesFieldEdit {...{ register, description }} />
+                <ServiceMoreDetailesFieldEdit {...{ register, details }} />
             </div>
-            <ServiceDescriptionFieldEdit {...{ register }} />
-            <ServiceMoreOfferCreatingFieldEdit {...{ register, setExtraOfferDeadline }} />
+            <ServiceDescriptionFieldEdit {...{ register, description }} />
+            <ServiceMoreOfferCreatingFieldEdit {...{ register, setExtraOfferDeadline, extraOffer }} />
             <ServiceRequirementsFieldEdit {...{ register, recuirements }} />
             <div className="mb-4">{customError && <Error message={customError} />}</div>
             {/* Submit button */}
