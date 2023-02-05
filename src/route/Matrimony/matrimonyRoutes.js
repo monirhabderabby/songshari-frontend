@@ -1,10 +1,5 @@
 import { Inbox } from "../../components/Features/Messege/Inbox/Inbox";
 import { MessegeBox } from "../../components/Features/Messege/Messeges/MessegeBox";
-import LawyerActivity from "../../components/Lawyer/LawyerActivity/LawyerActivity";
-import LawyerReview from "../../components/Lawyer/LawyerReview/LawyerReview";
-import LawyerServiceForm from "../../components/Lawyer/LawyerServiceForm/LawyerServiceForm";
-import LawyerServicesPage from "../../components/Lawyer/LawyerServicesPage/LawyerServicesPage";
-import LawyerSingleServiceDetails from "../../components/Lawyer/LawyerSingleServiceDetails/LawyerSingleServiceDetails";
 import Login from "../../components/pages/Authentications/Login";
 import LoginAsProfessional from "../../components/pages/Authentications/LoginAsProfessional";
 import { OTP } from "../../components/pages/Authentications/OTP/OTP";
@@ -27,7 +22,6 @@ import TopGroom from "../../components/pages/TopProfile/TopGroom";
 import PaymentSuccess from "../../components/shared/Success/PaymentSuccess";
 import About from "../../Wrapper/About/About";
 import Homepage from "../../Wrapper/Home/Homepage";
-import Lawyer from "../../Wrapper/Lawyer/Lawyer";
 import MemberShip from "../../Wrapper/Membership/MemberShip";
 import Shop from "../../Wrapper/Shop/Shop";
 import ShopOrders from "../../Wrapper/Shop/ShopOrders/ShopOrders";
@@ -157,30 +151,6 @@ const matrimonyRoutes = [
         nestedRoutes: [
             { id: 1, path: "shopProducts", element: <ShopProducts /> },
             { id: 2, path: "shopOrders", element: <ShopOrders /> },
-        ],
-    },
-    {
-        id: 16,
-        path: "/lawyerProfile",
-        element: <Lawyer />,
-        nestedRoutes: [
-            { id: 1, path: "lawyerService", element: <LawyerServicesPage /> },
-            { id: 2, path: "lawyerAddForm", element: <LawyerServiceForm /> },
-            {
-                id: 3,
-                path: "lawyerSingleServiceDetails/:id",
-                element: <LawyerSingleServiceDetails />,
-            },
-            {
-                id: 4,
-                path: "lawyerReview",
-                element: <LawyerReview />,
-            },
-            {
-                id: 5,
-                path: "lawyerActivity",
-                element: <LawyerActivity />,
-            },
         ],
     },
     {

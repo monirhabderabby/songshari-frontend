@@ -58,6 +58,7 @@ const LawyerServiceForm = () => {
         delete data?.extraOfferPrice;
 
         // reset all
+        console.log(data);
         createSingleServices(data);
     };
 

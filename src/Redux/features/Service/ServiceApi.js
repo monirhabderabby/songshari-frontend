@@ -25,12 +25,13 @@ export const serviceApi = apiSlice.injectEndpoints({
         }),
         getMyServices: builder.query({
             query: () => ({
-                url: "/member/service/myServices",
+                url: "/service/all",
                 method: "GET",
                 headers: {
                     authorization: `Bearer ${getCookie("token")}`,
                 },
             }),
+            providesTags: ["myServices"],
         }),
         getSuggestedServices: builder.query({
             query: (page, keyword) => ({
@@ -43,21 +44,22 @@ export const serviceApi = apiSlice.injectEndpoints({
         }),
         getServiceById: builder.query({
             query: id => ({
-                url: `/member/service/${id}`,
+                url: `/service/${id}`,
                 method: "GET",
                 headers: {
                     authorization: `Bearer ${getCookie("token")}`,
                 },
             }),
         }),
-        deleteSingleService: builder.query({
+        serviceDelete: builder.mutation({
             query: id => ({
-                url: `/member/service/${id}`,
+                url: `/service/${id}`,
                 method: "DELETE",
                 headers: {
                     authorization: `Bearer ${getCookie("token")}`,
                 },
             }),
+            invalidatesTags: ["myServices"],
         }),
     }),
 });
@@ -67,6 +69,6 @@ export const {
     useGetServiceByIdQuery,
     useUpdateSingleServiceMutation,
     useGetSuggestedServicesQuery,
-    useDeleteSingleServiceQuery,
     useCreateSingleServicesMutation,
+    useServiceDeleteMutation,
 } = serviceApi;
