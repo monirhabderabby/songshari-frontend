@@ -19,9 +19,9 @@ const DynamicTable = ({ data, isLoading }) => {
     const { role } = data || {};
 
     useEffect(() => {
-        if (role.includes("member")) {
+        if (role?.includes("member")) {
             setIsMember(true);
-        } else if (role.includes("lawyer") || role.includes("kazi") || role.includes("agent")) {
+        } else if (role?.includes("lawyer") || role?.includes("kazi") || role?.includes("agent")) {
             setIsMember(false);
         }
     }, [role]);

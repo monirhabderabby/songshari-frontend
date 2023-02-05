@@ -53,6 +53,8 @@ export const serviceApi = apiSlice.injectEndpoints({
                     authorization: `Bearer ${getCookie("token")}`,
                 },
             }),
+            keepUnusedDataFor: 0,
+            providesTags: ["getServiceById"],
         }),
         serviceDelete: builder.mutation({
             query: id => ({
@@ -64,6 +66,26 @@ export const serviceApi = apiSlice.injectEndpoints({
             }),
             invalidatesTags: ["myServices"],
         }),
+        getServiceByUserId: builder.query({
+            query: id => ({
+                url: `/service/all-by-role/${id}`,
+                method: "GET",
+                headers: {
+                    authorization: `Bearer ${getCookie("token")}`,
+                },
+            }),
+            keepUnusedDataFor: 0,
+        }),
+        changeServiceStatus: builder.mutation({
+            query: id => ({
+                url: `/service/status/${id}`,
+                method: "PUT",
+                headers: {
+                    authorization: `Bearer ${getCookie("token")}`,
+                },
+            }),
+            invalidatesTags: ["getServiceById"],
+        }),
     }),
 });
 
@@ -74,4 +96,6 @@ export const {
     useGetSuggestedServicesQuery,
     useCreateSingleServicesMutation,
     useServiceDeleteMutation,
+    useGetServiceByUserIdQuery,
+    useChangeServiceStatusMutation,
 } = serviceApi;
