@@ -2,71 +2,73 @@ import getCookie from "../../../Helper/cookies/getCookie";
 import apiSlice from "../../api/apiSlice";
 
 export const serviceApi = apiSlice.injectEndpoints({
-  endpoints: (builder) => ({
-    addSingleService: builder.mutation({
-      query: (data) => ({
-        url: "/member/service/add",
-        method: "POST",
-        headers: {
-          authorization: `Bearer ${getCookie("token")}`,
-        },
-        body: data,
-      }),
+    endpoints: builder => ({
+        createSingleServices: builder.mutation({
+            query: data => ({
+                url: "/service/create",
+                method: "POST",
+                headers: {
+                    authorization: `Bearer ${getCookie("token")}`,
+                },
+                body: data,
+            }),
+        }),
+        updateSingleService: builder.mutation({
+            query: ({ id, data }) => ({
+                url: `/member/service/${id}`,
+                method: "PUT",
+                headers: {
+                    authorization: `Bearer ${getCookie("token")}`,
+                },
+                body: data,
+            }),
+        }),
+        getMyServices: builder.query({
+            query: () => ({
+                url: "/service/all",
+                method: "GET",
+                headers: {
+                    authorization: `Bearer ${getCookie("token")}`,
+                },
+            }),
+            providesTags: ["myServices"],
+        }),
+        getSuggestedServices: builder.query({
+            query: (page, keyword) => ({
+                url: `/member/service/suggested?_page=${page}&_limit=10&_keyword=${keyword}`,
+                method: "GET",
+                headers: {
+                    authorization: `Bearer ${getCookie("token")}`,
+                },
+            }),
+        }),
+        getServiceById: builder.query({
+            query: id => ({
+                url: `/service/${id}`,
+                method: "GET",
+                headers: {
+                    authorization: `Bearer ${getCookie("token")}`,
+                },
+            }),
+        }),
+        serviceDelete: builder.mutation({
+            query: id => ({
+                url: `/service/${id}`,
+                method: "DELETE",
+                headers: {
+                    authorization: `Bearer ${getCookie("token")}`,
+                },
+            }),
+            invalidatesTags: ["myServices"],
+        }),
     }),
-    updateSingleService: builder.mutation({
-      query: ({ id, data }) => ({
-        url: `/member/service/${id}`,
-        method: "PUT",
-        headers: {
-          authorization: `Bearer ${getCookie("token")}`,
-        },
-        body: data,
-      }),
-    }),
-    getMyServices: builder.query({
-      query: () => ({
-        url: "/member/service/myServices",
-        method: "GET",
-        headers: {
-          authorization: `Bearer ${getCookie("token")}`,
-        },
-      }),
-    }),
-    getSuggestedServices: builder.query({
-      query: (page, keyword) => ({
-        url: `/member/service/suggested?_page=${page}&_limit=10&_keyword=${keyword}`,
-        method: "GET",
-        headers: {
-          authorization: `Bearer ${getCookie("token")}`,
-        },
-      }),
-    }),
-    getServiceById: builder.query({
-      query: (id) => ({
-        url: `/member/service/${id}`,
-        method: "GET",
-        headers: {
-          authorization: `Bearer ${getCookie("token")}`,
-        },
-      }),
-    }),
-    deleteSingleService: builder.query({
-      query: (id) => ({
-        url: `/member/service/${id}`,
-        method: "DELETE",
-        headers: {
-          authorization: `Bearer ${getCookie("token")}`,
-        },
-      }),
-    }),
-  }),
 });
 
 export const {
-  useAddSingleServiceMutation,
-  useGetMyServicesQuery,
-  useGetServiceByIdQuery,
-  useUpdateSingleServiceMutation,
-  useGetSuggestedServicesQuery,
-  useDeleteSingleServiceQuery,
+    useGetMyServicesQuery,
+    useGetServiceByIdQuery,
+    useUpdateSingleServiceMutation,
+    useGetSuggestedServicesQuery,
+    useCreateSingleServicesMutation,
+    useServiceDeleteMutation,
 } = serviceApi;
