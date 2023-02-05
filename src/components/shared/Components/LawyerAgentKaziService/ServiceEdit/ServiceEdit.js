@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { TbFaceIdError } from "react-icons/tb";
-import { useParams } from "react-router";
-import { useGetServiceByIdQuery } from "../../../../../Redux/features/Service/ServiceApi";
+import { useNavigate, useParams } from "react-router";
+import { useGetServiceByIdQuery, useUpdateSingleServiceMutation } from "../../../../../Redux/features/Service/ServiceApi";
 import { LineWaveLoader } from "../../../Cards/Loader/lineWaveLoader/LineWaveLoader";
 import { ServiceEditForm } from "./Form/ServiceEditForm";
 
@@ -14,8 +14,11 @@ export const ServiceEdit = () => {
     const [photos, setPhotos] = useState([]);
     const [extraOfferDeadline, setExtraOfferDeadline] = useState("");
     const [customError, setCustomError] = useState("");
+
+    const navigate = useNavigate();
     const { id } = useParams();
     const { data, isLoading, error } = useGetServiceByIdQuery(id);
+    const [updateSingleService, { isSuccess: updateSuccess }] = useUpdateSingleServiceMutation();
 
     const { service } = data || {};
 
@@ -31,14 +34,18 @@ export const ServiceEdit = () => {
         deadline: currentDeadline,
         subCategory: currentSubCategory,
         tags: currentTags,
+        role,
     } = service || {};
+
+    // user role
+    const { role: currentRole } = role || {};
 
     // set CurrentPhotos as default
     useEffect(() => {
         setPhotos(currentPhotos);
     }, [currentPhotos]);
 
-    const { register, handleSubmit, reset } = useForm();
+    const { register, handleSubmit } = useForm();
 
     const onSubmit = data => {
         setCustomError("");
@@ -61,8 +68,27 @@ export const ServiceEdit = () => {
         delete data?.extraOfferPrice;
 
         // reset all
-        console.log(data);
+        updateSingleService({
+            id: id,
+            data: data,
+        });
     };
+
+    let redirectPath;
+
+    if (currentRole.includes("lawyer")) {
+        redirectPath = "/lawyerProfile/lawyerService";
+    } else if (currentRole.includes("kazi")) {
+        redirectPath = "/kaziProfile/kaziServices";
+    } else if (currentRole.includes("agent")) {
+        redirectPath = "/agentProfile/agentService";
+    }
+
+    useEffect(() => {
+        if (updateSuccess) {
+            navigate(redirectPath);
+        }
+    }, [updateSuccess, navigate, redirectPath]);
 
     let content;
     if (isLoading) {

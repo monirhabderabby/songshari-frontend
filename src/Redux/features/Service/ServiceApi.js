@@ -23,6 +23,7 @@ export const serviceApi = apiSlice.injectEndpoints({
                 },
                 body: data,
             }),
+            invalidatesTags: ["myServices"],
         }),
         getMyServices: builder.query({
             query: () => ({
