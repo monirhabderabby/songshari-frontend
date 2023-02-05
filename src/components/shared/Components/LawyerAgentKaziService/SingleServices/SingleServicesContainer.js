@@ -3,10 +3,10 @@ import React from "react";
 import { useParams } from "react-router";
 
 // Third party package
-import { TbFaceIdError } from "react-icons/tb";
 
 //Components
 import { useGetServiceByIdQuery } from "../../../../../Redux/features/Service/ServiceApi";
+import { TBFaceError } from "../../../../ui/error/TBFaceError";
 import { LineWaveLoader } from "../../../Cards/Loader/lineWaveLoader/LineWaveLoader";
 import SingleServiceImagesContainer from "./ImagesContainer/SingleServiceImagesContainer";
 import { MoreOfferCard } from "./moreOffer/MoreOfferCard";
@@ -23,20 +23,9 @@ const SingleServicesContainer = () => {
 
     let content;
     if (isLoading) {
-        content = (
-            <div>
-                <LineWaveLoader />
-            </div>
-        );
+        content = <LineWaveLoader />;
     } else if (error) {
-        content = (
-            <div>
-                <div className="h-[100px] w-full flex justify-center items-center flex-col">
-                    <TbFaceIdError className="text-[45px] text-[#FF3366]" />
-                    <h3 className="text-[16px] text-gray-400 font-medium font-syne">SomeThing went wrong. Please try again later</h3>
-                </div>
-            </div>
-        );
+        content = <TBFaceError />;
     } else if (!isLoading && data) {
         content = (
             <>

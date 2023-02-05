@@ -4,9 +4,21 @@ import liveLinkGenerator from "../../../../assets/utilities/liveLink/liveLinkGen
 
 const ServicesCard = ({ service }) => {
     let { photos, description, title, tags, role, price, _id } = service || {};
-    const { firstName, lastName } = role || {};
+    const { firstName, lastName, role: userRole } = role || {};
     description = description.length > 136 ? description.slice(0, 136) + "..." : description + "...";
     const name = firstName + " " + lastName;
+
+    // Dynamic path made decision
+    let redirectPath;
+    if (userRole.includes("kazi")) {
+        redirectPath = `/kaziProfile/kaziSingleServiceDetails/${_id}`;
+    }
+    if (userRole.includes("lawyer")) {
+        redirectPath = `/lawyerProfile/lawyerSingleServiceDetails/${_id}`;
+    }
+    if (userRole.includes("agent")) {
+        redirectPath = `/agentProfile/agentSingleServiceDetails/${_id}`;
+    }
 
     return (
         <div
@@ -32,10 +44,7 @@ const ServicesCard = ({ service }) => {
                 </div>
                 <div className="flex items-center gap-x-4">
                     <p className="text-base font-semibold leading-5">$ {price}</p>
-                    <Link
-                        to={`/lawyerProfile/lawyerSingleServiceDetails/${_id}`}
-                        className="text-sm text-white font-semibold leading-[18px] px-5 py-1 rounded bg-[#E41272]"
-                    >
+                    <Link to={redirectPath} className="text-sm text-white font-semibold leading-[18px] px-5 py-1 rounded bg-[#E41272]">
                         View
                     </Link>
                 </div>

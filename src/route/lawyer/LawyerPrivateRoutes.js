@@ -3,6 +3,7 @@ import LawyerProfileContainer from "../../components/Lawyer/LawyerProfileContain
 import LawyerReview from "../../components/Lawyer/LawyerReview/LawyerReview";
 import LawyerServiceForm from "../../components/Lawyer/LawyerServiceForm/LawyerServiceForm";
 import LawyerServicesPage from "../../components/Lawyer/LawyerServicesPage/LawyerServicesPage";
+import { ServiceEdit } from "../../components/shared/Components/LawyerAgentKaziService/ServiceEdit/ServiceEdit";
 import SingleServicesContainer from "../../components/shared/Components/LawyerAgentKaziService/SingleServices/SingleServicesContainer";
 import EditEducationalInfo from "../../components/SingleProfilesUser/profileSection/EditprofileSection/EditEducationalInfo";
 import EditFamilyInfo from "../../components/SingleProfilesUser/profileSection/EditprofileSection/EditFamilyInfo";
@@ -89,6 +90,11 @@ const lawyerPrivateRoutes = [
                         ],
                     },
                 ],
+            },
+            {
+                id: 6,
+                path: "serviceEdit/:id",
+                element: <ServiceEdit />,
             },
         ],
     },

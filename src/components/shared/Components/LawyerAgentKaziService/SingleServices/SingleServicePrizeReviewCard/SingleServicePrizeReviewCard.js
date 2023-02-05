@@ -3,7 +3,9 @@ import React, { useEffect, useState } from "react";
 
 // Third party packages
 import { TbCurrencyTaka } from "react-icons/tb";
+import { decodeToken } from "react-jwt";
 import { useNavigate } from "react-router";
+import getCookie from "../../../../../../Helper/cookies/getCookie";
 import { useServiceDeleteMutation } from "../../../../../../Redux/features/Service/ServiceApi";
 import { BackDropLoader } from "../../../../Cards/Loader/backDrop/BackDropLoader";
 
@@ -25,6 +27,20 @@ const SingleServicePrizeReviewCard = ({ price, deadline, _id }) => {
             navigate(-1);
         }
     }, [isLoading, isSuccess, navigate]);
+
+    // Made decision for which route will go for Edit service
+    let redirectPath;
+    const token = getCookie("token");
+    const tokenData = decodeToken(token);
+    const { role } = tokenData || {};
+    if (role.includes("agent")) {
+        redirectPath = `/agentProfile/serviceEdit/${_id}`;
+    } else if (role.includes("lawyer")) {
+        redirectPath = `/lawyerProfile/serviceEdit/${_id}`;
+    } else if (role.includes("kazi")) {
+        redirectPath = `/kaziProfile/serviceEdit/${_id}`;
+    }
+
     return (
         <div className="w-[351px] rounded-xl bg-[linear-gradient(180deg,#DE298C_0%,#A52DC7_100%)] shadow-[2px_2px_8px_rgba(0,0,0,0.12)] py-8 px-4 text-white">
             <div className="flex justify-center items-center text-[28px] leading-7 font-bold mb-5">
@@ -53,7 +69,12 @@ const SingleServicePrizeReviewCard = ({ price, deadline, _id }) => {
             {/* Control buttons */}
             <div className="flex justify-between items-center">
                 <button className="font-bold w-[92px] py-[6px] text-black bg-white rounded-xl shadow-[2px_2px_8px_rgba(0,0,0,0.1)]">Pause</button>
-                <button className="font-bold w-[92px] py-[6px] text-black bg-white rounded-xl shadow-[2px_2px_8px_rgba(0,0,0,0.1)]">Edit</button>
+                <button
+                    className="font-bold w-[92px] py-[6px] text-black bg-white rounded-xl shadow-[2px_2px_8px_rgba(0,0,0,0.1)]"
+                    onClick={() => navigate(redirectPath)}
+                >
+                    Edit
+                </button>
                 <button
                     className="font-bold w-[92px] py-[6px] text-black bg-white rounded-xl shadow-[2px_2px_8px_rgba(0,0,0,0.1)]"
                     onClick={handleDelete}

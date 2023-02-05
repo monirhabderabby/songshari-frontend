@@ -12,16 +12,18 @@ export const serviceApi = apiSlice.injectEndpoints({
                 },
                 body: data,
             }),
+            invalidatesTags: ["myServices"],
         }),
         updateSingleService: builder.mutation({
             query: ({ id, data }) => ({
-                url: `/member/service/${id}`,
+                url: `/service/${id}`,
                 method: "PUT",
                 headers: {
                     authorization: `Bearer ${getCookie("token")}`,
                 },
                 body: data,
             }),
+            invalidatesTags: ["myServices"],
         }),
         getMyServices: builder.query({
             query: () => ({
@@ -31,6 +33,7 @@ export const serviceApi = apiSlice.injectEndpoints({
                     authorization: `Bearer ${getCookie("token")}`,
                 },
             }),
+            keepUnusedDataFor: 0,
             providesTags: ["myServices"],
         }),
         getSuggestedServices: builder.query({

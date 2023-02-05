@@ -23,6 +23,7 @@ const LawyerServiceForm = () => {
     const { register, handleSubmit, reset } = useForm();
 
     const onSubmit = data => {
+        console.log(extraOfferDeadline);
         setCustomError("");
         data.price = Number(data.price);
         data.deadline = daedline;
@@ -58,7 +59,6 @@ const LawyerServiceForm = () => {
         delete data?.extraOfferPrice;
 
         // reset all
-        console.log(data);
         createSingleServices(data);
     };
 
