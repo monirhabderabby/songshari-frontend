@@ -16,6 +16,9 @@ const ServicesCard = ({ service }) => {
     if (userRole.includes("lawyer")) {
         redirectPath = `/lawyerProfile/lawyerSingleServiceDetails/${_id}`;
     }
+    if (userRole.includes("agent")) {
+        redirectPath = `/agentProfile/agentSingleServiceDetails/${_id}`;
+    }
 
     return (
         <div
