@@ -1,18 +1,22 @@
 // Configuration
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
 
 // Third party packages
 import { TbCurrencyTaka } from "react-icons/tb";
 import { decodeToken } from "react-jwt";
-import { useNavigate } from "react-router";
+
+// Components
+import { Oval } from "react-loader-spinner";
 import getCookie from "../../../../../../Helper/cookies/getCookie";
-import { useServiceDeleteMutation } from "../../../../../../Redux/features/Service/ServiceApi";
+import { useChangeServiceStatusMutation, useServiceDeleteMutation } from "../../../../../../Redux/features/Service/ServiceApi";
 import { BackDropLoader } from "../../../../Cards/Loader/backDrop/BackDropLoader";
 
-const SingleServicePrizeReviewCard = ({ price, deadline, _id }) => {
+const SingleServicePrizeReviewCard = ({ price, deadline, _id, isActive }) => {
     const [open, setOpen] = useState(false);
     const navigate = useNavigate();
     const [serviceDelete, { isSuccess, isLoading }] = useServiceDeleteMutation();
+    const [changeServiceStatus, { isLoading: statusLoading }] = useChangeServiceStatusMutation();
 
     const handleDelete = () => {
         serviceDelete(_id);
@@ -27,6 +31,10 @@ const SingleServicePrizeReviewCard = ({ price, deadline, _id }) => {
             navigate(-1);
         }
     }, [isLoading, isSuccess, navigate]);
+
+    const handleStatusChange = () => {
+        changeServiceStatus(_id);
+    };
 
     // Made decision for which route will go for Edit service
     let redirectPath;
@@ -68,7 +76,51 @@ const SingleServicePrizeReviewCard = ({ price, deadline, _id }) => {
             </div>
             {/* Control buttons */}
             <div className="flex justify-between items-center">
-                <button className="font-bold w-[92px] py-[6px] text-black bg-white rounded-xl shadow-[2px_2px_8px_rgba(0,0,0,0.1)]">Pause</button>
+                {isActive ? (
+                    <button
+                        className="font-bold w-[92px] py-[6px] text-black bg-white rounded-xl shadow-[2px_2px_8px_rgba(0,0,0,0.1)] flex justify-center items-center"
+                        onClick={handleStatusChange}
+                    >
+                        {statusLoading ? (
+                            <Oval
+                                height={20}
+                                width={20}
+                                color="#A52AC6"
+                                wrapperStyle={{}}
+                                wrapperClass=""
+                                visible={true}
+                                ariaLabel="oval-loading"
+                                secondaryColor="#E41272"
+                                strokeWidth={5}
+                                strokeWidthSecondary={3}
+                            />
+                        ) : (
+                            "Pause"
+                        )}
+                    </button>
+                ) : (
+                    <button
+                        className="font-bold w-[92px] py-[6px] text-black bg-white rounded-xl shadow-[2px_2px_8px_rgba(0,0,0,0.1)] flex justify-center items-center"
+                        onClick={handleStatusChange}
+                    >
+                        {statusLoading ? (
+                            <Oval
+                                height={20}
+                                width={20}
+                                color="#A52AC6"
+                                wrapperStyle={{}}
+                                wrapperClass=""
+                                visible={true}
+                                ariaLabel="oval-loading"
+                                secondaryColor="#E41272"
+                                strokeWidth={5}
+                                strokeWidthSecondary={3}
+                            />
+                        ) : (
+                            "Active"
+                        )}
+                    </button>
+                )}
                 <button
                     className="font-bold w-[92px] py-[6px] text-black bg-white rounded-xl shadow-[2px_2px_8px_rgba(0,0,0,0.1)]"
                     onClick={() => navigate(redirectPath)}

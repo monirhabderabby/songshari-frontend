@@ -19,7 +19,9 @@ const SingleServicesContainer = () => {
     const { data, isLoading, error } = useGetServiceByIdQuery(id);
 
     const { service } = data || {};
-    const { _id, title, description, photos, recuirements, price, extraOffer, deadline } = service || {};
+    const { _id, title, description, photos, recuirements, price, extraOffer, deadline, isActive } = service || {};
+
+    console.log(service);
 
     let content;
     if (isLoading) {
@@ -49,7 +51,7 @@ const SingleServicesContainer = () => {
                                 <SingleServiceReviewsContainer />
                             </div>
                             {/* Prize review details */}
-                            <SingleServicePrizeReviewCard {...{ price, deadline, _id }} />
+                            <SingleServicePrizeReviewCard {...{ price, deadline, _id, isActive }} />
                         </div>
                     </div>
                 </div>
