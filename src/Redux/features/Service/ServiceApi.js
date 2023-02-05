@@ -12,6 +12,7 @@ export const serviceApi = apiSlice.injectEndpoints({
                 },
                 body: data,
             }),
+            invalidatesTags: ["myServices"],
         }),
         updateSingleService: builder.mutation({
             query: ({ id, data }) => ({
@@ -31,6 +32,7 @@ export const serviceApi = apiSlice.injectEndpoints({
                     authorization: `Bearer ${getCookie("token")}`,
                 },
             }),
+            keepUnusedDataFor: 0,
             providesTags: ["myServices"],
         }),
         getSuggestedServices: builder.query({
