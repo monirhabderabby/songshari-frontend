@@ -1,6 +1,7 @@
 // Configuration
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import AgentServicesPage from "../components/pages/Agent/AgentServicesPage/AgentServicesPage";
 
 // Components
 import KaziServicesPage from "../components/pages/Kazi/KaziServices/KaziServicesPages";
@@ -139,6 +140,7 @@ const MasterRoute = () => {
                 {AgentPrivateRoutes.map(route => {
                     return (
                         <Route key={route.id} path={route.path} element={<RequireAuth>{route.element}</RequireAuth>}>
+                            <Route index element={<AgentServicesPage />} />
                             {route.nestedRoutes?.map(route => {
                                 return (
                                     <Route key={route.id} path={route.path} element={<RequireAuth>{route.element}</RequireAuth>}>

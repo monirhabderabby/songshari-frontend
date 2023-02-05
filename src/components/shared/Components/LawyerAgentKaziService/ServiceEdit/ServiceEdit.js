@@ -74,8 +74,8 @@ export const ServiceEdit = () => {
         });
     };
 
+    // made decisions about redirect path whern updated service successfully
     let redirectPath;
-
     if (currentRole.includes("lawyer")) {
         redirectPath = "/lawyerProfile/lawyerService";
     } else if (currentRole.includes("kazi")) {
