@@ -19,8 +19,6 @@ export const ServiceEdit = () => {
 
     const { service } = data || {};
 
-    console.log(service);
-
     const {
         title,
         price,
