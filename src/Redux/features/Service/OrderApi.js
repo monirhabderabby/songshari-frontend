@@ -21,8 +21,19 @@ export const orderApi = apiSlice.injectEndpoints({
                     authorization: `Bearer ${getCookie("token")}`,
                 },
             }),
+            providesTags: ["allOrders"],
+        }),
+        acceptOrder: builder.mutation({
+            query: id => ({
+                url: `/service/order/accept/${id}`,
+                method: "PUT",
+                headers: {
+                    authorization: `Bearer ${getCookie("token")}`,
+                },
+            }),
+            invalidatesTags: ["allOrders"],
         }),
     }),
 });
 
-export const { useServiceOrderMutation, useGetAllOrderByProfessionQuery } = orderApi;
+export const { useServiceOrderMutation, useGetAllOrderByProfessionQuery, useAcceptOrderMutation } = orderApi;

@@ -8,7 +8,7 @@ const apiSlice = createApi({
         baseUrl: apiBaseUrl,
     }),
     endpoints: builder => ({}),
-    tagTypes: ["allGetFriendRequest", "posts", "AllRecentMembers", "myServices", "getServiceById"],
+    tagTypes: ["allGetFriendRequest", "posts", "AllRecentMembers", "myServices", "getServiceById", "allOrders"],
 });
 
 export default apiSlice;

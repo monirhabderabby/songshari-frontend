@@ -1,23 +1,38 @@
 // Configuration
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 // Third party packages
+import CircularProgress from "@mui/material/CircularProgress";
 import moment from "moment";
-
-// Components
-import { TbCurrencyTaka } from "react-icons/tb";
-
-// Third party packages
 import { BsFillCalendarFill } from "react-icons/bs";
 import { MdOutlineMessage } from "react-icons/md";
+import { TbCurrencyTaka } from "react-icons/tb";
+import { useAcceptOrderMutation } from "../../../../Redux/features/Service/OrderApi";
+import { SuccessSnackBar } from "../../../ui/error/snackBar/SuccessSnackBar";
 
 const PendingOrderCard = ({ order }) => {
-    const { service, user, createdAt } = order || {};
+    // hook variable
+    const [successSnackBarOpen, setSuccessSnackBarOpen] = useState(false);
+    // Redux API
+    const [acceptOrder, { isLoading: acceptLoading, isSuccess: orderAccepted }] = useAcceptOrderMutation();
+    const { service, user, createdAt, _id: orderId } = order || {};
     let { price, title } = service || {};
     const { firstName, lastName } = user || {};
     console.log(order);
     let name = `${firstName} ${lastName}`;
     title = title.length > 50 ? title.slice(0, 50) : title;
+
+    // function declarations
+    const handleAccpetOrder = () => {
+        acceptOrder(orderId);
+    };
+
+    useEffect(() => {
+        if (orderAccepted) {
+            setSuccessSnackBarOpen(true);
+        }
+    }, [orderAccepted]);
+
     return (
         <div
             className="px-6 lg:px-10 py-6 rounded-lg h-[284px]"
@@ -46,11 +61,17 @@ const PendingOrderCard = ({ order }) => {
                     <button className="bg-[#E41272] text-white rounded px-3 py-2 font-semibold leading-[22px] tracking-tight whitespace-nowrap">
                         Accept Now
                     </button>
-                    <button className="border-[1px] border-black rounded px-3 py-2 font-semibold leading-[22px] tracking-tight whitespace-nowrap">
-                        Reject Now
+                    <button
+                        className={`border-[1px] ${
+                            acceptLoading ? "border-[#E02989]" : "border-black"
+                        } rounded font-semibold leading-[22px] tracking-tight whitespace-nowrap w-[104px] h-[33px]  flex justify-center items-center`}
+                        onClick={handleAccpetOrder}
+                    >
+                        {acceptLoading ? <CircularProgress size="25px" style={{ color: "#E02989" }} /> : "Reject Now"}
                     </button>
                 </div>
             </div>
+            <SuccessSnackBar {...{ successSnackBarOpen, setSuccessSnackBarOpen, message: "Order Accepted" }} />
         </div>
     );
 };
