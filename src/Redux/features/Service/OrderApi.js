@@ -22,6 +22,7 @@ export const orderApi = apiSlice.injectEndpoints({
                 },
             }),
             providesTags: ["allOrders"],
+            keepUnusedDataFor: 0,
         }),
         acceptOrder: builder.mutation({
             query: id => ({

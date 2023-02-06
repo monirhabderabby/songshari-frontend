@@ -4,12 +4,13 @@ import { Link } from "react-router-dom";
 
 // Components
 import { PendingOrder } from "../../../shared/Components/LawyerAgentKaziService/PendingOrder/PendingOrder";
+import RunningOrder from "../../../shared/Components/LawyerAgentKaziService/RunningOrder/RunningOrder";
 import { ServicesContainer } from "../../../shared/Components/LawyerAgentKaziService/servicesContainer/ServicesContainer";
 import CompletedCaseForKazi from "./completedCase/CompletedCaseForKazi";
-import RunningCaseForKazi from "./runningCase/RunningCaseForKazi";
 
 const KaziServicesPage = () => {
     const [pendingOrder, setPendingOrder] = useState(true);
+    const [runningOrder, setRunningOrder] = useState(true);
     useEffect(() => {
         window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
     }, []);
@@ -28,7 +29,7 @@ const KaziServicesPage = () => {
                     </div>
                 </div>
                 {pendingOrder && <PendingOrder setPendingOrder={setPendingOrder} />}
-                <RunningCaseForKazi />
+                {runningOrder && <RunningOrder setRunningOrder={setRunningOrder} />}
                 <CompletedCaseForKazi />
             </div>
         </div>

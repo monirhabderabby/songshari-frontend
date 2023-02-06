@@ -13,6 +13,7 @@ import { useEffect, useState } from "react";
 import { TbCurrencyTaka } from "react-icons/tb";
 import { useNavigate } from "react-router";
 import { useServiceOrderMutation } from "../../../../Redux/features/Service/OrderApi";
+import { SuccessSnackBar } from "../../../ui/error/snackBar/SuccessSnackBar";
 
 const useStyles = makeStyles({
     root: {
@@ -80,6 +81,7 @@ const ExpandMore = styled(props => {
 
 export const DynamicSingleServiceOrderCard = ({ price, deadline, role, _id }) => {
     const [expanded, setExpanded] = useState(false);
+    const [successSnackBarOpen, setSuccessSnackBarOpen] = useState(false);
 
     // Redux API
     const [serviceOrder, { isLoading, isSuccess }] = useServiceOrderMutation();
@@ -106,7 +108,7 @@ export const DynamicSingleServiceOrderCard = ({ price, deadline, role, _id }) =>
 
     useEffect(() => {
         if (isSuccess) {
-            navigate("/");
+            setSuccessSnackBarOpen(true);
         }
     }, [isSuccess, navigate]);
 
@@ -169,6 +171,7 @@ export const DynamicSingleServiceOrderCard = ({ price, deadline, role, _id }) =>
                     </section>
                 </CardContent>
             </Collapse>
+            {successSnackBarOpen && <SuccessSnackBar {...{ setSuccessSnackBarOpen, successSnackBarOpen, message: "Order Placed" }} />}
         </Card>
     );
 };

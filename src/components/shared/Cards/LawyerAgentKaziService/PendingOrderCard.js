@@ -1,5 +1,5 @@
 // Configuration
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 // Third party packages
 import CircularProgress from "@mui/material/CircularProgress";
@@ -8,13 +8,11 @@ import { BsFillCalendarFill } from "react-icons/bs";
 import { MdOutlineMessage } from "react-icons/md";
 import { TbCurrencyTaka } from "react-icons/tb";
 import { useAcceptOrderMutation } from "../../../../Redux/features/Service/OrderApi";
-import { SuccessSnackBar } from "../../../ui/error/snackBar/SuccessSnackBar";
 
 const PendingOrderCard = ({ order }) => {
     // hook variable
-    const [successSnackBarOpen, setSuccessSnackBarOpen] = useState(false);
     // Redux API
-    const [acceptOrder, { isLoading: acceptLoading, isSuccess: orderAccepted }] = useAcceptOrderMutation();
+    const [acceptOrder, { isLoading: acceptLoading }] = useAcceptOrderMutation();
     const { service, user, createdAt, _id: orderId } = order || {};
     let { price, title } = service || {};
     const { firstName, lastName } = user || {};
@@ -26,12 +24,6 @@ const PendingOrderCard = ({ order }) => {
     const handleAccpetOrder = () => {
         acceptOrder(orderId);
     };
-
-    useEffect(() => {
-        if (orderAccepted) {
-            setSuccessSnackBarOpen(true);
-        }
-    }, [orderAccepted]);
 
     return (
         <div
@@ -71,7 +63,6 @@ const PendingOrderCard = ({ order }) => {
                     </button>
                 </div>
             </div>
-            <SuccessSnackBar {...{ successSnackBarOpen, setSuccessSnackBarOpen, message: "Order Accepted" }} />
         </div>
     );
 };

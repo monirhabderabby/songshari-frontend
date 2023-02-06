@@ -10,7 +10,6 @@ import { PendingSkeleton } from "../../../Cards/Loader/LawyerAgentServiceRelated
 export const PendingOrder = ({ setPendingOrder }) => {
     const { data, isLoading, error } = useGetAllOrderByProfessionQuery("pending");
     const { orders } = data || {};
-    console.log(data);
 
     useEffect(() => {
         if (orders?.length === 0) {
