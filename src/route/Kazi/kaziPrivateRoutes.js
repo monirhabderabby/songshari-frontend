@@ -1,3 +1,4 @@
+import { DynamicSingleServiceContainer } from "../../components/pages/DynamicProfilePage/DynamicSingleServiceContainer/DynamicSingleServiceContainer";
 import KaziActivity from "../../components/pages/Kazi/KaziActivity/KaziActivity";
 import KaziReview from "../../components/pages/Kazi/KaziReview/KaziReview";
 import KaziAddServiceForm from "../../components/pages/Kazi/KaziServices/AddServiceForm/KaziAddServiceForm";
@@ -105,6 +106,11 @@ const kaziPrivateRoutes = [
                 element: <ServiceEdit />,
             },
         ],
+    },
+    {
+        id: 2,
+        path: "/service/:id",
+        element: <DynamicSingleServiceContainer />,
     },
 ];
 

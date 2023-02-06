@@ -1,11 +1,15 @@
 // Configuration
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 // Components
+import { PendingOrder } from "../../../shared/Components/LawyerAgentKaziService/PendingOrder/PendingOrder";
+import RunningOrder from "../../../shared/Components/LawyerAgentKaziService/RunningOrder/RunningOrder";
 import { ServicesContainer } from "../../../shared/Components/LawyerAgentKaziService/servicesContainer/ServicesContainer";
 
 const AgentServicesPage = () => {
+    const [pendingOrder, setPendingOrder] = useState(true);
+    const [runningOrder, setRunningOrder] = useState(true);
     useEffect(() => {
         window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
     }, []);
@@ -23,7 +27,8 @@ const AgentServicesPage = () => {
                         </Link>
                     </div>
                 </div>
-                Will be added soon
+                {pendingOrder && <PendingOrder setPendingOrder={setPendingOrder} />}
+                {runningOrder && <RunningOrder {...{ setRunningOrder }} />}
             </div>
         </div>
     );

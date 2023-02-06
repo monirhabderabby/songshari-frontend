@@ -13,9 +13,9 @@ import { useChangeServiceStatusMutation, useServiceDeleteMutation } from "../../
 import { BackDropLoader } from "../../../../Cards/Loader/backDrop/BackDropLoader";
 
 const SingleServicePrizeReviewCard = ({ price, deadline, _id, isActive }) => {
-    const [open, setOpen] = useState(false);
+    const [backDrop, setBackDrop] = useState(false);
     const navigate = useNavigate();
-    const [serviceDelete, { isSuccess, isLoading }] = useServiceDeleteMutation();
+    const [serviceDelete, { isSuccess: deleteSuccess, isLoading }] = useServiceDeleteMutation();
     const [changeServiceStatus, { isLoading: statusLoading }] = useChangeServiceStatusMutation();
 
     const handleDelete = () => {
@@ -24,13 +24,12 @@ const SingleServicePrizeReviewCard = ({ price, deadline, _id, isActive }) => {
 
     useEffect(() => {
         if (isLoading) {
-            setOpen(true);
+            setBackDrop(true);
         }
-        if (isSuccess) {
-            setOpen(false);
+        if (deleteSuccess) {
             navigate(-1);
         }
-    }, [isLoading, isSuccess, navigate]);
+    }, [deleteSuccess, isLoading, navigate]);
 
     const handleStatusChange = () => {
         changeServiceStatus(_id);
@@ -134,7 +133,7 @@ const SingleServicePrizeReviewCard = ({ price, deadline, _id, isActive }) => {
                     Delete
                 </button>
             </div>
-            {open && <BackDropLoader open={open} setOpen={setOpen} />}
+            {backDrop && <BackDropLoader {...{ backDrop, setBackDrop }} />}
         </div>
     );
 };

@@ -11,13 +11,13 @@ const DynamicServicesCard = ({ service }) => {
     // Dynamic path made decision
     let redirectPath;
     if (userRole.includes("kazi")) {
-        redirectPath = `/kaziProfile/kaziSingleServiceDetails/${_id}`;
+        redirectPath = `/service/${_id}`;
     }
     if (userRole.includes("lawyer")) {
-        redirectPath = `/lawyerProfile/lawyerSingleServiceDetails/${_id}`;
+        redirectPath = `/service/${_id}`;
     }
     if (userRole.includes("agent")) {
-        redirectPath = `/agentProfile/agentSingleServiceDetails/${_id}`;
+        redirectPath = `/service/${_id}`;
     }
 
     return (

@@ -1,18 +1,16 @@
 // Configuration
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 // Components
-import { useGetMyServicesQuery } from "../../../../Redux/features/Service/ServiceApi";
+import { PendingOrder } from "../../../shared/Components/LawyerAgentKaziService/PendingOrder/PendingOrder";
+import RunningOrder from "../../../shared/Components/LawyerAgentKaziService/RunningOrder/RunningOrder";
 import { ServicesContainer } from "../../../shared/Components/LawyerAgentKaziService/servicesContainer/ServicesContainer";
 import CompletedCaseForKazi from "./completedCase/CompletedCaseForKazi";
-import PendingOrderForKazi from "./pendingOrder/PendingOrderForKazi";
-import RunningCaseForKazi from "./runningCase/RunningCaseForKazi";
 
 const KaziServicesPage = () => {
-    const { data, isLoading, error } = useGetMyServicesQuery();
-    console.log(data, isLoading, error);
-
+    const [pendingOrder, setPendingOrder] = useState(true);
+    const [runningOrder, setRunningOrder] = useState(true);
     useEffect(() => {
         window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
     }, []);
@@ -30,8 +28,8 @@ const KaziServicesPage = () => {
                         </Link>
                     </div>
                 </div>
-                <PendingOrderForKazi />
-                <RunningCaseForKazi />
+                {pendingOrder && <PendingOrder setPendingOrder={setPendingOrder} />}
+                {runningOrder && <RunningOrder setRunningOrder={setRunningOrder} />}
                 <CompletedCaseForKazi />
             </div>
         </div>
