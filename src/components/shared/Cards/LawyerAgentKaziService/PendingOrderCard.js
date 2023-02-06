@@ -1,26 +1,42 @@
+// Configuration
 import React from "react";
+
+// Third party packages
+import moment from "moment";
+
+// Components
+import { TbCurrencyTaka } from "react-icons/tb";
 
 // Third party packages
 import { BsFillCalendarFill } from "react-icons/bs";
 import { MdOutlineMessage } from "react-icons/md";
 
 const PendingOrderCard = ({ order }) => {
+    const { service, user, createdAt } = order || {};
+    let { price, title } = service || {};
+    const { firstName, lastName } = user || {};
+    console.log(order);
+    let name = `${firstName} ${lastName}`;
+    title = title.length > 50 ? title.slice(0, 50) : title;
     return (
         <div
-            className="px-6 lg:px-10 py-6 rounded-lg"
+            className="px-6 lg:px-10 py-6 rounded-lg h-[284px]"
             style={{
                 backgroundImage: "linear-gradient(180deg, #FFEAF3 0%, #EDF0FF 100%)",
                 boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
             }}
         >
-            <p className="text-lg leading-6 tracking-tight mb-2">{order.name}</p>
-            <p className="text-xl font-semibold leading-7 tracking-tight mb-3">{order.serviceName}</p>
+            <p className="text-lg leading-6 tracking-tight mb-2">{name}</p>
+            <p className="text-[20px] font-semibold leading-7 tracking-tight mb-3">{title}</p>
+            <div className="mb-3 flex items-center">
+                <TbCurrencyTaka className="text-[20px] font-bold" /> <span className="text-[16px] font-medium">{price}</span>
+            </div>
             <div className="flex items-center gap-3 mb-8">
                 <span>
                     {" "}
                     <BsFillCalendarFill />{" "}
                 </span>
-                <p className="leading-[22px] tracking-tight">{order.date}</p>
+                <p className="leading-[22px] tracking-tight">{moment(createdAt).format("ll")}</p>
             </div>
             <div className="flex items-center gap-5">
                 <div className="bg-[#E41272] text-white text-xl p-4 rounded-full">

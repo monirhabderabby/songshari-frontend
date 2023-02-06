@@ -1,5 +1,5 @@
 // Configuration
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { PendingOrder } from "../../shared/Components/LawyerAgentKaziService/PendingOrder/PendingOrder";
 
@@ -9,6 +9,7 @@ import CompletedCase from "./CompletedCase/CompletedCase";
 import RunningCase from "./RunningCase/RunningCase";
 
 const LawyerServicesPage = () => {
+    const [pendingOrder, setPendingOrder] = useState(true);
     useEffect(() => {
         window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
     }, []);
@@ -26,7 +27,7 @@ const LawyerServicesPage = () => {
                         </Link>
                     </div>
                 </div>
-                <PendingOrder />
+                {pendingOrder && <PendingOrder setPendingOrder={setPendingOrder} />}
                 <RunningCase></RunningCase>
                 <CompletedCase></CompletedCase>
             </div>

@@ -1,18 +1,15 @@
 // Configuration
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 // Components
-import { useGetMyServicesQuery } from "../../../../Redux/features/Service/ServiceApi";
 import { PendingOrder } from "../../../shared/Components/LawyerAgentKaziService/PendingOrder/PendingOrder";
 import { ServicesContainer } from "../../../shared/Components/LawyerAgentKaziService/servicesContainer/ServicesContainer";
 import CompletedCaseForKazi from "./completedCase/CompletedCaseForKazi";
 import RunningCaseForKazi from "./runningCase/RunningCaseForKazi";
 
 const KaziServicesPage = () => {
-    const { data, isLoading, error } = useGetMyServicesQuery();
-    console.log(data, isLoading, error);
-
+    const [pendingOrder, setPendingOrder] = useState(true);
     useEffect(() => {
         window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
     }, []);
@@ -30,7 +27,7 @@ const KaziServicesPage = () => {
                         </Link>
                     </div>
                 </div>
-                <PendingOrder />
+                {pendingOrder && <PendingOrder setPendingOrder={setPendingOrder} />}
                 <RunningCaseForKazi />
                 <CompletedCaseForKazi />
             </div>
