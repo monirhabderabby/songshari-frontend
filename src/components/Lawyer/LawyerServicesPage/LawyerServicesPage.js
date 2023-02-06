@@ -1,11 +1,11 @@
 // Configuration
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
+import { PendingOrder } from "../../shared/Components/LawyerAgentKaziService/PendingOrder/PendingOrder";
 
 // Components
 import { ServicesContainer } from "../../shared/Components/LawyerAgentKaziService/servicesContainer/ServicesContainer";
 import CompletedCase from "./CompletedCase/CompletedCase";
-import PendingOrder from "./PendingOrder/PendingOrder";
 import RunningCase from "./RunningCase/RunningCase";
 
 const LawyerServicesPage = () => {
@@ -26,7 +26,7 @@ const LawyerServicesPage = () => {
                         </Link>
                     </div>
                 </div>
-                <PendingOrder></PendingOrder>
+                <PendingOrder />
                 <RunningCase></RunningCase>
                 <CompletedCase></CompletedCase>
             </div>

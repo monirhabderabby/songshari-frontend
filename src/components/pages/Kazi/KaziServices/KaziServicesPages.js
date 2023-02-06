@@ -4,9 +4,9 @@ import { Link } from "react-router-dom";
 
 // Components
 import { useGetMyServicesQuery } from "../../../../Redux/features/Service/ServiceApi";
+import { PendingOrder } from "../../../shared/Components/LawyerAgentKaziService/PendingOrder/PendingOrder";
 import { ServicesContainer } from "../../../shared/Components/LawyerAgentKaziService/servicesContainer/ServicesContainer";
 import CompletedCaseForKazi from "./completedCase/CompletedCaseForKazi";
-import PendingOrderForKazi from "./pendingOrder/PendingOrderForKazi";
 import RunningCaseForKazi from "./runningCase/RunningCaseForKazi";
 
 const KaziServicesPage = () => {
@@ -30,7 +30,7 @@ const KaziServicesPage = () => {
                         </Link>
                     </div>
                 </div>
-                <PendingOrderForKazi />
+                <PendingOrder />
                 <RunningCaseForKazi />
                 <CompletedCaseForKazi />
             </div>
