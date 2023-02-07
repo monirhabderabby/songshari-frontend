@@ -1,11 +1,11 @@
 // Configuration
 import React, { useState } from "react";
+import ActivityHeader from "../../../shared/Components/LawyerAgentKaziService/Activity/ActivityHeader";
 
 // Components
-import { ActivityPendingOrder } from "../../../shared/Components/LawyerAgentKaziService/Activity/ActivityPendingOrder";
+import ActivityPendingOrder from "../../../shared/Components/LawyerAgentKaziService/Activity/ActivityPendingOrder";
 import ActivityRunningOrder from "../../../shared/Components/LawyerAgentKaziService/Activity/ActivityRunningOrder";
 import KaziActivityCompletedCase from "./completeCase/KaziActivityCompletedCase";
-import KaziActivityBasicDetails from "./kaziActivityBasicDetailes/KaziActivityBasicDetailes";
 
 const KaziActivity = () => {
     const [runningOrder, setRunningOrder] = useState(true);
@@ -13,7 +13,7 @@ const KaziActivity = () => {
     return (
         <div className="lg:max-w-[1000px] xl:max-w-[1200px] mx-auto">
             {/* Activity basic details */}
-            <KaziActivityBasicDetails />
+            <ActivityHeader />
 
             {/* Pending case */}
             {pendingOrder && <ActivityPendingOrder {...{ setPendingOrder }} />}

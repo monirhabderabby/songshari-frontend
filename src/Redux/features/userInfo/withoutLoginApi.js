@@ -5,7 +5,7 @@ export const withoutLoginApi = apiSlice.injectEndpoints({
     endpoints: builder => ({
         getRecentMembers: builder.query({
             query: ({ searchTerm, page, role, limit }) =>
-                `/withoutLogin/recentMembers?_role=${role}&_keyword=${searchTerm}&_limit=${limit}&_page=${page}`,
+                `/withoutLogin/recentMembers?_role=${role}&_keyword=${searchTerm && searchTerm}&_limit=${limit}&_page=${page}`,
             keepUnusedDataFor: 0,
         }),
         getRecentMembersWithAuth: builder.query({

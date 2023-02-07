@@ -14,8 +14,8 @@ export const orderApi = apiSlice.injectEndpoints({
             }),
         }),
         getAllOrderByProfession: builder.query({
-            query: status => ({
-                url: `/service/order/all?status=${status}`,
+            query: ({ status, page, limit }) => ({
+                url: `/service/order/all?status=${status}&page=${page}&limit=${limit}`,
                 method: "GET",
                 headers: {
                     authorization: `Bearer ${getCookie("token")}`,
@@ -34,7 +34,17 @@ export const orderApi = apiSlice.injectEndpoints({
             }),
             invalidatesTags: ["allOrders"],
         }),
+        rejectOrder: builder.mutation({
+            query: id => ({
+                url: `/service/order/reject/${id}`,
+                method: "PUT",
+                headers: {
+                    authorization: `Bearer ${getCookie("token")}`,
+                },
+            }),
+            invalidatesTags: ["allOrders"],
+        }),
     }),
 });
 
-export const { useServiceOrderMutation, useGetAllOrderByProfessionQuery, useAcceptOrderMutation } = orderApi;
+export const { useServiceOrderMutation, useGetAllOrderByProfessionQuery, useAcceptOrderMutation, useRejectOrderMutation } = orderApi;

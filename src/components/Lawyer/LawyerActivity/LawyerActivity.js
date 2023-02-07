@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { ActivityPendingOrder } from "../../shared/Components/LawyerAgentKaziService/Activity/ActivityPendingOrder";
+import ActivityHeader from "../../shared/Components/LawyerAgentKaziService/Activity/ActivityHeader";
+import ActivityPendingOrder from "../../shared/Components/LawyerAgentKaziService/Activity/ActivityPendingOrder";
 import ActivityRunningOrder from "../../shared/Components/LawyerAgentKaziService/Activity/ActivityRunningOrder";
-import LawyerActivityBasicDetails from "./LawyerActivityBasicDetails/LawyerActivityBasicDetails";
 import LawyerActivityCompletedCase from "./LawyerActivityCompletedCase/LawyerActivityCompletedCase";
 
 const LawyerActivity = () => {
@@ -10,7 +10,7 @@ const LawyerActivity = () => {
     return (
         <div className="lg:max-w-[1000px] xl:max-w-[1200px] mx-auto">
             {/* Activity basic details */}
-            <LawyerActivityBasicDetails />
+            <ActivityHeader />
 
             {/* Pending case */}
             {pendingOrder && <ActivityPendingOrder {...{ setRunningOrder }} />}

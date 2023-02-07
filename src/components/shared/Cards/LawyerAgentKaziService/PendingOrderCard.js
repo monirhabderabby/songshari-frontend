@@ -7,22 +7,25 @@ import moment from "moment";
 import { BsFillCalendarFill } from "react-icons/bs";
 import { MdOutlineMessage } from "react-icons/md";
 import { TbCurrencyTaka } from "react-icons/tb";
-import { useAcceptOrderMutation } from "../../../../Redux/features/Service/OrderApi";
+import { useAcceptOrderMutation, useRejectOrderMutation } from "../../../../Redux/features/Service/OrderApi";
 
 const PendingOrderCard = ({ order }) => {
     // hook variable
     // Redux API
     const [acceptOrder, { isLoading: acceptLoading }] = useAcceptOrderMutation();
+    const [rejectOrder, { isLoading: rejectLoading }] = useRejectOrderMutation();
     const { service, user, createdAt, _id: orderId } = order || {};
     let { price, title } = service || {};
     const { firstName, lastName } = user || {};
-    console.log(order);
     let name = `${firstName} ${lastName}`;
     title = title.length > 50 ? title.slice(0, 50) : title;
 
     // function declarations
     const handleAccpetOrder = () => {
         acceptOrder(orderId);
+    };
+    const handleRejectOrder = () => {
+        rejectOrder(orderId);
     };
 
     return (
@@ -58,8 +61,9 @@ const PendingOrderCard = ({ order }) => {
                     </button>
                     <button
                         className={`border-[1px] border-black rounded font-semibold leading-[22px] tracking-tight whitespace-nowrap w-[104px] h-[33px]  flex justify-center items-center`}
+                        onClick={handleRejectOrder}
                     >
-                        Reject Now
+                        {rejectLoading ? <CircularProgress size="25px" style={{ color: "#000000" }} /> : "Reject Now"}
                     </button>
                 </div>
             </div>
