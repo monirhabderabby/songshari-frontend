@@ -46,7 +46,7 @@ const RunningOrder = ({ setRunningOrder }) => {
 
     return (
         <div className="mb-12 md:mb-16 lg:mb-28">
-            <h1 className="text-3xl font-medium leading-7 mb-10">Running Case</h1>
+            <h1 className="text-3xl font-medium leading-7 mb-10 hidden lg:block">Running Case</h1>
             {content}
         </div>
     );
