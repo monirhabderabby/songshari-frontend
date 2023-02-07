@@ -9,6 +9,7 @@ import RequireAuth from "../components/shared/RequireAuth/RequireAuth";
 import RequireAuthMobile from "../components/shared/RequireAuth/RequireAuthMobile";
 import ShopProducts from "../Wrapper/Shop/ShopProducts/ShopProducts";
 import AgentPrivateRoutes from "./Agent/AgentPrivateRoutes";
+import AgentRoutes from "./Agent/AgentRoutes";
 import kaziPrivateRoutes from "./Kazi/kaziPrivateRoutes";
 import kaziRoutes from "./Kazi/kaziRoutes";
 import lawyerPrivateRoutes from "./lawyer/LawyerPrivateRoutes";
@@ -161,6 +162,16 @@ const MasterRoute = () => {
                                         })}
                                     </Route>
                                 );
+                            })}
+                        </Route>
+                    );
+                })}
+                {/* Agent PublicRoutes */}
+                {AgentRoutes.map(route => {
+                    return (
+                        <Route key={route.id} path={route.path} element={route.element}>
+                            {route.nestedRoutes.map(route => {
+                                return <Route key={route.id} path={route.path} element={route.element} />;
                             })}
                         </Route>
                     );

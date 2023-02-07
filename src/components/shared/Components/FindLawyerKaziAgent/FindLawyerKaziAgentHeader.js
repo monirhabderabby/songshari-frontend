@@ -4,7 +4,11 @@ import { useDispatch } from "react-redux";
 
 // Third party packages
 import Select from "react-select";
-import { setKaziSearchTerm, setLawyerSearchTerm } from "../../../../Redux/features/FindLawyerKaziAgentFilter/findLawyerKaziAgentFilterSlice";
+import {
+    setAgentSearchTerm,
+    setKaziSearchTerm,
+    setLawyerSearchTerm,
+} from "../../../../Redux/features/FindLawyerKaziAgentFilter/findLawyerKaziAgentFilterSlice";
 
 export const FindLawyerKaziAgentHeader = ({ page }) => {
     const [searchTerm, setSearchTerm] = useState("");
@@ -40,6 +44,8 @@ export const FindLawyerKaziAgentHeader = ({ page }) => {
             dispatch(setLawyerSearchTerm(debouncedSearchTerm));
         } else if (page === "kazi") {
             dispatch(setKaziSearchTerm(debouncedSearchTerm));
+        } else if (page === "agent") {
+            dispatch(setAgentSearchTerm(debouncedSearchTerm));
         }
     }, [debouncedSearchTerm, page, dispatch]);
     return (
