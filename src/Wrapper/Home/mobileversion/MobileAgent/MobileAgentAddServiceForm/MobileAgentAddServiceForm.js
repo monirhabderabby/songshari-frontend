@@ -2,18 +2,18 @@
 import React from "react";
 
 // Components
-import LawyerServiceForm from "../../../../../components/Lawyer/LawyerServiceForm/LawyerServiceForm";
+import AgentServiceForm from "../../../../../components/pages/Agent/AgentServiceForm/AgentServiceForm";
 import { MobileBackButton } from "../../../../../components/shared/Components/MobileBackButton";
 import { BottomNav } from "../../BottomNav";
 
-const MobileLawyerAddServiceForm = () => {
+const MobileAgentAddServiceForm = () => {
   return (
     <div>
       <MobileBackButton name={"Add Service"} />
-      <LawyerServiceForm />
+      <AgentServiceForm />
       <BottomNav />
     </div>
   );
 };
 
-export default MobileLawyerAddServiceForm;
+export default MobileAgentAddServiceForm;

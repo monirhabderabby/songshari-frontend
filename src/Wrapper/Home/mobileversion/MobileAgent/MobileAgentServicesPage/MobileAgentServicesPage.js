@@ -1,15 +1,15 @@
 // Configuration
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-
-// Components
 import { PendingOrder } from "../../../../../components/shared/Components/LawyerAgentKaziService/PendingOrder/PendingOrder";
 import RunningOrder from "../../../../../components/shared/Components/LawyerAgentKaziService/RunningOrder/RunningOrder";
 import { ServicesContainer } from "../../../../../components/shared/Components/LawyerAgentKaziService/servicesContainer/ServicesContainer";
+
+// Components
 import { MobileBackButton } from "../../../../../components/shared/Components/MobileBackButton";
 import { BottomNav } from "../../BottomNav";
 
-const MobileLawyerServicesPage = () => {
+const MobileAgentServicesPage = () => {
   const [pendingOrder, setPendingOrder] = useState(true);
   const [runningOrder, setRunningOrder] = useState(true);
   const [page, setPage] = useState(1);
@@ -24,7 +24,7 @@ const MobileLawyerServicesPage = () => {
             <div className="my-5 flex justify-center">
               <Link
                 className="px-7 py-2 text-white text-lg md:text-xl font-semibold leading-8 rounded bg-[#E41272]"
-                to={"/lawyerAddServiceFormMov"}
+                to={"/agentAddServiceFormMov"}
               >
                 ADD NEW SERVICE
               </Link>
@@ -74,4 +74,4 @@ const MobileLawyerServicesPage = () => {
   );
 };
 
-export default MobileLawyerServicesPage;
+export default MobileAgentServicesPage;
