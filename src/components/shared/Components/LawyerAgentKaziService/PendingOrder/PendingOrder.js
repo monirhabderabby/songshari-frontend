@@ -8,7 +8,11 @@ import PendingOrderCard from "../../../Cards/LawyerAgentKaziService/PendingOrder
 import { PendingSkeleton } from "../../../Cards/Loader/LawyerAgentServiceRelatedLoader/PendingSkeleton";
 
 export const PendingOrder = ({ setPendingOrder }) => {
-    const { data, isLoading, error } = useGetAllOrderByProfessionQuery("pending");
+    const { data, isLoading, error, isFetching } = useGetAllOrderByProfessionQuery({
+        status: "pending",
+        page: 1,
+        limit: 6,
+    });
     const { orders } = data || {};
 
     useEffect(() => {
@@ -19,7 +23,7 @@ export const PendingOrder = ({ setPendingOrder }) => {
     const loaderArr = [1, 2, 3, 4, 5, 6];
 
     let content;
-    if (isLoading) {
+    if (isLoading || isFetching) {
         content = (
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 lg:gap-12">
                 {loaderArr.map(item => {
@@ -29,10 +33,10 @@ export const PendingOrder = ({ setPendingOrder }) => {
         );
     } else if (!isLoading && error) {
         content = <TBFaceError />;
-    } else if (!isLoading && orders.length > 0) {
+    } else if (!isLoading && orders?.length > 0) {
         content = (
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 lg:gap-12">
-                {orders?.slice(0, 4).map(order => {
+                {orders?.map(order => {
                     return <PendingOrderCard key={order._id} {...{ order }} />;
                 })}
             </div>

@@ -16,7 +16,6 @@ const PendingOrderCard = ({ order }) => {
     const { service, user, createdAt, _id: orderId } = order || {};
     let { price, title } = service || {};
     const { firstName, lastName } = user || {};
-    console.log(order);
     let name = `${firstName} ${lastName}`;
     title = title.length > 50 ? title.slice(0, 50) : title;
 

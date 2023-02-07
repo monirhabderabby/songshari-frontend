@@ -1,137 +1,76 @@
+import Box from "@mui/material/Box";
+import { useTheme } from "@mui/material/styles";
+import Tab from "@mui/material/Tab";
+import Tabs from "@mui/material/Tabs";
+import Typography from "@mui/material/Typography";
+import PropTypes from "prop-types";
 import React, { useState } from "react";
-import { BottomNav } from "../../../Wrapper/Home/mobileversion/BottomNav";
-import { MobileBackButton } from "../../shared/Components/MobileBackButton";
-import UserAgentServices from "./UserAgentServices";
-import UserAllServices from "./UserAllServices";
-import UserCanceledServices from "./UserCanceledServices";
-import UserCompletedServices from "./UserCompletedServices";
-import UserKaziServices from "./UserKaziServices";
-import UserLawyerServices from "./UserLawyerServices";
-import UserOngoingServices from "./UserOngoingServices";
+import SwipeableViews from "react-swipeable-views";
 
-const ProfileServices = () => {
-    const [page, setPage] = useState(1);
+function TabPanel(props) {
+    const { children, value, index, ...other } = props;
 
     return (
-        <div>
-            <MobileBackButton name="Services" />
-            {/*----- Component direction setter -----*/}
-            <section className="mt-8 mb-14 max-w-[1024px] mx-auto hidden md:hidden lg:block">
-                <div className="grid grid-cols-4 gap-1">
-                    <button
-                        className="text-[14px] text-white leading-[18px] font-semibold px-[6px] py-3 rounded-xl"
-                        style={{
-                            backgroundImage: "linear-gradient(99.76deg, #E41272 18.47%, #942DD9 84.24%)",
-                        }}
-                        onClick={() => setPage(1)}
-                    >
-                        Service List
-                    </button>
-                    <button
-                        className="text-[14px] text-white leading-[18px] font-semibold px-[6px] py-3 rounded-xl bg-[#67868F] whitespace-nowrap"
-                        onClick={() => setPage(2)}
-                    >
-                        Ongoing Services
-                    </button>
-                    <button
-                        className="text-[14px] text-white leading-[18px] font-semibold px-[6px] py-3 rounded-xl bg-[#67868F] whitespace-nowrap"
-                        onClick={() => setPage(3)}
-                    >
-                        Completed Services
-                    </button>
-                    <button
-                        className="text-[14px] text-white leading-[18px] font-semibold px-[6px] py-3 rounded-xl bg-[#67868F] whitespace-nowrap"
-                        onClick={() => setPage(4)}
-                    >
-                        Cancelled Services
-                    </button>
-                    <button
-                        className="text-[14px] text-white leading-[18px] font-semibold px-[6px] py-3 rounded-xl"
-                        style={{
-                            backgroundImage: "linear-gradient(99.76deg, #E41272 18.47%, #942DD9 84.24%)",
-                        }}
-                        onClick={() => setPage(5)}
-                    >
-                        Agent Service
-                    </button>
-                    <button
-                        className="text-[14px] text-white leading-[18px] font-semibold px-[6px] py-3 rounded-xl bg-[#67868F] "
-                        onClick={() => setPage(6)}
-                    >
-                        Lawyer Service
-                    </button>
-                    <button
-                        className="text-[14px] text-white leading-[18px] font-semibold px-[6px] py-3 rounded-xl bg-[#67868F] "
-                        onClick={() => setPage(7)}
-                    >
-                        Kazi Service
-                    </button>
-                </div>
-            </section>
-
-            {/* mobile version  */}
-            <section className="mt-8 mb-14 lg:hidden max-w-[1024px] ml-4 mr-4">
-                <div className="grid grid-cols-3 gap-2">
-                    <button
-                        className="text-[14px] text-white leading-[18px] font-semibold px-[6px] py-3 rounded-xl"
-                        style={{
-                            backgroundImage: "linear-gradient(99.76deg, #E41272 18.47%, #942DD9 84.24%)",
-                        }}
-                        onClick={() => setPage(1)}
-                    >
-                        Service List
-                    </button>
-                    <button
-                        className="text-[14px] text-white leading-[18px] font-semibold px-[6px] py-3 rounded-xl bg-[#67868F] whitespace-nowrap"
-                        onClick={() => setPage(2)}
-                    >
-                        Ongoing
-                    </button>
-                    <button
-                        className="text-[14px] text-white leading-[18px] font-semibold px-[6px] py-3 rounded-xl bg-[#67868F] whitespace-nowrap"
-                        onClick={() => setPage(3)}
-                    >
-                        Completed
-                    </button>
-                    <button
-                        className="text-[14px] text-white leading-[18px] font-semibold px-[6px] py-3 rounded-xl bg-[#67868F] whitespace-nowrap"
-                        onClick={() => setPage(4)}
-                    >
-                        Cancelled
-                    </button>
-                    <button
-                        className="text-[14px] text-white leading-[18px] font-semibold px-[6px] py-3 rounded-xl"
-                        style={{
-                            backgroundImage: "linear-gradient(99.76deg, #E41272 18.47%, #942DD9 84.24%)",
-                        }}
-                        onClick={() => setPage(5)}
-                    >
-                        Agent Service
-                    </button>
-                    <button
-                        className="text-[14px] text-white leading-[18px] font-semibold px-[6px] py-3 rounded-xl bg-[#67868F] "
-                        onClick={() => setPage(6)}
-                    >
-                        Lawyer Service
-                    </button>
-                    <button
-                        className="text-[14px] text-white leading-[18px] font-semibold px-[6px] py-3 rounded-xl bg-[#67868F] "
-                        onClick={() => setPage(7)}
-                    >
-                        Kazi Service
-                    </button>
-                </div>
-            </section>
-            {/* ----- Load Pages ----- */}
-            {page === 1 && <UserAllServices />}
-            {page === 2 && <UserOngoingServices />}
-            {page === 3 && <UserCompletedServices />}
-            {page === 4 && <UserCanceledServices />}
-            {page === 5 && <UserAgentServices />}
-            {page === 6 && <UserLawyerServices />}
-            {page === 7 && <UserKaziServices />}
-            <BottomNav />
+        <div role="tabpanel" hidden={value !== index} id={`full-width-tabpanel-${index}`} aria-labelledby={`full-width-tab-${index}`} {...other}>
+            {value === index && (
+                <Box sx={{ p: 3 }}>
+                    <Typography>{children}</Typography>
+                </Box>
+            )}
         </div>
+    );
+}
+
+TabPanel.propTypes = {
+    children: PropTypes.node,
+    index: PropTypes.number.isRequired,
+    value: PropTypes.number.isRequired,
+};
+
+function a11yProps(index) {
+    return {
+        id: `full-width-tab-${index}`,
+        "aria-controls": `full-width-tabpanel-${index}`,
+    };
+}
+
+const ProfileServices = () => {
+    const [value, setValue] = useState(1);
+    const theme = useTheme();
+
+    const handleChange = (event, newValue) => {
+        setValue(newValue);
+    };
+
+    const handleChangeIndex = index => {
+        setValue(index);
+    };
+
+    return (
+        <>
+            <div className="w-full max-w-[512px] flex justify-center bg-white mx-auto shadow-[rgba(100,100,111,0.2)_0px_7px_29px_0px]">
+                <Tabs value={value} onChange={handleChange} variant="scrollable" scrollButtons="auto" aria-label="scrollable auto tabs example">
+                    <Tab value={1} label="Item One" />
+                    <Tab value={2} label="Item Two" />
+                    <Tab value={3} label="Item Three" />
+                    <Tab value={4} label="Item Four" />
+                    <Tab value={5} label="Item Five" />
+                    <Tab value={6} label="Item Six" />
+                    <Tab value={7} label="Item Seven" />
+                </Tabs>
+            </div>
+            <SwipeableViews axis={theme.direction === "rtl" ? "x-reverse" : "x"} index={value} onChangeIndex={handleChangeIndex}>
+                <TabPanel value={value} index={0} dir={theme.direction}>
+                    Item One
+                </TabPanel>
+                <TabPanel value={value} index={1} dir={theme.direction}>
+                    Item Two
+                </TabPanel>
+                <TabPanel value={value} index={2} dir={theme.direction}>
+                    Item Three
+                </TabPanel>
+            </SwipeableViews>
+        </>
     );
 };
 
