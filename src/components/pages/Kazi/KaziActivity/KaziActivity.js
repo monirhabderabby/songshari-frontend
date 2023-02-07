@@ -1,20 +1,25 @@
-import React from "react";
+// Configuration
+import React, { useState } from "react";
+
+// Components
+import { ActivityPendingOrder } from "../../../shared/Components/LawyerAgentKaziService/Activity/ActivityPendingOrder";
+import ActivityRunningOrder from "../../../shared/Components/LawyerAgentKaziService/Activity/ActivityRunningOrder";
 import KaziActivityCompletedCase from "./completeCase/KaziActivityCompletedCase";
 import KaziActivityBasicDetails from "./kaziActivityBasicDetailes/KaziActivityBasicDetailes";
-import KaziActivityPendingCase from "./pendingCase/KaziActivityPendingCase";
-import KaziActivityRunningCase from "./runningCase/KaziActivityRunningCase";
 
 const KaziActivity = () => {
+    const [runningOrder, setRunningOrder] = useState(true);
+    const [pendingOrder, setPendingOrder] = useState(true);
     return (
         <div className="lg:max-w-[1000px] xl:max-w-[1200px] mx-auto">
             {/* Activity basic details */}
             <KaziActivityBasicDetails />
 
             {/* Pending case */}
-            <KaziActivityPendingCase />
+            {pendingOrder && <ActivityPendingOrder {...{ setPendingOrder }} />}
 
             {/* Running case */}
-            <KaziActivityRunningCase />
+            {runningOrder && <ActivityRunningOrder {...{ setRunningOrder }} />}
 
             {/* Completed case */}
             <KaziActivityCompletedCase />
