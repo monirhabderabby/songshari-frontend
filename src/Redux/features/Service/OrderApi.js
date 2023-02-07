@@ -14,8 +14,8 @@ export const orderApi = apiSlice.injectEndpoints({
             }),
         }),
         getAllOrderByProfession: builder.query({
-            query: status => ({
-                url: `/service/order/all?status=${status}`,
+            query: ({ status, page, limit }) => ({
+                url: `/service/order/all?status=${status}&page=${page}&limit=${limit}`,
                 method: "GET",
                 headers: {
                     authorization: `Bearer ${getCookie("token")}`,

@@ -66,7 +66,7 @@ export const SingleProfiles = () => {
                                     <PhotoGelary {...{ isLoading, error }} />
                                 </div>
                             </div>
-                            <div className="w-full hidden md:hidden lg:block">
+                            <div className="w-full hidden md:hidden lg:block px-4">
                                 <div>
                                     <Table {...{ data, isLoading }} />
                                 </div>

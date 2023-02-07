@@ -8,7 +8,11 @@ import RunningOrderCard from "../../../Cards/LawyerAgentKaziService/RunningOrder
 import { RunningCardSkeletonLoader } from "../../../Cards/Loader/LawyerAgentServiceRelatedLoader/RunningCardSkeletonLoader";
 
 const RunningOrder = ({ setRunningOrder }) => {
-    const { data, isLoading, error } = useGetAllOrderByProfessionQuery("accepted");
+    const { data, isLoading, error } = useGetAllOrderByProfessionQuery({
+        status: "accepted",
+        page: 1,
+        limit: 6,
+    });
     const { orders } = data || {};
 
     useEffect(() => {
@@ -18,7 +22,6 @@ const RunningOrder = ({ setRunningOrder }) => {
     }, [setRunningOrder, orders]);
 
     const loaderArr = [1, 2, 3, 4, 5, 6];
-    console.log(data);
 
     let content;
     if (isLoading) {
@@ -34,7 +37,7 @@ const RunningOrder = ({ setRunningOrder }) => {
     } else if (!isLoading && orders?.length > 0) {
         content = (
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 lg:gap-12">
-                {orders?.slice(0, 4).map((order, index) => {
+                {orders?.map((order, index) => {
                     return <RunningOrderCard key={order._id} {...{ order, index }} />;
                 })}
             </div>
