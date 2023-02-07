@@ -23,8 +23,11 @@ const findLawyerKaziAgentFilterSlice = createSlice({
         setKaziSearchTerm: (state = initialState, action) => {
             state.kazi.searchTerm = action.payload;
         },
+        setAgentSearchTerm: (state = initialState, action) => {
+            state.agent.searchTerm = action.payload;
+        },
     },
 });
 
 export default findLawyerKaziAgentFilterSlice.reducer;
-export const { setLawyerSearchTerm, setKaziSearchTerm } = findLawyerKaziAgentFilterSlice.actions;
+export const { setLawyerSearchTerm, setKaziSearchTerm, setAgentSearchTerm } = findLawyerKaziAgentFilterSlice.actions;

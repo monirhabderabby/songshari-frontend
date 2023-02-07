@@ -2,21 +2,21 @@ import React, { useState } from "react";
 
 // Third party packages
 import { Pagination } from "@mui/material";
-import { AiOutlineWarning } from "react-icons/ai";
 import { FaUserAltSlash } from "react-icons/fa";
 
 // Components
 import { useSelector } from "react-redux";
-import { useGetRecentMembersQuery } from "../../../Redux/features/userInfo/withoutLoginApi";
-import { ProfileCardSkeletonLoader } from "../../shared/Cards/Loader/ProfileCardSkeletonLoader";
-import { UserCard } from "../Shared/userCard/UserCard";
+import { useGetRecentMembersQuery } from "../../../../Redux/features/userInfo/withoutLoginApi";
+import { ProfileCardSkeletonLoader } from "../../../shared/Cards/Loader/ProfileCardSkeletonLoader";
+import { TBFaceError } from "../../../ui/error/TBFaceError";
+import { UserCard } from "../../Shared/userCard/UserCard";
 
-export const FindRecentKazi = () => {
+export const FindRecentAgent = () => {
     // Hook variable declaration
     const [page, setPage] = useState(1);
 
-    const searchTerm = useSelector(state => state?.persistedReducer?.findLawyerKaziAgent?.kazi?.searchTerm);
-    const { data, isLoading, error } = useGetRecentMembersQuery({ searchTerm: searchTerm, page: page, role: "kazi", limit: 8 });
+    const searchTerm = useSelector(state => state?.persistedReducer?.findLawyerKaziAgent?.agent?.searchTerm);
+    const { data, isLoading, error } = useGetRecentMembersQuery({ searchTerm: searchTerm, page: page, role: "agent", limit: 8 });
 
     let totalData = data?.data?.total / 8;
     const loaderArray = [1, 2, 3, 4, 5, 6];
@@ -31,13 +31,7 @@ export const FindRecentKazi = () => {
             </div>
         );
     } else if (!isLoading && error) {
-        content = (
-            <div className="flex flex-col items-center justify-center mt-[100px]">
-                <AiOutlineWarning className="text-[48px] text-gray-400" />
-                <p className="mt-[10px] text-[22px] font-Inter font-medium text-gray-500">Internel Server Error</p>
-                <p className="text-gray-400 text-[14px]">Please Try again later</p>
-            </div>
-        );
+        content = <TBFaceError />;
     } else if (!isLoading && data?.data?.members.length === 0) {
         content = (
             <div className="flex flex-col items-center justify-center mt-[100px]">

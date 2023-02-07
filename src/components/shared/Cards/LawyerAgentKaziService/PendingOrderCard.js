@@ -50,16 +50,16 @@ const PendingOrderCard = ({ order }) => {
                     <MdOutlineMessage />
                 </div>
                 <div className="flex flex-col md:flex-row items-center gap-4">
-                    <button className="bg-[#E41272] text-white rounded px-3 py-2 font-semibold leading-[22px] tracking-tight whitespace-nowrap">
-                        Accept Now
-                    </button>
                     <button
-                        className={`border-[1px] ${
-                            acceptLoading ? "border-[#E02989]" : "border-black"
-                        } rounded font-semibold leading-[22px] tracking-tight whitespace-nowrap w-[104px] h-[33px]  flex justify-center items-center`}
+                        className="bg-[#E41272] text-white rounded px-3 py-2 font-semibold leading-[22px] tracking-tight whitespace-nowrap w-[104px] h-[33px] flex justify-center items-center"
                         onClick={handleAccpetOrder}
                     >
-                        {acceptLoading ? <CircularProgress size="25px" style={{ color: "#E02989" }} /> : "Reject Now"}
+                        {acceptLoading ? <CircularProgress size="25px" style={{ color: "#FFFFFF" }} /> : "Accept Now"}
+                    </button>
+                    <button
+                        className={`border-[1px] border-black rounded font-semibold leading-[22px] tracking-tight whitespace-nowrap w-[104px] h-[33px]  flex justify-center items-center`}
+                    >
+                        Reject Now
                     </button>
                 </div>
             </div>

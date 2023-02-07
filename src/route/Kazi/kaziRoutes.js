@@ -1,5 +1,5 @@
-import FindKaziPage from "../../components/pages/FindKazi/FindKaziPage";
-import { FindRecentKazi } from "../../components/pages/FindKazi/FindRecentKazi";
+import FindKaziPage from "../../components/pages/Kazi/FindKazi/FindKaziPage";
+import { FindRecentKazi } from "../../components/pages/Kazi/FindKazi/FindRecentKazi";
 
 const kaziRoutes = [
     {

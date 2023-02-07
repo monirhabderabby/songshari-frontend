@@ -65,7 +65,7 @@ const NavBar = ({ bg }) => {
         },
         {
             id: 7,
-            to: "/agent",
+            to: "/agent/recent",
             icon: "https://svgshare.com/i/pDa.svg",
             tooltip: "Agent",
         },
