@@ -11,96 +11,132 @@ import PersonalCertificateMobile from "../../../Wrapper/Home/mobileversion/Certi
 import ProfessionalCertificateMobile from "../../../Wrapper/Home/mobileversion/CertificateMobile/ProfessionalCertificateMobile/ProfessionalCertificateMobile";
 import { Like } from "../../../Wrapper/Home/mobileversion/Like";
 import { MatchesMov } from "../../../Wrapper/Home/mobileversion/MatchesMov";
+import MobileAgentAddServiceForm from "../../../Wrapper/Home/mobileversion/MobileAgent/MobileAgentAddServiceForm/MobileAgentAddServiceForm";
+import MobileAgentServicesPage from "../../../Wrapper/Home/mobileversion/MobileAgent/MobileAgentServicesPage/MobileAgentServicesPage";
+import MobileKaziAddServiceForm from "../../../Wrapper/Home/mobileversion/MobileKazi/MobileKaziAddServiceForm/MobileKaziAddServiceForm";
+import MobileKaziServicesPage from "../../../Wrapper/Home/mobileversion/MobileKazi/MobileKaziServicesPage/MobileKaziServicesPage";
+import MobileLawyerAddServiceForm from "../../../Wrapper/Home/mobileversion/MobileLawyer/MobileLawyerAddServiceForm/MobileLawyerAddServiceForm";
+import MobileLawyerServicesPage from "../../../Wrapper/Home/mobileversion/MobileLawyer/MobileLawyerServicesPage/MobileLawyerServicesPage";
 import { GalleryContainerForMobile } from "../../../Wrapper/Home/mobileversion/PhotoGallery/GalleryContainerForMobile";
 import { Setting } from "../../../Wrapper/Home/mobileversion/setting/Setting";
 
 const MobileMatrimonyPrivateRoutes = [
-    {
+  {
+    id: 1,
+    path: "/mobileuserprofile",
+    element: <MobileSingleProfilesUser />,
+    nestedRoutes: [
+      {
         id: 1,
-        path: "/mobileuserprofile",
-        element: <MobileSingleProfilesUser />,
-        nestedRoutes: [
-            {
-                id: 1,
-                path: "personaldetailsmov",
-                element: <PersonalDetailsMobile />,
-            },
-        ],
-    },
-    {
-        id: 2,
-        path: "/dynamicpersonaldetails/:id",
+        path: "personaldetailsmov",
         element: <PersonalDetailsMobile />,
-    },
-    {
-        id: 3,
-        path: "/educationalCertificateMov",
-        element: <EducationalCertificateMobile />,
-    },
-    {
-        id: 4,
-        path: "/professionalCertificateMov",
-        element: <ProfessionalCertificateMobile />,
-    },
-    {
-        id: 5,
-        path: "/personalCertificateMov",
-        element: <PersonalCertificateMobile />,
-    },
-    {
-        id: 6,
-        path: "/matchesmov",
-        element: <MatchesMov />,
-    },
-    {
-        id: 7,
-        path: "/Gallery/mobile/:id",
-        element: <GalleryContainerForMobile />,
-    },
+      },
+    ],
+  },
+  {
+    id: 2,
+    path: "/dynamicpersonaldetails/:id",
+    element: <PersonalDetailsMobile />,
+  },
+  {
+    id: 3,
+    path: "/educationalCertificateMov",
+    element: <EducationalCertificateMobile />,
+  },
+  {
+    id: 4,
+    path: "/professionalCertificateMov",
+    element: <ProfessionalCertificateMobile />,
+  },
+  {
+    id: 5,
+    path: "/personalCertificateMov",
+    element: <PersonalCertificateMobile />,
+  },
+  {
+    id: 6,
+    path: "/matchesmov",
+    element: <MatchesMov />,
+  },
+  {
+    id: 7,
+    path: "/Gallery/mobile/:id",
+    element: <GalleryContainerForMobile />,
+  },
 
-    {
-        id: 8,
-        path: "/setting",
-        element: <Setting />,
-    },
-    {
-        id: 9,
-        path: "/notifications",
-        element: <NotificationForMobile />,
-    },
+  {
+    id: 8,
+    path: "/setting",
+    element: <Setting />,
+  },
+  {
+    id: 9,
+    path: "/notifications",
+    element: <NotificationForMobile />,
+  },
 
-    {
-        id: 10,
-        path: "/servicemov",
-        element: <ProfileServices />,
-    },
-    {
-        id: 11,
-        path: "/matchesmov",
-        element: <MatchesMov />,
-    },
+  {
+    id: 10,
+    path: "/servicemov",
+    element: <ProfileServices />,
+  },
+  {
+    id: 11,
+    path: "/matchesmov",
+    element: <MatchesMov />,
+  },
 
-    {
-        id: 12,
-        path: "/certificatemov",
-        element: <CertificateMov />,
-    },
+  {
+    id: 12,
+    path: "/certificatemov",
+    element: <CertificateMov />,
+  },
 
-    {
-        id: 13,
-        path: "/like",
-        element: <Like />,
-    },
-    {
-        id: 14,
-        path: "/mobile-allposts",
-        element: <AllPosts />,
-    },
-    {
-        id: 15,
-        path: "/mobileActivityPage",
-        element: <MobileActivity />,
-    },
+  {
+    id: 13,
+    path: "/like",
+    element: <Like />,
+  },
+  {
+    id: 14,
+    path: "/mobile-allposts",
+    element: <AllPosts />,
+  },
+  {
+    id: 15,
+    path: "/mobileActivityPage",
+    element: <MobileActivity />,
+  },
+  {
+    id: 16,
+    path: "/mobileLawyerServices",
+    element: <MobileLawyerServicesPage />,
+  },
+  {
+    id: 17,
+    path: "/lawyerAddServiceFormMov",
+    element: <MobileLawyerAddServiceForm />,
+  },
+  {
+    id: 18,
+    path: "/mobileAgentServices",
+    element: <MobileAgentServicesPage />,
+  },
+  {
+    id: 19,
+    path: "/agentAddServiceFormMov",
+    element: <MobileAgentAddServiceForm />,
+  },
+  {
+    id: 20,
+    path: "/mobileKaziServices",
+    element: <MobileKaziServicesPage />,
+  },
+  {
+    id: 21,
+    path: "/kaziAddServiceFormMov",
+    element: <MobileKaziAddServiceForm />,
+  },
 ];
 
 export default MobileMatrimonyPrivateRoutes;

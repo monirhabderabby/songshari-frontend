@@ -44,7 +44,7 @@ export const PendingOrder = ({ setPendingOrder }) => {
     }
     return (
         <div className="mb-12 md:mb-16 lg:mb-28">
-            <h1 className="text-3xl font-medium leading-7 mb-10">Pending Order</h1>
+            <h1 className="text-3xl font-medium leading-7 mb-10 hidden lg:block">Pending Order</h1>
             {content}
         </div>
     );
