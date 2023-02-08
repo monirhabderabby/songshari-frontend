@@ -6,7 +6,11 @@ import Typography from "@mui/material/Typography";
 import PropTypes from "prop-types";
 import React, { useState } from "react";
 import SwipeableViews from "react-swipeable-views";
+import UserAgentServices from "./UserAgentServices";
+import UserAllServices from "./UserAllServices";
 import UserCanceledServices from "./UserCanceledServices";
+import UserKaziServices from "./UserKaziServices";
+import UserLawyerServices from "./UserLawyerServices";
 import UserOngoingServices from "./UserOngoingServices";
 
 const AntTabs = styled(Tabs)({
@@ -64,7 +68,7 @@ const ProfileServices = () => {
         <>
             <div className="w-full max-w-[512px] flex justify-center bg-white mx-auto shadow-[rgba(100,100,111,0.2)_0px_7px_29px_0px]">
                 <AntTabs value={value} onChange={handleChange} variant="scrollable" scrollButtons="auto" aria-label="scrollable auto tabs example">
-                    <AntTab value={1} label="Leatest" />
+                    <AntTab value={1} label="All Services" />
                     <AntTab value={2} label="Ongoing" />
                     <AntTab value={3} label="Completed" />
                     <AntTab value={4} label="Cancelled" />
@@ -78,7 +82,7 @@ const ProfileServices = () => {
                     Item One
                 </TabPanel>
                 <TabPanel value={value} index={1} dir={theme.direction}>
-                    Item Two
+                    <UserAllServices />
                 </TabPanel>
                 <TabPanel value={value} index={2} dir={theme.direction}>
                     <UserOngoingServices />
@@ -90,10 +94,13 @@ const ProfileServices = () => {
                     <UserCanceledServices />
                 </TabPanel>
                 <TabPanel value={value} index={5} dir={theme.direction}>
-                    Item six
+                    <UserAgentServices />
                 </TabPanel>
                 <TabPanel value={value} index={6} dir={theme.direction}>
-                    Item seven
+                    <UserKaziServices />
+                </TabPanel>
+                <TabPanel value={value} index={7} dir={theme.direction}>
+                    <UserLawyerServices />
                 </TabPanel>
             </SwipeableViews>
         </>
