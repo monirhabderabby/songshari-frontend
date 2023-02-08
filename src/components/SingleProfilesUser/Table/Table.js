@@ -41,7 +41,7 @@ const Table = ({ data, isLoading }) => {
                             className={`font-medium text-[15px] leading-tight ${page === 3 ? "text-primary font-bold" : "text-gray-800"}`}
                             onClick={() => setPage(3)}
                         >
-                            Services <sup className="text-white bg_Color px-2 py-1 rounded-full text-[10px]">1</sup>
+                            Services
                         </button>
                         <button
                             className={`font-medium text-[15px] leading-tight ${page === 4 ? "text-primary font-bold" : "text-gray-800"}`}
