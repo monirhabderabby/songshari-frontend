@@ -64,7 +64,7 @@ const ProfileServices = () => {
         <>
             <div className="w-full max-w-[512px] flex justify-center bg-white mx-auto shadow-[rgba(100,100,111,0.2)_0px_7px_29px_0px]">
                 <AntTabs value={value} onChange={handleChange} variant="scrollable" scrollButtons="auto" aria-label="scrollable auto tabs example">
-                    <AntTab value={1} label="Leatest" />
+                    <AntTab value={1} label="All Services" />
                     <AntTab value={2} label="Ongoing" />
                     <AntTab value={3} label="Completed" />
                     <AntTab value={4} label="Cancelled" />
