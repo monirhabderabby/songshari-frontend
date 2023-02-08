@@ -5,6 +5,7 @@ import { Conversations } from "./Conversations";
 
 export const Sidebar = ({handleChat}) => {
     let { data } = useGetAllConnectedConnectionsQuery();
+    // console.log(data?.data);
     return (
         <div className="mx-[11px]">
             <ConversationHeader />

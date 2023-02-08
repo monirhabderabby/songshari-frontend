@@ -25,14 +25,31 @@ export const Inbox = () => {
             socket.current.emit("addUser", message.to);
         }
     }, [message.to]);
+    console.log(data?.data?.message)
     const [msg, setMsg] = useState(null);
+    
+
     const handleChat = async id => {
         setMessage({ ...message, to: id });
-        getAllMessage(message);
-        setMsg(data?.data?.message);
+        
+       
     };
-    // console.log(msg)
-
+    useEffect(() => {
+        (async () => {
+            if (message.to) {
+                await getAllMessage(message);
+            }
+        }
+        )();
+    }, [message.to]);
+    
+    useEffect(() => {
+        if (data?.data?.message) {
+            setMsg(data?.data?.message);
+        }
+    }, [data?.data?.message]);
+    
+    
     return (
         <div className="bg-[#FAFBFF] pb-[230px]">
             <CustomHeader title="Chat" />
