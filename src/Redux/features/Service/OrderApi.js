@@ -44,7 +44,22 @@ export const orderApi = apiSlice.injectEndpoints({
             }),
             invalidatesTags: ["allOrders"],
         }),
+        getAllOrderByMember: builder.query({
+            query: ({ status, page, limit }) => ({
+                url: `/service/order/all-by-user?status=${status}&page=${page}&limit=${limit}`,
+                method: "GET",
+                headers: {
+                    authorization: `Bearer ${getCookie("token")}`,
+                },
+            }),
+        }),
     }),
 });
 
-export const { useServiceOrderMutation, useGetAllOrderByProfessionQuery, useAcceptOrderMutation, useRejectOrderMutation } = orderApi;
+export const {
+    useServiceOrderMutation,
+    useGetAllOrderByProfessionQuery,
+    useAcceptOrderMutation,
+    useRejectOrderMutation,
+    useGetAllOrderByMemberQuery,
+} = orderApi;
