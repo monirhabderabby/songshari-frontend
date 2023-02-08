@@ -21,11 +21,14 @@ const useStyles = makeStyles({
 });
 const ServiceCard = ({ service }) => {
     const classes = useStyles();
+
     const { role, service: serviceDetailes } = service || {};
     const { firstName, lastName } = role || {};
+
     const name = `${firstName} ${lastName}`;
     let { title, description, price, photos } = serviceDetailes || {};
     description = description?.length > 94 ? description.slice(0, 94) + "..." : description;
+
     console.log(service);
     return (
         <div className="w-full max-w-[512px] mx-auto bg-[#FDF8E7] max-h-[384px] p-[18px] flex flex-col justify-between rounded-[12px]">
