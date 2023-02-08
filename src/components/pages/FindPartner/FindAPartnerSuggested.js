@@ -22,7 +22,7 @@ export const FindAPartnerSuggested = () => {
     const searchTerm = useSelector(state => state?.persistedReducer?.findPartnerSlice?.searchTerm);
     const { data, isLoading, error } = useGetRecentMembersQuery({ searchTerm: searchTerm, page: page, role: "member", limit: 9 });
 
-    let totalData = data?.data?.total / 9;
+    let totalData = Math.ceil(data?.data?.total / 9);
     let content;
     const loaderArray = [1, 2, 3, 4, 5, 6];
 
