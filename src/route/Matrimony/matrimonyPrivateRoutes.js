@@ -1,4 +1,5 @@
 import { Gallery } from "../../components/shared/Components/Gallery";
+import SingleServicesStatusContainer from "../../components/shared/Components/LawyerAgentKaziService/SingleServicesStatus/SingleServicesStatusContainer";
 import EducationalCertificateWeb from "../../components/SingleProfilesUser/CertificateSection/EducationalCertificateWeb";
 import PersonalCertificateWeb from "../../components/SingleProfilesUser/CertificateSection/PersonalCertificateWeb";
 import ProfessionalCertificateWeb from "../../components/SingleProfilesUser/CertificateSection/ProfessionalCertificateWeb";
@@ -91,6 +92,16 @@ const matrimonyPrivateRoutes = [
         id: 6,
         path: "/gallery/:id",
         element: <Gallery />,
+    },
+    {
+        id: 7,
+        path: "/serviceStatus/running/:id",
+        element: <SingleServicesStatusContainer />,
+    },
+    {
+        id: 7,
+        path: "/serviceStatus/cancelled/:id",
+        element: <SingleServicesStatusContainer />,
     },
 ];
 

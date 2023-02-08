@@ -1,6 +1,7 @@
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@mui/material/Button";
 import { TbCurrencyTaka } from "react-icons/tb";
+import { useNavigate } from "react-router";
 import liveLinkGenerator from "../../../../../assets/utilities/liveLink/liveLinkGenerator";
 
 const useStyles = makeStyles({
@@ -19,15 +20,22 @@ const useStyles = makeStyles({
         },
     },
 });
-const ServiceCard = ({ service }) => {
+const ServiceCard = ({ service, status }) => {
     const classes = useStyles();
+    const navigate = useNavigate();
 
     const { role, service: serviceDetailes } = service || {};
     const { firstName, lastName } = role || {};
 
     const name = `${firstName} ${lastName}`;
-    let { title, description, price, photos } = serviceDetailes || {};
+    let { title, description, price, photos, _id: serviceID } = serviceDetailes || {};
+    console.log(serviceDetailes);
     description = description?.length > 94 ? description.slice(0, 94) + "..." : description;
+
+    let redirectPath;
+    if (status?.includes("running")) {
+        redirectPath = `/serviceStatus/running/${serviceID}`;
+    }
 
     return (
         <div className="w-full max-w-[512px] mx-auto bg-[#FDF8E7] max-h-[384px] p-[18px] flex flex-col justify-between rounded-[12px]">
@@ -42,7 +50,7 @@ const ServiceCard = ({ service }) => {
                     <TbCurrencyTaka />
                     {price}
                 </h4>
-                <Button variant="contained" className={classes.gradientButton}>
+                <Button variant="contained" className={classes.gradientButton} onClick={() => navigate(redirectPath)}>
                     View
                 </Button>
             </div>
