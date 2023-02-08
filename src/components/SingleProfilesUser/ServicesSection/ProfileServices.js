@@ -6,6 +6,8 @@ import Typography from "@mui/material/Typography";
 import PropTypes from "prop-types";
 import React, { useState } from "react";
 import SwipeableViews from "react-swipeable-views";
+import UserCanceledServices from "./UserCanceledServices";
+import UserOngoingServices from "./UserOngoingServices";
 
 const AntTabs = styled(Tabs)({
     borderBottom: "1px solid #e8e8e8",
@@ -79,13 +81,13 @@ const ProfileServices = () => {
                     Item Two
                 </TabPanel>
                 <TabPanel value={value} index={2} dir={theme.direction}>
-                    Item Three
+                    <UserOngoingServices />
                 </TabPanel>
                 <TabPanel value={value} index={3} dir={theme.direction}>
                     Item Four
                 </TabPanel>
                 <TabPanel value={value} index={4} dir={theme.direction}>
-                    Item Five
+                    <UserCanceledServices />
                 </TabPanel>
                 <TabPanel value={value} index={5} dir={theme.direction}>
                     Item six

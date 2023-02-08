@@ -5,18 +5,18 @@ import liveLinkGenerator from "../../../../assets/utilities/liveLink/liveLinkGen
 const ServicesCard = ({ service }) => {
     let { photos, description, title, tags, role, price, _id } = service || {};
     const { firstName, lastName, role: userRole } = role || {};
-    description = description.length > 136 ? description.slice(0, 136) + "..." : description + "...";
+    description = description?.length > 136 ? description.slice(0, 136) + "..." : description + "...";
     const name = firstName + " " + lastName;
 
     // Dynamic path made decision
     let redirectPath;
-    if (userRole.includes("kazi")) {
+    if (userRole === "kazi") {
         redirectPath = `/kaziProfile/kaziSingleServiceDetails/${_id}`;
     }
-    if (userRole.includes("lawyer")) {
+    if (userRole === "lawyer") {
         redirectPath = `/lawyerProfile/lawyerSingleServiceDetails/${_id}`;
     }
-    if (userRole.includes("agent")) {
+    if (userRole === "agent") {
         redirectPath = `/agentProfile/agentSingleServiceDetails/${_id}`;
     }
 
