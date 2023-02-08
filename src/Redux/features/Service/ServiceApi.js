@@ -86,6 +86,15 @@ export const serviceApi = apiSlice.injectEndpoints({
             }),
             invalidatesTags: ["getServiceById"],
         }),
+        getAllServicesByrole: builder.query({
+            query: ({ role, page, limit }) => ({
+                url: `/service/all-by-user?role=${role}&page=${page}&limit=${limit}`,
+                method: "GET",
+                headers: {
+                    authorization: `Bearer ${getCookie("token")}`,
+                },
+            }),
+        }),
     }),
 });
 
@@ -98,4 +107,5 @@ export const {
     useServiceDeleteMutation,
     useGetServiceByUserIdQuery,
     useChangeServiceStatusMutation,
+    useGetAllServicesByroleQuery,
 } = serviceApi;

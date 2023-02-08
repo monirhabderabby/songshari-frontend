@@ -1,3 +1,7 @@
+// Configuration
+import { useNavigate } from "react-router";
+
+// Third party packages
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@mui/material/Button";
 import { TbCurrencyTaka } from "react-icons/tb";
@@ -19,20 +23,19 @@ const useStyles = makeStyles({
         },
     },
 });
-const ServiceCard = ({ service }) => {
+const ServiceCardV2 = ({ service }) => {
     const classes = useStyles();
 
-    const { role, service: serviceDetailes } = service || {};
+    const navigate = useNavigate();
+
+    let { role, price, photos, title, description, _id } = service || {};
     const { firstName, lastName } = role || {};
-
     const name = `${firstName} ${lastName}`;
-    let { title, description, price, photos } = serviceDetailes || {};
-    description = description?.length > 94 ? description.slice(0, 94) + "..." : description;
-
+    description = description?.length > 94 ? description.slice(0, 94) : description;
     return (
         <div className="w-full max-w-[512px] mx-auto bg-[#FDF8E7] max-h-[384px] p-[18px] flex flex-col justify-between rounded-[12px]">
             <img src={liveLinkGenerator(photos[0])} alt="serviceImage" className="h-[188px] w-full rounded-[12px]" />
-            <div className="content w-full flex flex-col gap-y-[16px]">
+            <div className="content w-full flex flex-col gap-y-[16px] mt-[8px]">
                 <h3 className="text-[#000000] font-SourceCodePro text-[18px] font-medium leading-[23px]">{title}</h3>
                 <p className="text-[#666666] font-SourceCodePro font-normal text-[14px] leading-[18px]">{description}</p>
                 <p className="text-[#000000] text-[14px] font-medium font-SourceCodePro leading-[18px]">{name}</p>
@@ -42,11 +45,12 @@ const ServiceCard = ({ service }) => {
                     <TbCurrencyTaka />
                     {price}
                 </h4>
-                <Button variant="contained" className={classes.gradientButton}>
+                <Button variant="contained" className={classes.gradientButton} onClick={() => navigate(`/service/${_id}`)}>
                     View
                 </Button>
             </div>
         </div>
     );
 };
-export default ServiceCard;
+
+export default ServiceCardV2;
