@@ -21,8 +21,6 @@ const DynamicSingleServiceDetailes = () => {
     const { service } = data || {};
     const { _id, title, description, photos, recuirements, extraOffer, price, deadline, role } = service || {};
 
-    console.log(service);
-
     let content;
     if (isLoading) {
         content = <LineWaveLoader />;

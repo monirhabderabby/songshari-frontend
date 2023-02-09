@@ -1,11 +1,14 @@
 import { makeStyles } from "@material-ui/core/styles";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import Backdrop from "@mui/material/Backdrop";
+import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import CircularProgress from "@mui/material/CircularProgress";
 import Collapse from "@mui/material/Collapse";
+import { green } from "@mui/material/colors";
 import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
 import { styled } from "@mui/material/styles";
@@ -47,24 +50,13 @@ const useStyles = makeStyles({
             boxShadow: "none",
         },
     },
-    BuyNowButton: {
-        width: "199px",
-        height: "56px",
-        backgroundColor: "#FFFFFF",
-        border: "1px solid #FFFFFF",
+    loader: {
+        color: "#FFFFFF",
         borderRadius: "8px",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        color: "#000000",
-        fontSize: "16px",
-        fontWeight: 600,
-        textTransform: "uppercase",
-        "&:hover": {
-            backgroundColor: "#f2f2f2",
-            borderColor: "#f2f2f2",
-            boxShadow: "none",
-        },
+        width: " 100%",
+        position: "absolute",
+        top: "0%",
+        left: "0%",
     },
 });
 
@@ -82,12 +74,19 @@ const ExpandMore = styled(props => {
 export const DynamicSingleServiceOrderCard = ({ price, deadline, role, _id }) => {
     const [expanded, setExpanded] = useState(false);
     const [successSnackBarOpen, setSuccessSnackBarOpen] = useState(false);
+    const [success, setSuccess] = useState(false);
 
     // Redux API
-    const [serviceOrder, { isLoading, isSuccess }] = useServiceOrderMutation();
+    const [serviceOrder, { isSuccess, isLoading }] = useServiceOrderMutation();
 
     const classes = useStyles();
     const navigate = useNavigate();
+
+    useEffect(() => {
+        if (isSuccess) {
+            setSuccess(true);
+        }
+    }, [isSuccess]);
 
     deadline = deadline.slice(2, deadline.length);
     const { firstName, lastName, designation, _id: userId } = role || {};
@@ -112,6 +111,46 @@ export const DynamicSingleServiceOrderCard = ({ price, deadline, role, _id }) =>
         }
     }, [isSuccess, navigate]);
 
+    const buttonSx = {
+        width: "199px",
+        height: "56px",
+        backgroundColor: "#FFFFFF",
+        border: "1px solid #FFFFFF",
+        borderRadius: "8px",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        color: "#000000",
+        fontSize: "16px",
+        fontWeight: 600,
+        textTransform: "uppercase",
+        "&:hover": {
+            backgroundColor: "#f2f2f2",
+            borderColor: "#f2f2f2",
+            boxShadow: "none",
+        },
+        ...(success && {
+            bgcolor: green[500],
+            color: "#FFFFFF",
+            border: "1px solid #4caf50",
+            boxShadow: "none",
+            "&:hover": {
+                bgcolor: green[500],
+                boxShadow: "none",
+            },
+        }),
+        ...(isLoading && {
+            border: "none",
+            boxShadow: "none",
+            bgcolor: "#f54595",
+            color: "#FFFFFF",
+            "&:hover": {
+                bgcolor: "#f54595",
+                boxShadow: "none",
+            },
+        }),
+    };
+
     return (
         <Card className={classes.root}>
             <section className="w-full h-auto flex flex-col justify-center items-center gap-y-[26px]">
@@ -119,9 +158,22 @@ export const DynamicSingleServiceOrderCard = ({ price, deadline, role, _id }) =>
                     <TbCurrencyTaka />
                     {price}
                 </h3>
-                <Button variant="contained" className={classes.BuyNowButton} onClick={handleNewServiceOrder} load>
-                    {isLoading ? <CircularProgress style={{ color: "#E41272" }} /> : "buy now"}
-                </Button>
+                <Box sx={{ m: 1, position: "relative" }}>
+                    <Button
+                        variant="contained"
+                        sx={buttonSx}
+                        disabled={isLoading}
+                        onClick={handleNewServiceOrder}
+                        style={{ cursor: `${success ? "not-allowed" : "pointer"}` }}
+                    >
+                        {success ? "Done" : "Order Now"}
+                    </Button>
+                    {isLoading && (
+                        <Backdrop sx={{ zIndex: theme => theme.zIndex.drawer + 1 }} className={classes.loader} open={true}>
+                            <CircularProgress color="inherit" />
+                        </Backdrop>
+                    )}
+                </Box>
                 <div className="w-full flex justify-between">
                     <div className="flex flex-col items-center">
                         <h6 className="text-[13px] font-extralight font-sans">Delivery in</h6>
