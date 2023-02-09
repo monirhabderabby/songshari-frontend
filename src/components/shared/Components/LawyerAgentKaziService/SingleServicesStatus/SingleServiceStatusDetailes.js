@@ -12,6 +12,7 @@ import SingleServiceImagesContainer from "../SingleServices/ImagesContainer/Sing
 import { MoreOfferCard } from "../SingleServices/moreOffer/MoreOfferCard";
 import { SingleServiceReviewsContainer } from "../SingleServices/SingleServiceReviewsContainer/SingleServiceReviewsContainer";
 import CancelledOrderFeatureCard from "./statusCard/CancelledOrderFeatureCard";
+import CompletedOrderFeatureCard from "./statusCard/CompletedOrderFeatureCard";
 import RunningOrderFeatureCard from "./statusCard/RunningOrderFeatureCard";
 
 const SingleServiceStatusDetailes = () => {
@@ -55,6 +56,7 @@ const SingleServiceStatusDetailes = () => {
                             {/* Prize review details */}
                             {paths[2] === "running" && <RunningOrderFeatureCard {...{ price, deadline, role }} />}
                             {paths[2] === "cancelled" && <CancelledOrderFeatureCard {...{ price, deadline, role, serviceID: _id }} />}
+                            {paths[2] === "completed" && <CompletedOrderFeatureCard />}
                         </div>
                     </div>
                 </div>

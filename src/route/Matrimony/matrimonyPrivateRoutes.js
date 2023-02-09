@@ -103,6 +103,11 @@ const matrimonyPrivateRoutes = [
         path: "/serviceStatus/cancelled/:id",
         element: <SingleServicesStatusContainer />,
     },
+    {
+        id: 8,
+        path: "/serviceStatus/completed/:id",
+        element: <SingleServicesStatusContainer />,
+    },
 ];
 
 export default matrimonyPrivateRoutes;
