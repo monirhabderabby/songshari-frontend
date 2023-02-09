@@ -1,8 +1,9 @@
 // Configuration
 import React, { useEffect, useRef, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { io } from "socket.io-client";
 import { useCreateMessageMutation, useGetAllMessageMutation } from "../../../Redux/chat/chatApi";
+import { allMessage } from "../../../Redux/chat/chatReducer";
 
 // Components
 import { MessageListMobile } from "./MessageListMobile";
@@ -11,9 +12,10 @@ import { MobileMessgeSenderBox } from "./MobileMessgeSenderBox";
 
 export const MobileInbox = () => {
     const socket = useRef();
+    const dispatch = useDispatch();
     const res = useSelector(state => state.persistedReducer.userInfo.userInfo);
     const receiver = useSelector(state => state?.persistedReducer?.chat?.user);
-    // console.log(reciver)
+    const totalMessages = useSelector(state => state?.persistedReducer?.chat?.messages);
     const [createMessage] = useCreateMessageMutation();
     const [arivalMsg, setArivalMsg] = useState(null);
     let from = res?.data ? res.data.user._id : res?.user._id;
@@ -27,18 +29,22 @@ export const MobileInbox = () => {
     });
     // setMessage({...message,from:res?.user?._id});
     useEffect(() => {
-        if (message.to) {
+        if (receiver) {
             socket.current = io("http://localhost:4000");
             socket.current.emit("addUser", receiver);
         }
-    }, [message.to]);
-    const [msg, setMsg] = useState(null);
+    }, [receiver]);
+    const [msg, setMsg] = useState(totalMessages);
+    console.log(msg)
     useEffect(() => {
-        (async () => {
-            getAllMessage(message);
-            setMsg(data?.data?.message);
-        })();
-    }, [message]);
+        if (receiver) {
+            (async () => {
+                getAllMessage(message);
+                dispatch(allMessage(data?.data?.message))
+                setMsg(data?.data?.message);
+            })();
+        }
+    }, [receiver]);
 
     const handleMessage = async e => {
         // console.log(e)
@@ -50,7 +56,9 @@ export const MobileInbox = () => {
                 message: message.message,
             });
             // console.log(msg)
-            let newMsg = [...msg];
+            let newMsg = [];
+            newMsg = [...msg];
+            // let newMsg=msg
             newMsg.push({ fromSelf: true, message: message.message });
             setMsg(newMsg);
             e.target.value = "";
@@ -78,7 +86,7 @@ export const MobileInbox = () => {
                 <MobileMessageHeader />
             </div>
             <div className="flex-1 mt-[60px] h-full">
-                <MessageListMobile />
+                <MessageListMobile messages={msg}  />
             </div>
             <MobileMessgeSenderBox handleMessage={handleMessage} message={message} setMessage={setMessage} />
         </div>
