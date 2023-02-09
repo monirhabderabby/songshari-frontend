@@ -173,7 +173,13 @@ const RunningOrderFeatureCard = ({ price, deadline, role }) => {
                         {price}
                     </h3>
                     <Box sx={{ m: 1, position: "relative" }}>
-                        <Button variant="contained" disabled={isLoading} sx={buttonSx} onClick={handleCancleOrder}>
+                        <Button
+                            variant="contained"
+                            disabled={isLoading}
+                            sx={buttonSx}
+                            style={{ cursor: `${isSuccess ? "not-allowed" : "pointer"}` }}
+                            onClick={handleCancleOrder}
+                        >
                             {isSuccess ? "Cancelled" : "Cancle This Order"}
                         </Button>
                         {isLoading && (
