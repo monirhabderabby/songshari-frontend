@@ -1,17 +1,22 @@
 import { makeStyles } from "@material-ui/core/styles";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import Backdrop from "@mui/material/Backdrop";
+import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
+import CircularProgress from "@mui/material/CircularProgress";
 import Collapse from "@mui/material/Collapse";
+import { green } from "@mui/material/colors";
 import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
 import { styled } from "@mui/material/styles";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { TbCurrencyTaka } from "react-icons/tb";
+import { useServiceOrderMutation } from "../../../../../../Redux/features/Service/OrderApi";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
     root: {
         background: "#FFFFFF",
         borderRadius: "12px",
@@ -62,7 +67,15 @@ const useStyles = makeStyles({
             boxShadow: "none",
         },
     },
-});
+    loader: {
+        color: "#FFFFFF",
+        borderRadius: "8px",
+        width: " 100%",
+        position: "absolute",
+        top: "0%",
+        left: "0%",
+    },
+}));
 
 const ExpandMore = styled(props => {
     const { expand, ...other } = props;
@@ -75,8 +88,12 @@ const ExpandMore = styled(props => {
     }),
 }));
 
-const CancelledOrderFeatureCard = ({ price, deadline, role, _id }) => {
+const CancelledOrderFeatureCard = ({ price, deadline, role, serviceID }) => {
     const [expanded, setExpanded] = useState(false);
+    const [success, setSuccess] = useState(false);
+
+    // Redux API Call
+    const [serviceOrder, { isSuccess, isLoading }] = useServiceOrderMutation();
 
     // JS Variable declaration
     const classes = useStyles();
@@ -85,6 +102,51 @@ const CancelledOrderFeatureCard = ({ price, deadline, role, _id }) => {
     let name = `${firstName} ${lastName}` || "";
     name = name.length > 13 ? name.slice(0, 13) : name;
 
+    // style
+    const buttonSx = {
+        width: "199px",
+        height: "56px",
+        backgroundColor: "#E41272",
+        borderRadius: "8px",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        color: "#FFFFFF",
+        fontSize: "14px",
+        fontWeight: 600,
+        textTransform: "uppercase",
+        "&:hover": {
+            backgroundColor: "#f00570",
+            borderColor: "#58737a",
+            boxShadow: "none",
+        },
+        ...(success && {
+            bgcolor: green[500],
+            border: "1px solid #4caf50",
+            boxShadow: "none",
+            "&:hover": {
+                bgcolor: green[500],
+                boxShadow: "none",
+            },
+        }),
+        ...(isLoading && {
+            border: "none",
+            boxShadow: "none",
+            bgcolor: "#f54595",
+            "&:hover": {
+                bgcolor: "#f54595",
+                boxShadow: "none",
+            },
+        }),
+    };
+
+    // useEffect declaration
+    useEffect(() => {
+        if (isSuccess) {
+            setSuccess(true);
+        }
+    }, [isSuccess]);
+
     // Function declarations
     const handleExpandClick = () => {
         setExpanded(!expanded);
@@ -92,6 +154,10 @@ const CancelledOrderFeatureCard = ({ price, deadline, role, _id }) => {
 
     const handleCancleOrder = () => {
         // write code
+        serviceOrder({
+            service: serviceID,
+            role: userId,
+        });
     };
     return (
         <>
@@ -104,10 +170,23 @@ const CancelledOrderFeatureCard = ({ price, deadline, role, _id }) => {
                     <h5 className="bg-[#E43812] w-[148px] h-[37px] flex justify-center items-center rounded-[5px] text-[16px] text-white font-semibold font-Inter">
                         Cancelled
                     </h5>
-                    <Button variant="contained" className={classes.cancleButton} onClick={handleCancleOrder}>
-                        {/* {isLoading ? <CircularProgress style={{ color: "#E41272" }} /> : "Cancle This Order"} */}
-                        Order Again
-                    </Button>
+                    <Box sx={{ m: 1, position: "relative" }}>
+                        <Button
+                            variant="contained"
+                            sx={buttonSx}
+                            disabled={isLoading}
+                            onClick={handleCancleOrder}
+                            style={{ cursor: `${success ? "not-allowed" : "pointer"}` }}
+                        >
+                            {success ? "Done" : "Order Again"}
+                        </Button>
+                        {isLoading && (
+                            <Backdrop sx={{ zIndex: theme => theme.zIndex.drawer + 1 }} className={classes.loader} open={true}>
+                                <CircularProgress color="inherit" />
+                            </Backdrop>
+                        )}
+                    </Box>
+
                     <div className="w-full flex justify-between">
                         <div className="flex flex-col items-center">
                             <h6 className="text-[13px] font-extralight font-sans">Delivery in</h6>

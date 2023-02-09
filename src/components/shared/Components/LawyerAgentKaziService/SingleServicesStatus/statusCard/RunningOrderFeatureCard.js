@@ -1,15 +1,21 @@
 import { makeStyles } from "@material-ui/core/styles";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
+import CircularProgress from "@mui/material/CircularProgress";
 import Collapse from "@mui/material/Collapse";
+import { green, red } from "@mui/material/colors";
 import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
 import { styled } from "@mui/material/styles";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { TbCurrencyTaka } from "react-icons/tb";
+import { useDispatch, useSelector } from "react-redux";
+import { useRejectOrderMutation } from "../../../../../../Redux/features/Service/OrderApi";
+import { setIdForCancleOrder } from "../../../../../../Redux/features/Service/orderSlice";
 
 const useStyles = makeStyles({
     root: {
@@ -76,13 +82,22 @@ const ExpandMore = styled(props => {
     }),
 }));
 
-const RunningOrderFeatureCard = ({ price, deadline, role, _id }) => {
+const RunningOrderFeatureCard = ({ price, deadline, role }) => {
+    // Hook variable declaration
     const [expanded, setExpanded] = useState(false);
+    const [success, setSuccess] = useState(false);
+    const dispatch = useDispatch();
+
+    // Redux API
+    const [rejectOrder, { isLoading, isSuccess }] = useRejectOrderMutation();
+
+    // get ID
+    const orderID = useSelector(state => state.persistedReducer?.orderInfo?.runningOrder?.currentOrderIdFOrCancle);
 
     // JS Variable declaration
     const classes = useStyles();
     deadline = deadline.slice(2, deadline.length);
-    const { firstName, lastName, designation, _id: userId } = role || {};
+    const { firstName, lastName, designation } = role || {};
     let name = `${firstName} ${lastName}` || "";
     name = name.length > 13 ? name.slice(0, 13) : name;
 
@@ -93,6 +108,61 @@ const RunningOrderFeatureCard = ({ price, deadline, role, _id }) => {
 
     const handleCancleOrder = () => {
         // write code
+        if (typeof orderID !== "string") {
+            alert("Something went wrong");
+            return;
+        }
+        rejectOrder(orderID);
+    };
+
+    useEffect(() => {
+        if (isSuccess) {
+            setSuccess(true);
+            dispatch(setIdForCancleOrder(null));
+        }
+    }, [isSuccess, dispatch]);
+
+    // clead id from redux state when user back from this page
+    window.addEventListener("popstate", () => {
+        dispatch(setIdForCancleOrder(null));
+    });
+
+    // style
+    const buttonSx = {
+        width: "199px",
+        height: "56px",
+        backgroundColor: "#67868F",
+        border: "1px solid #67868F",
+        borderRadius: "8px",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        color: "#FFFFFF",
+        fontSize: "14px",
+        fontWeight: 600,
+        textTransform: "uppercase",
+        "&:hover": {
+            backgroundColor: "#58737a",
+            borderColor: "#58737a",
+            boxShadow: "none",
+        },
+        ...(success && {
+            bgcolor: red[500],
+            border: "1px solid #f44336",
+            boxShadow: "none",
+            "&:hover": {
+                bgcolor: red[500],
+                boxShadow: "none",
+            },
+        }),
+        ...(isLoading && {
+            border: "none",
+            boxShadow: "none",
+            "&:hover": {
+                bgcolor: red[500],
+                boxShadow: "none",
+            },
+        }),
     };
     return (
         <>
@@ -102,10 +172,33 @@ const RunningOrderFeatureCard = ({ price, deadline, role, _id }) => {
                         <TbCurrencyTaka />
                         {price}
                     </h3>
-                    <Button variant="contained" className={classes.cancleButton} onClick={handleCancleOrder}>
-                        {/* {isLoading ? <CircularProgress style={{ color: "#E41272" }} /> : "Cancle This Order"} */}
-                        Cancle This Order
-                    </Button>
+                    <Box sx={{ m: 1, position: "relative" }}>
+                        <Button
+                            variant="contained"
+                            disabled={isLoading}
+                            sx={buttonSx}
+                            style={{ cursor: `${isSuccess ? "not-allowed" : "pointer"}` }}
+                            onClick={handleCancleOrder}
+                        >
+                            {isSuccess ? "Cancelled" : "Cancle This Order"}
+                        </Button>
+                        {isLoading && (
+                            <CircularProgress
+                                size={24}
+                                sx={{
+                                    color: green[500],
+                                    position: "absolute",
+                                    top: "50%",
+                                    left: "50%",
+                                    marginTop: "-12px",
+                                    marginLeft: "-12px",
+                                }}
+                            />
+                        )}
+                    </Box>
+
+                    {/* {isLoading ? <CircularProgress style={{ color: "#E41272" }} /> : "Cancle This Order"} */}
+
                     <div className="w-full flex justify-between">
                         <div className="flex flex-col items-center">
                             <h6 className="text-[13px] font-extralight font-sans">Delivery in</h6>

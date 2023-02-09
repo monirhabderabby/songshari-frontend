@@ -43,7 +43,7 @@ const UserCanceledServices = () => {
         content = (
             <div className="flex flex-col items-center gap-y-[10px]">
                 {orders?.map(order => {
-                    return <ServiceCard key={order._id} service={order} />;
+                    return <ServiceCard key={order._id} service={order} status="cancelled" />;
                 })}
             </div>
         );
