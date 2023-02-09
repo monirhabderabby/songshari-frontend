@@ -19,12 +19,11 @@ const SingleServiceStatusDetailes = () => {
     const { pathname } = useLocation();
 
     const paths = pathname.split("/");
-    console.log(paths[2]);
 
     const { data, isLoading, error } = useGetServiceByIdQuery(id);
 
     const { service } = data || {};
-    const { _id, title, description, photos, recuirements, extraOffer, price, deadline, role } = service || {};
+    const { title, description, photos, recuirements, extraOffer, price, deadline, role } = service || {};
 
     let content;
     if (isLoading) {
@@ -54,8 +53,8 @@ const SingleServiceStatusDetailes = () => {
                                 <SingleServiceReviewsContainer />
                             </div>
                             {/* Prize review details */}
-                            {paths[2] === "running" && <RunningOrderFeatureCard {...{ price, deadline, role, _id }} />}
-                            {paths[2] === "cancelled" && <CancelledOrderFeatureCard {...{ price, deadline, role, _id }} />}
+                            {paths[2] === "running" && <RunningOrderFeatureCard {...{ price, deadline, role }} />}
+                            {paths[2] === "cancelled" && <CancelledOrderFeatureCard {...{ price, deadline, role }} />}
                         </div>
                     </div>
                 </div>

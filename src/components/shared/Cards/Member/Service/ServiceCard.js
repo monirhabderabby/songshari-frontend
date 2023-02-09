@@ -1,8 +1,10 @@
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@mui/material/Button";
 import { TbCurrencyTaka } from "react-icons/tb";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
 import liveLinkGenerator from "../../../../../assets/utilities/liveLink/liveLinkGenerator";
+import { setIdForCancleOrder } from "../../../../../Redux/features/Service/orderSlice";
 
 const useStyles = makeStyles({
     gradientButton: {
@@ -23,20 +25,26 @@ const useStyles = makeStyles({
 const ServiceCard = ({ service, status }) => {
     const classes = useStyles();
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
-    const { role, service: serviceDetailes } = service || {};
+    const { role, service: serviceDetailes, _id: orderID } = service || {};
     const { firstName, lastName } = role || {};
 
     const name = `${firstName} ${lastName}`;
     let { title, description, price, photos, _id: serviceID } = serviceDetailes || {};
-    console.log(serviceDetailes);
     description = description?.length > 94 ? description.slice(0, 94) + "..." : description;
 
     let redirectPath;
     if (status?.includes("running")) {
         redirectPath = `/serviceStatus/running/${serviceID}`;
+    } else if (status?.includes("cancelled")) {
+        redirectPath = `/serviceStatus/cancelled/${serviceID}`;
     }
 
+    const handleRedirection = () => {
+        navigate(redirectPath);
+        dispatch(setIdForCancleOrder(orderID));
+    };
     return (
         <div className="w-full max-w-[512px] mx-auto bg-[#FDF8E7] max-h-[384px] p-[18px] flex flex-col justify-between rounded-[12px]">
             <img src={liveLinkGenerator(photos[0])} alt="serviceImage" className="h-[188px] w-full rounded-[12px]" />
@@ -50,7 +58,7 @@ const ServiceCard = ({ service, status }) => {
                     <TbCurrencyTaka />
                     {price}
                 </h4>
-                <Button variant="contained" className={classes.gradientButton} onClick={() => navigate(redirectPath)}>
+                <Button variant="contained" className={classes.gradientButton} onClick={handleRedirection}>
                     View
                 </Button>
             </div>
