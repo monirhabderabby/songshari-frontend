@@ -174,7 +174,7 @@ const RunningOrderFeatureCard = ({ price, deadline, role }) => {
                     </h3>
                     <Box sx={{ m: 1, position: "relative" }}>
                         <Button variant="contained" disabled={isLoading} sx={buttonSx} onClick={handleCancleOrder}>
-                            Cancle This Order
+                            {isSuccess ? "Cancelled" : "Cancle This Order"}
                         </Button>
                         {isLoading && (
                             <CircularProgress
