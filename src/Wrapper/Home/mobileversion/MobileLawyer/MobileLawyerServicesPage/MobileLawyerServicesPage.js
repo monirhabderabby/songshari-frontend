@@ -20,7 +20,7 @@ const MobileLawyerServicesPage = () => {
       <div className="px-6">
         <div className="w-full">
           <div className="mt-5">
-            <ServicesContainer />
+            <ServicesContainer {...{ responsive: true }} />
             <div className="my-5 flex justify-center">
               <Link
                 className="px-7 py-2 text-white text-lg md:text-xl font-semibold leading-8 rounded bg-[#E41272]"

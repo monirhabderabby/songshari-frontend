@@ -14,20 +14,25 @@ import { decodeToken } from "react-jwt";
 import getCookie from "../../../../Helper/cookies/getCookie";
 
 export const AccountSettingMov = () => {
-  const [path, setPath] = useState();
+  const [servicePath, setServicePath] = useState();
+  const [activityPath, setActivityPath] = useState();
 
   const token = getCookie("token");
   const authInfo = decodeToken(token);
   const { _id, role } = authInfo || {};
 
+  // "/mobileActivityPage"
   //   Decision about service page route
   useEffect(() => {
     if (role === "lawyer") {
-      setPath("/mobileLawyerServices");
+      setServicePath("/mobileLawyerServices");
+      setActivityPath("/lawyerActivityMov");
     } else if (role === "agent") {
-      setPath("/mobileAgentServices");
+      setServicePath("/mobileAgentServices");
+      setActivityPath("/agentActivityMov");
     } else if (role === "kazi") {
-      setPath("/mobileKaziServices");
+      setServicePath("/mobileKaziServices");
+      setActivityPath("/kaziActivityMov");
     }
   }, [role]);
 
@@ -91,25 +96,48 @@ export const AccountSettingMov = () => {
           </div>
         </div>
       </Link>
-      <Link to="/mobileActivityPage">
-        <div className="grid grid-cols-6 mt-5 mb-10 he">
-          <div className="setting-mov">
-            <img
-              src="https://i.ibb.co/Jnp44YF/Vector.png"
-              className="ml-8 mr-6"
-              alt="Not Available"
-            ></img>
-            <h1 className="mt-[-5px]">Activity</h1>
+      {role === "member" && (
+        <Link to="/mobileActivityPage">
+          <div className="grid grid-cols-6 mt-5 mb-10 he">
+            <div className="setting-mov">
+              <img
+                src="https://i.ibb.co/Jnp44YF/Vector.png"
+                className="ml-8 mr-6"
+                alt="Not Available"
+              ></img>
+              <h1 className="mt-[-5px]">Activity</h1>
+            </div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div>
+              <i className="fa-solid fa-angle-right ml-8"></i>
+            </div>
           </div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div>
-            <i className="fa-solid fa-angle-right ml-8"></i>
+        </Link>
+      )}
+      {role !== "member" && (
+        <Link to={activityPath}>
+          <div className="grid grid-cols-6 mt-5 mb-10 he">
+            <div className="setting-mov">
+              <img
+                src="https://i.ibb.co/Jnp44YF/Vector.png"
+                className="ml-8 mr-6"
+                alt="Not Available"
+              ></img>
+              <h1 className="mt-[-5px] whitespace-nowrap">My Activity</h1>
+            </div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div>
+              <i className="fa-solid fa-angle-right ml-8"></i>
+            </div>
           </div>
-        </div>
-      </Link>
+        </Link>
+      )}
       {role === "member" && (
         <Link to="/servicemov">
           <div className="grid grid-cols-6 mt-5 mb-10 he">
@@ -133,7 +161,7 @@ export const AccountSettingMov = () => {
       )}
 
       {role !== "member" && (
-        <Link to={path}>
+        <Link to={servicePath}>
           <div className="grid grid-cols-6 mt-5 mb-10 he">
             <div className="setting-mov">
               <img

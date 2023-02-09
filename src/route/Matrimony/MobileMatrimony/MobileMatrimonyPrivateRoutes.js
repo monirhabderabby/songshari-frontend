@@ -15,8 +15,10 @@ import MobileAgentAddServiceForm from "../../../Wrapper/Home/mobileversion/Mobil
 import MobileAgentServicesPage from "../../../Wrapper/Home/mobileversion/MobileAgent/MobileAgentServicesPage/MobileAgentServicesPage";
 import MobileKaziAddServiceForm from "../../../Wrapper/Home/mobileversion/MobileKazi/MobileKaziAddServiceForm/MobileKaziAddServiceForm";
 import MobileKaziServicesPage from "../../../Wrapper/Home/mobileversion/MobileKazi/MobileKaziServicesPage/MobileKaziServicesPage";
+import MobileLawyerActivity from "../../../Wrapper/Home/mobileversion/MobileLawyer/MobileLawyerActivity/MobileLawyerActivity";
 import MobileLawyerAddServiceForm from "../../../Wrapper/Home/mobileversion/MobileLawyer/MobileLawyerAddServiceForm/MobileLawyerAddServiceForm";
 import MobileLawyerServicesPage from "../../../Wrapper/Home/mobileversion/MobileLawyer/MobileLawyerServicesPage/MobileLawyerServicesPage";
+import MobileProfSingleServicesContainer from "../../../Wrapper/Home/mobileversion/MobileProfSingleServicesContainer/MobileProfSingleServicesContainer";
 import { GalleryContainerForMobile } from "../../../Wrapper/Home/mobileversion/PhotoGallery/GalleryContainerForMobile";
 import { Setting } from "../../../Wrapper/Home/mobileversion/setting/Setting";
 
@@ -136,6 +138,34 @@ const MobileMatrimonyPrivateRoutes = [
     id: 21,
     path: "/kaziAddServiceFormMov",
     element: <MobileKaziAddServiceForm />,
+  },
+  {
+    id: 22,
+    path: "/lawyerActivityMov",
+    element: <MobileLawyerActivity />,
+  },
+  {
+    id: 23,
+    path: "/agentActivityMov",
+  },
+  {
+    id: 24,
+    path: "/kaziActivityMov",
+  },
+  {
+    id: 25,
+    path: "lawyerSingleServiceDetailsMov/:id",
+    element: <MobileProfSingleServicesContainer />,
+  },
+  {
+    id: 26,
+    path: "agentSingleServiceDetailsMov/:id",
+    element: <MobileProfSingleServicesContainer />,
+  },
+  {
+    id: 27,
+    path: "kaziSingleServiceDetailsMov/:id",
+    element: <MobileProfSingleServicesContainer />,
   },
 ];
 
