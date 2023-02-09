@@ -14,24 +14,30 @@ const ServicesCard = ({ service, responsive }) => {
   // Dynamic path made decision
   let redirectPath;
   if (userRole.includes("kazi")) {
-    redirectPath = `/kaziProfile/kaziSingleServiceDetails/${_id}`;
+    responsive
+      ? (redirectPath = `/kaziSingleServiceDetailsMov/${_id}`)
+      : (redirectPath = `/kaziProfile/kaziSingleServiceDetails/${_id}`);
   }
   if (userRole.includes("lawyer")) {
-    redirectPath = `/lawyerProfile/lawyerSingleServiceDetails/${_id}`;
+    responsive
+      ? (redirectPath = `/lawyerSingleServiceDetailsMov/${_id}`)
+      : (redirectPath = `/lawyerProfile/lawyerSingleServiceDetails/${_id}`);
   }
   if (userRole.includes("agent")) {
-    redirectPath = `/agentProfile/agentSingleServiceDetails/${_id}`;
+    responsive
+      ? (redirectPath = `/agentSingleServiceDetailsMov/${_id}`)
+      : (redirectPath = `/agentProfile/agentSingleServiceDetails/${_id}`);
   }
   //   Dynamic path for responsive
-  if (userRole.includes("kazi") && responsive) {
-    redirectPath = `/kaziSingleServiceDetailsMov/${_id}`;
-  }
-  if (userRole.includes("lawyer") && responsive) {
-    redirectPath = `/lawyerSingleServiceDetailsMov/${_id}`;
-  }
-  if (userRole.includes("agent") && responsive) {
-    redirectPath = `/agentSingleServiceDetailsMov/${_id}`;
-  }
+  //   if (userRole.includes("kazi") && responsive) {
+  //     redirectPath = `/kaziSingleServiceDetailsMov/${_id}`;
+  //   }
+  //   if (userRole.includes("lawyer") && responsive) {
+  //     redirectPath = `/lawyerSingleServiceDetailsMov/${_id}`;
+  //   }
+  //   if (userRole.includes("agent") && responsive) {
+  //     redirectPath = `/agentSingleServiceDetailsMov/${_id}`;
+  //   }
 
   return (
     <div

@@ -11,7 +11,7 @@ const MobileProfSingleServicesContainer = () => {
     <div>
       <MobileBackButton name={"Service Details"} />
       <div className="px-6">
-        <SingleServicesContainer />
+        <SingleServicesContainer {...{ responsive: true }} />
       </div>
 
       <div className="h-20"></div>
