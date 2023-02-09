@@ -13,61 +13,69 @@ import RunningOrderCard from "../../../Cards/LawyerAgentKaziService/RunningOrder
 import { RunningCardSkeletonLoader } from "../../../Cards/Loader/LawyerAgentServiceRelatedLoader/RunningCardSkeletonLoader";
 
 const ActivityRunningOrder = ({ setRunningOrder }) => {
-    // Hook variable declaration
-    const dispatch = useDispatch();
-    const [page, setPage] = useState(1);
-    const { data, isLoading, error, isFetching } = useGetAllOrderByProfessionQuery({
-        status: "accepted",
-        page: page,
-        limit: 6,
+  // Hook variable declaration
+  const dispatch = useDispatch();
+  const [page, setPage] = useState(1);
+  const { data, isLoading, error, isFetching } =
+    useGetAllOrderByProfessionQuery({
+      status: "accepted",
+      page: page,
+      limit: 6,
     });
 
-    // js variables
-    const { orders, total } = data || {};
-    let totalPage = Math.ceil(total / 6);
+  // js variables
+  const { orders, total } = data || {};
+  let totalPage = Math.ceil(total / 6);
 
-    useEffect(() => {
-        dispatch(setTotalRunningOrderData(total));
-    }, [total, dispatch]);
+  useEffect(() => {
+    dispatch(setTotalRunningOrderData(total));
+  }, [total, dispatch]);
 
-    useEffect(() => {
-        if (orders?.length === 0) {
-            setRunningOrder(false);
-        }
-    }, [setRunningOrder, orders]);
-
-    const loaderArr = [1, 2, 3, 4, 5, 6];
-
-    let content;
-    if (isLoading || isFetching) {
-        content = (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-12">
-                {loaderArr.map(item => {
-                    return <RunningCardSkeletonLoader key={item} />;
-                })}
-            </div>
-        );
-    } else if (!isLoading && error) {
-        content = <TBFaceError />;
-    } else if (!isLoading && orders?.length > 0) {
-        content = (
-            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 lg:gap-12">
-                {orders?.map((order, index) => {
-                    return <RunningOrderCard key={order._id} {...{ order, index }} />;
-                })}
-            </div>
-        );
+  useEffect(() => {
+    if (orders?.length === 0) {
+      setRunningOrder(false);
     }
+  }, [setRunningOrder, orders]);
 
-    return (
-        <div className="mb-12 md:mb-16 lg:mb-28">
-            <h1 className="text-3xl font-medium leading-7 mb-10">Running Case</h1>
-            {content}
-            <div className="my-[30px] w-full flex justify-end">
-                <Pagination count={totalPage} variant="outlined" color="secondary" onChange={(event, value) => setPage(value)} />
-            </div>
-        </div>
+  const loaderArr = [1, 2, 3, 4, 5, 6];
+
+  let content;
+  if (isLoading || isFetching) {
+    content = (
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-12">
+        {loaderArr.map((item) => {
+          return <RunningCardSkeletonLoader key={item} />;
+        })}
+      </div>
     );
+  } else if (!isLoading && error) {
+    content = <TBFaceError />;
+  } else if (!isLoading && orders?.length > 0) {
+    content = (
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 lg:gap-12">
+        {orders?.map((order, index) => {
+          return <RunningOrderCard key={order._id} {...{ order, index }} />;
+        })}
+      </div>
+    );
+  }
+
+  return (
+    <div className="mb-12 md:mb-16 lg:mb-28">
+      <h1 className="text-3xl font-medium leading-7 mb-10 hidden lg:block">
+        Running Case
+      </h1>
+      {content}
+      <div className="my-[30px] w-full flex justify-end">
+        <Pagination
+          count={totalPage}
+          variant="outlined"
+          color="secondary"
+          onChange={(event, value) => setPage(value)}
+        />
+      </div>
+    </div>
+  );
 };
 
 export default ActivityRunningOrder;
