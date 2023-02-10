@@ -21,6 +21,7 @@ const SingleServicePrizeReviewCard = ({
   _id,
   isActive,
   responsive,
+  handlePrizeReviewModalCancel,
 }) => {
   const [backDrop, setBackDrop] = useState(false);
   const navigate = useNavigate();
@@ -38,9 +39,10 @@ const SingleServicePrizeReviewCard = ({
       setBackDrop(true);
     }
     if (deleteSuccess) {
+      handlePrizeReviewModalCancel();
       navigate(-1);
     }
-  }, [deleteSuccess, isLoading, navigate]);
+  }, [deleteSuccess, isLoading, navigate, handlePrizeReviewModalCancel]);
 
   const handleStatusChange = () => {
     changeServiceStatus(_id);

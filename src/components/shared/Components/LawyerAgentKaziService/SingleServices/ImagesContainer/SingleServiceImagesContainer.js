@@ -9,7 +9,7 @@ const SingleServiceImagesContainer = ({ photos }) => {
     <div>
       <div>
         <img
-          className="w-[326px] h-[176px] lg:w-[819px] lg:h-[436px] rounded-t"
+          className="w-[326px] h-[176px] md:w-[526px] md:h-[284px] lg:w-[819px] lg:h-[436px] rounded-t"
           src={liveLinkGenerator(selectedPhoto)}
           alt="selected"
         />

@@ -12,7 +12,7 @@ const SingleServiceImageCard = ({
       <img
         onClick={() => setSelectedPhoto(photo)}
         src={liveLinkGenerator(photo)}
-        className={`w-[60px] h-[45px] lg:w-[93px] lg:h-[70px] rounded border-2 border-white duration-300 ${
+        className={`w-[60px] h-[45px] md:w-[93px] md:h-[70px] rounded border-2 border-white duration-300 ${
           photo === selectedPhoto && "border-1 border-green-400"
         }`}
         alt="serviceImage"

@@ -32,18 +32,14 @@ const SingleServicesContainer = ({ responsive }) => {
     isActive,
   } = service || {};
 
-  const [visible, setVisible] = useState(false);
+  const [prizeReviewModalVisible, setPrizeReviewModalVisible] = useState(false);
 
-  const showModal = () => {
-    setVisible(true);
+  const showPrizeReviewModal = () => {
+    setPrizeReviewModalVisible(true);
   };
 
-  const handleOk = () => {
-    setVisible(false);
-  };
-
-  const handleCancel = () => {
-    setVisible(false);
+  const handlePrizeReviewModalCancel = () => {
+    setPrizeReviewModalVisible(false);
   };
 
   let content;
@@ -56,12 +52,12 @@ const SingleServicesContainer = ({ responsive }) => {
       <>
         <div className="lg:max-w-[1000px] xl:max-w-[1200px] mx-auto">
           <div>
-            <h1 className="text-[#32353B] text-xl lg:text-[42px] leading-6 lg:leading-[60px] font-medium lg:font-bold font-Poppins mb-5 lg:mb-16">
+            <h1 className="text-[#32353B] text-xl md:text-2xl lg:text-[42px] leading-6 lg:leading-[60px] font-medium md:font-semibold lg:font-bold font-Poppins mb-5 lg:mb-16">
               {title}
             </h1>
 
             <div className="flex justify-between items-start">
-              <div className="max-w-[327px] lg:max-w-[819px]">
+              <div className="max-w-[327px] md:max-w-[819px]">
                 <SingleServiceImagesContainer {...{ photos }} />
                 <div>
                   <h1 className="text-lg lg:text-2xl leading-8 lg:leading-[48px] font-semibold lg:font-bold font-Poppins mt-4 mb-1 lg:mb-4">
@@ -83,7 +79,7 @@ const SingleServicesContainer = ({ responsive }) => {
                   <div className="lg:hidden">
                     <button
                       className="px-3 py-1 text-white text-lg md:text-xl font-semibold leading-8 rounded bg-[#E41272]"
-                      onClick={showModal}
+                      onClick={showPrizeReviewModal}
                     >
                       More Details
                     </button>
@@ -103,13 +99,19 @@ const SingleServicesContainer = ({ responsive }) => {
               <Modal
                 title={null}
                 closable={false}
-                open={visible}
-                onOk={handleOk}
-                onCancel={handleCancel}
+                open={prizeReviewModalVisible}
+                onCancel={handlePrizeReviewModalCancel}
                 footer={null}
               >
                 <SingleServicePrizeReviewCard
-                  {...{ price, deadline, _id, isActive, responsive }}
+                  {...{
+                    price,
+                    deadline,
+                    _id,
+                    isActive,
+                    responsive,
+                    handlePrizeReviewModalCancel,
+                  }}
                 />
               </Modal>
             </div>
