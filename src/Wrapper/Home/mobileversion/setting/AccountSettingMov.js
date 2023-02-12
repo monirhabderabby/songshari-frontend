@@ -9,9 +9,11 @@ import AccordionDetails from "@mui/material/AccordionDetails";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import Typography from "@mui/material/Typography";
 import { decodeToken } from "react-jwt";
+import { Collapse } from "antd";
 
 // components
 import getCookie from "../../../../Helper/cookies/getCookie";
+const { Panel } = Collapse;
 
 export const AccountSettingMov = () => {
   const [servicePath, setServicePath] = useState();
@@ -35,6 +37,25 @@ export const AccountSettingMov = () => {
       setActivityPath("/kaziActivityMov");
     }
   }, [role]);
+
+  // user services link
+  const customExpandIcon = ({ isActive, onClick }) => (
+    <i
+      onClick={onClick}
+      className={`fa-solid fa-angle-right mr-2 ${isActive && "rotate-90"}`}
+    ></i>
+  );
+
+  const memberServicesHeader = (
+    <div className="setting-mov">
+      <img
+        src="https://i.ibb.co/FnGQ6bg/Vector.png"
+        className="ml-[6px] mr-6"
+        alt="Not Available"
+      ></img>
+      <h1 className="mt-[-5px]">Services</h1>
+    </div>
+  );
 
   return (
     <div className="mt-10 max-w-[1024px] mx-auto">
@@ -138,26 +159,47 @@ export const AccountSettingMov = () => {
           </div>
         </Link>
       )}
+      {/* Member all types of services page */}
       {role === "member" && (
-        <Link to="/servicemov">
-          <div className="grid grid-cols-6 mt-5 mb-10 he">
-            <div className="setting-mov">
-              <img
-                src="https://i.ibb.co/FnGQ6bg/Vector.png"
-                className="ml-8 mr-6"
-                alt="Not Available"
-              ></img>
-              <h1 className="mt-[-5px]">Service</h1>
+        <Collapse expandIconPosition="end" expandIcon={customExpandIcon} ghost>
+          <Panel className="" header={memberServicesHeader}>
+            <div className="pl-24">
+              <div className="text-left font-Inter mb-1 w-full">
+                <Link to={"/allServices"} className="">
+                  All Services
+                </Link>
+              </div>
+              <div className="text-left font-Inter mb-1 w-full">
+                <Link to={"/ongoingServices"} className="">
+                  Ongoing Services
+                </Link>
+              </div>
+              <div className="text-left font-Inter mb-1 w-full">
+                <Link className="">Completed Services</Link>
+              </div>
+              <div className="text-left font-Inter mb-1 w-full">
+                <Link to={"/cancelledServices"} className="">
+                  Cancelled Services
+                </Link>
+              </div>
+              <div className="text-left font-Inter mb-1 w-full">
+                <Link to={"/agentServices"} className="">
+                  Agent Services
+                </Link>
+              </div>
+              <div className="text-left font-Inter mb-1 w-full">
+                <Link to={"/kaziServices"} className="">
+                  Kazi Services
+                </Link>
+              </div>
+              <div className="text-left font-Inter mb-1 w-full">
+                <Link to={"/lawyerServices"} className="">
+                  Lawyer Services
+                </Link>
+              </div>
             </div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div>
-              <i className="fa-solid fa-angle-right ml-8"></i>
-            </div>
-          </div>
-        </Link>
+          </Panel>
+        </Collapse>
       )}
 
       {role !== "member" && (
