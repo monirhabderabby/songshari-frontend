@@ -10,11 +10,13 @@ import { decodeToken } from "react-jwt";
 import { Oval } from "react-loader-spinner";
 import getCookie from "../../../../../../Helper/cookies/getCookie";
 import { useChangeServiceStatusMutation, useServiceDeleteMutation } from "../../../../../../Redux/features/Service/ServiceApi";
+import { SuccessSnackBar } from "../../../../../ui/error/snackBar/SuccessSnackBar";
 import { BackDropLoader } from "../../../../Cards/Loader/backDrop/BackDropLoader";
 import { DeleteConfirmationModal } from "./DeleteConfirmationModal";
 
 const SingleServicePrizeReviewCard = ({ price, deadline, _id, isActive }) => {
     const [isDeleteOpen, setIsDeleteOpen] = useState(false);
+    const [serviceDeleted, setServiceDeleted] = useState(false);
     const [backDrop, setBackDrop] = useState(false);
     const navigate = useNavigate();
     const [serviceDelete, { isSuccess: deleteSuccess, isLoading }] = useServiceDeleteMutation();
@@ -29,7 +31,12 @@ const SingleServicePrizeReviewCard = ({ price, deadline, _id, isActive }) => {
             setBackDrop(true);
         }
         if (deleteSuccess) {
-            navigate(-1);
+            setIsDeleteOpen(false);
+            setBackDrop(false);
+            setServiceDeleted(true);
+            setTimeout(() => {
+                navigate(-1);
+            }, 3000);
         }
     }, [deleteSuccess, isLoading, navigate]);
 
@@ -141,6 +148,13 @@ const SingleServicePrizeReviewCard = ({ price, deadline, _id, isActive }) => {
             </div>
             {backDrop && <BackDropLoader {...{ backDrop, setBackDrop }} />}
             {isDeleteOpen && <DeleteConfirmationModal {...{ modalControll, handleDelete }} />}
+            {serviceDeleted && (
+                <SuccessSnackBar
+                    successSnackBarOpen={serviceDeleted}
+                    setSuccessSnackBarOpen={setServiceDeleted}
+                    message="Service Deleted Successfully!"
+                />
+            )}
         </div>
     );
 };
