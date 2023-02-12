@@ -11,8 +11,10 @@ import { Oval } from "react-loader-spinner";
 import getCookie from "../../../../../../Helper/cookies/getCookie";
 import { useChangeServiceStatusMutation, useServiceDeleteMutation } from "../../../../../../Redux/features/Service/ServiceApi";
 import { BackDropLoader } from "../../../../Cards/Loader/backDrop/BackDropLoader";
+import { DeleteConfirmationModal } from "./DeleteConfirmationModal";
 
 const SingleServicePrizeReviewCard = ({ price, deadline, _id, isActive }) => {
+    const [isDeleteOpen, setIsDeleteOpen] = useState(false);
     const [backDrop, setBackDrop] = useState(false);
     const navigate = useNavigate();
     const [serviceDelete, { isSuccess: deleteSuccess, isLoading }] = useServiceDeleteMutation();
@@ -47,6 +49,10 @@ const SingleServicePrizeReviewCard = ({ price, deadline, _id, isActive }) => {
     } else if (role.includes("kazi")) {
         redirectPath = `/kaziProfile/serviceEdit/${_id}`;
     }
+
+    const modalControll = () => {
+        setIsDeleteOpen(!isDeleteOpen);
+    };
 
     return (
         <div className="w-[351px] rounded-xl bg-[linear-gradient(180deg,#DE298C_0%,#A52DC7_100%)] shadow-[2px_2px_8px_rgba(0,0,0,0.12)] py-8 px-4 text-white">
@@ -128,12 +134,13 @@ const SingleServicePrizeReviewCard = ({ price, deadline, _id, isActive }) => {
                 </button>
                 <button
                     className="font-bold w-[92px] py-[6px] text-black bg-white rounded-xl shadow-[2px_2px_8px_rgba(0,0,0,0.1)]"
-                    onClick={handleDelete}
+                    onClick={() => setIsDeleteOpen(!isDeleteOpen)}
                 >
                     Delete
                 </button>
             </div>
             {backDrop && <BackDropLoader {...{ backDrop, setBackDrop }} />}
+            {isDeleteOpen && <DeleteConfirmationModal {...{ modalControll, handleDelete }} />}
         </div>
     );
 };

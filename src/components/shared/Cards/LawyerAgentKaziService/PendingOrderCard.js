@@ -18,7 +18,7 @@ const PendingOrderCard = ({ order }) => {
     let { price, title } = service || {};
     const { firstName, lastName } = user || {};
     let name = `${firstName} ${lastName}`;
-    title = title.length > 50 ? title.slice(0, 50) : title;
+    title = title?.length > 50 ? title.slice(0, 50) : title;
 
     // function declarations
     const handleAccpetOrder = () => {
