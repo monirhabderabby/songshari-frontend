@@ -1,7 +1,5 @@
 // Configuration
-import { Modal } from "antd";
 import React from "react";
-import { useState } from "react";
 import { useLocation, useParams } from "react-router";
 import { useGetServiceByIdQuery } from "../../../../../Redux/features/Service/ServiceApi";
 import { TBFaceError } from "../../../../ui/error/TBFaceError";
@@ -14,29 +12,19 @@ import SingleServiceImagesContainer from "../SingleServices/ImagesContainer/Sing
 import { MoreOfferCard } from "../SingleServices/moreOffer/MoreOfferCard";
 import { SingleServiceReviewsContainer } from "../SingleServices/SingleServiceReviewsContainer/SingleServiceReviewsContainer";
 import CancelledOrderFeatureCard from "./statusCard/CancelledOrderFeatureCard";
-import CompletedOrderFeatureCard from "./statusCard/CompletedOrderFeatureCard";
 import RunningOrderFeatureCard from "./statusCard/RunningOrderFeatureCard";
 
 const SingleServiceStatusDetailes = () => {
-  const { id } = useParams();
-  const { pathname } = useLocation();
+    const { id } = useParams();
+    const { pathname } = useLocation();
 
-  const paths = pathname.split("/");
+    const paths = pathname.split("/");
 
-  const { data, isLoading, error } = useGetServiceByIdQuery(id);
+    const { data, isLoading, error } = useGetServiceByIdQuery(id);
 
-  const { service } = data || {};
-  const {
-    title,
-    description,
-    photos,
-    recuirements,
-    extraOffer,
-    price,
-    deadline,
-    role,
-    _id,
-  } = service || {};
+    const { service } = data || {};
+    const { title, description, photos, recuirements, extraOffer, price, deadline, role } = service || {};
+
     let content;
     if (isLoading) {
         content = <LineWaveLoader />;
@@ -66,52 +54,15 @@ const SingleServiceStatusDetailes = () => {
                             </div>
                             {/* Prize review details */}
                             {paths[2] === "running" && <RunningOrderFeatureCard {...{ price, deadline, role }} />}
-                            {paths[2] === "cancelled" && <CancelledOrderFeatureCard {...{ price, deadline, role, serviceID: _id }} />}
-                            {paths[2] === "completed" && <CompletedOrderFeatureCard />}
+                            {paths[2] === "cancelled" && <CancelledOrderFeatureCard {...{ price, deadline, role }} />}
                         </div>
                     </div>
                 </div>
-                {/* Reviews */}
-                <SingleServiceReviewsContainer />
-              </div>
-              {/* Prize review details */}
-              <div className="hidden lg:block">
-                {paths[2] === "running" && (
-                  <RunningOrderFeatureCard {...{ price, deadline, role }} />
-                )}
-                {paths[2] === "cancelled" && (
-                  <CancelledOrderFeatureCard
-                    {...{ price, deadline, role, serviceID: _id }}
-                  />
-                )}
-              </div>
+            </>
+        );
+    }
 
-              {/* Modal for responsive device */}
-              <Modal
-                title={null}
-                closable={false}
-                open={serviceStatusModalVisible}
-                onCancel={handleServiceStatusModalCancel}
-                footer={null}
-                width={370}
-              >
-                {paths[2] === "running" && (
-                  <RunningOrderFeatureCard {...{ price, deadline, role }} />
-                )}
-                {paths[2] === "cancelled" && (
-                  <CancelledOrderFeatureCard
-                    {...{ price, deadline, role, serviceID: _id }}
-                  />
-                )}
-              </Modal>
-            </div>
-          </div>
-        </div>
-      </>
-    );
-  }
-
-  return content;
+    return content;
 };
 
 export default SingleServiceStatusDetailes;
