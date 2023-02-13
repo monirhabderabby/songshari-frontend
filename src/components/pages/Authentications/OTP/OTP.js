@@ -26,7 +26,7 @@ export const OTP = () => {
 
     useEffect(() => {
         if (data?.message === "Email verified") {
-            navigate("/userProfile");
+            setTimeout(navigate("/userProfile"),200)
         }
     }, [navigate, data?.message]);
 
@@ -108,6 +108,7 @@ export const OTP = () => {
                                     >
                                         {isLoading ? "Verifying..." : "Verify Account"}
                                     </button>
+                                    {data && <p className="w-full text-center text-2xl font-semibold text-[#5cb85c]">{data?.message}</p>}
                                 </div>
                                 <div className="flex flex-row items-center justify-center text-center text-sm font-medium space-x-1 text-gray-500">
                                     <p>Didn't recieve code?</p>{" "}
