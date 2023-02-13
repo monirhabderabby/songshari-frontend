@@ -16,7 +16,7 @@ const FindPartners = () => {
       </div>
 
       <div className="hidden md:block">
-        <section className="py-10">
+        <section className="pt-10">
           <div className="max-w-[1200px] mx-auto ">
             <div className="grid grid-cols-1 lg:grid-cols-4  gap-4 justify-center ">
               <div>
@@ -38,7 +38,7 @@ const FindPartners = () => {
       <div className="md:hidden">
         <section className="py-10">
           <div className="max-w-[1300px] mx-auto ">
-          <div className="grid grid-cols-1 lg:grid-cols-4  gap-4 justify-center ">
+            <div className="grid grid-cols-1 lg:grid-cols-4  gap-4 justify-center ">
               <div>
                 <PartnerFilterBox />
               </div>
