@@ -58,7 +58,9 @@ export const FindRecentKazi = () => {
         <>
             <div className="mt-[30px] w-full mx-auto">{content}</div>
             <div className="my-[30px] w-full flex justify-center">
-                <Pagination count={Math.ceil(totalData)} variant="outlined" color="secondary" onChange={(e, val) => setPage(val)} />
+                {totalData > 8 && (
+                    <Pagination count={Math.ceil(totalData)} variant="outlined" color="secondary" onChange={(e, val) => setPage(val)} />
+                )}
             </div>
         </>
     );

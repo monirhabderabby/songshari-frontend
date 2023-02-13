@@ -51,9 +51,11 @@ export const FindRecentAgent = () => {
     return (
         <>
             <div className="mt-[30px] w-full mx-auto">{content}</div>
-            <div className="my-[30px] w-full flex justify-center">
-                <Pagination count={Math.ceil(totalData)} variant="outlined" color="secondary" onChange={(e, val) => setPage(val)} />
-            </div>
+            {totalData > 8 && (
+                <div className="my-[30px] w-full flex justify-center">
+                    <Pagination count={Math.ceil(totalData)} variant="outlined" color="secondary" onChange={(e, val) => setPage(val)} />
+                </div>
+            )}
         </>
     );
 };
