@@ -16,7 +16,7 @@ export const AllPartnersCards = ({ data, isLoading, error, setPage }) => {
   let content;
   if (isLoading) {
     content = (
-      <div className="mt-[18px] grid grid-cols-2 gap-y-[20px] w-full">
+      <div className="mt-[18px] grid grid-cols-2 md:grid-cols-3 gap-y-[20px] w-full">
         <MobilePartnerLoader />
         <MobilePartnerLoader />
         <MobilePartnerLoader />
@@ -43,7 +43,7 @@ export const AllPartnersCards = ({ data, isLoading, error, setPage }) => {
     );
   } else if (!isLoading && data?.data?.members?.length > 0) {
     content = (
-      <div className="mt-[18px] grid grid-cols-2 gap-y-[20px] w-full">
+      <div className="mt-[18px] grid grid-cols-2 md:grid-cols-3 gap-y-[20px] w-full">
         {data.data.members?.map((user) => {
           return <MobilePartnerCard {...{ user }} />;
         })}
