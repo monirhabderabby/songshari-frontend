@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 
-export const MessegeLeft = ({message}) => {
+export const MessegeLeft = ({profile,message}) => {
     const scrollRef=useRef();
     useEffect(()=>{
         scrollRef.current.scrollIntoView({behaviour:"smooth"});
@@ -9,7 +9,8 @@ export const MessegeLeft = ({message}) => {
         <div ref={scrollRef} className={`flex w-full justify-start gap-x-[20px] my-[51px]`}>
             <img
                 className="h-[58px] w-[58px] rounded-full"
-                src="https://i.postimg.cc/j2nh3WBh/310814492-3383940818533755-1197676094327108122-n.jpg"
+                src={profile?.profilePhoto}
+                // src="https://i.postimg.cc/j2nh3WBh/310814492-3383940818533755-1197676094327108122-n.jpg"
                 alt="profile"
             />
             <div>

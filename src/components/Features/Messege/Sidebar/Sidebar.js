@@ -3,12 +3,12 @@ import { useGetAllConnectedConnectionsQuery } from "../../../../Redux/features/c
 import { ConversationHeader } from "./ConversationHeader";
 import { Conversations } from "./Conversations";
 
-export const Sidebar = ({handleChat}) => {
+export const Sidebar = ({profile,handleChat}) => {
     let { data } = useGetAllConnectedConnectionsQuery();
     // console.log(data?.data);
     return (
         <div className="mx-[11px]">
-            <ConversationHeader />
+            <ConversationHeader profile={profile} />
             <Conversations handleChat={handleChat} user={data?.data?.user} />
         </div>
     );

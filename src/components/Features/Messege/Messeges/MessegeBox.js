@@ -9,11 +9,14 @@ import emoji from "../../../../assets/images/messges/Emoji.svg";
 import gallary from "../../../../assets/images/messges/Gallery.svg";
 import photo from "../../../../assets/images/messges/Photo.svg";
 import { useCreateMessageMutation } from "../../../../Redux/chat/chatApi";
+import { useGetProfileDetailsQuery } from "../../../../Redux/features/userInfo/userApi";
 import { MessegeList } from "./MessegeList";
 import { MessegesHeader } from "./MessegesHeader";
 export const MessegeBox = ({ msg, setMsg, message, setMessage, socket }) => {
     const [createMessage] = useCreateMessageMutation();
     const [arivalMsg, setArivalMsg] = useState(null);
+    const { data, isLoading, error } = useGetProfileDetailsQuery(message.to);
+    // console.log(data)
     const handleMessage = async e => {
         if (e.code === "Enter" || e.type === "click") {
             createMessage(message);
@@ -48,10 +51,10 @@ export const MessegeBox = ({ msg, setMsg, message, setMessage, socket }) => {
     return (
         <div className="h-full rounded-[20px] shadow-[0px_3px_4px_rgba(62,73,84,0.04)] relative flex flex-col">
             <div>
-                <MessegesHeader />
+                <MessegesHeader profile={data} />
             </div>
             <div className="flex-1">
-                <MessegeList messages={msg} />
+                <MessegeList profile={data} messages={msg} />
             </div>
             <div className="h-[92px] w-full bg-white rounded-br-[20px] rounded-bl-[20px] pr-[15px]">
                 <div className="flex items-center h-full gap-x-[24px]">

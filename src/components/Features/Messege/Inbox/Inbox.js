@@ -9,7 +9,9 @@ export const Inbox = () => {
     const socket = useRef();
     const res = useSelector(state => state.persistedReducer.userInfo.userInfo);
     // console.log(res)
-    let from = res?.data ? res.data.user._id : res?.user._id;
+    let profile = res?.data ? res.data.user : res?.user;
+    // console.log(profile)
+    let from=profile?._id;
 
     const [getAllMessage, data] = useGetAllMessageMutation();
     // console.log(data)
@@ -25,7 +27,7 @@ export const Inbox = () => {
             socket.current.emit("addUser", message.to);
         }
     }, [message.to]);
-    console.log(data?.data?.message)
+    // console.log(data?.data?.message)
     const [msg, setMsg] = useState(null);
     
 
@@ -55,7 +57,7 @@ export const Inbox = () => {
             <CustomHeader title="Chat" />
             <div className="lg:w-full xl:max-w-[1200px] h-[calc(100vh-30vh)] mx-auto flex mt-[66px]">
                 <div className="lg:w-[437px] xl:w-[557px] h-full">
-                    <Sidebar handleChat={handleChat} />
+                    <Sidebar profile={profile} handleChat={handleChat} />
                 </div>
                 <div className="flex-1 h-full">
                     <MessegeBox msg={msg} setMsg={setMsg} message={message} setMessage={setMessage} socket={socket} />
