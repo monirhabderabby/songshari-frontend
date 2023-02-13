@@ -47,7 +47,7 @@ const ServiceCard = ({ service, status }) => {
     };
     return (
         <div className="w-full max-w-[512px] mx-auto bg-[#FDF8E7] max-h-[384px] p-[18px] flex flex-col justify-between rounded-[12px]">
-            <img src={liveLinkGenerator(photos[0])} alt="serviceImage" className="h-[188px] w-full rounded-[12px]" />
+            <img src={liveLinkGenerator(photos?.length > 0 && photos[0])} alt="serviceImage" className="h-[188px] w-full rounded-[12px]" />
             <div className="content w-full flex flex-col gap-y-[16px]">
                 <h3 className="text-[#000000] font-SourceCodePro text-[18px] font-medium leading-[23px]">{title}</h3>
                 <p className="text-[#666666] font-SourceCodePro font-normal text-[14px] leading-[18px]">{description}</p>
