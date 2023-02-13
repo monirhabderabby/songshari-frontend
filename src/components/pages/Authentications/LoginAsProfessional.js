@@ -5,7 +5,6 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 // Third party packages
 import { useForm } from "react-hook-form";
 import { Toaster } from "react-hot-toast";
-import { BsPersonLinesFill } from "react-icons/bs";
 import { FaGoogle, FaRegEnvelope } from "react-icons/fa";
 import { MdLockOutline } from "react-icons/md";
 import { useDispatch } from "react-redux";
@@ -26,7 +25,7 @@ const LoginAsProfessional = () => {
     // hook variable declaration
     const [open, setOpen] = useState(false);
     const [customError, setCustomError] = useState("");
-    const [designationForGoogleLogin, setDesignationForGoogleLogin] = useState("");
+    const [designationForGoogleLogin] = useState("");
     const {
         register,
         formState: { errors },
@@ -188,36 +187,6 @@ const LoginAsProfessional = () => {
                                             )}
                                             {errors.password?.type === "minLength" && (
                                                 <span className="w-full text-left text-red-400 text-sm">{errors?.password.message}</span>
-                                            )}
-                                        </h1>
-                                    </section>
-                                    <section>
-                                        <div className="flex items-center bg-gray-100 p-2 w-full rounded-xl mt-3">
-                                            <BsPersonLinesFill className=" m-2 text-gray-400" />
-                                            <select
-                                                {...register("designation", {
-                                                    required: {
-                                                        value: true,
-                                                        message: "Designation is Required",
-                                                    },
-                                                })}
-                                                type="text"
-                                                className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
-                                                id="designation"
-                                                onChange={e => {
-                                                    setCustomError("");
-                                                    setDesignationForGoogleLogin(e.target.value);
-                                                }}
-                                            >
-                                                <option value="">Select Designation</option>
-                                                <option value="kazi">Kazi</option>
-                                                <option value="agent">Agent</option>
-                                                <option value="lawyer">Lawyer</option>
-                                            </select>
-                                        </div>
-                                        <h1 className="text-left ml-2">
-                                            {errors.designation?.type === "required" && (
-                                                <span className="w-full text-left text-red-400 text-sm">{errors?.designation.message}</span>
                                             )}
                                         </h1>
                                     </section>
