@@ -3,7 +3,6 @@ import MobileActivity from "../../../components/pages/MobileActivity/MobileActiv
 import MobileSingleProfilesUser from "../../../components/SingleProfilesUser/MobileSingleProfilesUser/MobileSingleProfilesUser";
 import { PersonalDetailsMobile } from "../../../components/SingleProfilesUser/MobileSingleProfilesUser/PersonalDetailsMobile";
 import { NotificationForMobile } from "../../../components/SingleProfilesUser/Notification/NotificationForMobile";
-import ProfileServices from "../../../components/SingleProfilesUser/ServicesSection/ProfileServices";
 import { AllPosts } from "../../../Wrapper/Home/mobileversion/allposts/AllPosts";
 import { CertificateMov } from "../../../Wrapper/Home/mobileversion/CertificateForMobile/CertificateMov";
 import EducationalCertificateMobile from "../../../Wrapper/Home/mobileversion/CertificateMobile/EducationalCertificateMobile/EducationalCertificateMobile";
@@ -11,14 +10,25 @@ import PersonalCertificateMobile from "../../../Wrapper/Home/mobileversion/Certi
 import ProfessionalCertificateMobile from "../../../Wrapper/Home/mobileversion/CertificateMobile/ProfessionalCertificateMobile/ProfessionalCertificateMobile";
 import { Like } from "../../../Wrapper/Home/mobileversion/Like";
 import { MatchesMov } from "../../../Wrapper/Home/mobileversion/MatchesMov";
+import MobileAgentActivity from "../../../Wrapper/Home/mobileversion/MobileAgent/MobileAgentActivity/MobileAgentActivity";
 import MobileAgentAddServiceForm from "../../../Wrapper/Home/mobileversion/MobileAgent/MobileAgentAddServiceForm/MobileAgentAddServiceForm";
 import MobileAgentServicesPage from "../../../Wrapper/Home/mobileversion/MobileAgent/MobileAgentServicesPage/MobileAgentServicesPage";
+import MobileDynamicSingleServiceContainer from "../../../Wrapper/Home/mobileversion/MobileDynamicSingleServiceContainer/MobileDynamicSingleServiceContainer";
+import MobileDynamicSingleServiceStatusContainer from "../../../Wrapper/Home/mobileversion/MobileDynamicSingleServiceStatusContainer/MobileDynamicSingleServiceStatusContainer";
+import MobileKaziActivity from "../../../Wrapper/Home/mobileversion/MobileKazi/MobileKaziActivity/MobileKaziActivity";
 import MobileKaziAddServiceForm from "../../../Wrapper/Home/mobileversion/MobileKazi/MobileKaziAddServiceForm/MobileKaziAddServiceForm";
 import MobileKaziServicesPage from "../../../Wrapper/Home/mobileversion/MobileKazi/MobileKaziServicesPage/MobileKaziServicesPage";
 import MobileLawyerActivity from "../../../Wrapper/Home/mobileversion/MobileLawyer/MobileLawyerActivity/MobileLawyerActivity";
 import MobileLawyerAddServiceForm from "../../../Wrapper/Home/mobileversion/MobileLawyer/MobileLawyerAddServiceForm/MobileLawyerAddServiceForm";
 import MobileLawyerServicesPage from "../../../Wrapper/Home/mobileversion/MobileLawyer/MobileLawyerServicesPage/MobileLawyerServicesPage";
+import MobileProfServiceEdit from "../../../Wrapper/Home/mobileversion/MobileProfServiceEdit/MobileProfServiceEdit";
 import MobileProfSingleServicesContainer from "../../../Wrapper/Home/mobileversion/MobileProfSingleServicesContainer/MobileProfSingleServicesContainer";
+import MobileUserAgentServices from "../../../Wrapper/Home/mobileversion/MobileUserServicesPage/MobileUserAgentServices";
+import MobileUserAllServices from "../../../Wrapper/Home/mobileversion/MobileUserServicesPage/MobileUserAllServices";
+import MobileUserCancelledServices from "../../../Wrapper/Home/mobileversion/MobileUserServicesPage/MobileUserCancelledServices";
+import MobileUserKaziServices from "../../../Wrapper/Home/mobileversion/MobileUserServicesPage/MobileUserKaziServices";
+import MobileUserLawyerServices from "../../../Wrapper/Home/mobileversion/MobileUserServicesPage/MobileUserLawyerServices";
+import MobileUserOngoingServices from "../../../Wrapper/Home/mobileversion/MobileUserServicesPage/MobileUserOngoingServices";
 import { GalleryContainerForMobile } from "../../../Wrapper/Home/mobileversion/PhotoGallery/GalleryContainerForMobile";
 import { Setting } from "../../../Wrapper/Home/mobileversion/setting/Setting";
 
@@ -75,12 +85,6 @@ const MobileMatrimonyPrivateRoutes = [
     id: 9,
     path: "/notifications",
     element: <NotificationForMobile />,
-  },
-
-  {
-    id: 10,
-    path: "/servicemov",
-    element: <ProfileServices />,
   },
   {
     id: 11,
@@ -147,10 +151,12 @@ const MobileMatrimonyPrivateRoutes = [
   {
     id: 23,
     path: "/agentActivityMov",
+    element: <MobileAgentActivity />,
   },
   {
     id: 24,
     path: "/kaziActivityMov",
+    element: <MobileKaziActivity />,
   },
   {
     id: 25,
@@ -166,6 +172,56 @@ const MobileMatrimonyPrivateRoutes = [
     id: 27,
     path: "kaziSingleServiceDetailsMov/:id",
     element: <MobileProfSingleServicesContainer />,
+  },
+  {
+    id: 28,
+    path: "serviceEditMov/:id",
+    element: <MobileProfServiceEdit />,
+  },
+  {
+    id: 29,
+    path: "/allServices",
+    element: <MobileUserAllServices />,
+  },
+  {
+    id: 30,
+    path: "/ongoingServices",
+    element: <MobileUserOngoingServices />,
+  },
+  {
+    id: 31,
+    path: "/cancelledServices",
+    element: <MobileUserCancelledServices />,
+  },
+  {
+    id: 32,
+    path: "/agentServices",
+    element: <MobileUserAgentServices />,
+  },
+  {
+    id: 33,
+    path: "/kaziServices",
+    element: <MobileUserKaziServices />,
+  },
+  {
+    id: 34,
+    path: "/lawyerServices",
+    element: <MobileUserLawyerServices />,
+  },
+  {
+    id: 35,
+    path: "/serviceMov/:id",
+    element: <MobileDynamicSingleServiceContainer />,
+  },
+  {
+    id: 36,
+    path: "/serviceStatusMov/running/:id",
+    element: <MobileDynamicSingleServiceStatusContainer />,
+  },
+  {
+    id: 37,
+    path: "/serviceStatusMov/cancelled/:id",
+    element: <MobileDynamicSingleServiceStatusContainer />,
   },
 ];
 

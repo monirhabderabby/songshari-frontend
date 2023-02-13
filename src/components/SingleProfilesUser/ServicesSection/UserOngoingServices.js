@@ -10,7 +10,7 @@ import { useGetAllOrderByMemberQuery } from "../../../Redux/features/Service/Ord
 import ServiceCardSkeleton from "../../shared/Cards/Loader/Member/ServiceCardSkeleton";
 import { TBFaceError } from "../../ui/error/TBFaceError";
 
-const UserOngoingServices = () => {
+const UserOngoingServices = ({ responsive }) => {
     const [page, setPage] = useState(1);
 
     const { data, isLoading, error, isSuccess } = useGetAllOrderByMemberQuery({
@@ -37,13 +37,13 @@ const UserOngoingServices = () => {
         );
     } else if (!isLoading && error) {
         content = <TBFaceError />;
-    } else if (!isLoading && orders?.length === 0) {
+    } else if (!isLoading && orders.length === 0) {
         content = <div className="h-[150px] w-full flex justify-center items-center text-gray-400">You havn't onGoing service</div>;
-    } else if (!isLoading && orders?.length > 0) {
+    } else if (!isLoading && orders.length > 0) {
         content = (
             <div className="flex flex-col items-center gap-y-[10px]">
                 {orders?.map(order => {
-                    return <ServiceCard key={order._id} service={order} status="running" />;
+                    return <ServiceCard key={order._id} service={order} status="running" {...{ responsive }} />;
                 })}
             </div>
         );

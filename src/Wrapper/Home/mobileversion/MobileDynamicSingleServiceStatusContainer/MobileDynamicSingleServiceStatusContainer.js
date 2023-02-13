@@ -1,23 +1,19 @@
-// Configuration
 import React from "react";
-
-// Components
-import SingleServicesContainer from "../../../../components/shared/Components/LawyerAgentKaziService/SingleServices/SingleServicesContainer";
+import SingleServiceStatusDetailes from "../../../../components/shared/Components/LawyerAgentKaziService/SingleServicesStatus/SingleServiceStatusDetailes";
 import { MobileBackButton } from "../../../../components/shared/Components/MobileBackButton";
 import { BottomNav } from "../BottomNav";
 
-const MobileProfSingleServicesContainer = () => {
+const MobileDynamicSingleServiceStatusContainer = () => {
   return (
     <div>
       <MobileBackButton name={"Service Details"} />
       <div className="px-6">
-        <SingleServicesContainer {...{ responsive: true }} />
+        <SingleServiceStatusDetailes />
       </div>
-
       <div className="h-20"></div>
       <BottomNav />
     </div>
   );
 };
 
-export default MobileProfSingleServicesContainer;
+export default MobileDynamicSingleServiceStatusContainer;

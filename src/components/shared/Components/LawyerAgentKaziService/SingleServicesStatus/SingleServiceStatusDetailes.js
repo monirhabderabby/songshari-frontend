@@ -12,7 +12,6 @@ import SingleServiceImagesContainer from "../SingleServices/ImagesContainer/Sing
 import { MoreOfferCard } from "../SingleServices/moreOffer/MoreOfferCard";
 import { SingleServiceReviewsContainer } from "../SingleServices/SingleServiceReviewsContainer/SingleServiceReviewsContainer";
 import CancelledOrderFeatureCard from "./statusCard/CancelledOrderFeatureCard";
-import CompletedOrderFeatureCard from "./statusCard/CompletedOrderFeatureCard";
 import RunningOrderFeatureCard from "./statusCard/RunningOrderFeatureCard";
 
 const SingleServiceStatusDetailes = () => {
@@ -24,7 +23,7 @@ const SingleServiceStatusDetailes = () => {
     const { data, isLoading, error } = useGetServiceByIdQuery(id);
 
     const { service } = data || {};
-    const { title, description, photos, recuirements, extraOffer, price, deadline, role, _id } = service || {};
+    const { title, description, photos, recuirements, extraOffer, price, deadline, role } = service || {};
 
     let content;
     if (isLoading) {
@@ -55,8 +54,7 @@ const SingleServiceStatusDetailes = () => {
                             </div>
                             {/* Prize review details */}
                             {paths[2] === "running" && <RunningOrderFeatureCard {...{ price, deadline, role }} />}
-                            {paths[2] === "cancelled" && <CancelledOrderFeatureCard {...{ price, deadline, role, serviceID: _id }} />}
-                            {paths[2] === "completed" && <CompletedOrderFeatureCard />}
+                            {paths[2] === "cancelled" && <CancelledOrderFeatureCard {...{ price, deadline, role }} />}
                         </div>
                     </div>
                 </div>
