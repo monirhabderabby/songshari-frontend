@@ -1,5 +1,5 @@
 // Configuration
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 // Third party packages
 import { DatePicker } from "antd";
@@ -11,11 +11,17 @@ import { MdLabelImportant } from "react-icons/md";
 import logo from "../../../../assets/images/Logo/logoBlack.png";
 
 // CSS
+import { useNavigate } from "react-router";
 import "../../../../App.css";
+import { useSetPersonalDetailsMutation } from "../../../../Redux/features/userInfo/userApi";
 
 export const GoogleSignUpInfo = () => {
     const [dateOfBirth, setDateOfBirth] = useState();
     const [dateOfBirthRequired, setDateOfBirthRequired] = useState(true);
+    const navigate = useNavigate();
+
+    // Redux API
+    const [setPersonalDetails, { isSuccess, isLoading }] = useSetPersonalDetailsMutation();
     const {
         register,
         formState: { errors },
@@ -32,11 +38,17 @@ export const GoogleSignUpInfo = () => {
         const photo = e.target.files[0];
         console.log(photo);
     };
-
     const onSubmit = async data => {
         data.dateOfBirth = dateOfBirth;
-        console.log(data);
+        data.profilePhoto = "";
+        setPersonalDetails(data);
     };
+
+    useEffect(() => {
+        if (isSuccess) {
+            navigate("/");
+        }
+    }, [isSuccess, navigate]);
     return (
         <section className="flex justify-center items-center w-full px-3 flex-1 text-center md:px-20 bg-gray-100 min-h-screen">
             <div className="bg-white rounded-2xl shadow-2xl w-[100%] md:w-3/4 lg:w-2/3 max-w-4xl p-5">
@@ -158,7 +170,7 @@ export const GoogleSignUpInfo = () => {
                                 <input
                                     {...register("profilePhoto", {
                                         required: {
-                                            value: true,
+                                            value: false,
                                             message: "Profile Photo is Required",
                                         },
                                     })}
@@ -179,7 +191,7 @@ export const GoogleSignUpInfo = () => {
                     <div className="flex items-center w-full justify-end gap-x-[20px] mt-[20px]">
                         <input
                             type="submit"
-                            value="Continue"
+                            value={isLoading ? "wait..." : "Continue"}
                             className="cursor-pointer mt-3 bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)]  rounded-[4px] px-8 py-2 text-white duration-500 transition-all"
                         />
                     </div>
