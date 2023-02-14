@@ -148,6 +148,7 @@ export const GoogleSignUpInfo = () => {
                                     id="isParentsAlive"
                                 >
                                     <option value="">You are?</option>
+                                    <option value="member">Member</option>
                                     <option value="lawyer">Lawyer</option>
                                     <option value="agent">Agent</option>
                                     <option value="kazi">Kazi</option>
