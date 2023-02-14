@@ -10,8 +10,6 @@ const LatestRegisteredMember = () => {
         searchTerm: "",
     });
 
-    console.log(data);
-
     return (
         <>
             <section className={LatestRegisteredMemberCSS.latestRegisteredSection}>
