@@ -2,7 +2,6 @@ import Box from "@mui/material/Box";
 import { styled, useTheme } from "@mui/material/styles";
 import Tab from "@mui/material/Tab";
 import Tabs from "@mui/material/Tabs";
-import Typography from "@mui/material/Typography";
 import PropTypes from "prop-types";
 import React, { useState } from "react";
 import SwipeableViews from "react-swipeable-views";
@@ -39,7 +38,7 @@ function TabPanel(props) {
         <div role="tabpanel" hidden={value !== index} id={`full-width-tabpanel-${index}`} aria-labelledby={`full-width-tab-${index}`} {...other}>
             {value === index && (
                 <Box sx={{ p: 3 }}>
-                    <Typography>{children}</Typography>
+                    <div>{children}</div>
                 </Box>
             )}
         </div>
@@ -66,7 +65,19 @@ const ProfileServices = () => {
 
     return (
         <>
-            <div className="w-full max-w-[512px] flex justify-center bg-white mx-auto shadow-[rgba(100,100,111,0.2)_0px_7px_29px_0px]">
+            <Box
+                sx={{
+                    width: "100%",
+                    maxWidth: "512px",
+                    display: "flex",
+                    justifyContent: "center",
+                    backgroundColor: "#FFFFFF",
+                    marginX: "auto",
+                }}
+                style={{
+                    boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px",
+                }}
+            >
                 <AntTabs value={value} onChange={handleChange} variant="scrollable" scrollButtons="auto" aria-label="scrollable auto tabs example">
                     <AntTab value={1} label="All Services" />
                     <AntTab value={2} label="Ongoing" />
@@ -76,7 +87,7 @@ const ProfileServices = () => {
                     <AntTab value={6} label="Kazi Services" />
                     <AntTab value={7} label="Lawyer Services" />
                 </AntTabs>
-            </div>
+            </Box>
             <SwipeableViews axis={theme.direction === "rtl" ? "x-reverse" : "x"} index={value} onChangeIndex={handleChangeIndex}>
                 <TabPanel value={value} index={0} dir={theme.direction}>
                     Item One
