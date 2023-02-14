@@ -1,5 +1,6 @@
 import { Gallery } from "../../components/shared/Components/Gallery";
 import SingleServicesStatusContainer from "../../components/shared/Components/LawyerAgentKaziService/SingleServicesStatus/SingleServicesStatusContainer";
+import { DesktopNotification } from "../../components/shared/Notification/DesktopNotification";
 import EducationalCertificateWeb from "../../components/SingleProfilesUser/CertificateSection/EducationalCertificateWeb";
 import PersonalCertificateWeb from "../../components/SingleProfilesUser/CertificateSection/PersonalCertificateWeb";
 import ProfessionalCertificateWeb from "../../components/SingleProfilesUser/CertificateSection/ProfessionalCertificateWeb";
@@ -107,6 +108,11 @@ const matrimonyPrivateRoutes = [
         id: 8,
         path: "/serviceStatus/completed/:id",
         element: <SingleServicesStatusContainer />,
+    },
+    {
+        id: 9,
+        path: "/desktopNotification/:id",
+        element: <DesktopNotification />,
     },
 ];
 
