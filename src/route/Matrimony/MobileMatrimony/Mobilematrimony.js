@@ -1,4 +1,5 @@
 // components
+import { Conversations } from "../../../components/Features/MobileMessege/Conversations/Conversations";
 import { MobileInbox } from "../../../components/Features/MobileMessege/MobileInbox";
 import MobileLogin from "../../../components/pages/Authentications/MobileDesign/MobileLogin";
 import MobileLoginProfessional from "../../../components/pages/Authentications/MobileDesign/MobileLoginProfessional";
@@ -346,6 +347,11 @@ const MobileMatrimony = [
         id: 51,
         path: "/shongshari-story",
         element: <ShongShariStory />,
+    },
+    {
+        id: 52,
+        path: "/conversations",
+        element: <Conversations />,
     },
 ];
 export default MobileMatrimony;
