@@ -12,7 +12,7 @@ import { useCreateMessageMutation } from "../../../../Redux/chat/chatApi";
 import { useGetProfileDetailsQuery } from "../../../../Redux/features/userInfo/userApi";
 import { MessegeList } from "./MessegeList";
 import { MessegesHeader } from "./MessegesHeader";
-export const MessegeBox = ({ msg, setMsg, message, setMessage, socket }) => {
+export const MessegeBox = ({ user,msg, setMsg, message, setMessage, socket }) => {
     const [createMessage] = useCreateMessageMutation();
     const [arivalMsg, setArivalMsg] = useState(null);
     const { data, isLoading, error } = useGetProfileDetailsQuery(message.to);
@@ -54,7 +54,7 @@ export const MessegeBox = ({ msg, setMsg, message, setMessage, socket }) => {
                 <MessegesHeader profile={data} />
             </div>
             <div className="flex-1">
-                <MessegeList profile={data} messages={msg} />
+                <MessegeList user={user} profile={data} messages={msg} />
             </div>
             <div className="h-[92px] w-full bg-white rounded-br-[20px] rounded-bl-[20px] pr-[15px]">
                 <div className="flex items-center h-full gap-x-[24px]">

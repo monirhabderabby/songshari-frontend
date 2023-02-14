@@ -60,7 +60,7 @@ export const Inbox = () => {
                     <Sidebar profile={profile} handleChat={handleChat} />
                 </div>
                 <div className="flex-1 h-full">
-                    <MessegeBox msg={msg} setMsg={setMsg} message={message} setMessage={setMessage} socket={socket} />
+                    <MessegeBox user={profile} msg={msg} setMsg={setMsg} message={message} setMessage={setMessage} socket={socket} />
                 </div>
             </div>
         </div>
