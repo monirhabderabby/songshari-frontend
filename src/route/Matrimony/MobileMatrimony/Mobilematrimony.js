@@ -350,7 +350,7 @@ const MobileMatrimony = [
     },
     {
         id: 52,
-        path: "/conversations",
+        path: "/mobile-conversations",
         element: <Conversations />,
     },
 ];

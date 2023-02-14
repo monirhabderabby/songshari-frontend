@@ -1,19 +1,21 @@
-// configuration, ex: react-router
+// Configuration
 import React from "react";
+import { useParams } from "react-router";
 
-// Third party packages, ex: redux
+// Third party packages
 import { AiOutlineWarning } from "react-icons/ai";
 import { FiUsers } from "react-icons/fi";
 
-// components
-import { useGetAllConnectedConnectionsQuery } from "../../../Redux/features/connections/connectionApi";
-import { ConnectedConnectionLoader } from "../../shared/Cards/Loader/Connections/ConnectedConnectionLoader";
-import { FriendCard } from "./Cards/FriendCard";
+// Components
+import { useGetAllConnectedConnectionsQuery } from "../../../../Redux/features/connections/connectionApi";
+import { ConnectedConnectionLoader } from "../../../shared/Cards/Loader/Connections/ConnectedConnectionLoader";
+import { FriendCard } from "../../../SingleProfilesUser/FriendsSection/Cards/FriendCard";
 
-export const AllFriends = () => {
+export const DynamicConnection = () => {
+    const { id } = useParams();
     // varible declation
     // hook variables
-    const { data, isLoading, isError, error } = useGetAllConnectedConnectionsQuery("");
+    const { data, isLoading, isError, error } = useGetAllConnectedConnectionsQuery(id);
 
     // js variables
     let content = null;
