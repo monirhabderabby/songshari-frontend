@@ -56,10 +56,6 @@ const LoginAsProfessional = () => {
 
     const googleLoginHandler = () => {
         // check designation is on the state or not
-        if (!designationForGoogleLogin) {
-            setCustomError("Please add a designation for Google Login");
-            return;
-        }
 
         signInWithGoogle();
     };
