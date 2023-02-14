@@ -69,11 +69,6 @@ const RegAsProfessional = () => {
     };
 
     const googleLoginHandler = () => {
-        if (!designationForGoogleLogin) {
-            setCustomError("Please select your designation for login with Google");
-            return;
-        }
-
         signInWithGoogle();
     };
 
@@ -86,7 +81,7 @@ const RegAsProfessional = () => {
         if (response?.data?.user?.googleLogin === false) {
             navigate("/otp");
         } else if (response?.data?.user?.googleLogin === true) {
-            navigate("/userprofile");
+            navigate("/registration-info");
         }
     }, [response, dispatch, reset, navigate]);
 
