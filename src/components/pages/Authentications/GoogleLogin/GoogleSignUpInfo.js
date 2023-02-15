@@ -51,7 +51,7 @@ export const GoogleSignUpInfo = () => {
     }, [isSuccess, navigate]);
     return (
         <section className="flex justify-center items-center w-full px-3 flex-1 text-center md:px-20 bg-gray-100 min-h-screen">
-            <div className="bg-white rounded-2xl shadow-2xl w-[100%] md:w-3/4 lg:w-2/3 max-w-4xl p-5">
+            <div className="bg-white rounded-2xl lg:shadow-2xl w-[100%] md:w-3/4 lg:w-2/3 max-w-4xl p-5">
                 <img src={logo} alt="logo" className="w-[160px] lg:w-[200px]" />
                 <div className="headline mt-[15px] flex items-start">
                     <MdLabelImportant className="text-[20px] gradient_text text-warning" />

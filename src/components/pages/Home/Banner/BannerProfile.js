@@ -19,6 +19,7 @@ import "swiper/css/navigation";
 
 const BannerProfile = () => {
     // hook variables
+    const [likedGif, setLikedGif] = useState(true);
     const [clickNextButton, setClickNextButton] = useState(false);
     const [clickPreviousButton, setClickPreviousButton] = useState(false);
 
@@ -44,14 +45,23 @@ const BannerProfile = () => {
         const { _id } = currentUser || {};
 
         if (clickNextButton) {
-            setClickPreviousButton(false);
-            swipeProfileLike(_id);
-        }
-        if (clickPreviousButton) {
             setClickNextButton(false);
             rejectSwipeAndMatchMember(_id);
         }
+        if (clickPreviousButton) {
+            setLikedGif(true);
+            setClickPreviousButton(false);
+            swipeProfileLike(_id);
+        }
     }, [clickNextButton, currentUser, clickPreviousButton, swipeProfileLike, rejectSwipeAndMatchMember]);
+
+    useEffect(() => {
+        if (likedGif) {
+            setTimeout(() => {
+                setLikedGif(false);
+            }, 2000);
+        }
+    }, [likedGif]);
 
     return (
         <Swiper
@@ -76,7 +86,7 @@ const BannerProfile = () => {
         >
             {swipematch?.data?.members.map(data => (
                 <SwiperSlide key={data._id}>
-                    <SwipAndMatchCard {...{ data }} />
+                    <SwipAndMatchCard {...{ data, likedGif }} />
                 </SwiperSlide>
             ))}
         </Swiper>
