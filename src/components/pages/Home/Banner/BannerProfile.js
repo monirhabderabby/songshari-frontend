@@ -6,8 +6,11 @@ import { Autoplay, Navigation } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 // components
-import { useLikeSingleProfileMutation } from "../../../../Redux/features/connections/connectionApi";
-import { useGetRecentMembersWithAuthQuery, useRejectSwipeAndMatchMemberMutation } from "../../../../Redux/features/userInfo/withoutLoginApi";
+import {
+    useGetRecentMembersWithAuthQuery,
+    useRejectSwipeAndMatchMemberMutation,
+    useSwipeProfileLikeMutation,
+} from "../../../../Redux/features/userInfo/withoutLoginApi";
 import { SwipAndMatchCard } from "../../../shared/Cards/SwipeAndMatch/SwipAndMatchCard";
 
 //css
@@ -19,7 +22,7 @@ const BannerProfile = () => {
     const [clickNextButton, setClickNextButton] = useState(false);
     const [clickPreviousButton, setClickPreviousButton] = useState(false);
 
-    const [likeSingleProfile] = useLikeSingleProfileMutation();
+    const [swipeProfileLike] = useSwipeProfileLikeMutation();
     const [rejectSwipeAndMatchMember] = useRejectSwipeAndMatchMemberMutation();
     const { data: swipematch } = useGetRecentMembersWithAuthQuery();
     const [currentUser, setCurrentUser] = useState(null);
@@ -27,7 +30,6 @@ const BannerProfile = () => {
     const getJustSwipeData = e => {
         // get the current element
         let activeEl = e.realIndex + 1;
-        console.log("activeEl", activeEl);
         const swipeAndMatchArrau = swipematch?.data?.members;
         const result = swipeAndMatchArrau.find((item, index) => {
             if (activeEl === index) return item;
@@ -43,13 +45,13 @@ const BannerProfile = () => {
 
         if (clickNextButton) {
             setClickPreviousButton(false);
-            likeSingleProfile(_id);
+            swipeProfileLike(_id);
         }
         if (clickPreviousButton) {
             setClickNextButton(false);
             rejectSwipeAndMatchMember(_id);
         }
-    }, [clickNextButton, currentUser, clickPreviousButton, likeSingleProfile, rejectSwipeAndMatchMember]);
+    }, [clickNextButton, currentUser, clickPreviousButton, swipeProfileLike, rejectSwipeAndMatchMember]);
 
     return (
         <Swiper
