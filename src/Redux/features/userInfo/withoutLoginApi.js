@@ -45,6 +45,16 @@ export const withoutLoginApi = apiSlice.injectEndpoints({
             }),
             invalidatesTags: ["AllRecentMembers"],
         }),
+        swipeProfileLike: builder.mutation({
+            query: id => ({
+                url: `/member/like/profile/${id}`,
+                method: "PUT",
+                headers: {
+                    authorization: `Bearer ${getCookie("token")}`,
+                },
+            }),
+            invalidatesTags: ["AllRecentMembers"],
+        }),
     }),
 });
 
@@ -55,4 +65,5 @@ export const {
     useRejectSwipeAndMatchMemberMutation,
     useRewindUserMutation,
     useGetRecentMembersWithAuthQuery,
+    useSwipeProfileLikeMutation,
 } = withoutLoginApi;

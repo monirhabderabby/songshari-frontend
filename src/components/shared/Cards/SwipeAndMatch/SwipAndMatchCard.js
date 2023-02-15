@@ -8,6 +8,7 @@ import { AiFillHeart } from "react-icons/ai";
 import profileS1 from "../../../../assets/images/banner/profileS1.png";
 import profileS2 from "../../../../assets/images/banner/profileS2.png";
 import profileS3 from "../../../../assets/images/banner/profileS3.png";
+import likeGif from "../../../../assets/images/gif/like.gif";
 import img1 from "../../../../assets/images/HomeImage/bottom-img.png";
 import img2 from "../../../../assets/images/HomeImage/bottom-img1.png";
 import bgImg from "../../../../assets/images/HomeImage/Rectangle .png";
@@ -15,9 +16,10 @@ import { ageCalculator } from "../../../../assets/utilities/AgeCalculation/ageCa
 import { useLikeSingleProfileMutation } from "../../../../Redux/features/connections/connectionApi";
 import { useRejectSwipeAndMatchMemberMutation, useRewindUserMutation } from "../../../../Redux/features/userInfo/withoutLoginApi";
 
-export const SwipAndMatchCard = ({ data }) => {
+export const SwipAndMatchCard = ({ data, likedGif }) => {
     // hook variables declaration
     const [likeSent, setLikeSent] = useState(false);
+
     const [likeSingleProfile, { data: likeResponse, isLoading: likeLoading }] = useLikeSingleProfileMutation();
     const [rejectSwipeAndMatchMember] = useRejectSwipeAndMatchMemberMutation();
     const [rewindUser] = useRewindUserMutation();
@@ -42,6 +44,7 @@ export const SwipAndMatchCard = ({ data }) => {
 
     return (
         <div className="max-w-[280px] h-[400px] relative overflow-hidden">
+            {likedGif && <img src={likeGif} alt="" className="absolute top-[30%] right-[30%] z-40 w-[80px]" />}
             <img
                 src={data?.profilePhoto ? data.profilePhoto : "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"}
                 className="h-[400px] w-[280px] rounded-tr-[12px] rounded-tl-[12px] rounded-bl-[12px] rounded-br-[12px] object-cover"
