@@ -92,6 +92,13 @@ const NavBar = ({ bg }) => {
     removeCookie("token");
   };
 
+  // Dynamic menu decision
+  let editedMenu = [];
+  if (role !== "member") {
+    allMenu.shift();
+    editedMenu = allMenu;
+  }
+
   return (
     <>
       <header
@@ -109,44 +116,84 @@ const NavBar = ({ bg }) => {
             <img src={blackLogo} alt="Not Available" />
           </Link>
           <nav className="md:mr-auto md:ml-4 md:py-1 md:pl-4  	flex flex-wrap items-center text-base justify-center">
-            {allMenu.map((menu) => (
-              <div key={menu.id}>
-                <NavLink
-                  to={menu.to}
-                  className={({ isActive }) =>
-                    isActive ? "" : `${NavBarCSS.hasTooltip}`
-                  }
-                >
-                  <div
-                    style={{ marginLeft: "15px" }}
-                    className="flex flex-col items-center"
+            {role === "member" &&
+              allMenu.map((menu) => (
+                <div key={menu.id}>
+                  <NavLink
+                    to={menu.to}
+                    className={({ isActive }) =>
+                      isActive ? "" : `${NavBarCSS.hasTooltip}`
+                    }
                   >
-                    <img
-                      className="hover:rotate-[360deg] duration-[2000ms] w-[50px] h-[75px]"
-                      src={menu.icon}
-                      alt="Not Available"
-                    />
-                    <span
-                      className={`${NavBarCSS.tooltip} z-50 h-[15px] w-[15px] mt-[70px] ml-[14px]`}
-                      style={{
-                        transform: "translateX(-50%) rotate(45deg)",
-                        backgroundImage:
-                          "linear-gradient( 103deg, rgba(228, 18, 114, 1) 0%, #4844a5 100%)",
-                      }}
-                    ></span>
-                    <span
-                      className={`${NavBarCSS.tooltip} z-50 rounded-[40px] shadow-lg px-3 py-1 text-white text-xs whitespace-nowrap uppercase mt-20`}
-                      style={{
-                        backgroundImage:
-                          "linear-gradient(155deg, rgba(228, 18, 114, 1) 0%, #4844a5 100%)",
-                      }}
+                    <div
+                      style={{ marginLeft: "15px" }}
+                      className="flex flex-col items-center"
                     >
-                      {menu.tooltip}
-                    </span>
-                  </div>
-                </NavLink>
-              </div>
-            ))}
+                      <img
+                        className="hover:rotate-[360deg] duration-[2000ms] w-[50px] h-[75px]"
+                        src={menu.icon}
+                        alt="Not Available"
+                      />
+                      <span
+                        className={`${NavBarCSS.tooltip} z-50 h-[15px] w-[15px] mt-[70px] ml-[14px]`}
+                        style={{
+                          transform: "translateX(-50%) rotate(45deg)",
+                          backgroundImage:
+                            "linear-gradient( 103deg, rgba(228, 18, 114, 1) 0%, #4844a5 100%)",
+                        }}
+                      ></span>
+                      <span
+                        className={`${NavBarCSS.tooltip} z-50 rounded-[40px] shadow-lg px-3 py-1 text-white text-xs whitespace-nowrap uppercase mt-20`}
+                        style={{
+                          backgroundImage:
+                            "linear-gradient(155deg, rgba(228, 18, 114, 1) 0%, #4844a5 100%)",
+                        }}
+                      >
+                        {menu.tooltip}
+                      </span>
+                    </div>
+                  </NavLink>
+                </div>
+              ))}
+            {role !== "member" &&
+              editedMenu.map((menu) => (
+                <div key={menu.id}>
+                  <NavLink
+                    to={menu.to}
+                    className={({ isActive }) =>
+                      isActive ? "" : `${NavBarCSS.hasTooltip}`
+                    }
+                  >
+                    <div
+                      style={{ marginLeft: "15px" }}
+                      className="flex flex-col items-center"
+                    >
+                      <img
+                        className="hover:rotate-[360deg] duration-[2000ms] w-[50px] h-[75px]"
+                        src={menu.icon}
+                        alt="Not Available"
+                      />
+                      <span
+                        className={`${NavBarCSS.tooltip} z-50 h-[15px] w-[15px] mt-[70px] ml-[14px]`}
+                        style={{
+                          transform: "translateX(-50%) rotate(45deg)",
+                          backgroundImage:
+                            "linear-gradient( 103deg, rgba(228, 18, 114, 1) 0%, #4844a5 100%)",
+                        }}
+                      ></span>
+                      <span
+                        className={`${NavBarCSS.tooltip} z-50 rounded-[40px] shadow-lg px-3 py-1 text-white text-xs whitespace-nowrap uppercase mt-20`}
+                        style={{
+                          backgroundImage:
+                            "linear-gradient(155deg, rgba(228, 18, 114, 1) 0%, #4844a5 100%)",
+                        }}
+                      >
+                        {menu.tooltip}
+                      </span>
+                    </div>
+                  </NavLink>
+                </div>
+              ))}
           </nav>
           <div>
             <ul className={"flex justify-end items-center gap-2 h-32"}>
