@@ -1,82 +1,63 @@
-import React from "react";
-import serviceExample from "../../../assets/images/userServices.png";
+// Configuration
+import React, { useEffect, useState } from "react";
 
-const UserAllServices = () => {
-    const servicesInfo = [
-        {
-            id: 1,
-            serviceHeading: "Agent Service name here",
-            serviceDescription: "Please add your content here. Keep it short and simple. And smile :)",
-            serviceProviderName: "Sarwar Jahan",
-            providerDesignation: "Agent",
-            servicePrice: "100",
-            serviceImage: serviceExample,
-        },
-        {
-            id: 2,
-            serviceHeading: "Agent Service name here",
-            serviceDescription: "Please add your content here. Keep it short and simple. And smile :)",
-            serviceProviderName: "Sarwar Jahan",
-            providerDesignation: "Agent",
-            servicePrice: "100",
-            serviceImage: serviceExample,
-        },
-        {
-            id: 3,
-            serviceHeading: "Agent Service name here",
-            serviceDescription: "Please add your content here. Keep it short and simple. And smile :)",
-            serviceProviderName: "Sarwar Jahan",
-            providerDesignation: "Agent",
-            servicePrice: "100",
-            serviceImage: serviceExample,
-        },
-        {
-            id: 4,
-            serviceHeading: "Agent Service name here",
-            serviceDescription: "Please add your content here. Keep it short and simple. And smile :)",
-            serviceProviderName: "Sarwar Jahan",
-            providerDesignation: "Agent",
-            servicePrice: "100",
-            serviceImage: serviceExample,
-        },
-        {
-            id: 5,
-            serviceHeading: "Agent Service name here",
-            serviceDescription: "Please add your content here. Keep it short and simple. And smile :)",
-            serviceProviderName: "Sarwar Jahan",
-            providerDesignation: "Agent",
-            servicePrice: "100",
-            serviceImage: serviceExample,
-        },
-    ];
+// Third party packages
+import Pagination from "@mui/material/Pagination";
 
+// Components
+import { useGetAllServicesByroleQuery } from "../../../Redux/features/Service/ServiceApi";
+import ServiceCardSkeleton from "../../shared/Cards/Loader/Member/ServiceCardSkeleton";
+import ServiceCardV2 from "../../shared/Cards/Member/Service/ServiceCardV2";
+import { TBFaceError } from "../../ui/error/TBFaceError";
+
+const UserAllServices = ({ responsive }) => {
+    const [page, setPage] = useState(1);
+
+    const { data, isLoading, error, isSuccess } = useGetAllServicesByroleQuery({
+        role: "",
+        page: page,
+        limit: 3,
+    });
+    useEffect(() => {
+        window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+    }, [isSuccess]);
+
+    const { services, total } = data || {};
+    const totalPage = Math.ceil(total / 3);
+    const loaderArr = [1, 2, 3];
+
+    let content;
+    if (isLoading) {
+        content = (
+            <div className="flex flex-col items-center gap-y-[10px]">
+                {loaderArr.map(item => {
+                    return <ServiceCardSkeleton key={item} />;
+                })}
+            </div>
+        );
+    } else if (!isLoading && error) {
+        content = <TBFaceError />;
+    } else if (!isLoading && services.length === 0) {
+        content = <div className="h-[150px] w-full flex justify-center items-center text-gray-400">You havn't onGoing service</div>;
+    } else if (!isLoading && services?.length > 0) {
+        content = (
+            <div className="flex flex-col items-center gap-y-[10px]">
+                {services?.map(service => {
+                    return <ServiceCardV2 key={service._id} service={service} {...{ responsive }} />;
+                })}
+            </div>
+        );
+    }
     return (
-        <div className="max-w-[1024px] mx-auto px-6">
-            <h1 className="text-3xl leading-10 font-bold mb-5 ml-2">All Service</h1>
-            <section className="grid grid-cols-1 md:grid-cols-2 gap-x-[12px]">
-                {servicesInfo.map(service => (
-                    <div key={service.id} className="bg-[#FDF8E7] rounded-xl p-5 mb-6">
-                        <div>
-                            <img className="w-full h-48 rounded-xl" src={service.serviceImage} alt="" />
-                        </div>
-                        <h2 className="text-lg leading-6 font-medium my-4">{service.serviceHeading}</h2>
-                        <p className="text-sm leading-[18px] text-[#666666] mb-4">{service.serviceDescription}</p>
-                        <h4 className="text-sm leading-[18px] font-medium mb-4">{service.serviceProviderName}</h4>
-                        <div className="flex justify-between items-center">
-                            <div className="flex items-center gap-[6px]">
-                                <div className="bg-[#DEDEDE] w-4 h-4 rounded-full"></div>
-                                <p className="text-sm leading-[18px] text-[#666666]">{service.providerDesignation}</p>
-                            </div>
-                            <div className="flex items-center gap-4">
-                                <p className="text-base leading-5 font-semibold">$ {service.servicePrice}</p>
-                                <button className="text-sm text-white leading-[18px] font-semibold px-5 py-1 bg-[#E41272] rounded">View</button>
-                            </div>
-                        </div>
-                    </div>
-                ))}
-            </section>
-        </div>
+        <>
+            <div className="max-w-[512px] mx-auto min-h-screen">{content}</div>
+            {total > 3 && (
+                <div className="mt-[25px] w-full flex justify-center">
+                    <Pagination count={totalPage} variant="outlined" color="secondary" onChange={(event, value) => setPage(value)} />
+                </div>
+            )}
+        </>
     );
 };
 
-export default UserAllServices;
+export default React.memo(UserAllServices);

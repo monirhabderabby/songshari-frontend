@@ -1,8 +1,17 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import meetNewPeople from "../../../assets/css/MeetNewPeople.module.css";
+import getCookie from "../../../Helper/cookies/getCookie";
 
 const MeetNewPeopleCard = ({ data }) => {
+    const token = getCookie("token");
+
+    let redirectPath;
+    if (token) {
+        redirectPath = "/find-partner/suggested";
+    } else {
+        redirectPath = "/login";
+    }
     return (
         <>
             <div>
@@ -13,7 +22,7 @@ const MeetNewPeopleCard = ({ data }) => {
                     </div>
                     <h4 className={meetNewPeople.title}>{data.title}</h4>
 
-                    <Link to="/login">
+                    <Link to={redirectPath}>
                         <button className={meetNewPeople.customButton}>Join Now !</button>
                     </Link>
                 </div>

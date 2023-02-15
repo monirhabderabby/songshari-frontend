@@ -261,24 +261,6 @@ const EditPersonalInfo = () => {
           <div className="pb-4">
             <div>
               <label
-                htmlFor="email"
-                className="text-sm block pb-2 text-slate-600	  font-medium"
-              >
-                Email
-              </label>
-              <input
-                type="text"
-                {...register("email")}
-                id="email"
-                placeholder="example@email.com"
-                className=" focus:outline-none p-2 border focus:border-blue-500 shadow rounded-lg hover:border-blue-500 w-full "
-              />
-            </div>
-          </div>
-
-          <div className="pb-4">
-            <div>
-              <label
                 htmlFor="number"
                 className="text-sm block pb-2 text-slate-600 font-medium"
               >

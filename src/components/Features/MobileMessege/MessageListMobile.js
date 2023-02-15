@@ -14,6 +14,7 @@ export const MessageListMobile = ({messages}) => {
                             return <RightSideMessage message={messege} />;
                         }
                     })}
+
                 </div>
             </div>
         </div>

@@ -13,10 +13,10 @@ const LawyerActivity = () => {
             <ActivityHeader />
 
             {/* Pending case */}
-            {pendingOrder && <ActivityPendingOrder {...{ setRunningOrder }} />}
+            {pendingOrder && <ActivityPendingOrder {...{ setPendingOrder }} />}
 
             {/* Running case */}
-            {runningOrder && <ActivityRunningOrder {...{ setPendingOrder }} />}
+            {runningOrder && <ActivityRunningOrder {...{ setRunningOrder }} />}
 
             {/* Completed case */}
             <LawyerActivityCompletedCase />

@@ -5,6 +5,7 @@ import AgentServicesPage from "../components/pages/Agent/AgentServicesPage/Agent
 
 // Components
 import KaziServicesPage from "../components/pages/Kazi/KaziServices/KaziServicesPages";
+import { NotFoundPage } from "../components/shared/404/NotFoundPage";
 import RequireAuth from "../components/shared/RequireAuth/RequireAuth";
 import RequireAuthMobile from "../components/shared/RequireAuth/RequireAuthMobile";
 import ShopProducts from "../Wrapper/Shop/ShopProducts/ShopProducts";
@@ -176,6 +177,7 @@ const MasterRoute = () => {
                         </Route>
                     );
                 })}
+                <Route path="*" element={<NotFoundPage />} />
             </Routes>
         </BrowserRouter>
     );

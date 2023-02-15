@@ -37,3 +37,13 @@
     border-image: linear-gradient(166deg, rgb(242, 40, 118) 0%, rgb(148, 45, 217) 100%);
     border-image-slice: 1;
 } */
+
+.chat-scrollbar::-webkit-scrollbar {
+    width: 6px;
+    height: 5px;
+    background-color: #f5f5f5;
+}
+.chat-scrollbar::-webkit-scrollbar-thumb {
+    background-color: #a32bca;
+    border-radius: 10px;
+}

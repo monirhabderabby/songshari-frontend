@@ -55,7 +55,7 @@ const Signup = () => {
         if (response?.data?.user?.googleLogin === false) {
             navigate("/otp");
         } else if (response?.data?.user?.googleLogin === true) {
-            navigate("/userprofile");
+            navigate("/registration-info");
         }
     }, [response, dispatch, reset, navigate]);
 

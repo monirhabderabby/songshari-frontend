@@ -98,7 +98,7 @@ const ProfileCard = ({ data, isLoading }) => {
         </h2>
         {/* content */}
         <div className="w-full flex justify-center items-center absolute top-[70%]">
-          <div className="text-[17px] font-normal font-Inter">{UserAge}</div>
+          {age>0 && <div className="text-[17px] font-normal font-Inter">{UserAge}</div>}
           <div className="h-[28px] w-[5px] bg-gray-200 rounded-[4px] mx-[20px]"></div>
           <div className="flex items-center">
             <svg

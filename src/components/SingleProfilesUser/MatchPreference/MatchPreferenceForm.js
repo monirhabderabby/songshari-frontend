@@ -12,7 +12,7 @@ export default function MatchPreferenceForm({ setMatchesModalOpen }) {
     fatherStatus: "",
     fatherProfession: "",
     fatherIncome: "",
-    motherStaus: "dead",
+    motherStaus: "",
     motherProfession: "",
     mohterIncome: "",
     brother: 0,

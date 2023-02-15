@@ -10,6 +10,9 @@ import { MessageListMobile } from "./MessageListMobile";
 import { MobileMessageHeader } from "./MobileMessageHeader";
 import { MobileMessgeSenderBox } from "./MobileMessgeSenderBox";
 
+// CSS
+import "../../../App.css";
+
 export const MobileInbox = () => {
     const socket = useRef();
     const dispatch = useDispatch();
@@ -82,13 +85,17 @@ export const MobileInbox = () => {
     }, [arivalMsg, setMsg, msg]);
     return (
         <div className="max-w-[1024px] mx-auto h-screen flex flex-col">
-            <div className="relative w-full">
+            <div className="relative w-full ">
                 <MobileMessageHeader />
             </div>
+
             <div className="flex-1 mt-[60px] h-full">
                 <MessageListMobile messages={msg}  />
+
             </div>
-            <MobileMessgeSenderBox handleMessage={handleMessage} message={message} setMessage={setMessage} />
+            <div className="bg-white">
+                <MobileMessgeSenderBox handleMessage={handleMessage} message={message} setMessage={setMessage} />
+            </div>
         </div>
     );
 };

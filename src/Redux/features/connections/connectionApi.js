@@ -63,8 +63,8 @@ export const connectionApi = apiSlice.injectEndpoints({
             },
         }),
         getAllConnectedConnections: builder.query({
-            query: () => ({
-                url: "/member/connections",
+            query: id => ({
+                url: `/member/connections?id=${id}`,
                 method: "GET",
                 headers: {
                     authorization: `Bearer ${getCookie("token")}`,

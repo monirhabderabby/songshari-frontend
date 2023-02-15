@@ -21,7 +21,7 @@ const BeginFamilyJourney = () => {
                         and make their family journey smoother!
                     </p>
                     <Link
-                        to="/find-partner"
+                        to="/find-partner/suggested"
                         className="px-4 md:px-6 lg:px-8 pt-2 pb-1 text-xl lg:text-2xl text-white font-semibold rounded-md tracking-widest lg:tracking-[.25em] shadow-xl shadow-[#0c4ea54d] whitespace-nowrap cursor-pointer"
                         style={{
                             backgroundImage: "linear-gradient(155deg, rgba(228, 18, 114, 1) 0%, #4844a5 100%)",

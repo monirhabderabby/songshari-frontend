@@ -7,9 +7,9 @@ import { DynamicMatches } from "./DynamicMaches";
 import { DynamicProfileInfo } from "./DynamicProfileInfo";
 
 //css files
-import Badge from "@mui/material/Badge";
 import { useEffect } from "react";
 import "../../../App.css";
+import { DynamicConnection } from "./DynamicConnections/DynamicConnection";
 import { DynamicServicesContainer } from "./DynamicServicesContainer/DynamicServicesContainer";
 
 const DynamicTable = ({ data, isLoading }) => {
@@ -55,20 +55,18 @@ const DynamicTable = ({ data, isLoading }) => {
                                 Services
                             </button>
                         )}
-                        <Badge badgeContent={4} color="primary">
-                            <button
-                                className={`font-medium text-[15px] leading-tight ${page === 4 ? "text-primary font-bold" : "text-gray-800"}`}
-                                onClick={() => setPage(4)}
-                            >
-                                Connections
-                            </button>
-                        </Badge>
+                        <button
+                            className={`font-medium text-[15px] leading-tight ${page === 4 ? "text-primary font-bold" : "text-gray-800"}`}
+                            onClick={() => setPage(4)}
+                        >
+                            Connections
+                        </button>
                         {isMember && (
                             <button
                                 className={`font-medium text-[15px] leading-tight ${page === 5 ? "text-primary font-bold" : "text-gray-800"}`}
                                 onClick={() => setPage(5)}
                             >
-                                Matches <sup className="text-white bg_Color px-2 py-1 rounded-full text-[10px]">1</sup>
+                                Matches
                             </button>
                         )}
                     </div>
@@ -77,6 +75,7 @@ const DynamicTable = ({ data, isLoading }) => {
             {page === 1 && <DynamicActivityPage />}
             {page === 3 && <DynamicServicesContainer />}
             {page === 2 && <DynamicProfileInfo {...{ data, isLoading }} />}
+            {page === 4 && <DynamicConnection />}
             {page === 5 && <DynamicMatches />}
         </div>
     );

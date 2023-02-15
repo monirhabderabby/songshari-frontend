@@ -51,7 +51,7 @@ const MobileActivityPost = ({ posts, isLoading, error }) => {
     );
   } else if (!isLoading && posts?.data?.posts?.length > 0) {
     content = (
-      <div className="grid grid-cols-1 gap-y-2">
+      <div className="grid grid-cols-1 gap-y-5">
         {posts?.data?.posts.map((post) => (
           <MobileSinglePostCard key={post?._id} post={post} />
         ))}

@@ -1,5 +1,6 @@
 import { Inbox } from "../../components/Features/Messege/Inbox/Inbox";
 import { MessegeBox } from "../../components/Features/Messege/Messeges/MessegeBox";
+import { GoogleSignUpInfo } from "../../components/pages/Authentications/GoogleLogin/GoogleSignUpInfo";
 import Login from "../../components/pages/Authentications/Login";
 import LoginAsProfessional from "../../components/pages/Authentications/LoginAsProfessional";
 import { OTP } from "../../components/pages/Authentications/OTP/OTP";
@@ -253,6 +254,11 @@ const matrimonyRoutes = [
                 element: <FindRecentLawyer />,
             },
         ],
+    },
+    {
+        id: 16,
+        path: "/registration-info",
+        element: <GoogleSignUpInfo />,
     },
 ];
 

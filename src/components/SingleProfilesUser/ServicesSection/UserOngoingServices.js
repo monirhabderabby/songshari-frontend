@@ -10,7 +10,7 @@ import { useGetAllOrderByMemberQuery } from "../../../Redux/features/Service/Ord
 import ServiceCardSkeleton from "../../shared/Cards/Loader/Member/ServiceCardSkeleton";
 import { TBFaceError } from "../../ui/error/TBFaceError";
 
-const UserOngoingServices = () => {
+const UserOngoingServices = ({ responsive }) => {
     const [page, setPage] = useState(1);
 
     const { data, isLoading, error, isSuccess } = useGetAllOrderByMemberQuery({
@@ -43,7 +43,7 @@ const UserOngoingServices = () => {
         content = (
             <div className="flex flex-col items-center gap-y-[10px]">
                 {orders?.map(order => {
-                    return <ServiceCard key={order._id} service={order} />;
+                    return <ServiceCard key={order._id} service={order} status="running" {...{ responsive }} />;
                 })}
             </div>
         );
