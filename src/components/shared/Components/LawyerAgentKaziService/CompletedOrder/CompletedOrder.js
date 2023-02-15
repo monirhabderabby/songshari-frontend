@@ -5,7 +5,7 @@ import React, { useEffect } from "react";
 import { useGetAllOrderByProfessionQuery } from "../../../../../Redux/features/Service/OrderApi";
 import { TBFaceError } from "../../../../ui/error/TBFaceError";
 import { CompletedOrderCard } from "../../../Cards/LawyerAgentKaziService/CompletedOrderCard";
-import { PendingSkeleton } from "../../../Cards/Loader/LawyerAgentServiceRelatedLoader/PendingSkeleton";
+import { CompletedSkeleton } from "../../../Cards/Loader/LawyerAgentServiceRelatedLoader/CompletedSkeleton";
 
 export const CompletedOrder = ({ setCompletedOrder }) => {
     const { data, isLoading, error, isFetching } = useGetAllOrderByProfessionQuery({
@@ -27,7 +27,7 @@ export const CompletedOrder = ({ setCompletedOrder }) => {
         content = (
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 lg:gap-12">
                 {loaderArr.map(item => {
-                    return <PendingSkeleton key={item} />;
+                    return <CompletedSkeleton key={item} />;
                 })}
             </div>
         );
