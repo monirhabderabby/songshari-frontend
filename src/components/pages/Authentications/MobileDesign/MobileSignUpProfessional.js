@@ -5,18 +5,20 @@ import { Link, useNavigate } from "react-router-dom";
 // Third party packages
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { useDropzone } from "react-dropzone";
+import { useSignInWithGoogle } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
-import { AiFillFileAdd, AiOutlineLeft } from "react-icons/ai";
+import { AiFillFileAdd } from "react-icons/ai";
 import { FaGoogle } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import { v4 as uuidv4 } from "uuid";
 
 // components
 import logo from "../../../../assets/images/Logo/logoBlack.png";
-import { firebaseStorage } from "../../../../firebase.init";
+import { auth, firebaseStorage } from "../../../../firebase.init";
 import setCookie from "../../../../Helper/cookies/setCookie";
 import { useRegAsMemberMutation } from "../../../../Redux/features/userInfo/userApi";
 import { loadUserData } from "../../../../Redux/features/userInfo/userInfo";
+import { MobileBackButton } from "../../../shared/Components/MobileBackButton";
 import Error from "../../../ui/error/Error";
 
 const MobileSignUpProfessional = () => {
@@ -26,6 +28,7 @@ const MobileSignUpProfessional = () => {
     const [agreement, setAgreement] = useState(false);
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const [signInWithGoogle, user] = useSignInWithGoogle(auth);
 
     // Redux Api Call
     const [regAsMember, { data: response, isLoading: serverLoading, error: responseError }] = useRegAsMemberMutation();
@@ -52,12 +55,29 @@ const MobileSignUpProfessional = () => {
     const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
     // Effect Declaration
+
+    useEffect(() => {
+        if (user) {
+            const userEmail = user?.user?.email;
+            const data = {
+                email: userEmail,
+                googleLogin: true,
+            };
+
+            regAsMember(data);
+        }
+    }, [user, regAsMember]);
+
     useEffect(() => {
         if (response) {
             setCookie("token", response?.data?.token);
             dispatch(loadUserData(response));
             reset();
+        }
+        if (response?.data?.user?.googleLogin === false) {
             navigate("/mobileOtp");
+        } else if (response?.data?.user?.googleLogin === true) {
+            navigate("/registration-info");
         }
     }, [response, dispatch, reset, navigate]);
 
@@ -110,19 +130,17 @@ const MobileSignUpProfessional = () => {
     };
 
     return (
-        <div className="bg-[#F8F8FF] pt-2 pb-2">
-            <div className="text-[#1E2022] flex justify-start items-center gap-[33%] bg-white font-medium text-center text-lg leading-[18px] py-4 px-6 mx-2 mb-9">
-                <span>
-                    <AiOutlineLeft onClick={() => navigate("/")} />
-                </span>
-                <p>Sign Up</p>
-            </div>
-            <div className="flex justify-center mb-6">
+        <div className="bg-[#F8F8FF] pb-2 max-w-[1024px] mx-auto">
+            <MobileBackButton name="Professional Registration" />
+            <div className="flex justify-center mb-6 mt-2">
                 <img src={logo} alt="Not Available" />
             </div>
             {/* google sign up  */}
             <div className="flex justify-center items-center my-3">
-                <p className="border-2 cursor-pointer border-gray-200 rounded-full p-3 mx-1 hover:bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] hover:text-white duration-400 transition-all">
+                <p
+                    className="border-2 cursor-pointer border-gray-200 rounded-full p-3 mx-1 hover:bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] hover:text-white duration-400 transition-all"
+                    onClick={() => signInWithGoogle()}
+                >
                     <FaGoogle className="text-sm" />
                 </p>
             </div>{" "}
@@ -335,9 +353,9 @@ const MobileSignUpProfessional = () => {
                     </section>
                     {/* ---------------Input data end------------ */}
                     <div className="col-span-2">{customError && <Error message={customError} />}</div>
-                    <div className="flex">
-                        <input type="checkbox" className="focus:outline-none checked:bg-pink-500 mr-2 mt-6" onChange={handleAgreement} />
-                        <p className="text-[#1E2022] mt-14 mb-5 text-xs leading-4">
+                    <div className="flex items-center h-[40px] gap-x-2 mt-[20px] mb-[15px]">
+                        <input type="checkbox" className="focus:outline-none checked:bg-pink-500" onChange={handleAgreement} />
+                        <p className="text-[#1E2022] mb-5text-xs">
                             By continuing, you agree to our <span className="text-blue-700">Terms of Service</span> and{" "}
                             <span className="text-blue-700" onClick={() => navigate("/privacymov")}>
                                 Privacy Policy
