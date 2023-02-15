@@ -1,16 +1,17 @@
 // Configuration
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { CompletedOrder } from "../../shared/Components/LawyerAgentKaziService/CompletedOrder/CompletedOrder";
 import { PendingOrder } from "../../shared/Components/LawyerAgentKaziService/PendingOrder/PendingOrder";
 import RunningOrder from "../../shared/Components/LawyerAgentKaziService/RunningOrder/RunningOrder";
 
 // Components
 import { ServicesContainer } from "../../shared/Components/LawyerAgentKaziService/servicesContainer/ServicesContainer";
-import CompletedCase from "./CompletedCase/CompletedCase";
 
 const LawyerServicesPage = () => {
     const [pendingOrder, setPendingOrder] = useState(true);
     const [runningOrder, setRunningOrder] = useState(true);
+    const [completedOrder, setCompletedOrder] = useState(true);
     useEffect(() => {
         window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
     }, []);
@@ -30,7 +31,7 @@ const LawyerServicesPage = () => {
                 </div>
                 {pendingOrder && <PendingOrder setPendingOrder={setPendingOrder} />}
                 {runningOrder && <RunningOrder {...{ setRunningOrder }} />}
-                <CompletedCase></CompletedCase>
+                {completedOrder && <CompletedOrder {...{ setCompletedOrder }} />}
             </div>
         </div>
     );
