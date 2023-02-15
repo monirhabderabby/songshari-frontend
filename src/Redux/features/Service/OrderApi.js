@@ -52,6 +52,18 @@ export const orderApi = apiSlice.injectEndpoints({
                     authorization: `Bearer ${getCookie("token")}`,
                 },
             }),
+            providesTags: ["AllOrdersByMember"],
+        }),
+        markAsComplete: builder.mutation({
+            query: ({ data, id }) => ({
+                url: `/service/order/complete/${id}`,
+                method: "PUT",
+                headers: {
+                    authorization: `Bearer ${getCookie("token")}`,
+                },
+                body: data,
+            }),
+            invalidatesTags: ["AllOrdersByMember"],
         }),
     }),
 });
@@ -62,4 +74,5 @@ export const {
     useAcceptOrderMutation,
     useRejectOrderMutation,
     useGetAllOrderByMemberQuery,
+    useMarkAsCompleteMutation,
 } = orderApi;

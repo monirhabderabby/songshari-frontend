@@ -197,7 +197,7 @@ const RunningOrderFeatureCard = ({ price, deadline, role }) => {
                     </h3>
                     <Box sx={{ m: 1, position: "relative" }}>
                         <Button variant="contained" sx={acceptButtonSX} onClick={modalControll}>
-                            Mark As Complete
+                            {acceptSuccess ? "Completed" : "Mark As Complete"}
                         </Button>
                         {isLoading && (
                             <CircularProgress
@@ -213,30 +213,32 @@ const RunningOrderFeatureCard = ({ price, deadline, role }) => {
                             />
                         )}
                     </Box>
-                    <Box sx={{ m: 1, position: "relative" }}>
-                        <Button
-                            variant="contained"
-                            disabled={isLoading}
-                            sx={buttonSx}
-                            style={{ cursor: `${isSuccess ? "not-allowed" : "pointer"}` }}
-                            onClick={handleCancleOrder}
-                        >
-                            {isSuccess ? "Cancelled" : "Cancel This Order"}
-                        </Button>
-                        {isLoading && (
-                            <CircularProgress
-                                size={24}
-                                sx={{
-                                    color: green[500],
-                                    position: "absolute",
-                                    top: "50%",
-                                    left: "50%",
-                                    marginTop: "-12px",
-                                    marginLeft: "-12px",
-                                }}
-                            />
-                        )}
-                    </Box>
+                    {!acceptSuccess && (
+                        <Box sx={{ m: 1, position: "relative" }}>
+                            <Button
+                                variant="contained"
+                                disabled={isLoading}
+                                sx={buttonSx}
+                                style={{ cursor: `${isSuccess ? "not-allowed" : "pointer"}` }}
+                                onClick={handleCancleOrder}
+                            >
+                                {isSuccess ? "Cancelled" : "Cancel This Order"}
+                            </Button>
+                            {isLoading && (
+                                <CircularProgress
+                                    size={24}
+                                    sx={{
+                                        color: green[500],
+                                        position: "absolute",
+                                        top: "50%",
+                                        left: "50%",
+                                        marginTop: "-12px",
+                                        marginLeft: "-12px",
+                                    }}
+                                />
+                            )}
+                        </Box>
+                    )}
 
                     {/* {isLoading ? <CircularProgress style={{ color: "#E41272" }} /> : "Cancle This Order"} */}
 
@@ -297,7 +299,7 @@ const RunningOrderFeatureCard = ({ price, deadline, role }) => {
                     </CardContent>
                 </Collapse>
             </Card>
-            {modal && <OrderReview {...{ modalControll }} />}
+            {modal && <OrderReview {...{ modalControll, orderID, setAcceptSuccess }} />}
         </>
     );
 };

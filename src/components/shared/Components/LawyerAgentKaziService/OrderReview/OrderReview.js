@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 // Third party packages
 import { TextareaAutosize } from "@mui/base";
@@ -6,13 +6,17 @@ import Rating from "@mui/material/Rating";
 import { MdReviews } from "react-icons/md";
 
 // components
+import { useMarkAsCompleteMutation } from "../../../../../Redux/features/Service/OrderApi";
 import { Modal } from "../../../../modals/Modal";
 import Error from "../../../../ui/error/Error";
 
-export const OrderReview = ({ modalControll }) => {
+export const OrderReview = ({ modalControll, orderID, setAcceptSuccess }) => {
     const [customError, setCustomError] = useState("");
     const [rate, setRate] = useState(3);
     const [review, setReview] = useState("");
+
+    // Redux API
+    const [markAsComplete, { isSuccess, isLoading }] = useMarkAsCompleteMutation();
 
     // function declaration
     const handleOrderComplete = () => {
@@ -20,7 +24,23 @@ export const OrderReview = ({ modalControll }) => {
             setCustomError("Please write something about the order");
             return;
         }
+
+        const data = {
+            rating: rate,
+            review: review,
+        };
+        markAsComplete({
+            id: orderID,
+            data: data,
+        });
     };
+
+    useEffect(() => {
+        if (isSuccess) {
+            setAcceptSuccess(true);
+            modalControll();
+        }
+    }, [isSuccess, modalControll, setAcceptSuccess]);
     return (
         <Modal modalControll={modalControll}>
             <div className="w-full flex flex-col justify-center items-center gap-y-[12px]">
@@ -49,8 +69,9 @@ export const OrderReview = ({ modalControll }) => {
                 <button
                     className="bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] text-white px-[1.5rem] py-[0.5rem] rounded-[4px] font-Inter mt-[20px]"
                     onClick={handleOrderComplete}
+                    disabled={isLoading}
                 >
-                    Complete
+                    {isLoading ? "Wait..." : "Complete"}
                 </button>
             </div>
         </Modal>
