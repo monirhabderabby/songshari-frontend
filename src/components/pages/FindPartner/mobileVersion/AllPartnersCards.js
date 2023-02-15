@@ -11,7 +11,7 @@ import { MobilePartnerLoader } from "./Loader/MobilePartnerLoader";
 import { MobilePartnerCard } from "./MobilePartnerCard";
 
 export const AllPartnersCards = ({ data, isLoading, error, setPage }) => {
-  let totalData = Math.ceil(data?.data?.total / 6);
+  let totalData = Math.ceil(data?.data?.total / 6) || 0;
   // js variable declaration
   let content;
   if (isLoading) {
@@ -45,7 +45,7 @@ export const AllPartnersCards = ({ data, isLoading, error, setPage }) => {
     content = (
       <div className="mt-[18px] grid grid-cols-2 md:grid-cols-3 gap-[20px] w-full">
         {data.data.members?.map((user) => {
-          return <MobilePartnerCard {...{ user }} />;
+          return <MobilePartnerCard {...{ user }} key={user._id} />;
         })}
       </div>
     );
