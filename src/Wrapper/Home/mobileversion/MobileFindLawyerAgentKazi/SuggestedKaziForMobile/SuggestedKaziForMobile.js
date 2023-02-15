@@ -33,7 +33,7 @@ const SuggestedKaziForMobile = () => {
   return (
     <div>
       <MobileBackButton name={"Find Kazi"} />
-      <div className="pt-2">
+      <div className="pt-2 px-6">
         <FindLawyerKaziAgentHeader page="kazi" />
         <AllPartnersCards {...{ data, isLoading, error, setPage }} />
       </div>

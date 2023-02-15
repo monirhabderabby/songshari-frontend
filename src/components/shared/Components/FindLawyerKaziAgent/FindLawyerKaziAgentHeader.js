@@ -49,7 +49,7 @@ export const FindLawyerKaziAgentHeader = ({ page }) => {
     }
   }, [debouncedSearchTerm, page, dispatch]);
   return (
-    <div className="w-full flex justify-between px-[20px]">
+    <div className="w-full flex justify-between px-0 md:px-[20px]">
       <div
         style={{
           border: "2px solid #FFE8F3",
