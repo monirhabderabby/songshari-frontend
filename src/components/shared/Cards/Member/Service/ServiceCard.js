@@ -39,6 +39,8 @@ const ServiceCard = ({ service, status, responsive }) => {
         responsive ? (redirectPath = `/serviceStatusMov/running/${serviceID}`) : (redirectPath = `/serviceStatus/running/${serviceID}`);
     } else if (status?.includes("cancelled")) {
         responsive ? (redirectPath = `/serviceStatusMov/cancelled/${serviceID}`) : (redirectPath = `/serviceStatus/cancelled/${serviceID}`);
+    } else if (status?.includes("completed")) {
+        redirectPath = `/serviceStatus/completed/${serviceID}`;
     }
 
     const handleRedirection = () => {

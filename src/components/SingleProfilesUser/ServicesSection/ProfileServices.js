@@ -8,6 +8,7 @@ import SwipeableViews from "react-swipeable-views";
 import UserAgentServices from "./UserAgentServices";
 import UserAllServices from "./UserAllServices";
 import UserCanceledServices from "./UserCanceledServices";
+import UserCompletedServices from "./UserCompletedServices";
 import UserKaziServices from "./UserKaziServices";
 import UserLawyerServices from "./UserLawyerServices";
 import UserOngoingServices from "./UserOngoingServices";
@@ -99,7 +100,7 @@ const ProfileServices = () => {
                     <UserOngoingServices />
                 </TabPanel>
                 <TabPanel value={value} index={3} dir={theme.direction}>
-                    Item Four
+                    <UserCompletedServices />
                 </TabPanel>
                 <TabPanel value={value} index={4} dir={theme.direction}>
                     <UserCanceledServices />
