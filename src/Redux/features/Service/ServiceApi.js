@@ -95,6 +95,16 @@ export const serviceApi = apiSlice.injectEndpoints({
                 },
             }),
         }),
+        allReviewsByServiceID: builder.query({
+            query: ({ serviceID }) => ({
+                url: `/service/review/all/${serviceID}?page=1&limit=3`,
+                method: "GET",
+                headers: {
+                    authorization: `Bearer ${getCookie("token")}`,
+                },
+            }),
+            keepUnusedDataFor: 0,
+        }),
     }),
 });
 
@@ -108,4 +118,5 @@ export const {
     useGetServiceByUserIdQuery,
     useChangeServiceStatusMutation,
     useGetAllServicesByroleQuery,
+    useAllReviewsByServiceIDQuery,
 } = serviceApi;

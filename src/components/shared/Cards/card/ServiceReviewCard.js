@@ -1,31 +1,32 @@
 // Configuration
+import { Rating } from "@mui/material";
+import Divider from "@mui/material/Divider";
 import React from "react";
-import img from "../../../../assets/images/All Services/dealing.png";
 
 // Third party packages
-import { Rating } from "@mui/material";
 
 const ServiceReviewCard = ({ review }) => {
+    const { review: reviewDes, rating, user } = review;
+    const { firstName, lastName, profilePhoto } = user || {};
+    const name = `${firstName} ${lastName}`;
+
     return (
-        <div className="flex justify-start items-start gap-6 pb-8 mb-7 border-b border-[#F4F4F5]">
-            <div className="w-[73px] h-[43px]">
-                <img className="w-[43px] h-[43px] rounded-full" src={img} alt="" />
-            </div>
-            <div>
-                <div className="flex items-center gap-1 mb-6">
-                    <Rating name="reviewRating" value={3} precision={0.5} readOnly />
+        <div className="flex gap-x-[23px]">
+            <img src={profilePhoto} className="w-[43px] h-[43px] rounded-full" alt="profile" />
+            <div className="max-w-[600px]">
+                <Rating name="reviewRating" value={rating} readOnly className="mb-[22px]" />
+                <p className="text-[#181818] text-[16px] font-normal font-Nunito">{reviewDes}</p>
+
+                <div className="mt-[22px] text-[14px] text-[#181818] mb-[32px]">
+                    <h3 className=" font-bold font-Nunito">{name}</h3>
+                    <p className="text-[#71717A] font-normal">March 14, 2022</p>
                 </div>
-                <div>
-                    <p className="mb-6 text-[#18181B]">
-                        You made it so simple. My new site is so much faster and easier to work with than my old site. I just choose the page, make
-                        the changes.
-                    </p>
-                    <h3 className="text-[#18181B] text-sm leading-[22px] font-bold mb-1">Kane Jones</h3>
-                    <p className="text-[#71717A] text-sm leading-[22px]">March 14, 2028</p>
-                </div>
+                <Divider light />
             </div>
         </div>
     );
 };
 
 export default ServiceReviewCard;
+
+// <Rating name="reviewRating" value={rating} readOnly />
