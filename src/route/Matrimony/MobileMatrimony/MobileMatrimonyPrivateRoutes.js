@@ -1,4 +1,6 @@
 // components
+import MobileDynamicProfileActivity from "../../../components/pages/DynamicProfilePage/MobileDynamicProfile/MobileDynamicProfileDetails/MobileDynamicProfileActivity";
+import MobileDynamicProfileConnections from "../../../components/pages/DynamicProfilePage/MobileDynamicProfile/MobileDynamicProfileDetails/MobileDynamicProfileConnections";
 import MobileUserConnections from "../../../components/pages/DynamicProfilePage/MobileDynamicProfile/MobileUserConnections/MobileUserConnections";
 import { MobileAccordionPartner } from "../../../components/pages/FindPartner/MobileAccordionPartner/MobileAccordionPartner";
 import { FilterResultsMobile } from "../../../components/pages/FindPartner/mobileVersion/FilterResultsMobile";
@@ -289,6 +291,21 @@ const MobileMatrimonyPrivateRoutes = [
     id: 42,
     path: "/findAgentMov",
     element: <SuggestedAgentForMobile />,
+  },
+  {
+    id: 43,
+    path: "/dynamicConnectionsMov/:id",
+    element: <MobileDynamicProfileConnections />,
+  },
+  {
+    id: 44,
+    path: "/dynamicActivityMov/:id",
+    element: <MobileDynamicProfileActivity />,
+  },
+  {
+    id: 44,
+    path: "/dynamicGalleryMov/:id",
+    element: <GalleryContainerForMobile />,
   },
 ];
 

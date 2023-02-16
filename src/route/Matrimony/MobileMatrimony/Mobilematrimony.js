@@ -32,7 +32,6 @@ import MobileDiamondPlan from "../../../components/pages/Membership/MobileVersio
 import MobileFreePlan from "../../../components/pages/Membership/MobileVersion/MobileFreePlan";
 import MobileGoldPlan from "../../../components/pages/Membership/MobileVersion/MobileGoldPlan";
 import UpgradePlan from "../../../components/pages/Membership/MobileVersion/UpgradePlan";
-import MobileActivity from "../../../components/pages/MobileActivity/MobileActivity";
 import MobileTopBride from "../../../components/pages/TopProfile/MobileTopProfile/MobileTopBride";
 import MobileTopGroom from "../../../components/pages/TopProfile/MobileTopProfile/MobileTopGroom";
 import Suggested from "../../../components/pages/TopProfile/Suggested";
@@ -189,11 +188,6 @@ const MobileMatrimony = [
     id: 26,
     path: "/otherprofile/:id",
     element: <MobileOthersDetails />,
-  },
-  {
-    id: 27,
-    path: "/mobileActivityPage",
-    element: <MobileActivity />,
   },
   {
     id: 28,
