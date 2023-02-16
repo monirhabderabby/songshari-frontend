@@ -27,27 +27,27 @@ export const MobileInbox = () => {
     // console.log(data)
     const [message, setMessage] = useState({
         message: "",
-        to: receiver,
+        to: receiver._id,
         from: from,
     });
     // setMessage({...message,from:res?.user?._id});
     useEffect(() => {
-        if (receiver) {
+        if (receiver._id) {
             socket.current = io("http://localhost:4000");
-            socket.current.emit("addUser", receiver);
+            socket.current.emit("addUser", receiver._id);
         }
-    }, [receiver]);
+    }, [receiver._id]);
     const [msg, setMsg] = useState(totalMessages);
-    console.log(msg)
+    // console.log(msg)
     useEffect(() => {
-        if (receiver) {
+        if (receiver._id) {
             (async () => {
                 getAllMessage(message);
                 dispatch(allMessage(data?.data?.message))
                 setMsg(data?.data?.message);
             })();
         }
-    }, [receiver]);
+    }, [receiver._id]);
 
     const handleMessage = async e => {
         // console.log(e)
@@ -60,7 +60,9 @@ export const MobileInbox = () => {
             });
             // console.log(msg)
             let newMsg = [];
-            newMsg = [...msg];
+            if(msg){   
+                newMsg = [...msg];
+            }
             // let newMsg=msg
             newMsg.push({ fromSelf: true, message: message.message });
             setMsg(newMsg);
@@ -86,7 +88,7 @@ export const MobileInbox = () => {
     return (
         <div className="max-w-[1024px] mx-auto h-screen flex flex-col">
             <div className="relative w-full ">
-                <MobileMessageHeader />
+                <MobileMessageHeader profile={receiver} />
             </div>
 
             <div className="flex-1 mt-[60px] h-full">

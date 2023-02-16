@@ -22,15 +22,15 @@ export const MobileDynamicConnectionsCard = ({ data }) => {
     useEffect(() => {
         if (response) setSent(true);
     }, [response]);
-    const handleChat = async id => {
-        dispatch(setUser(id));
+    const handleChat = async data => {
+        dispatch(setUser(data));
         navigate("/mobile-inbox");
     };
     return (
         <section>
             <div className="bg-white shadow-[0px_10px_5px_rgba(119,123,146,0.02)] flex justify-start items-center gap-5">
                 <div className="w-[40px] h-[40px] flex justify-center items-center bg-[#FFDFF4] rounded-full">
-                    <MdMessage onClick={() => handleChat(data?._id)} className="h-5 w-5 text-[#E41272]" />
+                    <MdMessage onClick={() => handleChat(data)} className="h-5 w-5 text-[#E41272]" />
                 </div>
                 <div
                     className={`w-[40px] h-[40px] flex justify-center items-center rounded-full transition-all duration-500 ${
