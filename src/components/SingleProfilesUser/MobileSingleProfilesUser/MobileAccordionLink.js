@@ -94,33 +94,36 @@ export const MobileAccordionLink = () => {
           <i className="fa-solid fa-angle-right ml-10"></i>
         </div>
       </div>
-      <div className="grid grid-cols-5 mt-5 mb-10">
-        <div className="col-span-4">
-          <p
-            className="pl-8"
-            onClick={() => navigate(`/familyprofile/${data?._id}`)}
-          >
-            Family Details
-          </p>
+      {data?.role === "member" && (
+        <div className="grid grid-cols-5 mt-5 mb-10">
+          <div className="col-span-4">
+            <p
+              className="pl-8"
+              onClick={() => navigate(`/familyprofile/${data?._id}`)}
+            >
+              Family Details
+            </p>
+          </div>
+          <div>
+            <i className="fa-solid fa-angle-right ml-10"></i>
+          </div>
         </div>
-        <div>
-          <i className="fa-solid fa-angle-right ml-10"></i>
+      )}
+      {data?.role === "member" && (
+        <div className="grid grid-cols-5 mt-5 mb-10">
+          <div className="col-span-4">
+            <p
+              className="pl-8"
+              onClick={() => navigate(`/siblingsprofile/${data?._id}`)}
+            >
+              Siblings Details
+            </p>
+          </div>
+          <div>
+            <i className="fa-solid fa-angle-right ml-10"></i>
+          </div>
         </div>
-      </div>
-      <div className="grid grid-cols-5 mt-5 mb-10">
-        <div className="col-span-4">
-          <p
-            className="pl-8"
-            onClick={() => navigate(`/siblingsprofile/${data?._id}`)}
-          >
-            Siblings Details
-          </p>
-        </div>
-        <div>
-          <i className="fa-solid fa-angle-right ml-10"></i>
-        </div>
-      </div>
-
+      )}
       <div className="grid grid-cols-5 mt-5 mb-10">
         <div className="col-span-4">
           <p
