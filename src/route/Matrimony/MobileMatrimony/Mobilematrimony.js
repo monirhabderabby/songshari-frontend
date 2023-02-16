@@ -28,12 +28,6 @@ import { MobilePersonalDetails } from "../../../components/pages/DynamicProfileP
 import { MobilePhysicalDetails } from "../../../components/pages/DynamicProfilePage/MobileDynamicProfile/MobilePhysicalDetails";
 import { MobileProfessionalDetails } from "../../../components/pages/DynamicProfilePage/MobileDynamicProfile/MobileProfessionalDetails";
 import MobileSiblingsDetails from "../../../components/pages/DynamicProfilePage/MobileDynamicProfile/MobileSiblingsDetails";
-import { MobileAccordionPartner } from "../../../components/pages/FindPartner/MobileAccordionPartner/MobileAccordionPartner";
-import { FilterResultsMobile } from "../../../components/pages/FindPartner/mobileVersion/FilterResultsMobile";
-import { FindPartnersMobile } from "../../../components/pages/FindPartner/mobileVersion/FindPartnersMobile";
-import { NewPartnersForMobile } from "../../../components/pages/FindPartner/mobileVersion/NewPartnersForMobile";
-import { SuggestedpartnersForMobile } from "../../../components/pages/FindPartner/mobileVersion/SuggestedpartnersForMobile";
-import { TopPartnersForMobile } from "../../../components/pages/FindPartner/mobileVersion/TopPartnersForMobile";
 import MobileDiamondPlan from "../../../components/pages/Membership/MobileVersion/MobileDiamondPlan";
 import MobileFreePlan from "../../../components/pages/Membership/MobileVersion/MobileFreePlan";
 import MobileGoldPlan from "../../../components/pages/Membership/MobileVersion/MobileGoldPlan";
@@ -54,9 +48,6 @@ import { ShongShariStory } from "../../../Wrapper/Home/mobileversion/history/Sho
 import { Like } from "../../../Wrapper/Home/mobileversion/Like";
 import { MatchesMov } from "../../../Wrapper/Home/mobileversion/MatchesMov";
 import { MeetMov } from "../../../Wrapper/Home/mobileversion/meet/MeetMov";
-import SuggestedAgentForMobile from "../../../Wrapper/Home/mobileversion/MobileFindLawyerAgentKazi/SuggestedAgentForMobile/SuggestedAgentForMobile";
-import SuggestedKaziForMobile from "../../../Wrapper/Home/mobileversion/MobileFindLawyerAgentKazi/SuggestedKaziForMobile/SuggestedKaziForMobile";
-import SuggestedLawyerForMobile from "../../../Wrapper/Home/mobileversion/MobileFindLawyerAgentKazi/SuggestedLawyerForMobile/SuggestedLawyerForMobile";
 import { MobileHome } from "../../../Wrapper/Home/mobileversion/MobileHome";
 import { PrivacyMov } from "../../../Wrapper/Home/mobileversion/privacy/PrivacyMov";
 
@@ -210,38 +201,6 @@ const MobileMatrimony = [
     element: <MobileOTP />,
   },
   {
-    id: 29,
-    path: "/mobile-find-partner",
-    element: <FindPartnersMobile />,
-    nestedRoutes: [
-      {
-        id: 1,
-        path: "suggested",
-        element: <SuggestedpartnersForMobile />,
-      },
-      {
-        id: 2,
-        path: "top-partners",
-        element: <TopPartnersForMobile />,
-      },
-      {
-        id: 3,
-        path: "new-partners",
-        element: <NewPartnersForMobile />,
-      },
-      {
-        id: 4,
-        path: "filter-box",
-        element: <MobileAccordionPartner />,
-      },
-      {
-        id: 5,
-        path: "filter-results",
-        element: <FilterResultsMobile />,
-      },
-    ],
-  },
-  {
     id: 30,
     path: "/familyInfoEdit/:id",
     element: <MobileFamilyInfoEdit />,
@@ -355,21 +314,6 @@ const MobileMatrimony = [
     id: 52,
     path: "/mobile-conversations",
     element: <Conversations />,
-  },
-  {
-    id: 53,
-    path: "/findLawyerMov",
-    element: <SuggestedLawyerForMobile />,
-  },
-  {
-    id: 54,
-    path: "/findKaziMov",
-    element: <SuggestedKaziForMobile />,
-  },
-  {
-    id: 55,
-    path: "/findAgentMov",
-    element: <SuggestedAgentForMobile />,
   },
 ];
 export default MobileMatrimony;
