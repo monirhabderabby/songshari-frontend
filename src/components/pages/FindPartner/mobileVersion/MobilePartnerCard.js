@@ -46,7 +46,7 @@ export const MobilePartnerCard = ({ user }) => {
   return (
     <div className="h-[227px] w-[153px] bg-white rounded-[15px] shadow-[2px_2px_8px_rgba(0,0,0,0.12)] mx-auto">
       <div
-        onClick={() => navigate(`/profile/${user?._id}`)}
+        onClick={() => navigate(`/mobileprofile/${user?._id}`)}
         className="h-[110px] bg-center bg-cover rounded-tr-[15px] rounded-tl-[15px]"
         style={{
           backgroundImage: `url(${profilePhoto})`,
@@ -56,7 +56,7 @@ export const MobilePartnerCard = ({ user }) => {
         <div className="flex items-center gap-x-[12px]">
           <p
             className="leading-7 text-[#333333] text-[12px] font-bold font-Inter whitespace-nowrap"
-            onClick={() => navigate(`/profile/${user?._id}`)}
+            onClick={() => navigate(`/mobileprofile/${user?._id}`)}
           >
             {name}
           </p>
