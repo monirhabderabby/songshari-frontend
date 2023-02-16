@@ -1,8 +1,8 @@
-// normal import
+// configuration
 import React from "react";
 import { BottomNav } from "./BottomNav";
 
-// components import
+// components
 import { MobileBanner } from "./MobileBanner";
 import { Services } from "./Services";
 import { TopMenu } from "./TopMenu";

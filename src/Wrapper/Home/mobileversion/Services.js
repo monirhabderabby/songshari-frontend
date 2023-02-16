@@ -1,8 +1,8 @@
-// normal import
+// configuration
 import React from "react";
+import { Link } from "react-router-dom";
 
 // images import
-import { Link } from "react-router-dom";
 import Blog from "../../../assets/images/Logo/Blog.svg";
 import Kazi from "../../../assets/images/Logo/Kazi.svg";
 import Lawyer from "../../../assets/images/Logo/Lawyer.svg";

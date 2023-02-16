@@ -4,7 +4,6 @@ import KaziAddServiceForm from "../../components/pages/Kazi/KaziServices/AddServ
 import KaziServicesPage from "../../components/pages/Kazi/KaziServices/KaziServicesPages";
 import { KaziProfile } from "../../components/pages/Kazi/Profile/KaziProfile";
 import { KaziProfileContainer } from "../../components/pages/Kazi/Profile/profileContainer/KaziProfileContainer";
-import { ServiceEdit } from "../../components/shared/Components/LawyerAgentKaziService/ServiceEdit/ServiceEdit";
 import SingleServicesContainer from "../../components/shared/Components/LawyerAgentKaziService/SingleServices/SingleServicesContainer";
 import EditEducationalInfo from "../../components/SingleProfilesUser/profileSection/EditprofileSection/EditEducationalInfo";
 import EditOthersInfo from "../../components/SingleProfilesUser/profileSection/EditprofileSection/EditOthersInfo";
@@ -86,7 +85,9 @@ const kaziPrivateRoutes = [
             ],
           },
         ],
-    },
+      },
+    ],
+  },
 ];
 
 export default kaziPrivateRoutes;
