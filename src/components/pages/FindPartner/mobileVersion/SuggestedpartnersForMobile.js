@@ -1,5 +1,6 @@
 // Configuration
 import React, { useState } from "react";
+import { useEffect } from "react";
 
 // third party package
 import { useSelector } from "react-redux";
@@ -20,6 +21,11 @@ export const SuggestedpartnersForMobile = () => {
     role: "member",
     limit: 6,
   });
+
+  // Scroll to top
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  }, []);
 
   return <AllPartnersCards {...{ data, isLoading, error, setPage }} />;
 };

@@ -3,14 +3,23 @@ import React from "react";
 
 // Third party package
 import { BsCheckCircleFill } from "react-icons/bs";
+import { Switch } from "@mui/material";
 
 // Components & css file
 import getCookie from "../../../../Helper/cookies/getCookie";
 import "../../../../assets/css/MembershipPremium.css";
 
 const MemberShipPremiumCard = ({ item }) => {
+  const monthOrAnnualHandler = (e) => {
+    // console.log(e.target.checked);
+  };
   return (
-    <div className="card membership-card lg:max-w-lg bg-gray-200 shadow-xl pt-6 rounded-lg pb-24 relative">
+    <div className="card membership-card lg:max-w-lg bg-gray-200 shadow-xl pt-6 rounded-lg pb-24 relative z-10">
+      <div className="flex items-center w-full justify-evenly my-2">
+        <p className="text-[16px] text-[#E41272] font-semibold">Monthly</p>
+        <Switch onChange={monthOrAnnualHandler} />
+        <p className="text-[16px] text-[#2F3659]">Annually</p>
+      </div>
       <div className="card-body">
         <h2 className="text-black  text-xl text-center pb-4">{item?.title}</h2>
         <p className="text-center text-5xl font-bold text-[#ac216c] pb-2">
