@@ -5,6 +5,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 // Components
 import { useGetProfileDetailsQuery } from "../../../../Redux/features/userInfo/userApi";
 import { BottomNav } from "../../../../Wrapper/Home/mobileversion/BottomNav";
+import { MobileBackButton } from "../../../shared/Components/MobileBackButton";
 import MobileDynamicProfileHeader from "./MobileDynamicProfileHeader";
 
 export const MobileDynamicProfile = () => {
@@ -39,19 +40,7 @@ export const MobileDynamicProfile = () => {
 
   return (
     <div className="max-w-[523px] mx-auto">
-      <div className="bg-[#FFFFFF] py-[10px] mb-[15px]">
-        <div className="bg-white w-full grid grid-cols-6 h-[48px]">
-          <div className="pl-7 col-span-1">
-            <Link to={`/`}>
-              <i className="fa-solid text-sm text-[#1E2022] fa-chevron-left "></i>
-            </Link>
-          </div>
-          <div className="col-span-4 ">
-            <p className="text-center">Profile</p>
-          </div>
-          <div className="col-span-1"></div>
-        </div>
-      </div>
+      <MobileBackButton name={"Profile"} />
       <MobileDynamicProfileHeader {...{ data }} />
       <div>
         <Link to={`/dynamicConnectionsMov/${data?._id}`}>
@@ -128,26 +117,30 @@ export const MobileDynamicProfile = () => {
             </div>
           </div>
         </Link>
-        <Link to={`/familyProfileDynamic/${data?._id}`}>
-          <div className="grid grid-cols-5 mt-5 mb-10">
-            <div className="col-span-4">
-              <h1 className="pl-8">Family Details</h1>
+        {data?.role === "member" && (
+          <Link to={`/familyProfileDynamic/${data?._id}`}>
+            <div className="grid grid-cols-5 mt-5 mb-10">
+              <div className="col-span-4">
+                <h1 className="pl-8">Family Details</h1>
+              </div>
+              <div>
+                <i className="fa-solid fa-angle-right ml-10"></i>
+              </div>
             </div>
-            <div>
-              <i className="fa-solid fa-angle-right ml-10"></i>
+          </Link>
+        )}
+        {data?.role === "member" && (
+          <Link to={`/siblingsProfileDynamic/${data?._id}`}>
+            <div className="grid grid-cols-5 mt-5 mb-10">
+              <div className="col-span-4">
+                <h1 className="pl-8">Siblings Details</h1>
+              </div>
+              <div>
+                <i className="fa-solid fa-angle-right ml-10"></i>
+              </div>
             </div>
-          </div>
-        </Link>
-        <Link to={`/siblingsProfileDynamic/${data?._id}`}>
-          <div className="grid grid-cols-5 mt-5 mb-10">
-            <div className="col-span-4">
-              <h1 className="pl-8">Siblings Details</h1>
-            </div>
-            <div>
-              <i className="fa-solid fa-angle-right ml-10"></i>
-            </div>
-          </div>
-        </Link>
+          </Link>
+        )}
         <Link to={`/otherProfileDynamic/${data?._id}`}>
           <div className="grid grid-cols-5 mt-5 mb-10">
             <div className="col-span-4">
