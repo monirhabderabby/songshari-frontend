@@ -1,3 +1,4 @@
+import { DynamicSingleServiceContainer } from "../../components/pages/DynamicProfilePage/DynamicSingleServiceContainer/DynamicSingleServiceContainer";
 import { Gallery } from "../../components/shared/Components/Gallery";
 import SingleServicesStatusContainer from "../../components/shared/Components/LawyerAgentKaziService/SingleServicesStatus/SingleServicesStatusContainer";
 import { DesktopNotification } from "../../components/shared/Notification/DesktopNotification";
@@ -113,6 +114,11 @@ const matrimonyPrivateRoutes = [
         id: 9,
         path: "/desktopNotification/:id",
         element: <DesktopNotification />,
+    },
+    {
+        id: 10,
+        path: "/service/:id",
+        element: <DynamicSingleServiceContainer />,
     },
 ];
 
