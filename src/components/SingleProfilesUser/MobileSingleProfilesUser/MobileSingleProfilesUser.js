@@ -20,6 +20,7 @@ const MobileSingleProfilesUser = () => {
       <div className="py-[20px]">
         <MobileAccordionLink></MobileAccordionLink>
       </div>
+      <div className="h-8"></div>
       <BottomNav></BottomNav>
     </section>
   );

@@ -1,4 +1,5 @@
 // components
+import MobileUserConnections from "../../../components/pages/DynamicProfilePage/MobileDynamicProfile/MobileUserConnections/MobileUserConnections";
 import MobileActivity from "../../../components/pages/MobileActivity/MobileActivity";
 import MobileSingleProfilesUser from "../../../components/SingleProfilesUser/MobileSingleProfilesUser/MobileSingleProfilesUser";
 import { PersonalDetailsMobile } from "../../../components/SingleProfilesUser/MobileSingleProfilesUser/PersonalDetailsMobile";
@@ -222,6 +223,11 @@ const MobileMatrimonyPrivateRoutes = [
     id: 37,
     path: "/serviceStatusMov/cancelled/:id",
     element: <MobileDynamicSingleServiceStatusContainer />,
+  },
+  {
+    id: 38,
+    path: "/connections/:id",
+    element: <MobileUserConnections />,
   },
 ];
 

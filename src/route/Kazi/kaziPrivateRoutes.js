@@ -86,7 +86,9 @@ const kaziPrivateRoutes = [
             ],
           },
         ],
-    },
+      },
+    ],
+  },
 ];
 
 export default kaziPrivateRoutes;
