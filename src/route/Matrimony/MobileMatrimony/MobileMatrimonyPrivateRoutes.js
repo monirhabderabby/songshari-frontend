@@ -1,6 +1,7 @@
 // components
 import MobileUserConnections from "../../../components/pages/DynamicProfilePage/MobileDynamicProfile/MobileUserConnections/MobileUserConnections";
 import MobileActivity from "../../../components/pages/MobileActivity/MobileActivity";
+import { Gallery } from "../../../components/shared/Components/Gallery";
 import MobileSingleProfilesUser from "../../../components/SingleProfilesUser/MobileSingleProfilesUser/MobileSingleProfilesUser";
 import { PersonalDetailsMobile } from "../../../components/SingleProfilesUser/MobileSingleProfilesUser/PersonalDetailsMobile";
 import { NotificationForMobile } from "../../../components/SingleProfilesUser/Notification/NotificationForMobile";
@@ -228,6 +229,11 @@ const MobileMatrimonyPrivateRoutes = [
     id: 38,
     path: "/connections/:id",
     element: <MobileUserConnections />,
+  },
+  {
+    id: 39,
+    path: "/galleryMov/:id",
+    element: <GalleryContainerForMobile />,
   },
 ];
 

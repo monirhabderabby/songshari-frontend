@@ -76,7 +76,7 @@ export const PhotoUploadCard = () => {
         ) : (
           <img src={camera} alt="camera" />
         )}
-        <div className="text-[#000000] text-[24px] leading-[20px] font-semibold font-fira">
+        <div className="text-[#000000] text-lg md:text-[24px] leading-[20px] font-semibold font-fira">
           {isLoading ? (
             <p className="ml-[10px]">Uploading</p>
           ) : (
