@@ -27,7 +27,7 @@ const reducer = combineReducers({
     findPartnerSlice: findPartnerSlice,
     pageTitle: pageTitleSlice,
     findLawyerKaziAgent: findLawyerKaziAgentFilterSlice,
-    orderInfo: orderSlice,
+    ordersInfo: orderSlice,
 });
 const persistedReducer = persistReducer(persistConfig, reducer);
 const store = configureStore({

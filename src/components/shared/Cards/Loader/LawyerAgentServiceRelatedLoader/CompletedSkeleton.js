@@ -1,12 +1,14 @@
 import Skeleton from "@mui/material/Skeleton";
 import React from "react";
 
-export const CompletedSkeleton = () => {
+export const CompletedSkeleton = ({ activity }) => {
     return (
         <div
             className="rounded-xl p-6 w-[393px] h-[188px]"
             style={{
-                backgroundImage: "linear-gradient(180deg, #F4FFF5 0%, #FFFBF1 100%)",
+                backgroundImage: `${
+                    activity ? "linear-gradient(180deg, #690E94 0%, #192C6F 100%)" : "linear-gradient(180deg, #F4FFF5 0%, #FFFBF1 100%)"
+                }`,
                 boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
             }}
         >

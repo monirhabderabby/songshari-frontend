@@ -8,10 +8,13 @@ const initialState = {
         totalData: 0,
         currentOrderIdFOrCancle: null,
     },
+    completedOrder: {
+        totalData: 0,
+    },
 };
 
-const orderSlice = createSlice({
-    name: "orderInfo",
+const ordersSlice = createSlice({
+    name: "ordersInfo",
     initialState,
     reducers: {
         setTotalPendingOrderData: (state = initialState, action) => {
@@ -23,8 +26,11 @@ const orderSlice = createSlice({
         setIdForCancleOrder: (state = initialState, action) => {
             state.runningOrder.currentOrderIdFOrCancle = action.payload;
         },
+        setTotalCompletedOrderData: (state = initialState, action) => {
+            state.completedOrder.totalData = action.payload;
+        },
     },
 });
 
-export default orderSlice.reducer;
-export const { setTotalPendingOrderData, setTotalRunningOrderData, setIdForCancleOrder } = orderSlice.actions;
+export default ordersSlice.reducer;
+export const { setTotalPendingOrderData, setTotalRunningOrderData, setIdForCancleOrder, setTotalCompletedOrderData } = ordersSlice.actions;
