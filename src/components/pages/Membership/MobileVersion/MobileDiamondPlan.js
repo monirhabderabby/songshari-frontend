@@ -23,7 +23,7 @@ const MobileDiamondPlan = () => {
   }, [paramsObj, data?.data?.plans]);
 
   return (
-    <div>
+    <div className="relative min-h-screen">
       {!isLoading && !error && (
         <MobileMembershipHeader
           plan={plan}
@@ -31,7 +31,7 @@ const MobileDiamondPlan = () => {
           setPlan={setPlan}
         />
       )}
-      <section>
+      <section className="">
         <div className="mt-6 flex gap-5 items-center ml-[30px]">
           <div className="flex p-4 w-[72px] bg-[#ECEBFF] rounded-2xl">
             <div className="w-[19px] h-[38px] bg-[#E41272] rounded-l-full"></div>
@@ -59,7 +59,7 @@ const MobileDiamondPlan = () => {
             What’s included
           </p>
         </div>
-        <div className="ml-[30px]">
+        <div className="ml-[30px] pb-40">
           {plan?.offers.map((item, i) => (
             <div
               key={i}
@@ -72,33 +72,35 @@ const MobileDiamondPlan = () => {
             </div>
           ))}
         </div>
-        <div className="flex justify-center pb-5 mb-10 relative">
-          <form
-            type="submit"
-            action={`http://localhost:4000/payment/plan?_plan=${
-              plan?._id
-            }&amount=${plan?.priceMonth.toString()}&desc=${"Plan payment"}&_token=${getCookie(
-              "token"
-            )}`}
-            method="post"
-          >
-            <button
-              className="py-6 px-24 rounded-[96px] text-lg leading-5 font-bold text-white"
-              style={{
-                zIndex: 100,
-                backgroundImage:
-                  "linear-gradient(180deg, #CC1A7A 0%, #5A3FA0 96.35%, rgba(228, 18, 114, 0) 100%)",
-              }}
+        <div className="w-full absolute bottom-0">
+          <div className="flex justify-center pb-5 mb-12 relative">
+            <form
+              type="submit"
+              action={`http://localhost:4000/payment/plan?_plan=${
+                plan?._id
+              }&amount=${plan?.priceMonth.toString()}&desc=${"Plan payment"}&_token=${getCookie(
+                "token"
+              )}`}
+              method="post"
             >
-              Get Started
-            </button>
-          </form>
-          <img
-            style={{ zIndex: -1 }}
-            className="absolute bottom-0 rotate-180 h-36 w-full"
-            src={topShape}
-            alt="Not Available"
-          />
+              <button
+                className="py-6 px-24 rounded-[96px] text-lg leading-5 font-bold text-white"
+                style={{
+                  zIndex: 100,
+                  backgroundImage:
+                    "linear-gradient(180deg, #CC1A7A 0%, #5A3FA0 96.35%, rgba(228, 18, 114, 0) 100%)",
+                }}
+              >
+                Get Started
+              </button>
+            </form>
+            <img
+              style={{ zIndex: -1 }}
+              className="absolute bottom-0 rotate-180 h-36 w-full"
+              src={topShape}
+              alt="Not Available"
+            />
+          </div>
         </div>
       </section>
       <BottomNav></BottomNav>

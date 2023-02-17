@@ -1,4 +1,13 @@
 // components
+import MobileDynamicProfileActivity from "../../../components/pages/DynamicProfilePage/MobileDynamicProfile/MobileDynamicProfileDetails/MobileDynamicProfileActivity";
+import MobileDynamicProfileConnections from "../../../components/pages/DynamicProfilePage/MobileDynamicProfile/MobileDynamicProfileDetails/MobileDynamicProfileConnections";
+import MobileUserConnections from "../../../components/pages/DynamicProfilePage/MobileDynamicProfile/MobileUserConnections/MobileUserConnections";
+import { MobileAccordionPartner } from "../../../components/pages/FindPartner/MobileAccordionPartner/MobileAccordionPartner";
+import { FilterResultsMobile } from "../../../components/pages/FindPartner/mobileVersion/FilterResultsMobile";
+import { FindPartnersMobile } from "../../../components/pages/FindPartner/mobileVersion/FindPartnersMobile";
+import { NewPartnersForMobile } from "../../../components/pages/FindPartner/mobileVersion/NewPartnersForMobile";
+import { SuggestedpartnersForMobile } from "../../../components/pages/FindPartner/mobileVersion/SuggestedpartnersForMobile";
+import { TopPartnersForMobile } from "../../../components/pages/FindPartner/mobileVersion/TopPartnersForMobile";
 import MobileActivity from "../../../components/pages/MobileActivity/MobileActivity";
 import MobileSingleProfilesUser from "../../../components/SingleProfilesUser/MobileSingleProfilesUser/MobileSingleProfilesUser";
 import { PersonalDetailsMobile } from "../../../components/SingleProfilesUser/MobileSingleProfilesUser/PersonalDetailsMobile";
@@ -15,6 +24,9 @@ import MobileAgentAddServiceForm from "../../../Wrapper/Home/mobileversion/Mobil
 import MobileAgentServicesPage from "../../../Wrapper/Home/mobileversion/MobileAgent/MobileAgentServicesPage/MobileAgentServicesPage";
 import MobileDynamicSingleServiceContainer from "../../../Wrapper/Home/mobileversion/MobileDynamicSingleServiceContainer/MobileDynamicSingleServiceContainer";
 import MobileDynamicSingleServiceStatusContainer from "../../../Wrapper/Home/mobileversion/MobileDynamicSingleServiceStatusContainer/MobileDynamicSingleServiceStatusContainer";
+import SuggestedAgentForMobile from "../../../Wrapper/Home/mobileversion/MobileFindLawyerAgentKazi/SuggestedAgentForMobile/SuggestedAgentForMobile";
+import SuggestedKaziForMobile from "../../../Wrapper/Home/mobileversion/MobileFindLawyerAgentKazi/SuggestedKaziForMobile/SuggestedKaziForMobile";
+import SuggestedLawyerForMobile from "../../../Wrapper/Home/mobileversion/MobileFindLawyerAgentKazi/SuggestedLawyerForMobile/SuggestedLawyerForMobile";
 import MobileKaziActivity from "../../../Wrapper/Home/mobileversion/MobileKazi/MobileKaziActivity/MobileKaziActivity";
 import MobileKaziAddServiceForm from "../../../Wrapper/Home/mobileversion/MobileKazi/MobileKaziAddServiceForm/MobileKaziAddServiceForm";
 import MobileKaziServicesPage from "../../../Wrapper/Home/mobileversion/MobileKazi/MobileKaziServicesPage/MobileKaziServicesPage";
@@ -85,6 +97,38 @@ const MobileMatrimonyPrivateRoutes = [
     id: 9,
     path: "/notifications",
     element: <NotificationForMobile />,
+  },
+  {
+    id: 10,
+    path: "/mobile-find-partner",
+    element: <FindPartnersMobile />,
+    nestedRoutes: [
+      {
+        id: 1,
+        path: "suggested",
+        element: <SuggestedpartnersForMobile />,
+      },
+      {
+        id: 2,
+        path: "top-partners",
+        element: <TopPartnersForMobile />,
+      },
+      {
+        id: 3,
+        path: "new-partners",
+        element: <NewPartnersForMobile />,
+      },
+      {
+        id: 4,
+        path: "filter-box",
+        element: <MobileAccordionPartner />,
+      },
+      {
+        id: 5,
+        path: "filter-results",
+        element: <FilterResultsMobile />,
+      },
+    ],
   },
   {
     id: 11,
@@ -222,6 +266,46 @@ const MobileMatrimonyPrivateRoutes = [
     id: 37,
     path: "/serviceStatusMov/cancelled/:id",
     element: <MobileDynamicSingleServiceStatusContainer />,
+  },
+  {
+    id: 38,
+    path: "/connections/:id",
+    element: <MobileUserConnections />,
+  },
+  {
+    id: 39,
+    path: "/galleryMov/:id",
+    element: <GalleryContainerForMobile />,
+  },
+  {
+    id: 40,
+    path: "/findLawyerMov",
+    element: <SuggestedLawyerForMobile />,
+  },
+  {
+    id: 41,
+    path: "/findKaziMov",
+    element: <SuggestedKaziForMobile />,
+  },
+  {
+    id: 42,
+    path: "/findAgentMov",
+    element: <SuggestedAgentForMobile />,
+  },
+  {
+    id: 43,
+    path: "/dynamicConnectionsMov/:id",
+    element: <MobileDynamicProfileConnections />,
+  },
+  {
+    id: 44,
+    path: "/dynamicActivityMov/:id",
+    element: <MobileDynamicProfileActivity />,
+  },
+  {
+    id: 44,
+    path: "/dynamicGalleryMov/:id",
+    element: <GalleryContainerForMobile />,
   },
 ];
 

@@ -1,10 +1,17 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 
-export const RightSideMessage = ({ message }) => {
+
+export const RightSideMessage = ({message}) => {
+    const scrollRef=useRef();
+    useEffect(()=>{
+        scrollRef.current.scrollIntoView({behaviour:"smooth"});
+    })
     return (
-        <div className="flex w-full justify-end gap-x-[20px] my-[31px]">
-            <div className="content bg-[#A32BCA] rounded-tl-[20px] rounded-tr-[20px] rounded-bl-[20px] px-[20px] py-[9px] max-w-[75%] h-auto duration-300 text-[17px]">
-                <p className="text-white text-[16px] font-normal">{message}</p>
+        <div ref={scrollRef} className="flex w-full justify-end gap-x-[20px] my-[31px]">
+            <div className="content bg-[#A32BCA] rounded-tl-[20px] rounded-tr-[20px] rounded-bl-[20px] px-[20px] py-[9px] max-w-[75%] h-auto duration-300">
+                <p className="text-white text-[16px] font-normal">
+                    {message?.message}
+                </p>
             </div>
             <img
                 className="h-[58px] w-[58px] rounded-full"
