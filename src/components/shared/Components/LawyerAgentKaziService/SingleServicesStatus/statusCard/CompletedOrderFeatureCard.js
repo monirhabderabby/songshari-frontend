@@ -31,8 +31,6 @@ const CompletedOrderFeatureCard = () => {
     const [updateReview] = useUpdateReviewMutation();
     const { review } = data || {};
 
-    console.log(review);
-
     useEffect(() => {
         setReviewEdit(review?.review);
         setRatingEdit(review?.rating);

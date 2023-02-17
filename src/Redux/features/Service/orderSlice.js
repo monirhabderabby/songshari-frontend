@@ -33,4 +33,4 @@ const ordersSlice = createSlice({
 });
 
 export default ordersSlice.reducer;
-export const { setTotalPendingOrderData, setTotalRunningOrderData, setIdForCancleOrder, setTotalCompletedOrderData } = ordersSlice.actions;
+export const { setTotalPendingOrderData, setTotalRunningOrderData, setTotalCompletedOrderData, setIdForCancleOrder } = ordersSlice.actions;

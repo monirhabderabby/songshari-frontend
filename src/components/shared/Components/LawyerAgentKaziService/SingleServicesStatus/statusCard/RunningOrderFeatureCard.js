@@ -95,7 +95,7 @@ const RunningOrderFeatureCard = ({ price, deadline, role }) => {
     const [rejectOrder, { isLoading, isSuccess }] = useRejectOrderMutation();
 
     // get ID
-    const orderID = useSelector(state => state.persistedReducer?.orderInfo?.runningOrder?.currentOrderIdFOrCancle);
+    const orderID = useSelector(state => state.persistedReducer?.ordersInfo?.runningOrder?.currentOrderIdFOrCancle);
 
     // JS Variable declaration
     const classes = useStyles();
