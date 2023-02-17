@@ -3,7 +3,9 @@ import TextareaAutosize from "@mui/base/TextareaAutosize";
 import { Rating } from "@mui/material";
 import Card from "@mui/material/Card";
 import Divider from "@mui/material/Divider";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router";
+import { useGetReviewByUserAndServiceIDQuery, useUpdateReviewMutation } from "../../../../../../Redux/features/Service/OrderApi";
 const useStyles = makeStyles({
     root: {
         background: "#FFFFFF",
@@ -22,9 +24,34 @@ const useStyles = makeStyles({
 });
 const CompletedOrderFeatureCard = () => {
     const [edit, setEdit] = useState(false);
-    const [demoReview, setDemoReview] = useState(
-        "You made it so simple. My new site is so much faster and easier to work with than my old site. I just choose the page, make the changes."
-    );
+    const [reviewEdit, setReviewEdit] = useState();
+    const [ratingEdit, setRatingEdit] = useState(0);
+    const { id } = useParams();
+    const { data } = useGetReviewByUserAndServiceIDQuery({ serviceID: id });
+    const [updateReview] = useUpdateReviewMutation();
+    const { review } = data || {};
+
+    console.log(review);
+
+    useEffect(() => {
+        setReviewEdit(review?.review);
+        setRatingEdit(review?.rating);
+    }, [review]);
+
+    // function declaration
+    const handleReviewEdit = () => {
+        const data = {
+            review: reviewEdit,
+            rating: ratingEdit,
+        };
+        updateReview({
+            reviewId: review?._id,
+            data: data,
+        });
+
+        setEdit(false);
+    };
+
     const classes = useStyles();
     return (
         <Card className={classes.root}>
@@ -60,11 +87,11 @@ const CompletedOrderFeatureCard = () => {
                     )}
                 </div>
                 <div className="flex flex-col">
-                    <Rating name="reviewRating" value={3} precision={0.5} />
+                    <Rating name="reviewRating" value={ratingEdit} onChange={(event, value) => setRatingEdit(value)} />
                     <TextareaAutosize
-                        value={demoReview}
+                        value={reviewEdit}
                         className="text-[16px] h-auto font-normal text-[#18181B] font-Nunito outline-none"
-                        onChange={e => setDemoReview(e.target.value)}
+                        onChange={e => setReviewEdit(e.target.value)}
                         readOnly={!edit}
                     />
                 </div>
@@ -76,7 +103,10 @@ const CompletedOrderFeatureCard = () => {
                         >
                             Cancle
                         </button>
-                        <button className="bg-[linear-gradient(180deg,_#E32986_0%,_#A32BCA_100%)] w-[75px] h-[26px] text-white flex justify-center items-center rounded-[12px]">
+                        <button
+                            className="bg-[linear-gradient(180deg,_#E32986_0%,_#A32BCA_100%)] w-[75px] h-[26px] text-white flex justify-center items-center rounded-[12px]"
+                            onClick={handleReviewEdit}
+                        >
                             Save
                         </button>
                     </div>

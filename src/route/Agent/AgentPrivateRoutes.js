@@ -1,6 +1,6 @@
 import AgentActivity from "../../components/pages/Agent/AgentActivity/AgentActivity";
 import AgentProfileContainer from "../../components/pages/Agent/AgentProfile/AgentProfileContainer/AgentProfileContainer";
-import AgentReview from "../../components/pages/Agent/AgentReview/AgentReview";
+import AgentReviewsContainer from "../../components/pages/Agent/AgentReview/AgentReviewsContainer";
 import AgentServiceForm from "../../components/pages/Agent/AgentServiceForm/AgentServiceForm";
 import AgentServicesPage from "../../components/pages/Agent/AgentServicesPage/AgentServicesPage";
 import { ServiceEdit } from "../../components/shared/Components/LawyerAgentKaziService/ServiceEdit/ServiceEdit";
@@ -31,7 +31,7 @@ const AgentPrivateRoutes = [
             {
                 id: 4,
                 path: "agentReview",
-                element: <AgentReview />,
+                element: <AgentReviewsContainer />,
             },
             {
                 id: 5,

@@ -3,7 +3,7 @@ import React from "react";
 // Third party package
 import { Rating } from "@mui/material";
 
-const AgentBestReviewsCard = ({ review }) => {
+const BestReviewsCard = ({ review }) => {
     return (
         <div className="px-8 py-7 border border-[#DEDEDE] rounded bg-gray-50">
             <Rating value={review.rating} readOnly />
@@ -19,4 +19,4 @@ const AgentBestReviewsCard = ({ review }) => {
     );
 };
 
-export default AgentBestReviewsCard;
+export default BestReviewsCard;
