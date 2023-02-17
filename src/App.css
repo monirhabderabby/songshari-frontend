@@ -31,13 +31,6 @@
     background-color: transparent !important;
 }
 
-/* .gradient_border {
-    border-width: 8px;
-    border-style: solid;
-    border-image: linear-gradient(166deg, rgb(242, 40, 118) 0%, rgb(148, 45, 217) 100%);
-    border-image-slice: 1;
-} */
-
 .chat-scrollbar::-webkit-scrollbar {
     width: 6px;
     height: 5px;
@@ -46,4 +39,31 @@
 .chat-scrollbar::-webkit-scrollbar-thumb {
     background-color: #a32bca;
     border-radius: 10px;
+}
+
+.gradientTextWithBorderRight {
+    background: -webkit-linear-gradient(#e42986, #a32ccb);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    padding: 10px;
+    display: inline-block;
+    border: 2px solid transparent;
+    border-image: linear-gradient(to right, #e42986, #a32ccb) 1;
+    border-radius: 6px;
+    position: absolute;
+    top: 20%;
+    right: 15%;
+}
+.gradientTextWithBorderLeft {
+    background: -webkit-linear-gradient(#e42986, #a32ccb);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    padding: 10px;
+    display: inline-block;
+    border: 2px solid transparent;
+    border-image: linear-gradient(to right, #e42986, #a32ccb) 1;
+    border-radius: 6px;
+    position: absolute;
+    top: 50%;
+    left: 20%;
 }
