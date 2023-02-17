@@ -4,7 +4,6 @@ import React from "react";
 import { Rating } from "@mui/material";
 
 const BestTwoReviewsCard = ({ review }) => {
-    console.log(review);
     let { review: reviewText, rating, user } = review || {};
     const { firstName, lastName, designation, profilePhoto } = user || {};
     reviewText = reviewText?.length > 191 ? reviewText.slice(0, 191) + "..." : reviewText;
