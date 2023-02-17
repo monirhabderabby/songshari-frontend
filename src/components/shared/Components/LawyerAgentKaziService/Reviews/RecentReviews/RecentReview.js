@@ -7,7 +7,7 @@ import { LineWaveLoader } from "../../../../Cards/Loader/lineWaveLoader/LineWave
 import BestReviewsCard from "./BestReviewsCard";
 import BestTwoReviewsCard from "./BestTwoReviewsCard";
 
-const RecentReview = ({ reviewsData }) => {
+const RecentReview = () => {
     const { data, isLoading } = useGetRecentReviewQuery();
     const { reviews } = data || {};
 
