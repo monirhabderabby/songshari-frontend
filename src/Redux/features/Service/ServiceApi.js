@@ -115,6 +115,15 @@ export const serviceApi = apiSlice.injectEndpoints({
             }),
             keepUnusedDataFor: 0,
         }),
+        getBelowThreeStar: builder.query({
+            query: () => ({
+                url: "/service/review/low",
+                method: "GET",
+                headers: {
+                    authorization: `Bearer ${getCookie("token")}`,
+                },
+            }),
+        }),
     }),
 });
 
@@ -130,4 +139,5 @@ export const {
     useGetAllServicesByroleQuery,
     useAllReviewsByServiceIDQuery,
     useGetTopReviewsQuery,
+    useGetBelowThreeStarQuery,
 } = serviceApi;

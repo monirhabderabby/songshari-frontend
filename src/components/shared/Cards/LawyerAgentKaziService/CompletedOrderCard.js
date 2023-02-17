@@ -6,7 +6,6 @@ export const CompletedOrderCard = ({ order, activity }) => {
     const { service, updatedAt } = order || {};
     let { title, price } = service || {};
     title = title?.length > 42 ? title.slice(0, 32) + "..." : title;
-    console.log(order);
     return (
         <div
             className={`rounded-xl p-6 w-[393px] h-[188px] ${activity ? "text-white" : "text-black"}`}
