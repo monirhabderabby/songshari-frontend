@@ -24,6 +24,7 @@ const SingleServiceStatusDetailes = () => {
     const { data, isLoading, error } = useGetServiceByIdQuery(id);
 
     const { service } = data || {};
+    console.log(data);
     const { title, description, photos, recuirements, extraOffer, price, deadline, role } = service || {};
 
     let content;

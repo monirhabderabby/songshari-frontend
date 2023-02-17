@@ -65,6 +65,35 @@ export const orderApi = apiSlice.injectEndpoints({
             }),
             invalidatesTags: ["AllOrdersByMember"],
         }),
+        getRecentReview: builder.query({
+            query: () => ({
+                url: "/service/review/recent",
+                headers: {
+                    authorization: `Bearer ${getCookie("token")}`,
+                },
+            }),
+        }),
+        getReviewByUserAndServiceID: builder.query({
+            query: ({ serviceID }) => ({
+                url: `/service/review/mine/${serviceID}`,
+                method: "GET",
+                headers: {
+                    authorization: `Bearer ${getCookie("token")}`,
+                },
+            }),
+            providesTags: ["reviewByUserAndService"],
+        }),
+        updateReview: builder.mutation({
+            query: ({ reviewId, data }) => ({
+                url: `/service/review/update/${reviewId}`,
+                method: "PUT",
+                headers: {
+                    authorization: `Bearer ${getCookie("token")}`,
+                },
+                body: data,
+            }),
+            invalidatesTags: ["reviewByUserAndService"],
+        }),
     }),
 });
 
@@ -75,4 +104,7 @@ export const {
     useRejectOrderMutation,
     useGetAllOrderByMemberQuery,
     useMarkAsCompleteMutation,
+    useGetRecentReviewQuery,
+    useGetReviewByUserAndServiceIDQuery,
+    useUpdateReviewMutation,
 } = orderApi;

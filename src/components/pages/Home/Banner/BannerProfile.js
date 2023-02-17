@@ -20,6 +20,7 @@ import "swiper/css/navigation";
 const BannerProfile = () => {
     // hook variables
     const [likedGif, setLikedGif] = useState(true);
+    const [rejectedGif, setRejectedGif] = useState(false);
     const [clickNextButton, setClickNextButton] = useState(false);
     const [clickPreviousButton, setClickPreviousButton] = useState(false);
 
@@ -30,7 +31,8 @@ const BannerProfile = () => {
 
     const getJustSwipeData = e => {
         // get the current element
-        let activeEl = e.realIndex + 1;
+        let activeEl;
+        activeEl = e.previousIndex - 1;
         const swipeAndMatchArrau = swipematch?.data?.members;
         const result = swipeAndMatchArrau.find((item, index) => {
             if (activeEl === index) return item;
@@ -47,6 +49,7 @@ const BannerProfile = () => {
         if (clickNextButton) {
             setClickNextButton(false);
             rejectSwipeAndMatchMember(_id);
+            setRejectedGif(true);
         }
         if (clickPreviousButton) {
             setLikedGif(true);
@@ -62,6 +65,13 @@ const BannerProfile = () => {
             }, 2000);
         }
     }, [likedGif]);
+    useEffect(() => {
+        if (rejectedGif) {
+            setTimeout(() => {
+                setRejectedGif(false);
+            }, 2000);
+        }
+    }, [rejectedGif]);
 
     return (
         <Swiper
@@ -69,7 +79,7 @@ const BannerProfile = () => {
             centeredSlides={true}
             loop={true}
             autoplay={{
-                delay: 5500,
+                delay: 7500,
             }}
             modules={[Navigation, Autoplay]}
             className="max-w-[280px] h-[400px]"
@@ -86,7 +96,7 @@ const BannerProfile = () => {
         >
             {swipematch?.data?.members.map(data => (
                 <SwiperSlide key={data._id}>
-                    <SwipAndMatchCard {...{ data, likedGif }} />
+                    <SwipAndMatchCard {...{ data, likedGif, rejectedGif }} />
                 </SwiperSlide>
             ))}
         </Swiper>
