@@ -31,7 +31,8 @@ const BannerProfile = () => {
 
     const getJustSwipeData = e => {
         // get the current element
-        let activeEl = e.realIndex + 1;
+        let activeEl;
+        activeEl = e.previousIndex - 1;
         const swipeAndMatchArrau = swipematch?.data?.members;
         const result = swipeAndMatchArrau.find((item, index) => {
             if (activeEl === index) return item;
