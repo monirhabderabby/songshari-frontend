@@ -105,6 +105,16 @@ export const serviceApi = apiSlice.injectEndpoints({
             }),
             keepUnusedDataFor: 0,
         }),
+        getTopReviews: builder.query({
+            query: () => ({
+                url: "/service/review/top",
+                method: "GET",
+                headers: {
+                    authorization: `Bearer ${getCookie("token")}`,
+                },
+            }),
+            keepUnusedDataFor: 0,
+        }),
     }),
 });
 
@@ -119,4 +129,5 @@ export const {
     useChangeServiceStatusMutation,
     useGetAllServicesByroleQuery,
     useAllReviewsByServiceIDQuery,
+    useGetTopReviewsQuery,
 } = serviceApi;

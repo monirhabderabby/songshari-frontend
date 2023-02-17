@@ -3,21 +3,20 @@ import React from "react";
 
 // Components
 import { allReviewsData } from "../../../Lawyer/LawyerDummyData/LawyerReviewsDummyData";
-import KaziRecentReview from "./kaziRecentReview/KaziRecentReview";
+import RecentReview from "../../../shared/Components/LawyerAgentKaziService/Reviews/RecentReviews/RecentReview";
+import TopReviews from "../../../shared/Components/LawyerAgentKaziService/Reviews/TopReviews/TopReviews";
 import KaziReviewBelowThreeStar from "./kaziReviewBelowThreeStart/KaziReviewBelowThreeStar";
-import KaziTopReview from "./kaziTopReview/KaziTopReview";
 
-const KaziReview = () => {
+const KaziReviewsContainer = () => {
     const reviewsData = allReviewsData;
-    const topReviews = reviewsData.filter(review => review.rating > 3);
     const belowThreeStarReviews = reviewsData.filter(review => review.rating <= 3);
     return (
         <div>
             {/* Recent review */}
-            <KaziRecentReview {...{ reviewsData }} />
+            <RecentReview />
 
             {/* Top Review */}
-            <KaziTopReview {...{ topReviews }} />
+            <TopReviews />
 
             {/* Review below 3 star */}
             <KaziReviewBelowThreeStar {...{ belowThreeStarReviews }} />
@@ -25,4 +24,4 @@ const KaziReview = () => {
     );
 };
 
-export default KaziReview;
+export default KaziReviewsContainer;
