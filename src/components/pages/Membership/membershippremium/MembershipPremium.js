@@ -18,7 +18,7 @@ export const MembershipPremium = () => {
           {!isLoading &&
             !error &&
             data?.data?.plans?.map((item) => (
-              <MemberShipPremiumCard key={item.id} item={item} />
+              <MemberShipPremiumCard key={item._id} item={item} />
             ))}
         </div>
       </div>

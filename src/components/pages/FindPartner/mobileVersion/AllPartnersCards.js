@@ -1,5 +1,5 @@
 // configuration
-import React from "react";
+import React, { useEffect } from "react";
 
 // Third party packages
 import { AiOutlineWarning } from "react-icons/ai";
@@ -11,12 +11,12 @@ import { MobilePartnerLoader } from "./Loader/MobilePartnerLoader";
 import { MobilePartnerCard } from "./MobilePartnerCard";
 
 export const AllPartnersCards = ({ data, isLoading, error, setPage }) => {
-  let totalData = Math.ceil(data?.data?.total / 6);
+  let totalData = Math.ceil(data?.data?.total / 6) || 0;
   // js variable declaration
   let content;
   if (isLoading) {
     content = (
-      <div className="mt-[18px] grid grid-cols-2 md:grid-cols-3 gap-y-[20px] w-full">
+      <div className="mt-[18px] grid grid-cols-2 md:grid-cols-3 gap-[20px] w-full">
         <MobilePartnerLoader />
         <MobilePartnerLoader />
         <MobilePartnerLoader />
@@ -43,13 +43,17 @@ export const AllPartnersCards = ({ data, isLoading, error, setPage }) => {
     );
   } else if (!isLoading && data?.data?.members?.length > 0) {
     content = (
-      <div className="mt-[18px] grid grid-cols-2 md:grid-cols-3 gap-y-[20px] w-full">
+      <div className="mt-[18px] grid grid-cols-2 md:grid-cols-3 gap-[20px] w-full">
         {data.data.members?.map((user) => {
-          return <MobilePartnerCard {...{ user }} />;
+          return <MobilePartnerCard {...{ user }} key={user._id} />;
         })}
       </div>
     );
   }
+  // Scroll To top
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  }, []);
   return (
     <div>
       <div>{content}</div>

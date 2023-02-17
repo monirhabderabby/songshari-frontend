@@ -102,7 +102,12 @@ export const UserCard = ({ profile }) => {
               <div className="p-2 relative">
                 <h4 className="text-white text-[25px] font-bold text-center overflow-hidden">
                   <span className="font-george">{name}</span>
-                  <span style={{ color: "rgb(135, 206, 235)" }}> 27</span>
+                  <span style={{ color: "rgb(135, 206, 235)" }}>
+                    {" "}
+                    {ageCalculator(
+                      profile?.dateOfBirth ? profile?.dateOfBirth : 0
+                    )}
+                  </span>
                 </h4>
                 <ul className="text-white font-Inter">
                   <li>
