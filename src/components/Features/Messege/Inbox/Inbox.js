@@ -29,15 +29,26 @@ export const Inbox = () => {
         }
     }, [message.to]);
     // console.log(data?.data?.message)
-    const [msg, setMsg] = useState(null);
     
-
-    const handleChat = async id => {
+    
+    
+    const handleChat =  id => {
         setMessage({ ...message, to: id });
         // console.log(id)
+        
+        
         // 
        
     };
+
+    // setMsg(data?.message);
+  
+
+    
+
+    // msg = result?.data?.message;
+    
+
     
     // useEffect(() => {
     //     (async () => {
@@ -63,7 +74,7 @@ export const Inbox = () => {
                     <Sidebar profile={profile} handleChat={handleChat} />
                 </div>
                 <div className="flex-1 h-full">
-                    <MessegeBox user={profile} msg={msg} setMsg={setMsg} message={message} setMessage={setMessage} socket={socket} />
+                    <MessegeBox user={profile} message={message} setMessage={setMessage} socket={socket} />
                 </div>
             </div>
         </div>
