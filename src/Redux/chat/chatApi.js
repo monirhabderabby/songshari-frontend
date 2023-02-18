@@ -17,16 +17,16 @@ export const chatApi = apiSlice.injectEndpoints({
                 }
             }
         }),
-        getAllMessage: builder.mutation({
+        getAllMessage: builder.query({
             query(body){
                 // console.log(body)
                 return{
-                    url: `/inbox/messages`,
-                method: "POST",
+                    url: `/inbox/messages?from=${body.from}&to=${body.to}`,
+                
                 headers: {
                     authorization: `Bearer ${getCookie("token")}`,
                 },
-                body:body
+                
                 }
             }
             
@@ -44,4 +44,4 @@ export const chatApi = apiSlice.injectEndpoints({
     }),
 });
 
-export const { useCreateMessageMutation, useGetAllMessageMutation } = chatApi;
+export const { useCreateMessageMutation, useGetAllMessageQuery } = chatApi;

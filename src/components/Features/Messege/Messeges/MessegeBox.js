@@ -8,7 +8,7 @@ import mic from "../../../../assets/images/messges/Audio.svg";
 import emoji from "../../../../assets/images/messges/Emoji.svg";
 import gallary from "../../../../assets/images/messges/Gallery.svg";
 import photo from "../../../../assets/images/messges/Photo.svg";
-import { useCreateMessageMutation } from "../../../../Redux/chat/chatApi";
+import { useCreateMessageMutation,useGetAllMessageQuery } from "../../../../Redux/chat/chatApi";
 import { useGetProfileDetailsQuery } from "../../../../Redux/features/userInfo/userApi";
 import { MessegeList } from "./MessegeList";
 import { MessegesHeader } from "./MessegesHeader";
@@ -16,7 +16,14 @@ export const MessegeBox = ({ user,msg, setMsg, message, setMessage, socket }) =>
     const [createMessage] = useCreateMessageMutation();
     const [arivalMsg, setArivalMsg] = useState(null);
     const { data, isLoading, error } = useGetProfileDetailsQuery(message.to);
-    // console.log(data)
+    const result = useGetAllMessageQuery(message);
+    // console.log(result?.data?.message)
+    useEffect(() => {
+        if(result?.data?.message){
+            setMsg(result?.data?.message);
+        }
+    }, [result?.data?.message])
+
     const handleMessage = async e => {
         if (e.code === "Enter" || e.type === "click") {
             createMessage(message);

@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { io } from "socket.io-client";
-import { useGetAllMessageMutation } from "../../../../Redux/chat/chatApi";
+// import { useGetAllMessageQuery } from "../../../../Redux/chat/chatApi";
 import CustomHeader from "../../../shared/CustomHeader/CustomHeader";
 import { MessegeBox } from "../Messeges/MessegeBox";
 import { Sidebar } from "../Sidebar/Sidebar";
@@ -13,13 +13,14 @@ export const Inbox = () => {
     // console.log(profile)
     let from=profile?._id;
 
-    const [getAllMessage, data] = useGetAllMessageMutation();
+    
     // console.log(data)
     const [message, setMessage] = useState({
         message: "",
         to: "",
         from: from,
     });
+    
     // setMessage({...message,from:res?.user?._id});
     useEffect(() => {
         if (message.to) {
@@ -33,24 +34,25 @@ export const Inbox = () => {
 
     const handleChat = async id => {
         setMessage({ ...message, to: id });
-        console.log(id)
+        // console.log(id)
         // 
        
     };
-    useEffect(() => {
-        (async () => {
-            if (message.to) {
-                await getAllMessage(message);
-            }
-        }
-        )();
-    }, [message.to]);
     
-    useEffect(() => {
-        if (data?.data?.message) {
-            setMsg(data?.data?.message);
-        }
-    }, [data?.data?.message]);
+    // useEffect(() => {
+    //     (async () => {
+    //         if (message.to) {
+    //             await getAllMessage(message);
+    //         }
+    //     }
+    //     )();
+    // }, [message.to]);
+    
+    // useEffect(() => {
+    //     if (data?.data?.message) {
+    //         setMsg(data?.data?.message);
+    //     }
+    // }, [data?.data?.message]);
     
     
     return (

@@ -1,7 +1,7 @@
 import React from "react";
 
 export const Conversations = ({handleChat,user}) => {
-    console.log(user)
+    // console.log(user)
     // const arr = [1, 2, 3, 4];
     return (
         <div className="mt-[30px] h-[537px] bg-white shadow-[0px_3px_4px_rgba(62,73,84,0.04)] rounded-[20px] px-[30px] ">
