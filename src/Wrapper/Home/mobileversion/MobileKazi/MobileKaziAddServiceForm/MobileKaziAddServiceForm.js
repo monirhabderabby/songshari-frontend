@@ -10,7 +10,7 @@ const MobileKaziAddServiceForm = () => {
   return (
     <div>
       <MobileBackButton name={"Add Service"} />
-      <KaziAddServiceForm />
+      <KaziAddServiceForm {...{ responsive: true }} />
       <BottomNav />
     </div>
   );
