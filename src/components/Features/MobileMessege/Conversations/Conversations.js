@@ -9,11 +9,13 @@ import moment from "moment";
 import { MobileBackButton } from "../../../shared/Components/MobileBackButton";
 import { useGetAllConnectedConnectionsQuery } from "../../../../Redux/features/connections/connectionApi";
 import { setUser } from "../../../../Redux/chat/chatReducer";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 
 export const Conversations = () => {
-    let { data } = useGetAllConnectedConnectionsQuery();
+    const res = useSelector(state => state.persistedReducer.userInfo.userInfo);
+    let from = res?.data ? res.data.user._id : res?.user._id;
+    let { data } = useGetAllConnectedConnectionsQuery(from);
     console.log(data)
     const dispatch=useDispatch();
     const navigate=useNavigate();

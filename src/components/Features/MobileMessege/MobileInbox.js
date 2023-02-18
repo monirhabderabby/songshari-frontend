@@ -22,7 +22,7 @@ export const MobileInbox = () => {
     const [createMessage] = useCreateMessageMutation();
     const [arivalMsg, setArivalMsg] = useState(null);
     let from = res?.data ? res.data.user._id : res?.user._id;
-
+    console.log(receiver)
     const [getAllMessage, data] = useGetAllMessageMutation();
     // console.log(data)
     const [message, setMessage] = useState({
@@ -59,11 +59,10 @@ export const MobileInbox = () => {
                 message: message.message,
             });
             // console.log(msg)
-            let newMsg = [];
-            if(msg){   
-                newMsg = [...msg];
-            }
+           
             // let newMsg=msg
+            let newMsg = [];
+            newMsg = [...msg];
             newMsg.push({ fromSelf: true, message: message.message });
             setMsg(newMsg);
             e.target.value = "";
@@ -75,6 +74,7 @@ export const MobileInbox = () => {
         socket?.current?.on("messageReceived", msgs => {
             // console.log(msgs)
             if (message.to === msgs.from) {
+                
                 setArivalMsg({ fromSelf: false, message: msgs.message });
             }
         });
@@ -85,6 +85,7 @@ export const MobileInbox = () => {
         arivalMsg && setMsg(prev => [...prev, arivalMsg]);
         setArivalMsg(null);
     }, [arivalMsg, setMsg, msg]);
+    console.log(msg)
     return (
         <div className="max-w-[1024px] mx-auto h-screen flex flex-col">
             <div className="relative w-full ">

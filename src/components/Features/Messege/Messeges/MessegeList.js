@@ -9,9 +9,9 @@ export const MessegeList = ({user,profile, messages }) => {
                 <div className="h-full overflow-auto">
                     {messages?.map(messege => {
                         if (!messege.fromSelf) {
-                            return <MessegeLeft profile={user} message={messege} />;
+                            return <MessegeLeft profile={profile} message={messege} />;
                         } else {
-                            return <MessegeRight profile={profile} message={messege} />;
+                            return <MessegeRight profile={user} message={messege} />;
                         }
                     })}
                 </div>
