@@ -33,7 +33,8 @@ export const Inbox = () => {
 
     const handleChat = async id => {
         setMessage({ ...message, to: id });
-        
+        console.log(id)
+        // 
        
     };
     useEffect(() => {

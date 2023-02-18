@@ -12,7 +12,7 @@ export const ConversationHeader = ({profile}) => {
                     alt="profile"
                 />
                 <div className="flex flex-col justify-center">
-                    <p className="text-[#000000] font-semibold text-[18px] font-">{profile.firstName}</p>
+                    <p className="text-[#000000] font-semibold text-[18px] font-">{profile?.firstName}</p>
                     <Select
                         defaultValue="Active"
                         className="m-0"

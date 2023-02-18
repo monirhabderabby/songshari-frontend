@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from "react";
 
 export const MessegeRight = ({profile,message}) => {
     // console.log(message)
+    // console.log(profile.profilePhoto)
     const scrollRef=useRef();
     useEffect(()=>{
         scrollRef.current.scrollIntoView({behaviour:"smooth"});

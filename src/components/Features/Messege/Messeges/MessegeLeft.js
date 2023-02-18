@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from "react";
 
 export const MessegeLeft = ({profile,message}) => {
+    
     const scrollRef=useRef();
     useEffect(()=>{
         scrollRef.current.scrollIntoView({behaviour:"smooth"});

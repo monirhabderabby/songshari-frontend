@@ -4,7 +4,7 @@ import { ConversationHeader } from "./ConversationHeader";
 import { Conversations } from "./Conversations";
 
 export const Sidebar = ({profile,handleChat}) => {
-    let { data } = useGetAllConnectedConnectionsQuery();
+    let { data } = useGetAllConnectedConnectionsQuery(profile?._id);
     // console.log(data?.data);
     return (
         <div className="mx-[11px]">
