@@ -13,28 +13,32 @@ import { Collapse } from "antd";
 
 // components
 import getCookie from "../../../../Helper/cookies/getCookie";
+import { MdOutlineReviews } from "react-icons/md";
 const { Panel } = Collapse;
 
 export const AccountSettingMov = () => {
   const [servicePath, setServicePath] = useState();
   const [activityPath, setActivityPath] = useState();
+  const [reviewsPath, setReviewsPath] = useState();
 
   const token = getCookie("token");
   const authInfo = decodeToken(token);
   const { _id, role } = authInfo || {};
 
-  // "/mobileActivityPage"
-  //   Decision about service page route
+  // Decision about professional page route
   useEffect(() => {
     if (role === "lawyer") {
       setServicePath("/mobileLawyerServices");
       setActivityPath("/lawyerActivityMov");
+      setReviewsPath("/lawyerReviewsMov");
     } else if (role === "agent") {
       setServicePath("/mobileAgentServices");
       setActivityPath("/agentActivityMov");
+      setReviewsPath("/agentReviewsMov");
     } else if (role === "kazi") {
       setServicePath("/mobileKaziServices");
       setActivityPath("/kaziActivityMov");
+      setReviewsPath("/kaziReviewsMov");
     }
   }, [role]);
 
@@ -212,6 +216,26 @@ export const AccountSettingMov = () => {
                 alt="Not Available"
               ></img>
               <h1 className="mt-[-5px] whitespace-nowrap">My Services</h1>
+            </div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div>
+              <i className="fa-solid fa-angle-right ml-8"></i>
+            </div>
+          </div>
+        </Link>
+      )}
+
+      {role !== "member" && (
+        <Link to={reviewsPath}>
+          <div className="grid grid-cols-6 mt-5 mb-10 he">
+            <div className="setting-mov">
+              <h1 className="mt-[-5px] whitespace-nowrap flex items-center">
+                <MdOutlineReviews className="ml-8 mr-[22px] text-black text-xl" />{" "}
+                My Reviews
+              </h1>
             </div>
             <div></div>
             <div></div>

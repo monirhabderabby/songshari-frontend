@@ -33,6 +33,7 @@ import MobileKaziServicesPage from "../../../Wrapper/Home/mobileversion/MobileKa
 import MobileLawyerActivity from "../../../Wrapper/Home/mobileversion/MobileLawyer/MobileLawyerActivity/MobileLawyerActivity";
 import MobileLawyerAddServiceForm from "../../../Wrapper/Home/mobileversion/MobileLawyer/MobileLawyerAddServiceForm/MobileLawyerAddServiceForm";
 import MobileLawyerServicesPage from "../../../Wrapper/Home/mobileversion/MobileLawyer/MobileLawyerServicesPage/MobileLawyerServicesPage";
+import MobileLawyerAgentKaziReviewsContainer from "../../../Wrapper/Home/mobileversion/MobileLawyerAgentKaziReviewsContainer/MobileLawyerAgentKaziReviewsContainer";
 import MobileProfServiceEdit from "../../../Wrapper/Home/mobileversion/MobileProfServiceEdit/MobileProfServiceEdit";
 import MobileProfSingleServicesContainer from "../../../Wrapper/Home/mobileversion/MobileProfSingleServicesContainer/MobileProfSingleServicesContainer";
 import MobileUserAgentServices from "../../../Wrapper/Home/mobileversion/MobileUserServicesPage/MobileUserAgentServices";
@@ -303,9 +304,24 @@ const MobileMatrimonyPrivateRoutes = [
     element: <MobileDynamicProfileActivity />,
   },
   {
-    id: 44,
+    id: 45,
     path: "/dynamicGalleryMov/:id",
     element: <GalleryContainerForMobile />,
+  },
+  {
+    id: 46,
+    path: "/lawyerReviewsMov",
+    element: <MobileLawyerAgentKaziReviewsContainer />,
+  },
+  {
+    id: 47,
+    path: "/agentReviewsMov",
+    element: <MobileLawyerAgentKaziReviewsContainer />,
+  },
+  {
+    id: 48,
+    path: "/kaziReviewsMov",
+    element: <MobileLawyerAgentKaziReviewsContainer />,
   },
 ];
 
