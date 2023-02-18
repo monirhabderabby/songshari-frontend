@@ -46,14 +46,7 @@ export const EducationalDetails = ({ setPage }) => {
     data.educations.map((p) => delete p.department);
     data.educations.map((p) => delete p.feildOfStudy);
     data.educations.map((p) => delete p.yearOfPassing);
-    data.educations.map((p) => delete p.certificatePhoto);
-
-    data.educations.map((p) => delete p.degree);
-    data.educations.map((p) => delete p.institute);
-    data.educations.map((p) => delete p.department);
-    data.educations.map((p) => delete p.fieldOfStudy);
-    data.educations.map((p) => delete p.yearOfPassing);
-    data.educations.map((p) => delete p.certificatePhoto);
+    data.educations.map((p) => delete p.certificates);
 
     data.educations.map((p, index) => (p.degree = addedDegreeName[index]));
     data.educations.map((p, index) => (p.institute = addedInstitute[index]));
@@ -65,7 +58,8 @@ export const EducationalDetails = ({ setPage }) => {
       (p, index) => (p.yearOfPassing = addedYearOfPassing[index])
     );
     data.educations.map(
-      (p, index) => (p.certificatePhoto = eduAddedPhotoCertificate[index])
+      (p, index) =>
+        (p.certificates = { photo: eduAddedPhotoCertificate[index] })
     );
     data.educations.map((p) => (p.gpaOrCgpa = Number(p.gpaOrCgpa)));
 
@@ -77,7 +71,7 @@ export const EducationalDetails = ({ setPage }) => {
     newObject.yearOfPassing = eduYearOfPassing;
     newObject.gpaOrCgpa = Number(data.gpaOrCgpa);
     newObject.specialAchievement = data.specialAchievement;
-    newObject.certificatePhoto = eduAchievementMoment;
+    newObject.certificates = { photo: eduAchievementMoment };
 
     delete data.degree;
     delete data.institute;
@@ -86,7 +80,7 @@ export const EducationalDetails = ({ setPage }) => {
     delete data.yearOfPassing;
     delete data.photoCertificate;
     delete data.gpaOrCgpa;
-    delete data.certificatePhoto;
+    delete data.certificates;
     delete data.specialAchievement;
     data.educations.push(newObject);
 
@@ -305,7 +299,7 @@ export const EducationalDetails = ({ setPage }) => {
                 )}
               </label>
               <input
-                {...register("certificatePhoto")}
+                {...register("certificates")}
                 type="file"
                 id="educationalAchievementMoment"
                 className="hidden"
@@ -473,7 +467,7 @@ export const EducationalDetails = ({ setPage }) => {
                   <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
                     <AiOutlineCloudUpload className=" mr-2 text-gray-400" />
                     <label
-                      htmlFor="certificatePhoto"
+                      htmlFor="certificates"
                       className="outline-none h-full text-sm text-gray-400 bg-gray-100"
                     >
                       {isPhotoUploaded(index) ? (
@@ -483,9 +477,9 @@ export const EducationalDetails = ({ setPage }) => {
                       )}
                     </label>
                     <input
-                      {...register(`educations.${index}.certificatePhoto`)}
+                      {...register(`educations.${index}.certificates`)}
                       type="file"
-                      id="certificatePhoto"
+                      id="certificates"
                       className="hidden"
                       onChange={moreEduAddedAchievementMomentHandler}
                     />

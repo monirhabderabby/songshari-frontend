@@ -1,6 +1,7 @@
 // components
 import MobileDynamicProfileActivity from "../../../components/pages/DynamicProfilePage/MobileDynamicProfile/MobileDynamicProfileDetails/MobileDynamicProfileActivity";
 import MobileDynamicProfileConnections from "../../../components/pages/DynamicProfilePage/MobileDynamicProfile/MobileDynamicProfileDetails/MobileDynamicProfileConnections";
+import MobileDynamicServicesContainer from "../../../components/pages/DynamicProfilePage/MobileDynamicProfile/MobileDynamicServicesContainer/MobileDynamicServicesContainer";
 import MobileUserConnections from "../../../components/pages/DynamicProfilePage/MobileDynamicProfile/MobileUserConnections/MobileUserConnections";
 import { MobileAccordionPartner } from "../../../components/pages/FindPartner/MobileAccordionPartner/MobileAccordionPartner";
 import { FilterResultsMobile } from "../../../components/pages/FindPartner/mobileVersion/FilterResultsMobile";
@@ -33,6 +34,7 @@ import MobileKaziServicesPage from "../../../Wrapper/Home/mobileversion/MobileKa
 import MobileLawyerActivity from "../../../Wrapper/Home/mobileversion/MobileLawyer/MobileLawyerActivity/MobileLawyerActivity";
 import MobileLawyerAddServiceForm from "../../../Wrapper/Home/mobileversion/MobileLawyer/MobileLawyerAddServiceForm/MobileLawyerAddServiceForm";
 import MobileLawyerServicesPage from "../../../Wrapper/Home/mobileversion/MobileLawyer/MobileLawyerServicesPage/MobileLawyerServicesPage";
+import MobileLawyerAgentKaziReviewsContainer from "../../../Wrapper/Home/mobileversion/MobileLawyerAgentKaziReviewsContainer/MobileLawyerAgentKaziReviewsContainer";
 import MobileProfServiceEdit from "../../../Wrapper/Home/mobileversion/MobileProfServiceEdit/MobileProfServiceEdit";
 import MobileProfSingleServicesContainer from "../../../Wrapper/Home/mobileversion/MobileProfSingleServicesContainer/MobileProfSingleServicesContainer";
 import MobileUserAgentServices from "../../../Wrapper/Home/mobileversion/MobileUserServicesPage/MobileUserAgentServices";
@@ -303,9 +305,29 @@ const MobileMatrimonyPrivateRoutes = [
     element: <MobileDynamicProfileActivity />,
   },
   {
-    id: 44,
+    id: 45,
     path: "/dynamicGalleryMov/:id",
     element: <GalleryContainerForMobile />,
+  },
+  {
+    id: 46,
+    path: "/lawyerReviewsMov",
+    element: <MobileLawyerAgentKaziReviewsContainer />,
+  },
+  {
+    id: 47,
+    path: "/agentReviewsMov",
+    element: <MobileLawyerAgentKaziReviewsContainer />,
+  },
+  {
+    id: 48,
+    path: "/kaziReviewsMov",
+    element: <MobileLawyerAgentKaziReviewsContainer />,
+  },
+  {
+    id: 49,
+    path: "/dynamicServicesMov/:id",
+    element: <MobileDynamicServicesContainer />,
   },
 ];
 

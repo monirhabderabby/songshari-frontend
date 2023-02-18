@@ -9,7 +9,7 @@ const MobileProfServiceEdit = () => {
   return (
     <div>
       <MobileBackButton name={"Service Edit"} />
-      <ServiceEdit />
+      <ServiceEdit {...{ responsive: true }} />
       <BottomNav />
     </div>
   );

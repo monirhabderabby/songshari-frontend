@@ -10,7 +10,7 @@ const MobileAgentAddServiceForm = () => {
   return (
     <div>
       <MobileBackButton name={"Add Service"} />
-      <AgentServiceForm />
+      <AgentServiceForm {...{ responsive: true }} />
       <BottomNav />
     </div>
   );

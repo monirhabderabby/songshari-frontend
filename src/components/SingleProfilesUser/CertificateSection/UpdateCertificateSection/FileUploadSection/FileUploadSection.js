@@ -8,22 +8,12 @@ import { toast, Toaster } from "react-hot-toast";
 
 // Components
 import { firebaseStorage } from "../../../../../firebase.init";
-import {
-  useUpdateEducationalDetailsMutation,
-  useUpdateProfessionalDetailsMutation,
-} from "../../../../../Redux/features/userInfo/userApi";
+import { useAddNewCertificateMutation } from "../../../../../Redux/features/userInfo/userApi";
 
 const FileUploadSection = ({ editFor, selectedCertificate }) => {
   // Redux api
-  const [
-    updateProfessionalDetails,
-    { data: responseProf, isLoading: profLoading, isError: profError },
-  ] = useUpdateProfessionalDetailsMutation();
-
-  const [
-    updateEducationalDetails,
-    { data: responseEdu, isLoading: eduLoading, isError: eduError },
-  ] = useUpdateEducationalDetailsMutation();
+  const [addNewCertificate, { data: response, isLoading, error }] =
+    useAddNewCertificateMutation();
 
   // handle file upload change data
   const handleUpload = async (e) => {
@@ -32,14 +22,14 @@ const FileUploadSection = ({ editFor, selectedCertificate }) => {
     uploadBytes(storageRef, photo).then(async (snapshot) => {
       await getDownloadURL(snapshot.ref).then((url) => {
         if (editFor === "educational") {
-          updateEducationalDetails({
-            data: { certificatePhoto: url.toString() },
+          addNewCertificate({
+            data: { photos: [url.toString()] },
             id: selectedCertificate?._id,
           });
         }
         if (editFor === "professional") {
-          updateProfessionalDetails({
-            data: { certificatePhoto: url.toString() },
+          addNewCertificate({
+            data: { photos: [url.toString()] },
             id: selectedCertificate?._id,
           });
         }
@@ -47,11 +37,11 @@ const FileUploadSection = ({ editFor, selectedCertificate }) => {
     });
   };
 
-  if (responseEdu || responseProf) {
+  if (response) {
     toast.success("Successfully Added");
   }
 
-  if (profError || eduError) {
+  if (error) {
     toast.error("Error : Please try again");
   }
 
@@ -75,7 +65,7 @@ const FileUploadSection = ({ editFor, selectedCertificate }) => {
             <IoMdCloudUpload className="text-[#FFFFFF] text-2xl mr-4" />
             <p className="font-medium text-xs text-[#FFFFFF]">
               {" "}
-              {eduLoading || profLoading ? "Loading..." : "Upload"}
+              {isLoading ? "Loading..." : "Upload"}
             </p>
           </div>
           <input

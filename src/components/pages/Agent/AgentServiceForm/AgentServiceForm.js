@@ -9,7 +9,7 @@ import { useCreateSingleServicesMutation } from "../../../../Redux/features/Serv
 // Components
 import { ServiceForm } from "../../../shared/Components/LawyerAgentKaziService/ServiceForm";
 
-const AgentServiceForm = () => {
+const AgentServiceForm = ({ responsive }) => {
   const [daedline, setDeadline] = useState("");
   const [category, setCategory] = useState("");
   const [subCategory, setSubCategory] = useState("");
@@ -67,9 +67,11 @@ const AgentServiceForm = () => {
   useEffect(() => {
     if (isSuccess) {
       reset();
-      navigate("/agentProfile/agentService");
+      responsive
+        ? navigate("/mobileAgentServices")
+        : navigate("/agentProfile/agentService");
     }
-  }, [isSuccess, reset, navigate]);
+  }, [isSuccess, reset, navigate, responsive]);
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });

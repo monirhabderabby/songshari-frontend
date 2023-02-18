@@ -10,7 +10,7 @@ const MobileLawyerAddServiceForm = () => {
   return (
     <div>
       <MobileBackButton name={"Add Service"} />
-      <LawyerServiceForm />
+      <LawyerServiceForm {...{ responsive: true }} />
       <BottomNav />
     </div>
   );

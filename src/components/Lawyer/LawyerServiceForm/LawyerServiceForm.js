@@ -7,7 +7,7 @@ import { useNavigate } from "react-router";
 import { useCreateSingleServicesMutation } from "../../../Redux/features/Service/ServiceApi";
 import { ServiceForm } from "../../shared/Components/LawyerAgentKaziService/ServiceForm";
 
-const LawyerServiceForm = () => {
+const LawyerServiceForm = ({ responsive }) => {
   const [daedline, setDeadline] = useState("");
   const [category, setCategory] = useState("");
   const [subCategory, setSubCategory] = useState("");
@@ -66,9 +66,11 @@ const LawyerServiceForm = () => {
   useEffect(() => {
     if (isSuccess) {
       reset();
-      navigate("/lawyerProfile/lawyerService");
+      responsive
+        ? navigate("/mobileLawyerServices")
+        : navigate("/lawyerProfile/lawyerService");
     }
-  }, [isSuccess, reset, navigate]);
+  }, [isSuccess, reset, navigate, responsive]);
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
