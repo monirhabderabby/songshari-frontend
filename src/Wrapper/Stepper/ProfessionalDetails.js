@@ -47,9 +47,9 @@ export const ProfessionalDetails = ({ setPage }) => {
     data.professions.map((p) => delete p.workPeriod);
     data.professions.map((p, index) => (p.workPeriod = addedWorkPeriod[index]));
 
-    data.professions.map((p) => delete p.certificatePhoto);
+    data.professions.map((p) => delete p.certificates);
     data.professions.map(
-      (p, index) => (p.certificatePhoto = addedAchievementMoment[index])
+      (p, index) => (p.certificates = { photo: addedAchievementMoment[index] })
     );
 
     const newObject = Object.create(data);
@@ -59,14 +59,14 @@ export const ProfessionalDetails = ({ setPage }) => {
     newObject.duty = data.duty;
     newObject.workPeriod = workPeriod;
     newObject.specialAchievement = data.specialAchievement;
-    newObject.certificatePhoto = professionalAchievementMoment;
+    newObject.certificates = { photo: professionalAchievementMoment };
 
     delete data.position;
     delete data.institute;
     delete data.duty;
     delete data.workPeriod;
     delete data.specialAchievement;
-    delete data.certificatePhoto;
+    delete data.certificates;
 
     data.professions.push(newObject);
 
@@ -188,7 +188,7 @@ export const ProfessionalDetails = ({ setPage }) => {
             <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
               <AiOutlineCloudUpload className=" mr-2 text-gray-400" />
               <label
-                htmlFor="certificatePhoto"
+                htmlFor="certificates"
                 className="outline-none h-full text-sm text-gray-400 bg-gray-100"
               >
                 {professionalAchievementMoment ? (
@@ -204,9 +204,9 @@ export const ProfessionalDetails = ({ setPage }) => {
                 )}
               </label>
               <input
-                {...register("certificatePhoto")}
+                {...register("certificates")}
                 type="file"
-                id="certificatePhoto"
+                id="certificates"
                 className="hidden"
                 onChange={specialAchievementMomentHandler}
               />
@@ -288,7 +288,7 @@ export const ProfessionalDetails = ({ setPage }) => {
                       )}
                     </label>
                     <input
-                      {...register(`professions.${index}.certificatePhoto`)}
+                      {...register(`professions.${index}.certificates`)}
                       type="file"
                       id="addedProfessionAchievementMoment"
                       className="hidden"
@@ -316,7 +316,7 @@ export const ProfessionalDetails = ({ setPage }) => {
                 duty: "",
                 workPeriod: "",
                 specialAchievement: "",
-                certificatePhoto: "",
+                certificates: "",
               });
             }}
           >
