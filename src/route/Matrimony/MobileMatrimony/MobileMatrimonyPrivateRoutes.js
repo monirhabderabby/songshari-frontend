@@ -1,6 +1,7 @@
 // components
 import MobileDynamicProfileActivity from "../../../components/pages/DynamicProfilePage/MobileDynamicProfile/MobileDynamicProfileDetails/MobileDynamicProfileActivity";
 import MobileDynamicProfileConnections from "../../../components/pages/DynamicProfilePage/MobileDynamicProfile/MobileDynamicProfileDetails/MobileDynamicProfileConnections";
+import MobileDynamicServicesContainer from "../../../components/pages/DynamicProfilePage/MobileDynamicProfile/MobileDynamicServicesContainer/MobileDynamicServicesContainer";
 import MobileUserConnections from "../../../components/pages/DynamicProfilePage/MobileDynamicProfile/MobileUserConnections/MobileUserConnections";
 import { MobileAccordionPartner } from "../../../components/pages/FindPartner/MobileAccordionPartner/MobileAccordionPartner";
 import { FilterResultsMobile } from "../../../components/pages/FindPartner/mobileVersion/FilterResultsMobile";
@@ -322,6 +323,11 @@ const MobileMatrimonyPrivateRoutes = [
     id: 48,
     path: "/kaziReviewsMov",
     element: <MobileLawyerAgentKaziReviewsContainer />,
+  },
+  {
+    id: 49,
+    path: "/dynamicServicesMov/:id",
+    element: <MobileDynamicServicesContainer />,
   },
 ];
 
