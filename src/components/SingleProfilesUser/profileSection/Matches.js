@@ -17,17 +17,13 @@ import { useEffect } from "react";
 
 export const Matches = ({ setMatchesCount }) => {
   // hooks variables
-  const { data, isLoading, error } = useGetMatchPreferencesQuery();
+  const { data, isLoading } = useGetMatchPreferencesQuery();
   const [mathchesModalOpen, setMatchesModalOpen] = useState(false);
 
   // page title
   useDocumentTitle("Shongshari | Matches");
 
   let content = null;
-
-  console.log(data);
-
-  console.log(error);
 
   if (isLoading) {
     content = (
