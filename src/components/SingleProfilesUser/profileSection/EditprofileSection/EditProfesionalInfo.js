@@ -1,15 +1,23 @@
+// Configuration
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
 
-// Third party components
+// Third party packages
 import Autocomplete, { createFilterOptions } from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
-import { DatePicker, message } from "antd";
+import { DatePicker, message, Modal } from "antd";
 import TextArea from "antd/es/input/TextArea";
+import { MdCancel } from "react-icons/md";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import { v4 as uuidv4 } from "uuid";
+import { AiOutlineCloudUpload } from "react-icons/ai";
+import { decodeToken } from "react-jwt";
 
 // Components
 import { useUpdateProfessionalDetailsMutation } from "../../../../Redux/features/userInfo/userApi";
-import EditFamilyInfo from "./EditFamilyInfo";
+import { firebaseStorage } from "../../../../firebase.init";
+import getCookie from "../../../../Helper/cookies/getCookie";
+import ModifyCaseForm from "../../../Lawyer/LawyerModifyCaseForm/ModifyCaseForm";
 const { RangePicker } = DatePicker;
 
 const EditProfesionalInfo = () => {
@@ -20,8 +28,24 @@ const EditProfesionalInfo = () => {
   // institue state
   const [currentInstitute, setCurrentInstitute] = useState(null);
   const [professionalInfo, setProfessionalInfo] = useState({});
+  const [professionalAchievementMoment, setProfessionalAchievementMoment] =
+    useState("");
+  const [achievementMomentName, setAchievementMomentName] = useState();
+  const [completedCase, setCompletedCase] = useState(0);
+  const [successfulCase, setSuccessfulCase] = useState(0);
+  // const successRatio = completedCase / successfulCase || 0;
+  const successRatio =
+    successfulCase > 0
+      ? parseFloat((completedCase / successfulCase).toFixed(2))
+      : 0;
   const [updateProfessionalDetails, { isSuccess, isLoading, isError }] =
     useUpdateProfessionalDetailsMutation();
+
+  const token = getCookie("token");
+  const tokenInfo = decodeToken(token);
+
+  const { role } = tokenInfo || {};
+
   // current position state handler
   const handleCurrentPosition = (event, newValue) => {
     if (typeof newValue === "string") {
@@ -90,8 +114,40 @@ const EditProfesionalInfo = () => {
       ...professionalInfo,
       institute: currentInstitute?.title,
       position: currentPosition?.title,
+      certificates: { photo: professionalAchievementMoment },
     };
     await updateProfessionalDetails({ data, id });
+  };
+
+  const specialAchievementMomentHandler = async (e) => {
+    const photo = e.target.files[0];
+    setAchievementMomentName(photo?.name);
+    const storageRef = ref(firebaseStorage, `cover/${photo?.name + uuidv4()}`);
+    uploadBytes(storageRef, photo).then(async (snapshot) => {
+      await getDownloadURL(snapshot.ref).then((url) => {
+        setProfessionalAchievementMoment(url.toString());
+      });
+    });
+  };
+
+  const completedCaseDecreaseHandler = () => {
+    if (completedCase > 0) {
+      setCompletedCase((prevCount) => prevCount - 1);
+    }
+  };
+
+  const completedCaseIncreaseHandler = () => {
+    setCompletedCase((prevCount) => prevCount + 1);
+  };
+
+  const successfulCaseDecreaseHandler = () => {
+    if (successfulCase > 0) {
+      setSuccessfulCase((prevCount) => prevCount - 1);
+    }
+  };
+
+  const successfulCaseIncreaseHandler = () => {
+    setSuccessfulCase((prevCount) => prevCount + 1);
   };
 
   useEffect(() => {
@@ -128,133 +184,164 @@ const EditProfesionalInfo = () => {
   }, [isSuccess, isLoading, isError, messageApi, navigate]);
   // filter for mui autocomplete
   const filter = createFilterOptions();
+
+  // Modal handler for lawyer
+  const [visible, setVisible] = useState(false);
+
+  const showModal = () => {
+    setVisible(true);
+  };
+
+  const handleOk = () => {
+    setVisible(false);
+  };
+
+  const handleCancel = () => {
+    setVisible(false);
+  };
+
   return (
     <div className="max-w-[523px] mx-auto bg-white drop-shadow-lg px-4 py-6 mb-4 rounded">
+      <div className="flex justify-end mb-3">
+        <MdCancel
+          onClick={() => navigate(-1)}
+          className="cursor-pointer text-3xl text-slate-600"
+        />
+      </div>
       <form onSubmit={handleSubmit}>
         <div className="pb-4">
-          <label className="text-sm block pb-2 text-slate-600	  font-medium">
-            Current Position
-          </label>
           <div className="flex justify-between">
-            <Autocomplete
-              className="mb-2 w-56"
-              value={currentPosition}
-              onChange={handleCurrentPosition}
-              filterOptions={(options, params) => {
-                const filtered = filter(options, params);
+            {/* Position */}
+            <div>
+              <label className="text-sm block pb-2 text-slate-600	  font-medium">
+                Position
+              </label>
+              <Autocomplete
+                className="mb-2 w-56"
+                value={currentPosition}
+                onChange={handleCurrentPosition}
+                filterOptions={(options, params) => {
+                  const filtered = filter(options, params);
 
-                const { inputValue } = params;
-                // Suggest the creation of a new value
-                const isExisting = options.some(
-                  (option) => inputValue === option.title
-                );
-                if (inputValue !== "" && !isExisting) {
-                  filtered.push({
-                    inputValue,
-                    title: `Add "${inputValue}"`,
-                  });
-                }
+                  const { inputValue } = params;
+                  // Suggest the creation of a new value
+                  const isExisting = options.some(
+                    (option) => inputValue === option.title
+                  );
+                  if (inputValue !== "" && !isExisting) {
+                    filtered.push({
+                      inputValue,
+                      title: `Add "${inputValue}"`,
+                    });
+                  }
 
-                return filtered;
-              }}
-              selectOnFocus
-              clearOnBlur
-              handleHomeEndKeys
-              id="free-solo-with-text-demo"
-              options={currentPositionOptions}
-              getOptionLabel={(option) => {
-                // Value selected with enter, right from the input
-                if (typeof option === "string") {
-                  return option;
-                }
-                // Add "xxx" option created dynamically
-                if (option.inputValue) {
-                  return option.inputValue;
-                }
-                // Regular option
-                return option.title;
-              }}
-              renderOption={(props, option) => (
-                <li {...props}>{option.title}</li>
-              )}
-              freeSolo
-              renderInput={(params) => (
-                <TextField {...params} placeholder="Select Position" />
-              )}
-              sx={{
-                "& input": {
-                  height: 6,
-                  padding: 0,
-                },
-              }}
-            />
+                  return filtered;
+                }}
+                selectOnFocus
+                clearOnBlur
+                handleHomeEndKeys
+                id="free-solo-with-text-demo"
+                options={currentPositionOptions}
+                getOptionLabel={(option) => {
+                  // Value selected with enter, right from the input
+                  if (typeof option === "string") {
+                    return option;
+                  }
+                  // Add "xxx" option created dynamically
+                  if (option.inputValue) {
+                    return option.inputValue;
+                  }
+                  // Regular option
+                  return option.title;
+                }}
+                renderOption={(props, option) => (
+                  <li {...props}>{option.title}</li>
+                )}
+                freeSolo
+                renderInput={(params) => (
+                  <TextField {...params} placeholder="Select Position" />
+                )}
+                sx={{
+                  "& input": {
+                    height: 6,
+                    padding: 0,
+                  },
+                }}
+              />
+            </div>
+            {/* Institute */}
+            <div>
+              <label className="text-sm block pb-2 text-slate-600	  font-medium">
+                Institute
+              </label>
+              <Autocomplete
+                className="mb-2 w-56"
+                value={currentInstitute}
+                onChange={handleCurrentInstitute}
+                filterOptions={(options, params) => {
+                  const filtered = filter(options, params);
 
-            <Autocomplete
-              className="mb-2 w-56"
-              value={currentInstitute}
-              onChange={handleCurrentInstitute}
-              filterOptions={(options, params) => {
-                const filtered = filter(options, params);
+                  const { inputValue } = params;
+                  // Suggest the creation of a new value
+                  const isExisting = options.some(
+                    (option) => inputValue === option.title
+                  );
+                  if (inputValue !== "" && !isExisting) {
+                    filtered.push({
+                      inputValue,
+                      title: `Add "${inputValue}"`,
+                    });
+                  }
 
-                const { inputValue } = params;
-                // Suggest the creation of a new value
-                const isExisting = options.some(
-                  (option) => inputValue === option.title
-                );
-                if (inputValue !== "" && !isExisting) {
-                  filtered.push({
-                    inputValue,
-                    title: `Add "${inputValue}"`,
-                  });
-                }
-
-                return filtered;
-              }}
-              selectOnFocus
-              clearOnBlur
-              handleHomeEndKeys
-              id="free-solo-with-text-demo"
-              options={currentInstituteOptions}
-              getOptionLabel={(option) => {
-                // Value selected with enter, right from the input
-                if (typeof option === "string") {
-                  return option;
-                }
-                // Add "xxx" option created dynamically
-                if (option.inputValue) {
-                  return option.inputValue;
-                }
-                // Regular option
-                return option.title;
-              }}
-              renderOption={(props, option) => (
-                <li {...props}>{option.title}</li>
-              )}
-              freeSolo
-              renderInput={(params) => (
-                <TextField {...params} placeholder="Select Institute" />
-              )}
-              sx={{
-                "& input": {
-                  height: 6,
-                  padding: 0,
-                },
-              }}
-            />
+                  return filtered;
+                }}
+                selectOnFocus
+                clearOnBlur
+                handleHomeEndKeys
+                id="free-solo-with-text-demo"
+                options={currentInstituteOptions}
+                getOptionLabel={(option) => {
+                  // Value selected with enter, right from the input
+                  if (typeof option === "string") {
+                    return option;
+                  }
+                  // Add "xxx" option created dynamically
+                  if (option.inputValue) {
+                    return option.inputValue;
+                  }
+                  // Regular option
+                  return option.title;
+                }}
+                renderOption={(props, option) => (
+                  <li {...props}>{option.title}</li>
+                )}
+                freeSolo
+                renderInput={(params) => (
+                  <TextField {...params} placeholder="Select Institute" />
+                )}
+                sx={{
+                  "& input": {
+                    height: 6,
+                    padding: 0,
+                  },
+                }}
+              />
+            </div>
           </div>
         </div>
+        {/* duty */}
         <div className="pb-4">
           <div>
             <label
               htmlFor="nid"
               className="text-sm block pb-2 text-slate-600 font-medium"
             >
-              duty
+              Duty
             </label>
             <TextArea rows={4} placeholder="Text Here" onChange={handleDuty} />
           </div>
         </div>
-
+        {/* Working period */}
         <div className="pb-4">
           <div>
             <label
@@ -266,7 +353,7 @@ const EditProfesionalInfo = () => {
             <RangePicker className="w-full" onChange={handleWorkingPeriod} />
           </div>
         </div>
-
+        {/* Special achievement */}
         <div className="pb-4">
           <div>
             <label
@@ -283,6 +370,125 @@ const EditProfesionalInfo = () => {
             />
           </div>
         </div>
+        {/* ---------- Professional Achievement moment ---------- */}
+        <section>
+          <label className="text-sm block pb-2 text-slate-600 font-medium">
+            Profession Proof Certificate(ID Card/Employment Certificate)
+          </label>
+          <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0 mb-4">
+            <AiOutlineCloudUpload className=" mr-2 text-gray-400" />
+            <label
+              htmlFor="certificates"
+              className="outline-none h-full text-sm text-gray-400 bg-gray-100"
+            >
+              {professionalAchievementMoment ? (
+                <>
+                  <span className="text-green-400">
+                    {achievementMomentName
+                      ? achievementMomentName
+                      : "File added"}
+                  </span>
+                </>
+              ) : (
+                "Upload File"
+              )}
+            </label>
+            <input
+              name="certificates"
+              type="file"
+              id="certificates"
+              className="hidden"
+              onChange={specialAchievementMomentHandler}
+            />
+          </div>
+        </section>
+
+        {/* Case completed */}
+        {role === "lawyer" && (
+          <div>
+            <h1 className="text-sm leading-6 text-slate-600 font-medium mb-2">
+              Case Completed
+            </h1>
+            <div className="flex justify-start items-center mb-4">
+              <p
+                onClick={completedCaseDecreaseHandler}
+                className="px-4 py-2 text-3xl bg-gray-300 leading-6 rounded-l-lg cursor-pointer"
+              >
+                -
+              </p>
+              <div className="text-base text-center leading-6 font-medium w-24 py-2 bg-gray-200">
+                {completedCase}
+              </div>
+              <p
+                onClick={completedCaseIncreaseHandler}
+                className="px-4 py-2 text-3xl bg-gray-300 leading-6 rounded-r-lg cursor-pointer"
+              >
+                +
+              </p>
+            </div>
+          </div>
+        )}
+
+        {/* Successful Case */}
+        {role === "lawyer" && (
+          <div>
+            <h1 className="text-sm leading-6 text-slate-600 font-medium mb-2">
+              Successful Case
+            </h1>
+            <div className="flex justify-start items-center mb-4">
+              <p
+                onClick={successfulCaseDecreaseHandler}
+                className="px-4 py-2 text-3xl bg-gray-300 leading-6 rounded-l-lg cursor-pointer"
+              >
+                -
+              </p>
+              <div className="text-base text-center leading-6 font-medium w-24 py-2 bg-gray-200">
+                {successfulCase}
+              </div>
+              <p
+                onClick={successfulCaseIncreaseHandler}
+                className="px-4 py-2 text-3xl bg-gray-300 leading-6 rounded-r-lg cursor-pointer"
+              >
+                +
+              </p>
+            </div>
+          </div>
+        )}
+
+        {/* Success Ratio */}
+        {role === "lawyer" && (
+          <div>
+            <h1 className="text-sm leading-6 text-slate-600 font-medium mb-2">
+              Success Ratio
+            </h1>
+            <div className="flex justify-start items-center mb-4">
+              <div className="text-base text-center leading-6 font-medium w-24 py-2 bg-gray-200">
+                {successRatio}
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Add case study button */}
+        {role === "lawyer" && (
+          <p
+            onClick={showModal}
+            className="w-[144px] cursor-pointer text-center py-2 text-[#fff] text-base font-medium rounded bg-[linear-gradient(180deg,#E41272_0%,#942DD9_100%)] mt-2 mb-6"
+          >
+            Add Case Study
+          </p>
+        )}
+
+        {/* Case study form modal */}
+        <Modal
+          visible={visible}
+          onOk={handleOk}
+          onCancel={handleCancel}
+          footer={null}
+          width={840}
+        >
+          <ModifyCaseForm />
+        </Modal>
 
         <div>
           <input
@@ -297,8 +503,6 @@ const EditProfesionalInfo = () => {
           <div className="mt-2">{contextHolder}</div>
         </div>
       </form>
-      {/* ----------- This is for testing purpose ------------------ */}
-      <EditFamilyInfo />
     </div>
   );
 };

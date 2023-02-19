@@ -15,7 +15,7 @@ import Lawyer from "../../Wrapper/Lawyer/Lawyer";
 
 const lawyerPrivateRoutes = [
   {
-    id: 15,
+    id: 1,
     path: "/lawyerProfile",
     element: <Lawyer />,
     nestedRoutes: [
@@ -48,34 +48,28 @@ const lawyerPrivateRoutes = [
           },
           {
             id: 2,
-            path: "edit",
-            nestedRoutes: [
-              {
-                id: 1,
-                path: "personalinfo/:id",
-                element: <EditPersonalInfo />,
-              },
-              {
-                id: 2,
-                path: "profesionalinfo/:id",
-                element: <EditProfesionalInfo />,
-              },
-              {
-                id: 3,
-                path: "educationalinfo/:id",
-                element: <EditEducationalInfo />,
-              },
-              {
-                id: 4,
-                path: "physicalinfo/:id",
-                element: <EditPhysicalInfo />,
-              },
-              {
-                id: 5,
-                path: "othersinfo/:id",
-                element: <EditOthersInfo />,
-              },
-            ],
+            path: "edit/personalinfo/:id",
+            element: <EditPersonalInfo />,
+          },
+          {
+            id: 3,
+            path: "edit/profesionalinfo/:id",
+            element: <EditProfesionalInfo />,
+          },
+          {
+            id: 4,
+            path: "edit/educationalinfo/:id",
+            element: <EditEducationalInfo />,
+          },
+          {
+            id: 5,
+            path: "edit/physicalinfo/:id",
+            element: <EditPhysicalInfo />,
+          },
+          {
+            id: 6,
+            path: "edit/othersinfo/:id",
+            element: <EditOthersInfo />,
           },
         ],
       },
