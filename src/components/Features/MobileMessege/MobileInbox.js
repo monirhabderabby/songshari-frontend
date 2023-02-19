@@ -26,9 +26,16 @@ export const MobileInbox = () => {
     
     const [message, setMessage] = useState({
         message: "",
-        to: receiver._id,
+        to: receiver?._id,
         from: from,
     });
+    useEffect(() => {
+       
+        if(receiver?._id){
+            setMessage({...message,to:receiver?._id});
+        }
+    
+ }, [receiver?._id]);
     const {data} = useGetAllMessageQuery(message);
     // console.log(data)
     // setMessage({...message,from:res?.user?._id});
@@ -38,7 +45,7 @@ export const MobileInbox = () => {
             socket.current.emit("addUser", receiver._id);
         }
     }, [receiver._id]);
-    const [msg, setMsg] = useState(null);
+    const [msg, setMsg] = useState(data?.message);
     // console.log(msg)
     // useEffect(() => {
     //     if (receiver._id) {
@@ -49,10 +56,12 @@ export const MobileInbox = () => {
             
     //     }
     // }, [receiver._id]);
+    let c=1;
     useEffect(() => {
-        if(data?.message){
+        if(data?.message&&c===1){
             setMsg(data?.message);  
             dispatch(allMessage(data?.message))  
+            c=0;
         }
     }, [data?.message]);
     

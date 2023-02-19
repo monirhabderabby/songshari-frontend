@@ -5,9 +5,9 @@ import emoji from "../../../../assets/images/messges/Emoji.svg";
 import gallary from "../../../../assets/images/messges/Gallery.svg";
 import photo from "../../../../assets/images/messges/Photo.svg";
 import { AiFillLike } from "react-icons/ai";
-export const MessageSenderBox = ({msg,setMsg,setMessage,message ,socket}) => {
+export const MessageSenderBox = ({msg,setMsg,message,setMessage ,socket}) => {
     const [createMessage] = useCreateMessageMutation();
-
+    // console.log(message)
     const handleMessage = async e => {
         if (e.code === "Enter" || e.type === "click") {
             createMessage(message);
