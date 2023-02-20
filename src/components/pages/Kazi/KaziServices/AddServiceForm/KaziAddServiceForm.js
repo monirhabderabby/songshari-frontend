@@ -58,8 +58,6 @@ const KaziAddServiceForm = ({ responsive }) => {
     delete data?.extraOfferTitle;
     delete data?.extraOfferPrice;
 
-    // reset all
-    console.log(data);
     createSingleServices(data);
   };
 
