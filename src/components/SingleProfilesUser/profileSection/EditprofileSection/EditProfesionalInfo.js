@@ -12,6 +12,7 @@ import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { v4 as uuidv4 } from "uuid";
 import { AiOutlineCloudUpload } from "react-icons/ai";
 import { decodeToken } from "react-jwt";
+import { useForm } from "react-hook-form";
 
 // Components
 import { useUpdateProfessionalDetailsMutation } from "../../../../Redux/features/userInfo/userApi";
@@ -40,6 +41,8 @@ const EditProfesionalInfo = () => {
       : 0;
   const [updateProfessionalDetails, { isSuccess, isLoading, isError }] =
     useUpdateProfessionalDetailsMutation();
+
+  const { handleSubmit } = useForm();
 
   const token = getCookie("token");
   const tokenInfo = decodeToken(token);
@@ -108,8 +111,7 @@ const EditProfesionalInfo = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   //data submission
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const onSubmit = async () => {
     const data = {
       ...professionalInfo,
       institute: currentInstitute?.title,
@@ -208,7 +210,7 @@ const EditProfesionalInfo = () => {
           className="cursor-pointer text-3xl text-slate-600"
         />
       </div>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <div className="pb-4">
           <div className="flex justify-between">
             {/* Position */}
@@ -404,7 +406,7 @@ const EditProfesionalInfo = () => {
         </section>
 
         {/* Case completed */}
-        {role === "lawyer" && (
+        {role !== "member" && (
           <div>
             <h1 className="text-sm leading-6 text-slate-600 font-medium mb-2">
               Case Completed
@@ -430,7 +432,7 @@ const EditProfesionalInfo = () => {
         )}
 
         {/* Successful Case */}
-        {role === "lawyer" && (
+        {role !== "member" && (
           <div>
             <h1 className="text-sm leading-6 text-slate-600 font-medium mb-2">
               Successful Case
@@ -456,7 +458,7 @@ const EditProfesionalInfo = () => {
         )}
 
         {/* Success Ratio */}
-        {role === "lawyer" && (
+        {role !== "member" && (
           <div>
             <h1 className="text-sm leading-6 text-slate-600 font-medium mb-2">
               Success Ratio
@@ -470,7 +472,7 @@ const EditProfesionalInfo = () => {
         )}
 
         {/* Add case study button */}
-        {role === "lawyer" && (
+        {role !== "member" && (
           <p
             onClick={showModal}
             className="w-[144px] cursor-pointer text-center py-2 text-[#fff] text-base font-medium rounded bg-[linear-gradient(180deg,#E41272_0%,#942DD9_100%)] mt-2 mb-6"
@@ -481,13 +483,13 @@ const EditProfesionalInfo = () => {
 
         {/* Case study form modal */}
         <Modal
-          visible={visible}
+          open={visible}
           onOk={handleOk}
           onCancel={handleCancel}
           footer={null}
           width={840}
         >
-          <ModifyCaseForm />
+          <ModifyCaseForm {...{ role }} />
         </Modal>
 
         <div>
