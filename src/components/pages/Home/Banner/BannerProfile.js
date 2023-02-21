@@ -20,7 +20,7 @@ import "swiper/css/navigation";
 const BannerProfile = () => {
     // hook variables
     const [likedGif, setLikedGif] = useState(false);
-    const [rejectedGif, setRejectedGif] = useState(true);
+    const [rejectedGif, setRejectedGif] = useState(false);
     const [clickNextButton, setClickNextButton] = useState(false);
     const [clickPreviousButton, setClickPreviousButton] = useState(false);
 
