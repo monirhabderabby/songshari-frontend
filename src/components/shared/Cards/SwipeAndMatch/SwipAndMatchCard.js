@@ -48,7 +48,7 @@ export const SwipAndMatchCard = ({ data, likedGif, rejectedGif }) => {
         <div className="max-w-[280px] h-[400px] relative overflow-hidden">
             {rejectedGif && <h1 className="gradientTextWithBorderRight">Nope</h1>}
 
-            {likedGif && <h1 className="gradientTextWithBorderLeft">Liked</h1>}
+            {likedGif && <h1 className="gradientTextWithBorderLeft animate-bounce">Liked</h1>}
 
             <img
                 src={data?.profilePhoto ? data.profilePhoto : "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"}
