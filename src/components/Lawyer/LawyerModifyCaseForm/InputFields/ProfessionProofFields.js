@@ -29,7 +29,9 @@ export const ProfessionProofFields = ({ setCertificate, certificate }) => {
 
   useEffect(() => {
     if (error) {
-      toast.error("Something went wrong. Please try again");
+      toast.error(
+        "Something went wrong. Please try to upload your photo again"
+      );
     }
     if (uploadedPhotos && !error) {
       const photo = uploadedPhotos?.data?.file[0]?.fileName;

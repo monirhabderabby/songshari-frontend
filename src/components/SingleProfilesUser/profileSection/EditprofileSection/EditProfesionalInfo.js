@@ -212,7 +212,7 @@ const EditProfesionalInfo = () => {
       </div>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="pb-4">
-          <div className="flex justify-between">
+          <div className="flex flex-col md:flex-row justify-between">
             {/* Position */}
             <div>
               <label className="text-sm block pb-2 text-slate-600	  font-medium">
@@ -477,7 +477,9 @@ const EditProfesionalInfo = () => {
             onClick={showModal}
             className="w-[144px] cursor-pointer text-center py-2 text-[#fff] text-base font-medium rounded bg-[linear-gradient(180deg,#E41272_0%,#942DD9_100%)] mt-2 mb-6"
           >
-            Add Case Study
+            {role === "lawyer" && "Add Case Study"}
+            {role === "agent" && "Add Deal Status"}
+            {role === "kazi" && "Add Deal Status"}
           </p>
         )}
 
