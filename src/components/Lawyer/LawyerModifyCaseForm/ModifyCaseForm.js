@@ -47,7 +47,9 @@ const ModifyCaseForm = ({ role }) => {
   return (
     <div className="p-4">
       <h1 className="font-poppins font-normal text-left text-[29px] text-[#32353B]">
-        Add Case Study
+        {role === "lawyer" && "Add Case Study"}
+        {role === "agent" && "Add Deal Status"}
+        {role === "kazi" && "Add Deal Status"}
       </h1>
       <div className="mt-2 mb-4 w-full border border-[#E9ECF2]"></div>
 
