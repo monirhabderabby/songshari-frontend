@@ -19,8 +19,8 @@ import "swiper/css/navigation";
 
 const BannerProfile = () => {
     // hook variables
-    const [likedGif, setLikedGif] = useState(true);
-    const [rejectedGif, setRejectedGif] = useState(false);
+    const [likedGif, setLikedGif] = useState(false);
+    const [rejectedGif, setRejectedGif] = useState(true);
     const [clickNextButton, setClickNextButton] = useState(false);
     const [clickPreviousButton, setClickPreviousButton] = useState(false);
 
@@ -59,18 +59,18 @@ const BannerProfile = () => {
     }, [clickNextButton, currentUser, clickPreviousButton, swipeProfileLike, rejectSwipeAndMatchMember]);
 
     useEffect(() => {
-        if (likedGif) {
-            setTimeout(() => {
-                setLikedGif(false);
-            }, 2000);
-        }
+        // if (likedGif) {
+        //     setTimeout(() => {
+        //         setLikedGif(false);
+        //     }, 2000);
+        // }
     }, [likedGif]);
     useEffect(() => {
-        if (rejectedGif) {
-            setTimeout(() => {
-                setRejectedGif(false);
-            }, 2000);
-        }
+        // if (rejectedGif) {
+        //     setTimeout(() => {
+        //         setRejectedGif(false);
+        //     }, 2000);
+        // }
     }, [rejectedGif]);
 
     return (
