@@ -554,7 +554,7 @@ const SiblingDetails = ({ setPage }) => {
           </button>
           <input
             type="submit"
-            value={isLoading ? "Saving..." : "Submit"}
+            value={isLoading ? "Saving..." : "Next"}
             className="border-2 cursor-pointer mt-3 border-primary hover:border-0 rounded-full px-12 py-2 hover:bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] hover:text-white duration-500 transition-all"
           />
         </div>

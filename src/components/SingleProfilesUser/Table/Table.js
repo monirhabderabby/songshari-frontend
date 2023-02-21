@@ -15,9 +15,8 @@ import "../../../App.css";
 const Table = ({ data, isLoading }) => {
   const [page, setPage] = useState(2);
   const [matchesCount, setMatchesCount] = useState(0);
-  //here navigate use for manage edit proofile information route
+  //here navigate use for manage edit profile information route
   const navigate = useNavigate();
-  console.log(data);
 
   return (
     <div className="w-full">

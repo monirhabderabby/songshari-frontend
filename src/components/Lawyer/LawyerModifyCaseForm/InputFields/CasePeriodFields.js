@@ -1,14 +1,30 @@
-import React from 'react';
+import React from "react";
 
-export const CasePeriodFields = ({ register, name }) => {
-    return (
-        <div className='mt-[19px] mb-6'>
-            <label htmlFor="casePeriod">Case Period</label>
-            <input className='font-normal py-[9px] pl-[13px] w-full border border-[#C3C8D4] text-[#000000] text-sm rounded-[3.5px bg-transparent'
-                {...register(name)}
-                type='text'
-                placeholder='1 month 5 day'
-            />
-        </div>
-    );
+// Third party package
+import CreatableSelect from "react-select/creatable";
+
+export const CasePeriodFields = ({ setPeriod }) => {
+  return (
+    <div className="mt-[19px] mb-6">
+      <label>Case Period</label>
+      <CreatableSelect
+        isClearable
+        options={[
+          {
+            value: "1 month 5 day",
+            label: "1 month 5 day",
+          },
+          {
+            value: "2 month 10 day",
+            label: "2 month 10 day",
+          },
+          {
+            value: "3 month 15 day",
+            label: "3 month 15 day",
+          },
+        ]}
+        onChange={(selectedValue) => setPeriod(selectedValue?.value)}
+      />
+    </div>
+  );
 };
