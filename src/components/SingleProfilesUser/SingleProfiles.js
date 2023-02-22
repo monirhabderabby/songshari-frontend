@@ -62,7 +62,7 @@ export const SingleProfiles = () => {
                   )}
                   <VerificationCard title={true} mt="24px" height="125px" />
                   {/* <Badges /> */}
-                  <UtilitisCard />
+                  <UtilitisCard {...{ data }} />
                   <IntroCard {...{ data, isLoading, error }} />
                   <PhotoUploadCard />
                   <PhotoGelary {...{ isLoading, error }} />
