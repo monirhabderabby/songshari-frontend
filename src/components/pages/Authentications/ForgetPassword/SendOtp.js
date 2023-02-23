@@ -12,7 +12,7 @@ const SendOtp = ({ isLoading, setOpen, sendOtpByEmail, email, setEmail }) => {
         <h2 className=" text-3xl font-extrabold text-gray-900">
           Forgot your password?
         </h2>
-        <p>we'll email you a link to reset your password</p>
+        <p>we'll mail you a Verification code</p>
         <form onSubmit={(e) => onsubmit(e)}>
           <div className="flex items-center bg-gray-100 p-2 w-full rounded-xl">
             <input
