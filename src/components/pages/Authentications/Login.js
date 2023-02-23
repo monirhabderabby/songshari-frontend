@@ -229,7 +229,7 @@ const Login = () => {
             {/*Sign up section */}
           </div>
         </section>
-        {open && <ForgetPasswordModal {...{ open, modalControll }} />}
+        {open && <ForgetPasswordModal setOpen={setOpen} />}
         <Toaster />
       </div>
     </div>
