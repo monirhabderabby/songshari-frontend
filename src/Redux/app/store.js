@@ -5,6 +5,7 @@ import storage from "redux-persist/lib/storage";
 import apiSlice from "../api/apiSlice";
 import chatReducer from "../chat/chatReducer";
 import checkoutDetailsSlice from "../features/checkout/checkoutDetailsSlice";
+import connectionSlice from "../features/connections/connectionSlice";
 import filterSlice from "../features/filter/filterSlice";
 import findPartnerSlice from "../features/filter/findPartnerSlice";
 import findLawyerKaziAgentFilterSlice from "../features/FindLawyerKaziAgentFilter/findLawyerKaziAgentFilterSlice";
@@ -28,6 +29,7 @@ const reducer = combineReducers({
     pageTitle: pageTitleSlice,
     findLawyerKaziAgent: findLawyerKaziAgentFilterSlice,
     ordersInfo: orderSlice,
+    connection: connectionSlice,
 });
 const persistedReducer = persistReducer(persistConfig, reducer);
 const store = configureStore({

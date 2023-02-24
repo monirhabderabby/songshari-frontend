@@ -31,7 +31,7 @@ const UserOngoingServices = ({ responsive }) => {
         content = (
             <div className="flex flex-col items-center gap-y-[10px]">
                 {loaderArr.map(item => {
-                    return <ServiceCardSkeleton />;
+                    return <ServiceCardSkeleton key={item} />;
                 })}
             </div>
         );
