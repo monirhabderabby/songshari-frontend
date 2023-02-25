@@ -1,6 +1,6 @@
 // configuration, ex: react-router
 import React, { useEffect, useState } from "react";
-
+import { useNavigate } from "react-router-dom";
 // Third party packages
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { AiFillCamera } from "react-icons/ai";
@@ -19,6 +19,7 @@ import "../../assets/css/profileCards.css";
 const ProfileCard = ({ data, isLoading }) => {
   // hook variables
   const [age, setAge] = useState(0);
+  const navigate = useNavigate();
 
   // Redux API
   const [updateProfilePhoto] = useUpdateProfilePhotoMutation();
@@ -98,7 +99,9 @@ const ProfileCard = ({ data, isLoading }) => {
         </h2>
         {/* content */}
         <div className="w-full flex justify-center items-center absolute top-[70%]">
-          {age>0 && <div className="text-[17px] font-normal font-Inter">{UserAge}</div>}
+          {age > 0 && (
+            <div className="text-[17px] font-normal font-Inter">{UserAge}</div>
+          )}
           <div className="h-[28px] w-[5px] bg-gray-200 rounded-[4px] mx-[20px]"></div>
           <div className="flex items-center">
             <svg
@@ -135,7 +138,10 @@ const ProfileCard = ({ data, isLoading }) => {
           </div>
           <div>
             {data ? (
-              <button className="special_profile_button">
+              <button
+                onClick={() => navigate("/membership")}
+                className="special_profile_button"
+              >
                 Upgrade Membership
               </button>
             ) : (
