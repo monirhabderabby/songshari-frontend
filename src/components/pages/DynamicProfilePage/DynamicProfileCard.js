@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-
+import { useNavigate } from "react-router-dom";
 // Components
 import "../../../assets/css/profileCards.css";
 import blackLove from "../../../assets/images/icons/blackLove.png";
@@ -9,6 +9,7 @@ import { ProfileSkeletonLoader } from "../../shared/Cards/Loader/Profile__Card__
 const DynamicProfileCard = ({ data, isLoading }) => {
   // hook variables
   const [age, setAge] = useState(0);
+  const navigate = useNavigate()
 
   useEffect(() => {
     if (data) {
@@ -95,7 +96,10 @@ const DynamicProfileCard = ({ data, isLoading }) => {
             </div>
             <div>
               {data ? (
-                <button className="special_profile_button">
+                <button
+                  onClick={() => navigate("/membership")}
+                  className="special_profile_button"
+                >
                   Upgrade Membership
                 </button>
               ) : (

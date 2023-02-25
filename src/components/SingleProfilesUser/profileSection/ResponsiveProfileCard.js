@@ -1,6 +1,6 @@
 // configuration, ex: react-router
 import React, { useEffect, useState } from "react";
-
+import { useNavigate } from "react-router";
 // Third party packages
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { AiFillCamera } from "react-icons/ai";
@@ -21,6 +21,7 @@ const ResponsiveProfileCard = ({ data, isLoading }) => {
   // hook variables
   const [age, setAge] = useState(0);
   const [updateProfilePhoto] = useUpdateProfilePhotoMutation();
+  const navigate = useNavigate()
   useEffect(() => {
     if (data) {
       const age = ageCalculator(data?.dateOfBirth);
@@ -149,7 +150,10 @@ const ResponsiveProfileCard = ({ data, isLoading }) => {
             </div>
             <div>
               {data ? (
-                <button className="special_profile_button">
+                <button
+                  onClick={()=>navigate("/membership")}
+                  className="special_profile_button"
+                >
                   Upgrade Membership
                 </button>
               ) : (
