@@ -104,7 +104,12 @@ const SinglePostCard = ({ post }) => {
                 <div className="h-[61px] flex items-end">
                     <div className="flex items-center">
                         {postLiked || post?.likes?.length !== 0 ? (
-                            <div>
+                            <div
+                                onClick={() => {
+                                    setPostLiked(false);
+                                    handleLikePost();
+                                }}
+                            >
                                 <AiFillHeart className="text-red-400 w-[24px] h-[24px] mr-[22px] text-xl transition-all duration-500 " />
                             </div>
                         ) : likeLoading ? (
