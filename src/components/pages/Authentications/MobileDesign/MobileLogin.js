@@ -9,8 +9,10 @@ import { FaGoogle } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 
 // components
+import { useSignInWithGoogle } from "react-firebase-hooks/auth";
+import { auth } from "../../../../firebase.init";
 import setCookie from "../../../../Helper/cookies/setCookie";
-import { useLoginAsMemberMutation } from "../../../../Redux/features/userInfo/userApi";
+import { useLoginAsMemberMutation, useRegAsMemberMutation } from "../../../../Redux/features/userInfo/userApi";
 import { loadUserData } from "../../../../Redux/features/userInfo/userInfo";
 import { MobileBackButton } from "../../../shared/Components/MobileBackButton";
 import Error from "../../../ui/error/Error";
@@ -19,9 +21,11 @@ const MobileLogin = () => {
     const [customError, setCustomError] = useState("");
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const [signInWithGoogle, user] = useSignInWithGoogle(auth);
 
     // Redux API Call
     const [loginAsMember, { data: response, isLoading, error: responseError }] = useLoginAsMemberMutation();
+    const [regAsMember, { data: googleLoginResponse, isLoading: googleLoginLoading }] = useRegAsMemberMutation();
 
     const {
         register,
@@ -42,7 +46,13 @@ const MobileLogin = () => {
             reset();
             navigate(from, { replace: true });
         }
-    }, [response, dispatch, navigate, reset, from]);
+        if (googleLoginResponse) {
+            setCookie("token", googleLoginResponse?.data?.token);
+            dispatch(loadUserData(response));
+            navigate("/userprofile");
+            reset();
+        }
+    }, [response, googleLoginResponse, dispatch, from, navigate, regAsMember, reset]);
 
     useEffect(() => {
         if (responseError?.status === 401 && responseError?.data?.success === true) {
@@ -56,6 +66,18 @@ const MobileLogin = () => {
         }
     }, [responseError, navigate, from, dispatch]);
 
+    useEffect(() => {
+        if (user) {
+            const userEmail = user?.user?.email;
+            const data = {
+                email: userEmail,
+                googleLogin: true,
+            };
+
+            regAsMember(data);
+        }
+    }, [user, regAsMember]);
+
     // function declaration
     const onSubmit = async data => {
         data.role = "member";
@@ -67,7 +89,10 @@ const MobileLogin = () => {
             <MobileBackButton name="LOGIN" />
             {/* google login  */}
             <div className="flex justify-center items-center my-2">
-                <p className="border-2 cursor-pointer border-gray-200 rounded-full p-3 mx-1 hover:bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] hover:text-white duration-400 transition-all">
+                <p
+                    className="border-2 cursor-pointer border-gray-200 rounded-full p-3 mx-1 hover:bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] hover:text-white duration-400 transition-all"
+                    onClick={() => signInWithGoogle()}
+                >
                     <FaGoogle className="text-sm" />
                 </p>
             </div>{" "}
@@ -138,6 +163,7 @@ const MobileLogin = () => {
                         className="rounded-[48px] pt-3 pb-4 mb-5 w-full font-medium leading-4 text-white"
                         style={{ backgroundImage: "linear-gradient(180deg, #D21878 0%, #4F42A3 100%)" }}
                         type="submit"
+                        disabled={isLoading || googleLoginLoading}
                         value={isLoading ? "Loading..." : "LOGIN"}
                     />
                     <p className="text-[#202325] text-xs leading-6 mb-5">
