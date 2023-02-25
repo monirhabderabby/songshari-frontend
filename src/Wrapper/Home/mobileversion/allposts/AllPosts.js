@@ -8,7 +8,9 @@ import profile from "../../../../assets/images/profile/up1.png";
 import { useGetMyPostsWithAuthQuery } from "../../../../Redux/features/Post/postApi";
 
 export const AllPosts = () => {
-    const { data: posts } = useGetMyPostsWithAuthQuery();
+    const { data } = useGetMyPostsWithAuthQuery();
+    const { data: posts } = data || {};
+    console.log(posts);
 
     return (
         <div>
@@ -22,7 +24,7 @@ export const AllPosts = () => {
                 </div>
             </div>
             <div className="grid lg:grid-cols-3 sm:grid-cols-1  pt-10 pb-10">
-                {posts.map(post => (
+                {posts?.posts?.map(post => (
                     <div>
                         <div key={post?._id} className=" max-w-full shadow-allposts mb-4 bg-white rounded-[10px] p-[30px] md:hidden">
                             <div className="flex items-center">
