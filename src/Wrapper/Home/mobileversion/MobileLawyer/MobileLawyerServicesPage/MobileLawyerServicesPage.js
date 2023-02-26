@@ -1,6 +1,7 @@
 // Configuration
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { CompletedOrder } from "../../../../../components/shared/Components/LawyerAgentKaziService/CompletedOrder/CompletedOrder";
 
 // Components
 import { PendingOrder } from "../../../../../components/shared/Components/LawyerAgentKaziService/PendingOrder/PendingOrder";
@@ -12,6 +13,7 @@ import { BottomNav } from "../../BottomNav";
 const MobileLawyerServicesPage = () => {
   const [pendingOrder, setPendingOrder] = useState(true);
   const [runningOrder, setRunningOrder] = useState(true);
+  const [completedOrder, setCompletedOrder] = useState(true);
   const [page, setPage] = useState(1);
   return (
     <div>
@@ -66,7 +68,9 @@ const MobileLawyerServicesPage = () => {
         {page === 2 && runningOrder && (
           <RunningOrder {...{ setRunningOrder }} />
         )}
-        {/* {page === 3 && <CompletedCase></CompletedCase>} */}
+        {page === 3 && completedOrder && (
+          <CompletedOrder {...{ setCompletedOrder }} />
+        )}
       </div>
       <div className="h-20"></div>
       <BottomNav />
