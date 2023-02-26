@@ -130,6 +130,7 @@ const MobileActivity = () => {
       </div>
 
       <MobileActivityPost {...{ posts, isLoading, error }} />
+      <div className="h-20"></div>
       <BottomNav></BottomNav>
     </section>
   );
