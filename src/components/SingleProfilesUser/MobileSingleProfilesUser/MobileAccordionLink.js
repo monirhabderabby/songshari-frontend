@@ -15,34 +15,6 @@ export const MobileAccordionLink = () => {
         <div className="col-span-4">
           <p
             className="pl-8"
-            onClick={() => navigate(`/galleryMov/${data?._id}`)}
-          >
-            My Gallery
-          </p>
-        </div>
-        <div>
-          <i className="fa-solid fa-angle-right ml-10"></i>
-        </div>
-      </div>
-
-      <div className="grid grid-cols-5 mt-5 mb-10">
-        <div className="col-span-4">
-          <p
-            className="pl-8"
-            onClick={() => navigate(`/connections/${data?._id}`)}
-          >
-            Connections
-          </p>
-        </div>
-        <div>
-          <i className="fa-solid fa-angle-right ml-10"></i>
-        </div>
-      </div>
-
-      <div className="grid grid-cols-5 mt-5 mb-10">
-        <div className="col-span-4">
-          <p
-            className="pl-8"
             onClick={() => navigate(`/personalprofile/${data?._id}`)}
           >
             Personal Details
