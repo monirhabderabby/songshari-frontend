@@ -212,7 +212,7 @@ const Footer = () => {
                   </a>
                 </li>
                 <li>
-                  <a href="http://localhost:3000/" target="blank">
+                  <a href="http://shongshari.com/" target="blank">
                     <i className="fab fa-dribbble"></i>
                   </a>
                 </li>

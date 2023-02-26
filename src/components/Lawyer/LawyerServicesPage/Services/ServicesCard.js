@@ -49,7 +49,7 @@ const ServicesCard = ({ service, responsive }) => {
       <h4 className="text-sm font-medium leading-[18px] mb-4">{name}</h4>
       <div className="flex flex-col lg:flex-row justify-between">
         <div className="flex items-center gap-2">
-          {tags?.map((tag, index) => {
+          {tags?.slice(0, 2).map((tag, index) => {
             return (
               <div key={index} className="flex items-center gap-2">
                 <div className="bg-[#DEDEDE] w-[16px] h-[16px] rounded-full"></div>
