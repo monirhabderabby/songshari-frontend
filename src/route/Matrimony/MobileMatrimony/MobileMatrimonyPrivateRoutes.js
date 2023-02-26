@@ -40,6 +40,7 @@ import MobileProfSingleServicesContainer from "../../../Wrapper/Home/mobileversi
 import MobileUserAgentServices from "../../../Wrapper/Home/mobileversion/MobileUserServicesPage/MobileUserAgentServices";
 import MobileUserAllServices from "../../../Wrapper/Home/mobileversion/MobileUserServicesPage/MobileUserAllServices";
 import MobileUserCancelledServices from "../../../Wrapper/Home/mobileversion/MobileUserServicesPage/MobileUserCancelledServices";
+import MobileUserCompletedServices from "../../../Wrapper/Home/mobileversion/MobileUserServicesPage/MobileUserCompletedServices";
 import MobileUserKaziServices from "../../../Wrapper/Home/mobileversion/MobileUserServicesPage/MobileUserKaziServices";
 import MobileUserLawyerServices from "../../../Wrapper/Home/mobileversion/MobileUserServicesPage/MobileUserLawyerServices";
 import MobileUserOngoingServices from "../../../Wrapper/Home/mobileversion/MobileUserServicesPage/MobileUserOngoingServices";
@@ -328,6 +329,11 @@ const MobileMatrimonyPrivateRoutes = [
     id: 49,
     path: "/dynamicServicesMov/:id",
     element: <MobileDynamicServicesContainer />,
+  },
+  {
+    id: 50,
+    path: "/completedServices",
+    element: <MobileUserCompletedServices />,
   },
 ];
 

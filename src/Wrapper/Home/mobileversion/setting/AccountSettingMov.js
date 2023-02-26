@@ -197,7 +197,9 @@ export const AccountSettingMov = () => {
                 </Link>
               </div>
               <div className="text-left font-Inter mb-1 w-full">
-                <Link className="">Completed Services</Link>
+                <Link to={"/completedServices"} className="">
+                  Completed Services
+                </Link>
               </div>
               <div className="text-left font-Inter mb-1 w-full">
                 <Link to={"/cancelledServices"} className="">
