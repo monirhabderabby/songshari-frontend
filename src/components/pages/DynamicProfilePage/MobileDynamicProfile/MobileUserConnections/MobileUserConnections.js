@@ -11,7 +11,7 @@ const MobileUserConnections = () => {
     <div>
       <MobileBackButton name={"Connections"} />
       <div className="px-6">
-        <Friends />
+        <Friends {...{ responsive: true }} />
       </div>
       <div className="h-20"></div>
       <BottomNav />

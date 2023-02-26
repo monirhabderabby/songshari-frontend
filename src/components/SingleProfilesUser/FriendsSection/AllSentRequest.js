@@ -10,7 +10,7 @@ import { useGetAllSentRequestQuery } from "../../../Redux/features/connections/c
 import { SentRequestLoader } from "../../shared/Cards/Loader/Connections/SentRequestLoader";
 import { SentReqCard } from "./Cards/SentReqCard";
 
-export const AllSentRequest = () => {
+export const AllSentRequest = ({ responsive }) => {
   // varible declation
   // hook variables
   const { data, isLoading, isError, error } = useGetAllSentRequestQuery();
@@ -70,7 +70,7 @@ export const AllSentRequest = () => {
     content = (
       <div className="w-full grid grid-cols-1 gap-y-4 md:px-4">
         {data?.data?.user.map((friend) => {
-          return <SentReqCard key={friend._id} {...{ friend }} />;
+          return <SentReqCard key={friend._id} {...{ friend, responsive }} />;
         })}
       </div>
     );

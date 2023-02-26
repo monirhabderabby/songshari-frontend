@@ -7,7 +7,7 @@ import { AllFriendRequest } from "./AllFriendRequest";
 import { AllFriends } from "./AllFriends";
 import { AllSentRequest } from "./AllSentRequest";
 
-export const Friends = () => {
+export const Friends = ({ responsive }) => {
   const [page, setPage] = useState(2);
   const { data } = useGetAllFriendRequestQuery();
 
@@ -60,9 +60,9 @@ export const Friends = () => {
           Request Sent
         </button>
       </div>
-      {page === 1 && <AllFriends />}
-      {page === 2 && <AllFriendRequest />}
-      {page === 3 && <AllSentRequest />}
+      {page === 1 && <AllFriends {...{ responsive }} />}
+      {page === 2 && <AllFriendRequest {...{ responsive }} />}
+      {page === 3 && <AllSentRequest {...{ responsive }} />}
     </>
   );
 };
