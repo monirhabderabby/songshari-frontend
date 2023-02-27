@@ -23,7 +23,9 @@ const ReviewsBelowThreeStar = ({ belowThreeStarReviews }) => {
   } else if (!isLoading && reviews?.length === 0) {
     content = (
       <div className="bg-[#E3E2FF] py-6 md:py-10 lg:py-[100px] px-6 lg:px-0">
-        No Reviews found!
+        <h1 className="lg:max-w-[1000px] xl:max-w-[1200px] mx-auto">
+          No Reviews found!
+        </h1>
       </div>
     );
   } else if (!isLoading && reviews?.length > 0) {
