@@ -46,6 +46,7 @@ import MobileUserLawyerServices from "../../../Wrapper/Home/mobileversion/Mobile
 import MobileUserOngoingServices from "../../../Wrapper/Home/mobileversion/MobileUserServicesPage/MobileUserOngoingServices";
 import { GalleryContainerForMobile } from "../../../Wrapper/Home/mobileversion/PhotoGallery/GalleryContainerForMobile";
 import { Setting } from "../../../Wrapper/Home/mobileversion/setting/Setting";
+import MobileStepper from "../../../Wrapper/Stepper/MobileStepper/MobileStepper";
 
 const MobileMatrimonyPrivateRoutes = [
   {
@@ -334,6 +335,11 @@ const MobileMatrimonyPrivateRoutes = [
     id: 50,
     path: "/completedServices",
     element: <MobileUserCompletedServices />,
+  },
+  {
+    id: 51,
+    path: "/stepperMov",
+    element: <MobileStepper />,
   },
 ];
 

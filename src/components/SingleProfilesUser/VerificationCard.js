@@ -11,7 +11,7 @@ import { MdKeyboardArrowRight } from "react-icons/md";
 import verificationIcon from "../../assets/images/icons/verification.png";
 import { useGetPercentageOfProfileCompleteQuery } from "../../Redux/features/userInfo/userApi";
 
-export const VerificationCard = ({ title, mt, height }) => {
+export const VerificationCard = ({ title, mt, height, responsive }) => {
   // hook variables
   const navigate = useNavigate();
   const { data } = useGetPercentageOfProfileCompleteQuery();
@@ -19,6 +19,14 @@ export const VerificationCard = ({ title, mt, height }) => {
   let percentage = 0;
   if (data) {
     percentage = data?.data?.percentage;
+  }
+
+  // decision for dynamic route
+  let dynamicRoute = "";
+  if (responsive) {
+    dynamicRoute = "/stepperMov";
+  } else {
+    dynamicRoute = "/stepper";
   }
   return (
     <div
@@ -43,7 +51,7 @@ export const VerificationCard = ({ title, mt, height }) => {
         <div className="flex items-center">
           <button
             className="text-[#942DD9] text-[16px] font-normal font-fira leading-[20px]"
-            onClick={() => navigate("/stepper")}
+            onClick={() => navigate(dynamicRoute)}
           >
             Complete Verification
           </button>

@@ -23,12 +23,14 @@ const TopReviews = () => {
   } else if (!isLoading && reviews?.length === 0) {
     content = (
       <div className="bg-[#F9E2FF] my-4 md:my-10 lg:my-[100px] py-6 md:py-10 lg:py-[91px] px-6 lg:px-0">
-        <h2 className="text-[#090914] mb-8 lg:mb-[92px] text-left text-3xl lg:text-[52px] font-semibold">
-          Top Review
-        </h2>
-        <div>
-          No Top Review you got! Try to give best service to your client. Best
-          of luck!
+        <div className="lg:max-w-[1000px] xl:max-w-[1200px] mx-auto">
+          <h2 className="text-[#090914] mb-8 lg:mb-[92px] text-left text-3xl lg:text-[52px] font-semibold">
+            Top Review
+          </h2>
+          <div>
+            No Top Review you got! Try to give best service to your client. Best
+            of luck!
+          </div>
         </div>
       </div>
     );

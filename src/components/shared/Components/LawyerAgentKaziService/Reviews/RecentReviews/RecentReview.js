@@ -17,7 +17,7 @@ const RecentReview = () => {
   } else if (!isLoading && reviews?.length === 0) {
     content = (
       <div className="bg-[#FFE2EF] py-[50px] px-6 lg:px-0">
-        <h4 className="text-[22px] text-gray-400 font-george">
+        <h4 className="text-[22px] text-gray-400 font-george lg:max-w-[1000px] xl:max-w-[1200px] mx-auto">
           No reviews found!
         </h4>
       </div>

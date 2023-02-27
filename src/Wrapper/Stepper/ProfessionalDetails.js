@@ -215,7 +215,7 @@ export const ProfessionalDetails = ({ setPage }) => {
           {fields.map((field, index) => {
             return (
               <section
-                className="col-span-1 md:col-span-2 lg:col-span-3 grid grid-cols-3 gap-3"
+                className="col-span-1 md:col-span-2 lg:col-span-3 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3"
                 key={field.id}
               >
                 <section>
