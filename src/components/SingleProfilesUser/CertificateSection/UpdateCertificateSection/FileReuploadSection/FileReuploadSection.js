@@ -9,20 +9,11 @@ import { toast, Toaster } from "react-hot-toast";
 /* Components */
 import icon from "../../../../../assets/images/user profile/reUpload.png";
 import { firebaseStorage } from "../../../../../firebase.init";
-import {
-  useResubmitEducationalCertificateMutation,
-  useResubmitProfessionalCertificateMutation,
-} from "../../../../../Redux/features/Documents/documentsApi";
+import { useResubmitAnyCertificateMutation } from "../../../../../Redux/features/Documents/documentsApi";
 
 const FileReuploadSection = ({ editFor, selectedCertificate }) => {
-  const [
-    resubmitProfessionalCertificate,
-    { data: responseProf, isLoading: profLoading },
-  ] = useResubmitProfessionalCertificateMutation();
-  const [
-    resubmitEducationalCertificate,
-    { data: responseEdu, isLoading: eduLoading },
-  ] = useResubmitEducationalCertificateMutation();
+  const [resubmitCertificate, { data: response, isLoading: loading }] =
+    useResubmitAnyCertificateMutation();
 
   // handle file upload change data
   const handleUpload = async (e) => {
@@ -31,22 +22,28 @@ const FileReuploadSection = ({ editFor, selectedCertificate }) => {
     uploadBytes(storageRef, photo).then(async (snapshot) => {
       await getDownloadURL(snapshot.ref).then((url) => {
         if (editFor === "educational") {
-          resubmitEducationalCertificate({
-            id: selectedCertificate?._id,
-            certificatePhoto: url.toString(),
+          resubmitCertificate({
+            id: selectedCertificate.parentId,
+            data: {
+              photoId: selectedCertificate?._id,
+              newPhoto: url.toString(),
+            },
           });
         }
         if (editFor === "professional") {
-          resubmitProfessionalCertificate({
-            id: selectedCertificate?._id,
-            specialAchievementMoment: url.toString(),
+          resubmitCertificate({
+            id: selectedCertificate.parentId,
+            data: {
+              photoId: selectedCertificate?._id,
+              newPhoto: url.toString(),
+            },
           });
         }
       });
     });
   };
 
-  if (responseEdu || responseProf) {
+  if (response) {
     toast.success("Successfully Re-uploaded");
   }
 
@@ -64,7 +61,7 @@ const FileReuploadSection = ({ editFor, selectedCertificate }) => {
           <div className="relative overflow-hidden h-[380px] w-full  rounded-2xl mx-auto lg:mx-0">
             <img
               className="absolute z-[-1] w-full h-full"
-              src={selectedCertificate?.specialAchievementMoment}
+              src={selectedCertificate?.photo}
               alt="background"
             />
             <div className="z-30 w-full h-full flex flex-col items-center justify-center bg-[#000000] bg-opacity-50">
@@ -73,9 +70,7 @@ const FileReuploadSection = ({ editFor, selectedCertificate }) => {
               </p>
               <div className="flex items-center justify-center font-medium text-base text-[#FFFFFF] gap-[13px] bg-gradient-to-r from-[#E52982] to-[#A72BC3] rounded-[10px] w-[144px] h-[47px]">
                 <img className="h-5 w-5" src={icon} alt="reUpload icon" />
-                <p>
-                  {profLoading || eduLoading ? "Uploading..." : "Re-Upload"}
-                </p>
+                <p>{loading ? "Uploading..." : "Re-Upload"}</p>
               </div>
             </div>
           </div>

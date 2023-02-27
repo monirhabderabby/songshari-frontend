@@ -9,7 +9,7 @@ const UpdateCertificateSection = ({ editFor, selectedCertificate }) => {
       {/* New certificate upload */}
       <FileUploadSection {...{ editFor, selectedCertificate }} />
       {/* File reupload section */}
-      <FileReuploadSection {...{ editFor, selectedCertificate }} />
+      {selectedCertificate?.status === "askedToResubmit" && <FileReuploadSection {...{ editFor, selectedCertificate }} />}
     </div>
   );
 };

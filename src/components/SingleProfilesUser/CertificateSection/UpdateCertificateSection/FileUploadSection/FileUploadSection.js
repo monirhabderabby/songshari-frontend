@@ -24,13 +24,13 @@ const FileUploadSection = ({ editFor, selectedCertificate }) => {
         if (editFor === "educational") {
           addNewCertificate({
             data: { photos: [url.toString()] },
-            id: selectedCertificate?._id,
+            id: selectedCertificate?.parentId,
           });
         }
         if (editFor === "professional") {
           addNewCertificate({
             data: { photos: [url.toString()] },
-            id: selectedCertificate?._id,
+            id: selectedCertificate?.parentId,
           });
         }
       });
