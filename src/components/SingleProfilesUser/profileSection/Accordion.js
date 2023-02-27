@@ -112,9 +112,7 @@ const Accordian = ({ data, isLoading, edit }) => {
                 <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                   <span className="font-medium">Name</span>
                   <p className="font-normal">
-                    {data
-                      ? `${data?.firstName + "" + data?.lastName}`
-                      : "Not Provided"}
+                    {data ? `${data?.firstName + " " + data?.lastName}` : ""}
                   </p>
                 </div>
               )}
@@ -122,18 +120,14 @@ const Accordian = ({ data, isLoading, edit }) => {
               {data?.phone && (
                 <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                   <span className="font-medium">Phone</span>
-                  <p className="font-normal">
-                    {data ? data?.phone : "Not Provided"}
-                  </p>
+                  <p className="font-normal">{data ? data?.phone : ""}</p>
                 </div>
               )}
 
               {data?.email && (
                 <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                   <span className="font-medium">Email</span>
-                  <p className="font-normal">
-                    {data ? data?.email : "Not Provided"}
-                  </p>
+                  <p className="font-normal">{data ? data?.email : ""}</p>
                 </div>
               )}
 
@@ -141,7 +135,7 @@ const Accordian = ({ data, isLoading, edit }) => {
                 <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                   <span className="font-medium">Nid Or Passport Number</span>
                   <p className="font-normal">
-                    {data ? data?.NidOrPassportNumber : "Not Provided"}
+                    {data ? data?.NidOrPassportNumber : ""}
                   </p>
                 </div>
               )}
@@ -159,7 +153,7 @@ const Accordian = ({ data, isLoading, edit }) => {
                             {citizen}
                           </p>
                         ))
-                      : "Not Provided"}
+                      : ""}
                   </div>
                 </div>
               )}
@@ -167,16 +161,14 @@ const Accordian = ({ data, isLoading, edit }) => {
               {data?.zodiacSign && (
                 <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                   <span className="font-medium">ZodiacSign</span>
-                  <p className="font-normal">
-                    {data ? data?.zodiacSign : "Not Provided"}
-                  </p>
+                  <p className="font-normal">{data ? data?.zodiacSign : ""}</p>
                 </div>
               )}
               {data?.barRegistrationNumber && (
                 <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                   <span className="font-medium">Bar Registration Number</span>
                   <p className="font-normal">
-                    {data ? data?.barRegistrationNumber : "Not Provided"}
+                    {data ? data?.barRegistrationNumber : ""}
                   </p>
                 </div>
               )}
@@ -184,16 +176,14 @@ const Accordian = ({ data, isLoading, edit }) => {
               {data?.licenceNo && (
                 <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                   <span className="font-medium">Licence No</span>
-                  <p className="font-normal">
-                    {data ? data?.licenceNo : "Not provided"}
-                  </p>
+                  <p className="font-normal">{data ? data?.licenceNo : ""}</p>
                 </div>
               )}
               {data?.yearOfBarRegistration && (
                 <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                   <span className="font-medium">Year Of Bar Registration</span>
                   <p className="font-normal">
-                    {data ? data.yearOfBarRegistration : "Not Provided"}
+                    {data ? data.yearOfBarRegistration : ""}
                   </p>
                 </div>
               )}
@@ -202,9 +192,7 @@ const Accordian = ({ data, isLoading, edit }) => {
                 <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                   <span className="font-medium">Date Of Birth</span>
                   <p className="font-normal">
-                    {data
-                      ? moment(data?.dateOfBirth).format("ll")
-                      : "Not Provided"}
+                    {data ? moment(data?.dateOfBirth).format("ll") : ""}
                   </p>
                 </div>
               )}
@@ -215,7 +203,7 @@ const Accordian = ({ data, isLoading, edit }) => {
                   <p className="font-normal">
                     {data?.hightestEducationalQualification?.degreeName
                       ? hightestEducationalQualification?.degreeName
-                      : "Not Provided"}
+                      : ""}
                   </p>
                 </div>
               )}
@@ -224,9 +212,7 @@ const Accordian = ({ data, isLoading, edit }) => {
                 <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                   <span className="font-medium">Institute</span>
                   <p className="font-normal">
-                    {data
-                      ? hightestEducationalQualification?.institute
-                      : "Not Provided"}
+                    {data ? hightestEducationalQualification?.institute : ""}
                   </p>
                 </div>
               )}
@@ -234,9 +220,7 @@ const Accordian = ({ data, isLoading, edit }) => {
                 <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                   <span className="font-medium">Department</span>
                   <p className="font-normal">
-                    {data
-                      ? hightestEducationalQualification?.Department
-                      : "Not Provided"}
+                    {data ? hightestEducationalQualification?.Department : ""}
                   </p>
                 </div>
               )}
@@ -244,9 +228,7 @@ const Accordian = ({ data, isLoading, edit }) => {
                 <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                   <span className="font-medium">Field Of Study</span>
                   <p className="font-normal">
-                    {data
-                      ? hightestEducationalQualification?.fieldOfStudy
-                      : "Not Provided"}
+                    {data ? hightestEducationalQualification?.fieldOfStudy : ""}
                   </p>
                 </div>
               )}
@@ -259,7 +241,7 @@ const Accordian = ({ data, isLoading, edit }) => {
                       ? moment(
                           hightestEducationalQualification?.yearOfPassing
                         ).format("ll")
-                      : "Not Provided"}
+                      : ""}
                   </p>
                 </div>
               )}
@@ -269,7 +251,7 @@ const Accordian = ({ data, isLoading, edit }) => {
                   <p className="font-normal">
                     {data
                       ? hightestEducationalQualification?.specialAchievement
-                      : "Not Provided"}
+                      : ""}
                   </p>
                 </div>
               )}
@@ -277,71 +259,57 @@ const Accordian = ({ data, isLoading, edit }) => {
                 <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                   <span className="font-medium">What are you looking for</span>
                   <p className="font-normal">
-                    {data ? data.whatAreYouLookingFor : "Not Provided"}
+                    {data ? data.whatAreYouLookingFor : ""}
                   </p>
                 </div>
               )}
               {data?.height && (
                 <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                   <span className="font-medium">Height</span>
-                  <p className="font-normal">
-                    {data ? data.height : "Not Provided"}
-                  </p>
+                  <p className="font-normal">{data ? data.height : ""}</p>
                 </div>
               )}
               {data?.weight && (
                 <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                   <span className="font-medium">Weight</span>
-                  <p className="font-normal">
-                    {data ? data.weight : "Not Provided"}
-                  </p>
+                  <p className="font-normal">{data ? data.weight : ""}</p>
                 </div>
               )}
               {data?.ancestry && (
                 <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                   <span className="font-medium">Ancestry</span>
-                  <p className="font-normal">
-                    {data ? data.ancestry : "Not Provided"}
-                  </p>
+                  <p className="font-normal">{data ? data.ancestry : ""}</p>
                 </div>
               )}
               {data?.SkinTone && (
                 <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                   <span className="font-medium">Skin Tone</span>
-                  <p className="font-normal">
-                    {data ? data.SkinTone : "Not Provided"}
-                  </p>
+                  <p className="font-normal">{data ? data.SkinTone : ""}</p>
                 </div>
               )}
               {data?.hairColour && (
                 <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                   <span className="font-medium">Hair Color</span>
-                  <p className="font-normal">
-                    {data ? data.hairColour : "Not Provided"}
-                  </p>
+                  <p className="font-normal">{data ? data.hairColour : ""}</p>
                 </div>
               )}
               {data?.hairType?.length !== 0 && (
                 <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                   <span className="font-medium">Hair Type</span>
-                  <p className="font-normal">
-                    {data ? data.hairType : "Not Provided"}
-                  </p>
+                  <p className="font-normal">{data ? data.hairType : ""}</p>
                 </div>
               )}
               {data?.eyeColor && (
                 <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                   <span className="font-medium">Eye Color</span>
-                  <p className="font-normal">
-                    {data ? data.eyeColor : "Not Provided"}
-                  </p>
+                  <p className="font-normal">{data ? data.eyeColor : ""}</p>
                 </div>
               )}
               {data?.numberOfTeeth && (
                 <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                   <span className="font-medium">Number Of Teeth</span>
                   <p className="font-normal">
-                    {data ? data.numberOfTeeth : "Not Provided"}
+                    {data ? data.numberOfTeeth : ""}
                   </p>
                 </div>
               )}
@@ -349,23 +317,21 @@ const Accordian = ({ data, isLoading, edit }) => {
                 <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                   <span className="font-medium">Monthly Income</span>
                   <p className="font-normal">
-                    {data ? data.monthlyIncome : "Not Provided"}
+                    {data ? data.monthlyIncome : ""}
                   </p>
                 </div>
               )}
               {data?.hometown && (
                 <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                   <span className="font-medium">Hometown</span>
-                  <p className="font-normal">
-                    {data ? data.hometown : "Not Provided"}
-                  </p>
+                  <p className="font-normal">{data ? data.hometown : ""}</p>
                 </div>
               )}
               {data?.permanentAdress && (
                 <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                   <span className="font-medium">Permanent Adress</span>
                   <p className="font-normal">
-                    {data ? data.permanentAdress : "Not Provided"}
+                    {data ? data.permanentAdress : ""}
                   </p>
                 </div>
               )}
@@ -373,7 +339,7 @@ const Accordian = ({ data, isLoading, edit }) => {
                 <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                   <span className="font-medium">Current Adress</span>
                   <p className="font-normal">
-                    {data ? data.currentAdress : "Not Provided"}
+                    {data ? data.currentAdress : ""}
                   </p>
                 </div>
               )}
@@ -381,23 +347,21 @@ const Accordian = ({ data, isLoading, edit }) => {
                 <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                   <span className="font-medium">Marital status</span>
                   <p className="font-normal">
-                    {data ? data.maritalStatus : "Not Provided"}
+                    {data ? data.maritalStatus : ""}
                   </p>
                 </div>
               )}
               {data?.designation && (
                 <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                   <span className="font-medium">Designation</span>
-                  <p className="font-normal">
-                    {data ? data.designation : "Not Provided"}
-                  </p>
+                  <p className="font-normal">{data ? data.designation : ""}</p>
                 </div>
               )}
               {data?.numberOfPartner && (
                 <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                   <span className="font-medium">Number Of Partner</span>
                   <p className="font-normal">
-                    {data ? data.numberOfPartner : "Not Provided"}
+                    {data ? data.numberOfPartner : ""}
                   </p>
                 </div>
               )}
@@ -405,7 +369,7 @@ const Accordian = ({ data, isLoading, edit }) => {
                 <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                   <span className="font-medium">Reason Of Marriage</span>
                   <p className="font-normal">
-                    {data ? data.reasonOfMarriage : "Not Provided"}
+                    {data ? data.reasonOfMarriage : ""}
                   </p>
                 </div>
               )}
@@ -415,71 +379,59 @@ const Accordian = ({ data, isLoading, edit }) => {
                     Is Partner Awar Of Marriage
                   </span>
                   <p className="font-normal">
-                    {data ? data.isPartnerAwarOfMarriage : "Not Provided"}
+                    {data ? data.isPartnerAwarOfMarriage : ""}
                   </p>
                 </div>
               )}
               {data?.marriageDate && (
                 <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                   <span className="font-medium">Marriage Date</span>
-                  <p className="font-normal">
-                    {data ? data.marriageDate : "Not Provided"}
-                  </p>
+                  <p className="font-normal">{data ? data.marriageDate : ""}</p>
                 </div>
               )}
               {data?.divorceDate && (
                 <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                   <span className="font-medium">Divorce Date</span>
-                  <p className="font-normal">
-                    {data ? data.divorceDate : "Not Provided"}
-                  </p>
+                  <p className="font-normal">{data ? data.divorceDate : ""}</p>
                 </div>
               )}
               {data?.reasonOfDivorce && (
                 <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                   <span className="font-medium">Reason Of Divorce</span>
                   <p className="font-normal">
-                    {data ? data.reasonOfDivorce : "Not Provided"}
+                    {data ? data.reasonOfDivorce : ""}
                   </p>
                 </div>
               )}
               {data?.numberOfBoy && (
                 <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                   <span className="font-medium">Number Of Boy</span>
-                  <p className="font-normal">
-                    {data ? data.numberOfBoy : "Not Provided"}
-                  </p>
+                  <p className="font-normal">{data ? data.numberOfBoy : ""}</p>
                 </div>
               )}
               {data?.agesOfBoy?.length !== 0 && (
                 <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                   <span className="font-medium">Ages Of Boy</span>
-                  <p className="font-normal">
-                    {data ? data.agesOfBoy : "Not Provided"}
-                  </p>
+                  <p className="font-normal">{data ? data.agesOfBoy : ""}</p>
                 </div>
               )}
               {data?.numberOfGirl && (
                 <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                   <span className="font-medium">Number Of Girl</span>
-                  <p className="font-normal">
-                    {data ? data.numberOfGirl : "Not Provided"}
-                  </p>
+                  <p className="font-normal">{data ? data.numberOfGirl : ""}</p>
                 </div>
               )}
               {data?.agesOfGirl?.length > 0 && (
                 <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                   <span className="font-medium">Ages Of Girl</span>
-                  <p className="font-normal">
-                    {data ? data.agesOfGirl : "Not Provided"}
-                  </p>
+                  <p className="font-normal">{data ? data.agesOfGirl : ""}</p>
                 </div>
               )}
               {data?.partnerDeathDay && (
                 <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                   <span className="font-medium">Partner Death Day</span>
                   <p className="font-normal">
-                    {data ? data.partnerDeathDay : "Not Provided"}
+                    {data ? data.partnerDeathDay : ""}
                   </p>
                 </div>
               )}
@@ -489,7 +441,7 @@ const Accordian = ({ data, isLoading, edit }) => {
                   <p className="font-normal">
                     {data?.currentProfession
                       ? data?.currentProfession?.position
-                      : "Not Provided"}
+                      : ""}
                   </p>
                 </div>
               )}
@@ -499,7 +451,7 @@ const Accordian = ({ data, isLoading, edit }) => {
                   <p className="font-normal">
                     {data?.currentProfession
                       ? data?.currentProfession?.institute
-                      : "Not Provided"}
+                      : ""}
                   </p>
                 </div>
               )}
@@ -509,7 +461,7 @@ const Accordian = ({ data, isLoading, edit }) => {
                   <p className="font-normal">
                     {data?.currentProfession
                       ? data?.currentProfession?.workPeriod
-                      : "Not Provided"}
+                      : ""}
                   </p>
                 </div>
               )}
@@ -521,7 +473,7 @@ const Accordian = ({ data, isLoading, edit }) => {
                   <p className="font-normal text-right w-[50%]">
                     {data?.currentProfession
                       ? data?.currentProfession?.specialAchievement
-                      : "Not Provided"}
+                      : ""}
                   </p>
                 </div>
               )}
@@ -529,7 +481,7 @@ const Accordian = ({ data, isLoading, edit }) => {
                 <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                   <span className="font-medium">Year Of Experience</span>
                   <p className="font-normal">
-                    {data ? data.yearOfExperience : "Not Provided"}
+                    {data ? data.yearOfExperience : ""}
                   </p>
                 </div>
               )}
@@ -537,7 +489,7 @@ const Accordian = ({ data, isLoading, edit }) => {
                 <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                   <span className="font-medium">Office Location</span>
                   <p className="font-normal">
-                    {data ? data.officeLocation : "Not Provided"}
+                    {data ? data.officeLocation : ""}
                   </p>
                 </div>
               )}
@@ -545,7 +497,7 @@ const Accordian = ({ data, isLoading, edit }) => {
                 <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                   <span className="font-medium">Service Category</span>
                   <p className="font-normal">
-                    {data ? data.serviceCategory : "Not Provided"}
+                    {data ? data.serviceCategory : ""}
                   </p>
                 </div>
               )}
@@ -553,23 +505,21 @@ const Accordian = ({ data, isLoading, edit }) => {
                 <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                   <span className="font-medium">Service Provide</span>
                   <p className="font-normal">
-                    {data ? data.serviceProvide : "Not Provided"}
+                    {data ? data.serviceProvide : ""}
                   </p>
                 </div>
               )}
               {data?.parents && (
                 <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                   <span className="font-medium">Parents</span>
-                  <p className="font-normal">
-                    {data ? data.parents : "Not Provided"}
-                  </p>
+                  <p className="font-normal">{data ? data.parents : ""}</p>
                 </div>
               )}
               {data?.haveStepMother && (
                 <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                   <span className="font-medium">Have Step Mother</span>
                   <p className="font-normal">
-                    {data ? data.haveStepMother : "Not Provided"}
+                    {data ? data.haveStepMother : ""}
                   </p>
                 </div>
               )}
@@ -577,7 +527,7 @@ const Accordian = ({ data, isLoading, edit }) => {
                 <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                   <span className="font-medium">Have Step Father</span>
                   <p className="font-normal">
-                    {data ? data.haveStepFather : "Not Provided"}
+                    {data ? data.haveStepFather : ""}
                   </p>
                 </div>
               )}
@@ -585,7 +535,7 @@ const Accordian = ({ data, isLoading, edit }) => {
                 <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                   <span className="font-medium">Number Of Brother</span>
                   <p className="font-normal">
-                    {data ? data.numberOfBrother : "Not Provided"}
+                    {data ? data.numberOfBrother : ""}
                   </p>
                 </div>
               )}
@@ -593,7 +543,7 @@ const Accordian = ({ data, isLoading, edit }) => {
                 <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                   <span className="font-medium">Number Of Sister</span>
                   <p className="font-normal">
-                    {data ? data.numberOfSister : "Not Provided"}
+                    {data ? data.numberOfSister : ""}
                   </p>
                 </div>
               )}
@@ -763,9 +713,7 @@ const Accordian = ({ data, isLoading, edit }) => {
                         <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                           <span className="font-medium">Degree</span>
                           <p className="font-normal">
-                            {data?.educationalDetail
-                              ? edu?.degree
-                              : "Not Provided"}
+                            {data?.educationalDetail ? edu?.degree : ""}
                           </p>
                         </div>
                       )}
@@ -773,9 +721,7 @@ const Accordian = ({ data, isLoading, edit }) => {
                         <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                           <span className="font-medium">Institute</span>
                           <p className="font-normal">
-                            {data?.educationalDetail
-                              ? edu?.institute
-                              : "Not Provided"}
+                            {data?.educationalDetail ? edu?.institute : ""}
                           </p>
                         </div>
                       )}
@@ -783,9 +729,7 @@ const Accordian = ({ data, isLoading, edit }) => {
                         <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                           <span className="font-medium">Department</span>
                           <p className="font-normal">
-                            {data?.educationalDetail
-                              ? edu?.department
-                              : "Not Provided"}
+                            {data?.educationalDetail ? edu?.department : ""}
                           </p>
                         </div>
                       )}
@@ -793,9 +737,7 @@ const Accordian = ({ data, isLoading, edit }) => {
                         <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                           <span className="font-medium">Field of Study</span>
                           <p className="font-normal">
-                            {data?.educationalDetail
-                              ? edu?.fieldOfStudy
-                              : "Not Provided"}
+                            {data?.educationalDetail ? edu?.fieldOfStudy : ""}
                           </p>
                         </div>
                       )}
@@ -803,9 +745,7 @@ const Accordian = ({ data, isLoading, edit }) => {
                         <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                           <span className="font-medium">GPA / CGPA</span>
                           <p className="font-normal">
-                            {data?.educationalDetail
-                              ? edu?.gpaOrCgpa
-                              : "Not Provided"}
+                            {data?.educationalDetail ? edu?.gpaOrCgpa : ""}
                           </p>
                         </div>
                       )}
@@ -815,7 +755,7 @@ const Accordian = ({ data, isLoading, edit }) => {
                           <p className="font-normal">
                             {data?.educationalDetail
                               ? moment(edu?.yearOfStudy).format("YYYY")
-                              : "Not Provided"}
+                              : ""}
                           </p>
                         </div>
                       )}
@@ -827,7 +767,7 @@ const Accordian = ({ data, isLoading, edit }) => {
                           <p className="font-normal text-right w-[50%]">
                             {data?.educationalDetail
                               ? edu?.specialAchievement
-                              : "Not Provided"}
+                              : ""}
                           </p>
                         </div>
                       )}
@@ -843,7 +783,7 @@ const Accordian = ({ data, isLoading, edit }) => {
                     <p className="font-normal">
                       {data?.educationalDetail
                         ? data?.educationalDetail?.degree
-                        : "Not Provided"}
+                        : ""}
                     </p>
                   </div>
                 )}
@@ -853,7 +793,7 @@ const Accordian = ({ data, isLoading, edit }) => {
                     <p className="font-normal">
                       {data?.educationalDetail
                         ? data?.educationalDetail?.institute
-                        : "Not Provided"}
+                        : ""}
                     </p>
                   </div>
                 )}
@@ -863,7 +803,7 @@ const Accordian = ({ data, isLoading, edit }) => {
                     <p className="font-normal">
                       {data?.educationalDetail
                         ? data?.educationalDetail?.department
-                        : "Not Provided"}
+                        : ""}
                     </p>
                   </div>
                 )}
@@ -873,7 +813,7 @@ const Accordian = ({ data, isLoading, edit }) => {
                     <p className="font-normal">
                       {data?.educationalDetail
                         ? data?.educationalDetail?.fieldOfStudy
-                        : "Not Provided"}
+                        : ""}
                     </p>
                   </div>
                 )}
@@ -883,7 +823,7 @@ const Accordian = ({ data, isLoading, edit }) => {
                     <p className="font-normal">
                       {data?.educationalDetail
                         ? data?.educationalDetail?.gpaCgpa
-                        : "Not Provided"}
+                        : ""}
                     </p>
                   </div>
                 )}
@@ -893,7 +833,7 @@ const Accordian = ({ data, isLoading, edit }) => {
                     <p className="font-normal">
                       {data?.educationalDetail
                         ? data?.educationalDetail?.yearOfStudy
-                        : "Not Provided"}
+                        : ""}
                     </p>
                   </div>
                 )}
@@ -905,7 +845,7 @@ const Accordian = ({ data, isLoading, edit }) => {
                     <p className="font-normal text-right w-[50%]">
                       {data?.educationalDetail
                         ? data?.educationalDetail?.specialAchievement
-                        : "Not Provided"}
+                        : ""}
                     </p>
                   </div>
                 )}
@@ -964,9 +904,7 @@ const Accordian = ({ data, isLoading, edit }) => {
               <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                 <span className="font-medium">Height</span>
                 <p className="font-normal">
-                  {data?.physicalDetail
-                    ? data?.physicalDetail?.height
-                    : "Not Provided"}
+                  {data?.physicalDetail ? data?.physicalDetail?.height : ""}
                 </p>
               </div>
             )}
@@ -974,9 +912,7 @@ const Accordian = ({ data, isLoading, edit }) => {
               <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                 <span className="font-medium">Weight</span>
                 <p className="font-normal">
-                  {data?.physicalDetail
-                    ? data?.physicalDetail?.weight
-                    : "Not Provided"}
+                  {data?.physicalDetail ? data?.physicalDetail?.weight : ""}
                 </p>
               </div>
             )}
@@ -984,9 +920,7 @@ const Accordian = ({ data, isLoading, edit }) => {
               <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                 <span className="font-medium">Ancestry</span>
                 <p className="font-normal">
-                  {data?.physicalDetail
-                    ? data?.physicalDetail?.ancestry
-                    : "Not Provided"}
+                  {data?.physicalDetail ? data?.physicalDetail?.ancestry : ""}
                 </p>
               </div>
             )}
@@ -994,9 +928,7 @@ const Accordian = ({ data, isLoading, edit }) => {
               <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                 <span className="font-medium">Skin Tone</span>
                 <p className="font-normal">
-                  {data?.physicalDetail
-                    ? data?.physicalDetail?.skinTone
-                    : "Not Provided"}
+                  {data?.physicalDetail ? data?.physicalDetail?.skinTone : ""}
                 </p>
               </div>
             )}
@@ -1004,9 +936,7 @@ const Accordian = ({ data, isLoading, edit }) => {
               <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                 <span className="font-medium">Hair Color</span>
                 <p className="font-normal">
-                  {data?.physicalDetail
-                    ? data?.physicalDetail?.hairColor
-                    : "Not Provided"}
+                  {data?.physicalDetail ? data?.physicalDetail?.hairColor : ""}
                 </p>
               </div>
             )}
@@ -1014,9 +944,7 @@ const Accordian = ({ data, isLoading, edit }) => {
               <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                 <span className="font-medium">Hair Type</span>
                 <p className="font-normal">
-                  {data?.physicalDetail
-                    ? data?.physicalDetail?.hairType
-                    : "Not Provided"}
+                  {data?.physicalDetail ? data?.physicalDetail?.hairType : ""}
                 </p>
               </div>
             )}
@@ -1024,9 +952,7 @@ const Accordian = ({ data, isLoading, edit }) => {
               <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                 <span className="font-medium">Eye Color</span>
                 <p className="font-normal">
-                  {data?.physicalDetail
-                    ? data?.physicalDetail?.eyeColor
-                    : "Not Provided"}
+                  {data?.physicalDetail ? data?.physicalDetail?.eyeColor : ""}
                 </p>
               </div>
             )}
@@ -1036,7 +962,7 @@ const Accordian = ({ data, isLoading, edit }) => {
                 <p className="font-normal">
                   {data?.physicalDetail
                     ? data?.physicalDetail?.numberOfTeeth
-                    : "Not Provided"}
+                    : ""}
                 </p>
               </div>
             )}
@@ -1168,9 +1094,7 @@ const Accordian = ({ data, isLoading, edit }) => {
               <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                 <span className="font-medium">Do smoke</span>
                 <p className="font-normal">
-                  {data?.othersDetail
-                    ? data?.othersDetail?.doSmoke
-                    : "Not Provided"}
+                  {data?.othersDetail ? data?.othersDetail?.doSmoke : ""}
                 </p>
               </div>
             )}
@@ -1178,9 +1102,7 @@ const Accordian = ({ data, isLoading, edit }) => {
               <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                 <span className="font-medium">Do drink</span>
                 <p className="font-normal">
-                  {data?.othersDetail
-                    ? data?.othersDetail?.doDrink
-                    : "Not Provided"}
+                  {data?.othersDetail ? data?.othersDetail?.doDrink : ""}
                 </p>
               </div>
             )}
@@ -1188,9 +1110,7 @@ const Accordian = ({ data, isLoading, edit }) => {
               <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                 <span className="font-medium">Have pet</span>
                 <p className="font-normal">
-                  {data?.othersDetail
-                    ? data?.othersDetail?.doDrink
-                    : "Not Provided"}
+                  {data?.othersDetail ? data?.othersDetail?.doDrink : ""}
                 </p>
               </div>
             )}
@@ -1198,9 +1118,7 @@ const Accordian = ({ data, isLoading, edit }) => {
               <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                 <span className="font-medium">Have tattos</span>
                 <p className="font-normal">
-                  {data?.othersDetail
-                    ? data?.othersDetail?.haveTattos
-                    : "Not Provided"}
+                  {data?.othersDetail ? data?.othersDetail?.haveTattos : ""}
                 </p>
               </div>
             )}
@@ -1210,7 +1128,7 @@ const Accordian = ({ data, isLoading, edit }) => {
                 <p className="font-normal">
                   {data?.othersDetail
                     ? data?.othersDetail?.haveVoluntaryExp
-                    : "Not Provided"}
+                    : ""}
                 </p>
               </div>
             )}
@@ -1222,7 +1140,7 @@ const Accordian = ({ data, isLoading, edit }) => {
                 <p className="font-normal">
                   {data?.othersDetail
                     ? data?.othersDetail?.travelledOutsideBangladesh
-                    : "Not Provided"}
+                    : ""}
                 </p>
               </div>
             )}
@@ -1230,9 +1148,7 @@ const Accordian = ({ data, isLoading, edit }) => {
               <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                 <span className="font-medium">Like Join Family</span>
                 <p className="font-normal">
-                  {data?.othersDetail
-                    ? data?.othersDetail?.likeJoinFamily
-                    : "Not Provided"}
+                  {data?.othersDetail ? data?.othersDetail?.likeJoinFamily : ""}
                 </p>
               </div>
             )}
@@ -1240,9 +1156,7 @@ const Accordian = ({ data, isLoading, edit }) => {
               <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                 <span className="font-medium">Believe in God</span>
                 <p className="font-normal">
-                  {data?.othersDetail
-                    ? data?.othersDetail?.believeInGod
-                    : "Not Provided"}
+                  {data?.othersDetail ? data?.othersDetail?.believeInGod : ""}
                 </p>
               </div>
             )}
