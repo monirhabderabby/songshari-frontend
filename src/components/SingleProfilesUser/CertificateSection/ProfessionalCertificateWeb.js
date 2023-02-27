@@ -1,5 +1,6 @@
 // configuration
 import React, { useEffect, useState } from "react";
+import { bindParentIdWithPhotos } from "../../../assets/utilities/certificates/certificate";
 
 // Third party packages
 import { useGetCertificatesWithAuthQuery } from "../../../Redux/features/Documents/documentsApi";
@@ -10,7 +11,7 @@ import UpdateCertificateSection from "./UpdateCertificateSection/UpdateCertifica
 
 const ProfessionalCertificateWeb = () => {
   // hook variable declaration
-  const [certificateId, setCertificateId] = useState(0);
+  const [selected, setSelected] = useState({});
   const [certificates, setCertificates] = useState([]);
 
   // Redux API calls
@@ -19,7 +20,7 @@ const ProfessionalCertificateWeb = () => {
   // useEffect declaration
   useEffect(() => {
     if (response) {
-      setCertificates(response?.data?.professions);
+      setCertificates(bindParentIdWithPhotos(response?.data?.professions));
     }
   }, [response]);
 
@@ -35,11 +36,9 @@ const ProfessionalCertificateWeb = () => {
             {certificates.map((certificate, index) => (
               <AllCertificateImg
                 key={certificate._id}
-                index={index}
-                certificateFor="professional"
                 certificate={certificate}
-                setCertificateId={setCertificateId}
-                certificateId={certificateId}
+                setSelected={setSelected}
+                selected={selected}
               />
             ))}
           </div>
@@ -58,7 +57,7 @@ const ProfessionalCertificateWeb = () => {
             >
               <img
                 className="h-[1187px] w-[800px] rounded-[16px]"
-                src={certificates[certificateId]?.specialAchievementMoment}
+                src={selected?.photo}
                 alt="view certificate"
               />
             </div>
@@ -66,7 +65,7 @@ const ProfessionalCertificateWeb = () => {
             {/* file uploading section */}
             <UpdateCertificateSection
               editFor="professional"
-              selectedCertificate={certificates[certificateId]}
+              selectedCertificate={selected}
             />
           </div>
         </div>

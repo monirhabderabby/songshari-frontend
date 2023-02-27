@@ -33,6 +33,16 @@ export const documentsApi = apiSlice.injectEndpoints({
         body: data,
       }),
     }),
+    resubmitAnyCertificate: builder.mutation({
+      query: ({ id, data }) => ({
+        url: `/member/resubmit/${id}`,
+        method: "POST",
+        headers: {
+          authorization: `Bearer ${getCookie("token")}`,
+        },
+        body: data,
+      }),
+    }),
   }),
 });
 
@@ -40,4 +50,5 @@ export const {
   useGetCertificatesWithAuthQuery,
   useResubmitProfessionalCertificateMutation,
   useResubmitEducationalCertificateMutation,
+  useResubmitAnyCertificateMutation
 } = documentsApi;
