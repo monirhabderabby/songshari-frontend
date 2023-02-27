@@ -5,10 +5,11 @@ import React, { useEffect, useState } from "react";
 import { Pagination } from "@mui/material";
 import { AiOutlineWarning } from "react-icons/ai";
 import { FaUserAltSlash } from "react-icons/fa";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 // components
 import useDocumentTitle from "../../../assets/utilities/useDocumentTitle";
+import { resetSearchTerm } from "../../../Redux/features/filter/findPartnerSlice";
 import { useGetRecentMembersQuery } from "../../../Redux/features/userInfo/withoutLoginApi";
 import { ProfileCardSkeletonLoader } from "../../shared/Cards/Loader/ProfileCardSkeletonLoader";
 import { UserCard } from "../Shared/userCard/UserCard";
@@ -19,8 +20,14 @@ export const FindAPartnerSuggested = () => {
     // variable declaration
     // hook variables
     const [page, setPage] = useState(1);
+    const dispatch = useDispatch();
     const searchTerm = useSelector(state => state?.persistedReducer?.findPartnerSlice?.searchTerm);
     const { data, isLoading, error } = useGetRecentMembersQuery({ searchTerm: searchTerm, page: page, role: "member", limit: 9 });
+
+    // useEffect declaration
+    useEffect(() => {
+        dispatch(resetSearchTerm());
+    }, [dispatch]);
 
     let totalData = Math.ceil(data?.data?.total / 9);
     let content;
