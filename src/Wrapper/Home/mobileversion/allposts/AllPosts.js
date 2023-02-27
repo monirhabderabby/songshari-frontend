@@ -10,7 +10,6 @@ import { useGetMyPostsWithAuthQuery } from "../../../../Redux/features/Post/post
 export const AllPosts = () => {
     const { data } = useGetMyPostsWithAuthQuery();
     const { data: posts } = data || {};
-    console.log(posts);
 
     return (
         <div>
