@@ -12,8 +12,11 @@ const findPartnerSlice = createSlice({
         setFindPartnerSearchTerm: (state = initialState, action) => {
             state.searchTerm = action.payload;
         },
+        resetSearchTerm: (state = initialState, action) => {
+            state.searchTerm = "";
+        },
     },
 });
 
 export default findPartnerSlice.reducer;
-export const { setFindPartnerSearchTerm } = findPartnerSlice.actions;
+export const { setFindPartnerSearchTerm, resetSearchTerm } = findPartnerSlice.actions;
