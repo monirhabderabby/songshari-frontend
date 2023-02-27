@@ -17,7 +17,12 @@ const MobileSingleProfilesUser = () => {
     <section className="max-w-[1024px] mx-auto">
       <MobileBackButton name="Profile" />
       <MobileUsersProfile />
-      <VerificationCard title={false} mt="0px" height="100px" />
+      <VerificationCard
+        title={false}
+        mt="0px"
+        height="100px"
+        responsive={true}
+      />
       <PhotoUploadCard />
       <div className="py-[20px]">
         <MobileAccordionLink></MobileAccordionLink>
