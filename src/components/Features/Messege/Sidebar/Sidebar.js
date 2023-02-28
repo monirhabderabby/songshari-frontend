@@ -3,7 +3,7 @@ import { useGetAllConnectedConnectionsQuery } from "../../../../Redux/features/c
 import { ConversationHeader } from "./ConversationHeader";
 import { Conversations } from "./Conversations";
 
-export const Sidebar = ({profile,handleChat}) => {
+export const Sidebar = ({handleChat,profile}) => {
     let { data } = useGetAllConnectedConnectionsQuery(profile?._id);
     // console.log(data?.data);
     return (

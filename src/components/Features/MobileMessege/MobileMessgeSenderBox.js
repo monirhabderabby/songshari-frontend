@@ -8,9 +8,27 @@ import { MdOutlineArrowForwardIos } from "react-icons/md";
 // Components
 import mic from "../../../assets/images/messges/Audio.svg";
 import gallery from "../../../assets/images/messges/Gallery.svg";
+import { useCreateMessageMutation } from "../../../Redux/chat/chatApi";
 
-export const MobileMessgeSenderBox = ({ handleMessage, message, setMessage }) => {
+export const MobileMessgeSenderBox = ({msg,setMsg, message, setMessage ,socket}) => {
+    const [createMessage] = useCreateMessageMutation();
     const [open, setOpen] = useState(false);
+    const handleMessage = async e => {
+        // console.log(e)
+        if (e.code === "Enter" || e.type === "click") {
+            await createMessage(message);
+            socket.current.emit("sendMessage", {
+                to: message.to,
+                from: message.from,
+                message: message.message,
+            });
+            
+            let newMsg= [...msg];
+            newMsg.push({ fromSelf: true, message: message.message });
+            setMsg(newMsg);
+            e.target.value = "";
+        }
+    };
     return (
         <div className="h-[52px] w-full bg-white">
             <section className="h-full flex justify-between items-center px-[15px] gap-x-[10px]">

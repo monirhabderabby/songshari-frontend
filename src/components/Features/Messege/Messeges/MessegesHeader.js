@@ -6,7 +6,7 @@ import { BsFillTelephoneFill } from "react-icons/bs";
 import { IoVideocam } from "react-icons/io5";
 
 export const MessegesHeader = ({profile}) => {
-    console.log(profile)
+    // console.log(profile)
     return (
         <div className="h-[91px] w-full px-[15px] flex items-center shadow-[0px_12px_23px_rgba(62,73,84,0.04)]">
             <div className="flex justify-between items-center w-full">

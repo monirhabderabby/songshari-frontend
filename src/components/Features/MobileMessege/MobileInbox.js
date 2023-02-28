@@ -2,7 +2,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { io } from "socket.io-client";
-import { useCreateMessageMutation, useGetAllMessageMutation } from "../../../Redux/chat/chatApi";
+import {  useGetAllMessageQuery } from "../../../Redux/chat/chatApi";
 import { allMessage } from "../../../Redux/chat/chatReducer";
 
 // Components
@@ -19,17 +19,25 @@ export const MobileInbox = () => {
     const res = useSelector(state => state.persistedReducer.userInfo.userInfo);
     const receiver = useSelector(state => state?.persistedReducer?.chat?.user);
     const totalMessages = useSelector(state => state?.persistedReducer?.chat?.messages);
-    const [createMessage] = useCreateMessageMutation();
+
     const [arivalMsg, setArivalMsg] = useState(null);
     let from = res?.data ? res.data.user._id : res?.user._id;
-    console.log(receiver)
-    const [getAllMessage, data] = useGetAllMessageMutation();
-    // console.log(data)
+    // console.log(receiver)
+    
     const [message, setMessage] = useState({
         message: "",
-        to: receiver._id,
+        to: receiver?._id,
         from: from,
     });
+    useEffect(() => {
+       
+        if(receiver?._id){
+            setMessage({...message,to:receiver?._id});
+        }
+    
+ }, [receiver?._id]);
+    const {data} = useGetAllMessageQuery(message);
+    // console.log(data)
     // setMessage({...message,from:res?.user?._id});
     useEffect(() => {
         if (receiver._id) {
@@ -37,37 +45,26 @@ export const MobileInbox = () => {
             socket.current.emit("addUser", receiver._id);
         }
     }, [receiver._id]);
-    const [msg, setMsg] = useState(totalMessages);
+    const [msg, setMsg] = useState(data?.message);
     // console.log(msg)
+    // useEffect(() => {
+    //     if (receiver._id) {
+    //         (async () => {
+                 
+    //             setMsg(data?.data?.message);
+    //         })();
+            
+    //     }
+    // }, [receiver._id]);
+    let c=1;
     useEffect(() => {
-        if (receiver._id) {
-            (async () => {
-                getAllMessage(message);
-                dispatch(allMessage(data?.data?.message))
-                setMsg(data?.data?.message);
-            })();
+        if(data?.message&&c===1){
+            setMsg(data?.message);  
+            dispatch(allMessage(data?.message))  
+            c=0;
         }
-    }, [receiver._id]);
-
-    const handleMessage = async e => {
-        // console.log(e)
-        if (e.code === "Enter" || e.type === "click") {
-            createMessage(message);
-            socket.current.emit("sendMessage", {
-                to: message.to,
-                from: message.from,
-                message: message.message,
-            });
-            // console.log(msg)
-           
-            // let newMsg=msg
-            let newMsg = [];
-            newMsg = [...msg];
-            newMsg.push({ fromSelf: true, message: message.message });
-            setMsg(newMsg);
-            e.target.value = "";
-        }
-    };
+    }, [data?.message]);
+    
 
     useEffect(() => {
         // if(socket?.current){
@@ -85,7 +82,7 @@ export const MobileInbox = () => {
         arivalMsg && setMsg(prev => [...prev, arivalMsg]);
         setArivalMsg(null);
     }, [arivalMsg, setMsg, msg]);
-    console.log(msg)
+    // console.log(msg)
     return (
         <div className="max-w-[1024px] mx-auto h-screen flex flex-col">
             <div className="relative w-full ">
@@ -97,7 +94,7 @@ export const MobileInbox = () => {
 
             </div>
             <div className="bg-white">
-                <MobileMessgeSenderBox handleMessage={handleMessage} message={message} setMessage={setMessage} />
+                <MobileMessgeSenderBox msg={msg} setMsg={setMsg} message={message} setMessage={setMessage} socket={socket} />
             </div>
         </div>
     );
