@@ -10,7 +10,7 @@ const MobileUserCancelledServices = () => {
     <div>
       <MobileBackButton name={"Cancelled Services"} />
       <div className="px-6 pt-2">
-        <UserCanceledServices />
+        <UserCanceledServices {...{ responsive: true }} />
       </div>
       <div className="h-20"></div>
       <BottomNav />
