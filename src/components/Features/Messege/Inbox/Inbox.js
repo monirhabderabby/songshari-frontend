@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { useSelector } from "react-redux";
 
 import { useGetAllMessageQuery } from "../../../../Redux/chat/chatApi";
@@ -18,31 +18,26 @@ export const Inbox = () => {
     });
     let result = useGetAllMessageQuery(message);
     const [msg, setMsg] = useState(null);
-    const handleChat = (user) => {
+    const handleChat = user => {
         setMessage({ ...message, to: user._id });
-        if(result?.data?.message){
+        if (result?.data?.message) {
             setMsg(result?.data?.message);
         }
-       
     };
- 
-    
+
     // const [msg, setMsg] = useState(null);
     // useEffect(() => {
-        
-    // }, []);
-    
-   
 
-    
+    // }, []);
+
     return (
         <div className="bg-[#FAFBFF] pb-[230px]">
             <CustomHeader title="Chat" />
             <div className="lg:w-full xl:max-w-[1200px] h-[calc(100vh-30vh)] mx-auto flex mt-[66px]">
                 <div className="lg:w-[437px] xl:w-[557px] h-full">
-                    <Sidebar handleChat={handleChat} profile={profile}  />
+                    <Sidebar handleChat={handleChat} profile={profile} />
                 </div>
-                <div className="flex-1 h-full">
+                <div className="flex-1 h-[calc(30vh + 66px - 100vh)]">
                     <MessegeBox msg={msg} setMsg={setMsg} message={message} setMessage={setMessage} user={profile} socket={socket} />
                 </div>
             </div>
