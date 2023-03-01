@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { setUser } from "../../../../Redux/chat/chatReducer";
-
+import moment from "moment";
 export const Conversations = ({handleChat,user}) => {
     const dispatch=useDispatch();
     
@@ -9,6 +9,10 @@ export const Conversations = ({handleChat,user}) => {
 
     // console.log(user)
     // const arr = [1, 2, 3, 4];
+    // user?.sort((a, b) => {
+    //     return new Date(b?.time).toISOString - new Date(a?.time).toISOString;
+    // });
+    // console.log(user);
     return (
         <div className="mt-[30px] h-[537px] bg-white shadow-[0px_3px_4px_rgba(62,73,84,0.04)] rounded-[20px] px-[30px] ">
             <div className="flex flex-col pt-[30px]">
@@ -23,14 +27,13 @@ export const Conversations = ({handleChat,user}) => {
                             />
                             <div className="flex-1 h-full">
                                 <div  className="w-full flex justify-between">
-                                    <p  className="text-[16px] text-[#000000] font-medium">{p.firstName}</p>
-                                    <p className="text-[#898989] text-[14px] font-normal">25m ago</p>
+                                    <p  className="text-[16px] text-[#000000] font-medium">{p.firstName + " "+ p?.lastName}</p>
+                                    <p className="text-[#898989] text-[14px] font-normal">{moment(p?.time).format('LT')} </p>
                                 </div>
                                 <div className="content">
-                                    {/* <p className="text-[14px] text-[#000000] font-normal">
-                                        Nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-                                        dolore eu fugiat nulla pariatur.
-                                    </p> */}
+                                    <p className="text-[14px] text-[#000000] font-normal">
+                                        {p?.lastMsg}
+                                    </p>
                                 </div>
                             </div>
                         </div>
