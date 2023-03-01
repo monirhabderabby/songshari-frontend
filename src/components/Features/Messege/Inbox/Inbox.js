@@ -16,9 +16,13 @@ export const Inbox = () => {
         to: "",
         message: "",
     });
+    const [receiver, setReceiver] = useState(null);
     let result = useGetAllMessageQuery(message);
+    console.log(result);
     const [msg, setMsg] = useState(null);
     const handleChat = user => {
+        // console.log(user);
+        setReceiver(user);
         setMessage({ ...message, to: user._id });
         if (result?.data?.message) {
             setMsg(result?.data?.message);
@@ -38,7 +42,7 @@ export const Inbox = () => {
                     <Sidebar handleChat={handleChat} profile={profile} />
                 </div>
                 <div className="flex-1 h-[calc(30vh + 66px - 100vh)]">
-                    <MessegeBox msg={msg} setMsg={setMsg} message={message} setMessage={setMessage} user={profile} socket={socket} />
+                    <MessegeBox msg={msg} setMsg={setMsg} message={message} setMessage={setMessage} user={profile} receiver={receiver} socket={socket} />
                 </div>
             </div>
         </div>
