@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-
+import moment from "moment";
 export const MessegeLeft = ({ profile, message }) => {
     const scrollRef = useRef();
     useEffect(() => {
@@ -17,7 +17,7 @@ export const MessegeLeft = ({ profile, message }) => {
                 <div className="content bg-[#F2F2F2] rounded-br-[20px] rounded-tr-[20px] rounded-bl-[20px] px-[20px] py-[9px] w-auto">
                     <p className="text-[#000000] text-[16px] font-normal">{message?.message}</p>
                 </div>
-                <p className="text-[#969696] text-[12px] font-normal mt-[13px]">4.30 AM</p>
+                <p className="text-[#969696] text-[12px] font-normal mt-[13px]">{moment(message?.time).format('LT')}</p>
             </div>
         </div>
     );

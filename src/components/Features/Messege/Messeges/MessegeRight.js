@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-
+import moment from "moment";
 export const MessegeRight = ({profile,message}) => {
     // console.log(message)
     // console.log(profile.profilePhoto)
@@ -13,7 +13,7 @@ export const MessegeRight = ({profile,message}) => {
                 <div className="content bg-[#A32BCA] rounded-tl-[20px] rounded-tr-[20px] rounded-bl-[20px] px-[20px] py-[9px] w-3/5">
                     <p className="text-white text-[16px] font-normal">{message?.message}</p>
                 </div>
-                <p className="text-[#969696] text-[12px] text-right font-normal mt-[13px]">4.30 AM</p>
+                <p className="text-[#969696] text-[12px] text-right font-normal mt-[13px]">{moment(message?.time).format('LT')}</p>
             </div>
             <img
                 className="h-[58px] w-[58px] rounded-full"
