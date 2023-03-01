@@ -9,9 +9,9 @@ import { io } from "socket.io-client";
 import { MessageSenderBox } from "./MessageSenderBox";
 import { MessegeList } from "./MessegeList";
 import { MessegesHeader } from "./MessegesHeader";
-export const MessegeBox = ({ msg, setMsg, message, setMessage, user, socket }) => {
+export const MessegeBox = ({ msg, setMsg, message, setMessage, user,receiver, socket }) => {
     // console.log(user, reciver);
-    const receiver = useSelector(state => state?.persistedReducer?.chat?.user);
+    // const receiver = useSelector(state => state?.persistedReducer?.chat?.user);
 
     // console.log(res)
     // const [receiver, setReceiver] = useState(res);
