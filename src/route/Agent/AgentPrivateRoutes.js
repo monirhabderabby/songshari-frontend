@@ -3,6 +3,8 @@ import AgentProfileContainer from "../../components/pages/Agent/AgentProfile/Age
 import AgentReviewsContainer from "../../components/pages/Agent/AgentReview/AgentReviewsContainer";
 import AgentServiceForm from "../../components/pages/Agent/AgentServiceForm/AgentServiceForm";
 import AgentServicesPage from "../../components/pages/Agent/AgentServicesPage/AgentServicesPage";
+import FindAgentPage from "../../components/pages/Agent/FindAgent/FindAgentPage";
+import { FindRecentAgent } from "../../components/pages/Agent/FindAgent/FindRecentAgent";
 import { ServiceEdit } from "../../components/shared/Components/LawyerAgentKaziService/ServiceEdit/ServiceEdit";
 import SingleServicesContainer from "../../components/shared/Components/LawyerAgentKaziService/SingleServices/SingleServicesContainer";
 import EditEducationalInfo from "../../components/SingleProfilesUser/profileSection/EditprofileSection/EditEducationalInfo";
@@ -77,6 +79,18 @@ const AgentPrivateRoutes = [
         id: 6,
         path: "serviceEdit/:id",
         element: <ServiceEdit />,
+      },
+    ],
+  },
+  {
+    id: 2,
+    path: "agent",
+    element: <FindAgentPage />,
+    nestedRoutes: [
+      {
+        id: 1,
+        path: "recent",
+        element: <FindRecentAgent />,
       },
     ],
   },
