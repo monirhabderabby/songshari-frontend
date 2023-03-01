@@ -8,13 +8,6 @@ import RegAsProfessional from "../../components/pages/Authentications/RegAsProfe
 import Signup from "../../components/pages/Authentications/SignUp";
 import Contact from "../../components/pages/Contact/Contact";
 import { DynamicProfilePage } from "../../components/pages/DynamicProfilePage/DynamicProfilePage";
-import FindAlawyerPage from "../../components/pages/FindAlawyer/FindAlawyerPage";
-import { FindRecentLawyer } from "../../components/pages/FindAlawyer/FindRecentLawyer";
-import { FilterResults } from "../../components/pages/FindPartner/FilterResults/FilterResults";
-import { FindAPartnerSuggested } from "../../components/pages/FindPartner/FindAPartnerSuggested";
-import FindPartners from "../../components/pages/FindPartner/FindPartners";
-import { NearestPartners } from "../../components/pages/FindPartner/NearestPartners/NearestPartners";
-import { TopPartners } from "../../components/pages/FindPartner/TopPartner/TopPartners";
 import { OurTeams } from "../../components/pages/OurTeams/OurTeams";
 import { Privacy } from "../../components/pages/Privacy/Privacy";
 import Suggested from "../../components/pages/TopProfile/Suggested";
@@ -102,33 +95,6 @@ const matrimonyRoutes = [
     element: <OurTeams />,
   },
   {
-    id: 12,
-    path: "/find-partner",
-    element: <FindPartners />,
-    nestedRoutes: [
-      {
-        id: 1,
-        path: "/find-partner/suggested",
-        element: <FindAPartnerSuggested />,
-      },
-      {
-        id: 2,
-        path: "top",
-        element: <TopPartners />,
-      },
-      {
-        id: 3,
-        path: "nearest",
-        element: <NearestPartners />,
-      },
-      {
-        id: 4,
-        path: "filter",
-        element: <FilterResults />,
-      },
-    ],
-  },
-  {
     id: 13,
     path: "/otp",
     element: <OTP />,
@@ -200,33 +166,6 @@ const matrimonyRoutes = [
     element: <OurTeams />,
   },
   {
-    id: 12,
-    path: "/find-partner",
-    element: <FindPartners />,
-    nestedRoutes: [
-      {
-        id: 1,
-        path: "suggested",
-        element: <FindAPartnerSuggested />,
-      },
-      {
-        id: 2,
-        path: "top",
-        element: <TopPartners />,
-      },
-      {
-        id: 3,
-        path: "nearest",
-        element: <NearestPartners />,
-      },
-      {
-        id: 4,
-        path: "filter",
-        element: <FilterResults />,
-      },
-    ],
-  },
-  {
     id: 13,
     path: "/otp",
     element: <OTP />,
@@ -240,18 +179,6 @@ const matrimonyRoutes = [
         id: 1,
         path: ":id",
         element: <MessegeBox />,
-      },
-    ],
-  },
-  {
-    id: 15,
-    path: "/findLawyers",
-    element: <FindAlawyerPage />,
-    nestedRoutes: [
-      {
-        id: 1,
-        path: "recent",
-        element: <FindRecentLawyer />,
       },
     ],
   },
