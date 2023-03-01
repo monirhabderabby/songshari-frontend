@@ -231,7 +231,7 @@ export const AccordionPartner = ({ data, isLoading }) => {
   // ------ Family Information -----------
   const handleFatherStatusChange = (e) => {
     setFatherStatusValue(e.target.value);
-    setFamilyInfo({ ...familyInfo, fatherStatus: e.target.value });
+    setFamilyInfo({ ...familyInfo, isFatherAlive: e.target.value });
   };
   const handleFatherProfessionChange = (value) => {
     setFamilyInfo({ ...familyInfo, fatherProfession: value });
@@ -242,7 +242,7 @@ export const AccordionPartner = ({ data, isLoading }) => {
   };
   const handleMotherStatusChange = (e) => {
     setMotherStatusValue(e.target.value);
-    setFamilyInfo({ ...familyInfo, motherStatus: e?.target?.value });
+    setFamilyInfo({ ...familyInfo, isMotherAlive: e?.target?.value });
   };
   const handleMotherProfessionChange = (value) => {
     setFamilyInfo({ ...familyInfo, motherProfession: value });
@@ -329,7 +329,7 @@ export const AccordionPartner = ({ data, isLoading }) => {
   };
   const onAfterWeightChange = (value) => {};
   const handleUserAncestryChange = (value) => {
-    setOthersInfo({ ...othersInfo, ancestry: value });
+    setBasicInfo({ ...basicInfo, ancestry: value });
   };
   const handleUserSkinToneChange = (value) => {
     setOthersInfo({ ...othersInfo, skinTone: value });
@@ -360,7 +360,7 @@ export const AccordionPartner = ({ data, isLoading }) => {
       basicInfo,
       familyInfo,
       professionalInfo,
-      othersInfo,
+      physicalInfo: othersInfo,
     };
 
     // set filter object in redux state

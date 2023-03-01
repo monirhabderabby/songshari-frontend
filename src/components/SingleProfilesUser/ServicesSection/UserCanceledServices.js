@@ -40,7 +40,7 @@ const UserCanceledServices = ({ responsive }) => {
   } else if (!isLoading && orders.length === 0) {
     content = (
       <div className="h-[150px] w-full flex justify-center items-center text-gray-400">
-        You havn't onGoing service
+        You have no onGoing service
       </div>
     );
   } else if (!isLoading && orders.length > 0) {
