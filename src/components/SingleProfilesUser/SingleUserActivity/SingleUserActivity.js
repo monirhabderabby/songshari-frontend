@@ -42,15 +42,22 @@ const SingleUserActivity = () => {
     ? profilePhoto
     : "https://i.postimg.cc/Hn3ghQJn/images.jpg";
 
-  // function declarations
-  const addPost = async (event) => {
-    event.preventDefault();
-    const data = {
-      authorName: firstName + " " + lastName,
-      attachment: photoURL,
-      postBody: postText,
-      privacy: privacy,
-      profilePhoto: profilePhoto,
+    // function declarations
+    const addPost = async event => {
+        event.preventDefault();
+        const data = {
+            authorName: firstName + " " + lastName,
+            attachment: photoURL,
+            postBody: postText,
+            privacy: privacy,
+            profilePhoto: profilePhoto,
+        };
+
+        await addUserPost({
+            data,
+        });
+
+        setPostText("");
     };
 
     await addUserPost({

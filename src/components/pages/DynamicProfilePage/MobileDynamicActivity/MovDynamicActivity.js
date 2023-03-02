@@ -4,7 +4,7 @@ import React from "react";
 // components
 import love from "../../../../assets/images/icons/coolicon.svg";
 import profile from "../../../../assets/images/profile/up1.png";
-import { getHoursMinutes } from "../../../../Helper/helper";
+import timeAgo from "../../../../assets/utilities/TimeCalculator/TimeAgo";
 import { useGetMyPostsQuery } from "../../../../Redux/features/Post/postApi";
 
 export const MovDynamicActivity = ({ postRefetch }) => {
@@ -52,11 +52,7 @@ export const MovDynamicActivity = ({ postRefetch }) => {
                                       </div>
 
                                       <span className="text-[14px] font-normal text-[#333333]">
-                                          @albertdon .{" "}
-                                          <span>
-                                              {getHoursMinutes(post?.createdAt).hours}h &nbsp;
-                                              {getHoursMinutes(post?.createdAt).minutes}min
-                                          </span>
+                                          @albertdon . <span>{timeAgo(post?.createdAt)}</span>
                                       </span>
                                   </div>
 
