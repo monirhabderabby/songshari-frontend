@@ -1,16 +1,13 @@
 // Configuration
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 // Third party packages
 import { Select } from "antd";
-import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { useForm } from "react-hook-form";
-import { v4 as uuidv4 } from "uuid";
 import { useSelector } from "react-redux";
 
 // Components
 import { MdCreateNewFolder } from "react-icons/md";
-import { firebaseStorage } from "../../../firebase.init";
 import {
   useAddUserPostMutation,
   useGetMyPostsQuery,
@@ -18,21 +15,26 @@ import {
 import { BottomNav } from "../../../Wrapper/Home/mobileversion/BottomNav";
 import { MobileBackButton } from "../../shared/Components/MobileBackButton";
 import MobileActivityPost from "./MobileActivityPost";
+import { usePhotosUploadOnServerMutation } from "../../../Redux/features/fileUpload/fileUploadApi";
 
-const handleChange = () => {};
 const MobileActivity = () => {
   const [photoURL, setPhotoUrl] = useState("");
+  const [privacy, setPrivacy] = useState("");
+  const [postText, setPostText] = useState("");
 
   const userInfo = useSelector(
     (state) => state?.persistedReducer?.userInfo?.userInfo?.user
   );
 
-  const [addUserPost] = useAddUserPostMutation();
+  // Redux Api Call
+  const [addUserPost, { isSuccess: addPostSuccess }] = useAddUserPostMutation();
+  const [photosUploadOnServer, { isSuccess, data }] =
+    usePhotosUploadOnServerMutation();
   const { data: posts, isLoading, error } = useGetMyPostsQuery();
   const { register, handleSubmit, reset } = useForm();
 
   // Profile photo
-  let { profilePhoto } = userInfo || {};
+  let { profilePhoto, firstName, lastName } = userInfo || {};
 
   profilePhoto = profilePhoto
     ? profilePhoto
@@ -40,22 +42,37 @@ const MobileActivity = () => {
 
   const photoHandler = async (e) => {
     const photo = e.target.files[0];
-    const storageRef = ref(firebaseStorage, `post/${photo.name + uuidv4()}`);
-
-    uploadBytes(storageRef, photo).then(async (snapshot) => {
-      await getDownloadURL(snapshot.ref).then((url) => {
-        setPhotoUrl(url.toString());
-      });
-    });
+    const formData = new FormData();
+    formData.append("photos", photo);
+    photosUploadOnServer(formData);
   };
 
   const onSubmit = async (data) => {
+    let postText = "";
+    postText = data.postText;
     await addUserPost({
-      attachment: photoURL,
-      postBody: data.postText,
+      data: {
+        authorName: firstName + " " + lastName,
+        attachment: photoURL,
+        postBody: postText,
+        privacy: privacy,
+        profilePhoto: profilePhoto,
+      },
     });
-    reset();
   };
+
+  useEffect(() => {
+    if (isSuccess) {
+      setPhotoUrl(data?.data?.file[0]?.fileName);
+    }
+  }, [isSuccess, data]);
+
+  useEffect(() => {
+    if (addPostSuccess) {
+      reset();
+      setPhotoUrl("");
+    }
+  }, [addPostSuccess, reset]);
 
   return (
     <section className="max-w-[1024px] mx-auto h-screen">
@@ -70,6 +87,7 @@ const MobileActivity = () => {
             />
             <textarea
               {...register("postText")}
+              onChange={(e) => setPostText(e.target.value)}
               id="postText"
               className="text-[#757575] pt-1 w-full focus:outline-none"
               placeholder="Write somethings here......"
@@ -101,7 +119,7 @@ const MobileActivity = () => {
                 <Select
                   defaultValue="Public"
                   style={{ width: 105, borderRadius: "50px" }}
-                  onChange={handleChange}
+                  onSelect={(val) => setPrivacy(val.value)}
                   options={[
                     {
                       value: "Public",
@@ -122,6 +140,7 @@ const MobileActivity = () => {
             <button
               className="rounded-[50px] py-[3px] w-[65px] font-bold text-[16px] leading-[30px] text-[#FFFFFF] bg-gradient-to-t from-[#942DD9] to-[#F22876] shadow-[0.872px_9.962px_20px_rgba(12, 78, 165, 0.3)]"
               type="submit"
+              disabled={postText === "" && photoURL === ""}
             >
               Post
             </button>
