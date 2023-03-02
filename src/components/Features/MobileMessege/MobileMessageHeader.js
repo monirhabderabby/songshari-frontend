@@ -5,13 +5,15 @@ import React from "react";
 import { AiOutlineArrowLeft } from "react-icons/ai";
 import { BsFillCameraVideoFill } from "react-icons/bs";
 import { FaPhoneAlt } from "react-icons/fa";
+import { useNavigate } from "react-router";
 
 export const MobileMessageHeader = ({profile}) => {
     // console.log(profile)
+    const navigate=useNavigate();
     return (
         <div className="w-full h-[59px] bg-white fixed top-0 px-[16px]">
             <div className="absolute top-[20px]">
-                <AiOutlineArrowLeft />
+                <AiOutlineArrowLeft onClick={()=>navigate('/mobile-conversations')} />
             </div>
             <div className=" pl-[30px] w-full h-full flex items-center justify-between max-w-[990px]">
                 <div className="flex items-center h-full gap-x-[10px]">

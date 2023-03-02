@@ -150,7 +150,7 @@ export const AccordionPartner = ({ data, isLoading }) => {
     setBasicInfo({ ...basicInfo, religion: e?.target?.value });
   };
   const handleHometownChange = (value) => {
-    setBasicInfo({ ...basicInfo, homeTown: value });
+    setBasicInfo({ ...basicInfo, hometown: value });
   };
   const handleCurrentLocationChange = (value) => {
     setBasicInfo({ ...basicInfo, currentLocation: value });

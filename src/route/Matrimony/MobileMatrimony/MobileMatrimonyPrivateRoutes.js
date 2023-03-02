@@ -1,4 +1,5 @@
 // components
+import { MobileDynamicProfile } from "../../../components/pages/DynamicProfilePage/MobileDynamicProfile/MobileDynamicProfile";
 import MobileDynamicProfileActivity from "../../../components/pages/DynamicProfilePage/MobileDynamicProfile/MobileDynamicProfileDetails/MobileDynamicProfileActivity";
 import MobileDynamicProfileConnections from "../../../components/pages/DynamicProfilePage/MobileDynamicProfile/MobileDynamicProfileDetails/MobileDynamicProfileConnections";
 import MobileDynamicServicesContainer from "../../../components/pages/DynamicProfilePage/MobileDynamicProfile/MobileDynamicServicesContainer/MobileDynamicServicesContainer";
@@ -345,6 +346,11 @@ const MobileMatrimonyPrivateRoutes = [
     id: 52,
     path: "/stepperMov",
     element: <MobileStepper />,
+  },
+  {
+    id: 53,
+    path: "/mobileprofile/:id",
+    element: <MobileDynamicProfile />,
   },
 ];
 

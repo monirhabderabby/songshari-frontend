@@ -8,8 +8,8 @@ import moment from "moment";
 // Components
 import { MobileBackButton } from "../../../shared/Components/MobileBackButton";
 import { useGetAllConnectedConnectionsQuery } from "../../../../Redux/features/connections/connectionApi";
-import { setUser } from "../../../../Redux/chat/chatReducer";
-import { useDispatch, useSelector } from "react-redux";
+// import { setUser } from "../../../../Redux/chat/chatReducer";
+import {  useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 
 export const Conversations = () => {
@@ -19,11 +19,12 @@ export const Conversations = () => {
     
     
     // console.log(data)
-    const dispatch=useDispatch();
+    // const dispatch=useDispatch();
     const navigate=useNavigate();
     const handleUser = (item) => {
-        dispatch(setUser(item));
-        navigate("/mobile-inbox");
+        console.log(item)
+        // dispatch(setUser(item));
+        navigate(`/mobile-inbox/${item._id}`);
     }
 
     return (
@@ -37,16 +38,16 @@ export const Conversations = () => {
                             <div className="w-full h-[88px] flex gap-x-[34px] mt-[10px]">
                                 <img
                                     className="h-[58px] w-[58px] rounded-full"
-                                    src="https://i.postimg.cc/j2nh3WBh/310814492-3383940818533755-1197676094327108122-n.jpg"
+                                    src={item?.profilePhoto}
                                     alt="profile"
                                 />
-                                <div className="flex-1 h-full">
+                                <div onClick={()=>handleUser(item)} className="flex-1 h-full">
                                     <div className="w-full flex justify-between">
-                                        <p onClick={()=>handleUser(item)} className="text-[16px] text-[#000000] font-medium">{item.firstName}</p>
-                                        {/* <p className="text-[#898989] text-[14px] font-normal">{moment(item.).startOf("hour").fromNow()}</p> */}
+                                        <p  className="text-[16px] text-[#000000] font-medium">{item.firstName+" "+item.lastName}</p>
+                                        <p className="text-[#898989] text-[14px] font-normal">{moment(item.time).format('LT')}</p>
                                     </div>
                                     <div className="content">
-                                        {/* <p className="text-[14px] text-[#000000] font-normal">{item.message}</p> */}
+                                        <p className="text-[14px] text-[#000000] font-normal">{item?.lastMsg}</p>
                                     </div>
                                 </div>
                             </div>

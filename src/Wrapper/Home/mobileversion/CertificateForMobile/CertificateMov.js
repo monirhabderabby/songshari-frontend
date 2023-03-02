@@ -63,6 +63,7 @@ export const CertificateMov = () => {
             }}
           />
         )}
+        <div className="h-20"></div>
         <BottomNav />
       </div>
     </div>
