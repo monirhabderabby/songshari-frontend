@@ -51,6 +51,8 @@ const SingleUserActivity = () => {
         await addUserPost({
             data,
         });
+
+        setPostText("");
     };
 
     const photoHandler = async e => {
@@ -63,6 +65,7 @@ const SingleUserActivity = () => {
     useEffect(() => {
         if (isSuccess) {
             setPhotoUrl(data?.data?.file[0]?.fileName);
+            setPostText("");
         }
     }, [isSuccess, data]);
 
@@ -74,7 +77,6 @@ const SingleUserActivity = () => {
                         <div className="flex w-full h-[100px] gap-[19px]">
                             <img className="w-12 h-10 rounded-full" src={profile} alt="profile" />
                             <textarea
-                                // ref={ref}
                                 id="message"
                                 value={postText}
                                 className="text-[#757575] w-full focus:outline-none resize-none"

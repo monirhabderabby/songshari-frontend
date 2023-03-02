@@ -1,4 +1,3 @@
-import moment from "moment";
 import React, { useEffect, useState } from "react";
 
 // components
@@ -8,6 +7,7 @@ import { AiFillHeart } from "react-icons/ai";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import love from "../../../assets/images/icons/coolicon.svg";
 import liveLinkGenerator from "../../../assets/utilities/liveLink/liveLinkGenerator";
+import timeAgo from "../../../assets/utilities/TimeCalculator/TimeAgo";
 import { useLikeSinglePostMutation } from "../../../Redux/features/connections/connectionApi";
 import { useDeletePostMutation } from "../../../Redux/features/Post/postApi";
 
@@ -43,6 +43,8 @@ const SinglePostCard = ({ post }) => {
         }
     }, [likeResponse, errorLike]);
 
+    console.log(post);
+
     return (
         <div>
             <div className="max-w-[457px] mx-auto shadow-[2px_2px_4px_rgba(0,0,0,0.12)] bg-white rounded-[10px] p-[30px] hidden md:block">
@@ -63,11 +65,7 @@ const SinglePostCard = ({ post }) => {
                         <div className="w-[20px] h-[20px] bg-[#FCE9F3] rounded-full mr-[14px]"></div>
                         <div>
                             <span className="text-[14px] leading-7 font-normal text-[#333333]">
-                                <span>
-                                    {/* {getHoursMinutes(post?.createdAt).hours}h &nbsp;
-                                {getHoursMinutes(post?.createdAt).minutes}min */}
-                                    {moment(post?.createdAt).startOf("day").endOf("day").fromNow()}
-                                </span>
+                                <span>{timeAgo(post?.createdAt)}</span>
                             </span>
                         </div>
                     </div>
