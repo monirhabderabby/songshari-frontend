@@ -26,9 +26,11 @@ const MemberShipPremiumCard = ({ item }) => {
       <div className="card-body">
         <h2 className="text-black  text-xl text-center pb-4">{item?.title}</h2>
         <p className="text-center text-5xl font-bold text-[#ac216c] pb-2">
-          BDT {item?.priceMonth}
+          BDT {checked ? item?.priceYear : item?.priceMonth}
         </p>
-        <p className="text-xl pt-4 text-center">PER MONTH</p>
+        <p className="text-xl pt-4 text-center">
+          {checked ? "PER YEAR" : "PER MONTH"}
+        </p>
         <div className="px-2 pt-3">
           {item?.offers?.map((offer, i) => (
             <div
@@ -55,7 +57,7 @@ const MemberShipPremiumCard = ({ item }) => {
               <form
                 action={`http://localhost:4000/payment/plan?_plan=${
                   item._id
-                }&annually=${checked}&amount=${item?.priceMonth?.toString()}&desc=${"Plan payment"}&_token=${getCookie(
+                }&amount=${checked ? item?.priceYear : item?.priceMonth}&annually=${checked}&amount=${item?.priceMonth?.toString()}&desc=${"Plan payment"}&_token=${getCookie(
                   "token"
                 )}`}
                 method="post"
