@@ -139,7 +139,7 @@ export const AccordionPartner = ({ data, isLoading }) => {
 
   // ----------- Basic Information ----------
   const handleLookingForChange = (value) => {
-    setBasicInfo({ ...basicInfo, looking: value });
+    setBasicInfo({ ...basicInfo, gender: value });
   };
   const onAgeChange = (value) => {
     setAge(value);
