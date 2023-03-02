@@ -176,8 +176,8 @@ export const userApi = apiSlice.injectEndpoints({
       keepUnusedDataFor: 0,
     }),
     findFilteredUser: builder.mutation({
-      query: (data) => ({
-        url: "/member/connections/search",
+      query: ({data, keyword,page}) => ({
+        url: `/member/connections/search?_page=${page||""}&_limit=9&_keyword=${keyword}`,
         method: "POST",
         headers: {
           authorization: `Bearer ${getCookie("token")}`,
