@@ -3,19 +3,16 @@ import React, { useEffect, useState } from "react";
 
 // Third party packages
 import { Select } from "antd";
-import { ref } from "firebase/storage";
 import { MdCreateNewFolder } from "react-icons/md";
 
 // components
 import { useSelector } from "react-redux";
-import coolicon from "../../../assets/images/activity/coolicon.png";
 import useDocumentTitle from "../../../assets/utilities/useDocumentTitle";
 import { usePhotosUploadOnServerMutation } from "../../../Redux/features/fileUpload/fileUploadApi";
 import {
   useAddUserPostMutation,
   useGetMyPostsQuery,
 } from "../../../Redux/features/Post/postApi";
-import { MovDynamicActivity } from "../../pages/DynamicProfilePage/MobileDynamicActivity/MovDynamicActivity";
 import { AllPostsOfLoggedInUser } from "./AllPostsOfLoggedInUser/AllPostsOfLoggedInUser";
 
 const SingleUserActivity = () => {
@@ -28,8 +25,7 @@ const SingleUserActivity = () => {
   useDocumentTitle("Shongshari | Activity");
 
   // Redux Api Call
-  const [addUserPost, { data: response, isSuccess: addPostSuccess }] =
-    useAddUserPostMutation();
+  const [addUserPost, { isSuccess: addPostSuccess }] = useAddUserPostMutation();
   const { data: posts, isLoading, error } = useGetMyPostsQuery();
   const [photosUploadOnServer, { isSuccess, data }] =
     usePhotosUploadOnServerMutation();
@@ -164,71 +160,6 @@ const SingleUserActivity = () => {
             </div>
           </div>
           <AllPostsOfLoggedInUser {...{ posts, isLoading, error }} />
-        </div>
-      </div>
-      <div className="md:hidden w-full">
-        <div
-          className="bg-[#FFFFFF] rounded-md pb-[5px] my-[10px]"
-          style={{ boxShadow: "2px 2px 4px rgba(0, 0, 0, 0.12)" }}
-        >
-          <div className="max-w-[338px] border-[rgba(0, 0, 0, 0.2)] pt-[30px] pb-[50px] border-b-[1px] mx-auto flex px-6">
-            <div className="relative">
-              <img
-                className="w-[40px] h-[40px] rounded-[50px]"
-                src={profile}
-                alt="Not Available"
-              />
-            </div>
-            <div className="ml-[25px]">
-              <textarea
-                ref={ref}
-                id="message"
-                className="text-[#757575] w-full focus:outline-none resize-none"
-                name="post_description"
-                placeholder="Write somethiings here......"
-              ></textarea>
-            </div>
-          </div>
-          <div className="flex max-w-[338px] mt-[20px] mx-auto justify-between items-center px-6">
-            <div className="flex justify-between items-center">
-              <button className="bg-[#F7E9F8] flex justify-center items-center w-[51px] h-[31px] rounded-[20px]">
-                <img src={coolicon} alt="Not Available" />
-              </button>
-              <div className="ml-[20px]">
-                <Select
-                  defaultValue="Public"
-                  style={{ width: 105, borderRadius: "50px" }}
-                  options={[
-                    {
-                      value: "Public",
-                      label: "Public",
-                    },
-                    {
-                      value: "lucy",
-                      label: "Lucy",
-                    },
-                    {
-                      value: "disabled",
-                      disabled: true,
-                      label: "Disabled",
-                    },
-                    {
-                      value: "Yiminghe",
-                      label: "yiminghe",
-                    },
-                  ]}
-                />
-              </div>
-            </div>
-            <button
-              className="border-[1px] border-[rgba(0,0,0,0.1)] rounded-[50px] py-[6px] px-5 font-bold text-[17px] text-[#FFFFFF] bg-gradient-to-t from-[#942DD9] to-[#F22876] shadow-[0.872px_9.962px_20px_rgba(12, 78, 165, 0.3)]"
-              onClick={addPost}
-              disabled={postText === "" && photoURL === ""}
-            >
-              Post
-            </button>
-          </div>
-          <MovDynamicActivity postRefetch={response}></MovDynamicActivity>
         </div>
       </div>
     </div>
