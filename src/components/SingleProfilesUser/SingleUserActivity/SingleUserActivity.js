@@ -78,6 +78,7 @@ const SingleUserActivity = () => {
   useEffect(() => {
     if (addPostSuccess) {
       setPostText("");
+      setPhotoUrl("");
     }
   }, [addPostSuccess]);
 
@@ -154,8 +155,9 @@ const SingleUserActivity = () => {
                 </div>
               </div>
               <button
-                className="border-[1px] border-[rgba(0,0,0,0.1)] rounded-[50px] py-[6px] px-5 font-bold text-[17px] text-[#FFFFFF] bg-gradient-to-t from-[#942DD9] to-[#F22876] shadow-[0.872px_9.962px_20px_rgba(12, 78, 165, 0.3)]"
+                className="border-[1px] border-[rgba(0,0,0,0.1)] rounded-[50px] py-[6px] px-5 font-bold text-[17px] text-[#FFFFFF] bg-gradient-to-t from-[#942DD9] to-[#F22876] shadow-[0.872px_9.962px_20px_rgba(12, 78, 165, 0.3)] cursor-pointer"
                 onClick={addPost}
+                disabled={postText === "" && photoURL === ""}
               >
                 Post
               </button>
@@ -221,6 +223,7 @@ const SingleUserActivity = () => {
             <button
               className="border-[1px] border-[rgba(0,0,0,0.1)] rounded-[50px] py-[6px] px-5 font-bold text-[17px] text-[#FFFFFF] bg-gradient-to-t from-[#942DD9] to-[#F22876] shadow-[0.872px_9.962px_20px_rgba(12, 78, 165, 0.3)]"
               onClick={addPost}
+              disabled={postText === "" && photoURL === ""}
             >
               Post
             </button>
