@@ -24,6 +24,7 @@ export const withoutLoginApi = apiSlice.injectEndpoints({
         }),
         getTopBrideGroom: builder.query({
             query: gender => `/admin/priority-member/get-all-priority-member/?gender=${gender}`,
+            keepUnusedDataFor: 0,
         }),
         rejectSwipeAndMatchMember: builder.mutation({
             query: id => ({
