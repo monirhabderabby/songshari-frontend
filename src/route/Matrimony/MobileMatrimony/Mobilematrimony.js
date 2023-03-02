@@ -286,7 +286,7 @@ const MobileMatrimony = [
   },
   {
     id: 48,
-    path: "/mobile-inbox",
+    path: "/mobile-inbox/:id",
     element: <MobileInbox />,
   },
   {

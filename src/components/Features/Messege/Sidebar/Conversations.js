@@ -1,10 +1,11 @@
 import React from "react";
-import { useDispatch } from "react-redux";
-import { setUser } from "../../../../Redux/chat/chatReducer";
+// import { useDispatch } from "react-redux";
+// import { setUser } from "../../../../Redux/chat/chatReducer";
 import moment from "moment";
-export const Conversations = ({handleChat,user}) => {
-    const dispatch=useDispatch();
-    
+import { useNavigate } from "react-router";
+export const Conversations = ({user}) => {
+    // const dispatch=useDispatch();
+    const navigate=useNavigate();
     
 
     // console.log(user)
@@ -18,7 +19,7 @@ export const Conversations = ({handleChat,user}) => {
             <div className="flex flex-col pt-[30px]">
                 {user?.map(p => {
                     return (
-                        <div onClick={()=>handleChat(p)} className="w-full h-[134px] flex gap-x-[34px]">
+                        <div onClick={()=>navigate(`/inbox/${p._id}`)} className="w-full h-[134px] flex gap-x-[34px]">
                             <img
                                 className="h-[58px] w-[58px] rounded-full"
                                 // src="https://i.postimg.cc/j2nh3WBh/310814492-3383940818533755-1197676094327108122-n.jpg"

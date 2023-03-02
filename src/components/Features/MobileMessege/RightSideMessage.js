@@ -13,11 +13,11 @@ export const RightSideMessage = ({message}) => {
                     {message?.message}
                 </p>
             </div>
-            <img
+            {/* <img
                 className="h-[58px] w-[58px] rounded-full"
                 src="https://i.postimg.cc/j2nh3WBh/310814492-3383940818533755-1197676094327108122-n.jpg"
                 alt="profile"
-            />
+            /> */}
         </div>
     );
 };

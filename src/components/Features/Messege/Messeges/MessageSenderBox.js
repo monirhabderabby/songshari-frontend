@@ -20,7 +20,8 @@ export const MessageSenderBox = ({msg,setMsg,message,setMessage ,socket}) => {
             let newMsg = [...msg];
             newMsg.push({ fromSelf: true, message: message.message });
             setMsg(newMsg);
-            e.target.value = "";
+            // e.target.value = "";
+            document.querySelector(".input").value = "";
         }
     };
     return (
@@ -29,7 +30,7 @@ export const MessageSenderBox = ({msg,setMsg,message,setMessage ,socket}) => {
                         onChange={e => setMessage({ ...message, message: e.target.value })}
                         onKeyPress={e => handleMessage(e)}
                         type="text"
-                        className="flex-1 h-full outline-none text-[#B0B0B0] text-[16px] px-[29px]"
+                        className="flex-1 input h-full outline-none text-[#B0B0B0] text-[16px] px-[29px]"
                         placeholder="Type messege"
                     />
                     <img src={photo} alt="gallary" className="text-[22px]" />

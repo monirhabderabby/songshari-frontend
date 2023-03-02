@@ -8,7 +8,7 @@ const UtilitisCard = ({ data }) => {
   const navigate = useNavigate();
   return (
     <div>
-      <div
+      <div onClick={()=>navigate('/inbox')}
         className="utiliti-card w-full bg-white rounded-[10px] mt-[24px] py-6 flex items-center justify-around"
         style={{ boxShadow: "0px 10px 5px rgba(119, 123, 146, 0.02)" }}
       >

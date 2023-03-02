@@ -31,7 +31,7 @@ export const DynamicConnectionsCard = ({ data, isLoading }) => {
     return (
         <section>
             <div className="lg:w-[360px] h-[110px] bg-white shadow-[0px_10px_5px_rgba(119,123,146,0.02)] mt-[30px] flex justify-center items-center">
-                <div onClick={() => navigate(`/inbox`)} className="w-[80px] h-[80px] flex justify-center items-center bg-[#FFDFF4] rounded-full">
+                <div onClick={() => navigate(`/inbox/${data?._id}`)} className="w-[80px] h-[80px] flex justify-center items-center bg-[#FFDFF4] rounded-full">
                     <MdMessage className="h-[36px] w-[36px] text-[#E41272]" />
                 </div>
                 <div
