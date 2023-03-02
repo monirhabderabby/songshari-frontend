@@ -1,7 +1,13 @@
+import { decodeToken } from "react-jwt";
+import getCookie from "../../../../Helper/cookies/getCookie";
 import BannerFilterBox from "./BannerFilterBox";
 import BannerProfile from "./BannerProfile";
 
 const Banner = () => {
+    const token = getCookie("token");
+    const decodedValue = decodeToken(token);
+    const { role } = decodedValue || {};
+
     return (
         <>
             <section className="bg-[url('https://img1.picmix.com/output/stamp/normal/9/9/4/3/1503499_8efaf.gif')] h-[calc(100vh-90px)] flex items-center">
@@ -14,7 +20,7 @@ const Banner = () => {
                             src="https://images.pexels.com/photos/1779414/pexels-photo-1779414.jpeg?auto=compress&cs=tinysrgb&w=800"
                             alt="Not Available"
                         />
-                        <BannerProfile />
+                        {role?.includes("member") && <BannerProfile />}
                     </div>
                 </div>
             </section>
