@@ -12,19 +12,19 @@ import { ageCalculator } from "../../../../assets/utilities/AgeCalculation/ageCa
 import { useLikeSingleProfileMutation } from "../../../../Redux/features/connections/connectionApi";
 
 export const UserCard = ({ profile }) => {
-  // varible declation
+  // variable declaration
   // hook variables
   const [likeSingleProfile, { data: likeResponse, isLoading: likeLoading }] =
     useLikeSingleProfileMutation();
   const [likeSent, setLikeSent] = useState(false);
   const navigate = useNavigate();
 
-  // all useEffect declation
+  // all useEffect declaration
   useEffect(() => {
     if (likeResponse) setLikeSent(true);
   }, [likeResponse]);
 
-  // js veriable declaration
+  // js variable declaration
   const name = profile?.firstName || "Not Available";
   const profilePhoto =
     profile?.profilePhoto ||
