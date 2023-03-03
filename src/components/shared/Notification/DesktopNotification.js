@@ -9,12 +9,10 @@ import CustomHeader from "../CustomHeader/CustomHeader";
 import NotificationCard from "./NotificationCard/NotificationCard";
 
 export const DesktopNotification = () => {
-  const { data, error } = useGetUsersAllNotificationQuery({
+  const { data } = useGetUsersAllNotificationQuery({
     page: "",
     limit: "",
   });
-  console.log(data);
-  console.log(error);
 
   let content;
   if (data?.data?.notifications?.length === 0) {
