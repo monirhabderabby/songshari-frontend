@@ -3,7 +3,7 @@ import upgradeBanner from "../../../../assets/images/UpgradePlan/upgradeBanner.p
 import avatar from "../../../../assets/images/UpgradePlan/upgradeProfile.png";
 import close from "../../../../assets/images/UpgradePlan/close.png";
 import upgrade from "../../../../assets/images/UpgradePlan/upgrade.png";
-import { Switch } from "antd";
+// import { Switch } from "antd";
 import { SlArrowRight } from "react-icons/sl";
 import "../../../../assets/css/UpgradePlan.css";
 import { BottomNav } from "../../../../Wrapper/Home/mobileversion/BottomNav";
@@ -58,19 +58,19 @@ const UpgradePlan = () => {
                   <img src={upgrade} alt="Upgrade" />
                 </div>
 
-                <div className="flex w-full items-center">
+                <div className="flex w-full items-center justify-between">
                   <div className="ml-[10px] mr-[53px] font-Inter font-medium text-base text-[#000000] w-5/12">
                     <h1>{item?.title}</h1>
                     <h1 className="font-sans font-normal text-xs">Monthly</h1>
                     <h1 className="text-[#E41272]">{item?.priceMonth}</h1>
                   </div>
-                  <div className="flex w-10/12 items-center justify-between">
-                    <div>
+                  <div className="flex w-10/12 items-center justify-end">
+                    {/* <div>
                       <Switch size="small" defaultChecked />
                     </div>
                     <div className="font-sans font-normal text-xs text-[#8A8A8E]">
                       <h1>Annually</h1>
-                    </div>
+                    </div> */}
                     <div className="toggler h-2 w-3 text-[rgba(60, 60, 67, 0.6)]">
                       <SlArrowRight />
                     </div>
