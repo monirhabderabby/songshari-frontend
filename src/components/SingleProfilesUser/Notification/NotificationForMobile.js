@@ -4,21 +4,22 @@ import { useNavigate } from "react-router";
 
 // Third party package
 import { MdOutlineArrowBackIos } from "react-icons/md";
-import { useSelector } from "react-redux";
 
 // Components
 import { BottomNav } from "../../../Wrapper/Home/mobileversion/BottomNav";
 import NotificationCard from "../../shared/Notification/NotificationCard/NotificationCard";
 import { AiFillBell } from "react-icons/ai";
+import { useGetUsersAllNotificationQuery } from "../../../Redux/features/userInfo/userApi";
 
 export const NotificationForMobile = () => {
   const navigate = useNavigate();
-  const userInfo = useSelector(
-    (state) => state?.persistedReducer?.userInfo?.userInfo?.user
-  );
+  const { data } = useGetUsersAllNotificationQuery({
+    page: "",
+    limit: "",
+  });
 
   let content;
-  if (userInfo?.notification?.length === 0) {
+  if (data?.data?.notifications?.length === 0) {
     content = (
       <div className="flex flex-col justify-center items-center pt-20">
         <div className="bg-gray-200 h-[60px] w-[60px] rounded-full flex justify-center items-center mr-[10px]">
@@ -30,10 +31,10 @@ export const NotificationForMobile = () => {
       </div>
     );
   }
-  if (userInfo?.notification?.length >= 1) {
+  if (data?.data?.notifications?.length >= 1) {
     content = (
       <div className="w-full">
-        {userInfo?.notification?.map((note) => (
+        {data?.data?.notifications?.map((note) => (
           <NotificationCard key={note?._id} {...{ note }} />
         ))}
       </div>

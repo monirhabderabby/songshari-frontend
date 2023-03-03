@@ -17,7 +17,7 @@ import { UserCard } from "../../Shared/userCard/UserCard";
 
 const MobileTopBride = () => {
   // hook variable declaration
-  const { data, isLoading } = useGetTopBrideGroomQuery("female");
+  const { data, isLoading } = useGetTopBrideGroomQuery("woman");
 
   // js variables
   const arr = [1, 2, 3, 4, 5, 6, 7, 8];
@@ -31,11 +31,11 @@ const MobileTopBride = () => {
         </SwiperSlide>
       );
     });
-  } else if (data?.data?.members?.length > 0) {
-    content = data?.data?.members?.map((profile) => {
+  } else if (data?.data?.length > 0) {
+    content = data?.data?.map((profile) => {
       return (
         <SwiperSlide key={profile._id}>
-          <UserCard {...{ profile }} />
+          <UserCard {...{ profile: profile?.user }} />
         </SwiperSlide>
       );
     });
