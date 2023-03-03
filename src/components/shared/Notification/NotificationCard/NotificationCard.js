@@ -1,8 +1,8 @@
 import React from "react";
 
 // Third party package
-import moment from "moment";
 import { AiFillBell } from "react-icons/ai";
+import timeAgo from "../../../../assets/utilities/TimeCalculator/TimeAgo";
 
 const NotificationCard = ({ note }) => {
   return (
@@ -16,7 +16,7 @@ const NotificationCard = ({ note }) => {
             {note?.message}
           </p>
           <p className="text-[10px] lg:text-xs text-gray-400 font-Inter font-normal my-[3px] lg:my-0">
-            {moment(note?.createdAt).startOf("day").endOf("day").fromNow()}
+            {timeAgo(note?.createdAt)}
           </p>
         </div>
       </div>
