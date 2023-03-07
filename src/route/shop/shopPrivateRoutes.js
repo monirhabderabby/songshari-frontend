@@ -3,6 +3,7 @@ import { CheckoutPage } from "../../components/pages/Checkout/CheckoutPage";
 import Shop from "../../Wrapper/Shop/Shop";
 import ShopOrders from "../../Wrapper/Shop/ShopOrders/ShopOrders";
 import ShopProducts from "../../Wrapper/Shop/ShopProducts/ShopProducts";
+import SingleProductDetails from "../../Wrapper/Shop/ShopProducts/SingleProductDetails/SingleProductDetails";
 
 const shopPrivateRoutes = [
     {
@@ -12,6 +13,7 @@ const shopPrivateRoutes = [
         nestedRoutes: [
             { id: 1, path: "shopProducts", element: <ShopProducts /> },
             { id: 2, path: "shopOrders", element: <ShopOrders /> },
+            { id: 3, path: "singleProduct/:id", element: <SingleProductDetails /> },
         ],
     },
     {
