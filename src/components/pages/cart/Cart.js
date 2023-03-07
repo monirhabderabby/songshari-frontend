@@ -51,7 +51,7 @@ export const Cart = () => {
                 <h1 className="text-[#000000] text-[40px] font-Inter font-bold text-left">Your Cart</h1>
                 <div className="mt-[59px] grid grid-cols-1 gap-y-[32px]">
                     {products?.map(product => {
-                        return <CardOfCart />;
+                        return <CardOfCart key={product?.id} />;
                     })}
                 </div>
                 <div className="w-full flex justify-center mt-[71px]">
