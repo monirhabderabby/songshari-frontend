@@ -24,7 +24,7 @@ export const MessegeBox = () => {
         message: "",
     });
     useEffect(() => {
-        setMessage({ ...message, to: id });
+        setMessage(m=>({...m,to:id}));
     }, [id]);
     //
     const [receiver, setReceiver] = useState(null);
