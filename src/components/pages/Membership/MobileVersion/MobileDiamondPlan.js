@@ -6,6 +6,7 @@ import { BottomNav } from "../../../../Wrapper/Home/mobileversion/BottomNav";
 import { useGetAllPlansQuery } from "../../../../Redux/features/userInfo/withoutLoginApi";
 import { useSearchParams } from "react-router-dom";
 import getCookie from "../../../../Helper/cookies/getCookie";
+import { apiBaseUrl } from "../../../../config";
 
 const MobileDiamondPlan = () => {
   const [paramsObj] = useSearchParams();
@@ -76,7 +77,7 @@ const MobileDiamondPlan = () => {
           <div className="flex justify-center pb-5 mb-12 relative">
             <form
               type="submit"
-              action={`http://localhost:4000/payment/plan?_plan=${
+              action={`${apiBaseUrl}/payment/plan?_plan=${
                 plan?._id
               }&amount=${plan?.priceMonth.toString()}&desc=${"Plan payment"}&_token=${getCookie(
                 "token"

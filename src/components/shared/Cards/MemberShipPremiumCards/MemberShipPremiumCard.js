@@ -9,6 +9,7 @@ import { Switch } from "@mui/material";
 // Components & css file
 import getCookie from "../../../../Helper/cookies/getCookie";
 import "../../../../assets/css/MembershipPremium.css";
+import { apiBaseUrl } from "../../../../config";
 
 const MemberShipPremiumCard = ({ item }) => {
   const navigate = useNavigate();
@@ -55,7 +56,7 @@ const MemberShipPremiumCard = ({ item }) => {
             )}
             {getCookie("token") && (
               <form
-                action={`http://localhost:4000/payment/plan?_plan=${
+                action={`${apiBaseUrl}/payment/plan?_plan=${
                   item._id
                 }&amount=${checked ? item?.priceYear : item?.priceMonth}&annually=${checked}&amount=${item?.priceMonth?.toString()}&desc=${"Plan payment"}&_token=${getCookie(
                   "token"
