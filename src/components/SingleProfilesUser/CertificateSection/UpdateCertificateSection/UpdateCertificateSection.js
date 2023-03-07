@@ -4,12 +4,17 @@ import FileUploadSection from "./FileUploadSection/FileUploadSection";
 import FileReuploadSection from "./FileReuploadSection/FileReuploadSection";
 
 const UpdateCertificateSection = ({ editFor, selectedCertificate }) => {
+  console.log(selectedCertificate);
   return (
     <div>
       {/* New certificate upload */}
-      <FileUploadSection {...{ editFor, selectedCertificate }} />
+      {selectedCertificate?.photo && (
+        <FileUploadSection {...{ editFor, selectedCertificate }} />
+      )}
       {/* File reupload section */}
-      {selectedCertificate?.status === "askedToResubmit" && <FileReuploadSection {...{ editFor, selectedCertificate }} />}
+      {selectedCertificate?.status === "askedToResubmit" && (
+        <FileReuploadSection {...{ editFor, selectedCertificate }} />
+      )}
     </div>
   );
 };

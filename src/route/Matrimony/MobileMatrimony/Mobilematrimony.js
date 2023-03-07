@@ -6,7 +6,6 @@ import MobileLoginProfessional from "../../../components/pages/Authentications/M
 import MobileSignUp from "../../../components/pages/Authentications/MobileDesign/MobileSignUp";
 import MobileSignUpProfessional from "../../../components/pages/Authentications/MobileDesign/MobileSignUpProfessional";
 import { MobileOTP } from "../../../components/pages/Authentications/OTP/MobileOTP";
-import { MobileDynamicProfile } from "../../../components/pages/DynamicProfilePage/MobileDynamicProfile/MobileDynamicProfile";
 import { MobileDynamicEducationalDetails } from "../../../components/pages/DynamicProfilePage/MobileDynamicProfile/MobileDynamicProfileDetails/MobileDynamicEducationalDetails";
 import MobileDynamicFamilyDetails from "../../../components/pages/DynamicProfilePage/MobileDynamicProfile/MobileDynamicProfileDetails/MobileDynamicFamilyDetails";
 import { MobileDynamicOtherDetails } from "../../../components/pages/DynamicProfilePage/MobileDynamicProfile/MobileDynamicProfileDetails/MobileDynamicOtherDetails";
@@ -160,11 +159,6 @@ const MobileMatrimony = [
     element: <Like />,
   },
   {
-    id: 21,
-    path: "/mobileprofile/:id",
-    element: <MobileDynamicProfile></MobileDynamicProfile>,
-  },
-  {
     id: 22,
     path: "/personalprofile/:id",
     element: <MobilePersonalDetails />,
@@ -286,7 +280,7 @@ const MobileMatrimony = [
   },
   {
     id: 48,
-    path: "/mobile-inbox",
+    path: "/mobile-inbox/:id",
     element: <MobileInbox />,
   },
   {

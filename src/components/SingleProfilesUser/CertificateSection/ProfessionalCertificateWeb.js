@@ -11,8 +11,8 @@ import UpdateCertificateSection from "./UpdateCertificateSection/UpdateCertifica
 
 const ProfessionalCertificateWeb = () => {
   // hook variable declaration
-  const [selected, setSelected] = useState({});
   const [certificates, setCertificates] = useState([]);
+  const [selected, setSelected] = useState({});
 
   // Redux API calls
   const { data: response } = useGetCertificatesWithAuthQuery();
@@ -53,11 +53,11 @@ const ProfessionalCertificateWeb = () => {
             {/* Selected certificate img showing */}
             <div
               style={{ boxShadow: "2px 2px 10px rgba(0, 0, 0, 0.12)" }}
-              className="bg-[#FFFFFF] py-[15px] px-[18px] rounded-[16px]"
+              className="bg-[#FFFFFF] py-[15px] px-[18px] rounded-[16px] mb-8"
             >
               <img
                 className="h-[1187px] w-[800px] rounded-[16px]"
-                src={selected?.photo}
+                src={selected?.photo || certificates[0]?.photo}
                 alt="view certificate"
               />
             </div>

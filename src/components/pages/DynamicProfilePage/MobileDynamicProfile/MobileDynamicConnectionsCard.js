@@ -6,10 +6,10 @@ import { BiUserCheck, BiUserPlus } from "react-icons/bi";
 import { MdMessage } from "react-icons/md";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
-import { setUser } from "../../../../Redux/chat/chatReducer";
+// import { setUser } from "../../../../Redux/chat/chatReducer";
 import { useAddFriendMutation } from "../../../../Redux/features/connections/connectionApi";
 export const MobileDynamicConnectionsCard = ({ data }) => {
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
     const navigate = useNavigate();
     const [sent, setSent] = useState(false);
 
@@ -23,8 +23,8 @@ export const MobileDynamicConnectionsCard = ({ data }) => {
         if (response) setSent(true);
     }, [response]);
     const handleChat = async data => {
-        dispatch(setUser(data));
-        navigate("/mobile-inbox");
+        // dispatch(setUser(data));
+        navigate(`/mobile-inbox/${data?._id}`);
     };
     return (
         <section>

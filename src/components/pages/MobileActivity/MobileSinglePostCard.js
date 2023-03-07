@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from "react";
 
 // Third party package
-import moment from "moment";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import { AiFillHeart } from "react-icons/ai";
@@ -13,6 +12,7 @@ import love from "../../../assets/images/icons/coolicon.svg";
 import { useLikeSinglePostMutation } from "../../../Redux/features/connections/connectionApi";
 import { useDeletePostMutation } from "../../../Redux/features/Post/postApi";
 import liveLinkGenerator from "../../../assets/utilities/liveLink/liveLinkGenerator";
+import timeAgo from "../../../assets/utilities/TimeCalculator/TimeAgo";
 
 const MobileSinglePostCard = ({ post }) => {
   const [postLiked, setPostLiked] = useState(false);
@@ -67,7 +67,7 @@ const MobileSinglePostCard = ({ post }) => {
                 {post?.author?.firstName} {post?.author?.lastName}
               </p>
               <p className="text-[14px] font-normal text-[#67868F]">
-                {moment(post?.createdAt).startOf("day").endOf("day").fromNow()}
+                {timeAgo(post?.createdAt)}
               </p>
             </div>
           </div>

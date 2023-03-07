@@ -176,8 +176,10 @@ export const userApi = apiSlice.injectEndpoints({
       keepUnusedDataFor: 0,
     }),
     findFilteredUser: builder.mutation({
-      query: (data) => ({
-        url: "/member/connections/search",
+      query: ({ data, keyword, page }) => ({
+        url: `/member/connections/search?_page=${
+          page || ""
+        }&_limit=9&_keyword=${keyword}`,
         method: "POST",
         headers: {
           authorization: `Bearer ${getCookie("token")}`,
@@ -273,6 +275,14 @@ export const userApi = apiSlice.injectEndpoints({
         body: data,
       }),
     }),
+    getUsersAllNotification: builder.query({
+      query: ({ page, limit }) => ({
+        url: `/member/notification?_page=${page}&_limit=${limit}`,
+        headers: {
+          authorization: `Bearer ${getCookie("token")}`,
+        },
+      }),
+    }),
   }),
 });
 
@@ -304,4 +314,5 @@ export const {
   useSetSiblingDetailMutation,
   useUpdateSiblingDetailMutation,
   useAddNewCertificateMutation,
+  useGetUsersAllNotificationQuery,
 } = userApi;
