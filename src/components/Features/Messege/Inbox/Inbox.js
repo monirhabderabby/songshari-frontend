@@ -1,13 +1,13 @@
-import React, { useRef, useState } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 import { Outlet } from "react-router";
 
-import { useGetAllMessageQuery } from "../../../../Redux/chat/chatApi";
+// import { useGetAllMessageQuery } from "../../../../Redux/chat/chatApi";
 import CustomHeader from "../../../shared/CustomHeader/CustomHeader";
-import { MessegeBox } from "../Messeges/MessegeBox";
+// import { MessegeBox } from "../Messeges/MessegeBox";
 import { Sidebar } from "../Sidebar/Sidebar";
 export const Inbox = () => {
-    const socket = useRef();
+    // const socket = useRef();
     const res = useSelector(state => state.persistedReducer.userInfo.userInfo);
     // console.log(res)
     // const receiver = useSelector(state => state?.persistedReducer?.chat?.user);

@@ -1,9 +1,9 @@
 // Configuration
 import React, { useEffect, useRef, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import {  useSelector } from "react-redux";
 import { io } from "socket.io-client";
 import { useGetAllMessageQuery } from "../../../Redux/chat/chatApi";
-import { allMessage } from "../../../Redux/chat/chatReducer";
+// import { allMessage } from "../../../Redux/chat/chatReducer";
 
 // Components
 import { MessageListMobile } from "./MessageListMobile";
@@ -16,11 +16,9 @@ import { useGetProfileDetailsQuery } from "../../../Redux/features/userInfo/user
 
 export const MobileInbox = () => {
     const socket = useRef();
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
     const {id}=useParams();
     const res = useSelector(state => state.persistedReducer.userInfo.userInfo);
-    // const receiver = useSelector(state => state?.persistedReducer?.chat?.user);
-    // const totalMessages = useSelector(state => state?.persistedReducer?.chat?.messages);
     const [receiver, setReceiver] = useState(null);
     const [msg, setMsg] = useState(null);
     const user=useGetProfileDetailsQuery(id);
@@ -40,7 +38,7 @@ export const MobileInbox = () => {
     });
     useEffect(() => {
         if (id) {
-            setMessage({ ...message, to: id });
+            setMessage(m=>({...m,to:id}));
         }
     }, [id]);
     const { data } = useGetAllMessageQuery({ from, to: id});
