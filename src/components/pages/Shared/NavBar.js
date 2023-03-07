@@ -4,11 +4,12 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 
 // Third party packages
 import { HiShoppingBag } from "react-icons/hi";
-import { useDispatch, useSelector } from "react-redux";
 import { decodeToken } from "react-jwt";
+import { useDispatch, useSelector } from "react-redux";
 
 // Components
 import blackLogo from "../../../assets/images/Logo/logoBlack.png";
+import Agent from "../../../assets/images/NavIcons/Agent.svg";
 import blog from "../../../assets/images/NavIcons/Blog.svg";
 import findPartner from "../../../assets/images/NavIcons/Find-Your-Partner.svg";
 import kazi from "../../../assets/images/NavIcons/Kazi.svg";
@@ -17,10 +18,7 @@ import membership from "../../../assets/images/NavIcons/Membership.svg";
 import course from "../../../assets/images/NavIcons/Online-Course.svg";
 import register from "../../../assets/images/NavIcons/Profile-Login-Icon.svg";
 import shop from "../../../assets/images/NavIcons/Shop.svg";
-import {
-  loadPhotos,
-  loadUserData,
-} from "../../../Redux/features/userInfo/userInfo";
+import { loadPhotos, loadUserData } from "../../../Redux/features/userInfo/userInfo";
 import MobileNav from "./MobileNav";
 
 // CSS files
@@ -42,54 +40,52 @@ const NavBar = ({ bg }) => {
   const token = getCookie("token");
   const tokenInfo = decodeToken(token);
 
-  const { role } = tokenInfo || {};
-  const userProfilePath = profilePathMaker(role);
+    const { role } = tokenInfo || {};
+    const userProfilePath = profilePathMaker(role);
 
-  // js variable
-  let { profilePhoto } = userInfo || {};
+    // js variable
+    let { profilePhoto } = userInfo || {};
 
-  profilePhoto = profilePhoto
-    ? profilePhoto
-    : "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png";
+    profilePhoto = profilePhoto ? profilePhoto : "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png";
 
-  const allMenu = [
-    {
-      id: 1,
-      to: "/find-partner/suggested",
-      icon: findPartner,
-      tooltip: "Find Your Partner",
-    },
-    { id: 2, to: "/membership", icon: membership, tooltip: "Membership" },
-    { id: 3, to: "/blog", icon: blog, tooltip: "Blog" },
-    { id: 4, to: "/course", icon: course, tooltip: "Course" },
-    {
-      id: 5,
-      to: "/findLawyers/recent",
-      icon: findALawyer,
-      tooltip: "Find Lawyer",
-    },
-    {
-      id: 6,
-      to: "/kazi/recent",
-      icon: kazi,
-      tooltip: "Find Kazi",
-    },
-    {
-      id: 7,
-      to: "/agent/recent",
-      icon: "https://svgshare.com/i/pDa.svg",
-      tooltip: "Find Agent",
-    },
-    { id: 8, to: "/shop", icon: shop, tooltip: "Shop" },
-  ];
+    const allMenu = [
+        {
+            id: 1,
+            to: "/find-partner/suggested",
+            icon: findPartner,
+            tooltip: "Find Your Partner",
+        },
+        { id: 2, to: "/membership", icon: membership, tooltip: "Membership" },
+        { id: 3, to: "/blog", icon: blog, tooltip: "Blog" },
+        { id: 4, to: "/course", icon: course, tooltip: "Course" },
+        {
+            id: 5,
+            to: "/findLawyers/recent",
+            icon: findALawyer,
+            tooltip: "Find Lawyer",
+        },
+        {
+            id: 6,
+            to: "/kazi/recent",
+            icon: kazi,
+            tooltip: "Find Kazi",
+        },
+        {
+            id: 7,
+            to: "/agent/recent",
+            icon: Agent,
+            tooltip: "Find Agent",
+        },
+        { id: 8, to: "/shop", icon: shop, tooltip: "Shop" },
+    ];
 
-  // function declaration for logout
-  let logoutButton = async () => {
-    dispatch(loadUserData(null));
-    dispatch(loadPhotos([]));
-    navigate("/");
-    removeCookie("token");
-  };
+    // function declaration for logout
+    let logoutButton = async () => {
+        dispatch(loadUserData(null));
+        dispatch(loadPhotos([]));
+        navigate("/");
+        removeCookie("token");
+    };
 
   // Dynamic menu decision
   if (role === "lawyer" || role === "agent" || role === "kazi") {
@@ -174,75 +170,68 @@ const NavBar = ({ bg }) => {
                     }}
                   ></span>
 
-                  {user ? (
-                    <>
-                      <Link
-                        to={userProfilePath}
-                        className={`${NavBarCSS.tooltip} rounded-xl z-50 shadow-lg px-3 py-1 text-white text-xs font-bold whitespace-nowrap uppercase mt-[66px]`}
-                        style={{
-                          backgroundImage:
-                            "linear-gradient(155deg, rgba(228, 18, 114, 1) 0%, #4844a5 100%)",
-                        }}
-                      >
-                        Profile
-                      </Link>
-                      <span
-                        className={`${NavBarCSS.tooltip} top-[50px] z-10 h-[15px] w-[15px] mt-14 ml-[14px]`}
-                        style={{
-                          transform: "translateX(-50%) rotate(45deg)",
-                          backgroundImage:
-                            "linear-gradient( 103deg, rgba(228, 18, 114, 1) 0%, #4844a5 100%)",
-                        }}
-                      ></span>
+                                    {user ? (
+                                        <>
+                                            <Link
+                                                to={userProfilePath}
+                                                className={`${NavBarCSS.tooltip} rounded-xl z-50 shadow-lg px-3 py-1 text-white text-xs font-bold whitespace-nowrap uppercase mt-[66px]`}
+                                                style={{
+                                                    backgroundImage: "linear-gradient(155deg, rgba(228, 18, 114, 1) 0%, #4844a5 100%)",
+                                                }}
+                                            >
+                                                Profile
+                                            </Link>
+                                            <span
+                                                className={`${NavBarCSS.tooltip} top-[50px] z-10 h-[15px] w-[15px] mt-14 ml-[14px]`}
+                                                style={{
+                                                    transform: "translateX(-50%) rotate(45deg)",
+                                                    backgroundImage: "linear-gradient( 103deg, rgba(228, 18, 114, 1) 0%, #4844a5 100%)",
+                                                }}
+                                            ></span>
 
-                      <button
-                        className={`${NavBarCSS.tooltip} top-[53px] rounded-xl z-50 shadow-lg px-3 py-1 text-white text-xs font-bold whitespace-nowrap uppercase mt-[66px]`}
-                        style={{
-                          backgroundImage:
-                            "linear-gradient(155deg, rgba(228, 18, 114, 1) 0%, #4844a5 100%)",
-                        }}
-                        onClick={logoutButton}
-                      >
-                        Logout
-                      </button>
-                    </>
-                  ) : (
-                    <>
-                      <Link
-                        to="/login"
-                        className={`${NavBarCSS.tooltip} rounded-xl z-50 shadow-lg px-3 py-1 text-white text-xs font-bold whitespace-nowrap uppercase mt-[66px]`}
-                        style={{
-                          backgroundImage:
-                            "linear-gradient(155deg, rgba(228, 18, 114, 1) 0%, #4844a5 100%)",
-                        }}
-                      >
-                        Login
-                      </Link>
-                    </>
-                  )}
+                                            <button
+                                                className={`${NavBarCSS.tooltip} top-[53px] rounded-xl z-50 shadow-lg px-3 py-1 text-white text-xs font-bold whitespace-nowrap uppercase mt-[66px]`}
+                                                style={{
+                                                    backgroundImage: "linear-gradient(155deg, rgba(228, 18, 114, 1) 0%, #4844a5 100%)",
+                                                }}
+                                                onClick={logoutButton}
+                                            >
+                                                Logout
+                                            </button>
+                                        </>
+                                    ) : (
+                                        <>
+                                            <Link
+                                                to="/login"
+                                                className={`${NavBarCSS.tooltip} rounded-xl z-50 shadow-lg px-3 py-1 text-white text-xs font-bold whitespace-nowrap uppercase mt-[66px]`}
+                                                style={{
+                                                    backgroundImage: "linear-gradient(155deg, rgba(228, 18, 114, 1) 0%, #4844a5 100%)",
+                                                }}
+                                            >
+                                                Login
+                                            </Link>
+                                        </>
+                                    )}
+                                </div>
+                            </li>
+                            {user && (
+                                <div className="h-full flex items-center relative -top-[14px]">
+                                    <div className="relative hover:scale-110 duration-300 cursor-pointer" onClick={() => navigate("/cart")}>
+                                        <HiShoppingBag className="h-[60px] w-[60px] text-[#E42986] -z-20" />
+                                        <span className="w-[18px] h-[18px] rounded-full bg-[#E42986] text-white flex justify-center items-center absolute z-50 right-0 top-[10px] text-[12px]">
+                                            1
+                                        </span>
+                                    </div>
+                                </div>
+                            )}
+                            <LanguageSwitcher />
+                        </ul>
+                    </div>
                 </div>
-              </li>
-              {user && (
-                <div className="h-full flex items-center relative -top-[14px]">
-                  <div
-                    className="relative hover:scale-110 duration-300 cursor-pointer"
-                    onClick={() => navigate("/cart")}
-                  >
-                    <HiShoppingBag className="h-[60px] w-[60px] text-[#E42986] -z-20" />
-                    <span className="w-[18px] h-[18px] rounded-full bg-[#E42986] text-white flex justify-center items-center absolute z-50 right-0 top-[10px] text-[12px]">
-                      1
-                    </span>
-                  </div>
-                </div>
-              )}
-              <LanguageSwitcher />
-            </ul>
-          </div>
-        </div>
-      </header>
-      <MobileNav />
-    </>
-  );
+            </header>
+            <MobileNav />
+        </>
+    );
 };
 
 export default NavBar;
