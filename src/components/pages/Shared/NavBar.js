@@ -87,7 +87,7 @@ const NavBar = ({ bg }) => {
         dispatch(loadPhotos([]));
         navigate("/");
         removeCookie("token");
-        localStorage.removeItem("wishlist");
+        localStorage.removeItem("wishlist" && "cart");
     };
 
     // Dynamic menu decision
