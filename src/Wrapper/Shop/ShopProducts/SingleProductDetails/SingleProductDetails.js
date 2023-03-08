@@ -21,7 +21,8 @@ const SingleProductDetails = () => {
 
     console.log(product);
 
-    const { name, price, oldPrice, discount } = product || {};
+    const { name, price, oldPrice, discount, description } = product || {};
+    console.log(product);
 
     const data = {
         productImages: [gentsCourt1, gentsCourt2, gentsCourt3, gentsCourt4],
@@ -94,7 +95,7 @@ const SingleProductDetails = () => {
                         <SingleProductImages {...{ data }} />
                     </div>
                     <div>
-                        <SingleProductOtherDetails {...{ data }} />
+                        <SingleProductOtherDetails {...{ data, description }} />
                     </div>
                 </div>
                 <div className="max-w-[432px]">

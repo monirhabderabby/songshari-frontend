@@ -1,11 +1,11 @@
 import React from "react";
 
-const OtherDetailsDescription = ({ data }) => {
-  return (
-    <div className="mt-6">
-      <h1 className="text-[#272727]">{data.description}</h1>
-    </div>
-  );
+const OtherDetailsDescription = ({ description }) => {
+    return (
+        <div className="mt-6">
+            <div className="text-[#272727]" dangerouslySetInnerHTML={{ __html: description }}></div>
+        </div>
+    );
 };
 
 export default OtherDetailsDescription;

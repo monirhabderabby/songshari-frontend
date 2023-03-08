@@ -70,15 +70,15 @@ const SingleProductBasicDetails = ({ data, name, price, oldPrice, discount }) =>
             </div>
             <div>
                 <div className="flex items-center gap-2 text-[#52525B] mb-4">
-                    <HiOutlineGlobe className="text-xl" />
+                    <HiOutlineGlobe className="text-[16px]" />
                     <p className="text-sm font-medium">Free shipping worldwide</p>
                 </div>
                 <div className="flex items-center gap-2 text-[#52525B] mb-4">
-                    <TbCreditCard className="text-xl" />
+                    <TbCreditCard className="text-[16px]" />
                     <p className="text-sm font-medium">100% Secured Payment</p>
                 </div>
                 <div className="flex items-center gap-2 text-[#52525B] mb-4">
-                    <BiUser className="text-xl" />
+                    <BiUser className="text-[16px]" />
                     <p className="text-sm font-medium">Made by the Professionals</p>
                 </div>
             </div>
