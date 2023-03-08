@@ -43,7 +43,7 @@ const NavBar = ({ bg }) => {
     const userProfilePath = profilePathMaker(role);
 
     const shopState = useSelector(state => state?.persistedReducer?.shop);
-    const { wishlist } = shopState || {};
+    const { wishlist, cart } = shopState || {};
 
     // js variable
     let { profilePhoto } = userInfo || {};
@@ -215,7 +215,7 @@ const NavBar = ({ bg }) => {
                                         <div className="relative hover:scale-110 duration-300 cursor-pointer" onClick={() => navigate("/cart")}>
                                             <HiShoppingBag className="h-[45px] w-[45px] text-[#E42986] -z-20" />
                                             <span className="w-[18px] h-[18px] rounded-full bg-[#E42986] text-white flex justify-center items-center absolute z-50 right-0 top-[0px] text-[12px]">
-                                                1
+                                                {cart?.count}
                                             </span>
                                         </div>
                                     </div>

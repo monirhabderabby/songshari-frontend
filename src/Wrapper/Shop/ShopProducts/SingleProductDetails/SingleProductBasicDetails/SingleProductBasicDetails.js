@@ -12,15 +12,20 @@ import Rating from "@mui/material/Rating";
 
 // Components
 import { useDispatch } from "react-redux";
+import isAlreadyProductinCart from "../../../../../assets/utilities/isAlreadyProductinCart/isAlreadyProductInCart";
 import isWishlisted from "../../../../../assets/utilities/isWishlisted/isWishlisted";
-import { increaseWishlistCount } from "../../../../../Redux/features/Shop/shopSlice";
+import { increaseCartCount, increaseWishlistCount } from "../../../../../Redux/features/Shop/shopSlice";
 import SelectSizeCard from "./SelectSizeCard";
 
 const SingleProductBasicDetails = ({ data, product }) => {
     const [wishlisted, setWishlisted] = useState(false);
+    const [addedToCart, setAddedToCart] = useState(false);
     const dispatch = useDispatch();
     const [selectedSize, setSelectedSize] = useState(0);
+
+    // localstorage
     const wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
 
     const { name, price, oldPrice, discount, _id } = product || {};
 
@@ -32,11 +37,18 @@ const SingleProductBasicDetails = ({ data, product }) => {
         localStorage.setItem("wishlist", JSON.stringify(wishlist));
     };
 
+    const handleCart = () => {
+        dispatch(increaseCartCount());
+        setAddedToCart(true);
+        cart.push(product);
+        localStorage.setItem("cart", JSON.stringify(cart));
+    };
+
     useEffect(() => {
         setWishlisted(isWishlisted(_id));
+        setAddedToCart(isAlreadyProductinCart(_id));
     }, [_id]);
 
-    console.log(wishlisted);
     return (
         <div>
             <h1 className="text-[#18181B] text-3xl leading-10 font-bold mb-4">{name}</h1>
@@ -85,8 +97,9 @@ const SingleProductBasicDetails = ({ data, product }) => {
                     style={{
                         backgroundImage: "linear-gradient(90deg, #E22987 0%, #A82BC5 100%)",
                     }}
+                    onClick={handleCart}
                 >
-                    Add To Cart
+                    {addedToCart ? "Already in Cart" : "Add To Cart"}
                 </button>
                 <button
                     className={`border border-[#D4D4D8] hover:border-[#b7b7bd] duration-300 ${

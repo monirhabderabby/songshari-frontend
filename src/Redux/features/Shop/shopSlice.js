@@ -19,8 +19,14 @@ const shopSlice = createSlice({
         decreaseWishlistCount: (state = initialState, action) => {
             state.wishlist.count--;
         },
+        increaseCartCount: (state = initialState, action) => {
+            state.cart.count++;
+        },
+        decreaseCartCount: (state = initialState, action) => {
+            state.cart.count--;
+        },
     },
 });
 
 export default shopSlice.reducer;
-export const { increaseWishlistCount, decreaseWishlistCount } = shopSlice.actions;
+export const { increaseWishlistCount, decreaseWishlistCount, increaseCartCount, decreaseCartCount } = shopSlice.actions;
