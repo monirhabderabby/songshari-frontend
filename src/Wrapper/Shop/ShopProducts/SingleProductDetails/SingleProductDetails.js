@@ -89,7 +89,7 @@ const SingleProductDetails = () => {
             <div className="flex justify-between items-start mb-20">
                 <div className="max-w-[700px]">
                     <div className="mb-20">
-                        <SingleProductImages {...{ data }} />
+                        <SingleProductImages {...{ data, product }} />
                     </div>
                     <div>
                         <SingleProductOtherDetails {...{ data, description }} />
