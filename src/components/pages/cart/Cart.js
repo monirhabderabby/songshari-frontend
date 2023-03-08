@@ -1,5 +1,5 @@
 // configuration
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router";
 
 // components
@@ -7,9 +7,8 @@ import { CardOfCart } from "../../shared/Cards/Shop/Cart/CardOfCart";
 import CustomHeader from "../../shared/CustomHeader/CustomHeader";
 
 export const Cart = () => {
+    const [cart, setCart] = useState(JSON.parse(localStorage.getItem("cart")) || []);
     const navigate = useNavigate();
-
-    const cart = JSON.parse(localStorage.getItem("cart"));
 
     let content;
     if (cart?.length === 0 || !cart) {
@@ -30,7 +29,7 @@ export const Cart = () => {
         content = (
             <div className="mt-[59px] grid grid-cols-1 gap-y-[32px]">
                 {cart?.map((product, index) => {
-                    return <CardOfCart key={product?._id} product={product} index={index} />;
+                    return <CardOfCart key={product?._id} product={product} index={index} cart={cart} setCart={setCart} />;
                 })}
             </div>
         );

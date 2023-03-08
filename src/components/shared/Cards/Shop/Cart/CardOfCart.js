@@ -4,10 +4,20 @@ import { useNavigate } from "react-router";
 
 // Third party packages
 import { RxCross2 } from "react-icons/rx";
+import { useDispatch } from "react-redux";
+import { decreaseCartCount } from "../../../../../Redux/features/Shop/shopSlice";
 
-export const CardOfCart = ({ product, index }) => {
+export const CardOfCart = ({ product, index, cart, setCart }) => {
+    const dispatch = useDispatch();
     const navigate = useNavigate();
     const { name, price, photos, _id } = product || {};
+
+    const handleRemoveCart = () => {
+        const updatedCart = cart?.filter(item => item._id !== _id);
+        setCart(updatedCart);
+        localStorage.setItem("cart", JSON.stringify(updatedCart));
+        dispatch(decreaseCartCount());
+    };
 
     return (
         <div className="w-full h-auto lg:h-[229px] bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] shadow-[0px_0px_4px_rgba(0,0,0,0.1), 0px_2px_4px_rgba(0,0,0,0.1)] rounded-[24px] px-[12px] lg:px-[36px] relative">
@@ -15,7 +25,7 @@ export const CardOfCart = ({ product, index }) => {
                 0{index + 1}
             </div>
             <div className="absolute right-[24px] top-[20px]">
-                <RxCross2 className="hover:text-white text-[20px] text-gray-300 duration-300" />
+                <RxCross2 className="hover:text-white text-[20px] text-gray-300 duration-300" onClick={handleRemoveCart} />
             </div>
             <div className="h-auto lg:h-[calc(229px-48px)] w-full">
                 <div className="flex h-full flex-col justify-between pb-[17px] w-full">
