@@ -4,6 +4,7 @@ import Shop from "../../Wrapper/Shop/Shop";
 import ShopOrders from "../../Wrapper/Shop/ShopOrders/ShopOrders";
 import ShopProducts from "../../Wrapper/Shop/ShopProducts/ShopProducts";
 import SingleProductDetails from "../../Wrapper/Shop/ShopProducts/SingleProductDetails/SingleProductDetails";
+import { DesktopWishlistContainer } from "../../Wrapper/Shop/wishList/DesktopWishlistContainer";
 
 const shopPrivateRoutes = [
     {
@@ -25,6 +26,11 @@ const shopPrivateRoutes = [
         id: 8,
         path: "/checkout/:id",
         element: <CheckoutPage />,
+    },
+    {
+        id: 9,
+        path: "/wishlist",
+        element: <DesktopWishlistContainer />,
     },
 ];
 
