@@ -29,8 +29,8 @@ export const Cart = () => {
     } else if (cart?.length > 0) {
         content = (
             <div className="mt-[59px] grid grid-cols-1 gap-y-[32px]">
-                {cart?.map(product => {
-                    return <CardOfCart key={product?._id} product={product} />;
+                {cart?.map((product, index) => {
+                    return <CardOfCart key={product?._id} product={product} index={index} />;
                 })}
             </div>
         );
