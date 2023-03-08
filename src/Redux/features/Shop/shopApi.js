@@ -12,7 +12,16 @@ export const shopApi = apiSlice.injectEndpoints({
                 },
             }),
         }),
+        getSingleProduct: builder.query({
+            query: id => ({
+                url: `/shop/product/${id}`,
+                method: "GET",
+                headers: {
+                    authorization: `Bearer ${getCookie("token")}`,
+                },
+            }),
+        }),
     }),
 });
 
-export const { useGetAllProductsQuery } = shopApi;
+export const { useGetAllProductsQuery, useGetSingleProductQuery } = shopApi;

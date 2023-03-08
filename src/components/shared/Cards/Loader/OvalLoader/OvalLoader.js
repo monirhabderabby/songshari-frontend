@@ -16,7 +16,7 @@ export const OvalLoader = ({ title }) => {
                 strokeWidth={2}
                 strokeWidthSecondary={2}
             />
-            <span>{title || "Uploading..."}</span>
+            <span>{title}</span>
         </div>
     );
 };

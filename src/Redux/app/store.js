@@ -11,6 +11,7 @@ import findPartnerSlice from "../features/filter/findPartnerSlice";
 import findLawyerKaziAgentFilterSlice from "../features/FindLawyerKaziAgentFilter/findLawyerKaziAgentFilterSlice";
 import pageTitleSlice from "../features/PageTitle/pageTitleSlice";
 import orderSlice from "../features/Service/orderSlice";
+import shopSlice from "../features/Shop/shopSlice";
 import userInfo from "../features/userInfo/userInfo";
 
 const persistConfig = {
@@ -30,6 +31,7 @@ const reducer = combineReducers({
     findLawyerKaziAgent: findLawyerKaziAgentFilterSlice,
     ordersInfo: orderSlice,
     connection: connectionSlice,
+    shop: shopSlice,
 });
 const persistedReducer = persistReducer(persistConfig, reducer);
 const store = configureStore({

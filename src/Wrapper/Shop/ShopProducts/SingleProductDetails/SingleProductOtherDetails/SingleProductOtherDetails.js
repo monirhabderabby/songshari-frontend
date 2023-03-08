@@ -2,23 +2,23 @@
 import React, { useState } from "react";
 
 // Components
-import SingleProductOtherDetailsNav from "./SingleProductOtherDetailsNav";
 import OtherDetailsCompare from "./OtherDetailsCompare/OtherDetailsCompare";
 import OtherDetailsDescription from "./OtherDetailsDescription/OtherDetailsDescription";
 import OtherDetailsReviews from "./OtherDetailsReviews/OtherDetailsReviews";
+import SingleProductOtherDetailsNav from "./SingleProductOtherDetailsNav";
 
-const SingleProductOtherDetails = ({ data }) => {
-  const [page, setPage] = useState(1);
-  return (
-    <div>
-      <SingleProductOtherDetailsNav {...{ page, setPage }} />
-      <div>
-        {page === 1 && <OtherDetailsDescription {...{ data }} />}
-        {page === 2 && <OtherDetailsReviews {...{ data }} />}
-        {page === 3 && <OtherDetailsCompare {...{ data }} />}
-      </div>
-    </div>
-  );
+const SingleProductOtherDetails = ({ data, description }) => {
+    const [page, setPage] = useState(1);
+    return (
+        <div>
+            <SingleProductOtherDetailsNav {...{ page, setPage }} />
+            <div>
+                {page === 1 && <OtherDetailsDescription {...{ data, description }} />}
+                {page === 2 && <OtherDetailsReviews {...{ data }} />}
+                {page === 3 && <OtherDetailsCompare {...{ data }} />}
+            </div>
+        </div>
+    );
 };
 
 export default SingleProductOtherDetails;

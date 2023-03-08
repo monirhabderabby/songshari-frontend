@@ -28,7 +28,7 @@ export const LanguageSwitcher = () => {
                 aria-expanded={open ? "true" : undefined}
                 onClick={handleClick}
             >
-                <img className="h-[60px]" src={selectedIcon} alt="" />
+                <img className="h-[45px]" src={selectedIcon} alt="language" />
             </button>
             <Menu
                 id="basic-menu"
