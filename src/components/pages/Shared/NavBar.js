@@ -42,6 +42,9 @@ const NavBar = ({ bg }) => {
     const { role } = tokenInfo || {};
     const userProfilePath = profilePathMaker(role);
 
+    const shopState = useSelector(state => state?.persistedReducer?.shop);
+    const { wishlist } = shopState || {};
+
     // js variable
     let { profilePhoto } = userInfo || {};
 
@@ -84,6 +87,7 @@ const NavBar = ({ bg }) => {
         dispatch(loadPhotos([]));
         navigate("/");
         removeCookie("token");
+        localStorage.removeItem("wishlist");
     };
 
     // Dynamic menu decision
@@ -199,7 +203,7 @@ const NavBar = ({ bg }) => {
                                         <div className="relative hover:scale-110 duration-300 cursor-pointer" onClick={() => navigate("/wishlist")}>
                                             <AiOutlineHeart className="h-[45px] w-[45px] text-[#E42986] -z-20" />
                                             <span className="w-[18px] h-[18px] rounded-full bg-[#E42986] text-white flex justify-center items-center absolute z-50 right-0 top-[0px] text-[12px]">
-                                                16
+                                                {wishlist?.count}
                                             </span>
                                         </div>
                                     </div>

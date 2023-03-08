@@ -11,11 +11,14 @@ import { TbCreditCard, TbCurrencyTaka } from "react-icons/tb";
 import Rating from "@mui/material/Rating";
 
 // Components
+import { useDispatch } from "react-redux";
 import isWishlisted from "../../../../../assets/utilities/isWishlisted/isWishlisted";
+import { increaseWishlistCount } from "../../../../../Redux/features/Shop/shopSlice";
 import SelectSizeCard from "./SelectSizeCard";
 
 const SingleProductBasicDetails = ({ data, product }) => {
     const [wishlisted, setWishlisted] = useState(false);
+    const dispatch = useDispatch();
     const [selectedSize, setSelectedSize] = useState(0);
     const wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
 
@@ -23,6 +26,7 @@ const SingleProductBasicDetails = ({ data, product }) => {
 
     // function declaration
     const handleWishList = () => {
+        dispatch(increaseWishlistCount());
         setWishlisted(true);
         wishlist.push(product);
         localStorage.setItem("wishlist", JSON.stringify(wishlist));
