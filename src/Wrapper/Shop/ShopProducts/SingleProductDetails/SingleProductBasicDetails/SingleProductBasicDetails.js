@@ -1,18 +1,38 @@
 // Configuration
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+
+// Third party packages
+import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
+import { BiUser } from "react-icons/bi";
+import { HiOutlineGlobe, HiTag } from "react-icons/hi";
+import { TbCreditCard, TbCurrencyTaka } from "react-icons/tb";
 
 // Third party packages
 import Rating from "@mui/material/Rating";
 
 // Components
-import { AiOutlineHeart } from "react-icons/ai";
-import { BiUser } from "react-icons/bi";
-import { HiOutlineGlobe, HiTag } from "react-icons/hi";
-import { TbCreditCard, TbCurrencyTaka } from "react-icons/tb";
+import isWishlisted from "../../../../../assets/utilities/isWishlisted/isWishlisted";
 import SelectSizeCard from "./SelectSizeCard";
 
-const SingleProductBasicDetails = ({ data, name, price, oldPrice, discount }) => {
+const SingleProductBasicDetails = ({ data, product }) => {
+    const [wishlisted, setWishlisted] = useState(false);
     const [selectedSize, setSelectedSize] = useState(0);
+    const wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+
+    const { name, price, oldPrice, discount, _id } = product || {};
+
+    // function declaration
+    const handleWishList = () => {
+        setWishlisted(true);
+        wishlist.push(product);
+        localStorage.setItem("wishlist", JSON.stringify(wishlist));
+    };
+
+    useEffect(() => {
+        setWishlisted(isWishlisted(_id));
+    }, [_id]);
+
+    console.log(wishlisted);
     return (
         <div>
             <h1 className="text-[#18181B] text-3xl leading-10 font-bold mb-4">{name}</h1>
@@ -64,8 +84,13 @@ const SingleProductBasicDetails = ({ data, name, price, oldPrice, discount }) =>
                 >
                     Add To Cart
                 </button>
-                <button className="p-4 border border-[#D4D4D8] hover:border-[#b7b7bd] duration-300 bg-[#FAFAFB] rounded-md">
-                    <AiOutlineHeart className="text-lg" />
+                <button
+                    className={`border border-[#D4D4D8] hover:border-[#b7b7bd] duration-300 ${
+                        wishlisted ? "bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)]" : "bg-[#FAFAFB]"
+                    }  rounded-md w-[50px] h-[50px] flex justify-center items-center`}
+                    onClick={handleWishList}
+                >
+                    {wishlisted ? <AiFillHeart className="text-[26px] text-white" /> : <AiOutlineHeart className="text-[26px]" />}
                 </button>
             </div>
             <div>

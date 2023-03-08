@@ -19,10 +19,7 @@ const SingleProductDetails = () => {
     const { data: productData, isLoading, isError } = useGetSingleProductQuery(id);
     const { product } = productData || {};
 
-    console.log(product);
-
-    const { name, price, oldPrice, discount, description } = product || {};
-    console.log(product);
+    const { description } = product || {};
 
     const data = {
         productImages: [gentsCourt1, gentsCourt2, gentsCourt3, gentsCourt4],
@@ -99,7 +96,7 @@ const SingleProductDetails = () => {
                     </div>
                 </div>
                 <div className="max-w-[432px]">
-                    <SingleProductBasicDetails {...{ data, name, price, oldPrice, discount }} />
+                    <SingleProductBasicDetails {...{ data, product }} />
                 </div>
             </div>
         );
