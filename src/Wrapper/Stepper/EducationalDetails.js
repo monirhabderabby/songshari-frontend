@@ -33,7 +33,6 @@ export const EducationalDetails = ({ setPage }) => {
   const [addedFieldOfStudy, setAddedFieldOfStudy] = useState([]);
   const [addedYearOfPassing, setAddedYearOfPassing] = useState([]);
   const [eduAddedPhotoCertificate, setEduAddedPhotoCertificate] = useState([]);
-  console.log("array of certificates", eduAddedPhotoCertificate);
 
   useEffect(() => {
     if (uploadedCertificate)
