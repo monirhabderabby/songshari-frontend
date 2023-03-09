@@ -93,13 +93,16 @@ const SingleProductBasicDetails = ({ data, product }) => {
             {/* Submit btn */}
             <div className="flex items-center gap-3 mb-8">
                 <button
-                    className="text-white w-[200px] h-[50px] rounded-md text-center font-bold"
+                    className={`text-white w-[200px] h-[50px] rounded-md text-center font-bold ${
+                        addedToCart ? "cursor-not-allowed" : "cursor-pointer"
+                    }`}
                     style={{
                         backgroundImage: "linear-gradient(90deg, #E22987 0%, #A82BC5 100%)",
                     }}
                     onClick={handleCart}
+                    disabled={addedToCart}
                 >
-                    {addedToCart ? "Already in Cart" : "Add To Cart"}
+                    {addedToCart ? <p className="cursor-not-allowed">Already in Cart</p> : <p>Add To Cart</p>}
                 </button>
                 <button
                     className={`border border-[#D4D4D8] hover:border-[#b7b7bd] duration-300 ${

@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { combineReducers } from "redux";
 import { persistReducer } from "redux-persist";
+import persistStore from "redux-persist/es/persistStore";
 import storage from "redux-persist/lib/storage";
 import apiSlice from "../api/apiSlice";
 import chatReducer from "../chat/chatReducer";
+import billingSummarySlice from "../features/checkout/billingSummarySlice";
 import checkoutDetailsSlice from "../features/checkout/checkoutDetailsSlice";
 import connectionSlice from "../features/connections/connectionSlice";
 import filterSlice from "../features/filter/filterSlice";
@@ -32,6 +34,7 @@ const reducer = combineReducers({
     ordersInfo: orderSlice,
     connection: connectionSlice,
     shop: shopSlice,
+    billingSummary: billingSummarySlice,
 });
 const persistedReducer = persistReducer(persistConfig, reducer);
 const store = configureStore({
@@ -45,5 +48,7 @@ const store = configureStore({
             serializableCheck: false,
         }).concat(apiSlice.middleware),
 });
+
+export const persistor = persistStore(store);
 
 export default store;
