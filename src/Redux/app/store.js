@@ -1,6 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { combineReducers } from "redux";
 import { persistReducer } from "redux-persist";
+import persistStore from "redux-persist/es/persistStore";
 import storage from "redux-persist/lib/storage";
 import apiSlice from "../api/apiSlice";
 import chatReducer from "../chat/chatReducer";
@@ -45,5 +46,7 @@ const store = configureStore({
             serializableCheck: false,
         }).concat(apiSlice.middleware),
 });
+
+export const persistor = persistStore(store);
 
 export default store;

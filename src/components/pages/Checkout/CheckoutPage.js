@@ -13,6 +13,7 @@ export const CheckoutPage = () => {
     const { firstName, lastName } = authInfo || {};
     const token = getCookie("token");
     const { email } = decodeToken(token) || {};
+    console.log(authInfo);
 
     useEffect(() => {
         dispatch(

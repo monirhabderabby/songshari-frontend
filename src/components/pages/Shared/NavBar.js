@@ -29,6 +29,7 @@ import { profilePathMaker } from "../../../assets/utilities/profilePathDecisionM
 import getCookie from "../../../Helper/cookies/getCookie";
 import removeCookie from "../../../Helper/cookies/removeCookie";
 import isLoggedIn from "../../../Helper/hooks/checkLoggerPersestency/isLoggedIn";
+import { clearShopSlice } from "../../../Redux/features/Shop/shopSlice";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 
 const NavBar = ({ bg }) => {
@@ -88,6 +89,7 @@ const NavBar = ({ bg }) => {
         navigate("/");
         removeCookie("token");
         localStorage.removeItem("wishlist" && "cart");
+        dispatch(clearShopSlice());
     };
 
     // Dynamic menu decision
