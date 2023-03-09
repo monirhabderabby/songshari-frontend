@@ -3,23 +3,24 @@ import React, { useEffect, useState } from "react";
 
 // Third party packages
 import { DatePicker } from "antd";
-import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import moment from "moment";
 import { Controller, useForm } from "react-hook-form";
 import { AiOutlineCloudUpload, AiOutlineIdcard } from "react-icons/ai";
 import { decodeToken } from "react-jwt";
 import Select from "react-select";
 import makeAnimated from "react-select/animated";
-import { v4 as uuidv4 } from "uuid";
 
 // components
-import { firebaseStorage } from "../../firebase.init";
 import getCookie from "../../Helper/cookies/getCookie";
 import { useSetPersonalDetailsMutation } from "../../Redux/features/userInfo/userApi";
+import { usePhotosUploadOnServerMutation } from "../../Redux/features/fileUpload/fileUploadApi";
 
 export const PersonalDetails = ({ setPage }) => {
     const [setPersonalDetails, { data: personalDetailsResponse, isLoading, isError }] = useSetPersonalDetailsMutation();
-
+    const [uploadProfilePhoto,{ data: uploadedProfilePhoto},] = usePhotosUploadOnServerMutation();
+    const [uploadCoverPhoto, { data: uploadedCoverPhoto }] = usePhotosUploadOnServerMutation();
+    const [uploadNIDFront, { data: uploadedNIDFront }] = usePhotosUploadOnServerMutation();
+    const [uploadNIDBack, { data: uploadedNIDBack }] =usePhotosUploadOnServerMutation();
     const token = getCookie("token");
     const tokenInfo = decodeToken(token);
 
@@ -39,6 +40,25 @@ export const PersonalDetails = ({ setPage }) => {
     const [hobbies, setHobbies] = useState([]);
     const [profilePhotoName, setProfilePhotoName] = useState();
     const [coverPhotoName, setCoverPhotoName] = useState();
+
+    //setting profile photo
+    useEffect(() => {
+        if (uploadedProfilePhoto) setProfilePhoto(uploadedProfilePhoto?.data[0]?.path)
+    }, [uploadedProfilePhoto])
+
+    // setting cover Photo
+    useEffect(() => {
+      if (uploadedCoverPhoto) setCoverPhoto(uploadedCoverPhoto?.data[0]?.path);
+    }, [uploadedCoverPhoto]);
+    useEffect(() => {
+      if (uploadedNIDFront) setNidFrontSide(uploadedNIDFront?.data[0]?.path);
+    }, [uploadedNIDFront]);
+    useEffect(() => {
+      if (uploadedNIDBack) setNidBackSide(uploadedNIDBack?.data[0]?.path);
+    }, [uploadedNIDBack]);
+
+    // setting NID photo
+
 
     const {
         register,
@@ -208,48 +228,28 @@ export const PersonalDetails = ({ setPage }) => {
     }, [personalDetailsResponse, setPage]);
 
     const profilePhotoHandler = async e => {
-        const photo = e.target.files[0];
-        if (photo.name.length > 26) {
-            setProfilePhotoName(photo.name.slice(0, 26) + " ...");
-        } else if (photo.name.length < 26) {
-            setProfilePhotoName(photo?.name);
-        }
-        const storageRef = ref(firebaseStorage, `profile/${photo?.name + uuidv4()}`);
-        uploadBytes(storageRef, photo).then(async snapshot => {
-            await getDownloadURL(snapshot.ref).then(url => {
-                setProfilePhoto(url.toString());
-            });
-        });
+        setProfilePhotoName(e.target.files[0]?.name);
+        const formData = new FormData();
+        formData.append("image", e.target.files[0]);
+        uploadProfilePhoto(formData)
     };
 
     const coverPhotoHandler = async e => {
-        const photo = e.target.files[0];
-        setCoverPhotoName(photo?.name);
-        const storageRef = ref(firebaseStorage, `cover/${photo?.name + uuidv4()}`);
-        uploadBytes(storageRef, photo).then(async snapshot => {
-            await getDownloadURL(snapshot.ref).then(url => {
-                setCoverPhoto(url.toString());
-            });
-        });
+        setCoverPhotoName(e.target.files[0]?.name);
+        const formData = new FormData();
+        formData.append("image", e.target.files[0]);
+        uploadCoverPhoto(formData);
     };
 
     const frontSideNIDHandler = async e => {
-        const photo = e.target.files[0];
-        const storageRef = ref(firebaseStorage, `nid/${photo?.name + uuidv4()}`);
-        uploadBytes(storageRef, photo).then(async snapshot => {
-            await getDownloadURL(snapshot.ref).then(url => {
-                setNidFrontSide(url.toString());
-            });
-        });
+        const formData = new FormData();
+        formData.append("image", e.target.files[0]);
+        uploadNIDFront(formData);
     };
     const backSideNIDHandler = async e => {
-        const photo = e.target.files[0];
-        const storageRef = ref(firebaseStorage, `nid/${photo?.name + uuidv4()}`);
-        uploadBytes(storageRef, photo).then(async snapshot => {
-            await getDownloadURL(snapshot.ref).then(url => {
-                setNidBackSide(url.toString());
-            });
-        });
+        const formData = new FormData();
+        formData.append("image", e.target.files[0]);
+        uploadNIDBack(formData);
     };
 
     const onDateOfBirthChange = (date, dateString) => {
