@@ -3,19 +3,20 @@ import React, { useEffect, useState } from "react";
 
 // Third party packages
 import { DatePicker } from "antd";
-import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { useFieldArray, useForm } from "react-hook-form";
 import CreatableSelect from "react-select/creatable";
-import { v4 as uuidv4 } from "uuid";
 
 // components
 import { AiOutlineCloudUpload } from "react-icons/ai";
-import { firebaseStorage } from "../../firebase.init";
 import { useSetEducationalDetailsMutation } from "../../Redux/features/userInfo/userApi";
+import { usePhotosUploadOnServerMutation } from "../../Redux/features/fileUpload/fileUploadApi";
 
 export const EducationalDetails = ({ setPage }) => {
   const [setEducationalDetails, { data: response, isLoading }] =
     useSetEducationalDetailsMutation();
+  const [uploadCertificate, { data: uploadedCertificate }] = usePhotosUploadOnServerMutation();
+  const [uploadMoreCertificate, { data: uploadedMoreCertificate }] = usePhotosUploadOnServerMutation();
+  
   const [degreeName, setDegreeName] = useState("");
   const [eduDepartment, setEduDepartment] = useState("");
   const [eduInstitute, setEduInstitute] = useState("");
@@ -30,6 +31,16 @@ export const EducationalDetails = ({ setPage }) => {
   const [addedFieldOfStudy, setAddedFieldOfStudy] = useState([]);
   const [addedYearOfPassing, setAddedYearOfPassing] = useState([]);
   const [eduAddedPhotoCertificate, setEduAddedPhotoCertificate] = useState([]);
+
+  useEffect(() => {
+    if (uploadedCertificate)
+      setEduAchievementMoment(uploadedCertificate?.data[0]?.path);
+  }, [uploadedCertificate]);
+
+  useEffect(() => {
+    if (uploadedMoreCertificate)
+      setEduAddedPhotoCertificate(()=>[...eduAddedPhotoCertificate, uploadedMoreCertificate?.data[0]?.path]);
+  }, [uploadedMoreCertificate]);
 
   // testing array for more data field
 
@@ -88,33 +99,16 @@ export const EducationalDetails = ({ setPage }) => {
   };
 
   const educationalAchievementMomentHandler = async (e) => {
-    const photo = e.target.files[0];
-    setAchievementMomentName(photo?.name);
-    const storageRef = ref(
-      firebaseStorage,
-      `educationalCertificates/${photo?.name + uuidv4()}`
-    );
-    uploadBytes(storageRef, photo).then(async (snapshot) => {
-      await getDownloadURL(snapshot.ref).then((url) => {
-        setEduAchievementMoment(url.toString());
-      });
-    });
+    setAchievementMomentName(e.target.files[0]?.name);
+    const formData = new FormData();
+    formData.append("image", e.target.files[0]);
+    uploadCertificate(formData);
   };
 
   const moreEduAddedAchievementMomentHandler = async (e) => {
-    const photo = e.target.files[0];
-    const storageRef = ref(
-      firebaseStorage,
-      `educationalCertificates/${photo?.name + uuidv4()}`
-    );
-    uploadBytes(storageRef, photo).then(async (snapshot) => {
-      await getDownloadURL(snapshot.ref).then((url) => {
-        setEduAddedPhotoCertificate([
-          ...eduAddedPhotoCertificate,
-          url.toString(),
-        ]);
-      });
-    });
+    const formData = new FormData();
+    formData.append("image", e.target.files[0]);
+    uploadMoreCertificate(formData);
   };
 
   useEffect(() => {
