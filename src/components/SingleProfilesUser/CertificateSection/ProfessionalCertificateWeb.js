@@ -12,7 +12,7 @@ import UpdateCertificateSection from "./UpdateCertificateSection/UpdateCertifica
 const ProfessionalCertificateWeb = () => {
   // hook variable declaration
   const [certificates, setCertificates] = useState([]);
-  const [selected, setSelected] = useState({});
+  const [selected, setSelected] = useState(certificates[0] || {});
 
   // Redux API calls
   const { data: response } = useGetCertificatesWithAuthQuery();
