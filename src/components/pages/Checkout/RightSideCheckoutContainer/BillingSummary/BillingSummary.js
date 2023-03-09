@@ -1,15 +1,22 @@
 // Configuration
-import React from "react";
+import React, { useEffect } from "react";
 
 // Third party package
 import Checkbox from "@mui/material/Checkbox";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import TextField from "@mui/material/TextField";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { calculatePercentage } from "../../../../../assets/utilities/CheckoutHelperCalculation/checkoutHelperCalculation";
+import { setTax } from "../../../../../Redux/features/checkout/billingSummarySlice";
 
 const BillingSummary = () => {
+    const dispatch = useDispatch();
     const billingSummaryDetailes = useSelector(state => state.persistedReducer?.billingSummary?.billingSummary);
     const { discount, shipping, subTotal, tax } = billingSummaryDetailes || {};
+
+    useEffect(() => {
+        dispatch(setTax(calculatePercentage(subTotal, 15)));
+    }, [subTotal, dispatch]);
 
     const checkLabel = (
         <p className="text-sm text-[#4F4F4F]">

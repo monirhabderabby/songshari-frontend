@@ -4,7 +4,7 @@ const initialState = {
     billingSummary: {
         subTotal: 0,
         discount: 0,
-        shipping: 0,
+        shipping: 100,
         tax: 0,
     },
 };
@@ -22,8 +22,11 @@ const billingSummarySlice = createSlice({
         decreaseSubTotal: (state = initialState, action) => {
             state.billingSummary.subTotal -= action.payload;
         },
+        setTax: (state = initialState, action) => {
+            state.billingSummary.tax = action.payload;
+        },
     },
 });
 
 export default billingSummarySlice.reducer;
-export const { initialSubTotal, increaseSubTotal, decreaseSubTotal } = billingSummarySlice.actions;
+export const { initialSubTotal, increaseSubTotal, decreaseSubTotal, setTax } = billingSummarySlice.actions;
