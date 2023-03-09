@@ -2,8 +2,6 @@ import React, { useCallback, useEffect } from "react";
 
 // Third party packages
 import { useDropzone } from "react-dropzone";
-import liveLinkGenerator from "../../../../assets/utilities/liveLink/liveLinkGenerator";
-
 // Redux APi
 import { usePhotosUploadOnServerMutation } from "../../../../Redux/features/fileUpload/fileUploadApi";
 import { OvalLoader } from "../../Cards/Loader/OvalLoader/OvalLoader";
@@ -11,34 +9,22 @@ import { OvalLoader } from "../../Cards/Loader/OvalLoader/OvalLoader";
 export const ServicePhotoUploadContainer = ({ setPhotos, photos }) => {
     // Redux Api Call
     const [photosUploadOnServer, { data: uploadedPhotos, isLoading, error }] = usePhotosUploadOnServerMutation();
-
     const onDrop = useCallback(
         acceptedFiles => {
             const formData = new FormData();
             for (let i = 0; i < acceptedFiles.length; i++) {
-                formData.append("photos", acceptedFiles[i]);
+                formData.append("image", acceptedFiles[i]);
             }
             photosUploadOnServer(formData);
         },
         [photosUploadOnServer]
     );
 
-    if (error) console.log(error);
-
     const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
     useEffect(() => {
         if (uploadedPhotos) {
-            let newArray = [];
-            const photos = uploadedPhotos?.data?.file;
-
-            photos?.filter(item => {
-                newArray.unshift(item.fileName);
-                return false;
-            });
-
-            // it will be return when this components will be return
-            setPhotos(newArray);
+            setPhotos(uploadedPhotos?.data?.map(item=>item?.path));
         }
     }, [uploadedPhotos, setPhotos]);
 
@@ -57,7 +43,7 @@ export const ServicePhotoUploadContainer = ({ setPhotos, photos }) => {
         content = (
             <div className="w-full flex flex-wrap justify-center items-center gap-5">
                 {photos?.map((photo, index) => {
-                    return <img key={index} className="w-[80px] h-[80px] rounded-[4px]" src={liveLinkGenerator(photo)} alt="servicePhoto" />;
+                    return <img key={index} className="w-[80px] h-[80px] rounded-[4px]" src={photo} alt="servicePhoto" />;
                 })}
             </div>
         );

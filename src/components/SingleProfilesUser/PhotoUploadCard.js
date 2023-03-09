@@ -18,6 +18,7 @@ export const PhotoUploadCard = () => {
     photosUploadOnServer,
     { data: uploadedPhotos, isLoading, error: uploadError },
   ] = usePhotosUploadOnServerMutation();
+  console.log(uploadError);
   const [updatePhotosOnProfile, { error: updateError }] =
     useUpdatePhotosOnProfileMutation();
   const dispatch = useDispatch();
@@ -27,7 +28,7 @@ export const PhotoUploadCard = () => {
     const files = e.target.files;
     const formData = new FormData();
     for (let i = 0; i < files.length; i++) {
-      formData.append("photos", files[i]);
+      formData.append("image", files[i]);
     }
     // console.log(formData.get("photos"));
     photosUploadOnServer(formData);

@@ -3,7 +3,6 @@ import React from "react";
 import { useParams } from "react-router";
 
 // components
-import liveLinkGenerator from "../../../../assets/utilities/liveLink/liveLinkGenerator";
 import { MobileBackButton } from "../../../../components/shared/Components/MobileBackButton";
 import { useGetProfileDetailsQuery } from "../../../../Redux/features/userInfo/userApi";
 import { BottomNav } from "../BottomNav";
@@ -34,7 +33,7 @@ export const GalleryContainerForMobile = () => {
           return (
             <img
               key={index}
-              src={liveLinkGenerator(photo)}
+              src={photo}
               alt="userPhotos"
               className={`rounded-[15px] ${
                 index === 0 && "col-span-2 row-span-2 h-full"

@@ -11,7 +11,6 @@ import { BsThreeDotsVertical } from "react-icons/bs";
 import love from "../../../assets/images/icons/coolicon.svg";
 import { useLikeSinglePostMutation } from "../../../Redux/features/connections/connectionApi";
 import { useDeletePostMutation } from "../../../Redux/features/Post/postApi";
-import liveLinkGenerator from "../../../assets/utilities/liveLink/liveLinkGenerator";
 import timeAgo from "../../../assets/utilities/TimeCalculator/TimeAgo";
 
 const MobileSinglePostCard = ({ post }) => {
@@ -101,7 +100,7 @@ const MobileSinglePostCard = ({ post }) => {
           {post?.attachment?.length > 0 && (
             <img
               className="ml-[60px] w-64 mb-3"
-              src={liveLinkGenerator(post?.attachment[0])}
+              src={post?.attachment[0]}
               alt=""
             />
           )}

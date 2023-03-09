@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import liveLinkGenerator from "../../../../assets/utilities/liveLink/liveLinkGenerator";
 
 const DynamicServicesCard = ({ service, responsive }) => {
     let { photos, description, title, tags, role, price, _id } = service || {};
@@ -27,7 +26,7 @@ const DynamicServicesCard = ({ service, responsive }) => {
                 backgroundImage: "linear-gradient(180deg, #FFE6EB 0%, #FFDAE3 0.01%, #FFE6EC 5.73%, #FAE6FF 100%)",
             }}
         >
-            <img className="rounded-xl h-[264px] w-full" src={liveLinkGenerator(photos[0])} alt="Not Available" />
+            <img className="rounded-xl h-[264px] w-full" src={photos[0]} alt="Not Available" />
             <h3 className="text-lg font-medium leading-6 my-4">{title}</h3>
             <p className="text-[#666666] text-sm leading-[18px] tracking-wide mb-4">{description}</p>
             <h4 className="text-sm font-medium leading-[18px] mb-4">{name}</h4>

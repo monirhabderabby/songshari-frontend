@@ -24,7 +24,7 @@ export const ProfessionalDetails = ({ setPage }) => {
     usePhotosUploadOnServerMutation();
   const [uploadMoreCertificate, { data: uploadedMoreCertificate }] =
     usePhotosUploadOnServerMutation();
-  
+
   useEffect(() => {
     if (uploadedCertificate)
       setProfessionalAchievementMoment(uploadedCertificate?.data[0]?.path);
@@ -96,7 +96,6 @@ export const ProfessionalDetails = ({ setPage }) => {
       formData.append("image", e.target.files[0]);
       uploadCertificate(formData);
     }
-    
   };
 
   const addedProfessionAchievementMomentHandler = async (e) => {
@@ -105,12 +104,11 @@ export const ProfessionalDetails = ({ setPage }) => {
       formData.append("image", e.target.files[0]);
       uploadMoreCertificate(formData);
     }
-    
   };
 
   useEffect(() => {
     if (response) {
-      console.log(response)
+      console.log(response);
       setPage(4);
     }
   }, [response, setPage]);

@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import liveLinkGenerator from "../../../../assets/utilities/liveLink/liveLinkGenerator";
 
 const ServicesCard = ({ service, responsive }) => {
   let { photos, description, title, tags, role, price, _id } = service || {};
@@ -39,7 +38,7 @@ const ServicesCard = ({ service, responsive }) => {
     >
       <img
         className="rounded-xl h-[84px] md:h-[144px] lg:h-[264px] w-full"
-        src={liveLinkGenerator(photos[0])}
+        src={photos[0]}
         alt="Not Available"
       />
       <h3 className="text-lg font-medium leading-6 my-4">{title}</h3>
