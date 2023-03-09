@@ -8,7 +8,7 @@ import { OvalLoader } from "../../Cards/Loader/OvalLoader/OvalLoader";
 
 export const ServicePhotoUploadContainer = ({ setPhotos, photos }) => {
     // Redux Api Call
-    const [photosUploadOnServer, { data: uploadedPhotos, isLoading, error }] = usePhotosUploadOnServerMutation();
+    const [photosUploadOnServer, { data: uploadedPhotos, isLoading }] = usePhotosUploadOnServerMutation();
     const onDrop = useCallback(
         acceptedFiles => {
             const formData = new FormData();
