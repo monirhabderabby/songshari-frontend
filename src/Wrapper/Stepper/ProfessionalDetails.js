@@ -4,13 +4,11 @@ import React, { useEffect, useState } from "react";
 // Third party packages
 import { DatePicker } from "antd";
 import { useFieldArray, useForm } from "react-hook-form";
-import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
-import { v4 as uuidv4 } from "uuid";
 
 // components
 import { AiOutlineCloudUpload } from "react-icons/ai";
-import { firebaseStorage } from "../../firebase.init";
 import { useSetProfessionalDetailsMutation } from "../../Redux/features/userInfo/userApi";
+import { usePhotosUploadOnServerMutation } from "../../Redux/features/fileUpload/fileUploadApi";
 
 export const ProfessionalDetails = ({ setPage }) => {
   const [workPeriod, setWorkPeriod] = useState();
@@ -22,6 +20,23 @@ export const ProfessionalDetails = ({ setPage }) => {
 
   const [setProfessionalDetails, { data: response, isLoading }] =
     useSetProfessionalDetailsMutation();
+  const [uploadCertificate, { data: uploadedCertificate }] =
+    usePhotosUploadOnServerMutation();
+  const [uploadMoreCertificate, { data: uploadedMoreCertificate }] =
+    usePhotosUploadOnServerMutation();
+
+  useEffect(() => {
+    if (uploadedCertificate)
+      setProfessionalAchievementMoment(uploadedCertificate?.data[0]?.path);
+  }, [uploadedCertificate]);
+
+  useEffect(() => {
+    if (uploadedMoreCertificate)
+      setAddedAchievementMoment(() => [
+        ...addedAchievementMoment,
+        uploadedMoreCertificate?.data[0]?.path,
+      ]);
+  }, [uploadedMoreCertificate]);
 
   const { register, handleSubmit, control } = useForm();
 
@@ -74,28 +89,26 @@ export const ProfessionalDetails = ({ setPage }) => {
   };
 
   const specialAchievementMomentHandler = async (e) => {
-    const photo = e.target.files[0];
-    setAchievementMomentName(photo?.name);
-    const storageRef = ref(firebaseStorage, `cover/${photo?.name + uuidv4()}`);
-    uploadBytes(storageRef, photo).then(async (snapshot) => {
-      await getDownloadURL(snapshot.ref).then((url) => {
-        setProfessionalAchievementMoment(url.toString());
-      });
-    });
+    if (e.target.files[0]) {
+      const photo = e.target.files[0];
+      setAchievementMomentName(photo?.name);
+      const formData = new FormData();
+      formData.append("image", e.target.files[0]);
+      uploadCertificate(formData);
+    }
   };
 
   const addedProfessionAchievementMomentHandler = async (e) => {
-    const photo = e.target.files[0];
-    const storageRef = ref(firebaseStorage, `moment/${photo?.name + uuidv4()}`);
-    uploadBytes(storageRef, photo).then(async (snapshot) => {
-      await getDownloadURL(snapshot.ref).then((url) => {
-        setAddedAchievementMoment([...addedAchievementMoment, url.toString()]);
-      });
-    });
+    if (e.target.files[0]) {
+      const formData = new FormData();
+      formData.append("image", e.target.files[0]);
+      uploadMoreCertificate(formData);
+    }
   };
 
   useEffect(() => {
     if (response) {
+      console.log(response);
       setPage(4);
     }
   }, [response, setPage]);

@@ -3,7 +3,6 @@ import Button from "@mui/material/Button";
 import { TbCurrencyTaka } from "react-icons/tb";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
-import liveLinkGenerator from "../../../../../assets/utilities/liveLink/liveLinkGenerator";
 import { setIdForCancleOrder } from "../../../../../Redux/features/Service/orderSlice";
 
 const useStyles = makeStyles({
@@ -63,7 +62,7 @@ const ServiceCard = ({ service, status, responsive }) => {
   return (
     <div className="w-full max-w-[512px] mx-auto bg-[#FDF8E7] max-h-[384px] p-[18px] flex flex-col justify-between rounded-[12px]">
       <img
-        src={liveLinkGenerator(photos?.length > 0 && photos[0])}
+        src={photos?.length > 0 && photos[0]}
         alt="serviceImage"
         className="h-[188px] w-full rounded-[12px]"
       />

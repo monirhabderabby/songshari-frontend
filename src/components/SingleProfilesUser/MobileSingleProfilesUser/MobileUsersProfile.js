@@ -14,44 +14,43 @@ import {
   useSetPersonalDetailsMutation,
 } from "../../../Redux/features/userInfo/userApi";
 import MobileSocialMediaBox from "./SocialMediaMobile/MobileSocialMediaBox";
+import { usePhotosUploadOnServerMutation } from "../../../Redux/features/fileUpload/fileUploadApi";
 
 const MobileUsersProfile = () => {
   const [SocialBoxOpen, setSocialBoxOpen] = useState(false);
   const { data } = useGetProfileDetailsWIthAuthQuery();
   const [setPersonalDetails, { data: profileOrCoverPhotoResponse }] =
     useSetPersonalDetailsMutation();
+  const [uploadProfilePhoto, { data: uploadedProfilePhoto }] =
+    usePhotosUploadOnServerMutation();
+  const [uploadCoverPhoto, { data: uploadedCoverPhoto }] =
+    usePhotosUploadOnServerMutation();
+  
 
   const profilePhotoUploadHandler = (e) => {
-    const photo = e.target.files[0];
-    const storageRef = ref(
-      firebaseStorage,
-      `profile/${photo?.name + uuidv4()}`
-    );
-    uploadBytes(storageRef, photo).then(async (snapshot) => {
-      await getDownloadURL(snapshot.ref).then((url) => {
-        const data = {
-          profilePhoto: url.toString(),
-        };
-        setPersonalDetails(data);
-      });
-    });
+    if (e.target.files[0]) {
+      const formData = new FormData();
+      formData.append("image", e.target.files[0]);
+      uploadProfilePhoto(formData);
+    }
   };
 
   const coverPhotoUploadHandler = (e) => {
-    const photo = e.target.files[0];
-    const storageRef = ref(
-      firebaseStorage,
-      `profile/${photo?.name + uuidv4()}`
-    );
-    uploadBytes(storageRef, photo).then(async (snapshot) => {
-      await getDownloadURL(snapshot.ref).then((url) => {
-        const data = {
-          coverPhoto: url.toString(),
-        };
-        setPersonalDetails(data);
-      });
-    });
+    if (e.target.files[0]) {
+      const formData = new FormData();
+      formData.append("image", e.target.files[0]);
+      uploadCoverPhoto(formData);
+    }
   };
+
+  useEffect(() => {
+    if (uploadedCoverPhoto)
+      setPersonalDetails({coverPhoto: uploadedCoverPhoto?.data[0]?.path});
+  }, [uploadedCoverPhoto]);
+  useEffect(() => {
+    if (uploadedProfilePhoto)
+      setPersonalDetails({ profilePhoto: uploadedProfilePhoto?.data[0]?.path });
+  }, [uploadedProfilePhoto]);
 
   useEffect(() => {
     if (profileOrCoverPhotoResponse?.message?.includes("Update successful")) {

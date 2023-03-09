@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import liveLinkGenerator from "../../../../../../assets/utilities/liveLink/liveLinkGenerator";
 import SingleServiceImageCard from "./SingleServiceImageCard";
 
 const SingleServiceImagesContainer = ({ photos }) => {
@@ -10,7 +9,7 @@ const SingleServiceImagesContainer = ({ photos }) => {
       <div>
         <img
           className="w-[326px] h-[176px] md:w-[526px] md:h-[284px] lg:w-[819px] lg:h-[436px] rounded-t"
-          src={liveLinkGenerator(selectedPhoto)}
+          src={selectedPhoto}
           alt="selected"
         />
       </div>

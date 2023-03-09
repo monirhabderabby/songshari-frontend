@@ -9,7 +9,6 @@ import { useSelector } from "react-redux";
 // components
 import { decodeToken } from "react-jwt";
 import { useNavigate } from "react-router";
-import liveLinkGenerator from "../../assets/utilities/liveLink/liveLinkGenerator";
 import getCookie from "../../Helper/cookies/getCookie";
 
 // css files
@@ -59,7 +58,7 @@ const PhotoGelary = ({ isLoading, error }) => {
                         <div
                             key={index}
                             className="h-[101px] w-[86px] bg-center bg-cover duration-300 rounded-[15px]"
-                            style={{ backgroundImage: `url(${liveLinkGenerator(photo)})` }}
+                            style={{ backgroundImage: `url(${photo})` }}
                         ></div>
                     );
                 })}
