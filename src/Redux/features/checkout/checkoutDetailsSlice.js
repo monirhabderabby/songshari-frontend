@@ -54,8 +54,26 @@ const checkoutDetailsSlice = createSlice({
             state.shippingDetailes.postalCode = state.billingDetailes.postalCode;
             state.shippingDetailes.phone = state.billingDetailes.phone;
         },
+        clearShippingDetailes: (state = initialState) => {
+            state.shippingDetailes.firstName = "";
+            state.shippingDetailes.lastName = "";
+            state.shippingDetailes.email = "";
+            state.shippingDetailes.streetAddress1 = "";
+            state.shippingDetailes.streetAddress2 = "";
+            state.shippingDetailes.state = "";
+            state.shippingDetailes.city = "";
+            state.shippingDetailes.postalCode = "";
+            state.shippingDetailes.phone = "";
+        },
     },
 });
 
 export default checkoutDetailsSlice.reducer;
-export const { setBillingDetailesInitialState, setBillingFirstName, setBillingDetailes, setShippingDetailes } = checkoutDetailsSlice.actions;
+export const {
+    setBillingDetailesInitialState,
+    setBillingFirstName,
+    setBillingDetailes,
+    setShippingDetailes,
+    checkBillingAndShoppingareSame,
+    clearShippingDetailes,
+} = checkoutDetailsSlice.actions;

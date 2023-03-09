@@ -1,10 +1,10 @@
 // configuration
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 // Third party packages
 import { Checkbox, FormControlLabel, TextField } from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
-import { setBillingDetailes } from "../../../../Redux/features/checkout/checkoutDetailsSlice";
+import { checkBillingAndShoppingareSame, clearShippingDetailes, setBillingDetailes } from "../../../../Redux/features/checkout/checkoutDetailsSlice";
 
 // Componetns
 
@@ -88,6 +88,14 @@ export const BillingDetailes = () => {
             })
         );
     };
+
+    useEffect(() => {
+        if (checked) {
+            dispatch(checkBillingAndShoppingareSame());
+        } else if (checked === false) {
+            dispatch(clearShippingDetailes());
+        }
+    }, [checked, dispatch]);
 
     return (
         <div className="w-full h-auto shadow-[0px_2px_6px_rgba(0,0,0,0.14)] p-[20px] rounded-[4px] bg-white">

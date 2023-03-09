@@ -105,7 +105,7 @@ export const ShippingDetailes = () => {
                     value={lastName}
                     onChange={e => handleLastName(e.target.value)}
                 />
-                <TextField label="Email" name="email" variant="outlined" size="small" className="col-span-2" value={email} disabled />
+                <TextField label="Email" name="email" variant="outlined" size="small" className="col-span-2" value={email} />
                 <TextField
                     label="Street Address"
                     name="streetAddress"
