@@ -23,6 +23,12 @@ const initialState = {
         postalCode: "",
         phone: "",
     },
+    billingSummary: {
+        subTotal: 0,
+        discount: 0,
+        shipping: 0,
+        tax: 0,
+    },
 };
 
 const checkoutDetailsSlice = createSlice({
@@ -65,6 +71,9 @@ const checkoutDetailsSlice = createSlice({
             state.shippingDetailes.postalCode = "";
             state.shippingDetailes.phone = "";
         },
+        addSubTotal: (state = initialState, action) => {
+            state.billingSummary.subTotal += action.payload;
+        },
     },
 });
 
@@ -76,4 +85,5 @@ export const {
     setShippingDetailes,
     checkBillingAndShoppingareSame,
     clearShippingDetailes,
+    addSubTotal,
 } = checkoutDetailsSlice.actions;

@@ -33,6 +33,8 @@ const OrderReviewCard = ({ product, cart, setCart }) => {
         dispatch(decreaseCartCount());
     };
 
+    useEffect(() => {}, [totalPrice]);
+
     return (
         <div className="flex items-center gap-3 w-full pb-5 border-b border-[#E0E0E0] mb-4">
             <div className="w-28">
