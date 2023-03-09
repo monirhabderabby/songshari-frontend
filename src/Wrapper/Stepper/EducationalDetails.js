@@ -14,9 +14,11 @@ import { usePhotosUploadOnServerMutation } from "../../Redux/features/fileUpload
 export const EducationalDetails = ({ setPage }) => {
   const [setEducationalDetails, { data: response, isLoading }] =
     useSetEducationalDetailsMutation();
-  const [uploadCertificate, { data: uploadedCertificate }] = usePhotosUploadOnServerMutation();
-  const [uploadMoreCertificate, { data: uploadedMoreCertificate }] = usePhotosUploadOnServerMutation();
-  
+  const [uploadCertificate, { data: uploadedCertificate }] =
+    usePhotosUploadOnServerMutation();
+  const [uploadMoreCertificate, { data: uploadedMoreCertificate }] =
+    usePhotosUploadOnServerMutation();
+
   const [degreeName, setDegreeName] = useState("");
   const [eduDepartment, setEduDepartment] = useState("");
   const [eduInstitute, setEduInstitute] = useState("");
@@ -31,6 +33,7 @@ export const EducationalDetails = ({ setPage }) => {
   const [addedFieldOfStudy, setAddedFieldOfStudy] = useState([]);
   const [addedYearOfPassing, setAddedYearOfPassing] = useState([]);
   const [eduAddedPhotoCertificate, setEduAddedPhotoCertificate] = useState([]);
+  console.log("array of certificates", eduAddedPhotoCertificate);
 
   useEffect(() => {
     if (uploadedCertificate)
@@ -39,7 +42,10 @@ export const EducationalDetails = ({ setPage }) => {
 
   useEffect(() => {
     if (uploadedMoreCertificate)
-      setEduAddedPhotoCertificate(()=>[...eduAddedPhotoCertificate, uploadedMoreCertificate?.data[0]?.path]);
+      setEduAddedPhotoCertificate(() => [
+        ...eduAddedPhotoCertificate,
+        uploadedMoreCertificate?.data[0]?.path,
+      ]);
   }, [uploadedMoreCertificate]);
 
   // testing array for more data field
