@@ -5,20 +5,24 @@ import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 import { RxCross2 } from "react-icons/rx";
 import { useDispatch } from "react-redux";
 import { calculatePercentage } from "../../../../../assets/utilities/CheckoutHelperCalculation/checkoutHelperCalculation";
+import { decreaseSubTotal, increaseSubTotal } from "../../../../../Redux/features/checkout/billingSummarySlice";
 import { decreaseCartCount } from "../../../../../Redux/features/Shop/shopSlice";
 
 const OrderReviewCard = ({ product, cart, setCart }) => {
     const [quantity, setQuantity] = useState(1);
     const [totalPrice, setTotalPrice] = useState(product.totalPrice);
+
     const dispatch = useDispatch();
     const { name, price, photos, discount, _id } = product || {};
 
     const productQuantityDecreaseHandler = () => {
+        dispatch(decreaseSubTotal(product?.price));
         if (quantity > 1) {
             setQuantity(prevCount => prevCount - 1);
         }
     };
     const productQuantityIncreaseHandler = () => {
+        dispatch(increaseSubTotal(product?.price));
         setQuantity(prevCount => prevCount + 1);
     };
     useEffect(() => {

@@ -1,14 +1,23 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 // Third party packages
 import { CaretRightOutlined } from "@ant-design/icons";
 import { Collapse } from "antd";
 
 // Components
+import { useDispatch } from "react-redux";
+import { sumPrices } from "../../../../../assets/utilities/CheckoutHelperCalculation/checkoutHelperCalculation";
+import { initialSubTotal } from "../../../../../Redux/features/checkout/billingSummarySlice";
 import OrderReviewCard from "../../../../shared/Cards/Shop/OrderReviewCard/OrderReviewCard";
 
 const OrderReview = () => {
+    const dispatch = useDispatch();
     const [cart, setCart] = useState(JSON.parse(localStorage.getItem("cart")) || []);
+
+    useEffect(() => {
+        dispatch(initialSubTotal(sumPrices(cart)));
+    }, [dispatch, cart]);
+
     const { Panel } = Collapse;
     const panelHeader = (
         <div>

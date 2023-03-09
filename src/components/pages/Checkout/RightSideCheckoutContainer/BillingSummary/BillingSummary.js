@@ -8,9 +8,9 @@ import TextField from "@mui/material/TextField";
 import { useSelector } from "react-redux";
 
 const BillingSummary = () => {
-    const billingSummary = useSelector(state => state.persistedReducer?.checkoutDetailes?.billingSummary);
+    const billingSummaryDetailes = useSelector(state => state.persistedReducer?.billingSummary?.billingSummary);
+    const { discount, shipping, subTotal, tax } = billingSummaryDetailes || {};
 
-    const { subTotal, discount, shipping, tax } = billingSummary || {};
     const checkLabel = (
         <p className="text-sm text-[#4F4F4F]">
             Please check to acknowledge <span className="text-[#1D68CD]">Our Privacy & Terms Policy</span>
