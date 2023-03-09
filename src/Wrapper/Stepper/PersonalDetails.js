@@ -228,28 +228,40 @@ export const PersonalDetails = ({ setPage }) => {
     }, [personalDetailsResponse, setPage]);
 
     const profilePhotoHandler = async e => {
-        setProfilePhotoName(e.target.files[0]?.name);
-        const formData = new FormData();
-        formData.append("image", e.target.files[0]);
-        uploadProfilePhoto(formData)
+        if (e.target.files[0]) {
+            setProfilePhotoName(e.target.files[0]?.name);
+            const formData = new FormData();
+            formData.append("image", e.target.files[0]);
+            uploadProfilePhoto(formData);
+        }
+        
     };
 
     const coverPhotoHandler = async e => {
-        setCoverPhotoName(e.target.files[0]?.name);
-        const formData = new FormData();
-        formData.append("image", e.target.files[0]);
-        uploadCoverPhoto(formData);
+        if (e.target.files[0]) {
+            setCoverPhotoName(e.target.files[0]?.name);
+            const formData = new FormData();
+            formData.append("image", e.target.files[0]);
+            uploadCoverPhoto(formData);
+        }
+        
     };
 
     const frontSideNIDHandler = async e => {
-        const formData = new FormData();
-        formData.append("image", e.target.files[0]);
-        uploadNIDFront(formData);
+        if (e.target.files[0]) {
+            const formData = new FormData();
+            formData.append("image", e.target.files[0]);
+            uploadNIDFront(formData);
+        }
+        
     };
     const backSideNIDHandler = async e => {
-        const formData = new FormData();
-        formData.append("image", e.target.files[0]);
-        uploadNIDBack(formData);
+        if (e.target.files[0]) {
+            const formData = new FormData();
+            formData.append("image", e.target.files[0]);
+            uploadNIDBack(formData);
+        }
+        
     };
 
     const onDateOfBirthChange = (date, dateString) => {

@@ -104,16 +104,21 @@ export const EducationalDetails = ({ setPage }) => {
   };
 
   const educationalAchievementMomentHandler = async (e) => {
-    setAchievementMomentName(e.target.files[0]?.name);
-    const formData = new FormData();
-    formData.append("image", e.target.files[0]);
-    uploadCertificate(formData);
+    if (e.target.files[0]) {
+      setAchievementMomentName(e.target.files[0]?.name);
+      const formData = new FormData();
+      formData.append("image", e.target.files[0]);
+      uploadCertificate(formData);
+    } 
   };
 
   const moreEduAddedAchievementMomentHandler = async (e) => {
-    const formData = new FormData();
-    formData.append("image", e.target.files[0]);
-    uploadMoreCertificate(formData);
+    if (e.target.files[0]) {
+      const formData = new FormData();
+      formData.append("image", e.target.files[0]);
+      uploadMoreCertificate(formData);
+     }
+    
   };
 
   useEffect(() => {

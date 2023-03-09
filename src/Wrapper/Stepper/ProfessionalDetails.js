@@ -89,17 +89,23 @@ export const ProfessionalDetails = ({ setPage }) => {
   };
 
   const specialAchievementMomentHandler = async (e) => {
-    const photo = e.target.files[0];
-    setAchievementMomentName(photo?.name);
-    const formData = new FormData();
-    formData.append("image", e.target.files[0]);
-    uploadCertificate(formData);
+    if (e.target.files[0]) {
+      const photo = e.target.files[0];
+      setAchievementMomentName(photo?.name);
+      const formData = new FormData();
+      formData.append("image", e.target.files[0]);
+      uploadCertificate(formData);
+    }
+    
   };
 
   const addedProfessionAchievementMomentHandler = async (e) => {
-    const formData = new FormData();
-    formData.append("image", e.target.files[0]);
-    uploadMoreCertificate(formData);
+    if (e.target.files[0]) {
+      const formData = new FormData();
+      formData.append("image", e.target.files[0]);
+      uploadMoreCertificate(formData);
+    }
+    
   };
 
   useEffect(() => {

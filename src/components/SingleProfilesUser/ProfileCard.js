@@ -2,19 +2,17 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 // Third party packages
-import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { AiFillCamera } from "react-icons/ai";
-import { v4 as uuidv4 } from "uuid";
 
 // components
 import blackLove from "../../assets/images/icons/blackLove.png";
 import { ageCalculator } from "../../assets/utilities/AgeCalculation/ageCalculator";
-import { firebaseStorage } from "../../firebase.init";
 import { useUpdateProfilePhotoMutation } from "../../Redux/features/userInfo/userApi";
 import { ProfileSkeletonLoader } from "../shared/Cards/Loader/Profile__Card__Skeleton__Loader/ProfileSkeletonLoader";
 
 // css files
 import "../../assets/css/profileCards.css";
+import { usePhotosUploadOnServerMutation } from "../../Redux/features/fileUpload/fileUploadApi";
 
 const ProfileCard = ({ data, isLoading }) => {
   // hook variables
@@ -23,7 +21,13 @@ const ProfileCard = ({ data, isLoading }) => {
 
   // Redux API
   const [updateProfilePhoto] = useUpdateProfilePhotoMutation();
-
+  const [uploadPhoto, { data: uploadedPhoto }] = usePhotosUploadOnServerMutation();
+useEffect(() => {
+  if (uploadedPhoto?.data)
+      console.log()
+      updateProfilePhoto({profilePhoto:uploadedPhoto?.data[0]?.path});
+}, [uploadedPhoto]);
+  
   useEffect(() => {
     if (data) {
       const age = ageCalculator(data?.dateOfBirth);
@@ -46,19 +50,11 @@ const ProfileCard = ({ data, isLoading }) => {
 
   // function declaration
   const profilePhotoUploadHandler = (e) => {
-    const photo = e.target.files[0];
-    const storageRef = ref(
-      firebaseStorage,
-      `profile/${photo?.name + uuidv4()}`
-    );
-    uploadBytes(storageRef, photo).then(async (snapshot) => {
-      await getDownloadURL(snapshot.ref).then((url) => {
-        const data = {
-          profilePhoto: url.toString(),
-        };
-        updateProfilePhoto(data);
-      });
-    });
+    if ( e.target.files[0]) {
+      const formData = new FormData();
+      formData.append("image", e.target.files[0]);
+      uploadPhoto(formData);
+    }
   };
 
   if (isLoading) {
