@@ -2,13 +2,10 @@
 import React, { useEffect } from "react";
 
 // Third party package
-import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
-import { v4 as uuidv4 } from "uuid";
 import { toast, Toaster } from "react-hot-toast";
 
 /* Components */
 import icon from "../../../../../assets/images/user profile/reUpload.png";
-import { firebaseStorage } from "../../../../../firebase.init";
 import { useResubmitAnyCertificateMutation } from "../../../../../Redux/features/Documents/documentsApi";
 import { usePhotosUploadOnServerMutation } from "../../../../../Redux/features/fileUpload/fileUploadApi";
 
@@ -41,7 +38,7 @@ const FileReuploadSection = ({ editFor, selectedCertificate }) => {
       });
     }
   }, [uploadedCertificate]);
-  
+
   return (
     <div className="font-sans mb-[145px]">
       <h1 className="font-semibold text-[32px] text-[#333333]">
