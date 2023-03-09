@@ -18,7 +18,6 @@ export const PhotoUploadCard = () => {
     photosUploadOnServer,
     { data: uploadedPhotos, isLoading, error: uploadError },
   ] = usePhotosUploadOnServerMutation();
-  console.log(uploadError);
   const [updatePhotosOnProfile, { error: updateError }] =
     useUpdatePhotosOnProfileMutation();
   const dispatch = useDispatch();
