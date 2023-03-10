@@ -16,7 +16,7 @@ const Shop = () => {
                 <MobileBackButton name="shop" />
             </div>
             {/* Shop Nav */}
-            <div className="flex items-center justify-start gap-3 lg:max-w-[1000px] xl:max-w-[1200px] mx-auto my-8 px-[12px]">
+            <div className="flex items-center justify-start gap-3 lg:max-w-[1000px] xl:max-w-[1200px] mx-auto my-8 px-[12px] md:px-[24px]">
                 <NavLink
                     to="/shop/shopProducts"
                     className={({ isActive }) =>
