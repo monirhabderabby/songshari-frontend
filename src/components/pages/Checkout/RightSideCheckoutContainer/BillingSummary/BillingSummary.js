@@ -2,6 +2,7 @@
 import React, { useEffect } from "react";
 
 // Third party package
+import { FormControl, FormControlLabel, FormGroup } from "@mui/material";
 import Checkbox from "@mui/material/Checkbox";
 import TextField from "@mui/material/TextField";
 import { useDispatch, useSelector } from "react-redux";
@@ -53,10 +54,19 @@ const BillingSummary = () => {
                         className="w-full"
                     />
                 </div>
-                <div style={{ display: "flex", alignItems: "start", marginBottom: "8px", height: "50px" }}>
-                    <Checkbox />
-                    <label className="text-[14px] font-Nunito">I agree to the Terms of Service and Privacy Policy</label>
-                </div>
+                <FormControl>
+                    <FormGroup>
+                        <FormControlLabel
+                            control={<Checkbox checked name="gilad" />}
+                            label={
+                                <p>
+                                    I agree with the <span className="text-blue-500">Terms</span> and
+                                    <span className="text-blue-500"> Condition</span>
+                                </p>
+                            }
+                        />
+                    </FormGroup>
+                </FormControl>
                 <button
                     className="w-full font-bold text-[#F6F6F6] py-[10px] rounded-md"
                     style={{

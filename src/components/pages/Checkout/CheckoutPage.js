@@ -3,6 +3,7 @@ import { decodeToken } from "react-jwt";
 import { useDispatch, useSelector } from "react-redux";
 import getCookie from "../../../Helper/cookies/getCookie";
 import { setBillingDetailesInitialState } from "../../../Redux/features/checkout/checkoutDetailsSlice";
+import { MobileBackButton } from "../../shared/Components/MobileBackButton";
 import CustomHeader from "../../shared/CustomHeader/CustomHeader";
 import { LeftSideCheckoutContainer } from "./LeftSideCheckoutContainer/LeftSideCheckoutContainer";
 import { RightSideCheckoutContainer } from "./RightSideCheckoutContainer/RightSideCheckoutContainer";
@@ -23,12 +24,16 @@ export const CheckoutPage = () => {
             })
         );
     }, [dispatch, firstName, lastName, email]);
+
     return (
         <div className="bg-[#FAFBFF] lg:min-h-[2700px]">
             <div className="hidden lg:block">
                 <CustomHeader title="Checkout" />
             </div>
-            <section className="max-w-[1200px] mx-auto px-[20px] mt-[81px]">
+            <div className=" lg:hidden">
+                <MobileBackButton name="Checkout" />
+            </div>
+            <section className="max-w-[1200px] mx-auto px-[20px] mt-[21px] lg:mt-[81px]">
                 <div className="w-full flex flex-col lg:flex-row gap-x-[24px] gap-y-[20px]">
                     <div className="left_side w-full lg:w-[570px] h-auto lg:h-[430px] mx-auto bg-[#FAFBFF]">
                         <LeftSideCheckoutContainer />
