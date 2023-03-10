@@ -6,7 +6,6 @@ import { FaUserAltSlash } from "react-icons/fa";
 import { useNavigate } from "react-router";
 
 import "../../../App.css";
-import liveLinkGenerator from "../../../assets/utilities/liveLink/liveLinkGenerator";
 
 export const DynamicPhotosContainer = ({ data, isLoading, error }) => {
     // hook variable declaration
@@ -58,7 +57,7 @@ export const DynamicPhotosContainer = ({ data, isLoading, error }) => {
                         <div
                             key={index}
                             className="h-[101px] w-[86px] bg-center bg-cover duration-300 rounded-[15px]"
-                            style={{ backgroundImage: `url(${liveLinkGenerator(photo)})` }}
+                            style={{ backgroundImage: `url(${photo})` }}
                         ></div>
                     );
                 })}

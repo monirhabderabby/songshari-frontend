@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 // Third party package
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
@@ -9,32 +9,21 @@ import { toast, Toaster } from "react-hot-toast";
 // Components
 import { firebaseStorage } from "../../../../../firebase.init";
 import { useAddNewCertificateMutation } from "../../../../../Redux/features/userInfo/userApi";
+import { usePhotosUploadOnServerMutation } from "../../../../../Redux/features/fileUpload/fileUploadApi";
 
 const FileUploadSection = ({ editFor, selectedCertificate }) => {
   // Redux api
   const [addNewCertificate, { data: response, isLoading, error }] =
     useAddNewCertificateMutation();
-
+  const [uploadCertificate, { data: uploadedCertificate }] =
+    usePhotosUploadOnServerMutation();
   // handle file upload change data
   const handleUpload = async (e) => {
-    const photo = e.target.files[0];
-    const storageRef = ref(firebaseStorage, `cover/${photo?.name + uuidv4()}`);
-    uploadBytes(storageRef, photo).then(async (snapshot) => {
-      await getDownloadURL(snapshot.ref).then((url) => {
-        if (editFor === "educational") {
-          addNewCertificate({
-            data: { photos: [url.toString()] },
-            id: selectedCertificate?.parentId,
-          });
-        }
-        if (editFor === "professional") {
-          addNewCertificate({
-            data: { photos: [url.toString()] },
-            id: selectedCertificate?.parentId,
-          });
-        }
-      });
-    });
+    if (e.target.files[0]) {
+      const formData = new FormData();
+      formData.append("image", e.target.files[0]);
+      uploadCertificate(formData);
+    }
   };
 
   if (response) {
@@ -44,6 +33,14 @@ const FileUploadSection = ({ editFor, selectedCertificate }) => {
   if (error) {
     toast.error("Error : Please try again");
   }
+
+  useEffect(() => {
+    if (uploadedCertificate)
+      addNewCertificate({
+        data: { photos: [uploadedCertificate?.data[0]?.path] },
+        id: selectedCertificate?.parentId,
+      });
+  }, [uploadedCertificate]);
 
   return (
     <section className="py-2 mt-[145px] mb-[145px]">

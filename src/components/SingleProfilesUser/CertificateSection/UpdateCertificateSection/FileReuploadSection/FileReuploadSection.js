@@ -1,51 +1,43 @@
 // Configuration
-import React from "react";
+import React, { useEffect } from "react";
 
 // Third party package
-import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
-import { v4 as uuidv4 } from "uuid";
 import { toast, Toaster } from "react-hot-toast";
 
 /* Components */
 import icon from "../../../../../assets/images/user profile/reUpload.png";
-import { firebaseStorage } from "../../../../../firebase.init";
 import { useResubmitAnyCertificateMutation } from "../../../../../Redux/features/Documents/documentsApi";
+import { usePhotosUploadOnServerMutation } from "../../../../../Redux/features/fileUpload/fileUploadApi";
 
 const FileReuploadSection = ({ editFor, selectedCertificate }) => {
   const [resubmitCertificate, { data: response, isLoading: loading }] =
     useResubmitAnyCertificateMutation();
+  const [uploadCertificate, { data: uploadedCertificate }] =
+    usePhotosUploadOnServerMutation();
 
   // handle file upload change data
   const handleUpload = async (e) => {
-    const photo = e.target.files[0];
-    const storageRef = ref(firebaseStorage, `cover/${photo?.name + uuidv4()}`);
-    uploadBytes(storageRef, photo).then(async (snapshot) => {
-      await getDownloadURL(snapshot.ref).then((url) => {
-        if (editFor === "educational") {
-          resubmitCertificate({
-            id: selectedCertificate.parentId,
-            data: {
-              photoId: selectedCertificate?._id,
-              newPhoto: url.toString(),
-            },
-          });
-        }
-        if (editFor === "professional") {
-          resubmitCertificate({
-            id: selectedCertificate.parentId,
-            data: {
-              photoId: selectedCertificate?._id,
-              newPhoto: url.toString(),
-            },
-          });
-        }
-      });
-    });
+    if (e.target.files[0]) {
+      const formData = new FormData();
+      formData.append("image", e.target.files[0]);
+      uploadCertificate(formData);
+    }
   };
 
   if (response) {
     toast.success("Successfully Re-uploaded");
   }
+  useEffect(() => {
+    if (uploadedCertificate) {
+      resubmitCertificate({
+        id: selectedCertificate.parentId,
+        data: {
+          photoId: selectedCertificate?._id,
+          newPhoto: uploadedCertificate?.data[0]?.path,
+        },
+      });
+    }
+  }, [uploadedCertificate]);
 
   return (
     <div className="font-sans mb-[145px]">

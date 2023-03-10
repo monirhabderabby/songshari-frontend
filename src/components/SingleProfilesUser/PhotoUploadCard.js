@@ -27,7 +27,7 @@ export const PhotoUploadCard = () => {
     const files = e.target.files;
     const formData = new FormData();
     for (let i = 0; i < files.length; i++) {
-      formData.append("photos", files[i]);
+      formData.append("image", files[i]);
     }
     // console.log(formData.get("photos"));
     photosUploadOnServer(formData);

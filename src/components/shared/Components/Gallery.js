@@ -7,7 +7,6 @@ import { AiOutlineWarning } from "react-icons/ai";
 import { MdNoPhotography } from "react-icons/md";
 
 // components
-import liveLinkGenerator from "../../../assets/utilities/liveLink/liveLinkGenerator";
 import useDocumentTitle from "../../../assets/utilities/useDocumentTitle";
 import { useGetProfileDetailsQuery } from "../../../Redux/features/userInfo/userApi";
 import CustomHeader from "../CustomHeader/CustomHeader";
@@ -62,7 +61,7 @@ export const Gallery = () => {
           return (
             <img
               key={index}
-              src={liveLinkGenerator(photo)}
+              src={photo}
               alt="userPhotos"
               className={`rounded-[15px] h-[375px] w-[370px] ${
                 index === 0 && "col-span-2 row-span-2 h-[780px] w-[774px]"

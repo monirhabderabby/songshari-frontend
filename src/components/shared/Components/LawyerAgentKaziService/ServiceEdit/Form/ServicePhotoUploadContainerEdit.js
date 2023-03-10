@@ -4,7 +4,6 @@ import React, { useCallback, useEffect } from "react";
 import { useDropzone } from "react-dropzone";
 
 // Components
-import liveLinkGenerator from "../../../../../../assets/utilities/liveLink/liveLinkGenerator";
 import { usePhotosUploadOnServerMutation } from "../../../../../../Redux/features/fileUpload/fileUploadApi";
 import { OvalLoader } from "../../../../Cards/Loader/OvalLoader/OvalLoader";
 
@@ -57,7 +56,7 @@ export const ServicePhotoUploadContainerEdit = ({ setPhotos, photos }) => {
         content = (
             <div className="w-full flex flex-wrap justify-center items-center gap-5">
                 {photos?.map((photo, index) => {
-                    return <img key={index} className="w-[80px] h-[80px] rounded-[4px]" src={liveLinkGenerator(photo)} alt="servicePhoto" />;
+                    return <img key={index} className="w-[80px] h-[80px] rounded-[4px]" src={photo} alt="servicePhoto" />;
                 })}
             </div>
         );

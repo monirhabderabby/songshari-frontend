@@ -3,7 +3,6 @@ import React, { useCallback, useEffect } from "react";
 // Third party package
 import { useDropzone } from "react-dropzone";
 import { toast, Toaster } from "react-hot-toast";
-import liveLinkGenerator from "../../../../assets/utilities/liveLink/liveLinkGenerator";
 
 // Components
 import { usePhotosUploadOnServerMutation } from "../../../../Redux/features/fileUpload/fileUploadApi";
@@ -60,7 +59,7 @@ export const ProfessionProofFields = ({ setCertificate, certificate }) => {
                   ) : !isLoading && certificate ? (
                     <img
                       className="w-[80px] h-[80px] rounded-[4px]"
-                      src={liveLinkGenerator(certificate)}
+                      src={certificate}
                       alt="servicePhoto"
                     />
                   ) : (

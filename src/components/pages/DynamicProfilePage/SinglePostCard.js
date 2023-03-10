@@ -8,7 +8,6 @@ import { BsThreeDotsVertical } from "react-icons/bs";
 
 // components
 import love from "../../../assets/images/icons/coolicon.svg";
-import liveLinkGenerator from "../../../assets/utilities/liveLink/liveLinkGenerator";
 import timeAgo from "../../../assets/utilities/TimeCalculator/TimeAgo";
 import { useLikeSinglePostMutation } from "../../../Redux/features/connections/connectionApi";
 import { useDeletePostMutation } from "../../../Redux/features/Post/postApi";
@@ -106,7 +105,7 @@ const SinglePostCard = ({ post }) => {
           {post?.attachment?.length > 0 && (
             <img
               className="mt-[23px] max-h-[390px] w-full"
-              src={liveLinkGenerator(post?.attachment[0])}
+              src={post?.attachment[0]}
               alt=""
             />
           )}
