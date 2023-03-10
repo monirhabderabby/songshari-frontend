@@ -1,13 +1,11 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from "react";
 
 // Third party package
-import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
-import { v4 as uuidv4 } from "uuid";
 import { IoMdCloudUpload } from "react-icons/io";
 import { toast, Toaster } from "react-hot-toast";
 
 // Components
-import { firebaseStorage } from "../../../../../firebase.init";
 import { useAddNewCertificateMutation } from "../../../../../Redux/features/userInfo/userApi";
 import { usePhotosUploadOnServerMutation } from "../../../../../Redux/features/fileUpload/fileUploadApi";
 
