@@ -24,14 +24,16 @@ export const CheckoutPage = () => {
         );
     }, [dispatch, firstName, lastName, email]);
     return (
-        <div className="bg-[#FAFBFF] min-h-[2700px]">
-            <CustomHeader title="Checkout" />
+        <div className="bg-[#FAFBFF] lg:min-h-[2700px]">
+            <div className="hidden lg:block">
+                <CustomHeader title="Checkout" />
+            </div>
             <section className="max-w-[1200px] mx-auto px-[20px] mt-[81px]">
-                <div className="w-full grid grid-cols-2 gap-x-[24px]">
-                    <div className="left_side w-[570px] h-[430px] mx-auto bg-[#FAFBFF]">
+                <div className="w-full flex flex-col lg:flex-row gap-x-[24px] gap-y-[20px]">
+                    <div className="left_side w-full lg:w-[570px] h-auto lg:h-[430px] mx-auto bg-[#FAFBFF]">
                         <LeftSideCheckoutContainer />
                     </div>
-                    <div className="right_Side w-[370px] h-[430px] mx-auto">
+                    <div className="right_Side w-full lg:w-[370px] h-auto lg:h-[430px] mx-auto">
                         <RightSideCheckoutContainer />
                     </div>
                 </div>
