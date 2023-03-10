@@ -1,12 +1,34 @@
 // configuration
-import React from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import React, { useEffect, useState } from "react";
 
 // Third party packages
 import { CiShoppingCart } from "react-icons/ci";
 
 const TopMonthSellerCard = ({ picture }) => {
+    const [scrollDirection, setScrollDirection] = useState(null);
+
+    useEffect(() => {
+        function handleScroll() {
+            const lastScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            if (lastScrollTop > 0) {
+                setScrollDirection(lastScrollTop > window.lastScrollTop ? "down" : "up");
+                window.lastScrollTop = lastScrollTop;
+            }
+        }
+        window.addEventListener("scroll", handleScroll);
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+        };
+    }, []);
+
+    useEffect(() => {
+        document.querySelector(".my-element").setAttribute("data-aos", `fade-${scrollDirection}`);
+        AOS.refresh();
+    }, [scrollDirection]);
     return (
-        <div className="bg-gray-50 mx-auto rounded-xl" data-aos-easing="ease-out-cubic" data-aos-duration="1000" data-aos="fade-up">
+        <div className="bg-gray-50 mx-auto rounded-xl my-element" data-aos-easing="ease-out-cubic" data-aos-duration="1000" data-aos="fade-up">
             <div className="py-6 px-3">
                 <img src={picture} alt="userImage" className="w-[280px] h-[188px] rounded-[12px]" />
                 <div className="mt-[16px]">
