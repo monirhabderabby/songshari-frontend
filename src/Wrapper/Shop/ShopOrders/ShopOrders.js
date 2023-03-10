@@ -7,7 +7,7 @@ import { OrderHistoryContainer } from "./OrderHistoryContainer";
 
 const ShopOrders = () => {
     return (
-        <div className="pb-[300px]">
+        <div className="pb-[300px] px-[12px]">
             <OnGoingOrderContainer />
             <OrderHistoryContainer />
         </div>
