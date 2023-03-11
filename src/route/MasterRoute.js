@@ -6,6 +6,7 @@ import AgentServicesPage from "../components/pages/Agent/AgentServicesPage/Agent
 
 // Components
 import KaziServicesPage from "../components/pages/Kazi/KaziServices/KaziServicesPages";
+import { Account } from "../components/pages/MyOrders/Account";
 import { NotFoundPage } from "../components/shared/404/NotFoundPage";
 import RequireAuth from "../components/shared/RequireAuth/RequireAuth";
 import RequireAuthMobile from "../components/shared/RequireAuth/RequireAuthMobile";
@@ -19,6 +20,7 @@ import matrimonyPrivateRoutes from "./Matrimony/matrimonyPrivateRoutes";
 import matrimonyRoutes from "./Matrimony/matrimonyRoutes";
 import mobileMatrimony from "./Matrimony/MobileMatrimony/Mobilematrimony";
 import mobileMatrimonyPrivateRoutes from "./Matrimony/MobileMatrimony/MobileMatrimonyPrivateRoutes";
+import myAccountPrivateRoutes from "./Matrimony/myAcount/myAccountPrivateRoutes";
 import shopPrivateRoutes from "./shop/shopPrivateRoutes";
 
 const MasterRoute = () => {
@@ -175,6 +177,17 @@ const MasterRoute = () => {
                         <Route key={route.id} path={route.path} element={<RequireAuth>{route.element}</RequireAuth>}>
                             {route.nestedRoutes.map(route => {
                                 return <Route key={route.id} path={route.path} element={route.element} />;
+                            })}
+                        </Route>
+                    );
+                })}
+                {/* my Account Private Routes */}
+                {myAccountPrivateRoutes.map(route => {
+                    return (
+                        <Route path={route.path} element={route.element}>
+                            <Route index element={<Account />} />
+                            {route.nestedRoutes.map(route => {
+                                return <Route path={route.path} element={route.element} />;
                             })}
                         </Route>
                     );

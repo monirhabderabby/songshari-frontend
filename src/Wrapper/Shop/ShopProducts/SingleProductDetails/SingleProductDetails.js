@@ -86,17 +86,20 @@ const SingleProductDetails = () => {
         );
     } else if (!isLoading && productData) {
         content = (
-            <div className="flex justify-between items-start mb-20">
-                <div className="max-w-[700px]">
+            <div className="flex flex-col lg:flex-row justify-between items-start mb-20 px-[16px]">
+                <div className="w-full lg:max-w-[700px]">
                     <div className="mb-20">
                         <SingleProductImages {...{ data, product }} />
                     </div>
-                    <div>
+                    <div className="hidden lg:block">
                         <SingleProductOtherDetails {...{ data, description }} />
                     </div>
                 </div>
-                <div className="max-w-[432px]">
+                <div className="w-full lg:max-w-[432px]">
                     <SingleProductBasicDetails {...{ data, product }} />
+                    <div className=" lg:hidden mt-[12px]">
+                        <SingleProductOtherDetails {...{ data, description }} />
+                    </div>
                 </div>
             </div>
         );

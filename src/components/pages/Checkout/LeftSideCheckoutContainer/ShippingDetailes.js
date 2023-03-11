@@ -96,6 +96,7 @@ export const ShippingDetailes = () => {
                     size="small"
                     value={firstName}
                     onChange={e => handleFirstName(e.target.value)}
+                    className="col-span-2 md:col-span-1"
                 />
                 <TextField
                     label="Last Name"
@@ -104,6 +105,7 @@ export const ShippingDetailes = () => {
                     size="small"
                     value={lastName}
                     onChange={e => handleLastName(e.target.value)}
+                    className="col-span-2 md:col-span-1"
                 />
                 <TextField label="Email" name="email" variant="outlined" size="small" className="col-span-2" value={email} />
                 <TextField

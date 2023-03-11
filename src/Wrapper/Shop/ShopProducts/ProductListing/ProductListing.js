@@ -50,10 +50,10 @@ const ProductListing = () => {
         );
     } else if (!isLoading && products?.length > 0) {
         content = (
-            <Swiper slidesPerView={"auto"} spaceBetween={30}>
+            <Swiper slidesPerView={"auto"} spaceBetween={20}>
                 {products?.map(product => {
                     return (
-                        <SwiperSlide key={product?._id} className="w-[615px] overflow-hidden">
+                        <SwiperSlide key={product?._id} className="w-full md:w-[615px] overflow-hidden">
                             <ProductListingCard product={product} />
                         </SwiperSlide>
                     );
@@ -63,8 +63,8 @@ const ProductListing = () => {
     }
 
     return (
-        <div className="mb-28">
-            <p className="text-[#272727] font-semibold text-[32px] text-left mt-14 mb-8">Listing</p>
+        <div className="mb-14 lg:mb-28 px-[12px] md:px-[24px]">
+            <p className="text-[#272727] font-semibold text-[32px] text-left mt-6 lg:mt-14 mb-0 lg:mb-8">Listing</p>
             {content}
         </div>
     );

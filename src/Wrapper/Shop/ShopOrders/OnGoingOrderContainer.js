@@ -12,7 +12,7 @@ export const OnGoingOrderContainer = () => {
     return (
         <div>
             <h3 className="text-[32px] font-bold font-Poppins text-left text-[#00000]">Ongoing order</h3>
-            <div className="mt-[40px] grid grid-cols-4 gap-x-[10px] gap-y-[16px]">
+            <div className="mt-[40px] grid grid-cols-2 lg:grid-cols-4 gap-x-[10px] gap-y-[16px]">
                 {arr.map(p => {
                     return <OnGoingOrderCard key={p} />;
                 })}

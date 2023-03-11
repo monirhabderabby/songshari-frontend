@@ -20,7 +20,7 @@ export const CardOfCart = ({ product, index, cart, setCart }) => {
     };
 
     return (
-        <div className="w-full h-auto lg:h-[229px] bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] shadow-[0px_0px_4px_rgba(0,0,0,0.1), 0px_2px_4px_rgba(0,0,0,0.1)] rounded-[24px] px-[12px] lg:px-[36px] relative">
+        <div className="w-full h-auto lg:h-[229px] bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] shadow-[0px_0px_4px_rgba(0,0,0,0.1), 0px_2px_4px_rgba(0,0,0,0.1)] rounded-[12px] lg:rounded-[24px] px-[12px] lg:px-[36px] relative">
             <div className="w-[30px] h-[30px] lg:w-[40px] lg:h-[48px] bg-[#942DD9] rounded-[0px_0px_20px_20px] text-white text-bold font-Inter text-[10px] lg:text-[20px] flex justify-center items-center mb-[15px] lg:mb-0">
                 0{index + 1}
             </div>
@@ -36,7 +36,7 @@ export const CardOfCart = ({ product, index, cart, setCart }) => {
                                 <p className="text-[14px] lg:text-[20px] font-Inter font-semibold text-white">{name}</p>
                                 <p className="text-[#FFFFFF] font-Inter font-bold text-[20px] mt-[12px]">৳{price}</p>
                             </div>
-                            <img src={photos[0]?.url} alt="ProductImage" className="max-w-[250px] lg:w-[121px] lg:h-[117px] rounded-[12px]" />
+                            <img src={photos[0]?.url} alt="ProductImage" className="w-full lg:w-[121px] h-[150px] lg:h-[117px] rounded-[12px]" />
                         </div>
                     </div>
                     <button
