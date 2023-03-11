@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 // configuration, ex: react-router
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";

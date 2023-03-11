@@ -4,7 +4,6 @@ import React, { useEffect, useState } from "react";
 // Components
 import { BiUserCheck, BiUserPlus } from "react-icons/bi";
 import { MdMessage } from "react-icons/md";
-import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
 // import { setUser } from "../../../../Redux/chat/chatReducer";
 import { useAddFriendMutation } from "../../../../Redux/features/connections/connectionApi";

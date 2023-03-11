@@ -1,14 +1,12 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 // configuration
 import React, { useEffect, useState } from "react";
 
 // Third party packages
-import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { toast, Toaster } from "react-hot-toast";
 import { AiFillCamera } from "react-icons/ai";
-import { v4 as uuidv4 } from "uuid";
 
 // Components
-import { firebaseStorage } from "../../../firebase.init";
 import {
   useGetProfileDetailsWIthAuthQuery,
   useSetPersonalDetailsMutation,
