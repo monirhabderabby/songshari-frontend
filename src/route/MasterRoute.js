@@ -1,50 +1,29 @@
 // Configuration
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import LawyerServicesPage from "../components/Lawyer/LawyerServicesPage/LawyerServicesPage";
 
 // Components
-import KaziServicesPage from "../components/pages/Kazi/KaziServices/KaziServicesPages";
 import { NotFoundPage } from "../components/shared/404/NotFoundPage";
-import RequireAuth from "../components/shared/RequireAuth/RequireAuth";
 import RequireAuthMobile from "../components/shared/RequireAuth/RequireAuthMobile";
-import ShopProducts from "../Wrapper/Shop/ShopProducts/ShopProducts";
 import agentRouteRenderer from "./Agent/agentRouteRenderer";
-import AgentRoutes from "./Agent/AgentRoutes";
-import kaziPrivateRoutes from "./Kazi/kaziPrivateRoutes";
-import kaziRoutes from "./Kazi/kaziRoutes";
-import lawyerPrivateRoutes from "./lawyer/LawyerPrivateRoutes";
-import matrimonyPrivateRoutes from "./Matrimony/matrimonyPrivateRoutes";
-import matrimonyRoutes from "./Matrimony/matrimonyRoutes";
+import kaziPublicRouteRenderer from "./Kazi/kaziPublicRouteRenderer";
+import kaziRouteRenderer from "./Kazi/kaziRouteRenderer";
+import lawyerRouteRenderer from "./lawyer/lawyerRouteRenderer";
+import matrimonyPublicRouteRenderer from "./Matrimony/matrimonyPublicRouteRenderer";
+import matrimonyRouteRenderer from "./Matrimony/matrimonyRouteRenderer";
 import mobileMatrimony from "./Matrimony/MobileMatrimony/Mobilematrimony";
 import mobileMatrimonyPrivateRoutes from "./Matrimony/MobileMatrimony/MobileMatrimonyPrivateRoutes";
 import myAccountRouteRenderer from "./myAcount/myAccountRouteRenderer";
-import shopPrivateRoutes from "./shop/shopPrivateRoutes";
+import shopRouteRenderer from "./shop/shopRouteRenderer";
 
 const MasterRoute = () => {
     return (
         <BrowserRouter>
-            {/* MATRIMONY DESKTOP ROUTES */}
             <Routes>
-                {matrimonyRoutes.map(route => (
-                    <Route key={route.path} path={route.path} element={route.element}>
-                        {route?.nestedRoutes?.map(route => (
-                            <Route key={route.id} path={route?.path && route.path} element={route?.element && route.element} />
-                        ))}
-                    </Route>
-                ))}
+                {/* MATRIMONY PUBLIC ROUTE */}
+                {matrimonyPublicRouteRenderer()}
                 {/* MATRIMONY PRIVATE ROUTES */}
-                {matrimonyPrivateRoutes.map(route => (
-                    <Route key={route.path} path={route.path} element={<RequireAuth>{route.element}</RequireAuth>}>
-                        {route.nestedRoutes?.map(route => (
-                            <Route key={route.path} path={route?.path && route.path} element={route?.element && route.element}>
-                                {route.nestedRoutes?.map(route => (
-                                    <Route key={route.id} path={route.path} element={<RequireAuth>{route.element}</RequireAuth>} />
-                                ))}
-                            </Route>
-                        ))}
-                    </Route>
-                ))}
+                {matrimonyRouteRenderer()}
                 {/* MATRIMONY MOBILE ROUTES */}
                 {mobileMatrimony.map(route => (
                     <Route key={route.id} path={route.path} element={route.element}>
@@ -62,96 +41,17 @@ const MasterRoute = () => {
                     </Route>
                 ))}
                 {/* KAZI ROUTES */}
-                {kaziRoutes.map(route => {
-                    return (
-                        <Route key={route.id} path={route.path} element={route.element}>
-                            {route.nestedRoutes?.map(route => {
-                                return <Route key={route.id} path={route.path} element={route.element} />;
-                            })}
-                        </Route>
-                    );
-                })}
+                {kaziPublicRouteRenderer()}
                 {/* KAZI PRIVATE ROUTES */}
-                {kaziPrivateRoutes.map(route => {
-                    return (
-                        <Route key={route.id} path={route.path} element={<RequireAuth>{route.element}</RequireAuth>}>
-                            <Route index element={<KaziServicesPage />} />
-                            {route.nestedRoutes?.map(route => {
-                                return (
-                                    <Route key={route.id} path={route.path} element={<RequireAuth>{route.element}</RequireAuth>}>
-                                        {route.nestedRoutes?.map(route => {
-                                            return (
-                                                <Route key={route.id} path={route.path} element={route.element}>
-                                                    {route.nestedRoutes?.map(route => {
-                                                        return (
-                                                            <Route
-                                                                key={route.id}
-                                                                path={route.path}
-                                                                element={<RequireAuth>{route.element}</RequireAuth>}
-                                                            />
-                                                        );
-                                                    })}
-                                                </Route>
-                                            );
-                                        })}
-                                    </Route>
-                                );
-                            })}
-                        </Route>
-                    );
-                })}
+                {kaziRouteRenderer()}
                 {/* SHOP PRIVATE ROUTES */}
-                {shopPrivateRoutes.map(route => {
-                    return (
-                        <Route key={route.id} path={route.path} element={<RequireAuth>{route.element}</RequireAuth>}>
-                            <Route index element={<ShopProducts />} />
-                            {route.nestedRoutes?.map(route => {
-                                return <Route key={route.id} path={route.path} element={<RequireAuth>{route.element}</RequireAuth>} />;
-                            })}
-                        </Route>
-                    );
-                })}
+                {shopRouteRenderer()}
                 {/* LAWYER PRIVATE ROUTES */}
-                {lawyerPrivateRoutes.map(route => {
-                    return (
-                        <Route key={route.id} path={route.path} element={<RequireAuth>{route.element}</RequireAuth>}>
-                            <Route index element={<LawyerServicesPage />} />
-                            {route.nestedRoutes?.map(route => {
-                                return (
-                                    <Route key={route.id} path={route.path} element={<RequireAuth>{route.element}</RequireAuth>}>
-                                        {route.nestedRoutes?.map(route => {
-                                            return (
-                                                <Route key={route.id} path={route.path} element={<RequireAuth>{route.element}</RequireAuth>}>
-                                                    {route.nestedRoutes?.map(route => {
-                                                        return (
-                                                            <Route
-                                                                key={route.id}
-                                                                path={route.path}
-                                                                element={<RequireAuth>{route.element}</RequireAuth>}
-                                                            />
-                                                        );
-                                                    })}
-                                                </Route>
-                                            );
-                                        })}
-                                    </Route>
-                                );
-                            })}
-                        </Route>
-                    );
-                })}
+                {lawyerRouteRenderer()}
                 {/* Agent PublicRoutes */}
-                {AgentRoutes.map(route => {
-                    return (
-                        <Route key={route.id} path={route.path} element={<RequireAuth>{route.element}</RequireAuth>}>
-                            {route.nestedRoutes.map(route => {
-                                return <Route key={route.id} path={route.path} element={route.element} />;
-                            })}
-                        </Route>
-                    );
-                })}
-                {myAccountRouteRenderer()}
                 {agentRouteRenderer()}
+                {/* my account private routes */}
+                {myAccountRouteRenderer()}
                 <Route path="*" element={<NotFoundPage />} />
             </Routes>
         </BrowserRouter>
