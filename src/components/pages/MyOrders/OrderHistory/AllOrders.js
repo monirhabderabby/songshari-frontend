@@ -9,7 +9,13 @@ export const AllOrders = () => {
         <div className="flex flex-col gap-y-[20px] h-auto">
             {arr.map(item => {
                 return (
-                    <div key={item} className="h-auto py-[22px] shadow-[rgba(0,0,0,0.24)_0px_3px_8px] rounded-[6px] px-[16px]">
+                    <div
+                        key={item}
+                        className="h-auto py-[22px] shadow-[rgba(0,0,0,0.24)_0px_3px_8px] rounded-[6px] px-[16px]"
+                        data-aos-easing="ease-out-cubic"
+                        data-aos-duration="1000"
+                        data-aos="fade-up"
+                    >
                         {/* header part */}
                         <OrderStatusHeader />
 

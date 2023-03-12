@@ -1,9 +1,8 @@
 import { Tooltip } from "@mui/material";
 import React from "react";
-import { FcShop } from "react-icons/fc";
-import { FiSettings } from "react-icons/fi";
+import { BsShopWindow } from "react-icons/bs";
 import { HiOutlineMail } from "react-icons/hi";
-import { MdOutlineNotificationsActive } from "react-icons/md";
+import { MdManageAccounts, MdOutlineNotificationsActive } from "react-icons/md";
 import { useNavigate } from "react-router";
 
 const UtilitisCard = ({ data }) => {
@@ -42,22 +41,28 @@ const UtilitisCard = ({ data }) => {
                 </Tooltip>
 
                 <Tooltip title="Setting">
-                    <div className="w-12 h-12 flex items-center justify-center rounded-full bg-[#F8E9F7]">
+                    <div
+                        className="w-12 h-12 flex items-center justify-center rounded-full bg-[#F8E9F7]"
+                        onClick={() => navigate("/my-orders/account")}
+                    >
                         <button
                             type="button"
                             className="w-12 h-12 rounded-full inline-flex relative items-center p-3 text-xl text-center text-white "
                         >
-                            <FiSettings className="text-lg text-[#0000EE] ml-[2px]" />
+                            <MdManageAccounts className="text-lg text-[#0000EE] ml-[2px]" />
                         </button>
                     </div>
                 </Tooltip>
                 <Tooltip title="My Orders">
-                    <div className="w-12 h-12 flex items-center justify-center rounded-full bg-[#F8E9F7]" onClick={() => navigate("/my-orders")}>
+                    <div
+                        className="w-12 h-12 flex items-center justify-center rounded-full bg-[#F8E9F7]"
+                        onClick={() => navigate("/my-orders/orderStatus")}
+                    >
                         <button
                             type="button"
                             className="w-12 h-12 rounded-full inline-flex relative items-center p-3 text-xl text-center text-white "
                         >
-                            <FcShop className="text-lg text-[#0000EE] ml-[2px]" />
+                            <BsShopWindow className="text-lg text-[#0000EE] ml-[2px]" />
                         </button>
                     </div>
                 </Tooltip>
