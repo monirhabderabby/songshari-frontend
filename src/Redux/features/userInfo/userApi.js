@@ -283,6 +283,14 @@ export const userApi = apiSlice.injectEndpoints({
         },
       }),
     }),
+    getUserBadges: builder.query({
+      query: () => ({
+        url: `/member/badges`,
+        headers: {
+          authorization: `Bearer ${getCookie("token")}`,
+        },
+      }),
+    }),
   }),
 });
 
@@ -315,4 +323,5 @@ export const {
   useUpdateSiblingDetailMutation,
   useAddNewCertificateMutation,
   useGetUsersAllNotificationQuery,
+  useGetUserBadgesQuery
 } = userApi;

@@ -17,6 +17,7 @@ import { SocialMediaBox } from "./SocialMediaBox/SocialMediaBox";
 import Table from "./Table/Table";
 import UtilitisCard from "./UtilitisCard";
 import { VerificationCard } from "./VerificationCard";
+import {Badges} from "./../../components/SingleProfilesUser/Badges"
 
 export const SingleProfiles = () => {
   // hook variable declaration
@@ -61,7 +62,7 @@ export const SingleProfiles = () => {
                     />
                   )}
                   <VerificationCard title={true} mt="24px" height="125px" />
-                  {/* <Badges /> */}
+                  <Badges />
                   <UtilitisCard {...{ data }} />
                   <IntroCard {...{ data, isLoading, error }} />
                   <PhotoUploadCard />
