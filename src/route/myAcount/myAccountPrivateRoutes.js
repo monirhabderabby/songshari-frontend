@@ -1,6 +1,6 @@
-import { Account } from "../../../components/pages/MyOrders/Account";
-import { MyOrders } from "../../../components/pages/MyOrders/MyOrders";
-import { OrderStatus } from "../../../components/pages/MyOrders/OrderHistory/OrderStatus";
+import { Account } from "../../components/pages/MyOrders/Account";
+import { MyOrders } from "../../components/pages/MyOrders/MyOrders";
+import { OrderStatus } from "../../components/pages/MyOrders/OrderHistory/OrderStatus";
 
 const myAccountPrivateRoutes = [
     {

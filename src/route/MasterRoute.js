@@ -2,16 +2,14 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import LawyerServicesPage from "../components/Lawyer/LawyerServicesPage/LawyerServicesPage";
-import AgentServicesPage from "../components/pages/Agent/AgentServicesPage/AgentServicesPage";
 
 // Components
 import KaziServicesPage from "../components/pages/Kazi/KaziServices/KaziServicesPages";
-import { Account } from "../components/pages/MyOrders/Account";
 import { NotFoundPage } from "../components/shared/404/NotFoundPage";
 import RequireAuth from "../components/shared/RequireAuth/RequireAuth";
 import RequireAuthMobile from "../components/shared/RequireAuth/RequireAuthMobile";
 import ShopProducts from "../Wrapper/Shop/ShopProducts/ShopProducts";
-import AgentPrivateRoutes from "./Agent/AgentPrivateRoutes";
+import agentRouteRenderer from "./Agent/agentRouteRenderer";
 import AgentRoutes from "./Agent/AgentRoutes";
 import kaziPrivateRoutes from "./Kazi/kaziPrivateRoutes";
 import kaziRoutes from "./Kazi/kaziRoutes";
@@ -20,7 +18,7 @@ import matrimonyPrivateRoutes from "./Matrimony/matrimonyPrivateRoutes";
 import matrimonyRoutes from "./Matrimony/matrimonyRoutes";
 import mobileMatrimony from "./Matrimony/MobileMatrimony/Mobilematrimony";
 import mobileMatrimonyPrivateRoutes from "./Matrimony/MobileMatrimony/MobileMatrimonyPrivateRoutes";
-import myAccountPrivateRoutes from "./Matrimony/myAcount/myAccountPrivateRoutes";
+import myAccountRouteRenderer from "./myAcount/myAccountRouteRenderer";
 import shopPrivateRoutes from "./shop/shopPrivateRoutes";
 
 const MasterRoute = () => {
@@ -142,35 +140,6 @@ const MasterRoute = () => {
                         </Route>
                     );
                 })}
-                {/* Agent PRIVATE ROUTES */}
-                {AgentPrivateRoutes.map(route => {
-                    return (
-                        <Route key={route.id} path={route.path} element={<RequireAuth>{route.element}</RequireAuth>}>
-                            <Route index element={<AgentServicesPage />} />
-                            {route.nestedRoutes?.map(route => {
-                                return (
-                                    <Route key={route.id} path={route.path} element={<RequireAuth>{route.element}</RequireAuth>}>
-                                        {route.nestedRoutes?.map(route => {
-                                            return (
-                                                <Route key={route.id} path={route.path} element={<RequireAuth>{route.element}</RequireAuth>}>
-                                                    {route.nestedRoutes?.map(route => {
-                                                        return (
-                                                            <Route
-                                                                key={route.id}
-                                                                path={route.path}
-                                                                element={<RequireAuth>{route.element}</RequireAuth>}
-                                                            />
-                                                        );
-                                                    })}
-                                                </Route>
-                                            );
-                                        })}
-                                    </Route>
-                                );
-                            })}
-                        </Route>
-                    );
-                })}
                 {/* Agent PublicRoutes */}
                 {AgentRoutes.map(route => {
                     return (
@@ -181,17 +150,8 @@ const MasterRoute = () => {
                         </Route>
                     );
                 })}
-                {/* my Account Private Routes */}
-                {myAccountPrivateRoutes.map(route => {
-                    return (
-                        <Route path={route.path} element={route.element}>
-                            <Route index element={<Account />} />
-                            {route.nestedRoutes.map(route => {
-                                return <Route path={route.path} element={route.element} />;
-                            })}
-                        </Route>
-                    );
-                })}
+                {myAccountRouteRenderer()}
+                {agentRouteRenderer()}
                 <Route path="*" element={<NotFoundPage />} />
             </Routes>
         </BrowserRouter>
