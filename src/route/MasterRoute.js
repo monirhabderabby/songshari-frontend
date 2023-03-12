@@ -4,15 +4,14 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 // Components
 import { NotFoundPage } from "../components/shared/404/NotFoundPage";
-import RequireAuthMobile from "../components/shared/RequireAuth/RequireAuthMobile";
 import agentRouteRenderer from "./Agent/agentRouteRenderer";
 import kaziPublicRouteRenderer from "./Kazi/kaziPublicRouteRenderer";
 import kaziRouteRenderer from "./Kazi/kaziRouteRenderer";
 import lawyerRouteRenderer from "./lawyer/lawyerRouteRenderer";
 import matrimonyPublicRouteRenderer from "./Matrimony/matrimonyPublicRouteRenderer";
 import matrimonyRouteRenderer from "./Matrimony/matrimonyRouteRenderer";
-import mobileMatrimony from "./Matrimony/MobileMatrimony/Mobilematrimony";
-import mobileMatrimonyPrivateRoutes from "./Matrimony/MobileMatrimony/MobileMatrimonyPrivateRoutes";
+import matrimonyMobilePublicRouteRenderer from "./Matrimony/MobileMatrimony/matrimonyMobilePublicRouteRenderer";
+import matrimonyMobileRouteRenderer from "./Matrimony/MobileMatrimony/matrimonyMobileRouteRenderer";
 import myAccountRouteRenderer from "./myAcount/myAccountRouteRenderer";
 import shopRouteRenderer from "./shop/shopRouteRenderer";
 
@@ -25,21 +24,9 @@ const MasterRoute = () => {
                 {/* MATRIMONY PRIVATE ROUTES */}
                 {matrimonyRouteRenderer()}
                 {/* MATRIMONY MOBILE ROUTES */}
-                {mobileMatrimony.map(route => (
-                    <Route key={route.id} path={route.path} element={route.element}>
-                        {route.nestedRoutes?.map(route => (
-                            <Route key={route.id} path={route.path} element={route.element} />
-                        ))}
-                    </Route>
-                ))}
+                {matrimonyMobilePublicRouteRenderer()}
                 {/* MATRIMONY PRIVATE MOBILE ROUTES */}
-                {mobileMatrimonyPrivateRoutes.map(route => (
-                    <Route key={route.id} path={route.path} element={<RequireAuthMobile>{route.element}</RequireAuthMobile>}>
-                        {route.nestedRoutes?.map(route => (
-                            <Route key={route.id} path={route.path} element={<RequireAuthMobile>{route.element}</RequireAuthMobile>} />
-                        ))}
-                    </Route>
-                ))}
+                {matrimonyMobileRouteRenderer()}
                 {/* KAZI ROUTES */}
                 {kaziPublicRouteRenderer()}
                 {/* KAZI PRIVATE ROUTES */}
