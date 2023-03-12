@@ -6,6 +6,7 @@ import React from "react";
 // components
 import { BottomNav } from "../../../Wrapper/Home/mobileversion/BottomNav";
 import { MobileBackButton } from "../../shared/Components/MobileBackButton";
+import { Badges } from "../Badges";
 import { PhotoUploadCard } from "../PhotoUploadCard";
 import { VerificationCard } from "../VerificationCard";
 import { MobileAccordionLink } from "./MobileAccordionLink";
@@ -23,6 +24,7 @@ const MobileSingleProfilesUser = () => {
         height="100px"
         responsive={true}
       />
+      <Badges />
       <PhotoUploadCard />
       <div className="py-[20px]">
         <MobileAccordionLink></MobileAccordionLink>
