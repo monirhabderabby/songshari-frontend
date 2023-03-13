@@ -9,8 +9,9 @@ export const OrderStatus = () => {
             behavior: "smooth",
         });
     }, []);
+
     return (
-        <div className="flex flex-col gap-y-[20px] h-full ">
+        <div className="flex flex-col gap-y-[20px] h-full w-full">
             <StatusSelector />
             <AllOrders />
         </div>
