@@ -6,7 +6,7 @@ import { OrderStatusTable } from "./OrderStatusTable";
 export const AllOrders = () => {
     const arr = [1, 2, 3, 4, 5, 6, 7, 8];
     return (
-        <div className="flex flex-col gap-y-[20px] h-auto">
+        <div className="flex flex-col gap-y-[10px] lg:gap-y-[20px] h-auto">
             {arr.map(item => {
                 return (
                     <div

@@ -29,7 +29,10 @@ export const MyOrders = () => {
             <div className="lg:hidden">
                 <MobileBackButton name="My Account" />
             </div>
-            <div className="lg:w-[1200px] flex gap-x-[20px] mx-auto px-[6px] lg:px-[20px]" style={{ display: "flex", flexDirection: "row" }}>
+            <div
+                className="lg:w-[1200px] flex gap-x-[10px] lg:gap-x-[20px] mx-auto px-[6px] lg:px-[20px]"
+                style={{ display: "flex", flexDirection: "row" }}
+            >
                 <div className="w-[45px] lg:w-[204px] h-[100vh-30vh] py-[20px] relative">
                     <div className="sticky top-0">
                         <List>
@@ -55,7 +58,7 @@ export const MyOrders = () => {
                         </List>
                     </div>
                 </div>
-                <div className="flex-1 border-l-[1px] border-[#eeeeee] p-[20px] h-auto relative">
+                <div className="flex-1 border-l-[1px] border-[#eeeeee] p-[10px] lg:p-[20px] h-auto relative w-[calc(100%-70px)]">
                     <Outlet />
                 </div>
             </div>

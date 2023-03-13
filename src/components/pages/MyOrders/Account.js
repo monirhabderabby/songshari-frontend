@@ -2,7 +2,7 @@ import React from "react";
 
 export const Account = () => {
     return (
-        <div>
+        <div className="w-full">
             <div className="font-Nunito border-b-[1px] border-[#eeeeee] w-auto pb-[7px]">
                 <h3 className="text-[24px] text-gray-500">Change password</h3>
                 <h5 className="text-[16px] text-gray-400">Do not share your password with anyone</h5>
@@ -13,7 +13,11 @@ export const Account = () => {
                     <h3 className="text-[14px] text-gray-500">Your email address</h3>
                     <p className="text-[10px] text-gray-400">The email address with which the account was opened</p>
                 </label>
-                <input type="email" name="email" className="bg-transparent h-[35px] w-[500px] border-[1px] border-[#bdbdbd] mt-[8px] rounded-[4px]" />
+                <input
+                    type="email"
+                    name="email"
+                    className="bg-transparent h-[35px] w-full lg:w-[500px] border-[1px] border-[#bdbdbd] mt-[8px] rounded-[4px]"
+                />
                 <input
                     type="submit"
                     value="Send password reset link"

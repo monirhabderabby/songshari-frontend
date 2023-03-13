@@ -1,5 +1,5 @@
 // configuration
-import React, { Suspense } from "react";
+import React, { lazy, Suspense } from "react";
 import useDocumentTitle from "../../assets/utilities/useDocumentTitle";
 
 // components
@@ -10,12 +10,12 @@ import SecureVerified from "../../components/pages/Home/SecureVerified/SecureVer
 import LatestRegisteredMember from "../../components/pages/LatestRegisteredMember/LatestRegisteredMember";
 import MeetNewPeople from "../../components/pages/MeetNewPeople/MeetNewPeople";
 import PeopleJoinedAlready from "../../components/pages/PeopleJoinedAlready/PeopleJoinedAlready";
-import NavBar from "../../components/pages/Shared/NavBar";
 import TopProfile from "../../components/pages/TopProfile/TopProfile";
 import { BrandLoader } from "../../components/shared/Cards/Loader/BrandLoader/BrandLoader";
 import Footer from "../../components/shared/Footer/Footer";
 import isLoggedIn from "../../Helper/hooks/checkLoggerPersestency/isLoggedIn";
 import { MobileHome } from "./mobileversion/MobileHome";
+const NavBar = lazy(() => import("../../components/pages/Shared/NavBar"));
 const Banner = React.lazy(() => import("../../components/pages/Home/Banner/Banner"));
 
 const Homepage = () => {
