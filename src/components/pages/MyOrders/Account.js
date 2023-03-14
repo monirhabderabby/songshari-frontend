@@ -103,7 +103,7 @@ export const Account = () => {
             value={confirmPass}
             type={showConfirmPass ? "text" : "password"}
             name="confirmPassword"
-            placeholder="Retype Password"
+            placeholder="Retype New Password"
             className={`relative bg-transparent px-4 focus:outline-cyan-500 outline-1 h-[50px] w-full lg:w-[500px] border-[1px] border-[#bdbdbd] mt-[8px] rounded-[4px]`}
           />
           <span
