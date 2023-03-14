@@ -1,51 +1,65 @@
-import React, { useState } from "react";
-import { toast } from "react-hot-toast";
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useState, useRef, useEffect } from "react";
 
-const OtpInput = ({ email, setOpen, changePassword, passLoading }) => {
-  const [otp, setOtp] = useState("");
-  console.log(otp);
-  const submitOtp = (e) => {
-    e.preventDefault();
-    if (otp.length === 6 && typeof (otp * 1) === "number")
-      changePassword({ data: { email, otp } });
-    else {
-      toast.error("OTP validation failed");
-    }
-  };
+import ErrorIcon from "@mui/icons-material/Error";
+const OtpInput = ({setOpen, submittedOtp, setSubmittedOtp, otp }) => {
+    const [otpValues, setOtpValues] = useState(["", "", "", "", "", ""]);
+    const inputRefs = useRef([]);
 
-  return (
-    <>
-      <div className="fixed w-full h-full inset-0 z-10 bg-black/50 cursor-pointer"></div>
-      <div className="rounded sm:max-w-full w-[400px] space-y-4 bg-white p-6 absolute top-1/2 left-1/2 z-20 -translate-x-1/2 -translate-y-1/2">
-        <h2 className=" text-3xl font-extrabold text-gray-900">
-          Verification code!
-        </h2>
-        <p>
-          A 6 digit verification code sent to your email. please type it here.
-        </p>
-        <form onSubmit={submitOtp}>
-          <div className="flex items-center bg-gray-100 p-2 w-full rounded-xl">
-            <input
-              onChange={(e) => setOtp(e.target.value)}
-              type="text"
-              name="otp"
-              className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
-              placeholder="OTP"
-            />
+    const handleChange = (e, index) => {
+      const value = e.target.value;
+      if (isNaN(value)) return; // only allow numeric input
+      const newOtp = [...otpValues];
+      newOtp[index] = value;
+      setOtpValues(newOtp);
+
+      if (value !== "" && index < otpValues.length - 1) {
+        inputRefs.current[index + 1].focus();
+      }
+    };
+
+    useEffect(() => {
+      setSubmittedOtp(otpValues.join(""))
+    },[otpValues])
+
+    return (
+      <>
+        <div className="fixed w-full h-full inset-0 z-10 bg-black/50 cursor-pointer"></div>
+        <div className="rounded sm:max-w-full w-[400px] space-y-4 bg-white p-6 absolute top-1/2 left-1/2 z-20 -translate-x-1/2 -translate-y-1/2">
+          <h2 className=" text-3xl font-extrabold text-gray-900">
+            Verification code!
+          </h2>
+          <p>
+            A 6 digit verification code sent to your email. please type it here.
+          </p>
+          <div className="flex justify-center items-center h-full">
+            <div className="flex space-x-4">
+              {otpValues.map((digit, index) => (
+                <input
+                  key={index}
+                  type="text"
+                  maxLength="1"
+                  value={digit}
+                  className="otp-input w-12 h-12 text-2xl font-bold border-2 rounded-md text-center focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  onChange={(e) => handleChange(e, index)}
+                  ref={(el) => (inputRefs.current[index] = el)}
+                />
+              ))}
+            </div>
           </div>
+          {submittedOtp && otp!==submittedOtp && <div className="flex items-center justify-center text-yellow-500">
+            <div><ErrorIcon /></div>
+            <p>Wrong OTP</p>
+          </div>}
           <button
-            type="submit"
-            className="flex-1 outline-none h-full text-sm bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] w-full rounded-xl p-2 mt-3 text-white"
+            onClick={() => setOpen(false)}
+            className="flex-1 outline-none h-full text-sm bg-gray-200 w-full rounded-xl p-2 mt-3 text-black"
           >
-            {passLoading ? "Loading..." : "Submit"}
+            Cancel
           </button>
-        </form>
-        <button onClick={()=>setOpen(false)} className="flex-1 outline-none h-full text-sm bg-gray-200 w-full rounded-xl p-2 mt-3 text-black">
-          Cancel
-        </button>
-      </div>
-    </>
-  );
-};
+        </div>
+      </>
+    );
+  };
 
 export default OtpInput;

@@ -3,7 +3,7 @@ import apiSlice from "../../api/apiSlice";
 export const verificationApi = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     changePassword: builder.mutation({
-      query: ({ data }) => ({
+      query: (data) => ({
         url: "/verify/changePassword",
         method: "POST",
         body: data,
@@ -19,7 +19,5 @@ export const verificationApi = apiSlice.injectEndpoints({
   }),
 });
 
-export const {
-  useChangePasswordMutation,
-  useSendOtpByEmailMutation
-} = verificationApi;
+export const { useChangePasswordMutation, useSendOtpByEmailMutation } =
+  verificationApi;
