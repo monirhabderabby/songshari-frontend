@@ -16,6 +16,7 @@ import TopGroom from "../../components/pages/TopProfile/TopGroom";
 import PaymentSuccess from "../../components/shared/Success/PaymentSuccess";
 import About from "../../Wrapper/About/About";
 import Homepage from "../../Wrapper/Home/Homepage";
+import HomePageExtra from "../../Wrapper/HomePageExtra/HomePageExtra";
 import MemberShip from "../../Wrapper/Membership/MemberShip";
 import Shop from "../../Wrapper/Shop/Shop";
 import ShopOrders from "../../Wrapper/Shop/ShopOrders/ShopOrders";
@@ -186,6 +187,11 @@ const matrimonyRoutes = [
     id: 16,
     path: "/registration-info",
     element: <GoogleSignUpInfo />,
+  },
+  {
+    id: 17,
+    path: "/:token",
+    element: <HomePageExtra />,
   },
 ];
 
