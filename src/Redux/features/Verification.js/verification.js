@@ -1,3 +1,4 @@
+import getCookie from "../../../Helper/cookies/getCookie";
 import apiSlice from "../../api/apiSlice";
 
 export const verificationApi = apiSlice.injectEndpoints({
@@ -16,8 +17,20 @@ export const verificationApi = apiSlice.injectEndpoints({
         body: data,
       }),
     }),
+
+    // update password after login
+    updatePassWord: builder.mutation({
+      query: (data) => ({
+        url: "/verify/password/update",
+        method: "POST",
+        headers: {
+          authorization: `Bearer ${getCookie("token")}`,
+        },
+        body: data,
+      }),
+    }),
   }),
 });
 
-export const { useChangePasswordMutation, useSendOtpByEmailMutation } =
+export const { useChangePasswordMutation, useSendOtpByEmailMutation, useUpdatePassWordMutation } =
   verificationApi;
