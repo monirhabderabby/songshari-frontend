@@ -25,8 +25,14 @@ const billingSummarySlice = createSlice({
         setTax: (state = initialState, action) => {
             state.billingSummary.tax = action.payload;
         },
+        setDiscount: (state = initialState, action) => {
+            state.billingSummary.discount = action.payload;
+        },
+        setSubtotal: (state = initialState, action) => {
+            state.billingSummary.subTotal = action.payload;
+        },
     },
 });
 
 export default billingSummarySlice.reducer;
-export const { initialSubTotal, increaseSubTotal, decreaseSubTotal, setTax } = billingSummarySlice.actions;
+export const { initialSubTotal, increaseSubTotal, decreaseSubTotal, setTax, setDiscount, setSubtotal } = billingSummarySlice.actions;

@@ -12,6 +12,7 @@ import { setTax } from "../../../../../Redux/features/checkout/billingSummarySli
 const BillingSummary = () => {
     const dispatch = useDispatch();
     const billingSummaryDetailes = useSelector(state => state.persistedReducer?.billingSummary?.billingSummary);
+
     const { discount, shipping, subTotal, tax } = billingSummaryDetailes || {};
 
     useEffect(() => {
@@ -32,7 +33,7 @@ const BillingSummary = () => {
                 </div>
                 <div className="flex justify-between items-center text-sm leading-5 text-[#4F4F4F] pr-5 mb-3">
                     <p>Shipping</p>
-                    <p>{shipping}</p>
+                    <p>{100}</p>
                 </div>
                 <div className="flex justify-between items-center text-sm leading-5 text-[#4F4F4F] pr-5">
                     <p>Tax</p>
@@ -42,7 +43,7 @@ const BillingSummary = () => {
             <div>
                 <div className="flex justify-between items-center font-bold text-sm leading-5 my-5">
                     <p>Grand Total</p>
-                    <p>BDT 7500</p>
+                    <p>BDT {Number(subTotal + 100 + tax)}</p>
                 </div>
                 <div className="mb-5">
                     <TextField

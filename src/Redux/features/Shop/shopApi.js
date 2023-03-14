@@ -21,7 +21,17 @@ export const shopApi = apiSlice.injectEndpoints({
                 },
             }),
         }),
+        applyCoupon: builder.mutation({
+            query: ({ data, code }) => ({
+                url: `/shop/coupon/apply-coupon/${code}`,
+                method: "POST",
+                headers: {
+                    authorization: `Bearer ${getCookie("token")}`,
+                },
+                body: data,
+            }),
+        }),
     }),
 });
 
-export const { useGetAllProductsQuery, useGetSingleProductQuery } = shopApi;
+export const { useGetAllProductsQuery, useGetSingleProductQuery, useApplyCouponMutation } = shopApi;
