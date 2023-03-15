@@ -36,8 +36,8 @@ export const PhotoUploadCard = () => {
   useEffect(() => {
     if (uploadedPhotos) {
       let updateElement = [];
-      uploadedPhotos?.data?.file?.map((element) => {
-        return (updateElement = [...updateElement, element.fileName]);
+      uploadedPhotos?.data?.map((element) => {
+        return (updateElement = [...updateElement, element?.path]);
       });
 
       // update photo in redux state
