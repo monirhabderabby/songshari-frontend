@@ -67,12 +67,14 @@ export const Account = () => {
             value={oldPass}
             name="oldPassword"
             placeholder="Old Password"
-            className={`relative bg-transparent px-4 focus:outline-cyan-500 outline-1 h-[50px] w-full lg:w-[500px] border-[1px] border-[#bdbdbd] mt-[8px] rounded-[4px]`}
+            className={`relative bg-transparent px-4 outline-1 h-[50px] w-full lg:w-[500px] border-[1px] border-[#bdbdbd] mt-[8px] rounded-[4px]`}
           />
           <span
             onClick={() => setShowOldPass(!showOldPass)}
             className={`flex cursor-pointer ${
-              showOldPass ? "bg-cyan-500" : "bg-gray-400"
+              showOldPass
+                ? "bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)]"
+                : "bg-gray-400"
             } items-center justify-center absolute p-1 h-10 w-10 rounded-full right-3 top-3`}
           >
             {showOldPass ? <VisibilityOffIcon /> : <RemoveRedEyeIcon />}
@@ -86,12 +88,14 @@ export const Account = () => {
             name="newPassword"
             value={newPass}
             placeholder="New Password"
-            className={`relative bg-transparent px-4 focus:outline-cyan-500 outline-1 h-[50px] w-full lg:w-[500px] border-[1px] border-[#bdbdbd] mt-[8px] rounded-[4px]`}
+            className={`relative bg-transparent px-4 outline-1 h-[50px] w-full lg:w-[500px] border-[1px] border-[#bdbdbd] mt-[8px] rounded-[4px]`}
           />
           <span
             onClick={() => setShowNewPass(!showNewPass)}
             className={`flex cursor-pointer ${
-              showNewPass ? "bg-cyan-500" : "bg-gray-400"
+              showNewPass
+                ? "bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)]"
+                : "bg-gray-400"
             } items-center justify-center absolute p-1 h-10 w-10 rounded-full right-3 top-3`}
           >
             {showNewPass ? <VisibilityOffIcon /> : <RemoveRedEyeIcon />}
@@ -104,12 +108,14 @@ export const Account = () => {
             type={showConfirmPass ? "text" : "password"}
             name="confirmPassword"
             placeholder="Retype New Password"
-            className={`relative bg-transparent px-4 focus:outline-cyan-500 outline-1 h-[50px] w-full lg:w-[500px] border-[1px] border-[#bdbdbd] mt-[8px] rounded-[4px]`}
+            className={`relative bg-transparent px-4 outline-1 h-[50px] w-full lg:w-[500px] border-[1px] border-[#bdbdbd] mt-[8px] rounded-[4px]`}
           />
           <span
             onClick={() => setShowConfirmPass(!showConfirmPass)}
             className={`flex cursor-pointer ${
-              showConfirmPass ? "bg-cyan-500" : "bg-gray-400"
+              showConfirmPass
+                ? "bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)]"
+                : "bg-gray-400"
             } items-center justify-center absolute p-1 h-10 w-10 rounded-full right-3 top-3`}
           >
             {showConfirmPass ? <VisibilityOffIcon /> : <RemoveRedEyeIcon />}
@@ -118,7 +124,7 @@ export const Account = () => {
 
         <input
           type="submit"
-          value={isLoading?"Loading...":"Update password"}
+          value={isLoading ? "Loading..." : "Update password"}
           className="mt-[20px] cursor-pointer hover:bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] px-4 py-2 rounded-[50px] text-white bg-[linear-gradient(166deg,rgba(242,40,118,0.8)_20%,rgba(148,45,217,0.8)_100%)] duration-300"
         />
       </form>

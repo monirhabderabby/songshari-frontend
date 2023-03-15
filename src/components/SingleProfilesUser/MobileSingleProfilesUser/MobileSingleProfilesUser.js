@@ -1,5 +1,6 @@
 // configuration
 import React from "react";
+import { useGetUserBadgesQuery } from "../../../Redux/features/userInfo/userApi";
 
 // Third party package
 
@@ -13,6 +14,7 @@ import { MobileAccordionLink } from "./MobileAccordionLink";
 import MobileUsersProfile from "./MobileUsersProfile";
 
 const MobileSingleProfilesUser = () => {
+  const { data: badgeData, error: badgeError } = useGetUserBadgesQuery();
   // js variable declaration
   return (
     <section className="max-w-[1024px] mx-auto">
@@ -24,7 +26,9 @@ const MobileSingleProfilesUser = () => {
         height="100px"
         responsive={true}
       />
-      <Badges />
+      {badgeData?.data?.length !== 0 && (
+        <Badges data={badgeData} error={badgeError} />
+      )}
       <PhotoUploadCard />
       <div className="py-[20px]">
         <MobileAccordionLink></MobileAccordionLink>
