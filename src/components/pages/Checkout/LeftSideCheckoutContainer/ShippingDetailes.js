@@ -12,7 +12,7 @@ export const ShippingDetailes = () => {
 
     const shippingInfo = useSelector(state => state.persistedReducer?.checkoutDetailes?.shippingDetailes);
 
-    const { firstName, lastName, email, streetAddress1, streetAddress2, state, city, postalCode, phone } = shippingInfo || {};
+    const { firstName, lastName, email, address1, address2, state, city, zipCode, phone } = shippingInfo || {};
 
     const handleFirstName = firstName => {
         dispatch(
@@ -36,7 +36,7 @@ export const ShippingDetailes = () => {
         dispatch(
             setShippingDetailes({
                 ...shippingInfo,
-                streetAddress1: streetAddress1,
+                address1: streetAddress1,
             })
         );
     };
@@ -45,7 +45,7 @@ export const ShippingDetailes = () => {
         dispatch(
             setShippingDetailes({
                 ...shippingInfo,
-                streetAddress2: streetAddress2,
+                address2: streetAddress2,
             })
         );
     };
@@ -72,7 +72,7 @@ export const ShippingDetailes = () => {
         dispatch(
             setShippingDetailes({
                 ...shippingInfo,
-                postalCode: postalCode,
+                zipCode: postalCode,
             })
         );
     };
@@ -85,6 +85,16 @@ export const ShippingDetailes = () => {
             })
         );
     };
+
+    const handleEmail = email => {
+        dispatch(
+            setShippingDetailes({
+                ...shippingInfo,
+                email: email,
+            })
+        );
+    };
+
     return (
         <div className="w-full h-auto shadow-[0px_2px_6px_rgba(0,0,0,0.14)] p-[20px] rounded-[4px] bg-white">
             <h3 className="text-[#000000] font-bold font-sans text-[16px]">Shipping Address</h3>
@@ -107,14 +117,22 @@ export const ShippingDetailes = () => {
                     onChange={e => handleLastName(e.target.value)}
                     className="col-span-2 md:col-span-1"
                 />
-                <TextField label="Email" name="email" variant="outlined" size="small" className="col-span-2" value={email} />
+                <TextField
+                    label="Email"
+                    name="email"
+                    variant="outlined"
+                    size="small"
+                    className="col-span-2"
+                    value={email}
+                    onChange={e => handleEmail(e.target.value)}
+                />
                 <TextField
                     label="Street Address"
                     name="streetAddress"
                     variant="outlined"
                     size="small"
                     className="col-span-2"
-                    value={streetAddress1}
+                    value={address1}
                     onChange={e => handleStreetAddress1(e.target.value)}
                 />
                 <TextField
@@ -122,7 +140,7 @@ export const ShippingDetailes = () => {
                     variant="outlined"
                     size="small"
                     className="col-span-2"
-                    value={streetAddress2}
+                    value={address2}
                     onChange={e => handleStreetAddress2(e.target.value)}
                 />
                 <TextField
@@ -139,7 +157,7 @@ export const ShippingDetailes = () => {
                     name="postCode"
                     variant="outlined"
                     size="small"
-                    value={postalCode}
+                    value={zipCode}
                     onChange={e => handlePostalCode(e.target.value)}
                 />
                 <TextField label="Phone" name="phone" variant="outlined" size="small" value={phone} onChange={e => handlePhone(e.target.value)} />

@@ -31,7 +31,17 @@ export const shopApi = apiSlice.injectEndpoints({
                 body: data,
             }),
         }),
+        placeOrder: builder.mutation({
+            query: data => ({
+                url: "/shop/order/create-order",
+                method: "POST",
+                headers: {
+                    authorization: `Bearer ${getCookie("token")}`,
+                },
+                body: data,
+            }),
+        }),
     }),
 });
 
-export const { useGetAllProductsQuery, useGetSingleProductQuery, useApplyCouponMutation } = shopApi;
+export const { useGetAllProductsQuery, useGetSingleProductQuery, useApplyCouponMutation, usePlaceOrderMutation } = shopApi;

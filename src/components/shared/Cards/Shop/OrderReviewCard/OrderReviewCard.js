@@ -5,14 +5,14 @@ import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 import { RxCross2 } from "react-icons/rx";
 import { useDispatch, useSelector } from "react-redux";
 import { calculatePercentage } from "../../../../../assets/utilities/CheckoutHelperCalculation/checkoutHelperCalculation";
-import { decreaseSubTotal, increaseSubTotal } from "../../../../../Redux/features/checkout/billingSummarySlice";
+import { decreaseSubTotal, increaseQuantity, increaseSubTotal } from "../../../../../Redux/features/checkout/billingSummarySlice";
 import { decreaseCartCount } from "../../../../../Redux/features/Shop/shopSlice";
 
 const OrderReviewCard = ({ product, cart, setCart }) => {
     const [quantity, setQuantity] = useState(1);
     const [totalPrice, setTotalPrice] = useState(product.totalPrice);
 
-    const { discount: stateDisCount } = useSelector(state => state.persistedReducer.billingSummary.billingSummary) || {};
+    const { isCouponApplied } = useSelector(state => state.persistedReducer.billingSummary.billingSummary) || {};
 
     const dispatch = useDispatch();
     const { name, price, photos, discount, _id } = product || {};
@@ -24,6 +24,7 @@ const OrderReviewCard = ({ product, cart, setCart }) => {
         }
     };
     const productQuantityIncreaseHandler = () => {
+        dispatch(increaseQuantity(product?._id));
         dispatch(increaseSubTotal(product?.price));
         setQuantity(prevCount => prevCount + 1);
     };
@@ -49,7 +50,7 @@ const OrderReviewCard = ({ product, cart, setCart }) => {
             <div className="w-full">
                 <div className="flex justify-between items-start mb-3">
                     <p className="max-w-[156px] text-xs leading-5">{name}</p>
-                    <button onClick={handleRemoveCart}>
+                    <button onClick={handleRemoveCart} disabled={isCouponApplied}>
                         <RxCross2 className="text-xs leading-6 font-medium hover:text-gray-800 duration-300" />
                     </button>
                 </div>
@@ -58,7 +59,7 @@ const OrderReviewCard = ({ product, cart, setCart }) => {
                         <button
                             className="shadow-[0px_2px_40px_rgba(133,133,133,0.08)] p-2 border border-[#B2BCCA] rounded-[3px] disabled:border-[rgba(0,0,0,0.26)] disabled:bg-[#bdbdbd] disabled:cursor-not-allowed"
                             onClick={() => productQuantityDecreaseHandler()}
-                            disabled={quantity <= 1 || stateDisCount !== 0}
+                            disabled={quantity <= 1 || isCouponApplied}
                         >
                             <AiOutlineMinus />
                         </button>
@@ -66,7 +67,7 @@ const OrderReviewCard = ({ product, cart, setCart }) => {
                         <button
                             className="shadow-[0px_2px_40px_rgba(133,133,133,0.08)] p-2 border border-[#B2BCCA] rounded-[3px] disabled:border-[rgba(0,0,0,0.26)] disabled:bg-[#bdbdbd]"
                             onClick={() => productQuantityIncreaseHandler()}
-                            disabled={stateDisCount !== 0}
+                            disabled={isCouponApplied}
                         >
                             <AiOutlinePlus />
                         </button>

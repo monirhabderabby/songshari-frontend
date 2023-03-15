@@ -39,7 +39,7 @@ export const BillingDetailes = () => {
         dispatch(
             setBillingDetailes({
                 ...billingInfo,
-                streetAddress1: streetAddress1,
+                address1: streetAddress1,
             })
         );
     };
@@ -48,7 +48,7 @@ export const BillingDetailes = () => {
         dispatch(
             setBillingDetailes({
                 ...billingInfo,
-                streetAddress2: streetAddress2,
+                address2: streetAddress2,
             })
         );
     };
@@ -75,7 +75,7 @@ export const BillingDetailes = () => {
         dispatch(
             setBillingDetailes({
                 ...billingInfo,
-                postalCode: postalCode,
+                zipCode: postalCode,
             })
         );
     };

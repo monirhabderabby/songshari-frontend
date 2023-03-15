@@ -7,7 +7,7 @@ import { Collapse } from "antd";
 // Components
 import { useDispatch } from "react-redux";
 import { sumPrices } from "../../../../../assets/utilities/CheckoutHelperCalculation/checkoutHelperCalculation";
-import { initialSubTotal } from "../../../../../Redux/features/checkout/billingSummarySlice";
+import { initialSubTotal, setInitialOrderItems } from "../../../../../Redux/features/checkout/billingSummarySlice";
 import OrderReviewCard from "../../../../shared/Cards/Shop/OrderReviewCard/OrderReviewCard";
 
 const OrderReview = () => {
@@ -15,7 +15,19 @@ const OrderReview = () => {
     const [cart, setCart] = useState(JSON.parse(localStorage.getItem("cart")) || []);
 
     useEffect(() => {
+        // array processing
+        let orderItems = [];
+        cart?.map(item => {
+            const data = {
+                product: item?._id,
+                quantity: 1,
+            };
+            orderItems.push(data);
+            return data;
+        });
+
         dispatch(initialSubTotal(sumPrices(cart)));
+        dispatch(setInitialOrderItems(orderItems));
     }, [dispatch, cart]);
 
     const { Panel } = Collapse;
