@@ -4,16 +4,18 @@ import React, { useEffect, useState } from "react";
 import { FormControl, FormControlLabel, FormGroup } from "@mui/material";
 import Checkbox from "@mui/material/Checkbox";
 import TextField from "@mui/material/TextField";
-import { BiErrorCircle } from "react-icons/bi";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import { resetBillingSummaryState } from "../../../../../Redux/features/checkout/billingSummarySlice";
 import { usePlaceOrderMutation } from "../../../../../Redux/features/Shop/shopApi";
 import { clearCartCount } from "../../../../../Redux/features/Shop/shopSlice";
 import { OvalLoader } from "../../../../shared/Cards/Loader/OvalLoader/OvalLoader";
+import Error from "../../../../ui/error/Error";
+import { SuccessSnackBar } from "../../../../ui/error/snackBar/SuccessSnackBar";
 
 export const OrderPlacement = () => {
     const [customErrorMessage, setCustomErrorMessage] = useState([]);
+    const [successSnackBarOpen, setSuccessSnackBarOpen] = useState(false);
     const [privacyChecked, setPrivacyCheked] = useState(false);
     const { checkoutDetailes, billingSummary } = useSelector(state => state.persistedReducer) || {};
     const { subTotal, tax } = billingSummary?.billingSummary || {};
@@ -67,10 +69,14 @@ export const OrderPlacement = () => {
 
     useEffect(() => {
         if (isSuccess) {
-            localStorage.removeItem("cart");
-            dispatch(resetBillingSummaryState());
-            dispatch(clearCartCount());
-            navigate("/my-orders/orderStatus");
+            setSuccessSnackBarOpen(true);
+
+            setTimeout(() => {
+                localStorage.removeItem("cart");
+                dispatch(resetBillingSummaryState());
+                dispatch(clearCartCount());
+                navigate("/my-orders/orderStatus");
+            }, 3000);
         }
     }, [isSuccess, navigate, dispatch]);
 
@@ -124,27 +130,33 @@ export const OrderPlacement = () => {
                 </FormGroup>
             </FormControl>
             {customErrorMessage?.length !== 0 && (
-                <div className="w-full mb-[10px] bg-red-100 py-[10px] px-[4px]">
+                <div className="w-full ">
                     {customErrorMessage?.map((item, index) => {
-                        return (
-                            <div key={index} className="text-[12px] text-red-400 font-outfit flex mb-[8px] gap-x-[4px] items-center">
-                                <BiErrorCircle />
-                                <span>{item}</span>
-                            </div>
-                        );
+                        return <Error key={item} message={item} />;
                     })}
                 </div>
             )}
             <button
-                className="w-full font-bold text-[#F6F6F6] py-[10px] rounded-md"
+                className="w-full font-bold text-[#F6F6F6] py-[10px] rounded-md my-[10px]"
                 style={{
                     backgroundImage: "linear-gradient(137.27deg, #EE2FFF 19.41%, #CD1D5C 65.49%)",
                     boxShadow: "0px 4px 4px rgba(14, 53, 191, 0.25)",
                 }}
                 onClick={handleOrderPlace}
             >
-                {isLoading ? <OvalLoader title="Loading..." /> : <p>Pay BDT {Number(subTotal + 100 + tax)}</p>}
+                {isLoading ? <OvalLoader color="#FFFFFF" height={25} /> : <p>Pay BDT {Number(subTotal + 100 + tax)}</p>}
             </button>
+
+            {/* snackbar */}
+            {successSnackBarOpen && (
+                <div>
+                    <SuccessSnackBar
+                        successSnackBarOpen={successSnackBarOpen}
+                        setSuccessSnackBarOpen={setSuccessSnackBarOpen}
+                        message="Order Placed"
+                    />
+                </div>
+            )}
         </div>
     );
 };
