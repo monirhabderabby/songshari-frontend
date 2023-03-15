@@ -30,6 +30,7 @@ export const OrderPlacement = () => {
     console.log(checkoutDetailes);
 
     // function declaration
+    // order handler
     const handleOrderPlace = () => {
         const data = {
             shippingInfo: shippingDetailes,
@@ -80,17 +81,20 @@ export const OrderPlacement = () => {
         }
     }, [isSuccess, navigate, dispatch]);
 
+    // checkbox handler
     const handleCheckBox = e => {
         setPrivacyCheked(e.target.checked);
         setCustomErrorMessage(customErrorMessage.filter(item => item !== "Please checked our terms and condition"));
     };
 
+    // remove duplicate from array
     function removeDuplicates(arr) {
         return arr.filter((item, index) => {
             return arr.indexOf(item) === index;
         });
     }
 
+    // function and check object that if any properties are empty
     function checkObject(obj) {
         return Object.keys(obj).filter(key => {
             const value = obj[key];
@@ -98,6 +102,7 @@ export const OrderPlacement = () => {
         });
     }
 
+    // error message handle and set it on state
     const handleCustomMessage = arr => {
         let message = [];
         arr.map(item => {
