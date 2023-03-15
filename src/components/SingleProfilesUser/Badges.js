@@ -1,10 +1,7 @@
 import React from "react";
 import badgesIcon from "../../assets/images/icons/badges.png";
-import { useGetUserBadgesQuery } from "../../Redux/features/userInfo/userApi";
-// import {CircularProgress} from  "@material-u"
 
-export const Badges = () => {
-    const { data , error} = useGetUserBadgesQuery();
+export const Badges = ({data, error}) => {
     return (
       <div className="mt-[24px] lg:w-full h-[125px] bg-white shadow-[0px_10px_5px_rgba(119,123,146,0.02)] rounded-[10px] py-[16px] px-[20px]">
         <div>

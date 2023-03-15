@@ -5,7 +5,10 @@ import useDocumentTitle from "../../assets/utilities/useDocumentTitle";
 
 // components
 import CustomHeader from "../../components/shared/CustomHeader/CustomHeader";
-import { useGetProfileDetailsWIthAuthQuery } from "../../Redux/features/userInfo/userApi";
+import {
+  useGetProfileDetailsWIthAuthQuery,
+  useGetUserBadgesQuery,
+} from "../../Redux/features/userInfo/userApi";
 import { loadPhotos } from "../../Redux/features/userInfo/userInfo";
 import Footer from "../shared/Footer/Footer";
 import ChartBoard from "./chatboard/ChartBoard";
@@ -17,13 +20,14 @@ import { SocialMediaBox } from "./SocialMediaBox/SocialMediaBox";
 import Table from "./Table/Table";
 import UtilitisCard from "./UtilitisCard";
 import { VerificationCard } from "./VerificationCard";
-import {Badges} from "./../../components/SingleProfilesUser/Badges"
+import { Badges } from "./../../components/SingleProfilesUser/Badges";
 
 export const SingleProfiles = () => {
   // hook variable declaration
   const [SocialBoxOpen, setSocialBoxOpen] = useState(false);
   const { data, isLoading, error } = useGetProfileDetailsWIthAuthQuery();
   const dispatch = useDispatch();
+  const { data: badgeData, error: badgeError } = useGetUserBadgesQuery();
 
   // page title
   useDocumentTitle("Shongshari | Profile");
@@ -62,7 +66,9 @@ export const SingleProfiles = () => {
                     />
                   )}
                   <VerificationCard title={true} mt="24px" height="125px" />
-                  <Badges />
+                  {badgeData?.data?.length !== 0 && (
+                    <Badges data={badgeData} error={badgeError} />
+                  )}
                   <UtilitisCard {...{ data }} />
                   <IntroCard {...{ data, isLoading, error }} />
                   <PhotoUploadCard />
