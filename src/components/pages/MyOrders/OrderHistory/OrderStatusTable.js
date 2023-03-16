@@ -4,10 +4,12 @@ export const OrderStatusTable = () => {
     return (
         <table className="w-full mt-[15px] lg:mt-[20px]">
             <thead className="text-left flex justify-between pb-[6px] border-b-2 text-[12px] lg:text-[16px]">
-                <th className="font-medium font-Inter">Product</th>
-                <th className="font-medium font-Inter">Quantity</th>
-                <th className="font-medium font-Inter">Price</th>
-                <th className="font-medium font-Inter">Sub Total</th>
+                <tr className="w-full flex justify-between">
+                    <th className="font-medium font-Inter">Product</th>
+                    <th className="font-medium font-Inter">Quantity</th>
+                    <th className="font-medium font-Inter">Price</th>
+                    <th className="font-medium font-Inter">Sub Total</th>
+                </tr>
             </thead>
             <tbody>
                 <tr className="w-full flex justify-between pt-[6px] text-[9px] lg:text-[14px]">
