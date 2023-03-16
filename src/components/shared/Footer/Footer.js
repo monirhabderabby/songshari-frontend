@@ -1,13 +1,35 @@
-import React from "react";
+import React,{useState,useEffect} from "react";
 import { Link } from "react-router-dom";
+
+import {Toaster, toast} from "react-hot-toast"
 import "../../../App.css";
 import "../../../assets/css/footer.css";
+import { useAddSubscriberMutation } from "../../../Redux/features/subscriber/subscriberApi";
 import { VersionTrack } from "../VersionTrack/VersionTrack";
 import flower from "./../../../assets/images/footer/flower01.png";
 import icon from "./../../../assets/images/footer/icon.png";
 import rightShape from "./../../../assets/images/footer/right-shape.png";
 
 const Footer = () => {
+  const [email, setEmail] = useState("");
+  const [addSubscriber, { data, isLoading, error }] = useAddSubscriberMutation();
+  console.log(data, isLoading, error);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    addSubscriber({ email });
+  }
+
+  useEffect(() => {
+    if (data) {
+      console.log(data);
+      setEmail("")
+      toast.success(data.message);
+    }
+    if (error) {
+      setEmail("");
+      toast.error("Some thing went wrong");
+    }
+  },[data,isLoading, error])
   return (
     <footer className="footer-section">
       <div className="ocean">
@@ -34,8 +56,8 @@ const Footer = () => {
                   <p className="text mt-[200px]">
                     Sign up to receive a monthly email on the latest news!
                   </p>
-                  <form className="newslater-form">
-                    <input type="text" placeholder="Your Email Address" />
+                  <form onSubmit={handleSubmit} className="newslater-form">
+                    <input value={email} onChange={(e)=>setEmail(e.target.value)} type="email" placeholder="Your Email Address" />
                     <button type="submit">
                       <i className="fab fa-telegram-plane"></i>
                     </button>
@@ -221,6 +243,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
+      <Toaster></Toaster>
     </footer>
   );
 };
