@@ -40,6 +40,7 @@ export const shopApi = apiSlice.injectEndpoints({
                 },
                 body: data,
             }),
+            invalidatesTags: ["MyOrders"],
         }),
         myOrder: builder.query({
             query: () => ({
@@ -49,6 +50,7 @@ export const shopApi = apiSlice.injectEndpoints({
                     authorization: `Bearer ${getCookie("token")}`,
                 },
             }),
+            providesTags: ["MyOrders"],
         }),
     }),
 });

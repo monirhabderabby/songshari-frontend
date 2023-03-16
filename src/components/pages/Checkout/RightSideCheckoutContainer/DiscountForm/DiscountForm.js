@@ -30,6 +30,7 @@ const DiscountForm = () => {
         setCoupon("");
     };
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => {
         if (response) {
             const disCountedPrice = Number(subTotal) - response?.subTotal;
@@ -40,7 +41,6 @@ const DiscountForm = () => {
     }, [response, dispatch]);
 
     useEffect(() => {
-        console.log(responseError);
         const { data } = responseError || {};
         setError(data?.message);
     }, [responseError]);
