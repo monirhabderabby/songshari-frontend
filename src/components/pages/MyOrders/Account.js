@@ -60,7 +60,7 @@ export const Account = () => {
         onSubmit={handleSubmit}
         className="my-[20px] flex flex-col items-start"
       >
-        <div className="relative">
+        <div className="relative w-full md:w-auto">
           <input
             onChange={(e) => setOldPass(e.target.value)}
             type={showOldPass ? "text" : "password"}
@@ -77,11 +77,15 @@ export const Account = () => {
                 : "bg-gray-400"
             } items-center justify-center absolute p-1 h-10 w-10 rounded-full right-3 top-3`}
           >
-            {showOldPass ? <VisibilityOffIcon /> : <RemoveRedEyeIcon />}
+            {showOldPass ? (
+              <VisibilityOffIcon style={{ fill: "white" }} />
+            ) : (
+              <RemoveRedEyeIcon style={{ fill: "white" }} />
+            )}
           </span>
         </div>
 
-        <div className="relative">
+        <div className="relative w-full md:w-auto">
           <input
             onChange={(e) => setNewPass(e.target.value)}
             type={showNewPass ? "text" : "password"}
@@ -98,10 +102,14 @@ export const Account = () => {
                 : "bg-gray-400"
             } items-center justify-center absolute p-1 h-10 w-10 rounded-full right-3 top-3`}
           >
-            {showNewPass ? <VisibilityOffIcon /> : <RemoveRedEyeIcon />}
+            {showOldPass ? (
+              <VisibilityOffIcon style={{ fill: "white" }} />
+            ) : (
+              <RemoveRedEyeIcon style={{ fill: "white" }} />
+            )}
           </span>
         </div>
-        <div className="relative">
+        <div className="relative w-full md:w-auto">
           <input
             onChange={(e) => setConfirmPass(e.target.value)}
             value={confirmPass}
@@ -118,7 +126,11 @@ export const Account = () => {
                 : "bg-gray-400"
             } items-center justify-center absolute p-1 h-10 w-10 rounded-full right-3 top-3`}
           >
-            {showConfirmPass ? <VisibilityOffIcon /> : <RemoveRedEyeIcon />}
+            {showOldPass ? (
+              <VisibilityOffIcon style={{ fill: "white" }} />
+            ) : (
+              <RemoveRedEyeIcon style={{ fill: "white" }} />
+            )}
           </span>
         </div>
 
