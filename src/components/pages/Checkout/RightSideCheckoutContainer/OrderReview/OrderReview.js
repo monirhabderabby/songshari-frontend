@@ -45,7 +45,7 @@ const OrderReview = () => {
         content = (
             <div>
                 {cart?.map(product => (
-                    <OrderReviewCard key={product.id} {...{ product, cart, setCart }} />
+                    <OrderReviewCard key={product._id} {...{ product, cart, setCart }} />
                 ))}
             </div>
         );
