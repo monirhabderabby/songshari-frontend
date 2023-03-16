@@ -2,25 +2,25 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     billingDetailes: {
-        firstName: "fdsf",
-        lastName: "fdfd",
+        firstName: "",
+        lastName: "",
         email: "",
-        streetAddress1: "",
-        streetAddress2: "",
+        address1: "",
+        address2: "",
         state: "",
         city: "",
-        postalCode: "",
+        zipCode: "",
         phone: "",
     },
     shippingDetailes: {
-        firstName: "fdsf",
-        lastName: "fdfd",
+        firstName: "",
+        lastName: "",
         email: "",
-        streetAddress1: "",
-        streetAddress2: "",
+        address1: "",
+        address2: "",
         state: "",
         city: "",
-        postalCode: "",
+        zipCode: "",
         phone: "",
     },
     billingSummary: {
@@ -32,7 +32,7 @@ const initialState = {
 };
 
 const checkoutDetailsSlice = createSlice({
-    name: "checkoutDetailes",
+    name: "checkoutDetailesV2",
     initialState,
     reducers: {
         setBillingDetailesInitialState: (state = initialState, action) => {
@@ -53,22 +53,22 @@ const checkoutDetailsSlice = createSlice({
             state.shippingDetailes.firstName = state.billingDetailes.firstName;
             state.shippingDetailes.lastName = state.billingDetailes.lastName;
             state.shippingDetailes.email = state.billingDetailes.email;
-            state.shippingDetailes.streetAddress1 = state.billingDetailes.streetAddress1;
-            state.shippingDetailes.streetAddress2 = state.billingDetailes.streetAddress2;
+            state.shippingDetailes.address1 = state.billingDetailes.address1;
+            state.shippingDetailes.address2 = state.billingDetailes.address2;
             state.shippingDetailes.state = state.billingDetailes.state;
             state.shippingDetailes.city = state.billingDetailes.city;
-            state.shippingDetailes.postalCode = state.billingDetailes.postalCode;
+            state.shippingDetailes.zipCode = state.billingDetailes.zipCode;
             state.shippingDetailes.phone = state.billingDetailes.phone;
         },
         clearShippingDetailes: (state = initialState) => {
             state.shippingDetailes.firstName = "";
             state.shippingDetailes.lastName = "";
             state.shippingDetailes.email = "";
-            state.shippingDetailes.streetAddress1 = "";
-            state.shippingDetailes.streetAddress2 = "";
+            state.shippingDetailes.address1 = "";
+            state.shippingDetailes.address2 = "";
             state.shippingDetailes.state = "";
             state.shippingDetailes.city = "";
-            state.shippingDetailes.postalCode = "";
+            state.shippingDetailes.zipCode = "";
             state.shippingDetailes.phone = "";
         },
         addSubTotal: (state = initialState, action) => {

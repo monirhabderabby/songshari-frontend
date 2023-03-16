@@ -21,7 +21,27 @@ export const shopApi = apiSlice.injectEndpoints({
                 },
             }),
         }),
+        applyCoupon: builder.mutation({
+            query: ({ data, code }) => ({
+                url: `/shop/coupon/apply-coupon/${code}`,
+                method: "POST",
+                headers: {
+                    authorization: `Bearer ${getCookie("token")}`,
+                },
+                body: data,
+            }),
+        }),
+        placeOrder: builder.mutation({
+            query: data => ({
+                url: "/shop/order/create-order",
+                method: "POST",
+                headers: {
+                    authorization: `Bearer ${getCookie("token")}`,
+                },
+                body: data,
+            }),
+        }),
     }),
 });
 
-export const { useGetAllProductsQuery, useGetSingleProductQuery } = shopApi;
+export const { useGetAllProductsQuery, useGetSingleProductQuery, useApplyCouponMutation, usePlaceOrderMutation } = shopApi;
