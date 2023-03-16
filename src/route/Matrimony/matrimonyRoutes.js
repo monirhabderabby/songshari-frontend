@@ -7,6 +7,7 @@ import { OTP } from "../../components/pages/Authentications/OTP/OTP";
 import RegAsProfessional from "../../components/pages/Authentications/RegAsProfessional";
 import Signup from "../../components/pages/Authentications/SignUp";
 import Contact from "../../components/pages/Contact/Contact";
+import { CourseLandingPage } from "../../components/pages/Courses/LandingPage/CourseLandingPage";
 import { DynamicProfilePage } from "../../components/pages/DynamicProfilePage/DynamicProfilePage";
 import { OurTeams } from "../../components/pages/OurTeams/OurTeams";
 import { Privacy } from "../../components/pages/Privacy/Privacy";
@@ -23,176 +24,181 @@ import ShopOrders from "../../Wrapper/Shop/ShopOrders/ShopOrders";
 import ShopProducts from "../../Wrapper/Shop/ShopProducts/ShopProducts";
 
 const matrimonyRoutes = [
-  {
-    id: 1,
-    path: "/",
-    element: <Homepage />,
-    nestedRoutes: [
-      {
+    {
         id: 1,
         path: "/",
-        element: <Suggested />,
-      },
-      {
+        element: <Homepage />,
+        nestedRoutes: [
+            {
+                id: 1,
+                path: "/",
+                element: <Suggested />,
+            },
+            {
+                id: 2,
+                path: "top-bride",
+                element: <TopBride />,
+            },
+            {
+                id: 3,
+                path: "top-groom",
+                element: <TopGroom />,
+            },
+        ],
+    },
+    {
         id: 2,
-        path: "top-bride",
-        element: <TopBride />,
-      },
-      {
+        path: "/login",
+        element: <Login />,
+    },
+    {
         id: 3,
-        path: "top-groom",
-        element: <TopGroom />,
-      },
-    ],
-  },
-  {
-    id: 2,
-    path: "/login",
-    element: <Login />,
-  },
-  {
-    id: 3,
-    path: "/signup",
-    element: <Signup />,
-  },
-  {
-    id: 4,
-    path: "/about",
-    element: <About />,
-  },
-  {
-    id: 5,
-    path: "/membership",
-    element: <MemberShip />,
-  },
-  {
-    id: 6,
-    path: "/regAsProfessional",
-    element: <RegAsProfessional />,
-  },
-  {
-    id: 7,
-    path: "/loginAsProfessional",
-    element: <LoginAsProfessional />,
-  },
-  {
-    id: 8,
-    path: "/contact",
-    element: <Contact />,
-  },
-  {
-    id: 9,
-    path: "/profile/:id",
-    element: <DynamicProfilePage />,
-  },
-  {
-    id: 10,
-    path: "/privacy-policy",
-    element: <Privacy />,
-  },
-  {
-    id: 11,
-    path: "/our-teams",
-    element: <OurTeams />,
-  },
-  {
-    id: 13,
-    path: "/otp",
-    element: <OTP />,
-  },
-  {
-    id: 14,
-    path: "/inbox",
-    element: <Inbox />,
-    nestedRoutes: [
-      {
-        id: 1,
-        path: ":id",
-        element: <MessegeBox />,
-      },
-    ],
-  },
-  {
-    id: 15,
-    path: "/shop",
-    element: <Shop />,
-    nestedRoutes: [
-      { id: 1, path: "shopProducts", element: <ShopProducts /> },
-      { id: 2, path: "shopOrders", element: <ShopOrders /> },
-    ],
-  },
-  {
-    id: 17,
-    path: "/paymentSuccess",
-    element: <PaymentSuccess />,
-  },
-  {
-    id: 4,
-    path: "/about",
-    element: <About />,
-  },
-  {
-    id: 5,
-    path: "/membership",
-    element: <MemberShip />,
-  },
-  {
-    id: 6,
-    path: "/regAsProfessional",
-    element: <RegAsProfessional />,
-  },
-  {
-    id: 7,
-    path: "/loginAsProfessional",
-    element: <LoginAsProfessional />,
-  },
-  {
-    id: 8,
-    path: "/contact",
-    element: <Contact />,
-  },
-  {
-    id: 9,
-    path: "/profile/:id",
-    element: <DynamicProfilePage />,
-  },
-  {
-    id: 10,
-    path: "/privacy-policy",
-    element: <Privacy />,
-  },
-  {
-    id: 11,
-    path: "/our-teams",
-    element: <OurTeams />,
-  },
-  {
-    id: 13,
-    path: "/otp",
-    element: <OTP />,
-  },
-  {
-    id: 14,
-    path: "/inbox",
-    element: <Inbox />,
-    nestedRoutes: [
-      {
-        id: 1,
-        path: ":id",
-        element: <MessegeBox />,
-      },
-    ],
-  },
-  {
-    id: 16,
-    path: "/registration-info",
-    element: <GoogleSignUpInfo />,
-  },
-  {
-    id: 17,
-    path: "/:token",
-    element: <HomePageExtra />,
-  },
+        path: "/signup",
+        element: <Signup />,
+    },
+    {
+        id: 4,
+        path: "/about",
+        element: <About />,
+    },
+    {
+        id: 5,
+        path: "/membership",
+        element: <MemberShip />,
+    },
+    {
+        id: 6,
+        path: "/regAsProfessional",
+        element: <RegAsProfessional />,
+    },
+    {
+        id: 7,
+        path: "/loginAsProfessional",
+        element: <LoginAsProfessional />,
+    },
+    {
+        id: 8,
+        path: "/contact",
+        element: <Contact />,
+    },
+    {
+        id: 9,
+        path: "/profile/:id",
+        element: <DynamicProfilePage />,
+    },
+    {
+        id: 10,
+        path: "/privacy-policy",
+        element: <Privacy />,
+    },
+    {
+        id: 11,
+        path: "/our-teams",
+        element: <OurTeams />,
+    },
+    {
+        id: 13,
+        path: "/otp",
+        element: <OTP />,
+    },
+    {
+        id: 14,
+        path: "/inbox",
+        element: <Inbox />,
+        nestedRoutes: [
+            {
+                id: 1,
+                path: ":id",
+                element: <MessegeBox />,
+            },
+        ],
+    },
+    {
+        id: 15,
+        path: "/shop",
+        element: <Shop />,
+        nestedRoutes: [
+            { id: 1, path: "shopProducts", element: <ShopProducts /> },
+            { id: 2, path: "shopOrders", element: <ShopOrders /> },
+        ],
+    },
+    {
+        id: 17,
+        path: "/paymentSuccess",
+        element: <PaymentSuccess />,
+    },
+    {
+        id: 4,
+        path: "/about",
+        element: <About />,
+    },
+    {
+        id: 5,
+        path: "/membership",
+        element: <MemberShip />,
+    },
+    {
+        id: 6,
+        path: "/regAsProfessional",
+        element: <RegAsProfessional />,
+    },
+    {
+        id: 7,
+        path: "/loginAsProfessional",
+        element: <LoginAsProfessional />,
+    },
+    {
+        id: 8,
+        path: "/contact",
+        element: <Contact />,
+    },
+    {
+        id: 9,
+        path: "/profile/:id",
+        element: <DynamicProfilePage />,
+    },
+    {
+        id: 10,
+        path: "/privacy-policy",
+        element: <Privacy />,
+    },
+    {
+        id: 11,
+        path: "/our-teams",
+        element: <OurTeams />,
+    },
+    {
+        id: 13,
+        path: "/otp",
+        element: <OTP />,
+    },
+    {
+        id: 14,
+        path: "/inbox",
+        element: <Inbox />,
+        nestedRoutes: [
+            {
+                id: 1,
+                path: ":id",
+                element: <MessegeBox />,
+            },
+        ],
+    },
+    {
+        id: 16,
+        path: "/registration-info",
+        element: <GoogleSignUpInfo />,
+    },
+    {
+        id: 17,
+        path: "/:token",
+        element: <HomePageExtra />,
+    },
+    {
+        id: 18,
+        path: "/courses",
+        element: <CourseLandingPage />,
+    },
 ];
 
 export default matrimonyRoutes;
