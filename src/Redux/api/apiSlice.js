@@ -17,6 +17,7 @@ const apiSlice = createApi({
         "allOrders",
         "AllOrdersByMember",
         "reviewByUserAndService",
+        "MyOrders",
     ],
 });
 

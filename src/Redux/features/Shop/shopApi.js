@@ -40,8 +40,19 @@ export const shopApi = apiSlice.injectEndpoints({
                 },
                 body: data,
             }),
+            invalidatesTags: ["MyOrders"],
+        }),
+        myOrder: builder.query({
+            query: () => ({
+                url: `/shop/order/my-orders`,
+                method: "GET",
+                headers: {
+                    authorization: `Bearer ${getCookie("token")}`,
+                },
+            }),
+            providesTags: ["MyOrders"],
         }),
     }),
 });
 
-export const { useGetAllProductsQuery, useGetSingleProductQuery, useApplyCouponMutation, usePlaceOrderMutation } = shopApi;
+export const { useGetAllProductsQuery, useGetSingleProductQuery, useApplyCouponMutation, usePlaceOrderMutation, useMyOrderQuery } = shopApi;

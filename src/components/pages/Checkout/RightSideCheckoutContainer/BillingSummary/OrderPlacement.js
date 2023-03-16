@@ -27,7 +27,6 @@ export const OrderPlacement = () => {
     const orderItems = billingSummary?.orderItems;
 
     const { shippingDetailes, billingDetailes } = checkoutDetailes || {};
-    console.log(checkoutDetailes);
 
     // function declaration
     // order handler
