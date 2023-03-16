@@ -6,7 +6,7 @@ import { CourseTypeFilter } from "./CourseTypeFilter";
 
 export default function CourseFilterContainer() {
     return (
-        <Card sx={{ height: "auto", maxWidth: 290, position: "sticky", top: 0, left: 0 }}>
+        <Card sx={{ height: "auto", maxWidth: 290, position: "sticky", top: 0, left: 0, zIndex: 1000 }}>
             <CourseTypeFilter />
             <CourseCategoryFilter />
             <CourseSkillLevelFilter />

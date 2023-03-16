@@ -5,15 +5,16 @@ export const CoursesCountBox = () => {
     const [selected, setSelected] = useState(1);
     return (
         <div className="flex h-[52px] w-full gap-x-[10px] mb-[42px]">
-            <div className="h-full w-9/12  border-[1px] text-[#585e8c] text-[16px] flex justify-start items-center border-[#d0deef] rounded-[4px] px-[20px] font-Nunito">
+            <div className="h-full hidden lg:flex w-9/12  border-[1px] text-[#585e8c] text-[16px] justify-start items-center border-[#d0deef] rounded-[4px] px-[20px] font-Nunito">
                 View 1-12 of 48 Courses
             </div>
-            <div className="w-3/12  h-full">
+            <div className="w-full lg:w-3/12  h-full">
                 <div>
                     <div class="relative">
                         <button
                             type="button"
                             class="relative w-full cursor-default rounded-[4px] bg-white py-1.5 pl-3 pr-10 text-left text-gray-900 h-[52px] shadow-sm ring-1 ring-inset ring-[#d0deef] focus:outline-none focus:ring-1 focus:ring-pink-600 sm:text-sm sm:leading-6"
+                            style={{ zIndex: -100 }}
                             onClick={() => setShow(!show)}
                         >
                             <span class="flex items-center">
