@@ -18,8 +18,8 @@ export const CheckoutPage = () => {
     useEffect(() => {
         dispatch(
             setBillingDetailesInitialState({
-                firstName,
-                lastName,
+                firstName: firstName || "",
+                lastName: lastName || "",
                 email,
             })
         );
