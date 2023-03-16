@@ -12,6 +12,7 @@ import { OrderStatusTable } from "./OrderStatusTable";
 export const AllOrders = ({ setTotalOrders }) => {
     const { isLoading, data, isError } = useMyOrderQuery({ data: "pending" });
     const { orders, count } = data || {};
+    console.log(data);
 
     useEffect(() => {
         if (count > 0) setTotalOrders(count);
@@ -30,8 +31,10 @@ export const AllOrders = ({ setTotalOrders }) => {
                 <ServerErrorMessage />
             </div>
         );
-    } else if (!isLoading && orders?.length < 0) {
-        content = <div>You have no order to show</div>;
+    } else if (!isLoading && count === 0) {
+        content = (
+            <div className="w-full flex justify-center h-[250px] items-center text-[18px] text-gray-400 font-Nunito">You have no order to show</div>
+        );
     } else if (!isLoading && orders?.length > 0) {
         content = (
             <div className="flex flex-col gap-y-[10px] lg:gap-y-[20px] h-auto">
