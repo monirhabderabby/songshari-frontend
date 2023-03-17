@@ -58,7 +58,7 @@ const MemberShipPremiumCard = ({ item }) => {
               <form
                 action={`${apiBaseUrl}/payment/plan?_plan=${
                   item._id
-                }&amount=${checked ? item?.priceYear : item?.priceMonth}&annually=${checked}&amount=${item?.priceMonth?.toString()}&desc=${"Plan payment"}&_token=${getCookie(
+                }&amount=${checked ? item?.priceYear : item?.priceMonth}&annually=${checked}&desc=${"Plan payment"}&_token=${getCookie(
                   "token"
                 )}`}
                 method="post"
