@@ -27,7 +27,7 @@ export const CourseCard = () => {
                         </span>
                     </div>
                     <div className="w-full">
-                        <button className="w-full h-[44px] rounded-[4px] bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] text-white font-Nunito text-[20px] font-medium">
+                        <button className="w-full h-[44px] rounded-[4px] bg-pink-500 hover:bg-pink-600 text-white font-Nunito text-[20px] font-medium">
                             Add to Cart
                         </button>
                     </div>

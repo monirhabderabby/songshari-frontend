@@ -13,8 +13,7 @@ export const CoursesCountBox = () => {
                     <div class="relative">
                         <button
                             type="button"
-                            class="relative w-full cursor-default rounded-[4px] bg-white py-1.5 pl-3 pr-10 text-left text-gray-900 h-[52px] shadow-sm ring-1 ring-inset ring-[#d0deef] focus:outline-none focus:ring-1 focus:ring-pink-600 sm:text-sm sm:leading-6"
-                            style={{ zIndex: -100 }}
+                            class="relative w-full cursor-default rounded-[4px] bg-white py-1.5 pl-3 pr-10 text-left text-gray-900 h-[52px] shadow-sm ring-1 ring-inset ring-[#d0deef] focus:outline-none focus:ring-1 focus:ring-pink-600 sm:text-sm sm:leading-6 -z-30 lg:z-50"
                             onClick={() => setShow(!show)}
                         >
                             <span class="flex items-center">
