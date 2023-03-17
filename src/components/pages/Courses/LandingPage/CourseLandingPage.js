@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { BiFilter } from "react-icons/bi";
 import { GrFormClose } from "react-icons/gr";
+import { MobileBackButton } from "../../../shared/Components/MobileBackButton";
 import CustomHeader from "../../../shared/CustomHeader/CustomHeader";
 import CourseFilterContainer from "./LeftSideFilterContainer/CourseFilterContainer";
 import { RightSideCourses } from "./RightSideCourses/RightSideCourses";
@@ -10,6 +11,9 @@ export const CourseLandingPage = () => {
 
     return (
         <>
+            <div className="lg:hidden">
+                <MobileBackButton name="Courses" />
+            </div>
             <div className="hidden lg:block">
                 <CustomHeader title="Courses" />
             </div>
@@ -26,7 +30,7 @@ export const CourseLandingPage = () => {
                 <div
                     className={`w-[310px] absolute top-0 ${
                         open ? "left-0" : "left-[420px] lg:left-0"
-                    } duration-300 translate-x-[100px] lg:translate-x-0 lg:sticky top-0 left-0`}
+                    } duration-300 translate-x-[120px] lg:translate-x-0 lg:sticky top-0 left-0`}
                 >
                     <CourseFilterContainer />
                 </div>

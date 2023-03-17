@@ -1,4 +1,5 @@
 import React from "react";
+import { CourseCard } from "../../../../shared/Cards/Courses/CourseCard";
 import { CoursesCountBox } from "./CoursesCountBox";
 
 export const RightSideCourses = () => {
@@ -8,7 +9,7 @@ export const RightSideCourses = () => {
             <CoursesCountBox />
             <div className=" grid grid-cols-1 lg:grid-cols-3 gap-[20px]">
                 {arr.map(item => {
-                    return <div key={item} className="h-[430px] w-[260px] bg-orange-400 mx-auto"></div>;
+                    return <CourseCard key={item} />;
                 })}
             </div>
         </div>
