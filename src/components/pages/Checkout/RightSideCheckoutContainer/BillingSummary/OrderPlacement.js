@@ -123,23 +123,6 @@ export const OrderPlacement = () => {
     setCustomErrorMessage(message);
   };
 
-  const abc = (e) => {
-    fetch(`${apiBaseUrl}/payment/shop`, {
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      method: "POST",
-      body: JSON.stringify({ a: 1, b: 2 }),
-    })
-      .then(function (res) {
-        console.log(res);
-      })
-      .catch(function (res) {
-        console.log(res);
-      });
-  };
-
   return (
     <div>
       <div className="">
@@ -183,8 +166,9 @@ export const OrderPlacement = () => {
           })}
         </div>
       )}
-      {/* {customErrorMessage.length !== 0 && (
+      {customErrorMessage.length !== 0 && (
         <button
+          onClick={handleOrderPlace}
           className="w-full font-bold text-[#F6F6F6] py-[10px] rounded-md my-[10px]"
           style={{
             backgroundImage:
@@ -198,32 +182,32 @@ export const OrderPlacement = () => {
             <p>Pay BDT {Number(subTotal + 100 + tax)}</p>
           )}
         </button>
-      )} */}
-      {/* {customErrorMessage.length === 0 && ( */}
-      <form
-        action={`${apiBaseUrl}/payment/shop?amount=${
-          subTotal + 100 + tax
-        }&tax=${tax}&deliveryCharge=${5}&items=63cf9098a1175b13535363f2-2 63cf9098a1175b13535363f2-3&desc=Shop payment&_token=${getCookie(
-          "token"
-        )}&shipAddress1=dhaka&shipAddress2=dhaka&shipCity=dhaka&shipState=bangladesh&shipZipCode:1200&shipPhone=0134232323&billAddress1=dhaka&billAddress2=dhaka&billCity=dhaka&billState=bangladesh&shipZipCode=1200&billPhone=1273344456`}
-        method="post"
-      >
-        <button
-          className="w-full font-bold text-[#F6F6F6] py-[10px] rounded-md my-[10px]"
-          style={{
-            backgroundImage:
-              "linear-gradient(137.27deg, #EE2FFF 19.41%, #CD1D5C 65.49%)",
-            boxShadow: "0px 4px 4px rgba(14, 53, 191, 0.25)",
-          }}
+      )}
+      {customErrorMessage.length === 0 && (
+        <form
+          action={`${apiBaseUrl}/payment/shop?amount=${
+            subTotal + 100 + tax
+          }&tax=${tax}&deliveryCharge=${5}&items=63cf9098a1175b13535363f2-2 63cf9098a1175b13535363f2-3&desc=Shop payment&_token=${getCookie(
+            "token"
+          )}&shipAddress1=dhaka&shipAddress2=dhaka&shipCity=dhaka&shipState=bangladesh&shipZipCode:1200&shipPhone=0134232323&billAddress1=dhaka&billAddress2=dhaka&billCity=dhaka&billState=bangladesh&shipZipCode=1200&billPhone=1273344456`}
+          method="post"
         >
-          {isLoading ? (
-            <OvalLoader color="#FFFFFF" height={25} />
-          ) : (
-            <p>Pay BDT {Number(subTotal + 100 + tax)}</p>
-          )}
-        </button>
-      </form>
-      {/* )} */}
+          <button
+            className="w-full font-bold text-[#F6F6F6] py-[10px] rounded-md my-[10px]"
+            style={{
+              backgroundImage:
+                "linear-gradient(137.27deg, #EE2FFF 19.41%, #CD1D5C 65.49%)",
+              boxShadow: "0px 4px 4px rgba(14, 53, 191, 0.25)",
+            }}
+          >
+            {isLoading ? (
+              <OvalLoader color="#FFFFFF" height={25} />
+            ) : (
+              <p>Pay BDT {Number(subTotal + 100 + tax)}</p>
+            )}
+          </button>
+        </form>
+      )}
 
       {/* snackbar */}
       {successSnackBarOpen && (
