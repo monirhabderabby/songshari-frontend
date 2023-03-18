@@ -102,7 +102,7 @@ export const Account = () => {
                 : "bg-gray-400"
             } items-center justify-center absolute p-1 h-10 w-10 rounded-full right-3 top-3`}
           >
-            {showOldPass ? (
+            {showNewPass ? (
               <VisibilityOffIcon style={{ fill: "white" }} />
             ) : (
               <RemoveRedEyeIcon style={{ fill: "white" }} />
@@ -126,7 +126,7 @@ export const Account = () => {
                 : "bg-gray-400"
             } items-center justify-center absolute p-1 h-10 w-10 rounded-full right-3 top-3`}
           >
-            {showOldPass ? (
+            {showConfirmPass ? (
               <VisibilityOffIcon style={{ fill: "white" }} />
             ) : (
               <RemoveRedEyeIcon style={{ fill: "white" }} />
