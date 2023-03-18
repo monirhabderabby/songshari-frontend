@@ -33,9 +33,9 @@ const UtilitisCard = ({ data }) => {
                         <button type="button" className="w-12 h-12 rounded-full inline-flex relative items-center p-2 text-xl text-center">
                             <MdOutlineNotificationsActive className="text-lg text-[#0000EE] ml-[6px]" />
                             <span className="sr-only">Notifications</span>
-                            <div className="inline-flex absolute bottom-6 left-6 justify-center items-center w-4 h-4 text-xs font-bold text-white bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] rounded-full ">
-                                <small>12</small>
-                            </div>
+                            {data?.notificationCount!==0 && <div className="inline-flex absolute bottom-6 left-6 justify-center items-center w-4 h-4 text-xs font-bold text-white bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] rounded-full ">
+                                <small>{data?.notificationCount>9? "9+":data?.notificationCount}</small>
+                            </div>}
                         </button>
                     </div>
                 </Tooltip>
