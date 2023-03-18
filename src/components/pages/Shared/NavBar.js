@@ -106,7 +106,7 @@ const NavBar = ({ bg }) => {
                     NavBarCSS.navbar
                 }`}
             >
-                <div className=" lg:max-w-[1000px]  xl:max-w-[1200px] mx-auto flex flex-wrap  flex-col md:flex-row items-center">
+                <div className=" px-[26px] lg:max-w-[1000px]  xl:max-w-[1400px] mx-auto flex flex-wrap  flex-col md:flex-row items-center">
                     <Link to="/" className="flex cursor-pointer title-font font-medium items-center text-gray-900 mb-4 md:mb-0 ">
                         <img src={blackLogo} alt="Not Available" />
                     </Link>

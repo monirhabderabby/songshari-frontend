@@ -7,7 +7,6 @@ import { OTP } from "../../components/pages/Authentications/OTP/OTP";
 import RegAsProfessional from "../../components/pages/Authentications/RegAsProfessional";
 import Signup from "../../components/pages/Authentications/SignUp";
 import Contact from "../../components/pages/Contact/Contact";
-import { CourseLandingPage } from "../../components/pages/Courses/LandingPage/CourseLandingPage";
 import { DynamicProfilePage } from "../../components/pages/DynamicProfilePage/DynamicProfilePage";
 import { OurTeams } from "../../components/pages/OurTeams/OurTeams";
 import { Privacy } from "../../components/pages/Privacy/Privacy";
@@ -193,11 +192,6 @@ const matrimonyRoutes = [
         id: 17,
         path: "/:token",
         element: <HomePageExtra />,
-    },
-    {
-        id: 18,
-        path: "/courses",
-        element: <CourseLandingPage />,
     },
 ];
 
