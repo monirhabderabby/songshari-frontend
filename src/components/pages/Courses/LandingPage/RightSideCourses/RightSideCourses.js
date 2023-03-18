@@ -1,4 +1,8 @@
+// Configuration
 import React from "react";
+
+// Third party packages
+import { Pagination } from "@mui/material";
 import { CourseCard } from "../../../../shared/Cards/Courses/CourseCard";
 import { CoursesCountBox } from "./CoursesCountBox";
 
@@ -11,6 +15,9 @@ export const RightSideCourses = () => {
                 {arr.map(item => {
                     return <CourseCard key={item} />;
                 })}
+            </div>
+            <div className="my-[100px] w-full flex justify-center">
+                <Pagination count={10} variant="outlined" color="secondary" />
             </div>
         </div>
     );

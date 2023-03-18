@@ -10,7 +10,8 @@ export const CourseCard = () => {
                 <img
                     className="h-[234px] w-full rounded-tl-[4px] rounded-tr-[4px]"
                     src="https://bohubrihi.com/wp-content/uploads/2023/03/Product-Management-Bangla-Course-620x440.png"
-                    alt=""
+                    alt="courseImage"
+                    loading="lazi"
                 />
             </div>
             <div className="content w-full h-[calc(430px-234px)] flex flex-col justify-between p-[10px]">
