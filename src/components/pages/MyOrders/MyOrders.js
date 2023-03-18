@@ -6,6 +6,7 @@ import useMediaQuery from "@material-ui/core/useMediaQuery";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import LocalShippingIcon from "@mui/icons-material/LocalShipping";
+import SchoolIcon from "@mui/icons-material/School";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
@@ -37,10 +38,18 @@ export const MyOrders = () => {
                     <div className="w-[45px] lg:w-[204px] h-[100vh-30vh] py-[20px] relative">
                         <div className="sticky top-0">
                             <List>
-                                {["My Account", "My Orders", "My Wishlist"].map((text, index) => (
+                                {["My Account", "My Orders", "My Wishlist", "My Courses"].map((text, index) => (
                                     <ListItem key={text} disablePadding>
                                         <NavLink
-                                            to={text.includes("My Account") ? "account" : text.includes("My Orders") ? "orderStatus" : "wishlist"}
+                                            to={
+                                                text.includes("My Account")
+                                                    ? "account"
+                                                    : text.includes("My Orders")
+                                                    ? "orderStatus"
+                                                    : text.includes("My Wishlist")
+                                                    ? "wishlist"
+                                                    : "my-courses"
+                                            }
                                             className={({ isActive }) =>
                                                 isActive ? "bg-[#F1F5F9] w-[55px] lg:w-[200px]" : "bg-white w-[55px] lg:w-[200px]"
                                             }
@@ -49,7 +58,8 @@ export const MyOrders = () => {
                                                 <ListItemIcon>
                                                     {(text.includes("My Account") && <AccountBoxIcon />) ||
                                                         (text?.includes("My Orders") && <LocalShippingIcon />) ||
-                                                        (text.includes("My Wishlist") && <FavoriteBorderIcon />)}
+                                                        (text.includes("My Wishlist") && <FavoriteBorderIcon />) ||
+                                                        (text.includes("My Courses") && <SchoolIcon />)}
                                                 </ListItemIcon>
                                                 <ListItemText primary={text} style={{ display: isMobile ? "none" : "flex" }} />
                                             </ListItemButton>
