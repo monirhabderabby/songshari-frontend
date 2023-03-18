@@ -52,7 +52,7 @@ function checkError(privacyChecked, shippingDetailes, billingDetailes) {
 }
 
 function orderItemsToString(arr) {
-  return arr.map(item => {
+  return arr?.map(item => {
     return "" + item.product +"-" + item.quantity;
   }).join(" ");
 }
