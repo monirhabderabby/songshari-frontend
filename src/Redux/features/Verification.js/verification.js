@@ -22,6 +22,26 @@ export const verificationApi = apiSlice.injectEndpoints({
     updatePassWord: builder.mutation({
       query: (data) => ({
         url: "/verify/password/update",
+        method: "PUT",
+        headers: {
+          authorization: `Bearer ${getCookie("token")}`,
+        },
+        body: data,
+      }),
+    }),
+    updateEmail: builder.mutation({
+      query: (data) => ({
+        url: "/verify/email/update",
+        method: "PUT",
+        headers: {
+          authorization: `Bearer ${getCookie("token")}`,
+        },
+        body: data,
+      }),
+    }),
+    verifyNewEmailAndPassword: builder.mutation({
+      query: (data) => ({
+        url: "/verify/newEmail/check",
         method: "POST",
         headers: {
           authorization: `Bearer ${getCookie("token")}`,
@@ -32,5 +52,10 @@ export const verificationApi = apiSlice.injectEndpoints({
   }),
 });
 
-export const { useChangePasswordMutation, useSendOtpByEmailMutation, useUpdatePassWordMutation } =
-  verificationApi;
+export const {
+  useChangePasswordMutation,
+  useSendOtpByEmailMutation,
+  useUpdatePassWordMutation,
+  useUpdateEmailMutation,
+  useVerifyNewEmailAndPasswordMutation,
+} = verificationApi;
