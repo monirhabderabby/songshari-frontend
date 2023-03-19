@@ -1,3 +1,4 @@
+import { MyCourses } from "../../components/pages/Courses/MyCourses/MyCourses";
 import { Account } from "../../components/pages/MyOrders/Account";
 import { MyOrders } from "../../components/pages/MyOrders/MyOrders";
 import { OrderStatus } from "../../components/pages/MyOrders/OrderHistory/OrderStatus";
@@ -23,6 +24,11 @@ const myAccountPrivateRoutes = [
                 id: 3,
                 path: "wishlist",
                 element: <WishlistTable />,
+            },
+            {
+                id: 4,
+                path: "my-courses",
+                element: <MyCourses />,
             },
         ],
     },
