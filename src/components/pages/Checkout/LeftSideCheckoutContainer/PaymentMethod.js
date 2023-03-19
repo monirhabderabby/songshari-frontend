@@ -1,8 +1,16 @@
 import { FormControl, FormControlLabel, Radio, RadioGroup } from "@material-ui/core";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setStorePaymentMethod } from "../../../../Redux/features/checkout/checkoutDetailsSlice";
 
 export const PaymentMethod = () => {
-    const [paymentMethod, setPaymentMethod] = useState("amarPay");
+    const storedPaymentMethod = useSelector(state => state?.persistedReducer?.checkoutDetailes?.paymentMethod) || {};
+    const [paymentMethod, setPaymentMethod] = useState(storedPaymentMethod);
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(setStorePaymentMethod(paymentMethod));
+    }, [paymentMethod, dispatch]);
     const amarPay = (
         <div className="w-full flex items-center">
             <img className="w-[147px]" src="https://www.aamarpay.com/images/logo/aamarpay_logo.png" alt="logo" loading="lazy" />
@@ -29,7 +37,7 @@ export const PaymentMethod = () => {
                     name="radio-buttons-group"
                     onChange={() => setPaymentMethod("amarPay")}
                 >
-                    <FormControlLabel checked={paymentMethod.includes("amarPay")} control={<Radio />} label={amarPay} />
+                    <FormControlLabel checked={paymentMethod?.includes("amarPay")} control={<Radio />} label={amarPay} />
                 </RadioGroup>
                 <RadioGroup
                     aria-labelledby="demo-radio-buttons-group-label"
@@ -37,7 +45,7 @@ export const PaymentMethod = () => {
                     name="radio-buttons-group"
                     onChange={() => setPaymentMethod("cash")}
                 >
-                    <FormControlLabel checked={paymentMethod.includes("cash")} control={<Radio />} label={cash} />
+                    <FormControlLabel checked={paymentMethod?.includes("cash")} control={<Radio />} label={cash} />
                 </RadioGroup>
             </FormControl>
         </div>

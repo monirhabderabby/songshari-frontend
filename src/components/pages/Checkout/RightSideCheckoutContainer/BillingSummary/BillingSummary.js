@@ -11,7 +11,7 @@ const BillingSummary = () => {
     const dispatch = useDispatch();
     const billingSummaryDetailes = useSelector(state => state.persistedReducer?.billingSummary?.billingSummary);
 
-    const { discount, shipping, subTotal, tax } = billingSummaryDetailes || {};
+    const { discount, subTotal, tax } = billingSummaryDetailes || {};
 
     useEffect(() => {
         dispatch(setTax(calculatePercentage(subTotal, 15)));

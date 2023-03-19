@@ -14,13 +14,27 @@ import Error from "../../../../ui/error/Error";
 import { SuccessSnackBar } from "../../../../ui/error/snackBar/SuccessSnackBar";
 import getCookie from "../../../../../Helper/cookies/getCookie";
 import { apiBaseUrl } from "../../../../../config";
+import {
+  checkError,
+  checkObject,
+  handleCustomMessage,
+  orderItemsToString,
+  removeDuplicates,
+} from "../../../../../assets/utilities/orderPlacement/orderPlacement";
 
 export const OrderPlacement = () => {
+  const [displayErrors, setDisplayErrors] = useState(false);
   const [customErrorMessage, setCustomErrorMessage] = useState([]);
   const [successSnackBarOpen, setSuccessSnackBarOpen] = useState(false);
   const [privacyChecked, setPrivacyCheked] = useState(false);
+  const [fieldError, setFieldError] = useState();
   const { checkoutDetailes, billingSummary } =
     useSelector((state) => state.persistedReducer) || {};
+  const storedPaymentMethod =
+    useSelector(
+      (state) => state?.persistedReducer?.checkoutDetailes?.paymentMethod
+    ) || {};
+  
   const { subTotal, tax } = billingSummary?.billingSummary || {};
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -30,7 +44,6 @@ export const OrderPlacement = () => {
   const orderItems = billingSummary?.orderItems;
 
   const { shippingDetailes, billingDetailes } = checkoutDetailes || {};
-
   // function declaration
   // order handler
   const handleOrderPlace = () => {
@@ -40,10 +53,36 @@ export const OrderPlacement = () => {
       totalPrice: Number(subTotal + 100 + tax),
       orderItems: orderItems,
     };
-    console.log("ORDER PLACEMENT DATA", data);
 
+    // Error handle End
+    if (customErrorMessage.length === 0) {
+      placeOrder(data);
+    } else {
+      setDisplayErrors(true);
+    }
+  };
+
+  useEffect(() => {
+    if (isSuccess) {
+      setSuccessSnackBarOpen(true);
+
+      setTimeout(() => {
+        localStorage.removeItem("cart");
+        dispatch(resetBillingSummaryState());
+        dispatch(clearCartCount());
+        navigate("/my-orders/orderStatus");
+      }, 2000);
+    }
+  }, [isSuccess, navigate, dispatch]);
+
+  useEffect(() => {
+    setFieldError(
+      checkError(privacyChecked, shippingDetailes, billingDetailes)
+    );
+  }, [privacyChecked, shippingDetailes, billingDetailes]);
+
+  useEffect(() => {
     // Error handle start
-
     if (!privacyChecked) {
       setCustomErrorMessage(["Please checked our terms and condition"]);
       return;
@@ -66,27 +105,8 @@ export const OrderPlacement = () => {
     const errorsArray = [...shippingInfoProperties, ...billingInfoProperties];
     const updatedErrorsArray = removeDuplicates(errorsArray);
 
-    handleCustomMessage(updatedErrorsArray);
-
-    // Error handle End
-
-    if (customErrorMessage.length === 0) {
-      placeOrder(data);
-    }
-  };
-
-  useEffect(() => {
-    if (isSuccess) {
-      setSuccessSnackBarOpen(true);
-
-      setTimeout(() => {
-        localStorage.removeItem("cart");
-        dispatch(resetBillingSummaryState());
-        dispatch(clearCartCount());
-        navigate("/my-orders/orderStatus");
-      }, 3000);
-    }
-  }, [isSuccess, navigate, dispatch]);
+    handleCustomMessage(updatedErrorsArray, setCustomErrorMessage);
+  }, [billingDetailes, privacyChecked, shippingDetailes]);
 
   // checkbox handler
   const handleCheckBox = (e) => {
@@ -97,49 +117,6 @@ export const OrderPlacement = () => {
       )
     );
   };
-
-  // remove duplicate from array
-  function removeDuplicates(arr) {
-    return arr.filter((item, index) => {
-      return arr.indexOf(item) === index;
-    });
-  }
-
-  // function and check object that if any properties are empty
-  function checkObject(obj) {
-    return Object.keys(obj).filter((key) => {
-      const value = obj[key];
-      return value === null || value === undefined || value === "";
-    });
-  }
-
-  // error message handle and set it on state
-  const handleCustomMessage = (arr) => {
-    let message = [];
-    arr.map((item) => {
-      message.push(`${item} required in both the Shipping and Billing details`);
-      return item;
-    });
-    setCustomErrorMessage(message);
-  };
-
-  const abc = (e) => {
-    fetch(`${apiBaseUrl}/payment/shop`, {
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      method: "POST",
-      body: JSON.stringify({ a: 1, b: 2 }),
-    })
-      .then(function (res) {
-        console.log(res);
-      })
-      .catch(function (res) {
-        console.log(res);
-      });
-  };
-
   return (
     <div>
       <div className="">
@@ -176,15 +153,16 @@ export const OrderPlacement = () => {
           />
         </FormGroup>
       </FormControl>
-      {customErrorMessage?.length !== 0 && (
+      {customErrorMessage?.length !== 0 && displayErrors && (
         <div className="w-full ">
           {customErrorMessage?.map((item, index) => {
             return <Error key={item} message={item} />;
           })}
         </div>
       )}
-      {/* {customErrorMessage.length !== 0 && (
+      {(fieldError || storedPaymentMethod === "cash") && (
         <button
+          onClick={handleOrderPlace}
           className="w-full font-bold text-[#F6F6F6] py-[10px] rounded-md my-[10px]"
           style={{
             backgroundImage:
@@ -198,32 +176,44 @@ export const OrderPlacement = () => {
             <p>Pay BDT {Number(subTotal + 100 + tax)}</p>
           )}
         </button>
-      )} */}
-      {/* {customErrorMessage.length === 0 && ( */}
-      <form
-        action={`${apiBaseUrl}/payment/shop?amount=${
-          subTotal + 100 + tax
-        }&tax=${tax}&deliveryCharge=${5}&items=63cf9098a1175b13535363f2-2 63cf9098a1175b13535363f2-3&desc=Shop payment&_token=${getCookie(
-          "token"
-        )}&shipAddress1=dhaka&shipAddress2=dhaka&shipCity=dhaka&shipState=bangladesh&shipZipCode:1200&shipPhone=0134232323&billAddress1=dhaka&billAddress2=dhaka&billCity=dhaka&billState=bangladesh&shipZipCode=1200&billPhone=1273344456`}
-        method="post"
-      >
-        <button
-          className="w-full font-bold text-[#F6F6F6] py-[10px] rounded-md my-[10px]"
-          style={{
-            backgroundImage:
-              "linear-gradient(137.27deg, #EE2FFF 19.41%, #CD1D5C 65.49%)",
-            boxShadow: "0px 4px 4px rgba(14, 53, 191, 0.25)",
-          }}
+      )}
+      {!fieldError && storedPaymentMethod === "amarPay" && (
+        <form
+          action={`${apiBaseUrl}/payment/shop?amount=${
+            subTotal + 100 + tax
+          }&tax=${tax}&deliveryCharge=${5}&items=${orderItemsToString(orderItems)}&desc=Shop payment&_token=${getCookie(
+            "token"
+          )}&shipAddress1=${shippingDetailes?.address1}&shipAddress2=${
+            shippingDetailes?.address2
+          }&shipCity=${shippingDetailes?.city}&shipState=${
+            shippingDetailes?.state
+          }&shipZipCode=${shippingDetailes?.zipCode}&shipPhone=${
+            shippingDetailes?.phone
+          }&billAddress1=${billingDetailes?.address1}&billAddress2=${
+            billingDetailes?.address2
+          }&billCity=${billingDetailes?.city}&billState=${
+            billingDetailes?.state
+          }&shipZipCode=${billingDetailes?.zipCode}&billPhone=${
+            billingDetailes?.phone
+          }`}
+          method="post"
         >
-          {isLoading ? (
-            <OvalLoader color="#FFFFFF" height={25} />
-          ) : (
-            <p>Pay BDT {Number(subTotal + 100 + tax)}</p>
-          )}
-        </button>
-      </form>
-      {/* )} */}
+          <button
+            className="w-full font-bold text-[#F6F6F6] py-[10px] rounded-md my-[10px]"
+            style={{
+              backgroundImage:
+                "linear-gradient(137.27deg, #EE2FFF 19.41%, #CD1D5C 65.49%)",
+              boxShadow: "0px 4px 4px rgba(14, 53, 191, 0.25)",
+            }}
+          >
+            {isLoading ? (
+              <OvalLoader color="#FFFFFF" height={25} />
+            ) : (
+              <p>Pay BDT {Number(subTotal + 100 + tax)}</p>
+            )}
+          </button>
+        </form>
+      )}
 
       {/* snackbar */}
       {successSnackBarOpen && (

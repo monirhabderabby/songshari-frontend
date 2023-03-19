@@ -13,7 +13,6 @@ import rightShape from "./../../../assets/images/footer/right-shape.png";
 const Footer = () => {
   const [email, setEmail] = useState("");
   const [addSubscriber, { data, isLoading, error }] = useAddSubscriberMutation();
-  console.log(data, isLoading, error);
   const handleSubmit = (e) => {
     e.preventDefault();
     addSubscriber({ email });
