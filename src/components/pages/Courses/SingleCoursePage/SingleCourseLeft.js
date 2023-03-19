@@ -4,9 +4,11 @@ import { LeftSideHeader } from "./leftSide/LeftSideHeader";
 
 export const SingleCourseLeft = () => {
     return (
-        <div>
+        <div className="relative">
             <LeftSideHeader />
-            <CourseDetailesTab />
+            <div className="">
+                <CourseDetailesTab />
+            </div>
         </div>
     );
 };

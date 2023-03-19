@@ -42,7 +42,7 @@ export const SingleCourseInfoCard = () => {
         },
     ];
     return (
-        <div className="w-full lg:max-w-[400px] h-[400px] mx-auto ring-1 ring-inset ring-[#d0deef] rounded-[4px] p-[16px]">
+        <div className="w-full lg:max-w-[400px] h-[400px] mx-auto ring-1 ring-inset ring-[#d0deef] rounded-[4px] p-[16px] sticky top-[44px]">
             <h3 className="text-[32px] font-Nunito font-bold">Included in this course</h3>
             <div className="my-[26px] grid grid-cols-2 gap-[20px]">
                 {supports.map(item => {
