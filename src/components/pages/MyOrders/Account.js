@@ -7,7 +7,7 @@ import ChangePassword from "./accountConponents/ChangePassword";
 export const Account = () => {
   
   return (
-    <div className="w-full">
+    <div className="w-full bg-white">
       <ChangeEmail />
       <div className="my-20">
         <ChangePassword />

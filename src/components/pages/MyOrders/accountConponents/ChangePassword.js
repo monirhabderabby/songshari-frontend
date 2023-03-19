@@ -31,7 +31,7 @@ const ChangePassword = () => {
         setNewPass("");
         setOldPass("");
         setConfirmPass("");
-        toast.error(error?.message);
+        toast.error(error?.data?.message);
       }
     }, [error]);
 
@@ -61,7 +61,7 @@ const ChangePassword = () => {
           onSubmit={handleSubmit}
           className="my-[20px] flex flex-col items-start"
         >
-          <div className="relative w-full md:w-auto">
+          <div className="relative w-full md:w-[500px]">
             <input
               onChange={(e) => setOldPass(e.target.value)}
               type={showOldPass ? "text" : "password"}
@@ -86,7 +86,7 @@ const ChangePassword = () => {
             </span>
           </div>
 
-          <div className="relative w-full md:w-auto">
+          <div className="relative w-full md:w-[500px]">
             <input
               onChange={(e) => setNewPass(e.target.value)}
               type={showNewPass ? "text" : "password"}
@@ -110,7 +110,7 @@ const ChangePassword = () => {
               )}
             </span>
           </div>
-          <div className="relative w-full md:w-auto">
+          <div className="relative w-full md:w-[500px]">
             <input
               onChange={(e) => setConfirmPass(e.target.value)}
               value={confirmPass}
