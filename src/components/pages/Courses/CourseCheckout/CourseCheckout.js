@@ -6,7 +6,7 @@ import { CourseCheckoutLeftSide } from "./Left/CourseCheckoutLeftSide";
 
 export const CourseCheckout = () => {
     return (
-        <div>
+        <div className="pb-[50px]">
             <div className="hidden lg:block">
                 <CustomHeader title="Checkout" />
             </div>
@@ -17,7 +17,7 @@ export const CourseCheckout = () => {
                 <div className=" w-full lg:max-w-[660px] 2xl:w-[850px] mx-auto">
                     <CourseCheckoutLeftSide />
                 </div>
-                <div className="sticky top-[44px] flex-1 mx-auto max-w-[400px]">
+                <div className="sticky top-[44px] flex-1 mx-auto lg:max-w-[400px] 2xl:max-w-[480px]">
                     <CourseCheckoutRightSide />
                 </div>
             </div>
