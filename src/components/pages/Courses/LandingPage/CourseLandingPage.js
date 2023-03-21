@@ -43,7 +43,7 @@ export const CourseLandingPage = () => {
                         Filter
                     </button>
                 </div>
-                <div>
+                <div className="flex-1">
                     <RightSideCourses />
                 </div>
             </div>

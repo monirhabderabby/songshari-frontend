@@ -1,12 +1,17 @@
 import React, { useState } from "react";
+import getCurrentRange from "../../../../../assets/utilities/Pagination/getCurrentRange";
 
-export const CoursesCountBox = () => {
+export const CoursesCountBox = ({ total, page }) => {
     const [show, setShow] = useState(false);
     const [selected, setSelected] = useState(1);
+    let content;
+    if (page) {
+        content = <p>{getCurrentRange(9, page, total)}</p>;
+    }
     return (
         <div className="flex h-[52px] w-full gap-x-[10px] mb-[42px]">
             <div className="h-full hidden lg:flex w-9/12  border-[1px] text-[#585e8c] text-[16px] justify-start items-center border-[#d0deef] rounded-[4px] px-[20px] font-Nunito">
-                View 1-12 of 48 Courses
+                {content}
             </div>
             <div className="w-full lg:w-3/12  h-full">
                 <div>
