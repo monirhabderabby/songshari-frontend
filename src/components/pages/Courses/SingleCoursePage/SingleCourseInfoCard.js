@@ -47,7 +47,7 @@ export const SingleCourseInfoCard = () => {
             <div className="my-[26px] grid grid-cols-2 gap-[20px]">
                 {supports.map(item => {
                     return (
-                        <div className="flex items-center gap-x-[6px]">
+                        <div className="flex items-center gap-x-[6px]" key={item.id}>
                             <div>{item.icon}</div>
                             <h3 className="text-[14px] text-gray-500 font-outfit">{item.title}</h3>
                         </div>

@@ -3,7 +3,7 @@ import { CourseInfo } from "./CourseInfo/CourseInfo";
 import { Faq } from "./faq/Faq";
 import { InstructorInfo } from "./InstructorInfo/InstructorInfo";
 
-export const CourseDetailesTab = () => {
+export const CourseDetailesTab = ({ course }) => {
     const [tab, setTab] = useState(1);
     return (
         <div className="w-full h-auto">
@@ -23,8 +23,8 @@ export const CourseDetailesTab = () => {
                     Instructor
                 </button>
             </div>
-            {tab === 1 && <CourseInfo />}
-            {tab === 2 && <InstructorInfo />}
+            {tab === 1 && <CourseInfo course={course} />}
+            {tab === 2 && <InstructorInfo course={course} />}
             <Faq />
         </div>
     );

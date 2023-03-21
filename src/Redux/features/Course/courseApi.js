@@ -12,7 +12,16 @@ export const courseApi = apiSlice.injectEndpoints({
                 },
             }),
         }),
+        getSingleCourseById: builder.query({
+            query: id => ({
+                url: `/course/get-course/${id}`,
+                method: "GET",
+                headers: {
+                    authorization: `Bearer ${getCookie("token")}`,
+                },
+            }),
+        }),
     }),
 });
 
-export const { useGetAllCoursesQuery } = courseApi;
+export const { useGetAllCoursesQuery, useGetSingleCourseByIdQuery } = courseApi;
