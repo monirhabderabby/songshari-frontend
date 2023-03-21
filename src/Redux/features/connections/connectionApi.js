@@ -175,7 +175,7 @@ export const connectionApi = apiSlice.injectEndpoints({
     }),
     likeSinglePost: builder.mutation({
       query: (id) => ({
-        url: `/member/like/post/${id}`,
+        url: `/member/post/like/${id}`,
         method: "PUT",
         headers: {
           authorization: `Bearer ${getCookie("token")}`,

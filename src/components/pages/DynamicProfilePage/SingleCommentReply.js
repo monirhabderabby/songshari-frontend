@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 const SingleCommentReply = ({ reply }) => {
-  console.log(reply);
     return (
       <div className="ml-[50px]">
         <div>

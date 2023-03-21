@@ -17,8 +17,6 @@ const SinglePostFooter = ({post}) => {
       await likeSinglePost(post?._id);
   };
   
-  console.log("Id includes", post?.likes,(data?._id));
-
     useEffect(() => {
       if (likeResponse) {
         setPostLiked(true);

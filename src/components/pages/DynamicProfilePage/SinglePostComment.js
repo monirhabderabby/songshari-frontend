@@ -43,7 +43,7 @@ const SinglePostComment = ({post}) => {
           ></textarea>
           <div
             onClick={handleCommentSubmit}
-            className=" p-1 flex justify-center items-center text-[#F22876] absolute h-10 w-10 rounded-full right-3 top-[50%] button-[50%] hover:bg-gray-200 cursor-pointer"
+            className=" p-1 flex justify-center items-center text-[#F22876] absolute h-10 w-10 rounded-full right-3 top-4 hover:bg-gray-200 cursor-pointer"
           >
             <SendIcon />
           </div>

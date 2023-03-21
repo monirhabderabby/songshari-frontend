@@ -4,7 +4,7 @@ import SendIcon from "@mui/icons-material/Send";
 
 import { useGetProfileDetailsWIthAuthQuery } from "../../../Redux/features/userInfo/userApi";
 import SingleCommentReply from "./SingleCommentReply";
-import { useAddReplyToCommentMutation } from "../../../Redux/features/comment/commentApi";
+import { useAddReplyToCommentMutation, useLikeSingleCommentMutation } from "../../../Redux/features/comment/commentApi";
 
 const SingleComment = ({ comment }) => {
   const [showReply, setShowReply] = useState(false);
@@ -12,6 +12,9 @@ const SingleComment = ({ comment }) => {
   const { data } = useGetProfileDetailsWIthAuthQuery();
   const [addReplyToComment, { data: replyData }] =
     useAddReplyToCommentMutation();
+  const [likeComment, { data: likeData, isLoading: likeLoading, error: likeError }] = useLikeSingleCommentMutation();
+  console.log(likeData, likeLoading, likeError);
+
 
   const handleReplySubmit = () => {
     if (reply) {
@@ -39,12 +42,27 @@ const SingleComment = ({ comment }) => {
             <p className="text-justify">{comment?.body}</p>
           </div>
           <div>
-            <button className="text-gray-400 font-bold mx-4">like</button>
             <button
-              onClick={() => setShowReply(true)}
+              onClick={() => likeComment(comment?._id)}
+              className={`${
+                comment?.like?.includes(data?._id)
+                  ? "text-[#E41272]"
+                  : "text-gray-400"
+              } font-bold mx-4 hover:underline`}
+            >
+              {comment?.likes?.length === 0
+                ? "Like"
+                : comment?.likes?.length === 1
+                ? "1 Like"
+                : comment?.likes?.length + " Likes"}
+            </button>
+            <button
+              onClick={() => setShowReply(!showReply)}
               className="text-gray-400 font-bold mx-4 hover:underline"
             >{`${
-              comment?.replies?.length === 0 ? "Reply" : comment?.replies?.length + " Replies"
+              comment?.replies?.length === 0
+                ? "Reply"
+                : comment?.replies?.length + " Replies"
             }`}</button>
             <span className="text-gray-400 mx-4">7hr</span>
           </div>
@@ -70,7 +88,7 @@ const SingleComment = ({ comment }) => {
               ></textarea>
               <div
                 onClick={handleReplySubmit}
-                className=" p-1 flex justify-center items-center text-[#F22876] absolute h-10 w-10 rounded-full right-3 top-[50%] button-[50%] hover:bg-gray-200 cursor-pointer"
+                className=" p-1 flex justify-center items-center text-[#F22876] absolute h-10 w-10 rounded-full right-3 top-4 hover:bg-gray-200 cursor-pointer"
               >
                 <SendIcon />
               </div>

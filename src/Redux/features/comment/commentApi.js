@@ -36,7 +36,16 @@ export const commentApi = apiSlice.injectEndpoints({
       keepUnusedDataFor: 600,
       providesTags: ["posts"],
     }),
+    likeSingleComment: builder.mutation({
+      query: (commentId) => ({
+        url: `/member/comment/like/${commentId}`,
+        method: "PUT",
+        headers: {
+          authorization: `Bearer ${getCookie("token")}`,
+        },
+      }),
+    }),
   }),
 });
 
-export const { useAddCommentMutation, useGetAllCommentOfPostQuery, useAddReplyToCommentMutation } = commentApi;
+export const { useAddCommentMutation, useGetAllCommentOfPostQuery, useAddReplyToCommentMutation, useLikeSingleCommentMutation } = commentApi;

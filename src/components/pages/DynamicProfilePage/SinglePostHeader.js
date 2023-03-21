@@ -72,7 +72,7 @@ const SinglePostHeader = ({ post }) => {
         </div>
       </div>
       <div className="">
-        <p className="text-[#333333] my-6 ml-[60px] mr-[6px] text-justify">
+        <p className="text-[#333333] my-6 ml-2 mr-[6px] text-justify">
           {post?.postBody}
         </p>
         {post?.attachment?.length > 0 && (
