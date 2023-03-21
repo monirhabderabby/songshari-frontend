@@ -8,7 +8,8 @@ import { FiHeadphones } from "react-icons/fi";
 import { GrGroup, GrLanguage } from "react-icons/gr";
 import { TbMessages } from "react-icons/tb";
 
-export const SingleCourseInfoCard = () => {
+export const SingleCourseInfoCard = ({ course }) => {
+    const { oldPrice, price } = course || {};
     const supports = [
         {
             id: 1,
@@ -58,8 +59,8 @@ export const SingleCourseInfoCard = () => {
                 <span className="text-[16px] font-semibold font-SourceCodePro">Price</span>
                 <Divider type="vertical" style={{ height: "70px" }} />
                 <div className="flex flex-col gap-y-[6px] text-[18px] font-SourceCodePro">
-                    <del>4500</del>
-                    <span>4000</span>
+                    <del>{oldPrice}</del>
+                    <span>{price}</span>
                 </div>
             </div>
             <button className="w-full mt-[20px] bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] hover:bg-[linear-gradient(166deg,rgb(255,0,128)_0%,rgb(148,45,255)_100%)] py-2 rounded-[4px] text-white font-Nunito">
