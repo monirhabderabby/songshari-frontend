@@ -7,9 +7,14 @@ import { CiVideoOn } from "react-icons/ci";
 import { FiHeadphones } from "react-icons/fi";
 import { GrGroup, GrLanguage } from "react-icons/gr";
 import { TbMessages } from "react-icons/tb";
+import { useBuyCourseMutation } from "../../../../Redux/features/Course/courseApi";
+import { OvalLoader } from "../../../shared/Cards/Loader/OvalLoader/OvalLoader";
 
 export const SingleCourseInfoCard = ({ course }) => {
-    const { oldPrice, price } = course || {};
+    const { oldPrice, price, _id } = course || {};
+
+    const [buyCourse, { isSuccess, isLoading }] = useBuyCourseMutation();
+
     const supports = [
         {
             id: 1,
@@ -42,6 +47,18 @@ export const SingleCourseInfoCard = ({ course }) => {
             icon: <TbMessages className="text-[20px]" />,
         },
     ];
+
+    // function declaration
+    const handleCourseOrder = () => {
+        buyCourse({
+            id: _id,
+            data: {
+                payment: {
+                    id: 1258453,
+                },
+            },
+        });
+    };
     return (
         <div className="w-full lg:max-w-[400px] h-auto lg:h-[400px] mx-auto ring-1 ring-inset ring-[#d0deef] rounded-[4px] p-[16px] sticky top-[44px]">
             <h3 className="text-[32px] font-Nunito font-bold">Included in this course</h3>
@@ -63,8 +80,14 @@ export const SingleCourseInfoCard = ({ course }) => {
                     <span>{price}</span>
                 </div>
             </div>
-            <button className="w-full mt-[20px] bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] hover:bg-[linear-gradient(166deg,rgb(255,0,128)_0%,rgb(148,45,255)_100%)] py-2 rounded-[4px] text-white font-Nunito">
-                Buy Now
+            <button
+                className={`w-full mt-[20px] bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] hover:bg-[linear-gradient(166deg,rgb(255,0,128)_0%,rgb(148,45,255)_100%)] py-2 rounded-[4px] text-white font-Nunito ${
+                    isSuccess && "cursor-not-allowed"
+                }`}
+                onClick={handleCourseOrder}
+                disabled={isSuccess}
+            >
+                {isLoading ? <OvalLoader color="#FFFFFF" height={30} width={30} /> : isSuccess ? "You are in" : "Buy Now"}
             </button>
         </div>
     );

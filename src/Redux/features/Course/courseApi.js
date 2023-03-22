@@ -21,7 +21,17 @@ export const courseApi = apiSlice.injectEndpoints({
                 },
             }),
         }),
+        buyCourse: builder.mutation({
+            query: ({ id, data }) => ({
+                url: `/course/buy-a-course/${id}`,
+                method: "POST",
+                headers: {
+                    authorization: `Bearer ${getCookie("token")}`,
+                },
+                body: data,
+            }),
+        }),
     }),
 });
 
-export const { useGetAllCoursesQuery, useGetSingleCourseByIdQuery } = courseApi;
+export const { useGetAllCoursesQuery, useGetSingleCourseByIdQuery, useBuyCourseMutation } = courseApi;
