@@ -4,17 +4,20 @@ import SendIcon from "@mui/icons-material/Send";
 
 import { useGetProfileDetailsWIthAuthQuery } from "../../../Redux/features/userInfo/userApi";
 import SingleCommentReply from "./SingleCommentReply";
-import { useAddReplyToCommentMutation, useLikeSingleCommentMutation } from "../../../Redux/features/comment/commentApi";
+import {
+  useAddReplyToCommentMutation,
+  useLikeSingleCommentMutation,
+} from "../../../Redux/features/comment/commentApi";
+import timeAgo from "../../../assets/utilities/TimeCalculator/TimeAgo";
 
 const SingleComment = ({ comment }) => {
   const [showReply, setShowReply] = useState(false);
   const [reply, setReply] = useState("");
   const { data } = useGetProfileDetailsWIthAuthQuery();
+  const [liked, setLiked] = useState(comment?.likes?.includes(data?._id));
   const [addReplyToComment, { data: replyData }] =
     useAddReplyToCommentMutation();
-  const [likeComment, { data: likeData, isLoading: likeLoading, error: likeError }] = useLikeSingleCommentMutation();
-  console.log(likeData, likeLoading, likeError);
-
+  const [likeComment,] = useLikeSingleCommentMutation();
 
   const handleReplySubmit = () => {
     if (reply) {
@@ -37,17 +40,20 @@ const SingleComment = ({ comment }) => {
         <div>
           <div className="bg-gray-100 rounded-xl p-3">
             <h3 className="font-bold">
-              <Link to="/">{`${comment?.author?.firstName} ${comment?.author?.lastName}`}</Link>
+              <Link
+                to={`/profile/${comment?.author?._id}`}
+              >{`${comment?.author?.firstName} ${comment?.author?.lastName}`}</Link>
             </h3>
             <p className="text-justify">{comment?.body}</p>
           </div>
           <div>
             <button
-              onClick={() => likeComment(comment?._id)}
+              onClick={() => {
+                setLiked(!liked);
+                likeComment(comment?._id);
+              }}
               className={`${
-                comment?.like?.includes(data?._id)
-                  ? "text-[#E41272]"
-                  : "text-gray-400"
+                liked ? "text-[#E41272]" : "text-gray-400"
               } font-bold mx-4 hover:underline`}
             >
               {comment?.likes?.length === 0
@@ -64,12 +70,12 @@ const SingleComment = ({ comment }) => {
                 ? "Reply"
                 : comment?.replies?.length + " Replies"
             }`}</button>
-            <span className="text-gray-400 mx-4">7hr</span>
+            <span className="text-gray-400 mx-4">{ timeAgo(comment?.createdAt)}</span>
           </div>
         </div>
       </div>
       {showReply &&
-        comment?.replies?.map((item) => <SingleCommentReply reply={item} />)}
+        comment?.replies?.map((item) => <SingleCommentReply reply={item} key={item._id} />)}
       {showReply && (
         <div className="ml-[50px]">
           <div>
@@ -82,7 +88,7 @@ const SingleComment = ({ comment }) => {
               <textarea
                 value={reply}
                 onChange={(e) => setReply(e.target.value)}
-                id="replyText"
+                id={comment?._id}
                 className="text-[#757575] pt-1 w-full focus:outline-none bg-gray-50 p-1"
                 placeholder="Write Reply......"
               ></textarea>

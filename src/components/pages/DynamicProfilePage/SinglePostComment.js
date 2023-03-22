@@ -5,10 +5,12 @@ import { useAddCommentMutation, useGetAllCommentOfPostQuery } from "../../../Red
 import { useGetProfileDetailsWIthAuthQuery } from "../../../Redux/features/userInfo/userApi";
 import SingleComment from "./SingleComment";
 
-const SinglePostComment = ({post}) => {
+const SinglePostComment = ({ post }) => {
+  const [page, setPage] = useState(1)
   const { data } = useGetProfileDetailsWIthAuthQuery();
   const [addComment, { data: comments }] = useAddCommentMutation();
-  const { data: allComments } = useGetAllCommentOfPostQuery({ postId: post?._id });
+  const { data: allComments } = useGetAllCommentOfPostQuery({ postId: post?._id, page: page, limit: 3 });
+  console.log(allComments)
 
   const [comment, setComment] = useState("");
   const handleCommentSubmit = () => {
@@ -24,9 +26,22 @@ const SinglePostComment = ({post}) => {
 
   return (
     <div>
+      {page>1 && <div
+        onClick={() => setPage(page - 1)}
+        className="cursor-pointer font-bold text-gray-400 hover:underline"
+      >
+        View latest comments
+      </div>}
+
       {allComments?.data?.comments?.map((item) => (
         <SingleComment comment={item} />
       ))}
+      {page<allComments?.data?.total/3 && <div
+        onClick={() => setPage(page + 1)}
+        className="cursor-pointer font-bold text-gray-400 hover:underline"
+      >
+        View older comments
+      </div>}
       <div>
         <div className="pt-2 flex relative">
           <img

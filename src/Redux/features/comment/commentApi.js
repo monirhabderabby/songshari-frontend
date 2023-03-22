@@ -26,8 +26,8 @@ export const commentApi = apiSlice.injectEndpoints({
       invalidatesTags: ["posts"],
     }),
     getAllCommentOfPost: builder.query({
-      query: ({ postId }) => ({
-        url: `/member/comment/post/${postId}`,
+      query: ({ postId ,limit,page}) => ({
+        url: `/member/comment/post/${postId}?_limit=${limit}&_page=${page}`,
         method: "GET",
         headers: {
           authorization: `Bearer ${getCookie("token")}`,
@@ -45,7 +45,16 @@ export const commentApi = apiSlice.injectEndpoints({
         },
       }),
     }),
+    likeSingleReply: builder.mutation({
+      query: (replyId) => ({
+        url: `/member/reply/like/${replyId}`,
+        method: "PUT",
+        headers: {
+          authorization: `Bearer ${getCookie("token")}`,
+        },
+      }),
+    }),
   }),
 });
 
-export const { useAddCommentMutation, useGetAllCommentOfPostQuery, useAddReplyToCommentMutation, useLikeSingleCommentMutation } = commentApi;
+export const { useAddCommentMutation, useGetAllCommentOfPostQuery, useAddReplyToCommentMutation, useLikeSingleCommentMutation, useLikeSingleReplyMutation } = commentApi;
