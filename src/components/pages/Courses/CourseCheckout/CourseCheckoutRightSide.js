@@ -1,7 +1,8 @@
 import React from "react";
 import { MdSecurity } from "react-icons/md";
 
-export const CourseCheckoutRightSide = () => {
+export const CourseCheckoutRightSide = ({ course }) => {
+    const { name, image, price } = course || {};
     return (
         <div className="mt-[30px] w-full shadow-[0px_2px_6px_rgba(0,0,0,0.14)] p-[20px] rounded-[4px] bg-white">
             <h3 className="text-[20px] font-fira font-semibold text-black">Your order at a glance</h3>
@@ -11,18 +12,14 @@ export const CourseCheckoutRightSide = () => {
             </div>
             <div className="h-[80px] px-[10px] flex justify-between gap-x-[20px] items-center border-b-[1px] border-gray-200">
                 <div className="flex items-center gap-x-[4px]">
-                    <img
-                        src="https://www.excelptp.com/wp-content/uploads/2021/05/node-js-banner-img.jpg"
-                        alt="CourseImage"
-                        className="w-[50px] h-[30px] lg:w-[60px] lg:h-[40px]"
-                    />
-                    <p className="text-[14px] font-normal font-Inter lg:text-[16px]">Complete PowerPoint Training</p>
+                    <img src={image} loading="lazy" alt="CourseImage" className="w-[50px] h-[30px] lg:w-[60px] lg:h-[40px]" />
+                    <p className="text-[14px] font-normal font-Inter lg:text-[16px]">{name}</p>
                 </div>
-                <div className="font-Nunito">1500</div>
+                <div className="font-Nunito">{price}</div>
             </div>
             <div className="h-[60px] px-[10px] flex justify-between items-center">
                 <span className="font-Nunito font-semibold text-[18px]">Total Bill</span>
-                <span className="font-medium">1500</span>
+                <span className="font-medium">{price}</span>
             </div>
 
             <div className="flex items-center justify-center gap-x-[8px]">
