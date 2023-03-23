@@ -8,7 +8,9 @@ import Collapse from "@mui/material/Collapse";
 import { pink } from "@mui/material/colors";
 import IconButton from "@mui/material/IconButton";
 import { styled } from "@mui/material/styles";
+import { useDispatch, useSelector } from "react-redux";
 import { useGetAllTypesQuery } from "../../../../../Redux/features/Course/courseApi";
+import { setTypes } from "../../../../../Redux/features/Course/courseSlice";
 import { LineWaveLoader } from "../../../../shared/Cards/Loader/lineWaveLoader/LineWaveLoader";
 
 // css
@@ -25,12 +27,14 @@ const ExpandMore = styled(props => {
 
 export const CourseTypeFilter = () => {
     const [expanded1, setExpanded] = React.useState(false);
+    const dispatch = useDispatch();
+    const typesValue = useSelector(state => state.persistedReducer.course?.filter?.types);
     const { data, isLoading, isError } = useGetAllTypesQuery();
 
     const { types } = data || {};
 
     const handleCheckbox = e => {
-        console.log(e.target.value);
+        dispatch(setTypes(e.target.value));
     };
 
     let content;
@@ -65,6 +69,7 @@ export const CourseTypeFilter = () => {
                                             color: pink[500],
                                         },
                                     }}
+                                    checked={typesValue === item?._id}
                                     value={item?._id}
                                     onChange={handleCheckbox}
                                 />
