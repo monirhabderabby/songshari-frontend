@@ -31,7 +31,16 @@ export const courseApi = apiSlice.injectEndpoints({
                 body: data,
             }),
         }),
+        getMyCourses: builder.query({
+            query: () => ({
+                url: `/course/my-courses`,
+                method: "GET",
+                headers: {
+                    authorization: `Bearer ${getCookie("token")}`,
+                },
+            }),
+        }),
     }),
 });
 
-export const { useGetAllCoursesQuery, useGetSingleCourseByIdQuery, useBuyCourseMutation } = courseApi;
+export const { useGetAllCoursesQuery, useGetSingleCourseByIdQuery, useBuyCourseMutation, useGetMyCoursesQuery } = courseApi;
