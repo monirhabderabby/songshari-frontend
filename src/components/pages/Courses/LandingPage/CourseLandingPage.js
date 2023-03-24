@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { BiFilter } from "react-icons/bi";
 import { GrFormClose } from "react-icons/gr";
+import useDocumentTitle from "../../../../assets/utilities/useDocumentTitle";
 import { MobileBackButton } from "../../../shared/Components/MobileBackButton";
 import CustomHeader from "../../../shared/CustomHeader/CustomHeader";
 import CourseFilterContainer from "./LeftSideFilterContainer/CourseFilterContainer";
@@ -8,6 +9,8 @@ import { RightSideCourses } from "./RightSideCourses/RightSideCourses";
 
 export const CourseLandingPage = () => {
     const [open, setOpen] = useState(false);
+
+    useDocumentTitle("Shongshari | Course");
 
     return (
         <>

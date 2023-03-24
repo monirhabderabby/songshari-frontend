@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import useDocumentTitle from "../../../../assets/utilities/useDocumentTitle";
 import { MobileBackButton } from "../../../shared/Components/MobileBackButton";
 import CustomHeader from "../../../shared/CustomHeader/CustomHeader";
 import { PlayerContainer } from "./LeftSide/PlayerContainer";
@@ -6,6 +7,9 @@ import { CourseAccessOutline } from "./RightSide/CourseAccessOutline";
 
 export const CourseAccess = () => {
     const [link, setLink] = useState("https://www.youtube.com/watch?v=ClQLA-TXVQI");
+
+    useDocumentTitle("Shongshari | Course Access");
+
     return (
         <div>
             <div className="hidden lg:block">

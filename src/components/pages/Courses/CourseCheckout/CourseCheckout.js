@@ -1,6 +1,7 @@
 // configuration
 import React from "react";
 import { useParams } from "react-router";
+import useDocumentTitle from "../../../../assets/utilities/useDocumentTitle";
 
 // Third party packages
 import { useGetSingleCourseByIdQuery } from "../../../../Redux/features/Course/courseApi";
@@ -15,6 +16,8 @@ export const CourseCheckout = () => {
     const { id } = useParams();
     const { data, isLoading, isError } = useGetSingleCourseByIdQuery(id);
     const { course } = data || {};
+
+    useDocumentTitle("Shongshari | Checkout");
 
     let content;
     if (isLoading) {
