@@ -38,14 +38,16 @@ const SinglePostHeader = ({ post }) => {
               alt="profile"
             />
           )}
-          <p className="font-semibold font-fira text-[18px] leading-7 text-[#333333] mr-[10px]">
-            {post?.author?.firstName} {post?.author?.lastName}
-          </p>
-          <div className="w-[20px] h-[20px] bg-[#FCE9F3] rounded-full mr-[14px]"></div>
-          <div>
-            <span className="text-[14px] leading-7 font-normal text-[#333333]">
-              <span>{timeAgo(post?.createdAt)}</span>
-            </span>
+          <div className="flex md:items-center flex-col md:flex-row">
+            <p className="font-semibold font-fira text-[18px] leading-7 text-[#333333] mr-[10px]">
+              {post?.author?.firstName} {post?.author?.lastName}
+            </p>
+            <div className="w-[20px] h-[20px] bg-[#FCE9F3] rounded-full mr-[14px] hidden md:block"></div>
+            <div>
+              <span className="text-[14px] leading-7 font-normal text-[#333333]">
+                <span>{timeAgo(post?.createdAt)}</span>
+              </span>
+            </div>
           </div>
         </div>
         <div>
