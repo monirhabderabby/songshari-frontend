@@ -8,6 +8,8 @@ import Collapse from "@mui/material/Collapse";
 import { pink } from "@mui/material/colors";
 import IconButton from "@mui/material/IconButton";
 import { styled } from "@mui/material/styles";
+import { useDispatch, useSelector } from "react-redux";
+import { setSkillLevel } from "../../../../../Redux/features/Course/courseSlice";
 
 // css
 const ExpandMore = styled(props => {
@@ -23,9 +25,30 @@ const ExpandMore = styled(props => {
 
 export const CourseSkillLevelFilter = () => {
     const [expanded1, setExpanded] = React.useState(false);
+    const dispatch = useDispatch();
+
+    const skillLevelValue = useSelector(state => state.persistedReducer.course?.filter?.skillLevel);
 
     const handleExpandClick = () => {
         setExpanded(!expanded1);
+    };
+    const levels = [
+        {
+            id: 1,
+            name: "Beginner",
+        },
+        {
+            id: 2,
+            name: "Intermediate",
+        },
+        {
+            id: 3,
+            name: "Advanced",
+        },
+    ];
+
+    const handleSkillLevel = e => {
+        dispatch(setSkillLevel(e.target.value));
     };
     return (
         <>
@@ -41,58 +64,27 @@ export const CourseSkillLevelFilter = () => {
                         paddingX: "20px",
                     }}
                 >
-                    <FormControlLabel
-                        control={
-                            <Checkbox
-                                sx={{
-                                    color: pink[700],
-                                    "&.Mui-checked": {
-                                        color: pink[500],
-                                    },
-                                }}
+                    {levels?.map(item => {
+                        return (
+                            <FormControlLabel
+                                key={item.id}
+                                control={
+                                    <Checkbox
+                                        sx={{
+                                            color: pink[700],
+                                            "&.Mui-checked": {
+                                                color: pink[500],
+                                            },
+                                        }}
+                                        value={item.name}
+                                        checked={skillLevelValue === item?.name}
+                                        onChange={handleSkillLevel}
+                                    />
+                                }
+                                label={item.name}
                             />
-                        }
-                        label="Begineer"
-                    />
-                    <FormControlLabel
-                        control={
-                            <Checkbox
-                                sx={{
-                                    color: pink[700],
-                                    "&.Mui-checked": {
-                                        color: pink[500],
-                                    },
-                                }}
-                            />
-                        }
-                        label="Begineer to Advance"
-                    />
-                    <FormControlLabel
-                        control={
-                            <Checkbox
-                                sx={{
-                                    color: pink[700],
-                                    "&.Mui-checked": {
-                                        color: pink[500],
-                                    },
-                                }}
-                            />
-                        }
-                        label="Intermediate"
-                    />
-                    <FormControlLabel
-                        control={
-                            <Checkbox
-                                sx={{
-                                    color: pink[700],
-                                    "&.Mui-checked": {
-                                        color: pink[500],
-                                    },
-                                }}
-                            />
-                        }
-                        label="Advance"
-                    />
+                        );
+                    })}
                 </FormGroup>
             </Collapse>
         </>
