@@ -12,14 +12,17 @@ import { CoursesCountBox } from "./CoursesCountBox";
 
 export const RightSideCourses = () => {
     const [page, setPage] = useState(1);
-    const { types, skillLevel } = useSelector(state => state.persistedReducer.course.filter) || {};
+    const { types, skillLevel, category } = useSelector(state => state.persistedReducer.course.filter) || {};
+
+    // get data by filtering
     const { data, isLoading, isError, isFetching } = useGetAllCoursesQuery({
         page: page,
         limit: 9,
-        categroyId: "",
+        categroyId: category,
         typeId: types,
         skill: skillLevel,
     });
+
     const { count, total, courses } = data || {};
 
     const pageCounting = Math.ceil(total / 9);

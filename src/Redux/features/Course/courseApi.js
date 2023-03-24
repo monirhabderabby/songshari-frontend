@@ -49,7 +49,23 @@ export const courseApi = apiSlice.injectEndpoints({
                 },
             }),
         }),
+        getAllCourseCategory: builder.query({
+            query: () => ({
+                url: `/shop/category/get-all-categories?type=course`,
+                method: "GET",
+                headers: {
+                    authorization: `Bearer ${getCookie("token")}`,
+                },
+            }),
+        }),
     }),
 });
 
-export const { useGetAllCoursesQuery, useGetSingleCourseByIdQuery, useBuyCourseMutation, useGetMyCoursesQuery, useGetAllTypesQuery } = courseApi;
+export const {
+    useGetAllCoursesQuery,
+    useGetSingleCourseByIdQuery,
+    useBuyCourseMutation,
+    useGetMyCoursesQuery,
+    useGetAllTypesQuery,
+    useGetAllCourseCategoryQuery,
+} = courseApi;

@@ -1,5 +1,6 @@
 import React from "react";
 import { useParams } from "react-router";
+import useDocumentTitle from "../../../../assets/utilities/useDocumentTitle";
 import { useGetSingleCourseByIdQuery } from "../../../../Redux/features/Course/courseApi";
 import { LineWaveLoader } from "../../../shared/Cards/Loader/lineWaveLoader/LineWaveLoader";
 import { MobileBackButton } from "../../../shared/Components/MobileBackButton";
@@ -13,6 +14,8 @@ export const SingleCoursePage = () => {
 
     const { data, isLoading, isError } = useGetSingleCourseByIdQuery(id);
     const { course } = data || {};
+
+    useDocumentTitle("Shongshari | Course");
 
     let content;
     if (isLoading) {

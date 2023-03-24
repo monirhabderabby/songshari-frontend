@@ -4,6 +4,7 @@ const initialState = {
     filter: {
         types: "",
         skillLevel: "",
+        category: "",
     },
 };
 
@@ -25,8 +26,15 @@ const courseSlice = createSlice({
             }
             state.filter.skillLevel = action.payload;
         },
+        setCategory: (state = initialState, action) => {
+            if (state.filter.category.includes(action.payload)) {
+                state.filter.category = "";
+                return;
+            }
+            state.filter.category = action.payload;
+        },
     },
 });
 
 export default courseSlice.reducer;
-export const { setTypes, setSkillLevel } = courseSlice.actions;
+export const { setTypes, setSkillLevel, setCategory } = courseSlice.actions;
