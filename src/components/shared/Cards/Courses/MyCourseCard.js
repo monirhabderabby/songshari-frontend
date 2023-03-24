@@ -2,12 +2,13 @@ import { Progress } from "antd";
 import React from "react";
 
 export const MyCourseCard = ({ item }) => {
+    const { image, name, instructor } = item || {};
     return (
         <div className="flex flex-col mx-auto w-full border-[1px] shadow-[rgba(0,0,0,0.05)_0px_6px_24px_0px,rgba(0,0,0,0.08)_0px_0px_0px_1px] hover:shadow-[rgba(0,0,0,0.16)_0px_10px_36px_0px,rgba(0,0,0,0.06)_0px_0px_0px_1px] rounded-[4px]">
-            <img src={item.img} alt="courseImage" className="rounded-tl-[4px] rounded-tr-[4px] h-[226px]" />
+            <img src={image} alt="courseImage" className="rounded-tl-[4px] rounded-tr-[4px] h-[226px]" />
             <div className="p-[10px] py-[15px] space-y-[4px]">
-                <h3 className="text-[18px] font-bold font-Nunito">{item?.courseName}</h3>
-                <span className="text-[14px] text-gray-500">{item?.trainer}</span>
+                <h3 className="text-[18px] font-bold font-Nunito">{name}</h3>
+                <span className="text-[14px] text-gray-500">{instructor[0]?.name}</span>
                 <div className="w-[90%]">
                     <Progress percent={item?.progress} status="active" strokeColor={{ from: "#ff317b", to: "#5650ce" }} />
                 </div>

@@ -8,6 +8,7 @@ import chatReducer from "../chat/chatReducer";
 import billingSummarySlice from "../features/checkout/billingSummarySlice";
 import checkoutDetailsSlice from "../features/checkout/checkoutDetailsSlice";
 import connectionSlice from "../features/connections/connectionSlice";
+import courseSlice from "../features/Course/courseSlice";
 import filterSlice from "../features/filter/filterSlice";
 import findPartnerSlice from "../features/filter/findPartnerSlice";
 import findLawyerKaziAgentFilterSlice from "../features/FindLawyerKaziAgentFilter/findLawyerKaziAgentFilterSlice";
@@ -35,6 +36,7 @@ const reducer = combineReducers({
     connection: connectionSlice,
     shop: shopSlice,
     billingSummary: billingSummarySlice,
+    course: courseSlice,
 });
 const persistedReducer = persistReducer(persistConfig, reducer);
 const store = configureStore({

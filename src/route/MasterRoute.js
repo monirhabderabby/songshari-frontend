@@ -5,6 +5,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 // Components
 import { NotFoundPage } from "../components/shared/404/NotFoundPage";
 import agentRouteRenderer from "./Agent/agentRouteRenderer";
+import coursePrivateRouteRenderer from "./Course/coursePrivateRouteRenderer";
 import coursePublicRouteRenderer from "./Course/coursePublicRouteRenderer";
 import kaziPublicRouteRenderer from "./Kazi/kaziPublicRouteRenderer";
 import kaziRouteRenderer from "./Kazi/kaziRouteRenderer";
@@ -40,7 +41,9 @@ const MasterRoute = () => {
                 {agentRouteRenderer()}
                 {/* my account private routes */}
                 {myAccountRouteRenderer()}
-                {/* Course Private routes */}
+                {/* Course Private Routes */}
+                {coursePrivateRouteRenderer()}
+                {/* Course Public routes */}
                 {coursePublicRouteRenderer()}
                 <Route path="*" element={<NotFoundPage />} />
             </Routes>

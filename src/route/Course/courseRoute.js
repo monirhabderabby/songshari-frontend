@@ -15,7 +15,7 @@ const courseRoute = [
     },
     {
         id: 3,
-        path: "/course/checkout",
+        path: "/course/checkout/:id",
         element: <CourseCheckout />,
     },
 ];
