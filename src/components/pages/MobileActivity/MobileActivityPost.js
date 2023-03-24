@@ -4,7 +4,8 @@ import React from "react";
 // components
 import { AiOutlineWarning } from "react-icons/ai";
 import { MdOutlinePostAdd } from "react-icons/md";
-import MobileSinglePostCard from "./MobileSinglePostCard";
+import SinglePostCard from "../DynamicProfilePage/SinglePostCard";
+// import MobileSinglePostCard from "./MobileSinglePostCard";
 
 const MobileActivityPost = ({ posts, isLoading, error }) => {
   // js variables
@@ -53,7 +54,8 @@ const MobileActivityPost = ({ posts, isLoading, error }) => {
     content = (
       <div className="grid grid-cols-1 gap-y-5">
         {posts?.data?.posts.map((post) => (
-          <MobileSinglePostCard key={post?._id} post={post} />
+          <SinglePostCard key={post?._id} post={post} />
+          // <MobileSinglePostCard key={post?._id} post={post} />
         ))}
       </div>
     );

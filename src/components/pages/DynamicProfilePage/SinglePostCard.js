@@ -11,7 +11,7 @@ const SinglePostCard = ({ post }) => {
   
   return (
     <div>
-      <div className="max-w-[457px] mx-auto shadow-[2px_2px_4px_rgba(0,0,0,0.12)] bg-white rounded-[10px] p-[30px] hidden md:block">
+      <div className="max-w-[457px] mx-auto shadow-[2px_2px_4px_rgba(0,0,0,0.12)] bg-white rounded-[10px] p-[30px]">
         <SinglePostHeader post={post} />
         <hr />
         <SinglePostFooter post={post} />
