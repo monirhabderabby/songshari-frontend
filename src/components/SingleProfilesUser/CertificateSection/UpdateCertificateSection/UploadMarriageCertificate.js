@@ -1,6 +1,5 @@
 import React from "react";
 /* component */
-import FileUploadSection from "./FileUploadSection/FileUploadSection";
 import FileReuploadSection from "./FileReuploadSection/FileReuploadSection";
 import AddNewMarriageCertificate from "./FileUploadSection/AddNewMarriageCertificate";
 
