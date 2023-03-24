@@ -3,6 +3,14 @@ import React from "react";
 
 export const OrderStatusHeader = ({ order }) => {
     const { createdAt, orderStatus, orderId } = order || {};
+    let color;
+    if (orderStatus?.includes("ongoing")) {
+        color = "text-[#fb8c00]";
+    } else if (orderStatus?.includes("Cancelled")) {
+        color = "text-[#f4511e]";
+    } else if (orderStatus?.includes("Delivered")) {
+        color = "text-[#00e676]";
+    }
     return (
         <div className="flex justify-between h-[60px] lg:h-[80px] items-center">
             <div>
@@ -18,7 +26,7 @@ export const OrderStatusHeader = ({ order }) => {
                 </div>
                 <div>
                     <h3 className="text-[12px] lg:text-[22px] font-Nunito font-semibold">STATUS</h3>
-                    <h3 className="text-[9px] lg:text-[16px] tracking-wider font-normal font-outfit text-orange-400">{orderStatus}</h3>
+                    <h3 className={`text-[9px] lg:text-[16px] tracking-wider font-normal font-outfit ${color} font-semibold`}>{orderStatus}</h3>
                 </div>
             </div>
         </div>

@@ -51,7 +51,7 @@ export const Services = () => {
                 </div>
 
                 <div className="bg-service-mov rounded-lg">
-                    <Link>
+                    <Link to="/courses">
                         <img src={courses} className="w-8 mx-auto mt-1" alt="Not Available"></img>
                         <h1 className="text-[11px] text-white font-bold text-center pb-1">Courses</h1>
                     </Link>

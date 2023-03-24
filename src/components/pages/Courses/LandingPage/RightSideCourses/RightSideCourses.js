@@ -14,6 +14,9 @@ export const RightSideCourses = () => {
     const { data, isLoading, isError, isFetching } = useGetAllCoursesQuery({
         page: page,
         limit: 9,
+        categroyId: "",
+        typeId: "",
+        skill: "",
     });
     const { count, total, courses } = data || {};
 
