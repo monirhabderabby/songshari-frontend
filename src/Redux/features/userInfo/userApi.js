@@ -291,6 +291,16 @@ export const userApi = apiSlice.injectEndpoints({
         },
       }),
     }),
+    addNwMarriageCertificate: builder.mutation({
+      query: ({ data, id }) => ({
+        url: `/member/marriage/${id}`,
+        method: "PUT",
+        headers: {
+          authorization: `Bearer ${getCookie("token")}`,
+        },
+        body: data,
+      }),
+    }),
   }),
 });
 
@@ -323,5 +333,6 @@ export const {
   useUpdateSiblingDetailMutation,
   useAddNewCertificateMutation,
   useGetUsersAllNotificationQuery,
-  useGetUserBadgesQuery
+  useGetUserBadgesQuery,
+  useAddNwMarriageCertificateMutation
 } = userApi;
