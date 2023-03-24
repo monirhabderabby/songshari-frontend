@@ -25,9 +25,11 @@ const FileReuploadSection = ({ editFor, selectedCertificate }) => {
     }
   };
 
-  if (response) {
-    toast.success("Successfully Re-uploaded");
-  }
+  useEffect(() => {
+    if (response) {
+      toast.success("Successfully Re-uploaded");
+    }
+  },[response])
   useEffect(() => {
     if (uploadedCertificate) {
       resubmitCertificate({
