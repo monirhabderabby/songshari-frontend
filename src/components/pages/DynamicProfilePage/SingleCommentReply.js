@@ -33,7 +33,7 @@ const SingleCommentReply = ({ reply }) => {
                   }}
                   className={`${
                     replyLiked ? "text-[#E41272]" : "text-gray-400"
-                  } font-bold mx-4 hover:underline`}
+                  } font-bold mx-1 text-sm hover:underline`}
                 >
                   {reply?.likes?.length === 0
                     ? "Like"
@@ -43,11 +43,11 @@ const SingleCommentReply = ({ reply }) => {
                 </button>
                 <label
                   htmlFor={reply?.comment}
-                  className="text-gray-400 font-bold mx-4 hover:underline"
+                  className="text-gray-400 font-bold mx-1 text-sm hover:underline"
                 >
                   Reply
                 </label>
-                <span className="text-gray-400 mx-4">
+                <span className="text-gray-400 mx-1 text-sm">
                   {timeAgo(reply?.createdAt)}
                 </span>
               </div>

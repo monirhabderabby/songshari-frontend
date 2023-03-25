@@ -10,7 +10,6 @@ const SinglePostComment = ({ post }) => {
   const { data } = useGetProfileDetailsWIthAuthQuery();
   const [addComment, { data: comments }] = useAddCommentMutation();
   const { data: allComments } = useGetAllCommentOfPostQuery({ postId: post?._id, page: page, limit: 3 });
-  console.log(allComments)
 
   const [comment, setComment] = useState("");
   const handleCommentSubmit = () => {

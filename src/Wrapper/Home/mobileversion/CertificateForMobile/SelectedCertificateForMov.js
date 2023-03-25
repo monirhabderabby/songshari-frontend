@@ -22,7 +22,7 @@ export const SelectedCertificateForMov = ({ selectedCertificate, selectedCertifi
             <div className="h-[335px] w-[326px] overflow-hidden">
                 <img
                     style={{ transform: `scale(${zoom})` }}
-                    src={selectedCertificate}
+                    src={selectedCertificate?.photo}
                     alt="certificate"
                     className={`h-full w-full rounded-[16px] mx-auto overflow-hidden`}
                 />
