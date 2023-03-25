@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 
 export const CourseInfo = ({ course }) => {
-    const { whyThisCourse, whatIsInThisCourse } = course || {};
+    console.log(course);
+    const { whatIsInThisCourse, courseDetails } = course || {};
     const [data, setData] = useState([
         {
             id: 1,
             question: "Why this course?",
-            answer: whyThisCourse,
+            answer: whatIsInThisCourse,
         },
         {
             id: 2,
@@ -20,15 +21,15 @@ export const CourseInfo = ({ course }) => {
             {
                 id: 1,
                 question: "Why this course?",
-                answer: whyThisCourse,
+                answer: whatIsInThisCourse,
             },
             {
                 id: 2,
                 question: "What do you get from here?",
-                answer: whatIsInThisCourse,
+                answer: courseDetails,
             },
         ]);
-    }, [whyThisCourse, whatIsInThisCourse]);
+    }, [whatIsInThisCourse, courseDetails]);
 
     return (
         <div className="my-[30px]">
@@ -39,7 +40,12 @@ export const CourseInfo = ({ course }) => {
                             <h3 className="text-[24px] font-Nunito font-bold">{item?.question}</h3>
                         </div>
                         <div className="h-auto p-[5px]">
-                            <p className="text-[16px] font-outfit font-normal tracking-wide">{item.answer}</p>
+                            <p
+                                className="text-[16px] font-outfit font-normal tracking-wide"
+                                dangerouslySetInnerHTML={{
+                                    __html: `${item.answer}`,
+                                }}
+                            ></p>
                         </div>
                     </div>
                 );
