@@ -22,7 +22,6 @@ const MarriageCertificateWev = () => {
   // useEffect declaration
   useEffect(() => {
     if (response) {
-      console.log(response?.data)
       setCertificates(bindParentIdWithPhotos(response?.data));
     }
   }, [response]);

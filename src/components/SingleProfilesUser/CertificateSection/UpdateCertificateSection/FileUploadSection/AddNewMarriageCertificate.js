@@ -14,7 +14,6 @@ const AddNewMarriageCertificate = ({ editFor, selectedCertificate }) => {
   const [addNewCertificate, { data: response, isLoading, error }] =
     useAddNwMarriageCertificateMutation(); // add new certificate
   
-  
   const [uploadCertificate, { data: uploadedCertificate, fileLoading }] =
     usePhotosUploadOnServerMutation();
   // handle file upload change data
@@ -45,7 +44,7 @@ const AddNewMarriageCertificate = ({ editFor, selectedCertificate }) => {
   }, [uploadedCertificate]);
 
   return (
-    <section className="py-2 mt-[145px] mb-[145px]">
+    <section className="py-2 mt-12 md:mt-[145px] mb-[145px]">
       <div className="mb-4">
         <h1 className="font-bold text-xl text-[#333333]">
           Add New Marriage Certificate

@@ -43,7 +43,7 @@ const FileReuploadSection = ({ editFor, selectedCertificate }) => {
   }, [uploadedCertificate]);
 
   return (
-    <div className="font-sans mb-[145px]">
+    <div className="font-sans mt-8 md:mb-[145px]">
       <h1 className="font-semibold text-[32px] text-[#333333]">
         Re-Upload Certificate
       </h1>
