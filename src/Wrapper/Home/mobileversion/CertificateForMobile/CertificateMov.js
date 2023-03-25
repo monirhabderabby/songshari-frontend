@@ -7,6 +7,7 @@ import { BottomNav } from "../BottomNav";
 
 // Components
 import { CertificateMobileHeaderButton } from "./CertificateMobileHeaderButton";
+import { MarriageCertificateForMov } from "./MarriageCertificateForMov";
 // import { EducationalCertificateForMov } from "./EducationalCertificateForMov";
 import { ProfessionalCertificateMov } from "./ProfessionalCertificateMov";
 import { SelectedCertificateForMov } from "./SelectedCertificateForMov";
@@ -16,12 +17,33 @@ export const CertificateMov = () => {
   const [selectedCertificate, setSelectedCertificate] = useState(null);
   const [selectedCertificateName, setSelectedCertificateName] = useState("");
   const [page, setPage] = useState(1);
+  const [profPhoto, setProfPhoto] = useState([]);
+  const [eduPhoto, setEduPhoto] = useState([]);
+  const [marriagePhoto, setMarriagePhoto] = useState([]);
 
   // Redux Api Call
   const { data: allCertificates } = useGetCertificatesWithAuthQuery();
 
   useEffect(() => {
-    setSelectedCertificate("");
+    if (allCertificates) {
+      setProfPhoto(bindParentIdWithPhotos(allCertificates?.data?.professions));
+      setEduPhoto(bindParentIdWithPhotos(allCertificates?.data?.educations));
+      setMarriagePhoto(
+        bindParentIdWithPhotos(allCertificates?.data?.marriages)
+      );
+    }
+  }, [allCertificates]);
+
+  useEffect(() => {
+    // setSelectedCertificate("");
+    if (page === 1 && eduPhoto?.length !== 0)
+      setSelectedCertificate(eduPhoto?.length !== 0 ? eduPhoto[0] : []);
+    if (page === 2 && profPhoto?.length !== 0)
+      setSelectedCertificate(profPhoto?.length !== 0 ? profPhoto[0] : []);
+    if (page === 4 && marriagePhoto?.length !== 0)
+      setSelectedCertificate(
+        marriagePhoto?.length !== 0 ? marriagePhoto[0] : []
+      );
   }, [page]);
 
   return (
@@ -62,7 +84,7 @@ export const CertificateMov = () => {
           />
         )}
         {page === 4 && (
-          <ProfessionalCertificateMov
+          <MarriageCertificateForMov
             {...{
               setSelectedCertificate,
               selectedCertificate,

@@ -3,16 +3,16 @@ import { Toaster } from "react-hot-toast";
 import FileReuploadSection from "../../../../components/SingleProfilesUser/CertificateSection/UpdateCertificateSection/FileReuploadSection/FileReuploadSection";
 import AddNewMarriageCertificate from "../../../../components/SingleProfilesUser/CertificateSection/UpdateCertificateSection/FileUploadSection/AddNewMarriageCertificate";
 
-export const ProfessionalCertificateMov = ({
+export const MarriageCertificateForMov = ({
   setSelectedCertificate,
   selectedCertificate,
   certificates,
 }) => {
-    console.log(certificates, "profissional certificate");
-    
+  console.log(certificates, "profissional certificate");
+
   return (
-    <>
-      <div className="mt-[14px] w-full grid grid-cols-3 gap-[11px]">
+    <div className="mt-[14px]">
+      <div className="w-full grid grid-cols-3 gap-[11px]">
         {certificates?.map((certificate) => {
           return (
             <div
@@ -49,6 +49,6 @@ export const ProfessionalCertificateMov = ({
         <AddNewMarriageCertificate selectedCertificate={selectedCertificate} />
       </div>
       <Toaster />
-    </>
+    </div>
   );
 };
