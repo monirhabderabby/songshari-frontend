@@ -5,13 +5,16 @@ import { BsThreeDotsVertical } from "react-icons/bs";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import { useDeletePostMutation } from "../../../Redux/features/Post/postApi";
+import { useGetProfileDetailsWIthAuthQuery } from "../../../Redux/features/userInfo/userApi";
 
 const SinglePostHeader = ({ post }) => {
+  const { data } = useGetProfileDetailsWIthAuthQuery();
   const [deletePost] = useDeletePostMutation();
   const handleDelete = () => {
     deletePost(post?._id);
     handleClose();
   };
+  console.log(data?._id, post?.author?._id);
   // mui three dot
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -50,7 +53,7 @@ const SinglePostHeader = ({ post }) => {
             </div>
           </div>
         </div>
-        <div>
+        {data?._id === post?.author?._id && <div>
           <BsThreeDotsVertical
             id="long-button"
             aria-controls={open ? "long-button" : undefined}
@@ -71,7 +74,7 @@ const SinglePostHeader = ({ post }) => {
             <MenuItem onClick={handleClose}>Edit</MenuItem>
             <MenuItem onClick={handleDelete}>Delete</MenuItem>
           </Menu>
-        </div>
+        </div>}
       </div>
       <div className="">
         <p className="text-[#333333] my-6 ml-2 mr-[6px] text-justify">
