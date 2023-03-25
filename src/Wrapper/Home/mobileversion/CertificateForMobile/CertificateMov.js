@@ -1,18 +1,19 @@
 // Configuration
 import React, { useEffect, useState } from "react";
+import { bindParentIdWithPhotos } from "../../../../assets/utilities/certificates/certificate";
 import { MobileBackButton } from "../../../../components/shared/Components/MobileBackButton";
 import { useGetCertificatesWithAuthQuery } from "../../../../Redux/features/Documents/documentsApi";
 import { BottomNav } from "../BottomNav";
 
 // Components
 import { CertificateMobileHeaderButton } from "./CertificateMobileHeaderButton";
-import { EducationalCertificateForMov } from "./EducationalCertificateForMov";
+// import { EducationalCertificateForMov } from "./EducationalCertificateForMov";
 import { ProfessionalCertificateMov } from "./ProfessionalCertificateMov";
 import { SelectedCertificateForMov } from "./SelectedCertificateForMov";
 
 export const CertificateMov = () => {
   // hook variable declaration
-  const [selectedCertificate, setSelectedCertificate] = useState("");
+  const [selectedCertificate, setSelectedCertificate] = useState(null);
   const [selectedCertificateName, setSelectedCertificateName] = useState("");
   const [page, setPage] = useState(1);
 
@@ -23,15 +24,6 @@ export const CertificateMov = () => {
     setSelectedCertificate("");
   }, [page]);
 
-  // js variable declaration
-  let educationalCertificates;
-  let professionalCertificates;
-
-  if (allCertificates?.success) {
-    console.log(allCertificates);
-    educationalCertificates = allCertificates.data?.educations || [];
-    professionalCertificates = allCertificates.data?.professions || [];
-  }
   return (
     <div>
       <MobileBackButton name={"Certificate"} />
@@ -40,25 +32,43 @@ export const CertificateMov = () => {
           Certificate
         </p>
         <CertificateMobileHeaderButton {...{ setPage, page }} />
-        <SelectedCertificateForMov
-          {...{ selectedCertificate, selectedCertificateName }}
-        />
+        {selectedCertificate && (
+          <SelectedCertificateForMov
+            {...{ selectedCertificate, selectedCertificateName }}
+          />
+        )}
         {page === 2 && (
           <ProfessionalCertificateMov
             {...{
               setSelectedCertificate,
               selectedCertificate,
-              professionalCertificates,
+              certificates: bindParentIdWithPhotos(
+                allCertificates?.data?.professions
+              ),
               setSelectedCertificateName,
             }}
           />
         )}
         {page === 1 && (
-          <EducationalCertificateForMov
+          <ProfessionalCertificateMov
             {...{
               setSelectedCertificate,
               selectedCertificate,
-              educationalCertificates,
+              certificates: bindParentIdWithPhotos(
+                allCertificates?.data?.educations
+              ),
+              setSelectedCertificateName,
+            }}
+          />
+        )}
+        {page === 4 && (
+          <ProfessionalCertificateMov
+            {...{
+              setSelectedCertificate,
+              selectedCertificate,
+              certificates: bindParentIdWithPhotos(
+                allCertificates?.data?.marriages
+              ),
               setSelectedCertificateName,
             }}
           />
