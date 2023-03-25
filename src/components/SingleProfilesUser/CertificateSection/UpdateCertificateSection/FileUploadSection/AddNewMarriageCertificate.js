@@ -14,7 +14,6 @@ const AddNewMarriageCertificate = ({ editFor, selectedCertificate }) => {
   const [addNewCertificate, { data: response, isLoading, error }] =
     useAddNwMarriageCertificateMutation(); // add new certificate
   
-  console.log(response, "new uploaded marriage certificate")
   const [uploadCertificate, { data: uploadedCertificate, fileLoading }] =
     usePhotosUploadOnServerMutation();
   // handle file upload change data

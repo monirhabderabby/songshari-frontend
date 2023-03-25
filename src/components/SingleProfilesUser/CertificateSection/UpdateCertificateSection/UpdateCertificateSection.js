@@ -4,7 +4,6 @@ import FileUploadSection from "./FileUploadSection/FileUploadSection";
 import FileReuploadSection from "./FileReuploadSection/FileReuploadSection";
 
 const UpdateCertificateSection = ({ editFor, selectedCertificate }) => {
-  console.log(selectedCertificate);
   return (
     <div>
       {/* New certificate upload */}

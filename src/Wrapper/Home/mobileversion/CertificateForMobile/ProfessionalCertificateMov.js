@@ -8,7 +8,6 @@ export const ProfessionalCertificateMov = ({
   selectedCertificate,
   certificates,
 }) => {
-    console.log(certificates, "profissional certificate");
     
   return (
     <>

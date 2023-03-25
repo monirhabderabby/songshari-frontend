@@ -8,7 +8,6 @@ export const MarriageCertificateForMov = ({
   selectedCertificate,
   certificates,
 }) => {
-  console.log(certificates, "profissional certificate");
 
   return (
     <div className="mt-[14px]">

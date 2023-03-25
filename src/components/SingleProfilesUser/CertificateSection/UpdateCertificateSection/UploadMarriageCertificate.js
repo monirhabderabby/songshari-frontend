@@ -4,7 +4,6 @@ import FileReuploadSection from "./FileReuploadSection/FileReuploadSection";
 import AddNewMarriageCertificate from "./FileUploadSection/AddNewMarriageCertificate";
 
 const UpLoadMarriageCertificate = ({ editFor, selectedCertificate }) => {
-  console.log(selectedCertificate);
   return (
     <div>
       {/* New certificate upload */}
