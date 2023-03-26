@@ -16,7 +16,6 @@ export const MyCourses = () => {
     const name = `${firstName} ${lastName}`;
 
     const { courses } = data || {};
-    console.log(data);
 
     let content;
     if (isLoading) {

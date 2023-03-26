@@ -58,6 +58,24 @@ export const courseApi = apiSlice.injectEndpoints({
                 },
             }),
         }),
+        getMyCourseMilestion: builder.query({
+            query: id => ({
+                url: `/course/section/all-sections/${id}`,
+                method: "GET",
+                headers: {
+                    authorization: `Bearer ${getCookie("token")}`,
+                },
+            }),
+        }),
+        contentStatusUpdate: builder.mutation({
+            query: id => ({
+                url: `/course/content/change-status/${id}`,
+                method: "PUT",
+                headers: {
+                    authorization: `Bearer ${getCookie("token")}`,
+                },
+            }),
+        }),
     }),
 });
 
@@ -68,4 +86,6 @@ export const {
     useGetMyCoursesQuery,
     useGetAllTypesQuery,
     useGetAllCourseCategoryQuery,
+    useGetMyCourseMilestionQuery,
+    useContentStatusUpdateMutation,
 } = courseApi;
