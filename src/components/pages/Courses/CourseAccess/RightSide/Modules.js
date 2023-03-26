@@ -11,7 +11,7 @@ export const Modules = ({ modules }) => {
         <div>
             {modules?.map(module => {
                 return (
-                    <Collapse accordion style={{ width: "100%" }}>
+                    <Collapse accordion style={{ width: "100%", marginBottom: "12px" }} key={module?._id}>
                         <Panel header={module?.name}>
                             <div className="w-full flex flex-col">
                                 <Contents contents={module?.contents} />

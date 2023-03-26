@@ -15,7 +15,7 @@ export const CourseAccess = () => {
     const dispatch = useDispatch();
     const { currentVideo } = useSelector(state => state.persistedReducer?.courseAccess) || {};
 
-    const { video, name } = currentVideo || {};
+    const { video, name, _id: currentVideoID } = currentVideo || {};
 
     const { id } = useParams();
 
@@ -47,7 +47,7 @@ export const CourseAccess = () => {
         content = (
             <div className="w-full lg:w-[1200px]  2xl:w-[1400px] mx-auto h-auto flex lg:flex-row flex-col gap-y-[20px] pt-[44px] px-[26px]">
                 <div className=" w-full lg:max-w-[660px] 2xl:w-[850px] mx-auto min-h-[400px]">
-                    <PlayerContainer link={video} videoName={name} />
+                    <PlayerContainer link={video} videoName={name} currentVideoID={currentVideoID} />
                 </div>
                 <div className="sticky top-[44px] flex-1 mx-auto w-full lg:max-w-[400px]">
                     <CourseAccessOutline sections={sections} />

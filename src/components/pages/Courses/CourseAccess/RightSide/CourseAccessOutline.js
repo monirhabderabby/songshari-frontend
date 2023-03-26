@@ -14,7 +14,7 @@ export const CourseAccessOutline = ({ sections }) => {
             </div>
             {sections?.map(milestone => {
                 return (
-                    <Panel header={milestone.name}>
+                    <Panel header={milestone.name} key={milestone?._id}>
                         <div className="w-full flex flex-col">
                             <Modules modules={milestone?.modules} />
                         </div>

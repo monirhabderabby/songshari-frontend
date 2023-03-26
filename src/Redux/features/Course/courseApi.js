@@ -67,6 +67,15 @@ export const courseApi = apiSlice.injectEndpoints({
                 },
             }),
         }),
+        contentStatusUpdate: builder.mutation({
+            query: id => ({
+                url: `/course/content/change-status/${id}`,
+                method: "PUT",
+                headers: {
+                    authorization: `Bearer ${getCookie("token")}`,
+                },
+            }),
+        }),
     }),
 });
 
@@ -78,4 +87,5 @@ export const {
     useGetAllTypesQuery,
     useGetAllCourseCategoryQuery,
     useGetMyCourseMilestionQuery,
+    useContentStatusUpdateMutation,
 } = courseApi;

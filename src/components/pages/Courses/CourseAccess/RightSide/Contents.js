@@ -24,6 +24,7 @@ export const Contents = ({ contents }) => {
                             currentID === content?._id && "bg-gray-200"
                         }`}
                         onClick={() => handleCurrentVideo(content)}
+                        key={content?._id}
                     >
                         <AiOutlinePlayCircle className="text-[20px]" />
                         <div className="flex flex-col font-outfit">
