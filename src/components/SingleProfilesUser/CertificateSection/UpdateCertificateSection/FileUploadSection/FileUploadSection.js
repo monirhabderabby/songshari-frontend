@@ -9,7 +9,7 @@ import { toast, Toaster } from "react-hot-toast";
 import { useAddNewCertificateMutation } from "../../../../../Redux/features/userInfo/userApi";
 import { usePhotosUploadOnServerMutation } from "../../../../../Redux/features/fileUpload/fileUploadApi";
 
-const FileUploadSection = ({ editFor, selectedCertificate }) => {
+const FileUploadSection = ({ selected, selectedPhoto }) => {
   // Redux api
   const [addNewCertificate, { data: response, isLoading, error }] =
     useAddNewCertificateMutation();
@@ -36,7 +36,7 @@ const FileUploadSection = ({ editFor, selectedCertificate }) => {
     if (uploadedCertificate)
       addNewCertificate({
         data: { photos: [uploadedCertificate?.data[0]?.path] },
-        id: selectedCertificate?.parentId,
+        id: selected?._id,
       });
   }, [uploadedCertificate]);
 

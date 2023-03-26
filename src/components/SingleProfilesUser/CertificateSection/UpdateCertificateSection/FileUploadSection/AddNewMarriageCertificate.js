@@ -9,7 +9,7 @@ import { toast, Toaster } from "react-hot-toast";
 import { useAddNwMarriageCertificateMutation } from "../../../../../Redux/features/userInfo/userApi";
 import { usePhotosUploadOnServerMutation } from "../../../../../Redux/features/fileUpload/fileUploadApi";
 
-const AddNewMarriageCertificate = ({ editFor, selectedCertificate }) => {
+const AddNewMarriageCertificate = ({selected, selectedPhoto}) => {
   // Redux api
   const [addNewCertificate, { data: response, isLoading, error }] =
     useAddNwMarriageCertificateMutation(); // add new certificate
@@ -39,7 +39,7 @@ const AddNewMarriageCertificate = ({ editFor, selectedCertificate }) => {
     if (uploadedCertificate)
       addNewCertificate({
         data: { certificates: { photo: uploadedCertificate?.data[0]?.path } },
-        id: selectedCertificate?.parentId,
+        id: selected?._id,
       });
   }, [uploadedCertificate]);
 
