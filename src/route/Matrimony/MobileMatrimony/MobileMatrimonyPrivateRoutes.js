@@ -70,7 +70,7 @@ const MobileMatrimonyPrivateRoutes = [
   {
     id: 3,
     path: "/educationalCertificateMov",
-    element: <EducationalCertificateMobile />,
+    element: <EducationalCertificateMobile/>,
   },
   {
     id: 4,
