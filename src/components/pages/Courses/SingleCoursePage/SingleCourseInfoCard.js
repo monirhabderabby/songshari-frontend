@@ -11,12 +11,12 @@ import { useNavigate } from "react-router";
 
 export const SingleCourseInfoCard = ({ course }) => {
     const navigate = useNavigate();
-    const { oldPrice, price, _id } = course || {};
+    const { oldPrice, price, _id, duration } = course || {};
 
     const supports = [
         {
             id: 1,
-            title: "Approx 5 Hours",
+            title: `Approx ${duration ? duration : "50 Hours"}`,
             icon: <CiVideoOn className="text-[20px]" />,
         },
         {

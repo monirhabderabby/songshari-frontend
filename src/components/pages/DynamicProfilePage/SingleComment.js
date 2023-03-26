@@ -54,7 +54,7 @@ const SingleComment = ({ comment }) => {
               }}
               className={`${
                 liked ? "text-[#E41272]" : "text-gray-400"
-              } font-bold mx-4 hover:underline`}
+              } font-bold mx-2 text-sm hover:underline`}
             >
               {comment?.likes?.length === 0
                 ? "Like"
@@ -64,18 +64,22 @@ const SingleComment = ({ comment }) => {
             </button>
             <button
               onClick={() => setShowReply(!showReply)}
-              className="text-gray-400 font-bold mx-4 hover:underline"
+              className="text-gray-400 text-sm font-bold mx-2 hover:underline"
             >{`${
               comment?.replies?.length === 0
                 ? "Reply"
                 : comment?.replies?.length + " Replies"
             }`}</button>
-            <span className="text-gray-400 mx-4">{ timeAgo(comment?.createdAt)}</span>
+            <span className="text-gray-400 text-sm mx-2">
+              {timeAgo(comment?.createdAt)}
+            </span>
           </div>
         </div>
       </div>
       {showReply &&
-        comment?.replies?.map((item) => <SingleCommentReply reply={item} key={item._id} />)}
+        comment?.replies?.map((item) => (
+          <SingleCommentReply reply={item} key={item._id} />
+        ))}
       {showReply && (
         <div className="ml-[50px]">
           <div>

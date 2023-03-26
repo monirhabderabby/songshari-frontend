@@ -25,7 +25,7 @@ export const CourseDetailesTab = ({ course }) => {
             </div>
             {tab === 1 && <CourseInfo course={course} />}
             {tab === 2 && <InstructorInfo course={course} />}
-            <Faq />
+            <Faq course={course} />
         </div>
     );
 };

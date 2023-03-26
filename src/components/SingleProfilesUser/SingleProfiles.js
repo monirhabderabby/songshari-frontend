@@ -66,7 +66,7 @@ export const SingleProfiles = () => {
                     />
                   )}
                   <VerificationCard title={true} mt="24px" height="125px" />
-                  {badgeData?.data?.length !== 0 && (
+                  {badgeData && badgeData?.data?.length !== 0 && (
                     <Badges data={badgeData} error={badgeError} />
                   )}
                   <UtilitisCard {...{ data }} />

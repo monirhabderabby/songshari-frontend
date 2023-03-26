@@ -1,37 +1,52 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 // Configuration
 import React, { useEffect, useState } from "react";
+import { bindParentIdWithPhotos } from "../../../../assets/utilities/certificates/certificate";
 import { MobileBackButton } from "../../../../components/shared/Components/MobileBackButton";
 import { useGetCertificatesWithAuthQuery } from "../../../../Redux/features/Documents/documentsApi";
 import { BottomNav } from "../BottomNav";
 
 // Components
 import { CertificateMobileHeaderButton } from "./CertificateMobileHeaderButton";
-import { EducationalCertificateForMov } from "./EducationalCertificateForMov";
+import { MarriageCertificateForMov } from "./MarriageCertificateForMov";
+// import { EducationalCertificateForMov } from "./EducationalCertificateForMov";
 import { ProfessionalCertificateMov } from "./ProfessionalCertificateMov";
 import { SelectedCertificateForMov } from "./SelectedCertificateForMov";
 
 export const CertificateMov = () => {
   // hook variable declaration
-  const [selectedCertificate, setSelectedCertificate] = useState("");
+  const [selectedCertificate, setSelectedCertificate] = useState(null);
   const [selectedCertificateName, setSelectedCertificateName] = useState("");
   const [page, setPage] = useState(1);
+  const [profPhoto, setProfPhoto] = useState([]);
+  const [eduPhoto, setEduPhoto] = useState([]);
+  const [marriagePhoto, setMarriagePhoto] = useState([]);
 
   // Redux Api Call
   const { data: allCertificates } = useGetCertificatesWithAuthQuery();
 
   useEffect(() => {
-    setSelectedCertificate("");
+    if (allCertificates) {
+      setProfPhoto(bindParentIdWithPhotos(allCertificates?.data?.professions));
+      setEduPhoto(bindParentIdWithPhotos(allCertificates?.data?.educations));
+      setMarriagePhoto(
+        bindParentIdWithPhotos(allCertificates?.data?.marriages)
+      );
+    }
+  }, [allCertificates]);
+
+  useEffect(() => {
+    // setSelectedCertificate("");
+    if (page === 1 && eduPhoto?.length !== 0)
+      setSelectedCertificate(eduPhoto?.length !== 0 ? eduPhoto[0] : []);
+    if (page === 2 && profPhoto?.length !== 0)
+      setSelectedCertificate(profPhoto?.length !== 0 ? profPhoto[0] : []);
+    if (page === 4 && marriagePhoto?.length !== 0)
+      setSelectedCertificate(
+        marriagePhoto?.length !== 0 ? marriagePhoto[0] : []
+      );
   }, [page]);
 
-  // js variable declaration
-  let educationalCertificates;
-  let professionalCertificates;
-
-  if (allCertificates?.success) {
-    console.log(allCertificates);
-    educationalCertificates = allCertificates.data?.educations || [];
-    professionalCertificates = allCertificates.data?.professions || [];
-  }
   return (
     <div>
       <MobileBackButton name={"Certificate"} />
@@ -40,25 +55,43 @@ export const CertificateMov = () => {
           Certificate
         </p>
         <CertificateMobileHeaderButton {...{ setPage, page }} />
-        <SelectedCertificateForMov
-          {...{ selectedCertificate, selectedCertificateName }}
-        />
+        {selectedCertificate && (
+          <SelectedCertificateForMov
+            {...{ selectedCertificate, selectedCertificateName }}
+          />
+        )}
         {page === 2 && (
           <ProfessionalCertificateMov
             {...{
               setSelectedCertificate,
               selectedCertificate,
-              professionalCertificates,
+              certificates: bindParentIdWithPhotos(
+                allCertificates?.data?.professions
+              ),
               setSelectedCertificateName,
             }}
           />
         )}
         {page === 1 && (
-          <EducationalCertificateForMov
+          <ProfessionalCertificateMov
             {...{
               setSelectedCertificate,
               selectedCertificate,
-              educationalCertificates,
+              certificates: bindParentIdWithPhotos(
+                allCertificates?.data?.educations
+              ),
+              setSelectedCertificateName,
+            }}
+          />
+        )}
+        {page === 4 && (
+          <MarriageCertificateForMov
+            {...{
+              setSelectedCertificate,
+              selectedCertificate,
+              certificates: bindParentIdWithPhotos(
+                allCertificates?.data?.marriages
+              ),
               setSelectedCertificateName,
             }}
           />

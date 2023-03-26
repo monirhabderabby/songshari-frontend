@@ -1,15 +1,13 @@
 import React from "react";
 /* component */
-import FileUploadSection from "./FileUploadSection/FileUploadSection";
 import FileReuploadSection from "./FileReuploadSection/FileReuploadSection";
+import AddNewMarriageCertificate from "./FileUploadSection/AddNewMarriageCertificate";
 
-const UpdateCertificateSection = ({ editFor, selectedCertificate }) => {
+const UpLoadMarriageCertificate = ({ editFor, selectedCertificate }) => {
   return (
     <div>
       {/* New certificate upload */}
-      {selectedCertificate?.photo && (
-        <FileUploadSection {...{ editFor, selectedCertificate }} />
-      )}
+      <AddNewMarriageCertificate selectedCertificate={selectedCertificate}/>
       {/* File reupload section */}
       {selectedCertificate?.status === "askedToResubmit" && (
         <FileReuploadSection {...{ editFor, selectedCertificate }} />
@@ -18,4 +16,4 @@ const UpdateCertificateSection = ({ editFor, selectedCertificate }) => {
   );
 };
 
-export default UpdateCertificateSection;
+export default UpLoadMarriageCertificate;

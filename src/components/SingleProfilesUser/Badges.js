@@ -26,13 +26,6 @@ export const Badges = ({data, error}) => {
               </div>
             </div>
           )}
-          {!data?.data?.length && (
-            <div className="mt-[30px]">
-              <div className="flex text-xl font-bold text-yellow-400 items-center gap-x-[16px]">
-                No badges added !
-              </div>
-            </div>
-          )}
           {error && (
             <div className="mt-[30px]">
               <div className="flex text-xl font-bold text-yellow-400 items-center gap-x-[16px]">

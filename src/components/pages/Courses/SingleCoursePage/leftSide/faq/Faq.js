@@ -6,31 +6,32 @@ import { FaUserSecret } from "react-icons/fa";
 import { HiComputerDesktop } from "react-icons/hi2";
 import { TbFileCertificate } from "react-icons/tb";
 
-export const Faq = () => {
+export const Faq = ({ course }) => {
+    const { forWhomIsThisCourse, whatNeedToKnowForTheCourse, whatRequiredForTheCourse, willCertificateBeAvailable } = course || {};
     const faqs = [
         {
             id: 1,
             icon: <FaUserSecret />,
             question: "Who is the course for",
-            answer: "Any working person can benefit from this package of courses. Especially, those who are struggling with their current career will find the complete solution in this bundle.Also, job seekers of any profession will be able to make a career change by following the tips in this course.",
+            answer: forWhomIsThisCourse,
         },
         {
             id: 2,
             icon: <BsFillPlayFill />,
             question: "What do you need to know for the course?",
-            answer: "No previous experience is required for the course.",
+            answer: whatNeedToKnowForTheCourse,
         },
         {
             id: 3,
             icon: <HiComputerDesktop />,
             question: "What is required for the course?",
-            answer: "Smartphones for taking courses; Internet connection and determination to achieve career success is enough. No separate tools are required for the course.",
+            answer: whatRequiredForTheCourse,
         },
         {
             id: 4,
             icon: <TbFileCertificate />,
             question: "Will the certificate be available?",
-            answer: "Note, this is 1 package consisting of 5 individual courses. If you enroll in this package and complete the course, you will get 5 different certificates.",
+            answer: willCertificateBeAvailable,
         },
     ];
     return (
