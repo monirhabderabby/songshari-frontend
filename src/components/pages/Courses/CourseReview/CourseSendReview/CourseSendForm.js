@@ -1,14 +1,20 @@
 import { Rating } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 
 export const CourseSendForm = () => {
+    const [reviewText, setReviewText] = useState("");
+
+    const handleSubmit = e => {
+        e.preventDefault();
+        console.log(reviewText);
+    };
     return (
         <div>
             <div className="px-[30px] py-[20px]">
                 <h3 className="text-[20px] lg:text-[24px] font-Inter font-medium">How was your experiance?</h3>
                 <Rating name="size-small" defaultValue={2} size="large" />
             </div>
-            <form>
+            <form onSubmit={e => handleSubmit(e)}>
                 <textarea
                     name="reviewText"
                     id="reviewText"
@@ -16,6 +22,12 @@ export const CourseSendForm = () => {
                     cols="30"
                     rows="10"
                     placeholder="Describe your experience here.."
+                    onChange={e => setReviewText(e.target.value)}
+                    onKeyDown={e => {
+                        if (e.keyCode === 13 && !e.shiftKey) {
+                            handleSubmit(e);
+                        }
+                    }}
                 ></textarea>
                 <input
                     type="submit"

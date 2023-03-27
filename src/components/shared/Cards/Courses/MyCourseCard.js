@@ -13,7 +13,10 @@ export const MyCourseCard = ({ item }) => {
                 <div className="p-[10px] py-[15px] space-y-[4px]">
                     <div className="flex items-center justify-between">
                         <h3 className="text-[18px] font-bold font-Nunito">{name}</h3>
-                        <button className="text-[12px] ring-1 ring-pink-200 px-3 py-[2px] rounded-[4px] hover:bg-pink-400 hover:text-white duration-300">
+                        <button
+                            className="text-[12px] ring-1 ring-pink-200 px-3 py-[2px] rounded-[4px] hover:bg-pink-400 hover:text-white duration-300"
+                            onClick={() => navigate(`/course/review/${_id}`)}
+                        >
                             Send Review
                         </button>
                     </div>
