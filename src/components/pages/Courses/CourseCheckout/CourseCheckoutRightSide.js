@@ -1,16 +1,29 @@
 import React, { useEffect, useState } from "react";
+
+// Third party packages
 import { MdSecurity } from "react-icons/md";
+import { useSelector } from "react-redux";
 import { useBuyCourseMutation } from "../../../../Redux/features/Course/courseApi";
+import { useUpdatePersonalDetailsMutation } from "../../../../Redux/features/userInfo/userApi";
 import { OvalLoader } from "../../../shared/Cards/Loader/OvalLoader/OvalLoader";
 import Error from "../../../ui/error/Error";
 
 export const CourseCheckoutRightSide = ({ course }) => {
     const [customError, setCustomError] = useState("");
     const { name, image, price, _id } = course || {};
+    const checkoutDetailes = useSelector(state => state.persistedReducer?.courseCheckout);
 
     const [buyCourse, { isLoading, isSuccess, error, isError }] = useBuyCourseMutation();
+    const [updatePersonalDetails] = useUpdatePersonalDetailsMutation();
 
     const handleOrder = () => {
+        const detailes = { ...checkoutDetailes };
+        delete detailes.email;
+
+        // update personal data in our db
+        updatePersonalDetails(detailes);
+
+        // buy course
         buyCourse({
             id: _id,
         });
