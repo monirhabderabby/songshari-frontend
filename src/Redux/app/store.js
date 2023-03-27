@@ -8,6 +8,7 @@ import chatReducer from "../chat/chatReducer";
 import billingSummarySlice from "../features/checkout/billingSummarySlice";
 import checkoutDetailsSlice from "../features/checkout/checkoutDetailsSlice";
 import connectionSlice from "../features/connections/connectionSlice";
+import courseCheckoutSlice from "../features/Course/courseCheckoutSlice";
 import coursesAccessSlice from "../features/Course/coursesAccessSlice";
 import courseSlice from "../features/Course/courseSlice";
 import filterSlice from "../features/filter/filterSlice";
@@ -39,6 +40,7 @@ const reducer = combineReducers({
     billingSummary: billingSummarySlice,
     course: courseSlice,
     courseAccess: coursesAccessSlice,
+    courseCheckout: courseCheckoutSlice,
 });
 const persistedReducer = persistReducer(persistConfig, reducer);
 const store = configureStore({
