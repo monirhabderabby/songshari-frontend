@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { CourseReviews } from "../../CourseReview/CourseReviews/CourseReviews";
 import { CourseInfo } from "./CourseInfo/CourseInfo";
 import { Faq } from "./faq/Faq";
 import { InstructorInfo } from "./InstructorInfo/InstructorInfo";
@@ -26,6 +27,7 @@ export const CourseDetailesTab = ({ course }) => {
             {tab === 1 && <CourseInfo course={course} />}
             {tab === 2 && <InstructorInfo course={course} />}
             <Faq course={course} />
+            <CourseReviews />
         </div>
     );
 };
