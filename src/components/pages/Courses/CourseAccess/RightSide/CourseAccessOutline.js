@@ -9,7 +9,9 @@ export const CourseAccessOutline = ({ sections }) => {
     return (
         <Collapse accordion style={{ width: "100%" }}>
             <div className="text-[14px] text-black/80 px-[12px] py-[10px] font-Inter border-b-[1px]">
-                <p className="font-semibold">14/14 modules seen</p>
+                <p className="font-semibold">
+                    {sections?.length}/{sections?.length} modules seen
+                </p>
                 <p>Watch all the videos To get certificate </p>
             </div>
             {sections?.map(milestone => {
