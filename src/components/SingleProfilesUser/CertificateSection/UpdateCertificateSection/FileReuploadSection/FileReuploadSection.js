@@ -10,7 +10,7 @@ import icon from "../../../../../assets/images/user profile/reUpload.png";
 import { useResubmitAnyCertificateMutation } from "../../../../../Redux/features/Documents/documentsApi";
 import { usePhotosUploadOnServerMutation } from "../../../../../Redux/features/fileUpload/fileUploadApi";
 
-const FileReuploadSection = ({ editFor, selectedCertificate }) => {
+const FileReuploadSection = ({ selected, selectedPhoto }) => {
   const [resubmitCertificate, { data: response, isLoading: loading }] =
     useResubmitAnyCertificateMutation();
   const [uploadCertificate, { data: uploadedCertificate }] =
@@ -29,13 +29,13 @@ const FileReuploadSection = ({ editFor, selectedCertificate }) => {
     if (response) {
       toast.success("Successfully Re-uploaded");
     }
-  },[response])
+  }, [response]);
   useEffect(() => {
     if (uploadedCertificate) {
       resubmitCertificate({
-        id: selectedCertificate.parentId,
+        id: selected._id,
         data: {
-          photoId: selectedCertificate?._id,
+          photoId: selectedPhoto?._id,
           newPhoto: uploadedCertificate?.data[0]?.path,
         },
       });
@@ -56,7 +56,7 @@ const FileReuploadSection = ({ editFor, selectedCertificate }) => {
           <div className="relative overflow-hidden h-[380px] w-full  rounded-2xl mx-auto lg:mx-0">
             <img
               className="absolute z-[-1] w-full h-full"
-              src={selectedCertificate?.photo}
+              src={selectedPhoto?.photo}
               alt="background"
             />
             <div className="z-30 w-full h-full flex flex-col items-center justify-center bg-[#000000] bg-opacity-50">

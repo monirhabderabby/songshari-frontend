@@ -35,8 +35,8 @@ export const MyCourses = () => {
     } else if (!isLoading && courses?.courses?.length > 0) {
         content = (
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-[20px] w-full">
-                {courses?.courses?.map(item => {
-                    return <MyCourseCard item={item} key={item.id} />;
+                {courses?.courses?.map((item, index) => {
+                    return <MyCourseCard item={item} key={index} />;
                 })}
             </div>
         );
