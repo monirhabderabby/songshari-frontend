@@ -6,7 +6,6 @@ import { setCourseCheckoutData, setInitialCourseCheckoutData } from "../../../..
 export const BillingInfoBoxForCourse = () => {
     const personalInfo = useSelector(state => state.persistedReducer?.userInfo?.userInfo?.user);
     const checkoutDetailes = useSelector(state => state.persistedReducer?.courseCheckout);
-    console.log(checkoutDetailes);
     const dispatch = useDispatch();
     const { firstName, lastName, email, phone } = checkoutDetailes || {};
 

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 
 export const CourseInfo = ({ course }) => {
-    console.log(course);
     const { whatIsInThisCourse, courseDetails } = course || {};
     const [data, setData] = useState([
         {

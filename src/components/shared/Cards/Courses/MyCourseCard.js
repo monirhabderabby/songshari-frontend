@@ -4,7 +4,9 @@ import { useNavigate } from "react-router";
 
 export const MyCourseCard = ({ item }) => {
     const navigate = useNavigate();
-    const { image, name, instructor, _id } = item || {};
+
+    const { course } = item || {};
+    const { _id, name, image, instructor } = course || {};
 
     return (
         <>
