@@ -41,7 +41,7 @@ export const Faq = ({ course }) => {
             <div className="grid grid-cols-1 gap-y-[30px]">
                 {faqs?.map(item => {
                     return (
-                        <div className="flex gap-x-[20px] lg:gap-x-[30px]">
+                        <div className="flex gap-x-[20px] lg:gap-x-[30px]" key={item?.id}>
                             <div className="w-[40px] h-[40px] rounded-full bg-[#354895] flex justify-center items-center text-white">
                                 {item?.icon}
                             </div>

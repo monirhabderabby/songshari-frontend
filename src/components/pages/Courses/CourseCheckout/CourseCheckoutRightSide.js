@@ -33,11 +33,10 @@ export const CourseCheckoutRightSide = ({ course }) => {
     };
 
     useEffect(() => {
-        if (error && error.status === 301) {
-            const { data } = error || {};
+        if (data?.data) {
             window.location.replace(data?.data);
         }
-    }, [error]);
+    }, [data]);
 
     useEffect(() => {
         if (error && error.status !== 301 && error?.data?.message) {
