@@ -13,7 +13,7 @@ export const CourseCheckoutRightSide = ({ course }) => {
     const { name, image, price, _id } = course || {};
     const checkoutDetailes = useSelector(state => state.persistedReducer?.courseCheckout);
 
-    const [buyCourse, { isLoading, isSuccess, error, isError }] = useBuyCourseMutation();
+    const [buyCourse, { isLoading, isSuccess, data, error, isError }] = useBuyCourseMutation();
     const [updatePersonalDetails] = useUpdatePersonalDetailsMutation();
 
     const handleOrder = () => {
@@ -26,15 +26,25 @@ export const CourseCheckoutRightSide = ({ course }) => {
         // buy course
         buyCourse({
             id: _id,
+            data: {
+                amount: price,
+            },
         });
     };
 
     useEffect(() => {
-        if (error) {
+        if (error && error.status === 301) {
             const { data } = error || {};
-            setCustomError(data?.message);
+            window.location.replace(data?.data);
         }
     }, [error]);
+
+    useEffect(() => {
+        if (error && error.status !== 301 && error?.data?.message) {
+            setCustomError(error?.data?.message);
+        }
+    }, [error]);
+
     return (
         <div className="mt-[30px] w-full shadow-[0px_2px_6px_rgba(0,0,0,0.14)] p-[20px] rounded-[4px] bg-white">
             <h3 className="text-[20px] font-fira font-semibold text-black">Your order at a glance</h3>
