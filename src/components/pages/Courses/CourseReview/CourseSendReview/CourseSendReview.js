@@ -5,7 +5,7 @@ import { CourseSendForm } from "./CourseSendForm";
 
 export const CourseSendReview = ({ open, handleClose }) => {
     return (
-        <>
+        <div className="pb-[100px]">
             <div className="hidden lg:block">
                 <CustomHeader title="Review" />
             </div>
@@ -21,11 +21,11 @@ export const CourseSendReview = ({ open, handleClose }) => {
                             let us know in the field bellow
                         </p>
                     </div>
-                    <div className="bg-white ">
+                    <div className="bg-white">
                         <CourseSendForm />
                     </div>
                 </div>
             </div>
-        </>
+        </div>
     );
 };

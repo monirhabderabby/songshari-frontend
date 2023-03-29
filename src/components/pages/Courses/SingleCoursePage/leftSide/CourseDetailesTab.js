@@ -6,6 +6,7 @@ import { InstructorInfo } from "./InstructorInfo/InstructorInfo";
 
 export const CourseDetailesTab = ({ course }) => {
     const [tab, setTab] = useState(1);
+
     return (
         <div className="w-full h-auto">
             <div className="mt-[73px] w-full bg-gray-200 h-[45px] flex overflow-hidden relative">
