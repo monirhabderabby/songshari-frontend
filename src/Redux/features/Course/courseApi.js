@@ -94,6 +94,14 @@ export const courseApi = apiSlice.injectEndpoints({
                 },
             }),
         }),
+        getCourseReviewOfMe: builder.query({
+            query: id => ({
+                url: `/course/review/mine/${id}`,
+                headers: {
+                    authorization: `Bearer ${getCookie("token")}`,
+                },
+            }),
+        }),
     }),
 });
 
@@ -108,4 +116,5 @@ export const {
     useContentStatusUpdateMutation,
     useCreateCourseReviewMutation,
     useGetAllReviewsByCourseIDQuery,
+    useGetCourseReviewOfMeQuery,
 } = courseApi;

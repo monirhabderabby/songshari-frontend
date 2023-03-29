@@ -1,12 +1,31 @@
+import { Rating } from "@mui/material";
 import { Progress } from "antd";
 import React from "react";
 import { useNavigate } from "react-router";
+import { useGetCourseReviewOfMeQuery } from "../../../../Redux/features/Course/courseApi";
 
 export const MyCourseCard = ({ item }) => {
     const navigate = useNavigate();
 
     const { course } = item || {};
     const { _id, name, image, instructor } = course || {};
+    const { data, isLoading, isError } = useGetCourseReviewOfMeQuery(_id);
+    const { review } = data || {};
+    let content;
+    if (isLoading) {
+        content = <div className="w-[60px] h-[15px] flex justify-center items-center">. . .</div>;
+    } else if (!isLoading && isError) {
+        content = (
+            <button
+                className="text-[12px] ring-1 ring-pink-200 px-3 py-[2px] rounded-[4px] hover:bg-pink-400 hover:text-white duration-300"
+                onClick={() => navigate(`/course/review/${_id}`)}
+            >
+                Send Review
+            </button>
+        );
+    } else if (!isLoading && !isError && review) {
+        content = <Rating name="read-only" value={review?.rating} readOnly size="small" />;
+    }
 
     return (
         <>
@@ -15,12 +34,7 @@ export const MyCourseCard = ({ item }) => {
                 <div className="p-[10px] py-[15px] space-y-[4px]">
                     <div className="flex items-center justify-between">
                         <h3 className="text-[18px] font-bold font-Nunito">{name}</h3>
-                        <button
-                            className="text-[12px] ring-1 ring-pink-200 px-3 py-[2px] rounded-[4px] hover:bg-pink-400 hover:text-white duration-300"
-                            onClick={() => navigate(`/course/review/${_id}`)}
-                        >
-                            Send Review
-                        </button>
+                        {content}
                     </div>
                     <span className="text-[14px] text-gray-500">{instructor[0]?.name}</span>
                     <div className="w-[90%]">
