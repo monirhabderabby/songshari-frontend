@@ -76,6 +76,24 @@ export const courseApi = apiSlice.injectEndpoints({
                 },
             }),
         }),
+        createCourseReview: builder.mutation({
+            query: data => ({
+                url: "/course/review/create",
+                method: "POST",
+                headers: {
+                    authorization: `Bearer ${getCookie("token")}`,
+                },
+                body: data,
+            }),
+        }),
+        getAllReviewsByCourseID: builder.query({
+            query: id => ({
+                url: `/course/review/all/${id}?page=1&limit=3`,
+                headers: {
+                    authorization: `Bearer ${getCookie("token")}`,
+                },
+            }),
+        }),
     }),
 });
 
@@ -88,4 +106,6 @@ export const {
     useGetAllCourseCategoryQuery,
     useGetMyCourseMilestionQuery,
     useContentStatusUpdateMutation,
+    useCreateCourseReviewMutation,
+    useGetAllReviewsByCourseIDQuery,
 } = courseApi;
