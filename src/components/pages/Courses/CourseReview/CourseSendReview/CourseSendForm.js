@@ -1,18 +1,45 @@
 import { Rating } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router";
+import { useCreateCourseReviewMutation } from "../../../../../Redux/features/Course/courseApi";
 
 export const CourseSendForm = () => {
     const [reviewText, setReviewText] = useState("");
+    const [rating, setRating] = useState(null);
+    const { id } = useParams();
+
+    const navigate = useNavigate();
+
+    const [createCourseReview, { isSuccess, isLoading }] = useCreateCourseReviewMutation();
 
     const handleSubmit = e => {
         e.preventDefault();
-        console.log(reviewText);
+        const data = {
+            course: id,
+            review: reviewText,
+            rating: rating,
+        };
+        createCourseReview(data);
     };
+
+    useEffect(() => {
+        if (isSuccess) {
+            navigate("/my-orders/my-courses");
+        }
+    }, [isSuccess, navigate]);
     return (
         <div>
             <div className="px-[30px] py-[20px]">
                 <h3 className="text-[20px] lg:text-[24px] font-Inter font-medium">How was your experiance?</h3>
-                <Rating name="size-small" defaultValue={2} size="large" />
+                <Rating
+                    name="size-small"
+                    value={rating || 2}
+                    onChange={(event, value) => {
+                        event.preventDefault();
+                        setRating(value);
+                    }}
+                    size="large"
+                />
             </div>
             <form onSubmit={e => handleSubmit(e)}>
                 <textarea
@@ -31,8 +58,8 @@ export const CourseSendForm = () => {
                 ></textarea>
                 <input
                     type="submit"
-                    value="Send Review"
-                    className="bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] text-white px-3 py-2 w-full flex justify-center items-center mt-[20px] font-outfit font-medium"
+                    value={isLoading ? "Sending..." : "Send Review"}
+                    className="bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] text-white px-3 cursor-pointer py-2 w-full flex justify-center items-center mt-[20px] font-outfit font-medium"
                 />
             </form>
         </div>

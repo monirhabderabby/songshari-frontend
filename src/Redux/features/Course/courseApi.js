@@ -76,6 +76,16 @@ export const courseApi = apiSlice.injectEndpoints({
                 },
             }),
         }),
+        createCourseReview: builder.mutation({
+            query: data => ({
+                url: "/course/review/create",
+                method: "POST",
+                headers: {
+                    authorization: `Bearer ${getCookie("token")}`,
+                },
+                body: data,
+            }),
+        }),
     }),
 });
 
@@ -88,4 +98,5 @@ export const {
     useGetAllCourseCategoryQuery,
     useGetMyCourseMilestionQuery,
     useContentStatusUpdateMutation,
+    useCreateCourseReviewMutation,
 } = courseApi;
