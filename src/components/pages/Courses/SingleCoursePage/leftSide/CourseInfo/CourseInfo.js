@@ -40,7 +40,8 @@ export const CourseInfo = ({ course }) => {
                         </div>
                         <div className="h-auto p-[5px]">
                             <p
-                                className="text-[16px] font-outfit font-normal tracking-wide"
+                                className="text-[16px] font-outfit font-normal tracking-wide w-full overflow-auto"
+                                style={{ wordWrap: "break-word", whiteSpace: "initial" }}
                                 dangerouslySetInnerHTML={{
                                     __html: `${item.answer}`,
                                 }}
