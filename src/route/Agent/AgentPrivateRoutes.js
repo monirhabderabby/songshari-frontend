@@ -76,7 +76,7 @@ const AgentPrivateRoutes = [
         ],
       },
       {
-        id: 6,
+        id: 7,
         path: "serviceEdit/:id",
         element: <ServiceEdit />,
       },
