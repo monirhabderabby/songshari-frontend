@@ -8,7 +8,6 @@ import { Gallery } from "../../components/shared/Components/Gallery";
 import SingleServicesStatusContainer from "../../components/shared/Components/LawyerAgentKaziService/SingleServicesStatus/SingleServicesStatusContainer";
 import { DesktopNotification } from "../../components/shared/Notification/DesktopNotification";
 import EducationalCertificateWeb from "../../components/SingleProfilesUser/CertificateSection/EducationalCertificateWeb";
-import MarriageCertificateWev from "../../components/SingleProfilesUser/CertificateSection/MarriageCertificateWev";
 import PersonalCertificateWeb from "../../components/SingleProfilesUser/CertificateSection/PersonalCertificateWeb";
 // import ProfessionalCertificateWeb from "../../components/SingleProfilesUser/CertificateSection/ProfessionalCertificateWeb";
 import EditEducationalInfo from "../../components/SingleProfilesUser/profileSection/EditprofileSection/EditEducationalInfo";

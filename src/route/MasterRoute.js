@@ -18,37 +18,37 @@ import myAccountRouteRenderer from "./myAcount/myAccountRouteRenderer";
 import shopRouteRenderer from "./shop/shopRouteRenderer";
 
 const MasterRoute = () => {
-    return (
-        <BrowserRouter>
-            <Routes>
-                {/* MATRIMONY PUBLIC ROUTE */}
-                {matrimonyPublicRouteRenderer()}
-                {/* MATRIMONY PRIVATE ROUTES */}
-                {matrimonyRouteRenderer()}
-                {/* MATRIMONY MOBILE ROUTES */}
-                {matrimonyMobilePublicRouteRenderer()}
-                {/* MATRIMONY PRIVATE MOBILE ROUTES */}
-                {matrimonyMobileRouteRenderer()}
-                {/* KAZI ROUTES */}
-                {kaziPublicRouteRenderer()}
-                {/* KAZI PRIVATE ROUTES */}
-                {kaziRouteRenderer()}
-                {/* SHOP PRIVATE ROUTES */}
-                {shopRouteRenderer()}
-                {/* LAWYER PRIVATE ROUTES */}
-                {lawyerRouteRenderer()}
-                {/* Agent PublicRoutes */}
-                {agentRouteRenderer()}
-                {/* my account private routes */}
-                {myAccountRouteRenderer()}
-                {/* Course Private Routes */}
-                {coursePrivateRouteRenderer()}
-                {/* Course Public routes */}
-                {coursePublicRouteRenderer()}
-                <Route path="*" element={<NotFoundPage />} />
-            </Routes>
-        </BrowserRouter>
-    );
+  return (
+    <BrowserRouter>
+      <Routes>
+        {/* MATRIMONY PUBLIC ROUTE */}
+        {matrimonyPublicRouteRenderer()}
+        {/* MATRIMONY PRIVATE ROUTES */}
+        {matrimonyRouteRenderer()}
+        {/* MATRIMONY MOBILE ROUTES */}
+        {matrimonyMobilePublicRouteRenderer()}
+        {/* MATRIMONY PRIVATE MOBILE ROUTES */}
+        {matrimonyMobileRouteRenderer()}
+        {/* KAZI ROUTES */}
+        {kaziPublicRouteRenderer()}
+        {/* KAZI PRIVATE ROUTES */}
+        {kaziRouteRenderer()}
+        {/* SHOP PRIVATE ROUTES */}
+        {shopRouteRenderer()}
+        {/* LAWYER PRIVATE ROUTES */}
+        {lawyerRouteRenderer()}
+        {/* Agent PublicRoutes */}
+        {agentRouteRenderer()}
+        {/* my account private routes */}
+        {myAccountRouteRenderer()}
+        {/* Course Private Routes */}
+        {coursePrivateRouteRenderer()}
+        {/* Course Public routes */}
+        {coursePublicRouteRenderer()}
+        <Route path="*" element={<NotFoundPage />} />
+      </Routes>
+    </BrowserRouter>
+  );
 };
 
 export default MasterRoute;
