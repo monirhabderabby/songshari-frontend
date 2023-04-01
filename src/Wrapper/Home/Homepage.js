@@ -15,36 +15,40 @@ import { BrandLoader } from "../../components/shared/Cards/Loader/BrandLoader/Br
 import Footer from "../../components/shared/Footer/Footer";
 import isLoggedIn from "../../Helper/hooks/checkLoggerPersestency/isLoggedIn";
 import { MobileHome } from "./mobileversion/MobileHome";
+import PackagePromo from "../../components/pages/Home/PackagePromo/PackagePromo";
 const NavBar = lazy(() => import("../../components/pages/Shared/NavBar"));
-const Banner = React.lazy(() => import("../../components/pages/Home/Banner/Banner"));
+const Banner = React.lazy(() =>
+  import("../../components/pages/Home/Banner/Banner")
+);
 
 const Homepage = () => {
-    // js variables
-    const logged = isLoggedIn();
-    useDocumentTitle("Shongshari | Home");
+  // js variables
+  const logged = isLoggedIn();
+  useDocumentTitle("Shongshari | Home");
 
-    return (
-        <div className="font-george overflow-x-hidden">
-            <div className="hidden md:hidden lg:block">
-                <Suspense fallback={<BrandLoader />}>
-                    <NavBar></NavBar>
-                    <Banner></Banner>
-                    <LatestRegisteredMember />
-                    <SecureVerified></SecureVerified>
-                    <BeginFamilyJourney></BeginFamilyJourney>
-                    <TopProfile />
-                    <PeopleJoinedAlready />
-                    <MeetNewPeople />
-                    <FindSoleMate />
-                    {!logged && <Anexecutive />}
-                    <Footer />
-                </Suspense>
-            </div>
-            <div className="block lg:hidden">
-                <MobileHome></MobileHome>
-            </div>
-        </div>
-    );
+  return (
+    <div className="font-george overflow-x-hidden">
+      <div className="hidden md:hidden lg:block">
+        <Suspense fallback={<BrandLoader />}>
+          <NavBar></NavBar>
+          <Banner></Banner>
+          <LatestRegisteredMember />
+          <SecureVerified></SecureVerified>
+          <BeginFamilyJourney></BeginFamilyJourney>
+          <TopProfile />
+          <PeopleJoinedAlready />
+          <PackagePromo />
+          <MeetNewPeople />
+          <FindSoleMate />
+          {!logged && <Anexecutive />}
+          <Footer />
+        </Suspense>
+      </div>
+      <div className="block lg:hidden">
+        <MobileHome></MobileHome>
+      </div>
+    </div>
+  );
 };
 
 export default Homepage;
