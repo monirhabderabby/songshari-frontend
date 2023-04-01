@@ -11,7 +11,7 @@ export const CourseCard = ({ course }) => {
     const { name, oldPrice, price, image, skillLevel, _id } = course || {};
 
     return (
-        <div className="h-[430px] w-full lg:w-[260px] mx-auto rounded-[4px] bg-white shadow-[rgba(0,0,0,0.05)_0px_6px_24px_0px,rgba(0,0,0,0.08)_0px_0px_0px_1px] hover:shadow-[rgba(0,0,0,0.16)_0px_10px_36px_0px,rgba(0,0,0,0.06)_0px_0px_0px_1px] duration-300">
+        <div className="h-[430px] w-full lg:w-[260px] mx-auto rounded-[4px] bg-white shadow-[rgba(0,0,0,0.05)_0px_6px_24px_0px,rgba(0,0,0,0.08)_0px_0px_0px_1px] hover:shadow-[rgba(0,0,0,0.16)_0px_10px_36px_0px,rgba(0,0,0,0.06)_0px_0px_0px_1px] duration-300 -z-20">
             <div className="relative">
                 <img className="h-[234px] w-full rounded-tl-[4px] rounded-tr-[4px]" src={image} alt="courseImage" loading="lazi" />
                 <div className="absolute top-[9px] left-[10px] bg-pink-500 bg-opacity-40 backdrop-blur-xl shadow-md text-white text-[10px] px-2 py-1 font-Nunito font-normal tracking-wider">

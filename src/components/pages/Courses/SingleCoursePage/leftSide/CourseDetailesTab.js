@@ -9,7 +9,7 @@ export const CourseDetailesTab = ({ course }) => {
 
     return (
         <div className="w-full h-auto">
-            <div className="mt-[73px] w-full bg-gray-200 h-[45px] flex overflow-hidden relative">
+            <div className="mt-[20px] lg:mt-[73px] w-full bg-gray-200 h-[45px] flex overflow-hidden relative">
                 <button
                     className={`flex-1 ${tab === 1 ? "bg-[#354895] text-white" : "bg-transparent text-black"} font-Nunito font-normal`}
                     style={{ transition: "background-color 0.5s ease" }}
