@@ -17,7 +17,7 @@ import SingleProductOtherDetails from "./SingleProductOtherDetails/SingleProduct
 const SingleProductDetails = () => {
     const { id } = useParams();
     const { data: productData, isLoading, isError } = useGetSingleProductQuery(id);
-    const { product } = productData || {};
+    const { product, similarProducts } = productData || {};
 
     const { description } = product || {};
 
@@ -92,7 +92,7 @@ const SingleProductDetails = () => {
                         <SingleProductImages {...{ data, product }} />
                     </div>
                     <div className="hidden lg:block">
-                        <SingleProductOtherDetails {...{ data, description }} />
+                        <SingleProductOtherDetails {...{ data, description, similarProducts }} />
                     </div>
                 </div>
                 <div className="w-full lg:max-w-[432px]">
