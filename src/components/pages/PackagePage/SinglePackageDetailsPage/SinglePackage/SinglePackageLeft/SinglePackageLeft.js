@@ -1,10 +1,12 @@
 import React from "react";
 import PackageItemsInfo from "./PackageItemsInfo/PackageItemsInfo";
+import PackageReview from "./PackageReview/PackageReview";
 
 const SinglePackageLeft = () => {
   const itemsArray = [1, 2, 3, 4];
   return (
     <div>
+      {/* single package left side Header section */}
       <div>
         <h1 className="text-[#354895] text-[24px] lg:text-[34px] font-bold font-outfit">
           Package Name Here
@@ -27,6 +29,9 @@ const SinglePackageLeft = () => {
           return <PackageItemsInfo key={item} />;
         })}
       </div>
+
+      {/* Review */}
+      <PackageReview />
     </div>
   );
 };
