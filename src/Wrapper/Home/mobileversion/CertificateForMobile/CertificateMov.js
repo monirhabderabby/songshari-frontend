@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 // Configuration
 import React, { useEffect, useState } from "react";
 import { bindParentIdWithPhotos } from "../../../../assets/utilities/certificates/certificate";

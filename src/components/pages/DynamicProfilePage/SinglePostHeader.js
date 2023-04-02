@@ -53,28 +53,30 @@ const SinglePostHeader = ({ post }) => {
             </div>
           </div>
         </div>
-        {data?._id === post?.author?._id && <div>
-          <BsThreeDotsVertical
-            id="long-button"
-            aria-controls={open ? "long-button" : undefined}
-            aria-haspopup="true"
-            aria-expanded={open ? "true" : undefined}
-            onClick={handleClick}
-            className="hover:text-black cursor-pointer"
-          />
-          <Menu
-            id="basic-menu"
-            anchorEl={anchorEl}
-            open={open}
-            onClose={handleClose}
-            MenuListProps={{
-              "aria-labelledby": "basic-button",
-            }}
-          >
-            <MenuItem onClick={handleClose}>Edit</MenuItem>
-            <MenuItem onClick={handleDelete}>Delete</MenuItem>
-          </Menu>
-        </div>}
+        {data?._id === post?.author?._id && (
+          <div>
+            <BsThreeDotsVertical
+              id="long-button"
+              aria-controls={open ? "long-button" : undefined}
+              aria-haspopup="true"
+              aria-expanded={open ? "true" : undefined}
+              onClick={handleClick}
+              className="hover:text-black cursor-pointer"
+            />
+            <Menu
+              id="basic-menu"
+              anchorEl={anchorEl}
+              open={open}
+              onClose={handleClose}
+              MenuListProps={{
+                "aria-labelledby": "basic-button",
+              }}
+            >
+              <MenuItem onClick={handleClose}>Edit</MenuItem>
+              <MenuItem onClick={handleDelete}>Delete</MenuItem>
+            </Menu>
+          </div>
+        )}
       </div>
       <div className="">
         <p className="text-[#333333] my-6 ml-2 mr-[6px] text-justify">

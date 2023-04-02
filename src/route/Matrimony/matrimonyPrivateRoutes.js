@@ -8,9 +8,8 @@ import { Gallery } from "../../components/shared/Components/Gallery";
 import SingleServicesStatusContainer from "../../components/shared/Components/LawyerAgentKaziService/SingleServicesStatus/SingleServicesStatusContainer";
 import { DesktopNotification } from "../../components/shared/Notification/DesktopNotification";
 import EducationalCertificateWeb from "../../components/SingleProfilesUser/CertificateSection/EducationalCertificateWeb";
-import MarriageCertificateWev from "../../components/SingleProfilesUser/CertificateSection/MarriageCertificateWev";
 import PersonalCertificateWeb from "../../components/SingleProfilesUser/CertificateSection/PersonalCertificateWeb";
-import ProfessionalCertificateWeb from "../../components/SingleProfilesUser/CertificateSection/ProfessionalCertificateWeb";
+// import ProfessionalCertificateWeb from "../../components/SingleProfilesUser/CertificateSection/ProfessionalCertificateWeb";
 import EditEducationalInfo from "../../components/SingleProfilesUser/profileSection/EditprofileSection/EditEducationalInfo";
 import EditFamilyInfo from "../../components/SingleProfilesUser/profileSection/EditprofileSection/EditFamilyInfo";
 import EditOthersInfo from "../../components/SingleProfilesUser/profileSection/EditprofileSection/EditOthersInfo";
@@ -89,17 +88,19 @@ const matrimonyPrivateRoutes = [
   {
     id: 4,
     path: "/professionalCertificate",
-    element: <ProfessionalCertificateWeb />,
+    element: <EducationalCertificateWeb title="prof" />,
+    // element: <ProfessionalCertificateWeb />,
   },
   {
     id: 5,
     path: "/educationalCertificate",
-    element: <EducationalCertificateWeb />,
+    element: <EducationalCertificateWeb title="edu" />,
   },
   {
     id: 12,
     path: "/marriageCertificate",
-    element: <MarriageCertificateWev />
+    element: <EducationalCertificateWeb title="marriage" />,
+    // element: <MarriageCertificateWev />,
   },
   {
     id: 6,

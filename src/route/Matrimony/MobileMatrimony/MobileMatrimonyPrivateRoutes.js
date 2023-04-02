@@ -52,17 +52,63 @@ import MobileStepper from "../../../Wrapper/Stepper/MobileStepper/MobileStepper"
 const MobileMatrimonyPrivateRoutes = [
     {
         id: 1,
-        path: "/mobileuserprofile",
-        element: <MobileSingleProfilesUser />,
-        nestedRoutes: [
-            {
-                id: 1,
-                path: "personaldetailsmov",
-                element: <PersonalDetailsMobile />,
-            },
-        ],
-    },
-    {
+        path: "personaldetailsmov",
+        element: <PersonalDetailsMobile />,
+      },
+    ],
+  },
+  {
+    id: 2,
+    path: "/dynamicpersonaldetails/:id",
+    element: <PersonalDetailsMobile />,
+  },
+  {
+    id: 3,
+    path: "/educationalCertificateMov",
+    element: <EducationalCertificateMobile/>,
+  },
+  {
+    id: 4,
+    path: "/professionalCertificateMov",
+    element: <ProfessionalCertificateMobile />,
+  },
+  {
+    id: 5,
+    path: "/personalCertificateMov",
+    element: <PersonalCertificateMobile />,
+  },
+  {
+    id: 6,
+    path: "/matchesmov",
+    element: <MatchesMov />,
+  },
+  {
+    id: 7,
+    path: "/Gallery/mobile/:id",
+    element: <GalleryContainerForMobile />,
+  },
+
+  {
+    id: 8,
+    path: "/setting",
+    element: <Setting />,
+  },
+  {
+    id: 9,
+    path: "/notifications",
+    element: <NotificationForMobile />,
+  },
+  {
+    id: 10,
+    path: "/mobile-find-partner",
+    element: <FindPartnersMobile />,
+    nestedRoutes: [
+      {
+        id: 1,
+        path: "suggested",
+        element: <SuggestedpartnersForMobile />,
+      },
+      {
         id: 2,
         path: "/dynamicpersonaldetails/:id",
         element: <PersonalDetailsMobile />,
