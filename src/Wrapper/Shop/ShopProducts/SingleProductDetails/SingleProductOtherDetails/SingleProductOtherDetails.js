@@ -7,7 +7,7 @@ import OtherDetailsDescription from "./OtherDetailsDescription/OtherDetailsDescr
 import OtherDetailsReviews from "./OtherDetailsReviews/OtherDetailsReviews";
 import SingleProductOtherDetailsNav from "./SingleProductOtherDetailsNav";
 
-const SingleProductOtherDetails = ({ data, description }) => {
+const SingleProductOtherDetails = ({ data, description, similarProducts }) => {
     const [page, setPage] = useState(1);
     return (
         <div>
@@ -15,7 +15,7 @@ const SingleProductOtherDetails = ({ data, description }) => {
             <div>
                 {page === 1 && <OtherDetailsDescription {...{ data, description }} />}
                 {page === 2 && <OtherDetailsReviews {...{ data }} />}
-                {page === 3 && <OtherDetailsCompare {...{ data }} />}
+                {page === 3 && <OtherDetailsCompare {...{ data, similarProducts }} />}
             </div>
         </div>
     );
