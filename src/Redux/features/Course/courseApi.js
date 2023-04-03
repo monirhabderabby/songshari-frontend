@@ -87,8 +87,8 @@ export const courseApi = apiSlice.injectEndpoints({
             }),
         }),
         getAllReviewsByCourseID: builder.query({
-            query: id => ({
-                url: `/course/review/all/${id}?page=1&limit=3`,
+            query: ({ id, page, limit }) => ({
+                url: `/course/review/all/${id}?page=${page}&limit=${limit}`,
                 headers: {
                     authorization: `Bearer ${getCookie("token")}`,
                 },
