@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
+import vloggingImage from "../../../../assets/images/Course/vlogging.png";
 import useDocumentTitle from "../../../../assets/utilities/useDocumentTitle";
 import { useGetMyCourseMilestionQuery } from "../../../../Redux/features/Course/courseApi";
 import { setCurrentVideo } from "../../../../Redux/features/Course/coursesAccessSlice";
@@ -43,7 +44,15 @@ export const CourseAccess = () => {
                 <ServerErrorMessage />
             </div>
         );
-    } else if (!isLoading && data) {
+    } else if (!isLoading && sections?.length === 0) {
+        content = (
+            <div className="w-full h-[calc(100vh-40vh)] flex flex-col justify-center items-center">
+                <img src={vloggingImage} alt="vlogging" className="h-[300px]" />
+                <p className="text-[18px] font-Inter">No Video Uploaded Yet</p>
+                <p className="text-[18px] font-Inter">Contect Us</p>
+            </div>
+        );
+    } else if (!isLoading && sections?.length > 0) {
         content = (
             <div className="w-full lg:w-[1200px]  2xl:w-[1400px] mx-auto h-auto flex lg:flex-row flex-col gap-y-[20px] pt-[44px] px-[26px]">
                 <div className=" w-full lg:max-w-[660px] 2xl:w-[850px] mx-auto min-h-[400px]">
