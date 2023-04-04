@@ -30,8 +30,8 @@ const PackagePromo = () => {
         className="px-4"
       >
         {array.map((arr) => (
-          <SwiperSlide className="pb-8">
-            <PackageCard key={arr} pack={arr} />
+          <SwiperSlide key={arr} className="pb-8">
+            <PackageCard pack={arr} />
           </SwiperSlide>
         ))}
       </Swiper>
