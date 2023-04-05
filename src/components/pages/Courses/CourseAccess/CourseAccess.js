@@ -49,7 +49,7 @@ export const CourseAccess = () => {
             <div className="w-full h-[calc(100vh-40vh)] flex flex-col justify-center items-center">
                 <img src={vloggingImage} alt="vlogging" className="h-[300px]" />
                 <p className="text-[18px] font-Inter">No Video Uploaded Yet</p>
-                <p className="text-[18px] font-Inter">Contect Us</p>
+                <p className="text-[18px] font-Inter">Contact Us</p>
             </div>
         );
     } else if (!isLoading && sections?.length > 0) {
