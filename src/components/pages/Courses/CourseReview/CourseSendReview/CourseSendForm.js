@@ -1,25 +1,48 @@
 import { Rating } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router";
+import { useLocation, useNavigate, useParams } from "react-router";
 import { useCreateCourseReviewMutation } from "../../../../../Redux/features/Course/courseApi";
+import Error from "../../../../ui/error/Error";
 
 export const CourseSendForm = () => {
+    const [previousPath, setPreviousPath] = useState(null);
+    const [customError, setCustomError] = useState("");
     const [reviewText, setReviewText] = useState("");
     const [rating, setRating] = useState(null);
     const { id } = useParams();
 
     const navigate = useNavigate();
+    const location = useLocation();
+
+    useEffect(() => {
+        if (location.state && location.state.from) {
+            console.log(location);
+            setPreviousPath(location.state.from.pathname);
+        }
+    }, [location]);
 
     const [createCourseReview, { isSuccess, isLoading }] = useCreateCourseReviewMutation();
 
     const handleSubmit = e => {
+        setCustomError("");
         e.preventDefault();
         const data = {
             course: id,
             review: reviewText,
             rating: rating,
         };
-        createCourseReview(data);
+
+        // Where review will make based on condition
+        // Two type of review -> Course Review -> Shop Product Review
+        if (!previousPath) {
+            setCustomError("Something went wring. Please contact with us");
+            return;
+        } else if (previousPath?.includes("/my-orders/my-courses")) {
+            createCourseReview(data);
+        } else if (previousPath?.includes("/my-orders/orderStatus")) {
+            // here will goes the product review
+            return;
+        }
     };
 
     useEffect(() => {
@@ -36,6 +59,7 @@ export const CourseSendForm = () => {
                     value={rating || 2}
                     onChange={(event, value) => {
                         event.preventDefault();
+                        setCustomError("");
                         setRating(value);
                     }}
                     size="large"
@@ -49,13 +73,17 @@ export const CourseSendForm = () => {
                     cols="30"
                     rows="10"
                     placeholder="Describe your experience here.."
-                    onChange={e => setReviewText(e.target.value)}
+                    onChange={e => {
+                        setReviewText(e.target.value);
+                        setCustomError("");
+                    }}
                     onKeyDown={e => {
                         if (e.keyCode === 13 && !e.shiftKey) {
                             handleSubmit(e);
                         }
                     }}
                 ></textarea>
+                {customError && <Error message={customError} />}
                 <input
                     type="submit"
                     value={isLoading ? "Sending..." : "Send Review"}

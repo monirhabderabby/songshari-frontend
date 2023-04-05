@@ -3,7 +3,7 @@ import { MobileBackButton } from "../../../../shared/Components/MobileBackButton
 import CustomHeader from "../../../../shared/CustomHeader/CustomHeader";
 import { CourseSendForm } from "./CourseSendForm";
 
-export const CourseSendReview = ({ open, handleClose }) => {
+export const CourseSendReview = () => {
     return (
         <div className="pb-[100px]">
             <div className="hidden lg:block">

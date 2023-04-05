@@ -1,11 +1,13 @@
 import { Rating } from "@mui/material";
 import { Progress } from "antd";
 import React from "react";
-import { useNavigate } from "react-router";
+import { useLocation, useNavigate } from "react-router";
+import { Link } from "react-router-dom";
 import { useGetCourseReviewOfMeQuery } from "../../../../Redux/features/Course/courseApi";
 
 export const MyCourseCard = ({ item }) => {
     const navigate = useNavigate();
+    const location = useLocation();
 
     const { course } = item || {};
     const { _id, name, image, instructor } = course || {};
@@ -16,12 +18,13 @@ export const MyCourseCard = ({ item }) => {
         content = <div className="w-[60px] h-[15px] flex justify-center items-center">. . .</div>;
     } else if (!isLoading && isError) {
         content = (
-            <button
+            <Link
                 className="text-[12px] ring-1 ring-pink-200 px-3 py-[2px] rounded-[4px] hover:bg-pink-400 hover:text-white duration-300"
-                onClick={() => navigate(`/course/review/${_id}`)}
+                to={`/course/review/${_id}`}
+                state={{ from: location }}
             >
                 Send Review
-            </button>
+            </Link>
         );
     } else if (!isLoading && !isError && review) {
         content = <Rating name="read-only" value={review?.rating} readOnly size="small" />;
