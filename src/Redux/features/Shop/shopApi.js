@@ -52,7 +52,24 @@ export const shopApi = apiSlice.injectEndpoints({
             }),
             providesTags: ["MyOrders"],
         }),
+        createProductReview: builder.mutation({
+            query: data => ({
+                url: `/shop/product/review/create`,
+                method: "POST",
+                headers: {
+                    authorization: `Bearer ${getCookie("token")}`,
+                },
+                body: data,
+            }),
+        }),
     }),
 });
 
-export const { useGetAllProductsQuery, useGetSingleProductQuery, useApplyCouponMutation, usePlaceOrderMutation, useMyOrderQuery } = shopApi;
+export const {
+    useGetAllProductsQuery,
+    useGetSingleProductQuery,
+    useApplyCouponMutation,
+    usePlaceOrderMutation,
+    useMyOrderQuery,
+    useCreateProductReviewMutation,
+} = shopApi;

@@ -12,7 +12,6 @@ import { OrderStatusTable } from "./OrderStatusTable";
 export const AllOrders = ({ setTotalOrders }) => {
     const { isLoading, data, isError } = useMyOrderQuery({ data: "pending" });
     const { orders, count } = data || {};
-    console.log(data);
 
     useEffect(() => {
         if (count > 0) setTotalOrders(count);
