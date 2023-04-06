@@ -2,6 +2,7 @@ import { Rating } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router";
 import { useCreateCourseReviewMutation } from "../../../../../Redux/features/Course/courseApi";
+import { useCreateProductReviewMutation } from "../../../../../Redux/features/Shop/shopApi";
 import Error from "../../../../ui/error/Error";
 
 export const CourseSendForm = () => {
@@ -22,6 +23,7 @@ export const CourseSendForm = () => {
     }, [location]);
 
     const [createCourseReview, { isSuccess, isLoading }] = useCreateCourseReviewMutation();
+    const [createProductReview, { isSuccess: productReviewSucces, isLoading: productReviewLoading }] = useCreateProductReviewMutation();
 
     const handleSubmit = e => {
         setCustomError("");
@@ -41,15 +43,18 @@ export const CourseSendForm = () => {
             createCourseReview(data);
         } else if (previousPath?.includes("/my-orders/orderStatus")) {
             // here will goes the product review
+            createProductReview(data);
             return;
         }
     };
 
     useEffect(() => {
-        if (isSuccess) {
+        if (previousPath?.includes("/my-orders/my-courses") && isSuccess) {
             navigate("/my-orders/my-courses");
+        } else if (previousPath?.includes("/my-orders/orderStatus") && productReviewSucces) {
+            navigate("/my-orders/orderStatus");
         }
-    }, [isSuccess, navigate]);
+    }, [isSuccess, navigate, previousPath, productReviewSucces]);
     return (
         <div>
             <div className="px-[30px] py-[20px]">
@@ -86,8 +91,9 @@ export const CourseSendForm = () => {
                 {customError && <Error message={customError} />}
                 <input
                     type="submit"
-                    value={isLoading ? "Sending..." : "Send Review"}
+                    value={isLoading || productReviewLoading ? "Sending..." : "Send Review"}
                     className="bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] text-white px-3 cursor-pointer py-2 w-full flex justify-center items-center mt-[20px] font-outfit font-medium"
+                    disabled={isLoading || productReviewLoading}
                 />
             </form>
         </div>
