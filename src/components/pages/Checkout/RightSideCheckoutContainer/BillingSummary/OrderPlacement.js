@@ -7,43 +7,43 @@ import TextField from "@mui/material/TextField";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import { resetBillingSummaryState } from "../../../../../Redux/features/checkout/billingSummarySlice";
-import { usePlaceOrderMutation } from "../../../../../Redux/features/Shop/shopApi";
+import {
+  usePlaceOrderMutation,
+} from "../../../../../Redux/features/Shop/shopApi";
 import { clearCartCount } from "../../../../../Redux/features/Shop/shopSlice";
 import { OvalLoader } from "../../../../shared/Cards/Loader/OvalLoader/OvalLoader";
 import Error from "../../../../ui/error/Error";
 import { SuccessSnackBar } from "../../../../ui/error/snackBar/SuccessSnackBar";
-import getCookie from "../../../../../Helper/cookies/getCookie";
-import { apiBaseUrl } from "../../../../../config";
 import {
   checkError,
   checkObject,
   handleCustomMessage,
-  orderItemsToString,
   removeDuplicates,
 } from "../../../../../assets/utilities/orderPlacement/orderPlacement";
+import { useAmrPayCheckoutOrderMutation } from "../../../../../Redux/features/checkout/checkoutApi";
 
 export const OrderPlacement = () => {
+  const [comment, setComment] = useState();
   const [displayErrors, setDisplayErrors] = useState(false);
   const [customErrorMessage, setCustomErrorMessage] = useState([]);
   const [successSnackBarOpen, setSuccessSnackBarOpen] = useState(false);
   const [privacyChecked, setPrivacyCheked] = useState(false);
-  const [fieldError, setFieldError] = useState();
   const { checkoutDetailes, billingSummary } =
     useSelector((state) => state.persistedReducer) || {};
-  const storedPaymentMethod =
-    useSelector(
-      (state) => state?.persistedReducer?.checkoutDetailes?.paymentMethod
-    ) || {};
-  
   const { subTotal, tax } = billingSummary?.billingSummary || {};
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  // Redux hook
+  const [amrPayCheckout,{data,isLoading:amrPayLoading, error}] = useAmrPayCheckoutOrderMutation();
   const [placeOrder, { isLoading, isSuccess }] = usePlaceOrderMutation();
+  console.log(data,error);
 
   const orderItems = billingSummary?.orderItems;
 
-  const { shippingDetailes, billingDetailes } = checkoutDetailes || {};
+  const { shippingDetailes, billingDetailes, paymentMethod } =
+    checkoutDetailes || {};
+
   // function declaration
   // order handler
   const handleOrderPlace = () => {
@@ -52,15 +52,23 @@ export const OrderPlacement = () => {
       billingInfo: billingDetailes,
       totalPrice: Number(subTotal + 100 + tax),
       orderItems: orderItems,
+      tax,
+      comment
     };
-
     // Error handle End
     if (customErrorMessage.length === 0) {
-      placeOrder(data);
+      console.log(data,customErrorMessage, "form data");
+      if (paymentMethod === "amarPay") amrPayCheckout(data);
+      if (paymentMethod === "cash") placeOrder(data);
     } else {
       setDisplayErrors(true);
     }
   };
+  useEffect(() => {
+    if (data?.data) {
+      window.location.replace(data?.data);
+    }
+  }, [data]);
 
   useEffect(() => {
     if (isSuccess) {
@@ -76,9 +84,7 @@ export const OrderPlacement = () => {
   }, [isSuccess, navigate, dispatch]);
 
   useEffect(() => {
-    setFieldError(
       checkError(privacyChecked, shippingDetailes, billingDetailes)
-    );
   }, [privacyChecked, shippingDetailes, billingDetailes]);
 
   useEffect(() => {
@@ -127,6 +133,7 @@ export const OrderPlacement = () => {
           multiline
           rows={4}
           className="w-full"
+          onChange={(e) => setComment(e.target.value)}
         />
       </div>
       <FormControl>
@@ -160,60 +167,21 @@ export const OrderPlacement = () => {
           })}
         </div>
       )}
-      {(fieldError || storedPaymentMethod === "cash") && (
-        <button
-          onClick={handleOrderPlace}
-          className="w-full font-bold text-[#F6F6F6] py-[10px] rounded-md my-[10px]"
-          style={{
-            backgroundImage:
-              "linear-gradient(137.27deg, #EE2FFF 19.41%, #CD1D5C 65.49%)",
-            boxShadow: "0px 4px 4px rgba(14, 53, 191, 0.25)",
-          }}
-        >
-          {isLoading ? (
-            <OvalLoader color="#FFFFFF" height={25} />
-          ) : (
-            <p>Pay BDT {Number(subTotal + 100 + tax)}</p>
-          )}
-        </button>
-      )}
-      {!fieldError && storedPaymentMethod === "amarPay" && (
-        <form
-          action={`${apiBaseUrl}/payment/shop?amount=${
-            subTotal + 100 + tax
-          }&tax=${tax}&deliveryCharge=${5}&items=${orderItemsToString(orderItems)}&desc=Shop payment&_token=${getCookie(
-            "token"
-          )}&shipAddress1=${shippingDetailes?.address1}&shipAddress2=${
-            shippingDetailes?.address2
-          }&shipCity=${shippingDetailes?.city}&shipState=${
-            shippingDetailes?.state
-          }&shipZipCode=${shippingDetailes?.zipCode}&shipPhone=${
-            shippingDetailes?.phone
-          }&billAddress1=${billingDetailes?.address1}&billAddress2=${
-            billingDetailes?.address2
-          }&billCity=${billingDetailes?.city}&billState=${
-            billingDetailes?.state
-          }&shipZipCode=${billingDetailes?.zipCode}&billPhone=${
-            billingDetailes?.phone
-          }`}
-          method="post"
-        >
-          <button
-            className="w-full font-bold text-[#F6F6F6] py-[10px] rounded-md my-[10px]"
-            style={{
-              backgroundImage:
-                "linear-gradient(137.27deg, #EE2FFF 19.41%, #CD1D5C 65.49%)",
-              boxShadow: "0px 4px 4px rgba(14, 53, 191, 0.25)",
-            }}
-          >
-            {isLoading ? (
-              <OvalLoader color="#FFFFFF" height={25} />
-            ) : (
-              <p>Pay BDT {Number(subTotal + 100 + tax)}</p>
-            )}
-          </button>
-        </form>
-      )}
+      <button
+        onClick={handleOrderPlace}
+        className="w-full font-bold text-[#F6F6F6] py-[10px] rounded-md my-[10px]"
+        style={{
+          backgroundImage:
+            "linear-gradient(137.27deg, #EE2FFF 19.41%, #CD1D5C 65.49%)",
+          boxShadow: "0px 4px 4px rgba(14, 53, 191, 0.25)",
+        }}
+      >
+        {isLoading || amrPayLoading ? (
+          <OvalLoader color="#FFFFFF" height={25} />
+        ) : (
+          <p>Pay BDT {Number(subTotal + 100 + tax)}</p>
+        )}
+      </button>
 
       {/* snackbar */}
       {successSnackBarOpen && (

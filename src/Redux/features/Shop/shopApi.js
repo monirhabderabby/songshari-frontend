@@ -63,6 +63,48 @@ export const shopApi = apiSlice.injectEndpoints({
             }),
         }),
     }),
+    getSingleProduct: builder.query({
+      query: (id) => ({
+        url: `/shop/product/${id}`,
+        method: "GET",
+        headers: {
+          authorization: `Bearer ${getCookie("token")}`,
+        },
+      }),
+    }),
+    applyCoupon: builder.mutation({
+      query: ({ data, code }) => ({
+        url: `/shop/coupon/apply-coupon/${code}`,
+        method: "POST",
+        headers: {
+          authorization: `Bearer ${getCookie("token")}`,
+        },
+        body: data,
+      }),
+    }),
+    placeOrder: builder.mutation({
+      query: (data) => ({
+        url: "/shop/order/create-order",
+        method: "POST",
+        headers: {
+          authorization: `Bearer ${getCookie("token")}`,
+        },
+        body: data,
+      }),
+      invalidatesTags: ["MyOrders"],
+    }),
+    myOrder: builder.query({
+      query: ({ page, limit, status }) => ({
+        // url: `/shop/order/my-orders`,
+        url: `/shop/order/my-orders?page=${page}&limit=${limit}&status=${status}`,
+        method: "GET",
+        headers: {
+          authorization: `Bearer ${getCookie("token")}`,
+        },
+      }),
+      providesTags: ["MyOrders"],
+    }),
+  }),
 });
 
 export const {
