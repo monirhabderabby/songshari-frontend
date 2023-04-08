@@ -4,6 +4,7 @@ import React from "react";
 // Third party packages
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
+import AttractionsIcon from "@mui/icons-material/Attractions";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import LocalShippingIcon from "@mui/icons-material/LocalShipping";
 import SchoolIcon from "@mui/icons-material/School";
@@ -21,7 +22,7 @@ import { NavLink } from "react-router-dom";
 import { MobileBackButton } from "../../shared/Components/MobileBackButton";
 import { CustomHeader } from "../../shared/CustomHeader/CustomHeader";
 
-export const MyOrders = () => {
+export const AccountDetailesDash = () => {
     const isMobile = useMediaQuery("(max-width:600px)");
     return (
         <MuiThemeProvider>
@@ -39,7 +40,7 @@ export const MyOrders = () => {
                     <div className="w-[45px] lg:w-[204px] h-[100vh-30vh] py-[20px] relative">
                         <div className="sticky top-0">
                             <List>
-                                {["My Account", "My Orders", "My Wishlist", "My Courses", "My Wallet"].map((text, index) => (
+                                {["My Account", "My Orders", "My Wishlist", "My Courses", "My Wallet", "Refferral"].map((text, index) => (
                                     <ListItem key={text} disablePadding>
                                         <NavLink
                                             to={
@@ -51,7 +52,9 @@ export const MyOrders = () => {
                                                     ? "wishlist"
                                                     : text.includes("My Courses")
                                                     ? "my-courses"
-                                                    : "MyWallet"
+                                                    : text.includes("My Wallet")
+                                                    ? "myWallet"
+                                                    : "reffereal"
                                             }
                                             className={({ isActive }) =>
                                                 isActive ? "bg-[#F1F5F9] w-[55px] lg:w-[200px]" : "bg-white w-[55px] lg:w-[200px]"
@@ -63,7 +66,8 @@ export const MyOrders = () => {
                                                         (text?.includes("My Orders") && <LocalShippingIcon />) ||
                                                         (text.includes("My Wishlist") && <FavoriteBorderIcon />) ||
                                                         (text.includes("My Courses") && <SchoolIcon />) ||
-                                                        (text.includes("My Wallet") && <WalletOutlinedIcon />)}
+                                                        (text.includes("My Wallet") && <WalletOutlinedIcon />) ||
+                                                        (text.includes("Refferral") && <AttractionsIcon />)}
                                                 </ListItemIcon>
                                                 <ListItemText primary={text} style={{ display: isMobile ? "none" : "flex" }} />
                                             </ListItemButton>
