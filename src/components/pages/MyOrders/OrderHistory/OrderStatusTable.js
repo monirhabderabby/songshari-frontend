@@ -1,10 +1,8 @@
 import React from "react";
-import { useLocation } from "react-router-dom";
 import { OrderStatusTableRow } from "./OrderStatusTableRow";
 
 export const OrderStatusTable = ({ order }) => {
     const { orderItems, totalPrice } = order || {};
-    const location = useLocation();
 
     let content;
     if (orderItems?.length > 0) {
