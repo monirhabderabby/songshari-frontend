@@ -7,6 +7,7 @@ import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import LocalShippingIcon from "@mui/icons-material/LocalShipping";
 import SchoolIcon from "@mui/icons-material/School";
+import WalletOutlinedIcon from "@mui/icons-material/WalletOutlined";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
@@ -38,7 +39,7 @@ export const MyOrders = () => {
                     <div className="w-[45px] lg:w-[204px] h-[100vh-30vh] py-[20px] relative">
                         <div className="sticky top-0">
                             <List>
-                                {["My Account", "My Orders", "My Wishlist", "My Courses"].map((text, index) => (
+                                {["My Account", "My Orders", "My Wishlist", "My Courses", "My Wallet"].map((text, index) => (
                                     <ListItem key={text} disablePadding>
                                         <NavLink
                                             to={
@@ -48,7 +49,9 @@ export const MyOrders = () => {
                                                     ? "orderStatus"
                                                     : text.includes("My Wishlist")
                                                     ? "wishlist"
-                                                    : "my-courses"
+                                                    : text.includes("My Courses")
+                                                    ? "my-courses"
+                                                    : "MyWallet"
                                             }
                                             className={({ isActive }) =>
                                                 isActive ? "bg-[#F1F5F9] w-[55px] lg:w-[200px]" : "bg-white w-[55px] lg:w-[200px]"
@@ -59,7 +62,8 @@ export const MyOrders = () => {
                                                     {(text.includes("My Account") && <AccountBoxIcon />) ||
                                                         (text?.includes("My Orders") && <LocalShippingIcon />) ||
                                                         (text.includes("My Wishlist") && <FavoriteBorderIcon />) ||
-                                                        (text.includes("My Courses") && <SchoolIcon />)}
+                                                        (text.includes("My Courses") && <SchoolIcon />) ||
+                                                        (text.includes("My Wallet") && <WalletOutlinedIcon />)}
                                                 </ListItemIcon>
                                                 <ListItemText primary={text} style={{ display: isMobile ? "none" : "flex" }} />
                                             </ListItemButton>

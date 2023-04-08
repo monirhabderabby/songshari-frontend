@@ -2,6 +2,7 @@ import { MyCourses } from "../../components/pages/Courses/MyCourses/MyCourses";
 import { Account } from "../../components/pages/MyOrders/Account";
 import { MyOrders } from "../../components/pages/MyOrders/MyOrders";
 import { OrderStatus } from "../../components/pages/MyOrders/OrderHistory/OrderStatus";
+import { WalletContainer } from "../../components/pages/MyOrders/Wallet/WalletContainer";
 import { WishlistTable } from "../../Wrapper/Shop/wishList/WishlistTable";
 
 const myAccountPrivateRoutes = [
@@ -29,6 +30,11 @@ const myAccountPrivateRoutes = [
                 id: 4,
                 path: "my-courses",
                 element: <MyCourses />,
+            },
+            {
+                id: 5,
+                path: "myWallet",
+                element: <WalletContainer />,
             },
         ],
     },
