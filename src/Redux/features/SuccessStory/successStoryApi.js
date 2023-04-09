@@ -12,8 +12,20 @@ export const successStoryApi = apiSlice.injectEndpoints({
         },
         body: data,
       }),
+      invalidatesTags: ["MySuccessStory"],
+    }),
+    getMySuccessStory: builder.query({
+      query: () => ({
+        url: `/success-story/my-story`,
+        method: "GET",
+        headers: {
+          authorization: `Bearer ${getCookie("token")}`,
+        },
+      }),
+      providesTags: ["MySuccessStory"],
     }),
   }),
 });
 
-export const { useCreateSuccessStoryMutation } = successStoryApi;
+export const { useCreateSuccessStoryMutation, useGetMySuccessStoryQuery } =
+  successStoryApi;
