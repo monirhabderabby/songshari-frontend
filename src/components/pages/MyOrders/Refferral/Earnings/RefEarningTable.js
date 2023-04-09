@@ -1,6 +1,6 @@
 import React from "react";
 export const RefEarningTable = () => {
-    const tableColumns = ["#", "Referred User", "Amount", "Date"];
+    const tableColumns = ["#", "Referred User", "Points", "Date"];
     const rowData = [
         {
             id: 1,
