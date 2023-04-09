@@ -5,51 +5,57 @@ import { OrderStatus } from "../../components/pages/MyOrders/OrderHistory/OrderS
 import { RefferralContainer } from "../../components/pages/MyOrders/Refferral/RefferralContainer";
 import { SupportContainer } from "../../components/pages/MyOrders/Support/SupportContainer";
 import { WalletContainer } from "../../components/pages/MyOrders/Wallet/WalletContainer";
+import SuccessStoryUserContainer from "../../components/pages/SuccessStory/SuccessStoryUserContainer/SuccessStoryUserContainer";
 import { WishlistTable } from "../../Wrapper/Shop/wishList/WishlistTable";
 
 const myAccountPrivateRoutes = [
-    {
+  {
+    id: 1,
+    path: "/my-orders",
+    element: <AccountDetailesDash />,
+    nestedRoutes: [
+      {
         id: 1,
-        path: "/my-orders",
-        element: <AccountDetailesDash />,
-        nestedRoutes: [
-            {
-                id: 1,
-                path: "account",
-                element: <Account />,
-            },
-            {
-                id: 2,
-                path: "orderStatus",
-                element: <OrderStatus />,
-            },
-            {
-                id: 3,
-                path: "wishlist",
-                element: <WishlistTable />,
-            },
-            {
-                id: 4,
-                path: "my-courses",
-                element: <MyCourses />,
-            },
-            {
-                id: 5,
-                path: "myWallet",
-                element: <WalletContainer />,
-            },
-            {
-                id: 6,
-                path: "reffereal",
-                element: <RefferralContainer />,
-            },
-            {
-                id: 7,
-                path: "support",
-                element: <SupportContainer />,
-            },
-        ],
-    },
+        path: "account",
+        element: <Account />,
+      },
+      {
+        id: 2,
+        path: "orderStatus",
+        element: <OrderStatus />,
+      },
+      {
+        id: 3,
+        path: "wishlist",
+        element: <WishlistTable />,
+      },
+      {
+        id: 4,
+        path: "my-courses",
+        element: <MyCourses />,
+      },
+      {
+        id: 5,
+        path: "myWallet",
+        element: <WalletContainer />,
+      },
+      {
+        id: 6,
+        path: "reffereal",
+        element: <RefferralContainer />,
+      },
+      {
+        id: 7,
+        path: "support",
+        element: <SupportContainer />,
+      },
+      {
+        id: 8,
+        path: "successStory",
+        element: <SuccessStoryUserContainer />,
+      },
+    ],
+  },
 ];
 
 export default myAccountPrivateRoutes;
