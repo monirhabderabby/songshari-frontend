@@ -8,6 +8,7 @@ import AttractionsIcon from "@mui/icons-material/Attractions";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import LocalShippingIcon from "@mui/icons-material/LocalShipping";
 import SchoolIcon from "@mui/icons-material/School";
+import SupportIcon from "@mui/icons-material/Support";
 import WalletOutlinedIcon from "@mui/icons-material/WalletOutlined";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
@@ -61,10 +62,10 @@ export const AccountDetailesDash = () => {
                     className="lg:w-[1200px] flex gap-x-[10px] lg:gap-x-[20px] mx-auto px-[6px] lg:px-[20px]"
                     style={{ display: "flex", flexDirection: "row" }}
                 >
-                    <div className="w-[45px] lg:w-[212px] h-[100vh-30vh] py-[20px] relative">
+                    <div className="w-[45px] lg:w-[204px] h-[100vh-30vh] py-[20px] relative">
                         <div className="sticky top-0">
                             <List>
-                                {["My Account", "My Orders", "My Wishlist", "My Courses", "My Wallet", "Refferral"].map((text, index) => (
+                                {["My Account", "My Orders", "My Wishlist", "My Courses", "My Wallet", "Refferral", "Support"].map((text, index) => (
                                     <ListItem key={text} disablePadding>
                                         <NavLink
                                             to={
@@ -78,7 +79,9 @@ export const AccountDetailesDash = () => {
                                                     ? "my-courses"
                                                     : text.includes("My Wallet")
                                                     ? "myWallet"
-                                                    : "reffereal"
+                                                    : text.includes("Refferral")
+                                                    ? "reffereal"
+                                                    : "support"
                                             }
                                             className={({ isActive }) =>
                                                 isActive ? "bg-[#F1F5F9] w-[55px] lg:w-[200px]" : "bg-white w-[55px] lg:w-[200px]"
@@ -92,7 +95,8 @@ export const AccountDetailesDash = () => {
                                                         (text.includes("My Wishlist") && <FavoriteBorderIcon />) ||
                                                         (text.includes("My Courses") && <SchoolIcon />) ||
                                                         (text.includes("My Wallet") && <WalletOutlinedIcon />) ||
-                                                        (text.includes("Refferral") && <AttractionsIcon />)}
+                                                        (text.includes("Refferral") && <AttractionsIcon />) ||
+                                                        (text.includes("Support") && <SupportIcon />)}
                                                 </ListItemIcon>
                                                 <ListItemText primary={text} style={{ display: isMobile ? "none" : "flex" }} />
                                             </ListItemButton>
