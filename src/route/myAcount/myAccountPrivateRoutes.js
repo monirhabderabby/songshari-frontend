@@ -3,6 +3,7 @@ import { Account } from "../../components/pages/MyOrders/Account";
 import { AccountDetailesDash } from "../../components/pages/MyOrders/AccountDetailesDash";
 import { OrderStatus } from "../../components/pages/MyOrders/OrderHistory/OrderStatus";
 import { RefferralContainer } from "../../components/pages/MyOrders/Refferral/RefferralContainer";
+import { SingleSupportDetailes } from "../../components/pages/MyOrders/Support/SingleSupportDetailes/SingleSupportDetailes";
 import { SupportContainer } from "../../components/pages/MyOrders/Support/SupportContainer";
 import { WalletContainer } from "../../components/pages/MyOrders/Wallet/WalletContainer";
 import { WishlistTable } from "../../Wrapper/Shop/wishList/WishlistTable";
@@ -47,6 +48,11 @@ const myAccountPrivateRoutes = [
                 id: 7,
                 path: "support",
                 element: <SupportContainer />,
+            },
+            {
+                id: 8,
+                path: "support/:id",
+                element: <SingleSupportDetailes />,
             },
         ],
     },
