@@ -1,8 +1,9 @@
 import AttachFileIcon from "@mui/icons-material/AttachFile";
 import { Stack, Tooltip } from "@mui/material";
-import { Input, Select } from "antd";
-import React, { useState } from "react";
+import { Input, Select, Spin } from "antd";
+import React, { useEffect, useState } from "react";
 import { AiOutlineClose } from "react-icons/ai";
+import { useCreateTicketMutation } from "../../../../Redux/features/Ticket/ticketApi";
 import { Modal } from "../../../modals/Modal";
 import Error from "../../../ui/error/Error";
 const { TextArea } = Input;
@@ -14,6 +15,8 @@ export const CreateTicket = ({ modalControll }) => {
     const [category, setCategory] = useState("");
     const [priority, setPriority] = useState("");
     const [images, setImages] = useState(null);
+
+    const [createTicket, { isLoading, isSuccess }] = useCreateTicketMutation();
 
     const handleSubmit = () => {
         // Error Handling
@@ -27,13 +30,31 @@ export const CreateTicket = ({ modalControll }) => {
             setCustomError("Please enter a message");
             return;
         } else {
-            alert("success");
+            const formData = new FormData();
+            formData.append("subject", subject);
+            formData.append("category", category);
+            formData.append("message", message);
+            formData.append("priority", priority);
+            for (let i = 0; i < images.length; i++) {
+                formData.append("images", images[i]);
+            }
+
+            console.log(formData);
+
+            // api call
+            createTicket(formData);
         }
     };
 
     const handleError = () => {
         setCustomError("");
     };
+
+    useEffect(() => {
+        if (isSuccess) {
+            modalControll();
+        }
+    }, [isSuccess, modalControll]);
 
     return (
         <Modal modalControll={modalControll}>
@@ -92,9 +113,11 @@ export const CreateTicket = ({ modalControll }) => {
                     <div>
                         <label
                             htmlFor="attachment"
-                            className="flex items-center gap-x-[12px] ring-1 ring-gray-200 h-[40px] px-4 rounded-[8px] hover:ring-[#ff317b] cursor-pointer"
+                            className={`flex items-center gap-x-[12px] ring-1 ring-gray-200 h-[40px] px-4 rounded-[8px] hover:ring-[#ff317b] cursor-pointer ${
+                                images?.length > 0 && "ring-green-500"
+                            }`}
                         >
-                            Attach <AttachFileIcon />
+                            {images?.length > 0 ? "Attached" : "Attach"} <AttachFileIcon className={`${images?.length > 0 && "text-green-500"}`} />
                         </label>
                         <input type="file" name="attachment" id="attachment" onChange={e => setImages(e.target.files)} className="hidden" multiple />
                     </div>
@@ -126,12 +149,15 @@ export const CreateTicket = ({ modalControll }) => {
                     </div>
                 </div>
                 {customError && <Error message={customError} />}
-                <button
-                    className="bg-[linear-gradient(315deg,#eb4786_0%,#b854ab_74%)] h-[40px] px-4 rounded-[8px] text-white font-Nunito font-medium hover:bg-[linear-gradient(315deg,#eb4786_20%,#b854ab_74%)] duration-200 hover:shadow-lg"
-                    onClick={handleSubmit}
-                >
-                    Send ticket
-                </button>
+                <Spin spinning={isLoading} delay={500}>
+                    <button
+                        className="bg-[linear-gradient(315deg,#eb4786_0%,#b854ab_74%)] h-[40px] px-4 rounded-[8px] text-white font-Nunito font-medium hover:bg-[linear-gradient(315deg,#eb4786_20%,#b854ab_74%)] duration-200 hover:shadow-lg w-full"
+                        onClick={handleSubmit}
+                        disabled={isSuccess}
+                    >
+                        Send ticket
+                    </button>
+                </Spin>
             </Stack>
         </Modal>
     );
