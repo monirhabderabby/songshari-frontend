@@ -1,5 +1,5 @@
 // Configuration
-import React from "react";
+import React, { useState } from "react";
 
 // Third party packages
 import useMediaQuery from "@material-ui/core/useMediaQuery";
@@ -23,12 +23,36 @@ import { MobileBackButton } from "../../shared/Components/MobileBackButton";
 import { CustomHeader } from "../../shared/CustomHeader/CustomHeader";
 
 export const AccountDetailesDash = () => {
+    const [name, setName] = useState("Account");
     const isMobile = useMediaQuery("(max-width:600px)");
+
+    const nameHandler = data => {
+        switch (data) {
+            case "My Account":
+                // code block
+                setName("Account");
+                break;
+            case "My Orders":
+                setName("Orders");
+                // code block
+                break;
+            case "My Wishlist":
+                setName("Wishlist");
+                // code block
+                break;
+            case "My Courses":
+                setName("Courses");
+                // code block
+                break;
+            default:
+            // code block
+        }
+    };
     return (
         <MuiThemeProvider>
             <section>
                 <div className="hidden lg:block">
-                    <CustomHeader title="My Orders" />
+                    <CustomHeader title={name} />
                 </div>
                 <div className="lg:hidden">
                     <MobileBackButton name="My Account" />
@@ -37,7 +61,7 @@ export const AccountDetailesDash = () => {
                     className="lg:w-[1200px] flex gap-x-[10px] lg:gap-x-[20px] mx-auto px-[6px] lg:px-[20px]"
                     style={{ display: "flex", flexDirection: "row" }}
                 >
-                    <div className="w-[45px] lg:w-[204px] h-[100vh-30vh] py-[20px] relative">
+                    <div className="w-[45px] lg:w-[212px] h-[100vh-30vh] py-[20px] relative">
                         <div className="sticky top-0">
                             <List>
                                 {["My Account", "My Orders", "My Wishlist", "My Courses", "My Wallet", "Refferral"].map((text, index) => (
@@ -59,6 +83,7 @@ export const AccountDetailesDash = () => {
                                             className={({ isActive }) =>
                                                 isActive ? "bg-[#F1F5F9] w-[55px] lg:w-[200px]" : "bg-white w-[55px] lg:w-[200px]"
                                             }
+                                            onClick={() => nameHandler(text)}
                                         >
                                             <ListItemButton>
                                                 <ListItemIcon>

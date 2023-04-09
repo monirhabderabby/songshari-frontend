@@ -34,7 +34,7 @@ export const WishlistTable = () => {
         );
     }
     return (
-        <div className="max-w-[1200px] mx-auto">
+        <div className="w-full">
             <div className="py-[30px]">
                 <h4 className="font-Nunito font-bold text-[22px]">My Wishlist</h4>
             </div>
