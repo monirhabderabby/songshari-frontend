@@ -1,5 +1,5 @@
 // Configuration
-import React from "react";
+import React, { useState } from "react";
 
 // Third party packages
 import useMediaQuery from "@material-ui/core/useMediaQuery";
@@ -8,6 +8,7 @@ import AttractionsIcon from "@mui/icons-material/Attractions";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import LocalShippingIcon from "@mui/icons-material/LocalShipping";
 import SchoolIcon from "@mui/icons-material/School";
+import SupportIcon from "@mui/icons-material/Support";
 import WalletOutlinedIcon from "@mui/icons-material/WalletOutlined";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
@@ -23,12 +24,36 @@ import { MobileBackButton } from "../../shared/Components/MobileBackButton";
 import { CustomHeader } from "../../shared/CustomHeader/CustomHeader";
 
 export const AccountDetailesDash = () => {
+    const [name, setName] = useState("Account");
     const isMobile = useMediaQuery("(max-width:600px)");
+
+    const nameHandler = data => {
+        switch (data) {
+            case "My Account":
+                // code block
+                setName("Account");
+                break;
+            case "My Orders":
+                setName("Orders");
+                // code block
+                break;
+            case "My Wishlist":
+                setName("Wishlist");
+                // code block
+                break;
+            case "My Courses":
+                setName("Courses");
+                // code block
+                break;
+            default:
+            // code block
+        }
+    };
     return (
         <MuiThemeProvider>
             <section>
                 <div className="hidden lg:block">
-                    <CustomHeader title="My Orders" />
+                    <CustomHeader title={name} />
                 </div>
                 <div className="lg:hidden">
                     <MobileBackButton name="My Account" />
@@ -40,7 +65,7 @@ export const AccountDetailesDash = () => {
                     <div className="w-[45px] lg:w-[204px] h-[100vh-30vh] py-[20px] relative">
                         <div className="sticky top-0">
                             <List>
-                                {["My Account", "My Orders", "My Wishlist", "My Courses", "My Wallet", "Refferral"].map((text, index) => (
+                                {["My Account", "My Orders", "My Wishlist", "My Courses", "My Wallet", "Refferral", "Support"].map((text, index) => (
                                     <ListItem key={text} disablePadding>
                                         <NavLink
                                             to={
@@ -54,11 +79,14 @@ export const AccountDetailesDash = () => {
                                                     ? "my-courses"
                                                     : text.includes("My Wallet")
                                                     ? "myWallet"
-                                                    : "reffereal"
+                                                    : text.includes("Refferral")
+                                                    ? "reffereal"
+                                                    : "support"
                                             }
                                             className={({ isActive }) =>
                                                 isActive ? "bg-[#F1F5F9] w-[55px] lg:w-[200px]" : "bg-white w-[55px] lg:w-[200px]"
                                             }
+                                            onClick={() => nameHandler(text)}
                                         >
                                             <ListItemButton>
                                                 <ListItemIcon>
@@ -67,7 +95,8 @@ export const AccountDetailesDash = () => {
                                                         (text.includes("My Wishlist") && <FavoriteBorderIcon />) ||
                                                         (text.includes("My Courses") && <SchoolIcon />) ||
                                                         (text.includes("My Wallet") && <WalletOutlinedIcon />) ||
-                                                        (text.includes("Refferral") && <AttractionsIcon />)}
+                                                        (text.includes("Refferral") && <AttractionsIcon />) ||
+                                                        (text.includes("Support") && <SupportIcon />)}
                                                 </ListItemIcon>
                                                 <ListItemText primary={text} style={{ display: isMobile ? "none" : "flex" }} />
                                             </ListItemButton>
