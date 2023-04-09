@@ -1,5 +1,6 @@
 import { Tabs } from "antd";
 import React from "react";
+import { AllRefferedContainer } from "./AllReffered/AllRefferedContainer";
 import { ReferralEarnings } from "./Earnings/ReferralEarnings";
 
 export const RefferralContainer = () => {
@@ -10,7 +11,7 @@ export const RefferralContainer = () => {
         {
             key: "1",
             label: `Referred`,
-            children: `Content of Tab Pane 1`,
+            children: <AllRefferedContainer />,
         },
         {
             key: "2",
