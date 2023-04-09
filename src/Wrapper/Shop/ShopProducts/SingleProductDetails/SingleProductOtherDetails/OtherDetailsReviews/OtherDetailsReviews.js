@@ -1,46 +1,43 @@
 // Configuration
 import React from "react";
+import { useGetAllReviewsByProductIDQuery } from "../../../../../../Redux/features/Shop/shopApi";
+import { LineWaveLoader } from "../../../../../../components/shared/Cards/Loader/lineWaveLoader/LineWaveLoader";
+import { ReviewCard } from "../../../../../../components/shared/Cards/Shop/ReviewCard";
+import { ServerErrorMessage } from "../../../../../../components/ui/error/ServerErrorMessage";
 
 // Third party packages
-import Rating from "@mui/material/Rating";
 
-const OtherDetailsReviews = ({ data }) => {
-  return (
-    <div className="mt-12">
-      {data.productReviews.map((review) => (
-        <div
-          key={review.id}
-          className="flex justify-start items-start gap-6 pb-8 mb-7 border-b border-[#F4F4F5]"
-        >
-          <div className="w-[73px] h-[43px]">
-            <img
-              className="w-[43px] h-[43px] rounded-full"
-              src={review.reviewerProfile}
-              alt=""
-            />
-          </div>
-          <div>
-            <div className="flex items-center gap-1 mb-6">
-              <Rating
-                name="reviewRating"
-                value={review.rating}
-                precision={0.5}
-              />
+const OtherDetailsReviews = ({ product }) => {
+    const { _id } = product || {};
+    const { data, isLoading, isError } = useGetAllReviewsByProductIDQuery({
+        productID: _id,
+    });
+    const { total, reviews } = data || {};
+    let content;
+    if (isLoading) {
+        content = (
+            <div className="w-full h-[200px] flex justify-center items-center">
+                <LineWaveLoader />
             </div>
+        );
+    } else if (!isLoading && total === 0) {
+        content = <div className="text-[18px] font-outfit text-gray-400">No Reviews Found</div>;
+    } else if (!isLoading && isError) {
+        content = (
+            <div className="w-full h-[200px] flex justify-center items-center">
+                <ServerErrorMessage />
+            </div>
+        );
+    } else if (!isLoading && total > 0) {
+        content = (
             <div>
-              <p className="mb-6 text-[#18181B]">{review.review}</p>
-              <h3 className="text-[#18181B] text-sm leading-[22px] font-bold mb-1">
-                {review.reviewerName}
-              </h3>
-              <p className="text-[#71717A] text-sm leading-[22px]">
-                {review.date}
-              </p>
+                {reviews?.map(review => (
+                    <ReviewCard key={review?._id} review={review} />
+                ))}
             </div>
-          </div>
-        </div>
-      ))}
-    </div>
-  );
+        );
+    }
+    return <div className="mt-12">{content}</div>;
 };
 
 export default OtherDetailsReviews;

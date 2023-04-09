@@ -1,14 +1,16 @@
 import { MyCourses } from "../../components/pages/Courses/MyCourses/MyCourses";
 import { Account } from "../../components/pages/MyOrders/Account";
-import { MyOrders } from "../../components/pages/MyOrders/MyOrders";
+import { AccountDetailesDash } from "../../components/pages/MyOrders/AccountDetailesDash";
 import { OrderStatus } from "../../components/pages/MyOrders/OrderHistory/OrderStatus";
+import { RefferralContainer } from "../../components/pages/MyOrders/Refferral/RefferralContainer";
+import { WalletContainer } from "../../components/pages/MyOrders/Wallet/WalletContainer";
 import { WishlistTable } from "../../Wrapper/Shop/wishList/WishlistTable";
 
 const myAccountPrivateRoutes = [
     {
         id: 1,
         path: "/my-orders",
-        element: <MyOrders />,
+        element: <AccountDetailesDash />,
         nestedRoutes: [
             {
                 id: 1,
@@ -29,6 +31,16 @@ const myAccountPrivateRoutes = [
                 id: 4,
                 path: "my-courses",
                 element: <MyCourses />,
+            },
+            {
+                id: 5,
+                path: "myWallet",
+                element: <WalletContainer />,
+            },
+            {
+                id: 6,
+                path: "reffereal",
+                element: <RefferralContainer />,
             },
         ],
     },

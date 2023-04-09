@@ -28,11 +28,6 @@ export const CourseSendForm = () => {
     const handleSubmit = e => {
         setCustomError("");
         e.preventDefault();
-        const data = {
-            course: id,
-            review: reviewText,
-            rating: rating,
-        };
 
         // Where review will make based on condition
         // Two type of review -> Course Review -> Shop Product Review
@@ -40,8 +35,18 @@ export const CourseSendForm = () => {
             setCustomError("Something went wring. Please contact with us");
             return;
         } else if (previousPath?.includes("/my-orders/my-courses")) {
+            const data = {
+                course: id,
+                review: reviewText,
+                rating: rating,
+            };
             createCourseReview(data);
         } else if (previousPath?.includes("/my-orders/orderStatus")) {
+            const data = {
+                product: id,
+                review: reviewText,
+                rating: rating,
+            };
             // here will goes the product review
             createProductReview(data);
             return;
