@@ -2,6 +2,7 @@ import { Tabs } from "antd";
 import React from "react";
 import { AllRefferedContainer } from "./AllReffered/AllRefferedContainer";
 import { ReferralEarnings } from "./Earnings/ReferralEarnings";
+import { WithDrawContainer } from "./Withdraw/WithDrawContainer";
 
 export const RefferralContainer = () => {
     const onChange = key => {
@@ -21,7 +22,7 @@ export const RefferralContainer = () => {
         {
             key: "3",
             label: `WithDraw`,
-            children: `Content of Tab Pane 3`,
+            children: <WithDrawContainer />,
         },
     ];
     return (
