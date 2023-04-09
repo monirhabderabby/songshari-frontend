@@ -78,14 +78,13 @@ export const SupportTable = () => {
                 {rowData?.map(item => {
                     return (
                         <div
-                            key={item.id}
                             class="bg-white group space-y-3 p-4 rounded-lg shadow hover:bg-[linear-gradient(315deg,#eb4786_0%,#b854ab_74%)] hover:text-white"
+                            key={item.id}
                         >
                             <div class="flex items-center space-x-2 text-sm">
                                 <div>
                                     <span class="text-blue-500 font-bold hover:underline">#{item?.id}</span>
                                 </div>
-                                <div class="text-gray-500 group-hover:text-white">{item?.date}</div>
                                 <div>
                                     <span
                                         class={`p-1.5 text-xs font-medium uppercase tracking-wider  rounded-lg bg-opacity-50 ${colorChooser(
@@ -96,7 +95,15 @@ export const SupportTable = () => {
                                     </span>
                                 </div>
                             </div>
-                            <div class="text-sm text-gray-700 group-hover:text-white">{item?.reffered}</div>
+                            <div class="text-sm group-hover:text-white">
+                                <span class="text-[14px] font-semibold text-gray-600">Category:</span> <span>{item?.category}</span>
+                            </div>
+                            <div class="text-sm group-hover:text-white">
+                                <span class="text-[14px] font-semibold text-gray-600">Created At:</span> <span>{item?.createdAt}</span>
+                            </div>
+                            <div class="text-sm group-hover:text-white">
+                                <button class="bg-red-200 w-full text-red-500 py-1 rounded-[4px]">View Detailes</button>
+                            </div>
                         </div>
                     );
                 })}
