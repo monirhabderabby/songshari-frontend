@@ -12,7 +12,7 @@ const MyStoryImages = ({ successStory }) => {
       <div>
         <div>
           <img
-            className="w-[647px] h-[494px] rounded-md border border-gray-100 mb-2"
+            className="w-[347px] md:w-[547px] lg:w-[647px] h-[194px] md:h-[394px] lg:h-[494px] rounded-md border border-gray-100 mb-2"
             src={
               selectedImage
                 ? selectedImage

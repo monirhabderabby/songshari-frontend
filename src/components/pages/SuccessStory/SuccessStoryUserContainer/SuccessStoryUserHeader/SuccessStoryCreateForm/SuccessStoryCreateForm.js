@@ -60,8 +60,8 @@ const SuccessStoryCreateForm = ({ setOpen }) => {
   }, [response, error, setOpen]);
 
   return (
-    <div className="flex justify-center items-center h-full">
-      <div className="w-[512px] bg-white p-6 rounded">
+    <div className="flex justify-center items-center h-full mx-3 md:mx-0">
+      <div className="w-[512px] bg-white p-3 md:p-6 rounded">
         <div className="flex justify-between items-center">
           <h1 className="text-2xl text-gray-600 font-Inter font-medium">
             Share your success story
