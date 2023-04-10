@@ -4,12 +4,13 @@ import apiSlice from "../../api/apiSlice";
 export const ticketApi = apiSlice.injectEndpoints({
     endpoints: builder => ({
         createTicket: builder.mutation({
-            query: () => ({
+            query: data => ({
                 url: "/ticket/createTicket",
                 method: "POST",
                 headers: {
                     authorization: `Bearer ${getCookie("token")}`,
                 },
+                body: data,
             }),
         }),
     }),

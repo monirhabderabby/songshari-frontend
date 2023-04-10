@@ -35,11 +35,11 @@ export const CreateTicket = ({ modalControll }) => {
             formData.append("category", category);
             formData.append("message", message);
             formData.append("priority", priority);
-            for (let i = 0; i < images.length; i++) {
-                formData.append("images", images[i]);
+            if (images && images.length > 0) {
+                for (let i = 0; i < images.length; i++) {
+                    formData.append("images", images[i]);
+                }
             }
-
-            console.log(formData);
 
             // api call
             createTicket(formData);
