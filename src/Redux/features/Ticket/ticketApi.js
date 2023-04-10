@@ -23,7 +23,16 @@ export const ticketApi = apiSlice.injectEndpoints({
             }),
             providesTags: ["myTickets"],
         }),
+        getTicketByID: builder.query({
+            query: id => ({
+                url: `/ticket/getTicket/${id}`,
+                method: "GET",
+                headers: {
+                    authorization: `Bearer ${getCookie("token")}`,
+                },
+            }),
+        }),
     }),
 });
 
-export const { useCreateTicketMutation, useGetMyTicketsQuery } = ticketApi;
+export const { useCreateTicketMutation, useGetMyTicketsQuery, useGetTicketByIDQuery } = ticketApi;

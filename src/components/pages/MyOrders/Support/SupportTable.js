@@ -6,7 +6,7 @@ import { ServerErrorMessage } from "../../../ui/error/ServerErrorMessage";
 import { SupportTableRow } from "./SupportTableRow";
 export const SupportTable = ({ status }) => {
     const navigate = useNavigate();
-    const tableColumns = ["#", "Ticket No", "Status", "Category", "Subject", "Action"];
+    const tableColumns = ["Ticket No", "Status", "Category", "Subject", "Action"];
 
     const { data, isError, isLoading, isFetching } = useGetMyTicketsQuery({
         status: status,
@@ -66,7 +66,7 @@ export const SupportTable = ({ status }) => {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:hidden p-[10px]">
                 {tickets?.map((item, index) => {
-                    const { status, category, subject, uid } = item || {};
+                    const { status, category, subject, uid, _id } = item || {};
                     return (
                         <div
                             className="bg-white group space-y-3 p-4 rounded-lg shadow hover:bg-[linear-gradient(315deg,#eb4786_0%,#b854ab_74%)] hover:text-white"
@@ -92,8 +92,11 @@ export const SupportTable = ({ status }) => {
                             <div className="text-sm group-hover:text-white">
                                 <span className="text-[14px] font-semibold text-gray-600">Subject:</span> <span>{subject}</span>
                             </div>
-                            <div className="text-sm group-hover:text-white" onClick={() => navigate(`/my-orders/support/2555`)}>
-                                <button className="bg-red-200 w-full text-red-500 py-1 z-30 rounded-[4px] hover:bg-red-300 duration-200">
+                            <div className="text-sm group-hover:text-white">
+                                <button
+                                    className="bg-red-200 w-full text-red-500 py-1 z-30 rounded-[4px] hover:bg-red-300 duration-200"
+                                    onClick={() => navigate(`/my-orders/support/${_id}`)}
+                                >
                                     View Detailes
                                 </button>
                             </div>
