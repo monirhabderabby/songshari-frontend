@@ -18,10 +18,9 @@ export const SupportTable = ({ status }) => {
     let content;
     if (isLoading || isFetching) {
         content = (
-            <tr className="h-[260px] w-full flex justify-center items-center bg-green-400" row="5">
-                {" "}
+            <div className="h-[260px] w-full flex justify-center items-center">
                 <LineWaveLoader />
-            </tr>
+            </div>
         );
     } else if (!isLoading && isError) {
         content = (
@@ -32,14 +31,18 @@ export const SupportTable = ({ status }) => {
     } else if (!isLoading && total === 0) {
         content = <div className="h-[120px] w-full flex justify-center items-center text-gray-400 font-Inter">No Ticket foundd</div>;
     } else if (!isLoading && total > 0) {
-        content = tickets?.map((item, index) => {
-            return <SupportTableRow item={item} key={item._id} index={index} />;
-        });
+        content = (
+            <tbody className="divide-y divide-gray-100">
+                {tickets?.map((item, index) => {
+                    return <SupportTableRow item={item} key={item._id} index={index} />;
+                })}
+            </tbody>
+        );
     }
 
     const colorChooser = status => {
-        if (status === "pending") {
-            return "text-orange-800 bg-orange-200";
+        if (status === "closed") {
+            return "text-red-800 bg-red-200";
         } else if (status === "open") {
             return "text-green-800 bg-green-200";
         }
@@ -60,7 +63,7 @@ export const SupportTable = ({ status }) => {
                             })}
                         </tr>
                     </thead>
-                    <tbody className="divide-y divide-gray-100">{content}</tbody>
+                    {content}
                 </table>
             </div>
 

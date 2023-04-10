@@ -7,8 +7,8 @@ export const SupportTableRow = ({ item, index }) => {
 
     // function declarationn
     const colorChooser = status => {
-        if (status === "pending") {
-            return "text-orange-800 bg-orange-200";
+        if (status === "closed") {
+            return "text-red-800 bg-red-200";
         } else if (status === "open") {
             return "text-green-800 bg-green-200";
         }

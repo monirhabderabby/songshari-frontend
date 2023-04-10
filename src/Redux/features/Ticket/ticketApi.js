@@ -22,6 +22,7 @@ export const ticketApi = apiSlice.injectEndpoints({
                 },
             }),
             providesTags: ["myTickets"],
+            keepUnusedDataFor: 0,
         }),
         getTicketByID: builder.query({
             query: id => ({
