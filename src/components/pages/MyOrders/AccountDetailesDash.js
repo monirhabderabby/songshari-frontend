@@ -10,6 +10,7 @@ import LocalShippingIcon from "@mui/icons-material/LocalShipping";
 import SchoolIcon from "@mui/icons-material/School";
 import SupportIcon from "@mui/icons-material/Support";
 import WalletOutlinedIcon from "@mui/icons-material/WalletOutlined";
+import HideSourceIcon from '@mui/icons-material/HideSource';
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
@@ -76,7 +77,8 @@ export const AccountDetailesDash = () => {
                   "Refferral",
                   "Support",
                   "Success Story",
-                  "Deactivate Account"
+                  "Deactivate Account",
+                  "Ignore List"
                 ].map((text, index) => (
                   <ListItem key={text} disablePadding>
                     <NavLink
@@ -97,7 +99,9 @@ export const AccountDetailesDash = () => {
                           ? "support"
                           : text.includes("Success Story")
                           ? "successStory"
-                          : "deactivate-account"
+                          : text.includes("Deactivate Account")
+                          ? "deactivate-account"
+                          : "ignore-list"
                       }
                       className={({ isActive }) =>
                         isActive
@@ -128,7 +132,8 @@ export const AccountDetailesDash = () => {
                             (text.includes("Success Story") && (
                               <GiLovers className="text-xl" />
                             )) ||
-                            (text.includes("Deactivate Account") && <NoAccountsIcon />)}
+                            (text.includes("Deactivate Account") && <NoAccountsIcon />)||
+                            (text.includes("Ignore List") && <HideSourceIcon />)}
                         </ListItemIcon>
                         <ListItemText
                           primary={text}

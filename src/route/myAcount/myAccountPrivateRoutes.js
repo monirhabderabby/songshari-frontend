@@ -2,6 +2,7 @@ import { MyCourses } from "../../components/pages/Courses/MyCourses/MyCourses";
 import { Account } from "../../components/pages/MyOrders/Account";
 import { AccountDetailesDash } from "../../components/pages/MyOrders/AccountDetailesDash";
 import DeactivateAccount from "../../components/pages/MyOrders/deactivateAccount/DeactivateAccount";
+import IgnoreMember from "../../components/pages/MyOrders/IgnoreMember/IgnoreMemberPage";
 import { OrderStatus } from "../../components/pages/MyOrders/OrderHistory/OrderStatus";
 import { RefferralContainer } from "../../components/pages/MyOrders/Refferral/RefferralContainer";
 import { SingleSupportDetailes } from "../../components/pages/MyOrders/Support/SingleSupportDetailes/SingleSupportDetailesBody/SingleSupportDetailes";
