@@ -15,6 +15,7 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
+import NoAccountsIcon from '@mui/icons-material/NoAccounts';
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import { GiLovers } from "react-icons/gi";
 
@@ -75,6 +76,7 @@ export const AccountDetailesDash = () => {
                   "Refferral",
                   "Support",
                   "Success Story",
+                  "Deactivate Account"
                 ].map((text, index) => (
                   <ListItem key={text} disablePadding>
                     <NavLink
@@ -93,7 +95,9 @@ export const AccountDetailesDash = () => {
                           ? "reffereal"
                           : text.includes("Support")
                           ? "support"
-                          : "successStory"
+                          : text.includes("Success Story")
+                          ? "successStory"
+                          : "deactivate-account"
                       }
                       className={({ isActive }) =>
                         isActive
@@ -123,7 +127,8 @@ export const AccountDetailesDash = () => {
                             (text.includes("Support") && <SupportIcon />) ||
                             (text.includes("Success Story") && (
                               <GiLovers className="text-xl" />
-                            ))}
+                            )) ||
+                            (text.includes("Deactivate Account") && <NoAccountsIcon />)}
                         </ListItemIcon>
                         <ListItemText
                           primary={text}
