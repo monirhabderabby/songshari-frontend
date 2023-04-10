@@ -20,11 +20,11 @@ const MySuccessStoryDetails = ({ successStory, isLoading, error }) => {
   } else if (!error && successStory?.data?.stories?.length > 0) {
     content = (
       <div className="p-4 border border-gray-200 rounded-md">
-        <h1 className="text-3xl text-slate-600 mb-4 font-medium font-Inter">
+        <h1 className="text-xl md:text-2xl lg:text-3xl text-slate-600 mb-4 font-medium font-Inter">
           {successStory?.data?.stories[0]?.header}
         </h1>
         <MyStoryImages {...{ successStory }} />
-        <p className="my-6 text-xl font-Poppins">
+        <p className="my-3 lg:my-6 text-base md:text-lg lg:text-xl font-Poppins">
           {successStory?.data?.stories[0]?.body}
         </p>
       </div>
