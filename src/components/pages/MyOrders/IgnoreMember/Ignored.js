@@ -3,7 +3,7 @@ import { useGetMyIgnoredMembersQuery } from '../../../../Redux/features/Ignore/i
 import IgnoreCard from './cards/IgnoreCard';
 
 const Ignored = () => {
-    const {data, isLoading, error } = useGetMyIgnoredMembersQuery({page:1,limit:"", keyword:""});
+    const {data } = useGetMyIgnoredMembersQuery({page:1,limit:"", keyword:""});
 
     return (
         <div>
