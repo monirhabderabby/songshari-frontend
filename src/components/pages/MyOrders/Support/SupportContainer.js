@@ -23,8 +23,8 @@ export const SupportContainer = () => {
                                 label: "All",
                             },
                             {
-                                value: "Pending",
-                                label: "Pending",
+                                value: "closed",
+                                label: "Closed",
                             },
                             {
                                 value: "Opened",
