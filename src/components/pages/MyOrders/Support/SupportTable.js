@@ -1,34 +1,50 @@
 import React from "react";
 import { useNavigate } from "react-router";
-export const SupportTable = () => {
+import { useGetMyTicketsQuery } from "../../../../Redux/features/Ticket/ticketApi";
+import { LineWaveLoader } from "../../../shared/Cards/Loader/lineWaveLoader/LineWaveLoader";
+import { ServerErrorMessage } from "../../../ui/error/ServerErrorMessage";
+import { SupportTableRow } from "./SupportTableRow";
+export const SupportTable = ({ status }) => {
     const navigate = useNavigate();
-    const tableColumns = ["#", "ID", "Status", "Category", "Created at", "New Reply", "Action"];
-    const rowData = [
-        {
-            id: 1,
-            ticket: 2550,
-            status: "pending",
-            category: "Sales",
-            createdAt: "6-5-2023",
-            newReply: 2,
-        },
-        {
-            id: 2,
-            ticket: 3000,
-            status: "opened",
-            category: "Account",
-            createdAt: "24-04-2023",
-            newReply: 1,
-        },
-    ];
+    const tableColumns = ["#", "Ticket No", "Status", "Category", "Subject", "Action"];
+
+    const { data, isError, isLoading, isFetching } = useGetMyTicketsQuery({
+        status: status,
+        page: 1,
+        limit: 5,
+    });
+    const { tickets, total } = data || {};
+
+    let content;
+    if (isLoading || isFetching) {
+        content = (
+            <tr className="h-[260px] w-full flex justify-center items-center bg-green-400" row="5">
+                {" "}
+                <LineWaveLoader />
+            </tr>
+        );
+    } else if (!isLoading && isError) {
+        content = (
+            <div className="h-[220px] w-full flex justify-center items-center">
+                <ServerErrorMessage />
+            </div>
+        );
+    } else if (!isLoading && total === 0) {
+        content = <div className="h-[120px] w-full flex justify-center items-center text-gray-400 font-Inter">No Ticket foundd</div>;
+    } else if (!isLoading && total > 0) {
+        content = tickets?.map((item, index) => {
+            return <SupportTableRow item={item} key={item._id} index={index} />;
+        });
+    }
 
     const colorChooser = status => {
         if (status === "pending") {
             return "text-orange-800 bg-orange-200";
-        } else if (status === "opened") {
+        } else if (status === "open") {
             return "text-green-800 bg-green-200";
         }
     };
+
     return (
         <>
             <div className="overflow-auto rounded-lg shadow hidden md:block">
@@ -44,40 +60,13 @@ export const SupportTable = () => {
                             })}
                         </tr>
                     </thead>
-                    <tbody className="divide-y divide-gray-100">
-                        {rowData?.map(item => {
-                            return (
-                                <tr key={item.id} className="bg-white">
-                                    <td className="p-3 text-sm text-gray-700 whitespace-nowrap">
-                                        <span className="font-bold text-blue-500 hover:underline">{item.id}</span>
-                                    </td>
-                                    <td className="p-3 text-sm text-gray-700 whitespace-nowrap">{item.ticket}</td>
-                                    <td className="p-3 text-sm text-gray-700 whitespace-nowrap">
-                                        <span
-                                            className={`p-1.5 text-xs font-medium uppercase tracking-wider rounded-lg bg-opacity-50 ${colorChooser(
-                                                item?.status
-                                            )}`}
-                                        >
-                                            {item?.status}
-                                        </span>
-                                    </td>
-                                    <td className="p-3 text-sm text-gray-700 whitespace-nowrap">{item?.category}</td>
-                                    <td className="p-3 text-sm text-gray-700 whitespace-nowrap">{item?.createdAt}</td>
-                                    <td className="p-3 text-sm text-gray-700 whitespace-nowrap">{item?.newReply}</td>
-                                    <td className="p-3 text-sm text-gray-700 whitespace-nowrap">
-                                        <button className="bg-red-100 text-red-500 p-2 rounded-[4px]">
-                                            View <br /> detailes
-                                        </button>
-                                    </td>
-                                </tr>
-                            );
-                        })}
-                    </tbody>
+                    <tbody className="divide-y divide-gray-100">{content}</tbody>
                 </table>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:hidden p-[10px]">
-                {rowData?.map(item => {
+                {tickets?.map((item, index) => {
+                    const { status, category, subject, uid } = item || {};
                     return (
                         <div
                             className="bg-white group space-y-3 p-4 rounded-lg shadow hover:bg-[linear-gradient(315deg,#eb4786_0%,#b854ab_74%)] hover:text-white"
@@ -85,23 +74,23 @@ export const SupportTable = () => {
                         >
                             <div className="flex items-center space-x-2 text-sm">
                                 <div>
-                                    <span className="text-blue-500 font-bold hover:underline">#{item?.id}</span>
+                                    <span className="text-blue-500 font-bold hover:underline">#{uid}</span>
                                 </div>
                                 <div>
                                     <span
                                         className={`p-1.5 text-xs font-medium uppercase tracking-wider  rounded-lg bg-opacity-50 ${colorChooser(
-                                            item?.status
+                                            status
                                         )}`}
                                     >
-                                        {item?.status}
+                                        {status}
                                     </span>
                                 </div>
                             </div>
                             <div className="text-sm group-hover:text-white">
-                                <span className="text-[14px] font-semibold text-gray-600">Category:</span> <span>{item?.category}</span>
+                                <span className="text-[14px] font-semibold text-gray-600">Category:</span> <span>{category}</span>
                             </div>
                             <div className="text-sm group-hover:text-white">
-                                <span className="text-[14px] font-semibold text-gray-600">Created At:</span> <span>{item?.createdAt}</span>
+                                <span className="text-[14px] font-semibold text-gray-600">Subject:</span> <span>{subject}</span>
                             </div>
                             <div className="text-sm group-hover:text-white" onClick={() => navigate(`/my-orders/support/2555`)}>
                                 <button className="bg-red-200 w-full text-red-500 py-1 z-30 rounded-[4px] hover:bg-red-300 duration-200">

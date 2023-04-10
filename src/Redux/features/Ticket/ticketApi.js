@@ -12,8 +12,18 @@ export const ticketApi = apiSlice.injectEndpoints({
                 },
                 body: data,
             }),
+            invalidatesTags: ["myTickets"],
+        }),
+        getMyTickets: builder.query({
+            query: ({ status, page, limit }) => ({
+                url: `/ticket/getAllTickets?status=${status}&page=${page}&limit=${limit}`,
+                headers: {
+                    authorization: `Bearer ${getCookie("token")}`,
+                },
+            }),
+            providesTags: ["myTickets"],
         }),
     }),
 });
 
-export const { useCreateTicketMutation } = ticketApi;
+export const { useCreateTicketMutation, useGetMyTicketsQuery } = ticketApi;
