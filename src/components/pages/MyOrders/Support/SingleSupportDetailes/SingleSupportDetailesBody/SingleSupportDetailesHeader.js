@@ -1,7 +1,6 @@
 import React from "react";
 
 export const SingleSupportDetailesHeader = ({ ticket }) => {
-    console.log(ticket);
     const { subject, uid, status } = ticket || {};
 
     const colorGenerator = status => {

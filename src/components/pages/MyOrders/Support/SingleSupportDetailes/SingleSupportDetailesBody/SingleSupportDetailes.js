@@ -29,7 +29,7 @@ export const SingleSupportDetailes = () => {
         content = (
             <div>
                 <SingleSupportDetailesHeader ticket={ticket} />
-                <SingleSupportDetailesBody />
+                <SingleSupportDetailesBody ticket={ticket} />
                 <SingleSupportDetailesFooter />
             </div>
         );
