@@ -32,7 +32,17 @@ export const ticketApi = apiSlice.injectEndpoints({
                 },
             }),
         }),
+        reOpenTicket: builder.mutation({
+            query: ({ id, data }) => ({
+                url: `/ticket/reopenTicket/${id}`,
+                method: "PUT",
+                headers: {
+                    authorization: `Bearer ${getCookie("token")}`,
+                },
+                body: data,
+            }),
+        }),
     }),
 });
 
-export const { useCreateTicketMutation, useGetMyTicketsQuery, useGetTicketByIDQuery } = ticketApi;
+export const { useCreateTicketMutation, useGetMyTicketsQuery, useGetTicketByIDQuery, useReOpenTicketMutation } = ticketApi;
