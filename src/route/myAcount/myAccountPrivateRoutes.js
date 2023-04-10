@@ -67,6 +67,11 @@ const myAccountPrivateRoutes = [
                 path: "support/:id",
                 element: <SingleSupportDetailes />,
             },
+            {
+                id: 11,
+                path: "ignore-list",
+                element: <IgnoreMember />
+              },
         ],
     },
 ];
