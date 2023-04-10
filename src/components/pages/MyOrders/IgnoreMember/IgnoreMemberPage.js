@@ -2,7 +2,6 @@ import React from 'react';
 
 import { Tabs } from "antd";
 import Ignored from './Ignored';
-import MyInterest from './MyInterest';
 import Active from './active';
 
 const IgnoreMemberPage = () => {
@@ -17,11 +16,6 @@ const IgnoreMemberPage = () => {
         },
         {
             key: "2",
-            label: `My Interest`,
-            children: <MyInterest />
-        },
-        {
-            key: "3",
             label: `Active Members`,
             children: <Active />
         },

@@ -10,6 +10,7 @@ import {
 import { CircularProgress } from "material-ui";
 import { SuccessSnackBar } from "../../../../ui/error/snackBar/SuccessSnackBar";
 import { useEffect } from "react";
+import CardDetail from "./cardDetail";
 
 const IgnoreCard = ({ item, useCase }) => {
   const [message, setMessage] = useState("");
@@ -26,10 +27,10 @@ const IgnoreCard = ({ item, useCase }) => {
   return (
     <div className="bg-white shadow-lg transition-height duration-500 rounded-lg my-4">
       <div className="flex items-center px-2 py-4">
-        <div className="relative mx-6">
+        <div className="relative mx-8">
           <button
             onClick={() => setShowDetails(!showDetails)}
-            className="w-8 pb-1 h-8 flex items-center justify-center font-bold text-3xl bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
+            className="w-8 pb-1 h-8 flex items-center justify-center font-bold text-3xl bg-[#eb4787] text-white rounded-lg hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
           >
             {showDetails ? "-" : "+"}
           </button>
@@ -54,9 +55,10 @@ const IgnoreCard = ({ item, useCase }) => {
                     ignoreMember(item?._id);
                     setMessage("Member ignored successfully");
                   }}
-                  className="mr-12"
+                  className="mr-12 text-[#eb4787] flex flex-col items-center justify-center"
                 >
                   <HideSourceIcon style={{ color: "#eb4787" }} />
+                  Ignore
                 </button>
               </div>
             )}
@@ -86,9 +88,10 @@ const IgnoreCard = ({ item, useCase }) => {
                     unignore(item?._id);
                     setMessage("Member unblocked successfully");
                   }}
-                  className="mr-12"
+                  className="mr-12 flex items-center text-[#eb4787] justify-center flex-col"
                 >
                   <LockOpenIcon style={{ color: "#eb4787" }} />
+                  Unblock
                 </button>
               </div>
             )}
@@ -114,22 +117,7 @@ const IgnoreCard = ({ item, useCase }) => {
         )}
       </div>
       {showDetails && (
-        <div className="bg-white shadow-md rounded-lg z-10 w-full">
-          <ul className="py-2">
-            <li className="px-4 py-2 hover:bg-gray-100">
-              <span className="font-medium text-gray-900">Username:</span>{" "}
-              {`${item?.firstName} ${item?.lastName}`}
-            </li>
-            <li className="px-4 py-2 hover:bg-gray-100">
-              <span className="font-medium text-gray-900">Date of Birth:</span>{" "}
-              {item?.dateOfBirth}
-            </li>
-            <li className="px-4 py-2 hover:bg-gray-100">
-              <span className="font-medium text-gray-900">Location:</span>
-              {item?.hometown}
-            </li>
-          </ul>
-        </div>
+        <CardDetail {...{item}} />
       )}
       <SuccessSnackBar
         {...{

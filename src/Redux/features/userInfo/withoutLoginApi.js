@@ -9,8 +9,8 @@ export const withoutLoginApi = apiSlice.injectEndpoints({
             keepUnusedDataFor: 0,
         }),
         getRecentMembersWithAuth: builder.query({
-            query: () => ({
-                url: `/withoutLogin/recent-members-by-me`,
+            query: ({searchTerm, page, role, limit}) => ({
+                url: `/withoutLogin/recent-members-by-me?_role=${role}&_keyword=${searchTerm}&_limit=${limit}&_page=${page}`,
                 method: "GET",
                 headers: {
                     authorization: `Bearer ${getCookie("token")}`,

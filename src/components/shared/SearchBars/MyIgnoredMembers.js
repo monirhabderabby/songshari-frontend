@@ -1,14 +1,13 @@
 import React, { useEffect, useRef, useState } from "react";
 import { FiSearch } from "react-icons/fi";
-import { useGetRecentMembersWithAuthQuery } from "../../../Redux/features/userInfo/withoutLoginApi";
+import { useGetMyIgnoredMembersQuery } from "../../../Redux/features/Ignore/ignoreApi";
 
-const RecentUsersByAuth = ({ role, setUser, page, limit }) => {
+const MyIgnoredMembers = ({ setUser, page, limit }) => {
     const input = useRef(null);
     const [inputText, setInputText] = useState("");
-    const { data, isLoading, error } = useGetRecentMembersWithAuthQuery({
+    const { data, isLoading, error } = useGetMyIgnoredMembersQuery({
         page: page,
-        searchTerm: inputText,
-        role: role || "member",
+        keyword: inputText,
         limit: limit,
     });
 
@@ -52,4 +51,4 @@ const RecentUsersByAuth = ({ role, setUser, page, limit }) => {
     );
 };
 
-export default RecentUsersByAuth;
+export default MyIgnoredMembers;
