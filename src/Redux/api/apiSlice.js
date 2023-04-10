@@ -18,7 +18,7 @@ const apiSlice = createApi({
         "AllOrdersByMember",
         "reviewByUserAndService",
         "MyOrders",
-        "myTickets",
+        "MySuccessStory",
     ],
 });
 

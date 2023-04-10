@@ -1,11 +1,13 @@
 import { MyCourses } from "../../components/pages/Courses/MyCourses/MyCourses";
 import { Account } from "../../components/pages/MyOrders/Account";
 import { AccountDetailesDash } from "../../components/pages/MyOrders/AccountDetailesDash";
+import DeactivateAccount from "../../components/pages/MyOrders/deactivateAccount/DeactivateAccount";
 import { OrderStatus } from "../../components/pages/MyOrders/OrderHistory/OrderStatus";
 import { RefferralContainer } from "../../components/pages/MyOrders/Refferral/RefferralContainer";
 import { SingleSupportDetailes } from "../../components/pages/MyOrders/Support/SingleSupportDetailes/SingleSupportDetailesBody/SingleSupportDetailes";
 import { SupportContainer } from "../../components/pages/MyOrders/Support/SupportContainer";
 import { WalletContainer } from "../../components/pages/MyOrders/Wallet/WalletContainer";
+import SuccessStoryUserContainer from "../../components/pages/SuccessStory/SuccessStoryUserContainer/SuccessStoryUserContainer";
 import { WishlistTable } from "../../Wrapper/Shop/wishList/WishlistTable";
 
 const myAccountPrivateRoutes = [
@@ -51,6 +53,16 @@ const myAccountPrivateRoutes = [
             },
             {
                 id: 8,
+                path: "successStory",
+                element: <SuccessStoryUserContainer />,
+            },
+            {
+                id: 9,
+                path: "deactivate-account",
+                element: <DeactivateAccount />,
+            },
+            {
+                id: 10,
                 path: "support/:id",
                 element: <SingleSupportDetailes />,
             },
