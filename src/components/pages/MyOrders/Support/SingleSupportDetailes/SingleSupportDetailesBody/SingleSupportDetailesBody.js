@@ -2,7 +2,6 @@ import React from "react";
 
 export const SingleSupportDetailesBody = ({ ticket }) => {
     const { replies } = ticket || {};
-    console.log(replies);
 
     let content;
     if (replies?.length === 0) {

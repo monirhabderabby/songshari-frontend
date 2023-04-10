@@ -27,12 +27,8 @@ export const SupportContainer = () => {
                                 label: "Closed",
                             },
                             {
-                                value: "Opened",
+                                value: "open",
                                 label: "Opened",
-                            },
-                            {
-                                value: "Solved",
-                                label: "Solved",
                             },
                         ]}
                     />
