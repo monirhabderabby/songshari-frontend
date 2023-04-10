@@ -10,6 +10,8 @@ import Contact from "../../components/pages/Contact/Contact";
 import { DynamicProfilePage } from "../../components/pages/DynamicProfilePage/DynamicProfilePage";
 import { OurTeams } from "../../components/pages/OurTeams/OurTeams";
 import { Privacy } from "../../components/pages/Privacy/Privacy";
+import SingleSuccessStoryDetailsPage from "../../components/pages/SuccessStory/SuccessStoryGlobalContainer/SingleSuccessStoryDetailsPage/SingleSuccessStoryDetailsPage";
+import SuccessStoryGlobalContainer from "../../components/pages/SuccessStory/SuccessStoryGlobalContainer/SuccessStoryGlobalContainer";
 import Suggested from "../../components/pages/TopProfile/Suggested";
 import TopBride from "../../components/pages/TopProfile/TopBride";
 import TopGroom from "../../components/pages/TopProfile/TopGroom";
@@ -136,6 +138,16 @@ const matrimonyRoutes = [
     id: 19,
     path: "/:token",
     element: <HomePageExtra />,
+  },
+  {
+    id: 20,
+    path: "/happyStories",
+    element: <SuccessStoryGlobalContainer />,
+  },
+  {
+    id: 21,
+    path: "/happyStory/:id",
+    element: <SingleSuccessStoryDetailsPage />,
   },
 ];
 

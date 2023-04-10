@@ -24,8 +24,30 @@ export const successStoryApi = apiSlice.injectEndpoints({
       }),
       providesTags: ["MySuccessStory"],
     }),
+    getAllSuccessStory: builder.query({
+      query: ({ page, limit }) => ({
+        url: `/success-story/me/all?_page=${page}&_limit=${limit}`,
+        method: "GET",
+        headers: {
+          authorization: `Bearer ${getCookie("token")}`,
+        },
+      }),
+    }),
+    getSuccessStoryById: builder.query({
+      query: (id) => ({
+        url: `/success-story/me/${id}`,
+        method: "GET",
+        headers: {
+          authorization: `Bearer ${getCookie("token")}`,
+        },
+      }),
+    }),
   }),
 });
 
-export const { useCreateSuccessStoryMutation, useGetMySuccessStoryQuery } =
-  successStoryApi;
+export const {
+  useCreateSuccessStoryMutation,
+  useGetMySuccessStoryQuery,
+  useGetAllSuccessStoryQuery,
+  useGetSuccessStoryByIdQuery,
+} = successStoryApi;
