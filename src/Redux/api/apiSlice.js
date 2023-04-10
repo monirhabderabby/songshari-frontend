@@ -3,23 +3,23 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { apiBaseUrl } from "../../config/index";
 
 const apiSlice = createApi({
-  reducerPath: "api",
-  baseQuery: fetchBaseQuery({
-    baseUrl: apiBaseUrl,
-  }),
-  endpoints: (builder) => ({}),
-  tagTypes: [
-    "allGetFriendRequest",
-    "posts",
-    "AllRecentMembers",
-    "myServices",
-    "getServiceById",
-    "allOrders",
-    "AllOrdersByMember",
-    "reviewByUserAndService",
-    "MyOrders",
-    "MySuccessStory",
-  ],
+    reducerPath: "api",
+    baseQuery: fetchBaseQuery({
+        baseUrl: apiBaseUrl,
+    }),
+    endpoints: builder => ({}),
+    tagTypes: [
+        "allGetFriendRequest",
+        "posts",
+        "AllRecentMembers",
+        "myServices",
+        "getServiceById",
+        "allOrders",
+        "AllOrdersByMember",
+        "reviewByUserAndService",
+        "MyOrders",
+        "MySuccessStory",
+    ],
 });
 
 export default apiSlice;
