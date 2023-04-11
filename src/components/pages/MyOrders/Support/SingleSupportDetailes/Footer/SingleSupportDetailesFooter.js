@@ -1,6 +1,6 @@
 import AttachFileIcon from "@mui/icons-material/AttachFile";
 import { Input, Spin } from "antd";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { useReOpenTicketMutation } from "../../../../../../Redux/features/Ticket/ticketApi";
 
@@ -12,7 +12,7 @@ export const SingleSupportDetailesFooter = () => {
 
     const { id } = useParams();
 
-    const [reOpenTicket, { isLoading }] = useReOpenTicketMutation();
+    const [reOpenTicket, { isLoading, isSuccess }] = useReOpenTicketMutation();
 
     const handleReply = () => {
         const formData = new FormData();
@@ -29,6 +29,13 @@ export const SingleSupportDetailesFooter = () => {
             data: formData,
         });
     };
+
+    // set empty value when api response successfully
+    useEffect(() => {
+        if (isSuccess) {
+            setMessages("");
+        }
+    }, [isSuccess]);
     return (
         <div className="h-auto mt-[20px] bg-white shadow-[rgba(0,0,0,0.05)_0px_6px_24px_0px,_rgba(0,0,0,0.08)_0px_0px_0px_1px] rounded-[8px] w-full pb-[10px]">
             <TextArea
@@ -37,6 +44,7 @@ export const SingleSupportDetailesFooter = () => {
                     resize: "none",
                 }}
                 bordered={false}
+                value={message}
                 placeholder="Write your response to Admin..."
                 onChange={e => setMessages(e.target.value)}
             />

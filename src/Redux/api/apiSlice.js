@@ -19,6 +19,7 @@ const apiSlice = createApi({
         "reviewByUserAndService",
         "MyOrders",
         "MySuccessStory",
+        "allTickets",
     ],
 });
 
