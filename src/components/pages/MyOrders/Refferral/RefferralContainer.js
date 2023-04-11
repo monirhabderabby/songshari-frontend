@@ -34,9 +34,9 @@ export const RefferralContainer = () => {
         <div>
             <Tabs defaultActiveKey="1" items={items} onChange={onChange} />
             {!isLoading && isSuccess && (
-                <div className="mt-[10px] text-gray-500 font-Nunito flex justify-between items-center">
+                <div className="mt-[10px] text-gray-500 font-Nunito flex flex-col lg:flex-row gap-y-[12px] items-start lg:justify-between lg:items-center">
                     <p>Your refer id: #{referral?.length > 0 && referral[0]?.referralId}</p>
-                    <div className="flex items-center gap-x-[20px] shadow-[rgba(0,0,0,0.09)_0px_3px_12px] h-[40px] px-4">
+                    <div className="flex items-center gap-x-[20px] shadow-[rgba(0,0,0,0.09)_0px_3px_12px] h-[40px] text-[10px] lg:text-[16px]  px-4">
                         <p>{referral?.length > 0 && referral[0]?.link}</p>
                         <CopyToClipboard text={referral?.length > 0 && referral[0]?.link} onCopy={() => setCoppied(true)}>
                             <Tooltip title={isCoppied ? "copied" : "copy to clipboard"}>
