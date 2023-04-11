@@ -26,7 +26,7 @@ const IgnoreCard = ({ item, useCase }) => {
   }, [data, unignoreData]);
   return (
     <div className="bg-white shadow-lg transition-height duration-500 rounded-lg my-4">
-      <div className="flex items-center px-2 py-4">
+      <div className="flex items-center justify-between md:justify-start px-2 py-4">
         <div className="relative mx-8">
           <button
             onClick={() => setShowDetails(!showDetails)}
@@ -42,7 +42,7 @@ const IgnoreCard = ({ item, useCase }) => {
             className="w-full h-full object-cover rounded-lg"
           />
         </div>
-        <div className="ml-4 flex-grow">
+        <div className="ml-4 flex-grow hidden md:block">
           <h3 className="text-lg font-medium text-gray-900">{`${item?.firstName} ${item?.lastName}`}</h3>
           <p className="text-sm font-medium text-gray-500">{item?.email}</p>
         </div>
@@ -55,7 +55,7 @@ const IgnoreCard = ({ item, useCase }) => {
                     ignoreMember(item?._id);
                     setMessage("Member ignored successfully");
                   }}
-                  className="mr-12 text-[#eb4787] flex flex-col items-center justify-center"
+                  className="ml-2 md:mr-12 text-[#eb4787] flex flex-col items-center justify-center"
                 >
                   <HideSourceIcon style={{ color: "#eb4787" }} />
                   Ignore
@@ -64,16 +64,15 @@ const IgnoreCard = ({ item, useCase }) => {
             )}
             {isLoading && (
               <div className="flex-shrink-0">
-                <button className="mr-12">
+                <button className="mr-2 md:mr-12">
                   <CircularProgress size={25} />
                 </button>
               </div>
             )}
             {data && (
               <div className="flex-shrink-0">
-                <button className="mr-12">
+                <button className="mr-2 md:mr-12">
                   <TaskAltIcon color="success" />
-                  <div>Ignore</div>
                 </button>
               </div>
             )}
@@ -88,7 +87,7 @@ const IgnoreCard = ({ item, useCase }) => {
                     unignore(item?._id);
                     setMessage("Member unblocked successfully");
                   }}
-                  className="mr-12 flex items-center text-[#eb4787] justify-center flex-col"
+                  className="mr-2 md:mr-12 flex items-center text-[#eb4787] justify-center flex-col"
                 >
                   <LockOpenIcon style={{ color: "#eb4787" }} />
                   Unblock
@@ -97,7 +96,7 @@ const IgnoreCard = ({ item, useCase }) => {
             )}
             {unignoreLoading && (
               <div className="flex-shrink-0">
-                <button className="mr-12">
+                <button className="mr-2 md:mr-12">
                   <CircularProgress size={25} />
                 </button>
               </div>
@@ -106,10 +105,9 @@ const IgnoreCard = ({ item, useCase }) => {
               <div className="flex-shrink-0">
                 <button
                   onClick={() => ignoreMember(item?._id)}
-                  className="mr-12"
+                  className="mr-2 md:mr-12"
                 >
                   <TaskAltIcon color="success" />
-                  <div>Ignore</div>
                 </button>
               </div>
             )}
