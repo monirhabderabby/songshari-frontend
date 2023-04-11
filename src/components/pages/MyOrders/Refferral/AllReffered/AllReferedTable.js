@@ -1,7 +1,9 @@
-import React from "react";
+import moment from "moment";
+import React, { useEffect, useState } from "react";
 
 export const AllReferedTable = ({ referral }) => {
-    const { referredTo } = referral[0] || [];
+    const [referredTo, setReferredTo] = useState(null);
+    console.log(referral);
     const tableColumns = ["#", "Referred User", "Date"];
     const rowData = [
         {
@@ -17,6 +19,13 @@ export const AllReferedTable = ({ referral }) => {
             date: "20-03-2023",
         },
     ];
+
+    // set reffered To
+    useEffect(() => {
+        if (referral?.length > 0) {
+            setReferredTo(referral[0]?.referredTo);
+        }
+    }, [referral]);
 
     const colorChooser = status => {
         if (status === "pending") {
@@ -41,17 +50,18 @@ export const AllReferedTable = ({ referral }) => {
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-gray-100">
-                        {referredTo?.map((item, index) => {
-                            return (
-                                <tr key={item._id} class="bg-white">
-                                    <td class="p-3 text-sm text-gray-700 whitespace-nowrap">
-                                        <span class="font-bold text-blue-500 hover:underline">{index + 1}</span>
-                                    </td>
-                                    <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{`${item?.firstName} ${item?.lastName}`}</td>
-                                    <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{item?.date}</td>
-                                </tr>
-                            );
-                        })}
+                        {referredTo !== null &&
+                            referredTo?.map((item, index) => {
+                                return (
+                                    <tr key={item._id} class="bg-white">
+                                        <td class="p-3 text-sm text-gray-700 whitespace-nowrap">
+                                            <span class="font-bold text-blue-500 hover:underline">{index + 1}</span>
+                                        </td>
+                                        <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{`${item?.firstName} ${item?.lastName}`}</td>
+                                        <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{moment(item?.createdAt).format("LL")}</td>
+                                    </tr>
+                                );
+                            })}
                     </tbody>
                 </table>
             </div>

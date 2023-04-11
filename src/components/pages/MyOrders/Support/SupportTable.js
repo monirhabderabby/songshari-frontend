@@ -83,10 +83,7 @@ export const SupportTable = ({ status }) => {
                 {tickets?.map((item, index) => {
                     const { status, category, subject, uid, _id } = item || {};
                     return (
-                        <div
-                            className="bg-white group space-y-3 p-4 rounded-lg shadow hover:bg-[linear-gradient(315deg,#eb4786_0%,#b854ab_74%)] hover:text-white"
-                            key={item.id}
-                        >
+                        <div className="bg-white group space-y-3 p-4 rounded-lg shadow" key={item.id}>
                             <div className="flex items-center space-x-2 text-sm">
                                 <div>
                                     <span className="text-blue-500 font-bold hover:underline">#{uid}</span>
@@ -101,10 +98,10 @@ export const SupportTable = ({ status }) => {
                                     </span>
                                 </div>
                             </div>
-                            <div className="text-sm group-hover:text-white">
+                            <div className="text-sm ">
                                 <span className="text-[14px] font-semibold text-gray-600">Category:</span> <span>{category}</span>
                             </div>
-                            <div className="text-sm group-hover:text-white">
+                            <div className="text-sm">
                                 <span className="text-[14px] font-semibold text-gray-600">Subject:</span> <span>{subject}</span>
                             </div>
                             <div className="text-sm group-hover:text-white">
