@@ -1,6 +1,8 @@
 import React from "react";
-export const AllReferedTable = () => {
-    const tableColumns = ["#", "Referred User", "Status", "Date"];
+
+export const AllReferedTable = ({ referral }) => {
+    const { referredTo } = referral[0] || [];
+    const tableColumns = ["#", "Referred User", "Date"];
     const rowData = [
         {
             id: 1,
@@ -39,22 +41,13 @@ export const AllReferedTable = () => {
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-gray-100">
-                        {rowData?.map(item => {
+                        {referredTo?.map((item, index) => {
                             return (
-                                <tr key={item.id} class="bg-white">
+                                <tr key={item._id} class="bg-white">
                                     <td class="p-3 text-sm text-gray-700 whitespace-nowrap">
-                                        <span class="font-bold text-blue-500 hover:underline">{item.id}</span>
+                                        <span class="font-bold text-blue-500 hover:underline">{index + 1}</span>
                                     </td>
-                                    <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{item.reffered}</td>
-                                    <td class="p-3 text-sm text-gray-700 whitespace-nowrap">
-                                        <span
-                                            class={`p-1.5 text-xs font-medium uppercase tracking-wider rounded-lg bg-opacity-50 ${colorChooser(
-                                                item?.status
-                                            )}`}
-                                        >
-                                            {item?.status}
-                                        </span>
-                                    </td>
+                                    <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{`${item?.firstName} ${item?.lastName}`}</td>
                                     <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{item?.date}</td>
                                 </tr>
                             );

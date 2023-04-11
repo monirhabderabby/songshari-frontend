@@ -11,13 +11,14 @@ export const RefferralContainer = () => {
     const [isCoppied, setCoppied] = useState(false);
 
     const { data, isLoading, isSuccess } = useGetReferOfMeQuery();
+    const { referral } = data || {};
     const { link, referralId } = data?.referral[0] || {};
 
     const items = [
         {
             key: "1",
             label: `Referred`,
-            children: <AllRefferedContainer />,
+            children: <AllRefferedContainer referral={referral} />,
         },
         {
             key: "2",
