@@ -8,8 +8,8 @@ let month = currentDate.getMonth() + 1;
 let year = currentDate.getFullYear().toString();
     return (
         <div className="bg-white shadow-md rounded-lg z-10 w-full px-6">
-          <div className="flex justify-between">
-            <ul className="py-2">
+          <div className="grid grid-cols-1 md:grid-cols-3 py-2">
+            <ul className="">
               <li className="px-4 py-2 hover:bg-gray-100">
                 <span className="font-medium text-gray-900">Username:</span>{" "}
                 {item?.firstName && `${item?.firstName} ${item?.lastName}`}
@@ -26,7 +26,7 @@ let year = currentDate.getFullYear().toString();
               </li>
               
             </ul>
-            <ul className="py-2">
+            <ul className="">
               <li className="px-4 py-2 hover:bg-gray-100">
                 <span className="font-medium text-gray-900">Age:</span>{" "}
                 {item?.dateOfBirth && ageCalculator(item?.dateOfBirth)}
@@ -42,7 +42,7 @@ let year = currentDate.getFullYear().toString();
                 {item?.hometown}
               </li>
             </ul>
-            <ul className="py-2">
+            <ul className="">
               <li className="px-4 py-2 hover:bg-gray-100">
                 <span className="font-medium text-gray-900">Height:</span>{" "}
                 {item?.physicalDetail?.height?item?.physicalDetail?.height:"Not Provided" }
