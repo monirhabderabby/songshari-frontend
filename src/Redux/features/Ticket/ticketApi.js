@@ -43,7 +43,32 @@ export const ticketApi = apiSlice.injectEndpoints({
                 body: data,
             }),
         }),
+        getReferById: builder.query({
+            query: id => ({
+                url: `/refer/get-refer-by-id/${id}`,
+                method: "GET",
+                headers: {
+                    authorization: `Bearer ${getCookie("token")}`,
+                },
+            }),
+        }),
+        getReferOfMe: builder.query({
+            query: () => ({
+                url: `/refer/get`,
+                method: "GET",
+                headers: {
+                    authorization: `Bearer ${getCookie("token")}`,
+                },
+            }),
+        }),
     }),
 });
 
-export const { useCreateTicketMutation, useGetMyTicketsQuery, useGetTicketByIDQuery, useReOpenTicketMutation } = ticketApi;
+export const {
+    useCreateTicketMutation,
+    useGetMyTicketsQuery,
+    useGetTicketByIDQuery,
+    useReOpenTicketMutation,
+    useGetReferByIdQuery,
+    useGetReferOfMeQuery,
+} = ticketApi;
