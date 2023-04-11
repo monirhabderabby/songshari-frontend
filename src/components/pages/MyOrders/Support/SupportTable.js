@@ -1,26 +1,34 @@
-import React from "react";
+import { Pagination } from "@mui/material";
+import React, { useState } from "react";
 import { useNavigate } from "react-router";
 import { useGetMyTicketsQuery } from "../../../../Redux/features/Ticket/ticketApi";
 import { LineWaveLoader } from "../../../shared/Cards/Loader/lineWaveLoader/LineWaveLoader";
 import { ServerErrorMessage } from "../../../ui/error/ServerErrorMessage";
 import { SupportTableRow } from "./SupportTableRow";
 export const SupportTable = ({ status }) => {
+    const [page, setPage] = useState(1);
     const navigate = useNavigate();
     const tableColumns = ["Ticket No", "Status", "Category", "Subject", "Action"];
 
     const { data, isError, isLoading, isFetching } = useGetMyTicketsQuery({
         status: status,
-        page: 1,
+        page: page,
         limit: 5,
     });
     const { tickets, total } = data || {};
+    const totalPage = Math.ceil(total / 5);
 
     let content;
     if (isLoading || isFetching) {
         content = (
-            <div className="h-[260px] w-full flex justify-center items-center">
-                <LineWaveLoader />
-            </div>
+            <tbody className="h-[260px] w-full flex justify-center items-center">
+                <tr>
+                    <td> </td>
+                    <td>
+                        <LineWaveLoader />
+                    </td>
+                </tr>
+            </tbody>
         );
     } else if (!isLoading && isError) {
         content = (
@@ -32,11 +40,24 @@ export const SupportTable = ({ status }) => {
         content = <div className="h-[120px] w-full flex justify-center items-center text-gray-400 font-Inter">No Ticket foundd</div>;
     } else if (!isLoading && total > 0) {
         content = (
-            <tbody className="divide-y divide-gray-100">
-                {tickets?.map((item, index) => {
-                    return <SupportTableRow item={item} key={item._id} index={index} />;
-                })}
-            </tbody>
+            <table className="w-full">
+                <thead className="bg-gray-50 border-b-2 border-gray-200">
+                    <tr>
+                        {tableColumns?.map((item, index) => {
+                            return (
+                                <th key={index} className="w-[150px] p-3 text-sm font-semibold tracking-wide text-left">
+                                    {item}
+                                </th>
+                            );
+                        })}
+                    </tr>
+                </thead>
+                <tbody className="divide-y divide-gray-100">
+                    {tickets?.map((item, index) => {
+                        return <SupportTableRow item={item} key={item._id} index={index} />;
+                    })}
+                </tbody>
+            </table>
         );
     }
 
@@ -51,20 +72,11 @@ export const SupportTable = ({ status }) => {
     return (
         <>
             <div className="overflow-auto rounded-lg shadow hidden md:block">
-                <table className="w-full">
-                    <thead className="bg-gray-50 border-b-2 border-gray-200">
-                        <tr>
-                            {tableColumns?.map((item, index) => {
-                                return (
-                                    <th key={index} className="w-[150px] p-3 text-sm font-semibold tracking-wide text-left">
-                                        {item}
-                                    </th>
-                                );
-                            })}
-                        </tr>
-                    </thead>
-                    {content}
-                </table>
+                {content}
+
+                <div className="w-full flex justify-center px-[20px] pb-[15px]">
+                    <Pagination count={totalPage} variant="outlined" color="secondary" onChange={(e, value) => setPage(value)} size="small" />
+                </div>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:hidden p-[10px]">
