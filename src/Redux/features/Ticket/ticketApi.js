@@ -32,6 +32,7 @@ export const ticketApi = apiSlice.injectEndpoints({
                     authorization: `Bearer ${getCookie("token")}`,
                 },
             }),
+            providesTags: ["allTickets"],
         }),
         reOpenTicket: builder.mutation({
             query: ({ id, data }) => ({
@@ -42,6 +43,7 @@ export const ticketApi = apiSlice.injectEndpoints({
                 },
                 body: data,
             }),
+            invalidatesTags: ["allTickets"],
         }),
         getReferById: builder.query({
             query: id => ({
