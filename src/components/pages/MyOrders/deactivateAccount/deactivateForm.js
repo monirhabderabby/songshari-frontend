@@ -1,8 +1,9 @@
 import React from "react";
 import { useGetProfileDetailsWIthAuthQuery } from "../../../../Redux/features/userInfo/userApi";
 import { CircularProgress } from "material-ui";
+import Error from "../../../ui/error/Error";
 
-const DeactivateForm = ({ register, onSubmit, handleSubmit, isLoading }) => {
+const DeactivateForm = ({ register, onSubmit, handleSubmit, isLoading,error }) => {
   const { data } = useGetProfileDetailsWIthAuthQuery();
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="max-w-lg mx-auto mt-8">
@@ -91,6 +92,7 @@ const DeactivateForm = ({ register, onSubmit, handleSubmit, isLoading }) => {
           <CircularProgress size={19}/> 
         </button>}
       </div>
+      {error && <Error message={error?.data?.message} />}
     </form>
   );
 };

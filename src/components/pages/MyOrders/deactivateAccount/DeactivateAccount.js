@@ -15,7 +15,8 @@ const DeactivateAccount = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { register, handleSubmit,reset } = useForm();
-  const [deactivateAccount,{data:deactivateData, isLoading}] = useDeactivateAccountMutation();
+  const [deactivateAccount,{data:deactivateData, isLoading, error}] = useDeactivateAccountMutation();
+  console.log(error, "deactivaldfk");
   const  onSubmit = async (data) =>{
     const fields = Object.keys(data);
     fields.forEach(item=>{
@@ -40,7 +41,8 @@ useEffect(()=>{
   return (
     <div className="">
       <h3 className="text-[20px] text-gray-600">Deactivate Account</h3>
-      <DeactivateForm {...{register, onSubmit, handleSubmit,isLoading}}/>
+      <DeactivateForm {...{register, onSubmit, handleSubmit,isLoading,error}}/>
+      
     </div>
   );
 };
