@@ -4,6 +4,7 @@ import React, { useEffect } from "react";
 import useDocumentTitle from "../../../assets/utilities/useDocumentTitle";
 import CustomHeader from "../../shared/CustomHeader/CustomHeader";
 import { ContactForm } from "./ContactForm";
+import Footer from "../../shared/Footer/Footer";
 
 const Contact = () => {
     useDocumentTitle("Shongshari | Contact");
@@ -12,9 +13,10 @@ const Contact = () => {
     }, []);
 
     return (
-        <div>
+        <div className="bg-[#f8f8ff]">
             <CustomHeader title="Contact" />
-            <ContactForm></ContactForm>
+            <ContactForm  />
+            <Footer />
         </div>
     );
 };
