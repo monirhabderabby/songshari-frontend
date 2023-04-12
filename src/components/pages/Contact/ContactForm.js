@@ -5,7 +5,7 @@ import EmailIcon from '@mui/icons-material/Email';
 import { useForm } from "react-hook-form";
 import { useSendContactMessageMutation } from "../../../Redux/features/Contact/contactApi";
 import { SuccessSnackBar } from "../../ui/error/snackBar/SuccessSnackBar";
-import logoBlack from "../../../assets/images/Logo/logoBlack.png"
+// import logoBlack from "../../../assets/images/Logo/logoBlack.png"
 import { useEffect } from "react";
 import Error from "../../ui/error/Error";
 
@@ -29,8 +29,7 @@ export const ContactForm = () => {
         <section className="mb-32 text-gray-800">
           <div className="flex flex-wrap">
             <div className="grow-0 shrink-0 basis-auto mb-6 md:mb-0 w-full md:w-6/12 px-3 lg:px-6">
-                <img src={logoBlack} alt="logo-black" />
-              <h2 className="text-3xl font-bold my-6">Contact us</h2>
+              <h2 className="text-3xl font-bold my-6">Contact Shongshari</h2>
               <div className="flex">
               <EmailIcon style={{color:"#e32986"}}/>
               <span className="ml-3 underline font-bold text-gray-500 mb-2">itco.com.bd@gmail.com</span>

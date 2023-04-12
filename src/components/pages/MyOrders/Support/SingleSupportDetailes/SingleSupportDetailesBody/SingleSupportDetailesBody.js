@@ -1,3 +1,4 @@
+import moment from "moment";
 import React from "react";
 
 export const SingleSupportDetailesBody = ({ ticket }) => {
@@ -10,23 +11,26 @@ export const SingleSupportDetailesBody = ({ ticket }) => {
         content = (
             <div className="pt-[20px]">
                 {replies?.map(item => {
-                    const { images, message, role, _id } = item || {};
+                    const { images, message, role, _id, createdAt } = item || {};
+                    console.log(item);
                     if (!role.includes("admin")) {
                         return (
-                            <div key={_id} className="flex gap-x-[20px]">
+                            <div key={_id} className="flex gap-x-[20px] my-[10px]">
                                 <img className="w-[40px] h-[40px] rounded-full" src={images[0]?.url} alt="profile" />
-                                <div>
+                                <div className="flex flex-col items-start gap-y-[5px]">
+                                    {images?.length > 0 && <img className="w-full lg:w-1/2" src={images[0]?.url} alt="problemImage" />}
                                     <p className="bg-gray-100 p-[10px] rounded-[4px]">{message}</p>
-                                    <span className="text-gray-400 text-[12px]">11:30 PM</span>
+                                    <span className="text-gray-400 text-[12px]">{moment(createdAt).format("LT")}</span>
                                 </div>
                             </div>
                         );
                     } else if (role.includes("admin")) {
                         return (
-                            <div key={_id} className="flex justify-end items-center gap-x-[20px]">
-                                <div>
+                            <div key={_id} className="flex justify-end items-center gap-x-[20px] my-[10px]">
+                                <div className="flex flex-col items-end gap-y-[5px]">
+                                    {images?.length > 0 && <img className="w-full lg:w-1/2" src={images[0]?.url} alt="problemImage" />}
                                     <p>{message}</p>
-                                    <span className="text-gray-400 text-[12px]">11:30 PM (Admin)</span>
+                                    <span className="text-gray-400 text-[12px]">{moment(createdAt).format("LT")} (Admin)</span>
                                 </div>
                                 <img
                                     className="w-[40px] h-[40px] rounded-full"
