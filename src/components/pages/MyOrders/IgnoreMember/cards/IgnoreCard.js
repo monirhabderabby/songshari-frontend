@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 
 import HideSourceIcon from "@mui/icons-material/HideSource";
-import TaskAltIcon from "@mui/icons-material/TaskAlt";
 import LockOpenIcon from "@mui/icons-material/LockOpen";
 import {
   useIgnoreMemberMutation,
@@ -48,7 +47,7 @@ const IgnoreCard = ({ item, useCase }) => {
         </div>
         {useCase === "ignore" && (
           <div>
-            {!isLoading && !data && (
+            {!isLoading && (
               <div className="flex-shrink-0">
                 <button
                   onClick={() => {
@@ -69,18 +68,18 @@ const IgnoreCard = ({ item, useCase }) => {
                 </button>
               </div>
             )}
-            {data && (
+            {/* {data && (
               <div className="flex-shrink-0">
                 <button className="mr-2 md:mr-12">
                   <TaskAltIcon color="success" />
                 </button>
               </div>
-            )}
+            )} */}
           </div>
         )}
         {useCase === "unignore" && (
           <div>
-            {!unignoreLoading && !unignoreData && (
+            {!unignoreLoading && (
               <div className="flex-shrink-0">
                 <button
                   onClick={() => {
@@ -101,7 +100,7 @@ const IgnoreCard = ({ item, useCase }) => {
                 </button>
               </div>
             )}
-            {unignoreData && (
+            {/* {unignoreData && (
               <div className="flex-shrink-0">
                 <button
                   onClick={() => ignoreMember(item?._id)}
@@ -110,7 +109,7 @@ const IgnoreCard = ({ item, useCase }) => {
                   <TaskAltIcon color="success" />
                 </button>
               </div>
-            )}
+            )} */}
           </div>
         )}
       </div>

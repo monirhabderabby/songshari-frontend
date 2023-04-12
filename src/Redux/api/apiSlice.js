@@ -20,6 +20,7 @@ const apiSlice = createApi({
         "MyOrders",
         "MySuccessStory",
         "allTickets",
+        "ignoredUsers"
     ],
 });
 
