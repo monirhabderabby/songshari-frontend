@@ -37,7 +37,7 @@ const MyIgnoredMembers = ({ setUser, page, limit }) => {
 
     return (
         <div>
-            <div className="flex mx-auto items-center w-[492px] h-[52px] bg-[#FFFFFF] border border-[#FFE8F3] py-[14px] px-[21px] text-base rounded-lg gap-6">
+            <div className="flex mx-auto items-center md:w-[492px] md:h-[52px] bg-[#FFFFFF] border border-[#FFE8F3] py-[14px] px-[21px] text-base rounded-lg gap-6">
                 <FiSearch className="text-[#353751] text-2xl" />
                 <input
                     ref={input}
