@@ -17,6 +17,7 @@ import matrimonyMobileRouteRenderer from "./Matrimony/MobileMatrimony/matrimonyM
 import myAccountRouteRenderer from "./myAcount/myAccountRouteRenderer";
 import shopRouteRenderer from "./shop/shopRouteRenderer";
 import packageRouteRendered from "./Package/packageRouteRendered";
+import renderVideoCall from "./videoCall/renderVideoCall";
 
 const MasterRoute = () => {
   return (
@@ -48,6 +49,8 @@ const MasterRoute = () => {
         {coursePublicRouteRenderer()}
         {/* Package routes */}
         {packageRouteRendered()}
+        {/* Video call routes */}
+        {renderVideoCall()}
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </BrowserRouter>
