@@ -7,6 +7,7 @@ import MainButtons from "./MainButtons";
 import TopRightButtons from "./TopRightButtons";
 import MovableComponent from "./MovableComponent";
 import TopLeftIntro from "./TopLeftIntro";
+import AudioAvatar from "./AudioAvatar";
 // import MyMobileVideo from "./MyMobileVideo";
 
 const bgColor =
@@ -73,8 +74,7 @@ const VideoCall = () => {
   return (
     <div className=" overflow-hidden flex relative flex-col items-center justify-center w-screen h-screen bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)]">
       <div className="flex flex-col items-center justify-center">
-        <video muted className="w-screen h-screen" ref={videoRef} autoPlay />
-
+        {video && <video muted className="w-screen h-screen" ref={videoRef} autoPlay />}
         {/* <div className="mt-2 absolute bottom-0">
           <button
             className="px-4 py-2 mr-2 text-white bg-blue-500 rounded-lg hover:bg-blue-600"
@@ -100,10 +100,11 @@ const VideoCall = () => {
           </button>
         </div> */}
       </div>
-      <div className="hidden md:block absolute bottom-3 right-2">
-        <div className={`relative -right-${showBottomRightVideo ? "0" : "44"}`}>
+      {!video && <AudioAvatar />}
+      <div className={`hidden md:block absolute bottom-3 ${showBottomRightVideo ? "right-2" : "-right-44"}`}>
+        <div className={`relative`}>
           <video
-            className=" w-52 h-auto border-1 border-gray-200 rounded-lg shadow-md"
+            className=" w-auto h-36 border-1 border-gray-200 rounded-lg shadow-md"
             ref={myVideoRef}
             autoPlay
           />
