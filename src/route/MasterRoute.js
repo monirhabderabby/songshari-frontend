@@ -17,7 +17,6 @@ import packageRouteRendered from "./Package/packageRouteRendered";
 import lawyerRouteRenderer from "./lawyer/lawyerRouteRenderer";
 import myAccountRouteRenderer from "./myAcount/myAccountRouteRenderer";
 import shopRouteRenderer from "./shop/shopRouteRenderer";
-import packageRouteRendered from "./Package/packageRouteRendered";
 import renderVideoCall from "./videoCall/renderVideoCall";
 
 const MasterRoute = () => {
