@@ -11,6 +11,7 @@ export const deactivateApi = apiSlice.injectEndpoints({
           authorization: `Bearer ${getCookie("token")}`,
         },
       }),
+      providesTags:["ignoredUsers"]
     }),
     ignoreMember: builder.mutation({
       query: (id) => ({
@@ -20,6 +21,7 @@ export const deactivateApi = apiSlice.injectEndpoints({
           authorization: `Bearer ${getCookie("token")}`,
         },
       }),
+      invalidatesTags:["ignoredUsers","AllRecentMembers"]
     }),
     unignoreMember: builder.mutation({
       query: (id) => ({
@@ -29,6 +31,7 @@ export const deactivateApi = apiSlice.injectEndpoints({
           authorization: `Bearer ${getCookie("token")}`,
         },
       }),
+      invalidatesTags:["ignoredUsers","AllRecentMembers"]
     }),
   }),
 });
