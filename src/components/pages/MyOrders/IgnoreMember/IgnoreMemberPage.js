@@ -21,7 +21,7 @@ const IgnoreMemberPage = () => {
         },
     ];
     return (
-        <div>
+        <div className="">
             <h3 className="text-[20px] text-gray-600">Ignore Member</h3>
             <Tabs defaultActiveKey="1" items={items} onChange={onChange} />
         </div>
