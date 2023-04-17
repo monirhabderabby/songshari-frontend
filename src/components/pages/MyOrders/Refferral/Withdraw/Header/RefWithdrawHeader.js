@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { AiOutlinePlus } from "react-icons/ai";
 import { RefferalWithdrawModal } from "./RefferalWithdrawModal";
+import { SuccessSnackBar } from "../../../../../ui/error/snackBar/SuccessSnackBar";
 
 export const RefWithdrawHeader = () => {
     const [open, setOpen] = useState(false);
+    const [successSnackBarOpen, setSuccessSnackBarOpen] = useState(false)
 
     const modalControll = () => {
         setOpen(!open);
@@ -25,7 +27,8 @@ export const RefWithdrawHeader = () => {
                     <span className="text-red-500 font-semibold">Withdraw Request</span>
                 </div>
             </div>
-            {open && <RefferalWithdrawModal modalControll={modalControll} />}
+            {open && <RefferalWithdrawModal setOpen={setOpen} modalControll={modalControll} setSuccessSnackBarOpen={setSuccessSnackBarOpen}/>}
+            <SuccessSnackBar {...{ successSnackBarOpen, setSuccessSnackBarOpen, message:"Request Submitted" }} />
         </>
     );
 };
