@@ -1,14 +1,8 @@
 import React from "react";
 import { useGetMyWalletHistoryQuery } from "../../../../../Redux/features/wallet/walletApi";
+import { dateFormat } from "../../../../../assets/utilities/Date/DateFormate";
 export const WalletTable = () => {
   const tableColumns = ["#", "Date", "Amount", "Payment Method", "Approval"];
-  const dateFormat = (date) => {
-    const d = new Date();
-    const f = new Intl.DateTimeFormat("en-us", {
-      dateStyle: "short",
-    });
-    return f.format(d);
-  };
 
   const { data } = useGetMyWalletHistoryQuery({ page: 1, limit: 10 });
   return (

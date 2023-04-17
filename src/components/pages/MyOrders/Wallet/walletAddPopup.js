@@ -1,16 +1,15 @@
 import React,{useState,useEffect} from 'react';
-import { useBuyPointMutation, useGetReferralPointQuery } from '../../../../Redux/features/wallet/walletApi';
+import { useBuyPointMutation } from '../../../../Redux/features/wallet/walletApi';
 
 const WalletAddPopup = ({setOpen}) => {
     const [amount, setAmount] = useState(1)
-    const {data } = useGetReferralPointQuery();
-    const [buyPoint, {data:buyPointData, isLoading, error}] = useBuyPointMutation();
+    // const {data } = useGetReferralPointQuery();
+    const [buyPoint, {data:buyPointData}] = useBuyPointMutation();
     const handleSubmit = () =>{
         buyPoint({amount, desc:"Buy point"})
     }
     useEffect(()=>{
         if(buyPointData){
-            console.log(buyPointData,"pilkasdflj")
             window.location.replace(buyPointData?.data)
         }
     },[buyPointData]);
