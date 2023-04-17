@@ -1,11 +1,13 @@
 import { Input } from "antd";
-import React from "react";
+import React,{useState} from "react";
 import { AiOutlineClose } from "react-icons/ai";
 import { Modal } from "../../../../../modals/Modal";
 
 const { TextArea } = Input;
 
 export const RefferalWithdrawModal = ({ modalControll }) => {
+    const [amount, setAmount] = useState("")
+    const [note, setNote] = useState("")
     return (
         <Modal modalControll={modalControll}>
             <div className="w-full flex justify-between items-center border-b-[1px] border-gray-200 pb-[10px]">
