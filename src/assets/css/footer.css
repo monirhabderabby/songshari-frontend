@@ -239,13 +239,13 @@
   content: "\f3fe";
 }
 
-.f-solial-links li a {
+.f-social-links li a {
   transition: all 0.5s;
   cursor: pointer;
   color: #ffffff9c;
 }
 
-.f-solial-links li a:hover {
+.f-social-links li a:hover {
   color: #fff;
   padding-left: 10px;
 }

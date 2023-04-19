@@ -8,6 +8,8 @@ import { Toaster } from "react-hot-toast";
 import { FaGoogle, FaRegEnvelope } from "react-icons/fa";
 import { MdLockOutline } from "react-icons/md";
 import { useDispatch } from "react-redux";
+import { BsFillArrowLeftCircleFill } from "react-icons/bs";
+import { useSignInWithGoogle } from "react-firebase-hooks/auth";
 
 // components
 import Error from "../../../components/ui/error/Error";
@@ -20,7 +22,6 @@ import { loadUserData } from "../../../Redux/features/userInfo/userInfo";
 import ForgetPasswordModal from "./ForgetPassword/ForgetPasswordModal";
 
 // css files
-import { useSignInWithGoogle } from "react-firebase-hooks/auth";
 import "../../../App.css";
 import { auth } from "../../../firebase.init";
 
@@ -231,6 +232,7 @@ const LoginAsProfessional = () => {
                       isLoading || googleServerLoading ? "Loading..." : "LOGIN"
                     }
                     className="border-2 cursor-pointer mt-3 border-primary hover:border-0 rounded-full px-12 py-2 hover:bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] hover:text-white duration-500 transition-all"
+                    disabled={isLoading || googleServerLoading}
                   />
                 </form>
                 <p className="mt-3">
@@ -257,7 +259,13 @@ const LoginAsProfessional = () => {
             </Link>
           </div>
           {/*Sign up section */}
-          <div className="hidden md:block bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] lg:w-2/5 p-5 text-white rounded-tr-2xl rounded-br-2xl md:py-36 md:px-4 lg:px-12">
+          <div className="hidden md:block bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] lg:w-2/5 p-5 text-white rounded-tr-2xl rounded-br-2xl md:py-36 md:px-4 lg:px-12 relative">
+            <div
+              onClick={() => navigate("/")}
+              className="absolute top-4 right-4"
+            >
+              <BsFillArrowLeftCircleFill className="text-3xl cursor-pointer" />
+            </div>
             <h2 className="font-bold text-3xl mb-2">Hello, Friend!</h2>
             <div className="border-2 w-10 border-white inline-block"></div>
             <p className="mb-4">

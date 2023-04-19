@@ -7,7 +7,7 @@ import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { useSignInWithGoogle } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
 import { AiOutlineCloudUpload, AiOutlineIdcard } from "react-icons/ai";
-import { BsPersonLinesFill } from "react-icons/bs";
+import { BsFillArrowLeftCircleFill, BsPersonLinesFill } from "react-icons/bs";
 import { FaGoogle, FaRegEnvelope, FaRegUser } from "react-icons/fa";
 import { MdLockOutline } from "react-icons/md";
 import { useDispatch } from "react-redux";
@@ -405,6 +405,7 @@ const RegAsProfessional = () => {
                       type="submit"
                       value={serverLoading ? "Loading..." : "SIGN UP"}
                       className="border-2 cursor-pointer mt-6 border-primary hover:border-0 rounded-full px-12 py-2 hover:bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] hover:text-white duration-500 transition-all"
+                      disabled={serverLoading}
                     />
                   </div>
                 </form>
@@ -432,7 +433,13 @@ const RegAsProfessional = () => {
             </Link>
           </div>
           {/*Sign in section */}
-          <div className="hidden md:block bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] lg:w-2/5 p-5 text-white rounded-tr-2xl rounded-br-2xl md:py-36 md:px-4 lg:px-12">
+          <div className="hidden md:block bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] lg:w-2/5 p-5 text-white rounded-tr-2xl rounded-br-2xl md:py-36 md:px-4 lg:px-12 relative">
+            <div
+              onClick={() => navigate("/")}
+              className="absolute top-4 right-4"
+            >
+              <BsFillArrowLeftCircleFill className="text-3xl cursor-pointer" />
+            </div>
             <h2 className="font-bold text-3xl mb-2">Hello, Friend!</h2>
             <div className="border-2 w-10 border-white inline-block"></div>
             <p className="mb-4">If you have already an account </p>
