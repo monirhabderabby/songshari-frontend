@@ -1,7 +1,7 @@
-import React,{useState,useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
-import {Toaster, toast} from "react-hot-toast"
+import { Toaster, toast } from "react-hot-toast";
 import "../../../App.css";
 import "../../../assets/css/footer.css";
 import { useAddSubscriberMutation } from "../../../Redux/features/subscriber/subscriberApi";
@@ -12,25 +12,26 @@ import rightShape from "./../../../assets/images/footer/right-shape.png";
 
 const Footer = () => {
   const [email, setEmail] = useState("");
-  const [addSubscriber, { data, isLoading, error }] = useAddSubscriberMutation();
+  const [addSubscriber, { data, isLoading, error }] =
+    useAddSubscriberMutation();
   const handleSubmit = (e) => {
     e.preventDefault();
     addSubscriber({ email });
-  }
+  };
 
   useEffect(() => {
     if (data) {
       console.log(data);
-      setEmail("")
+      setEmail("");
       toast.success(data.message);
     }
     if (error) {
       setEmail("");
       toast.error("Some thing went wrong");
     }
-  },[data,isLoading, error])
+  }, [data, isLoading, error]);
   return (
-    <footer className="footer-section">
+    <footer className="footer-section ignoreMouseEffect">
       <div className="ocean">
         <div className="wave"></div>
         <div className="wave"></div>
@@ -56,7 +57,12 @@ const Footer = () => {
                     Sign up to receive a monthly email on the latest news!
                   </p>
                   <form onSubmit={handleSubmit} className="newslater-form">
-                    <input value={email} onChange={(e)=>setEmail(e.target.value)} type="email" placeholder="Your Email Address" />
+                    <input
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      type="email"
+                      placeholder="Your Email Address"
+                    />
                     <button type="submit">
                       <i className="fab fa-telegram-plane"></i>
                     </button>
@@ -77,10 +83,10 @@ const Footer = () => {
           <div className="grid  lg:grid-cols-3 md:grid-cols-2">
             <div className=" relative flex justify-center ">
               <div className="link-wrapper one">
-                <h4 className="text-[24px] mb-[9px] uppercase font-normal text-[#fff]">
+                <h4 className="ignoreMouseEffect text-[24px] mb-[9px] uppercase font-normal text-[#fff]">
                   Our Information
                 </h4>
-                <ul className="f-solial-links">
+                <ul className="f-social-links ignoreMouseEffect">
                   <li className="py-[5px]">
                     <Link className="footer-link" to="/about">
                       <i className="fas text-[16px] mr-[5px] fa-angle-double-right"></i>{" "}
@@ -116,10 +122,10 @@ const Footer = () => {
             </div>
             <div className=" relative flex justify-center ">
               <div className="link-wrapper three">
-                <h4 className="text-[24px] mb-[9px] uppercase font-normal text-[#fff]">
+                <h4 className="ignoreMouseEffect text-[24px] mb-[9px] uppercase font-normal text-[#fff]">
                   help center
                 </h4>
-                <ul className="f-solial-links">
+                <ul className="ignoreMouseEffect f-social-links">
                   <li className="py-[5px]">
                     <Link to="/">
                       <i className="fas text-[16px] mr-[5px] fa-angle-double-right"></i>{" "}
@@ -155,10 +161,10 @@ const Footer = () => {
             </div>
             <div className=" relative flex justify-center ">
               <div className="link-wrapper four">
-                <h4 className="text-[24px] mb-[9px] uppercase font-normal text-[#fff]">
+                <h4 className="ignoreMouseEffect text-[24px] mb-[9px] uppercase font-normal text-[#fff]">
                   legal
                 </h4>
-                <ul className="f-solial-links">
+                <ul className="ignoreMouseEffect f-social-links">
                   <li className="py-[5px]">
                     <Link to="/privacy-policy">
                       <i className="fas text-[16px] mr-[5px] fa-angle-double-right"></i>{" "}
@@ -203,11 +209,11 @@ const Footer = () => {
           <div className="flex md:justify-between justify-center md:flex-row flex-col  items-center">
             <div>
               <div className="copyr-text">
-                <span className="text-[#fff]">
+                <span className="ignoreMouseEffect text-[#fff]">
                   Copyright © 2021.All Rights Reserved By
                 </span>
                 <a
-                  className="ml-1 text-[#ffca28]"
+                  className="ignoreMouseEffect ml-1 text-[#ffca28]"
                   href="http://shongshari.com/"
                   target={"_blank"}
                   rel="noreferrer"
@@ -218,7 +224,7 @@ const Footer = () => {
               <VersionTrack />
             </div>
             <div>
-              <ul className="footer-social-links flex  ">
+              <ul className="footer-social-links flex ignoreMouseEffect">
                 <li>
                   <a
                     href="https://www.facebook.com/shongsharibd"
