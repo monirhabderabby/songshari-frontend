@@ -2,10 +2,12 @@ import React, { useState } from "react";
 import { AiOutlinePlus } from "react-icons/ai";
 import { RefferalWithdrawModal } from "./RefferalWithdrawModal";
 import { SuccessSnackBar } from "../../../../../ui/error/snackBar/SuccessSnackBar";
+import { useGetReferOfMeQuery } from "../../../../../../Redux/features/referral/referralApi";
 
 export const RefWithdrawHeader = () => {
     const [open, setOpen] = useState(false);
     const [successSnackBarOpen, setSuccessSnackBarOpen] = useState(false)
+    const {data} = useGetReferOfMeQuery();
 
     const modalControll = () => {
         setOpen(!open);
@@ -14,7 +16,7 @@ export const RefWithdrawHeader = () => {
         <>
             <div className="w-full flex justify-evenly gap-x-[10px]">
                 <div className="bg-[linear-gradient(315deg,#eb4786_0%,#b854ab_74%)] w-full lg:w-[300px] min-h-[130px] h-auto flex flex-col items-center justify-evenly rounded-[4px]">
-                    <span className="text-white text-[22px] font-Inter font-semibold">200</span>
+                    <span className="text-white text-[22px] font-Inter font-semibold">{data?.referral[0].points}</span>
                     <span className="text-gray-300">Referral Points</span>
                 </div>
                 <div

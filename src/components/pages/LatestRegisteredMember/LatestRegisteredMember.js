@@ -3,6 +3,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import LatestRegisteredMemberCSS from "../../../assets/css/latestRegisteredMember.module.css";
 import shape from "../../../assets/images/shape.a8708fbc0aa77b10a1cf.png";
 import { useGetRecentMembersQuery } from "../../../Redux/features/userInfo/withoutLoginApi";
+import { ageCalculator } from "../../../assets/utilities/AgeCalculation/ageCalculator";
 
 const LatestRegisteredMember = () => {
     const { data, isLoading, error } = useGetRecentMembersQuery({
@@ -71,7 +72,7 @@ const LatestRegisteredMember = () => {
                                                         <h4 className="text-[#fff] text-[16px] uppercase font-bold">{data.firstName}</h4>
                                                     </div>
                                                     <div className="inner-content">
-                                                        <h4 className="text-[#fff] text-[16px] uppercase">Age: {data.age}</h4>
+                                                        <h4 className="text-[#fff] text-[16px] uppercase">Age: {ageCalculator(data?.dateOfBirth)}</h4>
                                                     </div>
                                                     <div className="inner-content">
                                                         <h4 className="text-[#fff] text-[16px] uppercase">Gender: {data.gender}</h4>

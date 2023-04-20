@@ -1,12 +1,14 @@
 import React,{useState,useEffect} from 'react';
-import { useBuyPointMutation } from '../../../../Redux/features/wallet/walletApi';
+import { useBuyPointMutation, useGetReferralPointQuery } from '../../../../Redux/features/wallet/walletApi';
 
 const WalletAddPopup = ({setOpen}) => {
     const [amount, setAmount] = useState(1)
     // const {data } = useGetReferralPointQuery();
-    const [buyPoint, {data:buyPointData}] = useBuyPointMutation();
+    const [buyPoint, {data:buyPointData, isLoading:buyPointLoading}] = useBuyPointMutation();
+    const {data, isLoading} =  useGetReferralPointQuery();
+    console.log(data, isLoading);
     const handleSubmit = () =>{
-        buyPoint({amount, desc:"Buy point"})
+        buyPoint({amount:amount*data?.point[0]?.ammountPerPoint, desc:"Buy point",point:amount})
     }
     useEffect(()=>{
         if(buyPointData){
@@ -33,13 +35,13 @@ const WalletAddPopup = ({setOpen}) => {
               placeholder="enter amount of point"
             />
           </div>
-          <p className='my-4 font-semibold'><span className='font-bold'>Cost:</span> DBT {amount}</p>
+          <p className='my-4 font-semibold'><span className='font-bold'>Cost:</span> DBT {amount*data?.point[0]?.ammountPerPoint}</p>
           <button
           onClick={handleSubmit}
             type="submit"
             className="font-bold flex-1 outline-none h-[40px] text-sm bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] w-full rounded-xl p-2 mt-3 text-white"
           >
-            Buy point
+            {buyPointLoading?"Loading...":"Buy point"}
           </button>
         </div>
         <button onClick={()=>setOpen(false)}

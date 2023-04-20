@@ -4,13 +4,14 @@ import React,{useState,useEffect} from "react";
 import { AiOutlineClose } from "react-icons/ai";
 import { Modal } from "../../../../../modals/Modal";
 import { useBalanceWithdrawMutation } from "../../../../../../Redux/features/referral/referralApi";
+import Error from "../../../../../ui/error/Error";
 
 const { TextArea } = Input;
 
 export const RefferalWithdrawModal = ({ modalControll,setSuccessSnackBarOpen,setOpen }) => {
     const [amount, setAmount] = useState(1)
     const [note, setNote] = useState("")
-    const [withdraw,{data,isLoading}] = useBalanceWithdrawMutation()
+    const [withdraw,{data,isLoading,error}] = useBalanceWithdrawMutation()
     const setPositivePoint = (e) =>{
         if(e.target.value>0){
             setAmount(e.target.value);
@@ -42,6 +43,8 @@ export const RefferalWithdrawModal = ({ modalControll,setSuccessSnackBarOpen,set
                     {isLoading?"loading...":'Confirm'}
                 </button>
             </div>
+            {error && <Error message={error?.data?.message} />}
+
         </Modal>
     );
 };
