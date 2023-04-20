@@ -11,7 +11,64 @@ import PackageCard from "./PackageCard/PackageCard";
 
 const PackagePromo = () => {
   const navigate = useNavigate();
-  const array = [1, 2, 3, 4, 5, 6];
+
+  const packageData = [
+    {
+      _id: 1,
+      name: "Free",
+      prize: 0,
+      details: [
+        "Browse Basic Features",
+        "Register/Login",
+        "Complete Profile",
+        "10 Chat Request",
+        "10 Swap Every 24 Hour",
+        "100 Message Per Day",
+      ],
+    },
+    {
+      _id: 2,
+      name: "Silver",
+      prize: 99,
+      details: [
+        "All Features of Free",
+        "Unlimited Chat Request",
+        "Unlimited Swap",
+        "Unlimited Message",
+        "Video Chat: 30 Minutes a Day",
+        "Timeline Post",
+        "Course Discount 15%",
+        "Upload Marriage Certificate",
+        "Free Kazi Contact",
+      ],
+    },
+    {
+      _id: 3,
+      name: "Gold",
+      prize: 189,
+      details: [
+        "All Features Of Gold",
+        "+ 2 Hours of Video Chat",
+        "+ 30% Course Fee Off",
+        "+ 5% Shopping Discount",
+        "+ 5% Discount on Lawyer Fee",
+        "+ 10% Discount on Agent Fee",
+      ],
+    },
+    {
+      _id: 4,
+      name: "Platinum",
+      prize: 249,
+      details: [
+        "All Features Of Diamond",
+        "+ 4 Hours of Video Chat",
+        "+ Course Fee Free",
+        "+ 10% Shopping Discount",
+        "+ 10% Discount on Lawyer Fee",
+        "+ 20% Discount on Agent Fee",
+      ],
+    },
+  ];
   return (
     <div className="max-w-[1200px] mx-auto mt-8">
       <h6 className="text-[#5650ce] text-center text-5xl font-semibold font-Inter mb-6">
@@ -19,7 +76,7 @@ const PackagePromo = () => {
       </h6>
 
       <Swiper
-        spaceBetween={50}
+        spaceBetween={30}
         slidesPerView={3}
         autoplay={{
           delay: 4000,
@@ -29,9 +86,9 @@ const PackagePromo = () => {
         modules={[Autoplay, Pagination, Navigation]}
         className="px-4"
       >
-        {array.map((arr) => (
-          <SwiperSlide key={arr} className="pb-8">
-            <PackageCard pack={arr} />
+        {packageData.map((pack) => (
+          <SwiperSlide key={pack._id} className="pb-8 px-4">
+            <PackageCard pack={pack} />
           </SwiperSlide>
         ))}
       </Swiper>
