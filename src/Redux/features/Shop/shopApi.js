@@ -3,24 +3,6 @@ import apiSlice from "../../api/apiSlice";
 
 export const shopApi = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
-    getAllProducts: builder.query({
-      query: () => ({
-        url: `/shop/product/get-all-products`,
-        method: "GET",
-        headers: {
-          authorization: `Bearer ${getCookie("token")}`,
-        },
-      }),
-    }),
-    getSingleProduct: builder.query({
-      query: (id) => ({
-        url: `/shop/product/${id}`,
-        method: "GET",
-        headers: {
-          authorization: `Bearer ${getCookie("token")}`,
-        },
-      }),
-    }),
     applyCoupon: builder.mutation({
       query: ({ data, code }) => ({
         url: `/shop/coupon/apply-coupon/${code}`,
@@ -71,35 +53,13 @@ export const shopApi = apiSlice.injectEndpoints({
         },
       }),
     }),
-    getAllReviewsByProductID: builder.query({
-      query: ({ productID }) => ({
-        url: `/shop/product/review/all/${productID}?page=1&limit=3`,
-        method: "GET",
-        headers: {
-          authorization: `Bearer ${getCookie("token")}`,
-        },
-      }),
-    }),
-    getTrendyProducts: builder.query({
-      query: ({ limit, page }) => ({
-        url: `/shop/product/get-trendy-products?_limit=${limit}&_page=${page}`,
-        method: "GET",
-        headers: {
-          authorization: `Bearer ${getCookie("token")}`,
-        },
-      }),
-    }),
   }),
 });
 
 export const {
-  useGetAllProductsQuery,
-  useGetSingleProductQuery,
   useApplyCouponMutation,
   usePlaceOrderMutation,
   useMyOrderQuery,
   useCreateProductReviewMutation,
   useGetProductReviewOfMeQuery,
-  useGetAllReviewsByProductIDQuery,
-  useGetTrendyProductsQuery,
 } = shopApi;
