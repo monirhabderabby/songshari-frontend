@@ -3,12 +3,11 @@ import { useBuyPointMutation, useGetReferralPointQuery } from '../../../../Redux
 
 const WalletAddPopup = ({setOpen}) => {
     const [amount, setAmount] = useState(1)
-    // const {data } = useGetReferralPointQuery();
     const [buyPoint, {data:buyPointData, isLoading:buyPointLoading}] = useBuyPointMutation();
     const {data, isLoading} =  useGetReferralPointQuery();
     console.log(data, isLoading);
     const handleSubmit = () =>{
-        buyPoint({amount:amount*data?.point[0]?.ammountPerPoint, desc:"Buy point",point:amount})
+        buyPoint({amount:amount*data?.point[0]?.ammountPerPoint, desc:"Buy point",point:amount,callBack:window.location.href})
     }
     useEffect(()=>{
         if(buyPointData){
