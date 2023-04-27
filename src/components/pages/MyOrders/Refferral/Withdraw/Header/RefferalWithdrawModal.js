@@ -11,7 +11,6 @@ const { TextArea } = Input;
 export const RefferalWithdrawModal = ({ modalControll,setSuccessSnackBarOpen,setOpen }) => {
     const [amount, setAmount] = useState(1)
     const [customError, setCustomError] = useState("");
-    console.log(amount, "amount");
     const [note, setNote] = useState("")
     const [withdraw,{data,isLoading,error}] = useBalanceWithdrawMutation()
     const setPositivePoint = (e) =>{
