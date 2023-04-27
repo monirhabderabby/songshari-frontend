@@ -32,7 +32,7 @@ const WalletAddPopup = ({setOpen}) => {
               type="number"
               name="point"
               className="flex-1 outline-none h-[40px] bg-transparent text-lg text-gray-400"
-              placeholder="enter amount of point"
+              placeholder="Enter amount of point"
             />
           </div>
           <p className='my-4 font-semibold'><span className='font-bold'>Cost:</span> DBT {amount*data?.point[0]?.ammountPerPoint}</p>
