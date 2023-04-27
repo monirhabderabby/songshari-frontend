@@ -5,7 +5,7 @@ import WalletAddPopup from "./walletAddPopup";
 
 export const WalletHeader = () => {
     const [open , setOpen] = useState(false)
-    const {data, isLoading, error} = useGetMyWalletQuery();
+    const {data} = useGetMyWalletQuery();
     const {data:referralData} = useGetReferralPointQuery()
     console.log(referralData);
     return (
