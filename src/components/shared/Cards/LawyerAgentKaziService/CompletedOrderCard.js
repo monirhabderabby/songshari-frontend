@@ -8,7 +8,7 @@ export const CompletedOrderCard = ({ order, activity }) => {
   title = title?.length > 42 ? title.slice(0, 32) + "..." : title;
   return (
     <div
-      className={`rounded-xl p-6 w-[393px] h-[188px] ${
+      className={`rounded-xl p-6 w-[327px] md:w-[393px] h-[188px] ${
         activity ? "text-white" : "text-black"
       }`}
       style={{
@@ -23,12 +23,12 @@ export const CompletedOrderCard = ({ order, activity }) => {
       <div className="grid grid-cols-3">
         <div className="col-span-1">
           <img
-            className="rounded-xl w-10 h-10 md:w-[100px] md:h-[100px]"
+            className="rounded-xl w-20 h-20 md:w-[100px] md:h-[100px]"
             src="https://i.postimg.cc/zBcmyTkW/vecteezy-a-close-up-of-a-lawyer-working-at-desk-1269203.jpg"
             alt="Not Available"
           />
         </div>
-        <div className="col-span-2 ml-[25px] my-auto">
+        <div className="col-span-2 ml-4 md:ml-[25px] my-auto">
           <p className="font-normal leading-6 text-[16px] mb-[16px]">{title}</p>
           <p className="font-medium text-[18px] leading-6">$ {price}</p>
         </div>
