@@ -34,7 +34,7 @@ const WalletAddPopup = ({setOpen}) => {
               placeholder="Enter amount of point"
             />
           </div>
-          <p className='my-4 font-semibold'><span className='font-bold'>Cost:</span> DBT {amount*data?.point[0]?.ammountPerPoint}</p>
+          <p className='my-4 font-semibold'><span className='font-bold'>Cost:</span> BDT {amount*data?.point[0]?.ammountPerPoint}</p>
           <button
           onClick={handleSubmit}
             type="submit"
