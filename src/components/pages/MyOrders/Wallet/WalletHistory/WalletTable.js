@@ -36,7 +36,7 @@ export const WalletTable = () => {
                     {dateFormat(item?.createdAt)}
                   </td>
                   <td class="p-3 text-sm text-gray-700 whitespace-nowrap">
-                    <span class="p-1.5 text-xs font-medium uppercase tracking-wider text-green-800 bg-green-200 rounded-lg bg-opacity-50">
+                    <span class={`p-1.5 text-xs font-medium uppercase tracking-wider ${item?.status==="increase" ?"bg-green-200" : "bg-red-200"} text-green-800  rounded-lg bg-opacity-50`}>
                       {item?.amount}
                     </span>
                   </td>
