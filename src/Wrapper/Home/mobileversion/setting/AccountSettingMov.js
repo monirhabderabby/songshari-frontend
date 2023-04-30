@@ -362,7 +362,7 @@ export const AccountSettingMov = () => {
             </Link>
             <br></br>
             <br></br>
-            <Link to="/privacymov" className="ml-[100px] ">
+            <Link to="/privacy-policy" className="ml-[100px] ">
               Privacy Policy
             </Link>
             <br></br>
