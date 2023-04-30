@@ -352,7 +352,7 @@ export const AccountSettingMov = () => {
         >
           <Typography>
             {" "}
-            <i className="fa-solid fa-ban mr-5 ml-8"></i> About Shongshari
+            <i className="fa-solid fa-ban mr-5 ml-8 my-3"></i> About Shongshari
           </Typography>
         </AccordionSummary>
         <AccordionDetails>
