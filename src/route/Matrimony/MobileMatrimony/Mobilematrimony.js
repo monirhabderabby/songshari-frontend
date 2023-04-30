@@ -120,7 +120,7 @@ const MobileMatrimony = [
   },
   {
     id: 11,
-    path: "/privacymov",
+    path: "/privacy-policy",
     element: <Privacy />,
   },
   {
