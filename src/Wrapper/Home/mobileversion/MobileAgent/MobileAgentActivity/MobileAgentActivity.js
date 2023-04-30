@@ -6,15 +6,21 @@ import ActivityRunningOrder from "../../../../../components/shared/Components/La
 // Components
 import { MobileBackButton } from "../../../../../components/shared/Components/MobileBackButton";
 import { BottomNav } from "../../BottomNav";
+import ActivityCompletedOrder from "../../../../../components/shared/Components/LawyerAgentKaziService/Activity/ActivityCompletedOrder";
+import ActivityHeader from "../../../../../components/shared/Components/LawyerAgentKaziService/Activity/ActivityHeader";
 
 const MobileAgentActivity = () => {
   const [pendingOrder, setPendingOrder] = useState(true);
   const [runningOrder, setRunningOrder] = useState(true);
+  const [completedOrder, setCompletedOrder] = useState(true);
   const [page, setPage] = useState(1);
   return (
     <div>
       <MobileBackButton name={"My Activity"} />
       <div className="px-6">
+        {/* Activity basic info */}
+        <ActivityHeader />
+
         {/* Activity top nav */}
         <div className="flex justify-around items-center mb-5">
           <button
@@ -50,6 +56,10 @@ const MobileAgentActivity = () => {
         {/* Running case */}
         {runningOrder && page === 2 && (
           <ActivityRunningOrder {...{ setRunningOrder }} />
+        )}
+        {/* Completed case */}
+        {completedOrder && page === 3 && (
+          <ActivityCompletedOrder {...{ setCompletedOrder }} />
         )}
       </div>
       <div className="h-20"></div>
