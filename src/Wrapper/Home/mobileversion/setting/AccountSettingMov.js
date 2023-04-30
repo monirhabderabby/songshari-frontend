@@ -352,12 +352,11 @@ export const AccountSettingMov = () => {
         >
           <Typography>
             {" "}
-            <i className="fa-solid fa-ban mr-5 ml-8 mt-[25px]"></i> About
-            Shongshari
+            <i className="fa-solid fa-ban mr-5 ml-8"></i> About Shongshari
           </Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Typography className="pt-[15px] pb-[15px]">
+          <Typography className="pb-[15px]">
             <Link to="/meetmov" className="ml-[100px] ">
               Team Member
             </Link>
@@ -370,6 +369,11 @@ export const AccountSettingMov = () => {
             <br></br>
             <Link to="/aboutmov" className="ml-[100px]">
               About Us
+            </Link>
+            <br></br>
+            <br></br>
+            <Link to="/contact" className="ml-[100px]">
+              Contact Us
             </Link>
             <br></br>
             <br></br>
