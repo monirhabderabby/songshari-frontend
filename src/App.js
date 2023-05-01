@@ -10,8 +10,8 @@ import MasterRoute from "./route/MasterRoute";
 import { shopBaseUrl } from "./config";
 
 function App() {
-    alert("Shop Base Url="+shopBaseUrl)
-    return <MasterRoute />;
+  //   alert("Shop Base Url=" + shopBaseUrl);
+  return <MasterRoute />;
 }
 
 export default App;
