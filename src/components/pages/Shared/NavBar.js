@@ -33,6 +33,7 @@ import getCookie from "../../../Helper/cookies/getCookie";
 import removeCookie from "../../../Helper/cookies/removeCookie";
 import isLoggedIn from "../../../Helper/hooks/checkLoggerPersestency/isLoggedIn";
 import { LanguageSwitcher } from "./LanguageSwitcher";
+import { coursesBaseUrl, shopBaseUrl } from "../../../config";
 
 const NavBar = ({ bg }) => {
   const [showNav, setShowNav] = useState(true);
@@ -67,7 +68,7 @@ const NavBar = ({ bg }) => {
     },
     { id: 2, to: "/membership", icon: membership, tooltip: "Membership" },
     { id: 3, to: "/happyStories", icon: blog, tooltip: "Happy Stories" },
-    { id: 4, to: "/courses", icon: course, tooltip: "Course" },
+    { id: 4, to: coursesBaseUrl, icon: course, tooltip: "Courses" },
     {
       id: 5,
       to: "/findLawyers/recent",
@@ -86,7 +87,8 @@ const NavBar = ({ bg }) => {
       icon: Agent,
       tooltip: "Find Agent",
     },
-    { id: 8, to: "/shop", icon: shop, tooltip: "Shop" },
+    // { id: 8, to: "/shop", icon: shop, tooltip: "Shop" },
+    { id: 8, to: shopBaseUrl, icon: shop, tooltip: "Shop" },
   ];
 
   // function declaration for logout
@@ -137,40 +139,77 @@ const NavBar = ({ bg }) => {
           <nav className="md:mr-auto md:ml-4 md:py-1 md:pl-4  	flex flex-wrap items-center text-base justify-center">
             {allMenu.map((menu) => (
               <div key={menu.id}>
-                <NavLink
-                  to={menu.to}
-                  className={({ isActive }) =>
-                    isActive ? "" : `${NavBarCSS.hasTooltip}`
-                  }
-                >
-                  <div
-                    style={{ marginLeft: "15px" }}
-                    className="flex flex-col items-center"
+                {menu.tooltip === "Courses" || "Shop" ? (
+                  <a
+                    href={menu.to}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`${NavBarCSS.hasTooltip}`}
                   >
-                    <img
-                      className="hover:rotate-[360deg] duration-[2000ms] w-[50px] h-[75px]"
-                      src={menu.icon}
-                      alt="Not Available"
-                    />
-                    <span
-                      className={`${NavBarCSS.tooltip} z-50 h-[15px] w-[15px] mt-[70px] ml-[14px]`}
-                      style={{
-                        transform: "translateX(-50%) rotate(45deg)",
-                        backgroundImage:
-                          "linear-gradient( 103deg, rgba(228, 18, 114, 1) 0%, #4844a5 100%)",
-                      }}
-                    ></span>
-                    <span
-                      className={`${NavBarCSS.tooltip} z-50 rounded-[40px] shadow-lg px-3 py-1 text-white text-xs whitespace-nowrap uppercase mt-20`}
-                      style={{
-                        backgroundImage:
-                          "linear-gradient(155deg, rgba(228, 18, 114, 1) 0%, #4844a5 100%)",
-                      }}
+                    <div
+                      style={{ marginLeft: "15px" }}
+                      className="flex flex-col items-center"
                     >
-                      {menu.tooltip}
-                    </span>
-                  </div>
-                </NavLink>
+                      <img
+                        className="hover:rotate-[360deg] duration-[2000ms] w-[50px] h-[75px]"
+                        src={menu.icon}
+                        alt="Not Available"
+                      />
+                      <span
+                        className={`${NavBarCSS.tooltip} z-50 h-[15px] w-[15px] mt-[70px] ml-[14px]`}
+                        style={{
+                          transform: "translateX(-50%) rotate(45deg)",
+                          backgroundImage:
+                            "linear-gradient( 103deg, rgba(228, 18, 114, 1) 0%, #4844a5 100%)",
+                        }}
+                      ></span>
+                      <span
+                        className={`${NavBarCSS.tooltip} z-50 rounded-[40px] shadow-lg px-3 py-1 text-white text-xs whitespace-nowrap uppercase mt-20`}
+                        style={{
+                          backgroundImage:
+                            "linear-gradient(155deg, rgba(228, 18, 114, 1) 0%, #4844a5 100%)",
+                        }}
+                      >
+                        {menu.tooltip}
+                      </span>
+                    </div>
+                  </a>
+                ) : (
+                  <NavLink
+                    to={menu.to}
+                    className={({ isActive }) =>
+                      isActive ? "" : `${NavBarCSS.hasTooltip}`
+                    }
+                  >
+                    <div
+                      style={{ marginLeft: "15px" }}
+                      className="flex flex-col items-center"
+                    >
+                      <img
+                        className="hover:rotate-[360deg] duration-[2000ms] w-[50px] h-[75px]"
+                        src={menu.icon}
+                        alt="Not Available"
+                      />
+                      <span
+                        className={`${NavBarCSS.tooltip} z-50 h-[15px] w-[15px] mt-[70px] ml-[14px]`}
+                        style={{
+                          transform: "translateX(-50%) rotate(45deg)",
+                          backgroundImage:
+                            "linear-gradient( 103deg, rgba(228, 18, 114, 1) 0%, #4844a5 100%)",
+                        }}
+                      ></span>
+                      <span
+                        className={`${NavBarCSS.tooltip} z-50 rounded-[40px] shadow-lg px-3 py-1 text-white text-xs whitespace-nowrap uppercase mt-20`}
+                        style={{
+                          backgroundImage:
+                            "linear-gradient(155deg, rgba(228, 18, 114, 1) 0%, #4844a5 100%)",
+                        }}
+                      >
+                        {menu.tooltip}
+                      </span>
+                    </div>
+                  </NavLink>
+                )}
               </div>
             ))}
           </nav>
