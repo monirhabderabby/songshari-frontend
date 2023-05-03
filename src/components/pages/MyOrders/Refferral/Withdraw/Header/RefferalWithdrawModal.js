@@ -10,14 +10,19 @@ const { TextArea } = Input;
 
 export const RefferalWithdrawModal = ({ modalControll,setSuccessSnackBarOpen,setOpen }) => {
     const [amount, setAmount] = useState(1)
+    const [customError, setCustomError] = useState("");
     const [note, setNote] = useState("")
     const [withdraw,{data,isLoading,error}] = useBalanceWithdrawMutation()
     const setPositivePoint = (e) =>{
-        if(e.target.value>0){
+        if(e.target.value!==0 ){
             setAmount(e.target.value);
         }
     }
     const handleSubmit = () => {
+        if(!(amount>0)){
+            setCustomError("Invalid amount")
+            return
+        }
         withdraw({amount, note});
     }
 
@@ -44,6 +49,7 @@ export const RefferalWithdrawModal = ({ modalControll,setSuccessSnackBarOpen,set
                 </button>
             </div>
             {error && <Error message={error?.data?.message} />}
+            {customError && <Error message={customError}/>}
 
         </Modal>
     );

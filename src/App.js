@@ -9,7 +9,7 @@ import "swiper/css/pagination";
 import MasterRoute from "./route/MasterRoute";
 
 function App() {
-    return <MasterRoute />;
+  return <MasterRoute />;
 }
 
 export default App;

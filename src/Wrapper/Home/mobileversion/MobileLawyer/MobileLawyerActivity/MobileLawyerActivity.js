@@ -7,15 +7,17 @@ import ActivityRunningOrder from "../../../../../components/shared/Components/La
 import { MobileBackButton } from "../../../../../components/shared/Components/MobileBackButton";
 import { BottomNav } from "../../BottomNav";
 import ActivityHeader from "../../../../../components/shared/Components/LawyerAgentKaziService/Activity/ActivityHeader";
+import ActivityCompletedOrder from "../../../../../components/shared/Components/LawyerAgentKaziService/Activity/ActivityCompletedOrder";
 
 const MobileLawyerActivity = () => {
   const [pendingOrder, setPendingOrder] = useState(true);
   const [runningOrder, setRunningOrder] = useState(true);
+  const [completedOrder, setCompletedOrder] = useState(true);
   const [page, setPage] = useState(1);
   return (
     <div>
       <MobileBackButton name={"My Activity"} />
-      <div className="px-6 max-w-[1024px] mx-auto">
+      <div className="px-6 max-w-[1024px] mx-auto pt-4">
         {/* Activity basic info */}
         <ActivityHeader />
 
@@ -54,6 +56,10 @@ const MobileLawyerActivity = () => {
         {/* Running case */}
         {runningOrder && page === 2 && (
           <ActivityRunningOrder {...{ setRunningOrder }} />
+        )}
+        {/* Completed case */}
+        {completedOrder && page === 3 && (
+          <ActivityCompletedOrder {...{ setCompletedOrder }} />
         )}
       </div>
       <div className="h-20"></div>

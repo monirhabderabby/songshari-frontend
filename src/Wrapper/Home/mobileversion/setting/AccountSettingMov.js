@@ -181,7 +181,7 @@ export const AccountSettingMov = () => {
             <div className="setting-mov">
               <img
                 src="https://i.ibb.co/Jnp44YF/Vector.png"
-                className="ml-8 mr-6"
+                className="ml-6 mr-6"
                 alt="Not Available"
               ></img>
               <h1 className="mt-[-5px] whitespace-nowrap">My Activity</h1>
@@ -283,25 +283,28 @@ export const AccountSettingMov = () => {
         </Link>
       )}
 
-      <Link to="/matchesmov">
-        <div className="grid grid-cols-6 mt-5 mb-8 he">
-          <div className="setting-mov">
-            <img
-              src="https://i.ibb.co/LC2W3Ch/Vector.png"
-              className="ml-8 mr-6 "
-              alt="Not Available"
-            ></img>
-            <h1 className="mt-[-5px]">Matches</h1>
+      {role === "member" && (
+        <Link to="/matchesmov">
+          <div className="grid grid-cols-6 mt-5 mb-8 he">
+            <div className="setting-mov">
+              <img
+                src="https://i.ibb.co/LC2W3Ch/Vector.png"
+                className="ml-8 mr-6 "
+                alt="Not Available"
+              ></img>
+              <h1 className="mt-[-5px]">Matches</h1>
+            </div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div>
+              <i className="fa-solid fa-angle-right ml-8"></i>
+            </div>
           </div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div>
-            <i className="fa-solid fa-angle-right ml-8"></i>
-          </div>
-        </div>
-      </Link>
+        </Link>
+      )}
+
       <Link to="/certificatemov">
         <div className="grid grid-cols-6 mt-5 mb-8 he">
           <div className="setting-mov">
@@ -349,24 +352,28 @@ export const AccountSettingMov = () => {
         >
           <Typography>
             {" "}
-            <i className="fa-solid fa-ban mr-5 ml-8 mt-[25px]"></i> About
-            Shongshari
+            <i className="fa-solid fa-ban mr-5 ml-8 my-3"></i> About Shongshari
           </Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Typography className="pt-[15px] pb-[15px]">
+          <Typography className="pb-[15px]">
             <Link to="/meetmov" className="ml-[100px] ">
               Team Member
             </Link>
             <br></br>
             <br></br>
-            <Link to="/privacymov" className="ml-[100px] ">
+            <Link to="/privacy-policy" className="ml-[100px] ">
               Privacy Policy
             </Link>
             <br></br>
             <br></br>
             <Link to="/aboutmov" className="ml-[100px]">
               About Us
+            </Link>
+            <br></br>
+            <br></br>
+            <Link to="/contact" className="ml-[100px]">
+              Contact Us
             </Link>
             <br></br>
             <br></br>

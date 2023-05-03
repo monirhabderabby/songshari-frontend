@@ -8,10 +8,12 @@ import { ServicesContainer } from "../../../../../components/shared/Components/L
 // Components
 import { MobileBackButton } from "../../../../../components/shared/Components/MobileBackButton";
 import { BottomNav } from "../../BottomNav";
+import { CompletedOrder } from "../../../../../components/shared/Components/LawyerAgentKaziService/CompletedOrder/CompletedOrder";
 
 const MobileAgentServicesPage = () => {
   const [pendingOrder, setPendingOrder] = useState(true);
   const [runningOrder, setRunningOrder] = useState(true);
+  const [completedOrder, setCompletedOrder] = useState(true);
   const [page, setPage] = useState(1);
   return (
     <div>
@@ -20,7 +22,7 @@ const MobileAgentServicesPage = () => {
       <div className="px-6">
         <div className="w-full">
           <div className="mt-5">
-            <ServicesContainer />
+            <ServicesContainer {...{ responsive: true }} />
             <div className="my-5 flex justify-center">
               <Link
                 className="px-7 py-2 text-white text-lg md:text-xl font-semibold leading-8 rounded bg-[#E41272]"
@@ -66,7 +68,9 @@ const MobileAgentServicesPage = () => {
         {page === 2 && runningOrder && (
           <RunningOrder {...{ setRunningOrder }} />
         )}
-        {/* {page === 3 && <CompletedCase></CompletedCase>} */}
+        {page === 3 && completedOrder && (
+          <CompletedOrder {...{ setCompletedOrder }} />
+        )}
       </div>
       <div className="h-20"></div>
       <BottomNav />

@@ -77,8 +77,9 @@ export const AccountDetailesDash = () => {
                   "Refferral",
                   "Support",
                   "Success Story",
-                  "Deactivate Account",
-                  "Ignore List"
+                  "Ignore List",
+                  "Deactivate Account"
+                  
                 ].map((text, index) => (
                   <ListItem key={text} disablePadding>
                     <NavLink

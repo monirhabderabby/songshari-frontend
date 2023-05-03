@@ -38,6 +38,7 @@ export const referralApi = apiSlice.injectEndpoints({
                     authorization: `Bearer ${getCookie("token")}`,
                 },
             }),
+            providesTags:["myWithdrawRequests"]
         }),
         balanceWithdraw:builder.mutation({
             query: (data) => ({
@@ -48,6 +49,7 @@ export const referralApi = apiSlice.injectEndpoints({
                 },
                 body:data
             }),
+            invalidatesTags:["myWithdrawRequests"]
         }),
     }),
 });

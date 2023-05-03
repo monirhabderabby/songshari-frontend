@@ -31,6 +31,7 @@ import MobileDiamondPlan from "../../../components/pages/Membership/MobileVersio
 import MobileFreePlan from "../../../components/pages/Membership/MobileVersion/MobileFreePlan";
 import MobileGoldPlan from "../../../components/pages/Membership/MobileVersion/MobileGoldPlan";
 import UpgradePlan from "../../../components/pages/Membership/MobileVersion/UpgradePlan";
+import { Privacy } from "../../../components/pages/Privacy/Privacy";
 import MobileTopBride from "../../../components/pages/TopProfile/MobileTopProfile/MobileTopBride";
 import MobileTopGroom from "../../../components/pages/TopProfile/MobileTopProfile/MobileTopGroom";
 import Suggested from "../../../components/pages/TopProfile/Suggested";
@@ -47,7 +48,6 @@ import { Like } from "../../../Wrapper/Home/mobileversion/Like";
 import { MatchesMov } from "../../../Wrapper/Home/mobileversion/MatchesMov";
 import { MeetMov } from "../../../Wrapper/Home/mobileversion/meet/MeetMov";
 import { MobileHome } from "../../../Wrapper/Home/mobileversion/MobileHome";
-import { PrivacyMov } from "../../../Wrapper/Home/mobileversion/privacy/PrivacyMov";
 
 // routes
 const MobileMatrimony = [
@@ -120,8 +120,8 @@ const MobileMatrimony = [
   },
   {
     id: 11,
-    path: "/privacymov",
-    element: <PrivacyMov />,
+    path: "/privacy-policy",
+    element: <Privacy />,
   },
   {
     id: 12,
