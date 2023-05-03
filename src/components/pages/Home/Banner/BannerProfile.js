@@ -16,6 +16,7 @@ import { SwipAndMatchCard } from "../../../shared/Cards/SwipeAndMatch/SwipAndMat
 //css
 import "swiper/css";
 import "swiper/css/navigation";
+import { useGetSwapDataQuery } from "../../../../Redux/features/userInfo/userApi";
 
 const BannerProfile = () => {
     // hook variables
@@ -27,7 +28,13 @@ const BannerProfile = () => {
     const [swipeProfileLike] = useSwipeProfileLikeMutation();
     const [rejectSwipeAndMatchMember] = useRejectSwipeAndMatchMemberMutation();
     const { data: swipematch } = useGetRecentMembersWithAuthQuery();
+
+    // get swap data
+    const { data: swapData } = useGetSwapDataQuery();
+    console.log(swapData);
     const [currentUser, setCurrentUser] = useState(null);
+
+    console.log(swipematch);
 
     const getJustSwipeData = e => {
         // get the current element
