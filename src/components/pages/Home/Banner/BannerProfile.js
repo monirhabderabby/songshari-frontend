@@ -8,7 +8,6 @@ import { Swiper, SwiperSlide } from "swiper/react";
 
 // components
 import {
-    useGetRecentMembersQuery,
     useGetRecentMembersWithAuthQuery,
     useRejectSwipeAndMatchMemberMutation,
     useSwipeProfileLikeMutation,
@@ -28,7 +27,7 @@ const BannerProfile = ({ swapable, setSwapable }) => {
 
     const [swipeProfileLike, { data:swapLikeData }] = useSwipeProfileLikeMutation();
   const [rejectSwipeAndMatchMember] = useRejectSwipeAndMatchMemberMutation();
-  const { data: swipematch } = useGetRecentMembersQuery({
+  const { data: swipematch } = useGetRecentMembersWithAuthQuery({
     searchTerm: "",
     page: "",
     role: "",
