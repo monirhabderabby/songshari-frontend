@@ -1,12 +1,15 @@
+import {useState} from "react"
 import { decodeToken } from "react-jwt";
 import getCookie from "../../../../Helper/cookies/getCookie";
 import BannerFilterBox from "./BannerFilterBox";
 import BannerProfile from "./BannerProfile";
+import GoPremiumCard from "./GoPrimiumCard";
 
 const Banner = () => {
   const token = getCookie("token");
   const decodedValue = decodeToken(token);
   const { role } = decodedValue || {};
+  const [swapable, setSwapable]  = useState(true)
 
   return (
     <>
@@ -20,7 +23,10 @@ const Banner = () => {
               src="https://images.pexels.com/photos/1779414/pexels-photo-1779414.jpeg?auto=compress&cs=tinysrgb&w=800"
               alt="Not Available"
             />
-            {role?.includes("member") && <BannerProfile />}
+            {role?.includes("member") && swapable &&  (
+              <BannerProfile {...{ swapable, setSwapable }} />
+            )}
+            {!swapable && <GoPremiumCard />}
           </div>
         </div>
       </section>
