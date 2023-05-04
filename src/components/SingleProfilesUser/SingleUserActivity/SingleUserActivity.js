@@ -14,17 +14,21 @@ import {
   useGetMyPostsQuery,
 } from "../../../Redux/features/Post/postApi";
 import { AllPostsOfLoggedInUser } from "./AllPostsOfLoggedInUser/AllPostsOfLoggedInUser";
+import { useGetProfileDetailsWIthAuthQuery } from "../../../Redux/features/userInfo/userApi";
+import GoActivityPremiumCard from "./GoActivityPremiumCard";
 
 const SingleUserActivity = () => {
   // hook variable declaration
   const [photoURL, setPhotoUrl] = useState("");
   const [postText, setPostText] = useState("");
   const [privacy, setPrivacy] = useState("");
+  const [canPost, setCanPost] = useState(true);
 
   // page title
   useDocumentTitle("Shongshari | Activity");
 
   // Redux Api Call
+  const { data: profileData } = useGetProfileDetailsWIthAuthQuery();
   const [addUserPost, { isSuccess: addPostSuccess }] = useAddUserPostMutation();
   const { data: posts, isLoading, error } = useGetMyPostsQuery();
   const [photosUploadOnServer, { isSuccess, data }] =
@@ -45,19 +49,23 @@ const SingleUserActivity = () => {
   // function declarations
   const addPost = async (event) => {
     event.preventDefault();
-    const data = {
-      authorName: firstName + " " + lastName,
-      attachment: photoURL,
-      postBody: postText,
-      privacy: privacy,
-      profilePhoto: profilePhoto,
-    };
+    if ((!profileData?.userMatrimonyPackageInfo?.package?.timelinePost)) {
+      return setCanPost(false);
+    } else {
+      const data = {
+        authorName: firstName + " " + lastName,
+        attachment: photoURL,
+        postBody: postText,
+        privacy: privacy,
+        profilePhoto: profilePhoto,
+      };
 
-    await addUserPost({
-      data,
-    });
+      await addUserPost({
+        data,
+      });
 
-    setPostText("");
+      setPostText("");
+    }
   };
 
   const photoHandler = async (e) => {
@@ -164,6 +172,7 @@ const SingleUserActivity = () => {
           <AllPostsOfLoggedInUser {...{ posts, isLoading, error }} />
         </div>
       </div>
+      {!canPost && <GoActivityPremiumCard {...{ canPost, setCanPost }} />}
     </div>
   );
 };
