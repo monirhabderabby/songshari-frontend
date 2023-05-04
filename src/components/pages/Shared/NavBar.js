@@ -140,12 +140,7 @@ const NavBar = ({ bg }) => {
             {allMenu.map((menu) => (
               <div key={menu.id}>
                 {menu.tooltip === "Courses" || "Shop" ? (
-                  <a
-                    href={menu.to}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`${NavBarCSS.hasTooltip}`}
-                  >
+                  <a href={menu.to} className={`${NavBarCSS.hasTooltip}`}>
                     <div
                       style={{ marginLeft: "15px" }}
                       className="flex flex-col items-center"
