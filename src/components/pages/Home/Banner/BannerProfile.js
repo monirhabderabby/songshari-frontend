@@ -26,9 +26,14 @@ const BannerProfile = () => {
 
     const [swipeProfileLike] = useSwipeProfileLikeMutation();
     const [rejectSwipeAndMatchMember] = useRejectSwipeAndMatchMemberMutation();
-    const { data: swipematch } = useGetRecentMembersWithAuthQuery();
+    const { data: swipematch } = useGetRecentMembersWithAuthQuery({
+      searchTerm:"",
+      page:"",
+      role:"",
+      limit:"",
+    });
     const [currentUser, setCurrentUser] = useState(null);
-
+    console.log(swipematch, "swap and match data");
     const getJustSwipeData = e => {
         // get the current element
         let activeEl;
