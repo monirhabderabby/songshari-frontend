@@ -9,6 +9,7 @@ import FileUploadSection from "./UpdateCertificateSection/FileUploadSection/File
 
 const CertificateDetail = ({ selected, title }) => {
   const [selectedPhoto, setSelectedPhoto] = useState();
+  
   const { degree, institute, department, position } = selected || {}
 
   useEffect(() => {
