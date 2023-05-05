@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from "react";
 import SingleShowcasePhoto from "./SingleShowcasePhoto";
 import EducationInfo from "./tables/EducationInfo";
-import MarriageInfo from "./tables/MarriageInfo";
+// import MarriageInfo from "./tables/MarriageInfo";
 import ProfessionInfo from "./tables/ProfessionInfo";
 import FileReuploadSection from "./UpdateCertificateSection/FileReuploadSection/FileReuploadSection";
 import AddNewMarriageCertificate from "./UpdateCertificateSection/FileUploadSection/AddNewMarriageCertificate";
 import FileUploadSection from "./UpdateCertificateSection/FileUploadSection/FileUploadSection";
 
 const CertificateDetail = ({ selected, title }) => {
+  console.log(title, "is the title");
   const [selectedPhoto, setSelectedPhoto] = useState();
-  console.log(selected);
-  const { degree, institute, department, position } = selected;
+  const { degree, institute, department, position } = selected || {}
 
   useEffect(() => {
     if (selected) {
@@ -20,13 +20,13 @@ const CertificateDetail = ({ selected, title }) => {
 
   return (
     <div>
-      <h1 className="text-left font-semibold text-[32px] text-[#333333]">
+      {title!=="marriage" && <h1 className="text-left font-semibold text-[32px] text-[#333333]">
         {title === "edu"
           ? `${degree || "Degree"} in ${
               department?.toUpperCase() || "a Department"
             } from ${institute || "a institution"}`
           : `${position || "A Position"} in ${institute || "a institute"}`}
-      </h1>
+      </h1>}
 
       {/* Selected certificate img showing */}
       {selected?.certificates?.length !== 0 && (
@@ -51,7 +51,7 @@ const CertificateDetail = ({ selected, title }) => {
         </>
       )}
       
-      {title === "marriage" && <MarriageInfo {...{ selected }} />}
+      {/* {title === "marriage" && <MarriageInfo {...{ selected }} />} */}
       {title === "prof" && <ProfessionInfo {...{ selected }} />}
       {title === "edu" && <EducationInfo {...{ selected }} />}
 

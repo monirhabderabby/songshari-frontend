@@ -10,7 +10,7 @@ const MarriageInfo = ({ selected }) => {
             Marriage Date
           </td>
           <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-            {selected.marriageDate}
+            {selected?.marriageDate}
           </td>
         </tr>
         <tr>
@@ -18,7 +18,7 @@ const MarriageInfo = ({ selected }) => {
             Divorce Date
           </td>
           <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-            {selected.divorceDate}
+            {selected?.divorceDate}
           </td>
         </tr>
         <tr>
@@ -26,7 +26,7 @@ const MarriageInfo = ({ selected }) => {
             Partner Death Date
           </td>
           <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-            {selected.partnerDeathDate}
+            {selected?.partnerDeathDate}
           </td>
         </tr>
         <tr>
@@ -34,7 +34,7 @@ const MarriageInfo = ({ selected }) => {
             Reason of Partner Death
           </td>
           <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-            {selected.partnerDeathDate}
+            {selected?.partnerDeathDate}
           </td>
         </tr>
         <tr>
@@ -50,7 +50,7 @@ const MarriageInfo = ({ selected }) => {
             Partner Death Date
           </td>
           <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-            {selected.partnerDeathDate}
+            {selected?.partnerDeathDate}
           </td>
         </tr>
       </table>
