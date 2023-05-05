@@ -17,7 +17,6 @@ const MarriageCertificateWev = () => {
 
   // Redux API calls
   const { data: response } = useGetMarriageCertificateByAuthQuery();
-  console.log(response, "marriage certificate");
 
   // useEffect declaration
   useEffect(() => {

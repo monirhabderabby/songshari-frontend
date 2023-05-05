@@ -8,7 +8,6 @@ import AddNewMarriageCertificate from "./UpdateCertificateSection/FileUploadSect
 import FileUploadSection from "./UpdateCertificateSection/FileUploadSection/FileUploadSection";
 
 const CertificateDetail = ({ selected, title }) => {
-  console.log(title, "is the title");
   const [selectedPhoto, setSelectedPhoto] = useState();
   const { degree, institute, department, position } = selected || {}
 
