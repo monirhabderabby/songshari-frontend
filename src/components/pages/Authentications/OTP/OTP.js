@@ -26,7 +26,7 @@ export const OTP = () => {
 
     useEffect(() => {
         if (data?.message === "Email verified") {
-            setTimeout(navigate("/userProfile"),200)
+            setTimeout(navigate("/userProfile"), 200);
         }
     }, [navigate, data?.message]);
 
@@ -73,7 +73,9 @@ export const OTP = () => {
                             <p>Email Verification</p>
                         </div>
                         <div className="flex flex-row text-sm font-medium text-gray-400">
-                            <p>We have sent a code to your email {hideemail(myDocodeToken?.email)}</p>
+                            <p>
+                                We have sent a code to your email <br /> {hideemail(myDocodeToken?.email)}
+                            </p>
                         </div>
                     </div>
                     <form action="">

@@ -8,12 +8,12 @@ import { getStorage } from "firebase/storage";
 
 // Shongshari Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyCENHAW7l7aCMr5E1Nc7IdFjW37DZFbFLA",
-  authDomain: "shongshari-8235e.firebaseapp.com",
-  projectId: "shongshari-8235e",
-  storageBucket: "shongshari-8235e.appspot.com",
-  messagingSenderId: "548796884677",
-  appId: "1:548796884677:web:7192298133e6cac83f32ac",
+    apiKey: "AIzaSyCENHAW7l7aCMr5E1Nc7IdFjW37DZFbFLA",
+    authDomain: "shongshari-8235e.firebaseapp.com",
+    projectId: "shongshari-8235e",
+    storageBucket: "shongshari-8235e.appspot.com",
+    messagingSenderId: "548796884677",
+    appId: "1:548796884677:web:7192298133e6cac83f32ac",
 };
 
 // Initialize Firebase

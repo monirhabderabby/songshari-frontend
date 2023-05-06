@@ -17,6 +17,7 @@ import { SwipAndMatchCard } from "../../../shared/Cards/SwipeAndMatch/SwipAndMat
 //css
 import "swiper/css";
 import "swiper/css/navigation";
+import { useGetSwapDataQuery } from "../../../../Redux/features/userInfo/userApi";
 
 const BannerProfile = ({ swapable, setSwapable }) => {
   // hook variables

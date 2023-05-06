@@ -295,6 +295,15 @@ export const userApi = apiSlice.injectEndpoints({
                 body: data,
             }),
         }),
+        getSwapData: builder.query({
+            query: () => ({
+                url: "/swap/get-unique-profile",
+                method: "GET",
+                headers: {
+                    authorization: `Bearer ${getCookie("token")}`,
+                },
+            }),
+        }),
     }),
 });
 
@@ -329,4 +338,5 @@ export const {
     useGetUsersAllNotificationQuery,
     useGetUserBadgesQuery,
     useAddNwMarriageCertificateMutation,
+    useGetSwapDataQuery,
 } = userApi;
