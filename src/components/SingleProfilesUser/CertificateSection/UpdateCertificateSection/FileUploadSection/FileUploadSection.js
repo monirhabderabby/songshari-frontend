@@ -24,13 +24,16 @@ const FileUploadSection = ({ selected, selectedPhoto }) => {
     }
   };
 
-  if (response) {
-    toast.success("Successfully Added");
-  }
+  useEffect(() => {
+    if (uploadedCertificate)
+      if (response) {
+        toast.success("Successfully Added");
+      }
 
-  if (error) {
-    toast.error("Error : Please try again");
-  }
+    if (error) {
+      toast.error("Error : Please try again");
+    }
+  }, [response, error]);
 
   useEffect(() => {
     if (uploadedCertificate)

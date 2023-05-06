@@ -12,6 +12,7 @@ export const documentsApi = apiSlice.injectEndpoints({
         },
       }),
       keepUnusedDataFor: 0,
+      providesTags: ["certificates"],
     }),
     resubmitProfessionalCertificate: builder.mutation({
       query: ({ id, data }) => ({
@@ -22,6 +23,7 @@ export const documentsApi = apiSlice.injectEndpoints({
         },
         body: data,
       }),
+      invalidatesTags: ["certificates"],
     }),
     resubmitEducationalCertificate: builder.mutation({
       query: ({ id, data }) => ({
@@ -32,6 +34,7 @@ export const documentsApi = apiSlice.injectEndpoints({
         },
         body: data,
       }),
+      invalidatesTags: ["certificates"],
     }),
     resubmitAnyCertificate: builder.mutation({
       query: ({ id, data }) => ({
@@ -42,6 +45,7 @@ export const documentsApi = apiSlice.injectEndpoints({
         },
         body: data,
       }),
+      invalidatesTags: ["certificates"],
     }),
 
     getMarriageCertificateByAuth: builder.query({
@@ -63,6 +67,7 @@ export const documentsApi = apiSlice.injectEndpoints({
         },
         body: data,
       }),
+      invalidatesTags: ["certificates"],
     }),
   }),
 });

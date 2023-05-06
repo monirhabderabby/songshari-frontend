@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import SingleShowcasePhoto from "./SingleShowcasePhoto";
-import EducationInfo from "./tables/EducationInfo";
+// import EducationInfo from "./tables/EducationInfo";
 // import MarriageInfo from "./tables/MarriageInfo";
-import ProfessionInfo from "./tables/ProfessionInfo";
+// import ProfessionInfo from "./tables/ProfessionInfo";
 import FileReuploadSection from "./UpdateCertificateSection/FileReuploadSection/FileReuploadSection";
 import AddNewMarriageCertificate from "./UpdateCertificateSection/FileUploadSection/AddNewMarriageCertificate";
 import FileUploadSection from "./UpdateCertificateSection/FileUploadSection/FileUploadSection";
@@ -29,7 +29,7 @@ const CertificateDetail = ({ selected, title }) => {
       </h1>}
 
       {/* Selected certificate img showing */}
-      {selected?.certificates?.length !== 0 && (
+      {selected?.certificates?.length > 0 && (
         <>
           <div
             style={{ boxShadow: "2px 2px 10px rgba(0, 0, 0, 0.12)" }}
@@ -52,8 +52,8 @@ const CertificateDetail = ({ selected, title }) => {
       )}
       
       {/* {title === "marriage" && <MarriageInfo {...{ selected }} />} */}
-      {title === "prof" && <ProfessionInfo {...{ selected }} />}
-      {title === "edu" && <EducationInfo {...{ selected }} />}
+      {/* {title === "prof" && <ProfessionInfo {...{ selected }} />} */}
+      {/* {title === "edu" && <EducationInfo {...{ selected }} />} */}
 
       {/* file uploading section */}
       {title === "marriage" && (
