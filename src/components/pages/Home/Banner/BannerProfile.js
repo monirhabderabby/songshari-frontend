@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 // Configuration
 import { useEffect, useState } from "react";
 
@@ -16,26 +17,23 @@ import { SwipAndMatchCard } from "../../../shared/Cards/SwipeAndMatch/SwipAndMat
 //css
 import "swiper/css";
 import "swiper/css/navigation";
-import { useGetSwapDataQuery } from "../../../../Redux/features/userInfo/userApi";
 
-const BannerProfile = () => {
+const BannerProfile = ({ swapable, setSwapable }) => {
     // hook variables
     const [likedGif, setLikedGif] = useState(false);
     const [rejectedGif, setRejectedGif] = useState(false);
     const [clickNextButton, setClickNextButton] = useState(false);
     const [clickPreviousButton, setClickPreviousButton] = useState(false);
 
-    const [swipeProfileLike] = useSwipeProfileLikeMutation();
+    const [swipeProfileLike, { data: swapLikeData }] = useSwipeProfileLikeMutation();
     const [rejectSwipeAndMatchMember] = useRejectSwipeAndMatchMemberMutation();
-    const { data: swipematch } = useGetRecentMembersWithAuthQuery();
-
-    // get swap data
-    const { data: swapData } = useGetSwapDataQuery();
-    console.log(swapData);
+    const { data: swipematch } = useGetRecentMembersWithAuthQuery({
+        searchTerm: "",
+        page: "",
+        role: "",
+        limit: "",
+    });
     const [currentUser, setCurrentUser] = useState(null);
-
-    console.log(swipematch);
-
     const getJustSwipeData = e => {
         // get the current element
         let activeEl;
@@ -48,6 +46,12 @@ const BannerProfile = () => {
 
         setCurrentUser(result);
     };
+
+    useEffect(() => {
+        if (swapLikeData) {
+            setSwapable(swapLikeData?.swapAble);
+        }
+    }, [swapLikeData]);
 
     useEffect(() => {
         // JS Variable
@@ -103,7 +107,7 @@ const BannerProfile = () => {
         >
             {swipematch?.data?.members.map(data => (
                 <SwiperSlide key={data._id}>
-                    <SwipAndMatchCard {...{ data, likedGif, rejectedGif }} />
+                    <SwipAndMatchCard {...{ data, likedGif, rejectedGif, swapable, setSwapable }} />
                 </SwiperSlide>
             ))}
         </Swiper>

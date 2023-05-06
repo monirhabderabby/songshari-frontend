@@ -1,23 +1,34 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 // Third party package
 import { IoMdCloudUpload } from "react-icons/io";
 import { toast, Toaster } from "react-hot-toast";
 
 // Components
-import { useAddNwMarriageCertificateMutation } from "../../../../../Redux/features/userInfo/userApi";
+import {
+  useAddNwMarriageCertificateMutation,
+  useGetProfileDetailsWIthAuthQuery,
+} from "../../../../../Redux/features/userInfo/userApi";
 import { usePhotosUploadOnServerMutation } from "../../../../../Redux/features/fileUpload/fileUploadApi";
+import GoPremium from "./GoPremium";
 
-const AddNewMarriageCertificate = ({selected, selectedPhoto}) => {
+const AddNewMarriageCertificate = ({ selected, selectedPhoto }) => {
+  const [showPopup, setShowPopup] = useState(false);
   // Redux api
   const [addNewCertificate, { data: response, isLoading, error }] =
     useAddNwMarriageCertificateMutation(); // add new certificate
-  
+  const { data } = useGetProfileDetailsWIthAuthQuery();
+  const photoUploadAble =
+    data?.userMatrimonyPackageInfo?.package?.uploadMarriageCertificate;
+
   const [uploadCertificate, { data: uploadedCertificate, fileLoading }] =
     usePhotosUploadOnServerMutation();
   // handle file upload change data
   const handleUpload = async (e) => {
+    if (!photoUploadAble) {
+      return setShowPopup(true);
+    }
     if (e.target.files[0]) {
       const formData = new FormData();
       formData.append("image", e.target.files[0]);
@@ -33,7 +44,7 @@ const AddNewMarriageCertificate = ({selected, selectedPhoto}) => {
     if (error) {
       toast.error("Error : Please try again");
     }
-  },[error, response])
+  }, [error, response]);
 
   useEffect(() => {
     if (uploadedCertificate)
@@ -75,6 +86,7 @@ const AddNewMarriageCertificate = ({selected, selectedPhoto}) => {
         </div>
       </label>
       <Toaster />
+      {showPopup && <GoPremium {...{setShowPopup}} />}
     </section>
   );
 };

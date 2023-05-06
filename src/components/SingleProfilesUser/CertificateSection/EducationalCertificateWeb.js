@@ -15,7 +15,6 @@ const EducationalCertificateWeb = ({title}) => {
 
   //Redux API calls
   const { data: response } = useGetCertificatesWithAuthQuery();
-  console.log(response)
 
   // useEffect declaration
   useEffect(() => {
@@ -55,7 +54,7 @@ const EducationalCertificateWeb = ({title}) => {
           </div>
           {/* certificate navigation */}
           <div className="w-[800px]">
-            {selected && <CertificateDetail {...{ selected, title }} />}
+            {(selected || title==="marriage") && <CertificateDetail {...{ selected, title }} />}
           </div>
         </div>
       </div>
