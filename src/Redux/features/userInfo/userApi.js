@@ -268,6 +268,7 @@ export const userApi = apiSlice.injectEndpoints({
                 },
                 body: data,
             }),
+            invalidatesTags:["certificates"]
         }),
         getUsersAllNotification: builder.query({
             query: ({ page, limit }) => ({
@@ -294,6 +295,7 @@ export const userApi = apiSlice.injectEndpoints({
                 },
                 body: data,
             }),
+            invalidatesTags:["certificates"]
         }),
         getSwapData: builder.query({
             query: () => ({
