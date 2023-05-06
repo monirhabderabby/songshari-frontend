@@ -46,7 +46,7 @@ const BannerProfile = ({ swapable, setSwapable }) => {
 
         setCurrentUser(result);
     };
-
+    
     useEffect(() => {
         if (swapLikeData) {
             setSwapable(swapLikeData?.swapAble);
@@ -67,23 +67,44 @@ const BannerProfile = ({ swapable, setSwapable }) => {
             setClickPreviousButton(false);
             swipeProfileLike(_id);
         }
-    }, [clickNextButton, currentUser, clickPreviousButton, swipeProfileLike, rejectSwipeAndMatchMember]);
+    },[swapLikeData])
 
-    useEffect(() => {
-        if (likedGif) {
-            setTimeout(() => {
-                setLikedGif(false);
-            }, 2000);
-        }
-    }, [likedGif]);
-    useEffect(() => {
-        if (rejectedGif) {
-            setTimeout(() => {
-                setRejectedGif(false);
-            }, 2000);
-        }
-    }, [rejectedGif]);
+  useEffect(() => {
+    // JS Variable
+    const { _id } = currentUser || {};
 
+    if (clickNextButton) {
+      setClickNextButton(false);
+      rejectSwipeAndMatchMember(_id);
+      setRejectedGif(true);
+    }
+    if (clickPreviousButton) {
+      setLikedGif(true);
+      setClickPreviousButton(false);
+      swipeProfileLike(_id);
+    }
+  }, [
+    clickNextButton,
+    currentUser,
+    clickPreviousButton,
+    swipeProfileLike,
+    rejectSwipeAndMatchMember,
+  ]);
+
+  useEffect(() => {
+    if (likedGif) {
+      setTimeout(() => {
+        setLikedGif(false);
+      }, 2000);
+    }
+  }, [likedGif]);
+  useEffect(() => {
+    if (rejectedGif) {
+      setTimeout(() => {
+        setRejectedGif(false);
+      }, 2000);
+    }
+  }, [rejectedGif]);
     return (
         <Swiper
             spaceBetween={30}
