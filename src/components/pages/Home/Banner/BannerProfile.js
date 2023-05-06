@@ -17,40 +17,55 @@ import { SwipAndMatchCard } from "../../../shared/Cards/SwipeAndMatch/SwipAndMat
 //css
 import "swiper/css";
 import "swiper/css/navigation";
-import { useGetSwapDataQuery } from "../../../../Redux/features/userInfo/userApi";
 
 const BannerProfile = ({ swapable, setSwapable }) => {
-  // hook variables
-  const [likedGif, setLikedGif] = useState(false);
-  const [rejectedGif, setRejectedGif] = useState(false);
-  const [clickNextButton, setClickNextButton] = useState(false);
-  const [clickPreviousButton, setClickPreviousButton] = useState(false);
+    // hook variables
+    const [likedGif, setLikedGif] = useState(false);
+    const [rejectedGif, setRejectedGif] = useState(false);
+    const [clickNextButton, setClickNextButton] = useState(false);
+    const [clickPreviousButton, setClickPreviousButton] = useState(false);
 
-    const [swipeProfileLike, { data:swapLikeData }] = useSwipeProfileLikeMutation();
-  const [rejectSwipeAndMatchMember] = useRejectSwipeAndMatchMemberMutation();
-  const { data: swipematch } = useGetRecentMembersWithAuthQuery({
-    searchTerm: "",
-    page: "",
-    role: "",
-    limit: "",
-  });
-  const [currentUser, setCurrentUser] = useState(null);
-  const getJustSwipeData = (e) => {
-    // get the current element
-    let activeEl;
-    activeEl = e.previousIndex - 1;
-    const swipeAndMatchArrau = swipematch?.data?.members;
-    const result = swipeAndMatchArrau.find((item, index) => {
-      if (activeEl === index) return item;
-      else return false;
+    const [swipeProfileLike, { data: swapLikeData }] = useSwipeProfileLikeMutation();
+    const [rejectSwipeAndMatchMember] = useRejectSwipeAndMatchMemberMutation();
+    const { data: swipematch } = useGetRecentMembersWithAuthQuery({
+        searchTerm: "",
+        page: "",
+        role: "",
+        limit: "",
     });
+    const [currentUser, setCurrentUser] = useState(null);
+    const getJustSwipeData = e => {
+        // get the current element
+        let activeEl;
+        activeEl = e.previousIndex - 1;
+        const swipeAndMatchArrau = swipematch?.data?.members;
+        const result = swipeAndMatchArrau.find((item, index) => {
+            if (activeEl === index) return item;
+            else return false;
+        });
 
-    setCurrentUser(result);
+        setCurrentUser(result);
     };
     
     useEffect(() => {
         if (swapLikeData) {
             setSwapable(swapLikeData?.swapAble);
+        }
+    }, [swapLikeData]);
+
+    useEffect(() => {
+        // JS Variable
+        const { _id } = currentUser || {};
+
+        if (clickNextButton) {
+            setClickNextButton(false);
+            rejectSwipeAndMatchMember(_id);
+            setRejectedGif(true);
+        }
+        if (clickPreviousButton) {
+            setLikedGif(true);
+            setClickPreviousButton(false);
+            swipeProfileLike(_id);
         }
     },[swapLikeData])
 
@@ -90,37 +105,34 @@ const BannerProfile = ({ swapable, setSwapable }) => {
       }, 2000);
     }
   }, [rejectedGif]);
-
-  return (
-    <Swiper
-      spaceBetween={30}
-      centeredSlides={true}
-      loop={true}
-      autoplay={{
-        delay: 7500,
-      }}
-      modules={[Navigation, Autoplay]}
-      className="max-w-[280px] h-[400px]"
-      navigation={true}
-      onSlideChange={(e) => getJustSwipeData(e)}
-      onNavigationPrev={() => {
-        setClickNextButton(false);
-        setClickPreviousButton(true);
-      }}
-      onNavigationNext={() => {
-        setClickPreviousButton(false);
-        setClickNextButton(true);
-      }}
-    >
-      {swipematch?.data?.members.map((data) => (
-        <SwiperSlide key={data._id}>
-          <SwipAndMatchCard
-            {...{ data, likedGif, rejectedGif, swapable, setSwapable }}
-          />
-        </SwiperSlide>
-      ))}
-    </Swiper>
-  );
+    return (
+        <Swiper
+            spaceBetween={30}
+            centeredSlides={true}
+            loop={true}
+            autoplay={{
+                delay: 7500,
+            }}
+            modules={[Navigation, Autoplay]}
+            className="max-w-[280px] h-[400px]"
+            navigation={true}
+            onSlideChange={e => getJustSwipeData(e)}
+            onNavigationPrev={() => {
+                setClickNextButton(false);
+                setClickPreviousButton(true);
+            }}
+            onNavigationNext={() => {
+                setClickPreviousButton(false);
+                setClickNextButton(true);
+            }}
+        >
+            {swipematch?.data?.members.map(data => (
+                <SwiperSlide key={data._id}>
+                    <SwipAndMatchCard {...{ data, likedGif, rejectedGif, swapable, setSwapable }} />
+                </SwiperSlide>
+            ))}
+        </Swiper>
+    );
 };
 
 export default BannerProfile;
