@@ -16,11 +16,15 @@ import { BottomNav } from "../../../Wrapper/Home/mobileversion/BottomNav";
 import { MobileBackButton } from "../../shared/Components/MobileBackButton";
 import MobileActivityPost from "./MobileActivityPost";
 import { usePhotosUploadOnServerMutation } from "../../../Redux/features/fileUpload/fileUploadApi";
+import { useGetProfileDetailsWIthAuthQuery } from "../../../Redux/features/userInfo/userApi";
+import GoMobActivityPremium from "./GoMobActivityPremium";
 
 const MobileActivity = () => {
   const [photoURL, setPhotoUrl] = useState("");
   const [privacy, setPrivacy] = useState("");
   const [postText, setPostText] = useState("");
+  const [canPost, setCanPost] = useState(true);
+  const { data: profileData } = useGetProfileDetailsWIthAuthQuery();
 
   const userInfo = useSelector(
     (state) => state?.persistedReducer?.userInfo?.userInfo?.user
@@ -48,17 +52,21 @@ const MobileActivity = () => {
   };
 
   const onSubmit = async (data) => {
-    let postText = "";
-    postText = data.postText;
-    await addUserPost({
-      data: {
-        authorName: firstName + " " + lastName,
-        attachment: photoURL,
-        postBody: postText,
-        privacy: privacy,
-        profilePhoto: profilePhoto,
-      },
-    });
+    if (!profileData?.userMatrimonyPackageInfo?.package?.timelinePost) {
+      return setCanPost(false);
+    } else {
+      let postText = "";
+      postText = data.postText;
+      await addUserPost({
+        data: {
+          authorName: firstName + " " + lastName,
+          attachment: photoURL,
+          postBody: postText,
+          privacy: privacy,
+          profilePhoto: profilePhoto,
+        },
+      });
+    }
   };
 
   useEffect(() => {
@@ -147,7 +155,7 @@ const MobileActivity = () => {
           </div>
         </form>
       </div>
-
+      {!canPost && <GoMobActivityPremium {...{ canPost, setCanPost }} />}                  
       <MobileActivityPost {...{ posts, isLoading, error }} />
       <div className="h-20"></div>
       <BottomNav></BottomNav>
