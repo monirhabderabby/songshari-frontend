@@ -29,7 +29,7 @@ export const MessegeBox = () => {
     //
     const [receiver, setReceiver] = useState(null);
     const {data}=useGetProfileDetailsQuery(id);
-    // console.log(data)
+
     useEffect(() => {
         if(data){
             setReceiver(data);
