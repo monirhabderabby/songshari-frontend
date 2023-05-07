@@ -72,23 +72,37 @@ const ExpandMore = styled(props => {
     }),
 }));
 
-export const DynamicSingleServiceOrderCard = ({ price, deadline, role, _id }) => {
+export const DynamicSingleServiceOrderCard = ({ price, deadline, role, _id, priceInPoint }) => {
     const [expanded, setExpanded] = useState(false);
     const [successSnackBarOpen, setSuccessSnackBarOpen] = useState(false);
     const [success, setSuccess] = useState(false);
     const [orderModal, setOrderModal] = useState(false);
 
-    // Redux API
-    const [serviceOrder, { isSuccess, isLoading }] = useServiceOrderMutation();
+    const [serviceOrder, { isSuccess, data: priceResponse, isLoading }] = useServiceOrderMutation();
 
     const classes = useStyles();
     const navigate = useNavigate();
 
+    const modalControll = () => {
+        setOrderModal(!orderModal);
+    };
+
+    const handleNewServiceOrder = () => {
+        modalControll();
+    };
+
     useEffect(() => {
         if (isSuccess) {
+            setOrderModal(false);
             setSuccess(true);
         }
     }, [isSuccess]);
+
+    useEffect(() => {
+        if (priceResponse) {
+            window.location.replace(priceResponse?.data);
+        }
+    }, [priceResponse, navigate]);
 
     deadline = deadline?.slice(2, deadline.length);
     const { firstName, lastName, designation, _id: userId } = role || {};
@@ -99,24 +113,6 @@ export const DynamicSingleServiceOrderCard = ({ price, deadline, role, _id }) =>
     const handleExpandClick = () => {
         setExpanded(!expanded);
     };
-
-    const modalControll = () => {
-        setOrderModal(!orderModal);
-    };
-
-    const handleNewServiceOrder = () => {
-        modalControll();
-        // serviceOrder({
-        //     service: _id,
-        //     role: userId,
-        // });
-    };
-
-    useEffect(() => {
-        if (isSuccess) {
-            setSuccessSnackBarOpen(true);
-        }
-    }, [isSuccess, navigate]);
 
     const buttonSx = {
         width: "199px",
@@ -241,7 +237,12 @@ export const DynamicSingleServiceOrderCard = ({ price, deadline, role, _id }) =>
                     />
                 )}
             </Card>
-            {orderModal && <DynamicSingleServiceOrderPlacement modalControll={modalControll} />}
+            {orderModal && (
+                <DynamicSingleServiceOrderPlacement
+                    modalControll={modalControll}
+                    {...{ priceInPoint, price, _id, userId, setSuccessSnackBarOpen, serviceOrder, isLoading }}
+                />
+            )}
         </>
     );
 };
