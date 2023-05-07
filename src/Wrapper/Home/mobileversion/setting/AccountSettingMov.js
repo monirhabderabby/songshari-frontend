@@ -10,6 +10,7 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import Typography from "@mui/material/Typography";
 import { Collapse } from "antd";
 import { decodeToken } from "react-jwt";
+import { HiOutlineMail } from "react-icons/hi";
 
 // components
 import { AiOutlineUsergroupAdd } from "react-icons/ai";
@@ -124,6 +125,23 @@ export const AccountSettingMov = () => {
             <h1 className="mt-[-5px] whitespace-nowrap flex items-center">
               <AiOutlineUsergroupAdd className="ml-8 mr-[22px] text-black text-xl" />{" "}
               Connections
+            </h1>
+          </div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div>
+            <i className="fa-solid fa-angle-right ml-8"></i>
+          </div>
+        </div>
+      </Link>
+      <Link to="/mobile-conversations">
+        <div className="grid grid-cols-6 mt-5 mb-8 he">
+          <div className="setting-mov">
+            <h1 className="mt-[-5px] whitespace-nowrap flex items-center">
+              <HiOutlineMail className="ml-8 mr-[22px] text-black text-xl" />{" "}
+              Inbox
             </h1>
           </div>
           <div></div>
