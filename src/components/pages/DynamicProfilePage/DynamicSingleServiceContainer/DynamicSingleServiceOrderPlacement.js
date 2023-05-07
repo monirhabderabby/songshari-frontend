@@ -1,9 +1,24 @@
 import { FormControlLabel, Radio, RadioGroup } from "@material-ui/core";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useServiceOrderWithPointMutation } from "../../../../Redux/features/Service/OrderApi";
 import { Modal } from "../../../modals/Modal";
+import Error from "../../../ui/error/Error";
 
-export const DynamicSingleServiceOrderPlacement = ({ modalControll }) => {
+export const DynamicSingleServiceOrderPlacement = ({
+    modalControll,
+    priceInPoint,
+    _id,
+    userId,
+    setSuccessSnackBarOpen,
+    serviceOrder,
+    isLoading,
+    price,
+}) => {
     const [paymentMethod, setPaymentMethod] = useState("amarPay");
+    const [customError, setCustomError] = useState("");
+
+    // Redux API
+    const [serviceOrderWithPoint, { isSuccess: pointSuccess, error: pointError, isLoading: pointLoading }] = useServiceOrderWithPointMutation();
     const amarPay = (
         <div className="w-full flex items-center">
             <img className="w-[147px]" src="https://www.aamarpay.com/images/logo/aamarpay_logo.png" alt="logo" loading="lazy" />
@@ -20,6 +35,41 @@ export const DynamicSingleServiceOrderPlacement = ({ modalControll }) => {
             />
         </div>
     );
+
+    // order places
+    const orderPlaceHandler = () => {
+        let data;
+        if (paymentMethod === "amarPay") {
+            data = {
+                service: _id,
+                role: userId,
+                price: price,
+            };
+            serviceOrder(data);
+        } else if (paymentMethod === "point") {
+            data = {
+                service: _id,
+                priceInPoint: priceInPoint,
+            };
+
+            serviceOrderWithPoint(data);
+        }
+    };
+
+    useEffect(() => {
+        if (pointError) {
+            setCustomError("You don't have enough points");
+        }
+    }, [pointError]);
+
+    useEffect(() => {
+        if (pointSuccess) {
+            modalControll();
+            setTimeout(() => {
+                setSuccessSnackBarOpen(true);
+            }, 2000);
+        }
+    }, [pointSuccess, setSuccessSnackBarOpen, modalControll]);
     return (
         <Modal modalControll={modalControll}>
             <div className="flex items-center">
@@ -40,8 +90,12 @@ export const DynamicSingleServiceOrderPlacement = ({ modalControll }) => {
                     <FormControlLabel checked={paymentMethod?.includes("point")} control={<Radio />} label={cash} />
                 </RadioGroup>
             </div>
-            <button className="bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] py-1 px-4 text-white rounded-[4px]">
-                Pay Now
+            {customError && <Error message={customError} />}
+            <button
+                className="bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] py-1 px-4 text-white rounded-[4px]"
+                onClick={orderPlaceHandler}
+            >
+                {pointLoading || isLoading ? "..." : "Pay Now"}
             </button>
         </Modal>
     );

@@ -94,6 +94,16 @@ export const orderApi = apiSlice.injectEndpoints({
             }),
             invalidatesTags: ["reviewByUserAndService"],
         }),
+        serviceOrderWithPoint: builder.mutation({
+            query: data => ({
+                url: "/service/order/create-order-by-point",
+                method: "POST",
+                headers: {
+                    authorization: `Bearer ${getCookie("token")}`,
+                },
+                body: data,
+            }),
+        }),
     }),
 });
 
@@ -107,4 +117,5 @@ export const {
     useGetRecentReviewQuery,
     useGetReviewByUserAndServiceIDQuery,
     useUpdateReviewMutation,
+    useServiceOrderWithPointMutation,
 } = orderApi;
