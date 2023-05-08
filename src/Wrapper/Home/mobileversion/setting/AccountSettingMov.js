@@ -395,6 +395,11 @@ export const AccountSettingMov = () => {
             </Link>
             <br></br>
             <br></br>
+            <Link to="/faq" className="ml-[100px]">
+              FAQ
+            </Link>
+            <br></br>
+            <br></br>
             <Link to="/historymov" className="ml-[100px]">
               History
             </Link>
@@ -402,6 +407,11 @@ export const AccountSettingMov = () => {
             <br></br>
             <Link to="/communitymov" className="ml-[100px]">
               Community
+            </Link>
+            <br></br>
+            <br></br>
+            <Link to="/help" className="ml-[100px]">
+              Help Center
             </Link>
           </Typography>
         </AccordionDetails>
