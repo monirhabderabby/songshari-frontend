@@ -4,12 +4,12 @@ import React, { useEffect } from "react";
 // third party packages
 import { Collapse } from "antd";
 import { CaretRightOutlined } from "@ant-design/icons";
+import CustomHeader from "../../../../shared/CustomHeader/CustomHeader";
+import { MobileBackButton } from "../../../../shared/Components/MobileBackButton";
+import Footer from "../../../../shared/Footer/Footer";
+import { BottomNav } from "../../../../../Wrapper/Home/mobileversion/BottomNav";
 
 // Components
-import CustomHeader from "../../shared/CustomHeader/CustomHeader";
-import Footer from "../../shared/Footer/Footer";
-import { MobileBackButton } from "../../shared/Components/MobileBackButton";
-import { BottomNav } from "../../../Wrapper/Home/mobileversion/BottomNav";
 
 const FaqPage = () => {
   const faq = [

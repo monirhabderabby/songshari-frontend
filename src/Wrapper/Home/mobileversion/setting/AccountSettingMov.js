@@ -413,6 +413,26 @@ export const AccountSettingMov = () => {
             <Link to="/help" className="ml-[100px]">
               Help Center
             </Link>
+            <br></br>
+            <br></br>
+            <Link to="/endUserAgreement" className="ml-[100px]">
+              End User Agreement
+            </Link>
+            <br></br>
+            <br></br>
+            <Link to="/refundPolicy" className="ml-[100px]">
+              Refund Policy
+            </Link>
+            <br></br>
+            <br></br>
+            <Link to="/cookiePolicy" className="ml-[100px]">
+              Cookie Policy
+            </Link>
+            <br></br>
+            <br></br>
+            <Link to="/customerReviews" className="ml-[100px]">
+              Customer Review
+            </Link>
           </Typography>
         </AccordionDetails>
       </Accordion>

@@ -8,11 +8,13 @@ import RegAsProfessional from "../../components/pages/Authentications/RegAsProfe
 import Signup from "../../components/pages/Authentications/SignUp";
 import Contact from "../../components/pages/Contact/Contact";
 import { DynamicProfilePage } from "../../components/pages/DynamicProfilePage/DynamicProfilePage";
-import FaqPage from "../../components/pages/FaqPage/FaqPage";
-import HelpCenter from "../../components/pages/HelpCenter/HelpCenter";
 import { OurTeams } from "../../components/pages/OurTeams/OurTeams";
 import { Privacy } from "../../components/pages/Privacy/Privacy";
 import { CookiePolicy } from "../../components/pages/Shared/Footer/CookiePolicy/CookiePolicy";
+import CustomerReviews from "../../components/pages/Shared/Footer/CustomerReviews/CustomerReviews";
+import EndUserAgreement from "../../components/pages/Shared/Footer/EndUserAgreement/EndUserAgreement";
+import FaqPage from "../../components/pages/Shared/Footer/FaqPage/FaqPage";
+import HelpCenter from "../../components/pages/Shared/Footer/HelpCenter/HelpCenter";
 import { RefundPolicy } from "../../components/pages/Shared/Footer/RefundPolicy/RefundPolicy";
 import SingleSuccessStoryDetailsPage from "../../components/pages/SuccessStory/SuccessStoryGlobalContainer/SingleSuccessStoryDetailsPage/SingleSuccessStoryDetailsPage";
 import SuccessStoryGlobalContainer from "../../components/pages/SuccessStory/SuccessStoryGlobalContainer/SuccessStoryGlobalContainer";
@@ -159,6 +161,16 @@ const matrimonyRoutes = [
     id: 25,
     path: "/cookiePolicy",
     element: <CookiePolicy />,
+  },
+  {
+    id: 26,
+    path: "/endUserAgreement",
+    element: <EndUserAgreement />,
+  },
+  {
+    id: 27,
+    path: "/customerReviews",
+    element: <CustomerReviews />,
   },
 ];
 

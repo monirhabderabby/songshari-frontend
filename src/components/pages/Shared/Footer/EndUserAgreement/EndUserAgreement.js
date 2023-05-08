@@ -1,12 +1,13 @@
+// configuration
 import React, { useEffect } from "react";
 
-// components
+// Components
 import CustomHeader from "../../../../shared/CustomHeader/CustomHeader";
 import { MobileBackButton } from "../../../../shared/Components/MobileBackButton";
 import Footer from "../../../../shared/Footer/Footer";
 import { BottomNav } from "../../../../../Wrapper/Home/mobileversion/BottomNav";
 
-export const CookiePolicy = () => {
+const EndUserAgreement = () => {
   const data = [
     {
       id: 1,
@@ -63,8 +64,18 @@ export const CookiePolicy = () => {
     },
     {
       id: 4,
-      title: "How we use cookies",
+      title: "How we will use cookies",
       des: "A cookie is a small file which asks permission to be placed on your computer's hard drive. Once you agree, the file is added and the cookie helps analyse web traffic or lets you know when you visit a particular site. Cookies allow web applications to respond to you as an individual. The web application can tailor its operations to your needs, likes and dislikes by gathering and remembering information about your preferences. We use traffic log cookies to identify which pages are being used. This helps us analyse data about web page traffic and improve our website in order to tailor it to customer needs. We only use this information for statistical analysis purposes and then the data is removed from the system. Overall, cookies help us provide you with a better website, by enabling us to monitor which pages you find useful and which you do not. A cookie in no way gives us access to your computer or any information about you, other than the data you choose to share with us. You can choose to accept or decline cookies. Most web browsers automatically accept cookies, but you can usually modify your browser setting to decline cookies if you prefer. This may prevent you from taking full advantage of the website.",
+    },
+    {
+      id: 5,
+      title: "Complaints",
+      des: "To resolve a complaint regarding the Shongshari.com service, contact Shongshari.com Customer Care by sending an email to info@shongshari.com",
+    },
+    {
+      id: 6,
+      title: "Copyright Policy",
+      des: "Termination of User Privileges for Infringement and Contact Information for Suspected Copyright Infringement: We will terminate the privileges of any user who uses this Site to unlawfully transmit copyrighted material without a license, express consent, valid defense or fair use exemption to do so. In particular, users who submit User Content to this Site, whether articles, images, stories, software or other copyrightable material must ensure that the content they upload does not infringe the copyrights nor other rights of third parties (such as privacy or publicity rights). After proper notification by the copyright holder or it agent to us, and confirmation through court order or admission by the user that they have used this Site as an instrument of unlawful infringement, we will terminate the infringing users' rights to use and/or access to this Site. We may also in our sole discretion decide to terminate a user's rights to use or access to the Site prior to that time if we have a good faith and belief that the alleged infringement has occurred. If you believe that your copyright has been infringed through the use of this Site, please contact us at info@shongshari.com",
     },
   ];
 
@@ -75,27 +86,34 @@ export const CookiePolicy = () => {
   return (
     <div>
       <div className="hidden lg:block">
-        <CustomHeader title="Cookie Policy" />
+        <CustomHeader title={"End User Agreement"} />
       </div>
       <div className="lg:hidden">
-        <MobileBackButton name={"Cookie Policy"} />
+        <MobileBackButton name={"End User Agreement"} />
       </div>
-      <div className="content max-w-[1200px] mx-auto mt-[10px] font-Inter mb-[50px] px-[16px]">
-        <h1 className="text-[24px] font-semibold">
-          Privacy and Cookie Policy,
+      <div className="max-w-[1200px] mx-auto px-6 lg:px-0">
+        <h1 className="text-2xl font-semibold mt-4">
+          Please Read This Agreement Carefully
         </h1>
-        <p className="mt-[15px] text-[16px]">
-          This privacy policy sets out how this website (hereafter "the Store")
-          uses and protects any information that you give the Store while using
-          this website. The Store is committed to ensuring that your privacy is
-          protected. Should we ask you to provide certain information by which
-          you can be identified when using this website, then you can be assured
-          that it will only be used in accordance with this privacy statement.
-          The Store may change this policy from time to time by updating this
-          page. You should check this page from time to time to ensure that you
-          are happy with any changes.
+        <p className="text-base mt-4">
+          This is a legal agreement ("Agreement") between you and
+          Shongshari.com. By registering for Shongshari.com, you become a member
+          of the Service (Member), and you agree to be bound by the terms and
+          conditions of this Agreement (Terms) for as long as you continue to be
+          a Member. If you do not agree to the terms, please do not register for
+          the Shongshari.com service. The terms are subject to change and may be
+          modified at any time by Shongshari.com, effective upon notice to you.
+          Shongshari.com is intended only to serve as a preliminary medium of
+          contact and information for its users / members / visitors who have a
+          bona fide intention to enter into a matrimonial alliance.
+          Shongshari.com does not purport to be a marriage or business bureau or
+          a dating /contact website and does not, in any manner whatsoever,
+          monitor the first or subsequent contacts, introductions and/or
+          interactions which may take place amongst / in between the user(s) /
+          member(s) due to any information specified in the website.
         </p>
-        <div>
+
+        <div className="mb-8">
           {data?.map((item) => {
             return (
               <section key={item?.id}>
@@ -117,6 +135,7 @@ export const CookiePolicy = () => {
           })}
         </div>
       </div>
+
       <div className="hidden lg:block">
         <Footer />
       </div>
@@ -127,3 +146,5 @@ export const CookiePolicy = () => {
     </div>
   );
 };
+
+export default EndUserAgreement;

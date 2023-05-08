@@ -1,10 +1,12 @@
-import React from "react";
-import CustomHeader from "../../shared/CustomHeader/CustomHeader";
-import { useEffect } from "react";
-import { MobileBackButton } from "../../shared/Components/MobileBackButton";
-import Footer from "../../shared/Footer/Footer";
-import { BottomNav } from "../../../Wrapper/Home/mobileversion/BottomNav";
+// configuration
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router";
+
+// components
+import Footer from "../../../../shared/Footer/Footer";
+import { BottomNav } from "../../../../../Wrapper/Home/mobileversion/BottomNav";
+import { MobileBackButton } from "../../../../shared/Components/MobileBackButton";
+import CustomHeader from "../../../../shared/CustomHeader/CustomHeader";
 
 const HelpCenter = () => {
   const navigate = useNavigate();
