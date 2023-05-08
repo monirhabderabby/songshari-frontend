@@ -156,7 +156,7 @@ const Footer = () => {
                                         </Link>
                                     </li>
                                     <li className="py-[5px]">
-                                        <Link to="/">
+                                        <Link to="/cookiePolicy">
                                             <i className="fas text-[16px] mr-[5px] fa-angle-double-right"></i> Cookie policy
                                         </Link>
                                     </li>
