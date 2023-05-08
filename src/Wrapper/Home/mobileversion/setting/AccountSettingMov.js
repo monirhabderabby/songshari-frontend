@@ -395,6 +395,11 @@ export const AccountSettingMov = () => {
             </Link>
             <br></br>
             <br></br>
+            <Link to="/faq" className="ml-[100px]">
+              FAQ
+            </Link>
+            <br></br>
+            <br></br>
             <Link to="/historymov" className="ml-[100px]">
               History
             </Link>
