@@ -12,6 +12,7 @@ import FaqPage from "../../components/pages/FaqPage/FaqPage";
 import HelpCenter from "../../components/pages/HelpCenter/HelpCenter";
 import { OurTeams } from "../../components/pages/OurTeams/OurTeams";
 import { Privacy } from "../../components/pages/Privacy/Privacy";
+import { CookiePolicy } from "../../components/pages/Shared/Footer/CookiePolicy/CookiePolicy";
 import { RefundPolicy } from "../../components/pages/Shared/Footer/RefundPolicy/RefundPolicy";
 import SingleSuccessStoryDetailsPage from "../../components/pages/SuccessStory/SuccessStoryGlobalContainer/SingleSuccessStoryDetailsPage/SingleSuccessStoryDetailsPage";
 import SuccessStoryGlobalContainer from "../../components/pages/SuccessStory/SuccessStoryGlobalContainer/SuccessStoryGlobalContainer";
@@ -119,7 +120,6 @@ const matrimonyRoutes = [
     path: "/paymentSuccess",
     element: <PaymentSuccess />,
   },
-
   {
     id: 18,
     path: "/registration-info",
@@ -154,6 +154,11 @@ const matrimonyRoutes = [
     id: 24,
     path: "/help",
     element: <HelpCenter />,
+  },
+  {
+    id: 25,
+    path: "/cookiePolicy",
+    element: <CookiePolicy />,
   },
 ];
 
