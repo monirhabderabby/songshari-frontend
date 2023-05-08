@@ -428,6 +428,11 @@ export const AccountSettingMov = () => {
             <Link to="/cookiePolicy" className="ml-[100px]">
               Cookie Policy
             </Link>
+            <br></br>
+            <br></br>
+            <Link to="/customerReviews" className="ml-[100px]">
+              Customer Review
+            </Link>
           </Typography>
         </AccordionDetails>
       </Accordion>

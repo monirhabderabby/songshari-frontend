@@ -11,6 +11,7 @@ import { DynamicProfilePage } from "../../components/pages/DynamicProfilePage/Dy
 import { OurTeams } from "../../components/pages/OurTeams/OurTeams";
 import { Privacy } from "../../components/pages/Privacy/Privacy";
 import { CookiePolicy } from "../../components/pages/Shared/Footer/CookiePolicy/CookiePolicy";
+import CustomerReviews from "../../components/pages/Shared/Footer/CustomerReviews/CustomerReviews";
 import EndUserAgreement from "../../components/pages/Shared/Footer/EndUserAgreement/EndUserAgreement";
 import FaqPage from "../../components/pages/Shared/Footer/FaqPage/FaqPage";
 import HelpCenter from "../../components/pages/Shared/Footer/HelpCenter/HelpCenter";
@@ -165,6 +166,11 @@ const matrimonyRoutes = [
     id: 26,
     path: "/endUserAgreement",
     element: <EndUserAgreement />,
+  },
+  {
+    id: 27,
+    path: "/customerReviews",
+    element: <CustomerReviews />,
   },
 ];
 
