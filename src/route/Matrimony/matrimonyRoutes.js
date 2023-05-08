@@ -9,6 +9,7 @@ import Signup from "../../components/pages/Authentications/SignUp";
 import Contact from "../../components/pages/Contact/Contact";
 import { DynamicProfilePage } from "../../components/pages/DynamicProfilePage/DynamicProfilePage";
 import FaqPage from "../../components/pages/FaqPage/FaqPage";
+import HelpCenter from "../../components/pages/HelpCenter/HelpCenter";
 import { OurTeams } from "../../components/pages/OurTeams/OurTeams";
 import { Privacy } from "../../components/pages/Privacy/Privacy";
 import { RefundPolicy } from "../../components/pages/Shared/Footer/RefundPolicy/RefundPolicy";
@@ -148,6 +149,11 @@ const matrimonyRoutes = [
     id: 23,
     path: "/faq",
     element: <FaqPage />,
+  },
+  {
+    id: 24,
+    path: "/help",
+    element: <HelpCenter />,
   },
 ];
 

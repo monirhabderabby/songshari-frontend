@@ -127,7 +127,7 @@ const Footer = () => {
                 </h4>
                 <ul className="ignoreMouseEffect f-social-links">
                   <li className="py-[5px]">
-                    <Link to="/">
+                    <Link to="/help">
                       <i className="fas text-[16px] mr-[5px] fa-angle-double-right"></i>{" "}
                       Help centre
                     </Link>
