@@ -10,6 +10,7 @@ import Contact from "../../components/pages/Contact/Contact";
 import { DynamicProfilePage } from "../../components/pages/DynamicProfilePage/DynamicProfilePage";
 import { OurTeams } from "../../components/pages/OurTeams/OurTeams";
 import { Privacy } from "../../components/pages/Privacy/Privacy";
+import AssociateBlog from "../../components/pages/Shared/Footer/AssociateBlog/AssociateBlog";
 import { CookiePolicy } from "../../components/pages/Shared/Footer/CookiePolicy/CookiePolicy";
 import CustomerReviews from "../../components/pages/Shared/Footer/CustomerReviews/CustomerReviews";
 import EndUserAgreement from "../../components/pages/Shared/Footer/EndUserAgreement/EndUserAgreement";
@@ -171,6 +172,11 @@ const matrimonyRoutes = [
     id: 27,
     path: "/customerReviews",
     element: <CustomerReviews />,
+  },
+  {
+    id: 27,
+    path: "/associateBlog",
+    element: <AssociateBlog />,
   },
 ];
 

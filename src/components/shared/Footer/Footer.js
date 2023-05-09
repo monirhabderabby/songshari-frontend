@@ -151,7 +151,7 @@ const Footer = () => {
                     </Link>
                   </li>
                   <li className="py-[5px]">
-                    <Link to="/">
+                    <Link to="/associateBlog">
                       <i className="fas text-[16px] mr-[5px] fa-angle-double-right"></i>
                       Associate Blog
                     </Link>

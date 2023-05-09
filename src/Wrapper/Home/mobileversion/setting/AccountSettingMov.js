@@ -433,6 +433,11 @@ export const AccountSettingMov = () => {
             <Link to="/customerReviews" className="ml-[100px]">
               Customer Review
             </Link>
+            <br></br>
+            <br></br>
+            <Link to="/associateBlog" className="ml-[100px]">
+              Associate Blog
+            </Link>
           </Typography>
         </AccordionDetails>
       </Accordion>
