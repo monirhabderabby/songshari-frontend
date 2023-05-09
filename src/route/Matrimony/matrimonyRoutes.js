@@ -10,12 +10,16 @@ import Contact from "../../components/pages/Contact/Contact";
 import { DynamicProfilePage } from "../../components/pages/DynamicProfilePage/DynamicProfilePage";
 import { OurTeams } from "../../components/pages/OurTeams/OurTeams";
 import { Privacy } from "../../components/pages/Privacy/Privacy";
+import AssociateBlog from "../../components/pages/Shared/Footer/AssociateBlog/AssociateBlog";
 import { CookiePolicy } from "../../components/pages/Shared/Footer/CookiePolicy/CookiePolicy";
 import CustomerReviews from "../../components/pages/Shared/Footer/CustomerReviews/CustomerReviews";
 import EndUserAgreement from "../../components/pages/Shared/Footer/EndUserAgreement/EndUserAgreement";
 import FaqPage from "../../components/pages/Shared/Footer/FaqPage/FaqPage";
 import HelpCenter from "../../components/pages/Shared/Footer/HelpCenter/HelpCenter";
+import QuickStartGuide from "../../components/pages/Shared/Footer/QuickStartGuide/QuickStartGuide";
 import { RefundPolicy } from "../../components/pages/Shared/Footer/RefundPolicy/RefundPolicy";
+import ReportAbuse from "../../components/pages/Shared/Footer/ReportAbuse/ReportAbuse";
+import Tutorials from "../../components/pages/Shared/Footer/Tutorials/Tutorials";
 import SingleSuccessStoryDetailsPage from "../../components/pages/SuccessStory/SuccessStoryGlobalContainer/SingleSuccessStoryDetailsPage/SingleSuccessStoryDetailsPage";
 import SuccessStoryGlobalContainer from "../../components/pages/SuccessStory/SuccessStoryGlobalContainer/SuccessStoryGlobalContainer";
 import Suggested from "../../components/pages/TopProfile/Suggested";
@@ -171,6 +175,26 @@ const matrimonyRoutes = [
     id: 27,
     path: "/customerReviews",
     element: <CustomerReviews />,
+  },
+  {
+    id: 27,
+    path: "/associateBlog",
+    element: <AssociateBlog />,
+  },
+  {
+    id: 28,
+    path: "/tutorials",
+    element: <Tutorials />,
+  },
+  {
+    id: 29,
+    path: "/quickStart",
+    element: <QuickStartGuide />,
+  },
+  {
+    id: 29,
+    path: "/reportAbuse",
+    element: <ReportAbuse />,
   },
 ];
 

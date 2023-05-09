@@ -139,19 +139,19 @@ const Footer = () => {
                     </Link>
                   </li>
                   <li className="py-[5px]">
-                    <Link to="/">
+                    <Link to="/quickStart">
                       <i className="fas text-[16px] mr-[5px] fa-angle-double-right"></i>
                       Quick Start Guide
                     </Link>
                   </li>
                   <li className="py-[5px]">
-                    <Link to="/">
+                    <Link to="/tutorials">
                       <i className="fas text-[16px] mr-[5px] fa-angle-double-right"></i>
                       Tutorials
                     </Link>
                   </li>
                   <li className="py-[5px]">
-                    <Link to="/">
+                    <Link to="/associateBlog">
                       <i className="fas text-[16px] mr-[5px] fa-angle-double-right"></i>
                       Associate Blog
                     </Link>
@@ -190,7 +190,7 @@ const Footer = () => {
                     </Link>
                   </li>
                   <li className="py-[5px]">
-                    <Link to="/">
+                    <Link to="/reportAbuse">
                       <i className="fas text-[16px] mr-[5px] fa-angle-double-right"></i>{" "}
                       Report abuse
                     </Link>
