@@ -1,8 +1,9 @@
 import { Autoplay } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
-import LatestRegisteredMemberCSS from "../../../assets/css/latestRegisteredMember.module.css";
-import shape from "../../../assets/images/shape.a8708fbc0aa77b10a1cf.png";
 import { useGetRecentMembersQuery } from "../../../Redux/features/userInfo/withoutLoginApi";
+import LatestRegisteredMemberCSS from "../../../assets/css/latestRegisteredMember.module.css";
+import emptyProfile from "../../../assets/images/emptyProfile.png";
+import shape from "../../../assets/images/shape.a8708fbc0aa77b10a1cf.png";
 import { ageCalculator } from "../../../assets/utilities/AgeCalculation/ageCalculator";
 
 const LatestRegisteredMember = () => {
@@ -10,6 +11,16 @@ const LatestRegisteredMember = () => {
         role: "member",
         searchTerm: "",
     });
+
+    console.log(data);
+
+    const genderCharacterDefine = data => {
+        if (data?.includes("man")) {
+            return "M";
+        } else {
+            return "F";
+        }
+    };
 
     return (
         <>
@@ -63,19 +74,25 @@ const LatestRegisteredMember = () => {
                                                                 height: "80px",
                                                                 borderRadius: "50%",
                                                             }}
-                                                            src={data.profilePhoto}
+                                                            src={data.profilePhoto || emptyProfile}
                                                             className="border-[5px] mx-auto border-[#fff] inline-block "
                                                             alt="Not Available"
                                                         />
                                                     </div>
-                                                    <div className="inner-content">
+                                                    <div className="inner-content flex justify-center gap-x-[4px]">
                                                         <h4 className="text-[#fff] text-[16px] uppercase font-bold">{data.firstName}</h4>
+                                                        <span className="uppercase text-[16px] text-pink-600 font-bold">
+                                                            {ageCalculator(data?.dateOfBirth)}
+                                                        </span>
+                                                        <span className="uppercase text-[16px] text-secondary">
+                                                            {genderCharacterDefine(data?.gender)}
+                                                        </span>
                                                     </div>
                                                     <div className="inner-content">
-                                                        <h4 className="text-[#fff] text-[16px] uppercase">Age: {ageCalculator(data?.dateOfBirth)}</h4>
+                                                        <h4 className="text-[#fff] text-[16px]">{data?.designation || "Not Added"}</h4>
                                                     </div>
                                                     <div className="inner-content">
-                                                        <h4 className="text-[#fff] text-[16px] uppercase">Gender: {data.gender}</h4>
+                                                        <h4 className="text-[#fff] text-[16px]">{data?.citizenShip[0] || "Not Added"}</h4>
                                                     </div>
                                                 </div>
                                             </div>
