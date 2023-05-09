@@ -17,6 +17,7 @@ import EndUserAgreement from "../../components/pages/Shared/Footer/EndUserAgreem
 import FaqPage from "../../components/pages/Shared/Footer/FaqPage/FaqPage";
 import HelpCenter from "../../components/pages/Shared/Footer/HelpCenter/HelpCenter";
 import { RefundPolicy } from "../../components/pages/Shared/Footer/RefundPolicy/RefundPolicy";
+import Tutorials from "../../components/pages/Shared/Footer/Tutorials/Tutorials";
 import SingleSuccessStoryDetailsPage from "../../components/pages/SuccessStory/SuccessStoryGlobalContainer/SingleSuccessStoryDetailsPage/SingleSuccessStoryDetailsPage";
 import SuccessStoryGlobalContainer from "../../components/pages/SuccessStory/SuccessStoryGlobalContainer/SuccessStoryGlobalContainer";
 import Suggested from "../../components/pages/TopProfile/Suggested";
@@ -177,6 +178,11 @@ const matrimonyRoutes = [
     id: 27,
     path: "/associateBlog",
     element: <AssociateBlog />,
+  },
+  {
+    id: 28,
+    path: "/tutorials",
+    element: <Tutorials />,
   },
 ];
 
