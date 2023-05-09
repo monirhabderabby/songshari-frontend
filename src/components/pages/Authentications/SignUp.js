@@ -69,7 +69,7 @@ const Signup = () => {
                 googleLogin: true,
             };
 
-            regAsMember(data);
+            regAsMember({ data: data, ref: ref || "" });
         }
     }, [user, regAsMember]);
 
@@ -98,7 +98,6 @@ const Signup = () => {
 
     // query
     const ref = searchParams.get("ref");
-    console.log(ref);
 
     const onSubmit = async data => {
         if (!agreement) {
