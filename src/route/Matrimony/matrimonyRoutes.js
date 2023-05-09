@@ -18,6 +18,7 @@ import FaqPage from "../../components/pages/Shared/Footer/FaqPage/FaqPage";
 import HelpCenter from "../../components/pages/Shared/Footer/HelpCenter/HelpCenter";
 import QuickStartGuide from "../../components/pages/Shared/Footer/QuickStartGuide/QuickStartGuide";
 import { RefundPolicy } from "../../components/pages/Shared/Footer/RefundPolicy/RefundPolicy";
+import ReportAbuse from "../../components/pages/Shared/Footer/ReportAbuse/ReportAbuse";
 import Tutorials from "../../components/pages/Shared/Footer/Tutorials/Tutorials";
 import SingleSuccessStoryDetailsPage from "../../components/pages/SuccessStory/SuccessStoryGlobalContainer/SingleSuccessStoryDetailsPage/SingleSuccessStoryDetailsPage";
 import SuccessStoryGlobalContainer from "../../components/pages/SuccessStory/SuccessStoryGlobalContainer/SuccessStoryGlobalContainer";
@@ -189,6 +190,11 @@ const matrimonyRoutes = [
     id: 29,
     path: "/quickStart",
     element: <QuickStartGuide />,
+  },
+  {
+    id: 29,
+    path: "/reportAbuse",
+    element: <ReportAbuse />,
   },
 ];
 
