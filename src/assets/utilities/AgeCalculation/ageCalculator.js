@@ -6,5 +6,10 @@ export const ageCalculator = dateString => {
     if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
         age--;
     }
-    return age;
+
+    if (!isNaN(age)) {
+        return age;
+    } else {
+        return 0;
+    }
 };
