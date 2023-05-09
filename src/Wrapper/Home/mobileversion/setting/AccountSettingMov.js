@@ -443,6 +443,11 @@ export const AccountSettingMov = () => {
             <Link to="/tutorials" className="ml-[100px]">
               Tutorials
             </Link>
+            <br></br>
+            <br></br>
+            <Link to="/quickStart" className="ml-[100px]">
+              Quick Start Guide
+            </Link>
           </Typography>
         </AccordionDetails>
       </Accordion>
