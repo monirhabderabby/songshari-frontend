@@ -16,7 +16,17 @@ export const packageApi = apiSlice.injectEndpoints({
     buyPackage: builder.mutation({
       query: (data) => ({
         url: `/matrimony-package/buy-package`,
-        method: "POST",
+        method: "PUT",
+        headers: {
+          authorization: `Bearer ${getCookie("token")}`,
+        },
+        body: data,
+      }),
+    }),
+    buyPackageWithWallet: builder.mutation({
+      query: (data) => ({
+        url: `/matrimony-package/buy-package-by-point`,
+        method: "PUT",
         headers: {
           authorization: `Bearer ${getCookie("token")}`,
         },
@@ -28,5 +38,6 @@ export const packageApi = apiSlice.injectEndpoints({
 
 export const {
   useGetAllPackagesQuery,
-  useBuyPackageMutation
+  useBuyPackageMutation,
+  useBuyPackageWithWalletMutation
 } = packageApi;

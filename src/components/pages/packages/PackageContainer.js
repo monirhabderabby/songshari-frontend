@@ -5,9 +5,7 @@ import { useGetAllPackagesQuery } from "../../../Redux/features/package/packageA
 import React, { useState } from "react";
 // import { useNavigate } from "react-router";
 
-// Third party package
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Pagination, Navigation } from "swiper";
+
 
 // Components
 import { useGetProfileDetailsWIthAuthQuery } from "../../../Redux/features/userInfo/userApi";
@@ -18,7 +16,6 @@ const PackageContainer = () => {
   const [successSnackBarOpen, setSuccessSnackBarOpen] = useState(false);
   // const navigate = useNavigate();
     const { data } = useGetAllPackagesQuery();
-    console.log(data, "getting profile")
   const { data: profile } = useGetProfileDetailsWIthAuthQuery();
 
   return (
@@ -27,29 +24,17 @@ const PackageContainer = () => {
         Special Packages For You
       </h6>
 
-      <Swiper
-        spaceBetween={30}
-        slidesPerView={3}
-        autoplay={{
-          delay: 4000,
-          disableOnInteraction: false,
-        }}
-        loop={true}
-        modules={[Autoplay, Pagination, Navigation]}
-        className="px-4"
-      >
+      <div className="grid grid-cols-3 gap-4">
         {data?.data?.packages?.map((pack, i) => (
-          <SwiperSlide key={pack._id} className="pb-8 px-4">
-            <PackageCard
-              pack={pack}
-              packages={data?.data?.packages}
-              index={i}
-              user={profile?._id}
-              setSuccessSnackBarOpen={setSuccessSnackBarOpen}
-            />
-          </SwiperSlide>
+          <PackageCard
+            pack={pack}
+            packages={data?.data?.packages}
+            index={i}
+            user={profile?._id}
+            setSuccessSnackBarOpen={setSuccessSnackBarOpen}
+          />
         ))}
-      </Swiper>
+      </div>
       <SuccessSnackBar
         {...{
           successSnackBarOpen,
