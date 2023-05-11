@@ -1,6 +1,8 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
-const GoPremium = ({ setShowPopup,message }) => {
+const GoPremium = ({ setShowPopup, message }) => {
+  const navigate = useNavigate()
   return (
     <>
       <div
@@ -11,7 +13,7 @@ const GoPremium = ({ setShowPopup,message }) => {
         <p className="text-white font-semibold">
           {message}
         </p>
-        <button className="bg-white font-bold text-lg px-4 py-2 rounded hover:bg-gray-100">
+        <button onClick={()=>navigate("/packages")} className="bg-white font-bold text-lg px-4 py-2 rounded hover:bg-gray-100">
           Go Premium
         </button>
       </div>

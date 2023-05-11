@@ -11,7 +11,7 @@ import { useGetRecentMembersQuery } from "../../../../Redux/features/userInfo/wi
 import { ProfileCardSkeletonLoader } from "../../../shared/Cards/Loader/ProfileCardSkeletonLoader";
 import { UserCard } from "../../Shared/userCard/UserCard";
 
-export const FindRecentKazi = () => {
+export const FindRecentKazi = ({role}) => {
     // Hook variable declaration
     const [page, setPage] = useState(1);
 
@@ -49,7 +49,7 @@ export const FindRecentKazi = () => {
         content = (
             <div className="grid grid-cols-4 gap-[30px]">
                 {data?.data?.members.map(profile => {
-                    return <UserCard key={profile._id} {...{ profile }} />;
+                    return <UserCard key={profile._id} {...{role, profile }} />;
                 })}
             </div>
         );

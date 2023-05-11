@@ -104,7 +104,7 @@ const kaziPrivateRoutes = [
       {
         id: 1,
         path: "recent",
-        element: <FindRecentKazi />,
+        element: <FindRecentKazi role="kazi" />,
       },
     ],
   },
