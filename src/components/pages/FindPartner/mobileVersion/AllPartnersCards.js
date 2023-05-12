@@ -10,7 +10,7 @@ import { Pagination } from "@mui/material";
 import { MobilePartnerLoader } from "./Loader/MobilePartnerLoader";
 import { MobilePartnerCard } from "./MobilePartnerCard";
 
-export const AllPartnersCards = ({ data, isLoading, error, setPage }) => {
+export const AllPartnersCards = ({ data, isLoading, error, setPage,role }) => {
   let totalData = Math.ceil(data?.data?.total / 6) || 0;
   // js variable declaration
   let content;
@@ -45,7 +45,7 @@ export const AllPartnersCards = ({ data, isLoading, error, setPage }) => {
     content = (
       <div className="mt-[18px] grid grid-cols-2 md:grid-cols-3 gap-[20px] w-full">
         {data.data.members?.map((user) => {
-          return <MobilePartnerCard {...{ user }} key={user._id} />;
+          return <MobilePartnerCard {...{ user,role }} key={user._id} />;
         })}
       </div>
     );

@@ -12,7 +12,7 @@ import { MobileBackButton } from "../../../../../components/shared/Components/Mo
 import { useGetRecentMembersQuery } from "../../../../../Redux/features/userInfo/withoutLoginApi";
 import { BottomNav } from "../../BottomNav";
 
-const SuggestedKaziForMobile = () => {
+const SuggestedKaziForMobile = ({role}) => {
   // hook variables
   const [page, setPage] = useState(1);
   const searchTerm = useSelector(
@@ -35,7 +35,7 @@ const SuggestedKaziForMobile = () => {
       <MobileBackButton name={"Find Kazi"} />
       <div className="pt-2 px-6">
         <FindLawyerKaziAgentHeader page="kazi" />
-        <AllPartnersCards {...{ data, isLoading, error, setPage }} />
+        <AllPartnersCards {...{ data, isLoading, error, setPage,role }} />
       </div>
       <div className="h-20"></div>
       <BottomNav />
