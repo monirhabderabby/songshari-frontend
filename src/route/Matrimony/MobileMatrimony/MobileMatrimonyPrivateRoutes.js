@@ -295,7 +295,7 @@ const MobileMatrimonyPrivateRoutes = [
     {
         id: 42,
         path: "/findKaziMov",
-        element: <SuggestedKaziForMobile />,
+        element: <SuggestedKaziForMobile role="kazi"/>,
     },
     {
         id: 43,

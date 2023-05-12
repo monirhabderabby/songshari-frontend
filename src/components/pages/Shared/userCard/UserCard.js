@@ -21,7 +21,6 @@ export const UserCard = ({ profile , role }) => {
     useLikeSingleProfileMutation();
   const { data: myProfile } = useGetProfileDetailsWIthAuthQuery()
   const freeKaziContact = myProfile?.userMatrimonyPackageInfo?.package?.freeKaziContact
-  console.log(role, "My profile");
   const [likeSent, setLikeSent] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
   const navigate = useNavigate();
