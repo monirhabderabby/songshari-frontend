@@ -1,6 +1,8 @@
 import React from 'react';
+import { useNavigate } from "react-router";
 
 const GoMobActivityPremium = ({ canPost, setCanPost }) => {
+  const navigate = useNavigate();
   return (
     <>
       <div
@@ -12,7 +14,10 @@ const GoMobActivityPremium = ({ canPost, setCanPost }) => {
           You are not allowed to make post in timeline. Go for premium to make
           unlimited post in timeline
         </p>
-        <button className="bg-white px-4 py-2 text-lg font-bold rounded hover:bg-gray-100">
+        <button
+          onClick={() => navigate("/packages")}
+          className="bg-white px-4 py-2 text-lg font-bold rounded hover:bg-gray-100"
+        >
           Go Premium
         </button>
       </div>
