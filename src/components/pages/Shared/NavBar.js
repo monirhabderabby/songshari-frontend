@@ -8,19 +8,18 @@ import { useDispatch, useSelector } from "react-redux";
 
 // Components
 import blackLogo from "../../../assets/images/Logo/logoBlack.png";
-import Agent from "../../../assets/images/NavIcons/Agent.svg";
+import Agent from "../../../assets/images/NavIcons/Agent.png";
 import blog from "../../../assets/images/NavIcons/Blog.svg";
-import findPartner from "../../../assets/images/NavIcons/Find-Your-Partner.svg";
-import kazi from "../../../assets/images/NavIcons/Kazi.svg";
-import findALawyer from "../../../assets/images/NavIcons/Lawyer.svg";
+import findPartner from "../../../assets/images/NavIcons/Find-Your-Partner.png";
+import kazi from "../../../assets/images/NavIcons/Kazi.png";
+import findALawyer from "../../../assets/images/NavIcons/Lawyer.png";
 import membership from "../../../assets/images/NavIcons/Membership.svg";
-import course from "../../../assets/images/NavIcons/Online-Course.svg";
+import course from "../../../assets/images/NavIcons/Online-Course.png";
 import register from "../../../assets/images/NavIcons/Profile-Login-Icon.svg";
 import {
   loadPhotos,
   loadUserData,
 } from "../../../Redux/features/userInfo/userInfo";
-import MobileNav from "./MobileNav";
 
 // CSS files
 import "../../../App.css";
@@ -140,7 +139,7 @@ const NavBar = ({ bg }) => {
                       className="flex flex-col items-center"
                     >
                       <img
-                        className="hover:rotate-[360deg] duration-[2000ms] w-[50px] h-[75px]"
+                        className="hover:rotate-[360deg] duration-[2000ms] w-[50px] h-[50px]"
                         src={menu.icon}
                         alt="Not Available"
                       />
@@ -279,7 +278,6 @@ const NavBar = ({ bg }) => {
           </div>
         </div>
       </header>
-      <MobileNav />
     </>
   );
 };
