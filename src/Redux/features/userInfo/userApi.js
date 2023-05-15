@@ -268,7 +268,7 @@ export const userApi = apiSlice.injectEndpoints({
                 },
                 body: data,
             }),
-            invalidatesTags:["certificates"]
+            invalidatesTags: ["certificates"],
         }),
         getUsersAllNotification: builder.query({
             query: ({ page, limit }) => ({
@@ -295,11 +295,20 @@ export const userApi = apiSlice.injectEndpoints({
                 },
                 body: data,
             }),
-            invalidatesTags:["certificates"]
+            invalidatesTags: ["certificates"],
         }),
         getSwapData: builder.query({
             query: () => ({
                 url: "/swap/get-unique-profile",
+                method: "GET",
+                headers: {
+                    authorization: `Bearer ${getCookie("token")}`,
+                },
+            }),
+        }),
+        getSwapMatchedProfiles: builder.query({
+            query: () => ({
+                url: `/member/like/profile/matches`,
                 method: "GET",
                 headers: {
                     authorization: `Bearer ${getCookie("token")}`,
@@ -341,4 +350,5 @@ export const {
     useGetUserBadgesQuery,
     useAddNwMarriageCertificateMutation,
     useGetSwapDataQuery,
+    useGetSwapMatchedProfilesQuery,
 } = userApi;

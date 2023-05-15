@@ -3,8 +3,6 @@ import React, { useEffect, useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 
 // Third party packages
-import { AiOutlineHeart } from "react-icons/ai";
-import { HiShoppingBag } from "react-icons/hi";
 import { decodeToken } from "react-jwt";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -42,9 +40,6 @@ const NavBar = ({ bg }) => {
 
     const { role } = tokenInfo || {};
     const userProfilePath = profilePathMaker(role);
-
-    const shopState = useSelector(state => state?.persistedReducer?.shop);
-    const { wishlist, cart } = shopState || {};
 
     // js variable
     let { profilePhoto } = userInfo || {};
@@ -238,30 +233,6 @@ const NavBar = ({ bg }) => {
                                         </>
                                     )}
                                 </div>
-                            </li>
-                            <li>
-                                {user && (
-                                    <div className="h-full flex items-center relative -top-[14px]">
-                                        <div className="relative hover:scale-110 duration-300 cursor-pointer" onClick={() => navigate("/wishlist")}>
-                                            <AiOutlineHeart className="h-[45px] w-[45px] text-[#E42986] -z-20" />
-                                            <span className="w-[18px] h-[18px] rounded-full bg-[#E42986] text-white flex justify-center items-center absolute z-50 right-0 top-[0px] text-[12px]">
-                                                {wishlist?.count}
-                                            </span>
-                                        </div>
-                                    </div>
-                                )}
-                            </li>
-                            <li>
-                                {user && (
-                                    <div className="h-full flex items-center relative -top-[14px]">
-                                        <div className="relative hover:scale-110 duration-300 cursor-pointer" onClick={() => navigate("/cart")}>
-                                            <HiShoppingBag className="h-[45px] w-[45px] text-[#E42986] -z-20" />
-                                            <span className="w-[18px] h-[18px] rounded-full bg-[#E42986] text-white flex justify-center items-center absolute z-50 right-0 top-[0px] text-[12px]">
-                                                {cart?.count}
-                                            </span>
-                                        </div>
-                                    </div>
-                                )}
                             </li>
                             <li>
                                 <LanguageSwitcher />
