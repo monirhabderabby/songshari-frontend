@@ -15,6 +15,7 @@ import kazi from "../../../assets/images/NavIcons/Kazi.png";
 import findALawyer from "../../../assets/images/NavIcons/Lawyer.png";
 import membership from "../../../assets/images/NavIcons/Membership.svg";
 import course from "../../../assets/images/NavIcons/Online-Course.png";
+import shop from "../../../assets/images/NavIcons/Shop.svg";
 import register from "../../../assets/images/NavIcons/Profile-Login-Icon.svg";
 import {
   loadPhotos,
@@ -25,7 +26,7 @@ import {
 import "../../../App.css";
 import NavBarCSS from "../../../assets/css/navbar.module.css";
 import { profilePathMaker } from "../../../assets/utilities/profilePathDecisionMaker/profilePathMaker";
-import { coursesBaseUrl } from "../../../config";
+import { coursesBaseUrl, shopBaseUrl } from "../../../config";
 import getCookie from "../../../Helper/cookies/getCookie";
 import removeCookie from "../../../Helper/cookies/removeCookie";
 import isLoggedIn from "../../../Helper/hooks/checkLoggerPersestency/isLoggedIn";
@@ -80,8 +81,7 @@ const NavBar = ({ bg }) => {
       icon: Agent,
       tooltip: "Find Agent",
     },
-    // { id: 8, to: "/shop", icon: shop, tooltip: "Shop" },
-    // { id: 8, to: shopBaseUrl, icon: shop, tooltip: "Shop" },
+    { id: 8, to: shopBaseUrl, icon: shop, tooltip: "Shop" },
   ];
 
   // function declaration for logout
@@ -132,7 +132,7 @@ const NavBar = ({ bg }) => {
           <nav className="md:mr-auto md:ml-4 md:py-1 md:pl-4  	flex flex-wrap items-center text-base justify-center">
             {allMenu.map((menu) => (
               <div key={menu.id}>
-                {menu.tooltip === "Courses" || "Shop" ? (
+                {menu.tooltip === "Courses" || menu.tooltip === "Shop" ? (
                   <a href={menu.to} className={`${NavBarCSS.hasTooltip}`}>
                     <div
                       style={{ marginLeft: "15px" }}
@@ -174,7 +174,7 @@ const NavBar = ({ bg }) => {
                       className="flex flex-col items-center"
                     >
                       <img
-                        className="hover:rotate-[360deg] duration-[2000ms] w-[50px] h-[75px]"
+                        className="hover:rotate-[360deg] duration-[2000ms] w-[50px] h-[50px]"
                         src={menu.icon}
                         alt="Not Available"
                       />
@@ -198,6 +198,73 @@ const NavBar = ({ bg }) => {
                     </div>
                   </NavLink>
                 )}
+                {/* {menu.tooltip === "Shop" && (
+                  <a href={menu.to} className={`${NavBarCSS.hasTooltip}`}>
+                    <div
+                      style={{ marginLeft: "15px" }}
+                      className="flex flex-col items-center"
+                    >
+                      <img
+                        className="hover:rotate-[360deg] duration-[2000ms] w-[50px] h-[50px]"
+                        src={menu.icon}
+                        alt="Not Available"
+                      />
+                      <span
+                        className={`${NavBarCSS.tooltip} z-50 h-[15px] w-[15px] mt-[70px] ml-[14px]`}
+                        style={{
+                          transform: "translateX(-50%) rotate(45deg)",
+                          backgroundImage:
+                            "linear-gradient( 103deg, rgba(228, 18, 114, 1) 0%, #4844a5 100%)",
+                        }}
+                      ></span>
+                      <span
+                        className={`${NavBarCSS.tooltip} z-50 rounded-[40px] shadow-lg px-3 py-1 text-white text-xs whitespace-nowrap uppercase mt-20`}
+                        style={{
+                          backgroundImage:
+                            "linear-gradient(155deg, rgba(228, 18, 114, 1) 0%, #4844a5 100%)",
+                        }}
+                      >
+                        {menu.tooltip}
+                      </span>
+                    </div>
+                  </a>
+                )} */}
+                {/* {menu.tooltip !== "Courses" && menu.tooltip !== "Shop" && (
+                  <NavLink
+                    to={menu.to}
+                    className={({ isActive }) =>
+                      isActive ? "" : `${NavBarCSS.hasTooltip}`
+                    }
+                  >
+                    <div
+                      style={{ marginLeft: "15px" }}
+                      className="flex flex-col items-center"
+                    >
+                      <img
+                        className="hover:rotate-[360deg] duration-[2000ms] w-[50px] h-[75px]"
+                        src={menu.icon}
+                        alt="Not Available"
+                      />
+                      <span
+                        className={`${NavBarCSS.tooltip} z-50 h-[15px] w-[15px] mt-[70px] ml-[14px]`}
+                        style={{
+                          transform: "translateX(-50%) rotate(45deg)",
+                          backgroundImage:
+                            "linear-gradient( 103deg, rgba(228, 18, 114, 1) 0%, #4844a5 100%)",
+                        }}
+                      ></span>
+                      <span
+                        className={`${NavBarCSS.tooltip} z-50 rounded-[40px] shadow-lg px-3 py-1 text-white text-xs whitespace-nowrap uppercase mt-20`}
+                        style={{
+                          backgroundImage:
+                            "linear-gradient(155deg, rgba(228, 18, 114, 1) 0%, #4844a5 100%)",
+                        }}
+                      >
+                        {menu.tooltip}
+                      </span>
+                    </div>
+                  </NavLink>
+                )} */}
               </div>
             ))}
           </nav>
