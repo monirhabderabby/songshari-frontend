@@ -13,14 +13,15 @@ import { useLikeSingleProfileMutation } from "../../../../Redux/features/connect
 import { useGetProfileDetailsWIthAuthQuery } from "../../../../Redux/features/userInfo/userApi";
 import GoPremium from "../../../shared/Package/GoPremium";
 
-const message = "If you wont to access kazi you need to buy premium package"
-export const UserCard = ({ profile , role }) => {
+const message = "If you wont to access kazi you need to buy premium package";
+export const UserCard = ({ profile, role }) => {
   // variable declaration
   // hook variables
   const [likeSingleProfile, { data: likeResponse, isLoading: likeLoading }] =
     useLikeSingleProfileMutation();
-  const { data: myProfile } = useGetProfileDetailsWIthAuthQuery()
-  const freeKaziContact = myProfile?.userMatrimonyPackageInfo?.package?.freeKaziContact
+  const { data: myProfile } = useGetProfileDetailsWIthAuthQuery();
+  const freeKaziContact =
+    myProfile?.userMatrimonyPackageInfo?.package?.freeKaziContact;
   const [likeSent, setLikeSent] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
   const navigate = useNavigate();
@@ -59,10 +60,17 @@ export const UserCard = ({ profile , role }) => {
 
   const goToProfile = () => {
     if (role === "kazi" && !freeKaziContact) {
-      return setShowPopup(true)
+      return setShowPopup(true);
     }
     navigate(`/profile/${profile?._id}`);
-  }
+  };
+
+  const goToMobileProfile = () => {
+    if (role === "kazi" && !freeKaziContact) {
+      return setShowPopup(true);
+    }
+    navigate(`/mobileprofile/${profile?._id}`);
+  };
 
   return (
     <>
@@ -229,7 +237,7 @@ export const UserCard = ({ profile , role }) => {
                   </ul>
                   <div className="h-[30px] w-full flex items-center justify-evenly absolute -bottom-[40px]">
                     <p
-                      onClick={goToProfile}
+                      onClick={goToMobileProfile}
                       className="bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] rounded-full cursor-pointer"
                     >
                       <i
@@ -239,7 +247,7 @@ export const UserCard = ({ profile , role }) => {
                     </p>
 
                     <span
-                      onClick = {()=>setShowPopup(true)}
+                      onClick={() => setShowPopup(true)}
                       className="bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] rounded-full"
                     >
                       <i
@@ -267,7 +275,7 @@ export const UserCard = ({ profile , role }) => {
           )}
         </div>
       </div>
-      {showPopup && <GoPremium {...{setShowPopup, message}} />}
+      {showPopup && <GoPremium {...{ setShowPopup, message }} />}
     </>
   );
 };
