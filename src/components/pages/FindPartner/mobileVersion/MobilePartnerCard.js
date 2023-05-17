@@ -48,12 +48,12 @@ export const MobilePartnerCard = ({ user, role }) => {
     }
     await likeSingleProfile(user?._id);
   };
-  console.log(freeKaziContact, role);
+
   const goToProfile = () => {
     if (role === "kazi" && !freeKaziContact) {
       return setShowPopup(true);
     }
-    navigate(`/profile/${user?._id}`);
+    navigate(`/mobileprofile/${user?._id}`);
   };
 
   // all useEffect declaration
@@ -90,7 +90,8 @@ export const MobilePartnerCard = ({ user, role }) => {
             {hometown ? hometown : ""}
           </p>
           <div className="h-[30px] w-full flex items-center justify-evenly mt-[6px]">
-            <span onClick={()=>setShowPopup(true)}
+            <span
+              onClick={() => setShowPopup(true)}
               className="bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] rounded-full"
             >
               <i
@@ -114,7 +115,7 @@ export const MobilePartnerCard = ({ user, role }) => {
           </div>
         </div>
       </div>
-      {showPopup && <GoPremium {...{message, setShowPopup}} />}
+      {showPopup && <GoPremium {...{ message, setShowPopup }} />}
     </>
   );
 };
