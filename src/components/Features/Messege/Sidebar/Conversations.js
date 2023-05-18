@@ -20,17 +20,17 @@ export const Conversations = ({user}) => {
             <div className="flex flex-col pt-[30px]">
                 {user?.map(p => {
                     return (
-                        <div key={uuidv4()} onClick={()=>navigate(`/inbox/${p._id}`)} className="w-full h-[134px] flex gap-x-[34px]">
+                        <div key={uuidv4()} onClick={()=>navigate(`/inbox/${p.reciever._id}`)} className="w-full h-[134px] flex gap-x-[34px]">
                             <img
                                 className="h-[58px] w-[58px] rounded-full"
                                 // src="https://i.postimg.cc/j2nh3WBh/310814492-3383940818533755-1197676094327108122-n.jpg"
-                                src={p.profilePhoto}
+                                src={p.reciever.profilePhoto}
                                 alt="profile"
                             />
                             <div className="flex-1 h-full">
                                 <div  className="w-full flex justify-between">
-                                    <p  className="text-[16px] text-[#000000] font-medium">{p.firstName + " "+ p?.lastName}</p>
-                                    <p className="text-[#898989] text-[14px] font-normal">{moment(p?.time).format('LT')} </p>
+                                    <p  className="text-[16px] text-[#000000] font-medium">{p.reciever.firstName + " "+ p.reciever?.lastName}</p>
+                                    <p className="text-[#898989] text-[14px] font-normal">{moment(p?.last_updated).format('LT')} </p>
                                 </div>
                                 <div className="content">
                                     <p className="text-[14px] text-[#000000] font-normal">

@@ -31,6 +31,20 @@ export const chatApi = apiSlice.injectEndpoints({
             }
             
         }),
+        getConversations: builder.query({
+            query(){
+                // console.log(body)
+                return{
+                    url: `/inbox/conversations`,
+                
+                headers: {
+                    authorization: `Bearer ${getCookie("token")}`,
+                },
+                
+                }
+            }
+            
+        }),
         createConversation: builder.mutation({
             query: data => ({
                 url: "/inbox/create-conversation",
@@ -44,4 +58,4 @@ export const chatApi = apiSlice.injectEndpoints({
     }),
 });
 
-export const { useCreateMessageMutation, useGetAllMessageQuery } = chatApi;
+export const { useCreateMessageMutation, useGetAllMessageQuery,useGetConversationsQuery,useCreateConversationMutation } = chatApi;

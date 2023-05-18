@@ -1,18 +1,17 @@
 import React from "react";
 import { useEffect } from "react";
-import { useGetAllConnectedConnectionsQuery } from "../../../../Redux/features/connections/connectionApi";
 import { ConversationHeader } from "./ConversationHeader";
 import { Conversations } from "./Conversations";
+import { useGetConversationsQuery } from "../../../../Redux/chat/chatApi";
 // import moment from "moment";
 export const Sidebar = ({handleChat,profile}) => {
-    let { data } = useGetAllConnectedConnectionsQuery(profile?._id);
-    // console.log(data);
+    let { data } = useGetConversationsQuery();
     const [user, setUser] = React.useState(null);
     useEffect(() => {
-        if(data?.data?.user){
-            setUser(data?.data?.user)
+        if(data?.conversations){
+            setUser(data?.conversations)
         }
-    }, [data?.data?.user]);
+    }, [data?.conversations]);
 
     return (
         <div className="mx-[11px]">

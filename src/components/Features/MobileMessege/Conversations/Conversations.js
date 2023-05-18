@@ -22,8 +22,6 @@ export const Conversations = () => {
     // const dispatch=useDispatch();
     const navigate=useNavigate();
     const handleUser = (item) => {
-        console.log(item)
-        // dispatch(setUser(item));
         navigate(`/mobile-inbox/${item._id}`);
     }
 
