@@ -1,10 +1,17 @@
-import React from "react";
+import React,{useEffect} from "react";
+import { useLocation } from "react-router-dom";
 import { MobileBackButton } from "../../shared/Components/MobileBackButton";
 import CustomHeader from "../../shared/CustomHeader/CustomHeader";
 import PackageContainer from "./PackageContainer";
 import Footer from "../../shared/Footer/Footer";
 
 const Packages = () => {
+  const location = useLocation();
+
+  useEffect(() => {
+    // Scroll to the top of the page whenever the location changes
+    window.scrollTo(0, 0);
+  }, [location]);
   return (
     <>
       <div className="lg:hidden">
