@@ -15,6 +15,7 @@ import { BrandLoader } from "../../components/shared/Cards/Loader/BrandLoader/Br
 import Footer from "../../components/shared/Footer/Footer";
 import isLoggedIn from "../../Helper/hooks/checkLoggerPersestency/isLoggedIn";
 import { MobileHome } from "./mobileversion/MobileHome";
+import PackagePromo from "../../components/pages/Home/PackagePromo/PackagePromo";
 const NavBar = lazy(() => import("../../components/pages/Shared/NavBar"));
 const Banner = React.lazy(() =>
   import("../../components/pages/Home/Banner/Banner")
@@ -37,7 +38,7 @@ const Homepage = () => {
             <BeginFamilyJourney></BeginFamilyJourney>
             <TopProfile />
             <PeopleJoinedAlready />
-            {/* <PackagePromo /> */}
+            <PackagePromo />
           </div>
           {/* <MouseEffect /> */}
           <div className="ignoreMouseEffect">
