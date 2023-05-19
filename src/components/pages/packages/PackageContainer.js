@@ -2,21 +2,31 @@
 import { useGetAllPackagesQuery } from "../../../Redux/features/package/packageApi";
 
 // Configuration
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 // import { useNavigate } from "react-router";
-
-
 
 // Components
 import { useGetProfileDetailsWIthAuthQuery } from "../../../Redux/features/userInfo/userApi";
 import { SuccessSnackBar } from "../../ui/error/snackBar/SuccessSnackBar";
 import PackageCard from "../../shared/Packages/PackageCard";
+import { ServerErrorMessage } from "../../ui/error/ServerErrorMessage";
+import { OvalLoader } from "../../shared/Cards/Loader/OvalLoader/OvalLoader";
 
 const PackageContainer = () => {
+  const [packages, setPackages] = useState([]);
   const [successSnackBarOpen, setSuccessSnackBarOpen] = useState(false);
   // const navigate = useNavigate();
-    const { data } = useGetAllPackagesQuery();
+  const { data, isLoading, error } = useGetAllPackagesQuery();
+  console.log(data);
   const { data: profile } = useGetProfileDetailsWIthAuthQuery();
+
+  useEffect(() => {
+    if (data) {
+      setPackages(
+        [...data?.data?.packages].sort((a, b) => a.priceMonth - b.priceMonth)
+      );
+    }
+  }, [data]);
 
   return (
     <div className="max-w-[1200px] mx-auto mt-8">
@@ -24,17 +34,35 @@ const PackageContainer = () => {
         Special Packages For You
       </h6>
 
-      <div className="grid grid-cols-3 gap-4">
-        {data?.data?.packages?.map((pack, i) => (
-          <PackageCard
-            pack={pack}
-            packages={data?.data?.packages}
-            index={i}
-            user={profile?._id}
-            setSuccessSnackBarOpen={setSuccessSnackBarOpen}
-          />
-        ))}
-      </div>
+      {isLoading && (
+        <div className="my-16">
+          <OvalLoader />
+        </div>
+      )}
+
+      {error && (
+        <div className="flex items-center justify-center my-16">
+          <ServerErrorMessage />
+        </div>
+      )}
+      {packages.length !== 0 && (
+        <div className="px-auto grid md:grid-cols-2 my-16 lg:grid-cols-3 gap-4">
+          {packages?.map((pack, i) => (
+            <PackageCard
+              pack={pack}
+              packages={packages}
+              index={i}
+              user={profile?._id}
+              setSuccessSnackBarOpen={setSuccessSnackBarOpen}
+            />
+          ))}
+        </div>
+      )}
+      {packages?.length === 0 && data && (
+        <div className="text-center text-3xl font-bold text-gray-400 my-16">
+          No Packages Found
+        </div>
+      )}
       <SuccessSnackBar
         {...{
           successSnackBarOpen,

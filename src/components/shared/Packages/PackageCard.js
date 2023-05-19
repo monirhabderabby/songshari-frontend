@@ -4,9 +4,17 @@ import { useState } from "react";
 import getCookie from "../../../Helper/cookies/getCookie";
 import { useNavigate } from "react-router";
 
-const PackageCard = ({ pack,packages, index, user, setSuccessSnackBarOpen }) => {
-  const [showPopup, setShowPopup] = useState(false)
-  const navigate = useNavigate()
+const PackageCard = ({
+  pack,
+  packages,
+  index,
+  user,
+  setSuccessSnackBarOpen,
+  setSelectedPack,
+  useCase,
+}) => {
+  const [showPopup, setShowPopup] = useState(false);
+  const navigate = useNavigate();
 
   // bg color decision
   const bgColor =
@@ -16,18 +24,18 @@ const PackageCard = ({ pack,packages, index, user, setSuccessSnackBarOpen }) => 
       ? "bg-[#718096]"
       : pack.name === "Gold"
       ? "bg-[#FBBF24]"
-          : "bg-[#DC2626]";
-  
+      : "bg-[#DC2626]";
+
   const handleBuyPack = () => {
     if (getCookie("token")) {
-      return setShowPopup(true)
+      if (useCase === "home") {
+        return setSelectedPack(pack);
+      }
+      return setShowPopup(true);
     } else {
-      navigate("/login")
+      navigate("/login");
     }
-
-  }
-  
-  
+  };
 
   return (
     <>
@@ -72,7 +80,7 @@ const PackageCard = ({ pack,packages, index, user, setSuccessSnackBarOpen }) => 
             </p>
           </div>
           <ul className="list-disc pl-6 text-lg font-Inter text-gray-500 h-[450px]">
-            {pack?.title?.toLowerCase() === "free" && (
+            {pack?.title?.toLowerCase()?.includes("free") && (
               <>
                 <li className="whitespace-nowrap">Browse Basic Features</li>
                 <li>Register/Login</li>
@@ -104,7 +112,7 @@ const PackageCard = ({ pack,packages, index, user, setSuccessSnackBarOpen }) => 
               <li>{pack?.agentDiscount}% Discount on Agent Fee</li>
             )}
           </ul>
-          {pack?.title?.toLowerCase() !== "free" && (
+          {!pack?.title?.toLowerCase()?.includes("free") && (
             <button
               onClick={handleBuyPack}
               className="mt-6 rounded bg-pink-500 px-4 py-2 font-medium text-white hover:bg-pink-600 text-lg font-Inter"
@@ -112,14 +120,17 @@ const PackageCard = ({ pack,packages, index, user, setSuccessSnackBarOpen }) => 
               Buy Pack
             </button>
           )}
-          {pack?.title?.toLowerCase() === "free" && (
-            <button className="mt-6 rounded bg-[#06B6D4] px-4 py-2 font-medium text-white hover:bg-pink-600 text-lg font-Inter">
+          {pack?.title?.toLowerCase()?.includes("free") && (
+            <button
+              disabled={true}
+              className="mt-6 cursor-not-allowed rounded bg-[#06B6D4] px-4 py-2 font-medium text-white text-lg font-Inter"
+            >
               Try free
             </button>
           )}
         </div>
       </div>
-      {showPopup && (
+      {showPopup && useCase !== "home" && (
         <PackageForm {...{ pack, setShowPopup, setSuccessSnackBarOpen }} />
       )}
     </>
