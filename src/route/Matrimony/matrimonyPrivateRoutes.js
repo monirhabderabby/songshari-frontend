@@ -6,6 +6,7 @@ import { NearestPartners } from "../../components/pages/FindPartner/NearestPartn
 import { TopPartners } from "../../components/pages/FindPartner/TopPartner/TopPartners";
 import { Gallery } from "../../components/shared/Components/Gallery";
 import SingleServicesStatusContainer from "../../components/shared/Components/LawyerAgentKaziService/SingleServicesStatus/SingleServicesStatusContainer";
+import { PaymentSuccess } from "../../components/shared/Components/PaymentSuccess/PaymentSuccess";
 import { EmailVerificationLander } from "../../components/shared/EmailVerificationLander/EmailVerificationLander";
 import { DesktopNotification } from "../../components/shared/Notification/DesktopNotification";
 import EducationalCertificateWeb from "../../components/SingleProfilesUser/CertificateSection/EducationalCertificateWeb";
@@ -164,6 +165,11 @@ const matrimonyPrivateRoutes = [
         id: 12,
         path: "/verification_lander",
         element: <EmailVerificationLander />,
+    },
+    {
+        id: 13,
+        path: "/payment_Success",
+        element: <PaymentSuccess />,
     },
 ];
 

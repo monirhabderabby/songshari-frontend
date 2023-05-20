@@ -1,5 +1,6 @@
 import { FormControlLabel, Radio, RadioGroup } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
 import { useServiceOrderWithPointMutation } from "../../../../Redux/features/Service/OrderApi";
 import { Modal } from "../../../modals/Modal";
 import Error from "../../../ui/error/Error";
@@ -16,6 +17,9 @@ export const DynamicSingleServiceOrderPlacement = ({
 }) => {
     const [paymentMethod, setPaymentMethod] = useState("amarPay");
     const [customError, setCustomError] = useState("");
+
+    //js
+    const navigate = useNavigate();
 
     // Redux API
     const [serviceOrderWithPoint, { isSuccess: pointSuccess, error: pointError, isLoading: pointLoading }] = useServiceOrderWithPointMutation();
@@ -64,39 +68,39 @@ export const DynamicSingleServiceOrderPlacement = ({
 
     useEffect(() => {
         if (pointSuccess) {
-            modalControll();
-            setTimeout(() => {
-                setSuccessSnackBarOpen(true);
-            }, 2000);
+            navigate("/payment_Success");
         }
-    }, [pointSuccess, setSuccessSnackBarOpen, modalControll]);
+    }, [pointSuccess, setSuccessSnackBarOpen, navigate]);
+
     return (
         <Modal modalControll={modalControll}>
-            <div className="flex items-center">
-                <RadioGroup
-                    aria-labelledby="demo-radio-buttons-group-label"
-                    defaultValue="amarPay"
-                    name="radio-buttons-group"
-                    onChange={() => setPaymentMethod("amarPay")}
+            <>
+                <div className="flex items-center">
+                    <RadioGroup
+                        aria-labelledby="demo-radio-buttons-group-label"
+                        defaultValue="amarPay"
+                        name="radio-buttons-group"
+                        onChange={() => setPaymentMethod("amarPay")}
+                    >
+                        <FormControlLabel checked={paymentMethod?.includes("amarPay")} control={<Radio />} label={amarPay} />
+                    </RadioGroup>
+                    <RadioGroup
+                        aria-labelledby="demo-radio-buttons-group-label"
+                        defaultValue="cash"
+                        name="radio-buttons-group"
+                        onChange={() => setPaymentMethod("point")}
+                    >
+                        <FormControlLabel checked={paymentMethod?.includes("point")} control={<Radio />} label={cash} />
+                    </RadioGroup>
+                </div>
+                <div>{customError && <Error message={customError} />}</div>
+                <button
+                    className="bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] py-1 px-4 text-white rounded-[4px]"
+                    onClick={orderPlaceHandler}
                 >
-                    <FormControlLabel checked={paymentMethod?.includes("amarPay")} control={<Radio />} label={amarPay} />
-                </RadioGroup>
-                <RadioGroup
-                    aria-labelledby="demo-radio-buttons-group-label"
-                    defaultValue="cash"
-                    name="radio-buttons-group"
-                    onChange={() => setPaymentMethod("point")}
-                >
-                    <FormControlLabel checked={paymentMethod?.includes("point")} control={<Radio />} label={cash} />
-                </RadioGroup>
-            </div>
-            {customError && <Error message={customError} />}
-            <button
-                className="bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] py-1 px-4 text-white rounded-[4px]"
-                onClick={orderPlaceHandler}
-            >
-                {pointLoading || isLoading ? "..." : "Pay Now"}
-            </button>
+                    {pointLoading || isLoading ? "..." : "Pay Now"}
+                </button>
+            </>
         </Modal>
     );
 };
