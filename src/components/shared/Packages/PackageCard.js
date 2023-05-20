@@ -15,16 +15,15 @@ const PackageCard = ({
 }) => {
   const [showPopup, setShowPopup] = useState(false);
   const navigate = useNavigate();
-
+console.log(pack)
   // bg color decision
-  const bgColor =
-    pack?.title === "Free"
-      ? "bg-[#06B6D4]"
-      : pack.name === "Silver"
-      ? "bg-[#718096]"
-      : pack.name === "Gold"
-      ? "bg-[#FBBF24]"
-      : "bg-[#DC2626]";
+  const bgColor = pack?.title?.toLowerCase()?.includes("free")
+    ? "bg-[#06B6D4]"
+    : pack?.title?.toLowerCase()?.includes("silver")
+    ? "bg-[#718096]"
+    : pack?.title?.toLowerCase()?.includes("gold")
+    ? "bg-[#FBBF24]"
+    : "bg-[#DC2626]";
 
   const handleBuyPack = () => {
     if (getCookie("token")) {
@@ -52,15 +51,7 @@ const PackageCard = ({
               {pack?.title}
             </p>
             <div
-              className={`w-4 px-4 py-[21px] absolute -bottom-[40px] -left-[39px] -z-50 ${
-                pack?.title === "Free"
-                  ? "bg-[#059cb7]"
-                  : pack.name === "Silver"
-                  ? "bg-[#5d6a7c]"
-                  : pack.name === "Gold"
-                  ? "bg-[#ce9b1d]"
-                  : "bg-[#ad1e1e]"
-              }`}
+              className={`w-4 px-4 py-[21px] absolute -bottom-[40px] -left-[39px] -z-50 ${bgColor}`}
               style={{ clipPath: "polygon(0 0, 100% 0, 100% 45%, 0 6%)" }}
             ></div>
           </div>
@@ -91,17 +82,17 @@ const PackageCard = ({
               <li>All feature of {packages[index - 1]?.title}</li>
             )}
             <li>{pack?.chatRequestPerDay} chat request every 24hours </li>
-            <li>
-              {pack?.swapPerDay || "Unlimited"} chat request every 24hours
-            </li>
-            <li>{pack?.messagePerDay || "Unlimited"} Message Per Day</li>
-            <li>Video Chat: {pack?.videoCall} Minutes a Day</li>
+            <li>{pack?.swapPerDay || "Unlimited"} Swap every 24hours</li>
+            <li>{pack?.messageLimit || "Unlimited"} Message Per Day</li>
+            {pack?.videoCall !==0 && <li>Video Chat: {pack?.videoCall} Minutes a Day</li>}
             {pack?.timelinePost && <li>Timeline Post</li>}
             {pack?.courseDiscount !== 0 && (
               <li>Course Discount {pack?.courseDiscount}%</li>
             )}
-            <li>Upload Marriage Certificate</li>
-            <li>Free Kazi Contact</li>
+            {pack?.uploadMarriageCertificate && (
+              <li>Upload Marriage Certificate</li>
+            )}
+            {pack?.freeKaziContact && <li>Free Kazi Contact</li>}
             {pack?.shoppingDiscount !== 0 && (
               <li>{pack?.shoppingDiscount}% Shopping Discount</li>
             )}
@@ -115,7 +106,7 @@ const PackageCard = ({
           {!pack?.title?.toLowerCase()?.includes("free") && (
             <button
               onClick={handleBuyPack}
-              className="mt-6 rounded bg-pink-500 px-4 py-2 font-medium text-white hover:bg-pink-600 text-lg font-Inter"
+              className={`mt-6 rounded ${bgColor} px-4 py-2 font-medium text-white text-lg font-Inter`}
             >
               Buy Pack
             </button>
