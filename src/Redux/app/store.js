@@ -5,19 +5,20 @@ import persistStore from "redux-persist/es/persistStore";
 import storage from "redux-persist/lib/storage";
 import apiSlice from "../api/apiSlice";
 import chatReducer from "../chat/chatReducer";
-import billingSummarySlice from "../features/checkout/billingSummarySlice";
-import checkoutDetailsSlice from "../features/checkout/checkoutDetailsSlice";
-import connectionSlice from "../features/connections/connectionSlice";
 import courseCheckoutSlice from "../features/Course/courseCheckoutSlice";
-import coursesAccessSlice from "../features/Course/coursesAccessSlice";
 import courseSlice from "../features/Course/courseSlice";
-import filterSlice from "../features/filter/filterSlice";
-import findPartnerSlice from "../features/filter/findPartnerSlice";
+import coursesAccessSlice from "../features/Course/coursesAccessSlice";
 import findLawyerKaziAgentFilterSlice from "../features/FindLawyerKaziAgentFilter/findLawyerKaziAgentFilterSlice";
 import pageTitleSlice from "../features/PageTitle/pageTitleSlice";
 import orderSlice from "../features/Service/orderSlice";
 import shopSlice from "../features/Shop/shopSlice";
+import billingSummarySlice from "../features/checkout/billingSummarySlice";
+import checkoutDetailsSlice from "../features/checkout/checkoutDetailsSlice";
+import connectionSlice from "../features/connections/connectionSlice";
+import filterSlice from "../features/filter/filterSlice";
+import findPartnerSlice from "../features/filter/findPartnerSlice";
 import userInfo from "../features/userInfo/userInfo";
+import verificationSlice from "../features/userInfo/verificationSlice";
 
 const persistConfig = {
     key: "root",
@@ -41,6 +42,7 @@ const reducer = combineReducers({
     course: courseSlice,
     courseAccess: coursesAccessSlice,
     courseCheckout: courseCheckoutSlice,
+    verificationSlice: verificationSlice,
 });
 const persistedReducer = persistReducer(persistConfig, reducer);
 const store = configureStore({

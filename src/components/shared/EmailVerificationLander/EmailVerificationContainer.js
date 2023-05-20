@@ -3,14 +3,13 @@ import React, { useEffect, useRef } from "react";
 // lottie files
 import lottie from "lottie-web";
 import { decodeToken } from "react-jwt";
-import { useLocation } from "react-router";
 import getCookie from "../../../Helper/cookies/getCookie";
 import { useSendOtpByTokenMutation } from "../../../Redux/features/Verification.js/verification";
 import plan from "../../../assets/lottieFiles/awaiting-email.json";
 import { OvalLoader } from "../Cards/Loader/OvalLoader/OvalLoader";
 import { OtpInput } from "./OtpInput";
 
-export const EmailVerificationContainer = () => {
+export const EmailVerificationContainer = ({ from }) => {
     const animationContainer = useRef(null);
 
     //Api
@@ -20,8 +19,6 @@ export const EmailVerificationContainer = () => {
     const token = getCookie("token");
     const myDocodeToken = decodeToken(token);
     const { email } = myDocodeToken || {};
-    let location = useLocation();
-    let from = location.state?.from?.pathname || "/";
 
     // function declaration
     const otpSentHandler = () => {
