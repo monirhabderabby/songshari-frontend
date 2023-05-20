@@ -42,8 +42,6 @@ const ProfileCard = ({ data, isLoading }) => {
     let profilePhoto = data?.profilePhoto ? data?.profilePhoto : "https://cdn-icons-png.flaticon.com/512/194/194938.png";
     let content = null;
 
-    console.log(UserAge);
-
     // function declaration
     const profilePhotoUploadHandler = e => {
         if (e.target.files[0]) {
