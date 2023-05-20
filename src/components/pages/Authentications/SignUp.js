@@ -26,6 +26,7 @@ import MobileSignUp from "./MobileDesign/MobileSignUp";
 // css files
 import "../../../App.css";
 import "../../../assets/css/SignUp.css";
+import { loadInitialverificationData } from "../../../Redux/features/userInfo/verificationSlice";
 import { EmailField } from "./InputFields/EmailField";
 
 const Signup = () => {
@@ -52,6 +53,7 @@ const Signup = () => {
         if (response) {
             setCookie("token", response?.data?.token);
             dispatch(loadUserData(response?.data));
+            dispatch(loadInitialverificationData(response?.data?.user?.isEmailVerified));
             reset();
         }
         if (response?.data?.user?.googleLogin === false) {
