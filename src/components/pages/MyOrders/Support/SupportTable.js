@@ -21,14 +21,16 @@ export const SupportTable = ({ status }) => {
     let content;
     if (isLoading || isFetching) {
         content = (
-            <tbody className="h-[260px] w-full flex justify-center items-center">
-                <tr>
-                    <td> </td>
-                    <td>
-                        <LineWaveLoader />
-                    </td>
-                </tr>
-            </tbody>
+            <table>
+                <tbody className="h-[260px] w-full flex justify-center items-center">
+                    <tr>
+                        <td> </td>
+                        <td>
+                            <LineWaveLoader />
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         );
     } else if (!isLoading && isError) {
         content = (

@@ -18,7 +18,6 @@ export const SwapProfileMatches = () => {
     const { data: matchedData, isLoading, isError } = useGetSwapMatchedProfilesQuery();
     const { matches } = matchedData || {};
     const { matches: matchedArray } = matches || {};
-    console.log(matchedArray);
 
     // js variables
     let content = null;

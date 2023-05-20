@@ -21,7 +21,6 @@ const ChartBoard = () => {
     const professionalCertificate = certificates?.data?.professions;
     const educationalCertificate = certificates?.data?.educations;
     const marriageCertificate = certificates?.data?.marriages;
-    console.log(certificates, "slsklsklklskdflkdfjsdlk");
 
     // variable declaration for certificate properties
     let proCertificate;
