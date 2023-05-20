@@ -8,8 +8,10 @@ import { useNavigate } from "react-router";
 import hideemail from "../../../../assets/utilities/hideEmail/hideEmail";
 
 // components
+import { useDispatch } from "react-redux";
 import getCookie from "../../../../Helper/cookies/getCookie";
 import { useReSendOtpMutation, useVerifyEmailMutation } from "../../../../Redux/features/userInfo/userApi";
+import { setVerificationData } from "../../../../Redux/features/userInfo/verificationSlice";
 import Error from "../../../ui/error/Error";
 
 export const OTP = () => {
@@ -19,6 +21,7 @@ export const OTP = () => {
     const [reSendOtp, { data: reSendResponse, isLoading: reSendLoading }] = useReSendOtpMutation();
     const [customError, setCustomError] = useState("");
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     //js variables
     const token = getCookie("token");
@@ -26,9 +29,10 @@ export const OTP = () => {
 
     useEffect(() => {
         if (data?.message === "Email verified") {
+            dispatch(setVerificationData(true));
             setTimeout(navigate("/userProfile"), 200);
         }
-    }, [navigate, data?.message]);
+    }, [navigate, data?.message, dispatch]);
 
     useEffect(() => {
         if (error && error?.data?.success === false) {
