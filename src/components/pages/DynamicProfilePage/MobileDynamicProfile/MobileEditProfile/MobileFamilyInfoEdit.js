@@ -132,21 +132,50 @@ const MobileFamilyInfoEdit = () => {
   };
 
   const onSubmit = async (data) => {
-    data = {
-      ...data,
-      isFatherAlive,
-      fatherProfession,
-      fatherIncome,
-      fatherEducationalQualification,
-      fatherDateOfBirth,
-      fatherDeathDate,
-      isMotherAlive,
-      motherProfession,
-      motherIncome,
-      motherEducationalQualification,
-      motherDateOfBirth,
-      motherDeathDate,
-    };
+    if (isFatherAlive) {
+      data.isFatherAlive = isFatherAlive;
+    }
+    if (isMotherAlive) {
+      data.isMotherAlive = isMotherAlive;
+    }
+    if (data.fatherName === "") {
+      delete data.fatherName;
+    }
+    if (data.motherName === "") {
+      delete data.motherName;
+    }
+    if (fatherProfession) {
+      data.fatherProfession = fatherProfession;
+    }
+    if (fatherIncome) {
+      data.fatherIncome = fatherIncome;
+    }
+    if (fatherEducationalQualification) {
+      data.fatherEducationalQualification = fatherEducationalQualification;
+    }
+    if (fatherDateOfBirth) {
+      data.fatherDateOfBirth = fatherDateOfBirth;
+    }
+    if (fatherDeathDate) {
+      data.fatherDeathDate = fatherDeathDate;
+    }
+    if (motherProfession) {
+      data.motherProfession = motherProfession;
+    }
+    if (motherIncome) {
+      data.motherIncome = motherIncome;
+    }
+    if (motherEducationalQualification) {
+      data.motherEducationalQualification = motherEducationalQualification;
+    }
+    if (motherDateOfBirth) {
+      data.motherDateOfBirth = motherDateOfBirth;
+    }
+    if (motherDeathDate) {
+      data.motherDeathDate = motherDeathDate;
+    }
+
+    data = { ...data };
     await updateFamilyDetails(data);
   };
 

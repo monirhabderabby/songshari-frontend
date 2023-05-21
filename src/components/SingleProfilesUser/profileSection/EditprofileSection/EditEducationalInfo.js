@@ -147,7 +147,7 @@ const EditEducationalInfo = () => {
       data.fieldOfStudy = fieldOfStudy?.title;
     }
     if (cgpa) {
-      data.gpaOrCgpa = cgpa?.title;
+      data.gpaOrCgpa = Number(cgpa?.title);
     }
     await updateEducationalDetails({ data, id });
   };

@@ -47,6 +47,7 @@ export const AccordionPartner = ({ data, isLoading }) => {
   const [girlQuantity, setGirlQuantity] = useState(0);
   const [girlAge, setGirlAge] = useState(0);
   const [childrenLiveStatus, setChildrenLiveStatus] = useState("");
+  const [reasonOfMarriage, setReasonOfMarriage] = useState("");
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -77,7 +78,7 @@ export const AccordionPartner = ({ data, isLoading }) => {
 
   useEffect(() => {
     if (maritalStatus === "married") {
-      setBasicInfo({ ...basicInfo, partnerQuantity });
+      setBasicInfo({ ...basicInfo, partnerQuantity, reasonOfMarriage });
     }
     if (haveChildren === "yes") {
       setBasicInfo({
@@ -90,6 +91,20 @@ export const AccordionPartner = ({ data, isLoading }) => {
         childrenLiveStatus,
       });
     }
+    if (brother > 0) {
+      // assign sibling in familyInfo Object
+      setBasicInfo({
+        ...basicInfo,
+        numberOfBrother: brother,
+      });
+    }
+    if (sister > 0) {
+      // assign sibling in familyInfo Object
+      setBasicInfo({
+        ...basicInfo,
+        numberOfSister: sister,
+      });
+    }
   }, [
     basicInfo,
     maritalStatus,
@@ -100,6 +115,9 @@ export const AccordionPartner = ({ data, isLoading }) => {
     girlAge,
     girlQuantity,
     childrenLiveStatus,
+    reasonOfMarriage,
+    brother,
+    sister,
   ]);
 
   //...........Family Information data state ................//
@@ -172,6 +190,7 @@ export const AccordionPartner = ({ data, isLoading }) => {
   };
   const handleMarriageReasonChange = (value) => {
     console.log(`selected ${value}`);
+    setReasonOfMarriage(value);
   };
   const handleHaveChildrenChange = (value) => {
     console.log(`selected ${value}`);
@@ -349,12 +368,6 @@ export const AccordionPartner = ({ data, isLoading }) => {
 
   //handle data submission
   const handleSubmit = () => {
-    // assign sibling in familyInfo Object
-    setFamilyInfo({
-      ...familyInfo,
-      siblings: { brother, sister },
-    });
-
     //Process Data for filtering
     const data = {
       basicInfo,
@@ -847,8 +860,8 @@ export const AccordionPartner = ({ data, isLoading }) => {
                 className="mb-4"
               >
                 <Space direction="vertical">
-                  <Radio value={"alive"}>Alive</Radio>
-                  <Radio value={"dead"}>Dead</Radio>
+                  <Radio value={"yes"}>Alive</Radio>
+                  <Radio value={"no"}>Dead</Radio>
                 </Space>
               </Radio.Group>
             </div>
@@ -910,8 +923,8 @@ export const AccordionPartner = ({ data, isLoading }) => {
                 className="mb-4"
               >
                 <Space direction="vertical">
-                  <Radio value={"alive"}>Alive</Radio>
-                  <Radio value={"dead"}>Dead</Radio>
+                  <Radio value={"yes"}>Alive</Radio>
+                  <Radio value={"no"}>Dead</Radio>
                 </Space>
               </Radio.Group>
             </div>
