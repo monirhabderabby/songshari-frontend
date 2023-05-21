@@ -56,7 +56,13 @@ const MobilePhysicalInfoEdit = () => {
   const navigate = useNavigate();
   //data submission function
   const onSubmit = async (data) => {
-    data = { ...physicalInfo, height, weight };
+    if (height > 0) {
+      data.height = height;
+    }
+    if (weight > 0) {
+      data.weight = weight;
+    }
+    data = { ...physicalInfo };
     await updatePhysicalDetails(data);
   };
   // error success and loading handler

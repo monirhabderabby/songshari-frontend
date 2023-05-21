@@ -104,10 +104,15 @@ const MobileEducationalInfoEdit = () => {
     setEducationalInfo({ ...educationalInfo, yearOfStudy: date });
   };
   const handleAchiveMents = (e) => {
-    setEducationalInfo({
-      ...educationalInfo,
-      specialAchievement: e?.target?.value,
-    });
+    if (e?.target?.value !== "") {
+      setEducationalInfo({
+        ...educationalInfo,
+        specialAchievement: e?.target?.value,
+      });
+    } else {
+      const { specialAchievement, ...updatedEducationalInfo } = educationalInfo;
+      setEducationalInfo(updatedEducationalInfo);
+    }
   };
   // educational qualifitaions options Autocomplete (MUI)
   const degreeOptions = [
@@ -134,12 +139,22 @@ const MobileEducationalInfoEdit = () => {
     e.preventDefault();
     const data = {
       ...educationalInfo,
-      degree: degreeName?.title,
-      institute: instituteName?.title,
-      department: departmentName?.title,
-      fieldOfStudy: fieldOfStudy?.title,
-      gpaOrCgpa: Number(cgpa?.title),
     };
+    if (degreeName) {
+      data.degree = degreeName?.title;
+    }
+    if (instituteName) {
+      data.institute = instituteName?.title;
+    }
+    if (departmentName) {
+      data.department = departmentName?.title;
+    }
+    if (fieldOfStudy) {
+      data.fieldOfStudy = fieldOfStudy?.title;
+    }
+    if (cgpa) {
+      data.gpaOrCgpa = Number(cgpa?.title);
+    }
     await updateEducationalDetails({ data, id });
   };
   // error success and loading handler

@@ -33,7 +33,7 @@ const MobilePersonalInfoEdit = () => {
   //uploaded image url data state
   const [nidOrPassportPhoto, setNidOrPassportPhoto] = useState({});
   // API from redux
-  const [{ data: updateResponse, isLoading, error }] =
+  const [updatePersonalDetails, { data: updateResponse, isLoading, error }] =
     useUpdatePersonalDetailsMutation();
 
   const { register, handleSubmit } = useForm();
@@ -141,7 +141,12 @@ const MobilePersonalInfoEdit = () => {
 
   // handle hobby
   const handleHobby = (value) => {
-    setPersonalInfo({ ...personalInfo, hobbies: value });
+    if (value.length >= 1) {
+      setPersonalInfo({ ...personalInfo, hobbies: value });
+    } else if (value.length === 0) {
+      const { hobbies, ...updatedPersonalInfo } = personalInfo;
+      setPersonalInfo(updatedPersonalInfo);
+    }
   };
 
   const navigate = useNavigate();
@@ -156,19 +161,56 @@ const MobilePersonalInfoEdit = () => {
 
   //form submission
   const onSubmit = async (data) => {
+    if (brother > 0) {
+      data.numberOfBrother = brother;
+    }
+    if (sister > 0) {
+      data.numberOfSister = sister;
+    }
+    if (lookingFor !== "") {
+      data.whatAreYouLookingFor = lookingFor;
+    }
+    if (nidOrPassportPhoto.frontSide) {
+      data.NidOrPassportPhoto = nidOrPassportPhoto;
+    }
+    if (data.firstName === "") {
+      delete data.firstName;
+    }
+    if (data.lastName === "") {
+      delete data.lastName;
+    }
+    if (data.NidOrPassportNumber === "") {
+      delete data.NidOrPassportNumber;
+    }
+    if (data.aboutYou === "") {
+      delete data.aboutYou;
+    }
+    if (data.LinkedInId === "") {
+      delete data.LinkedInId;
+    }
+    if (data.faceBookId === "") {
+      delete data.faceBookId;
+    }
+    if (data.instagramId === "") {
+      delete data.instagramId;
+    }
+    if (data.phone === "") {
+      delete data.phone;
+    }
+    if (data.numberOfPartner === "") {
+      delete data.numberOfPartner;
+    }
+    if (data.reasonOfMarriage === "") {
+      delete data.reasonOfMarriage;
+    }
     data = {
       ...data,
       ...personalInfo,
-      numberOfBrother: brother,
-      numberOfSister: sister,
       ...marriageDetails,
       ...divorceDetails,
       ...widowedDetails,
-      NidOrPassportPhoto: nidOrPassportPhoto,
-      whatAreYouLookingFor: lookingFor,
     };
-    // await updatePersonalDetails(data);
-    console.log(data);
+    await updatePersonalDetails(data);
   };
 
   // error success and loading handler
