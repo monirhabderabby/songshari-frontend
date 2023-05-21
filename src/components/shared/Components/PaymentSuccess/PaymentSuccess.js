@@ -20,7 +20,7 @@ export const PaymentSuccess = () => {
         const anim = lottie.loadAnimation({
             container: animationContainer.current,
             renderer: "svg", // Choose the appropriate renderer (svg, canvas, html)
-            loop: true,
+            loop: false,
             autoplay: true,
             animationData: paymentLottie,
         });
