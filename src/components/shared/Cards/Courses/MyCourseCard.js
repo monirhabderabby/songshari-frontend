@@ -1,11 +1,12 @@
 import { Rating } from "@mui/material";
 import { Progress } from "antd";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import { useGetCourseReviewOfMeQuery } from "../../../../Redux/features/Course/courseApi";
 
 export const MyCourseCard = ({ item }) => {
+    const [instructorName, setInstructorName] = useState("");
     const navigate = useNavigate();
     const location = useLocation();
 
@@ -13,6 +14,12 @@ export const MyCourseCard = ({ item }) => {
     const { _id, name, image, instructor } = course || {};
     const { data, isLoading, isError } = useGetCourseReviewOfMeQuery(_id);
     const { review } = data || {};
+
+    useEffect(() => {
+        if (instructor?.length > 0) {
+            setInstructorName(instructor[0]?.name);
+        }
+    }, [instructor]);
     let content;
     if (isLoading) {
         content = <div className="w-[60px] h-[15px] flex justify-center items-center">. . .</div>;
@@ -39,7 +46,7 @@ export const MyCourseCard = ({ item }) => {
                         <h3 className="text-[18px] font-bold font-Nunito">{name}</h3>
                         {content}
                     </div>
-                    <span className="text-[14px] text-gray-500">{instructor[0]?.name}</span>
+                    <span className="text-[14px] text-gray-500">{instructorName}</span>
                     <div className="w-[90%]">
                         <Progress percent={item?.progress} status="active" strokeColor={{ from: "#ff317b", to: "#5650ce" }} />
                     </div>
