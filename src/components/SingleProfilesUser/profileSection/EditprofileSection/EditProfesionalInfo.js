@@ -124,6 +124,16 @@ const EditProfesionalInfo = () => {
     if (professionalAchievementMoment !== "") {
       data.certificates = { photo: professionalAchievementMoment };
     }
+    if (completedCase > 0) {
+      data.completedCase = completedCase;
+    }
+    if (successfulCase > 0) {
+      data.successfulCase = successfulCase;
+    }
+    if (successRatio > 0) {
+      data.successRatio = successRatio;
+    }
+
     await updateProfessionalDetails({ data, id });
   };
 
@@ -489,17 +499,6 @@ const EditProfesionalInfo = () => {
           </p>
         )}
 
-        {/* Case study form modal */}
-        <Modal
-          open={visible}
-          onOk={handleOk}
-          onCancel={handleCancel}
-          footer={null}
-          width={840}
-        >
-          <ModifyCaseForm {...{ role }} />
-        </Modal>
-
         <div>
           <input
             type="submit"
@@ -513,6 +512,17 @@ const EditProfesionalInfo = () => {
           <div className="mt-2">{contextHolder}</div>
         </div>
       </form>
+
+      {/* Case study form modal */}
+      <Modal
+        open={visible}
+        onOk={handleOk}
+        onCancel={handleCancel}
+        footer={null}
+        width={840}
+      >
+        <ModifyCaseForm {...{ role }} />
+      </Modal>
     </div>
   );
 };

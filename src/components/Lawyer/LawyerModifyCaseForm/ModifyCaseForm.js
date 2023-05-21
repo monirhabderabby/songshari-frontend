@@ -29,8 +29,27 @@ const ModifyCaseForm = ({ role }) => {
   const [createCaseStudy, { data: response, isLoading, error }] =
     useCreateCaseStudyMutation();
 
-  const onSubmit = async (data) => {
-    data = { ...data, period, court, certificate };
+  const onCaseSubmit = async (data) => {
+    if (data.details === "") {
+      delete data.details;
+    }
+    if (data.result === "") {
+      delete data.result;
+    }
+    if (data.achievement === "") {
+      delete data.achievement;
+    }
+    if (certificate) {
+      data.certificate = certificate;
+    }
+    if (court) {
+      data.court = court;
+    }
+    if (period) {
+      data.period = period;
+    }
+    data = { ...data };
+
     await createCaseStudy(data);
   };
 
@@ -55,7 +74,7 @@ const ModifyCaseForm = ({ role }) => {
 
       {/* Modify case form */}
       <div className="text-left font-sans font-bold text-xs text-[#707276]">
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={handleSubmit(onCaseSubmit)}>
           <CaseServiceFields {...{ register, name: "name" }} />
           <RoleFields {...{ userRole }} />
           <CaseDetailsFields {...{ register, name: "details" }} />
@@ -65,7 +84,7 @@ const ModifyCaseForm = ({ role }) => {
           <SpecialAchievementsFields {...{ register, name: "achievement" }} />
           <ProfessionProofFields {...{ setCertificate, certificate }} />
           <input
-            className="px-[35px] py-[15px] text-white bg-[#E41272] border border-[#3D66D7] rounded-[3px]"
+            className="px-[35px] py-[15px] text-white bg-[#E41272] border border-[#3D66D7] rounded-[3px] cursor-pointer"
             type="submit"
             value={isLoading ? "Loading..." : "Submit"}
           />
