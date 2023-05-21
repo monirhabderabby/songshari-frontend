@@ -24,6 +24,7 @@ import "../../../App.css";
 import getCookie from "../../../Helper/cookies/getCookie";
 import removeCookie from "../../../Helper/cookies/removeCookie";
 import isLoggedIn from "../../../Helper/hooks/checkLoggerPersestency/isLoggedIn";
+import { removeSwap } from "../../../Redux/features/Swap/SwapSlice";
 import { removeVerificationData } from "../../../Redux/features/userInfo/verificationSlice";
 import NavBarCSS from "../../../assets/css/navbar.module.css";
 import { profilePathMaker } from "../../../assets/utilities/profilePathDecisionMaker/profilePathMaker";
@@ -85,6 +86,7 @@ const NavBar = ({ bg }) => {
         navigate("/");
         removeCookie("token");
         dispatch(removeVerificationData());
+        dispatch(removeSwap());
     };
 
     // Dynamic menu decision

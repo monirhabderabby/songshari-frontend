@@ -15,10 +15,11 @@ import {
 import { SwipAndMatchCard } from "../../../shared/Cards/SwipeAndMatch/SwipAndMatchCard";
 
 //css
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import "swiper/css";
 import "swiper/css/navigation";
 import { setSuperMatched } from "../../../../Redux/features/Swap/SwapSlice";
+import { SuperMatchedModal } from "../../../shared/Components/superMatched/SuperMatchedModal";
 
 const BannerProfile = ({ swapable, setSwapable }) => {
     // hook variables
@@ -39,6 +40,10 @@ const BannerProfile = ({ swapable, setSwapable }) => {
         limit: "",
     });
     const [currentUser, setCurrentUser] = useState(null);
+
+    // super matched
+    const { isMatched } = useSelector(state => state.persistedReducer?.swap);
+
     const getJustSwipeData = e => {
         // get the current element
         let activeEl;
@@ -111,32 +116,35 @@ const BannerProfile = ({ swapable, setSwapable }) => {
         }
     }, [rejectedGif]);
     return (
-        <Swiper
-            spaceBetween={30}
-            centeredSlides={true}
-            loop={true}
-            autoplay={{
-                delay: 7500,
-            }}
-            modules={[Navigation, Autoplay]}
-            className="max-w-[280px] h-[400px]"
-            navigation={true}
-            onSlideChange={e => getJustSwipeData(e)}
-            onNavigationPrev={() => {
-                setClickNextButton(false);
-                setClickPreviousButton(true);
-            }}
-            onNavigationNext={() => {
-                setClickPreviousButton(false);
-                setClickNextButton(true);
-            }}
-        >
-            {swipematch?.data?.members.map(data => (
-                <SwiperSlide key={data._id}>
-                    <SwipAndMatchCard {...{ data, likedGif, rejectedGif, swapable, setSwapable }} />
-                </SwiperSlide>
-            ))}
-        </Swiper>
+        <>
+            <Swiper
+                spaceBetween={30}
+                centeredSlides={true}
+                loop={true}
+                autoplay={{
+                    delay: 7500,
+                }}
+                modules={[Navigation, Autoplay]}
+                className="max-w-[280px] h-[400px]"
+                navigation={true}
+                onSlideChange={e => getJustSwipeData(e)}
+                onNavigationPrev={() => {
+                    setClickNextButton(false);
+                    setClickPreviousButton(true);
+                }}
+                onNavigationNext={() => {
+                    setClickPreviousButton(false);
+                    setClickNextButton(true);
+                }}
+            >
+                {swipematch?.data?.members.map(data => (
+                    <SwiperSlide key={data._id}>
+                        <SwipAndMatchCard {...{ data, likedGif, rejectedGif, swapable, setSwapable }} />
+                    </SwiperSlide>
+                ))}
+            </Swiper>
+            {isMatched && <SuperMatchedModal />}
+        </>
     );
 };
 
