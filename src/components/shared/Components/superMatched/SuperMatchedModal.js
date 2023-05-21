@@ -32,8 +32,12 @@ export const SuperMatchedModal = () => {
         navigate(`/profile/${profileID}`);
         dispatch(removeSwap());
     };
+
+    const modalControll = () => {
+        dispatch(removeSwap());
+    };
     return (
-        <Modal>
+        <Modal modalControll={modalControll}>
             <section className="flex flex-col items-center min-h-max">
                 <div ref={animationContainer} className="relative w-[350px] h-[350px]"></div>
                 <div className="content absolute top-[37px] flex flex-col items-center px-[16px] h-auto">
