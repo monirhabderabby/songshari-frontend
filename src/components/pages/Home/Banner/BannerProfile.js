@@ -15,8 +15,10 @@ import {
 import { SwipAndMatchCard } from "../../../shared/Cards/SwipeAndMatch/SwipAndMatchCard";
 
 //css
+import { useDispatch } from "react-redux";
 import "swiper/css";
 import "swiper/css/navigation";
+import { setSuperMatched } from "../../../../Redux/features/Swap/SwapSlice";
 
 const BannerProfile = ({ swapable, setSwapable }) => {
     // hook variables
@@ -24,6 +26,9 @@ const BannerProfile = ({ swapable, setSwapable }) => {
     const [rejectedGif, setRejectedGif] = useState(false);
     const [clickNextButton, setClickNextButton] = useState(false);
     const [clickPreviousButton, setClickPreviousButton] = useState(false);
+
+    // js
+    const dispatch = useDispatch();
 
     const [swipeProfileLike, { data: swapLikeData }] = useSwipeProfileLikeMutation();
     const [rejectSwipeAndMatchMember] = useRejectSwipeAndMatchMemberMutation();
@@ -46,10 +51,16 @@ const BannerProfile = ({ swapable, setSwapable }) => {
 
         setCurrentUser(result);
     };
-    
+
     useEffect(() => {
         if (swapLikeData) {
+            const { matched, data } = swapLikeData || {};
             setSwapable(swapLikeData?.swapAble);
+
+            // if super matched
+            if (matched) {
+                dispatch(setSuperMatched(data?.updatedProfile));
+            }
         }
     }, [swapLikeData]);
 
@@ -67,44 +78,38 @@ const BannerProfile = ({ swapable, setSwapable }) => {
             setClickPreviousButton(false);
             swipeProfileLike(_id);
         }
-    },[swapLikeData])
+    }, [swapLikeData]);
 
-  useEffect(() => {
-    // JS Variable
-    const { _id } = currentUser || {};
+    useEffect(() => {
+        // JS Variable
+        const { _id } = currentUser || {};
 
-    if (clickNextButton) {
-      setClickNextButton(false);
-      rejectSwipeAndMatchMember(_id);
-      setRejectedGif(true);
-    }
-    if (clickPreviousButton) {
-      setLikedGif(true);
-      setClickPreviousButton(false);
-      swipeProfileLike(_id);
-    }
-  }, [
-    clickNextButton,
-    currentUser,
-    clickPreviousButton,
-    swipeProfileLike,
-    rejectSwipeAndMatchMember,
-  ]);
+        if (clickNextButton) {
+            setClickNextButton(false);
+            rejectSwipeAndMatchMember(_id);
+            setRejectedGif(true);
+        }
+        if (clickPreviousButton) {
+            setLikedGif(true);
+            setClickPreviousButton(false);
+            swipeProfileLike(_id);
+        }
+    }, [clickNextButton, currentUser, clickPreviousButton, swipeProfileLike, rejectSwipeAndMatchMember]);
 
-  useEffect(() => {
-    if (likedGif) {
-      setTimeout(() => {
-        setLikedGif(false);
-      }, 2000);
-    }
-  }, [likedGif]);
-  useEffect(() => {
-    if (rejectedGif) {
-      setTimeout(() => {
-        setRejectedGif(false);
-      }, 2000);
-    }
-  }, [rejectedGif]);
+    useEffect(() => {
+        if (likedGif) {
+            setTimeout(() => {
+                setLikedGif(false);
+            }, 2000);
+        }
+    }, [likedGif]);
+    useEffect(() => {
+        if (rejectedGif) {
+            setTimeout(() => {
+                setRejectedGif(false);
+            }, 2000);
+        }
+    }, [rejectedGif]);
     return (
         <Swiper
             spaceBetween={30}

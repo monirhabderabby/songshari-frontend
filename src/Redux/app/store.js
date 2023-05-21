@@ -12,6 +12,7 @@ import findLawyerKaziAgentFilterSlice from "../features/FindLawyerKaziAgentFilte
 import pageTitleSlice from "../features/PageTitle/pageTitleSlice";
 import orderSlice from "../features/Service/orderSlice";
 import shopSlice from "../features/Shop/shopSlice";
+import SwapSlice from "../features/Swap/SwapSlice";
 import billingSummarySlice from "../features/checkout/billingSummarySlice";
 import checkoutDetailsSlice from "../features/checkout/checkoutDetailsSlice";
 import connectionSlice from "../features/connections/connectionSlice";
@@ -43,6 +44,7 @@ const reducer = combineReducers({
     courseAccess: coursesAccessSlice,
     courseCheckout: courseCheckoutSlice,
     verificationSlice: verificationSlice,
+    swap: SwapSlice,
 });
 const persistedReducer = persistReducer(persistConfig, reducer);
 const store = configureStore({
