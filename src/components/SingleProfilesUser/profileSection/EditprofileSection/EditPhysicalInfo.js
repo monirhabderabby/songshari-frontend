@@ -55,7 +55,13 @@ const EditPhysicalInfo = () => {
   const navigate = useNavigate();
   //data submission function
   const onSubmit = async (data) => {
-    data = { ...physicalInfo, height, weight };
+    if (height > 0) {
+      data.height = height;
+    }
+    if (weight > 0) {
+      data.weight = weight;
+    }
+    data = { ...physicalInfo };
     await updatePhysicalDetails(data);
   };
   // error success and loading handler
@@ -392,7 +398,7 @@ const EditPhysicalInfo = () => {
               style={{
                 background: "linear-gradient(180deg, #E41272 0%, #942DD9 100%)",
               }}
-              className="w-full text-center py-[10px] text-[#fff]  text-lg font-medium rounded"
+              className="w-full text-center py-[10px] text-[#fff]  text-lg font-medium rounded cursor-pointer"
             />
             {isLoading && (
               <div className="mt-2">

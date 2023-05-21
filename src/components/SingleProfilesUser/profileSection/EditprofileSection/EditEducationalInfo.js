@@ -98,10 +98,15 @@ const EditEducationalInfo = () => {
     setEducationalInfo({ ...educationalInfo, yearOfStudy: date });
   };
   const handleAchiveMents = (e) => {
-    setEducationalInfo({
-      ...educationalInfo,
-      specialAchievement: e?.target?.value,
-    });
+    if (e?.target?.value !== "") {
+      setEducationalInfo({
+        ...educationalInfo,
+        specialAchievement: e?.target?.value,
+      });
+    } else {
+      const { specialAchievement, ...updatedEducationalInfo } = educationalInfo;
+      setEducationalInfo(updatedEducationalInfo);
+    }
   };
   // educational qualifitaions options Autocomplete (MUI)
   const degreeOptions = [
@@ -128,12 +133,22 @@ const EditEducationalInfo = () => {
     e.preventDefault();
     const data = {
       ...educationalInfo,
-      degree: degreeName?.title,
-      institute: instituteName?.title,
-      department: departmentName?.title,
-      fieldOfStudy: fieldOfStudy?.title,
-      gpaOrCgpa: Number(cgpa?.title),
     };
+    if (degreeName) {
+      data.degree = degreeName?.title;
+    }
+    if (instituteName) {
+      data.institute = instituteName?.title;
+    }
+    if (departmentName) {
+      data.department = departmentName?.title;
+    }
+    if (fieldOfStudy) {
+      data.fieldOfStudy = fieldOfStudy?.title;
+    }
+    if (cgpa) {
+      data.gpaOrCgpa = cgpa?.title;
+    }
     await updateEducationalDetails({ data, id });
   };
   // error success and loading handler
@@ -461,7 +476,7 @@ const EditEducationalInfo = () => {
           <div className="pb-4">
             <div>
               <label
-                htmlFor="nid"
+                htmlFor=""
                 className="text-sm block pb-2 text-slate-600 font-medium"
               >
                 Year of passing
@@ -494,7 +509,7 @@ const EditEducationalInfo = () => {
               style={{
                 background: "linear-gradient(180deg, #E41272 0%, #942DD9 100%)",
               }}
-              className="w-full text-center py-[8px] text-[#fff]  text-lg font-medium rounded"
+              className="w-full text-center py-[8px] text-[#fff]  text-lg font-medium rounded cursor-pointer"
             />
           </div>
         </form>

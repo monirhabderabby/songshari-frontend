@@ -94,17 +94,37 @@ const EditSiblingsInfo = () => {
   };
 
   const onSubmit = async (data) => {
-    data = {
-      ...data,
-      elderOrYounger,
-      ageGap,
-      siblingIncome,
-      siblingProfession,
-      siblingEducationalQualification,
-      maritalStatus,
-      isSiblingAlive,
-      siblingDeathDate,
-    };
+    data = { ...data };
+    if (isSiblingAlive !== "") {
+      data.isSiblingAlive = isSiblingAlive;
+    }
+    if (maritalStatus !== "") {
+      data.maritalStatus = maritalStatus;
+    }
+    if (siblingIncome !== "") {
+      data.siblingIncome = siblingIncome;
+    }
+    if (siblingDeathDate !== "") {
+      data.siblingDeathDate = siblingDeathDate;
+    }
+    if (data.siblingName === "") {
+      delete data.siblingName;
+    }
+    if (data.siblingFamilyInfo === "") {
+      delete data.siblingFamilyInfo;
+    }
+    if (siblingProfession) {
+      data.siblingProfession = siblingProfession;
+    }
+    if (siblingEducationalQualification) {
+      data.siblingEducationalQualification = siblingEducationalQualification;
+    }
+    if (ageGap > 0) {
+      data.ageGap = ageGap;
+    }
+    if (elderOrYounger) {
+      data.elderOrYounger = elderOrYounger;
+    }
     await updateSiblingDetail({ id, data });
   };
 
@@ -429,7 +449,7 @@ const EditSiblingsInfo = () => {
               style={{
                 background: "linear-gradient(180deg, #E41272 0%, #942DD9 100%)",
               }}
-              className="w-full text-center py-[10px] text-[#fff]  text-lg font-medium rounded"
+              className="w-full text-center py-[10px] text-[#fff]  text-lg font-medium rounded cursor-pointer"
             />
           </div>
         </form>

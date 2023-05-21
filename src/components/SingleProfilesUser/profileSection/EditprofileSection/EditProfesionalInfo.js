@@ -64,7 +64,7 @@ const EditProfesionalInfo = () => {
       setCurrentPosition(newValue);
     }
   };
-  // currnent institue hanler function
+  // current institute handler function
   const handleCurrentInstitute = (event, newValue) => {
     if (typeof newValue === "string") {
       setCurrentInstitute({
@@ -96,12 +96,12 @@ const EditProfesionalInfo = () => {
   };
   // current position options (MUI Autocomplete)
   const currentPositionOptions = [
-    { title: "Deveoper" },
+    { title: "Developer" },
     { title: "Hr" },
-    { title: "Accouantant" },
-    { title: "Office assitanat" },
+    { title: "Accountant" },
+    { title: "Office assistant" },
   ];
-  // current institue option (MUI Autocomplete)
+  // current institute option (MUI Autocomplete)
   const currentInstituteOptions = [
     { title: "Developer company" },
     { title: "ItCO " },
@@ -114,10 +114,26 @@ const EditProfesionalInfo = () => {
   const onSubmit = async () => {
     const data = {
       ...professionalInfo,
-      institute: currentInstitute?.title,
-      position: currentPosition?.title,
-      certificates: { photo: professionalAchievementMoment },
     };
+    if (currentInstitute) {
+      data.institute = currentInstitute?.title;
+    }
+    if (currentPosition) {
+      data.position = currentPosition?.title;
+    }
+    if (professionalAchievementMoment !== "") {
+      data.certificates = { photo: professionalAchievementMoment };
+    }
+    if (completedCase > 0) {
+      data.completedCase = completedCase;
+    }
+    if (successfulCase > 0) {
+      data.successfulCase = successfulCase;
+    }
+    if (successRatio > 0) {
+      data.successRatio = successRatio;
+    }
+
     await updateProfessionalDetails({ data, id });
   };
 
@@ -483,17 +499,6 @@ const EditProfesionalInfo = () => {
           </p>
         )}
 
-        {/* Case study form modal */}
-        <Modal
-          open={visible}
-          onOk={handleOk}
-          onCancel={handleCancel}
-          footer={null}
-          width={840}
-        >
-          <ModifyCaseForm {...{ role }} />
-        </Modal>
-
         <div>
           <input
             type="submit"
@@ -501,12 +506,23 @@ const EditProfesionalInfo = () => {
             style={{
               background: "linear-gradient(180deg, #E41272 0%, #942DD9 100%)",
             }}
-            className="w-full text-center py-[10px] text-[#fff]  text-lg font-medium rounded"
+            className="w-full text-center py-[10px] text-[#fff]  text-lg font-medium rounded cursor-pointer"
           />
 
           <div className="mt-2">{contextHolder}</div>
         </div>
       </form>
+
+      {/* Case study form modal */}
+      <Modal
+        open={visible}
+        onOk={handleOk}
+        onCancel={handleCancel}
+        footer={null}
+        width={840}
+      >
+        <ModifyCaseForm {...{ role }} />
+      </Modal>
     </div>
   );
 };

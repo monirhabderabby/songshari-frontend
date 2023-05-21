@@ -65,7 +65,6 @@ const EditPersonalInfo = () => {
     const data = { ...personalInfo };
     data[e.target.name] = e.target.value;
     setPersonalInfo(data);
-    console.log(data);
     e.preventDefault();
   };
 
@@ -140,7 +139,12 @@ const EditPersonalInfo = () => {
 
   // handle hobby
   const handleHobby = (value) => {
-    setPersonalInfo({ ...personalInfo, hobbies: value });
+    if (value.length >= 1) {
+      setPersonalInfo({ ...personalInfo, hobbies: value });
+    } else if (value.length === 0) {
+      const { hobbies, ...updatedPersonalInfo } = personalInfo;
+      setPersonalInfo(updatedPersonalInfo);
+    }
   };
 
   const navigate = useNavigate();
@@ -166,16 +170,54 @@ const EditPersonalInfo = () => {
 
   //form submission
   const onSubmit = async (data) => {
+    if (brother > 0) {
+      data.numberOfBrother = brother;
+    }
+    if (sister > 0) {
+      data.numberOfSister = sister;
+    }
+    if (lookingFor !== "") {
+      data.whatAreYouLookingFor = lookingFor;
+    }
+    if (nidOrPassportPhoto.frontSide) {
+      data.NidOrPassportPhoto = nidOrPassportPhoto;
+    }
+    if (data.firstName === "") {
+      delete data.firstName;
+    }
+    if (data.lastName === "") {
+      delete data.lastName;
+    }
+    if (data.NidOrPassportNumber === "") {
+      delete data.NidOrPassportNumber;
+    }
+    if (data.aboutYou === "") {
+      delete data.aboutYou;
+    }
+    if (data.LinkedInId === "") {
+      delete data.LinkedInId;
+    }
+    if (data.faceBookId === "") {
+      delete data.faceBookId;
+    }
+    if (data.instagramId === "") {
+      delete data.instagramId;
+    }
+    if (data.phone === "") {
+      delete data.phone;
+    }
+    if (data.numberOfPartner === "") {
+      delete data.numberOfPartner;
+    }
+    if (data.reasonOfMarriage === "") {
+      delete data.reasonOfMarriage;
+    }
     data = {
       ...data,
       ...personalInfo,
-      numberOfBrother: brother,
-      numberOfSister: sister,
       ...marriageDetails,
       ...divorceDetails,
       ...widowedDetails,
-      NidOrPassportPhoto: nidOrPassportPhoto,
-      whatAreYouLookingFor: lookingFor,
     };
     await updatePersonalDetails(data);
   };
@@ -677,7 +719,7 @@ const EditPersonalInfo = () => {
 
           <div className="pb-4">
             <label className="text-sm block pb-2 text-slate-600	  font-medium">
-              Zodaic Sign
+              Zodiac Sign
             </label>
             <Select
               className="w-full mb-2 "
@@ -706,7 +748,7 @@ const EditPersonalInfo = () => {
           <div className="pb-4">
             <div>
               <label
-                htmlFor="nid"
+                htmlFor=""
                 className="text-sm block pb-2 text-slate-600 font-medium"
               >
                 About You
@@ -751,7 +793,7 @@ const EditPersonalInfo = () => {
           <div className="pb-4">
             <div>
               <label
-                htmlFor="nid"
+                htmlFor=""
                 className="text-sm block pb-2 text-slate-600 font-medium"
               >
                 Permanent Address
@@ -760,7 +802,7 @@ const EditPersonalInfo = () => {
                 rows={4}
                 placeholder="Text Here"
                 onChange={handleData}
-                name="permanentAdress"
+                name="permanentAddress"
               />
             </div>
           </div>
@@ -768,7 +810,7 @@ const EditPersonalInfo = () => {
           <div className="pb-4">
             <div>
               <label
-                htmlFor="nid"
+                htmlFor=""
                 className="text-sm block pb-2 text-slate-600 font-medium"
               >
                 Present Address
@@ -838,7 +880,7 @@ const EditPersonalInfo = () => {
           <div className="pb-4">
             <div>
               <label
-                htmlFor="nid"
+                htmlFor=""
                 className="text-sm block pb-2 text-slate-600 font-medium"
               >
                 Are your Parents Alive?
@@ -915,7 +957,7 @@ const EditPersonalInfo = () => {
                 mode="multiple"
                 className="w-full"
                 onChange={handleHobby}
-                placeholder="select hobby"
+                placeholder="Select hobby"
                 showSearch
                 filterOption={(input, option) =>
                   (option?.label ?? "")

@@ -281,7 +281,7 @@ const EditOthersInfo = () => {
               style={{
                 background: "linear-gradient(180deg, #E41272 0%, #942DD9 100%)",
               }}
-              className="w-full text-center py-[10px] text-[#fff]  text-lg font-medium rounded"
+              className="w-full text-center py-[10px] text-[#fff]  text-lg font-medium rounded cursor-pointer"
             />
           </div>
         </form>
