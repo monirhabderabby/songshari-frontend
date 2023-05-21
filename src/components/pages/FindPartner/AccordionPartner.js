@@ -78,18 +78,46 @@ export const AccordionPartner = ({ data, isLoading }) => {
 
   useEffect(() => {
     if (maritalStatus === "married") {
-      setBasicInfo({ ...basicInfo, partnerQuantity, reasonOfMarriage });
+      if (reasonOfMarriage) {
+        setBasicInfo({
+          ...basicInfo,
+          reasonOfMarriage,
+        });
+      }
+      if (partnerQuantity) {
+        setBasicInfo({
+          ...basicInfo,
+          numberOfPartner: partnerQuantity,
+        });
+      }
+      if (partnerAwareValue) {
+        setBasicInfo({
+          ...basicInfo,
+          isPartnerAwarOfMarriage: partnerAwareValue,
+        });
+      }
     }
     if (haveChildren === "yes") {
       setBasicInfo({
         ...basicInfo,
         haveChildren,
-        boyQuantity,
-        boyAge,
-        girlQuantity,
-        girlAge,
         childrenLiveStatus,
       });
+      if (boyQuantity > 0) {
+        setBasicInfo({ ...basicInfo, numberOfBoy: boyQuantity });
+      }
+      if (boyAge > 0) {
+        setBasicInfo({ ...basicInfo, agesOfBoy: boyAge });
+      }
+      if (girlQuantity > 0) {
+        setBasicInfo({ ...basicInfo, numberOfGirl: girlQuantity });
+      }
+      if (girlAge > 0) {
+        setBasicInfo({ ...basicInfo, agesOfGirl: girlAge });
+      }
+      if (childrenLiveStatus) {
+        setBasicInfo({ ...basicInfo, childrenLiveStatus });
+      }
     }
     if (brother > 0) {
       // assign sibling in familyInfo Object
@@ -118,6 +146,7 @@ export const AccordionPartner = ({ data, isLoading }) => {
     reasonOfMarriage,
     brother,
     sister,
+    partnerAwareValue,
   ]);
 
   //...........Family Information data state ................//
@@ -232,16 +261,16 @@ export const AccordionPartner = ({ data, isLoading }) => {
     setPartnerAwareValue(e.target.value);
   };
   const onMarriageDateChange = (date, dateString) => {
-    console.log(date, dateString);
+    setBasicInfo({ ...basicInfo, marriageDate: dateString });
   };
   const onDivorceDateChange = (date, dateString) => {
-    console.log(date, dateString);
+    setBasicInfo({ ...basicInfo, divorceDate: dateString });
   };
   const handleDivorceReasonChange = (value) => {
-    console.log(`selected ${value}`);
+    setBasicInfo({ ...basicInfo, reasonOfDivorce: value });
   };
   const onPartnerDeathDateChange = (date, dateString) => {
-    console.log(date, dateString);
+    setBasicInfo({ ...basicInfo, partnerDeathDay: dateString });
   };
   const handleChildrenLiveChange = (e) => {
     setChildrenLiveStatus(e.target.value);
