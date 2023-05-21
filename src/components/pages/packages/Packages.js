@@ -4,6 +4,7 @@ import { MobileBackButton } from "../../shared/Components/MobileBackButton";
 import CustomHeader from "../../shared/CustomHeader/CustomHeader";
 import PackageContainer from "./PackageContainer";
 import Footer from "../../shared/Footer/Footer";
+import CompleteFeaturePackages from "./CompleteFeaturePackages";
 
 const Packages = () => {
   const location = useLocation();
@@ -22,6 +23,7 @@ const Packages = () => {
           <CustomHeader title="Packages" />
         </div>
         <PackageContainer />
+        <CompleteFeaturePackages />
         <div className="hidden lg:block">
           <Footer />
         </div>

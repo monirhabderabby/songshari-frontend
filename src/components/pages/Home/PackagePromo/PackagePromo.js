@@ -26,9 +26,10 @@ const PackagePromo = () => {
 
   useEffect(() => {
     if (data) {
-      setPackages(
-        [...data?.data?.packages].sort((a, b) => a.priceMonth - b.priceMonth)
+      const newPackages = [...data?.data?.packages].filter(
+        (item) => item.category !== "complete-feature"
       );
+      setPackages([...newPackages].sort((a, b) => a.priceMonth - b.priceMonth));
     }
   }, [data]);
 
@@ -74,7 +75,7 @@ const PackagePromo = () => {
                     <PackageCard
                       useCase="home"
                       pack={pack}
-                      packages={data?.data?.packages}
+                      packages={packages}
                       index={i}
                       user={profile?._id}
                       setSuccessSnackBarOpen={setSuccessSnackBarOpen}
@@ -101,7 +102,7 @@ const PackagePromo = () => {
                     <PackageCard
                       useCase="home"
                       pack={pack}
-                      packages={data?.data?.packages}
+                      packages={packages}
                       index={i}
                       user={profile?._id}
                       setSuccessSnackBarOpen={setSuccessSnackBarOpen}
