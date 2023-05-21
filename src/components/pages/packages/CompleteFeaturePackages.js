@@ -12,25 +12,27 @@ import PackageCard from "../../shared/Packages/PackageCard";
 import { ServerErrorMessage } from "../../ui/error/ServerErrorMessage";
 import { OvalLoader } from "../../shared/Cards/Loader/OvalLoader/OvalLoader";
 
-const PackageContainer = () => {
+const CompleteFeaturePackages = () => {
   const [packages, setPackages] = useState([]);
   const [successSnackBarOpen, setSuccessSnackBarOpen] = useState(false);
   // const navigate = useNavigate();
   const { data, isLoading, error } = useGetAllPackagesQuery();
-  console.log(data);
+    console.log(packages);
   const { data: profile } = useGetProfileDetailsWIthAuthQuery();
 
   useEffect(() => {
     if (data) {
-      const newPackages = [...data?.data?.packages].filter(item=>item.category!=="complete-feature")
+      const newPackages = [...data?.data?.packages].filter(
+        (item) => item.category === "complete-feature"
+      );
       setPackages([...newPackages].sort((a, b) => a.priceMonth - b.priceMonth));
     }
   }, [data]);
 
   return (
-    <div className="max-w-[1200px] mx-auto mt-8">
+    <div className="max-w-[1200px] mx-auto mt-32">
       <h6 className="text-[#5650ce] text-center text-5xl font-semibold font-Inter mb-6">
-        Special Packages For You
+        Complete feature packages
       </h6>
 
       {isLoading && (
@@ -73,4 +75,4 @@ const PackageContainer = () => {
   );
 };
 
-export default PackageContainer;
+export default CompleteFeaturePackages;

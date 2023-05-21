@@ -15,12 +15,18 @@ const PackageCard = ({
 }) => {
   const [showPopup, setShowPopup] = useState(false);
   const navigate = useNavigate();
-console.log(pack)
+// console.log(pack)
   // bg color decision
   const bgColor = pack?.title?.toLowerCase()?.includes("free")
     ? "bg-[#06B6D4]"
     : pack?.title?.toLowerCase()?.includes("silver")
     ? "bg-[#718096]"
+    : pack?.title?.toLowerCase()?.includes("plus")
+    ? "bg-[#9932CC]"
+    : pack?.title?.toLowerCase() === "super"
+    ? "bg-[#FFC0CB]"
+    : pack?.title?.toLowerCase()?.includes("deluxe")
+    ? "bg-[#00FF00]"
     : pack?.title?.toLowerCase()?.includes("gold")
     ? "bg-[#FBBF24]"
     : "bg-[#DC2626]";
@@ -84,7 +90,12 @@ console.log(pack)
             <li>{pack?.chatRequestPerDay} chat request every 24hours </li>
             <li>{pack?.swapPerDay || "Unlimited"} Swap every 24hours</li>
             <li>{pack?.messageLimit || "Unlimited"} Message Per Day</li>
-            {pack?.videoCall !==0 && <li>Video Chat: {pack?.videoCall} Minutes a Day</li>}
+            {pack?.videoCall !== 0 && (
+              <li>Video Chat: {pack?.videoCall} Minutes a Day</li>
+            )}
+            {pack?.videoCallPerMonth !== 0 && (
+              <li>{pack?.videoCallPerMonth} Minutes+ Video Chat Per Month</li>
+            )}
             {pack?.timelinePost && <li>Timeline Post</li>}
             {pack?.courseDiscount !== 0 && (
               <li>Course Discount {pack?.courseDiscount}%</li>
@@ -101,6 +112,14 @@ console.log(pack)
             )}
             {pack?.agentDiscount !== 0 && (
               <li>{pack?.agentDiscount}% Discount on Agent Fee</li>
+            )}
+            {pack?.kaziDiscount !== 0 && (
+              <li>{pack?.kaziDiscount}% Discount on Agent Fee</li>
+            )}
+            {pack?.specialSupport && <li>Special Support</li>}
+            {pack?.videoBioData && <li>Video Biodata</li>}
+            {pack?.profileBoost !== 0 && (
+              <li>{pack?.profileBoost} Profile Boost Per Month</li>
             )}
           </ul>
           {!pack?.title?.toLowerCase()?.includes("free") && (
