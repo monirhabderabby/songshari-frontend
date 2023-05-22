@@ -6,10 +6,12 @@ import "../../../assets/css/profileCards.css";
 import blackLove from "../../../assets/images/icons/blackLove.png";
 import { ageCalculator } from "../../../assets/utilities/AgeCalculation/ageCalculator";
 import { ProfileSkeletonLoader } from "../../shared/Cards/Loader/Profile__Card__Skeleton__Loader/ProfileSkeletonLoader";
+import { DynamicVideoBioDataContainer } from "./DynamicVideoBioDataContainer";
 
 const DynamicProfileCard = ({ data, isLoading }) => {
     // hook variables
     const [age, setAge] = useState(0);
+    const [isModalOpen, setModalOpen] = useState(false);
 
     useEffect(() => {
         if (data) {
@@ -81,12 +83,13 @@ const DynamicProfileCard = ({ data, isLoading }) => {
                             <span>{likes}</span>
                         </div>
                         <Tooltip title="Click to play">
-                            <div>
+                            <div onClick={() => setModalOpen(!isModalOpen)}>
                                 <AiOutlinePlayCircle className="text-[32px] text-[#ff77aa] hover:text-primary duration-300 cursor-pointer" />
                             </div>
                         </Tooltip>
                     </div>
                 </div>
+                {isModalOpen && <DynamicVideoBioDataContainer isModalOpen={isModalOpen} setModalOpen={setModalOpen} />}
                 {/* mobile version  */}
                 <div className="lg:hidden">
                     <div className="bg-[#D9D9D9] max-w-[337px] flex justify-center items-center flex-col  mx-auto h-[92px] ">
