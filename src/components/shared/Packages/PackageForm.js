@@ -105,7 +105,7 @@ const PackageForm = ({ setShowPopup, pack, useCase, setSelectedPack }) => {
       ></div>
       <div className="rounded-xl sm:max-w-full bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] w-[400px] space-y-4 bg-white p-6 fixed top-1/2 left-1/2 z-20 -translate-x-1/2 -translate-y-1/2">
         <h3 className="text-white text-xl font-bold">Purchase Package for:</h3>
-        <div className="grid grid-cols-2 md:grid-cols-1">
+        <div className="grid grid-cols-2">
           <div className="ml-4">
             <label className="text-white inline-flex items-center">
               <input
@@ -156,9 +156,9 @@ const PackageForm = ({ setShowPopup, pack, useCase, setSelectedPack }) => {
           </div>
         </div>
         <PaymentSelector {...{ isChecked, setIsChecked }} />
-        <p className="font-bold text-xl text-white">
-          Package cost: <span className="text-2xl font-bold">{total} </span>
-          {isChecked ? "POINT" : "BDT"}
+        <p className="font-medium font-Nunito text-[18px] text-white">
+          Package cost:
+          <span className="font-Nunito font-normal text-[18px]"> {total} {isChecked ? "POINT" : "BDT"} </span>
         </p>
 
         <button
