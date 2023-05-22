@@ -156,9 +156,9 @@ const PackageForm = ({ setShowPopup, pack, useCase, setSelectedPack }) => {
           </div>
         </div>
         <PaymentSelector {...{ isChecked, setIsChecked }} />
-        <p className="font-bold text-xl text-white">
-          Package cost: <span className="text-2xl font-bold">{total} </span>
-          {isChecked ? "POINT" : "BDT"}
+        <p className="font-medium font-Nunito text-[18px] text-white">
+          Package cost:
+          <span className="font-Nunito font-normal text-[18px]"> {total} {isChecked ? "POINT" : "BDT"} </span>
         </p>
 
         <button
