@@ -1,39 +1,99 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState } from "react";
 import { useEffect } from "react";
-import { useBuyPackageMutation } from "../../../Redux/features/package/packageApi";
-// import { useBuyPackageMutation } from "../../../Redux/features/package/packageApi";
+import {
+  useBuyPackageMutation,
+  useBuyPackageWithWalletMutation,
+} from "../../../Redux/features/package/packageApi";
+import { SuccessSnackBar } from "../../ui/error/snackBar/SuccessSnackBar";
+import Error from "../../ui/error/Error";
 
 const PackageForm = ({ setShowPopup, pack, useCase, setSelectedPack }) => {
-  // const [isChecked, setIsChecked] = useState(false);
+  const [successSnackBarOpen, setSuccessSnackBarOpen] = useState(false);
   const [total, setTotal] = useState(pack?.priceMonth);
   const [selectedOption, setSelectedOption] = useState("30");
-  // const handleCheckboxChange = () => {
-  //   setIsChecked(!isChecked);
-  // };
+  const [isChecked, setIsChecked] = useState(false);
+  const [customError, setCustomError] = useState("");
+
+  const handleCheckboxChange = () => {
+    setIsChecked(!isChecked);
+  };
+
   const handleOptionChange = (event) => {
     setSelectedOption(event.target.value);
   };
 
   // Redux api call
   const [buyPackage, { data, isLoading }] = useBuyPackageMutation();
+  const [
+    buyPackageByPoint,
+    { data: pointData, isLoading: pointLoading, error: pointError },
+  ] = useBuyPackageWithWalletMutation();
+
+  const handleSubmit = () => {
+    if (isChecked) {
+      buyPackageByPoint({
+        amount: total,
+        numberOfDay: selectedOption * 1,
+        packageId: pack._id,
+      });
+    } else {
+      buyPackage({
+        amount: total,
+        numberOfDay: selectedOption * 1,
+        packageId: pack._id,
+      });
+    }
+  };
   useEffect(() => {
     if (data) {
       window.location.replace(data?.data);
     }
   }, [data]);
   useEffect(() => {
+    if (pointData) {
+      setSuccessSnackBarOpen(true);
+      setTimeout(() =>
+        useCase === "home"
+          ? setSelectedPack(null)
+          : setShowPopup(false),800
+      );
+    }
+    if (pointError) {
+      setCustomError(pointError?.data?.message);
+    }
+  },[pointData])
+  useEffect(() => {
     if (selectedOption === "30") {
-      setTotal(pack?.priceMonth);
+      if (isChecked) {
+        return setTotal(pack?.priceMonthInPoint)
+      } else {
+        setTotal(pack?.priceMonth); 
+      }
     }
     if (selectedOption === "90") {
-      setTotal(pack?.priceThreeMonth);
+      if (isChecked) {
+        setTotal(pack?.priceThreeMonthInPoint)
+      } else {
+        setTotal(pack?.priceThreeMonth);
+      }
+      
     }
     if (selectedOption === "180") {
-      setTotal(pack?.priceSixMonth);
+      if (isChecked) {
+        setTotal(pack?.priceSixMonthInPoint)
+      } else {
+        setTotal(pack?.priceSixMonth);
+      }
+      
     }
     if (selectedOption === "365") {
-      setTotal(pack?.priceYear);
+      if (isChecked) {
+        setTotal(pack?.priceYearInPoint);
+      } else {
+        setTotal(pack?.priceYear);
+      }
+      
     }
   }, [selectedOption]);
   return (
@@ -99,22 +159,33 @@ const PackageForm = ({ setShowPopup, pack, useCase, setSelectedPack }) => {
 
         <p className="font-bold text-xl text-white">
           Package cost: <span className="text-2xl font-bold">{total} </span>
-          BDT
+          {isChecked?"POINT": "BDT"}
         </p>
 
         <button
-          onClick={() =>
-            buyPackage({
-              amount: total,
-              numberOfDay: selectedOption * 1,
-              packageId: pack._id,
-            })
-          }
+          onClick={handleSubmit}
           className="bg-white font-bold text-lg px-4 py-2 rounded hover:bg-gray-100"
         >
-          {isLoading ? "Loading" : "Submit"}
+          {(isLoading || pointLoading) ? "Loading" : "Submit"}
         </button>
+        <label className="flex items-center space-x-2">
+          <input
+            type="checkbox"
+            className="form-checkbox h-5 w-5 text-indigo-600"
+            value={isChecked}
+            onChange={handleCheckboxChange}
+          />
+          <span className="text-white font-bold">Buy with SHONSHARI wallet</span>
+        </label>
+        {customError && <Error message={customError} />}
       </div>
+      <SuccessSnackBar
+        {...{
+          successSnackBarOpen,
+          setSuccessSnackBarOpen,
+          message: "Successful",
+        }}
+      />
     </>
   );
 };
