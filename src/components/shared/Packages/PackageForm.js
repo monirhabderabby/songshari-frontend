@@ -163,7 +163,7 @@ const PackageForm = ({ setShowPopup, pack, useCase, setSelectedPack }) => {
 
         <button
           onClick={handleSubmit}
-          className="bg-white font-bold text-lg px-4 py-2 rounded hover:bg-gray-100"
+          className="bg-white font-medium  px-4 py-2 rounded hover:bg-gray-100"
         >
           {isLoading || pointLoading ? "Loading" : "Submit"}
         </button>
