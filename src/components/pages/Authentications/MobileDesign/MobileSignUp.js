@@ -1,25 +1,25 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 // configuration
 import React, { useCallback, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 // Third party packages
-import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { useDropzone } from "react-dropzone";
 import { useSignInWithGoogle } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
 import { AiFillFileAdd } from "react-icons/ai";
 import { FaGoogle } from "react-icons/fa";
 import { useDispatch } from "react-redux";
-import { v4 as uuidv4 } from "uuid";
 
 // components
 import logo from "../../../../assets/images/Logo/logoBlack.png";
-import { auth, firebaseStorage } from "../../../../firebase.init";
+import { auth } from "../../../../firebase.init";
 import setCookie from "../../../../Helper/cookies/setCookie";
 import { useRegAsMemberMutation } from "../../../../Redux/features/userInfo/userApi";
 import { loadUserData } from "../../../../Redux/features/userInfo/userInfo";
 import { MobileBackButton } from "../../../shared/Components/MobileBackButton";
 import Error from "../../../ui/error/Error";
+import { usePhotosUploadOnServerMutation } from "../../../../Redux/features/fileUpload/fileUploadApi";
 
 const MobileSignUp = () => {
     // hook variable declaration
@@ -32,6 +32,7 @@ const MobileSignUp = () => {
 
     // Redux Api Call
     const [regAsMember, { data: response, isLoading: serverLoading, error: responseError }] = useRegAsMemberMutation();
+    const [uploadPhotoOnServer, { data: uploadedPhoto }] = usePhotosUploadOnServerMutation();
 
     const {
         register,
@@ -44,12 +45,11 @@ const MobileSignUp = () => {
     const onDrop = useCallback(acceptedFiles => {
         // Do something with the files
         const photo = acceptedFiles[0];
-        const storageRef = ref(firebaseStorage, `profile/${photo.name + uuidv4()}`);
-        uploadBytes(storageRef, photo).then(async snapshot => {
-            await getDownloadURL(snapshot.ref).then(url => {
-                setPhotoUrl(url.toString());
-            });
-        });
+        if (photo) {
+          const formData = new FormData();
+          formData.append("image", photo);
+          uploadPhotoOnServer(formData);
+        }
     }, []);
 
     const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
@@ -126,6 +126,9 @@ const MobileSignUp = () => {
         setCustomError("");
         setAgreement(e.target.checked);
     };
+    useEffect(() => {
+      if (uploadedPhoto?.data) setPhotoUrl(uploadedPhoto?.data[0]?.path);
+    }, [uploadedPhoto]);
 
     return (
         <div className="bg-[#F8F8FF] pb-2 max-w-[1024px] mx-auto">

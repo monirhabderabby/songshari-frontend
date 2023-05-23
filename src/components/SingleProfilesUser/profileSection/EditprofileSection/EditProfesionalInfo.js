@@ -8,17 +8,15 @@ import TextField from "@mui/material/TextField";
 import { DatePicker, message, Modal } from "antd";
 import TextArea from "antd/es/input/TextArea";
 import { MdCancel } from "react-icons/md";
-import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
-import { v4 as uuidv4 } from "uuid";
 import { AiOutlineCloudUpload } from "react-icons/ai";
 import { decodeToken } from "react-jwt";
 import { useForm } from "react-hook-form";
 
 // Components
 import { useUpdateProfessionalDetailsMutation } from "../../../../Redux/features/userInfo/userApi";
-import { firebaseStorage } from "../../../../firebase.init";
 import getCookie from "../../../../Helper/cookies/getCookie";
 import ModifyCaseForm from "../../../Lawyer/LawyerModifyCaseForm/ModifyCaseForm";
+import { usePhotosUploadOnServerMutation } from "../../../../Redux/features/fileUpload/fileUploadApi";
 const { RangePicker } = DatePicker;
 
 const EditProfesionalInfo = () => {
@@ -41,6 +39,8 @@ const EditProfesionalInfo = () => {
       : 0;
   const [updateProfessionalDetails, { isSuccess, isLoading, isError }] =
     useUpdateProfessionalDetailsMutation();
+  const [uploadPhotoOnServer, { data: uploadedPhoto }] =
+    usePhotosUploadOnServerMutation();
 
   const { handleSubmit } = useForm();
 
@@ -140,13 +140,17 @@ const EditProfesionalInfo = () => {
   const specialAchievementMomentHandler = async (e) => {
     const photo = e.target.files[0];
     setAchievementMomentName(photo?.name);
-    const storageRef = ref(firebaseStorage, `cover/${photo?.name + uuidv4()}`);
-    uploadBytes(storageRef, photo).then(async (snapshot) => {
-      await getDownloadURL(snapshot.ref).then((url) => {
-        setProfessionalAchievementMoment(url.toString());
-      });
-    });
+    if (photo) {
+      const formData = new FormData();
+      formData.append("image", photo);
+      uploadPhotoOnServer(formData);
+    }
   };
+
+  useEffect(() => {
+    if (uploadedPhoto?.data)
+      setProfessionalAchievementMoment(uploadedPhoto?.data[0]?.path);
+  }, [uploadedPhoto]);
 
   const completedCaseDecreaseHandler = () => {
     if (completedCase > 0) {
