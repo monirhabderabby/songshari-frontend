@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 // Third party packages
-import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { useSignInWithGoogle } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
 import { AiOutlineCloudUpload, AiOutlineIdcard } from "react-icons/ai";
@@ -11,10 +10,9 @@ import { BsFillArrowLeftCircleFill, BsPersonLinesFill } from "react-icons/bs";
 import { FaGoogle, FaRegEnvelope, FaRegUser } from "react-icons/fa";
 import { MdLockOutline } from "react-icons/md";
 import { useDispatch } from "react-redux";
-import { v4 as uuidv4 } from "uuid";
 
 // components
-import { auth, firebaseStorage } from "../../../firebase.init";
+import { auth } from "../../../firebase.init";
 import setCookie from "../../../Helper/cookies/setCookie";
 import { useRegAsProfessionalMutation } from "../../../Redux/features/userInfo/userApi";
 import { loadUserData } from "../../../Redux/features/userInfo/userInfo";
@@ -22,12 +20,15 @@ import Error from "../../ui/error/Error";
 
 // css files
 import "../../../App.css";
+import { usePhotosUploadOnServerMutation } from "../../../Redux/features/fileUpload/fileUploadApi";
 
 const RegAsProfessional = () => {
   const [
     regAsProfessional,
     { data: response, isLoading: serverLoading, error },
   ] = useRegAsProfessionalMutation();
+  const [uploadPhotoOnServer, { data: uploadedPhoto }] =
+    usePhotosUploadOnServerMutation();
   const [photoUrl, setPhotoUrl] = useState("");
   const [customError, setCustomError] = useState("");
   const [designationForGoogleLogin, setDesignationForGoogleLogin] =
@@ -58,18 +59,12 @@ const RegAsProfessional = () => {
     await regAsProfessional(data);
   };
 
-  const uploadPhoto = (photo) => {
-    const storageRef = ref(firebaseStorage, `profile/${photo.name + uuidv4()}`);
-    uploadBytes(storageRef, photo).then(async (snapshot) => {
-      await getDownloadURL(snapshot.ref).then((url) => {
-        setPhotoUrl(url.toString());
-      });
-    });
-  };
-
   const photoHandler = async (e) => {
-    const photo = e.target.files[0];
-    uploadPhoto(photo);
+    if (e.target.files[0]) {
+      const formData = new FormData();
+      formData.append("image", e.target.files[0]);
+      uploadPhotoOnServer(formData);
+    }
   };
 
   const googleLoginHandler = () => {
@@ -113,6 +108,10 @@ const RegAsProfessional = () => {
       setCustomError("");
     }
   }, [photoUrl]);
+
+  useEffect(() => {
+    if (uploadedPhoto?.data) setPhotoUrl(uploadedPhoto?.data[0]?.path);
+  }, [uploadedPhoto]);
 
   return (
     <div className="min-h-screen">
@@ -409,12 +408,6 @@ const RegAsProfessional = () => {
                     />
                   </div>
                 </form>
-                <p className="mt-3">
-                  Register as member{" "}
-                  <Link to="/signup" className="gradient_text font-bold">
-                    REGISTER
-                  </Link>{" "}
-                </p>
               </div>
               {/*Input Field*/}
             </div>
@@ -426,7 +419,7 @@ const RegAsProfessional = () => {
               Fill up your information and start journey with us
             </p>
             <Link
-              to="/loginAsProfessional"
+              to="/login"
               className="border-2 border-white rounded-full px-3 lg:px-12 py-2 hover:bg-white hover:text-primary duration-500 transition-all"
             >
               LOGIN
@@ -444,7 +437,7 @@ const RegAsProfessional = () => {
             <div className="border-2 w-10 border-white inline-block"></div>
             <p className="mb-4">If you have already an account </p>
             <Link
-              to="/loginAsProfessional"
+              to="/login"
               className="border-2 border-white rounded-full md:px-3 lg:px-12 py-2 hover:bg-white hover:text-primary duration-500 transition-all"
             >
               LOGIN
