@@ -56,10 +56,10 @@ const EditPersonalInfo = () => {
   // handle file upload change data
   const handleUpload = async (event) => {
     const file = event.file;
-    console.log(event,"file to upload");
+    console.log(event?.file,"file to upload");
     if (file) {
       const formData = new FormData();
-      formData.append("image", file);
+      formData.append("image", file?.originalFileObj);
       uploadPhotoOnServer(formData);
     }
     // const storageRef = ref(firebaseStorage, `nidOrPassport/${file?.name}`);
