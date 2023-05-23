@@ -24,7 +24,6 @@ import { usePhotosUploadOnServerMutation } from "../../../../Redux/features/file
 const MobileSignUp = () => {
     // hook variable declaration
     const [photoURL, setPhotoUrl] = useState("");
-    console.log(photoURL,"photo")
     const [customError, setCustomError] = useState("");
     const [agreement, setAgreement] = useState(false);
     const dispatch = useDispatch();
@@ -51,13 +50,6 @@ const MobileSignUp = () => {
           formData.append("image", photo);
           uploadPhotoOnServer(formData);
         }
-        // console.log(photo, "upload photo");
-        // const storageRef = ref(firebaseStorage, `profile/${photo.name + uuidv4()}`);
-        // uploadBytes(storageRef, photo).then(async snapshot => {
-        //     await getDownloadURL(snapshot.ref).then(url => {
-        //         setPhotoUrl(url.toString());
-        //     });
-        // });
     }, []);
 
     const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
