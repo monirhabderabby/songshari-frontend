@@ -10,9 +10,10 @@ import { useForm } from "react-hook-form";
 import { MdCancel } from "react-icons/md";
 
 // Components
-import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
-import { firebaseStorage } from "../../../../firebase.init";
+// import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+// import { firebaseStorage } from "../../../../firebase.init";
 import { useUpdatePersonalDetailsMutation } from "../../../../Redux/features/userInfo/userApi";
+import { usePhotosUploadOnServerMutation } from "../../../../Redux/features/fileUpload/fileUploadApi";
 const { Dragger } = Upload;
 
 const EditPersonalInfo = () => {
@@ -34,6 +35,9 @@ const EditPersonalInfo = () => {
   // API from redux
   const [updatePersonalDetails, { data: updateResponse, isLoading, error }] =
     useUpdatePersonalDetailsMutation();
+  const [uploadPhotoOnServer, { data: uploadedPhoto }] =
+    usePhotosUploadOnServerMutation();
+  console.log(uploadedPhoto, "uploadedPhoto?.data[0]?.path");
 
   const { register, handleSubmit } = useForm();
 
@@ -52,12 +56,18 @@ const EditPersonalInfo = () => {
   // handle file upload change data
   const handleUpload = async (event) => {
     const file = event.file;
-    const storageRef = ref(firebaseStorage, `nidOrPassport/${file?.name}`);
-    await uploadBytes(storageRef, file).then(async (snapshot) => {
-      await getDownloadURL(snapshot.ref).then((url) => {
-        setNidOrPassportPhoto({ frontSide: url });
-      });
-    });
+    console.log(event,"file to upload");
+    if (file) {
+      const formData = new FormData();
+      formData.append("image", file);
+      uploadPhotoOnServer(formData);
+    }
+    // const storageRef = ref(firebaseStorage, `nidOrPassport/${file?.name}`);
+    // await uploadBytes(storageRef, file).then(async (snapshot) => {
+    //   await getDownloadURL(snapshot.ref).then((url) => {
+    //     setNidOrPassportPhoto({ frontSide: url });
+    //   });
+    // });
   };
 
   // some data collection handler function like name,email etc
@@ -256,6 +266,10 @@ const EditPersonalInfo = () => {
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   }, []);
+  useEffect(() => {
+    if (uploadedPhoto?.data)
+      setNidOrPassportPhoto({ frontSide: uploadedPhoto?.data[0]?.path });
+  }, [uploadedPhoto]);
 
   return (
     <div className="max-w-[523px] mx-auto bg-white drop-shadow-lg px-4 pt-3 pb-6 mb-4 rounded">
@@ -338,7 +352,7 @@ const EditPersonalInfo = () => {
           <div className="pb-4">
             <div>
               <label
-                htmlFor="nid"
+                // htmlFor="nid"
                 className="text-sm block pb-2 text-slate-600	  font-medium"
               >
                 NID/Passport Photo
