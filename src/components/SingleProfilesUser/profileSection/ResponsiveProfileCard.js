@@ -1,10 +1,9 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 // configuration, ex: react-router
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 // Third party packages
-import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { AiFillCamera } from "react-icons/ai";
-import { v4 as uuidv4 } from "uuid";
 
 // components
 import blackLove from "../../../assets/images/icons/blackLove.png";
@@ -14,13 +13,15 @@ import { ProfileSkeletonLoader } from "../../shared/Cards/Loader/Profile__Card__
 // css files
 import "../../../assets/css/profileCards.css";
 import { useUpdateProfilePhotoMutation } from "../../../Redux/features/userInfo/userApi";
-import { firebaseStorage } from "../../../firebase.init";
 import { ResponsiveSocialMediaBox } from "../SocialMediaBox/ResponsiveSocialMediaBox";
+import { usePhotosUploadOnServerMutation } from "../../../Redux/features/fileUpload/fileUploadApi";
 
 const ResponsiveProfileCard = ({ data, isLoading }) => {
   // hook variables
   const [age, setAge] = useState(0);
   const [updateProfilePhoto] = useUpdateProfilePhotoMutation();
+  const [uploadPhotoOnServer, { data: uploadedPhoto }] =
+    usePhotosUploadOnServerMutation();
   const navigate = useNavigate()
   useEffect(() => {
     if (data) {
@@ -58,17 +59,26 @@ const ResponsiveProfileCard = ({ data, isLoading }) => {
   // function declaration
   const profilePhotoUploadHandler = (e) => {
     const photo = e.target.files[0];
-    const storageRef = ref(
-      firebaseStorage,
-      `profile/${photo?.name + uuidv4()}`
-    );
-    uploadBytes(storageRef, photo).then(async (snapshot) => {
-      await getDownloadURL(snapshot.ref).then((url) => {
-        updateProfilePhoto(url.toString());
-        console.log(url.toString());
-      });
-    });
+    if (photo) {
+      const formData = new FormData();
+      formData.append("image", photo);
+      uploadPhotoOnServer(formData);
+    }
+    // const storageRef = ref(
+    //   firebaseStorage,
+    //   `profile/${photo?.name + uuidv4()}`
+    // );
+    // uploadBytes(storageRef, photo).then(async (snapshot) => {
+    //   await getDownloadURL(snapshot.ref).then((url) => {
+    //     updateProfilePhoto(url.toString());
+    //     console.log(url.toString());
+    //   });
+    // });
   };
+
+  useEffect(() => {
+    if (uploadedPhoto?.data) updateProfilePhoto(uploadedPhoto?.data[0]?.path);
+  }, [uploadedPhoto]);
 
   if (isLoading) {
     content = <ProfileSkeletonLoader />;
