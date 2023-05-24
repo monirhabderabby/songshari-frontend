@@ -57,7 +57,13 @@ const VideoCall = () => {
                 myVideoRef.current.srcObject = stream;
                 myMobileVideoRef.current.srcObject = stream;
     
-            })
+              })
+              peer = new SimplePeer({
+               initiator: true,
+               trickle: false,
+               stream: stream,
+              config: configuration
+             })
             socket.on("me", (id) => {
               setMe(id)
             })
@@ -68,11 +74,6 @@ const VideoCall = () => {
               // setName(data.name)
               setCallerSignal(data.signal)
             })
-            peer = new SimplePeer({
-             initiator: true,
-             trickle: false,
-             stream: stream
-           })
            peer.on("signal", (data) => {
              socket.emit("callUser", {
                userToCall: id,
