@@ -3,8 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 
 // Third party packages
-import { FileAddFilled } from "@ant-design/icons";
-import { DatePicker, Radio, Select, Space, Upload, message } from "antd";
+import { DatePicker, Radio, Select, Space, message } from "antd";
 import TextArea from "antd/es/input/TextArea";
 import { useForm } from "react-hook-form";
 import { MdCancel } from "react-icons/md";
@@ -13,8 +12,7 @@ import { MdCancel } from "react-icons/md";
 // import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 // import { firebaseStorage } from "../../../../firebase.init";
 import { useUpdatePersonalDetailsMutation } from "../../../../Redux/features/userInfo/userApi";
-import { usePhotosUploadOnServerMutation } from "../../../../Redux/features/fileUpload/fileUploadApi";
-const { Dragger } = Upload;
+import DropFileInput from "../../../shared/SingleProfileConponents/DropFileInput";
 
 const EditPersonalInfo = () => {
   const [messageApi, contextHolder] = message.useMessage();
@@ -35,9 +33,6 @@ const EditPersonalInfo = () => {
   // API from redux
   const [updatePersonalDetails, { data: updateResponse, isLoading, error }] =
     useUpdatePersonalDetailsMutation();
-  const [uploadPhotoOnServer, { data: uploadedPhoto }] =
-    usePhotosUploadOnServerMutation();
-  console.log(uploadedPhoto, "uploadedPhoto?.data[0]?.path");
 
   const { register, handleSubmit } = useForm();
 
@@ -53,22 +48,6 @@ const EditPersonalInfo = () => {
       .then((data) => setCity(data));
   }, []);
 
-  // handle file upload change data
-  const handleUpload = async (event) => {
-    const file = event.file;
-    console.log(event?.file,"file to upload");
-    if (file) {
-      const formData = new FormData();
-      formData.append("image", file?.originalFileObj);
-      uploadPhotoOnServer(formData);
-    }
-    // const storageRef = ref(firebaseStorage, `nidOrPassport/${file?.name}`);
-    // await uploadBytes(storageRef, file).then(async (snapshot) => {
-    //   await getDownloadURL(snapshot.ref).then((url) => {
-    //     setNidOrPassportPhoto({ frontSide: url });
-    //   });
-    // });
-  };
 
   // some data collection handler function like name,email etc
   const handleData = (e) => {
@@ -266,10 +245,6 @@ const EditPersonalInfo = () => {
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   }, []);
-  useEffect(() => {
-    if (uploadedPhoto?.data)
-      setNidOrPassportPhoto({ frontSide: uploadedPhoto?.data[0]?.path });
-  }, [uploadedPhoto]);
 
   return (
     <div className="max-w-[523px] mx-auto bg-white drop-shadow-lg px-4 pt-3 pb-6 mb-4 rounded">
@@ -349,28 +324,7 @@ const EditPersonalInfo = () => {
             </div>
           </div>
 
-          <div className="pb-4">
-            <div>
-              <label
-                // htmlFor="nid"
-                className="text-sm block pb-2 text-slate-600	  font-medium"
-              >
-                NID/Passport Photo
-              </label>
-
-              <Dragger onChange={handleUpload}>
-                <div className="flex justify-center items-center">
-                  <p>File Upload</p>
-                  <p className="ant-upload-drag-icon pl-4">
-                    <FileAddFilled
-                      style={{ color: "#E41272" }}
-                      onChange={handleUpload}
-                    />
-                  </p>
-                </div>
-              </Dragger>
-            </div>
-          </div>
+          <DropFileInput {...{ nidOrPassportPhoto, setNidOrPassportPhoto }} />
 
           <div className="pb-4">
             <div>
