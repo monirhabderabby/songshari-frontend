@@ -9,34 +9,108 @@ import MovableComponent from "./MovableComponent";
 import TopLeftIntro from "./TopLeftIntro";
 import TopRightButtons from "./TopRightButtons";
 // import MyMobileVideo from "./MyMobileVideo";
+import { io } from "socket.io-client";
+import { useParams } from "react-router";
+import SimplePeer from 'simple-peer';
 
 const bgColor = "bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)]";
 const VideoCall = () => {
+  const socket = io.connect("http://localhost:4000");
+
+    //
     const [showBottomRightVideo, setShowBottomRightVideo] = useState(true);
     const [video, setVideo] = useState(true);
     const [audio, setAudio] = useState(true);
     // const [peer, setPeer] = useState(null);
-    // const [stream, setStream] = useState(null);
-    // const [otherId, setOtherId] = useState("");
-    // const [isCopied, setIsCopied] = useState(false);
+    const [stream, setStream] = useState(null);
+    const [ me, setMe ] = useState("")
+	const [ receivingCall, setReceivingCall ] = useState(false)
+	const [ caller, setCaller ] = useState("")
+	const [ callerSignal, setCallerSignal ] = useState()
+	const [ callAccepted, setCallAccepted ] = useState(false)
+	const [ idToCall, setIdToCall ] = useState("")
+	const [ callEnded, setCallEnded] = useState(false)
+	const [ name, setName ] = useState("")
     const videoRef = useRef(null);
     const myVideoRef = useRef(null);
     const myMobileVideoRef = useRef(null);
-    // const
     // const inputRef = useRef(null);
+    const { id } = useParams();
+    let peer ;
+
+    //sturn server
+    const configuration = {
+        iceServers: [
+            {
+                urls: ["stun:stun.l.google.com:19302", "stun:stun2.l.google.com:19302"]
+            }
+        ]
+    };
+
 
     useEffect(() => {
         navigator.mediaDevices
             .getUserMedia({ video: video, audio: audio })
             .then(stream => {
-                // setStream(stream);
+                setStream(stream);
                 videoRef.current.srcObject = stream;
                 myVideoRef.current.srcObject = stream;
                 myMobileVideoRef.current.srcObject = stream;
+    
             })
-            .catch(err => console.log(err));
+            socket.on("me", (id) => {
+              setMe(id)
+            })
+        
+            socket.on("callUser", (data) => {
+              setReceivingCall(true)
+              // setCaller(data.from)
+              // setName(data.name)
+              setCallerSignal(data.signal)
+            })
+            peer = new SimplePeer({
+             initiator: true,
+             trickle: false,
+             stream: stream
+           })
+           peer.on("signal", (data) => {
+             socket.emit("callUser", {
+               userToCall: id,
+               signalData: data,
+               from: me,
+               name: name
+             })
+           })
+           peer.on("stream", (stream) => {
+             
+               videoRef.current.srcObject = stream
+             
+           })
+           socket.on("callAccepted", (signal) => {
+             setCallAccepted(true)
+             peer.signal(signal)
+           })
+        
+           // connectionRef.current = peer
+        
+        
+           peer.on("signal", (data) => {
+             socket.emit("answerCall", { signal: data, to: caller })
+           })
+           peer.on("stream", (stream) => {
+             videoRef.current.srcObject = stream
+           })
     }, [video, audio]);
+    
 
+
+		// peer.signal(callerSignal)
+		// connectionRef.current = peer
+	
+	// const leaveCall = () => {
+	// 	setCallEnded(true)
+	// 	// connectionRef.current.destroy()
+	// }
     // const handleCopy = () => {
     //   const { current } = inputRef;
     //   copy(current.value);
