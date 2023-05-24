@@ -16,14 +16,13 @@ import SimplePeer from 'simple-peer';
 const bgColor = "bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)]";
 const VideoCall = () => {
   const socket = io.connect("http://localhost:4000");
-
-    //
+  const res = useSelector(state => state.persistedReducer.userInfo.userInfo);
+  let profile = res?.data ? res.data.user : res?.user;
     const [showBottomRightVideo, setShowBottomRightVideo] = useState(true);
     const [video, setVideo] = useState(true);
     const [audio, setAudio] = useState(true);
     // const [peer, setPeer] = useState(null);
     const [stream, setStream] = useState(null);
-    const [ me, setMe ] = useState("")
 	const [ receivingCall, setReceivingCall ] = useState(false)
 	const [ caller, setCaller ] = useState("")
 	const [ callerSignal, setCallerSignal ] = useState()
@@ -64,13 +63,15 @@ const VideoCall = () => {
                stream: stream,
               config: configuration
              })
-            socket.on("me", (id) => {
-              setMe(id)
-            })
+             socket.emit('addUser',profile._id);
+             socket.emit('addUser',id);
+            // socket.on("me", (id) => {
+            //   setMe(id) 
+            // })
         
             socket.on("callUser", (data) => {
               setReceivingCall(true)
-              // setCaller(data.from)
+              setCaller(data.from)
               // setName(data.name)
               setCallerSignal(data.signal)
             })
@@ -78,8 +79,8 @@ const VideoCall = () => {
              socket.emit("callUser", {
                userToCall: id,
                signalData: data,
-               from: me,
-               name: name
+               from: profile._id,
+              //  name: name
              })
            })
            peer.on("stream", (stream) => {
