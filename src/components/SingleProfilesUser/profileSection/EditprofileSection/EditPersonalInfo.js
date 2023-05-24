@@ -3,17 +3,16 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 
 // Third party packages
-import { FileAddFilled } from "@ant-design/icons";
-import { DatePicker, Radio, Select, Space, Upload, message } from "antd";
+import { DatePicker, Radio, Select, Space, message } from "antd";
 import TextArea from "antd/es/input/TextArea";
 import { useForm } from "react-hook-form";
 import { MdCancel } from "react-icons/md";
 
 // Components
-import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
-import { firebaseStorage } from "../../../../firebase.init";
+// import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+// import { firebaseStorage } from "../../../../firebase.init";
 import { useUpdatePersonalDetailsMutation } from "../../../../Redux/features/userInfo/userApi";
-const { Dragger } = Upload;
+import DropFileInput from "../../../shared/SingleProfileConponents/DropFileInput";
 
 const EditPersonalInfo = () => {
   const [messageApi, contextHolder] = message.useMessage();
@@ -49,16 +48,6 @@ const EditPersonalInfo = () => {
       .then((data) => setCity(data));
   }, []);
 
-  // handle file upload change data
-  const handleUpload = async (event) => {
-    const file = event.file;
-    const storageRef = ref(firebaseStorage, `nidOrPassport/${file?.name}`);
-    await uploadBytes(storageRef, file).then(async (snapshot) => {
-      await getDownloadURL(snapshot.ref).then((url) => {
-        setNidOrPassportPhoto({ frontSide: url });
-      });
-    });
-  };
 
   // some data collection handler function like name,email etc
   const handleData = (e) => {
@@ -335,28 +324,7 @@ const EditPersonalInfo = () => {
             </div>
           </div>
 
-          <div className="pb-4">
-            <div>
-              <label
-                htmlFor="nid"
-                className="text-sm block pb-2 text-slate-600	  font-medium"
-              >
-                NID/Passport Photo
-              </label>
-
-              <Dragger onChange={handleUpload}>
-                <div className="flex justify-center items-center">
-                  <p>File Upload</p>
-                  <p className="ant-upload-drag-icon pl-4">
-                    <FileAddFilled
-                      style={{ color: "#E41272" }}
-                      onChange={handleUpload}
-                    />
-                  </p>
-                </div>
-              </Dragger>
-            </div>
-          </div>
+          <DropFileInput {...{ nidOrPassportPhoto, setNidOrPassportPhoto }} />
 
           <div className="pb-4">
             <div>
