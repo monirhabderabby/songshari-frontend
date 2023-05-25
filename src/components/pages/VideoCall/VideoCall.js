@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-// import Peer from "simple-peer";
+import {useSelector} from "react-redux";
 // import copy from "clipboard-copy";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
@@ -33,7 +33,7 @@ const VideoCall = () => {
     const videoRef = useRef(null);
     const myVideoRef = useRef(null);
     const myMobileVideoRef = useRef(null);
-    // const inputRef = useRef(null);
+    const connectionRef  = useRef(null);
     const { id } = useParams();
     let peer ;
 
@@ -52,7 +52,7 @@ const VideoCall = () => {
             .getUserMedia({ video: video, audio: audio })
             .then(stream => {
                 setStream(stream);
-                videoRef.current.srcObject = stream;
+                // videoRef.current.srcObject = stream;
                 myVideoRef.current.srcObject = stream;
                 myMobileVideoRef.current.srcObject = stream;
     
@@ -71,6 +71,7 @@ const VideoCall = () => {
         
             socket.on("callUser", (data) => {
               setReceivingCall(true)
+              console.log(data)
               setCaller(data.from)
               // setName(data.name)
               setCallerSignal(data.signal)
@@ -85,7 +86,7 @@ const VideoCall = () => {
            })
            peer.on("stream", (stream) => {
              
-               videoRef.current.srcObject = stream
+               myVideoRef.current.srcObject = stream
              
            })
            socket.on("callAccepted", (signal) => {
@@ -93,7 +94,7 @@ const VideoCall = () => {
              peer.signal(signal)
            })
         
-           // connectionRef.current = peer
+           connectionRef.current = peer
         
         
            peer.on("signal", (data) => {
@@ -103,6 +104,7 @@ const VideoCall = () => {
              videoRef.current.srcObject = stream
            })
     }, [video, audio]);
+    
     
 
 
