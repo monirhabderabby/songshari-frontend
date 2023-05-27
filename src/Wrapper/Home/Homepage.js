@@ -13,7 +13,6 @@ import MeetNewPeople from "../../components/pages/MeetNewPeople/MeetNewPeople";
 import PeopleJoinedAlready from "../../components/pages/PeopleJoinedAlready/PeopleJoinedAlready";
 import TopProfile from "../../components/pages/TopProfile/TopProfile";
 import { BrandLoader } from "../../components/shared/Cards/Loader/BrandLoader/BrandLoader";
-import { PhoneCallActions } from "../../components/shared/Components/PhoneCallActions/PhoneCallActions";
 import Footer from "../../components/shared/Footer/Footer";
 import isLoggedIn from "../../Helper/hooks/checkLoggerPersestency/isLoggedIn";
 import { MobileHome } from "./mobileversion/MobileHome";
@@ -51,7 +50,7 @@ const Homepage = () => {
             <div className="block lg:hidden">
                 <MobileHome></MobileHome>
             </div>
-            <PhoneCallActions />
+            {/* <PhoneCallActions /> */}
         </div>
     );
 };
