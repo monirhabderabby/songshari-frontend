@@ -9,6 +9,7 @@ import Lawyer from "../../../assets/images/NavIcons/Lawyer.png";
 import courses from "../../../assets/images/NavIcons/Online-Course.png";
 import partner from "../../../assets/images/NavIcons/Find-Your-Partner.png";
 import Shop from "../../../assets/images/NavIcons/Shop.svg";
+import { coursesBaseUrl, shopBaseUrl } from "../../../config";
 
 export const Services = () => {
   return (
@@ -68,7 +69,7 @@ export const Services = () => {
         </div>
 
         <div className="bg-service-mov rounded-lg">
-          <Link to="/shop">
+          <a href={shopBaseUrl}>
             <img
               src={Shop}
               className="w-8 mx-auto mt-1"
@@ -77,11 +78,11 @@ export const Services = () => {
             <h1 className="text-[11px] text-white font-bold text-center pb-1">
               Shop
             </h1>
-          </Link>
+          </a>
         </div>
 
         <div className="bg-service-mov rounded-lg">
-          <Link to="/courses">
+          <a href={coursesBaseUrl}>
             <img
               src={courses}
               className="w-8 mx-auto mt-1"
@@ -90,7 +91,7 @@ export const Services = () => {
             <h1 className="text-[11px] text-white font-bold text-center pb-1">
               Courses
             </h1>
-          </Link>
+          </a>
         </div>
 
         <div className="bg-service-mov rounded-lg">
