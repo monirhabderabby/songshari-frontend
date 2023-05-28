@@ -1,18 +1,21 @@
-// normal import
-import React from "react";
 // configuration
-// material ui
+import React from "react";
+import { Link, useNavigate } from "react-router-dom";
+
+// third party package
 import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
-import { Link, useNavigate } from "react-router-dom";
-// components
-// css import;
 import { useDispatch, useSelector } from "react-redux";
+
+// components
 import removeCookie from "../../../Helper/cookies/removeCookie";
 import isLoggedIn from "../../../Helper/hooks/checkLoggerPersestency/isLoggedIn";
 import { loadUserData } from "../../../Redux/features/userInfo/userInfo";
+
+// css import;
 import "./TopMenu.css";
+
 export const TopMenu = () => {
   // hooks variables
   const user = isLoggedIn();
@@ -130,9 +133,6 @@ export const TopMenu = () => {
           </Menu>
         </div>
         <div className="col-span-1 mt-2">
-          <Link to="/cart">
-            <i className="fa-solid fa-cart-shopping mr-4"></i>
-          </Link>
           <Link to="/notifications">
             <i className="fa-regular fa-bell mr-4"></i>
           </Link>
