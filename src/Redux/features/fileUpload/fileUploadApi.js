@@ -26,4 +26,4 @@ export const fileUploadApi = apiSlice.injectEndpoints({
     }),
 });
 
-export const { usePhotosUploadOnServerMutation } = fileUploadApi;
+export const { usePhotosUploadOnServerMutation, useUploadCoverPhotoMutation } = fileUploadApi;

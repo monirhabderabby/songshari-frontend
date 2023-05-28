@@ -79,7 +79,7 @@ const ProfileCard = ({ data, isLoading }) => {
                         className="absolute bottom-2 right-2 hover:bg-primary hover:text-white duration-300 bg-primary/20 group rounded-full cursor-pointer flex items-center group px-0 hover:px-2"
                         htmlFor="coverPhoto"
                     >
-                        <div className="text-[10px] hidden group-hover:block">upload cover photo</div>
+                        <div className="text-[10px] hidden group-hover:block">upload cover</div>
                         <AiFillCamera className="text-[20px] m-[4px] " />
                     </label>
                     <input type="file" id="coverPhoto" name="uploadCoverPhoto" className="hidden" onChange={coverPhotoUploadHandler} />
