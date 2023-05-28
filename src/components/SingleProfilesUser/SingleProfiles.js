@@ -26,8 +26,6 @@ export const SingleProfiles = () => {
     const { data, isLoading, error } = useGetProfileDetailsWIthAuthQuery();
     const dispatch = useDispatch();
     const { data: badgeData, error: badgeError } = useGetUserBadgesQuery();
-    const { data: loggedInUserProfile } = useGetProfileDetailsWIthAuthQuery();
-    const { isEmailVerified, firstName } = loggedInUserProfile || {};
 
     // page title
     useDocumentTitle("Shongshari | Profile");

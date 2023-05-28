@@ -13,6 +13,16 @@ export const fileUploadApi = apiSlice.injectEndpoints({
                 body: data,
             }),
         }),
+        uploadCoverPhoto: builder.mutation({
+            query: data => ({
+                url: "/upload/file",
+                method: "POST",
+                headers: {
+                    authorization: `Bearer ${getCookie("token")}`,
+                },
+                body: data,
+            }),
+        }),
     }),
 });
 

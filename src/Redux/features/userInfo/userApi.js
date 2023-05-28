@@ -40,6 +40,21 @@ export const userApi = apiSlice.injectEndpoints({
                 },
                 body: data,
             }),
+            async onQueryStarted(arg, { dispatch, queryFulfilled }) {
+                const updateResult = dispatch(
+                    apiSlice.util.updateQueryData("getProfileDetailsWIthAuth", undefined, draft => {
+                        return {
+                            ...draft,
+                            coverPhoto: arg.coverPhoto,
+                        };
+                    })
+                );
+                try {
+                    await queryFulfilled;
+                } catch (error) {
+                    updateResult.undo();
+                }
+            },
         }),
         setProfessionalDetails: builder.mutation({
             query: data => ({
@@ -173,7 +188,7 @@ export const userApi = apiSlice.injectEndpoints({
                     authorization: `Bearer ${getCookie("token")}`,
                 },
             }),
-            keepUnusedDataFor: 0,
+            keepUnusedDataFor: 1,
         }),
         findFilteredUser: builder.mutation({
             query: ({ data, keyword, page }) => ({

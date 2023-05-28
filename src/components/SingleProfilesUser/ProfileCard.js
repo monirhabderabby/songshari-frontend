@@ -8,7 +8,7 @@ import { AiFillCamera } from "react-icons/ai";
 // components
 import blackLove from "../../assets/images/icons/blackLove.png";
 import { ageCalculator } from "../../assets/utilities/AgeCalculation/ageCalculator";
-import { useUpdateProfilePhotoMutation } from "../../Redux/features/userInfo/userApi";
+import { useSetPersonalDetailsMutation, useUpdateProfilePhotoMutation } from "../../Redux/features/userInfo/userApi";
 import { ProfileSkeletonLoader } from "../shared/Cards/Loader/Profile__Card__Skeleton__Loader/ProfileSkeletonLoader";
 
 // css files
@@ -22,7 +22,10 @@ const ProfileCard = ({ data, isLoading }) => {
 
     // Redux API
     const [updateProfilePhoto] = useUpdateProfilePhotoMutation();
+    const [setPersonalDetails] = useSetPersonalDetailsMutation();
     const [uploadPhoto, { data: uploadedPhoto }] = usePhotosUploadOnServerMutation();
+    const [uploadCoverPhoto, { data: uploadedCoverPhoto }] = usePhotosUploadOnServerMutation();
+
     useEffect(() => {
         if (uploadedPhoto?.data) updateProfilePhoto({ profilePhoto: uploadedPhoto?.data[0]?.path });
     }, [uploadedPhoto]);
@@ -51,6 +54,18 @@ const ProfileCard = ({ data, isLoading }) => {
         }
     };
 
+    const coverPhotoUploadHandler = e => {
+        if (e.target.files[0]) {
+            const formData = new FormData();
+            formData.append("image", e.target.files[0]);
+            uploadCoverPhoto(formData);
+        }
+    };
+
+    useEffect(() => {
+        if (uploadedCoverPhoto) setPersonalDetails({ coverPhoto: uploadedCoverPhoto?.data[0]?.path });
+    }, [uploadedCoverPhoto]);
+
     if (isLoading) {
         content = <ProfileSkeletonLoader />;
     } else if (!isLoading && data) {
@@ -60,6 +75,14 @@ const ProfileCard = ({ data, isLoading }) => {
                     style={{ backgroundImage: `url(${coverPhoto})` }}
                     className={`relative h-[150px] w-full rounded-tl-[10px] rounded-tr-[10px] ${!coverPhoto && "bg-gray-300"} bg-center bg-cover`}
                 >
+                    <label
+                        className="absolute bottom-2 right-2 hover:bg-primary hover:text-white duration-300 bg-primary/20 group rounded-full cursor-pointer flex items-center group px-0 hover:px-2"
+                        htmlFor="coverPhoto"
+                    >
+                        <div className="text-[10px] hidden group-hover:block">upload cover photo</div>
+                        <AiFillCamera className="text-[20px] m-[4px] " />
+                    </label>
+                    <input type="file" id="coverPhoto" name="uploadCoverPhoto" className="hidden" onChange={coverPhotoUploadHandler} />
                     <div className="h-[135px] absolute -bottom-[50%] left-[110px] w-[135px] z-50 bg-white shadow-sm border-[1px] rounded-full flex justify-center items-center">
                         <label
                             htmlFor="uploadPhoto"
