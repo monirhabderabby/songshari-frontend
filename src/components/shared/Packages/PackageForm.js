@@ -54,13 +54,13 @@ const PackageForm = ({ setShowPopup, pack, useCase, setSelectedPack }) => {
       setSuccessSnackBarOpen(true);
       setTimeout(() => {
         useCase === "home" ? setSelectedPack(null) : setShowPopup(false);
-        navigate("/payment_Success")
+        navigate("/payment_Success");
       }, 800);
     }
     if (pointError) {
       setCustomError(pointError?.data?.message);
     }
-  }, [pointData]);
+  }, [pointData, pointError]);
   useEffect(() => {
     if (selectedOption === "30") {
       if (isChecked) {
