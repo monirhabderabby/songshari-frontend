@@ -8,8 +8,10 @@ import {
 import { SuccessSnackBar } from "../../ui/error/snackBar/SuccessSnackBar";
 import Error from "../../ui/error/Error";
 import PaymentSelector from "./PaymentSelector";
+import { useNavigate } from "react-router";
 
 const PackageForm = ({ setShowPopup, pack, useCase, setSelectedPack }) => {
+  const navigate = useNavigate();
   const [successSnackBarOpen, setSuccessSnackBarOpen] = useState(false);
   const [total, setTotal] = useState(pack?.priceMonth);
   const [selectedOption, setSelectedOption] = useState("30");
@@ -50,39 +52,36 @@ const PackageForm = ({ setShowPopup, pack, useCase, setSelectedPack }) => {
   useEffect(() => {
     if (pointData) {
       setSuccessSnackBarOpen(true);
-      setTimeout(() =>
-        useCase === "home"
-          ? setSelectedPack(null)
-          : setShowPopup(false),800
-      );
+      setTimeout(() => {
+        useCase === "home" ? setSelectedPack(null) : setShowPopup(false);
+        navigate("/payment_Success")
+      }, 800);
     }
     if (pointError) {
       setCustomError(pointError?.data?.message);
     }
-  },[pointData])
+  }, [pointData]);
   useEffect(() => {
     if (selectedOption === "30") {
       if (isChecked) {
-        return setTotal(pack?.priceMonthInPoint)
+        return setTotal(pack?.priceMonthInPoint);
       } else {
-        setTotal(pack?.priceMonth); 
+        setTotal(pack?.priceMonth);
       }
     }
     if (selectedOption === "90") {
       if (isChecked) {
-        setTotal(pack?.priceThreeMonthInPoint)
+        setTotal(pack?.priceThreeMonthInPoint);
       } else {
         setTotal(pack?.priceThreeMonth);
       }
-      
     }
     if (selectedOption === "180") {
       if (isChecked) {
-        setTotal(pack?.priceSixMonthInPoint)
+        setTotal(pack?.priceSixMonthInPoint);
       } else {
         setTotal(pack?.priceSixMonth);
       }
-      
     }
     if (selectedOption === "365") {
       if (isChecked) {
@@ -90,7 +89,6 @@ const PackageForm = ({ setShowPopup, pack, useCase, setSelectedPack }) => {
       } else {
         setTotal(pack?.priceYear);
       }
-      
     }
   }, [selectedOption]);
   return (
@@ -158,7 +156,10 @@ const PackageForm = ({ setShowPopup, pack, useCase, setSelectedPack }) => {
         <PaymentSelector {...{ isChecked, setIsChecked }} />
         <p className="font-medium font-Nunito text-[18px] text-white">
           Package cost:
-          <span className="font-Nunito font-normal text-[18px]"> {total} {isChecked ? "POINT" : "BDT"} </span>
+          <span className="font-Nunito font-normal text-[18px]">
+            {" "}
+            {total} {isChecked ? "POINT" : "BDT"}{" "}
+          </span>
         </p>
 
         <button
