@@ -5,7 +5,7 @@ import React from "react";
 import { BsFillTelephoneFill } from "react-icons/bs";
 import { IoVideocam } from "react-icons/io5";
 
-export const MessegesHeader = ({profile}) => {
+export const MessegesHeader = ({ profile }) => {
     // console.log(profile)
     return (
         <div className="h-[91px] w-full px-[15px] flex items-center shadow-[0px_12px_23px_rgba(62,73,84,0.04)]">
@@ -13,12 +13,11 @@ export const MessegesHeader = ({profile}) => {
                 <div className="flex items-center gap-x-[37px]">
                     <img
                         className="h-[58px] w-[58px] rounded-full"
-                        // src="https://i.postimg.cc/j2nh3WBh/310814492-3383940818533755-1197676094327108122-n.jpg"
-                        src={profile?.profilePhoto}
+                        src={profile?.profilePhoto || "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"}
                         alt="profile"
                     />
                     <div>
-                        <p className="text-[20px] text-[#000000] font-normal">{profile?.firstName+" "+profile?.lastName}</p>
+                        <p className="text-[20px] text-[#000000] font-normal">{profile?.firstName + " " + profile?.lastName}</p>
                         <p className="text-[16px] font-normal text-[#999999]">Last seen 4:23 AM</p>
                     </div>
                 </div>
