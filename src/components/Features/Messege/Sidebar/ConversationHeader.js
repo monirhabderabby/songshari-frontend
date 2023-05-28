@@ -2,13 +2,13 @@ import { Select } from "antd";
 import React from "react";
 import { BiMessageDetail } from "react-icons/bi";
 
-export const ConversationHeader = ({profile}) => {
+export const ConversationHeader = ({ profile }) => {
     return (
         <div className="xl:max-w-[546px] lg:max-w-[337px] min-w-[400px] bg-white h-[122px] rounded-[20px] shadow-[0px_3px_4px_rgba(62,73,84,0.04)] flex items-center justify-between px-[30px]">
             <div className="flex items-center gap-x-[15px]">
                 <img
                     className="w-[57px] h-[57px] rounded-full"
-                    src={profile?.profilePhoto}
+                    src={profile?.profilePhoto || "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"}
                     alt="profile"
                 />
                 <div className="flex flex-col justify-center">
