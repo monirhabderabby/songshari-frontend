@@ -76,9 +76,10 @@ const ProfileCard = ({ data, isLoading }) => {
                     className={`relative h-[150px] w-full rounded-tl-[10px] rounded-tr-[10px] ${!coverPhoto && "bg-gray-300"} bg-center bg-cover`}
                 >
                     <label
-                        className="absolute bottom-2 right-2 hover:bg-primary hover:text-white duration-300 bg-primary/20 group rounded-full cursor-pointer"
+                        className="absolute bottom-2 right-2 hover:bg-primary hover:text-white duration-300 bg-primary/20 group rounded-full cursor-pointer flex items-center group px-0 hover:px-2"
                         htmlFor="coverPhoto"
                     >
+                        <div className="text-[10px] hidden group-hover:block">upload cover photo</div>
                         <AiFillCamera className="text-[20px] m-[4px] " />
                     </label>
                     <input type="file" id="coverPhoto" name="uploadCoverPhoto" className="hidden" onChange={coverPhotoUploadHandler} />
