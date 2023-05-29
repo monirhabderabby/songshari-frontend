@@ -330,10 +330,108 @@ export const userApi = apiSlice.injectEndpoints({
                 },
             }),
         }),
+        getDefaultPortionAccess: builder.query({
+            query: () => ({
+                url: "/member/get-profiles",
+                headers: {
+                    authorization: `Bearer ${getCookie("token")}`,
+                },
+            }),
+        }),
+        updatePortionAccess: builder.mutation({
+            query: ({ data, portion }) => ({
+                url: "/member/update-profiles",
+                method: "PUT",
+                headers: {
+                    authorization: `Bearer ${getCookie("token")}`,
+                },
+                body: data,
+            }),
+            async onQueryStarted(arg, { dispatch, queryFulfilled }) {
+                const updateResult = dispatch(
+                    apiSlice.util.updateQueryData("getDefaultPortionAccess", undefined, draft => {
+                        let data;
+                        const oldProfile = draft?.profile;
+                        const { portion } = arg;
+
+                        if (portion === "Lawyer") {
+                            data = {
+                                success: true,
+                                profile: {
+                                    mattrimonyAccess: oldProfile.mattrimonyAccess,
+                                    lawyerAccess: !oldProfile.lawyerAccess,
+                                    agentAccess: oldProfile?.agentAccess,
+                                    kaziAccess: oldProfile?.kaziAccess,
+                                    shopAccess: oldProfile?.shopAccess,
+                                    courseAccess: oldProfile?.courseAccess,
+                                },
+                            };
+                        } else if (portion === "Agent") {
+                            data = {
+                                success: true,
+                                profile: {
+                                    mattrimonyAccess: oldProfile.mattrimonyAccess,
+                                    lawyerAccess: oldProfile.lawyerAccess,
+                                    agentAccess: !oldProfile?.agentAccess,
+                                    kaziAccess: oldProfile?.kaziAccess,
+                                    shopAccess: oldProfile?.shopAccess,
+                                    courseAccess: oldProfile?.courseAccess,
+                                },
+                            };
+                        } else if (portion === "Kazi") {
+                            data = {
+                                success: true,
+                                profile: {
+                                    mattrimonyAccess: oldProfile.mattrimonyAccess,
+                                    lawyerAccess: oldProfile.lawyerAccess,
+                                    agentAccess: oldProfile?.agentAccess,
+                                    kaziAccess: !oldProfile?.kaziAccess,
+                                    shopAccess: oldProfile?.shopAccess,
+                                    courseAccess: oldProfile?.courseAccess,
+                                },
+                            };
+                        } else if (portion === "Shop") {
+                            data = {
+                                success: true,
+                                profile: {
+                                    mattrimonyAccess: oldProfile.mattrimonyAccess,
+                                    lawyerAccess: oldProfile.lawyerAccess,
+                                    agentAccess: oldProfile?.agentAccess,
+                                    kaziAccess: oldProfile?.kaziAccess,
+                                    shopAccess: !oldProfile?.shopAccess,
+                                    courseAccess: oldProfile?.courseAccess,
+                                },
+                            };
+                        } else if (portion === "Course") {
+                            data = {
+                                success: true,
+                                profile: {
+                                    mattrimonyAccess: oldProfile.mattrimonyAccess,
+                                    lawyerAccess: oldProfile.lawyerAccess,
+                                    agentAccess: oldProfile?.agentAccess,
+                                    kaziAccess: oldProfile?.kaziAccess,
+                                    shopAccess: oldProfile?.shopAccess,
+                                    courseAccess: !oldProfile?.courseAccess,
+                                },
+                            };
+                        }
+
+                        return data;
+                    })
+                );
+                try {
+                    await queryFulfilled;
+                } catch (error) {
+                    updateResult.undo();
+                }
+            },
+        }),
     }),
 });
 
 export const {
+    useGetDefaultPortionAccessQuery,
+    useUpdatePortionAccessMutation,
     useRegAsMemberMutation,
     useLoginAsMemberMutation,
     useLoginAsProfessionalMutation,

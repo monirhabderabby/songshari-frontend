@@ -1,34 +1,32 @@
 import React from "react";
+import { useGetDefaultPortionAccessQuery } from "../../../../Redux/features/userInfo/userApi";
 import { PortionSwitch } from "../../../shared/Components/PortionSwitch/PortionSwitch";
 
 export const AccountSwitchs = () => {
-    const portions = [
-        {
-            id: 1,
-            portion: "Shop",
-            isAccess: false,
-        },
-        {
-            id: 2,
-            portion: "Lawyer",
-            isAccess: false,
-        },
-        {
-            id: 3,
-            portion: "Agent",
-            isAccess: false,
-        },
-        {
-            id: 4,
-            portion: "Lawyer",
-            isAccess: false,
-        },
-        {
-            id: 5,
-            portion: "Kazi",
-            isAccess: false,
-        },
-    ];
+    //Redux Api
+    const { data, isLoading, isError } = useGetDefaultPortionAccessQuery();
+
+    const { profile } = data || {};
+    const { mattrimonyAccess, lawyerAccess, agentAccess, kaziAccess, shopAccess, courseAccess } = profile || {};
+
+    console.log(data);
+    let content;
+    if (isLoading) {
+        return;
+    } else if (!isLoading && isError) {
+        content = <p>Something is wrong</p>;
+    } else if (!isLoading && profile) {
+        content = (
+            <div className="flex items-center flex-wrap gap-[25px]">
+                <PortionSwitch portion="Matrimony" isAccess={mattrimonyAccess} />
+                <PortionSwitch portion="Lawyer" isAccess={lawyerAccess} />
+                <PortionSwitch portion="Agent" isAccess={agentAccess} />
+                <PortionSwitch portion="Kazi" isAccess={kaziAccess} />
+                <PortionSwitch portion="Shop" isAccess={shopAccess} />
+                <PortionSwitch portion="Course" isAccess={courseAccess} />
+            </div>
+        );
+    }
 
     return (
         <>
@@ -39,11 +37,7 @@ export const AccountSwitchs = () => {
                     the diverse sections and features we offer.
                 </p>
             </div>
-            <div className="flex items-center flex-wrap gap-[25px]">
-                {portions?.map(item => {
-                    return <PortionSwitch key={item.id} {...{ item }} />;
-                })}
-            </div>
+            {content}
         </>
     );
 };
