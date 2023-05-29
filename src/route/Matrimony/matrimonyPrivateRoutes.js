@@ -4,7 +4,6 @@ import { FindAPartnerSuggested } from "../../components/pages/FindPartner/FindAP
 import FindPartners from "../../components/pages/FindPartner/FindPartners";
 import { NearestPartners } from "../../components/pages/FindPartner/NearestPartners/NearestPartners";
 import { TopPartners } from "../../components/pages/FindPartner/TopPartner/TopPartners";
-import Test from "../../components/pages/VideoCall/Test";
 import { Gallery } from "../../components/shared/Components/Gallery";
 import SingleServicesStatusContainer from "../../components/shared/Components/LawyerAgentKaziService/SingleServicesStatus/SingleServicesStatusContainer";
 import { PaymentSuccess } from "../../components/shared/Components/PaymentSuccess/PaymentSuccess";
@@ -171,11 +170,6 @@ const matrimonyPrivateRoutes = [
         id: 13,
         path: "/payment_Success",
         element: <PaymentSuccess />,
-    },
-    {
-        id: 14,
-        path: "/videoCalling",
-        element: <Test />,
     },
 ];
 
