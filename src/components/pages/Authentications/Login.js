@@ -96,6 +96,7 @@ const Login = () => {
     };
 
     const onSubmit = async data => {
+        data.profile = "mattrimonyAccess";
         await loginAsMember(data);
     };
 
