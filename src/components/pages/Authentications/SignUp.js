@@ -112,6 +112,7 @@ const Signup = () => {
         }
         data.role = "member";
         data.gender = gender;
+        data.profile = "mattrimonyAccess";
         await regAsMember({
             data: data,
             ref: ref || "",
