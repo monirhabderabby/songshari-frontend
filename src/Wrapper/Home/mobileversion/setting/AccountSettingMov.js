@@ -1,5 +1,5 @@
 // Configuration
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 
 // Third party packages
@@ -14,35 +14,14 @@ import { HiOutlineMail } from "react-icons/hi";
 
 // components
 import { AiOutlineUsergroupAdd } from "react-icons/ai";
-import { MdOutlineManageAccounts, MdOutlineReviews } from "react-icons/md";
+import { MdOutlineManageAccounts } from "react-icons/md";
 import getCookie from "../../../../Helper/cookies/getCookie";
 const { Panel } = Collapse;
 
 export const AccountSettingMov = () => {
-  const [servicePath, setServicePath] = useState();
-  const [activityPath, setActivityPath] = useState();
-  const [reviewsPath, setReviewsPath] = useState();
-
   const token = getCookie("token");
   const authInfo = decodeToken(token);
   const { _id, role } = authInfo || {};
-
-  // Decision about professional page route
-  useEffect(() => {
-    if (role === "lawyer") {
-      setServicePath("/mobileLawyerServices");
-      setActivityPath("/lawyerActivityMov");
-      setReviewsPath("/lawyerReviewsMov");
-    } else if (role === "agent") {
-      setServicePath("/mobileAgentServices");
-      setActivityPath("/agentActivityMov");
-      setReviewsPath("/agentReviewsMov");
-    } else if (role === "kazi") {
-      setServicePath("/mobileKaziServices");
-      setActivityPath("/kaziActivityMov");
-      setReviewsPath("/kaziReviewsMov");
-    }
-  }, [role]);
 
   // user services link
   const customExpandIcon = ({ isActive, onClick }) => (
@@ -193,27 +172,6 @@ export const AccountSettingMov = () => {
           </div>
         </Link>
       )}
-      {role !== "member" && (
-        <Link to={activityPath}>
-          <div className="grid grid-cols-6 mt-5 mb-10 ">
-            <div className="setting-mov">
-              <img
-                src="https://i.ibb.co/Jnp44YF/Vector.png"
-                className="ml-6 mr-6"
-                alt="Not Available"
-              ></img>
-              <h1 className="mt-[-5px] whitespace-nowrap">My Activity</h1>
-            </div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div>
-              <i className="fa-solid fa-angle-right ml-8"></i>
-            </div>
-          </div>
-        </Link>
-      )}
       {/* Member all types of services page */}
       {role === "member" && (
         <Collapse expandIconPosition="end" expandIcon={customExpandIcon} ghost>
@@ -257,48 +215,6 @@ export const AccountSettingMov = () => {
             </div>
           </Panel>
         </Collapse>
-      )}
-
-      {role !== "member" && (
-        <Link to={servicePath}>
-          <div className="grid grid-cols-6 mt-5 mb-10 he">
-            <div className="setting-mov">
-              <img
-                src="https://i.ibb.co/FnGQ6bg/Vector.png"
-                className="ml-8 mr-6"
-                alt="Not Available"
-              ></img>
-              <h1 className="mt-[-5px] whitespace-nowrap">My Services</h1>
-            </div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div>
-              <i className="fa-solid fa-angle-right ml-8"></i>
-            </div>
-          </div>
-        </Link>
-      )}
-
-      {role !== "member" && (
-        <Link to={reviewsPath}>
-          <div className="grid grid-cols-6 mt-5 mb-10 he">
-            <div className="setting-mov">
-              <h1 className="mt-[-5px] whitespace-nowrap flex items-center">
-                <MdOutlineReviews className="ml-8 mr-[22px] text-black text-xl" />{" "}
-                My Reviews
-              </h1>
-            </div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div>
-              <i className="fa-solid fa-angle-right ml-8"></i>
-            </div>
-          </div>
-        </Link>
       )}
 
       {role === "member" && (
