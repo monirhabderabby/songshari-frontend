@@ -21,23 +21,12 @@ import PersonalCertificateMobile from "../../../Wrapper/Home/mobileversion/Certi
 import ProfessionalCertificateMobile from "../../../Wrapper/Home/mobileversion/CertificateMobile/ProfessionalCertificateMobile/ProfessionalCertificateMobile";
 import { Like } from "../../../Wrapper/Home/mobileversion/Like";
 import { MatchesMov } from "../../../Wrapper/Home/mobileversion/MatchesMov";
-import MobileAgentActivity from "../../../Wrapper/Home/mobileversion/MobileAgent/MobileAgentActivity/MobileAgentActivity";
-import MobileAgentAddServiceForm from "../../../Wrapper/Home/mobileversion/MobileAgent/MobileAgentAddServiceForm/MobileAgentAddServiceForm";
-import MobileAgentServicesPage from "../../../Wrapper/Home/mobileversion/MobileAgent/MobileAgentServicesPage/MobileAgentServicesPage";
 import MobileDynamicSingleServiceContainer from "../../../Wrapper/Home/mobileversion/MobileDynamicSingleServiceContainer/MobileDynamicSingleServiceContainer";
 import MobileDynamicSingleServiceStatusContainer from "../../../Wrapper/Home/mobileversion/MobileDynamicSingleServiceStatusContainer/MobileDynamicSingleServiceStatusContainer";
 import SuggestedAgentForMobile from "../../../Wrapper/Home/mobileversion/MobileFindLawyerAgentKazi/SuggestedAgentForMobile/SuggestedAgentForMobile";
 import SuggestedKaziForMobile from "../../../Wrapper/Home/mobileversion/MobileFindLawyerAgentKazi/SuggestedKaziForMobile/SuggestedKaziForMobile";
 import SuggestedLawyerForMobile from "../../../Wrapper/Home/mobileversion/MobileFindLawyerAgentKazi/SuggestedLawyerForMobile/SuggestedLawyerForMobile";
-import MobileKaziActivity from "../../../Wrapper/Home/mobileversion/MobileKazi/MobileKaziActivity/MobileKaziActivity";
-import MobileKaziAddServiceForm from "../../../Wrapper/Home/mobileversion/MobileKazi/MobileKaziAddServiceForm/MobileKaziAddServiceForm";
-import MobileKaziServicesPage from "../../../Wrapper/Home/mobileversion/MobileKazi/MobileKaziServicesPage/MobileKaziServicesPage";
-import MobileLawyerActivity from "../../../Wrapper/Home/mobileversion/MobileLawyer/MobileLawyerActivity/MobileLawyerActivity";
-import MobileLawyerAddServiceForm from "../../../Wrapper/Home/mobileversion/MobileLawyer/MobileLawyerAddServiceForm/MobileLawyerAddServiceForm";
-import MobileLawyerServicesPage from "../../../Wrapper/Home/mobileversion/MobileLawyer/MobileLawyerServicesPage/MobileLawyerServicesPage";
 import MobileLawyerAgentKaziReviewsContainer from "../../../Wrapper/Home/mobileversion/MobileLawyerAgentKaziReviewsContainer/MobileLawyerAgentKaziReviewsContainer";
-import MobileProfServiceEdit from "../../../Wrapper/Home/mobileversion/MobileProfServiceEdit/MobileProfServiceEdit";
-import MobileProfSingleServicesContainer from "../../../Wrapper/Home/mobileversion/MobileProfSingleServicesContainer/MobileProfSingleServicesContainer";
 import MobileUserAgentServices from "../../../Wrapper/Home/mobileversion/MobileUserServicesPage/MobileUserAgentServices";
 import MobileUserAllServices from "../../../Wrapper/Home/mobileversion/MobileUserServicesPage/MobileUserAllServices";
 import MobileUserCancelledServices from "../../../Wrapper/Home/mobileversion/MobileUserServicesPage/MobileUserCancelledServices";
@@ -50,308 +39,243 @@ import { Setting } from "../../../Wrapper/Home/mobileversion/setting/Setting";
 import MobileStepper from "../../../Wrapper/Stepper/MobileStepper/MobileStepper";
 
 const MobileMatrimonyPrivateRoutes = [
-    {
+  {
+    id: 1,
+    path: "/mobileuserprofile",
+    element: <MobileSingleProfilesUser />,
+    nestedRoutes: [
+      {
         id: 1,
-        path: "/mobileuserprofile",
-        element: <MobileSingleProfilesUser />,
-        nestedRoutes: [
-            {
-                id: 1,
-                path: "personaldetailsmov",
-                element: <PersonalDetailsMobile />,
-            },
-        ],
-    },
-    {
-        id: 2,
-        path: "/dynamicpersonaldetails/:id",
+        path: "personaldetailsmov",
         element: <PersonalDetailsMobile />,
-    },
-    {
+      },
+    ],
+  },
+  {
+    id: 2,
+    path: "/dynamicpersonaldetails/:id",
+    element: <PersonalDetailsMobile />,
+  },
+  {
+    id: 3,
+    path: "/educationalCertificateMov",
+    element: <EducationalCertificateMobile />,
+  },
+  {
+    id: 4,
+    path: "/professionalCertificateMov",
+    element: <ProfessionalCertificateMobile />,
+  },
+  {
+    id: 5,
+    path: "/personalCertificateMov",
+    element: <PersonalCertificateMobile />,
+  },
+  {
+    id: 6,
+    path: "/matchesmov",
+    element: <MatchesMov />,
+  },
+  {
+    id: 7,
+    path: "/Gallery/mobile/:id",
+    element: <GalleryContainerForMobile />,
+  },
+
+  {
+    id: 8,
+    path: "/setting",
+    element: <Setting />,
+  },
+  {
+    id: 9,
+    path: "/notifications",
+    element: <NotificationForMobile />,
+  },
+  {
+    id: 10,
+    path: "/mobile-find-partner",
+    element: <FindPartnersMobile />,
+    nestedRoutes: [
+      {
+        id: 1,
+        path: "suggested",
+        element: <SuggestedpartnersForMobile />,
+      },
+      {
+        id: 2,
+        path: "top-partners",
+        element: <TopPartnersForMobile />,
+      },
+      {
         id: 3,
-        path: "/educationalCertificateMov",
-        element: <EducationalCertificateMobile />,
-    },
-    {
+        path: "new-partners",
+        element: <NewPartnersForMobile />,
+      },
+      {
         id: 4,
-        path: "/professionalCertificateMov",
-        element: <ProfessionalCertificateMobile />,
-    },
-    {
+        path: "filter-box",
+        element: <MobileAccordionPartner />,
+      },
+      {
         id: 5,
-        path: "/personalCertificateMov",
-        element: <PersonalCertificateMobile />,
-    },
-    {
-        id: 6,
-        path: "/matchesmov",
-        element: <MatchesMov />,
-    },
-    {
-        id: 7,
-        path: "/Gallery/mobile/:id",
-        element: <GalleryContainerForMobile />,
-    },
+        path: "filter-results",
+        element: <FilterResultsMobile />,
+      },
+    ],
+  },
+  {
+    id: 11,
+    path: "/matchesmov",
+    element: <MatchesMov />,
+  },
 
-    {
-        id: 8,
-        path: "/setting",
-        element: <Setting />,
-    },
-    {
-        id: 9,
-        path: "/notifications",
-        element: <NotificationForMobile />,
-    },
-    {
-        id: 10,
-        path: "/mobile-find-partner",
-        element: <FindPartnersMobile />,
-        nestedRoutes: [
-            {
-                id: 1,
-                path: "suggested",
-                element: <SuggestedpartnersForMobile />,
-            },
-            {
-                id: 2,
-                path: "top-partners",
-                element: <TopPartnersForMobile />,
-            },
-            {
-                id: 3,
-                path: "new-partners",
-                element: <NewPartnersForMobile />,
-            },
-            {
-                id: 4,
-                path: "filter-box",
-                element: <MobileAccordionPartner />,
-            },
-            {
-                id: 5,
-                path: "filter-results",
-                element: <FilterResultsMobile />,
-            },
-        ],
-    },
-    {
-        id: 11,
-        path: "/matchesmov",
-        element: <MatchesMov />,
-    },
+  {
+    id: 12,
+    path: "/certificatemov",
+    element: <CertificateMov />,
+  },
 
-    {
-        id: 12,
-        path: "/certificatemov",
-        element: <CertificateMov />,
-    },
-
-    {
-        id: 13,
-        path: "/like",
-        element: <Like />,
-    },
-    {
-        id: 14,
-        path: "/mobile-allposts",
-        element: <AllPosts />,
-    },
-    {
-        id: 15,
-        path: "/mobileActivityPage",
-        element: <MobileActivity />,
-    },
-    {
-        id: 16,
-        path: "/mobileLawyerServices",
-        element: <MobileLawyerServicesPage />,
-    },
-    {
-        id: 17,
-        path: "/lawyerAddServiceFormMov",
-        element: <MobileLawyerAddServiceForm />,
-    },
-    {
-        id: 18,
-        path: "/mobileAgentServices",
-        element: <MobileAgentServicesPage />,
-    },
-    {
-        id: 19,
-        path: "/agentAddServiceFormMov",
-        element: <MobileAgentAddServiceForm />,
-    },
-    {
-        id: 20,
-        path: "/mobileKaziServices",
-        element: <MobileKaziServicesPage />,
-    },
-    {
-        id: 21,
-        path: "/kaziAddServiceFormMov",
-        element: <MobileKaziAddServiceForm />,
-    },
-    {
-        id: 22,
-        path: "/lawyerActivityMov",
-        element: <MobileLawyerActivity />,
-    },
-    {
-        id: 23,
-        path: "/agentActivityMov",
-        element: <MobileAgentActivity />,
-    },
-    {
-        id: 24,
-        path: "/kaziActivityMov",
-        element: <MobileKaziActivity />,
-    },
-    {
-        id: 25,
-        path: "lawyerSingleServiceDetailsMov/:id",
-        element: <MobileProfSingleServicesContainer />,
-    },
-    {
-        id: 26,
-        path: "agentSingleServiceDetailsMov/:id",
-        element: <MobileProfSingleServicesContainer />,
-    },
-    {
-        id: 27,
-        path: "kaziSingleServiceDetailsMov/:id",
-        element: <MobileProfSingleServicesContainer />,
-    },
-    {
-        id: 28,
-        path: "serviceEditMov/:id",
-        element: <MobileProfServiceEdit />,
-    },
-    {
-        id: 29,
-        path: "/allServices",
-        element: <MobileUserAllServices />,
-    },
-    {
-        id: 30,
-        path: "/ongoingServices",
-        element: <MobileUserOngoingServices />,
-    },
-    {
-        id: 31,
-        path: "/cancelledServices",
-        element: <MobileUserCancelledServices />,
-    },
-    {
-        id: 32,
-        path: "/agentServices",
-        element: <MobileUserAgentServices />,
-    },
-    {
-        id: 33,
-        path: "/kaziServices",
-        element: <MobileUserKaziServices />,
-    },
-    {
-        id: 34,
-        path: "/lawyerServices",
-        element: <MobileUserLawyerServices />,
-    },
-    {
-        id: 35,
-        path: "/serviceMov/:id",
-        element: <MobileDynamicSingleServiceContainer />,
-    },
-    {
-        id: 36,
-        path: "/serviceStatusMov/running/:id",
-        element: <MobileDynamicSingleServiceStatusContainer />,
-    },
-    {
-        id: 37,
-        path: "/serviceStatusMov/cancelled/:id",
-        element: <MobileDynamicSingleServiceStatusContainer />,
-    },
-    {
-        id: 38,
-        path: "/serviceStatusMov/completed/:id",
-        element: <MobileDynamicSingleServiceStatusContainer />,
-    },
-    {
-        id: 39,
-        path: "/connections/:id",
-        element: <MobileUserConnections />,
-    },
-    {
-        id: 40,
-        path: "/galleryMov/:id",
-        element: <GalleryContainerForMobile />,
-    },
-    {
-        id: 41,
-        path: "/findLawyerMov",
-        element: <SuggestedLawyerForMobile />,
-    },
-    {
-        id: 42,
-        path: "/findKaziMov",
-        element: <SuggestedKaziForMobile role="kazi"/>,
-    },
-    {
-        id: 43,
-        path: "/findAgentMov",
-        element: <SuggestedAgentForMobile />,
-    },
-    {
-        id: 44,
-        path: "/dynamicConnectionsMov/:id",
-        element: <MobileDynamicProfileConnections />,
-    },
-    {
-        id: 45,
-        path: "/dynamicActivityMov/:id",
-        element: <MobileDynamicProfileActivity />,
-    },
-    {
-        id: 46,
-        path: "/dynamicGalleryMov/:id",
-        element: <GalleryContainerForMobile />,
-    },
-    {
-        id: 47,
-        path: "/lawyerReviewsMov",
-        element: <MobileLawyerAgentKaziReviewsContainer />,
-    },
-    {
-        id: 48,
-        path: "/agentReviewsMov",
-        element: <MobileLawyerAgentKaziReviewsContainer />,
-    },
-    {
-        id: 49,
-        path: "/kaziReviewsMov",
-        element: <MobileLawyerAgentKaziReviewsContainer />,
-    },
-    {
-        id: 50,
-        path: "/dynamicServicesMov/:id",
-        element: <MobileDynamicServicesContainer />,
-    },
-    {
-        id: 51,
-        path: "/completedServices",
-        element: <MobileUserCompletedServices />,
-    },
-    {
-        id: 52,
-        path: "/stepperMov",
-        element: <MobileStepper />,
-    },
-    {
-        id: 53,
-        path: "/mobileprofile/:id",
-        element: <MobileDynamicProfile />,
-    },
+  {
+    id: 13,
+    path: "/like",
+    element: <Like />,
+  },
+  {
+    id: 14,
+    path: "/mobile-allposts",
+    element: <AllPosts />,
+  },
+  {
+    id: 15,
+    path: "/mobileActivityPage",
+    element: <MobileActivity />,
+  },
+  {
+    id: 29,
+    path: "/allServices",
+    element: <MobileUserAllServices />,
+  },
+  {
+    id: 30,
+    path: "/ongoingServices",
+    element: <MobileUserOngoingServices />,
+  },
+  {
+    id: 31,
+    path: "/cancelledServices",
+    element: <MobileUserCancelledServices />,
+  },
+  {
+    id: 32,
+    path: "/agentServices",
+    element: <MobileUserAgentServices />,
+  },
+  {
+    id: 33,
+    path: "/kaziServices",
+    element: <MobileUserKaziServices />,
+  },
+  {
+    id: 34,
+    path: "/lawyerServices",
+    element: <MobileUserLawyerServices />,
+  },
+  {
+    id: 35,
+    path: "/serviceMov/:id",
+    element: <MobileDynamicSingleServiceContainer />,
+  },
+  {
+    id: 36,
+    path: "/serviceStatusMov/running/:id",
+    element: <MobileDynamicSingleServiceStatusContainer />,
+  },
+  {
+    id: 37,
+    path: "/serviceStatusMov/cancelled/:id",
+    element: <MobileDynamicSingleServiceStatusContainer />,
+  },
+  {
+    id: 38,
+    path: "/serviceStatusMov/completed/:id",
+    element: <MobileDynamicSingleServiceStatusContainer />,
+  },
+  {
+    id: 39,
+    path: "/connections/:id",
+    element: <MobileUserConnections />,
+  },
+  {
+    id: 40,
+    path: "/galleryMov/:id",
+    element: <GalleryContainerForMobile />,
+  },
+  {
+    id: 41,
+    path: "/findLawyerMov",
+    element: <SuggestedLawyerForMobile />,
+  },
+  {
+    id: 42,
+    path: "/findKaziMov",
+    element: <SuggestedKaziForMobile role="kazi" />,
+  },
+  {
+    id: 43,
+    path: "/findAgentMov",
+    element: <SuggestedAgentForMobile />,
+  },
+  {
+    id: 44,
+    path: "/dynamicConnectionsMov/:id",
+    element: <MobileDynamicProfileConnections />,
+  },
+  {
+    id: 45,
+    path: "/dynamicActivityMov/:id",
+    element: <MobileDynamicProfileActivity />,
+  },
+  {
+    id: 46,
+    path: "/dynamicGalleryMov/:id",
+    element: <GalleryContainerForMobile />,
+  },
+  {
+    id: 47,
+    path: "/lawyerReviewsMov",
+    element: <MobileLawyerAgentKaziReviewsContainer />,
+  },
+  {
+    id: 48,
+    path: "/agentReviewsMov",
+    element: <MobileLawyerAgentKaziReviewsContainer />,
+  },
+  {
+    id: 49,
+    path: "/kaziReviewsMov",
+    element: <MobileLawyerAgentKaziReviewsContainer />,
+  },
+  {
+    id: 50,
+    path: "/dynamicServicesMov/:id",
+    element: <MobileDynamicServicesContainer />,
+  },
+  {
+    id: 51,
+    path: "/completedServices",
+    element: <MobileUserCompletedServices />,
+  },
+  {
+    id: 52,
+    path: "/stepperMov",
+    element: <MobileStepper />,
+  },
+  {
+    id: 53,
+    path: "/mobileprofile/:id",
+    element: <MobileDynamicProfile />,
+  },
 ];
 
 export default MobileMatrimonyPrivateRoutes;

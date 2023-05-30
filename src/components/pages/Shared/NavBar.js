@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 
 // Third party packages
-import { decodeToken } from "react-jwt";
 import { useDispatch, useSelector } from "react-redux";
 
 // Components
@@ -24,13 +23,11 @@ import shop from "../../../assets/images/NavIcons/Shop.svg";
 
 // CSS files
 import "../../../App.css";
-import getCookie from "../../../Helper/cookies/getCookie";
 import removeCookie from "../../../Helper/cookies/removeCookie";
 import isLoggedIn from "../../../Helper/hooks/checkLoggerPersestency/isLoggedIn";
 import { removeSwap } from "../../../Redux/features/Swap/SwapSlice";
 import { removeVerificationData } from "../../../Redux/features/userInfo/verificationSlice";
 import NavBarCSS from "../../../assets/css/navbar.module.css";
-import { profilePathMaker } from "../../../assets/utilities/profilePathDecisionMaker/profilePathMaker";
 import { coursesBaseUrl, shopBaseUrl } from "../../../config";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 
@@ -42,11 +39,6 @@ const NavBar = ({ bg }) => {
   const userInfo = useSelector(
     (state) => state?.persistedReducer?.userInfo?.userInfo?.user
   );
-  const token = getCookie("token");
-  const tokenInfo = decodeToken(token);
-
-  const { role } = tokenInfo || {};
-  const userProfilePath = profilePathMaker(role);
 
   // js variable
   let { profilePhoto } = userInfo || {};
@@ -95,11 +87,6 @@ const NavBar = ({ bg }) => {
     dispatch(removeVerificationData());
     dispatch(removeSwap());
   };
-
-  // Dynamic menu decision
-  if (role === "lawyer" || role === "agent" || role === "kazi") {
-    allMenu.shift();
-  }
 
   // Navbar scroll effect controller
   useEffect(() => {
@@ -230,7 +217,7 @@ const NavBar = ({ bg }) => {
                   {user ? (
                     <>
                       <Link
-                        to={userProfilePath}
+                        to={"/userprofile"}
                         className={`${NavBarCSS.tooltip} rounded-xl z-50 shadow-lg px-3 py-1 text-white text-xs font-bold whitespace-nowrap uppercase mt-[66px]`}
                         style={{
                           backgroundImage:
