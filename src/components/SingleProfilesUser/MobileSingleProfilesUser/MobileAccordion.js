@@ -7,7 +7,9 @@ import Typography from "@mui/material/Typography";
 import React from "react";
 import { useGetProfileDetailsWIthAuthQuery } from "../../../Redux/features/userInfo/userApi";
 
-const Accordion = styled(props => <MuiAccordion disableGutters elevation={0} square {...props} />)(({ theme }) => ({
+const Accordion = styled((props) => (
+  <MuiAccordion disableGutters elevation={0} square {...props} />
+))(({ theme }) => ({
   boxShadow: "0px 10px 40px rgba(0, 0, 0, 0.03)",
   paddingTop: "6px",
   paddingBottom: "6px",
@@ -16,31 +18,32 @@ const Accordion = styled(props => <MuiAccordion disableGutters elevation={0} squ
   marginTop: "15px",
 }));
 
-const AccordionSummary = styled(props => <MuiAccordionSummary expandIcon={<ArrowForwardIosSharpIcon sx={{ fontSize: "0.9rem" }} />} {...props} />)(
-  ({ theme }) => ({
-    backgroundColor: "#ffffff",
+const AccordionSummary = styled((props) => (
+  <MuiAccordionSummary
+    expandIcon={<ArrowForwardIosSharpIcon sx={{ fontSize: "0.9rem" }} />}
+    {...props}
+  />
+))(({ theme }) => ({
+  backgroundColor: "#ffffff",
 
-    "& .MuiAccordionSummary-expandIconWrapper.Mui-expanded": {
-      transform: "rotate(90deg)",
-    },
-    "& .MuiAccordionSummary-content": {
-      marginLeft: theme.spacing(1),
-    },
-    color: "#67868F",
-    fontSize: "12px",
-    fontWeight: "bold",
-  })
-);
+  "& .MuiAccordionSummary-expandIconWrapper.Mui-expanded": {
+    transform: "rotate(90deg)",
+  },
+  "& .MuiAccordionSummary-content": {
+    marginLeft: theme.spacing(1),
+  },
+  color: "#67868F",
+  fontSize: "12px",
+  fontWeight: "bold",
+}));
 
 const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
   //     padding: theme.spacing(2),
   //     borderTop: "1px solid rgba(0, 0, 0, .125)",
 }));
 const MobileAccordion = () => {
-  const { data, isLoading } = useGetProfileDetailsWIthAuthQuery();
-  console.log(data);
+  const { data } = useGetProfileDetailsWIthAuthQuery();
   const [expanded, setExpanded] = React.useState("panel1");
-
 
   const handleChange = (panel) => (event, newExpanded) => {
     setExpanded(newExpanded ? panel : true);
@@ -112,23 +115,33 @@ const MobileAccordion = () => {
 
               <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                 <span className="font-medium"> Degree Name</span>
-                <p className="font-normal">{data?.hightestEducationalQualification?.degreeName}</p>
+                <p className="font-normal">
+                  {data?.hightestEducationalQualification?.degreeName}
+                </p>
               </div>
               <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                 <span className="font-medium">Institute</span>
-                <p className="font-normal">{data?.hightestEducationalQualification?.institute}</p>
+                <p className="font-normal">
+                  {data?.hightestEducationalQualification?.institute}
+                </p>
               </div>
               <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                 <span className="font-medium">Department</span>
-                <p className="font-normal">{data?.hightestEducationalQualification?.Department}</p>
+                <p className="font-normal">
+                  {data?.hightestEducationalQualification?.Department}
+                </p>
               </div>
               <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                 <span className="font-medium">Field Of Study</span>
-                <p className="font-normal">{data?.hightestEducationalQualification?.institute}</p>
+                <p className="font-normal">
+                  {data?.hightestEducationalQualification?.institute}
+                </p>
               </div>
               <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                 <span className="font-medium">Year Of Passing</span>
-                <p className="font-normal">{data?.hightestEducationalQualification?.yearOfPassing}</p>
+                <p className="font-normal">
+                  {data?.hightestEducationalQualification?.yearOfPassing}
+                </p>
               </div>
               <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                 <span className="font-medium">Special Achievement</span>
@@ -241,19 +254,27 @@ const MobileAccordion = () => {
               </div>
               <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                 <span className="font-medium">Position</span>
-                <p className="font-normal">{data?.currentProfession?.position}</p>
+                <p className="font-normal">
+                  {data?.currentProfession?.position}
+                </p>
               </div>
               <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                 <span className="font-medium">Institute</span>
-                <p className="font-normal">{data?.currentProfession?.institute}</p>
+                <p className="font-normal">
+                  {data?.currentProfession?.institute}
+                </p>
               </div>
               <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                 <span className="font-medium">Work Period</span>
-                <p className="font-normal">{data?.currentProfession?.workPeriod}</p>
+                <p className="font-normal">
+                  {data?.currentProfession?.workPeriod}
+                </p>
               </div>
               <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                 <span className="font-medium">Special Achievement</span>
-                <p className="font-normal">{data?.currentProfession?.specialAchievement}</p>
+                <p className="font-normal">
+                  {data?.currentProfession?.specialAchievement}
+                </p>
               </div>
               <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                 <span className="font-medium">Year Of Experience</span>
@@ -383,10 +404,15 @@ const MobileAccordion = () => {
             </Typography>
           </AccordionDetails>
         </Accordion>
-        <Accordion expanded={expanded === "panel4"} onChange={handleChange("panel4")}>
+        <Accordion
+          expanded={expanded === "panel4"}
+          onChange={handleChange("panel4")}
+        >
           <AccordionSummary aria-controls="panel4d-content" id="panel4d-header">
             <Typography>
-              <h1 className=" text-[#000000] text-base font-fira font-normal">Physical Information</h1>
+              <h1 className=" text-[#000000] text-base font-fira font-normal">
+                Physical Information
+              </h1>
             </Typography>
           </AccordionSummary>
           <AccordionDetails>
@@ -427,10 +453,15 @@ const MobileAccordion = () => {
             </Typography>
           </AccordionDetails>
         </Accordion>
-        <Accordion expanded={expanded === "panel5"} onChange={handleChange("panel5")}>
+        <Accordion
+          expanded={expanded === "panel5"}
+          onChange={handleChange("panel5")}
+        >
           <AccordionSummary aria-controls="panel5d-content" id="panel5d-header">
             <Typography>
-              <h1 className=" text-[#000000] text-base font-fira font-normal">Others Information</h1>
+              <h1 className=" text-[#000000] text-base font-fira font-normal">
+                Others Information
+              </h1>
             </Typography>
           </AccordionSummary>
           <AccordionDetails>
@@ -457,7 +488,9 @@ const MobileAccordion = () => {
                 <p className="font-normal">Not Provided</p>
               </div>
               <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                <span className="font-medium">Travelled outside Bangladesh</span>
+                <span className="font-medium">
+                  Travelled outside Bangladesh
+                </span>
                 <p className="font-normal">Not Provided</p>
               </div>
               <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
