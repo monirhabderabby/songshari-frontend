@@ -138,7 +138,7 @@ const BannerProfile = ({ swapable, setSwapable }) => {
             setClickNextButton(true);
           }}
         >
-          {swipematch?.data?.members?.reverse().map((data) => (
+          {swipematch?.data?.members?.map((data) => (
             <SwiperSlide key={data._id}>
               <SwipAndMatchCard
                 {...{ data, likedGif, rejectedGif, swapable, setSwapable }}
