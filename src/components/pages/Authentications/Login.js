@@ -162,12 +162,6 @@ const Login = () => {
                                             disabled={googleLoginLoading || isLoading}
                                         />
                                     </form>
-                                    <p className="mt-3">
-                                        Login as professional{" "}
-                                        <Link to="/loginAsProfessional" className="gradient_text font-bold">
-                                            LOGIN
-                                        </Link>{" "}
-                                    </p>
                                 </div>
                                 {/*Input Field*/}
                             </div>

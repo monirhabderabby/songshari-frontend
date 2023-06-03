@@ -385,12 +385,6 @@ const MobileSignUp = () => {
                             Log In
                         </Link>
                     </p>
-                    <p className="text-[#202325] text-xs leading-6 mb-5">
-                        Register as professional{" "}
-                        <Link to="/mobile-signup-professional" className="text-[#E41272] font-medium ml-1">
-                            REGISTER
-                        </Link>
-                    </p>
                 </form>
             </section>
         </div>
