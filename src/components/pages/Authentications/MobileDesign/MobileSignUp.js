@@ -109,6 +109,7 @@ const MobileSignUp = () => {
             delete data.image;
             data.profilePhoto = photoURL;
             data.role = "member";
+            data.profile = "mattrimonyAccess";
 
             if (data.password !== data.confirmPassword) {
                 setCustomError("Passwords do not match");

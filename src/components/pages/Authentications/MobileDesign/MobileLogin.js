@@ -10,10 +10,10 @@ import { useDispatch } from "react-redux";
 
 // components
 import { useSignInWithGoogle } from "react-firebase-hooks/auth";
-import { auth } from "../../../../firebase.init";
 import setCookie from "../../../../Helper/cookies/setCookie";
 import { useLoginAsMemberMutation, useRegAsMemberMutation } from "../../../../Redux/features/userInfo/userApi";
 import { loadUserData } from "../../../../Redux/features/userInfo/userInfo";
+import { auth } from "../../../../firebase.init";
 import { MobileBackButton } from "../../../shared/Components/MobileBackButton";
 import Error from "../../../ui/error/Error";
 
@@ -80,7 +80,7 @@ const MobileLogin = () => {
 
     // function declaration
     const onSubmit = async data => {
-        data.role = "member";
+        data.profile = "mattrimonyAccess";
         loginAsMember(data);
     };
 
