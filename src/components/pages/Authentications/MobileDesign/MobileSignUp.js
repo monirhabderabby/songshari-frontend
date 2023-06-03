@@ -12,14 +12,15 @@ import { FaGoogle } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 
 // components
-import logo from "../../../../assets/images/Logo/logoBlack.png";
-import { auth } from "../../../../firebase.init";
 import setCookie from "../../../../Helper/cookies/setCookie";
+import { usePhotosUploadOnServerMutation } from "../../../../Redux/features/fileUpload/fileUploadApi";
 import { useRegAsMemberMutation } from "../../../../Redux/features/userInfo/userApi";
 import { loadUserData } from "../../../../Redux/features/userInfo/userInfo";
+import logo from "../../../../assets/images/Logo/logoBlack.png";
+import { auth } from "../../../../firebase.init";
+import { OvalLoader } from "../../../shared/Cards/Loader/OvalLoader/OvalLoader";
 import { MobileBackButton } from "../../../shared/Components/MobileBackButton";
 import Error from "../../../ui/error/Error";
-import { usePhotosUploadOnServerMutation } from "../../../../Redux/features/fileUpload/fileUploadApi";
 
 const MobileSignUp = () => {
     // hook variable declaration
@@ -32,7 +33,7 @@ const MobileSignUp = () => {
 
     // Redux Api Call
     const [regAsMember, { data: response, isLoading: serverLoading, error: responseError }] = useRegAsMemberMutation();
-    const [uploadPhotoOnServer, { data: uploadedPhoto }] = usePhotosUploadOnServerMutation();
+    const [uploadPhotoOnServer, { data: uploadedPhoto, isLoading: photoUploadLoading }] = usePhotosUploadOnServerMutation();
 
     const {
         register,
@@ -46,9 +47,9 @@ const MobileSignUp = () => {
         // Do something with the files
         const photo = acceptedFiles[0];
         if (photo) {
-          const formData = new FormData();
-          formData.append("image", photo);
-          uploadPhotoOnServer(formData);
+            const formData = new FormData();
+            formData.append("image", photo);
+            uploadPhotoOnServer(formData);
         }
     }, []);
 
@@ -108,6 +109,7 @@ const MobileSignUp = () => {
             delete data.image;
             data.profilePhoto = photoURL;
             data.role = "member";
+            data.profile = "mattrimonyAccess";
 
             if (data.password !== data.confirmPassword) {
                 setCustomError("Passwords do not match");
@@ -127,7 +129,7 @@ const MobileSignUp = () => {
         setAgreement(e.target.checked);
     };
     useEffect(() => {
-      if (uploadedPhoto?.data) setPhotoUrl(uploadedPhoto?.data[0]?.path);
+        if (uploadedPhoto?.data) setPhotoUrl(uploadedPhoto?.data[0]?.path);
     }, [uploadedPhoto]);
 
     return (
@@ -345,7 +347,13 @@ const MobileSignUp = () => {
                                 ) : (
                                     <div className="flex gap-x-[15px] items-center">
                                         <span className={`${photoURL ? "text-green-400" : "text-[#000000]"} text-[12px] font-medium font-Inter`}>
-                                            {photoURL ? "Photo Added" : "Upload File"}
+                                            {photoUploadLoading ? (
+                                                <OvalLoader height={20} width={20} color="#ffffff" />
+                                            ) : photoURL ? (
+                                                "Photo Added"
+                                            ) : (
+                                                "Upload File"
+                                            )}
                                         </span>{" "}
                                         <AiFillFileAdd className="text-[#E41272] h-[27px] w-[21px]" />
                                     </div>

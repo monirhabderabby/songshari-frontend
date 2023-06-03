@@ -5,7 +5,6 @@ import { Toaster, toast } from "react-hot-toast";
 import "../../../App.css";
 import { useAddSubscriberMutation } from "../../../Redux/features/subscriber/subscriberApi";
 import "../../../assets/css/footer.css";
-import { VersionTrack } from "../VersionTrack/VersionTrack";
 import flower from "./../../../assets/images/footer/flower01.png";
 import icon from "./../../../assets/images/footer/icon.png";
 import rightShape from "./../../../assets/images/footer/right-shape.png";
@@ -184,7 +183,7 @@ const Footer = () => {
                                     shongshari.com
                                 </a>
                             </div>
-                            <VersionTrack />
+                            {/* <VersionTrack /> */}
                         </div>
                         <div>
                             <ul className="footer-social-links flex ignoreMouseEffect">
