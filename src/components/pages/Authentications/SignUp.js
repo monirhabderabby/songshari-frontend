@@ -348,12 +348,6 @@ const Signup = () => {
                                             />
                                         </div>
                                     </form>
-                                    <p className="mt-3">
-                                        Register as professional{" "}
-                                        <Link to="/regAsProfessional" className="gradient_text font-bold">
-                                            REGISTER
-                                        </Link>{" "}
-                                    </p>
                                 </div>
                                 {/*Input Field*/}
                             </div>

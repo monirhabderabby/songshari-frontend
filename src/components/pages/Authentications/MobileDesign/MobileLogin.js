@@ -172,12 +172,6 @@ const MobileLogin = () => {
                             Sign Up
                         </Link>
                     </p>
-                    <p className="text-[#202325] text-xs leading-6 mb-5">
-                        Login as Professional
-                        <Link className="text-[#E41272] font-medium ml-1" to={"/mobile-login-professional"}>
-                            LOGIN
-                        </Link>
-                    </p>
                 </form>
             </section>
         </div>
