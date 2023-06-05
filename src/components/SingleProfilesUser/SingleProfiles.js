@@ -51,7 +51,6 @@ export const SingleProfiles = () => {
       dispatch(loadPhotos(photos));
     }
   }, [data, dispatch]);
-  console.log(data);
   return (
     <RequireVerified>
       <div className="bg-[#FAFBFF]">
