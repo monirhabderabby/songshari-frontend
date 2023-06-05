@@ -15,7 +15,7 @@ import getCookie from "../../Helper/cookies/getCookie";
 import { usePhotosUploadOnServerMutation } from "../../Redux/features/fileUpload/fileUploadApi";
 import { useSetPersonalDetailsMutation } from "../../Redux/features/userInfo/userApi";
 
-export const PersonalDetails = ({ setPage }) => {
+export const PersonalDetails = ({ setPage, setHasSibling }) => {
   const [
     setPersonalDetails,
     { data: personalDetailsResponse, isLoading, isError },
@@ -205,6 +205,13 @@ export const PersonalDetails = ({ setPage }) => {
   };
 
   const onSubmit = async (data) => {
+    if (data.numberOfBrother > 0) {
+      setHasSibling(true);
+    }
+    if (data.numberOfSister > 0) {
+      setHasSibling(true);
+    }
+
     delete data.citizenShip;
 
     //photo links upload
