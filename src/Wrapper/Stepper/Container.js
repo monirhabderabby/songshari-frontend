@@ -13,6 +13,8 @@ import SiblingDetails from "./SiblingDetails";
 
 export const Container = ({ responsive }) => {
   const [page, setPage] = useState(1);
+  const [hasSibling, setHasSibling] = useState(false);
+
   return (
     <div className="min-h-screen">
       {!responsive && <NavBar />}
@@ -20,12 +22,14 @@ export const Container = ({ responsive }) => {
         <div className="bg-white shadow-2xl rounded-2xl md:flex w-[100%] md:w-3/4 lg:w-4/5 max-w-6xl relative">
           <div className="w-full p-5 my-auto">
             <div className="my-[20px]">
-              {page === 1 && <PersonalDetails {...{ setPage }} />}
+              {page === 1 && (
+                <PersonalDetails {...{ setPage, setHasSibling }} />
+              )}
               {page === 2 && <EducationalDetails {...{ setPage }} />}
               {page === 3 && <ProfessionalDetails {...{ setPage }} />}
               {page === 4 && <PhysicalDetails {...{ setPage }} />}
-              {page === 5 && <FamilyDetails {...{ setPage }} />}
-              {page === 6 && <SiblingDetails {...{ setPage }} />}
+              {page === 5 && <FamilyDetails {...{ setPage, hasSibling }} />}
+              {page === 6 && hasSibling && <SiblingDetails {...{ setPage }} />}
               {page === 7 && <OtherDetails {...{ setPage }} />}
             </div>
           </div>

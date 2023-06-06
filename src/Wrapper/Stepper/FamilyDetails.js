@@ -9,7 +9,7 @@ import { useUpdateFamilyDetailsMutation } from "../../Redux/features/userInfo/us
 
 // Components
 
-const FamilyDetails = ({ setPage }) => {
+const FamilyDetails = ({ setPage, hasSibling }) => {
   // Variable
   const [fatherStatus, setFatherStatus] = useState();
   const [fatherProfession, setFatherProfession] = useState();
@@ -61,9 +61,13 @@ const FamilyDetails = ({ setPage }) => {
 
   useEffect(() => {
     if (response) {
-      setPage(6);
+      if (hasSibling) {
+        setPage(6);
+      } else {
+        setPage(7);
+      }
     }
-  }, [response, setPage]);
+  }, [response, setPage, hasSibling]);
 
   return (
     <div className="w-full h-auto">
