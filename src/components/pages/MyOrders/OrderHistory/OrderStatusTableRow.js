@@ -3,13 +3,13 @@ import { useLocation } from "react-router";
 import { Link } from "react-router-dom";
 import { useGetProductReviewOfMeQuery } from "../../../../Redux/features/Shop/shopApi";
 
-export const OrderStatusTableRow = ({ item }) => {
+export const OrderStatusTableRow = ({ item, estimateDeliveryDate }) => {
     const location = useLocation();
     const { product, quantity } = item || {};
     const { name, price, _id } = product || {};
     const { data, isLoading, error } = useGetProductReviewOfMeQuery(_id);
 
-    let productName = name.length > 40 ? name.slice(0, 40) + "..." : name;
+    let productName = name?.length > 40 ? name.slice(0, 40) + "..." : name;
 
     let content;
     if (isLoading) {

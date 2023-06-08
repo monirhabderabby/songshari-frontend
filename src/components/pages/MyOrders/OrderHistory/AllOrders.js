@@ -17,7 +17,6 @@ export const AllOrders = ({ setTotalOrders }) => {
     });
 
     const { orders, count } = data || {};
-    console.log(orders);
     useEffect(() => {
         if (count > 0) setTotalOrders(count);
     }, [count, setTotalOrders]);
