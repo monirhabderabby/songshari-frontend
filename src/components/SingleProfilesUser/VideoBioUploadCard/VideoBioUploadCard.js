@@ -10,7 +10,8 @@ import { RiVideoUploadLine } from "react-icons/ri";
 import { usePhotosUploadOnServerMutation } from "../../../Redux/features/fileUpload/fileUploadApi";
 import { useUpdateVideoBioOnProfileMutation } from "../../../Redux/features/userInfo/userApi";
 
-const VideoBioUploadCard = ({ data }) => {
+const VideoBioUploadCard = ({ data, setShowPopup }) => {
+  const { userMatrimonyPackageInfo } = data || {};
   const [uploadedVideo, setUploadedVideo] = useState("");
   // Redux Api call
   const [
@@ -24,6 +25,9 @@ const VideoBioUploadCard = ({ data }) => {
 
   // function declaration
   const videoUploadHandler = (e) => {
+    if (!userMatrimonyPackageInfo?.package?.videoBioData) {
+      return setShowPopup(true);
+    }
     if (e.target.files) {
       const formData = new FormData();
       const video = e.target.files[0];
