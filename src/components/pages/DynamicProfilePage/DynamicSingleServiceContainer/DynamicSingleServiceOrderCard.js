@@ -104,10 +104,13 @@ export const DynamicSingleServiceOrderCard = ({ price, deadline, role, _id, pric
         }
     }, [priceResponse, navigate]);
 
+    console.log(role);
+
     deadline = deadline?.slice(2, deadline.length);
-    const { firstName, lastName, designation, _id: userId } = role || {};
+    const { firstName, lastName, designation, _id: userId, profilePhoto } = role || {};
     let name = `${firstName} ${lastName}` || "";
     name = name.length > 13 ? name.slice(0, 13) : name;
+    let profileImage = profilePhoto ? profilePhoto : "https://www.pngitem.com/pimgs/m/504-5040528_empty-profile-picture-png-transparent-png.png";
 
     // Function declarations
     const handleExpandClick = () => {
@@ -205,11 +208,7 @@ export const DynamicSingleServiceOrderCard = ({ price, deadline, role, _id, pric
                 <Collapse in={expanded} timeout="auto" unmountOnExit>
                     <CardContent>
                         <section className="h-[65px] w-full flex items-center gap-x-[10px]">
-                            <img
-                                className="h-[65px] w-[65px] border-[3px] border-white rounded-full"
-                                src="https://scontent.frjh5-1.fna.fbcdn.net/v/t39.30808-1/240958666_3135436200050886_2786652077427541076_n.jpg?stp=dst-jpg_p160x160&_nc_cat=109&ccb=1-7&_nc_sid=f67be1&_nc_ohc=Udcpk4-k830AX_4mpk3&_nc_ht=scontent.frjh5-1.fna&oh=00_AfCoZqvkBCANzHVf9GVRiClj2OmKShidDvznXxKY7BNeKw&oe=63E50D3A"
-                                alt=""
-                            />
+                            <img className="h-[65px] w-[65px] border-[3px] border-white rounded-full" src={profileImage} alt="profile" />
                             <div className="flex flex-col items-start justify-evenly h-full">
                                 <h2 className="text-[21px] font-semibold font-sans">{name}</h2>
                                 <h4 className="text-[14px] font-extralight font-sans">{designation}</h4>
@@ -221,9 +220,6 @@ export const DynamicSingleServiceOrderCard = ({ price, deadline, role, _id, pric
                         </p>
                         <section className="mt-[23px] w-full flex justify-between items-center">
                             <h4 className="text-[11px] font-semibold font-sans">Bangladesh</h4>
-                            <Button variant="contained" className={classes.contactStyles}>
-                                Contact
-                            </Button>
                         </section>
                     </CardContent>
                 </Collapse>

@@ -8,7 +8,8 @@ export const OrderStatusTableRow = ({ item }) => {
     const { product, quantity } = item || {};
     const { name, price, _id } = product || {};
     const { data, isLoading, error } = useGetProductReviewOfMeQuery(_id);
-    console.log(data);
+
+    let productName = name.length > 40 ? name.slice(0, 40) + "..." : name;
 
     let content;
     if (isLoading) {
@@ -27,7 +28,7 @@ export const OrderStatusTableRow = ({ item }) => {
     return (
         <tr className="w-full flex justify-between pt-[6px] text-[9px] lg:text-[14px]">
             <td>{content}</td>
-            <td>{name}</td>
+            <td>{productName}</td>
             <td className="lg:pr-[90px]">{quantity}</td>
             <td className="lg:pr-[80px]">{price}</td>
             <td>{quantity * price}</td>
