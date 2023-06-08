@@ -44,7 +44,7 @@ const SuccessStoryGlobalPage = () => {
     );
   } else if (!error && successStory?.data?.stories?.length > 0) {
     content = (
-      <div className="grid grid-cols-3 gap-4 mt-12">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-12">
         {successStory?.data?.stories?.map((story) => {
           return <SuccessStoryCard key={story?._id} {...{ story }} />;
         })}

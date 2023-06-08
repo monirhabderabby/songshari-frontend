@@ -9,6 +9,9 @@ import { useGetSuccessStoryByIdQuery } from "../../../../../Redux/features/Succe
 import { OvalLoader } from "../../../../shared/Cards/Loader/OvalLoader/OvalLoader";
 import { ServerErrorMessage } from "../../../../ui/error/ServerErrorMessage";
 import SingleSuccessStoryImages from "./SingleSuccessStoryImages/SingleSuccessStoryImages";
+import { MobileBackButton } from "../../../../shared/Components/MobileBackButton";
+import Footer from "../../../../shared/Footer/Footer";
+import { BottomNav } from "../../../../../Wrapper/Home/mobileversion/BottomNav";
 
 const SingleSuccessStoryDetailsPage = () => {
   const { id } = useParams();
@@ -33,7 +36,7 @@ const SingleSuccessStoryDetailsPage = () => {
     );
   } else if (!error && successStory?.success) {
     content = (
-      <div className="lg:max-w-[1000px] xl:max-w-[1200px] mx-auto">
+      <div className="lg:max-w-[1000px] xl:max-w-[1200px] mx-auto px-6 lg:px-0">
         <h1 className="text-4xl font-semibold font-Poppins text-center max-w-3xl mx-auto mt-8 capitalize">
           {successStory?.data?.header}
         </h1>
@@ -67,8 +70,21 @@ const SingleSuccessStoryDetailsPage = () => {
 
   return (
     <div>
-      <CustomHeader title={"Happy Story"} />
+      <div className="hidden lg:block">
+        <CustomHeader title={"Happy Story"} />
+      </div>
+      <div className="lg:hidden">
+        <MobileBackButton name={"Happy Story"} />
+      </div>
       <div>{content}</div>
+
+      <div className="hidden lg:block">
+        <Footer />
+      </div>
+      <div className="lg:hidden">
+        <div className="h-20"></div>
+        <BottomNav />
+      </div>
     </div>
   );
 };

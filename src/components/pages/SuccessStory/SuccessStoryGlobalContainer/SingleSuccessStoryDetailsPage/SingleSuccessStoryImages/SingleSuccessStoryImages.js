@@ -11,7 +11,7 @@ const SingleSuccessStoryImages = ({ successStory }) => {
       <div>
         <div>
           <img
-            className="w-[847px] h-[594px] rounded-md border border-gray-100 mb-2"
+            className="w-[847px] h-[294px] md:h-[444px] lg:h-[594px] rounded-md border border-gray-100 mb-2"
             src={
               selectedImage
                 ? selectedImage

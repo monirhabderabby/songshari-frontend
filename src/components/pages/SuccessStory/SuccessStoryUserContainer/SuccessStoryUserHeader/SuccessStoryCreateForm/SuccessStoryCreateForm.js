@@ -17,7 +17,7 @@ import { usePhotosUploadOnServerMutation } from "../../../../../../Redux/feature
 const SuccessStoryCreateForm = ({ setOpen }) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [videoUrl, setVideoUrl] = useState("");
+  const [video, setVideo] = useState("");
   const [photos, setPhotos] = useState(null);
   const onDrop = useCallback((acceptedFiles) => {
     setPhotos(acceptedFiles);
@@ -46,7 +46,7 @@ const SuccessStoryCreateForm = ({ setOpen }) => {
     const formData = new FormData();
     formData.append("header", title);
     formData.append("body", description);
-    formData.append("videoUrl", videoUrl);
+    formData.append("videoUrl", video);
     for (let i = 0; i < photos.length; i++) {
       formData.append("photos", photos[i]);
     }
@@ -57,7 +57,7 @@ const SuccessStoryCreateForm = ({ setOpen }) => {
   useEffect(() => {
     if (videoUploadResponse) {
       const video = videoUploadResponse?.data[0]?.path;
-      setVideoUrl(video);
+      setVideo(video);
     }
   }, [videoUploadResponse]);
 
@@ -66,7 +66,7 @@ const SuccessStoryCreateForm = ({ setOpen }) => {
       toast.success("Story Created Successfully");
       setTitle("");
       setDescription("");
-      setVideoUrl("");
+      setVideo("");
       setOpen(false);
     }
     if (error) {
@@ -77,7 +77,7 @@ const SuccessStoryCreateForm = ({ setOpen }) => {
       );
       setTitle("");
       setDescription("");
-      setVideoUrl("");
+      setVideo("");
       setOpen(false);
     }
   }, [response, error, setOpen]);
@@ -180,7 +180,7 @@ const SuccessStoryCreateForm = ({ setOpen }) => {
                     />
                   ) : (
                     <>
-                      {videoUrl ? (
+                      {video ? (
                         <>
                           <span className="text-green-400 font-semibold font-Inter">
                             Video Moments Added
