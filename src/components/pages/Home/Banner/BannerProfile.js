@@ -39,7 +39,6 @@ const BannerProfile = ({ swapable, setSwapable }) => {
         role: "",
         limit: "",
     });
-    console.log(swipematch?.data?.members);
     const [currentUser, setCurrentUser] = useState(null);
 
     // super matched

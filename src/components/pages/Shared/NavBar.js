@@ -54,7 +54,7 @@ const NavBar = ({ bg }) => {
       icon: findPartner,
       tooltip: "Find Your Partner",
     },
-    { id: 2, to: "/membership", icon: membership, tooltip: "Membership" },
+    { id: 2, to: "/packages", icon: membership, tooltip: "Membership" },
     { id: 3, to: "/happyStories", icon: blog, tooltip: "Happy Stories" },
     { id: 4, to: coursesBaseUrl, icon: course, tooltip: "Courses" },
     {

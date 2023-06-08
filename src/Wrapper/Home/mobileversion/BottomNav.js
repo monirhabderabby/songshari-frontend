@@ -14,7 +14,7 @@ export const BottomNav = () => {
     return (
         <div className="rounded bg-bottom-nav z-50 max-w-[1024px] mx-auto">
             <div className="flex items-center justify-between px-4">
-                <NavLink to="/mobileUpgrade">
+                <NavLink to="/packages">
                     {({ isActive }) => (
                         <img
                             src={member}
