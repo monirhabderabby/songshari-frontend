@@ -10,6 +10,9 @@ import { toast } from "react-hot-toast";
 
 // Components
 import { useCreateSuccessStoryMutation } from "../../../../../../Redux/features/SuccessStory/successStoryApi";
+import { AiOutlinePlus } from "react-icons/ai";
+import { Oval } from "react-loader-spinner";
+import { usePhotosUploadOnServerMutation } from "../../../../../../Redux/features/fileUpload/fileUploadApi";
 
 const SuccessStoryCreateForm = ({ setOpen }) => {
   const [title, setTitle] = useState("");
@@ -22,8 +25,21 @@ const SuccessStoryCreateForm = ({ setOpen }) => {
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
   // Redux api
+  const [
+    photosUploadOnServer,
+    { data: videoUploadResponse, isLoading: videoUploadLoading },
+  ] = usePhotosUploadOnServerMutation();
   const [createSuccessStory, { data: response, isLoading, error }] =
     useCreateSuccessStoryMutation();
+
+  const videoUploadHandler = (e) => {
+    if (e.target.files) {
+      const formData = new FormData();
+      const video = e.target.files[0];
+      formData.append("image", video);
+      photosUploadOnServer(formData);
+    }
+  };
 
   const handleSuccessStoryForm = async (e) => {
     e.preventDefault();
@@ -37,6 +53,13 @@ const SuccessStoryCreateForm = ({ setOpen }) => {
 
     await createSuccessStory(formData);
   };
+
+  useEffect(() => {
+    if (videoUploadResponse) {
+      const video = videoUploadResponse?.data[0]?.path;
+      setVideoUrl(video);
+    }
+  }, [videoUploadResponse]);
 
   useEffect(() => {
     if (response) {
@@ -95,17 +118,17 @@ const SuccessStoryCreateForm = ({ setOpen }) => {
               />
             </div>
 
-            <div className="mb-2">
+            {/* <div className="mb-2">
               <TextField
                 label="Video URL"
                 variant="outlined"
                 className="w-full"
                 onChange={(e) => setVideoUrl(e.target.value)}
               />
-            </div>
+            </div> */}
 
-            {/* products photo */}
-            <div className="w-full flex flex-col mb-8">
+            {/* photo */}
+            <div className="w-full flex flex-col mb-2">
               <div
                 {...getRootProps()}
                 className="bg-white rounded-[3.6px] h-[124px] shadow-[2px_2px_10px_rgba(0,0,0,0.1)] cursor-pointer"
@@ -133,6 +156,54 @@ const SuccessStoryCreateForm = ({ setOpen }) => {
                   </div>
                 )}
               </div>
+            </div>
+
+            {/* Video upload */}
+            <div className="w-full mb-8">
+              <div className="flex items-center gap-x-[22px] w-full">
+                <label
+                  htmlFor="videoUpload"
+                  className="flex items-center justify-center gap-x-[27px] bg-white w-full h-[44px] shadow-[2px_2px_10px_rgba(0,0,0,0.1)] rounded-[4px] cursor-pointer"
+                >
+                  {videoUploadLoading ? (
+                    <Oval
+                      height={20}
+                      width={20}
+                      color="#CC1A7A"
+                      wrapperStyle={{}}
+                      wrapperClass=""
+                      visible={true}
+                      ariaLabel="oval-loading"
+                      secondaryColor="#A72CC7"
+                      strokeWidth={4}
+                      strokeWidthSecondary={4}
+                    />
+                  ) : (
+                    <>
+                      {videoUrl ? (
+                        <>
+                          <span className="text-green-400 font-semibold font-Inter">
+                            Video Moments Added
+                          </span>
+                        </>
+                      ) : (
+                        <p className="flex items-center gap-x-2 text-[#707276]">
+                          Upload Video Moments
+                          <AiOutlinePlus />
+                        </p>
+                      )}
+                    </>
+                  )}
+                </label>
+              </div>
+              <input
+                type="file"
+                name="videoUpload"
+                accept="video/*"
+                id="videoUpload"
+                className="hidden"
+                onChange={videoUploadHandler}
+              />
             </div>
 
             <div>
