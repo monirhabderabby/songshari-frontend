@@ -23,6 +23,7 @@ const apiSlice = createApi({
     "ignoredUsers",
     "myWithdrawRequests",
     "certificates",
+    "UpdateUserInfo",
   ],
 });
 

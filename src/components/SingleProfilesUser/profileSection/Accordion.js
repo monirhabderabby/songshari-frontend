@@ -1106,11 +1106,11 @@ const Accordian = ({ data, isLoading, edit }) => {
                 </p>
               </div>
             )}
-            {data?.othersDetail?.doDrink && (
+            {data?.othersDetail?.havePet && (
               <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                 <span className="font-medium">Have pet</span>
                 <p className="font-normal">
-                  {data?.othersDetail ? data?.othersDetail?.doDrink : ""}
+                  {data?.othersDetail ? data?.othersDetail?.havePet : ""}
                 </p>
               </div>
             )}
