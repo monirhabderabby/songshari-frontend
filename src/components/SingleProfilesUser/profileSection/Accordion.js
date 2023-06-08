@@ -15,6 +15,7 @@ import moment from "moment";
 import "./Accordion.css";
 import FamilyAccordion from "./ProfileAccordion/FamilyAccordion";
 import SiblingsAccordion from "./ProfileAccordion/SiblingsAccordion";
+import hideEmail from "../../../assets/utilities/hideEmail/hideEmail";
 
 const Accordion = styled((props) => <MuiAccordion square {...props} />)(
   ({ theme }) => ({
@@ -117,7 +118,7 @@ const Accordian = ({ data, isLoading, edit }) => {
                 </div>
               )}
 
-              {data?.phone && (
+              {edit && data?.phone && (
                 <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                   <span className="font-medium">Phone</span>
                   <p className="font-normal">{data ? data?.phone : ""}</p>
@@ -127,11 +128,13 @@ const Accordian = ({ data, isLoading, edit }) => {
               {data?.email && (
                 <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                   <span className="font-medium">Email</span>
-                  <p className="font-normal">{data ? data?.email : ""}</p>
+                  <p className="font-normal">
+                    {edit ? data?.email : hideEmail(data?.email)}
+                  </p>
                 </div>
               )}
 
-              {data?.NidOrPassportNumber && (
+              {edit && data?.NidOrPassportNumber && (
                 <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                   <span className="font-medium">Nid Or Passport Number</span>
                   <p className="font-normal">
@@ -1106,11 +1109,11 @@ const Accordian = ({ data, isLoading, edit }) => {
                 </p>
               </div>
             )}
-            {data?.othersDetail?.doDrink && (
+            {data?.othersDetail?.havePet && (
               <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                 <span className="font-medium">Have pet</span>
                 <p className="font-normal">
-                  {data?.othersDetail ? data?.othersDetail?.doDrink : ""}
+                  {data?.othersDetail ? data?.othersDetail?.havePet : ""}
                 </p>
               </div>
             )}

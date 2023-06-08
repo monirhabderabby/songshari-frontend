@@ -119,6 +119,7 @@ export const userApi = apiSlice.injectEndpoints({
         },
         body: data,
       }),
+      invalidatesTags: ["UpdateUserInfo"],
     }),
     updateProfessionalDetails: builder.mutation({
       query: ({ data, id }) => ({
@@ -129,6 +130,7 @@ export const userApi = apiSlice.injectEndpoints({
         },
         body: data,
       }),
+      invalidatesTags: ["UpdateUserInfo"],
     }),
     updateEducationalDetails: builder.mutation({
       query: ({ data, id }) => ({
@@ -139,6 +141,7 @@ export const userApi = apiSlice.injectEndpoints({
         },
         body: data,
       }),
+      invalidatesTags: ["UpdateUserInfo"],
     }),
     updatePhysicalDetails: builder.mutation({
       query: (data) => ({
@@ -149,6 +152,7 @@ export const userApi = apiSlice.injectEndpoints({
         },
         body: data,
       }),
+      invalidatesTags: ["UpdateUserInfo"],
     }),
     updateOthersDetails: builder.mutation({
       query: (data) => ({
@@ -159,6 +163,7 @@ export const userApi = apiSlice.injectEndpoints({
         },
         body: data,
       }),
+      invalidatesTags: ["UpdateUserInfo"],
     }),
     updateFamilyDetails: builder.mutation({
       query: (data) => ({
@@ -169,6 +174,7 @@ export const userApi = apiSlice.injectEndpoints({
         },
         body: data,
       }),
+      invalidatesTags: ["UpdateUserInfo"],
     }),
     updateSiblingDetail: builder.mutation({
       query: ({ data, id }) => ({
@@ -179,6 +185,7 @@ export const userApi = apiSlice.injectEndpoints({
         },
         body: data,
       }),
+      invalidatesTags: ["UpdateUserInfo"],
     }),
     getProfileDetails: builder.query({
       query: (id) => `/member/personalDetail/${id}`,
@@ -193,6 +200,7 @@ export const userApi = apiSlice.injectEndpoints({
         },
       }),
       keepUnusedDataFor: 1,
+      providesTags: ["UpdateUserInfo"],
     }),
     findFilteredUser: builder.mutation({
       query: ({ data, keyword, page }) => ({
