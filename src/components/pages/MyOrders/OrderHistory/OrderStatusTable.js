@@ -3,7 +3,6 @@ import { OrderStatusTableRow } from "./OrderStatusTableRow";
 
 export const OrderStatusTable = ({ order }) => {
     const { orderItems, totalPrice } = order || {};
-
     let content;
     if (orderItems?.length > 0) {
         content = orderItems?.map(item => {
