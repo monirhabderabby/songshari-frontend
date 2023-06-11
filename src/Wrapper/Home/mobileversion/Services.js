@@ -69,7 +69,7 @@ export const Services = () => {
         </div>
 
         <div className="bg-service-mov rounded-lg">
-          <a href={shopBaseUrl}>
+          <a href={shopBaseUrl} target="_blank" rel="noreferrer">
             <img
               src={Shop}
               className="w-8 mx-auto mt-1"
@@ -82,7 +82,7 @@ export const Services = () => {
         </div>
 
         <div className="bg-service-mov rounded-lg">
-          <a href={coursesBaseUrl}>
+          <a href={coursesBaseUrl} target="_blank" rel="noreferrer">
             <img
               src={courses}
               className="w-8 mx-auto mt-1"
