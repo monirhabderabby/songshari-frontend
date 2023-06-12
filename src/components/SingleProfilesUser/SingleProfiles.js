@@ -25,7 +25,7 @@ import ChartBoard from "./chatboard/ChartBoard";
 import VideoBioUploadCard from "./VideoBioUploadCard/VideoBioUploadCard";
 import GoPremium from "../shared/Package/GoPremium";
 
-const message = `You must "Super Delux" Package to upload video Bio data. Please buy the package `;
+const message = `You must "Super" or "Super Delux" Package to upload video Bio data. Please buy the package `;
 export const SingleProfiles = () => {
   // hook variable declaration
   const [SocialBoxOpen, setSocialBoxOpen] = useState(false);
