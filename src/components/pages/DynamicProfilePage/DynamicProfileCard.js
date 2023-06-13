@@ -13,6 +13,9 @@ const DynamicProfileCard = ({ data, isLoading }) => {
     const [age, setAge] = useState(0);
     const [isModalOpen, setModalOpen] = useState(false);
 
+    // js variable
+    const { userMatrimonyPackageInfo } = data || {};
+    
     useEffect(() => {
         if (data) {
             const age = ageCalculator(data?.dateOfBirth);
@@ -53,7 +56,7 @@ const DynamicProfileCard = ({ data, isLoading }) => {
                     <h2 className="text-center mt-[85px] text-[28px] font-semibold font-fira">{name}</h2>
                     {/* content */}
                     <div className="w-full flex justify-center items-center absolute top-[70%]">
-                        <div className="text-[17px] font-normal font-Inter">{UserAge}</div>
+                        <div className="text-[12px] font-normal font-Inter">{UserAge}</div>
                         <div className="h-[28px] w-[5px] bg-gray-200 rounded-[4px] mx-[20px]"></div>
                         <div className="flex items-center">
                             <svg
@@ -72,8 +75,19 @@ const DynamicProfileCard = ({ data, isLoading }) => {
                                     d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"
                                 />
                             </svg>
-                            <h3 className="ml-2 text-[17px] font-normal font-Inter">{data?.hometown && data?.hometown}</h3>
+                            <h3 className="text-[12px] font-normal font-Inter">{data?.hometown && data?.hometown}</h3>
                         </div>
+                        <div className="h-[28px] w-[5px] bg-gray-200 rounded-[4px] mx-[20px]"></div>
+                        <button
+                    className="text-white text-[12px] leading-7 font-Inter px-3 py-1 rounded-[50px]"
+                    style={{
+                      backgroundImage:
+                        "linear-gradient(309deg, #F664BC 0%, #FB7BBC 35%, #FF92BB 100%)",
+                      boxShadow: "0px 5px 20px rgba(139, 122, 132, 0.5)",
+                    }}
+                  >
+                    {userMatrimonyPackageInfo?.package?.title + " user"}
+                  </button>
                     </div>
                     <div className="absolute top-[82%] w-full flex justify-center items-center gap-x-[20px]">
                         <div className="flex items-center">
