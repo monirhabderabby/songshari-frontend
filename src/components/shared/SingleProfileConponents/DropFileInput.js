@@ -4,7 +4,11 @@ import { toast } from "react-hot-toast";
 import { OvalLoader } from "../Cards/Loader/OvalLoader/OvalLoader";
 import { usePhotosUploadOnServerMutation } from "../../../Redux/features/fileUpload/fileUploadApi";
 
-const DropFileInput = ({ nidOrPassportPhoto, setNidOrPassportPhoto }) => {
+const DropFileInput = ({
+  nidOrPassportPhoto,
+  setNidOrPassportPhoto,
+  NidFrontSide,
+}) => {
   const [photosUploadOnServer, { data: uploadedPhotos, isLoading, error }] =
     usePhotosUploadOnServerMutation();
 
@@ -22,7 +26,6 @@ const DropFileInput = ({ nidOrPassportPhoto, setNidOrPassportPhoto }) => {
   const { getInputProps, isDragActive } = useDropzone({ onDrop });
 
   useEffect(() => {
-    console.log(error, "file eror");
     if (error) {
       toast.error(
         "Something went wrong. Please try to upload your photo again"
@@ -57,8 +60,14 @@ const DropFileInput = ({ nidOrPassportPhoto, setNidOrPassportPhoto }) => {
                     <p>Drop the files here ...</p>
                   ) : !isLoading && nidOrPassportPhoto?.frontSide ? (
                     <img
-                      className="h-[120px] rounded-[4px]"
+                      className="h-[110px] rounded-[4px]"
                       src={nidOrPassportPhoto?.frontSide}
+                      alt="servicePhoto"
+                    />
+                  ) : NidFrontSide ? (
+                    <img
+                      className="h-[110px] rounded-[4px]"
+                      src={NidFrontSide}
                       alt="servicePhoto"
                     />
                   ) : (

@@ -1,9 +1,9 @@
 // configuration
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router";
+import { useNavigate, useParams } from "react-router";
 
 // Third party packages
-import { DatePicker, Radio, Select, Space, message } from "antd";
+import { DatePicker, Select, message } from "antd";
 import TextArea from "antd/es/input/TextArea";
 import { useForm } from "react-hook-form";
 import { MdCancel } from "react-icons/md";
@@ -11,8 +11,12 @@ import { MdCancel } from "react-icons/md";
 // Components
 // import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 // import { firebaseStorage } from "../../../../firebase.init";
-import { useUpdatePersonalDetailsMutation } from "../../../../Redux/features/userInfo/userApi";
+import {
+  useGetProfileDetailsQuery,
+  useUpdatePersonalDetailsMutation,
+} from "../../../../Redux/features/userInfo/userApi";
 import DropFileInput from "../../../shared/SingleProfileConponents/DropFileInput";
+import { OvalLoader } from "../../../shared/Cards/Loader/OvalLoader/OvalLoader";
 
 const EditPersonalInfo = () => {
   const [messageApi, contextHolder] = message.useMessage();
@@ -26,15 +30,41 @@ const EditPersonalInfo = () => {
 
   const [brother, setBrother] = useState(0);
   const [sister, setSister] = useState(0);
-  const [parentStatus, setParentStatus] = useState("");
   const [lookingFor, setLookingFor] = useState("");
   //uploaded image url data state
   const [nidOrPassportPhoto, setNidOrPassportPhoto] = useState({});
+  const [zodiacSignSuggestion, setZodiacSignSuggestion] = useState([]);
+  const [hobbiesData, setHobbiesData] = useState([]);
+
   // API from redux
   const [updatePersonalDetails, { data: updateResponse, isLoading, error }] =
     useUpdatePersonalDetailsMutation();
 
   const { register, handleSubmit } = useForm();
+
+  const { id } = useParams();
+  const { data: profileData, isLoading: profileDataLoading } =
+    useGetProfileDetailsQuery(id);
+
+  const {
+    firstName,
+    lastName,
+    phone,
+    NidOrPassportNumber,
+    NidFrontSide,
+    LinkedInId,
+    instagramId,
+    faceBookId,
+    whatAreYouLookingFor,
+    aboutYou,
+    zodiacSign,
+    citizenShip,
+    hometown,
+    maritalStatus,
+    hobbies,
+    numberOfSister,
+    numberOfBrother,
+  } = profileData || {};
 
   useEffect(() => {
     fetch("/json/countries.json")
@@ -48,6 +78,18 @@ const EditPersonalInfo = () => {
       .then((data) => setCity(data));
   }, []);
 
+  useEffect(() => {
+    fetch("json/zodiacSign.json")
+      .then((res) => res.json())
+      .then((data) => setZodiacSignSuggestion(data));
+  }, []);
+
+  // hobbies
+  useEffect(() => {
+    fetch("json/hobby.json")
+      .then((res) => res.json())
+      .then((data) => setHobbiesData(data));
+  }, []);
 
   // some data collection handler function like name,email etc
   const handleData = (e) => {
@@ -120,11 +162,6 @@ const EditPersonalInfo = () => {
   };
 
   // --------- Others Information ------------
-
-  const handleParentsStatus = (e) => {
-    setParentStatus(e.target.value);
-    setPersonalInfo({ ...personalInfo, parentStatus: e?.target.value });
-  };
 
   // handle hobby
   const handleHobby = (value) => {
@@ -254,183 +291,270 @@ const EditPersonalInfo = () => {
           className="cursor-pointer text-3xl text-slate-600"
         />
       </div>
-      <div className="hidden md:block">
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <div className="flex justify-between pb-4">
-            <div>
-              <label
-                htmlFor="firstName"
-                className="text-sm block pb-2 text-slate-600 font-medium"
-              >
-                First Name
-              </label>
-              <input
-                type="text"
-                {...register("firstName")}
-                id="firstName"
-                placeholder="First Name"
-                className=" focus:outline-none p-2 border focus:border-blue-500 shadow rounded-lg hover:border-blue-500 w-56 "
-              />
-            </div>
-            <div>
-              <label
-                htmlFor="lastName"
-                className="text-sm block pb-2 text-slate-600	  font-medium"
-              >
-                Last Name
-              </label>
-              <input
-                type="text"
-                {...register("lastName")}
-                id="lastName"
-                placeholder="Last Name"
-                className=" focus:outline-none p-2 border focus:border-blue-500 shadow rounded-lg hover:border-blue-500 w-56 "
-              />
-            </div>
-          </div>
-
-          <div className="pb-4">
-            <div>
-              <label
-                htmlFor="number"
-                className="text-sm block pb-2 text-slate-600 font-medium"
-              >
-                Phone Number
-              </label>
-              <input
-                placeholder="17000000000"
-                id="number"
-                {...register("phone")}
-                className=" focus:outline-none p-2 border focus:border-blue-500 shadow rounded-lg hover:border-blue-500 w-full "
-              />
-            </div>
-          </div>
-
-          <div className="pb-4">
-            <div>
-              <label
-                htmlFor="nid"
-                className="text-sm block pb-2 text-slate-600	  font-medium"
-              >
-                NID/Passport Number
-              </label>
-              <input
-                type="text"
-                {...register("NidOrPassportNumber")}
-                id="nid"
-                placeholder="000000000/A025615"
-                className=" focus:outline-none p-2 border focus:border-blue-500 shadow rounded-lg hover:border-blue-500 w-full "
-              />
-            </div>
-          </div>
-
-          <DropFileInput {...{ nidOrPassportPhoto, setNidOrPassportPhoto }} />
-
-          <div className="pb-4">
-            <div>
-              <label
-                htmlFor="nid"
-                className="text-sm block pb-2 text-slate-600 font-medium"
-              >
-                Date of Birth
-              </label>
-              <DatePicker
-                onChange={handleDateOfBirth}
-                className="w-full"
-                size="large"
-              />
-            </div>
-          </div>
-
-          <div className="pb-4">
-            <label className="text-sm block pb-2 text-slate-600	  font-medium">
-              Marital Status
-            </label>
-            <Select
-              className="w-full mb-2"
-              onChange={handleMaritalStatusChange}
-              placeholder="Select Status"
-              showSearch
-              filterOption={(input, option) =>
-                (option?.label ?? "")
-                  .toLowerCase()
-                  .includes(input.toLowerCase())
-              }
-              size="large"
-              options={[
-                {
-                  value: "single",
-                  label: "Never Married",
-                },
-                {
-                  value: "married",
-                  label: "Married",
-                },
-                {
-                  value: "divorced",
-                  label: "Divorced",
-                },
-                {
-                  value: "widowed",
-                  label: "Widowed",
-                },
-              ]}
-            />
-            {/* married details  */}
-            {personalInfo?.maritalStatus === "married" && (
-              <div className="py-4">
-                <div className="mb-2">
-                  <input
-                    type="number"
-                    {...register("numberOfPartner")}
-                    placeholder="Number of Partner"
-                    className=" focus:outline-none p-2 border focus:border-blue-500 shadow rounded-lg hover:border-blue-500 w-full"
-                  />
-                </div>
-                <div className="mb-2">
-                  <input
-                    type="text"
-                    {...register("reasonOfMarriage")}
-                    placeholder="Reason of Marriage"
-                    className=" focus:outline-none p-2 border focus:border-blue-500 shadow rounded-lg hover:border-blue-500 w-full"
-                  />
-                </div>
-
-                <Select
-                  className="w-full mb-2"
-                  onChange={handleAwareOFMarriage}
-                  placeholder="Is partner aware of marriage?"
-                  showSearch
-                  filterOption={(input, option) =>
-                    (option?.label ?? "")
-                      .toLowerCase()
-                      .includes(input.toLowerCase())
-                  }
-                  size="large"
-                  options={[
-                    {
-                      value: "yes",
-                      label: "yes",
-                    },
-                    {
-                      value: "no",
-                      label: "no",
-                    },
-                  ]}
+      {profileDataLoading ? (
+        <OvalLoader />
+      ) : (
+        <div className="hidden md:block">
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <div className="flex justify-between pb-4">
+              <div>
+                <label
+                  htmlFor="firstName"
+                  className="text-sm block pb-2 text-slate-600 font-medium"
+                >
+                  First Name
+                </label>
+                <input
+                  type="text"
+                  {...register("firstName")}
+                  defaultValue={firstName}
+                  id="firstName"
+                  placeholder="First Name"
+                  className=" focus:outline-none p-2 border focus:border-blue-500 shadow rounded-lg hover:border-blue-500 w-56 "
                 />
-                <div className="mb-2">
-                  <DatePicker
-                    onChange={handleMarriageDate}
-                    placeholder="Marriage Date"
-                    className="w-full"
-                    size="large"
-                  />
-                </div>
+              </div>
+              <div>
+                <label
+                  htmlFor="lastName"
+                  className="text-sm block pb-2 text-slate-600	  font-medium"
+                >
+                  Last Name
+                </label>
+                <input
+                  type="text"
+                  {...register("lastName")}
+                  defaultValue={lastName}
+                  id="lastName"
+                  placeholder="Last Name"
+                  className=" focus:outline-none p-2 border focus:border-blue-500 shadow rounded-lg hover:border-blue-500 w-56 "
+                />
+              </div>
+            </div>
 
-                <div>
+            <div className="pb-4">
+              <div>
+                <label
+                  htmlFor="number"
+                  className="text-sm block pb-2 text-slate-600 font-medium"
+                >
+                  Phone Number
+                </label>
+                <input
+                  placeholder="17000000000"
+                  defaultValue={phone}
+                  id="number"
+                  {...register("phone")}
+                  className=" focus:outline-none p-2 border focus:border-blue-500 shadow rounded-lg hover:border-blue-500 w-full "
+                />
+              </div>
+            </div>
+
+            <div className="pb-4">
+              <div>
+                <label
+                  htmlFor="nid"
+                  className="text-sm block pb-2 text-slate-600	  font-medium"
+                >
+                  NID/Passport Number
+                </label>
+                <input
+                  type="text"
+                  {...register("NidOrPassportNumber")}
+                  defaultValue={NidOrPassportNumber}
+                  id="nid"
+                  placeholder="000000000/A025615"
+                  className=" focus:outline-none p-2 border focus:border-blue-500 shadow rounded-lg hover:border-blue-500 w-full "
+                />
+              </div>
+            </div>
+
+            <DropFileInput
+              {...{ nidOrPassportPhoto, setNidOrPassportPhoto, NidFrontSide }}
+            />
+
+            <div className="pb-4">
+              <div>
+                <label
+                  htmlFor="nid"
+                  className="text-sm block pb-2 text-slate-600 font-medium"
+                >
+                  Date of Birth
+                </label>
+                <DatePicker
+                  onChange={handleDateOfBirth}
+                  className="w-full"
+                  size="large"
+                />
+              </div>
+            </div>
+
+            <div className="pb-4">
+              <label className="text-sm block pb-2 text-slate-600	  font-medium">
+                Marital Status
+              </label>
+              <Select
+                className="w-full mb-2"
+                onChange={handleMaritalStatusChange}
+                defaultValue={maritalStatus}
+                placeholder="Select Status"
+                showSearch
+                filterOption={(input, option) =>
+                  (option?.label ?? "")
+                    .toLowerCase()
+                    .includes(input.toLowerCase())
+                }
+                size="large"
+                options={[
+                  {
+                    value: "single",
+                    label: "Never Married",
+                  },
+                  {
+                    value: "married",
+                    label: "Married",
+                  },
+                  {
+                    value: "divorced",
+                    label: "Divorced",
+                  },
+                  {
+                    value: "widowed",
+                    label: "Widowed",
+                  },
+                ]}
+              />
+              {/* married details  */}
+              {personalInfo?.maritalStatus === "married" && (
+                <div className="py-4">
+                  <div className="mb-2">
+                    <input
+                      type="number"
+                      {...register("numberOfPartner")}
+                      placeholder="Number of Partner"
+                      className=" focus:outline-none p-2 border focus:border-blue-500 shadow rounded-lg hover:border-blue-500 w-full"
+                    />
+                  </div>
+                  <div className="mb-2">
+                    <input
+                      type="text"
+                      {...register("reasonOfMarriage")}
+                      placeholder="Reason of Marriage"
+                      className=" focus:outline-none p-2 border focus:border-blue-500 shadow rounded-lg hover:border-blue-500 w-full"
+                    />
+                  </div>
+
                   <Select
                     className="w-full mb-2"
-                    onChange={handleChildrenStatus}
+                    onChange={handleAwareOFMarriage}
+                    placeholder="Is partner aware of marriage?"
+                    showSearch
+                    filterOption={(input, option) =>
+                      (option?.label ?? "")
+                        .toLowerCase()
+                        .includes(input.toLowerCase())
+                    }
+                    size="large"
+                    options={[
+                      {
+                        value: "yes",
+                        label: "yes",
+                      },
+                      {
+                        value: "no",
+                        label: "no",
+                      },
+                    ]}
+                  />
+                  <div className="mb-2">
+                    <DatePicker
+                      onChange={handleMarriageDate}
+                      placeholder="Marriage Date"
+                      className="w-full"
+                      size="large"
+                    />
+                  </div>
+
+                  <div>
+                    <Select
+                      className="w-full mb-2"
+                      onChange={handleChildrenStatus}
+                      placeholder="Do you have children?"
+                      showSearch
+                      filterOption={(input, option) =>
+                        (option?.label ?? "")
+                          .toLowerCase()
+                          .includes(input.toLowerCase())
+                      }
+                      size="large"
+                      options={[
+                        {
+                          value: "yes",
+                          label: "yes",
+                        },
+                        {
+                          value: "no",
+                          label: "no",
+                        },
+                      ]}
+                    />
+                    {marriageDetails.childrenStatus === "yes" && (
+                      <div>
+                        <input
+                          type="number"
+                          {...register("numberOfBoy")}
+                          placeholder="Number of Boy"
+                          className=" focus:outline-none p-2 border focus:border-blue-500 shadow rounded-lg hover:border-blue-500 w-52 mr-10 "
+                        />
+                        <input
+                          type="number"
+                          name="agesOfBoy"
+                          {...register("agesOfBoy")}
+                          placeholder="Age of Boy"
+                          className=" focus:outline-none p-2 border focus:border-blue-500 shadow rounded-lg hover:border-blue-500 w-52 "
+                        />
+                        <input
+                          type="number"
+                          {...register("numberOfGirl")}
+                          placeholder="Number of Girl"
+                          className=" focus:outline-none p-2 border focus:border-blue-500 shadow rounded-lg hover:border-blue-500 w-52 mr-10 mt-2"
+                        />
+                        <input
+                          type="number"
+                          name="agesOfGirl"
+                          {...register("agesOfGirl")}
+                          placeholder="Age of Girl"
+                          className=" focus:outline-none p-2 border focus:border-blue-500 shadow rounded-lg hover:border-blue-500 w-52 "
+                        />
+                      </div>
+                    )}
+
+                    {}
+                  </div>
+                </div>
+              )}
+              {/* divorced details  */}
+              {personalInfo?.maritalStatus === "divorced" && (
+                <div>
+                  <div className="mb-2">
+                    <input
+                      type="text"
+                      name="reasonOfDivorce"
+                      placeholder="Divorce Reason"
+                      className=" focus:outline-none p-2 border focus:border-blue-500 shadow rounded-lg hover:border-blue-500 w-full "
+                      onChange={handleDivorceReason}
+                    />
+                  </div>
+                  <div className="mb-2">
+                    <DatePicker
+                      onChange={handleDivorceDate}
+                      placeholder="Divorce Date"
+                      className="w-full"
+                      size="large"
+                    />
+                  </div>
+                  <Select
+                    className="w-full mb-2"
+                    onChange={handleDivorceChildrenStatus}
                     placeholder="Do you have children?"
                     showSearch
                     filterOption={(input, option) =>
@@ -450,198 +574,148 @@ const EditPersonalInfo = () => {
                       },
                     ]}
                   />
-                  {marriageDetails.childrenStatus === "yes" && (
+                  {divorceDetails?.childrenStatus === "yes" && (
                     <div>
                       <input
                         type="number"
-                        {...register("numberOfBoy")}
+                        name="numberOfBoy"
                         placeholder="Number of Boy"
                         className=" focus:outline-none p-2 border focus:border-blue-500 shadow rounded-lg hover:border-blue-500 w-52 mr-10 "
+                        onChange={handleDivorceReason}
                       />
                       <input
                         type="number"
                         name="agesOfBoy"
-                        {...register("agesOfBoy")}
                         placeholder="Age of Boy"
                         className=" focus:outline-none p-2 border focus:border-blue-500 shadow rounded-lg hover:border-blue-500 w-52 "
+                        onChange={handleDivorceReason}
                       />
                       <input
                         type="number"
-                        {...register("numberOfGirl")}
+                        name="numberOfGirl"
                         placeholder="Number of Girl"
                         className=" focus:outline-none p-2 border focus:border-blue-500 shadow rounded-lg hover:border-blue-500 w-52 mr-10 mt-2"
+                        onChange={handleDivorceReason}
                       />
                       <input
                         type="number"
                         name="agesOfGirl"
-                        {...register("agesOfGirl")}
                         placeholder="Age of Girl"
                         className=" focus:outline-none p-2 border focus:border-blue-500 shadow rounded-lg hover:border-blue-500 w-52 "
+                        onChange={handleDivorceReason}
                       />
                     </div>
                   )}
+                </div>
+              )}
 
-                  {}
-                </div>
-              </div>
-            )}
-            {/* divorced details  */}
-            {personalInfo?.maritalStatus === "divorced" && (
-              <div>
-                <div className="mb-2">
-                  <input
-                    type="text"
-                    name="reasonOfDivorce"
-                    placeholder="Divorce Reason"
-                    className=" focus:outline-none p-2 border focus:border-blue-500 shadow rounded-lg hover:border-blue-500 w-full "
-                    onChange={handleDivorceReason}
-                  />
-                </div>
-                <div className="mb-2">
-                  <DatePicker
-                    onChange={handleDivorceDate}
-                    placeholder="Divorce Date"
-                    className="w-full"
+              {personalInfo?.maritalStatus === "widowed" && (
+                <div>
+                  <div className="mb-2">
+                    <DatePicker
+                      onChange={handleWidowedDate}
+                      placeholder="Divorce Date"
+                      className="w-full"
+                      size="large"
+                    />
+                  </div>
+                  <Select
+                    className="w-full mb-2"
+                    onChange={handleWidowedChildrenStatus}
+                    placeholder="Do you have children?"
+                    showSearch
+                    filterOption={(input, option) =>
+                      (option?.label ?? "")
+                        .toLowerCase()
+                        .includes(input.toLowerCase())
+                    }
                     size="large"
+                    options={[
+                      {
+                        value: "yes",
+                        label: "yes",
+                      },
+                      {
+                        value: "no",
+                        label: "no",
+                      },
+                    ]}
                   />
+                  {widowedDetails?.childrenStatus === "yes" && (
+                    <div>
+                      <input
+                        type="number"
+                        name="numberOfBoy"
+                        placeholder="Number of Boy"
+                        className=" focus:outline-none p-2 border focus:border-blue-500 shadow rounded-lg hover:border-blue-500 w-52 mr-10 "
+                        onChange={handleWidowed}
+                      />
+                      <input
+                        type="number"
+                        name="agesOfBoy"
+                        placeholder="Age of Boy"
+                        className=" focus:outline-none p-2 border focus:border-blue-500 shadow rounded-lg hover:border-blue-500 w-52 "
+                        onChange={handleWidowed}
+                      />
+                      <input
+                        type="number"
+                        name="numberOfGirl"
+                        placeholder="Number of Girl"
+                        className=" focus:outline-none p-2 border focus:border-blue-500 shadow rounded-lg hover:border-blue-500 w-52 mr-10 mt-2"
+                        onChange={handleWidowed}
+                      />
+                      <input
+                        type="number"
+                        name="agesOfGirl"
+                        placeholder="Age of Girl"
+                        className=" focus:outline-none p-2 border focus:border-blue-500 shadow rounded-lg hover:border-blue-500 w-52 "
+                        onChange={handleWidowed}
+                      />
+                    </div>
+                  )}
                 </div>
+              )}
+            </div>
+
+            <div className="pb-4">
+              <div>
+                <label className="text-sm block pb-2 text-slate-600 font-medium">
+                  Citizenship
+                </label>
                 <Select
                   className="w-full mb-2"
-                  onChange={handleDivorceChildrenStatus}
-                  placeholder="Do you have children?"
+                  onChange={handleCitizenshipChange}
+                  defaultValue={citizenShip}
+                  placeholder="Select Citizenship"
+                  mode="multiple"
+                  maxTagCount={2}
+                  allowClear
                   showSearch
                   filterOption={(input, option) =>
-                    (option?.label ?? "")
+                    (option?.children ?? "")
                       .toLowerCase()
                       .includes(input.toLowerCase())
                   }
                   size="large"
-                  options={[
-                    {
-                      value: "yes",
-                      label: "yes",
-                    },
-                    {
-                      value: "no",
-                      label: "no",
-                    },
-                  ]}
-                />
-                {divorceDetails?.childrenStatus === "yes" && (
-                  <div>
-                    <input
-                      type="number"
-                      name="numberOfBoy"
-                      placeholder="Number of Boy"
-                      className=" focus:outline-none p-2 border focus:border-blue-500 shadow rounded-lg hover:border-blue-500 w-52 mr-10 "
-                      onChange={handleDivorceReason}
-                    />
-                    <input
-                      type="number"
-                      name="agesOfBoy"
-                      placeholder="Age of Boy"
-                      className=" focus:outline-none p-2 border focus:border-blue-500 shadow rounded-lg hover:border-blue-500 w-52 "
-                      onChange={handleDivorceReason}
-                    />
-                    <input
-                      type="number"
-                      name="numberOfGirl"
-                      placeholder="Number of Girl"
-                      className=" focus:outline-none p-2 border focus:border-blue-500 shadow rounded-lg hover:border-blue-500 w-52 mr-10 mt-2"
-                      onChange={handleDivorceReason}
-                    />
-                    <input
-                      type="number"
-                      name="agesOfGirl"
-                      placeholder="Age of Girl"
-                      className=" focus:outline-none p-2 border focus:border-blue-500 shadow rounded-lg hover:border-blue-500 w-52 "
-                      onChange={handleDivorceReason}
-                    />
-                  </div>
-                )}
+                >
+                  {countries.map((country) => (
+                    <Select.Option key={country.id} value={country.value}>
+                      {country.label}
+                    </Select.Option>
+                  ))}
+                </Select>
               </div>
-            )}
+            </div>
 
-            {personalInfo?.maritalStatus === "widowed" && (
-              <div>
-                <div className="mb-2">
-                  <DatePicker
-                    onChange={handleWidowedDate}
-                    placeholder="Divorce Date"
-                    className="w-full"
-                    size="large"
-                  />
-                </div>
-                <Select
-                  className="w-full mb-2"
-                  onChange={handleWidowedChildrenStatus}
-                  placeholder="Do you have children?"
-                  showSearch
-                  filterOption={(input, option) =>
-                    (option?.label ?? "")
-                      .toLowerCase()
-                      .includes(input.toLowerCase())
-                  }
-                  size="large"
-                  options={[
-                    {
-                      value: "yes",
-                      label: "yes",
-                    },
-                    {
-                      value: "no",
-                      label: "no",
-                    },
-                  ]}
-                />
-                {widowedDetails?.childrenStatus === "yes" && (
-                  <div>
-                    <input
-                      type="number"
-                      name="numberOfBoy"
-                      placeholder="Number of Boy"
-                      className=" focus:outline-none p-2 border focus:border-blue-500 shadow rounded-lg hover:border-blue-500 w-52 mr-10 "
-                      onChange={handleWidowed}
-                    />
-                    <input
-                      type="number"
-                      name="agesOfBoy"
-                      placeholder="Age of Boy"
-                      className=" focus:outline-none p-2 border focus:border-blue-500 shadow rounded-lg hover:border-blue-500 w-52 "
-                      onChange={handleWidowed}
-                    />
-                    <input
-                      type="number"
-                      name="numberOfGirl"
-                      placeholder="Number of Girl"
-                      className=" focus:outline-none p-2 border focus:border-blue-500 shadow rounded-lg hover:border-blue-500 w-52 mr-10 mt-2"
-                      onChange={handleWidowed}
-                    />
-                    <input
-                      type="number"
-                      name="agesOfGirl"
-                      placeholder="Age of Girl"
-                      className=" focus:outline-none p-2 border focus:border-blue-500 shadow rounded-lg hover:border-blue-500 w-52 "
-                      onChange={handleWidowed}
-                    />
-                  </div>
-                )}
-              </div>
-            )}
-          </div>
-
-          <div className="pb-4">
-            <div>
+            <div className="pb-4">
               <label className="text-sm block pb-2 text-slate-600 font-medium">
-                Citizenship
+                Current City
               </label>
               <Select
                 className="w-full mb-2"
-                onChange={handleCitizenshipChange}
-                placeholder="Select Citizenship"
-                mode="multiple"
-                maxTagCount={2}
-                allowClear
+                onChange={handleCurrentCity}
+                defaultValue={hometown}
+                placeholder="Select City"
                 showSearch
                 filterOption={(input, option) =>
                   (option?.children ?? "")
@@ -650,314 +724,275 @@ const EditPersonalInfo = () => {
                 }
                 size="large"
               >
-                {countries.map((country) => (
-                  <Select.Option key={country.id} value={country.value}>
-                    {country.label}
-                  </Select.Option>
-                ))}
+                {city.map((town) => {
+                  return (
+                    <Select.Option key={town.id} value={town.value}>
+                      {town.name}
+                    </Select.Option>
+                  );
+                })}
               </Select>
             </div>
-          </div>
 
-          <div className="pb-4">
-            <label className="text-sm block pb-2 text-slate-600 font-medium">
-              Current City
-            </label>
-            <Select
-              className="w-full mb-2"
-              onChange={handleCurrentCity}
-              placeholder="Select City"
-              showSearch
-              filterOption={(input, option) =>
-                (option?.children ?? "")
-                  .toLowerCase()
-                  .includes(input.toLowerCase())
-              }
-              size="large"
-            >
-              {city.map((town) => {
-                return (
-                  <Select.Option key={town.id} value={town.value}>
-                    {town.name}
-                  </Select.Option>
-                );
-              })}
-            </Select>
-          </div>
-
-          <div className="pb-4">
-            <label className="text-sm block pb-2 text-slate-600	  font-medium">
-              Zodiac Sign
-            </label>
-            <Select
-              className="w-full mb-2 "
-              onChange={handleZodiacSign}
-              placeholder="Select Sign"
-              showSearch
-              filterOption={(input, option) =>
-                (option?.label ?? "")
-                  .toLowerCase()
-                  .includes(input.toLowerCase())
-              }
-              size="large"
-              options={[
-                {
-                  value: "Mesh",
-                  label: "Mesh",
-                },
-                {
-                  value: "Singha",
-                  label: "singha",
-                },
-              ]}
-            />
-          </div>
-
-          <div className="pb-4">
-            <div>
-              <label
-                htmlFor=""
-                className="text-sm block pb-2 text-slate-600 font-medium"
-              >
-                About You
-              </label>
-              <textarea
-                rows={3}
-                placeholder="Text Here"
-                {...register("aboutYou")}
-                name="aboutYou"
-                className=" focus:outline-none p-2 border focus:border-blue-500 shadow rounded-lg hover:border-blue-500 w-full "
-              />
-            </div>
-          </div>
-
-          <div className="pb-4">
-            <div>
-              <label
-                htmlFor="looking"
-                className="text-sm block pb-2 text-slate-600 font-medium"
-              >
-                What are you looking for
-              </label>
-              <Select
-                className="w-full mb-2"
-                onChange={handleLookingForChange}
-                placeholder="Select looking for"
-                size="large"
-                options={[
-                  {
-                    value: "man",
-                    label: "Man",
-                  },
-                  {
-                    value: "woman",
-                    label: "Woman",
-                  },
-                ]}
-              />
-            </div>
-          </div>
-
-          <div className="pb-4">
-            <div>
-              <label
-                htmlFor=""
-                className="text-sm block pb-2 text-slate-600 font-medium"
-              >
-                Permanent Address
-              </label>
-              <TextArea
-                rows={4}
-                placeholder="Text Here"
-                onChange={handleData}
-                name="permanentAddress"
-              />
-            </div>
-          </div>
-
-          <div className="pb-4">
-            <div>
-              <label
-                htmlFor=""
-                className="text-sm block pb-2 text-slate-600 font-medium"
-              >
-                Present Address
-              </label>
-              <TextArea
-                rows={4}
-                placeholder="Text Here"
-                onChange={handleData}
-                name="present Address"
-              />
-            </div>
-          </div>
-
-          <div className="pb-4">
-            <div>
-              <label className="text-sm block pb-2 text-slate-600 font-medium">
-                Siblings
-              </label>
-              <div>
-                <h1 className="text-sm leading-6 text-slate-600 font-medium mb-2">
-                  Brothers
-                </h1>
-                <div className="flex justify-center items-center mb-4">
-                  <p
-                    onClick={brotherDecreaseHandler}
-                    className="px-4 py-2 text-3xl bg-gray-300 leading-6 rounded-l-lg cursor-pointer"
-                  >
-                    -
-                  </p>
-                  <div className="text-base text-center leading-6 font-medium w-24 py-2 bg-gray-200">
-                    {brother}
-                  </div>
-                  <p
-                    onClick={brotherIncreaseHandler}
-                    className="px-4 py-2 text-3xl bg-gray-300 leading-6 rounded-r-lg cursor-pointer"
-                  >
-                    +
-                  </p>
-                </div>
-              </div>
-
-              <div>
-                <h1 className="text-sm leading-6 text-slate-600 font-medium mb-2">
-                  Sisters
-                </h1>
-                <div className="flex justify-center items-center mb-4">
-                  <p
-                    onClick={sisterDecreaseHandler}
-                    className="px-4 py-2 text-3xl bg-gray-300 leading-6 rounded-l-lg cursor-pointer"
-                  >
-                    -
-                  </p>
-                  <div className="text-base text-center leading-6 font-medium w-24 py-2 bg-gray-200">
-                    {sister}
-                  </div>
-                  <p
-                    onClick={sisterIncreaseHandler}
-                    className="px-4 py-2 text-3xl bg-gray-300 leading-6 rounded-r-lg cursor-pointer"
-                  >
-                    +
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="pb-4">
-            <div>
-              <label
-                htmlFor=""
-                className="text-sm block pb-2 text-slate-600 font-medium"
-              >
-                Are your Parents Alive?
-              </label>
-              <Radio.Group onChange={handleParentsStatus} value={parentStatus}>
-                <Space direction="vertical">
-                  <Radio value={"alive"}>Alive</Radio>
-                  <Radio value={"dead"}>Dead</Radio>
-                </Space>
-              </Radio.Group>
-            </div>
-          </div>
-
-          <div className="pb-4">
-            <div>
-              <label
-                htmlFor="linkedin"
-                className="text-sm block pb-2 text-slate-600	  font-medium"
-              >
-                Linkedin
-              </label>
-              <input
-                type="text"
-                name="LinkedInId"
-                {...register("LinkedInId")}
-                id="linkedin"
-                placeholder="your linkedin profile link"
-                className=" focus:outline-none p-2 border focus:border-blue-500 shadow rounded-lg hover:border-blue-500 w-full "
-              />
-            </div>
-          </div>
-          <div className="pb-4">
-            <div>
-              <label
-                htmlFor="instagram"
-                className="text-sm block pb-2 text-slate-600	  font-medium"
-              >
-                Instagram
-              </label>
-              <input
-                type="text"
-                {...register("instagramId")}
-                id="instagram"
-                placeholder="your instagram profile link"
-                className=" focus:outline-none p-2 border focus:border-blue-500 shadow rounded-lg hover:border-blue-500 w-full "
-              />
-            </div>
-          </div>
-          <div className="pb-4">
-            <div>
-              <label
-                htmlFor="faceBookId"
-                className="text-sm block pb-2 text-slate-600	  font-medium"
-              >
-                Facebook
-              </label>
-              <input
-                type="text"
-                {...register("faceBookId")}
-                id="faceBookId"
-                placeholder="your facebook profile link"
-                className=" focus:outline-none p-2 border focus:border-blue-500 shadow rounded-lg hover:border-blue-500 w-full "
-              />
-            </div>
-          </div>
-
-          <div className="pb-4">
-            <div>
+            <div className="pb-4">
               <label className="text-sm block pb-2 text-slate-600	  font-medium">
-                Hobby
+                Zodiac Sign
               </label>
               <Select
-                size="large"
-                mode="multiple"
-                className="w-full"
-                onChange={handleHobby}
-                placeholder="Select hobby"
+                className="w-full mb-2 "
+                onChange={handleZodiacSign}
+                defaultValue={zodiacSign}
+                placeholder="Select Sign"
                 showSearch
                 filterOption={(input, option) =>
                   (option?.label ?? "")
                     .toLowerCase()
                     .includes(input.toLowerCase())
                 }
-                options={[
-                  {
-                    value: "play",
-                    label: "play",
-                  },
-                  {
-                    value: "reading",
-                    label: "reading",
-                  },
-                ]}
+                size="large"
+              >
+                {zodiacSignSuggestion.map((sign) => (
+                  <Select.Option key={sign.id} value={sign.value}>
+                    {sign.label}
+                  </Select.Option>
+                ))}
+              </Select>
+            </div>
+
+            <div className="pb-4">
+              <div>
+                <label
+                  htmlFor=""
+                  className="text-sm block pb-2 text-slate-600 font-medium"
+                >
+                  About You
+                </label>
+                <textarea
+                  rows={3}
+                  placeholder="Text Here"
+                  defaultValue={aboutYou}
+                  {...register("aboutYou")}
+                  name="aboutYou"
+                  className=" focus:outline-none p-2 border focus:border-blue-500 shadow rounded-lg hover:border-blue-500 w-full "
+                />
+              </div>
+            </div>
+
+            <div className="pb-4">
+              <div>
+                <label
+                  htmlFor="looking"
+                  className="text-sm block pb-2 text-slate-600 font-medium"
+                >
+                  What are you looking for
+                </label>
+                <Select
+                  className="w-full mb-2"
+                  onChange={handleLookingForChange}
+                  defaultValue={whatAreYouLookingFor}
+                  placeholder="Select looking for"
+                  size="large"
+                  options={[
+                    {
+                      value: "man",
+                      label: "Man",
+                    },
+                    {
+                      value: "woman",
+                      label: "Woman",
+                    },
+                  ]}
+                />
+              </div>
+            </div>
+
+            <div className="pb-4">
+              <div>
+                <label
+                  htmlFor=""
+                  className="text-sm block pb-2 text-slate-600 font-medium"
+                >
+                  Permanent Address
+                </label>
+                <TextArea
+                  rows={4}
+                  placeholder="Text Here"
+                  onChange={handleData}
+                  name="permanentAddress"
+                />
+              </div>
+            </div>
+
+            <div className="pb-4">
+              <div>
+                <label
+                  htmlFor=""
+                  className="text-sm block pb-2 text-slate-600 font-medium"
+                >
+                  Present Address
+                </label>
+                <TextArea
+                  rows={4}
+                  placeholder="Text Here"
+                  onChange={handleData}
+                  name="present Address"
+                />
+              </div>
+            </div>
+
+            <div className="pb-4">
+              <div>
+                <label className="text-sm block pb-2 text-slate-600 font-medium">
+                  Siblings
+                </label>
+                <div>
+                  <h1 className="text-sm leading-6 text-slate-600 font-medium mb-2">
+                    Brothers
+                  </h1>
+                  <div className="flex justify-center items-center mb-4">
+                    <p
+                      onClick={brotherDecreaseHandler}
+                      className="px-4 py-2 text-3xl bg-gray-300 leading-6 rounded-l-lg cursor-pointer"
+                    >
+                      -
+                    </p>
+                    <div className="text-base text-center leading-6 font-medium w-24 py-2 bg-gray-200">
+                      {brother === 0 && numberOfBrother
+                        ? numberOfBrother
+                        : brother}
+                    </div>
+                    <p
+                      onClick={brotherIncreaseHandler}
+                      className="px-4 py-2 text-3xl bg-gray-300 leading-6 rounded-r-lg cursor-pointer"
+                    >
+                      +
+                    </p>
+                  </div>
+                </div>
+
+                <div>
+                  <h1 className="text-sm leading-6 text-slate-600 font-medium mb-2">
+                    Sisters
+                  </h1>
+                  <div className="flex justify-center items-center mb-4">
+                    <p
+                      onClick={sisterDecreaseHandler}
+                      className="px-4 py-2 text-3xl bg-gray-300 leading-6 rounded-l-lg cursor-pointer"
+                    >
+                      -
+                    </p>
+                    <div className="text-base text-center leading-6 font-medium w-24 py-2 bg-gray-200">
+                      {sister === 0 && numberOfSister ? numberOfSister : sister}
+                    </div>
+                    <p
+                      onClick={sisterIncreaseHandler}
+                      className="px-4 py-2 text-3xl bg-gray-300 leading-6 rounded-r-lg cursor-pointer"
+                    >
+                      +
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="pb-4">
+              <div>
+                <label
+                  htmlFor="linkedin"
+                  className="text-sm block pb-2 text-slate-600	  font-medium"
+                >
+                  Linkedin
+                </label>
+                <input
+                  type="text"
+                  name="LinkedInId"
+                  defaultValue={LinkedInId}
+                  {...register("LinkedInId")}
+                  id="linkedin"
+                  placeholder="your linkedin profile link"
+                  className=" focus:outline-none p-2 border focus:border-blue-500 shadow rounded-lg hover:border-blue-500 w-full "
+                />
+              </div>
+            </div>
+            <div className="pb-4">
+              <div>
+                <label
+                  htmlFor="instagram"
+                  className="text-sm block pb-2 text-slate-600	  font-medium"
+                >
+                  Instagram
+                </label>
+                <input
+                  type="text"
+                  {...register("instagramId")}
+                  defaultValue={instagramId}
+                  id="instagram"
+                  placeholder="your instagram profile link"
+                  className=" focus:outline-none p-2 border focus:border-blue-500 shadow rounded-lg hover:border-blue-500 w-full "
+                />
+              </div>
+            </div>
+            <div className="pb-4">
+              <div>
+                <label
+                  htmlFor="faceBookId"
+                  className="text-sm block pb-2 text-slate-600	  font-medium"
+                >
+                  Facebook
+                </label>
+                <input
+                  type="text"
+                  {...register("faceBookId")}
+                  defaultValue={faceBookId}
+                  id="faceBookId"
+                  placeholder="your facebook profile link"
+                  className=" focus:outline-none p-2 border focus:border-blue-500 shadow rounded-lg hover:border-blue-500 w-full "
+                />
+              </div>
+            </div>
+
+            <div className="pb-4">
+              <div>
+                <label className="text-sm block pb-2 text-slate-600	  font-medium">
+                  Hobby
+                </label>
+                <Select
+                  size="large"
+                  mode="multiple"
+                  className="w-full"
+                  onChange={handleHobby}
+                  defaultValue={hobbies}
+                  placeholder="Select hobby"
+                  showSearch
+                  filterOption={(input, option) =>
+                    (option?.label ?? "")
+                      .toLowerCase()
+                      .includes(input.toLowerCase())
+                  }
+                >
+                  {hobbiesData.map((hobby) => (
+                    <Select.Option key={hobby.id} value={hobby.value}>
+                      {hobby.label}
+                    </Select.Option>
+                  ))}
+                </Select>
+              </div>
+            </div>
+
+            <div>
+              <input
+                type="submit"
+                value="Save"
+                style={{
+                  background:
+                    "linear-gradient(180deg, #E41272 0%, #942DD9 100%)",
+                }}
+                className="w-full text-center py-[10px] text-[#fff] cursor-pointer text-lg font-medium rounded"
               />
             </div>
-          </div>
-
-          <div>
-            <input
-              type="submit"
-              value="Save"
-              style={{
-                background: "linear-gradient(180deg, #E41272 0%, #942DD9 100%)",
-              }}
-              className="w-full text-center py-[10px] text-[#fff] cursor-pointer text-lg font-medium rounded"
-            />
-          </div>
-        </form>
-      </div>
+          </form>
+        </div>
+      )}
       <div>{contextHolder}</div>
     </div>
   );
