@@ -1,3 +1,5 @@
+import getCookie from "../../Helper/cookies/getCookie";
+
 const customFunc = {
     generateRoomID: () => {
         var chars = "abcdefghijklmnopqrstuvwxyz";
@@ -14,6 +16,14 @@ const customFunc = {
         }
 
         return id;
+    },
+    isAuthenticated: () => {
+        const token = getCookie("token");
+        if (token) {
+            return true;
+        } else {
+            return false;
+        }
     },
 };
 
