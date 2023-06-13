@@ -2,7 +2,7 @@
 // Configuration
 import React, { useEffect, useState } from "react";
 import { MobileBackButton } from "../../../../components/shared/Components/MobileBackButton";
-import { useGetCertificatesWithAuthQuery } from "../../../../Redux/features/Documents/documentsApi";
+import { useGetCertificateByIdQuery, useGetCertificatesWithAuthQuery } from "../../../../Redux/features/Documents/documentsApi";
 import { BottomNav } from "../BottomNav";
 
 // Components
@@ -13,9 +13,11 @@ import { ProfessionalCertificateMov } from "./ProfessionalCertificateMov";
 import { SelectedCertificateForMov } from "./SelectedCertificateForMov";
 import CertificateCategoryContainer from "./CertificateCategoryContainer";
 import { LineWaveLoader } from "../../../../components/shared/Cards/Loader/lineWaveLoader/LineWaveLoader";
+import { useParams } from "react-router";
 
 export const CertificateMov = () => {
   // hook variable declaration
+  const { id } = useParams()
   const [category, setCategory] = useState([])
   const [selected, setSelected] = useState();
   const [selectedCertificate, setSelectedCertificate] = useState(null);
@@ -23,24 +25,41 @@ export const CertificateMov = () => {
 
   // Redux Api Call
   const { data: allCertificates, isLoading } = useGetCertificatesWithAuthQuery();
-  console.log("slslsl", isLoading);
+  const {data: dynamicCertificates, isLoading:dynamicLoading } = useGetCertificateByIdQuery(id);
 
   useEffect(() => {
     setSelectedCertificate("");
-    if (page === 1)
-      setCategory(allCertificates?.data?.educations || []);
-    if (page === 2)
-      setCategory(allCertificates?.data?.professions || []);
-    if (page === 4)
-      setCategory(allCertificates?.data?.marriages || []);
-  }, [page, allCertificates]);
+    if (page === 1) {
+      if (id) {
+        setCategory(dynamicCertificates?.data?.educations || []);
+      } else {
+        setCategory(allCertificates?.data?.educations || []);
+      }
+    }
+
+    if (page === 2) {
+      if (id) {
+        setCategory(dynamicCertificates?.data?.professions || []);
+      } else {
+        setCategory(allCertificates?.data?.professions || []);
+      }
+    }
+
+    if (page === 4) {
+      if (id) {
+        setCategory(dynamicCertificates?.data?.marriages || []);
+      } else {
+        setCategory(allCertificates?.data?.marriages || []);
+      }
+    }
+  }, [page, allCertificates, dynamicCertificates]);
 
   useEffect(() => {
     if (category.length !== 0) {
       setSelected(category[0]);
       setSelectedCertificate(category[0]?.certificates[0])
     }
-  }, [category]);
+  }, [category,page]);
 
   return (
     <>
@@ -54,10 +73,10 @@ export const CertificateMov = () => {
           <h1 className="mt-6 text-2xl font-semibold">
             Certificate Categories
           </h1>
-          {isLoading && <div>
+          {(isLoading || dynamicLoading) && <div>
             <LineWaveLoader />
           </div>}
-          {!isLoading && category?.length === 0 && page!==4 && (
+          {!isLoading && !dynamicLoading && category?.length === 0 && page!==4 && (
             <div className="flex flex-col items-center justify-center text-gray-400 mt-8">
               <p className="font-bold text-3xl">404</p>
               <p className="font-semibold">No Certificate found</p>
@@ -78,6 +97,7 @@ export const CertificateMov = () => {
           {page === 2 && category?.length !== 0 && (
             <ProfessionalCertificateMov
               {...{
+                id,
                 selected,
                 setSelectedCertificate,
                 selectedCertificate,
@@ -87,6 +107,7 @@ export const CertificateMov = () => {
           {page === 1 && category?.length !== 0 && (
             <ProfessionalCertificateMov
               {...{
+                id,
                 selected,
                 setSelectedCertificate,
                 selectedCertificate,
@@ -96,6 +117,7 @@ export const CertificateMov = () => {
           {page === 4 && (
             <MarriageCertificateForMov
               {...{
+                id,
                 selected,
                 setSelectedCertificate,
                 selectedCertificate,

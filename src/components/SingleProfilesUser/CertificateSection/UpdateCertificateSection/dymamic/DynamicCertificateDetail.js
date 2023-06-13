@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from "react";
-import SingleShowcasePhoto from "./SingleShowcasePhoto";
+import SingleShowcasePhoto from "../../SingleShowcasePhoto";
+// import SingleShowcasePhoto from "./SingleShowcasePhoto";
 // import EducationInfo from "./tables/EducationInfo";
 // import MarriageInfo from "./tables/MarriageInfo";
 // import ProfessionInfo from "./tables/ProfessionInfo";
-import FileReuploadSection from "./UpdateCertificateSection/FileReuploadSection/FileReuploadSection";
-import AddNewMarriageCertificate from "./UpdateCertificateSection/FileUploadSection/AddNewMarriageCertificate";
-import FileUploadSection from "./UpdateCertificateSection/FileUploadSection/FileUploadSection";
+// import FileReuploadSection from "./UpdateCertificateSection/FileReuploadSection/FileReuploadSection";
+// import AddNewMarriageCertificate from "./UpdateCertificateSection/FileUploadSection/AddNewMarriageCertificate";
+// import FileUploadSection from "./UpdateCertificateSection/FileUploadSection/FileUploadSection";
 
-const CertificateDetail = ({ selected, title }) => {
+const DynamicCertificateDetail = ({ selected, title }) => {
   const [selectedPhoto, setSelectedPhoto] = useState();
-  
-  const { degree, institute, department, position } = selected || {}
+
+  const { degree, institute, department, position } = selected || {};
 
   useEffect(() => {
     if (selected) {
@@ -54,19 +55,9 @@ const CertificateDetail = ({ selected, title }) => {
           </div>
         </>
       )}
-
       {/* file uploading section */}
-      {title === "marriage" && (
-        <AddNewMarriageCertificate {...{ selected, selectedPhoto }} />
-      )}
-      {(title === "edu" || title === "prof") && (
-        <FileUploadSection {...{ selected, selectedPhoto }} />
-      )}
-      {selectedPhoto?.status === "askedToResubmit" && (
-        <FileReuploadSection {...{ selected, selectedPhoto }} />
-      )}
     </div>
   );
 };
 
-export default CertificateDetail;
+export default DynamicCertificateDetail;

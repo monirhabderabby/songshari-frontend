@@ -1,7 +1,6 @@
 import React from 'react';
 
 const CertificateCategoryContainer = ({ item,selected, setSelected }) => {
-    console.log(item)
     const { position, degree } = item;
     const certificates = item.certificates || [];
     return (

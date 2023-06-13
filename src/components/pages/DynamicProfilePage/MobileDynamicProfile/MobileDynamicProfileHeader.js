@@ -8,8 +8,7 @@ import blackLove from "../../../../assets/images/icons/blackLove.png";
 import { MobileDynamicConnectionsCard } from "./MobileDynamicConnectionsCard";
 
 const MobileDynamicProfileHeader = ({ data }) => {
-  const { userMatrimonyPackageInfo } = data;
-  console.log(userMatrimonyPackageInfo);
+  const { userMatrimonyPackageInfo } = data || {};
   const [SocialBoxOpen, setSocialBoxOpen] = useState(false);
   const [age, setAge] = useState(0);
 
