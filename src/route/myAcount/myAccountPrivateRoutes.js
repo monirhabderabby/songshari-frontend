@@ -70,8 +70,8 @@ const myAccountPrivateRoutes = [
             {
                 id: 11,
                 path: "ignore-list",
-                element: <IgnoreMember />
-              },
+                element: <IgnoreMember />,
+            },
         ],
     },
 ];

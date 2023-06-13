@@ -32,6 +32,7 @@ import About from "../../Wrapper/About/About";
 import Homepage from "../../Wrapper/Home/Homepage";
 import HomePageExtra from "../../Wrapper/HomePageExtra/HomePageExtra";
 import MemberShip from "../../Wrapper/Membership/MemberShip";
+import { Test } from "../../Wrapper/Test/Test";
 
 const matrimonyRoutes = [
     {
@@ -207,6 +208,11 @@ const matrimonyRoutes = [
         id: 31,
         path: "/called",
         element: <PhoneCallActions />,
+    },
+    {
+        id: 32,
+        path: "/test",
+        element: <Test />,
     },
 ];
 
