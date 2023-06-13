@@ -8,6 +8,8 @@ import blackLove from "../../../../assets/images/icons/blackLove.png";
 import { MobileDynamicConnectionsCard } from "./MobileDynamicConnectionsCard";
 
 const MobileDynamicProfileHeader = ({ data }) => {
+  const { userMatrimonyPackageInfo } = data;
+  console.log(userMatrimonyPackageInfo);
   const [SocialBoxOpen, setSocialBoxOpen] = useState(false);
   const [age, setAge] = useState(0);
 
@@ -88,19 +90,21 @@ const MobileDynamicProfileHeader = ({ data }) => {
                   </span>
                 </div>
               </div>
-              <div className="flex justify-between items-center mb-4">
-                <MobileDynamicConnectionsCard {...{ data }} />
-                <button
-                  className="text-white text-xs leading-7 font-Inter px-3 py-2 rounded-[50px]"
-                  style={{
-                    backgroundImage:
-                      "linear-gradient(309deg, #F664BC 0%, #FB7BBC 35%, #FF92BB 100%)",
-                    boxShadow: "0px 5px 20px rgba(139, 122, 132, 0.5)",
-                  }}
-                >
-                  Diamond User
-                </button>
-              </div>
+              {userMatrimonyPackageInfo?.package && (
+                <div className="flex justify-between items-center mb-4">
+                  <MobileDynamicConnectionsCard {...{ data }} />
+                  <button
+                    className="text-white text-xs leading-7 font-Inter px-3 py-2 rounded-[50px]"
+                    style={{
+                      backgroundImage:
+                        "linear-gradient(309deg, #F664BC 0%, #FB7BBC 35%, #FF92BB 100%)",
+                      boxShadow: "0px 5px 20px rgba(139, 122, 132, 0.5)",
+                    }}
+                  >
+                    {userMatrimonyPackageInfo?.package?.title + " user"}
+                  </button>
+                </div>
+              )}
               <div className="w-40 pb-4">
                 {SocialBoxOpen && (
                   <MobileSocialMediaBox
