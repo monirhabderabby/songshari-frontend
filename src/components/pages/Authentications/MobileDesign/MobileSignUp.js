@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 // configuration
 import React, { useCallback, useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate,useLocation } from "react-router-dom";
 
 // Third party packages
 import { useDropzone } from "react-dropzone";
@@ -24,6 +24,8 @@ import Error from "../../../ui/error/Error";
 
 const MobileSignUp = () => {
     // hook variable declaration
+    const searchParams = new URLSearchParams(useLocation().search);
+    const ref = searchParams.get("ref");
     const [photoURL, setPhotoUrl] = useState("");
     const [customError, setCustomError] = useState("");
     const [agreement, setAgreement] = useState(false);
@@ -65,7 +67,7 @@ const MobileSignUp = () => {
                 googleLogin: true,
             };
 
-            regAsMember(data);
+            regAsMember({ data, ref: ref || "" });
         }
     }, [user, regAsMember]);
 
@@ -115,8 +117,7 @@ const MobileSignUp = () => {
                 setCustomError("Passwords do not match");
                 return;
             }
-            // Implement firebase registration
-            await regAsMember(data);
+            regAsMember({ data: data, ref: ref || "" });
         }
     };
 
