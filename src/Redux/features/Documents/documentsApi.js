@@ -14,6 +14,14 @@ export const documentsApi = apiSlice.injectEndpoints({
       keepUnusedDataFor: 0,
       providesTags: ["certificates"],
     }),
+    getCertificateById: builder.query({
+      query: (id) => ({
+        url: `/member/certificate-by-id/${id}`,
+        method: "GET",
+      }),
+      keepUnusedDataFor: 0,
+      providesTags: ["certificates"],
+    }),
     resubmitProfessionalCertificate: builder.mutation({
       query: ({ id, data }) => ({
         url: `/member/resubmit/profession/${id}`,
@@ -78,5 +86,6 @@ export const {
   useResubmitEducationalCertificateMutation,
   useResubmitAnyCertificateMutation,
   useGetMarriageCertificateByAuthQuery,
-  useCreateMarriageMutation
+  useCreateMarriageMutation,
+  useGetCertificateByIdQuery
 } = documentsApi;

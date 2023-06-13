@@ -92,11 +92,6 @@ const matrimonyRoutes = [
         element: <Contact />,
     },
     {
-        id: 9,
-        path: "/profile/:id",
-        element: <DynamicProfilePage />,
-    },
-    {
         id: 10,
         path: "/privacy-policy",
         element: <Privacy />,
