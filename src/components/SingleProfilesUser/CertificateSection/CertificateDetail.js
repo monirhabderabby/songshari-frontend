@@ -20,13 +20,15 @@ const CertificateDetail = ({ selected, title }) => {
 
   return (
     <div>
-      {title!=="marriage" && <h1 className="text-left font-semibold text-[32px] text-[#333333]">
-        {title === "edu"
-          ? `${degree || "Degree"} in ${
-              department?.toUpperCase() || "a Department"
-            } from ${institute || "a institution"}`
-          : `${position || "A Position"} in ${institute || "a institute"}`}
-      </h1>}
+      {title !== "marriage" && (
+        <h1 className="text-left font-semibold text-[32px] text-[#333333]">
+          {title === "edu"
+            ? `${degree || "Degree"} in ${
+                department?.toUpperCase() || "a Department"
+              } from ${institute || "a institution"}`
+            : `${position || "A Position"} in ${institute || "a institute"}`}
+        </h1>
+      )}
 
       {/* Selected certificate img showing */}
       {selected?.certificates?.length > 0 && (
@@ -35,11 +37,13 @@ const CertificateDetail = ({ selected, title }) => {
             style={{ boxShadow: "2px 2px 10px rgba(0, 0, 0, 0.12)" }}
             className="bg-[#FFFFFF] py-[15px] px-[18px] rounded-[16px]"
           >
-            <img
-              className="max-h-[1187px] max-w-[800px] rounded-[16px]"
-              src={selectedPhoto?.photo}
-              alt="view certificate"
-            />
+            <a href={selectedPhoto?.photo} target="blank">
+              <img
+                className="max-h-[1187px] max-w-[800px] rounded-[16px]"
+                src={selectedPhoto?.photo}
+                alt="view certificate"
+              />
+            </a>
           </div>
           <div className="grid grid-cols-5 gap-4 my-3">
             {selected?.certificates?.map((item) => (
@@ -50,7 +54,7 @@ const CertificateDetail = ({ selected, title }) => {
           </div>
         </>
       )}
-      
+
       {/* {title === "marriage" && <MarriageInfo {...{ selected }} />} */}
       {/* {title === "prof" && <ProfessionInfo {...{ selected }} />} */}
       {/* {title === "edu" && <EducationInfo {...{ selected }} />} */}

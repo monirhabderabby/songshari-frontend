@@ -29,7 +29,7 @@ const CertificateNav = () => {
         >
           Professional Certificate
         </NavLink>
-        <NavLink
+        {/* <NavLink
           to={"/personalCertificate"}
           className={({ isActive }) =>
             `bg-[#D0DBFF] py-[13px] rounded-[10px] text-center ${
@@ -40,7 +40,7 @@ const CertificateNav = () => {
           }
         >
           Personal Certificate
-        </NavLink>
+        </NavLink> */}
         <NavLink
           to={"/marriageCertificate"}
           className={({ isActive }) =>

@@ -25,16 +25,6 @@ export const CertificateMobileHeaderButton = ({ page, setPage }) => {
         </button>
         <button
           className={`max-w-[159px] h-[41px] flex justify-center items-center text-[14px] font-normal font-fira   rounded-[10px] ${
-            page === 3
-              ? "bg-[linear-gradient(106.79deg,_#E52982_25.24%,_#A72BC3_88.25%)] text-white"
-              : "text-[#000000] bg-[#D0DBFF]"
-          }`}
-          onClick={() => setPage(3)}
-        >
-          Others certificate
-        </button>
-        <button
-          className={`max-w-[159px] h-[41px] flex justify-center items-center text-[14px] font-normal font-fira   rounded-[10px] ${
             page === 4
               ? "bg-[linear-gradient(106.79deg,_#E52982_25.24%,_#A72BC3_88.25%)] text-white"
               : "text-[#000000] bg-[#D0DBFF]"

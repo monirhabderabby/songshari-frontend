@@ -175,7 +175,7 @@ const ProfileCard = ({ data, isLoading }) => {
           <div>
             {data ? (
               <button
-                onClick={() => navigate("/membership")}
+                onClick={() => navigate("/packages")}
                 className="special_profile_button"
               >
                 Upgrade Membership
