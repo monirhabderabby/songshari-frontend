@@ -4,7 +4,7 @@ import RequireAuth from "../../components/shared/RequireAuth/RequireAuth";
 import myAccountPrivateRoutes from "./myAccountPrivateRoutes";
 
 const myAccountRouteRenderer = () => {
-    return myAccountPrivateRoutes.map(route => {
+    return myAccountPrivateRoutes?.map(route => {
         return (
             <Route key={route.id} path={route.path} element={<RequireAuth>{route.element}</RequireAuth>}>
                 <Route index element={<Account />} />
