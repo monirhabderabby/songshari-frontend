@@ -42,7 +42,7 @@ const DynamicProfileCard = ({ data, isLoading }) => {
                             !coverPhoto && "bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)]"
                         } bg-center bg-cover`}
                     >
-                        <div className="h-[135px] absolute -bottom-[50%] left-[110px] w-[135px] z-50 bg-white shadow-sm border-[1px] rounded-full flex justify-center items-center">
+                        <div className="h-[135px] absolute -bottom-[50%] left-[110px] w-[135px]  bg-white shadow-sm border-[1px] rounded-full flex justify-center items-center">
                             <div
                                 style={{
                                     backgroundImage: `url(${
@@ -96,14 +96,14 @@ const DynamicProfileCard = ({ data, isLoading }) => {
                             </div>
                             <span>{likes}</span>
                         </div>
-                        <Tooltip title="Click to play">
+                        {data?.videoBioData && <Tooltip title="Click to play">
                             <div onClick={() => setModalOpen(!isModalOpen)}>
                                 <AiOutlinePlayCircle className="text-[32px] text-[#ff77aa] hover:text-primary duration-300 cursor-pointer" />
                             </div>
-                        </Tooltip>
+                        </Tooltip>}
                     </div>
                 </div>
-                {isModalOpen && <DynamicVideoBioDataContainer isModalOpen={isModalOpen} setModalOpen={setModalOpen} />}
+                {isModalOpen && <DynamicVideoBioDataContainer {...{isModalOpen, setModalOpen,data}} />}
                 {/* mobile version  */}
                 <div className="lg:hidden">
                     <div className="bg-[#D9D9D9] max-w-[337px] flex justify-center items-center flex-col  mx-auto h-[92px] ">
