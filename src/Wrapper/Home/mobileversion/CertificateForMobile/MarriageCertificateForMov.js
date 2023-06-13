@@ -6,9 +6,9 @@ import AddNewMarriageCertificate from "../../../../components/SingleProfilesUser
 export const MarriageCertificateForMov = ({
   setSelectedCertificate,
   selectedCertificate,
-  certificates,
+  selected
 }) => {
-
+  const { certificates } = selected || {};
   return (
     <div className="mt-[14px]">
       <div className="w-full grid grid-cols-3 gap-[11px]">
@@ -42,10 +42,10 @@ export const MarriageCertificateForMov = ({
         })}
       </div>
       {selectedCertificate?.status === "askedToResubmit" && (
-        <FileReuploadSection {...{ selectedCertificate }} />
+        <FileReuploadSection {...{ selectedPhoto:selectedCertificate,selected }} />
       )}
       <div className="w-full">
-        <AddNewMarriageCertificate selectedCertificate={selectedCertificate} />
+        <AddNewMarriageCertificate selected={selected} />
       </div>
       <Toaster />
     </div>

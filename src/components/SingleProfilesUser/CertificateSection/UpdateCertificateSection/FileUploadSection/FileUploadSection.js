@@ -44,9 +44,9 @@ const FileUploadSection = ({ selected, selectedPhoto }) => {
   }, [uploadedCertificate]);
 
   return (
-    <section className="py-2 mt-[145px] mb-[145px]">
+    <section className="py-2 mt-8 mb-[145px]">
       <div className="mb-4">
-        <h1 className="font-bold text-xl text-[#333333]">
+        <h1 className="font-semibold text-xl text-[#333333]">
           Add New Certificate
         </h1>
       </div>

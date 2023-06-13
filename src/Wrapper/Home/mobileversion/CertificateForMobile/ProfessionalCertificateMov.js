@@ -1,14 +1,16 @@
 import React from "react";
 import { Toaster } from "react-hot-toast";
 import FileReuploadSection from "../../../../components/SingleProfilesUser/CertificateSection/UpdateCertificateSection/FileReuploadSection/FileReuploadSection";
-import AddNewMarriageCertificate from "../../../../components/SingleProfilesUser/CertificateSection/UpdateCertificateSection/FileUploadSection/AddNewMarriageCertificate";
+import FileUploadSection from "../../../../components/SingleProfilesUser/CertificateSection/UpdateCertificateSection/FileUploadSection/FileUploadSection";
 
 export const ProfessionalCertificateMov = ({
+  selected,
   setSelectedCertificate,
   selectedCertificate,
-  certificates,
+  // certificates,
 }) => {
-    
+  console.log(selected, "selected")
+  const { certificates } = selected || {};
   return (
     <>
       <div className="mt-[14px] w-full grid grid-cols-3 gap-[11px]">
@@ -42,10 +44,10 @@ export const ProfessionalCertificateMov = ({
         })}
       </div>
       {selectedCertificate?.status === "askedToResubmit" && (
-        <FileReuploadSection {...{ selectedCertificate }} />
+        <FileReuploadSection {...{ selectedCertificate, selected }} />
       )}
-      <div className="w-full">
-        <AddNewMarriageCertificate selectedCertificate={selectedCertificate} />
+      <div>
+        <FileUploadSection {...{ selectedPhoto:selectedCertificate, selected }} />
       </div>
       <Toaster />
     </>
