@@ -4,6 +4,7 @@ import FileReuploadSection from "../../../../components/SingleProfilesUser/Certi
 import AddNewMarriageCertificate from "../../../../components/SingleProfilesUser/CertificateSection/UpdateCertificateSection/FileUploadSection/AddNewMarriageCertificate";
 
 export const MarriageCertificateForMov = ({
+  id,
   setSelectedCertificate,
   selectedCertificate,
   selected
@@ -41,12 +42,12 @@ export const MarriageCertificateForMov = ({
           );
         })}
       </div>
-      {selectedCertificate?.status === "askedToResubmit" && (
+      {selectedCertificate?.status === "askedToResubmit" && !id && (
         <FileReuploadSection {...{ selectedPhoto:selectedCertificate,selected }} />
       )}
-      <div className="w-full">
+      {!id && <div className="w-full">
         <AddNewMarriageCertificate selected={selected} />
-      </div>
+      </div>}
       <Toaster />
     </div>
   );

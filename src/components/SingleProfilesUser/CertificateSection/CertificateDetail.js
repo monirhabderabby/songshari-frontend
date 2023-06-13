@@ -55,10 +55,6 @@ const CertificateDetail = ({ selected, title }) => {
         </>
       )}
 
-      {/* {title === "marriage" && <MarriageInfo {...{ selected }} />} */}
-      {/* {title === "prof" && <ProfessionInfo {...{ selected }} />} */}
-      {/* {title === "edu" && <EducationInfo {...{ selected }} />} */}
-
       {/* file uploading section */}
       {title === "marriage" && (
         <AddNewMarriageCertificate {...{ selected, selectedPhoto }} />

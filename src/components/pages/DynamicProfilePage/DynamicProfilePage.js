@@ -68,7 +68,7 @@ export const DynamicProfilePage = () => {
           <div className="lg:max-w-[263px] lg:ml-7">
             <div className="hidden lg:block">
               <div className="flex justify-center">
-                <DynamicCertificate />
+                <DynamicCertificate {...{data}} />
               </div>
             </div>
           </div>

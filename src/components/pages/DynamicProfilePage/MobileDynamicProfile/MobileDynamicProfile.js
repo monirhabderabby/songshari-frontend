@@ -166,6 +166,16 @@ export const MobileDynamicProfile = () => {
             </div>
           </div>
         </Link>
+        <Link to={`/mobileprofile/certificate/${data?._id}`}>
+          <div className="grid grid-cols-5 mt-5 mb-10">
+            <div className="col-span-4">
+              <h1 className="pl-8">Certificates</h1>
+            </div>
+            <div>
+              <i className="fa-solid fa-angle-right ml-10"></i>
+            </div>
+          </div>
+        </Link>
       </div>
       <div className="h-16"></div>
       <BottomNav />

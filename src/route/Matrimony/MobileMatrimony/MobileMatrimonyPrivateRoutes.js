@@ -276,6 +276,11 @@ const MobileMatrimonyPrivateRoutes = [
     path: "/mobileprofile/:id",
     element: <MobileDynamicProfile />,
   },
+  {
+    id: 53,
+    path: "/mobileprofile/certificate/:id",
+    element: <CertificateMov />,
+  },
 ];
 
 export default MobileMatrimonyPrivateRoutes;

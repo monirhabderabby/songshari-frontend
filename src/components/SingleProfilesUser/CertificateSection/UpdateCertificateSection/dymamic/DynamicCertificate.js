@@ -45,6 +45,9 @@ const DynamicCertificate = ({ title }) => {
       {isLoading && <div>
         <LineWaveLoader />
       </div>}
+      {certificateData?.length===0 && <div className="flex items-center justify-center">
+        <p className="text-xl font-semibold my-8 text-center">No certificate found</p>
+      </div>}
       {!isLoading && certificateData?.length!==0 && <div className="mx-auto max-w-[1200px] font-sans">
         <div className="flex pt-[58px] gap-[51px]">
           {/* Left side all certificates img */}

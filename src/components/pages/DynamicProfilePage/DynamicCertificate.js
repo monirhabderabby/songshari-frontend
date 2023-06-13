@@ -8,11 +8,13 @@ import chat from "../../../assets/images/user profile/chatIcon.png";
 /* css */
 import ChartBoardCSS from "../../../assets/css/chartBoard.module.css";
 
-const DynamicCertificate = () => {
+const DynamicCertificate = ({ data }) => {
+    console.log(data)
+    
     const certificateInfo = [
-        { id: 1, text: "Personal Certificate", img: certificate, path: "/personalCertificate" },
-        { id: 2, text: "Professional Certificate", img: certificate, path: "/professionalCertificate" },
-        { id: 3, text: "Educational Certificate", img: certificate, path: "/educationalCertificate" },
+        { id: 1, text: "Educational Certificate", img: certificate, path: `/profile/educationalCertificate/${data?._id}` },
+        { id: 2, text: "Professional Certificate", img: certificate, path: `/professionalCertificate/${data?._id}` },
+        { id: 3, text: "Marriage Certificate", img: certificate, path: `/educationalCertificate/${data?._id}` },
     ];
 
     return (
