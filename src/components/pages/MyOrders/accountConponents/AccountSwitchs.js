@@ -17,7 +17,7 @@ export const AccountSwitchs = () => {
         content = <p>Something is wrong</p>;
     } else if (!isLoading && profile) {
         content = (
-            <div className="flex items-center flex-wrap gap-[25px]">
+            <div className="grid grid-cols-2 gap-[25px] lg:w-1/2">
                 <PortionSwitch portion="Matrimony" isAccess={mattrimonyAccess} />
                 <PortionSwitch portion="Lawyer" isAccess={lawyerAccess} />
                 <PortionSwitch portion="Agent" isAccess={agentAccess} />
