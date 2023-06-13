@@ -61,14 +61,14 @@ const DynamicTable = ({ data, isLoading }) => {
                         >
                             Connections
                         </button>
-                        {isMember && (
+                        {/* {isMember && (
                             <button
                                 className={`font-medium text-[15px] leading-tight ${page === 5 ? "text-primary font-bold" : "text-gray-800"}`}
                                 onClick={() => setPage(5)}
                             >
                                 Matches
                             </button>
-                        )}
+                        )} */}
                     </div>
                 </div>
             </div>
