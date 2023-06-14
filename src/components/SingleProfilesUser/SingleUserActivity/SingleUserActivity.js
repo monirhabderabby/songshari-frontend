@@ -7,7 +7,10 @@ import { MdCreateNewFolder } from "react-icons/md";
 
 // components
 import { useSelector } from "react-redux";
-import { useAddUserPostMutation, useGetMyPostsQuery } from "../../../Redux/features/Post/postApi";
+import {
+  useAddUserPostMutation,
+  useGetMyPostsQuery,
+} from "../../../Redux/features/Post/postApi";
 import { usePhotosUploadOnServerMutation } from "../../../Redux/features/fileUpload/fileUploadApi";
 import { useGetProfileDetailsWIthAuthQuery } from "../../../Redux/features/userInfo/userApi";
 import useDocumentTitle from "../../../assets/utilities/useDocumentTitle";
@@ -150,10 +153,22 @@ const SingleUserActivity = () => {
                     </div>
                     <AllPostsOfLoggedInUser {...{ posts, isLoading, error }} />
                 </div>
+              </div>
+              <button
+                className="border-[1px] border-[rgba(0,0,0,0.1)] rounded-[50px] py-[6px] px-5 font-bold text-[17px] text-[#FFFFFF] bg-[linear-gradient(to_top,#942DD9,#F22876)] shadow-[0.872px_9.962px_20px_rgba(12,78,165,0.3)] cursor-pointer hover:bg-[linear-gradient(to_top,#F22876,#942DD9)] duration-500"
+                onClick={addPost}
+                disabled={postText === "" && photoURL === ""}
+              >
+                Post
+              </button>
             </div>
-            {!canPost && <GoActivityPremiumCard {...{ canPost, setCanPost }} />}
+          </div>
+          <AllPostsOfLoggedInUser {...{ posts, isLoading, error }} />
         </div>
-    );
+      </div>
+      {!canPost && <GoActivityPremiumCard {...{ canPost, setCanPost }} />}
+    </div>
+  );
 };
 
 export default SingleUserActivity;
