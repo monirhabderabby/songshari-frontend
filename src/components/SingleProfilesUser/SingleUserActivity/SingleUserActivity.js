@@ -18,7 +18,7 @@ const SingleUserActivity = () => {
     // hook variable declaration
     const [photoURL, setPhotoUrl] = useState("");
     const [postText, setPostText] = useState("");
-    const [privacy, setPrivacy] = useState("");
+    const [privacy, setPrivacy] = useState("public");
     const [canPost, setCanPost] = useState(true);
 
     // page title
