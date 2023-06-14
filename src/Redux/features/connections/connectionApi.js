@@ -30,7 +30,17 @@ export const connectionApi = apiSlice.injectEndpoints({
                     authorization: `Bearer ${getCookie("token")}`,
                 },
             }),
-            keepUnusedDataFor: 0,
+            keepUnusedDataFor: 2,
+        }),
+        getAllConnectionRequest: builder.query({
+            query: () => ({
+                url: "/member/connections/requests",
+                method: "GET",
+                headers: {
+                    authorization: `Bearer ${getCookie("token")}`,
+                },
+            }),
+            keepUnusedDataFor: 2,
         }),
         acceptFriendRequest: builder.mutation({
             query: ({ id }) => ({
@@ -178,4 +188,5 @@ export const {
     useLikeSingleProfileMutation,
     useLikeSinglePostMutation,
     useRejectFriendReqeustMutation,
+    useGetAllConnectionRequestQuery,
 } = connectionApi;
