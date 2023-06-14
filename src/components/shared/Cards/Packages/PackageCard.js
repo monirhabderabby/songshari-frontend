@@ -4,7 +4,7 @@ import getCookie from "../../../../Helper/cookies/getCookie";
 import PackageForm from "../../Packages/PackageForm";
 import { PackagePriceTest } from "./PackagePriceTest";
 
-export const PackageTestCard = ({ pack, packages, index, user, setSuccessSnackBarOpen, setSelectedPack, useCase }) => {
+export const PackageCard = ({ pack, packages, index, height, setSuccessSnackBarOpen, setSelectedPack, useCase }) => {
     const [showPopup, setShowPopup] = useState(false);
     const navigate = useNavigate();
 
@@ -21,7 +21,11 @@ export const PackageTestCard = ({ pack, packages, index, user, setSuccessSnackBa
     };
     return (
         <>
-            <div className="h-[530px] w-[320px] rounded-[10px] px-[30px] py-[34px] bg-[rgb(255,255,255)] group hover:bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] duration-300 shadow-[rgba(99,99,99,0.2)_0px_2px_8px_0px] relative">
+            <div
+                className={`${
+                    height ? height : "h-[580px]"
+                } w-[320px] rounded-[10px] px-[30px] py-[34px] bg-[rgb(255,255,255)] group hover:bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] duration-300 shadow-[rgba(99,99,99,0.2)_0px_2px_8px_0px] relative`}
+            >
                 <PackagePriceTest pack={pack} />
                 <div className="mt-[20px] ">
                     <ul className="list-disc pl-6 text-[14px] font-Inter text-gray-500 group-hover:text-[#FFFFF9] h-[450px]">
@@ -52,12 +56,22 @@ export const PackageTestCard = ({ pack, packages, index, user, setSuccessSnackBa
                     </ul>
                 </div>
                 <div className="absolute w-full bottom-0 left-0 mb-[34px] px-[34px]">
-                    <button
-                        className="w-full rounded-[4px] bg-black group-hover:bg-white group-hover:text-primary duration-300 ease-in-out text-white py-[6px]"
-                        onClick={handleBuyPack}
-                    >
-                        Buy Now
-                    </button>
+                    {!pack?.title?.toLowerCase()?.includes("free") && (
+                        <button
+                            className="w-full rounded-[4px] bg-black group-hover:bg-white group-hover:text-primary duration-300 ease-in-out text-white py-[6px]"
+                            onClick={handleBuyPack}
+                        >
+                            Buy Now
+                        </button>
+                    )}
+                    {pack?.title?.toLowerCase()?.includes("free") && (
+                        <button
+                            className="w-full rounded-[4px] bg-[#eaeaea] group-hover:text-primary duration-300 ease-in-out text-white py-[6px]"
+                            disabled
+                        >
+                            Try Free
+                        </button>
+                    )}
                 </div>
             </div>
             {showPopup && useCase !== "home" && <PackageForm {...{ pack, setShowPopup, setSuccessSnackBarOpen }} />}

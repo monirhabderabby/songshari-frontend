@@ -8,7 +8,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { useGetAllPackagesQuery } from "../../../../Redux/features/package/packageApi";
 import { useGetProfileDetailsWIthAuthQuery } from "../../../../Redux/features/userInfo/userApi";
 import { OvalLoader } from "../../../shared/Cards/Loader/OvalLoader/OvalLoader";
-import { PackageTestCard } from "../../../shared/Cards/Packages/PackageTestCard";
+import { PackageCard } from "../../../shared/Cards/Packages/PackageCard";
 import PackageForm from "../../../shared/Packages/PackageForm";
 import { ServerErrorMessage } from "../../../ui/error/ServerErrorMessage";
 import { SuccessSnackBar } from "../../../ui/error/snackBar/SuccessSnackBar";
@@ -64,8 +64,9 @@ const PackagePromo = () => {
                             >
                                 {packages?.map((pack, i) => (
                                     <SwiperSlide key={pack._id} className="pb-8 px-4">
-                                        <PackageTestCard
+                                        <PackageCard
                                             useCase="home"
+                                            height={`h-[530px]`}
                                             pack={pack}
                                             packages={packages}
                                             index={i}
@@ -91,7 +92,7 @@ const PackagePromo = () => {
                             >
                                 {packages?.map((pack, i) => (
                                     <SwiperSlide key={pack._id} className="pb-8 px-4">
-                                        <PackageTestCard
+                                        <PackageCard
                                             useCase="home"
                                             pack={pack}
                                             packages={packages}

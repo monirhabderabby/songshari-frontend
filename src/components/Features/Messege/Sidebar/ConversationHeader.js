@@ -1,4 +1,3 @@
-import { Select } from "antd";
 import React from "react";
 import { BiMessageDetail } from "react-icons/bi";
 
@@ -13,24 +12,6 @@ export const ConversationHeader = ({ profile }) => {
                 />
                 <div className="flex flex-col justify-center">
                     <p className="text-[#000000] font-semibold text-[18px] font-">{profile?.firstName}</p>
-                    <Select
-                        defaultValue="Active"
-                        className="m-0"
-                        style={{
-                            width: 100,
-                        }}
-                        bordered={false}
-                        options={[
-                            {
-                                value: "Active",
-                                label: "Active",
-                            },
-                            {
-                                value: "Offline",
-                                label: "Offline",
-                            },
-                        ]}
-                    />
                 </div>
             </div>
             <div className="bg-[#A32BCA] w-[144px] h-[49px] rounded-[27px] flex justify-center items-center gap-x-[14px]">
