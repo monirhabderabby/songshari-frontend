@@ -9,10 +9,10 @@ const MobileProfessionalInfoEdit = () => {
   return (
     <div>
       <MobileBackButton name={"Edit Professional Info"} />
-      <div className="px-6">
+      <div className="">
         <EditProfesionalInfo />
       </div>
-      <div className="h-14"></div>
+      <div className="h-10"></div>
       <BottomNav />
     </div>
   );
