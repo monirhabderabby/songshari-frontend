@@ -48,7 +48,7 @@ export const SwapProfileMatches = () => {
         content = (
             <div className="flex flex-col gap-y-[19px]">
                 {matchedArray?.slice(0, 4).map(profile => {
-                    return <CardYouMayLike key={profile._id} {...{ data: profile }} />;
+                    return <CardYouMayLike key={profile._id} {...{ data: profile }} variant="swap" />;
                 })}
             </div>
         );
