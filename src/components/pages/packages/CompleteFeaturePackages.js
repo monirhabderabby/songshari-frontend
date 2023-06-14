@@ -8,7 +8,7 @@ import React, { useEffect, useState } from "react";
 // Components
 import { useGetProfileDetailsWIthAuthQuery } from "../../../Redux/features/userInfo/userApi";
 import { OvalLoader } from "../../shared/Cards/Loader/OvalLoader/OvalLoader";
-import { PackageTestCard } from "../../shared/Cards/Packages/PackageTestCard";
+import { PackageCard } from "../../shared/Cards/Packages/PackageCard";
 import { ServerErrorMessage } from "../../ui/error/ServerErrorMessage";
 import { SuccessSnackBar } from "../../ui/error/snackBar/SuccessSnackBar";
 
@@ -44,13 +44,7 @@ const CompleteFeaturePackages = () => {
             {packages.length !== 0 && (
                 <div className="px-auto grid md:grid-cols-2 my-16 lg:grid-cols-3 gap-4">
                     {packages?.map((pack, i) => (
-                        <PackageTestCard
-                            pack={pack}
-                            packages={packages}
-                            index={i}
-                            user={profile?._id}
-                            setSuccessSnackBarOpen={setSuccessSnackBarOpen}
-                        />
+                        <PackageCard pack={pack} packages={packages} index={i} user={profile?._id} setSuccessSnackBarOpen={setSuccessSnackBarOpen} />
                     ))}
                 </div>
             )}
