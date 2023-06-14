@@ -56,12 +56,22 @@ export const PackageCard = ({ pack, packages, index, height, setSuccessSnackBarO
                     </ul>
                 </div>
                 <div className="absolute w-full bottom-0 left-0 mb-[34px] px-[34px]">
-                    <button
-                        className="w-full rounded-[4px] bg-black group-hover:bg-white group-hover:text-primary duration-300 ease-in-out text-white py-[6px]"
-                        onClick={handleBuyPack}
-                    >
-                        Buy Now
-                    </button>
+                    {!pack?.title?.toLowerCase()?.includes("free") && (
+                        <button
+                            className="w-full rounded-[4px] bg-black group-hover:bg-white group-hover:text-primary duration-300 ease-in-out text-white py-[6px]"
+                            onClick={handleBuyPack}
+                        >
+                            Buy Now
+                        </button>
+                    )}
+                    {pack?.title?.toLowerCase()?.includes("free") && (
+                        <button
+                            className="w-full rounded-[4px] bg-[#eaeaea] group-hover:text-primary duration-300 ease-in-out text-white py-[6px]"
+                            disabled
+                        >
+                            Try Free
+                        </button>
+                    )}
                 </div>
             </div>
             {showPopup && useCase !== "home" && <PackageForm {...{ pack, setShowPopup, setSuccessSnackBarOpen }} />}
