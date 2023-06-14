@@ -14,6 +14,8 @@ import {
   useUpdatePhysicalDetailsMutation,
 } from "../../../../Redux/features/userInfo/userApi";
 import { OvalLoader } from "../../../shared/Cards/Loader/OvalLoader/OvalLoader";
+import { MobileBackButton } from "../../../shared/Components/MobileBackButton";
+import { BottomNav } from "../../../../Wrapper/Home/mobileversion/BottomNav";
 
 const EditPhysicalInfo = () => {
   const [messageApi, contextHolder] = message.useMessage();
@@ -31,10 +33,12 @@ const EditPhysicalInfo = () => {
   //phycsical information data change handler
   const onHeightChange = (value) => {
     setHeight(value);
+    setPhysicalInfo({ ...physicalInfo, height: value });
   };
   const onAfterHeightChange = (value) => {};
   const onWeightChange = (value) => {
     setWeight(value);
+    setPhysicalInfo({ ...physicalInfo, weight: value });
   };
   const onAfterWeightChange = (value) => {};
   const handleUserAncestryChange = (value) => {
@@ -74,12 +78,6 @@ const EditPhysicalInfo = () => {
   const navigate = useNavigate();
   //data submission function
   const onSubmit = async (data) => {
-    if (height > 0) {
-      data.height = height;
-    }
-    if (weight > 0) {
-      data.weight = weight;
-    }
     data = { ...physicalInfo };
     await updatePhysicalDetails(data);
   };
@@ -98,7 +96,7 @@ const EditPhysicalInfo = () => {
       messageApi.open({
         key,
         type: "success",
-        content: "Data updated succesfully",
+        content: "Data updated successfully",
         duration: 2,
       });
     }
@@ -112,7 +110,7 @@ const EditPhysicalInfo = () => {
     }
     if (!isLoading && !isError && isSuccess) {
       setTimeout(() => {
-        navigate("/userprofile");
+        navigate(-1);
       }, 2000);
     }
   }, [isSuccess, isLoading, isError, messageApi, navigate]);
@@ -124,8 +122,11 @@ const EditPhysicalInfo = () => {
 
   return (
     <div>
+      <div className="lg:hidden">
+        <MobileBackButton name={"Edit Physical Info"} />
+      </div>
       <div className="max-w-[523px] mx-auto bg-white drop-shadow-lg px-4 pt-3 pb-6 mb-4 rounded">
-        <div className="flex justify-end mb-3">
+        <div className="hidden lg:flex justify-end mb-3">
           <MdCancel
             onClick={() => navigate(-1)}
             className="cursor-pointer text-3xl text-slate-600"
@@ -467,6 +468,10 @@ const EditPhysicalInfo = () => {
         )}
       </div>
       <div>{contextHolder}</div>
+      <div className="lg:hidden">
+        <div className="h-12"></div>
+        <BottomNav />
+      </div>
     </div>
   );
 };

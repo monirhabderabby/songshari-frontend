@@ -13,6 +13,8 @@ import {
 } from "../../../../Redux/features/userInfo/userApi";
 import { MdCancel } from "react-icons/md";
 import { OvalLoader } from "../../../shared/Cards/Loader/OvalLoader/OvalLoader";
+import { MobileBackButton } from "../../../shared/Components/MobileBackButton";
+import { BottomNav } from "../../../../Wrapper/Home/mobileversion/BottomNav";
 
 const EditOthersInfo = () => {
   const [messageApi, contextHolder] = message.useMessage();
@@ -103,7 +105,7 @@ const EditOthersInfo = () => {
     }
     if (!isLoading && !isError && isSuccess) {
       setTimeout(() => {
-        navigate("/userprofile");
+        navigate(-1);
       }, 2000);
     }
   }, [isSuccess, isLoading, isError, messageApi, navigate]);
@@ -115,8 +117,11 @@ const EditOthersInfo = () => {
 
   return (
     <div>
+      <div className="lg:hidden">
+        <MobileBackButton name={"Edit Others Info"} />
+      </div>
       <div className="max-w-[523px] mx-auto bg-white drop-shadow-lg px-4 pt-3 pb-6 mb-4 rounded">
-        <div className="flex justify-end mb-3">
+        <div className="hidden lg:flex justify-end mb-3">
           <MdCancel
             onClick={() => navigate(-1)}
             className="cursor-pointer text-3xl text-slate-600"
@@ -322,6 +327,10 @@ const EditOthersInfo = () => {
         )}
       </div>
       <div>{contextHolder}</div>
+      <div>
+        <div className="h-12"></div>
+        <BottomNav />
+      </div>
     </div>
   );
 };

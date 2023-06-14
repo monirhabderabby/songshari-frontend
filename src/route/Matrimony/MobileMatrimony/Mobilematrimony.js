@@ -13,13 +13,7 @@ import { MobileDynamicPersonalDetails } from "../../../components/pages/DynamicP
 import { MobileDynamicPhysicalDetails } from "../../../components/pages/DynamicProfilePage/MobileDynamicProfile/MobileDynamicProfileDetails/MobileDynamicPhysicalDetails";
 import { MobileDynamicProfessionalDetails } from "../../../components/pages/DynamicProfilePage/MobileDynamicProfile/MobileDynamicProfileDetails/MobileDynamicProfessionalDetails";
 import MobileDynamicSiblingsDetails from "../../../components/pages/DynamicProfilePage/MobileDynamicProfile/MobileDynamicProfileDetails/MobileDynamicSiblingsDetails";
-import MobileEducationalInfoEdit from "../../../components/pages/DynamicProfilePage/MobileDynamicProfile/MobileEditProfile/MobileEducationalInfoEdit";
-import MobileFamilyInfoEdit from "../../../components/pages/DynamicProfilePage/MobileDynamicProfile/MobileEditProfile/MobileFamilyInfoEdit";
-import MobileOthersInfoEdit from "../../../components/pages/DynamicProfilePage/MobileDynamicProfile/MobileEditProfile/MobileOthersInfoEdit";
-import MobilePersonalInfoEdit from "../../../components/pages/DynamicProfilePage/MobileDynamicProfile/MobileEditProfile/MobilePersonalInfoEdit";
-import MobilePhysicalInfoEdit from "../../../components/pages/DynamicProfilePage/MobileDynamicProfile/MobileEditProfile/MobilePhysicalInfoEdit";
 import MobileProfessionalInfoEdit from "../../../components/pages/DynamicProfilePage/MobileDynamicProfile/MobileEditProfile/MobileProfessionalInfoEdit";
-import MobileSiblingsInfoEdit from "../../../components/pages/DynamicProfilePage/MobileDynamicProfile/MobileEditProfile/MobileSiblingsInfoEdit";
 import { MobileEducationalDetails } from "../../../components/pages/DynamicProfilePage/MobileDynamicProfile/MobileEducationalDetails";
 import MobileFamilyDetails from "../../../components/pages/DynamicProfilePage/MobileDynamicProfile/MobileFamilyDetails";
 import { MobileOthersDetails } from "../../../components/pages/DynamicProfilePage/MobileDynamicProfile/MobileOthersDetails";
@@ -35,6 +29,12 @@ import { Privacy } from "../../../components/pages/Privacy/Privacy";
 import MobileTopBride from "../../../components/pages/TopProfile/MobileTopProfile/MobileTopBride";
 import MobileTopGroom from "../../../components/pages/TopProfile/MobileTopProfile/MobileTopGroom";
 import Suggested from "../../../components/pages/TopProfile/Suggested";
+import EditEducationalInfo from "../../../components/SingleProfilesUser/profileSection/EditprofileSection/EditEducationalInfo";
+import EditFamilyInfo from "../../../components/SingleProfilesUser/profileSection/EditprofileSection/EditFamilyInfo";
+import EditOthersInfo from "../../../components/SingleProfilesUser/profileSection/EditprofileSection/EditOthersInfo";
+import EditPersonalInfo from "../../../components/SingleProfilesUser/profileSection/EditprofileSection/EditPersonalInfo";
+import EditPhysicalInfo from "../../../components/SingleProfilesUser/profileSection/EditprofileSection/EditPhysicalInfo";
+import EditSiblingsInfo from "../../../components/SingleProfilesUser/profileSection/EditprofileSection/EditSiblingsInfo";
 import ProfileServices from "../../../components/SingleProfilesUser/ServicesSection/ProfileServices";
 import { AboutMov } from "../../../Wrapper/Home/mobileversion/about/AboutMov";
 import { AllPosts } from "../../../Wrapper/Home/mobileversion/allposts/AllPosts";
@@ -191,27 +191,27 @@ const MobileMatrimony = [
   {
     id: 30,
     path: "/familyInfoEdit/:id",
-    element: <MobileFamilyInfoEdit />,
+    element: <EditFamilyInfo />,
   },
   {
     id: 31,
     path: "/siblingsInfoEdit/:id",
-    element: <MobileSiblingsInfoEdit />,
+    element: <EditSiblingsInfo />,
   },
   {
     id: 32,
     path: "/othersInfoEdit/:id",
-    element: <MobileOthersInfoEdit />,
+    element: <EditOthersInfo />,
   },
   {
     id: 33,
     path: "/physicalInfoEdit/:id",
-    element: <MobilePhysicalInfoEdit />,
+    element: <EditPhysicalInfo />,
   },
   {
     id: 34,
     path: "/educationalInfoEdit/:id",
-    element: <MobileEducationalInfoEdit />,
+    element: <EditEducationalInfo />,
   },
   {
     id: 35,
@@ -221,7 +221,7 @@ const MobileMatrimony = [
   {
     id: 36,
     path: "/personalInfoEdit/:id",
-    element: <MobilePersonalInfoEdit />,
+    element: <EditPersonalInfo />,
   },
   {
     id: 37,
