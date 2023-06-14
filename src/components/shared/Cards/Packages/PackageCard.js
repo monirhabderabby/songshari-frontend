@@ -4,7 +4,7 @@ import getCookie from "../../../../Helper/cookies/getCookie";
 import PackageForm from "../../Packages/PackageForm";
 import { PackagePriceTest } from "./PackagePriceTest";
 
-export const PackageTestCard = ({ pack, packages, index, user, setSuccessSnackBarOpen, setSelectedPack, useCase }) => {
+export const PackageCard = ({ pack, packages, index, height, setSuccessSnackBarOpen, setSelectedPack, useCase }) => {
     const [showPopup, setShowPopup] = useState(false);
     const navigate = useNavigate();
 
@@ -21,7 +21,11 @@ export const PackageTestCard = ({ pack, packages, index, user, setSuccessSnackBa
     };
     return (
         <>
-            <div className="h-[530px] w-[320px] rounded-[10px] px-[30px] py-[34px] bg-[rgb(255,255,255)] group hover:bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] duration-300 shadow-[rgba(99,99,99,0.2)_0px_2px_8px_0px] relative">
+            <div
+                className={`${
+                    height ? height : "h-[580px]"
+                } w-[320px] rounded-[10px] px-[30px] py-[34px] bg-[rgb(255,255,255)] group hover:bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] duration-300 shadow-[rgba(99,99,99,0.2)_0px_2px_8px_0px] relative`}
+            >
                 <PackagePriceTest pack={pack} />
                 <div className="mt-[20px] ">
                     <ul className="list-disc pl-6 text-[14px] font-Inter text-gray-500 group-hover:text-[#FFFFF9] h-[450px]">
