@@ -6,7 +6,7 @@ import VideocamIcon from "@mui/icons-material/Videocam";
 import VideocamOffIcon from "@mui/icons-material/VideocamOff";
 import VolumeUpIcon from "@mui/icons-material/VolumeUp";
 
-const MainButtons = ({ audio, setAudio, video, setVideo, bgColor }) => {
+const MainButtons = ({ audio, setAudio, video, setVideo, bgColor, callEndHandler }) => {
     return (
         <div className="absolute bottom-12">
             <button
@@ -26,7 +26,10 @@ const MainButtons = ({ audio, setAudio, video, setVideo, bgColor }) => {
             <button className="bg-[rgba(248,249,249,0.1)] mx-2 hover:bg-[rgba(248,249,249,0.3)] shadow backdrop-blur-lg h-12 rounded-full w-12">
                 <PresentToAllIcon style={{ color: "white" }} />
             </button>
-            <button className="bg-[#ff0e0e] mx-2 hover:bg-[rgba(248,249,249,0.3)] shadow backdrop-blur-lg h-12 rounded-full w-12">
+            <button
+                className="bg-[#ff0e0e] mx-2 hover:bg-[rgba(248,249,249,0.3)] shadow backdrop-blur-lg h-12 rounded-full w-12"
+                onClick={callEndHandler}
+            >
                 <CallIcon style={{ color: "white" }} />
             </button>
         </div>

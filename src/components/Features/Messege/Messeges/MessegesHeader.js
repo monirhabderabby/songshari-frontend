@@ -27,7 +27,6 @@ export const MessegesHeader = ({ profile }) => {
                     />
                     <div>
                         <p className="text-[20px] text-[#000000] font-normal">{profile?.firstName + " " + profile?.lastName}</p>
-                        <p className="text-[16px] font-normal text-[#999999]">Last seen 4:23 AM</p>
                     </div>
                 </div>
                 <div className="flex items-center gap-x-[16px]">

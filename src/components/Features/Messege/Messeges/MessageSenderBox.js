@@ -1,17 +1,12 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React,{useEffect,useState} from "react";
+import React, { useEffect, useState } from "react";
 import { useCreateMessageMutation } from "../../../../Redux/chat/chatApi";
-import mic from "../../../../assets/images/messges/Audio.svg";
-import emoji from "../../../../assets/images/messges/Emoji.svg";
-import gallary from "../../../../assets/images/messges/Gallery.svg";
-import photo from "../../../../assets/images/messges/Photo.svg";
-import { AiFillLike } from "react-icons/ai";
 import GoPremium from "../../../shared/Package/GoPremium";
 
-const popupMessage = "You have reached you chat request limit. Go premium to chat with more people"
+const popupMessage = "You have reached you chat request limit. Go premium to chat with more people";
 export const MessageSenderBox = ({ msg, setMsg, message, setMessage, socket }) => {
-    const [showPopup, setShowPopup] = useState(false)
-    const [createMessage,{error}] = useCreateMessageMutation();
+    const [showPopup, setShowPopup] = useState(false);
+    const [createMessage, { error }] = useCreateMessageMutation();
     const handleMessage = async e => {
         if (e.code === "Enter" || e.type === "click") {
             createMessage(message);
@@ -29,38 +24,31 @@ export const MessageSenderBox = ({ msg, setMsg, message, setMessage, socket }) =
         }
     };
     useEffect(() => {
-        if (error?.status===400) {
+        if (error?.status === 400) {
             let newMsg = [...msg];
             newMsg.pop();
             setMsg(newMsg);
-            setShowPopup(true)
+            setShowPopup(true);
         }
-    },[error])
+    }, [error]);
     return (
-      <>
-        <div className="flex items-center h-full gap-x-[24px]">
-          <input
-            onChange={(e) =>
-              setMessage({ ...message, message: e.target.value })
-            }
-            onKeyPress={(e) => handleMessage(e)}
-            type="text"
-            className="flex-1 input h-full outline-none text-[#B0B0B0] text-[16px] px-[29px]"
-            placeholder="Type messege"
-          />
-          <img src={photo} alt="gallary" className="text-[22px]" />
-          <img src={gallary} alt="gallary" className="text-[22px]" />
-          <img src={mic} alt="gallary" className="text-[22px]" />
-          <img src={emoji} alt="gallary" className="text-[22px]" />
-          <AiFillLike className="text-[#A32BCA] text-[22px]" />
-          <button
-            onClick={(e) => handleMessage(e)}
-            className="bg-[#EFF3FF] rounded-[20px] h-[64px] w-[121px] flex justify-center items-center text-[#A32BCA] text-[16px] font-medium"
-          >
-            Send
-          </button>
+        <>
+            <div className="flex items-center h-full gap-x-[24px]">
+                <input
+                    onChange={e => setMessage({ ...message, message: e.target.value })}
+                    onKeyPress={e => handleMessage(e)}
+                    type="text"
+                    className="flex-1 input h-full outline-none text-[#B0B0B0] text-[16px] px-[29px]"
+                    placeholder="Type messege"
+                />
+                <button
+                    onClick={e => handleMessage(e)}
+                    className="bg-[#EFF3FF] rounded-[20px] h-[64px] w-[121px] flex justify-center items-center text-[#A32BCA] text-[16px] font-medium"
+                >
+                    Send
+                </button>
             </div>
-            {showPopup && <GoPremium {...{message:popupMessage,setShowPopup}} />}
-      </>
+            {showPopup && <GoPremium {...{ message: popupMessage, setShowPopup }} />}
+        </>
     );
 };
