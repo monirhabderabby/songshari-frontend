@@ -188,8 +188,15 @@ export const userApi = apiSlice.injectEndpoints({
       invalidatesTags: ["UpdateUserInfo"],
     }),
     getProfileDetails: builder.query({
-      query: (id) => `/member/personalDetail/${id}`,
+      query: (id) => ({
+        url: `/member/personalDetail/${id}`,
+        method: "GET",
+        headers: {
+          authorization: `Bearer ${getCookie("token")}`,
+        },
+      }),
       keepUnusedDataFor: 30,
+      providesTags: ["UpdateUserInfo"],
     }),
     getProfileDetailsWIthAuth: builder.query({
       query: () => ({
@@ -457,6 +464,7 @@ export const userApi = apiSlice.injectEndpoints({
         },
         body: data,
       }),
+      invalidatesTags: ["UpdateUserInfo"],
     }),
   }),
 });
