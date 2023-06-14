@@ -9,7 +9,7 @@ import MovableComponent from "./MovableComponent";
 import TopLeftIntro from "./TopLeftIntro";
 import TopRightButtons from "./TopRightButtons";
 // import MyMobileVideo from "./MyMobileVideo";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import SimplePeer from "simple-peer";
 import { io } from "socket.io-client";
 import { VideoCallClipboard } from "./clipboard/VideoCallClipboard";
@@ -37,6 +37,9 @@ const VideoCall = () => {
     const connectionRef = useRef(null);
     const { id } = useParams();
     let peer;
+
+    // js
+    const navigate = useNavigate();
 
     //sturn server
     const configuration = {
@@ -139,6 +142,10 @@ const VideoCall = () => {
     //   setPeer(p);
     // };
 
+    const callEndHandler = () => {
+        navigate(-1);
+    };
+
     return (
         <div className=" overflow-hidden flex relative flex-col items-center justify-center w-screen h-screen bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)]">
             <div className="flex flex-col items-center justify-center">
@@ -155,7 +162,7 @@ const VideoCall = () => {
             </div>
             <TopRightButtons />
             <TopLeftIntro />
-            <MainButtons {...{ audio, setAudio, video, setVideo, bgColor }} />
+            <MainButtons {...{ audio, setAudio, video, setVideo, bgColor, callEndHandler }} />
             {video && <MovableComponent {...{ videoRef: myMobileVideoRef }} />}
             <div className="absolute bottom-6 left-5">
                 <VideoCallClipboard />
