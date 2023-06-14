@@ -11,6 +11,8 @@ import TextField from "@mui/material/TextField";
 // Components
 import { useUpdateSiblingDetailMutation } from "../../../../Redux/features/userInfo/userApi";
 import { MdCancel } from "react-icons/md";
+import { MobileBackButton } from "../../../shared/Components/MobileBackButton";
+import { BottomNav } from "../../../../Wrapper/Home/mobileversion/BottomNav";
 
 const EditSiblingsInfo = () => {
   const [elderOrYounger, setElderOrYounger] = useState();
@@ -160,7 +162,7 @@ const EditSiblingsInfo = () => {
     }
     if (!isLoading && !isError && response) {
       setTimeout(() => {
-        navigate("/userprofile");
+        navigate(-1);
       }, 2000);
     }
   }, [response, isLoading, isError, navigate, messageApi]);
@@ -172,8 +174,11 @@ const EditSiblingsInfo = () => {
 
   return (
     <div>
+      <div className="lg:hidden">
+        <MobileBackButton name={"Edit Siblings Info"} />
+      </div>
       <div className="max-w-[523px] mx-auto bg-white drop-shadow-lg px-4 pt-3 pb-6 mb-4 rounded">
-        <div className="flex justify-end mb-3">
+        <div className="hidden lg:flex justify-end mb-3">
           <MdCancel
             onClick={() => navigate(-1)}
             className="cursor-pointer text-3xl text-slate-600"
@@ -455,6 +460,10 @@ const EditSiblingsInfo = () => {
         </form>
       </div>
       <div>{contextHolder}</div>
+      <div>
+        <div className="h-12"></div>
+        <BottomNav />
+      </div>
     </div>
   );
 };
