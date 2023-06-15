@@ -35,7 +35,7 @@ export const ProfessionalCertificateMov = ({
                   }}
                 />
                 {selectedCertificate?._id === certificate?._id && (
-                  <button className="text-white text-[10px] font-fira font-medium bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] flex justify-center items-center px-[8px] py-[6px] rounded-[10px] relative top-[-50%] left-[20%]">
+                  <button className="text-[10px] font-fira font-medium special_profile_button flex justify-center items-center px-[8px] py-[6px] relative top-[-50%] left-[20%]">
                     Selected
                   </button>
                 )}

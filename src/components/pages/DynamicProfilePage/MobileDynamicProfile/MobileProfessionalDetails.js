@@ -39,51 +39,72 @@ export const MobileProfessionalDetails = () => {
                     {data?.professionalDetail?.length !== 0 ? (
                         data?.professionalDetail.map(profession => {
                             return (
-                                <div key={profession?._id}>
-                                    <div className="flex justify-end mt-6">
-                                        <button
-                                            onClick={() => navigate(`/professionalInfoEdit/${profession?._id}`)}
-                                            style={{
-                                                background: "linear-gradient(180deg, #E41272 0%, #942DD9 100%)",
-                                            }}
-                                            className="w-[64px] text-center py-[8] px-[10px] text-[#fff] h-[28px] text-lg font-medium rounded"
-                                        >
-                                            Edit
-                                        </button>
-                                    </div>
-                                    <div>
-                                        {profession?.position && (
-                                            <div className="flex justify-between py-[6px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                                                <span className="font-medium">Position</span>
-                                                <p className="font-normal">{profession?.position}</p>
-                                            </div>
-                                        )}
-                                        {profession?.duty && (
-                                            <div className="flex justify-between py-[6px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                                                <span className="font-medium">Duty</span>
-                                                <p className="font-normal">{profession?.duty}</p>
-                                            </div>
-                                        )}
-                                        {profession?.institute && (
-                                            <div className="flex justify-between py-[6px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                                                <span className="font-medium">Institute</span>
-                                                <p className="font-normal">{profession?.institute}</p>
-                                            </div>
-                                        )}
-                                        {profession?.specialAchievement && (
-                                            <div className="flex justify-between py-[6px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                                                <span className="font-medium">Special Achievement</span>
-                                                <p className="font-normal">{profession?.specialAchievement}</p>
-                                            </div>
-                                        )}
-                                        {profession?.workPeriod?.length !== 0 && (
-                                            <div className="flex justify-between py-[6px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                                                <span className="font-medium">Work Period</span>
-                                                <p className="font-normal">{profession?.workPeriod[0] + " to " + profession?.workPeriod[1]}</p>
-                                            </div>
-                                        )}
-                                    </div>
+                              <div key={profession?._id}>
+                                <div className="flex justify-end mt-6">
+                                  <button
+                                    onClick={() =>
+                                      navigate(
+                                        `/professionalInfoEdit/${profession?._id}`
+                                      )
+                                    }                                
+                                    className="w-[64px] text-center py-[8] px-[10px] special_profile_button h-[28px] font-medium"
+                                  >
+                                    Edit
+                                  </button>
                                 </div>
+                                <div>
+                                  {profession?.position && (
+                                    <div className="flex justify-between py-[6px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                                      <span className="font-medium">
+                                        Position
+                                      </span>
+                                      <p className="font-normal">
+                                        {profession?.position}
+                                      </p>
+                                    </div>
+                                  )}
+                                  {profession?.duty && (
+                                    <div className="flex justify-between py-[6px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                                      <span className="font-medium">Duty</span>
+                                      <p className="font-normal">
+                                        {profession?.duty}
+                                      </p>
+                                    </div>
+                                  )}
+                                  {profession?.institute && (
+                                    <div className="flex justify-between py-[6px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                                      <span className="font-medium">
+                                        Institute
+                                      </span>
+                                      <p className="font-normal">
+                                        {profession?.institute}
+                                      </p>
+                                    </div>
+                                  )}
+                                  {profession?.specialAchievement && (
+                                    <div className="flex justify-between py-[6px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                                      <span className="font-medium">
+                                        Special Achievement
+                                      </span>
+                                      <p className="font-normal">
+                                        {profession?.specialAchievement}
+                                      </p>
+                                    </div>
+                                  )}
+                                  {profession?.workPeriod?.length !== 0 && (
+                                    <div className="flex justify-between py-[6px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
+                                      <span className="font-medium">
+                                        Work Period
+                                      </span>
+                                      <p className="font-normal">
+                                        {profession?.workPeriod[0] +
+                                          " to " +
+                                          profession?.workPeriod[1]}
+                                      </p>
+                                    </div>
+                                  )}
+                                </div>
+                              </div>
                             );
                         })
                     ) : (

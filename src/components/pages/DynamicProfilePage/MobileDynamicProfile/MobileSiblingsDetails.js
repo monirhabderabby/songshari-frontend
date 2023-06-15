@@ -37,11 +37,7 @@ const MobileSiblingsDetails = () => {
               <div className="flex justify-end mt-2">
                 <button
                   onClick={() => navigate(`/siblingsInfoEdit/${sibling?._id}`)}
-                  style={{
-                    background:
-                      "linear-gradient(180deg, #E41272 0%, #942DD9 100%)",
-                  }}
-                  className="w-[64px] text-center py-[8] px-[10px] text-[#fff] h-[28px] text-lg font-medium rounded"
+                  className="w-[64px] text-center py-[8] px-[10px] special_profile_button h-[28px] font-medium"
                 >
                   Edit
                 </button>

@@ -449,15 +449,12 @@ const EditPhysicalInfo = () => {
               />
             </div>
             <div>
-              <input
-                type="submit"
-                value="Save"
-                style={{
-                  background:
-                    "linear-gradient(180deg, #E41272 0%, #942DD9 100%)",
-                }}
-                className="w-full text-center py-[10px] text-[#fff]  text-lg font-medium rounded cursor-pointer"
-              />
+              <button
+                // type="submit"
+                className="w-full text-center py-[10px] text-lg font-medium special_profile_button cursor-pointer"
+              >
+                Save
+              </button>
               {isLoading && (
                 <div className="mt-2">
                   <LinearProgress color="secondary" />
