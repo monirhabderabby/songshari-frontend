@@ -47,7 +47,7 @@ export const MatchesMov = () => {
     <div className="max-w-[1024px] mx-auto">
       <MobileBackButton name="Matches" />
       <button
-        className="bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] text-white p-2 rounded mb-3 ml-3 my-4"
+        className="special_profile_button mb-3 ml-3 my-4"
         onClick={() => setMatchesModalOpen(true)}
       >
         Update matches Info

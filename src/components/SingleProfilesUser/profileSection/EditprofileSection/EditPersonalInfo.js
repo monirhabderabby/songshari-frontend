@@ -1299,15 +1299,12 @@ const EditPersonalInfo = () => {
               </div>
 
               <div>
-                <input
-                  type="submit"
-                  value="Save"
-                  style={{
-                    background:
-                      "linear-gradient(180deg, #E41272 0%, #942DD9 100%)",
-                  }}
-                  className="w-full text-center py-[10px] text-[#fff] cursor-pointer text-lg font-medium rounded"
-                />
+                <button
+                  // type="submit"
+                  className="w-full text-center py-[10px] text-lg font-medium special_profile_button cursor-pointer"
+                >
+                  Save
+                </button>
               </div>
             </form>
           </div>
