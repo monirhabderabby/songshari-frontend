@@ -162,7 +162,7 @@ const SingleUserActivity = () => {
                 </div>
               </div>
               <button
-                className="border-[1px] border-[rgba(0,0,0,0.1)] rounded-[50px] py-[6px] px-5 font-bold text-[17px] text-[#FFFFFF] bg-[linear-gradient(to_top,#942DD9,#F22876)] shadow-[0.872px_9.962px_20px_rgba(12,78,165,0.3)] cursor-pointer hover:bg-[linear-gradient(to_top,#F22876,#942DD9)] duration-500"
+                className="special_profile_button text-[16px] w-24 h-10"
                 onClick={addPost}
                 disabled={postText === "" && photoURL === ""}
               >

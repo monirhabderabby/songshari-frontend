@@ -42,7 +42,7 @@ const SinglePostFooter = ({ post }) => {
         )}
         <label
           htmlFor="commentText"
-          className="border-[1px] border-[rgba(0,0,0,0.1)] rounded-[50px] px-[16px] text-[13px] leading-[30px] text-[#333333]"
+          className={"cursor-pointer  special_profile_button"}
         >
           Comment
         </label>
