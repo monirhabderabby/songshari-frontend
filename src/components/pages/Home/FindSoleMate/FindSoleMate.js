@@ -29,10 +29,8 @@ const FindSoleMate = () => {
                             </h2>
                             <Link
                                 to={"/find-partner/suggested"}
-                                className="px-8 md:px-6 lg:px-8 pt-3 md:pt-2 lg:pt-3 pb-2 md:pb-1 lg:pb-2 text-2xl md:text-xl lg:text-2xl text-white font-semibold rounded-md tracking-[.25em] shadow-xl shadow-[#0c4ea54d] cursor-pointer leading-6 md:leading-5 lg:leading6"
-                                style={{
-                                    backgroundImage: "linear-gradient(155deg, rgba(228, 18, 114, 1) 0%, #4844a5 100%)",
-                                }}
+                                className="px-8 special_profile_button md:px-6 lg:px-8 pt-3 md:pt-2 lg:pt-3 pb-2 md:pb-1 lg:pb-2 text-2xl md:text-xl lg:text-2xl text-white font-semibold tracking-[.25em] shadow-xl cursor-pointer leading-6 md:leading-5 lg:leading6"
+                                
                             >
                                 JOIN NOW!
                             </Link>

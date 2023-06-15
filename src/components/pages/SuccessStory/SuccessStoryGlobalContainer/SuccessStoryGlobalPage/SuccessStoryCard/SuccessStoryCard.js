@@ -38,7 +38,7 @@ const SuccessStoryCard = ({ story }) => {
         <div className="w-full mt-2">
           <button
             onClick={() => navigate(`/happyStory/${story?._id}`)}
-            className="w-full h-[44px] rounded-[4px] bg-pink-500 hover:bg-pink-600 text-white font-Inter text-[20px] font-medium duration-300"
+            className="w-full h-[44px] special_profile_button"
           >
             View Details
           </button>

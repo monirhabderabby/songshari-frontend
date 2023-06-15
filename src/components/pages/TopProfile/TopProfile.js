@@ -11,7 +11,7 @@ const TopProfile = () => {
                 <div className="w-full flex justify-center items-center">
                     <div className="top-profile-button flex">
                         <NavLink to="/">
-                            <p className="text-[0.8rem] text-center">Suggested For You</p>
+                            <p className="text-[0.8rem] text-center ">Suggested For You</p>
                         </NavLink>
 
                         <NavLink to="/top-bride">

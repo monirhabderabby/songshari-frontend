@@ -63,7 +63,7 @@ const FileReuploadSection = ({ selected, selectedPhoto }) => {
               <p className="font-medium text-base text-[#FFFFFF] text-center mb-5">
                 Click on the upload <br /> button to add new certificate
               </p>
-              <div className="flex items-center justify-center font-medium text-base text-[#FFFFFF] gap-[13px] bg-gradient-to-r from-[#E52982] to-[#A72BC3] rounded-[10px] w-[144px] h-[47px]">
+              <div className="flex items-center justify-center font-medium text-base special_profile_button">
                 <img className="h-5 w-5" src={icon} alt="reUpload icon" />
                 <p>{loading ? "Uploading..." : "Re-Upload"}</p>
               </div>

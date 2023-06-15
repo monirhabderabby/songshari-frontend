@@ -79,12 +79,8 @@ const DynamicProfileCard = ({ data, isLoading }) => {
                         </div>
                         <div className="h-[28px] w-[5px] bg-gray-200 rounded-[4px] mx-[20px]"></div>
                         <button
-                    className="text-white text-[12px] leading-7 font-Inter px-3 py-1 rounded-[50px]"
-                    style={{
-                      backgroundImage:
-                        "linear-gradient(309deg, #F664BC 0%, #FB7BBC 35%, #FF92BB 100%)",
-                      boxShadow: "0px 5px 20px rgba(139, 122, 132, 0.5)",
-                    }}
+                    className="special_profile_button text-sm"
+                    
                   >
                     {userMatrimonyPackageInfo?.package?.title + " user"}
                   </button>

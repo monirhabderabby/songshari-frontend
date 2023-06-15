@@ -97,11 +97,7 @@ const Accordian = ({ data, isLoading, edit }) => {
             >
               <Link
                 to={`edit/personalinfo/${data?._id}`}
-                style={{
-                  background:
-                    "linear-gradient(180deg, #E41272 0%, #942DD9 100%)",
-                }}
-                className="w-[64px] text-center py-[8] px-[10px] text-[#fff] h-[28px] text-lg font-medium rounded"
+                className="w-[64px] special_profile_button"
               >
                 Edit
               </Link>
@@ -607,11 +603,7 @@ const Accordian = ({ data, isLoading, edit }) => {
                     <div className="flex justify-end mt-2">
                       <Link
                         to={`edit/profesionalinfo/${profession?._id}`}
-                        style={{
-                          background:
-                            "linear-gradient(180deg, #E41272 0%, #942DD9 100%)",
-                        }}
-                        className="w-[64px] text-center py-[8] px-[10px] text-[#fff] h-[28px] text-lg font-medium rounded"
+                        className="w-[64px] text-center special_profile_button"
                       >
                         Edit
                       </Link>
@@ -702,11 +694,7 @@ const Accordian = ({ data, isLoading, edit }) => {
                     <div className="flex justify-end mt-2">
                       <Link
                         to={`edit/educationalinfo/${edu?._id}`}
-                        style={{
-                          background:
-                            "linear-gradient(180deg, #E41272 0%, #942DD9 100%)",
-                        }}
-                        className="w-[64px] text-center py-[8] px-[10px] text-[#fff] h-[28px] text-lg font-medium rounded"
+                        className="w-[64px] text-center special_profile_button"
                       >
                         Edit
                       </Link>
@@ -892,10 +880,7 @@ const Accordian = ({ data, isLoading, edit }) => {
           >
             <Link
               to={`edit/physicalinfo/${data?._id}`}
-              style={{
-                background: "linear-gradient(180deg, #E41272 0%, #942DD9 100%)",
-              }}
-              className="w-[64px] text-center py-[8] px-[10px] text-[#fff] h-[28px] text-lg font-medium rounded"
+              className="w-[64px] text-center special_profile_button"
             >
               Edit
             </Link>
@@ -998,11 +983,7 @@ const Accordian = ({ data, isLoading, edit }) => {
             >
               <Link
                 to={`edit/familyInfo/${data?._id}`}
-                style={{
-                  background:
-                    "linear-gradient(180deg, #E41272 0%, #942DD9 100%)",
-                }}
-                className="w-[64px] text-center py-[8] px-[10px] text-[#fff] h-[28px] text-lg font-medium rounded"
+                className="w-[64px] text-center special_profile_button"
               >
                 Edit
               </Link>
@@ -1082,10 +1063,7 @@ const Accordian = ({ data, isLoading, edit }) => {
           >
             <Link
               to={`edit/othersinfo/${data?._id}`}
-              style={{
-                background: "linear-gradient(180deg, #E41272 0%, #942DD9 100%)",
-              }}
-              className="w-[64px] text-center py-[8] px-[10px] text-[#fff] h-[28px] text-lg font-medium rounded"
+              className="w-[64px] text-center special_profile_button"
             >
               Edit
             </Link>
