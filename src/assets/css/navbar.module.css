@@ -1,20 +1,21 @@
 .tooltip {
-  visibility: hidden;
-  position: absolute;
+    visibility: hidden;
+    position: absolute;
+    font-family: "Poppins", sans-serif;
 }
 
 .hasTooltip:hover .tooltip {
-  visibility: visible;
+    visibility: visible;
 }
 
 .engMenu {
-  display: none;
-  transition: all ease-in-out 0.5s;
+    display: none;
+    transition: all ease-in-out 0.5s;
 }
 
 .engDropdown:hover .engMenu {
-  display: block;
+    display: block;
 }
 .navbar img {
-  margin-bottom: 30px;
+    margin-bottom: 30px;
 }
