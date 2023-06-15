@@ -4,7 +4,7 @@ import getCookie from "../../../../Helper/cookies/getCookie";
 import PackageForm from "../../Packages/PackageForm";
 import { PackagePriceTest } from "./PackagePriceTest";
 
-export const PackageCard = ({ pack, packages, index, height, setSuccessSnackBarOpen, setSelectedPack, useCase }) => {
+export const PackageCard = ({ pack, packages, index, height, setSuccessSnackBarOpen, setSelectedPack, useCase, hovered, setHovered }) => {
     const [showPopup, setShowPopup] = useState(false);
     const navigate = useNavigate();
 
@@ -19,16 +19,22 @@ export const PackageCard = ({ pack, packages, index, height, setSuccessSnackBarO
             navigate("/login");
         }
     };
+
+    const hoveredHandler = indexNum => {
+        setHovered(indexNum);
+    };
     return (
         <>
             <div
-                className={`${
-                    height ? height : "h-[580px]"
-                } w-[320px] rounded-[10px] px-[30px] py-[34px] bg-[rgb(255,255,255)] group hover:bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] duration-300 shadow-[rgba(99,99,99,0.2)_0px_2px_8px_0px] relative`}
+                className={`${height ? height : "h-[580px]"} w-[320px] rounded-[10px] px-[30px] py-[34px] bg-[rgb(255,255,255)] group ${
+                    hovered === index && "bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)]"
+                } duration-300 shadow-[rgba(99,99,99,0.2)_0px_2px_8px_0px] relative`}
+                onMouseEnter={() => hoveredHandler(index)}
+                onMouseLeave={() => hoveredHandler(0)}
             >
-                <PackagePriceTest pack={pack} />
+                <PackagePriceTest pack={pack} hovered={hovered} index={index} />
                 <div className="mt-[20px] ">
-                    <ul className="list-disc pl-6 text-[14px] font-Inter text-gray-500 group-hover:text-[#FFFFF9] h-[450px]">
+                    <ul className={`list-disc pl-6 text-[14px] font-george ${hovered === index ? "text-[#FFFFFF]" : "text-gray-400"} h-[450px]`}>
                         {pack?.title?.toLowerCase()?.includes("free") && (
                             <>
                                 <li className="whitespace-nowrap">Browse Basic Features</li>
@@ -66,7 +72,9 @@ export const PackageCard = ({ pack, packages, index, height, setSuccessSnackBarO
                     )}
                     {pack?.title?.toLowerCase()?.includes("free") && (
                         <button
-                            className="w-full rounded-[4px] bg-[#eaeaea] group-hover:text-primary duration-300 ease-in-out text-white py-[6px]"
+                            className={`w-full rounded-[4px]   ${
+                                hovered === index ? "text-primary bg-white" : "text-white bg-[#eaeaea]"
+                            } duration-300 ease-in-out text-white py-[6px]`}
                             disabled
                         >
                             Try Free
