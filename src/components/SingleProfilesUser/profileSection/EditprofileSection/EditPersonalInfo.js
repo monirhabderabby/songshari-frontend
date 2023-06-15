@@ -102,14 +102,14 @@ const EditPersonalInfo = () => {
   }, []);
 
   useEffect(() => {
-    fetch("json/zodiacSign.json")
+    fetch("/json/zodiacSign.json")
       .then((res) => res.json())
       .then((data) => setZodiacSignSuggestion(data));
   }, []);
 
   // hobbies
   useEffect(() => {
-    fetch("json/hobby.json")
+    fetch("/json/hobby.json")
       .then((res) => res.json())
       .then((data) => setHobbiesData(data));
   }, []);
@@ -801,8 +801,8 @@ const EditPersonalInfo = () => {
                   size="large"
                 >
                   {zodiacSignSuggestion.map((sign) => (
-                    <Select.Option key={sign.id} value={sign.value}>
-                      {sign.label}
+                    <Select.Option key={sign.id} value={sign.name}>
+                      {sign.name}
                     </Select.Option>
                   ))}
                 </Select>

@@ -52,7 +52,7 @@ const MobileFindPartner = ({ data, isLoading }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    fetch("json/professions.json")
+    fetch("/json/professions.json")
       .then((res) => res.json())
       .then((data) => setProfessions(data));
   }, []);

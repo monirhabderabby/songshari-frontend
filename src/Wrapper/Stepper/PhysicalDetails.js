@@ -29,7 +29,7 @@ export const PhysicalDetails = ({ setPage }) => {
   // Ancestry data
   const [ancestryData, setAncestryData] = useState([]);
   useEffect(() => {
-    fetch("json/ancestry.json")
+    fetch("/json/ancestry.json")
       .then((res) => res.json())
       .then((data) => setAncestryData(data));
   }, []);
