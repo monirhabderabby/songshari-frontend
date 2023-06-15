@@ -15,9 +15,9 @@ export const Friends = ({ responsive }) => {
     useDocumentTitle("Shongshari | Connections");
     return (
       <>
-        <div className="mb-4 w-full flex justify-around items-center">
+        <div className="my-4  w-full flex justify-around items-center">
           <button
-            className={`${
+            className={`text-xs md:text-md ${
               page === 1
                 ? "special_profile_button"
                 : "special_profile_button_inactive"
@@ -27,7 +27,7 @@ export const Friends = ({ responsive }) => {
             Connections
           </button>
           <button
-            className={`${
+            className={`text-xs md:text-md ${
               page === 2
                 ? "special_profile_button"
                 : "special_profile_button_inactive"
@@ -50,7 +50,7 @@ export const Friends = ({ responsive }) => {
             </div>
           </button>
           <button
-            className={`${
+            className={`text-xs md:text-md ${
               page === 3
                 ? "special_profile_button"
                 : "special_profile_button_inactive"

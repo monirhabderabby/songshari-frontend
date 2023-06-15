@@ -1207,10 +1207,7 @@ export const MobileAccordionPartner = ({ data, isLoading }) => {
                 <div className="flex justify-center items-center ] mt-[30px] md:hidden ">
                     <button
                         onClick={handleSubmit}
-                        style={{
-                            background: "linear-gradient(180deg, #E41272 0%, #942DD9 100%)",
-                        }}
-                        className="w-[139px] text-center py-[4] px-[6px] text-[#fff] h-[34px] text-lg font-medium rounded-xl"
+                        className="w-[139px] text-center py-[4] px-[6px] h-[34px] text-lg font-medium special_profile_button"
                     >
                         Submit
                     </button>

@@ -146,8 +146,8 @@ const MobileActivity = () => {
               </div>
             </div>
             <button
-              className="rounded-[50px] py-[3px] w-[65px] font-bold text-[16px] leading-[30px] text-[#FFFFFF] bg-gradient-to-t from-[#942DD9] to-[#F22876] shadow-[0.872px_9.962px_20px_rgba(12, 78, 165, 0.3)]"
-              type="submit"
+              className="special_profile_button text-[16px] w-24 h-10"
+              // type="submit"
               disabled={postText === "" && photoURL === ""}
             >
               Post
@@ -155,7 +155,7 @@ const MobileActivity = () => {
           </div>
         </form>
       </div>
-      {!canPost && <GoMobActivityPremium {...{ canPost, setCanPost }} />}                  
+      {!canPost && <GoMobActivityPremium {...{ canPost, setCanPost }} />}
       <MobileActivityPost {...{ posts, isLoading, error }} />
       <div className="h-20"></div>
       <BottomNav></BottomNav>

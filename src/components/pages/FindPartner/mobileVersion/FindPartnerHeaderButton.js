@@ -9,8 +9,8 @@ export const FindPartnerHeaderButton = () => {
           <span
             className={
               isActive
-                ? "text-[14px] font-bold font-Inter w-[160px] h-[42px] flex justify-center items-center bg-[linear-gradient(155deg,#E41242_0%,#4844A5_100%)] shadow-[2px_2px_8px_rgba(0,0,0,0.1)] rounded-[5px] text-white"
-                : "text-[14px] font-bold font-Inter w-[168px] h-[42px] flex justify-center items-center shadow-[2px_2px_8px_rgba(0,0,0,0.1)] bg-white rounded-[5px] text-black"
+                ? "text-[14px] font-bold font-Inter w-[160px] h-[42px] flex justify-center items-center special_profile_button"
+                : "text-[14px] font-bold font-Inter w-[168px] h-[42px] flex justify-center items-center special_profile_button_inactive"
             }
           >
             Suggested For You
@@ -22,8 +22,8 @@ export const FindPartnerHeaderButton = () => {
           <span
             className={
               isActive
-                ? "text-[14px] font-bold font-Inter h-[42px] w-[65px] flex justify-center items-center text-white bg-[linear-gradient(155deg,#E41242_0%,#4844A5_100%)] shadow-[2px_2px_8px_rgba(0,0,0,0.1)] rounded-[5px]"
-                : "text-[14px] font-bold font-Inter py-[9px] px-[25px] text-black bg-white shadow-[2px_2px_8px_rgba(0,0,0,0.1)] rounded-[5px] h-[42px] w-[65px] flex justify-center items-center"
+                ? "text-[14px] font-bold font-Inter w-[65px] h-[42px] flex justify-center items-center special_profile_button"
+                : "text-[14px] font-bold font-Inter w-[65px] h-[42px] flex justify-center items-center special_profile_button_inactive"
             }
           >
             New
@@ -35,8 +35,8 @@ export const FindPartnerHeaderButton = () => {
           <span
             className={
               isActive
-                ? "text-[14px] font-bold font-Inter h-[42px] w-[65px] flex justify-center items-center text-white bg-[linear-gradient(155deg,#E41242_0%,#4844A5_100%)] shadow-[2px_2px_8px_rgba(0,0,0,0.1)] rounded-[5px]"
-                : "text-[14px] font-bold font-Inter py-[9px] px-[25px] text-black bg-white shadow-[2px_2px_8px_rgba(0,0,0,0.1)] rounded-[5px] h-[42px] w-[65px] flex justify-center items-center"
+                ? "text-[14px] font-bold font-Inter w-[65px] h-[42px] flex justify-center items-center special_profile_button"
+                : "text-[14px] font-bold font-Inter w-[65px] h-[42px] flex justify-center items-center special_profile_button_inactive"
             }
           >
             Top
