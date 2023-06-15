@@ -4,13 +4,9 @@ import { useNavigate, useParams } from "react-router";
 
 // Third party packages
 import { DatePicker, Select, message } from "antd";
-import TextArea from "antd/es/input/TextArea";
 import { useForm } from "react-hook-form";
 import { MdCancel } from "react-icons/md";
 
-// Components
-// import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
-// import { firebaseStorage } from "../../../../firebase.init";
 import {
   useGetProfileDetailsQuery,
   useUpdatePersonalDetailsMutation,
@@ -19,6 +15,7 @@ import DropFileInput from "../../../shared/SingleProfileConponents/DropFileInput
 import { OvalLoader } from "../../../shared/Cards/Loader/OvalLoader/OvalLoader";
 import { MobileBackButton } from "../../../shared/Components/MobileBackButton";
 import { BottomNav } from "../../../../Wrapper/Home/mobileversion/BottomNav";
+import moment from "moment";
 
 const EditPersonalInfo = () => {
   const [messageApi, contextHolder] = message.useMessage();
@@ -66,6 +63,30 @@ const EditPersonalInfo = () => {
     hobbies,
     numberOfSister,
     numberOfBrother,
+    dateOfBirth,
+    reasonOfMarriage,
+    numberOfPartner,
+    numberOfGirl,
+    numberOfBoy,
+    marriageDate,
+    isPartnerAwareOfMarriage,
+    agesOfGirl,
+    agesOfBoy,
+    divorceDate,
+    reasonOfDivorce,
+    partnerDeathDay,
+    countryPermanent,
+    divisionPermanent,
+    townPermanent,
+    zipPermanent,
+    streetPermanent,
+    housePermanent,
+    houseCurrent,
+    streetCurrent,
+    zipCurrent,
+    townCurrent,
+    divisionCurrent,
+    countryCurrent,
   } = profileData || {};
 
   useEffect(() => {
@@ -92,14 +113,6 @@ const EditPersonalInfo = () => {
       .then((res) => res.json())
       .then((data) => setHobbiesData(data));
   }, []);
-
-  // some data collection handler function like name,email etc
-  const handleData = (e) => {
-    const data = { ...personalInfo };
-    data[e.target.name] = e.target.value;
-    setPersonalInfo(data);
-    e.preventDefault();
-  };
 
   const handleLookingForChange = (value) => {
     setLookingFor(value);
@@ -157,6 +170,24 @@ const EditPersonalInfo = () => {
   // handle current city status
   const handleCurrentCity = (value) => {
     setPersonalInfo({ ...personalInfo, hometown: value });
+  };
+  const handleTownPermanent = (value) => {
+    setPersonalInfo({ ...personalInfo, townPermanent: value });
+  };
+  const handleDivisionPermanent = (value) => {
+    setPersonalInfo({ ...personalInfo, divisionPermanent: value });
+  };
+  const handleCountryPermanent = (value) => {
+    setPersonalInfo({ ...personalInfo, countryPermanent: value });
+  };
+  const handleTownCurrent = (value) => {
+    setPersonalInfo({ ...personalInfo, townCurrent: value });
+  };
+  const handleDivisionCurrent = (value) => {
+    setPersonalInfo({ ...personalInfo, divisionCurrent: value });
+  };
+  const handleCountryCurrent = (value) => {
+    setPersonalInfo({ ...personalInfo, countryCurrent: value });
   };
   //zodiac sign change handler
   const handleZodiacSign = (value) => {
@@ -388,6 +419,7 @@ const EditPersonalInfo = () => {
                   </label>
                   <DatePicker
                     onChange={handleDateOfBirth}
+                    defaultValue={moment(dateOfBirth)}
                     className="w-full"
                     size="large"
                   />
@@ -437,6 +469,7 @@ const EditPersonalInfo = () => {
                         type="number"
                         {...register("numberOfPartner")}
                         placeholder="Number of Partner"
+                        defaultValue={numberOfPartner}
                         className=" focus:outline-none p-2 border focus:border-blue-500 shadow rounded-lg hover:border-blue-500 w-full"
                       />
                     </div>
@@ -444,6 +477,7 @@ const EditPersonalInfo = () => {
                       <input
                         type="text"
                         {...register("reasonOfMarriage")}
+                        defaultValue={reasonOfMarriage}
                         placeholder="Reason of Marriage"
                         className=" focus:outline-none p-2 border focus:border-blue-500 shadow rounded-lg hover:border-blue-500 w-full"
                       />
@@ -453,6 +487,7 @@ const EditPersonalInfo = () => {
                       className="w-full mb-2"
                       onChange={handleAwareOFMarriage}
                       placeholder="Is partner aware of marriage?"
+                      defaultValue={isPartnerAwareOfMarriage}
                       showSearch
                       filterOption={(input, option) =>
                         (option?.label ?? "")
@@ -474,6 +509,7 @@ const EditPersonalInfo = () => {
                     <div className="mb-2">
                       <DatePicker
                         onChange={handleMarriageDate}
+                        defaultValue={moment(marriageDate)}
                         placeholder="Marriage Date"
                         className="w-full"
                         size="large"
@@ -508,6 +544,7 @@ const EditPersonalInfo = () => {
                           <input
                             type="number"
                             {...register("numberOfBoy")}
+                            defaultValue={numberOfBoy}
                             placeholder="Number of Boy"
                             className=" focus:outline-none p-2 border focus:border-blue-500 shadow rounded-lg hover:border-blue-500 w-52 mr-10 "
                           />
@@ -515,12 +552,14 @@ const EditPersonalInfo = () => {
                             type="number"
                             name="agesOfBoy"
                             {...register("agesOfBoy")}
+                            defaultValue={agesOfBoy && agesOfBoy[0]}
                             placeholder="Age of Boy"
                             className=" focus:outline-none p-2 border focus:border-blue-500 shadow rounded-lg hover:border-blue-500 w-52 "
                           />
                           <input
                             type="number"
                             {...register("numberOfGirl")}
+                            defaultValue={numberOfGirl}
                             placeholder="Number of Girl"
                             className=" focus:outline-none p-2 border focus:border-blue-500 shadow rounded-lg hover:border-blue-500 w-52 mr-10 mt-2"
                           />
@@ -528,6 +567,7 @@ const EditPersonalInfo = () => {
                             type="number"
                             name="agesOfGirl"
                             {...register("agesOfGirl")}
+                            defaultValue={agesOfGirl && agesOfGirl[0]}
                             placeholder="Age of Girl"
                             className=" focus:outline-none p-2 border focus:border-blue-500 shadow rounded-lg hover:border-blue-500 w-52 "
                           />
@@ -545,6 +585,7 @@ const EditPersonalInfo = () => {
                       <input
                         type="text"
                         name="reasonOfDivorce"
+                        defaultValue={reasonOfDivorce}
                         placeholder="Divorce Reason"
                         className=" focus:outline-none p-2 border focus:border-blue-500 shadow rounded-lg hover:border-blue-500 w-full "
                         onChange={handleDivorceReason}
@@ -553,6 +594,7 @@ const EditPersonalInfo = () => {
                     <div className="mb-2">
                       <DatePicker
                         onChange={handleDivorceDate}
+                        defaultValue={moment(divorceDate)}
                         placeholder="Divorce Date"
                         className="w-full"
                         size="large"
@@ -620,6 +662,7 @@ const EditPersonalInfo = () => {
                     <div className="mb-2">
                       <DatePicker
                         onChange={handleWidowedDate}
+                        defaultValue={moment(partnerDeathDay)}
                         placeholder="Divorce Date"
                         className="w-full"
                         size="large"
@@ -820,12 +863,146 @@ const EditPersonalInfo = () => {
                   >
                     Permanent Address
                   </label>
-                  <TextArea
-                    rows={4}
-                    placeholder="Text Here"
-                    onChange={handleData}
-                    name="permanentAddress"
-                  />
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-y-2 pt-4 lg:pt-0 pb-4">
+                    <div>
+                      <label className="text-sm block pb-2 text-slate-600 font-medium">
+                        House Permanent
+                      </label>
+                      <input
+                        type="text"
+                        {...register("housePermanent")}
+                        defaultValue={housePermanent}
+                        placeholder="House permanent"
+                        className=" focus:outline-none p-2 border focus:border-blue-500 shadow rounded-lg hover:border-blue-500 w-full lg:w-56 mb-4 md:mb-0"
+                      />
+                    </div>
+                    <div>
+                      <label className="text-sm block pb-2 text-slate-600 font-medium">
+                        Street Permanent
+                      </label>
+                      <input
+                        type="text"
+                        {...register("streetPermanent")}
+                        defaultValue={streetPermanent}
+                        placeholder="Street Permanent"
+                        className=" focus:outline-none p-2 border focus:border-blue-500 shadow rounded-lg hover:border-blue-500 w-full lg:w-56 "
+                      />
+                    </div>
+                    <div>
+                      <label className="text-sm block pb-2 text-slate-600 font-medium">
+                        Zip Permanent
+                      </label>
+                      <input
+                        type="number"
+                        {...register("zipPermanent")}
+                        defaultValue={zipPermanent}
+                        placeholder="Zip Permanent"
+                        className=" focus:outline-none p-2 border focus:border-blue-500 shadow rounded-lg hover:border-blue-500 w-full lg:w-56 "
+                      />
+                    </div>
+                    <div>
+                      <label className="text-sm block pb-2 text-slate-600 font-medium">
+                        Town Permanent
+                      </label>
+                      <Select
+                        className="w-full lg:w-56 mb-2"
+                        onChange={handleTownPermanent}
+                        defaultValue={townPermanent}
+                        placeholder="Select Town"
+                        showSearch
+                        filterOption={(input, option) =>
+                          (option?.children ?? "")
+                            .toLowerCase()
+                            .includes(input.toLowerCase())
+                        }
+                        size="large"
+                      >
+                        {city.map((town) => {
+                          return (
+                            <Select.Option key={town.id} value={town.value}>
+                              {town.name}
+                            </Select.Option>
+                          );
+                        })}
+                      </Select>
+                    </div>
+                    <div>
+                      <label className="text-sm block pb-2 text-slate-600 font-medium">
+                        Division Permanent
+                      </label>
+                      <Select
+                        className="w-full lg:w-56 mb-2"
+                        onChange={handleDivisionPermanent}
+                        defaultValue={divisionPermanent}
+                        placeholder="Select Division"
+                        showSearch
+                        filterOption={(input, option) =>
+                          (option?.children ?? "")
+                            .toLowerCase()
+                            .includes(input.toLowerCase())
+                        }
+                        size="large"
+                        options={[
+                          {
+                            value: "Dhaka",
+                            label: "Dhaka",
+                          },
+                          {
+                            value: "Chittagong",
+                            label: "Chittagong",
+                          },
+                          {
+                            value: "Sylhet",
+                            label: "Sylhet",
+                          },
+                          {
+                            value: "Rajshahi",
+                            label: "Rajshahi",
+                          },
+                          {
+                            value: "Rangpur",
+                            label: "Rangpur",
+                          },
+                          {
+                            value: "Mymensingh",
+                            label: "Mymensingh",
+                          },
+                          {
+                            value: "Khulna",
+                            label: "Khulna",
+                          },
+                          {
+                            value: "Barisal",
+                            label: "Barisal",
+                          },
+                        ]}
+                      />
+                    </div>
+                    <div>
+                      <label className="text-sm block pb-2 text-slate-600 font-medium">
+                        Country Permanent
+                      </label>
+                      <Select
+                        className="w-full lg:w-56 mb-2"
+                        onChange={handleCountryPermanent}
+                        defaultValue={countryPermanent}
+                        placeholder="Select Country"
+                        showSearch
+                        filterOption={(input, option) =>
+                          (option?.children ?? "")
+                            .toLowerCase()
+                            .includes(input.toLowerCase())
+                        }
+                        size="large"
+                      >
+                        {countries.map((country) => (
+                          <Select.Option key={country.id} value={country.value}>
+                            {country.label}
+                          </Select.Option>
+                        ))}
+                      </Select>
+                    </div>
+                  </div>
                 </div>
               </div>
 
@@ -835,14 +1012,148 @@ const EditPersonalInfo = () => {
                     htmlFor=""
                     className="text-sm block pb-2 text-slate-600 font-medium"
                   >
-                    Present Address
+                    Current Address
                   </label>
-                  <TextArea
-                    rows={4}
-                    placeholder="Text Here"
-                    onChange={handleData}
-                    name="present Address"
-                  />
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-y-2 pt-4 lg:pt-0 pb-4">
+                    <div>
+                      <label className="text-sm block pb-2 text-slate-600 font-medium">
+                        House Current
+                      </label>
+                      <input
+                        type="text"
+                        {...register("houseCurrent")}
+                        defaultValue={houseCurrent}
+                        placeholder="House permanent"
+                        className=" focus:outline-none p-2 border focus:border-blue-500 shadow rounded-lg hover:border-blue-500 w-full lg:w-56 mb-4 md:mb-0"
+                      />
+                    </div>
+                    <div>
+                      <label className="text-sm block pb-2 text-slate-600 font-medium">
+                        Street Current
+                      </label>
+                      <input
+                        type="text"
+                        {...register("streetCurrent")}
+                        defaultValue={streetCurrent}
+                        placeholder="Street Permanent"
+                        className=" focus:outline-none p-2 border focus:border-blue-500 shadow rounded-lg hover:border-blue-500 w-full lg:w-56 "
+                      />
+                    </div>
+                    <div>
+                      <label className="text-sm block pb-2 text-slate-600 font-medium">
+                        Zip Current
+                      </label>
+                      <input
+                        type="number"
+                        {...register("zipCurrent")}
+                        defaultValue={zipCurrent}
+                        placeholder="Zip Permanent"
+                        className=" focus:outline-none p-2 border focus:border-blue-500 shadow rounded-lg hover:border-blue-500 w-full lg:w-56 "
+                      />
+                    </div>
+                    <div>
+                      <label className="text-sm block pb-2 text-slate-600 font-medium">
+                        Town Current
+                      </label>
+                      <Select
+                        className="w-full lg:w-56 mb-2"
+                        onChange={handleTownCurrent}
+                        defaultValue={townCurrent}
+                        placeholder="Select Town"
+                        showSearch
+                        filterOption={(input, option) =>
+                          (option?.children ?? "")
+                            .toLowerCase()
+                            .includes(input.toLowerCase())
+                        }
+                        size="large"
+                      >
+                        {city.map((town) => {
+                          return (
+                            <Select.Option key={town.id} value={town.value}>
+                              {town.name}
+                            </Select.Option>
+                          );
+                        })}
+                      </Select>
+                    </div>
+                    <div>
+                      <label className="text-sm block pb-2 text-slate-600 font-medium">
+                        Division Current
+                      </label>
+                      <Select
+                        className="w-full lg:w-56 mb-2"
+                        onChange={handleDivisionCurrent}
+                        defaultValue={divisionCurrent}
+                        placeholder="Select Division"
+                        showSearch
+                        filterOption={(input, option) =>
+                          (option?.children ?? "")
+                            .toLowerCase()
+                            .includes(input.toLowerCase())
+                        }
+                        size="large"
+                        options={[
+                          {
+                            value: "Dhaka",
+                            label: "Dhaka",
+                          },
+                          {
+                            value: "Chittagong",
+                            label: "Chittagong",
+                          },
+                          {
+                            value: "Sylhet",
+                            label: "Sylhet",
+                          },
+                          {
+                            value: "Rajshahi",
+                            label: "Rajshahi",
+                          },
+                          {
+                            value: "Rangpur",
+                            label: "Rangpur",
+                          },
+                          {
+                            value: "Mymensingh",
+                            label: "Mymensingh",
+                          },
+                          {
+                            value: "Khulna",
+                            label: "Khulna",
+                          },
+                          {
+                            value: "Barisal",
+                            label: "Barisal",
+                          },
+                        ]}
+                      />
+                    </div>
+                    <div>
+                      <label className="text-sm block pb-2 text-slate-600 font-medium">
+                        Country Current
+                      </label>
+                      <Select
+                        className="w-full lg:w-56 mb-2"
+                        onChange={handleCountryCurrent}
+                        defaultValue={countryCurrent}
+                        placeholder="Select Country"
+                        showSearch
+                        filterOption={(input, option) =>
+                          (option?.children ?? "")
+                            .toLowerCase()
+                            .includes(input.toLowerCase())
+                        }
+                        size="large"
+                      >
+                        {countries.map((country) => (
+                          <Select.Option key={country.id} value={country.value}>
+                            {country.label}
+                          </Select.Option>
+                        ))}
+                      </Select>
+                    </div>
+                  </div>
                 </div>
               </div>
 

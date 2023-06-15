@@ -466,6 +466,36 @@ export const userApi = apiSlice.injectEndpoints({
       }),
       invalidatesTags: ["UpdateUserInfo"],
     }),
+    getSingleProfessionDetailById: builder.query({
+      query: (id) => ({
+        url: `/member/get-professional-detail/${id}`,
+        method: "GET",
+        headers: {
+          authorization: `Bearer ${getCookie("token")}`,
+        },
+      }),
+      providesTags: ["UpdateUserInfo"],
+    }),
+    getSingleEducationDetailById: builder.query({
+      query: (id) => ({
+        url: `/member/get-educational-detail/${id}`,
+        method: "GET",
+        headers: {
+          authorization: `Bearer ${getCookie("token")}`,
+        },
+      }),
+      providesTags: ["UpdateUserInfo"],
+    }),
+    getSingleSiblingDetailById: builder.query({
+      query: (id) => ({
+        url: `/member/get-sibling-detail/${id}`,
+        method: "GET",
+        headers: {
+          authorization: `Bearer ${getCookie("token")}`,
+        },
+      }),
+      providesTags: ["UpdateUserInfo"],
+    }),
   }),
 });
 
@@ -505,4 +535,7 @@ export const {
   useGetSwapDataQuery,
   useGetSwapMatchedProfilesQuery,
   useUpdateVideoBioOnProfileMutation,
+  useGetSingleProfessionDetailByIdQuery,
+  useGetSingleEducationDetailByIdQuery,
+  useGetSingleSiblingDetailByIdQuery,
 } = userApi;

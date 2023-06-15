@@ -647,9 +647,7 @@ const Accordian = ({ data, isLoading, edit }) => {
                       )}
                       {profession?.workPeriod?.length !== 0 && (
                         <div className="flex justify-between py-[6px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                          <span className="font-medium">
-                            Special Achievement
-                          </span>
+                          <span className="font-medium">Work Period</span>
                           <p className="font-normal">
                             {profession?.workPeriod[0] +
                               " to " +

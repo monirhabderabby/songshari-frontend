@@ -20,10 +20,8 @@ import {
 import { OvalLoader } from "../../components/shared/Cards/Loader/OvalLoader/OvalLoader";
 
 export const PersonalDetails = ({ setPage, setHasSibling }) => {
-  const [
-    setPersonalDetails,
-    { data: personalDetailsResponse, isLoading, isError },
-  ] = useSetPersonalDetailsMutation();
+  const [setPersonalDetails, { data: personalDetailsResponse, isLoading }] =
+    useSetPersonalDetailsMutation();
   const [uploadProfilePhoto, { data: uploadedProfilePhoto }] =
     usePhotosUploadOnServerMutation();
   const [uploadCoverPhoto, { data: uploadedCoverPhoto }] =
@@ -131,9 +129,6 @@ export const PersonalDetails = ({ setPage, setHasSibling }) => {
   const [parmanentCountryValue, setPermanentCountryValue] = useState("");
   const [currentCountryValue, setCurrentCountryValue] = useState("");
 
-  if (isError) {
-    console.log(isError);
-  }
   useEffect(() => {
     fetch("json/district.json")
       .then((res) => res.json())
