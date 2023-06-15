@@ -60,7 +60,7 @@ export const FindPartnerSearchBox = () => {
         </div>
       </div>
       <button
-        className="w-24 h-10 bg-[linear-gradient(180deg,_#EA5FA4_0%,#A52BC7_100%)] flex justify-center items-center text-white gap-x-[9px] shadow-[2px_2px_12px_rgba(0,0,0,0.12)] rounded-[10px] ml-[13px]"
+        className="w-24 h-10 flex justify-center items-center gap-x-[9px] special_profile_button ml-[13px]"
         onClick={() => navigate("/mobile-find-partner/filter-box")}
       >
         <img src={filterIcon} alt="filter" />

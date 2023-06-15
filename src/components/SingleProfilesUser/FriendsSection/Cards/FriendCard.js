@@ -49,7 +49,7 @@ export const FriendCard = ({ friend, responsive }) => {
           </span>
         </div>
       </div>
-      <button disabled className={`special_profile_button`}>
+      <button disabled className={`text-xs px-2 md:text-md special_profile_button`}>
         Connected
       </button>
     </div>

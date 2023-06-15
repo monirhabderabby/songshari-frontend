@@ -68,13 +68,13 @@ export const FriendRequestCard = ({ friend, refetch, responsive }) => {
       </div>
       <div className="flex flex-col gap-y-1 md:gap-y-[14px]">
         <button
-          className="special_profile_button"
+          className="text-xs px-2 md:text-md special_profile_button"
           onClick={() => acceptHandler(friend?._id)}
         >
           Accept
         </button>
         <button
-          className="special_profile_button_inactive"
+          className="text-xs px-2 md:text-md special_profile_button_inactive"
           onClick={() => rejectFriendReqeustHandler(friend?._id)}
         >
           Reject

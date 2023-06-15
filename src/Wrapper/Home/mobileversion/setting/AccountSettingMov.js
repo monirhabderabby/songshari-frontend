@@ -132,7 +132,7 @@ export const AccountSettingMov = () => {
           </div>
         </div>
       </Link>
-      <Link to="/mobileUpgrade">
+      <Link to="/packages">
         <div className="grid grid-cols-6 mt-5 mb-8 he">
           <div className="setting-mov">
             <img

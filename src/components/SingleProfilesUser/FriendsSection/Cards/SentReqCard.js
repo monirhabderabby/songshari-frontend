@@ -48,7 +48,7 @@ export const SentReqCard = ({ friend, responsive }) => {
                 onClick={() => navigate(dynamicRoute)}
                 className="text-sm md:text-[20px] leading-5 md:leading-[30px] text-[#333333] font-bold mr-[4px] cursor-pointer whitespace-nowrap"
               >
-                {firstName + " " + lastName || ""}
+                {(firstName + " " + lastName || "").slice(0,12)}
               </h1>
               <img src={tick} alt="Not Available" />
             </div>
@@ -62,7 +62,7 @@ export const SentReqCard = ({ friend, responsive }) => {
             Request Pending
           </p>
           <button
-            className="special_profile_button"
+            className="text-xs px-2 md:text-md special_profile_button"
             onClick={() => handleCancleRequest(_id)}
           >
             Cancel Request
