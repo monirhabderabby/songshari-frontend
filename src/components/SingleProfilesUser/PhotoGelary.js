@@ -113,7 +113,7 @@ const PhotoGelary = ({ isLoading, error }) => {
             {photos?.length > 6 && (
                 <div className="w-full mt-[24px] flex justify-center">
                     <button
-                        className="w-[215px] h-[38px] bg-[linear-gradient(309deg,#F664BC_0%,_#FB7BBC_35%,_#FF92BB_100%)] rounded-[50px] flex items-center justify-center text-white text-[18px] font-normal font-Inter"
+                        className="special_profile_button"
                         onClick={() => navigate(`/gallery/${_id}`)}
                     >
                         View All Photos

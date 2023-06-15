@@ -59,7 +59,7 @@ export const Matches = ({ setMatchesCount }) => {
   return (
     <div className="w-full lg:max-w-[521px] mx-auto">
       <button
-        className="bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] text-white p-2 rounded mb-3"
+        className="special_profile_button"
         onClick={() => setMatchesModalOpen(true)}
       >
         Matches Modal

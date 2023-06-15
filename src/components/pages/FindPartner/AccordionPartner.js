@@ -1548,10 +1548,7 @@ export const AccordionPartner = ({ data, isLoading }) => {
         <div className=" justify-center items-center ] mt-[30px] hidden lg:block">
           <button
             onClick={handleSubmit}
-            style={{
-              background: "linear-gradient(180deg, #E41272 0%, #942DD9 100%)",
-            }}
-            className="w-[179px] text-center py-[8] px-[10px] text-[#fff] h-[54px] text-2xl font-medium rounded-xl"
+            className="w-[179px] text-center px-[10px] special_profile_button"
           >
             Submit
           </button>

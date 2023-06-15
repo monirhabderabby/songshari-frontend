@@ -22,7 +22,7 @@ const AllCertificateImg = ({ education, selected, setSelected }) => {
           alt="certificate"
         />
         <p
-          className={`absolute font-sans font-medium text-base text-[#FFFFFF] left-[35%] bottom-5 py-[5px] px-5 bg-gradient-to-r from-[#E52982] to-[#A72BC3] rounded-[10px] ${
+          className={`absolute font-sans font-sm text-base left-[35%] bottom-5  px-5 special_profile_button ${
             education?._id === selected?._id ? "block" : "hidden"
           }`}
         >

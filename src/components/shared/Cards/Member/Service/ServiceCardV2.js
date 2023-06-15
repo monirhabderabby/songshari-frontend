@@ -2,31 +2,31 @@
 import { useNavigate } from "react-router";
 
 // Third party packages
-import { makeStyles } from "@material-ui/core/styles";
-import Button from "@mui/material/Button";
+// import { makeStyles } from "@material-ui/core/styles";
+// import Button from "@mui/material/Button";
 import { TbCurrencyTaka } from "react-icons/tb";
 import { useState } from "react";
 import { useEffect } from "react";
 
-const useStyles = makeStyles({
-  gradientButton: {
-    background: "#E41272",
-    borderRadius: "4px",
-    border: 0,
-    color: "white",
-    height: "28px",
-    width: "78px",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    "&:hover": {
-      background: "#E41272",
-    },
-  },
-});
+// const useStyles = makeStyles({
+//   gradientButton: {
+//     background: "#E41272",
+//     borderRadius: "4px",
+//     border: 0,
+//     color: "white",
+//     height: "28px",
+//     width: "78px",
+//     display: "flex",
+//     justifyContent: "center",
+//     alignItems: "center",
+//     "&:hover": {
+//       background: "#E41272",
+//     },
+//   },
+// });
 const ServiceCardV2 = ({ service, responsive }) => {
   const [navigateTo, setNavigateTo] = useState();
-  const classes = useStyles();
+  // const classes = useStyles();
 
   const navigate = useNavigate();
 
@@ -67,13 +67,13 @@ const ServiceCardV2 = ({ service, responsive }) => {
           <TbCurrencyTaka />
           {price}
         </h4>
-        <Button
-          variant="contained"
-          className={classes.gradientButton}
+        <button
+          // variant="contained"
+          className="special_profile_button"
           onClick={() => navigate(navigateTo)}
         >
           View
-        </Button>
+        </button>
       </div>
     </div>
   );

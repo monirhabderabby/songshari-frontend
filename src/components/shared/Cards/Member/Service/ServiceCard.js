@@ -1,28 +1,28 @@
-import { makeStyles } from "@material-ui/core/styles";
-import Button from "@mui/material/Button";
+// import { makeStyles } from "@material-ui/core/styles";
+// import Button from "@mui/material/Button";
 import { TbCurrencyTaka } from "react-icons/tb";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
 import { setIdForCancleOrder } from "../../../../../Redux/features/Service/orderSlice";
 
-const useStyles = makeStyles({
-  gradientButton: {
-    background: "#E41272",
-    borderRadius: "4px",
-    border: 0,
-    color: "white",
-    height: "28px",
-    width: "78px",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    "&:hover": {
-      background: "#E41272",
-    },
-  },
-});
+// const useStyles = makeStyles({
+//   gradientButton: {
+//     background: "#E41272",
+//     borderRadius: "4px",
+//     border: 0,
+//     color: "white",
+//     height: "28px",
+//     width: "78px",
+//     display: "flex",
+//     justifyContent: "center",
+//     alignItems: "center",
+//     "&:hover": {
+//       background: "#E41272",
+//     },
+//   },
+// });
 const ServiceCard = ({ service, status, responsive }) => {
-  const classes = useStyles();
+  // const classes = useStyles();
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -82,13 +82,13 @@ const ServiceCard = ({ service, status, responsive }) => {
           <TbCurrencyTaka />
           {price}
         </h4>
-        <Button
-          variant="contained"
-          className={classes.gradientButton}
+        <button
+          // variant="contained"
+          className="special_profile_button"
           onClick={handleRedirection}
         >
           View
-        </Button>
+        </button>
       </div>
     </div>
   );

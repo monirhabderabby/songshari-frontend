@@ -74,7 +74,7 @@ const FindPartnersHeader = () => {
             placeholder="Search user name.."
             ref={input}
             value={text}
-            onChange ={(e)=>setText(e.target.value)}
+            onChange={(e) => setText(e.target.value)}
           />
         </div>
       </div>
@@ -83,20 +83,20 @@ const FindPartnersHeader = () => {
         <NavLink
           style={{ boxShadow: "2px 2px 8px rgba(0, 0, 0, 0.1)" }}
           to="/find-partner/suggested"
-          className="w-[242px] bg-[#FFFFFF] text-[#000] font-semibold flex justify-center rounded items-center h-[50px]"
+          className="w-[242px] font-semibold flex justify-center special_profile_button_inactive items-center h-[50px]"
         >
           Suggested For You
         </NavLink>
         <NavLink
           style={{ boxShadow: "2px 2px 8px rgba(0, 0, 0, 0.1)" }}
-          className="bg-[#FFFFFF] h-[50px] font-semibold ml-[24px]  w-[105px] flex justify-center rounded items-center  text-[#000]"
+          className="h-[50px] font-semibold ml-[24px]  w-[105px] flex justify-center special_profile_button_inactive items-center"
           to="top"
         >
           Top
         </NavLink>
         <NavLink
           style={{ boxShadow: "2px 2px 8px rgba(0, 0, 0, 0.1)" }}
-          className="bg-[#FFFFFF] h-[50px] font-semibold ml-[24px]  w-[105px] flex justify-center rounded items-center  text-[#000]"
+          className="h-[50px] font-semibold ml-[24px]  w-[105px] flex justify-center special_profile_button_inactive items-center  "
           to="nearest"
         >
           Nearest

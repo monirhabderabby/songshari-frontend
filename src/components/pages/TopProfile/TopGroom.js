@@ -77,10 +77,7 @@ const TopGroom = () => {
           {content}
 
           <div className="text-center py-[40px] hidden md:block">
-            <Link
-              to="/find-partner"
-              className="bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] px-6 py-2 rounded-[4px] text-white"
-            >
+            <Link to="/find-partner" className="special_profile_button">
               See More
             </Link>
           </div>
