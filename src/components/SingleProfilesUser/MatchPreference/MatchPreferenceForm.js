@@ -50,19 +50,19 @@ export default function MatchPreferenceForm({ setMatchesModalOpen }) {
     useAddMatrimonyUserMatchPreferenceMutation();
 
   useEffect(() => {
-    fetch("json/district.json")
+    fetch("/json/district.json")
       .then((res) => res.json())
       .then((data) => setHomeTown(data));
   }, [setHomeTown]);
 
   useEffect(() => {
-    fetch("json/countries.json")
+    fetch("/json/countries.json")
       .then((res) => res.json())
       .then((data) => setCountries(data));
   }, []);
 
   useEffect(() => {
-    fetch("json/professions.json")
+    fetch("/json/professions.json")
       .then((res) => res.json())
       .then((data) => setProfessions(data));
   }, []);

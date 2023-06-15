@@ -90,7 +90,7 @@ export const PersonalDetails = ({ setPage, setHasSibling }) => {
   // hobbies
   const [hobbiesData, setHobbiesData] = useState([]);
   useEffect(() => {
-    fetch("json/hobby.json")
+    fetch("/json/hobby.json")
       .then((res) => res.json())
       .then((data) => setHobbiesData(data));
   }, []);
@@ -100,7 +100,7 @@ export const PersonalDetails = ({ setPage, setHasSibling }) => {
   const [zodiacSignValue, setZodiacSignValue] = useState("");
   const [zodiacSignSuggestion, setZodiacSignSuggestion] = useState("");
   useEffect(() => {
-    fetch("json/zodiacSign.json")
+    fetch("/json/zodiacSign.json")
       .then((res) => res.json())
       .then((data) => setZodiacSign(data));
   }, []);
@@ -109,7 +109,7 @@ export const PersonalDetails = ({ setPage, setHasSibling }) => {
   // Countries
   const [countries, setCountries] = useState([]);
   useEffect(() => {
-    fetch("json/countries.json")
+    fetch("/json/countries.json")
       .then((res) => res.json())
       .then((data) => setCountries(data));
   }, []);
@@ -130,7 +130,7 @@ export const PersonalDetails = ({ setPage, setHasSibling }) => {
   const [currentCountryValue, setCurrentCountryValue] = useState("");
 
   useEffect(() => {
-    fetch("json/district.json")
+    fetch("/json/district.json")
       .then((res) => res.json())
       .then((data) => {
         if (data) setHomeTown(data);
