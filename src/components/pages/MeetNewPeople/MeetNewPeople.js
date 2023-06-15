@@ -6,7 +6,7 @@ import MeetNewPeopleData from "./MeetNewPeopleData";
 const MeetNewPeople = () => {
     return (
         <>
-            <section className={meetNewPeople.howItWorkSection}>
+            <section className={`${meetNewPeople.howItWorkSection} font-Poppins`}>
                 <img
                     className={meetNewPeople.shape1}
                     src="https://shonshari.vercel.app/static/media/circle-shape.74c8d5f17fd43a586383.png"
@@ -16,7 +16,7 @@ const MeetNewPeople = () => {
                 <div className={meetNewPeople.MeetNewPeopleContainer}>
                     <div className="flex justify-center">
                         <div className="w-[50%] mx-auto">
-                            <div className="content">
+                            <div className="content font-Poppins">
                                 <div className="mb-[40px] text-center">
                                     <h6 className="text-[#ff317b] mb-[30px] text-[24px] font-bold">Meet Your Perfect Life Partner Today!</h6>
                                     <h2 className="text-[#ff317b] text-[25px] font-medium mb-[11px]">How Does It Work?</h2>

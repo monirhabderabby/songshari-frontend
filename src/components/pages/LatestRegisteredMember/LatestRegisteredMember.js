@@ -22,7 +22,7 @@ const LatestRegisteredMember = () => {
 
     return (
         <>
-            <section className={LatestRegisteredMemberCSS.latestRegisteredSection}>
+            <section className={`${LatestRegisteredMemberCSS.latestRegisteredSection} font-Poppins`}>
                 <img className={LatestRegisteredMemberCSS.shape} src={shape} alt="Not Available" />
                 <div className="max-w-[1200px] mx-auto">
                     <div className="flex justify-between items-center w-full px-0">
@@ -87,10 +87,10 @@ const LatestRegisteredMember = () => {
                                                         </span>
                                                     </div>
                                                     <div className="inner-content">
-                                                        <h4 className="text-[#fffff9]/70 text-[16px]">{data?.designation || "Not Added"}</h4>
+                                                        <h4 className="text-[#fffff9]/70 text-[12px]">{data?.designation || "Not Added"}</h4>
                                                     </div>
                                                     <div className="inner-content">
-                                                        <h4 className="text-[#fffff9]/70 text-[16px]">{data?.citizenShip[0] || "Not Added"}</h4>
+                                                        <h4 className="text-[#fffff9]/70 text-[12px]">{data?.citizenShip[0] || "Not Added"}</h4>
                                                     </div>
                                                 </div>
                                             </div>

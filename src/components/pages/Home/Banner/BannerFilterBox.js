@@ -85,7 +85,10 @@ const BannerFilterBox = () => {
 
     return (
         <Fragment>
-            <div style={{ boxShadow: "2px 2px 10px rgba(0, 0, 0, 0.12)" }} className="min-w-[280px] rounded-[12px] h-[400px] bg-[#FFFFFF] p-5">
+            <div
+                style={{ boxShadow: "2px 2px 10px rgba(0, 0, 0, 0.12)" }}
+                className="min-w-[280px] rounded-[12px] h-[400px] bg-[#FFFFFF] p-5 font-Poppins text-[12px]"
+            >
                 <div className="grid grid-cols-2">
                     <div>
                         <div>
