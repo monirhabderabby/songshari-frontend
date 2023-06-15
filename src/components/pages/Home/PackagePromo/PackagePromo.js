@@ -122,7 +122,7 @@ const PackagePromo = () => {
             <div className="w-full flex items-center justify-center">
               <button
                 onClick={() => navigate("/packages")}
-                className="mt-6 mx-auto rounded px-4 py-2 font-medium text-white bg-pink-600 text-lg font-george"
+                className="mt-6 mx-auto px-4 py-2 font-medium special_profile_button font-george"
               >
                 View All Packages
               </button>

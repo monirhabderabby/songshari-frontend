@@ -83,20 +83,38 @@ const FindPartnersHeader = () => {
         <NavLink
           style={{ boxShadow: "2px 2px 8px rgba(0, 0, 0, 0.1)" }}
           to="/find-partner/suggested"
-          className="w-[242px] font-semibold flex justify-center special_profile_button_inactive items-center h-[50px]"
+          className={({ isActive }) =>
+            `w-[242px] font-semibold flex justify-center ${
+              isActive
+                ? "special_profile_button"
+                : "special_profile_button_inactive"
+            } items-center h-[50px] mr-2`
+          }
         >
           Suggested For You
         </NavLink>
         <NavLink
           style={{ boxShadow: "2px 2px 8px rgba(0, 0, 0, 0.1)" }}
-          className="h-[50px] font-semibold ml-[24px]  w-[105px] flex justify-center special_profile_button_inactive items-center"
+          className={({ isActive }) =>
+            `w-[105px] font-semibold flex justify-center ${
+              isActive
+                ? "special_profile_button"
+                : "special_profile_button_inactive"
+            } items-center h-[50px] mx-2`
+          }
           to="top"
         >
           Top
         </NavLink>
         <NavLink
           style={{ boxShadow: "2px 2px 8px rgba(0, 0, 0, 0.1)" }}
-          className="h-[50px] font-semibold ml-[24px]  w-[105px] flex justify-center special_profile_button_inactive items-center  "
+          className={({ isActive }) =>
+            `w-[105px] font-semibold flex justify-center ${
+              isActive
+                ? "special_profile_button"
+                : "special_profile_button_inactive"
+            } items-center h-[50px] ml-2`
+          }
           to="nearest"
         >
           Nearest
