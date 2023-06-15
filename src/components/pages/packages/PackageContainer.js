@@ -15,6 +15,7 @@ import { SuccessSnackBar } from "../../ui/error/snackBar/SuccessSnackBar";
 const PackageContainer = () => {
     const [packages, setPackages] = useState([]);
     const [successSnackBarOpen, setSuccessSnackBarOpen] = useState(false);
+    const [hovered, setHovered] = useState(0);
     // const navigate = useNavigate();
     const { data, isLoading, error } = useGetAllPackagesQuery();
     console.log(data);
@@ -52,6 +53,8 @@ const PackageContainer = () => {
                             index={i}
                             user={profile?._id}
                             setSuccessSnackBarOpen={setSuccessSnackBarOpen}
+                            hovered={hovered}
+                            setHovered={setHovered}
                         />
                     ))}
                 </div>

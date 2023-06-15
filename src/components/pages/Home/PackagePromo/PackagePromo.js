@@ -19,6 +19,7 @@ const PackagePromo = () => {
     const [successSnackBarOpen, setSuccessSnackBarOpen] = useState(false);
     const [packages, setPackages] = useState([]);
     const [selectedPack, setSelectedPack] = useState(null);
+    const [hovered, setHovered] = useState(0);
     const navigate = useNavigate();
     const { data, isLoading, error } = useGetAllPackagesQuery();
     //   console.log(data?.data?.packages);
@@ -34,7 +35,7 @@ const PackagePromo = () => {
     return (
         <>
             <div className="max-w-[1200px] mx-auto mt-[100px] my-8">
-                <h6 className="text-[#5650ce] text-center text-5xl font-semibold font-Inter mb-6">Special Packages For You</h6>
+                <h6 className="text-[#5650ce] text-center text-5xl font-semibold font-george mb-[80px]">Special Packages For You</h6>
                 {isLoading && (
                     <div className="my-16">
                         <OvalLoader />
@@ -73,6 +74,8 @@ const PackagePromo = () => {
                                             user={profile?._id}
                                             setSuccessSnackBarOpen={setSuccessSnackBarOpen}
                                             setSelectedPack={setSelectedPack}
+                                            hovered={hovered}
+                                            setHovered={setHovered}
                                         />
                                     </SwiperSlide>
                                 ))}
@@ -100,6 +103,8 @@ const PackagePromo = () => {
                                             user={profile?._id}
                                             setSuccessSnackBarOpen={setSuccessSnackBarOpen}
                                             setSelectedPack={setSelectedPack}
+                                            hovered={hovered}
+                                            setHovered={setHovered}
                                         />
                                     </SwiperSlide>
                                 ))}
@@ -109,7 +114,7 @@ const PackagePromo = () => {
                         <div className="w-full flex items-center justify-center">
                             <button
                                 onClick={() => navigate("/packages")}
-                                className="mt-6 mx-auto rounded px-4 py-2 font-medium text-white bg-pink-600 text-lg font-Inter"
+                                className="mt-6 mx-auto rounded px-4 py-2 font-medium text-white bg-pink-600 text-lg font-george"
                             >
                                 View All Packages
                             </button>
