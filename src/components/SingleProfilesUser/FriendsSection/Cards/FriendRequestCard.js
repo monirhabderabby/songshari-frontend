@@ -68,13 +68,13 @@ export const FriendRequestCard = ({ friend, refetch, responsive }) => {
       </div>
       <div className="flex flex-col gap-y-1 md:gap-y-[14px]">
         <button
-          className="h-7 md:h-[42px] w-20 md:w-[111px] text-sm md:text-[17px] font-normal font-Inter cursor-pointer bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] hover:bg-[linear-gradient(166deg,rgb(242,40,118)_20%,rgb(148,45,217)_100%)]  rounded-[50px] text-white"
+          className="special_profile_button"
           onClick={() => acceptHandler(friend?._id)}
         >
           Accept
         </button>
         <button
-          className="h-7 md:h-[42px] w-20 md:w-[111px] border-[1px] border-[rgba(0,0,0,0.15)] hover:border-[rgba(0,0,0,0.11)] cursor-pointer rounded-[50px] text-[#E41272] text-sm md:text-[17px] font-normal font-Inter"
+          className="special_profile_button_inactive"
           onClick={() => rejectFriendReqeustHandler(friend?._id)}
         >
           Reject

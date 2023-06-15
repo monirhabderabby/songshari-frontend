@@ -20,7 +20,7 @@ const SingleShowcasePhoto = ({
           }}
         />
         {selectedPhoto?._id === photo?._id && (
-          <button className="text-white text-[10px] font-fira font-medium bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] flex justify-center items-center px-[8px] py-[6px] rounded-[10px] absolute top-6 right-6">
+          <button className="text-[10px] font-fira font-medium special_profile_button px-[8px] py-[6px] absolute top-6 right-6">
             Selected
           </button>
         )}

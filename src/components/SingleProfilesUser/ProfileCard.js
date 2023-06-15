@@ -108,7 +108,7 @@ const ProfileCard = ({ data, isLoading }) => {
             className="hidden"
             onChange={coverPhotoUploadHandler}
           />
-          <div className="h-[135px] absolute -bottom-[50%] left-[110px] w-[135px] z-50 bg-white shadow-sm border-[1px] rounded-full flex justify-center items-center">
+          <div className="h-[135px] absolute -bottom-[50%] left-[110px] w-[135px] bg-white shadow-sm border-[1px] rounded-full flex justify-center items-center">
             <label
               htmlFor="uploadPhoto"
               style={{

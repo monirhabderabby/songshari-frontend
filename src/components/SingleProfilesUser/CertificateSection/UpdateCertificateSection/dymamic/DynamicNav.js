@@ -8,10 +8,10 @@ const DynamicNav = () => {
         <NavLink
           to={`/profile/educationalCertificate/${id}`}
           className={({ isActive }) =>
-            `bg-[#D0DBFF] py-[13px] rounded-[10px] text-center ${
+            ` text-center ${
               isActive
-                ? "lg:font-semibold md:font-medium font-normal lg:text-2xl md:text-xl text-lg text-[#FFFFFF] bg-gradient-to-r from-[#E52982] to-[#A72BC3] whitespace-nowrap"
-                : "lg:text-2xl md:text-xl text-lg text-[#000000] bg-[#D0DBFF] whitespace-nowrap"
+                ? "special_profile_button"
+                : "special_profile_button_inactive"
             }`
           }
         >
@@ -20,10 +20,10 @@ const DynamicNav = () => {
         <NavLink
           to={`/profile/professionalCertificate/${id}`}
           className={({ isActive }) =>
-            `bg-[#D0DBFF] py-[13px] rounded-[10px] text-center ${
+            ` text-center ${
               isActive
-                ? "lg:font-semibold md:font-medium font-normal lg:text-2xl md:text-xl text-lg text-[#FFFFFF] bg-gradient-to-r from-[#E52982] to-[#A72BC3] whitespace-nowrap"
-                : "lg:text-2xl md:text-xl text-lg text-[#000000] bg-[#D0DBFF] whitespace-nowrap"
+                ? "special_profile_button"
+                : "special_profile_button_inactive"
             }`
           }
         >
@@ -44,10 +44,10 @@ const DynamicNav = () => {
         <NavLink
           to={`/profile/marriageCertificate/${id}`}
           className={({ isActive }) =>
-            `bg-[#D0DBFF] py-[13px] rounded-[10px] text-center ${
+            ` text-center ${
               isActive
-                ? "lg:font-semibold md:font-medium font-normal lg:text-2xl md:text-xl text-lg text-[#FFFFFF] bg-gradient-to-r from-[#E52982] to-[#A72BC3] whitespace-nowrap"
-                : "lg:text-2xl md:text-xl text-lg text-[#000000] bg-[#D0DBFF] whitespace-nowrap"
+                ? "special_profile_button"
+                : "special_profile_button_inactive"
             }`
           }
         >

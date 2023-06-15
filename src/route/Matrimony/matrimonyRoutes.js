@@ -7,7 +7,7 @@ import { OTP } from "../../components/pages/Authentications/OTP/OTP";
 import RegAsProfessional from "../../components/pages/Authentications/RegAsProfessional";
 import Signup from "../../components/pages/Authentications/SignUp";
 import Contact from "../../components/pages/Contact/Contact";
-import { DynamicProfilePage } from "../../components/pages/DynamicProfilePage/DynamicProfilePage";
+// import { DynamicProfilePage } from "../../components/pages/DynamicProfilePage/DynamicProfilePage";
 import { OurTeams } from "../../components/pages/OurTeams/OurTeams";
 import Packages from "../../components/pages/packages/Packages";
 import { Privacy } from "../../components/pages/Privacy/Privacy";

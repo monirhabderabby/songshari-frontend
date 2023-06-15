@@ -26,3 +26,11 @@
     padding: 5px 15px;
     border-radius: 50px;
 }
+.special_profile_button_inactive {
+    background: white;
+    /* box-shadow: 0px 5px 20px 0px rgb(139 122 132 / 50%); */
+    padding: 5px 15px;
+    border-width: 2px;
+    border-radius: 50px;
+    border-color:rgba(233, 11, 200, 0.6979166666666667)
+}
