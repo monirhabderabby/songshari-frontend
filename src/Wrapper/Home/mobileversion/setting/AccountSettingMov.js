@@ -11,6 +11,7 @@ import Typography from "@mui/material/Typography";
 import { Collapse } from "antd";
 import { decodeToken } from "react-jwt";
 import { HiOutlineMail } from "react-icons/hi";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 
 // components
 import { AiOutlineUsergroupAdd } from "react-icons/ai";
@@ -26,12 +27,13 @@ export const AccountSettingMov = () => {
   // user services link
   const customExpandIcon = ({ isActive, onClick }) => (
     <div>
-      <i
+      <ArrowForwardIosIcon
         onClick={onClick}
-        className={`text-[17px] fa-solid fa-angle-right mr-[7px] ${
+        className={`text-[17px] fa-solid fa-angle-right mr-[32px] ${
           isActive && "rotate-90"
         }`}
-      ></i>
+        fontSize="12px"
+      />
     </div>
   );
 
@@ -64,7 +66,7 @@ export const AccountSettingMov = () => {
           <div></div>
           <div></div>
           <div>
-            <i className="fa-solid fa-angle-right ml-8"></i>
+            <ArrowForwardIosIcon fontSize="12px" />
           </div>
         </div>
       </Link>
@@ -75,7 +77,7 @@ export const AccountSettingMov = () => {
             <h1 className="whitespace-nowrap">My Account</h1>
           </div>
           <div>
-            <i className="fa-solid fa-angle-right ml-8"></i>
+            <ArrowForwardIosIcon fontSize="12px" />
           </div>
         </div>
       </Link>
@@ -94,7 +96,7 @@ export const AccountSettingMov = () => {
           <div></div>
           <div></div>
           <div>
-            <i className="fa-solid fa-angle-right ml-8"></i>
+            <ArrowForwardIosIcon fontSize="12px" />
           </div>
         </div>
       </Link>
@@ -111,7 +113,7 @@ export const AccountSettingMov = () => {
           <div></div>
           <div></div>
           <div>
-            <i className="fa-solid fa-angle-right ml-8"></i>
+            <ArrowForwardIosIcon fontSize="12px" />
           </div>
         </div>
       </Link>
@@ -128,7 +130,7 @@ export const AccountSettingMov = () => {
           <div></div>
           <div></div>
           <div>
-            <i className="fa-solid fa-angle-right ml-8"></i>
+            <ArrowForwardIosIcon fontSize="12px" />
           </div>
         </div>
       </Link>
@@ -147,7 +149,7 @@ export const AccountSettingMov = () => {
           <div></div>
           <div></div>
           <div>
-            <i className="fa-solid fa-angle-right ml-8"></i>
+            <ArrowForwardIosIcon fontSize="12px" />
           </div>
         </div>
       </Link>
@@ -167,7 +169,7 @@ export const AccountSettingMov = () => {
             <div></div>
             <div></div>
             <div>
-              <i className="fa-solid fa-angle-right ml-8"></i>
+              <ArrowForwardIosIcon fontSize="12px" />
             </div>
           </div>
         </Link>
@@ -233,7 +235,7 @@ export const AccountSettingMov = () => {
             <div></div>
             <div></div>
             <div>
-              <i className="fa-solid fa-angle-right ml-8"></i>
+              <ArrowForwardIosIcon fontSize="12px" />
             </div>
           </div>
         </Link>
@@ -254,7 +256,7 @@ export const AccountSettingMov = () => {
           <div></div>
           <div></div>
           <div>
-            <i className="fa-solid fa-angle-right ml-8"></i>
+            <ArrowForwardIosIcon fontSize="12px" />
           </div>
         </div>
       </Link>
@@ -273,7 +275,7 @@ export const AccountSettingMov = () => {
           <div></div>
           <div></div>
           <div>
-            <i className="fa-solid fa-angle-right ml-8"></i>
+            <ArrowForwardIosIcon fontSize="12px" />
           </div>
         </div>
       </Link>

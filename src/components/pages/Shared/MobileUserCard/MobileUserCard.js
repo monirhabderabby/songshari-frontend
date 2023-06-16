@@ -1,6 +1,9 @@
 // configuration, ex: react-router
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import PersonIcon from "@mui/icons-material/Person";
+import ChatIcon from "@mui/icons-material/Chat";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 
 // Third party packages
 import { AiFillHeart } from "react-icons/ai";
@@ -59,9 +62,8 @@ export const MobileUserCard = ({ profile}) => {
         data-aos-duration="2000"
         className="md:hidden"
       >
-        {profile&& (
+        {profile && (
           <div className="h-[350px] w-[324px]  relative group overflow-hidden Suggested-card mx-3">
-           
             <img
               className="h-[200px] rounded-tr-[12px] bg-white rounded-tl-[12px] rounded-bl-[12px] rounded-br-[12px] object-cover w-full"
               src={profilePhoto}
@@ -69,9 +71,7 @@ export const MobileUserCard = ({ profile}) => {
             />
             <div className="absolute h-[100px] w-full top-[200px] right-0 inset-0 bg-white opacity-90 text-black px-4 py-2 font-serif group-hover:top-[370px] transition ease-out duration-500 rounded-bl-[12px] rounded-br-[12px]">
               <div className="flex gap-x-4 items-center">
-                <p className="text-[20px]  font-bold drop-shadow-lg">
-                  {name}
-                </p>
+                <p className="text-[20px]  font-bold drop-shadow-lg">{name}</p>
                 <p className="text-[17px] ml-[40px] text-black">
                   {ageCalculator(
                     profile?.dateOfBirth ? profile?.dateOfBirth : 0
@@ -114,22 +114,16 @@ export const MobileUserCard = ({ profile}) => {
                 <div className="h-[30px] w-full flex items-center justify-evenly absolute -bottom-[40px]">
                   <p
                     onClick={() => navigate(`/profile/${profile?._id}`)}
-                    className="bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] rounded-full cursor-pointer"
+                    className="bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] rounded-full cursor-pointer p-3"
                   >
-                    <i
-                      className="fas fa-user text-white p-3"
-                      aria-hidden="true"
-                    ></i>
+                    <PersonIcon fontSize="small" style={{ color: "white" }} />
                   </p>
 
                   <a
                     href="!#"
-                    className="bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] rounded-full"
+                    className="bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] p-3 rounded-full"
                   >
-                    <i
-                      className="fas fa-comment text-white p-3"
-                      aria-hidden="true"
-                    ></i>
+                    <ChatIcon fontSize="small" style={{ color: "white" }} />
                   </a>
                   <div className="bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] rounded-full h-[40px] w-[40px] flex items-center justify-center">
                     {likeLoading ? (
@@ -137,11 +131,10 @@ export const MobileUserCard = ({ profile}) => {
                     ) : likeSent ? (
                       <AiFillHeart className="text-green-400 w-[20px] h-[20px] text-xl transition-all duration-500 " />
                     ) : (
-                      <i
-                        className="fas fa-heart text-white"
-                        aria-hidden="true"
+                      <FavoriteIcon fontSize="small"
+                        style={{ color: "white" }}
                         onClick={() => addProfileLike()}
-                      ></i>
+                      />
                     )}
                   </div>
                 </div>

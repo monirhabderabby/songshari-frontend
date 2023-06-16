@@ -7,6 +7,7 @@ import { useGetProfileDetailsQuery } from "../../../../Redux/features/userInfo/u
 import { BottomNav } from "../../../../Wrapper/Home/mobileversion/BottomNav";
 import { MobileBackButton } from "../../../shared/Components/MobileBackButton";
 import MobileDynamicProfileHeader from "./MobileDynamicProfileHeader";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 
 export const MobileDynamicProfile = () => {
   // hooks variable
@@ -50,7 +51,7 @@ export const MobileDynamicProfile = () => {
               <h1 className="pl-8">Connections</h1>
             </div>
             <div>
-              <i className="fa-solid fa-angle-right ml-10"></i>
+              <ArrowForwardIosIcon fontSize="12px" />
             </div>
           </div>
         </Link>
@@ -61,7 +62,7 @@ export const MobileDynamicProfile = () => {
                 <h1 className="pl-8">Activity</h1>
               </div>
               <div>
-                <i className="fa-solid fa-angle-right ml-10"></i>
+                <ArrowForwardIosIcon fontSize="12px" />
               </div>
             </div>
           </Link>
@@ -72,7 +73,7 @@ export const MobileDynamicProfile = () => {
               <h1 className="pl-8">Gallery</h1>
             </div>
             <div>
-              <i className="fa-solid fa-angle-right ml-10"></i>
+              <ArrowForwardIosIcon fontSize="12px" />
             </div>
           </div>
         </Link>
@@ -83,7 +84,7 @@ export const MobileDynamicProfile = () => {
                 <h1 className="pl-8">Services</h1>
               </div>
               <div>
-                <i className="fa-solid fa-angle-right ml-10"></i>
+                <ArrowForwardIosIcon fontSize="12px" />
               </div>
             </div>
           </Link>
@@ -98,7 +99,7 @@ export const MobileDynamicProfile = () => {
             </p>
           </div>
           <div>
-            <i className="fa-solid fa-angle-right ml-10"></i>
+            <ArrowForwardIosIcon fontSize="12px" />
           </div>
         </div>
 
@@ -108,7 +109,7 @@ export const MobileDynamicProfile = () => {
               <h1 className="pl-8">Professional Details</h1>
             </div>
             <div>
-              <i className="fa-solid fa-angle-right ml-10"></i>
+              <ArrowForwardIosIcon fontSize="12px" />
             </div>
           </div>
         </Link>
@@ -118,7 +119,7 @@ export const MobileDynamicProfile = () => {
               <h1 className="pl-8">Educational Details</h1>
             </div>
             <div>
-              <i className="fa-solid fa-angle-right ml-10"></i>
+              <ArrowForwardIosIcon fontSize="12px" />
             </div>
           </div>
         </Link>
@@ -128,7 +129,7 @@ export const MobileDynamicProfile = () => {
               <h1 className="pl-8">Physical Details</h1>
             </div>
             <div>
-              <i className="fa-solid fa-angle-right ml-10"></i>
+              <ArrowForwardIosIcon fontSize="12px" />
             </div>
           </div>
         </Link>
@@ -139,7 +140,7 @@ export const MobileDynamicProfile = () => {
                 <h1 className="pl-8">Family Details</h1>
               </div>
               <div>
-                <i className="fa-solid fa-angle-right ml-10"></i>
+                <ArrowForwardIosIcon fontSize="12px" />
               </div>
             </div>
           </Link>
@@ -151,7 +152,7 @@ export const MobileDynamicProfile = () => {
                 <h1 className="pl-8">Siblings Details</h1>
               </div>
               <div>
-                <i className="fa-solid fa-angle-right ml-10"></i>
+                <ArrowForwardIosIcon fontSize="12px" />
               </div>
             </div>
           </Link>
@@ -162,7 +163,7 @@ export const MobileDynamicProfile = () => {
               <h1 className="pl-8">Other Details</h1>
             </div>
             <div>
-              <i className="fa-solid fa-angle-right ml-10"></i>
+              <ArrowForwardIosIcon fontSize="12px" />
             </div>
           </div>
         </Link>
@@ -172,7 +173,7 @@ export const MobileDynamicProfile = () => {
               <h1 className="pl-8">Certificates</h1>
             </div>
             <div>
-              <i className="fa-solid fa-angle-right ml-10"></i>
+              <ArrowForwardIosIcon fontSize="12px" />
             </div>
           </div>
         </Link>

@@ -2,6 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { BottomNav } from "../BottomNav";
 import { AccountSettingMov } from "./AccountSettingMov";
+import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
+
 
 export const Setting = () => {
     return (
@@ -9,7 +11,7 @@ export const Setting = () => {
             <Link to="/">
                 <div className="grid grid-cols-6 mt-5">
                     <div className="setting-mov col-span-1">
-                        <i className="fa-solid fa-chevron-left ml-4  text-xl"></i>
+                        <ArrowBackIosIcon />
                     </div>
                     <div className="col-span-4">
                         <h1 className="text-center profile-tit">Setting</h1>

@@ -1,6 +1,7 @@
 // configuration
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 
 // components
 import { useGetProfileDetailsWIthAuthQuery } from "../../../Redux/features/userInfo/userApi";
@@ -21,7 +22,7 @@ export const MobileAccordionLink = () => {
           </p>
         </div>
         <div>
-          <i className="fa-solid fa-angle-right ml-10"></i>
+          <ArrowForwardIosIcon fontSize="12px" />
         </div>
       </div>
 
@@ -35,7 +36,7 @@ export const MobileAccordionLink = () => {
           </p>
         </div>
         <div>
-          <i className="fa-solid fa-angle-right ml-10"></i>
+          <ArrowForwardIosIcon fontSize="12px" />
         </div>
       </div>
 
@@ -49,7 +50,7 @@ export const MobileAccordionLink = () => {
           </p>
         </div>
         <div>
-          <i className="fa-solid fa-angle-right ml-10"></i>
+          <ArrowForwardIosIcon fontSize="12px" />
         </div>
       </div>
 
@@ -63,7 +64,7 @@ export const MobileAccordionLink = () => {
           </p>
         </div>
         <div>
-          <i className="fa-solid fa-angle-right ml-10"></i>
+          <ArrowForwardIosIcon fontSize="12px" />
         </div>
       </div>
       {data?.role === "member" && (
@@ -77,7 +78,7 @@ export const MobileAccordionLink = () => {
             </p>
           </div>
           <div>
-            <i className="fa-solid fa-angle-right ml-10"></i>
+            <ArrowForwardIosIcon fontSize="12px" />
           </div>
         </div>
       )}
@@ -92,7 +93,7 @@ export const MobileAccordionLink = () => {
             </p>
           </div>
           <div>
-            <i className="fa-solid fa-angle-right ml-10"></i>
+            <ArrowForwardIosIcon fontSize="12px" />
           </div>
         </div>
       )}
@@ -106,7 +107,7 @@ export const MobileAccordionLink = () => {
           </p>
         </div>
         <div>
-          <i className="fa-solid fa-angle-right ml-10"></i>
+          <ArrowForwardIosIcon fontSize="12px" />
         </div>
       </div>
     </div>
