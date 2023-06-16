@@ -12,7 +12,7 @@ const DeactivateForm = ({ register, onSubmit, handleSubmit, isLoading,error }) =
           Deactivate for
         </label>
         <select
-          {...register("deactivatedFor",{ required: true })}
+          {...register("deactivatedFor", { required: true })}
           className="block appearance-none w-full border border-gray-400 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:border-gray-500"
           id="option1"
         >
@@ -30,7 +30,7 @@ const DeactivateForm = ({ register, onSubmit, handleSubmit, isLoading,error }) =
           Why do you want to deactivate
         </label>
         <select
-          {...register("reason",{ required: true })}
+          {...register("reason", { required: true })}
           className="block appearance-none w-full border border-gray-400 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:border-gray-500"
           id="option2"
           // value={option2}
@@ -65,32 +65,36 @@ const DeactivateForm = ({ register, onSubmit, handleSubmit, isLoading,error }) =
           </option>
         </select>
       </div>
-      {data?.password && <div className="mb-4">
-        <label className="block text-gray-700 font-bold mb-2" htmlFor="pass">
-          Enter your current password
-        </label>
-        <input
-          {...register("password")}
-          className="block appearance-none w-full border border-gray-400 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:border-gray-500"
-          type="password"
-          placeholder="Enter your password"
-          id="pass"
-        />
-      </div>}
+      {data?.password && (
+        <div className="mb-4">
+          <label className="block text-gray-700 font-bold mb-2" htmlFor="pass">
+            Enter your current password
+          </label>
+          <input
+            {...register("password")}
+            className="block appearance-none w-full border border-gray-400 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:border-gray-500"
+            type="password"
+            placeholder="Enter your password"
+            id="pass"
+          />
+        </div>
+      )}
 
       <div className="flex items-center justify-center">
-        {!isLoading && <button
-          className="bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] w-56 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-          type="submit"
-        >
-          Submit
-        </button>}
+        {!isLoading && (
+          <button
+            className="special_profile_button w-56 font-bold py-2 px-4 "
+            // type="submit"
+          >
+            Submit
+          </button>
+        )}
 
-        {isLoading && <button
-          className="bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] w-56  text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-        >
-          <CircularProgress size={19}/> 
-        </button>}
+        {isLoading && (
+          <button className="special_profile_button w-56 font-bold py-2 px-4 ">
+            <CircularProgress size={19} />
+          </button>
+        )}
       </div>
       {error && <Error message={error?.data?.message} />}
     </form>
