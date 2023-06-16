@@ -12,6 +12,7 @@ import {
   useAddFriendMutation,
   useLikeSingleProfileMutation,
 } from "../../../Redux/features/connections/connectionApi";
+import customFunc from "../../../assets/utilities/customFunc";
 
 export const MayLikeSingle = ({ data }) => {
   const [sent, setSent] = useState(false);
@@ -21,6 +22,9 @@ export const MayLikeSingle = ({ data }) => {
     useAddFriendMutation();
   const [likeSingleProfile, { data: likeResponse, isLoading: likeLoading }] =
     useLikeSingleProfileMutation();
+
+  // profile photo decision maker
+  const { profilePhotoDecisionMaker } = customFunc;
 
   const handleSentRequest = async () => {
     await addFriend(data?._id);
@@ -56,11 +60,9 @@ export const MayLikeSingle = ({ data }) => {
         <div
           className="w-[67px] h-[67px] rounded-full bg-cover bg-center"
           style={{
-            backgroundImage: `url(${
+            backgroundImage: `url(${profilePhotoDecisionMaker(
               data?.profilePhoto
-                ? data?.profilePhoto
-                : "https://cdn-icons-png.flaticon.com/512/194/194938.png"
-            })`,
+            )})`,
           }}
         ></div>
         <div className="flex items-center gap-x-[10px]">

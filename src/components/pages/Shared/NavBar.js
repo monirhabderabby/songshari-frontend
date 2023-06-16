@@ -30,6 +30,7 @@ import { removeVerificationData } from "../../../Redux/features/userInfo/verific
 import NavBarCSS from "../../../assets/css/navbar.module.css";
 import { coursesBaseUrl, shopBaseUrl } from "../../../config";
 import { LanguageSwitcher } from "./LanguageSwitcher";
+import customFunc from "../../../assets/utilities/customFunc";
 
 const NavBar = ({ bg }) => {
   const [showNav, setShowNav] = useState(true);
@@ -43,9 +44,9 @@ const NavBar = ({ bg }) => {
   // js variable
   let { profilePhoto } = userInfo || {};
 
-  profilePhoto = profilePhoto
-    ? profilePhoto
-    : "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png";
+  // profile photo decision maker
+  const { profilePhotoDecisionMaker } = customFunc;
+  profilePhoto = profilePhotoDecisionMaker(profilePhoto);
 
   const allMenu = [
     {

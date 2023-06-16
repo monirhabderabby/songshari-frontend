@@ -16,6 +16,7 @@ import { useGetProfileDetailsWIthAuthQuery } from "../../../Redux/features/userI
 import useDocumentTitle from "../../../assets/utilities/useDocumentTitle";
 import { AllPostsOfLoggedInUser } from "./AllPostsOfLoggedInUser/AllPostsOfLoggedInUser";
 import GoActivityPremiumCard from "./GoActivityPremiumCard";
+import customFunc from "../../../assets/utilities/customFunc";
 
 const SingleUserActivity = () => {
   // hook variable declaration
@@ -42,9 +43,8 @@ const SingleUserActivity = () => {
 
   // decision making about profile photo
   let profile;
-  profile = profilePhoto
-    ? profilePhoto
-    : "https://i.postimg.cc/Hn3ghQJn/images.jpg";
+  const { profilePhotoDecisionMaker } = customFunc;
+  profile = profilePhotoDecisionMaker(profilePhoto);
 
   // function declarations
   const addPost = async (event) => {
