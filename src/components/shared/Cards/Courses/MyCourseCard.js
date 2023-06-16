@@ -27,7 +27,7 @@ export const MyCourseCard = ({ item }) => {
         content = (
             <Link
                 className="text-[12px] ring-1 ring-pink-200 px-3 py-[2px] rounded-[4px] hover:bg-pink-400 hover:text-white duration-300"
-                to={`/course/review/${_id}`}
+                to={`/sendReview/${_id}`}
                 state={{ from: location }}
             >
                 Send Review

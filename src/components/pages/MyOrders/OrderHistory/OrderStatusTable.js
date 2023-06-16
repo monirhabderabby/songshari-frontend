@@ -13,7 +13,7 @@ export const OrderStatusTable = ({ order }) => {
         <table className="w-full mt-[15px] lg:mt-[20px]">
             <thead className="text-left flex justify-between pb-[6px] border-b-2 text-[12px] lg:text-[16px]">
                 <tr className="w-full flex justify-between">
-                    <th>Review</th>
+                    <th className="hidden lg:block">Review</th>
                     <th className="font-medium font-Inter text-center">Product</th>
                     <th className="font-medium font-Inter text-center">Quantity</th>
                     <th className="font-medium font-Inter text-center">Price</th>
