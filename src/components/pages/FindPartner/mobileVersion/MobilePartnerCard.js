@@ -10,6 +10,7 @@ import { ageCalculator } from "../../../../assets/utilities/AgeCalculation/ageCa
 import { useLikeSingleProfileMutation } from "../../../../Redux/features/connections/connectionApi";
 import GoPremium from "../../../shared/Package/GoPremium";
 import { useGetProfileDetailsWIthAuthQuery } from "../../../../Redux/features/userInfo/userApi";
+import customFunc from "../../../../assets/utilities/customFunc";
 
 const message = "If you wont to access kazi you need to buy premium package";
 
@@ -37,9 +38,9 @@ export const MobilePartnerCard = ({ user, role }) => {
   // profile photo
   let { profilePhoto } = user || {};
 
-  profilePhoto = profilePhoto
-    ? profilePhoto
-    : "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png";
+  // profile photo decision maker
+  const { profilePhotoDecisionMaker } = customFunc;
+  profilePhoto = profilePhotoDecisionMaker(profilePhoto);
 
   // function declaration
   const addProfileLike = async () => {

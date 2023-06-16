@@ -7,6 +7,7 @@ import moment from "moment";
 
 // components
 import tick from "../../../../assets/images/icons/tick.png";
+import customFunc from "../../../../assets/utilities/customFunc";
 
 export const FriendCard = ({ friend, responsive }) => {
   const navigate = useNavigate();
@@ -20,6 +21,9 @@ export const FriendCard = ({ friend, responsive }) => {
     ? (dynamicRoute = `/mobileprofile/${friend?._id}`)
     : (dynamicRoute = `/profile/${friend?._id}`);
 
+  // profile photo decision maker
+  const { profilePhotoDecisionMaker } = customFunc;
+
   return (
     <div className="p-3 md:p-[21px] h-20 md:h-[141px] w-full mx-auto bg-white shadow-[2px_2px_8px_rgba(0,0,0,0.12)] rounded-[15px] flex justify-between items-center">
       <div className="h-full flex items-center">
@@ -27,11 +31,9 @@ export const FriendCard = ({ friend, responsive }) => {
           onClick={() => navigate(dynamicRoute)}
           className="w-[40px] h-[40px] md:w-[83px] md:h-[100px] rounded-full md:rounded-[15px] mr-2 md:mr-[21px] bg-center bg-cover cursor-pointer"
           style={{
-            backgroundImage: `url(${
+            backgroundImage: `url(${profilePhotoDecisionMaker(
               friend?.profilePhoto
-                ? friend?.profilePhoto
-                : "https://placeimg.com/192/192/people"
-            })`,
+            )})`,
           }}
         ></div>
         <div>
@@ -49,7 +51,10 @@ export const FriendCard = ({ friend, responsive }) => {
           </span>
         </div>
       </div>
-      <button disabled className={`text-xs px-2 md:text-md special_profile_button`}>
+      <button
+        disabled
+        className={`text-xs px-2 md:text-md special_profile_button`}
+      >
         Connected
       </button>
     </div>
