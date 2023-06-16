@@ -1,6 +1,9 @@
 // configuration, ex: react-router
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import PersonIcon from "@mui/icons-material/Person";
+import ChatIcon from "@mui/icons-material/Chat";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 
 // Third party packages
 import { AiFillHeart } from "react-icons/ai";
@@ -158,23 +161,17 @@ export const UserCard = ({ profile, role }) => {
                   <div className="h-[30px] w-full flex items-center justify-evenly absolute -bottom-[40px]">
                     <p
                       onClick={goToProfile}
-                      className="bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] rounded-full cursor-pointer"
+                      className="bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] rounded-full p-3 cursor-pointer"
                     >
-                      <i
-                        className="fas fa-user text-white p-3"
-                        aria-hidden="true"
-                      ></i>
+                      <PersonIcon style={{ color: "white" }} />
                     </p>
 
                     <span
                       onClick={() => setShowPopup(true)}
                       href="!#"
-                      className="bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] rounded-full"
+                      className="bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] rounded-full p-3"
                     >
-                      <i
-                        className="fas fa-comment text-white p-3"
-                        aria-hidden="true"
-                      ></i>
+                      <ChatIcon style={{ color: "white" }} />
                     </span>
                     <div className="bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] rounded-full h-[40px] w-[40px] flex items-center justify-center">
                       {likeLoading ? (
@@ -182,11 +179,10 @@ export const UserCard = ({ profile, role }) => {
                       ) : likeSent ? (
                         <AiFillHeart className="text-green-400 w-[20px] h-[20px] text-xl transition-all duration-500 " />
                       ) : (
-                        <i
-                          className="fas fa-heart text-white"
-                          aria-hidden="true"
+                        <FavoriteIcon
+                          style={{ color: "white" }}
                           onClick={() => addProfileLike()}
-                        ></i>
+                        />
                       )}
                     </div>
                   </div>
@@ -257,22 +253,16 @@ export const UserCard = ({ profile, role }) => {
                   <div className="h-[30px] w-full flex items-center justify-evenly absolute -bottom-[40px]">
                     <p
                       onClick={goToMobileProfile}
-                      className="bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] rounded-full cursor-pointer"
+                      className="bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] rounded-full cursor-pointer p-3"
                     >
-                      <i
-                        className="fas fa-user text-white p-3"
-                        aria-hidden="true"
-                      ></i>
+                      <PersonIcon style={{ color: "white" }} />
                     </p>
 
                     <span
                       onClick={() => setShowPopup(true)}
-                      className="bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] rounded-full"
+                      className="bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] rounded-full p-3"
                     >
-                      <i
-                        className="fas fa-comment text-white p-3"
-                        aria-hidden="true"
-                      ></i>
+                      <ChatIcon style={{ color: "white" }} />
                     </span>
                     <div className="bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] rounded-full h-[40px] w-[40px] flex items-center justify-center">
                       {likeLoading ? (
@@ -280,11 +270,10 @@ export const UserCard = ({ profile, role }) => {
                       ) : likeSent ? (
                         <AiFillHeart className="text-green-400 w-[20px] h-[20px] text-xl transition-all duration-500 " />
                       ) : (
-                        <i
-                          className="fas fa-heart text-white"
-                          aria-hidden="true"
+                        <FavoriteIcon
+                          style={{ color: "white" }}
                           onClick={() => addProfileLike()}
-                        ></i>
+                        />
                       )}
                     </div>
                   </div>

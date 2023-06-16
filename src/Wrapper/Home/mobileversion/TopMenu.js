@@ -7,6 +7,9 @@ import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import { useDispatch, useSelector } from "react-redux";
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import NotificationsIcon from "@mui/icons-material/Notifications";
+import MenuIcon from "@mui/icons-material/Menu";
 
 // components
 import removeCookie from "../../../Helper/cookies/removeCookie";
@@ -68,7 +71,8 @@ export const TopMenu = () => {
               >
                 <span className="text-black font-bold">
                   {" "}
-                  {name} <i className="fa-solid fa-angle-down"></i>
+                  {name}
+                  <KeyboardArrowDownIcon />
                 </span>
               </Button>
             </div>
@@ -90,7 +94,8 @@ export const TopMenu = () => {
               >
                 <span className="text-black font-bold">
                   {" "}
-                  Shongshari.com <i className="fa-solid fa-angle-down"></i>
+                  Shongshari.com
+                  <KeyboardArrowDownIcon />
                 </span>
               </Button>
             </div>
@@ -134,11 +139,11 @@ export const TopMenu = () => {
         </div>
         <div className="col-span-1 mt-2">
           <Link to="/notifications">
-            <i className="fa-regular fa-bell mr-4"></i>
+            <NotificationsIcon fontSize="small" />
           </Link>
           <Link to="/setting">
             {" "}
-            <i className="fa-solid fa-bars"></i>
+            <MenuIcon fontSize="small" />
           </Link>
         </div>
       </div>
