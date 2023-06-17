@@ -1,8 +1,10 @@
 import moment from "moment";
 import React from "react";
+import customFunc from "../../../../../../assets/utilities/customFunc";
 
 export const SingleSupportDetailesBody = ({ ticket }) => {
     const { replies } = ticket || {};
+    const { profilePhotoDecisionMaker } = customFunc;
 
     let content;
     if (replies?.length === 0) {
@@ -11,12 +13,11 @@ export const SingleSupportDetailesBody = ({ ticket }) => {
         content = (
             <div className="pt-[20px]">
                 {replies?.map(item => {
-                    const { images, message, role, _id, createdAt } = item || {};
-                    console.log(item);
+                    const { images, message, role, _id, createdAt, profilePhoto } = item || {};
                     if (!role.includes("admin")) {
                         return (
                             <div key={_id} className="flex gap-x-[20px] my-[10px]">
-                                <img className="w-[40px] h-[40px] rounded-full" src={images[0]?.url} alt="profile" />
+                                <img className="w-[40px] h-[40px] rounded-full" src={profilePhotoDecisionMaker(profilePhoto)} alt="profile" />
                                 <div className="flex flex-col items-start gap-y-[5px]">
                                     {images?.length > 0 && <img className="w-full lg:w-1/2" src={images[0]?.url} alt="problemImage" />}
                                     <p className="bg-gray-100 p-[10px] rounded-[4px]">{message}</p>
