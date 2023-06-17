@@ -19,6 +19,7 @@ import { ProfileSkeletonLoader } from "../shared/Cards/Loader/Profile__Card__Ske
 import "../../assets/css/profileCards.css";
 import { usePhotosUploadOnServerMutation } from "../../Redux/features/fileUpload/fileUploadApi";
 import VideoBioDataContainer from "./VideoBioDataContainer";
+import customFunc from "../../assets/utilities/customFunc";
 
 const ProfileCard = ({ data, isLoading }) => {
   // hook variables
@@ -54,9 +55,12 @@ const ProfileCard = ({ data, isLoading }) => {
   const likes = data?.likes.length || 0;
   const UserAge = data?.dateOfBirth ? `${age + "Years old"}` : "Not Added";
   const coverPhoto = data?.coverPhoto ? data.coverPhoto : "";
-  let profilePhoto = data?.profilePhoto
-    ? data?.profilePhoto
-    : "https://cdn-icons-png.flaticon.com/512/194/194938.png";
+  const { profilePhotoDecisionMaker } = customFunc;
+  let profilePhoto = profilePhotoDecisionMaker(data?.profilePhoto);
+
+  // let profilePhoto = data?.profilePhoto
+  //   ? data?.profilePhoto
+  //   : "https://cdn-icons-png.flaticon.com/512/194/194938.png";
   let content = null;
 
   // function declaration

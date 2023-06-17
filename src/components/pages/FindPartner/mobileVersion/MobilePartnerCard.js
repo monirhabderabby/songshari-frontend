@@ -4,12 +4,15 @@ import { useNavigate } from "react-router";
 
 // Third party package
 import { AiFillHeart } from "react-icons/ai";
+import ChatIcon from "@mui/icons-material/Chat";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 
 // Components
 import { ageCalculator } from "../../../../assets/utilities/AgeCalculation/ageCalculator";
 import { useLikeSingleProfileMutation } from "../../../../Redux/features/connections/connectionApi";
 import GoPremium from "../../../shared/Package/GoPremium";
 import { useGetProfileDetailsWIthAuthQuery } from "../../../../Redux/features/userInfo/userApi";
+import customFunc from "../../../../assets/utilities/customFunc";
 
 const message = "If you wont to access kazi you need to buy premium package";
 
@@ -37,9 +40,9 @@ export const MobilePartnerCard = ({ user, role }) => {
   // profile photo
   let { profilePhoto } = user || {};
 
-  profilePhoto = profilePhoto
-    ? profilePhoto
-    : "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png";
+  // profile photo decision maker
+  const { profilePhotoDecisionMaker } = customFunc;
+  profilePhoto = profilePhotoDecisionMaker(profilePhoto);
 
   // function declaration
   const addProfileLike = async () => {
@@ -94,10 +97,7 @@ export const MobilePartnerCard = ({ user, role }) => {
               onClick={() => setShowPopup(true)}
               className="bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] rounded-full"
             >
-              <i
-                className="fas fa-comment text-white p-2"
-                aria-hidden="true"
-              ></i>
+              <ChatIcon fontSize="small" style={{ color: "white" }} />
             </span>
             <div className="bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] rounded-full h-8 w-8 flex items-center justify-center">
               {likeLoading ? (
@@ -105,11 +105,11 @@ export const MobilePartnerCard = ({ user, role }) => {
               ) : likeSent ? (
                 <AiFillHeart className="text-green-400 w-5 h-5 text-lg transition-all duration-500 " />
               ) : (
-                <i
-                  className="fas fa-heart text-white"
-                  aria-hidden="true"
+                <FavoriteIcon
+                  fontSize="small"
+                  style={{ color: "white" }}
                   onClick={() => addProfileLike()}
-                ></i>
+                />
               )}
             </div>
           </div>

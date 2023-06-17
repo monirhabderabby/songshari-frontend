@@ -11,6 +11,7 @@ import {
   useAcceptFriendRequestMutation,
   useRejectFriendReqeustMutation,
 } from "../../../../Redux/features/connections/connectionApi";
+import customFunc from "../../../../assets/utilities/customFunc";
 
 export const FriendRequestCard = ({ friend, refetch, responsive }) => {
   const navigate = useNavigate();
@@ -37,6 +38,9 @@ export const FriendRequestCard = ({ friend, refetch, responsive }) => {
     ? (dynamicRoute = `/mobileprofile/${friend?._id}`)
     : (dynamicRoute = `/profile/${friend?._id}`);
 
+  // profile photo decision maker
+  const { profilePhotoDecisionMaker } = customFunc;
+
   return (
     <div className="p-3 md:p-[21px] h-20 md:h-[141px] w-full mx-auto bg-white shadow-[2px_2px_8px_rgba(0,0,0,0.12)] rounded-[15px] flex justify-between items-center">
       <div className="h-full flex items-center">
@@ -44,11 +48,9 @@ export const FriendRequestCard = ({ friend, refetch, responsive }) => {
           onClick={() => navigate(dynamicRoute)}
           className="w-10 h-10 md:w-[100px] md:h-[100px] rounded-full mr-2 md:mr-[21px] bg-center bg-cover cursor-pointer"
           style={{
-            backgroundImage: `url(${
+            backgroundImage: `url(${profilePhotoDecisionMaker(
               friend?.profilePhoto
-                ? friend?.profilePhoto
-                : "https://placeimg.com/192/192/people"
-            })`,
+            )})`,
           }}
         ></div>
         <div>

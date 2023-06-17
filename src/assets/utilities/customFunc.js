@@ -1,4 +1,5 @@
 import getCookie from "../../Helper/cookies/getCookie";
+import emptyProfile from "../images/profile/emptyProfile.svg";
 
 const customFunc = {
     generateRoomID: () => {
@@ -23,6 +24,13 @@ const customFunc = {
             return true;
         } else {
             return false;
+        }
+    },
+    profilePhotoDecisionMaker: photoUrl => {
+        if (photoUrl) {
+            return photoUrl;
+        } else {
+            return emptyProfile;
         }
     },
 };

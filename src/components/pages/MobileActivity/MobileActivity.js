@@ -18,6 +18,7 @@ import MobileActivityPost from "./MobileActivityPost";
 import { usePhotosUploadOnServerMutation } from "../../../Redux/features/fileUpload/fileUploadApi";
 import { useGetProfileDetailsWIthAuthQuery } from "../../../Redux/features/userInfo/userApi";
 import GoMobActivityPremium from "./GoMobActivityPremium";
+import customFunc from "../../../assets/utilities/customFunc";
 
 const MobileActivity = () => {
   const [photoURL, setPhotoUrl] = useState("");
@@ -37,12 +38,10 @@ const MobileActivity = () => {
   const { data: posts, isLoading, error } = useGetMyPostsQuery();
   const { register, handleSubmit, reset } = useForm();
 
-  // Profile photo
   let { profilePhoto, firstName, lastName } = userInfo || {};
 
-  profilePhoto = profilePhoto
-    ? profilePhoto
-    : "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png";
+  // profile photo decision maker
+  const { profilePhotoDecisionMaker } = customFunc;
 
   const photoHandler = async (e) => {
     const photo = e.target.files[0];
@@ -90,7 +89,7 @@ const MobileActivity = () => {
           <div className="border-b border-[rgba(0, 0, 0, 0.2)] pt-[30px] flex">
             <img
               className="w-[40px] h-[40px] rounded-full mr-5"
-              src={profilePhoto}
+              src={profilePhotoDecisionMaker(profilePhoto)}
               alt="Not Available"
             />
             <textarea
