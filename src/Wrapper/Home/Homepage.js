@@ -32,8 +32,8 @@ const Homepage = () => {
                         <NavBar></NavBar>
                         <Banner></Banner>
                         <LatestRegisteredMember />
-                        <SecureVerified></SecureVerified>
-                        <BeginFamilyJourney></BeginFamilyJourney>
+                        <SecureVerified />
+                        <BeginFamilyJourney />
                         <TopProfile />
                         <PeopleJoinedAlready />
                         <PackagePromo />
