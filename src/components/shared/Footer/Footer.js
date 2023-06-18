@@ -8,6 +8,16 @@ import "../../../assets/css/footer.css";
 import flower from "./../../../assets/images/footer/flower01.png";
 import icon from "./../../../assets/images/footer/icon.png";
 import rightShape from "./../../../assets/images/footer/right-shape.png";
+import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
+import {
+  FaFacebookF,
+  FaDribbble,
+  FaInstagram,
+  FaTelegramPlane,
+} from "react-icons/fa";
+
+
+// BiLogoFacebook;
 
 const Footer = () => {
   const [email, setEmail] = useState("");
@@ -62,8 +72,8 @@ const Footer = () => {
                       type="email"
                       placeholder="Your Email Address"
                     />
-                    <button type="submit">
-                      <i className="fab fa-telegram-plane"></i>
+                    <button className="flex items-center justify-center" type="submit">
+                      <FaTelegramPlane />
                     </button>
                   </form>
                 </div>
@@ -88,32 +98,27 @@ const Footer = () => {
                 <ul className="f-social-links ignoreMouseEffect">
                   <li className="py-[5px]">
                     <Link className="footer-link" to="/about">
-                      <i className="fas text-[16px] mr-[5px] fa-angle-double-right"></i>{" "}
-                      About Us
+                      <KeyboardDoubleArrowRightIcon /> About Us
                     </Link>
                   </li>
                   <li className="py-[5px]">
                     <Link to="/contact">
-                      <i className="fas text-[16px] mr-[5px] fa-angle-double-right"></i>{" "}
-                      Contact Us
+                      <KeyboardDoubleArrowRightIcon /> Contact Us
                     </Link>
                   </li>
                   <li className="py-[5px]">
                     <Link to="/customerReviews">
-                      <i className="fas text-[16px] mr-[5px] fa-angle-double-right"></i>{" "}
-                      Customer Reviews
+                      <KeyboardDoubleArrowRightIcon /> Customer Reviews
                     </Link>
                   </li>
                   <li className="py-[5px]">
                     <Link to="/our-teams">
-                      <i className="fas text-[16px] mr-[5px] fa-angle-double-right"></i>{" "}
-                      Our Teams
+                      <KeyboardDoubleArrowRightIcon /> Our Teams
                     </Link>
                   </li>
                   <li className="py-[5px]">
                     <Link to="/">
-                      <i className="fas text-[16px] mr-[5px] fa-angle-double-right"></i>{" "}
-                      Business License
+                      <KeyboardDoubleArrowRightIcon /> Business License
                     </Link>
                   </li>
                 </ul>
@@ -127,31 +132,29 @@ const Footer = () => {
                 <ul className="ignoreMouseEffect f-social-links">
                   <li className="py-[5px]">
                     <Link to="/help">
-                      <i className="fas text-[16px] mr-[5px] fa-angle-double-right"></i>{" "}
-                      Help centre
+                      <KeyboardDoubleArrowRightIcon /> Help centre
                     </Link>
                   </li>
                   <li className="py-[5px]">
                     <Link to="/faq">
-                      <i className="fas text-[16px] mr-[5px] fa-angle-double-right"></i>{" "}
-                      FAQ
+                      <KeyboardDoubleArrowRightIcon /> FAQ
                     </Link>
                   </li>
                   <li className="py-[5px]">
                     <Link to="/quickStart">
-                      <i className="fas text-[16px] mr-[5px] fa-angle-double-right"></i>
+                      <KeyboardDoubleArrowRightIcon />
                       Quick Start Guide
                     </Link>
                   </li>
                   <li className="py-[5px]">
                     <Link to="/tutorials">
-                      <i className="fas text-[16px] mr-[5px] fa-angle-double-right"></i>
+                      <KeyboardDoubleArrowRightIcon />
                       Tutorials
                     </Link>
                   </li>
                   <li className="py-[5px]">
                     <Link to="/associateBlog">
-                      <i className="fas text-[16px] mr-[5px] fa-angle-double-right"></i>
+                      <KeyboardDoubleArrowRightIcon />
                       Associate Blog
                     </Link>
                   </li>
@@ -166,32 +169,27 @@ const Footer = () => {
                 <ul className="ignoreMouseEffect f-social-links">
                   <li className="py-[5px]">
                     <Link to="/privacy-policy">
-                      <i className="fas text-[16px] mr-[5px] fa-angle-double-right"></i>{" "}
-                      Privacy policy
+                      <KeyboardDoubleArrowRightIcon /> Privacy policy
                     </Link>
                   </li>
                   <li className="py-[5px]">
                     <Link to="/endUserAgreement">
-                      <i className="fas text-[16px] mr-[5px] fa-angle-double-right"></i>{" "}
-                      End User Agreements
+                      <KeyboardDoubleArrowRightIcon /> End User Agreements
                     </Link>
                   </li>
                   <li className="py-[5px]">
                     <Link to="/refundPolicy">
-                      <i className="fas text-[16px] mr-[5px] fa-angle-double-right"></i>{" "}
-                      Refund Policy
+                      <KeyboardDoubleArrowRightIcon /> Refund Policy
                     </Link>
                   </li>
                   <li className="py-[5px]">
                     <Link to="/cookiePolicy">
-                      <i className="fas text-[16px] mr-[5px] fa-angle-double-right"></i>{" "}
-                      Cookie policy
+                      <KeyboardDoubleArrowRightIcon /> Cookie policy
                     </Link>
                   </li>
                   <li className="py-[5px]">
                     <Link to="/reportAbuse">
-                      <i className="fas text-[16px] mr-[5px] fa-angle-double-right"></i>{" "}
-                      Report abuse
+                      <KeyboardDoubleArrowRightIcon /> Report abuse
                     </Link>
                   </li>
                 </ul>
@@ -224,22 +222,22 @@ const Footer = () => {
             </div>
             <div>
               <ul className="footer-social-links flex ignoreMouseEffect">
-                <li>
-                  <a
+                <li className="flex items-center justify-center">
+                  <a className="flex items-center justify-center"
                     href="https://www.facebook.com/shongsharibd"
                     target="blank"
                   >
-                    <i className="fab fa-facebook-f"></i>
+                    <FaFacebookF />
                   </a>
                 </li>
-                <li>
-                  <a href="http://instagram.com/shongshari_" target="blank">
-                    <i className="fab fa-instagram"></i>
+                <li className="flex items-center justify-center">
+                  <a className="flex items-center justify-center" href="http://instagram.com/shongshari_" target="blank">
+                    <FaInstagram />
                   </a>
                 </li>
-                <li>
-                  <a href="http://shongshari.com/" target="blank">
-                    <i className="fab fa-dribbble"></i>
+                <li className="flex items-center justify-center">
+                  <a className="flex items-center justify-center" href="http://shongshari.com/" target="blank">
+                    <FaDribbble />
                   </a>
                 </li>
               </ul>

@@ -254,7 +254,7 @@
   background: linear-gradient(155deg, #e41272, #4844a5);
   border-radius: 50%;
   color: #fff;
-  display: block;
+  /* display: block; */
   height: 50px;
   line-height: 50px;
   text-align: center;
