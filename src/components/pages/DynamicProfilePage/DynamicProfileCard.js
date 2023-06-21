@@ -57,8 +57,8 @@ const DynamicProfileCard = ({ data, isLoading }) => {
                     {/* content */}
                     <div className="w-full flex justify-center items-center absolute top-[70%]">
                         <div className="text-[12px] font-normal font-Inter">{UserAge}</div>
-                        <div className="h-[28px] w-[5px] bg-gray-200 rounded-[4px] mx-[20px]"></div>
-                        <div className="flex items-center">
+                         {data?.dateOfBirth && <div className="h-[28px] w-[5px] bg-gray-200 rounded-[4px] mx-[20px]"></div>}
+                        {data?.hometown && <div className="flex items-center">
                             <svg
                                 color="#FF1D8E"
                                 xmlns="http://www.w3.org/2000/svg"
@@ -75,9 +75,9 @@ const DynamicProfileCard = ({ data, isLoading }) => {
                                     d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"
                                 />
                             </svg>
-                            <h3 className="text-[12px] font-normal font-Inter">{data?.hometown && data?.hometown}</h3>
-                        </div>
-                        <div className="h-[28px] w-[5px] bg-gray-200 rounded-[4px] mx-[20px]"></div>
+                            <h3 className="text-[12px] font-normal font-Inter">{data?.hometown}</h3>
+                        </div>}
+                        {data?.hometown && <div className="h-[28px] w-[5px] bg-gray-200 rounded-[4px] mx-[20px]"></div>}
                         <button
                     className="special_profile_button text-sm"
                     
