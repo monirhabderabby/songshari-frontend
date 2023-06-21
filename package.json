@@ -23,6 +23,7 @@
         "caniuse-lite": "^1.0.30001492",
         "clipboard-copy": "^4.0.1",
         "firebase": "^9.14.0",
+        "framer-motion": "^10.12.16",
         "js-cookie": "^3.0.1",
         "lottie-web": "^5.11.0",
         "material-ui": "^0.20.2",

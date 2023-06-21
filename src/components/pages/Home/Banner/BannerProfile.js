@@ -115,37 +115,39 @@ const BannerProfile = ({ swapable, setSwapable }) => {
             }, 2000);
         }
     }, [rejectedGif]);
-    return (
-        <>
-            <Swiper
-                spaceBetween={30}
-                centeredSlides={true}
-                loop={true}
-                autoplay={{
-                    delay: 7500,
-                }}
-                modules={[Navigation, Autoplay]}
-                className="max-w-[280px] h-[400px]"
-                navigation={true}
-                onSlideChange={e => getJustSwipeData(e)}
-                onNavigationPrev={() => {
-                    setClickNextButton(false);
-                    setClickPreviousButton(true);
-                }}
-                onNavigationNext={() => {
-                    setClickPreviousButton(false);
-                    setClickNextButton(true);
-                }}
-            >
-                {swipematch?.data?.members?.map(data => (
-                    <SwiperSlide key={data._id}>
-                        <SwipAndMatchCard {...{ data, likedGif, rejectedGif, swapable, setSwapable }} auth={true} />
-                    </SwiperSlide>
-                ))}
-            </Swiper>
-            {isMatched && <SuperMatchedModal />}
-        </>
-    );
+    if (swipematch?.data?.members?.length > 0) {
+        return (
+            <div>
+                <Swiper
+                    spaceBetween={30}
+                    centeredSlides={true}
+                    loop={true}
+                    autoplay={{
+                        delay: 7500,
+                    }}
+                    modules={[Navigation, Autoplay]}
+                    className="max-w-[280px] h-[400px]"
+                    navigation={true}
+                    onSlideChange={e => getJustSwipeData(e)}
+                    onNavigationPrev={() => {
+                        setClickNextButton(false);
+                        setClickPreviousButton(true);
+                    }}
+                    onNavigationNext={() => {
+                        setClickPreviousButton(false);
+                        setClickNextButton(true);
+                    }}
+                >
+                    {swipematch?.data?.members?.map(data => (
+                        <SwiperSlide key={data._id}>
+                            <SwipAndMatchCard {...{ data, likedGif, rejectedGif, swapable, setSwapable }} auth={true} />
+                        </SwiperSlide>
+                    ))}
+                </Swiper>
+                {isMatched && <SuperMatchedModal />}
+            </div>
+        );
+    }
 };
 
 export default BannerProfile;
