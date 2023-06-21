@@ -1,21 +1,20 @@
 // configuration
 import React, { useEffect } from "react";
-import { useNavigate, useParams } from "react-router";
+import { useParams } from "react-router";
 
 // Third party packages
 import Typography from "@mui/material/Typography";
 import moment from "moment";
 
 // components
-import { Link } from "react-router-dom";
 import { useGetProfileDetailsQuery } from "../../../../../Redux/features/userInfo/userApi";
 import { BottomNav } from "../../../../../Wrapper/Home/mobileversion/BottomNav";
+import { MobileBackButton } from "../../../../shared/Components/MobileBackButton";
 
 export const MobileDynamicPersonalDetails = () => {
   // hooks variable
   const { id } = useParams();
   const { data } = useGetProfileDetailsQuery(id);
-  const navigate = useNavigate();
 
   const hightestEducationalQualification =
     data?.hightestEducationalQualification;
@@ -26,19 +25,7 @@ export const MobileDynamicPersonalDetails = () => {
 
   return (
     <div className="mx-4 mb-20">
-      <div className="bg-[#FFFFFF] py-[10px] mb-[15px] sticky top-0 z-10">
-        <div className="bg-white w-full grid grid-cols-6 h-[48px]">
-          <div className="pl-1 col-span-1">
-            <Link onClick={() => navigate(-1)}>
-              <i className="fa-solid text-sm text-[#1E2022] fa-chevron-left "></i>
-            </Link>
-          </div>
-          <div className="col-span-4 ">
-            <p className="text-center">Personal Details</p>
-          </div>
-          <div className="col-span-1"></div>
-        </div>
-      </div>
+      <MobileBackButton name="Personal Details" />
       <Typography component={"span"} variant={"body2"}>
         {data?.firstName && (
           <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
