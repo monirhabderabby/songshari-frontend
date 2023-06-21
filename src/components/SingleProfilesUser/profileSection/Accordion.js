@@ -267,7 +267,7 @@ const Accordian = ({ data, isLoading, edit }) => {
                 {data?.whatAreYouLookingFor && (
                   <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
                     <span className="font-medium">
-                      What are you looking for
+                      Looking for
                     </span>
                     <p className="font-normal">
                       {data ? data.whatAreYouLookingFor : ""}
