@@ -1,11 +1,12 @@
 // configuration
 import React, { useEffect } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 // Third Party Packages
 import Typography from "@mui/material/Typography";
 import { useGetProfileDetailsQuery } from "../../../../../Redux/features/userInfo/userApi";
 import { BottomNav } from "../../../../../Wrapper/Home/mobileversion/BottomNav";
+import { MobileBackButton } from "../../../../shared/Components/MobileBackButton";
 
 // components
 
@@ -13,7 +14,6 @@ export const MobileDynamicPhysicalDetails = () => {
   // hooks variable
   const { id } = useParams();
   const { data } = useGetProfileDetailsQuery(id);
-  const navigate = useNavigate();
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
@@ -21,20 +21,9 @@ export const MobileDynamicPhysicalDetails = () => {
 
   return (
     <div>
+      <MobileBackButton name="Physical Details" />
       <div className="mx-4 mb-20">
-        <div className="bg-[#FFFFFF] py-[10px] mb-[15px] sticky top-0 z-10">
-          <div className="bg-white w-full grid grid-cols-6 h-[48px]">
-            <div className="pl-1 col-span-1">
-              <Link onClick={() => navigate(-1)}>
-                <i className="fa-solid text-sm text-[#1E2022] fa-chevron-left "></i>
-              </Link>
-            </div>
-            <div className="col-span-4 ">
-              <p className="text-center">Physical Details</p>
-            </div>
-            <div className="col-span-1"></div>
-          </div>
-        </div>
+        
         <Typography component={"span"} variant={"body2"}>
           {data?.physicalDetail?.height && (
             <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">

@@ -142,8 +142,8 @@ const ProfileCard = ({ data, isLoading }) => {
           {age > 0 && (
             <div className="text-[17px] font-normal font-Inter">{UserAge}</div>
           )}
-          <div className="h-[28px] w-[5px] bg-gray-200 rounded-[4px] mx-[20px]"></div>
-          <div className="flex items-center">
+          {data?.hometown && <div className="h-[28px] w-[5px] bg-gray-200 rounded-[4px] mx-[20px]"></div>}
+          {data?.hometown && <div className="flex items-center">
             <svg
               color="#FF1D8E"
               xmlns="http://www.w3.org/2000/svg"
@@ -167,7 +167,7 @@ const ProfileCard = ({ data, isLoading }) => {
             <h3 className="ml-2 text-[17px] font-normal font-Inter">
               {data?.hometown || "Not Added"}
             </h3>
-          </div>
+          </div>}
         </div>
         <div className="absolute top-[82%] w-full flex justify-center items-center gap-x-[20px]">
           <div className="flex items-center">
