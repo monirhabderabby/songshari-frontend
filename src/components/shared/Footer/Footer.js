@@ -72,7 +72,10 @@ const Footer = () => {
                       type="email"
                       placeholder="Your Email Address"
                     />
-                    <button className="flex items-center justify-center" type="submit">
+                    <button
+                      className="flex items-center justify-center"
+                      type="submit"
+                    >
                       <FaTelegramPlane />
                     </button>
                   </form>
@@ -92,7 +95,7 @@ const Footer = () => {
           <div className="grid  lg:grid-cols-3 md:grid-cols-2">
             <div className=" relative flex justify-center ">
               <div className="link-wrapper one">
-                <h4 className="ignoreMouseEffect text-[24px] mb-[9px] uppercase font-normal text-[#fff]">
+                <h4 className="ignoreMouseEffect w-full text-[24px] mb-[9px] uppercase font-normal text-[#fff]">
                   Our Information
                 </h4>
                 <ul className="f-social-links ignoreMouseEffect">
@@ -124,9 +127,9 @@ const Footer = () => {
                 </ul>
               </div>
             </div>
-            <div className=" relative flex justify-center ">
+            <div className=" relative flex justify-center">
               <div className="link-wrapper three">
-                <h4 className="ignoreMouseEffect text-[24px] mb-[9px] uppercase font-normal text-[#fff]">
+                <h4 className="ignoreMouseEffect w-full text-center text-[24px] mb-[9px] uppercase font-normal text-[#fff]">
                   help center
                 </h4>
                 <ul className="ignoreMouseEffect f-social-links">
@@ -162,8 +165,8 @@ const Footer = () => {
               </div>
             </div>
             <div className=" relative flex justify-center ">
-              <div className="link-wrapper four">
-                <h4 className="ignoreMouseEffect text-[24px] mb-[9px] uppercase font-normal text-[#fff]">
+              <div className="link-wrapper four md:w-full md:pl-16">
+                <h4 className="ignoreMouseEffect text-left w-full text-[24px] mb-[9px] uppercase font-normal text-[#fff]">
                   legal
                 </h4>
                 <ul className="ignoreMouseEffect f-social-links">
@@ -223,7 +226,8 @@ const Footer = () => {
             <div>
               <ul className="footer-social-links flex ignoreMouseEffect">
                 <li className="flex items-center justify-center">
-                  <a className="flex items-center justify-center"
+                  <a
+                    className="flex items-center justify-center"
                     href="https://www.facebook.com/shongsharibd"
                     target="blank"
                   >
@@ -231,12 +235,20 @@ const Footer = () => {
                   </a>
                 </li>
                 <li className="flex items-center justify-center">
-                  <a className="flex items-center justify-center" href="http://instagram.com/shongshari_" target="blank">
+                  <a
+                    className="flex items-center justify-center"
+                    href="http://instagram.com/shongshari_"
+                    target="blank"
+                  >
                     <FaInstagram />
                   </a>
                 </li>
                 <li className="flex items-center justify-center">
-                  <a className="flex items-center justify-center" href="http://shongshari.com/" target="blank">
+                  <a
+                    className="flex items-center justify-center"
+                    href="http://shongshari.com/"
+                    target="blank"
+                  >
                     <FaDribbble />
                   </a>
                 </li>
