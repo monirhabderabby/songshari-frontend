@@ -1,7 +1,7 @@
 import Box from "@mui/material/Box";
-import { styled, useTheme } from "@mui/material/styles";
 import Tab from "@mui/material/Tab";
 import Tabs from "@mui/material/Tabs";
+import { styled, useTheme } from "@mui/material/styles";
 import PropTypes from "prop-types";
 import React, { useState } from "react";
 import SwipeableViews from "react-swipeable-views";

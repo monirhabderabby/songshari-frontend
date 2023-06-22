@@ -18,6 +18,7 @@ import { ProfileSkeletonLoader } from "../shared/Cards/Loader/Profile__Card__Ske
 import { usePhotosUploadOnServerMutation } from "../../Redux/features/fileUpload/fileUploadApi";
 import "../../assets/css/profileCards.css";
 import customFunc from "../../assets/utilities/customFunc";
+import PrimaryBtn from "../shared/Web_Components/buttons/PrimaryBtn";
 import VideoBioDataContainer from "./VideoBioDataContainer";
 
 const ProfileCard = ({ data, isLoading }) => {
@@ -150,9 +151,12 @@ const ProfileCard = ({ data, isLoading }) => {
                     </div>
                     <div>
                         {data ? (
-                            <button onClick={() => navigate("/packages")} className="special_profile_button">
-                                Upgrade Membership
-                            </button>
+                            <PrimaryBtn
+                                value="Upgrade Membership"
+                                onClick={() => {
+                                    navigate("/packages");
+                                }}
+                            />
                         ) : (
                             <button className="special_profile_button">Send Connection Request</button>
                         )}
