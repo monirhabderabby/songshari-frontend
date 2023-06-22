@@ -31,7 +31,7 @@ export const AccountSwitchs = () => {
     return (
         <>
             <div className="border-b-[1px] border-[#eaeaea] w-full lg:w-1/2 pb-2">
-                <h1 className="text-[24px] text-gray-500">All Portion</h1>
+                <h1 className="text-[18px] lg:text-[22px] font-medium text-gray-500 font-fira">All Portion</h1>
                 <p className="text-[12px]  text-gray-400">
                     Unlock the full potential of our platform with the seamless access switch. With just a simple flick, you gain instant entry to all
                     the diverse sections and features we offer.

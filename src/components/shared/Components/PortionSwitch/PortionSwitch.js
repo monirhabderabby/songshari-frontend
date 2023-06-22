@@ -65,7 +65,7 @@ export const PortionSwitch = ({ portion, isAccess }) => {
     return (
         <div className="flex items-center  ">
             <div className="w-[80px]">
-                <p className="text-[16px] font-Inter font-normal tracking-wider">{portion}</p>
+                <p className="text-[14px] lg:text-[16px] font-Inter font-normal tracking-wider">{portion}</p>
             </div>
             <PinkSwitch {...label} checked={isAccess} onChange={handleSwitch} disabled={portion === "Matrimony"} />
         </div>

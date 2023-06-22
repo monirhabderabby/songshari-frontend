@@ -49,7 +49,7 @@ export const CardYouMayLike = ({ data, variant }) => {
         <VarientAnimation direction="up" delay={0.3}>
             <div className="lg:w-[263px] h-[179px] bg-white shadow-[2px_2px_8px_rgba(0,0,0,0.12)] rounded-[20px] px-[20px] py-[17px]">
                 <div className="flex items-center justify-between">
-                    <Image photo={data?.profilePhoto} height="67px" width="67px" rounded="full" onClick={() => navigate(`/profile/${data?._id}`)} />
+                    <Image photo={data?.profilePhoto} height="67px" width="67px" rounded="100%" onClick={() => navigate(`/profile/${data?._id}`)} />
                     <div className="flex items-center gap-x-[10px]">
                         {!variant?.includes("swap") && (
                             <div className="w-[44px] h-[44px] cursor-pointer bg-[#FFDFF4] rounded-full flex justify-center items-center">
