@@ -11,7 +11,7 @@ import { useAddFriendMutation, useLikeSingleProfileMutation } from "../../../../
 import loveIcon from "../../../../assets/images/icons/love.png";
 import { ageCalculator } from "../../../../assets/utilities/AgeCalculation/ageCalculator";
 import VarientAnimation from "../../../../assets/utilities/Animation/VarientAnimation";
-import customFunc from "../../../../assets/utilities/customFunc";
+import Image from "../../Web_Components/Image/Image";
 
 export const CardYouMayLike = ({ data, variant }) => {
     const [sent, setSent] = useState(false);
@@ -21,9 +21,6 @@ export const CardYouMayLike = ({ data, variant }) => {
 
     const [addFriend, { data: response, isLoading: responseLoading }] = useAddFriendMutation();
     const [likeSingleProfile, { data: likeResponse, isLoading: likeLoading }] = useLikeSingleProfileMutation();
-
-    // profile photo handler
-    const { profilePhotoDecisionMaker } = customFunc;
 
     const handleSentRequest = async () => {
         await addFriend(data?._id);
@@ -52,13 +49,7 @@ export const CardYouMayLike = ({ data, variant }) => {
         <VarientAnimation direction="up" delay={0.3}>
             <div className="lg:w-[263px] h-[179px] bg-white shadow-[2px_2px_8px_rgba(0,0,0,0.12)] rounded-[20px] px-[20px] py-[17px]">
                 <div className="flex items-center justify-between">
-                    <div
-                        onClick={() => navigate(`/profile/${data?._id}`)}
-                        className="w-[67px] h-[67px] rounded-full bg-cover bg-center cursor-pointer"
-                        style={{
-                            backgroundImage: `url(${profilePhotoDecisionMaker(data?.profilePhoto)})`,
-                        }}
-                    ></div>
+                    <Image photo={data?.profilePhoto} height="67px" width="67px" rounded="full" onClick={() => navigate(`/profile/${data?._id}`)} />
                     <div className="flex items-center gap-x-[10px]">
                         {!variant?.includes("swap") && (
                             <div className="w-[44px] h-[44px] cursor-pointer bg-[#FFDFF4] rounded-full flex justify-center items-center">
