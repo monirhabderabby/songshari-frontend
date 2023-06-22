@@ -63,10 +63,10 @@ export const UserCard = ({ profile, role }) => {
   const aboutYou = profile?.aboutYou;
   let intro = null;
 
-  if (aboutYou?.length < 70) {
+  if (aboutYou?.length < 60) {
     intro = aboutYou;
-  } else if (aboutYou?.length > 70) {
-    intro = aboutYou?.slice(0, 70);
+  } else if (aboutYou?.length > 60) {
+    intro = aboutYou?.slice(0, 60);
   } else if (!aboutYou) {
     intro = (
       <div className="h-[100px] flex items-center justify-center text-gray-400">
@@ -155,7 +155,7 @@ export const UserCard = ({ profile, role }) => {
                   </h4>
                   <ul className="text-white font-Inter">
                     <li>
-                      <div className="text-[14px] font-normal">{intro} </div>
+                      <div className="text-[14px] font-normal">{intro} {intro?.length===60 && "..."} </div>
                     </li>
                   </ul>
                   <div className="h-[30px] w-full flex items-center justify-evenly absolute bottom-10">
