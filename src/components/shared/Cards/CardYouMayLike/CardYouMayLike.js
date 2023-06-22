@@ -94,14 +94,16 @@ export const CardYouMayLike = ({ data, variant }) => {
                 <div className="mt-[10px]">
                     <h1
                         onClick={() => navigate(`/profile/${data?._id}`)}
-                        className="cursor-pointer text-[24px] text-[#000000] leading-[36px] font-medium font-Inter"
+                        className="cursor-pointer text-[20px] text-[#000000] leading-[36px] font-medium font-Inter"
                     >
                         {data?.firstName}
                     </h1>
                     <div className="flex items-center gap-2">
-                        <span className="text-[20px] leading-[30px] tracking-[-0.24px] text-[#000000] font-medium font-Inter">{age ? age : ""}</span>
+                        <span className="text-[18pxpx] leading-[30px] tracking-[-0.24px] text-[#000000] font-normal font-Inter">
+                            {age ? age : ""}
+                        </span>
                         {data?.dateOfBirth && data?.designation && <span className="block mb-1"> | </span>}
-                        <span className="text-[20px] leading-[30px] tracking-[-0.24px] text-[#000000] font-medium font-Inter">
+                        <span className="text-[18px] leading-[30px] tracking-[-0.24px] text-[#000000] font-normal font-Inter">
                             {data?.designation && data?.designation}
                         </span>
                     </div>
