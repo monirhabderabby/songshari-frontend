@@ -9,11 +9,12 @@ import Typography from "@mui/material/Typography";
 import { useGetProfileDetailsQuery } from "../../../../Redux/features/userInfo/userApi";
 import { BottomNav } from "../../../../Wrapper/Home/mobileversion/BottomNav";
 import { MobileBackButton } from "../../../shared/Components/MobileBackButton";
+import { LineWaveLoader } from "../../../shared/Cards/Loader/lineWaveLoader/LineWaveLoader";
 
 export const MobilePhysicalDetails = () => {
   // hooks variable
   const { id } = useParams();
-  const { data } = useGetProfileDetailsQuery(id);
+  const { data,isLoading } = useGetProfileDetailsQuery(id);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -24,7 +25,7 @@ export const MobilePhysicalDetails = () => {
     <div>
       <MobileBackButton name="Physical Details" />
       <div className="mx-4 mb-20">
-        <Typography component={"span"} variant={"body2"}>
+        {data && <Typography component={"span"} variant={"body2"}>
           <div className="flex justify-end mt-2">
             <button
               onClick={() => navigate(`/physicalInfoEdit/${data?._id}`)}
@@ -113,7 +114,8 @@ export const MobilePhysicalDetails = () => {
               </p>
             </div>
           )}
-        </Typography>
+        </Typography>}
+        {isLoading && <LineWaveLoader />}
       </div>
       <BottomNav />
     </div>
