@@ -47,7 +47,7 @@ const ProfileCard = ({ data, isLoading }) => {
     // js variable declare
     const name = (data?.firstName ? data?.firstName : "") + " " + (data?.lastName ? data?.lastName : "");
     const likes = data?.likes.length || 0;
-    const UserAge = data?.dateOfBirth ? `${age + "Years old"}` : "Not Added";
+    const UserAge = data?.dateOfBirth ? `${age + "Years old"}` : "";
     const coverPhoto = data?.coverPhoto ? data.coverPhoto : "";
     const { profilePhotoDecisionMaker } = customFunc;
     let profilePhoto = profilePhotoDecisionMaker(data?.profilePhoto);

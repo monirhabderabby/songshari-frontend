@@ -179,39 +179,74 @@ export const AccountSettingMov = () => {
         <Collapse expandIconPosition="end" expandIcon={customExpandIcon} ghost>
           <Panel className="" header={memberServicesHeader}>
             <div className="pl-24">
-              <div className="text-left font-Inter mb-1 w-full">
-                <Link to={"/allServices"} className="">
-                  All Services
+              <div className="text-left font-Inter mb-3 w-full">
+                <Link to={"/allServices"}>
+                  <div className="w-full   flex items-center justify-between">
+                    <span>All Services</span>
+                    <span className="mr-12">
+                      <ArrowForwardIosIcon fontSize="10px" />
+                    </span>
+                  </div>
                 </Link>
               </div>
-              <div className="text-left font-Inter mb-1 w-full">
-                <Link to={"/ongoingServices"} className="">
-                  Ongoing Services
+              <div className="text-left font-Inter mb-3 w-full">
+                <Link to={"/ongoingServices"} className="w-full">
+                  <div className="w-full   flex items-center justify-between">
+                    <span>Ongoing Services</span>
+                    <span className="mr-12">
+                      <ArrowForwardIosIcon fontSize="10px" />
+                    </span>
+                  </div>
                 </Link>
               </div>
-              <div className="text-left font-Inter mb-1 w-full">
+              <div className="text-left font-Inter mb-3 w-full">
                 <Link to={"/completedServices"} className="">
-                  Completed Services
+                  <div className="w-full   flex items-center justify-between">
+                    <span>Completed Services</span>
+                    <span className="mr-12">
+                      <ArrowForwardIosIcon fontSize="10px" />
+                    </span>
+                  </div>
                 </Link>
               </div>
-              <div className="text-left font-Inter mb-1 w-full">
+              <div className="text-left font-Inter mb-3 w-full">
                 <Link to={"/cancelledServices"} className="">
-                  Cancelled Services
+                  <div className="w-full   flex items-center justify-between">
+                    <span>Cancelled Services</span>
+                    <span className="mr-12">
+                      <ArrowForwardIosIcon fontSize="10px" />
+                    </span>
+                  </div>
                 </Link>
               </div>
-              <div className="text-left font-Inter mb-1 w-full">
+              <div className="text-left font-Inter mb-3 w-full">
                 <Link to={"/agentServices"} className="">
-                  Agent Services
+                  <div className="w-full flex items-center justify-between">
+                    <span>Agent Services</span>
+                    <span className="mr-12">
+                      <ArrowForwardIosIcon fontSize="10px" />
+                    </span>
+                  </div>
                 </Link>
               </div>
-              <div className="text-left font-Inter mb-1 w-full">
+              <div className="text-left font-Inter mb-3 w-full">
                 <Link to={"/kaziServices"} className="">
-                  Kazi Services
+                  <div className="w-full flex items-center justify-between">
+                    <span>Kazi Services</span>
+                    <span className="mr-12">
+                      <ArrowForwardIosIcon fontSize="10px" />
+                    </span>
+                  </div>
                 </Link>
               </div>
-              <div className="text-left font-Inter mb-1 w-full">
+              <div className="text-left font-Inter mb-3 w-full">
                 <Link to={"/lawyerServices"} className="">
-                  Lawyer Services
+                  <div className="w-full flex items-center justify-between">
+                    <span>Lawyer Services</span>
+                    <span className="mr-12">
+                      <ArrowForwardIosIcon fontSize="10px" />
+                    </span>
+                  </div>
                 </Link>
               </div>
             </div>

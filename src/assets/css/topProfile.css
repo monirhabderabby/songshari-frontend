@@ -60,7 +60,7 @@
 }
 
 .Suggested-card:hover .Suggested-info__cardUp {
-    top: 40px;
+    top: 120px;
     border-bottom-left-radius: 12px;
     border-bottom-right-radius: 12px;
 }
