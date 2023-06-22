@@ -57,7 +57,7 @@ export const PhotoUploadCard = () => {
         <VarientAnimation direction="right" delay={0.9}>
             <label
                 htmlFor="photos"
-                className="mt-[24px] w-[360px] h-[77px] bg-white shadow-[0px_10px_5px_rgba(119,123,146,0.02)] rounded-[10px] py-[16px] px-[20px] flex items-center gap-x-[9px] cursor-pointer"
+                className="mt-[24px] w-[360px] h-[77px] bg-white shadow-[0px_10px_5px_rgba(119,123,146,0.02)] rounded-[10px] py-[16px] px-[30px] flex items-center gap-x-[9px] cursor-pointer"
             >
                 {isLoading ? (
                     <TailSpin
@@ -71,10 +71,10 @@ export const PhotoUploadCard = () => {
                         visible={true}
                     />
                 ) : (
-                    <img src={camera} alt="camera" />
+                    <img src={camera} alt="camera" className="w-6 h-6" />
                 )}
-                <div className="text-[#000000] text-lg md:text-[24px] leading-[20px] font-semibold font-fira">
-                    {isLoading ? <p className="ml-[10px]">Uploading</p> : <p className="ml-[10px]">Upload Photo</p>}
+                <div className="text-[#000000] text-lg md:text-[22px] leading-[20px] font-semibold font-fira">
+                    {isLoading ? <p>Uploading</p> : <p>Upload Photo</p>}
                 </div>
             </label>
             <input type="file" id="photos" className="hidden" multiple onChange={photosHandler} />

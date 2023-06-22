@@ -36,13 +36,13 @@ export const VerificationCard = ({ title, mt, height, responsive }) => {
             initial="hidden"
             whileInView={"show"}
             viewport={{ once: false, amount: 0.3 }}
-            className={`mt-[${mt}] lg:w-full h-[${height}] bg-white shadow-[0px_10px_5px_rgba(119,123,146,0.02)] rounded-[10px] py-[16px] px-[20px]`}
+            className={`mt-[${mt}] lg:w-full h-[${height}] bg-white shadow-[0px_10px_5px_rgba(119,123,146,0.02)] rounded-[10px] py-[16px] px-[30px]`}
         >
             <section className="flex flex-col   justify-center h-full w-full">
                 {title && (
                     <div className="flex items-center gap-x-[9px]">
-                        <img src={verificationIcon} alt="" />
-                        <h1 className="text-[#000000] text-[24px] leading-[20px] font-semibold font-fira">Verification Status</h1>
+                        <img src={verificationIcon} alt="verificationIcon" className="w-6 h-6" />
+                        <h1 className="text-[#000000] text-[22px] leading-[20px] font-semibold font-fira">Verification Status</h1>
                     </div>
                 )}
                 <Box sx={{ width: "100%" }} className="my-[15px]">

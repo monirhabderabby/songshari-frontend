@@ -60,7 +60,7 @@ const VideoBioUploadCard = ({ data, setShowPopup }) => {
         <VarientAnimation direction="right" delay={1}>
             <label
                 htmlFor="video"
-                className="mt-[24px] w-[360px] h-[77px] bg-white shadow-[0px_10px_5px_rgba(119,123,146,0.02)] rounded-[10px] py-[16px] px-[20px] flex items-center gap-x-[9px] cursor-pointer"
+                className="mt-[24px] w-[360px] h-[77px] bg-white shadow-[0px_10px_5px_rgba(119,123,146,0.02)] rounded-[10px] py-[16px] px-[30px] flex items-center gap-x-[9px] cursor-pointer"
             >
                 {isLoading ? (
                     <TailSpin
@@ -75,13 +75,13 @@ const VideoBioUploadCard = ({ data, setShowPopup }) => {
                     />
                 ) : (
                     // <img src={camera} alt="camera" />
-                    <RiVideoUploadLine className="text-pink-500 text-4xl" />
+                    <RiVideoUploadLine className="text-pink-500 w-6 h-6" />
                 )}
-                <div className="text-[#000000] text-lg md:text-[24px] leading-[20px] font-semibold font-fira">
+                <div className="text-[#000000] text-[22px] leading-[20px] font-semibold font-fira">
                     {isLoading ? (
-                        <p className="ml-[10px]">Uploading</p>
+                        <p className="text-[24px] font-fira">Uploading</p>
                     ) : (
-                        <p className="ml-[10px]">{data?.videoBioData ? "Update" : "Add"} Video Bio</p>
+                        <p className=" text-[24px] font-fira">{data?.videoBioData ? "Update" : "Add"} Video Bio</p>
                     )}
                 </div>
             </label>
