@@ -82,95 +82,141 @@ const ProfileCard = ({ data, isLoading }) => {
         content = <ProfileSkeletonLoader />;
     } else if (!isLoading && data) {
         content = (
-            <motion.div
-                variants={fadeIn("right", 0.1)}
-                initial="hidden"
-                whileInView={"show"}
-                viewport={{ once: false, amount: 0.3 }}
-                className="max-w-[360px] h-[400px] shadow-[0px_10px_5px_rgba(119,123,146,0.02)] bg-white rounded-[10px] relative"
+          <motion.div
+            variants={fadeIn("right", 0.1)}
+            initial="hidden"
+            whileInView={"show"}
+            viewport={{ once: false, amount: 0.3 }}
+            className="max-w-[360px] h-[400px] shadow-[0px_10px_5px_rgba(119,123,146,0.02)] bg-white rounded-[10px] relative"
+          >
+            <div
+              style={{ backgroundImage: `url(${coverPhoto})` }}
+              className={`relative h-[150px] w-full rounded-tl-[10px] rounded-tr-[10px] ${
+                !coverPhoto && "bg-gray-300"
+              } bg-center bg-cover`}
             >
-                <div
-                    style={{ backgroundImage: `url(${coverPhoto})` }}
-                    className={`relative h-[150px] w-full rounded-tl-[10px] rounded-tr-[10px] ${!coverPhoto && "bg-gray-300"} bg-center bg-cover`}
+              <label
+                className="absolute bottom-2 right-2 hover:bg-primary hover:text-white duration-300 bg-primary/20 group rounded-full cursor-pointer flex items-center group px-0 hover:px-2"
+                htmlFor="coverPhoto"
+              >
+                <div className="text-[10px] hidden group-hover:block">
+                  upload cover
+                </div>
+                <AiFillCamera className="text-[20px] m-[4px] " />
+              </label>
+              <input
+                type="file"
+                id="coverPhoto"
+                name="uploadCoverPhoto"
+                className="hidden"
+                onChange={coverPhotoUploadHandler}
+              />
+              <div className="h-[135px] absolute -bottom-[50%] left-[110px] w-[135px] bg-white shadow-sm border-[1px] rounded-full flex justify-center items-center">
+                <label
+                  htmlFor="uploadPhoto"
+                  style={{
+                    backgroundImage: `url(${profilePhoto})`,
+                  }}
+                  className="h-[120px] w-[120px] group rounded-full bg-center bg-cover"
                 >
-                    <label
-                        className="absolute bottom-2 right-2 hover:bg-primary hover:text-white duration-300 bg-primary/20 group rounded-full cursor-pointer flex items-center group px-0 hover:px-2"
-                        htmlFor="coverPhoto"
-                    >
-                        <div className="text-[10px] hidden group-hover:block">upload cover</div>
-                        <AiFillCamera className="text-[20px] m-[4px] " />
-                    </label>
-                    <input type="file" id="coverPhoto" name="uploadCoverPhoto" className="hidden" onChange={coverPhotoUploadHandler} />
-                    <div className="h-[135px] absolute -bottom-[50%] left-[110px] w-[135px] bg-white shadow-sm border-[1px] rounded-full flex justify-center items-center">
-                        <label
-                            htmlFor="uploadPhoto"
-                            style={{
-                                backgroundImage: `url(${profilePhoto})`,
-                            }}
-                            className="h-[120px] w-[120px] group rounded-full bg-center bg-cover"
-                        >
-                            <div className="h-[120px] w-[120px] top-[7px] left-[7.3px] group-hover:absolute inset-0 group-hover:bg-black/20 rounded-full"></div>
-                            <input type="file" id="uploadPhoto" name="uploadPhoto" className="hidden" onChange={profilePhotoUploadHandler} />
-                        </label>
-                        <div className="absolute right-1 bg-[#DADBE1] group rounded-full bottom-[15%]">
-                            <AiFillCamera className="text-[20px] m-[4px]" />
-                        </div>
-                    </div>
+                  <div className="h-[120px] w-[120px] top-[7px] left-[7.3px] group-hover:absolute inset-0 group-hover:bg-black/20 rounded-full"></div>
+                  <input
+                    type="file"
+                    id="uploadPhoto"
+                    name="uploadPhoto"
+                    className="hidden"
+                    onChange={profilePhotoUploadHandler}
+                  />
+                </label>
+                <div className="absolute right-1 bg-[#DADBE1] group rounded-full bottom-[15%]">
+                  <AiFillCamera className="text-[20px] m-[4px]" />
                 </div>
-                <h2 className="text-center mt-[85px] text-[28px] font-semibold font-fira">{name}</h2>
-                {/* content */}
-                <div className="w-full flex justify-center items-center absolute top-[70%]">
-                    {age > 0 && <div className="text-[17px] font-normal font-Inter">{UserAge}</div>}
-                    <div className="h-[28px] w-[5px] bg-gray-200 rounded-[4px] mx-[20px]"></div>
-                    <div className="flex items-center">
-                        <svg
-                            color="#FF1D8E"
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            strokeWidth="1.5"
-                            stroke="currentColor"
-                            className="w-6 h-6"
-                        >
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
-                            <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"
-                            />
-                        </svg>
-                        <h3 className="ml-2 text-[17px] font-normal font-Inter">{data?.hometown || "Not Added"}</h3>
-                    </div>
+              </div>
+            </div>
+            <h2 className="text-center mt-[85px] text-[28px] font-semibold font-fira">
+              {name}
+            </h2>
+            {/* content */}
+            <div className="w-full flex justify-center items-center absolute top-[70%]">
+              {age > 0 && (
+                <div className="text-[14px] font-normal font-Inter">
+                  {UserAge}
                 </div>
-                <div className="absolute top-[82%] w-full flex justify-center items-center gap-x-[20px]">
-                    <div className="flex items-center">
-                        <div className="w-[40px] h-[40px] rounded-full bg-[#F7E9F8] mr-1 flex items-center justify-center">
-                            <img src={blackLove} alt="blackLove" />
-                        </div>
-                        <span>{likes}</span>
-                    </div>
-                    <div>
-                        {data ? (
-                            <PrimaryBtn
-                                value="Upgrade Membership"
-                                onClick={() => {
-                                    navigate("/packages");
-                                }}
-                            />
-                        ) : (
-                            <button className="special_profile_button">Send Connection Request</button>
-                        )}
-                    </div>
-                    {data?.videoBioData && (
-                        <Tooltip title="Click to play video">
-                            <div onClick={() => setModalOpen(!isModalOpen)}>
-                                <AiOutlinePlayCircle className="text-[32px] text-[#ff77aa] hover:text-primary duration-300 cursor-pointer" />
-                            </div>
-                        </Tooltip>
-                    )}
+              )}
+              {data?.hometown && (
+                <div className="h-[28px] w-[4px] bg-gray-200 rounded-[4px] mx-[8px]"></div>
+              )}
+              {data?.hometown && (
+                <div className="flex items-center">
+                  <svg
+                    color="#FF1D8E"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth="1.5"
+                    stroke="currentColor"
+                    className="w-6 h-6"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"
+                    />
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"
+                    />
+                  </svg>
+                  <h3 className="ml-2 text-[14px] font-normal font-Inter">
+                    {data?.hometown || "Not Added"}
+                  </h3>
                 </div>
-                {isModalOpen && <VideoBioDataContainer videoBio={data?.videoBioData} isModalOpen={isModalOpen} setModalOpen={setModalOpen} />}
-            </motion.div>
+              )}
+              {data?.userMatrimonyPackageInfo && (
+                <div className="h-[28px] w-[4px] bg-gray-200 rounded-[4px] mx-[8px]"></div>
+              )}
+              {data?.userMatrimonyPackageInfo && <button className="special_profile_button text-sm text-[14px">
+                {data?.userMatrimonyPackageInfo?.package?.title + " user"}
+              </button>}
+            </div>
+            <div className="absolute top-[82%] w-full flex justify-center items-center gap-x-[20px]">
+              <div className="flex items-center">
+                <div className="w-[40px] h-[40px] rounded-full bg-[#F7E9F8] mr-1 flex items-center justify-center">
+                  <img src={blackLove} alt="blackLove" />
+                </div>
+                <span>{likes}</span>
+              </div>
+              <div>
+                {data ? (
+                  <PrimaryBtn
+                    value="Upgrade Membership"
+                    onClick={() => {
+                      navigate("/packages");
+                    }}
+                  />
+                ) : (
+                  <button className="special_profile_button">
+                    Send Connection Request
+                  </button>
+                )}
+              </div>
+              {data?.videoBioData && (
+                <Tooltip title="Click to play video">
+                  <div onClick={() => setModalOpen(!isModalOpen)}>
+                    <AiOutlinePlayCircle className="text-[32px] text-[#ff77aa] hover:text-primary duration-300 cursor-pointer" />
+                  </div>
+                </Tooltip>
+              )}
+            </div>
+            {isModalOpen && (
+              <VideoBioDataContainer
+                videoBio={data?.videoBioData}
+                isModalOpen={isModalOpen}
+                setModalOpen={setModalOpen}
+              />
+            )}
+          </motion.div>
         );
     }
     return content;
