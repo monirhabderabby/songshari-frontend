@@ -5,6 +5,7 @@ import CustomHeader from "../../shared/CustomHeader/CustomHeader";
 import PackageContainer from "./PackageContainer";
 import Footer from "../../shared/Footer/Footer";
 import CompleteFeaturePackages from "./CompleteFeaturePackages";
+import { BottomNav } from "../../../Wrapper/Home/mobileversion/BottomNav";
 
 const Packages = () => {
   const location = useLocation();
@@ -26,6 +27,9 @@ const Packages = () => {
         <CompleteFeaturePackages />
         <div className="hidden lg:block">
           <Footer />
+        </div>
+        <div className="lg:hidden">
+          <BottomNav />
         </div>
       </div>
     </>
