@@ -138,6 +138,13 @@ const MobileUsersProfile = () => {
                       (data?.lastName ? data?.lastName : "")}
                   </h2>
                 </div>
+                <div className="mr-0 ml-auto">
+                  {data?.userMatrimonyPackageInfo && (
+                    <button className="special_profile_button text-sm text-[14px">
+                      {data?.userMatrimonyPackageInfo?.package?.title + " user"}
+                    </button>
+                  )}
+                </div>
               </div>
               <div>
                 <div className="flex items-end justify-between">
