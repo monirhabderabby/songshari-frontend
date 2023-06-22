@@ -650,7 +650,7 @@ const Accordian = ({ data, isLoading, edit }) => {
                           className="flex justify-end mt-2"
                           style={{
                             display: `${
-                              expanded === "panel4" && edit ? "block" : "none"
+                              expanded === "panel2" && edit ? "block" : "none"
                             }`,
                           }}
                         >
@@ -753,7 +753,7 @@ const Accordian = ({ data, isLoading, edit }) => {
                           className="flex justify-end mt-2"
                           style={{
                             display: `${
-                              expanded === "panel4" && edit ? "block" : "none"
+                              expanded === "panel3" && edit ? "block" : "none"
                             }`,
                           }}
                         >
