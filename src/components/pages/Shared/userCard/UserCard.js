@@ -63,10 +63,10 @@ export const UserCard = ({ profile, role }) => {
   const aboutYou = profile?.aboutYou;
   let intro = null;
 
-  if (aboutYou?.length < 102) {
+  if (aboutYou?.length < 70) {
     intro = aboutYou;
-  } else if (aboutYou?.length > 102) {
-    intro = aboutYou?.slice(0, 100);
+  } else if (aboutYou?.length > 70) {
+    intro = aboutYou?.slice(0, 70);
   } else if (!aboutYou) {
     intro = (
       <div className="h-[100px] flex items-center justify-center text-gray-400">
@@ -143,7 +143,7 @@ export const UserCard = ({ profile, role }) => {
                   alt="profile"
                   className="w-[94px] h-[94px] rounded-full relative left-[35%] bg-white border-white border-4"
                 />
-                <div className="p-2 relative">
+                <div className="p-2 relative h-1/2">
                   <h4 className="text-white text-[25px] font-bold text-center overflow-hidden">
                     <span className="font-george">{name}</span>
                     {profile?.dateOfBirth && <span style={{ color: "rgb(135, 206, 235)" }}>
@@ -155,10 +155,10 @@ export const UserCard = ({ profile, role }) => {
                   </h4>
                   <ul className="text-white font-Inter">
                     <li>
-                      <div className="text-[14px] font-normal">{intro}</div>
+                      <div className="text-[14px] font-normal">{intro} </div>
                     </li>
                   </ul>
-                  <div className="h-[30px] w-full flex items-center justify-evenly absolute -bottom-[40px]">
+                  <div className="h-[30px] w-full flex items-center justify-evenly absolute bottom-10">
                     <p
                       onClick={goToProfile}
                       className="bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] rounded-full p-3 cursor-pointer"
