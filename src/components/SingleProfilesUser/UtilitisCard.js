@@ -14,7 +14,7 @@ const UtilitisCard = ({ data }) => {
             initial="hidden"
             whileInView={"show"}
             viewport={{ once: false, amount: 0.3 }}
-            className="utiliti-card w-full bg-white rounded-[10px] mt-[24px] py-6 flex items-center justify-around"
+            className="utiliti-card w-full bg-white rounded-[10px] mt-[24px] py-6 px-[30px] flex items-center justify-around"
             style={{ boxShadow: "0px 10px 5px rgba(119, 123, 146, 0.02)" }}
         >
             <Tooltip title="Message">

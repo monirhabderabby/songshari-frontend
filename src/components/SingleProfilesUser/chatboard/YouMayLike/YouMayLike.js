@@ -76,7 +76,7 @@ export const YouMayLike = () => {
         <div>
             <div className="flex justify-start items-center mx-1 gap-6 mb-6">
                 <BsCommand className="text-[#2E3A59] text-2xl" />
-                <h1 className="text-[#333333] text-2xl leading-[34px] font-bold">You May Like</h1>
+                <h1 className="text-[#000000] text-[22px] leading-[34px] font-fira font-semibold">You May Like</h1>
             </div>
             {/* Render Data from content variable */}
             <div>{content}</div>
