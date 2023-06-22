@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const SiblingsAccordion = ({ sibling, edit }) => {
   return (
     <div>
-      <div className={`${edit ? "flex justify-end mt-2" : "none"}`}>
+      <div className={`${edit ? "flex justify-end mt-2" : "hidden"}`}>
         <Link
           to={`edit/siblingsInfo/${sibling?._id}`}
           style={{
