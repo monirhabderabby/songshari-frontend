@@ -128,11 +128,11 @@ const Footer = () => {
               </div>
             </div>
             <div className=" relative flex justify-center">
-              <div className="link-wrapper three">
+              <div className="link-wrapper three md:w-full">
                 <h4 className="ignoreMouseEffect w-full text-center text-[24px] mb-[9px] uppercase font-normal text-[#fff]">
                   help center
                 </h4>
-                <ul className="ignoreMouseEffect f-social-links">
+                <ul className="ignoreMouseEffect f-social-links md:pl-24">
                   <li className="py-[5px]">
                     <Link to="/help">
                       <KeyboardDoubleArrowRightIcon /> Help centre
