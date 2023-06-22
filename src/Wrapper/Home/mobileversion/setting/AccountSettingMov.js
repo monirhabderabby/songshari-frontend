@@ -179,7 +179,7 @@ export const AccountSettingMov = () => {
         <Collapse expandIconPosition="end" expandIcon={customExpandIcon} ghost>
           <Panel className="" header={memberServicesHeader}>
             <div className="pl-24">
-              <div className="text-left font-Inter mb-1 w-full">
+              <div className="text-left font-Inter mb-3 w-full">
                 <Link to={"/allServices"}>
                   <div className="w-full   flex items-center justify-between">
                     <span>All Services</span>
@@ -189,7 +189,7 @@ export const AccountSettingMov = () => {
                   </div>
                 </Link>
               </div>
-              <div className="text-left font-Inter mb-1 w-full">
+              <div className="text-left font-Inter mb-3 w-full">
                 <Link to={"/ongoingServices"} className="w-full">
                   <div className="w-full   flex items-center justify-between">
                     <span>Ongoing Services</span>
@@ -199,7 +199,7 @@ export const AccountSettingMov = () => {
                   </div>
                 </Link>
               </div>
-              <div className="text-left font-Inter mb-1 w-full">
+              <div className="text-left font-Inter mb-3 w-full">
                 <Link to={"/completedServices"} className="">
                   <div className="w-full   flex items-center justify-between">
                     <span>Completed Services</span>
@@ -209,7 +209,7 @@ export const AccountSettingMov = () => {
                   </div>
                 </Link>
               </div>
-              <div className="text-left font-Inter mb-1 w-full">
+              <div className="text-left font-Inter mb-3 w-full">
                 <Link to={"/cancelledServices"} className="">
                   <div className="w-full   flex items-center justify-between">
                     <span>Cancelled Services</span>
@@ -219,7 +219,7 @@ export const AccountSettingMov = () => {
                   </div>
                 </Link>
               </div>
-              <div className="text-left font-Inter mb-1 w-full">
+              <div className="text-left font-Inter mb-3 w-full">
                 <Link to={"/agentServices"} className="">
                   <div className="w-full flex items-center justify-between">
                     <span>Agent Services</span>
@@ -229,7 +229,7 @@ export const AccountSettingMov = () => {
                   </div>
                 </Link>
               </div>
-              <div className="text-left font-Inter mb-1 w-full">
+              <div className="text-left font-Inter mb-3 w-full">
                 <Link to={"/kaziServices"} className="">
                   <div className="w-full flex items-center justify-between">
                     <span>Kazi Services</span>
@@ -239,7 +239,7 @@ export const AccountSettingMov = () => {
                   </div>
                 </Link>
               </div>
-              <div className="text-left font-Inter mb-1 w-full">
+              <div className="text-left font-Inter mb-3 w-full">
                 <Link to={"/lawyerServices"} className="">
                   <div className="w-full flex items-center justify-between">
                     <span>Lawyer Services</span>
