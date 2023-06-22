@@ -1,18 +1,18 @@
 import React from "react";
 import "../../../../App.css";
 const SendOtp = ({ isLoading, setOpen, sendOtpByEmail, email, setEmail }) => {
-  const onsubmit =  (e) => {
+  const onsubmit = (e) => {
     e.preventDefault();
-    return  sendOtpByEmail({ data: { email } });
+    return sendOtpByEmail({ data: { email } });
   };
   return (
     <>
       <div className="fixed w-full h-full inset-0 z-10 bg-black/50 cursor-pointer"></div>
       <div className="rounded sm:max-w-full w-[400px] space-y-4 bg-white p-6 absolute top-1/2 left-1/2 z-20 -translate-x-1/2 -translate-y-1/2">
-        <h2 className=" text-3xl font-extrabold text-gray-900">
+        <h2 className=" text-3xl font-extrabold text-gray-900 whitespace-nowrap">
           Forgot your password?
         </h2>
-        <p>we'll mail you a Verification code</p>
+        <p>We'll mail you a Verification Code</p>
         <form onSubmit={(e) => onsubmit(e)}>
           <div className="flex items-center bg-gray-100 p-2 w-full rounded-xl">
             <input

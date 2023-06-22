@@ -11,7 +11,8 @@ const PasswordInput = ({ setOpen, otp, email }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (password.length < 8) toast.error("Password must be at least 8 characters");
+    if (password.length < 8)
+      toast.error("Password must be at least 8 characters");
     else if (password === confirmPassword)
       changePassword({ otp, password, email });
     else toast.error("password doesn't match");
@@ -25,7 +26,7 @@ const PasswordInput = ({ setOpen, otp, email }) => {
             <CheckCircleIcon style={{ fontSize: "60px" }} />
           </div>
           <h2 className=" text-xl font-bold text-gray-900">
-            Password Change Successful
+            Password Changed Successfully
           </h2>
         </div>
         <button
@@ -46,10 +47,7 @@ const PasswordInput = ({ setOpen, otp, email }) => {
           </div>
           <h2 className=" text-xl font-bold text-gray-900">Email Verified !</h2>
         </div>
-        <h2 className=" text-3xl font-extrabold text-gray-900">
-          New Password !
-        </h2>
-        <p>Enter new password here.</p>
+        <p className="pl-[2px] text-[16px]">Set your new password here.</p>
         <form onSubmit={handleSubmit}>
           <div className="flex items-center my-4 bg-gray-100 p-4 w-full rounded-xl">
             <input
