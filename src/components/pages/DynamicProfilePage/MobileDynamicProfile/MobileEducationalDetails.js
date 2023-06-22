@@ -10,11 +10,12 @@ import moment from "moment";
 import { useGetProfileDetailsQuery } from "../../../../Redux/features/userInfo/userApi";
 import { BottomNav } from "../../../../Wrapper/Home/mobileversion/BottomNav";
 import { MobileBackButton } from "../../../shared/Components/MobileBackButton";
+import { LineWaveLoader } from "../../../shared/Cards/Loader/lineWaveLoader/LineWaveLoader";
 
 export const MobileEducationalDetails = () => {
   // hooks variable
   const { id } = useParams();
-  const { data } = useGetProfileDetailsQuery(id);
+  const { data,isLoading } = useGetProfileDetailsQuery(id);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -25,7 +26,7 @@ export const MobileEducationalDetails = () => {
     <div>
       <MobileBackButton name="Educational Details" />
       <div className="mx-4 mb-20">
-        <Typography component={"span"} variant={"body2"}>
+        {data && <Typography component={"span"} variant={"body2"}>
           {data?.educationalDetail?.length !== 0 ? (
             data?.educationalDetail?.map((edu) => {
               return (
@@ -185,7 +186,8 @@ export const MobileEducationalDetails = () => {
               )}
             </>
           )}
-        </Typography>
+        </Typography>}
+        {isLoading && <LineWaveLoader />}
         <BottomNav />
       </div>
     </div>
