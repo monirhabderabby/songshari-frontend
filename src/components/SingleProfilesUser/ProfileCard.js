@@ -47,7 +47,7 @@ const ProfileCard = ({ data, isLoading }) => {
     // js variable declare
     const name = (data?.firstName ? data?.firstName : "") + " " + (data?.lastName ? data?.lastName : "");
     const likes = data?.likes.length || 0;
-    const UserAge = data?.dateOfBirth ? `${age + "Years old"}` : "Not Added";
+    const UserAge = data?.dateOfBirth ? `${age + "Years old"}` : "";
     const coverPhoto = data?.coverPhoto ? data.coverPhoto : "";
     const { profilePhotoDecisionMaker } = customFunc;
     let profilePhoto = profilePhotoDecisionMaker(data?.profilePhoto);
@@ -168,9 +168,9 @@ const ProfileCard = ({ data, isLoading }) => {
                       d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"
                     />
                   </svg>
-                  <h3 className="ml-2 text-[14px] font-normal font-Inter">
-                    {data?.hometown || "Not Added"}
-                  </h3>
+                  {data?.hometown && <h3 className="ml-2 text-[14px] font-normal font-Inter">
+                    {data?.hometown}
+                  </h3>}
                 </div>
               )}
               {data?.userMatrimonyPackageInfo && (
