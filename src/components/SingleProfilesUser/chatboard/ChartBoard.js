@@ -22,7 +22,7 @@ const ChartBoard = () => {
     const { data: certificates } = useGetCertificatesWithAuthQuery();
     const professionalCertificate = certificates?.data?.professions || {};
     const educationalCertificate = certificates?.data?.educations || {};
-    const marriageCertificate = certificates?.data?.marriages || {}
+    const marriageCertificate = certificates?.data?.marriages || {};
 
     // variable declaration for certificate properties
     let proCertificate;
@@ -36,7 +36,7 @@ const ChartBoard = () => {
         eduCertificate = educationalCertificate[0]?.certificates[0]?.photo;
     }
     if (educationalCertificate?.length > 0) {
-      marCertificate = marriageCertificate[0]?.certificates[0]?.photo;
+        marCertificate = marriageCertificate[0]?.certificates[0]?.photo;
     }
 
     useEffect(() => {
@@ -61,7 +61,7 @@ const ChartBoard = () => {
                 >
                     <div className="flex justify-start items-center mx-1 gap-[25px]">
                         <img className="h-6 w-[27px]" src={chat} alt="chat icon" />
-                        <h1 className="text-[#333333] text-2xl font-semibold">Certificate</h1>
+                        <h1 className="text-[#333333] text-[22px] font-fira font-semibold">Certificate</h1>
                     </div>
                     {/* professionalCertificate */}
                     {proCertificate && (

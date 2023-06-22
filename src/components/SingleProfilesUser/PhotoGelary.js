@@ -72,11 +72,11 @@ const PhotoGelary = ({ isLoading, error }) => {
     if (isLoading) {
         headerContent = <div className="h-[22px] w-[130px] bg-gray-200 rounded-[6px] animate-pulse"></div>;
     } else if (!isLoading && error) {
-        headerContent = <div className="text-[#333333] font-semibold text-[24px] font-fira ml-[7px]">Something went wrong</div>;
+        headerContent = <div className="text-[#333333] font-semibold text-[22px] font-fira ml-[7px]">Something went wrong</div>;
     } else if (!isLoading && photos?.length === 0) {
-        headerContent = <div className="text-[#333333] font-semibold text-[24px] font-fira ml-[7px]">No photos</div>;
+        headerContent = <div className="text-[#333333] font-semibold text-[22px] font-fira ml-[7px]">No photos</div>;
     } else if (!isLoading && photos?.length > 0) {
-        headerContent = <div className="text-[#333333] font-semibold text-[24px] font-fira ml-[7px]">photos ({photos?.length})</div>;
+        headerContent = <div className="text-[#333333] font-semibold text-[22px] font-fira ml-[7px]">Photos ({photos?.length})</div>;
     }
 
     return (
