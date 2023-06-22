@@ -1,6 +1,6 @@
 // configuration
 import React from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 // Third party packages
 import { AiOutlineWarning } from "react-icons/ai";
@@ -16,10 +16,12 @@ import { UserCard } from "../Shared/userCard/UserCard";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+import PrimaryBtn from "../../shared/Web_Components/buttons/PrimaryBtn";
 
 const Suggested = () => {
     //hook variable declaration
     const { data, isLoading, error } = useGetRecentMembersQuery({ searchTerm: "", role: "member" });
+    const navigate = useNavigate();
 
     // js variables
     const arr = [1, 2, 3, 4, 5, 6, 7, 8];
@@ -89,12 +91,12 @@ const Suggested = () => {
                     {content}
 
                     <div className="text-center py-[40px] hidden md:block">
-                        <Link
-                            to="/find-partner/suggested"
-                            className="special_profile_button"
-                        >
-                            See More
-                        </Link>
+                        <PrimaryBtn
+                            onClick={() => {
+                                navigate("/find-partner/suggested");
+                            }}
+                            value="See More"
+                        />
                     </div>
                 </Swiper>
             </div>

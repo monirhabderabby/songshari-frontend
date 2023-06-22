@@ -1,10 +1,12 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import ScaleAnimationCSS from "../../../../assets/css/ScaleAnimation.module.css";
 import bgCircle from "../../../../assets/images/HomeImage/circle.png";
 import findImg from "../../../../assets/images/HomeImage/illutration.png";
+import PrimaryBtn from "../../../shared/Web_Components/buttons/PrimaryBtn";
 
 const BeginFamilyJourney = () => {
+    const navigate = useNavigate();
     return (
         <div className="custom-container max-w-[1200px] pt-8 pb-24 w-11/12 lg:w-4/5 mx-auto">
             <div className="flex flex-col md:flex-row">
@@ -20,12 +22,12 @@ const BeginFamilyJourney = () => {
                         its innovation-led approach not only by redefining the way Bangladeshi brides and grooms meet for marriage, but also maintain
                         and make their family journey smoother!
                     </p>
-                    <Link
-                        to="/find-partner/suggested"
-                        className="px-4 md:px-6 lg:px-8 pt-2 pb-1 text-xl lg:text-2xl special_profile_button font-semibold cursor-pointer"
-                    >
-                        SEEK YOUR PARTNER
-                    </Link>
+                    <PrimaryBtn
+                        value="SEEK YOUR PARTNER"
+                        onClick={() => {
+                            navigate("/find-partner/suggested");
+                        }}
+                    />
                 </div>
                 <div
                     data-aos="fade-left"

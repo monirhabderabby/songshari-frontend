@@ -11,14 +11,14 @@ import ScaleAnimationCSS from "../../../../assets/css/ScaleAnimation.module.css"
 import getCookie from "../../../../Helper/cookies/getCookie";
 
 const FindSoleMate = () => {
-     const token = getCookie("token");
+    const token = getCookie("token");
 
-     let redirectPath;
-     if (token) {
-       redirectPath = "/find-partner/suggested";
-     } else {
-       redirectPath = "/signup";
-     }
+    let redirectPath;
+    if (token) {
+        redirectPath = "/find-partner/suggested";
+    } else {
+        redirectPath = "/signup";
+    }
     return (
         <div className="bg-[#F8F8FF] pb-10">
             <div className="bg-[#5736cb] relative h-60 lg:h-72 overflow-hidden">
@@ -38,8 +38,7 @@ const FindSoleMate = () => {
                             </h2>
                             <Link
                                 to={redirectPath}
-                                className="px-8 special_profile_button md:px-6 lg:px-8 pt-3 md:pt-2 lg:pt-3 pb-2 md:pb-1 lg:pb-2 text-2xl md:text-xl lg:text-2xl text-white font-semibold tracking-[.25em] shadow-xl cursor-pointer leading-6 md:leading-5 lg:leading6"
-                                
+                                className=" bg-[linear-gradient(171deg,rgba(233,11,200,0.6979166666666667)_41%,_rgba(166,2,241,0.79)_100%)] py-[5px] px-[15px] text-white rounded-[50px]  pt-3 md:pt-2 lg:pt-3 pb-2 md:pb-1 lg:pb-2 text-2xl md:text-xl lg:text-2xl font-semibold tracking-[.25em] shadow-xl cursor-pointer leading-6 md:leading-5 lg:leading6"
                             >
                                 JOIN NOW!
                             </Link>
