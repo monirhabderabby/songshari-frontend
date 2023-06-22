@@ -14,6 +14,7 @@ import getCookie from "../../Helper/cookies/getCookie";
 // css files
 import "../../assets/css/photogelary.css";
 import VarientAnimation from "../../assets/utilities/Animation/VarientAnimation";
+import Image from "../shared/Web_Components/Image/Image";
 
 const PhotoGelary = ({ isLoading, error }) => {
     // hook variable declaration
@@ -55,13 +56,7 @@ const PhotoGelary = ({ isLoading, error }) => {
         content = (
             <div className="h-[calc(333px-94px)] w-full grid grid-cols-3 mt-[15px]">
                 {photos?.slice(0, 6).map((photo, index) => {
-                    return (
-                        <div
-                            key={index}
-                            className="h-[101px] w-[86px] bg-center bg-cover duration-300 rounded-[15px]"
-                            style={{ backgroundImage: `url(${photo})` }}
-                        ></div>
-                    );
+                    return <Image photo={photo} key={index} height="101px" width="86px" rounded="4px" />;
                 })}
             </div>
         );

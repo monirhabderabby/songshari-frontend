@@ -5,9 +5,9 @@ import React, { useEffect, useState } from "react";
 import Pagination from "@mui/material/Pagination";
 
 // Components
-import ServiceCard from "../../../components/shared/Cards/Member/Service/ServiceCard";
 import { useGetAllOrderByMemberQuery } from "../../../Redux/features/Service/OrderApi";
 import ServiceCardSkeleton from "../../shared/Cards/Loader/Member/ServiceCardSkeleton";
+import ServiceCardV2 from "../../shared/Cards/Member/Service/ServiceCardV2";
 import { TBFaceError } from "../../ui/error/TBFaceError";
 
 const UserCompletedServices = ({ responsive }) => {
@@ -42,8 +42,8 @@ const UserCompletedServices = ({ responsive }) => {
     } else if (!isLoading && orders.length > 0) {
         content = (
             <div className="flex flex-col items-center gap-y-[10px]">
-                {orders?.map(order => {
-                    return <ServiceCard key={order._id} service={order} status="completed" {...{ responsive }} />;
+                {orders?.map((order, i) => {
+                    return <ServiceCardV2 key={order._id} service={order} status="completed" {...{ responsive }} i={i} />;
                 })}
             </div>
         );

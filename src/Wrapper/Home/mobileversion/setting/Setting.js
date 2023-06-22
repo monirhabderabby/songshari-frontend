@@ -1,13 +1,29 @@
+import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
+import { motion } from "framer-motion";
 import React from "react";
 import { Link } from "react-router-dom";
 import { BottomNav } from "../BottomNav";
 import { AccountSettingMov } from "./AccountSettingMov";
-import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
-
 
 export const Setting = () => {
     return (
-        <div className="max-w-[1024px] mx-auto">
+        <motion.div
+            layout
+            initial={{
+                x: 100,
+                opacity: 0,
+            }}
+            animate={{
+                x: 0,
+                opacity: 1,
+            }}
+            exit={{ x: 100, opacity: 0 }}
+            transition={{
+                opacity: { duration: 0.2 },
+                x: { duration: 0.5 },
+            }}
+            className="max-w-[1024px] mx-auto"
+        >
             <Link to="/">
                 <div className="grid grid-cols-6 mt-5">
                     <div className="setting-mov col-span-1">
@@ -26,6 +42,6 @@ export const Setting = () => {
 
             {/* bottom navigation  */}
             <BottomNav></BottomNav>
-        </div>
+        </motion.div>
     );
 };

@@ -42,8 +42,8 @@ const UserKaziServices = ({ responsive }) => {
     } else if (!isLoading && services.length > 0) {
         content = (
             <div className="flex flex-col items-center gap-y-[10px]">
-                {services?.map(service => {
-                    return <ServiceCardV2 key={service._id} service={service} {...{ responsive }} />;
+                {services?.map((service, i) => {
+                    return <ServiceCardV2 key={service._id} service={service} {...{ responsive }} i={i} />;
                 })}
             </div>
         );

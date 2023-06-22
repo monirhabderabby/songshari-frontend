@@ -8,8 +8,9 @@ import { AiOutlineWarning } from "react-icons/ai";
 import { MdNoPhotography } from "react-icons/md";
 
 // components
-import useDocumentTitle from "../../../assets/utilities/useDocumentTitle";
 import { useGetProfileDetailsQuery } from "../../../Redux/features/userInfo/userApi";
+import customFunc from "../../../assets/utilities/customFunc";
+import useDocumentTitle from "../../../assets/utilities/useDocumentTitle";
 import CustomHeader from "../CustomHeader/CustomHeader";
 
 export const Gallery = () => {
@@ -18,8 +19,10 @@ export const Gallery = () => {
     // hook variable declaration
     const { id } = useParams();
 
+    const { profilePhotoDecisionMaker } = customFunc;
+
     // Redux api calls
-    const { data, isLoading, error } = useGetProfileDetailsQuery(id);
+    const { data, error, isLoading } = useGetProfileDetailsQuery(id);
 
     // js variable declaration
     const photos = data?.photos;
@@ -29,13 +32,8 @@ export const Gallery = () => {
     if (isLoading) {
         content = (
             <div className="w-full grid grid-cols-3 gap-[40px] max-w-[1200px] mx-auto px-[10px]">
-                {loaderArr.map((p, index) => {
-                    return (
-                        <div
-                            key={p}
-                            className={`w-full max-h-[424px] bg-gray-200 rounded-[15px] animate-pulse ${index === 1 && "col-span-2 row-span-2"}`}
-                        ></div>
-                    );
+                {loaderArr.map(p => {
+                    return <div key={p} className={`w-[370px] h-[325px] bg-gray-200 rounded-[15px] animate-pulse`}></div>;
                 })}
             </div>
         );
@@ -68,7 +66,12 @@ export const Gallery = () => {
                             transition={{ duration: 0.3, delay: i * 0.2 }}
                             className="h-[325px] w-[370px] overflow-hidden rounded-[15px] "
                         >
-                            <img key={i} src={photo} alt="userPhotos" className={`rounded-[15px] h-[325px] w-[370px] hover:scale-125 duration-300`} />
+                            <div
+                                className={`w-[370px] h-[325px] rounded-md bg-cover bg-center cursor-pointer hover:scale-125 duration-300`}
+                                style={{
+                                    backgroundImage: `url(${profilePhotoDecisionMaker(photo)})`,
+                                }}
+                            ></div>
                         </motion.div>
                     );
                 })}

@@ -79,9 +79,9 @@ const VideoBioUploadCard = ({ data, setShowPopup }) => {
                 )}
                 <div className="text-[#000000] text-[22px] leading-[20px] font-semibold font-fira">
                     {isLoading ? (
-                        <p className="text-[24px] font-fira">Uploading</p>
+                        <p className="text-[18px] lg:text-[22px] font-fira">Uploading</p>
                     ) : (
-                        <p className=" text-[24px] font-fira">{data?.videoBioData ? "Update" : "Add"} Video Bio</p>
+                        <p className="text-[18px] lg:text-[22px] font-fira">{data?.videoBioData ? "Update" : "Add"} Video Bio</p>
                     )}
                 </div>
             </label>

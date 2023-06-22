@@ -43,99 +43,74 @@ const ChangePassword = () => {
         updatePassWord({ newPass: newPass, oldPass: oldPass });
     };
     return (
-      <div>
-        <div className="font-Nunito border-b-[1px] border-[#eeeeee] w-auto pb-[7px]">
-          <h3 className="text-[24px] text-gray-500">Change password</h3>
-          <h5 className="text-[16px] text-gray-400">
-            Do not share your password with anyone
-          </h5>
+        <div>
+            <div className="font-Nunito border-b-[1px] border-[#eeeeee] w-auto pb-[7px]">
+                <h3 className="text-[18px] lg:text-[22px] font-medium text-gray-500 font-fira">Change password</h3>
+                <h5 className="text-[14px] text-gray-400">Do not share your password with anyone</h5>
+            </div>
+
+            <form onSubmit={handleSubmit} className="my-[20px] flex flex-col items-start">
+                <div className="relative w-full md:w-[500px]">
+                    <input
+                        onChange={e => setOldPass(e.target.value)}
+                        type={showOldPass ? "text" : "password"}
+                        value={oldPass}
+                        name="oldPassword"
+                        placeholder="Old Password"
+                        className={`relative bg-transparent px-4 outline-1 h-[50px] w-full lg:w-[500px] border-[1px] border-[#bdbdbd] mt-[8px] rounded-[4px]`}
+                    />
+                    <span
+                        onClick={() => setShowOldPass(!showOldPass)}
+                        className={`flex cursor-pointer ${
+                            showOldPass ? "bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)]" : "bg-gray-400"
+                        } items-center justify-center absolute p-1 h-10 w-10 rounded-full right-3 top-3`}
+                    >
+                        {showOldPass ? <VisibilityOffIcon style={{ fill: "white" }} /> : <RemoveRedEyeIcon style={{ fill: "white" }} />}
+                    </span>
+                </div>
+
+                <div className="relative w-full md:w-[500px]">
+                    <input
+                        onChange={e => setNewPass(e.target.value)}
+                        type={showNewPass ? "text" : "password"}
+                        name="newPassword"
+                        value={newPass}
+                        placeholder="New Password"
+                        className={`relative bg-transparent px-4 outline-1 h-[50px] w-full lg:w-[500px] border-[1px] border-[#bdbdbd] mt-[8px] rounded-[4px]`}
+                    />
+                    <span
+                        onClick={() => setShowNewPass(!showNewPass)}
+                        className={`flex cursor-pointer ${
+                            showNewPass ? "bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)]" : "bg-gray-400"
+                        } items-center justify-center absolute p-1 h-10 w-10 rounded-full right-3 top-3`}
+                    >
+                        {showNewPass ? <VisibilityOffIcon style={{ fill: "white" }} /> : <RemoveRedEyeIcon style={{ fill: "white" }} />}
+                    </span>
+                </div>
+                <div className="relative w-full md:w-[500px]">
+                    <input
+                        onChange={e => setConfirmPass(e.target.value)}
+                        value={confirmPass}
+                        type={showConfirmPass ? "text" : "password"}
+                        name="confirmPassword"
+                        placeholder="Retype New Password"
+                        className={`relative bg-transparent px-4 outline-1 h-[50px] w-full lg:w-[500px] border-[1px] border-[#bdbdbd] mt-[8px] rounded-[4px]`}
+                    />
+                    <span
+                        onClick={() => setShowConfirmPass(!showConfirmPass)}
+                        className={`flex cursor-pointer ${
+                            showConfirmPass ? "bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)]" : "bg-gray-400"
+                        } items-center justify-center absolute p-1 h-10 w-10 rounded-full right-3 top-3`}
+                    >
+                        {showConfirmPass ? <VisibilityOffIcon style={{ fill: "white" }} /> : <RemoveRedEyeIcon style={{ fill: "white" }} />}
+                    </span>
+                </div>
+
+                <button className="mt-[20px] cursor-pointer px-4 py-2 rounded-[50px] special_profile_button duration-300">
+                    {isLoading ? "Loading..." : "Update password"}
+                </button>
+            </form>
         </div>
-
-        <form
-          onSubmit={handleSubmit}
-          className="my-[20px] flex flex-col items-start"
-        >
-          <div className="relative w-full md:w-[500px]">
-            <input
-              onChange={(e) => setOldPass(e.target.value)}
-              type={showOldPass ? "text" : "password"}
-              value={oldPass}
-              name="oldPassword"
-              placeholder="Old Password"
-              className={`relative bg-transparent px-4 outline-1 h-[50px] w-full lg:w-[500px] border-[1px] border-[#bdbdbd] mt-[8px] rounded-[4px]`}
-            />
-            <span
-              onClick={() => setShowOldPass(!showOldPass)}
-              className={`flex cursor-pointer ${
-                showOldPass
-                  ? "bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)]"
-                  : "bg-gray-400"
-              } items-center justify-center absolute p-1 h-10 w-10 rounded-full right-3 top-3`}
-            >
-              {showOldPass ? (
-                <VisibilityOffIcon style={{ fill: "white" }} />
-              ) : (
-                <RemoveRedEyeIcon style={{ fill: "white" }} />
-              )}
-            </span>
-          </div>
-
-          <div className="relative w-full md:w-[500px]">
-            <input
-              onChange={(e) => setNewPass(e.target.value)}
-              type={showNewPass ? "text" : "password"}
-              name="newPassword"
-              value={newPass}
-              placeholder="New Password"
-              className={`relative bg-transparent px-4 outline-1 h-[50px] w-full lg:w-[500px] border-[1px] border-[#bdbdbd] mt-[8px] rounded-[4px]`}
-            />
-            <span
-              onClick={() => setShowNewPass(!showNewPass)}
-              className={`flex cursor-pointer ${
-                showNewPass
-                  ? "bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)]"
-                  : "bg-gray-400"
-              } items-center justify-center absolute p-1 h-10 w-10 rounded-full right-3 top-3`}
-            >
-              {showNewPass ? (
-                <VisibilityOffIcon style={{ fill: "white" }} />
-              ) : (
-                <RemoveRedEyeIcon style={{ fill: "white" }} />
-              )}
-            </span>
-          </div>
-          <div className="relative w-full md:w-[500px]">
-            <input
-              onChange={(e) => setConfirmPass(e.target.value)}
-              value={confirmPass}
-              type={showConfirmPass ? "text" : "password"}
-              name="confirmPassword"
-              placeholder="Retype New Password"
-              className={`relative bg-transparent px-4 outline-1 h-[50px] w-full lg:w-[500px] border-[1px] border-[#bdbdbd] mt-[8px] rounded-[4px]`}
-            />
-            <span
-              onClick={() => setShowConfirmPass(!showConfirmPass)}
-              className={`flex cursor-pointer ${
-                showConfirmPass
-                  ? "bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)]"
-                  : "bg-gray-400"
-              } items-center justify-center absolute p-1 h-10 w-10 rounded-full right-3 top-3`}
-            >
-              {showConfirmPass ? (
-                <VisibilityOffIcon style={{ fill: "white" }} />
-              ) : (
-                <RemoveRedEyeIcon style={{ fill: "white" }} />
-              )}
-            </span>
-          </div>
-
-          <button
-            className="mt-[20px] cursor-pointer px-4 py-2 rounded-[50px] special_profile_button duration-300"
-          >
-            {isLoading ? "Loading..." : "Update password"}
-          </button>
-        </form>
-      </div>
     );
 };
 
