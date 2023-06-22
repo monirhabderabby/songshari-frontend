@@ -20,19 +20,23 @@ const ChartBoard = () => {
 
     //Redux API calls
     const { data: certificates } = useGetCertificatesWithAuthQuery();
-    const professionalCertificate = certificates?.data?.professions;
-    const educationalCertificate = certificates?.data?.educations;
-    const marriageCertificate = certificates?.data?.marriages;
+    const professionalCertificate = certificates?.data?.professions || {};
+    const educationalCertificate = certificates?.data?.educations || {};
+    const marriageCertificate = certificates?.data?.marriages || {}
 
     // variable declaration for certificate properties
     let proCertificate;
     let eduCertificate;
+    let marCertificate;
 
     if (professionalCertificate?.length > 0) {
-        proCertificate = professionalCertificate[0].specialAchievementMoment;
+        proCertificate = professionalCertificate[0]?.certificates[0]?.photo;
     }
     if (educationalCertificate?.length > 0) {
-        eduCertificate = educationalCertificate[0].certificatePhoto;
+        eduCertificate = educationalCertificate[0]?.certificates[0]?.photo;
+    }
+    if (educationalCertificate?.length > 0) {
+      marCertificate = marriageCertificate[0]?.certificates[0]?.photo;
     }
 
     useEffect(() => {
@@ -89,11 +93,11 @@ const ChartBoard = () => {
                             </div>
                         </div>
                     )}
-                    {marriageCertificate && (
+                    {marCertificate && (
                         <div>
                             <h3 className="mt-3 mb-2">Marriage Certificate</h3>
                             <div className={`relative ${ChartBoardCSS.hasViewButton}`}>
-                                <img className="rounded-lg blur-[1px] w-[224px] h-[93px]" src={eduCertificate} alt="Not Available" />
+                                <img className="rounded-lg blur-[1px] w-[224px] h-[93px]" src={marCertificate} alt="Not Available" />
                                 <Link
                                     to="/marriageCertificate"
                                     className={`${ChartBoardCSS.showViewButton} top-[35%] left-[35%] text-white rounded block bg-black text-sm font-medium px-4 py-1 duration-300`}

@@ -12,7 +12,7 @@ const MeetNewPeopleCard = ({ data, index }) => {
     if (token) {
         redirectPath = "/find-partner/suggested";
     } else {
-        redirectPath = "/login";
+        redirectPath = "/signup";
     }
 
     return (

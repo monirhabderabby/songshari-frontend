@@ -148,7 +148,7 @@ const MobileAccordion = () => {
                 <p className="font-normal">{data.whatAreYouLookingFor}</p>
               </div>
               <div className="flex justify-between h-[37px] items-center border-dashed border-b-[1px] border-[rgba(0,0,0,0.1)] text-[16px] text-[#333333]">
-                <span className="font-medium">What are you looking for</span>
+                <span className="font-medium">Looking for</span>
                 <p className="font-normal">{data.whatAreYouLookingFor}</p>
               </div>
 
