@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import React from "react";
 import { useNavigate } from "react-router";
 
@@ -14,7 +15,14 @@ export const SupportTableRow = ({ item, index }) => {
         }
     };
     return (
-        <tr className="bg-white">
+        <motion.tr
+            layout
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.8 }}
+            transition={{ opacity: { duration: 0.2 }, layout: { duration: index * 0.05 } }}
+            className="bg-white"
+        >
             <td className="p-3 text-sm text-gray-700 whitespace-nowrap">{uid}</td>
             <td className="p-3 text-sm text-gray-700 whitespace-nowrap">
                 <span className={`p-1.5 text-xs font-medium uppercase tracking-wider rounded-lg bg-opacity-50 ${colorChooser(status)}`}>
@@ -28,6 +36,6 @@ export const SupportTableRow = ({ item, index }) => {
                     View <br /> detailes
                 </button>
             </td>
-        </tr>
+        </motion.tr>
     );
 };

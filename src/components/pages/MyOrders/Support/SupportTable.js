@@ -1,4 +1,5 @@
 import { Pagination } from "@mui/material";
+import { AnimatePresence } from "framer-motion";
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
 import { useGetMyTicketsQuery } from "../../../../Redux/features/Ticket/ticketApi";
@@ -55,9 +56,11 @@ export const SupportTable = ({ status }) => {
                     </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-100">
-                    {tickets?.map((item, index) => {
-                        return <SupportTableRow item={item} key={item._id} index={index} />;
-                    })}
+                    <AnimatePresence initial={false}>
+                        {tickets?.map((item, index) => {
+                            return <SupportTableRow item={item} key={item._id} index={index} />;
+                        })}
+                    </AnimatePresence>
                 </tbody>
             </table>
         );
