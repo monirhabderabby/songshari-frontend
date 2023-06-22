@@ -13,6 +13,7 @@ import getCookie from "../../Helper/cookies/getCookie";
 
 // css files
 import "../../assets/css/photogelary.css";
+import VarientAnimation from "../../assets/utilities/Animation/VarientAnimation";
 
 const PhotoGelary = ({ isLoading, error }) => {
     // hook variable declaration
@@ -79,7 +80,7 @@ const PhotoGelary = ({ isLoading, error }) => {
     }
 
     return (
-        <>
+        <VarientAnimation direction="up" delay={0.5}>
             <div className="w-full mt-[24px]">
                 <div className="w-full h-[333px] rounded-[10px] bg-white px-[30px] py-[26px] shadow-[0px_10px_5px_rgba(119,123,146,0.02)]">
                     <div className="flex items-center">
@@ -112,15 +113,12 @@ const PhotoGelary = ({ isLoading, error }) => {
             </div>
             {photos?.length > 6 && (
                 <div className="w-full mt-[24px] flex justify-center">
-                    <button
-                        className="special_profile_button"
-                        onClick={() => navigate(`/gallery/${_id}`)}
-                    >
+                    <button className="special_profile_button" onClick={() => navigate(`/gallery/${_id}`)}>
                         View All Photos
                     </button>
                 </div>
             )}
-        </>
+        </VarientAnimation>
     );
 };
 

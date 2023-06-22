@@ -2,6 +2,7 @@
 import React from "react";
 
 // Third party packages, ex: redux
+import { motion } from "framer-motion";
 import { AiOutlineWarning } from "react-icons/ai";
 import { BsCommand } from "react-icons/bs";
 import { MdOutlineRecommend } from "react-icons/md";
@@ -50,9 +51,22 @@ export const YouMayLike = () => {
         );
     } else if (data?.data?.suggestion?.length > 0) {
         content = (
-            <div className="flex flex-col gap-y-[19px]">
-                {data?.data?.suggestion?.slice(0, 4).map(profile => {
-                    return <CardYouMayLike key={profile._id} {...{ data: profile }} />;
+            <div className="flex flex-col gap-y-[23px]">
+                {data?.data?.suggestion?.slice(0, 4).map((profile, i) => {
+                    return (
+                        <motion.div
+                            key={profile._id}
+                            initial={{
+                                opacity: 0,
+                                translateX: i % 2 === 0 ? -50 : 50,
+                                translateY: -50,
+                            }}
+                            animate={{ opacity: 1, translateX: 0, translateY: 0 }}
+                            transition={{ duration: 0.5, delay: i * 0.3 }}
+                        >
+                            <CardYouMayLike {...{ data: profile }} />
+                        </motion.div>
+                    );
                 })}
             </div>
         );

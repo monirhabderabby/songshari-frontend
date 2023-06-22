@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 /* Third party packages */
+import { motion } from "framer-motion";
+import { fadeIn } from "../../../assets/utilities/Animation/varient";
 
 // components
 import chat from "../../../assets/images/user profile/chatIcon.png";
@@ -47,7 +49,11 @@ const ChartBoard = () => {
         <div>
             {/* ----- Certificate ----- */}
             {isCertificate && (
-                <div
+                <motion.div
+                    variants={fadeIn("left", 0.1)}
+                    initial="hidden"
+                    whileInView={"show"}
+                    viewport={{ once: false, amount: 0.3 }}
                     className="rounded-xl p-5 font-sans font-normal text-base text-[#000000] mb-[70px]"
                     style={{
                         backgroundImage: "linear-gradient(180deg, #FFD7F6 0%, #FFC1E6 100%)",
@@ -101,7 +107,7 @@ const ChartBoard = () => {
                             </div>
                         </div>
                     )}
-                </div>
+                </motion.div>
             )}
             <div>
                 <div className="hidden md:hidden lg:block">

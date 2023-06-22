@@ -2,6 +2,7 @@
 import React from "react";
 
 // Third party packages, ex: redux
+import { motion } from "framer-motion";
 import { AiOutlineWarning } from "react-icons/ai";
 import { BsCommand } from "react-icons/bs";
 import { MdOutlineRecommend } from "react-icons/md";
@@ -46,9 +47,21 @@ export const SwapProfileMatches = () => {
         );
     } else if (matchedArray?.length > 0) {
         content = (
-            <div className="flex flex-col gap-y-[19px]">
-                {matchedArray?.slice(0, 4).map(profile => {
-                    return <CardYouMayLike key={profile._id} {...{ data: profile }} variant="swap" />;
+            <div className="flex flex-col gap-y-[23px]">
+                {matchedArray?.slice(0, 4).map((profile, i) => {
+                    return (
+                        <motion.div
+                            initial={{
+                                opacity: 0,
+                                translateX: i % 2 === 0 ? -50 : 50,
+                                translateY: -50,
+                            }}
+                            animate={{ opacity: 1, translateX: 0, translateY: 0 }}
+                            transition={{ duration: 0.5, delay: i * 0.3 }}
+                        >
+                            <CardYouMayLike key={profile._id} {...{ data: profile }} variant="swap" />
+                        </motion.div>
+                    );
                 })}
             </div>
         );

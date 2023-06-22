@@ -28,13 +28,13 @@ export const TableData = ({ product, setWishlistData, wishlistData }) => {
     return (
         <tr className="h-[60px] lg:h-[80px] border-b-[1px] border-gray-200">
             <td className="px-[6px]">
-                <RxCross2 onClick={() => handleDeleteWishlist(_id)} />
+                <RxCross2 className="cursor-pointer" onClick={() => handleDeleteWishlist(_id)} />
             </td>
             <td className="w-[60px] h-[60px] rounded-full">
                 <img src={photos[0]?.url} alt="product" className="w-[40px] h-[40px] lg:w-[60px] lg:h-[60px] rounded-full" />
             </td>
-            <td className="text-center">
-                <h1 className="text-[10px] lg:text-[16px]">{name}</h1>
+            <td className="text-center w-1/2 lg:px-[50px]">
+                <h1 className="text-[10px] lg:text-[16px] text-center">{name}</h1>
             </td>
             <td className="text-center text-[10px] lg:text-[16px]">
                 <span>{price}</span> BDT
