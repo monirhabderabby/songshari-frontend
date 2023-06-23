@@ -12,7 +12,7 @@ import {
 import { MobileBackButton } from "../../../shared/Components/MobileBackButton";
 import { BottomNav } from "../../../../Wrapper/Home/mobileversion/BottomNav";
 import { OvalLoader } from "../../../shared/Cards/Loader/OvalLoader/OvalLoader";
-import moment from "moment/moment";
+import dayjs from "dayjs";
 
 const EditEducationalInfo = () => {
   const [messageApi, contextHolder] = message.useMessage();
@@ -210,7 +210,9 @@ const EditEducationalInfo = () => {
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   }, []);
-  console.log(educationData);
+
+  const dateFormat = "YYYY/MM/DD";
+
   return (
     <div>
       <div className="lg:hidden">
@@ -515,7 +517,8 @@ const EditEducationalInfo = () => {
                   Year of passing
                 </label>
                 <DatePicker
-                  defaultValue={yearOfPassing && moment(yearOfPassing)}
+                  // defaultValue={yearOfPassing && moment(yearOfPassing)}
+                  defaultValue={dayjs(yearOfPassing, dateFormat)}
                   onChange={handlePassingYear}
                   className="w-full"
                 />
