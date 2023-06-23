@@ -5,9 +5,9 @@ import React, { useState, useEffect } from "react";
 import { Select } from "antd";
 import { useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
+import { AiOutlinePaperClip } from "react-icons/ai";
 
 // Components
-import { MdCreateNewFolder } from "react-icons/md";
 import {
   useAddUserPostMutation,
   useGetMyPostsQuery,
@@ -112,7 +112,7 @@ const MobileActivity = () => {
                     photoURL ? "text-green-400" : "text-[#E41272]"
                   }`}
                 >
-                  <MdCreateNewFolder />
+                  <AiOutlinePaperClip />
                 </div>
                 <input
                   className="hidden"
