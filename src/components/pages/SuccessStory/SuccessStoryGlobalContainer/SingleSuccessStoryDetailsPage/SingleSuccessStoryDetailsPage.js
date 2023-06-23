@@ -3,90 +3,81 @@ import React, { useEffect } from "react";
 import { useParams } from "react-router";
 
 // Components
-import CustomHeader from "../../../../shared/CustomHeader/CustomHeader";
-import { getDateFromCreatedAt } from "../../../../../assets/utilities/GetDateFromCreatedAt/getDateFromCreatedAt";
 import { useGetSuccessStoryByIdQuery } from "../../../../../Redux/features/SuccessStory/successStoryApi";
+import { BottomNav } from "../../../../../Wrapper/Home/mobileversion/BottomNav";
+import { getDateFromCreatedAt } from "../../../../../assets/utilities/GetDateFromCreatedAt/getDateFromCreatedAt";
 import { OvalLoader } from "../../../../shared/Cards/Loader/OvalLoader/OvalLoader";
+import { MobileBackButton } from "../../../../shared/Components/MobileBackButton";
+import CustomHeader from "../../../../shared/CustomHeader/CustomHeader";
+import Footer from "../../../../shared/Footer/Footer";
 import { ServerErrorMessage } from "../../../../ui/error/ServerErrorMessage";
 import SingleSuccessStoryImages from "./SingleSuccessStoryImages/SingleSuccessStoryImages";
-import { MobileBackButton } from "../../../../shared/Components/MobileBackButton";
-import Footer from "../../../../shared/Footer/Footer";
-import { BottomNav } from "../../../../../Wrapper/Home/mobileversion/BottomNav";
 
 const SingleSuccessStoryDetailsPage = () => {
-  const { id } = useParams();
-  const {
-    data: successStory,
-    isLoading,
-    error,
-  } = useGetSuccessStoryByIdQuery(id);
+    const { id } = useParams();
+    const { data: successStory, isLoading, error } = useGetSuccessStoryByIdQuery(id);
 
-  let content;
-  if (isLoading) {
-    content = (
-      <div className="mt-20">
-        <OvalLoader title={"Loading..."} />
-      </div>
-    );
-  } else if (error) {
-    content = (
-      <div className="flex justify-center w-full mt-20">
-        <ServerErrorMessage />
-      </div>
-    );
-  } else if (!error && successStory?.success) {
-    content = (
-      <div className="lg:max-w-[1000px] xl:max-w-[1200px] mx-auto px-6 lg:px-0">
-        <h1 className="text-4xl font-semibold font-Poppins text-center max-w-3xl mx-auto mt-8 capitalize">
-          {successStory?.data?.header}
-        </h1>
+    let content;
+    if (isLoading) {
+        content = (
+            <div className="mt-20">
+                <OvalLoader title={"Loading..."} />
+            </div>
+        );
+    } else if (error) {
+        content = (
+            <div className="flex justify-center w-full mt-20">
+                <ServerErrorMessage />
+            </div>
+        );
+    } else if (!error && successStory?.success) {
+        content = (
+            <div className="lg:max-w-[1000px] xl:max-w-[1200px] mx-auto px-6 lg:px-0">
+                <h1 className="text-[22px] lg:text-[32px] font-semibold font-Poppins text-center max-w-3xl mx-auto mt-8 capitalize">
+                    {successStory?.data?.header}
+                </h1>
+                <div>
+                    <p className="text-slate-500 font-Poppins text-center mt-2 text-[12px] lg:text-[14px]">
+                        Posted By:{" "}
+                        <span className="text-slate-600 font-medium">
+                            {(successStory?.data?.user?.firstName || "") + " " + (successStory?.data?.user?.lastName || "")}
+                        </span>{" "}
+                        On: <span className="text-slate-600 font-medium">{getDateFromCreatedAt(successStory?.data?.createdAt)}</span>
+                    </p>
+                </div>
+                <hr className="mt-4 mb-8" />
+                <SingleSuccessStoryImages {...{ successStory }} />
+                <h1 className="text-[14px] lg:text-[16px] text-justify font-normal font-Poppins max-w-3xl mx-auto mt-6 lg:mt-8 mb-20">
+                    {successStory?.data?.body}
+                </h1>
+            </div>
+        );
+    }
+
+    // Scroll to top
+    useEffect(() => {
+        window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+    }, []);
+
+    return (
         <div>
-          <p className="text-slate-500 font-Poppins text-center mt-2">
-            Posted By:{" "}
-            <span className="text-slate-600 font-medium">
-              {(successStory?.data?.user?.firstName || "") +
-                " " +
-                (successStory?.data?.user?.lastName || "")}
-            </span>{" "}
-            On:{" "}
-            <span className="text-slate-600 font-medium">
-              {getDateFromCreatedAt(successStory?.data?.createdAt)}
-            </span>
-          </p>
+            <div className="hidden lg:block">
+                <CustomHeader title={"Happy Story"} />
+            </div>
+            <div className="lg:hidden">
+                <MobileBackButton name={"Happy Story"} />
+            </div>
+            <div>{content}</div>
+
+            <div className="hidden lg:block">
+                <Footer />
+            </div>
+            <div className="lg:hidden">
+                <div className="h-20"></div>
+                <BottomNav />
+            </div>
         </div>
-        <hr className="mt-4 mb-8" />
-        <SingleSuccessStoryImages {...{ successStory }} />
-        <h1 className="text-xl text-justify font-medium font-Poppins max-w-3xl mx-auto mt-8 mb-20">
-          {successStory?.data?.body}
-        </h1>
-      </div>
     );
-  }
-
-  // Scroll to top
-  useEffect(() => {
-    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-  }, []);
-
-  return (
-    <div>
-      <div className="hidden lg:block">
-        <CustomHeader title={"Happy Story"} />
-      </div>
-      <div className="lg:hidden">
-        <MobileBackButton name={"Happy Story"} />
-      </div>
-      <div>{content}</div>
-
-      <div className="hidden lg:block">
-        <Footer />
-      </div>
-      <div className="lg:hidden">
-        <div className="h-20"></div>
-        <BottomNav />
-      </div>
-    </div>
-  );
 };
 
 export default SingleSuccessStoryDetailsPage;
