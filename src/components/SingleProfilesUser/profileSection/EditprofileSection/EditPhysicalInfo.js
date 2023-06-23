@@ -30,6 +30,14 @@ const EditPhysicalInfo = () => {
   const [updatePhysicalDetails, { isLoading, isSuccess, isError }] =
     useUpdatePhysicalDetailsMutation();
 
+  // Ancestry data
+  const [ancestryData, setAncestryData] = useState([]);
+  useEffect(() => {
+    fetch("/json/ancestry.json")
+      .then((res) => res.json())
+      .then((data) => setAncestryData(data));
+  }, []);
+
   //phycsical information data change handler
   const onHeightChange = (value) => {
     setHeight(value);
@@ -181,36 +189,13 @@ const EditPhysicalInfo = () => {
                 defaultValue={ancestry}
                 size="large"
                 placeholder="Select Ancestry"
-                options={[
-                  {
-                    value: "Khan",
-                    label: "Khan",
-                  },
-                  {
-                    value: "Majumder",
-                    label: "Majumder",
-                  },
-                  {
-                    value: "Ahmed",
-                    label: "Ahmed",
-                  },
-                  {
-                    value: "Ali",
-                    label: "Ali",
-                  },
-                  {
-                    value: "Das",
-                    label: "Das",
-                  },
-                  {
-                    value: "Barua",
-                    label: "Barua",
-                  },
-                  {
-                    value: "Chowdhury",
-                    label: "Chowdhury",
-                  },
-                ]}
+                showSearch
+                filterOption={(input, option) =>
+                  (option?.label ?? "")
+                    .toLowerCase()
+                    .includes(input.toLowerCase())
+                }
+                options={ancestryData}
               />
             </div>
 
@@ -224,24 +209,24 @@ const EditPhysicalInfo = () => {
                 defaultValue={skinTone}
                 placeholder="Select skin tone"
                 size="large"
+                showSearch
+                filterOption={(input, option) =>
+                  (option?.label ?? "")
+                    .toLowerCase()
+                    .includes(input.toLowerCase())
+                }
                 allowClear
                 options={[
-                  {
-                    value: "light",
-                    label: "Light",
-                  },
-                  {
-                    value: "fair",
-                    label: "Fair",
-                  },
-                  {
-                    value: "medium",
-                    label: "Medium",
-                  },
-                  {
-                    value: "deep",
-                    label: "Deep (Dark)",
-                  },
+                  { value: "Fair", label: "Fair" },
+                  { value: "Light", label: "Light" },
+                  { value: "Medium", label: "Medium" },
+                  { value: "Olive", label: "Olive" },
+                  { value: "Brown", label: "Brown" },
+                  { value: "Dark", label: "Dark" },
+                  { value: "Pale", label: "Pale" },
+                  { value: "Tan", label: "Tan" },
+                  { value: "Golden", label: "Golden" },
+                  { value: "Ebony", label: "Ebony" },
                 ]}
               />
             </div>
@@ -255,32 +240,24 @@ const EditPhysicalInfo = () => {
                 defaultValue={hairColor}
                 placeholder="Select hair color"
                 size="large"
+                showSearch
+                filterOption={(input, option) =>
+                  (option?.label ?? "")
+                    .toLowerCase()
+                    .includes(input.toLowerCase())
+                }
                 allowClear
                 options={[
-                  {
-                    value: "black",
-                    label: "Black",
-                  },
-                  {
-                    value: "brown",
-                    label: "Brown",
-                  },
-                  {
-                    value: "blond",
-                    label: "Blond",
-                  },
-                  {
-                    value: "white",
-                    label: "White",
-                  },
-                  {
-                    value: "gray",
-                    label: "Gray",
-                  },
-                  {
-                    value: "rarely red",
-                    label: "Rarely Red",
-                  },
+                  { value: "Black", label: "Black" },
+                  { value: "Brown", label: "Brown" },
+                  { value: "Blonde", label: "Blonde" },
+                  { value: "Red", label: "Red" },
+                  { value: "Gray", label: "Gray" },
+                  { value: "White", label: "White" },
+                  { value: "Auburn", label: "Auburn" },
+                  { value: "Chestnut", label: "Chestnut" },
+                  { value: "Brunette", label: "Brunette" },
+                  { value: "Silver", label: "Silver" },
                 ]}
               />
             </div>
@@ -296,47 +273,24 @@ const EditPhysicalInfo = () => {
                 placeholder="Select hair type"
                 size="large"
                 allowClear
+                showSearch
+                filterOption={(input, option) =>
+                  (option?.label ?? "")
+                    .toLowerCase()
+                    .includes(input.toLowerCase())
+                }
                 options={[
-                  {
-                    value: "fine",
-                    label: "Fine",
-                  },
-                  {
-                    value: "thick",
-                    label: "Thick",
-                  },
-                  {
-                    value: "long",
-                    label: "Long",
-                  },
-                  {
-                    value: "short",
-                    label: "Short",
-                  },
-                  {
-                    value: "matte",
-                    label: "Matte",
-                  },
-                  {
-                    value: "glossy",
-                    label: "Glossy",
-                  },
-                  {
-                    value: "curly",
-                    label: "Curly",
-                  },
-                  {
-                    value: "coily",
-                    label: "Coily",
-                  },
-                  {
-                    value: "straight",
-                    label: "Straight",
-                  },
-                  {
-                    value: "wavy",
-                    label: "Wavy",
-                  },
+                  { value: "Straight", label: "Straight" },
+                  { value: "Wavy", label: "Wavy" },
+                  { value: "Curly", label: "Curly" },
+                  { value: "Kinky", label: "Kinky" },
+                  { value: "Coiled", label: "Coiled" },
+                  { value: "Frizzy", label: "Frizzy" },
+                  { value: "Thick", label: "Thick" },
+                  { value: "Thin", label: "Thin" },
+                  { value: "Fine", label: "Fine" },
+                  { value: "Medium", label: "Medium" },
+                  { value: "Coarse", label: "Coarse" },
                 ]}
               />
             </div>
@@ -351,32 +305,23 @@ const EditPhysicalInfo = () => {
                 defaultValue={eyeColor}
                 placeholder="Select hair type"
                 allowClear
+                showSearch
+                filterOption={(input, option) =>
+                  (option?.label ?? "")
+                    .toLowerCase()
+                    .includes(input.toLowerCase())
+                }
                 size="large"
                 options={[
-                  {
-                    value: "brown",
-                    label: "Brown",
-                  },
-                  {
-                    value: "hazel",
-                    label: "Hazel",
-                  },
-                  {
-                    value: "blue",
-                    label: "Blue",
-                  },
-                  {
-                    value: "green",
-                    label: "Green",
-                  },
-                  {
-                    value: "gray",
-                    label: "Gray",
-                  },
-                  {
-                    value: "amber",
-                    label: "Amber",
-                  },
+                  { value: "Brown", label: "Brown" },
+                  { value: "Blue", label: "Blue" },
+                  { value: "Green", label: "Green" },
+                  { value: "Hazel", label: "Hazel" },
+                  { value: "Amber", label: "Amber" },
+                  { value: "Gray", label: "Gray" },
+                  { value: "Black", label: "Black" },
+                  { value: "Violet", label: "Violet" },
+                  { value: "Mixed", label: "Mixed" },
                 ]}
               />
             </div>
@@ -391,6 +336,12 @@ const EditPhysicalInfo = () => {
                 defaultValue={numberOfTeeth}
                 placeholder="Select teeth number"
                 size="large"
+                showSearch
+                filterOption={(input, option) =>
+                  (option?.label ?? "")
+                    .toLowerCase()
+                    .includes(input.toLowerCase())
+                }
                 allowClear
                 options={[
                   {

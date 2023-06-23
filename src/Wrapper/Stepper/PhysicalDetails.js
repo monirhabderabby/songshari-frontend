@@ -171,20 +171,6 @@ export const PhysicalDetails = ({ setPage }) => {
                 onChange={(val) => setSkinTone(val.value)}
                 type="text"
                 placeholder="Skin Tone"
-                options={[
-                  {
-                    value: "Dark",
-                    label: "Dark",
-                  },
-                  {
-                    value: "Brown",
-                    label: "Brown",
-                  },
-                  {
-                    value: "White",
-                    label: "White",
-                  },
-                ]}
                 styles={{
                   control: (baseStyles, state) => ({
                     ...baseStyles,
@@ -197,6 +183,18 @@ export const PhysicalDetails = ({ setPage }) => {
                 }}
                 className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
                 id="SkinTone"
+                options={[
+                  { value: "Fair", label: "Fair" },
+                  { value: "Light", label: "Light" },
+                  { value: "Medium", label: "Medium" },
+                  { value: "Olive", label: "Olive" },
+                  { value: "Brown", label: "Brown" },
+                  { value: "Dark", label: "Dark" },
+                  { value: "Pale", label: "Pale" },
+                  { value: "Tan", label: "Tan" },
+                  { value: "Golden", label: "Golden" },
+                  { value: "Ebony", label: "Ebony" },
+                ]}
               />
             </div>
           </section>
@@ -208,7 +206,6 @@ export const PhysicalDetails = ({ setPage }) => {
                 onChange={(val) => setHairColor(val.value)}
                 type="text"
                 placeholder="Hair Color"
-                // options={options}
                 styles={{
                   control: (baseStyles, state) => ({
                     ...baseStyles,
@@ -221,6 +218,18 @@ export const PhysicalDetails = ({ setPage }) => {
                 }}
                 className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
                 id="hairColour"
+                options={[
+                  { value: "Black", label: "Black" },
+                  { value: "Brown", label: "Brown" },
+                  { value: "Blonde", label: "Blonde" },
+                  { value: "Red", label: "Red" },
+                  { value: "Gray", label: "Gray" },
+                  { value: "White", label: "White" },
+                  { value: "Auburn", label: "Auburn" },
+                  { value: "Chestnut", label: "Chestnut" },
+                  { value: "Brunette", label: "Brunette" },
+                  { value: "Silver", label: "Silver" },
+                ]}
               />
             </div>
           </section>
@@ -232,7 +241,6 @@ export const PhysicalDetails = ({ setPage }) => {
                 onChange={(val) => setHairType(val.value)}
                 type="text"
                 placeholder="Hair Type"
-                // options={options}
                 styles={{
                   control: (baseStyles, state) => ({
                     ...baseStyles,
@@ -245,6 +253,19 @@ export const PhysicalDetails = ({ setPage }) => {
                 }}
                 className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
                 id="hairType"
+                options={[
+                  { value: "Straight", label: "Straight" },
+                  { value: "Wavy", label: "Wavy" },
+                  { value: "Curly", label: "Curly" },
+                  { value: "Kinky", label: "Kinky" },
+                  { value: "Coiled", label: "Coiled" },
+                  { value: "Frizzy", label: "Frizzy" },
+                  { value: "Thick", label: "Thick" },
+                  { value: "Thin", label: "Thin" },
+                  { value: "Fine", label: "Fine" },
+                  { value: "Medium", label: "Medium" },
+                  { value: "Coarse", label: "Coarse" },
+                ]}
               />
             </div>
           </section>
@@ -256,7 +277,6 @@ export const PhysicalDetails = ({ setPage }) => {
                 onChange={(val) => setEyeColor(val.value)}
                 type="text"
                 placeholder="Eye Color"
-                // options={options}
                 styles={{
                   control: (baseStyles, state) => ({
                     ...baseStyles,
@@ -269,6 +289,17 @@ export const PhysicalDetails = ({ setPage }) => {
                 }}
                 className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
                 id="eyeColor"
+                options={[
+                  { value: "Brown", label: "Brown" },
+                  { value: "Blue", label: "Blue" },
+                  { value: "Green", label: "Green" },
+                  { value: "Hazel", label: "Hazel" },
+                  { value: "Amber", label: "Amber" },
+                  { value: "Gray", label: "Gray" },
+                  { value: "Black", label: "Black" },
+                  { value: "Violet", label: "Violet" },
+                  { value: "Mixed", label: "Mixed" },
+                ]}
               />
             </div>
           </section>
