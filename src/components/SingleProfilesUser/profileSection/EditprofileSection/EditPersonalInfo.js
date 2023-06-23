@@ -6,6 +6,7 @@ import { useNavigate, useParams } from "react-router";
 import { DatePicker, Select, message } from "antd";
 import { useForm } from "react-hook-form";
 import { MdCancel } from "react-icons/md";
+import dayjs from "dayjs";
 
 import {
   useGetProfileDetailsQuery,
@@ -15,7 +16,6 @@ import DropFileInput from "../../../shared/SingleProfileConponents/DropFileInput
 import { OvalLoader } from "../../../shared/Cards/Loader/OvalLoader/OvalLoader";
 import { MobileBackButton } from "../../../shared/Components/MobileBackButton";
 import { BottomNav } from "../../../../Wrapper/Home/mobileversion/BottomNav";
-import moment from "moment";
 
 const EditPersonalInfo = () => {
   const [messageApi, contextHolder] = message.useMessage();
@@ -316,6 +316,8 @@ const EditPersonalInfo = () => {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   }, []);
 
+  const dateFormat = "YYYY/MM/DD";
+
   return (
     <>
       <div className="lg:hidden">
@@ -419,7 +421,7 @@ const EditPersonalInfo = () => {
                   </label>
                   <DatePicker
                     onChange={handleDateOfBirth}
-                    defaultValue={moment(dateOfBirth)}
+                    defaultValue={dayjs(dateOfBirth, dateFormat)}
                     className="w-full"
                     size="large"
                   />
@@ -509,7 +511,7 @@ const EditPersonalInfo = () => {
                     <div className="mb-2">
                       <DatePicker
                         onChange={handleMarriageDate}
-                        defaultValue={moment(marriageDate)}
+                        defaultValue={dayjs(marriageDate, dateFormat)}
                         placeholder="Marriage Date"
                         className="w-full"
                         size="large"
@@ -594,7 +596,7 @@ const EditPersonalInfo = () => {
                     <div className="mb-2">
                       <DatePicker
                         onChange={handleDivorceDate}
-                        defaultValue={moment(divorceDate)}
+                        defaultValue={dayjs(divorceDate, dateFormat)}
                         placeholder="Divorce Date"
                         className="w-full"
                         size="large"
@@ -662,7 +664,7 @@ const EditPersonalInfo = () => {
                     <div className="mb-2">
                       <DatePicker
                         onChange={handleWidowedDate}
-                        defaultValue={moment(partnerDeathDay)}
+                        defaultValue={dayjs(partnerDeathDay, dateFormat)}
                         placeholder="Divorce Date"
                         className="w-full"
                         size="large"
@@ -794,17 +796,19 @@ const EditPersonalInfo = () => {
                   placeholder="Select Sign"
                   showSearch
                   filterOption={(input, option) =>
-                    (option?.label ?? "")
+                    (option?.children ?? "")
                       .toLowerCase()
                       .includes(input.toLowerCase())
                   }
                   size="large"
                 >
-                  {zodiacSignSuggestion.map((sign) => (
-                    <Select.Option key={sign.id} value={sign.name}>
-                      {sign.name}
-                    </Select.Option>
-                  ))}
+                  {zodiacSignSuggestion.map((sign) => {
+                    return (
+                      <Select.Option key={sign.id} value={sign.name}>
+                        {sign.name}
+                      </Select.Option>
+                    );
+                  })}
                 </Select>
               </div>
 
