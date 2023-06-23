@@ -12,7 +12,7 @@ import { ProfessionalDetails } from "./ProfessionalDetails";
 import SiblingDetails from "./SiblingDetails";
 
 export const Container = ({ responsive }) => {
-  const [page, setPage] = useState(4);
+  const [page, setPage] = useState(1);
   const [hasSibling, setHasSibling] = useState(false);
 
   return (
