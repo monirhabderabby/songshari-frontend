@@ -20,9 +20,9 @@ const ChartBoard = () => {
 
     //Redux API calls
     const { data: certificates } = useGetCertificatesWithAuthQuery();
-    const professionalCertificate = certificates?.data?.professions || {};
-    const educationalCertificate = certificates?.data?.educations || {};
-    const marriageCertificate = certificates?.data?.marriages || {};
+    const professionalCertificate = certificates?.data?.professions || [];
+    const educationalCertificate = certificates?.data?.educations || [];
+    const marriageCertificate = certificates?.data?.marriages || [];
 
     // variable declaration for certificate properties
     let proCertificate;
