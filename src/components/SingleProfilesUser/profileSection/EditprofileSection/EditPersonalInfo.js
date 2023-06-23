@@ -16,7 +16,6 @@ import DropFileInput from "../../../shared/SingleProfileConponents/DropFileInput
 import { OvalLoader } from "../../../shared/Cards/Loader/OvalLoader/OvalLoader";
 import { MobileBackButton } from "../../../shared/Components/MobileBackButton";
 import { BottomNav } from "../../../../Wrapper/Home/mobileversion/BottomNav";
-import moment from "moment";
 
 const EditPersonalInfo = () => {
   const [messageApi, contextHolder] = message.useMessage();
@@ -512,7 +511,7 @@ const EditPersonalInfo = () => {
                     <div className="mb-2">
                       <DatePicker
                         onChange={handleMarriageDate}
-                        defaultValue={moment(marriageDate)}
+                        defaultValue={dayjs(marriageDate, dateFormat)}
                         placeholder="Marriage Date"
                         className="w-full"
                         size="large"
@@ -597,7 +596,7 @@ const EditPersonalInfo = () => {
                     <div className="mb-2">
                       <DatePicker
                         onChange={handleDivorceDate}
-                        defaultValue={moment(divorceDate)}
+                        defaultValue={dayjs(divorceDate, dateFormat)}
                         placeholder="Divorce Date"
                         className="w-full"
                         size="large"
@@ -665,7 +664,7 @@ const EditPersonalInfo = () => {
                     <div className="mb-2">
                       <DatePicker
                         onChange={handleWidowedDate}
-                        defaultValue={moment(partnerDeathDay)}
+                        defaultValue={dayjs(partnerDeathDay, dateFormat)}
                         placeholder="Divorce Date"
                         className="w-full"
                         size="large"
