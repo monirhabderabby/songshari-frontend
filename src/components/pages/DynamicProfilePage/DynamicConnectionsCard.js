@@ -5,6 +5,7 @@ import { BsChatDots } from "react-icons/bs";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import { useAddFriendMutation } from "../../../Redux/features/connections/connectionApi";
+import VarientAnimation from "../../../assets/utilities/Animation/VarientAnimation";
 import isConnected from "../../../assets/utilities/isConnected/isConnected";
 
 export const DynamicConnectionsCard = ({ data, isLoading }) => {
@@ -30,7 +31,7 @@ export const DynamicConnectionsCard = ({ data, isLoading }) => {
     }, [data, connectedFriendIds]);
 
     return (
-        <section>
+        <VarientAnimation direction="right" delay={0.6}>
             <div className="lg:w-[360px] h-[110px] bg-white shadow-[0px_10px_5px_rgba(119,123,146,0.02)] mt-[30px] flex justify-center items-center">
                 <Tooltip title="Chat">
                     <div
@@ -68,6 +69,6 @@ export const DynamicConnectionsCard = ({ data, isLoading }) => {
                     </div>
                 </Tooltip>
             </div>
-        </section>
+        </VarientAnimation>
     );
 };

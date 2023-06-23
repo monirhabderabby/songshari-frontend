@@ -7,10 +7,11 @@ import chat from "../../../assets/images/user profile/chatIcon.png";
 /* components */
 /* css */
 import ChartBoardCSS from "../../../assets/css/chartBoard.module.css";
+import VarientAnimation from "../../../assets/utilities/Animation/VarientAnimation";
 
 const DynamicCertificate = ({ data }) => {
-    console.log(data)
-    
+    console.log(data);
+
     const certificateInfo = [
         { id: 1, text: "Educational Certificate", img: certificate, path: `/profile/educationalCertificate/${data?._id}` },
         { id: 2, text: "Professional Certificate", img: certificate, path: `/professionalCertificate/${data?._id}` },
@@ -18,7 +19,7 @@ const DynamicCertificate = ({ data }) => {
     ];
 
     return (
-        <div>
+        <VarientAnimation direction="left" delay={0.3}>
             {/* ----- Certificate ----- */}
             <div
                 className="rounded-xl p-5 font-sans font-normal text-base text-[#000000]"
@@ -43,7 +44,7 @@ const DynamicCertificate = ({ data }) => {
                     </div>
                 ))}
             </div>
-        </div>
+        </VarientAnimation>
     );
 };
 

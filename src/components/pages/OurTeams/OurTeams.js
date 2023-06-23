@@ -12,6 +12,7 @@ import Footer from "../../shared/Footer/Footer";
 
 // css files
 import "../../../App.css";
+import VarientAnimation from "../../../assets/utilities/Animation/VarientAnimation";
 
 export const OurTeams = () => {
     useDocumentTitle("Shongshari | Teams");
@@ -44,23 +45,27 @@ export const OurTeams = () => {
                 <div className="custom-container grid grid-cols-4 gap-x-[32px] gap-y-[60px]">
                     {profile.map(p => {
                         return (
-                            <div key={p} className="w-[280px]">
-                                <img
-                                    src={img}
-                                    alt="profile"
-                                    className="rounded-tl-[30px] rounded-tr-[30px] hover:scale-110 transition-all duration-500"
-                                />
-                                <div className="pt-[24px]">
-                                    <p className="text-[#E22986] font-medium text-[18px] mb-[4px]">Candice Wu</p>
-                                    <p className="text-[#A42BC8] font-normal  text-[18px] mb-[16px]">Backend Developer</p>
-                                    <p className="font-normal text-[16px] text-[#667085]">Lead backend dev at Clearbit. Former Clearbit and Loom.</p>
+                            <VarientAnimation direction="up" delay={0.3}>
+                                <div key={p} className="w-[280px]">
+                                    <img
+                                        src={img}
+                                        alt="profile"
+                                        className="rounded-tl-[30px] rounded-tr-[30px] hover:scale-110 transition-all duration-500"
+                                    />
+                                    <div className="pt-[24px]">
+                                        <p className="text-[#E22986] font-medium text-[18px] mb-[4px]">Candice Wu</p>
+                                        <p className="text-[#A42BC8] font-normal  text-[18px] mb-[16px]">Backend Developer</p>
+                                        <p className="font-normal text-[16px] text-[#667085]">
+                                            Lead backend dev at Clearbit. Former Clearbit and Loom.
+                                        </p>
+                                    </div>
+                                    <div className="flex items-center mt-[24px] gap-x-[20px]">
+                                        <img src={twitter} alt="social" />
+                                        <img src={linkedIn} alt="social" />
+                                        <img src={dribble} alt="social" />
+                                    </div>
                                 </div>
-                                <div className="flex items-center mt-[24px] gap-x-[20px]">
-                                    <img src={twitter} alt="social" />
-                                    <img src={linkedIn} alt="social" />
-                                    <img src={dribble} alt="social" />
-                                </div>
-                            </div>
+                            </VarientAnimation>
                         );
                     })}
                 </div>
