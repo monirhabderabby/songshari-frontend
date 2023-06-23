@@ -71,6 +71,16 @@ export const PhysicalDetails = ({ setPage }) => {
     }
   }, [response, setPage, role]);
 
+  const isValidNewOption = (inputValue) => {
+    const pattern = /^\d+$/; // Regular expression to match only digits
+
+    if (inputValue.match(pattern)) {
+      return true;
+    }
+
+    return false;
+  };
+
   return (
     <div className="w-full h-auto">
       <section className="col-span-1 md:col-span-2 lg:col-span-3 text-2xl text-[#2F3659] mb-8">
@@ -91,7 +101,7 @@ export const PhysicalDetails = ({ setPage }) => {
                 })}
                 type="number"
                 step="0.01"
-                placeholder="Height"
+                placeholder="Height (inch)"
                 className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
                 id="height"
               />
@@ -116,7 +126,7 @@ export const PhysicalDetails = ({ setPage }) => {
                 })}
                 type="number"
                 step="0.01"
-                placeholder="Weight"
+                placeholder="Weight (kg)"
                 className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
                 id="weight"
               />
@@ -270,7 +280,7 @@ export const PhysicalDetails = ({ setPage }) => {
                 onChange={(val) => setNumberOfTeeth(val.value)}
                 type="number"
                 placeholder="Number of Teeth"
-                // options={options}
+                isValidNewOption={isValidNewOption}
                 styles={{
                   control: (baseStyles, state) => ({
                     ...baseStyles,
@@ -283,6 +293,28 @@ export const PhysicalDetails = ({ setPage }) => {
                 }}
                 className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
                 id="numberOfTeeth"
+                options={[
+                  {
+                    value: "28",
+                    label: "28",
+                  },
+                  {
+                    value: "29",
+                    label: "29",
+                  },
+                  {
+                    value: "30",
+                    label: "30",
+                  },
+                  {
+                    value: "31",
+                    label: "31",
+                  },
+                  {
+                    value: "32",
+                    label: "32",
+                  },
+                ]}
               />
             </div>
           </section>
