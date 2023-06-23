@@ -3,9 +3,9 @@ import React from "react";
 import { motion } from "framer-motion";
 import { fadeInfadeOut } from "../fadeInFadeOut/fadeInFadeOut";
 
-const FadeInFadeOutAnimation = ({ children, delay }) => {
+const FadeInFadeOutAnimation = ({ children, delay, direction }) => {
     return (
-        <motion.div variants={fadeInfadeOut(delay)} initial="hidden" whileInView={"show"} viewport={{ once: false, amount: 0.3 }}>
+        <motion.div variants={fadeInfadeOut(delay, direction)} initial="hidden" whileInView={"show"} viewport={{ once: false, amount: 0.3 }}>
             {children}
         </motion.div>
     );

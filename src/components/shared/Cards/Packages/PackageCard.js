@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
 import getCookie from "../../../../Helper/cookies/getCookie";
+import VarientAnimation from "../../../../assets/utilities/Animation/VarientAnimation";
 import PackageForm from "../../Packages/PackageForm";
 import { PackagePriceTest } from "./PackagePriceTest";
 
@@ -24,7 +25,7 @@ export const PackageCard = ({ pack, packages, index, height, setSuccessSnackBarO
         setHovered(indexNum);
     };
     return (
-        <>
+        <VarientAnimation direction="up" delay={0.3}>
             <div
                 className={`${height ? height : "h-[580px]"} w-[320px] rounded-[10px] px-[30px] py-[34px] bg-[rgb(255,255,255)] group ${
                     hovered === index && "bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)]"
@@ -83,6 +84,6 @@ export const PackageCard = ({ pack, packages, index, height, setSuccessSnackBarO
                 </div>
             </div>
             {showPopup && useCase !== "home" && <PackageForm {...{ pack, setShowPopup, setSuccessSnackBarOpen }} />}
-        </>
+        </VarientAnimation>
     );
 };
