@@ -200,7 +200,7 @@ export const UserCard = ({ profile, role }) => {
           className="md:hidden"
         >
           {profile && (
-            <div className="h-[400px] bg-black w-[324px]  relative group overflow-hidden Suggested-card mx-3">
+            <div className="h-[400px]  w-[324px]  relative group overflow-hidden Suggested-card mx-3">
               <img
                 className="h-[400px] rounded-tr-[12px] bg-white rounded-tl-[12px] rounded-bl-[12px] rounded-br-[12px] object-cover w-full"
                 src={profilePhoto}
@@ -208,10 +208,10 @@ export const UserCard = ({ profile, role }) => {
               />
               <div className="absolute h-[150px] w-full top-[300px] right-0 inset-0 bg-white opacity-90 text-black px-4 py-2 font-serif group-hover:top-[370px] transition ease-out duration-500 rounded-bl-[12px] rounded-br-[12px]">
                 <div className="flex gap-x-4 items-center">
-                  <p className="text-[20px] text-black font-bold drop-shadow-lg">
+                  <p className="text-[20px]  font-bold drop-shadow-lg">
                     {name}
                   </p>
-                  {profile?.dateOfBirth && <p className="text-[17px] ml-[40px] text-black">
+                  {profile?.dateOfBirth && <p className="text-[17px] ml-[40px] ">
                     {ageCalculator(
                       profile?.dateOfBirth ? profile?.dateOfBirth : 0
                     )}
