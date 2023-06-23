@@ -35,8 +35,8 @@ const ChartBoard = () => {
     if (educationalCertificate?.length > 0) {
         eduCertificate = educationalCertificate[0]?.certificates[0]?.photo;
     }
-    if (educationalCertificate?.length > 0) {
-        marCertificate = marriageCertificate[0]?.certificates[0]?.photo;
+    if (marriageCertificate?.length > 0) {
+      marCertificate = marriageCertificate[0]?.certificates[0]?.photo;
     }
 
     useEffect(() => {
