@@ -1,6 +1,7 @@
 import React from "react";
-import articleImg3 from "../../../assets/images/AboutUs/aboutUsOurHistory3.jpg";
 import line from "../../../assets/images/AboutUs/Line.png";
+import articleImg3 from "../../../assets/images/AboutUs/aboutUsOurHistory3.jpg";
+import VarientAnimation from "../../../assets/utilities/Animation/VarientAnimation";
 import "./animated.module.css";
 const AboutUsOurHistory = () => {
     return (
@@ -23,12 +24,16 @@ const AboutUsOurHistory = () => {
                     </p>
                 </div>
                 <div className="flex-1">
-                    <img className="w-[584px] rounded-[30px]" src={articleImg3} alt="story" />
+                    <VarientAnimation direction="left" delay={0.3}>
+                        <img className="w-[584px] rounded-[30px]" src={articleImg3} alt="story" />
+                    </VarientAnimation>
                 </div>
             </div>
             <div className="max-w-5xl mx-auto flex items-start gap-x-16 mt-[20px]">
                 <div className="flex-1">
-                    <img className="w-[584px] rounded-[30px]" src={articleImg3} alt="story" />
+                    <VarientAnimation direction="up" delay={0.3}>
+                        <img className="w-[584px] rounded-[30px]" src={articleImg3} alt="story" />
+                    </VarientAnimation>
                 </div>
                 <div className="w-96 text-[#757575] leading-7 flex-1">
                     <p className="mb-4">
