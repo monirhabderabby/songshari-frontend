@@ -5,14 +5,16 @@ import { useForm } from "react-hook-form";
 import Autocomplete, { createFilterOptions } from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
 import { Radio, Space, DatePicker, message } from "antd";
+import { useNavigate, useParams } from "react-router";
+import { MdCancel } from "react-icons/md";
+import dayjs from "dayjs";
+
+// Components
 import {
   useGetProfileDetailsQuery,
   useUpdateFamilyDetailsMutation,
 } from "../../../../Redux/features/userInfo/userApi";
-import { useNavigate, useParams } from "react-router";
-import { MdCancel } from "react-icons/md";
 import { OvalLoader } from "../../../shared/Cards/Loader/OvalLoader/OvalLoader";
-import moment from "moment";
 import { MobileBackButton } from "../../../shared/Components/MobileBackButton";
 import { BottomNav } from "../../../../Wrapper/Home/mobileversion/BottomNav";
 
@@ -249,6 +251,8 @@ const EditFamilyInfo = () => {
   //filter options for type search select (Autocomplete MUI)
   const filter = createFilterOptions();
 
+  const dateFormat = "YYYY/MM/DD";
+
   return (
     <div>
       <div className="lg:hidden">
@@ -451,7 +455,7 @@ const EditFamilyInfo = () => {
                   </label>
                   <DatePicker
                     onChange={handleFatherDateOfBirth}
-                    defaultValue={moment(defaultFatherDateOfBirth)}
+                    defaultValue={dayjs(defaultFatherDateOfBirth, dateFormat)}
                     className="w-full"
                     size="large"
                   />
@@ -466,7 +470,7 @@ const EditFamilyInfo = () => {
                 </label>
                 <DatePicker
                   onChange={handleFatherDeathDate}
-                  defaultValue={moment(defaultFatherDeathDate)}
+                  defaultValue={dayjs(defaultFatherDeathDate, dateFormat)}
                   className="w-full"
                   size="large"
                 />
@@ -658,7 +662,7 @@ const EditFamilyInfo = () => {
                   </label>
                   <DatePicker
                     onChange={handleMotherDateOfBirth}
-                    defaultValue={moment(defaultMotherDateOfBirth)}
+                    defaultValue={dayjs(defaultMotherDateOfBirth, dateFormat)}
                     className="w-full"
                     size="large"
                   />
@@ -673,7 +677,7 @@ const EditFamilyInfo = () => {
                 </label>
                 <DatePicker
                   onChange={handleMotherDeathDate}
-                  defaultValue={moment(defaultMotherDeathDate)}
+                  defaultValue={dayjs(defaultMotherDeathDate, dateFormat)}
                   className="w-full"
                   size="large"
                 />
@@ -684,7 +688,9 @@ const EditFamilyInfo = () => {
               <button
                 // type="submit"
                 className="w-full text-center py-[10px] text-lg font-medium special_profile_button cursor-pointer"
-              >Save</button>
+              >
+                Save
+              </button>
             </div>
           </form>
         )}
