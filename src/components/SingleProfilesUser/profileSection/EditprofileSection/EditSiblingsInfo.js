@@ -7,6 +7,7 @@ import { Select, message, Radio, Space, Slider, DatePicker } from "antd";
 import { useForm } from "react-hook-form";
 import Autocomplete, { createFilterOptions } from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
+import dayjs from "dayjs";
 
 // Components
 import {
@@ -17,7 +18,6 @@ import { MdCancel } from "react-icons/md";
 import { MobileBackButton } from "../../../shared/Components/MobileBackButton";
 import { BottomNav } from "../../../../Wrapper/Home/mobileversion/BottomNav";
 import { OvalLoader } from "../../../shared/Cards/Loader/OvalLoader/OvalLoader";
-import moment from "moment";
 
 const EditSiblingsInfo = () => {
   const [elderOrYounger, setElderOrYounger] = useState();
@@ -197,6 +197,8 @@ const EditSiblingsInfo = () => {
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   }, []);
+
+  const dateFormat = "YYYY/MM/DD";
 
   return (
     <div>
@@ -476,7 +478,7 @@ const EditSiblingsInfo = () => {
                   </label>
                   <DatePicker
                     onChange={handleSiblingDeathDate}
-                    defaultValue={moment(defaultSiblingDeathDate)}
+                    defaultValue={dayjs(defaultSiblingDeathDate, dateFormat)}
                     className="w-full"
                     size="large"
                   />

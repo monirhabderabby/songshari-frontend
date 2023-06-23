@@ -1,6 +1,7 @@
 import React from "react";
 import aboutUsMission1 from "../../../assets/images/AboutUs/aboutUsMission1.jpg";
 import aboutUsMission2 from "../../../assets/images/AboutUs/aboutUsMission2.jpg";
+import VarientAnimation from "../../../assets/utilities/Animation/VarientAnimation";
 
 const AboutOurMission = () => {
     return (
@@ -24,10 +25,12 @@ const AboutOurMission = () => {
                         </p>
                     </div>
                 </div>
-                <div className="relative flex-1 mb-12">
-                    <img className="z-0 rounded-bl-[80px] w-[476px] h-[415px]" src={aboutUsMission1} alt="" />
-                    <img className="absolute -bottom-12 rounded-tr-[128px] rounded-bl-[127px] w-72 z-10" src={aboutUsMission2} alt="" />
-                </div>
+                <VarientAnimation direction="left" delay={0.3}>
+                    <div className="relative flex-1 mb-12">
+                        <img className="z-0 rounded-bl-[80px] w-[476px] h-[415px]" src={aboutUsMission1} alt="" />
+                        <img className="absolute -bottom-12 rounded-tr-[128px] rounded-bl-[127px] w-72 z-10" src={aboutUsMission2} alt="" />
+                    </div>
+                </VarientAnimation>
             </div>
         </div>
     );

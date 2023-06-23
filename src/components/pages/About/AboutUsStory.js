@@ -1,5 +1,6 @@
 import React from "react";
 import aboutUsStoryImg from "../../../assets/images/AboutUs/aboutUsStory.jpg";
+import VarientAnimation from "../../../assets/utilities/Animation/VarientAnimation";
 
 const AboutUsStory = () => {
     return (
@@ -7,7 +8,9 @@ const AboutUsStory = () => {
             <h1 className="text-3xl font-semibold text-center leading-[44px] mt-20 mb-12">Our Story</h1>
             <div className="max-w-5xl mx-auto flex items-start h-[511px] gap-16">
                 <div className="flex-1">
-                    <img className="w-[584px] rounded-[30px]" src={aboutUsStoryImg} alt="story" />
+                    <VarientAnimation direction="right" delay={0.3}>
+                        <img className="w-[584px] rounded-[30px]" src={aboutUsStoryImg} alt="story" />
+                    </VarientAnimation>
                 </div>
                 <div className="w-96 text-[#757575] leading-7 flex-1">
                     <p className="mb-4">

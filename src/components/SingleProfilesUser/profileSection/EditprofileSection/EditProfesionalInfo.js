@@ -420,10 +420,12 @@ const EditProfesionalInfo = () => {
                 Working Period
               </label>
               <RangePicker
-                defaultValue={[
-                  dayjs(workPeriod[0], dateFormat),
-                  dayjs(workPeriod[1], dateFormat),
-                ]}
+                defaultValue={
+                  workPeriod && [
+                    dayjs(workPeriod[0], dateFormat),
+                    dayjs(workPeriod[1], dateFormat),
+                  ]
+                }
                 className="w-full"
                 onChange={handleWorkingPeriod}
               />
