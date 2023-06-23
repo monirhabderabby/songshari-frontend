@@ -6,6 +6,7 @@ import { useNavigate, useParams } from "react-router";
 import { DatePicker, Select, message } from "antd";
 import { useForm } from "react-hook-form";
 import { MdCancel } from "react-icons/md";
+import dayjs from "dayjs";
 
 import {
   useGetProfileDetailsQuery,
@@ -316,6 +317,8 @@ const EditPersonalInfo = () => {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   }, []);
 
+  const dateFormat = "YYYY/MM/DD";
+
   return (
     <>
       <div className="lg:hidden">
@@ -419,7 +422,7 @@ const EditPersonalInfo = () => {
                   </label>
                   <DatePicker
                     onChange={handleDateOfBirth}
-                    defaultValue={moment(dateOfBirth)}
+                    defaultValue={dayjs(dateOfBirth, dateFormat)}
                     className="w-full"
                     size="large"
                   />
@@ -794,17 +797,19 @@ const EditPersonalInfo = () => {
                   placeholder="Select Sign"
                   showSearch
                   filterOption={(input, option) =>
-                    (option?.label ?? "")
+                    (option?.children ?? "")
                       .toLowerCase()
                       .includes(input.toLowerCase())
                   }
                   size="large"
                 >
-                  {zodiacSignSuggestion.map((sign) => (
-                    <Select.Option key={sign.id} value={sign.name}>
-                      {sign.name}
-                    </Select.Option>
-                  ))}
+                  {zodiacSignSuggestion.map((sign) => {
+                    return (
+                      <Select.Option key={sign.id} value={sign.name}>
+                        {sign.name}
+                      </Select.Option>
+                    );
+                  })}
                 </Select>
               </div>
 
