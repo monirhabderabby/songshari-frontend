@@ -207,7 +207,7 @@ const NavBar = ({ bg }) => {
                 <div className="flex flex-col items-center cursor-pointer">
                   {user ? (
                     <img
-                      className="w-[50px] h-[50px] rounded-[100%] object-cover"
+                      className="w-[45px] h-[45px] rounded-[100%] object-cover"
                       src={profilePhoto}
                       alt=""
                     />
