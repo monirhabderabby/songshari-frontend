@@ -8,10 +8,7 @@ const SiblingsAccordion = ({ sibling, edit }) => {
       <div className={`${edit ? "flex justify-end mt-2" : "hidden"}`}>
         <Link
           to={`edit/siblingsInfo/${sibling?._id}`}
-          style={{
-            background: "linear-gradient(180deg, #E41272 0%, #942DD9 100%)",
-          }}
-          className="w-[64px] text-center py-[8] px-[10px] text-[#fff] h-[28px] text-lg font-medium rounded"
+          className="w-[64px] text-center text-[#fff] text-[16px] special_profile_button"
         >
           Edit
         </Link>

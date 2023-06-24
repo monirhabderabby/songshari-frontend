@@ -650,7 +650,7 @@ const Accordian = ({ data, isLoading, edit }) => {
                           className="flex justify-end mt-2"
                           style={{
                             display: `${
-                              expanded === "panel2" && edit ? "block" : "none"
+                              expanded === "panel2" && edit ? "flex" : "none"
                             }`,
                           }}
                         >
@@ -753,7 +753,7 @@ const Accordian = ({ data, isLoading, edit }) => {
                           className="flex justify-end mt-2"
                           style={{
                             display: `${
-                              expanded === "panel3" && edit ? "block" : "none"
+                              expanded === "panel3" && edit ? "flex" : "none"
                             }`,
                           }}
                         >
@@ -945,20 +945,22 @@ const Accordian = ({ data, isLoading, edit }) => {
                   </Typography>
                 </div>
               </AccordionSummary>
-              <div
-                style={{
-                  display: `${
-                    expanded === "panel4" && edit ? "block" : "none"
-                  }`,
-                }}
-              >
-                <Link
-                  to={`edit/physicalinfo/${data?._id}`}
-                  className="w-[64px] text-center special_profile_button"
+              {data?.physicalDetail && (
+                <div
+                  style={{
+                    display: `${
+                      expanded === "panel4" && edit ? "block" : "none"
+                    }`,
+                  }}
                 >
-                  Edit
-                </Link>
-              </div>
+                  <Link
+                    to={`edit/physicalinfo/${data?._id}`}
+                    className="w-[64px] text-center special_profile_button"
+                  >
+                    Edit
+                  </Link>
+                </div>
+              )}
             </div>
             <AccordionDetails>
               <Typography component={"span"} variant={"body2"}>
@@ -1064,20 +1066,22 @@ const Accordian = ({ data, isLoading, edit }) => {
                     </Typography>
                   </div>
                 </AccordionSummary>
-                <div
-                  style={{
-                    display: `${
-                      expanded === "panel5" && edit ? "block" : "none"
-                    }`,
-                  }}
-                >
-                  <Link
-                    to={`edit/familyInfo/${data?._id}`}
-                    className="w-[64px] text-center special_profile_button"
+                {data?.familyDetail && (
+                  <div
+                    style={{
+                      display: `${
+                        expanded === "panel5" && edit ? "block" : "none"
+                      }`,
+                    }}
                   >
-                    Edit
-                  </Link>
-                </div>
+                    <Link
+                      to={`edit/familyInfo/${data?._id}`}
+                      className="w-[64px] text-center special_profile_button"
+                    >
+                      Edit
+                    </Link>
+                  </div>
+                )}
               </div>
               <AccordionDetails>
                 <Typography component={"span"} variant={"body2"}>
@@ -1149,20 +1153,22 @@ const Accordian = ({ data, isLoading, edit }) => {
                   </Typography>
                 </div>
               </AccordionSummary>
-              <div
-                style={{
-                  display: `${
-                    expanded === "panel7" && edit ? "block" : "none"
-                  }`,
-                }}
-              >
-                <Link
-                  to={`edit/othersinfo/${data?._id}`}
-                  className="w-[64px] text-center special_profile_button"
+              {data?.othersDetail && (
+                <div
+                  style={{
+                    display: `${
+                      expanded === "panel7" && edit ? "block" : "none"
+                    }`,
+                  }}
                 >
-                  Edit
-                </Link>
-              </div>
+                  <Link
+                    to={`edit/othersinfo/${data?._id}`}
+                    className="w-[64px] text-center special_profile_button"
+                  >
+                    Edit
+                  </Link>
+                </div>
+              )}
             </div>
             <AccordionDetails>
               <Typography component={"span"} variant={"body2"}>
