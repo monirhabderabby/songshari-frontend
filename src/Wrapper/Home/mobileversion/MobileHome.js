@@ -15,7 +15,7 @@ export const MobileHome = () => {
       <MobileBanner></MobileBanner>
       <Services></Services>
       <TopProfileMov />
-      <div className="h-12"></div>
+      <div className="h-20"></div>
       <BottomNav />
     </div>
   );

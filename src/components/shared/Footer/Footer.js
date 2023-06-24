@@ -1,44 +1,48 @@
-import React, { useEffect, useState } from "react";
+import React, {  useState } from "react";
 import { Link } from "react-router-dom";
 
-import { Toaster, toast } from "react-hot-toast";
+import { Toaster } from "react-hot-toast";
 import "../../../App.css";
-import { useAddSubscriberMutation } from "../../../Redux/features/subscriber/subscriberApi";
+// import { useAddSubscriberMutation } from "../../../Redux/features/subscriber/subscriberApi";
 import "../../../assets/css/footer.css";
 import flower from "./../../../assets/images/footer/flower01.png";
 import icon from "./../../../assets/images/footer/icon.png";
 import rightShape from "./../../../assets/images/footer/right-shape.png";
 import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
+import ContactForm from "./ContactForm"
 import {
   FaFacebookF,
   FaDribbble,
   FaInstagram,
-  FaTelegramPlane,
+  // FaTelegramPlane,
 } from "react-icons/fa";
+import { SuccessSnackBar } from "../../ui/error/snackBar/SuccessSnackBar";
 
 
 // BiLogoFacebook;
-
+const message = "Message Sent Successfully! Thank you for reaching out to us. We will get back to you shortly."
 const Footer = () => {
+  const [successSnackBarOpen, setSuccessSnackBarOpen] = useState(false);
   const [email, setEmail] = useState("");
-  const [addSubscriber, { data, isLoading, error }] =
-    useAddSubscriberMutation();
+  const [showPopup, setShowPopup] = useState(false)
+  // const [addSubscriber, { data, isLoading, error }] =
+  //   useAddSubscriberMutation();
   const handleSubmit = (e) => {
     e.preventDefault();
-    addSubscriber({ email });
+    // addSubscriber({ email });
   };
 
-  useEffect(() => {
-    if (data) {
-      console.log(data);
-      setEmail("");
-      toast.success(data.message);
-    }
-    if (error) {
-      setEmail("");
-      toast.error("Some thing went wrong");
-    }
-  }, [data, isLoading, error]);
+  // useEffect(() => {
+  //   if (data) {
+  //     console.log(data);
+  //     setEmail("");
+  //     toast.success(data.message);
+  //   }
+  //   if (error) {
+  //     setEmail("");
+  //     toast.error("Some thing went wrong");
+  //   }
+  // }, [data, isLoading, error]);
   return (
     <footer className="footer-section ignoreMouseEffect">
       <div className="ocean">
@@ -67,17 +71,18 @@ const Footer = () => {
                   </p>
                   <form onSubmit={handleSubmit} className="newslater-form">
                     <input
+                    onClick={()=>setShowPopup(true)}
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       type="email"
                       placeholder="Your Email Address"
                     />
-                    <button
+                    {/* <button
                       className="flex items-center justify-center"
                       type="submit"
                     >
                       <FaTelegramPlane />
-                    </button>
+                    </button> */}
                   </form>
                 </div>
               </div>
@@ -258,6 +263,8 @@ const Footer = () => {
         </div>
       </div>
       <Toaster></Toaster>
+      {showPopup && <ContactForm {...{setShowPopup,setSuccessSnackBarOpen,showPopup}} />}
+      <SuccessSnackBar {...{setSuccessSnackBarOpen,successSnackBarOpen, message}} />
     </footer>
   );
 };

@@ -107,7 +107,7 @@ export const UserCard = ({ profile, role }) => {
           {profile && (
             <div className="h-[400px]  relative group overflow-hidden Suggested-card  ml-6">
               <img
-                className="h-[400px] rounded-tr-[12px] bg-white rounded-tl-[12px] rounded-bl-[12px] rounded-br-[12px] object-cover w-full"
+                className="h-[400px] rounded-tr-[12px] rounded-tl-[12px] rounded-bl-[12px] rounded-br-[12px] object-cover w-full"
                 src={profilePhoto}
                 alt="profile"
               />
@@ -200,18 +200,18 @@ export const UserCard = ({ profile, role }) => {
           className="md:hidden"
         >
           {profile && (
-            <div className="h-[350px] w-[324px]  relative group overflow-hidden Suggested-card mx-3">
+            <div className="h-[400px]  w-[324px]  relative group overflow-hidden Suggested-card mx-3">
               <img
-                className="h-[200px] rounded-tr-[12px] bg-white rounded-tl-[12px] rounded-bl-[12px] rounded-br-[12px] object-cover w-full"
+                className="h-[400px] rounded-tr-[12px] bg-white rounded-tl-[12px] rounded-bl-[12px] rounded-br-[12px] object-cover w-full"
                 src={profilePhoto}
                 alt="profile"
               />
-              <div className="absolute h-[100px] w-full top-[200px] right-0 inset-0 bg-white opacity-90 text-black px-4 py-2 font-serif group-hover:top-[370px] transition ease-out duration-500 rounded-bl-[12px] rounded-br-[12px]">
+              <div className="absolute h-[150px] w-full top-[300px] right-0 inset-0 bg-white opacity-90 text-black px-4 py-2 font-serif group-hover:top-[370px] transition ease-out duration-500 rounded-bl-[12px] rounded-br-[12px]">
                 <div className="flex gap-x-4 items-center">
-                  <p className="text-[20px] text-black font-bold drop-shadow-lg">
+                  <p className="text-[20px]  font-bold drop-shadow-lg">
                     {name}
                   </p>
-                  {profile?.dateOfBirth && <p className="text-[17px] ml-[40px] text-black">
+                  {profile?.dateOfBirth && <p className="text-[17px] ml-[40px] ">
                     {ageCalculator(
                       profile?.dateOfBirth ? profile?.dateOfBirth : 0
                     )}
@@ -238,7 +238,7 @@ export const UserCard = ({ profile, role }) => {
                   alt="profile"
                   className="w-[94px] h-[94px] rounded-full relative left-[35%] bg-white border-white border-4"
                 />
-                <div className="p-2 relative">
+                <div className="p-2 relative h-1/5">
                   <h4 className="text-white text-[25px] font-bold text-center overflow-hidden">
                     <span className="font-george">{name}</span>
                     {profile?.dateOfBirth && <span style={{ color: "rgb(135, 206, 235)" }}> {profile?.dateOfBirth && ageCalculator(profile?.dateOfBirth)}</span>}
@@ -246,21 +246,21 @@ export const UserCard = ({ profile, role }) => {
                   <ul className="text-white font-Inter">
                     <li>
                       <p className="text-[14px] font-normal">
-                        Lorem ipsum dolor sit amet.
+                        {intro}
                       </p>
                     </li>
                   </ul>
-                  <div className="h-[30px] w-full flex items-center justify-evenly absolute -bottom-[40px]">
+                  <div className="h-[30px] w-full flex items-center justify-evenly absolute -bottom-24">
                     <p
                       onClick={goToMobileProfile}
-                      className="bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] rounded-full cursor-pointer p-3"
+                      className="bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] rounded-full cursor-pointer w-[40px] h-[40px] flex items-center justify-center"
                     >
                       <PersonIcon style={{ color: "white" }} />
                     </p>
 
                     <span
                       onClick={() => setShowPopup(true)}
-                      className="bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] rounded-full p-3"
+                      className="bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] rounded-full w-[40px] h-[40px] flex items-center justify-center"
                     >
                       <ChatIcon style={{ color: "white" }} />
                     </span>
