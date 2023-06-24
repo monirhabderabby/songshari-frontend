@@ -4,8 +4,9 @@ import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import { useGetCourseReviewOfMeQuery } from "../../../../Redux/features/Course/courseApi";
+import VarientAnimation from "../../../../assets/utilities/Animation/VarientAnimation";
 
-export const MyCourseCard = ({ item }) => {
+export const MyCourseCard = ({ item, i }) => {
     const [instructorName, setInstructorName] = useState("");
     const navigate = useNavigate();
     const location = useLocation();
@@ -38,7 +39,7 @@ export const MyCourseCard = ({ item }) => {
     }
 
     return (
-        <>
+        <VarientAnimation direction={i % 2 === 0 ? "right" : "left"} delay={i & (2 === 0) ? 0.3 : 0.4}>
             <div className="flex flex-col mx-auto w-full border-[1px] shadow-[rgba(0,0,0,0.05)_0px_6px_24px_0px,rgba(0,0,0,0.08)_0px_0px_0px_1px] hover:shadow-[rgba(0,0,0,0.16)_0px_10px_36px_0px,rgba(0,0,0,0.06)_0px_0px_0px_1px] rounded-[4px]">
                 <img src={image} alt="courseImage" className="rounded-tl-[4px] rounded-tr-[4px] h-[226px]" />
                 <div className="p-[10px] py-[15px] space-y-[4px]">
@@ -58,6 +59,6 @@ export const MyCourseCard = ({ item }) => {
                     </button>
                 </div>
             </div>
-        </>
+        </VarientAnimation>
     );
 };

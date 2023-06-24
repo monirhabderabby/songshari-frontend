@@ -12,8 +12,8 @@ const Ignored = () => {
     return (
         <div>
             <MyIgnoredMembers {...{ setUser, page, limit: 15 }} />
-            {userObj?.data?.blockedUsers?.map(item => (
-                <IgnoreCard {...{ item, useCase: "unignore" }} />
+            {userObj?.data?.blockedUsers?.map((item, i) => (
+                <IgnoreCard {...{ item, useCase: "unignore", i }} />
             ))}
             {userObj?.isLoading && (
                 <div className="h-[350px] w-full flex justify-center items-center">

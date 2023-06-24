@@ -15,14 +15,7 @@ export const SupportTableRow = ({ item, index }) => {
         }
     };
     return (
-        <motion.tr
-            layout
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.8 }}
-            transition={{ opacity: { duration: 0.2 }, layout: { duration: index * 0.05 } }}
-            className="bg-white"
-        >
+        <motion.tr initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} className="bg-white">
             <td className="p-3 text-sm text-gray-700 whitespace-nowrap">{uid}</td>
             <td className="p-3 text-sm text-gray-700 whitespace-nowrap">
                 <span className={`p-1.5 text-xs font-medium uppercase tracking-wider rounded-lg bg-opacity-50 ${colorChooser(status)}`}>
