@@ -246,21 +246,21 @@ export const UserCard = ({ profile, role }) => {
                   <ul className="text-white font-Inter">
                     <li>
                       <p className="text-[14px] font-normal">
-                        Lorem ipsum dolor sit amet.
+                        {intro}
                       </p>
                     </li>
                   </ul>
-                  <div className="h-[30px] w-full flex items-center justify-evenly absolute -bottom-[40px]">
+                  <div className="h-[30px] w-full flex items-center justify-evenly absolute -bottom-24">
                     <p
                       onClick={goToMobileProfile}
-                      className="bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] rounded-full cursor-pointer p-3"
+                      className="bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] rounded-full cursor-pointer w-[40px] h-[40px] flex items-center justify-center"
                     >
                       <PersonIcon style={{ color: "white" }} />
                     </p>
 
                     <span
                       onClick={() => setShowPopup(true)}
-                      className="bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] rounded-full p-3"
+                      className="bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] rounded-full w-[40px] h-[40px] flex items-center justify-center"
                     >
                       <ChatIcon style={{ color: "white" }} />
                     </span>
