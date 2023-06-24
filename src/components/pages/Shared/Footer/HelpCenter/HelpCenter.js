@@ -40,9 +40,8 @@ const HelpCenter = () => {
             Address
           </h2>
           <hr className="md:w-1/3 mb-2" />
-          <p className="md:w-1/3 lg:w-1/4 font-Nunito text-gray-700 pl-1">
-            Shongshari Private Limited, 3169, Hayder Niketon, Mirpur Industrial
-            Area, Dhaka-1234, Bangladesh
+          <p className="md:w-1/3 lg:w-1/4 font-Nunito text-gray-700 pl-1">            
+            558, East Kazipara, Dhaka-1216
           </p>
         </div>
         {/* Helpline */}
