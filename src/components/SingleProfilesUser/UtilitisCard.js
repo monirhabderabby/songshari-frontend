@@ -1,9 +1,9 @@
 import { Tooltip } from "@mui/material";
 import { motion } from "framer-motion";
 import React from "react";
-import { BsShopWindow } from "react-icons/bs";
+// import { BsShopWindow } from "react-icons/bs";
 import { HiOutlineMail } from "react-icons/hi";
-import { MdManageAccounts, MdOutlineNotificationsActive } from "react-icons/md";
+import {  MdOutlineNotificationsActive } from "react-icons/md";
 import { useNavigate } from "react-router";
 import { fadeIn } from "../../assets/utilities/Animation/varient";
 const UtilitisCard = ({ data }) => {
