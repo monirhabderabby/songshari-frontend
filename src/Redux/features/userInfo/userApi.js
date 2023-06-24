@@ -496,6 +496,17 @@ export const userApi = apiSlice.injectEndpoints({
       }),
       providesTags: ["UpdateUserInfo"],
     }),
+    
+    getStatistics: builder.query({
+      query: () => ({
+        url: `/member/get-statistics`,
+        method: "GET",
+        headers: {
+          authorization: `Bearer ${getCookie("token")}`,
+        },
+      }),
+    }),
+    
   }),
 });
 
@@ -538,4 +549,5 @@ export const {
   useGetSingleProfessionDetailByIdQuery,
   useGetSingleEducationDetailByIdQuery,
   useGetSingleSiblingDetailByIdQuery,
+  useGetStatisticsQuery
 } = userApi;
