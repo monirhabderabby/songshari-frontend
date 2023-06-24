@@ -33,7 +33,7 @@ export const LanguageSwitcher = () => {
         onClick={handleClick}
         className="mt-2"
       >
-        <img className="w-[56px] h-[56px]" src={selectedIcon} alt="language" />
+        <img className="w-[53px] h-[53px]" src={selectedIcon} alt="language" />
       </button>
       <Menu
         id="basic-menu"
