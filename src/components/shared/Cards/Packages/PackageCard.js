@@ -35,7 +35,7 @@ export const PackageCard = ({ pack, packages, index, height, setSuccessSnackBarO
             >
                 <PackagePriceTest pack={pack} hovered={hovered} index={index} />
                 <div className="mt-[20px] ">
-                    <ul className={`list-disc pl-6 text-[14px] font-george ${hovered === index ? "text-[#FFFFFF]" : "text-gray-400"} h-[450px]`}>
+                    <ul className={`list-disc pl-6 text-[15px] font-george ${hovered === index ? "text-[#FFFFFF]" : "text-gray-400"} h-[450px]`}>
                         {pack?.title?.toLowerCase()?.includes("free") && (
                             <>
                                 <li className="whitespace-nowrap">Browse Basic Features</li>
