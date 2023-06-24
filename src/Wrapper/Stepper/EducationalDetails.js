@@ -81,14 +81,31 @@ export const EducationalDetails = ({ setPage }) => {
     data.educations.map((p) => (p.gpaOrCgpa = Number(p.gpaOrCgpa)));
 
     const newObject = Object.create(data);
-    newObject.degree = degreeName;
-    newObject.institute = eduInstitute;
-    newObject.department = eduDepartment;
-    newObject.fieldOfStudy = eduFieldOfStudy;
-    newObject.yearOfPassing = eduYearOfPassing;
-    newObject.gpaOrCgpa = Number(data.gpaOrCgpa);
-    newObject.specialAchievement = data.specialAchievement;
-    newObject.certificates = { photo: eduAchievementMoment };
+
+    if (degreeName) {
+      newObject.degree = degreeName;
+    }
+    if (eduInstitute) {
+      newObject.institute = eduInstitute;
+    }
+    if (eduDepartment) {
+      newObject.department = eduDepartment;
+    }
+    if (eduFieldOfStudy) {
+      newObject.fieldOfStudy = eduFieldOfStudy;
+    }
+    if (eduYearOfPassing) {
+      newObject.yearOfPassing = eduYearOfPassing;
+    }
+    if (data.gpaOrCgpa) {
+      newObject.gpaOrCgpa = Number(data.gpaOrCgpa);
+    }
+    if (data.specialAchievement) {
+      newObject.specialAchievement = data.specialAchievement;
+    }
+    if (eduAchievementMoment) {
+      newObject.certificates = { photo: eduAchievementMoment };
+    }
 
     delete data.degree;
     delete data.institute;
@@ -99,7 +116,10 @@ export const EducationalDetails = ({ setPage }) => {
     delete data.gpaOrCgpa;
     delete data.certificates;
     delete data.specialAchievement;
-    data.educations.push(newObject);
+
+    if (Object.keys(newObject).length > 0) {
+      data.educations.push(newObject);
+    }
 
     await setEducationalDetails(data);
   };
@@ -110,7 +130,7 @@ export const EducationalDetails = ({ setPage }) => {
       const formData = new FormData();
       formData.append("image", e.target.files[0]);
       uploadCertificate(formData);
-    } 
+    }
   };
 
   const moreEduAddedAchievementMomentHandler = async (e) => {
@@ -118,8 +138,7 @@ export const EducationalDetails = ({ setPage }) => {
       const formData = new FormData();
       formData.append("image", e.target.files[0]);
       uploadMoreCertificate(formData);
-     }
-    
+    }
   };
 
   useEffect(() => {
@@ -158,7 +177,6 @@ export const EducationalDetails = ({ setPage }) => {
                 onChange={(val) => setDegreeName(val.value)}
                 type="text"
                 placeholder="Degree Name"
-                // options={options}
                 styles={{
                   control: (baseStyles, state) => ({
                     ...baseStyles,
@@ -171,6 +189,12 @@ export const EducationalDetails = ({ setPage }) => {
                 }}
                 className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
                 id="degreeName"
+                options={[
+                  { value: "SSC", label: "SSC" },
+                  { value: "HSC", label: "HSC" },
+                  { value: "BSc.", label: "BSc." },
+                  { value: "MSc.", label: "MSc." },
+                ]}
               />
             </div>
           </section>
@@ -182,7 +206,6 @@ export const EducationalDetails = ({ setPage }) => {
                 onChange={(val) => setEduInstitute(val.value)}
                 type="text"
                 placeholder="Institution"
-                // options={options}
                 styles={{
                   control: (baseStyles, state) => ({
                     ...baseStyles,
@@ -195,6 +218,21 @@ export const EducationalDetails = ({ setPage }) => {
                 }}
                 className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
                 id="institute"
+                options={[
+                  { value: "Brac University", label: "Brac University" },
+                  {
+                    value: "North-South University",
+                    label: "North-South University",
+                  },
+                  {
+                    value: "Islamic University of Technology",
+                    label: "Islamic University of Technology",
+                  },
+                  {
+                    value: "National University",
+                    label: "National University",
+                  },
+                ]}
               />
             </div>
           </section>
@@ -206,7 +244,6 @@ export const EducationalDetails = ({ setPage }) => {
                 onChange={(val) => setEduDepartment(val.value)}
                 type="text"
                 placeholder="Department Name"
-                // options={options}
                 styles={{
                   control: (baseStyles, state) => ({
                     ...baseStyles,
@@ -219,6 +256,13 @@ export const EducationalDetails = ({ setPage }) => {
                 }}
                 className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
                 id="Department"
+                options={[
+                  { value: "Mathematics", label: "Mathematics" },
+                  { value: "Physics", label: "Physics" },
+                  { value: "Chemistry", label: "Chemistry" },
+                  { value: "EEE", label: "EEE" },
+                  { value: "CSE", label: "CSE" },
+                ]}
               />
             </div>
           </section>
@@ -230,7 +274,6 @@ export const EducationalDetails = ({ setPage }) => {
                 onChange={(val) => setEduFieldOfStudy(val.value)}
                 type="text"
                 placeholder="Field of Study"
-                // options={options}
                 styles={{
                   control: (baseStyles, state) => ({
                     ...baseStyles,
@@ -243,6 +286,12 @@ export const EducationalDetails = ({ setPage }) => {
                 }}
                 className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
                 id="fieldOfStudy"
+                options={[
+                  { value: "Science", label: "Science" },
+                  { value: "Applied Science", label: "Applied Science" },
+                  { value: "Arts", label: "Arts" },
+                  { value: "Commerce", label: "Commerce" },
+                ]}
               />
             </div>
           </section>
@@ -331,7 +380,6 @@ export const EducationalDetails = ({ setPage }) => {
                       }
                       type="text"
                       placeholder="Degree Name"
-                      // options={options}
                       styles={{
                         control: (baseStyles, state) => ({
                           ...baseStyles,
@@ -344,6 +392,12 @@ export const EducationalDetails = ({ setPage }) => {
                       }}
                       className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
                       id="degreeName"
+                      options={[
+                        { value: "SSC", label: "SSC" },
+                        { value: "HSC", label: "HSC" },
+                        { value: "BSc.", label: "BSc." },
+                        { value: "MSc.", label: "MSc." },
+                      ]}
                     />
                   </div>
                 </section>
@@ -357,7 +411,6 @@ export const EducationalDetails = ({ setPage }) => {
                       }
                       type="text"
                       placeholder="Institution"
-                      // options={options}
                       styles={{
                         control: (baseStyles, state) => ({
                           ...baseStyles,
@@ -370,6 +423,21 @@ export const EducationalDetails = ({ setPage }) => {
                       }}
                       className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
                       id="institute"
+                      options={[
+                        { value: "Brac University", label: "Brac University" },
+                        {
+                          value: "North-South University",
+                          label: "North-South University",
+                        },
+                        {
+                          value: "Islamic University of Technology",
+                          label: "Islamic University of Technology",
+                        },
+                        {
+                          value: "National University",
+                          label: "National University",
+                        },
+                      ]}
                     />
                   </div>
                 </section>
@@ -383,7 +451,13 @@ export const EducationalDetails = ({ setPage }) => {
                       }
                       type="text"
                       placeholder="Department Name"
-                      // options={options}
+                      options={[
+                        { value: "Mathematics", label: "Mathematics" },
+                        { value: "Physics", label: "Physics" },
+                        { value: "Chemistry", label: "Chemistry" },
+                        { value: "EEE", label: "EEE" },
+                        { value: "CSE", label: "CSE" },
+                      ]}
                       styles={{
                         control: (baseStyles, state) => ({
                           ...baseStyles,
@@ -409,7 +483,6 @@ export const EducationalDetails = ({ setPage }) => {
                       }
                       type="text"
                       placeholder="Field of Study"
-                      // options={options}
                       styles={{
                         control: (baseStyles, state) => ({
                           ...baseStyles,
@@ -422,6 +495,12 @@ export const EducationalDetails = ({ setPage }) => {
                       }}
                       className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
                       id="fieldOfStudy"
+                      options={[
+                        { value: "Science", label: "Science" },
+                        { value: "Applied Science", label: "Applied Science" },
+                        { value: "Arts", label: "Arts" },
+                        { value: "Commerce", label: "Commerce" },
+                      ]}
                     />
                   </div>
                 </section>

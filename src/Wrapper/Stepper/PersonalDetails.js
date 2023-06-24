@@ -9,6 +9,7 @@ import { AiOutlineCloudUpload, AiOutlineIdcard } from "react-icons/ai";
 import { decodeToken } from "react-jwt";
 import Select from "react-select";
 import makeAnimated from "react-select/animated";
+import dayjs from "dayjs";
 
 // components
 import getCookie from "../../Helper/cookies/getCookie";
@@ -53,8 +54,13 @@ export const PersonalDetails = ({ setPage, setHasSibling }) => {
   const { data: profileData, isLoading: profileDataLoading } =
     useGetProfileDetailsWIthAuthQuery();
 
-  const { firstName, lastName, designation, NidOrPassportNumber } =
-    profileData || {};
+  const {
+    firstName,
+    lastName,
+    designation,
+    NidOrPassportNumber,
+    dateOfBirth: defaultDateOfBirth,
+  } = profileData || {};
 
   //setting profile photo
   useEffect(() => {
@@ -232,12 +238,12 @@ export const PersonalDetails = ({ setPage, setHasSibling }) => {
     data.lastName = data.lastName || lastName;
     data.designation = data.designation || designation;
     data.NidOrPassportNumber = data.NidOrPassportNumber || NidOrPassportNumber;
+    data.dateOfBirth = dateOfBirth || defaultDateOfBirth;
 
     data = {
       ...data,
       NidFrontSide,
       NidBackSide,
-      dateOfBirth,
       hobbies,
       marriageDate,
       divorceDate,
@@ -293,6 +299,8 @@ export const PersonalDetails = ({ setPage, setHasSibling }) => {
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   }, []);
+
+  const dateFormat = "YYYY/MM/DD";
 
   return (
     <div className="w-full h-auto">
@@ -384,6 +392,7 @@ export const PersonalDetails = ({ setPage, setHasSibling }) => {
                   className="flex-1 px-2 py-[9px] outline-none h-full bg-transparent text-sm text-gray-400"
                   id="dateOfBirth"
                   bordered={false}
+                  defaultValue={dayjs(defaultDateOfBirth, dateFormat)}
                   onChange={onDateOfBirthChange}
                   disabledDate={disabledDate}
                 />
@@ -392,7 +401,7 @@ export const PersonalDetails = ({ setPage, setHasSibling }) => {
             {/* ---------- Hometown ---------- */}
             <section className="relative">
               <div
-                className={`flex items-center  p-3 w-full rounded-lg mt-3 lg:mt-0 ${
+                className={`flex z-50 items-center p-3 w-full rounded-lg mt-3 lg:mt-0 ${
                   homeTownSuggestion.length > 0
                     ? "rounded-br-none rounded-bl-none shadow-lg bg-white"
                     : "bg-gray-100"
@@ -414,7 +423,7 @@ export const PersonalDetails = ({ setPage, setHasSibling }) => {
                 />
               </div>
               <div
-                className={`bg-white shadow-lg absolute top-[40px] right-0 w-full rounded-br-lg rounded-bl-lg overflow-y-scroll ${
+                className={`bg-white shadow-lg absolute top-[40px] right-0 w-full rounded-br-lg rounded-bl-lg overflow-y-scroll z-40 ${
                   homeTownSuggestion.length > 0 ? "max-h-[346px]" : "h-0"
                 }`}
               >
@@ -435,7 +444,7 @@ export const PersonalDetails = ({ setPage, setHasSibling }) => {
                   })}
               </div>
               <h1 className="text-left ml-2">
-                {errors.hometown?.type === "required" && (
+                {!homeTownValue && errors.hometown?.type === "required" && (
                   <span className="w-full text-left text-red-400 text-sm">
                     {errors?.hometown.message}
                   </span>
@@ -476,7 +485,7 @@ export const PersonalDetails = ({ setPage, setHasSibling }) => {
                 />
               </div>
               <h1 className="text-left ml-2">
-                {errors.profilePhoto?.type === "required" && (
+                {!profilePhoto && errors.profilePhoto?.type === "required" && (
                   <span className="w-full text-left text-red-400 text-sm">
                     {errors?.profilePhoto.message}
                   </span>
@@ -576,7 +585,7 @@ export const PersonalDetails = ({ setPage, setHasSibling }) => {
                 />
               </div>
               <h1 className="text-left ml-2">
-                {errors.frontSide?.type === "required" && (
+                {!NidFrontSide && errors.frontSide?.type === "required" && (
                   <span className="w-full text-left text-red-400 text-sm">
                     {errors?.frontSide.message}
                   </span>
@@ -613,7 +622,7 @@ export const PersonalDetails = ({ setPage, setHasSibling }) => {
                 />
               </div>
               <h1 className="text-left ml-2">
-                {errors.backSide?.type === "required" && (
+                {!NidBackSide && errors.backSide?.type === "required" && (
                   <span className="w-full text-left text-red-400 text-sm">
                     {errors?.backSide.message}
                   </span>
@@ -830,11 +839,12 @@ export const PersonalDetails = ({ setPage, setHasSibling }) => {
                   })}
               </div>
               <h1 className="text-left ml-2">
-                {errors.townPermanent?.type === "required" && (
-                  <span className="w-full text-left text-red-400 text-sm">
-                    {errors?.townPermanent.message}
-                  </span>
-                )}
+                {!townPermanentValue &&
+                  errors.townPermanent?.type === "required" && (
+                    <span className="w-full text-left text-red-400 text-sm">
+                      {errors?.townPermanent.message}
+                    </span>
+                  )}
               </h1>
             </section>
             {/* ---------- Division Permanent ---------- */}
@@ -918,11 +928,12 @@ export const PersonalDetails = ({ setPage, setHasSibling }) => {
                   })}
               </div>
               <h1 className="text-left ml-2">
-                {errors.hometown?.type === "required" && (
-                  <span className="w-full text-left text-red-400 text-sm">
-                    {errors?.hometown.message}
-                  </span>
-                )}
+                {!parmanentCountryValue &&
+                  errors.countryPermanent?.type === "required" && (
+                    <span className="w-full text-left text-red-400 text-sm">
+                      {errors?.countryPermanent.message}
+                    </span>
+                  )}
               </h1>
             </section>
 
@@ -1051,11 +1062,12 @@ export const PersonalDetails = ({ setPage, setHasSibling }) => {
                   })}
               </div>
               <h1 className="text-left ml-2">
-                {errors.townCurrent?.type === "required" && (
-                  <span className="w-full text-left text-red-400 text-sm">
-                    {errors?.townCurrent.message}
-                  </span>
-                )}
+                {!townCurrentValue &&
+                  errors.townCurrent?.type === "required" && (
+                    <span className="w-full text-left text-red-400 text-sm">
+                      {errors?.townCurrent.message}
+                    </span>
+                  )}
               </h1>
             </section>
             {/* ---------- Division Current ---------- */}
@@ -1141,11 +1153,12 @@ export const PersonalDetails = ({ setPage, setHasSibling }) => {
                   })}
               </div>
               <h1 className="text-left ml-2">
-                {errors.countryCurrent?.type === "required" && (
-                  <span className="w-full text-left text-red-400 text-sm">
-                    {errors?.countryCurrent.message}
-                  </span>
-                )}
+                {!currentCountryValue &&
+                  errors.countryCurrent?.type === "required" && (
+                    <span className="w-full text-left text-red-400 text-sm">
+                      {errors?.countryCurrent.message}
+                    </span>
+                  )}
               </h1>
             </section>
 
@@ -1178,11 +1191,12 @@ export const PersonalDetails = ({ setPage, setHasSibling }) => {
                 </select>
               </div>
               <h1 className="text-left ml-2">
-                {errors.maritalStatus?.type === "required" && (
-                  <span className="w-full text-left text-red-400 text-sm">
-                    {errors?.maritalStatus.message}
-                  </span>
-                )}
+                {!maritalStatus &&
+                  errors.maritalStatus?.type === "required" && (
+                    <span className="w-full text-left text-red-400 text-sm">
+                      {errors?.maritalStatus.message}
+                    </span>
+                  )}
               </h1>
             </section>
             {/* ---------- Number Of Partner ---------- */}

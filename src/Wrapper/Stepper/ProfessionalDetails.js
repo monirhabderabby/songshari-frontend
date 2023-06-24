@@ -70,12 +70,24 @@ export const ProfessionalDetails = ({ setPage }) => {
 
     const newObject = Object.create(data);
 
-    newObject.position = data.position;
-    newObject.institute = data.institute;
-    newObject.duty = data.duty;
-    newObject.workPeriod = workPeriod;
-    newObject.specialAchievement = data.specialAchievement;
-    newObject.certificates = { photo: professionalAchievementMoment };
+    if (data.position) {
+      newObject.position = data.position;
+    }
+    if (data.institute) {
+      newObject.institute = data.institute;
+    }
+    if (data.duty) {
+      newObject.duty = data.duty;
+    }
+    if (workPeriod) {
+      newObject.workPeriod = workPeriod;
+    }
+    if (data.specialAchievement) {
+      newObject.specialAchievement = data.specialAchievement;
+    }
+    if (professionalAchievementMoment) {
+      newObject.certificates = { photo: professionalAchievementMoment };
+    }
 
     delete data.position;
     delete data.institute;
@@ -84,7 +96,9 @@ export const ProfessionalDetails = ({ setPage }) => {
     delete data.specialAchievement;
     delete data.certificates;
 
-    data.professions.push(newObject);
+    if (Object.keys(newObject).length > 0) {
+      data.professions.push(newObject);
+    }
 
     await setProfessionalDetails(data);
   };
@@ -109,7 +123,6 @@ export const ProfessionalDetails = ({ setPage }) => {
 
   useEffect(() => {
     if (response) {
-      console.log(response);
       setPage(4);
     }
   }, [response, setPage]);

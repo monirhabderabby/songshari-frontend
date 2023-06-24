@@ -218,11 +218,9 @@ export const AccordionPartner = ({ data, isLoading }) => {
     }
   };
   const handleMarriageReasonChange = (value) => {
-    console.log(`selected ${value}`);
     setReasonOfMarriage(value);
   };
   const handleHaveChildrenChange = (value) => {
-    console.log(`selected ${value}`);
     setHaveChildren(value);
   };
   const handleIncreaseBoy = () => {
