@@ -55,10 +55,10 @@ const HelpCenter = () => {
           </h2>
           <hr className="md:w-1/3 mb-2" />
           <p className="font-Nunito text-gray-700 pl-1">
-            <span className="font-bold">Phone-1: </span> +88018489389489
+            <span className="font-bold">Phone-1: </span> +880 1XXXXXXXXX
           </p>
           <p className="font-Nunito text-gray-700 pl-1">
-            <span className="font-bold">Phone-2: </span> +88018489389489
+            <span className="font-bold">Phone-2: </span> +880 1XXXXXXXXX
           </p>
         </div>
         {/* Email */}
