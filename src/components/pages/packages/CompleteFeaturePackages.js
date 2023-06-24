@@ -29,7 +29,7 @@ const CompleteFeaturePackages = () => {
 
     return (
         <div className="max-w-[1200px] mx-auto mt-32">
-            <h6 className="text-[#5650ce] text-center text-5xl font-semibold font-george mb-[80px]">Complete feature packages</h6>
+            <h6 className="text-center text-5xl font-semibold font-fira mb-[80px] gradient_text">Complete feature package</h6>
 
             {isLoading && (
                 <div className="my-16">
