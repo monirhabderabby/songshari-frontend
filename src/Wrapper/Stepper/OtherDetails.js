@@ -276,9 +276,9 @@ export const OtherDetails = ({ setPage }) => {
               </select>
             </div>
             <h1 className="text-left ml-2">
-              {errors.likeJoinFamily?.type === "required" && (
+              {errors.likeChildren?.type === "required" && (
                 <span className="w-full text-left text-red-400 text-sm">
-                  {errors?.likeJoinFamily.message}
+                  {errors?.likeChildren.message}
                 </span>
               )}
             </h1>

@@ -54,17 +54,40 @@ const SiblingDetails = ({ setPage }) => {
 
     const newObject = Object.create(data);
 
-    newObject.siblingName = data.siblingName;
-    newObject.elderOrYounger = data.elderOrYounger;
-    newObject.ageGap = Number(data.ageGap);
-    newObject.siblingProfession = siblingProfession;
-    newObject.siblingEducationalQualification = siblingEducationalQualification;
-    newObject.siblingIncome = data.siblingIncome;
-    newObject.maritalStatus = data.maritalStatus;
-    newObject.siblingFamilyInfo = data.siblingFamilyInfo;
-    newObject.isSiblingAlive = data.isSiblingAlive;
-    newObject.siblingDeathDate = siblingDeathDate;
-    newObject.siblingDeathReason = data.siblingDeathReason;
+    if (data.siblingName) {
+      newObject.siblingName = data.siblingName;
+    }
+    if (data.elderOrYounger) {
+      newObject.elderOrYounger = data.elderOrYounger;
+    }
+    if (data.ageGap) {
+      newObject.ageGap = Number(data.ageGap);
+    }
+    if (siblingProfession) {
+      newObject.siblingProfession = siblingProfession;
+    }
+    if (siblingEducationalQualification) {
+      newObject.siblingEducationalQualification =
+        siblingEducationalQualification;
+    }
+    if (data.siblingIncome) {
+      newObject.siblingIncome = data.siblingIncome;
+    }
+    if (data.maritalStatus) {
+      newObject.maritalStatus = data.maritalStatus;
+    }
+    if (data.siblingFamilyInfo) {
+      newObject.siblingFamilyInfo = data.siblingFamilyInfo;
+    }
+    if (data.isSiblingAlive) {
+      newObject.isSiblingAlive = data.isSiblingAlive;
+    }
+    if (siblingDeathDate) {
+      newObject.siblingDeathDate = siblingDeathDate;
+    }
+    if (data.siblingDeathReason) {
+      newObject.siblingDeathReason = data.siblingDeathReason;
+    }
 
     delete data.siblingName;
     delete data.elderOrYounger;
@@ -75,7 +98,9 @@ const SiblingDetails = ({ setPage }) => {
     delete data.isSiblingAlive;
     delete data.siblingDeathReason;
 
-    data.siblings.push(newObject);
+    if (Object.keys(newObject).length > 0) {
+      data.siblings.push(newObject);
+    }
 
     await setSiblingDetail(data);
   };

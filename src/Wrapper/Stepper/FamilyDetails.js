@@ -45,17 +45,26 @@ const FamilyDetails = ({ setPage, hasSibling }) => {
   };
 
   const onSubmit = async (data) => {
+    if (fatherEducationalQualification) {
+      data.fatherEducationalQualification = fatherEducationalQualification;
+    }
+    if (fatherProfession) {
+      data.fatherProfession = fatherProfession;
+    }
+    if (motherEducationalQualification) {
+      data.motherEducationalQualification = motherEducationalQualification;
+    }
+    if (motherProfession) {
+      data.motherProfession = motherProfession;
+    }
     data = {
       ...data,
-      fatherProfession,
-      fatherEducationalQualification,
       fatherDateOfBirth,
       fatherDeathDate,
-      motherProfession,
-      motherEducationalQualification,
       motherDateOfBirth,
       motherDeathDate,
     };
+
     await updateFamilyDetails(data);
   };
 

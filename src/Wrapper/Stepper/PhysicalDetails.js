@@ -34,11 +34,7 @@ export const PhysicalDetails = ({ setPage }) => {
       .then((data) => setAncestryData(data));
   }, []);
 
-  const {
-    register,
-    formState: { errors },
-    handleSubmit,
-  } = useForm();
+  const { register, handleSubmit } = useForm();
 
   const onSubmit = async (data) => {
     delete data.ancestry;
@@ -61,7 +57,7 @@ export const PhysicalDetails = ({ setPage }) => {
     data.numberOfTeeth = Number(data.numberOfTeeth);
     data.height = Number(data.height);
     data.weight = Number(data.weight);
-    console.log(data);
+
     await setPhysicalDetails(data);
   };
 
@@ -93,12 +89,7 @@ export const PhysicalDetails = ({ setPage }) => {
           <section>
             <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
               <input
-                {...register("height", {
-                  required: {
-                    value: true,
-                    message: "Height is required",
-                  },
-                })}
+                {...register("height")}
                 type="number"
                 step="0.01"
                 placeholder="Height (inch)"
@@ -106,24 +97,12 @@ export const PhysicalDetails = ({ setPage }) => {
                 id="height"
               />
             </div>
-            <h1 className="text-left ml-2">
-              {errors.height?.type === "required" && (
-                <span className="w-full text-left text-red-400 text-sm">
-                  {errors?.height.message}
-                </span>
-              )}
-            </h1>
           </section>
           {/* ---------- Weight ---------- */}
           <section>
             <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
               <input
-                {...register("weight", {
-                  required: {
-                    value: true,
-                    message: "Weight is required",
-                  },
-                })}
+                {...register("weight")}
                 type="number"
                 step="0.01"
                 placeholder="Weight (kg)"
@@ -131,13 +110,6 @@ export const PhysicalDetails = ({ setPage }) => {
                 id="weight"
               />
             </div>
-            <h1 className="text-left ml-2">
-              {errors.weight?.type === "required" && (
-                <span className="w-full text-left text-red-400 text-sm">
-                  {errors?.weight.message}
-                </span>
-              )}
-            </h1>
           </section>
           {/* ---------- Ancestry ---------- */}
           <section>
