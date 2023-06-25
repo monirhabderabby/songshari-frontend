@@ -58,12 +58,14 @@ export const Matches = ({ setMatchesCount }) => {
 
   return (
     <div className="w-full lg:max-w-[521px] mx-auto">
+      <div className="w-full flex items-center justify-center">
       <button
         className="special_profile_button"
         onClick={() => setMatchesModalOpen(true)}
       >
         Matches Modal
       </button>
+      </div>
       {content}
       <MatchersModalForm {...{ mathchesModalOpen, setMatchesModalOpen }} />
     </div>

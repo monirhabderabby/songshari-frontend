@@ -36,7 +36,7 @@ export const MyCourses = () => {
         content = (
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-[20px] w-full">
                 {courses?.map((item, index) => {
-                    return <MyCourseCard item={item} key={index} />;
+                    return <MyCourseCard item={item} key={index} i={index} />;
                 })}
             </div>
         );

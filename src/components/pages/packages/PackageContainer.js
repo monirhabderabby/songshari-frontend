@@ -30,7 +30,7 @@ const PackageContainer = () => {
 
     return (
         <div className="max-w-[1200px] mx-auto mt-8">
-            <h6 className="text-[#5650ce] text-center text-5xl font-semibold font-Inter mb-6">Special Packages For You</h6>
+            <h6 className="text-center text-5xl font-semibold font-fira mb-[80px] gradient_text">Special Packages For You</h6>
 
             {isLoading && (
                 <div className="my-16">

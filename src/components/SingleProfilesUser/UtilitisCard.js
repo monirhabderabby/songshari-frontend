@@ -1,9 +1,9 @@
 import { Tooltip } from "@mui/material";
 import { motion } from "framer-motion";
 import React from "react";
-import { BsShopWindow } from "react-icons/bs";
+// import { BsShopWindow } from "react-icons/bs";
 import { HiOutlineMail } from "react-icons/hi";
-import { MdManageAccounts, MdOutlineNotificationsActive } from "react-icons/md";
+import {  MdOutlineNotificationsActive } from "react-icons/md";
 import { useNavigate } from "react-router";
 import { fadeIn } from "../../assets/utilities/Animation/varient";
 const UtilitisCard = ({ data }) => {
@@ -43,7 +43,7 @@ const UtilitisCard = ({ data }) => {
                 </div>
             </Tooltip>
 
-            <Tooltip title="Setting">
+            {/* <Tooltip title="Setting">
                 <div className="w-12 h-12 flex items-center justify-center rounded-full bg-[#F8E9F7]" onClick={() => navigate("/my-orders/account")}>
                     <button type="button" className="w-12 h-12 rounded-full inline-flex relative items-center p-3 text-xl text-center text-white ">
                         <MdManageAccounts className="text-lg text-[#0000EE] ml-[2px]" />
@@ -59,7 +59,7 @@ const UtilitisCard = ({ data }) => {
                         <BsShopWindow className="text-lg text-[#0000EE] ml-[2px]" />
                     </button>
                 </div>
-            </Tooltip>
+            </Tooltip> */}
         </motion.div>
     );
 };
