@@ -1,7 +1,7 @@
 import React from "react";
 
 // Third party package
-import { Select } from "antd";
+import { Checkbox, Radio, Select, Space } from "antd";
 import { HiOutlineAdjustmentsHorizontal } from "react-icons/hi2";
 
 // Components
@@ -11,13 +11,14 @@ const FindLawyerAgentKaziFilterBox = () => {
   const { data: filterTypes } = useGetProfessionalFilterTypesQuery();
 
   const handleDesignation = (value) => {};
-
   const handleCategory = (value) => {};
-
+  const handleServiceProvide = (value) => {};
   const handleChamberLocation = (value) => {};
   const handleCourt = (value) => {};
   const handleHometown = (value) => {};
   const handleCurrentLocation = (value) => {};
+  const handleProfessionalExperience = (value) => {};
+  const handleEducationalQualification = (value) => {};
 
   //   const onsubmit = ()=> {
   //     data.role = "Agent"
@@ -67,6 +68,25 @@ const FindLawyerAgentKaziFilterBox = () => {
               placeholder="Select Category"
             >
               {filterTypes?.uniqueFilter?.serviceCategory?.map((opt, i) => {
+                return (
+                  <Select.Option key={i} value={opt}>
+                    {opt}
+                  </Select.Option>
+                );
+              })}
+            </Select>
+          </div>
+          {/* Services Provide */}
+          <div>
+            <h1 className="text-base leading-6 font-medium mb-2">
+              Services Provide
+            </h1>
+            <Select
+              className="w-full mb-4"
+              onChange={handleServiceProvide}
+              placeholder="Select Service"
+            >
+              {filterTypes?.uniqueFilter?.serviceProvide?.map((opt, i) => {
                 return (
                   <Select.Option key={i} value={opt}>
                     {opt}
@@ -145,6 +165,62 @@ const FindLawyerAgentKaziFilterBox = () => {
                   </Select.Option>
                 );
               })}
+            </Select>
+          </div>
+          {/* Professional experience */}
+          <div>
+            <h1 className="text-base leading-6 font-medium mb-2">
+              Professional Experience
+            </h1>
+            <Radio.Group
+              onChange={handleProfessionalExperience}
+              // value={professionalExperience}
+              className="mb-4"
+            >
+              <Space direction="vertical">
+                <Radio value="Less Than 1 Year">Less Than 1 Year</Radio>
+                <Radio value="1-2 Years">1-2 Years</Radio>
+                <Radio value="2-3 Years">2-3 Years</Radio>
+                <Radio value="3-5 Years">3-5 Years</Radio>
+                <Radio value="5-10 Years">5-10 Years</Radio>
+                <Radio value="10-15 Years">10-15 Years </Radio>
+                <Radio value="15 Years+">15 Years+</Radio>
+              </Space>
+            </Radio.Group>
+            <Checkbox.Group
+              onChange={handleProfessionalExperience}
+              className="mb-4"
+            >
+              <Space direction="vertical">
+                <Checkbox value="Less Than 1 Year">Less Than 1 Year</Checkbox>
+                <Checkbox value="1-2 Years">1-2 Years</Checkbox>
+                <Checkbox value="2-3 Years">2-3 Years</Checkbox>
+                <Checkbox value="3-5 Years">3-5 Years</Checkbox>
+                <Checkbox value="5-10 Years">5-10 Years</Checkbox>
+                <Checkbox value="10-15 Years">10-15 Years</Checkbox>
+                <Checkbox value="15 Years+">15 Years+</Checkbox>
+              </Space>
+            </Checkbox.Group>
+          </div>
+          {/* Educational Qualification */}
+          <div>
+            <h1 className="text-base leading-6 font-medium mb-2">
+              Educational Qualification
+            </h1>
+            <Select
+              className="w-full mb-4"
+              onChange={handleEducationalQualification}
+              placeholder="Select Educational Qualification"
+            >
+              {filterTypes?.uniqueFilter?.educationQualification?.map(
+                (opt, i) => {
+                  return (
+                    <Select.Option key={i} value={opt}>
+                      {opt}
+                    </Select.Option>
+                  );
+                }
+              )}
             </Select>
           </div>
         </div>
