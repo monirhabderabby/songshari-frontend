@@ -2742,12 +2742,12 @@ export const AccordionPartner = ({ data, isLoading }) => {
           </Panel>
         </Collapse>
         <div className="flex justify-center items-center">
-          <div className="flex justify-center items-center ] mt-[30px] md:hidden ">
+          <div className="flex justify-center items-center mt-[30px] md:hidden">
             <button
               onClick={handleSubmit}
               className="w-[139px] text-center py-[4] px-[6px] h-[34px] text-lg font-medium special_profile_button"
             >
-              Submi
+              Submit
             </button>
           </div>
         </div>
