@@ -1,13 +1,14 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React from "react";
 import { useState, useEffect } from "react";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 // import "./App.css";
 import styles from "./../../../../assets/css/SwapAndMatchv2.module.css"
-import SingleProfileImage from "./SingleProfileImage";
 import { SwipAndMatchCard } from "../../../shared/Cards/SwipeAndMatch/SwipAndMatchCard";
-import { useGetRecentMembersWithAuthQuery, useRejectSwipeAndMatchMemberMutation, useSwipeProfileLikeMutation } from "../../../../Redux/features/userInfo/withoutLoginApi";
+import {  useRejectSwipeAndMatchMemberMutation, useSwipeProfileLikeMutation } from "../../../../Redux/features/userInfo/withoutLoginApi";
 export default function BannerProfilev2({swapable, setSwapable, swipematch}) {
+
     const [likeMember, { data: swapLikeData }] = useSwipeProfileLikeMutation();
     const [rejectMember,{data:rejectData}] = useRejectSwipeAndMatchMemberMutation();
 
@@ -105,7 +106,7 @@ export default function BannerProfilev2({swapable, setSwapable, swipematch}) {
             </div>                */}
               {/* {index === current && <SingleProfileImage {...{currentSlide}} />} */}
               {/* <SwipAndMatchCard /> */}
-              {index === current && <SwipAndMatchCard {...{ data, nextSlide, prevSlide,liked, rejected }} auth={true} />}
+              {index === current && <SwipAndMatchCard {...{ data, nextSlide, prevSlide,liked,setLiked,setRejected, rejected,swapable, setSwapable }} auth={true} />}
               
 
             </div>

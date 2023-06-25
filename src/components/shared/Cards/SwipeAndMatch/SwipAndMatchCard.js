@@ -1,8 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 // configuration
 import React, { useEffect, useState } from "react";
-import styles from "../../../../assets/css/SwapAndMatchv2.module.css"
-
 // Third party packages
 import { AiFillHeart } from "react-icons/ai";
 
@@ -31,29 +29,31 @@ export const SwipAndMatchCard = ({
   rejectedGif,
   swapable,
   setSwapable,
-  auth,nextSlide, prevSlide,liked, rejected
+  auth,nextSlide, prevSlide,liked,setLiked,setRejected, rejected
 }) => {
   // hook variables declaration
   const [likeSent, setLikeSent] = useState(false);
 
   const [likeSingleProfile, { data: likeResponse, isLoading: likeLoading }] =
     useLikeSingleProfileMutation();
-  const [rejectSwipeAndMatchMember] = useRejectSwipeAndMatchMemberMutation();
-  const [rewindUser] = useRewindUserMutation();
+  const [rejectSwipeAndMatchMember,{data:rejectData}] = useRejectSwipeAndMatchMemberMutation();
+  const [rewindUser] = useRewindUserMutation();  
 
   // JS
   const navigate = useNavigate();
 
   useEffect(() => {
     if (likeResponse) {
+      setLikeSent(true)
       setSwapable(likeResponse?.swapAble);
+      nextSlide();
     }
   }, [likeResponse]);
 
   // useEffect declaration
   useEffect(() => {
-    if (likeResponse) setLikeSent((prev) => !prev);
-  }, [likeResponse]);
+    if (rejectData) nextSlide();
+  }, [rejectData]);
 
   // function declaration
   const addProfileLike = async () => {
@@ -63,7 +63,7 @@ export const SwipAndMatchCard = ({
       navigate("/login");
       return;
     }
-
+    setLiked(true);
     // if user authenticated interaction will be give access to like a profile
     await likeSingleProfile(data?._id);
   };
@@ -75,6 +75,7 @@ export const SwipAndMatchCard = ({
       navigate("/login");
       return;
     }
+    setRejected(true);
 
     // if user authenticated interaction will be give access to like a profile
     rejectSwipeAndMatchMember(data?._id);
@@ -96,7 +97,7 @@ export const SwipAndMatchCard = ({
 
   return (
     <div className={`max-w-[280px] w-full  h-[340px]  absolute overflow-hidden`}>
-      {rejected && <h1 className="gradientTextWithBorderRight">Nope</h1>}
+      {rejected && <h1 className="gradientTextWithBorderRight animate-bounce">Nope</h1>}
 
       {liked && (
         <h1 className="gradientTextWithBorderLeft animate-bounce">Liked</h1>
