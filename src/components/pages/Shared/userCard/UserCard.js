@@ -53,13 +53,13 @@ export const UserCard = ({ profile, role }) => {
   }, [likeResponse, dispatch]);
 
   // js variable declaration
-  const name = profile?.firstName || "Not Available";
+  const name = profile?.firstName || "";
 
   // profile photo decision maker
   const { profilePhotoDecisionMaker } = customFunc;
   const profilePhoto = profilePhotoDecisionMaker(profile?.profilePhoto);
-  const designation = profile?.designation || "Not Available";
-  const hometown = profile?.hometown || "Not Available";
+  const designation = profile?.designation || "";
+  const hometown = profile?.hometown || "";
   const aboutYou = profile?.aboutYou;
   let intro = null;
 
@@ -116,11 +116,13 @@ export const UserCard = ({ profile, role }) => {
                   <p className="text-[20px] text-white font-bold drop-shadow-lg">
                     {name}
                   </p>
-                  {profile?.dateOfBirth && <p className="text-[18px] text-[#87ceeb]">
-                    {ageCalculator(
-                      profile?.dateOfBirth ? profile?.dateOfBirth : 0
-                    )}
-                  </p>}
+                  {profile?.dateOfBirth && (
+                    <p className="text-[18px] text-[#87ceeb]">
+                      {ageCalculator(
+                        profile?.dateOfBirth ? profile?.dateOfBirth : 0
+                      )}
+                    </p>
+                  )}
                 </div>
                 <p>{designation}</p>
                 <p>{hometown}</p>
@@ -146,16 +148,20 @@ export const UserCard = ({ profile, role }) => {
                 <div className="p-2 relative h-1/2">
                   <h4 className="text-white text-[25px] font-bold text-center overflow-hidden">
                     <span className="font-george">{name}</span>
-                    {profile?.dateOfBirth && <span style={{ color: "rgb(135, 206, 235)" }}>
-                      {" "}
-                      {ageCalculator(
-                        profile?.dateOfBirth ? profile?.dateOfBirth : 0
-                      )}
-                    </span>}
+                    {profile?.dateOfBirth && (
+                      <span style={{ color: "rgb(135, 206, 235)" }}>
+                        {" "}
+                        {ageCalculator(
+                          profile?.dateOfBirth ? profile?.dateOfBirth : 0
+                        )}
+                      </span>
+                    )}
                   </h4>
                   <ul className="text-white font-Inter">
                     <li>
-                      <div className="text-[14px] font-normal">{intro} {intro?.length===60 && "..."} </div>
+                      <div className="text-[14px] font-normal">
+                        {intro} {intro?.length === 60 && "..."}{" "}
+                      </div>
                     </li>
                   </ul>
                   <div className="h-[30px] w-full flex items-center justify-evenly absolute bottom-10">
@@ -211,11 +217,13 @@ export const UserCard = ({ profile, role }) => {
                   <p className="text-[20px]  font-bold drop-shadow-lg">
                     {name}
                   </p>
-                  {profile?.dateOfBirth && <p className="text-[17px] ml-[40px] ">
-                    {ageCalculator(
-                      profile?.dateOfBirth ? profile?.dateOfBirth : 0
-                    )}
-                  </p>}
+                  {profile?.dateOfBirth && (
+                    <p className="text-[17px] ml-[40px] ">
+                      {ageCalculator(
+                        profile?.dateOfBirth ? profile?.dateOfBirth : 0
+                      )}
+                    </p>
+                  )}
                 </div>
                 <p className="text-[14px]">{designation}</p>
                 <p className="text-[16px]">{hometown}</p>
@@ -241,13 +249,17 @@ export const UserCard = ({ profile, role }) => {
                 <div className="p-2 relative h-1/5">
                   <h4 className="text-white text-[25px] font-bold text-center overflow-hidden">
                     <span className="font-george">{name}</span>
-                    {profile?.dateOfBirth && <span style={{ color: "rgb(135, 206, 235)" }}> {profile?.dateOfBirth && ageCalculator(profile?.dateOfBirth)}</span>}
+                    {profile?.dateOfBirth && (
+                      <span style={{ color: "rgb(135, 206, 235)" }}>
+                        {" "}
+                        {profile?.dateOfBirth &&
+                          ageCalculator(profile?.dateOfBirth)}
+                      </span>
+                    )}
                   </h4>
                   <ul className="text-white font-Inter">
                     <li>
-                      <p className="text-[14px] font-normal">
-                        {intro}
-                      </p>
+                      <p className="text-[14px] font-normal">{intro}</p>
                     </li>
                   </ul>
                   <div className="h-[30px] w-full flex items-center justify-evenly absolute -bottom-24">
