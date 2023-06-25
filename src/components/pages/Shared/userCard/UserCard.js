@@ -259,7 +259,7 @@ export const UserCard = ({ profile, role }) => {
                   </h4>
                   <ul className="text-white font-Inter">
                     <li>
-                      <p className="text-[14px] font-normal">{intro}</p>
+                      <div className="text-[14px] font-normal">{intro}</div>
                     </li>
                   </ul>
                   <div className="h-[30px] w-full flex items-center justify-evenly absolute -bottom-24">
