@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 // configuration
 import React, { useEffect, useState } from "react";
+import styles from "../../../../assets/css/SwapAndMatchv2.module.css"
 
 // Third party packages
 import { AiFillHeart } from "react-icons/ai";
@@ -30,7 +31,7 @@ export const SwipAndMatchCard = ({
   rejectedGif,
   swapable,
   setSwapable,
-  auth,
+  auth,nextSlide, prevSlide,liked, rejected
 }) => {
   // hook variables declaration
   const [likeSent, setLikeSent] = useState(false);
@@ -94,16 +95,16 @@ export const SwipAndMatchCard = ({
   const { profilePhotoDecisionMaker } = customFunc;
 
   return (
-    <div className="max-w-[280px] h-[400px] relative overflow-hidden">
-      {rejectedGif && <h1 className="gradientTextWithBorderRight">Nope</h1>}
+    <div className={`max-w-[280px] w-full  h-[340px]  absolute overflow-hidden`}>
+      {rejected && <h1 className="gradientTextWithBorderRight">Nope</h1>}
 
-      {likedGif && (
+      {liked && (
         <h1 className="gradientTextWithBorderLeft animate-bounce">Liked</h1>
       )}
 
       <img
         src={profilePhotoDecisionMaker(data?.profilePhoto)}
-        className="h-[400px] w-[280px] rounded-tr-[12px] rounded-tl-[12px] rounded-bl-[12px] rounded-br-[12px] object-cover"
+        className="h-[340px]  rounded-tr-[12px] rounded-tl-[12px] rounded-bl-[12px] rounded-br-[12px] object-cover"
         alt="profile"
       />
       <div
@@ -111,7 +112,7 @@ export const SwipAndMatchCard = ({
           background:
             "linear-gradient(0deg, #1B070E 52.26%, rgba(0, 0, 0, 0) 100.26%, rgba(0, 0, 0, 0) 100.26%)",
         }}
-        className="h-[140px] w-full absolute top-[260px] rounded-bl-[12px] rounded-br-[12px] px-[22px] py-[10px]"
+        className="h-[140px] w-full absolute top-[200px] rounded-bl-[12px] rounded-br-[12px] px-[22px] py-[10px]"
       >
         <div className="flex items-center gap-x-[12px]">
           <h1 className="font-Inter text-[18px] font-bold leading-[22px] text-[#FFFFFF]">
