@@ -1,7 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 // configuration
 import React, { useEffect, useState } from "react";
-
 // Third party packages
 import { AiFillHeart } from "react-icons/ai";
 
@@ -30,29 +29,31 @@ export const SwipAndMatchCard = ({
   rejectedGif,
   swapable,
   setSwapable,
-  auth,
+  auth,nextSlide, prevSlide,liked,setLiked,setRejected, rejected
 }) => {
   // hook variables declaration
   const [likeSent, setLikeSent] = useState(false);
 
   const [likeSingleProfile, { data: likeResponse, isLoading: likeLoading }] =
     useLikeSingleProfileMutation();
-  const [rejectSwipeAndMatchMember] = useRejectSwipeAndMatchMemberMutation();
-  const [rewindUser] = useRewindUserMutation();
+  const [rejectSwipeAndMatchMember,{data:rejectData}] = useRejectSwipeAndMatchMemberMutation();
+  const [rewindUser] = useRewindUserMutation();  
 
   // JS
   const navigate = useNavigate();
 
   useEffect(() => {
     if (likeResponse) {
+      setLikeSent(true)
       setSwapable(likeResponse?.swapAble);
+      nextSlide();
     }
   }, [likeResponse]);
 
   // useEffect declaration
   useEffect(() => {
-    if (likeResponse) setLikeSent((prev) => !prev);
-  }, [likeResponse]);
+    if (rejectData) nextSlide();
+  }, [rejectData]);
 
   // function declaration
   const addProfileLike = async () => {
@@ -62,7 +63,7 @@ export const SwipAndMatchCard = ({
       navigate("/login");
       return;
     }
-
+    setLiked(true);
     // if user authenticated interaction will be give access to like a profile
     await likeSingleProfile(data?._id);
   };
@@ -74,6 +75,7 @@ export const SwipAndMatchCard = ({
       navigate("/login");
       return;
     }
+    setRejected(true);
 
     // if user authenticated interaction will be give access to like a profile
     rejectSwipeAndMatchMember(data?._id);
@@ -94,16 +96,16 @@ export const SwipAndMatchCard = ({
   const { profilePhotoDecisionMaker } = customFunc;
 
   return (
-    <div className="max-w-[280px] h-[400px] relative overflow-hidden">
-      {rejectedGif && <h1 className="gradientTextWithBorderRight">Nope</h1>}
+    <div className={`max-w-[280px] w-full  h-[340px]  absolute overflow-hidden`}>
+      {rejected && <h1 className="gradientTextWithBorderRight animate-bounce -rotate-45">Nope</h1>}
 
-      {likedGif && (
-        <h1 className="gradientTextWithBorderLeft animate-bounce">Liked</h1>
-      )}
+      {/* {liked && ( */}
+        <h1 className="gradientTextWithBorderLeft -rotate-45">Liked</h1>
+      {/* )} */}
 
       <img
         src={profilePhotoDecisionMaker(data?.profilePhoto)}
-        className="h-[400px] w-[280px] rounded-tr-[12px] rounded-tl-[12px] rounded-bl-[12px] rounded-br-[12px] object-cover"
+        className="h-[340px]  rounded-tr-[12px] rounded-tl-[12px] rounded-bl-[12px] rounded-br-[12px] object-cover"
         alt="profile"
       />
       <div
@@ -111,7 +113,7 @@ export const SwipAndMatchCard = ({
           background:
             "linear-gradient(0deg, #1B070E 52.26%, rgba(0, 0, 0, 0) 100.26%, rgba(0, 0, 0, 0) 100.26%)",
         }}
-        className="h-[140px] w-full absolute top-[260px] rounded-bl-[12px] rounded-br-[12px] px-[22px] py-[10px]"
+        className="h-[140px] w-full absolute top-[200px] rounded-bl-[12px] rounded-br-[12px] px-[22px] py-[10px]"
       >
         <div className="flex items-center gap-x-[12px]">
           <h1 className="font-Inter text-[18px] font-bold leading-[22px] text-[#FFFFFF]">
