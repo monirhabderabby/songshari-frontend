@@ -6,6 +6,7 @@ import BannerProfilev2 from "./BannerProfilev2";
 import { BannerProfileWithoutLogin } from "./BannerProfileWithoutLogin";
 import GoPremiumCard from "./GoPrimiumCard";
 import { useGetRecentMembersWithAuthQuery } from "../../../../Redux/features/userInfo/withoutLoginApi";
+import BannerProfileAnimation from "./BannerProfileAnimation";
 
 const Banner = () => {
     const token = getCookie("token");
@@ -31,9 +32,10 @@ const Banner = () => {
                             src="https://images.pexels.com/photos/1779414/pexels-photo-1779414.jpeg?auto=compress&cs=tinysrgb&w=800"
                             alt="Not Available"
                         />
-                        {role?.includes("member") && swapable && token && swipematch && <BannerProfilev2 {...{ swapable, setSwapable, swipematch }} />}
+                        {/* {role?.includes("member") && swapable && token && swipematch && <BannerProfilev2 {...{ swapable, setSwapable, swipematch }} />}
                         {!token && <BannerProfileWithoutLogin />}
-                        {!swapable && <GoPremiumCard />}
+                        {!swapable && <GoPremiumCard />} */}
+                        <BannerProfileAnimation />
                     </div>
                 </div>
             </section>
