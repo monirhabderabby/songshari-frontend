@@ -7,8 +7,9 @@ import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import styles from "./../../../../assets/css/SwapAndMatchv2.module.css"
 import { SwipAndMatchCard } from "../../../shared/Cards/SwipeAndMatch/SwipAndMatchCard";
 import {  useRejectSwipeAndMatchMemberMutation, useSwipeProfileLikeMutation } from "../../../../Redux/features/userInfo/withoutLoginApi";
-export default function BannerProfilev2({swapable, setSwapable, swipematch}) {
-
+import { useNavigate } from "react-router";
+export default function BannerProfilev2({swapable, setSwapable, swipematch, auth}) {
+const navigate = useNavigate();
     const [likeMember, { data: swapLikeData }] = useSwipeProfileLikeMutation();
     const [rejectMember,{data:rejectData}] = useRejectSwipeAndMatchMemberMutation();
 
@@ -72,11 +73,19 @@ export default function BannerProfilev2({swapable, setSwapable, swipematch}) {
   },[current])
 
   const addLikeToMember = () => {
+    if (!auth) {
+      navigate("/login");
+      return;
+    }
     likeMember(members[current]?._id);
     setLiked(true);
     setRejected(false)
   }
   const addRejectToMember = () => {
+    if (!auth) {
+      navigate("/login");
+      return;
+    }
     rejectMember(members[current]?._id);
     setLiked(false);
     setRejected(true);
@@ -106,7 +115,7 @@ export default function BannerProfilev2({swapable, setSwapable, swipematch}) {
             </div>                */}
               {/* {index === current && <SingleProfileImage {...{currentSlide}} />} */}
               {/* <SwipAndMatchCard /> */}
-              {index === current && <SwipAndMatchCard {...{ data, nextSlide, prevSlide,liked,setLiked,setRejected, rejected,swapable, setSwapable }} auth={true} />}
+              {index === current && <SwipAndMatchCard {...{ data, auth, nextSlide, prevSlide,liked,setLiked,setRejected, rejected,swapable, setSwapable }} />}
               
 
             </div>

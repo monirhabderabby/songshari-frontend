@@ -23,7 +23,7 @@ import { useNavigate } from "react-router";
 import "../../../../assets/css/SwipeAndMatch.module.css";
 import customFunc from "../../../../assets/utilities/customFunc";
 
-export const SwipAndMatchCard = ({
+export const SwipAndMatchCard = ({  
   data,
   likedGif,
   rejectedGif,
