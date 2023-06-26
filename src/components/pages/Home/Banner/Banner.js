@@ -3,15 +3,19 @@ import { decodeToken } from "react-jwt";
 import getCookie from "../../../../Helper/cookies/getCookie";
 import BannerFilterBox from "./BannerFilterBox";
 import BannerProfilev2 from "./BannerProfilev2";
-import { BannerProfileWithoutLogin } from "./BannerProfileWithoutLogin";
+// import { BannerProfileWithoutLogin } from "./BannerProfileWithoutLogin";
 import GoPremiumCard from "./GoPrimiumCard";
-import { useGetRecentMembersWithAuthQuery } from "../../../../Redux/features/userInfo/withoutLoginApi";
+import { useGetRecentMembersQuery, useGetRecentMembersWithAuthQuery } from "../../../../Redux/features/userInfo/withoutLoginApi";
 
 const Banner = () => {
     const token = getCookie("token");
     const decodedValue = decodeToken(token);
     const { role } = decodedValue || {};
     const [swapable, setSwapable] = useState(true);
+    const { data: recents } = useGetRecentMembersQuery({
+        role: "member",
+        searchTerm: "",
+    });
     const { data: swipematch } = useGetRecentMembersWithAuthQuery({
         searchTerm: "",
         page: "",
@@ -31,8 +35,8 @@ const Banner = () => {
                             src="https://images.pexels.com/photos/1779414/pexels-photo-1779414.jpeg?auto=compress&cs=tinysrgb&w=800"
                             alt="Not Available"
                         />
-                        {role?.includes("member") && swapable && token && swipematch && <BannerProfilev2 {...{ swapable, setSwapable, swipematch }} />}
-                        {!token && <BannerProfileWithoutLogin />}
+                        {role?.includes("member") && swapable && token && swipematch && <BannerProfilev2 {...{ swapable, setSwapable, swipematch, auth:true }} />}
+                        {!token && recents && <BannerProfilev2 {...{ swapable, setSwapable, swipematch:recents, auth:false }} />}
                         {!swapable && <GoPremiumCard />}
                     </div>
                 </div>
