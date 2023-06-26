@@ -46,32 +46,32 @@
 }
 
 .gradientTextWithBorderRight {
-    background: -webkit-linear-gradient(#e42986, #a32ccb);
+    background: -webkit-linear-gradient(#eb4254,#eb4254);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     padding: 10px;
     display: inline-block;
     border: 4px solid transparent;
-    border-image: linear-gradient(to right, #e42986, #a32ccb) 1;
+    border-image: linear-gradient(to right, #eb4254, #eb4254) 1;
     border-radius: 8px;
     position: absolute;
-    top: 20%;
-    right: 15%;
+    top: 10%;
+    right: 8%;
     font-weight: 700;
     opacity: 0.7;
 }
 .gradientTextWithBorderLeft {
-    background: -webkit-linear-gradient(green, green);
+    background: -webkit-linear-gradient(#29e2b6, #29e2b6);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     padding: 10px;
     display: inline-block;
     border: 4px solid transparent;
-    border-image: linear-gradient(to right, green, green) 1;
+    border-image: linear-gradient(to right, #29e2b6, #29e2b6) 1;
     border-radius: 8px;
     position: absolute;
-    top: 20%;
-    left: 15%;
+    top: 10%;
+    left: 8%;
     font-weight: 700;
     opacity: 0.7;
     rotate: 45%;

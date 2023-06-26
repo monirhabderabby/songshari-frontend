@@ -62,7 +62,7 @@ export default function BannerProfilev2({swapable, setSwapable, swipematch}) {
 
   useEffect(()=>{
     if(swapLikeData){
-        prevSlide();
+        nextSlide();
     }
   },[swapLikeData])
 
