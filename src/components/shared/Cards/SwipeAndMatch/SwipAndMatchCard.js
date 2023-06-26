@@ -97,13 +97,13 @@ export const SwipAndMatchCard = ({
 
   return (
     <div className={`max-w-[280px] w-full  h-[333px] top-[7px]  absolute overflow-hidden`}>
-      {/* {rejected &&  */}
+      {rejected && 
       <h1 className="gradientTextWithBorderRight rotate-45">Nope</h1>
-      {/* } */}
+      }
 
-      {/* {liked && ( */}
+      {liked && (
         <h1 className="gradientTextWithBorderLeft -rotate-45">Liked</h1>
-      {/* )} */}
+      )} 
 
       <img
         src={profilePhotoDecisionMaker(data?.profilePhoto)}
