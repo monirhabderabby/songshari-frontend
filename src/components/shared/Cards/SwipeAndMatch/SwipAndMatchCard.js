@@ -96,16 +96,18 @@ export const SwipAndMatchCard = ({
   const { profilePhotoDecisionMaker } = customFunc;
 
   return (
-    <div className={`max-w-[280px] w-full  h-[340px]  absolute overflow-hidden`}>
-      {rejected && <h1 className="gradientTextWithBorderRight animate-bounce -rotate-45">Nope</h1>}
+    <div className={`max-w-[280px] w-full  h-[333px] top-[7px]  absolute overflow-hidden`}>
+      {/* {rejected &&  */}
+      <h1 className="gradientTextWithBorderRight rotate-45">Nope</h1>
+      {/* } */}
 
-      {liked && (
+      {/* {liked && ( */}
         <h1 className="gradientTextWithBorderLeft -rotate-45">Liked</h1>
-      )}
+      {/* )} */}
 
       <img
         src={profilePhotoDecisionMaker(data?.profilePhoto)}
-        className="h-[340px]  rounded-tr-[12px] rounded-tl-[12px] rounded-bl-[12px] rounded-br-[12px] object-cover"
+        className="h-[333px]  rounded-tr-[12px] rounded-tl-[12px] rounded-bl-[12px] rounded-br-[12px] object-cover"
         alt="profile"
       />
       <div
@@ -113,7 +115,7 @@ export const SwipAndMatchCard = ({
           background:
             "linear-gradient(0deg, #1B070E 52.26%, rgba(0, 0, 0, 0) 100.26%, rgba(0, 0, 0, 0) 100.26%)",
         }}
-        className="h-[140px] w-full absolute top-[200px] rounded-bl-[12px] rounded-br-[12px] px-[22px] py-[10px]"
+        className="h-[140px] w-full absolute top-[193px] rounded-bl-[12px] rounded-br-[12px] px-[22px] py-[10px]"
       >
         <div className="flex items-center gap-x-[12px]">
           <h1 className="font-Inter text-[18px] font-bold leading-[22px] text-[#FFFFFF]">
