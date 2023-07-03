@@ -94,7 +94,7 @@ const LatestRegisteredMember = () => {
                           </div>
                           <div className="inner-content flex justify-center gap-x-[4px]">
                             <h4 className="text-[#fff] text-[16px] uppercase font-bold">
-                              {data.firstName}
+                              {data.firstName?.slice(0, 6)}
                             </h4>
                             <span className="uppercase text-[14px] bg-secondary text-white h-[20px] w-[20px] rounded-full font-semibold flex justify-center items-center">
                               {ageCalculator(data?.dateOfBirth)}
