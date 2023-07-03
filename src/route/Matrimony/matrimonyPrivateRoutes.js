@@ -6,6 +6,9 @@ import { FindAPartnerSuggested } from "../../components/pages/FindPartner/FindAP
 import FindPartners from "../../components/pages/FindPartner/FindPartners";
 import { NearestPartners } from "../../components/pages/FindPartner/NearestPartners/NearestPartners";
 import { TopPartners } from "../../components/pages/FindPartner/TopPartner/TopPartners";
+import Packages from "../../components/pages/packages/Packages";
+import SingleSuccessStoryDetailsPage from "../../components/pages/SuccessStory/SuccessStoryGlobalContainer/SingleSuccessStoryDetailsPage/SingleSuccessStoryDetailsPage";
+import SuccessStoryGlobalContainer from "../../components/pages/SuccessStory/SuccessStoryGlobalContainer/SuccessStoryGlobalContainer";
 import { Gallery } from "../../components/shared/Components/Gallery";
 import SingleServicesStatusContainer from "../../components/shared/Components/LawyerAgentKaziService/SingleServicesStatus/SingleServicesStatusContainer";
 import { PaymentSuccess } from "../../components/shared/Components/PaymentSuccess/PaymentSuccess";
@@ -199,6 +202,21 @@ const matrimonyPrivateRoutes = [
         id: 18,
         path: "/sendReview/:id",
         element: <CourseSendReview />,
+    },
+    {
+        id: 19,
+        path: "/packages",
+        element: <Packages />,
+    },
+    {
+        id: 20,
+        path: "/happyStories",
+        element: <SuccessStoryGlobalContainer />,
+    },
+    {
+        id: 21,
+        path: "/happyStory/:id",
+        element: <SingleSuccessStoryDetailsPage />,
     },
 ];
 

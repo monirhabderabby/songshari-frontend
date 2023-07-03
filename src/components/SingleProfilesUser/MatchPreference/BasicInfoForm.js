@@ -134,7 +134,7 @@ export default function BasicInfoForm({ homeTowns, countries, basicInfo, setBasi
                     options={[
                         {
                             value: "single",
-                            label: "Never Married",
+                            label: "Unmarried",
                         },
                         {
                             value: "married",

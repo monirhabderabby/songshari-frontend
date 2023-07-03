@@ -1184,7 +1184,7 @@ export const PersonalDetails = ({ setPage, setHasSibling }) => {
                   id="maritalStatus"
                 >
                   <option value="">Select Marital Status</option>
-                  <option value="single">Never Married</option>
+                  <option value="single">Unmarried</option>
                   <option value="married">Married</option>
                   <option value="divorced">Divorced</option>
                   <option value="widowed">Widowed</option>

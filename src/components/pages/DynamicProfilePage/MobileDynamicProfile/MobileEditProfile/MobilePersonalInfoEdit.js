@@ -369,7 +369,7 @@ const MobilePersonalInfoEdit = () => {
               options={[
                 {
                   value: "single",
-                  label: "Never Married",
+                  label: "Unmarried",
                 },
                 {
                   value: "married",

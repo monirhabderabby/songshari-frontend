@@ -560,7 +560,7 @@ export const AccordionPartner = ({ data, isLoading }) => {
                 options={[
                   {
                     value: "single",
-                    label: "Never Married",
+                    label: "Unmarried",
                   },
                   {
                     value: "married",
@@ -1730,7 +1730,7 @@ export const AccordionPartner = ({ data, isLoading }) => {
                 options={[
                   {
                     value: "single",
-                    label: "Never Married",
+                    label: "Unmarried",
                   },
                   {
                     value: "married",

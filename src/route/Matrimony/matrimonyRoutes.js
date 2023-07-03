@@ -9,7 +9,7 @@ import Signup from "../../components/pages/Authentications/SignUp";
 import Contact from "../../components/pages/Contact/Contact";
 // import { DynamicProfilePage } from "../../components/pages/DynamicProfilePage/DynamicProfilePage";
 import { OurTeams } from "../../components/pages/OurTeams/OurTeams";
-import Packages from "../../components/pages/packages/Packages";
+// import Packages from "../../components/pages/packages/Packages";
 import { Privacy } from "../../components/pages/Privacy/Privacy";
 import AssociateBlog from "../../components/pages/Shared/Footer/AssociateBlog/AssociateBlog";
 import { CookiePolicy } from "../../components/pages/Shared/Footer/CookiePolicy/CookiePolicy";
@@ -21,8 +21,8 @@ import QuickStartGuide from "../../components/pages/Shared/Footer/QuickStartGuid
 import { RefundPolicy } from "../../components/pages/Shared/Footer/RefundPolicy/RefundPolicy";
 import ReportAbuse from "../../components/pages/Shared/Footer/ReportAbuse/ReportAbuse";
 import Tutorials from "../../components/pages/Shared/Footer/Tutorials/Tutorials";
-import SingleSuccessStoryDetailsPage from "../../components/pages/SuccessStory/SuccessStoryGlobalContainer/SingleSuccessStoryDetailsPage/SingleSuccessStoryDetailsPage";
-import SuccessStoryGlobalContainer from "../../components/pages/SuccessStory/SuccessStoryGlobalContainer/SuccessStoryGlobalContainer";
+// import SingleSuccessStoryDetailsPage from "../../components/pages/SuccessStory/SuccessStoryGlobalContainer/SingleSuccessStoryDetailsPage/SingleSuccessStoryDetailsPage";
+// import SuccessStoryGlobalContainer from "../../components/pages/SuccessStory/SuccessStoryGlobalContainer/SuccessStoryGlobalContainer";
 import Suggested from "../../components/pages/TopProfile/Suggested";
 import TopBride from "../../components/pages/TopProfile/TopBride";
 import TopGroom from "../../components/pages/TopProfile/TopGroom";
@@ -132,17 +132,7 @@ const matrimonyRoutes = [
         id: 19,
         path: "/:token",
         element: <HomePageExtra />,
-    },
-    {
-        id: 20,
-        path: "/happyStories",
-        element: <SuccessStoryGlobalContainer />,
-    },
-    {
-        id: 21,
-        path: "/happyStory/:id",
-        element: <SingleSuccessStoryDetailsPage />,
-    },
+    },    
     {
         id: 22,
         path: "/refundPolicy",
@@ -195,11 +185,6 @@ const matrimonyRoutes = [
     },
     {
         id: 30,
-        path: "/packages",
-        element: <Packages />,
-    },
-    {
-        id: 31,
         path: "/called",
         element: <PhoneCallActions />,
     },
