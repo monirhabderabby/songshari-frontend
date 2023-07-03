@@ -447,7 +447,7 @@ const EditPersonalInfo = () => {
                   options={[
                     {
                       value: "single",
-                      label: "Never Married",
+                      label: "Unmarried",
                     },
                     {
                       value: "married",

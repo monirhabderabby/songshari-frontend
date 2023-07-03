@@ -507,7 +507,7 @@ export const MobileAccordionPartner = ({ data, isLoading }) => {
                 options={[
                   {
                     value: "single",
-                    label: "Never Married",
+                    label: "Unmarried",
                   },
                   {
                     value: "married",
