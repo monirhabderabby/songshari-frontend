@@ -16,18 +16,8 @@ export const Friends = ({ responsive }) => {
     return (
       <>
         <div className="my-4  w-full flex justify-around items-center">
-          <button
-            className={`text-xs md:text-md ${
-              page === 1
-                ? "special_profile_button"
-                : "special_profile_button_inactive"
-            }`}
-            onClick={() => setPage(1)}
-          >
-            Connections
-          </button>
-          <button
-            className={`text-xs md:text-md ${
+        <button
+            className={`text-sm h-10 w-36 md:text-md ${
               page === 2
                 ? "special_profile_button"
                 : "special_profile_button_inactive"
@@ -38,7 +28,7 @@ export const Friends = ({ responsive }) => {
               Request{" "}
               {data?.data?.user?.length > 0 && (
                 <span
-                  className={`absolute -top-1 -right-4 invisible lg:visible ${
+                  className={`absolute -top-2 right-3 invisible lg:visible ${
                     page === 2
                       ? "bg-white text-[#333333]"
                       : "bg-[linear-gradient(180deg,_#EA5FA4_0%,_#A52BC7_100%)] text-white"
@@ -50,7 +40,17 @@ export const Friends = ({ responsive }) => {
             </div>
           </button>
           <button
-            className={`text-xs md:text-md ${
+            className={`text-sm h-10 w-36 md:text-md ${
+              page === 1
+                ? "special_profile_button"
+                : "special_profile_button_inactive"
+            }`}
+            onClick={() => setPage(1)}
+          >
+            Connections
+          </button>          
+          <button
+            className={`text-sm h-10 w-36 md:text-md ${
               page === 3
                 ? "special_profile_button"
                 : "special_profile_button_inactive"
