@@ -79,7 +79,21 @@ const LatestRegisteredMember = () => {
                       <div className="-z-20">
                         <div className="text-center">
                           <div className="mb-[30px] relative">
-                            <img
+                            <div
+                              style={{
+                                width: "80px",
+                                height: "80px",
+                                borderRadius: "50%",
+                                backgroundImage: `url(${profilePhotoDecisionMaker(
+                                  data?.profilePhoto
+                                )})`,
+                                backgroundRepeat:"no-repeat",
+                                backgroundSize:"cover",
+                                backgroundPosition:"center"
+                              }}
+                              className="border-[5px] mx-auto border-[#fff] inline-block "
+                            ></div>
+                            {/* <img
                               style={{
                                 width: "80px",
                                 height: "80px",
@@ -90,7 +104,7 @@ const LatestRegisteredMember = () => {
                               )}
                               className="border-[5px] mx-auto border-[#fff] inline-block "
                               alt="Not Available"
-                            />
+                            /> */}
                           </div>
                           <div className="inner-content flex justify-center gap-x-[4px]">
                             <h4 className="text-[#fff] text-[16px] uppercase font-bold">
