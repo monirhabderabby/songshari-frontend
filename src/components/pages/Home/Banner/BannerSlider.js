@@ -1,26 +1,26 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React from "react";
 import { useState, useEffect } from "react";
-import styles from "./../../../../assets/css/bannerSlider.module.css"
-import slider1 from './../../../../assets/images/BannerSliders/slider1.jpg'
-import slider2 from './../../../../assets/images/BannerSliders/slider2.jpg'
-import slider3 from './../../../../assets/images/BannerSliders/slider3.jpg'
-import slider4 from './../../../../assets/images/BannerSliders/slider4.jpeg'
+import styles from "./../../../../assets/css/bannerSlider.module.css";
+import slider1 from "./../../../../assets/images/BannerSliders/slider1.jpg";
+import slider2 from "./../../../../assets/images/BannerSliders/slider2.jpg";
+import slider3 from "./../../../../assets/images/BannerSliders/slider3.jpg";
+import slider4 from "./../../../../assets/images/BannerSliders/slider4.jpeg";
 
 export default function BannerSlider() {
   const sliderImages = [
     {
-      url: slider1
+      url: slider1,
     },
     {
-      url: slider2
+      url: slider2,
     },
     {
-      url: slider3
+      url: slider3,
     },
     {
-      url: slider4
-    }
+      url: slider4,
+    },
   ];
   const [current, setCurrent] = useState(0);
   const [like, setLike] = useState(false);
@@ -28,7 +28,7 @@ export default function BannerSlider() {
   const length = sliderImages.length;
   const nextSlide = () => {
     // setTimeout(() => {
-    setLike(true)
+    setLike(true);
     // }, 2000)
   };
   useEffect(() => {
@@ -36,33 +36,31 @@ export default function BannerSlider() {
       setCurrent(current === length - 1 ? 0 : current + 1);
       setLike(false);
     }
-  }, [like])
+  }, [like]);
   useEffect(() => {
     if (reject) {
       setCurrent(current === 0 ? length - 1 : current - 1);
       setReject(false);
     }
-  }, [reject])
+  }, [reject]);
   // const prevSlide = () => {
   //   setReject(true);
   // };
   useEffect(() => {
     const timer = setInterval(() => {
       nextSlide();
-    }, 3000);
+    }, 5000);
 
     return () => {
       clearInterval(timer);
     };
   }, [current]);
 
-
-
   if (!Array.isArray(sliderImages) || sliderImages.length <= 0) {
     return null;
   }
   return (
-    <div>      
+    <div>
       <section className="image-slider">
         {/* <div className={styles.left}>
           <ArrowBackIosIcon onClick={prevSlide} />
@@ -73,13 +71,26 @@ export default function BannerSlider() {
         {sliderImages.map((currentSlide, index) => {
           return (
             <div
-              className={index === current ? "currentSlide active" : "currentSlide"}
+              className={
+                index === current ? "currentSlide active" : "currentSlide"
+              }
               key={index}
             >
-              {index === current && <img src={currentSlide.url} className={styles.image} alt="sss" />}
+              {index === current && (
+                <img
+                  src={currentSlide.url}
+                  className={styles.image}
+                  alt="sss"
+                />
+              )}
             </div>
           );
         })}
+        <div className="flex items-center justify-center relative -top-8">
+          {sliderImages.map((currentSlide, index) => {
+            return <div onClick={()=>setCurrent(index)} className={`${index === current? "bg-red-400 h-4 w-4 shadow-lg":"bg-white h-3 w-3"} cursor-pointer right-1 mx-1 border-2 rounded-full`}></div>;
+          })}
+        </div>
       </section>
     </div>
   );
