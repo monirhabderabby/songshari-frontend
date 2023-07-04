@@ -49,7 +49,7 @@ export default function BannerSlider() {
   useEffect(() => {
     const timer = setInterval(() => {
       nextSlide();
-    }, 5000);
+    }, 4000);
 
     return () => {
       clearInterval(timer);
