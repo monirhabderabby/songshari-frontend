@@ -1,5 +1,8 @@
-import React, { Suspense, useEffect, useState } from "react";
-import { useAuthState } from "react-firebase-hooks/auth";
+// configuration
+import React, { lazy, Suspense } from "react";
+import useDocumentTitle from "../../assets/utilities/useDocumentTitle";
+
+// components
 import Anexecutive from "../../components/CardComopents/Anexecutive";
 import BeginFamilyJourney from "../../components/pages/Home/BeginFamilyJourney/BeginFamilyJourney";
 import FindSoleMate from "../../components/pages/Home/FindSoleMate/FindSoleMate";
@@ -7,51 +10,49 @@ import SecureVerified from "../../components/pages/Home/SecureVerified/SecureVer
 import LatestRegisteredMember from "../../components/pages/LatestRegisteredMember/LatestRegisteredMember";
 import MeetNewPeople from "../../components/pages/MeetNewPeople/MeetNewPeople";
 import PeopleJoinedAlready from "../../components/pages/PeopleJoinedAlready/PeopleJoinedAlready";
-import NavBar from "../../components/pages/Shared/NavBar";
 import TopProfile from "../../components/pages/TopProfile/TopProfile";
+import { BrandLoader } from "../../components/shared/Cards/Loader/BrandLoader/BrandLoader";
 import Footer from "../../components/shared/Footer/Footer";
-import { auth } from "../../firebase.init";
+import isLoggedIn from "../../Helper/hooks/checkLoggerPersestency/isLoggedIn";
 import { MobileHome } from "./mobileversion/MobileHome";
-import { TabHome } from "./tab/TabHome";
-const Banner = React.lazy(() => import("../../components/pages/Home/Banner/Banner"));
-const Homepage = () => {
-    const [user, loading] = useAuthState(auth);
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
+const NavBar = lazy(() => import("../../components/pages/Shared/NavBar"));
+const Banner = React.lazy(() =>
+  import("../../components/pages/Home/Banner/Banner")
+);
 
-    useEffect(() => {
-        if (loading) {
-            setIsLoggedIn(false);
-        } else if (user) {
-            setIsLoggedIn(true);
-        } else {
-            setIsLoggedIn(false);
-        }
-    }, [user, loading, setIsLoggedIn]);
-    return (
-        <div className="font-george">
-            <div className="hidden md:hidden lg:block">
-                <Suspense fallback={<div>Loading...</div>}>
-                    <NavBar></NavBar>
-                    <Banner></Banner>
-                    <LatestRegisteredMember />
-                    <SecureVerified></SecureVerified>
-                    <BeginFamilyJourney></BeginFamilyJourney>
-                    <TopProfile />
-                    <PeopleJoinedAlready />
-                    <MeetNewPeople />
-                    <FindSoleMate />
-                    {!isLoggedIn && <Anexecutive />}
-                    <Footer />
-                </Suspense>
-            </div>
-            <div className="lg:hidden md:hidden">
-                <MobileHome></MobileHome>
-            </div>
-            <div className="lg:hidden hidden md:block">
-                <TabHome></TabHome>
-            </div>
-        </div>
-    );
+const Homepage = () => {
+  // js variables
+  const logged = isLoggedIn();
+  useDocumentTitle("Shongshari | Home");
+
+  return (
+    <div className="font-george overflow-x-hidden">
+      <div className="hidden md:hidden lg:block">
+        <Suspense fallback={<BrandLoader />}>
+          <div className="ignoreMouseEffect">
+            <NavBar></NavBar>
+            <Banner></Banner>
+            <LatestRegisteredMember />
+            <SecureVerified></SecureVerified>
+            <BeginFamilyJourney></BeginFamilyJourney>
+            <TopProfile />
+            <PeopleJoinedAlready />
+            {/* <PackagePromo /> */}
+          </div>
+          {/* <MouseEffect /> */}
+          <div className="ignoreMouseEffect">
+            <MeetNewPeople />
+            <FindSoleMate />
+            {!logged && <Anexecutive />}
+            <Footer />
+          </div>
+        </Suspense>
+      </div>
+      <div className="block lg:hidden">
+        <MobileHome></MobileHome>
+      </div>
+    </div>
+  );
 };
 
 export default Homepage;

@@ -1,38 +1,42 @@
+// configuration
 import React from "react";
-import { useAuthState } from "react-firebase-hooks/auth";
-import { Link } from "react-router-dom";
-import { auth } from "../../../firebase.init";
+import { useGetUserBadgesQuery } from "../../../Redux/features/userInfo/userApi";
+
+// Third party package
+
+// components
 import { BottomNav } from "../../../Wrapper/Home/mobileversion/BottomNav";
+import { MobileBackButton } from "../../shared/Components/MobileBackButton";
+import { Badges } from "../Badges";
+import { PhotoUploadCard } from "../PhotoUploadCard";
+import { VerificationCard } from "../VerificationCard";
 import { MobileAccordionLink } from "./MobileAccordionLink";
 import MobileUsersProfile from "./MobileUsersProfile";
 
 const MobileSingleProfilesUser = () => {
-    const [user] = useAuthState(auth);
-    return (
-        <section>
-            <div className="bg-[#FFFFFF] py-[10px] mb-[15px]">
-                <div className="bg-white w-full flex justify-between items-center h-[48px]">
-                    <div className="ml-7">
-                        <Link to='/setting'>
-                            <i className="fa-solid text-sm text-[#1E2022] fa-chevron-left "></i>
-                        </Link>
-                    </div>
-                    <div className="mr-8">
-                        <span className="text-center"> Profile</span>
-                    </div>
-                    <div></div>
-                </div>
-            </div>
-            <MobileUsersProfile />
-            <div className="py-[20px]">
-                <MobileAccordionLink></MobileAccordionLink>
-            </div>
-            <br></br>
-            <br></br>
-            <BottomNav></BottomNav>
-        </section>
-
-    );
+  const { data: badgeData, error: badgeError } = useGetUserBadgesQuery();
+  // js variable declaration
+  return (
+    <section className="max-w-[1024px] mx-auto">
+      <MobileBackButton name="Profile" />
+      <MobileUsersProfile />
+      <VerificationCard
+        title={false}
+        mt="0px"
+        height="100px"
+        responsive={true}
+      />
+      {badgeData?.data?.length !== 0 && (
+        <Badges data={badgeData} error={badgeError} />
+      )}
+      <PhotoUploadCard />
+      <div className="py-[20px]">
+        <MobileAccordionLink></MobileAccordionLink>
+      </div>
+      <div className="h-8"></div>
+      <BottomNav></BottomNav>
+    </section>
+  );
 };
 
 export default MobileSingleProfilesUser;

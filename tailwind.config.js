@@ -10,6 +10,8 @@ module.exports = {
                 outfit: ["Outfit", "sans-serif"],
                 Inter: ["Inter", "sans-serif"],
                 Nunito: ["Nunito", "sans-serif"],
+                Poppins: ["Poppins", "sans-serif"],
+                SourceCodePro: ["Source Code Pro", "monospace"],
             },
             colors: {
                 transparent: "transparent",

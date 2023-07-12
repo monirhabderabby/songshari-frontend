@@ -1,43 +1,96 @@
-import React, { useEffect } from "react";
+// Configuration
+import { Pagination } from "@mui/material";
+import React, { useEffect, useState } from "react";
+
+// Third party packages
+import { AiOutlineWarning } from "react-icons/ai";
+import { MdOutlineFilterHdr } from "react-icons/md";
 import { useSelector } from "react-redux";
-import "../../../../assets/css/topProfile.css";
-import { buildFilterQueryString } from "../../../../assets/utilities/getUsersByFilter/buildFilterQueryString";
-import { useGetRecentUsersQuery } from "../../../../Redux/features/AllRecentData/recentApi";
+
+// Components
+import { useFindFilteredUserMutation } from "../../../../Redux/features/userInfo/userApi";
+import { ProfileCardSkeletonLoader } from "../../../shared/Cards/Loader/ProfileCardSkeletonLoader";
 import { UserCard } from "../../Shared/userCard/UserCard";
 
 export const FilterResults = () => {
-    const { data, isLoading } = useGetRecentUsersQuery();
-    const array = [1, 2, 3];
-    const filter = useSelector(state => state.filter);
+  // hook variable declareation
+  const [page, setPage] = useState(1);
+  const filterObject = useSelector(
+    (state) => state?.persistedReducer?.filter?.filterObject
+  );
+  const keyword =
+    useSelector(
+      (state) => state?.persistedReducer?.findPartnerSlice?.searchTerm
+    ) || "";
 
-    useEffect(() => {
-        const result = buildFilterQueryString(filter);
-        console.log(result);
-    }, [filter]);
+  const [findFilteredUser, { data: filteredUser, isLoading, error }] =
+    useFindFilteredUserMutation();
+  console.log(filteredUser);
+  useEffect(() => {
+    findFilteredUser({ data: filterObject, keyword: keyword, page: page });
+  }, [filterObject, findFilteredUser, keyword, page]);
 
-    return (
-        <div className="mt-[30px] grid grid-flow-row-dense sm:grid-cols-2 md:grid-cols-3  gap-x-8">
-            {data?.map(profile => {
-                return <UserCard />;
-            })}
-            {isLoading &&
-                array.map(a => {
-                    return (
-                        <>
-                            <div key={a} className="h-[400px] w-[300px] shadow-2xl">
-                                <div className="h-[290px] w-full bg-gray-100"></div>
-                                <div className="px-[15px] py-[15px] h-[110px] bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)]">
-                                    <div className="flex items-center justify-start gap-x-5">
-                                        <div className="w-[200px] h-[15px] bg-gray-200 animate-pulse"></div>
-                                        <div className="h-[30px] w-[30px] bg-gray-200 rounded-full animate-pulse"></div>
-                                    </div>
-                                    <div className="w-[150px] h-[10px] mt-2 bg-gray-200 animate-pulse"></div>
-                                    <div className="w-[100px] h-[10px] mt-2 bg-gray-200 animate-pulse"></div>
-                                </div>
-                            </div>
-                        </>
-                    );
-                })}
-        </div>
+  // js variable declaration
+  let content;
+  const loaderArray = [1, 2, 3, 4, 5, 6];
+
+  if (isLoading) {
+    content = (
+      <div className="grid grid-cols-3">
+        {loaderArray?.map((key) => (
+          <ProfileCardSkeletonLoader key={key} />
+        ))}
+      </div>
     );
+  } else if (!isLoading && filteredUser?.data?.total === 0) {
+    content = (
+      <div className="mt-[100px] flex flex-col w-full justify-center items-center">
+        <MdOutlineFilterHdr className="text-[50px]" />
+        <p className="text-gray-400 text-[24px]">
+          Please change your filters or try different keywords
+        </p>
+      </div>
+    );
+  } else if (!isLoading && error?.data?.message === "No user found") {
+    content = (
+      <div className="mt-[100px] flex flex-col w-full justify-center items-center">
+        <MdOutlineFilterHdr className="text-[50px]" />
+        <p className="text-gray-400 text-[24px]">
+          Please change your filters or try different keywords
+        </p>
+      </div>
+    );
+  } else if (!isLoading && error) {
+    content = (
+      <div className="flex flex-col items-center justify-center mt-[100px]">
+        <AiOutlineWarning className="text-[48px] text-gray-400" />
+        <p className="mt-[10px] text-[22px] font-Inter font-medium text-gray-500">
+          Internel Server Error
+        </p>
+        <p className="text-gray-400 text-[14px]">Please Try again later</p>
+      </div>
+    );
+  } else if (!isLoading && filteredUser?.data?.total > 0) {
+    content = (
+      <div className="grid grid-cols-3 gap-[30px]">
+        {filteredUser?.data?.users?.map((profile) => {
+          return <UserCard key={profile?._id} {...{ profile }} />;
+        })}
+      </div>
+    );
+  }
+  // else if(!isLoading && filteredUser)
+  return (
+    <>
+      <div className="mt-[30px] max-w-[950px] mx-auto">{content}</div>
+      <div className="my-[30px] w-full flex justify-center">
+        <Pagination
+          count={Math.ceil(filteredUser?.data?.total / 9)}
+          variant="outlined"
+          color="secondary"
+          onChange={(e, val) => setPage(val)}
+        />
+      </div>
+    </>
+  );
 };

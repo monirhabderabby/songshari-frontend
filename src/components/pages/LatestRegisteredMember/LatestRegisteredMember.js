@@ -1,9 +1,27 @@
 import { Autoplay } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { useGetRecentMembersQuery } from "../../../Redux/features/userInfo/withoutLoginApi";
 import LatestRegisteredMemberCSS from "../../../assets/css/latestRegisteredMember.module.css";
+import emptyProfile from "../../../assets/images/emptyProfile.png";
 import shape from "../../../assets/images/shape.a8708fbc0aa77b10a1cf.png";
-import dummyData from "../Home/Banner/TopProfile/dummyData";
+import { ageCalculator } from "../../../assets/utilities/AgeCalculation/ageCalculator";
+
 const LatestRegisteredMember = () => {
+    const { data, isLoading, error } = useGetRecentMembersQuery({
+        role: "member",
+        searchTerm: "",
+    });
+
+    console.log(data);
+
+    const genderCharacterDefine = data => {
+        if (data?.includes("man")) {
+            return "M";
+        } else {
+            return "F";
+        }
+    };
+
     return (
         <>
             <section className={LatestRegisteredMemberCSS.latestRegisteredSection}>
@@ -43,35 +61,43 @@ const LatestRegisteredMember = () => {
                                 modules={[Autoplay]}
                                 className="mySwiper"
                             >
-                                {dummyData.map(data => (
-                                    <SwiperSlide key={data.id}>
-                                        <div className="-z-20">
-                                            <div className="text-center">
-                                                <div className="mb-[30px] relative">
-                                                    <img
-                                                        style={{
-                                                            width: "80px",
-                                                            height: "80px",
-                                                            borderRadius: "50%",
-                                                        }}
-                                                        src={data.img}
-                                                        className="border-[5px] mx-auto border-[#fff] inline-block "
-                                                        alt="Not Available"
-                                                    />
-                                                </div>
-                                                <div className="inner-content">
-                                                    <h4 className="text-[#fff] text-[16px] uppercase font-bold">{data.firstName}</h4>
-                                                </div>
-                                                <div className="inner-content">
-                                                    <h4 className="text-[#fff] text-[16px] uppercase">Age: {data.age}</h4>
-                                                </div>
-                                                <div className="inner-content">
-                                                    <h4 className="text-[#fff] text-[16px] uppercase">Gender: {data.gender}</h4>
+                                {!isLoading &&
+                                    !error &&
+                                    data?.data?.members?.map(data => (
+                                        <SwiperSlide key={data._id}>
+                                            <div className="-z-20">
+                                                <div className="text-center">
+                                                    <div className="mb-[30px] relative">
+                                                        <img
+                                                            style={{
+                                                                width: "80px",
+                                                                height: "80px",
+                                                                borderRadius: "50%",
+                                                            }}
+                                                            src={data.profilePhoto || emptyProfile}
+                                                            className="border-[5px] mx-auto border-[#fff] inline-block "
+                                                            alt="Not Available"
+                                                        />
+                                                    </div>
+                                                    <div className="inner-content flex justify-center gap-x-[4px]">
+                                                        <h4 className="text-[#fff] text-[16px] uppercase font-bold">{data.firstName}</h4>
+                                                        <span className="uppercase text-[16px] text-pink-600 font-bold">
+                                                            {ageCalculator(data?.dateOfBirth)}
+                                                        </span>
+                                                        <span className="uppercase text-[16px] text-secondary">
+                                                            {genderCharacterDefine(data?.gender)}
+                                                        </span>
+                                                    </div>
+                                                    <div className="inner-content">
+                                                        <h4 className="text-[#fff] text-[16px]">{data?.designation || "Not Added"}</h4>
+                                                    </div>
+                                                    <div className="inner-content">
+                                                        <h4 className="text-[#fff] text-[16px]">{data?.citizenShip[0] || "Not Added"}</h4>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </SwiperSlide>
-                                ))}
+                                        </SwiperSlide>
+                                    ))}
                             </Swiper>
                         </div>
                     </div>

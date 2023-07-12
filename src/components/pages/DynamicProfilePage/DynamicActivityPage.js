@@ -1,99 +1,65 @@
+// configuration
 import React from "react";
-import { useEffect } from "react";
-import { useState } from "react";
-import love from "../../../assets/images/icons/coolicon.svg";
-import profile from "../../../assets/images/profile/up1.png";
-import { getHoursMinutes } from "../../../Helper/helper";
+import { useParams } from "react-router";
 
-export const DynamicActivityPage = ({ postRefetch }) => {
-    const [posts, setPosts] = useState();
+// components
+import { AiOutlineWarning } from "react-icons/ai";
+import { MdOutlinePostAdd } from "react-icons/md";
+import { useGetDynamicPostsQuery } from "../../../Redux/features/Post/postApi";
+import SinglePostCard from "./SinglePostCard";
 
-    useEffect(() => {
-        fetch(`http://localhost:4000/member/post/myposts`, {
-            method: "GET",
-            headers: {
-                "content-type": "application/json",
-                authorization: `Bearer ${localStorage.getItem("accessToken")}`
-            }
-        })
-            .then(res => res.json())
-            .then(data => setPosts(data))
-    }, [postRefetch]);
+export const DynamicActivityPage = () => {
+    // hook variable declaration
+    const { id } = useParams();
+    const { data: posts, isLoading, error } = useGetDynamicPostsQuery(id);
 
-    return (
-        <div className="grid grid-cols-1 gap-y-[30px]">
-            {
-                posts?.map(post => {
-                    return (
-                        <div>
-<div key={post?._id} className="max-w-[457px] mx-auto shadow-[2px_2px_4px_rgba(0,0,0,0.12)] bg-white rounded-[10px] p-[30px] hidden md:block">
-                            <div className="flex items-center">
-                                {
-                                    post?.author?.profilePhoto === null ?
-                                        <img className="w-[40px] h-[40px] rounded-full mr-[19px]" src={profile} alt="profile" />
-                                        :
-                                        <img className="w-[40px] h-[40px] rounded-full mr-[19px]" src={post?.author?.profilePhoto} alt="profile" />
-                                }
+    // js variables
+    let content = null;
 
-                                <p className="font-semibold font-fira text-[18px] text-[#333333] mr-[14px]">{post?.author?.firstName} {post?.author?.lastName}</p>
-                                <div className="w-[20px] h-[20px] bg-[#FCE9F3] rounded-full mr-[14px]"></div>
-                                <div>
-                                    <span className="text-[14px] font-normal text-[#333333]">
-                                        @albertdon . <span>{getHoursMinutes(post?.createdAt).hours}h &nbsp;{getHoursMinutes(post?.createdAt).minutes}min</span>
-                                    </span>
-                                </div>
+    if (isLoading) {
+        content = (
+            <div className="border border-blue-50 shadow rounded-md p-4 max-w-[457px] h-40 w-full mx-auto">
+                <div className="animate-pulse flex space-x-4">
+                    <div className="rounded-full bg-slate-200 h-10 w-10"></div>
+                    <div className="flex-1 space-y-6 py-1">
+                        <div className="h-3 bg-slate-200 rounded"></div>
+                        <div className="space-y-4">
+                            <div className="grid grid-cols-3 gap-5">
+                                <div className="h-3 bg-slate-200 rounded col-span-2 mb-1"></div>
+                                <div className="h-3 bg-slate-200 rounded col-span-2 mb-1"></div>
+                                <div className="h-3 bg-slate-200 rounded col-span-1"></div>
                             </div>
-                            <div className="">
-                                <p className="text-[#333333]">{post?.postBody}</p>
-
-                                {post?.img && <img className="mt-[23px]" src={post?.img} alt="Not Available" />}
-                            </div>
-                            <hr />
-                            <div className="h-[61px] flex items-end">
-                                <div className="flex items-center">
-                                    <img src={love} alt="likeButton" className="mr-[22px]" />
-                                    <button className="border-[1px] border-[rgba(0,0,0,0.1)] rounded-[50px] py-[6px] px-[10px] text-[13px]">
-                                        Comment
-                                    </button>
-                                </div>
-                            </div>
+                            <div className="h-3 bg-slate-200 rounded"></div>
                         </div>
-<div key={post?._id} className="max-w-full mx-auto shadow-[2px_2px_4px_rgba(0,0,0,0.12)] bg-white rounded-[10px] p-[30px] md:hidden">
-                            <div className="flex items-center w-72">
-                                {
-                                    post?.author?.profilePhoto === null ?
-                                        <img className="w-[40px] h-[40px] rounded-full mr-[19px]" src={profile} alt="profile" />
-                                        :
-                                        <img className="w-[40px] h-[40px] rounded-full mr-[19px]" src={post?.author?.profilePhoto} alt="profile" />
-                                }
+                    </div>
+                </div>
+            </div>
+        );
+    } else if (!isLoading && posts?.data?.posts?.length === 0) {
+        content = (
+            <div className="flex flex-col items-center justify-center mt-[15%] w-full">
+                <MdOutlinePostAdd className="text-[48px] text-gray-400" />
+                <p className="mt-[10px] text-[22px] font-Inter font-medium text-gray-500">No Posts Found!</p>
+            </div>
+        );
+    } else if (!isLoading && error) {
+        content = (
+            <div className="grid grid-cols-1 gap-y-[30px]">
+                <div className="flex flex-col items-center justify-center mt-[15%]">
+                    <AiOutlineWarning className="text-[48px] text-gray-400" />
+                    <p className="mt-[10px] text-[22px] font-Inter font-medium text-gray-500">Server Error</p>
+                </div>
+            </div>
+        );
+    } else if (!isLoading && posts?.data?.posts?.length > 0) {
+        content = (
+            <div className="grid grid-cols-1 gap-y-[30px]">
+                {posts?.data?.posts.map(post => (
+                    <SinglePostCard key={post?._id} post={post} />
+                ))}
+            </div>
+        );
+    }
 
-                                <p className="font-semibold font-fira text-[18px] text-[#333333] mr-[14px]">{post?.author?.firstName} {post?.author?.lastName}</p>
-                                <div className="w-[20px] h-[20px] bg-[#FCE9F3] rounded-full mr-[14px]"></div>
-                                <div>
-                                    <span className="text-[14px] font-normal text-[#333333]">
-                                        @albertdon . <span>{getHoursMinutes(post?.createdAt).hours}h &nbsp;{getHoursMinutes(post?.createdAt).minutes}min</span>
-                                    </span>
-                                </div>
-                            </div>
-                            <div className="my-[23px] ml-[60px] w-[337px]">
-                                <p className="text-[#333333]">{post?.postBody}</p>
-
-                                {post?.img && <img className="mt-[23px]" src={post?.img} alt="Not Available" />}
-                            </div>
-                            <hr />
-                            <div className="h-[61px] flex items-end">
-                                <div className="flex items-center">
-                                    <img src={love} alt="likeButton" className="mr-[22px]" />
-                                    <button className="border-[1px] border-[rgba(0,0,0,0.1)] rounded-[50px] py-[6px] px-[10px] text-[13px]">
-                                        Comment
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                        </div>
-                        
-                    )
-                })}
-        </div>
-    );
+    return content;
 };

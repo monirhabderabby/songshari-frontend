@@ -1,10 +1,11 @@
+import getCookie from "../../../Helper/cookies/getCookie";
 import apiSlice from "../../api/apiSlice";
 
 export const userApi = apiSlice.injectEndpoints({
     endpoints: builder => ({
         regAsMember: builder.mutation({
-            query: data => ({
-                url: "/member/register/personalDetail",
+            query: ({ data, ref }) => ({
+                url: `/member/register/personalDetail?ref=${ref}`,
                 method: "POST",
                 body: data,
             }),
@@ -34,7 +35,9 @@ export const userApi = apiSlice.injectEndpoints({
             query: data => ({
                 url: "/member/personalDetail",
                 method: "PUT",
-                headers: { authorization: `Bearer ${localStorage.getItem("accessToken")}` },
+                headers: {
+                    authorization: `Bearer ${getCookie("token")}`,
+                },
                 body: data,
             }),
         }),
@@ -42,7 +45,9 @@ export const userApi = apiSlice.injectEndpoints({
             query: data => ({
                 url: "/member/register/professionalDetail",
                 method: "POST",
-                headers: { authorization: `Bearer ${localStorage.getItem("accessToken")}` },
+                headers: {
+                    authorization: `Bearer ${getCookie("token")}`,
+                },
                 body: data,
             }),
         }),
@@ -50,7 +55,9 @@ export const userApi = apiSlice.injectEndpoints({
             query: data => ({
                 url: "/member/register/educationalDetail",
                 method: "POST",
-                headers: { authorization: `Bearer ${localStorage.getItem("accessToken")}` },
+                headers: {
+                    authorization: `Bearer ${getCookie("token")}`,
+                },
                 body: data,
             }),
         }),
@@ -58,7 +65,9 @@ export const userApi = apiSlice.injectEndpoints({
             query: data => ({
                 url: "/member/register/physicalDetail",
                 method: "POST",
-                headers: { authorization: `Bearer ${localStorage.getItem("accessToken")}` },
+                headers: {
+                    authorization: `Bearer ${getCookie("token")}`,
+                },
                 body: data,
             }),
         }),
@@ -66,7 +75,19 @@ export const userApi = apiSlice.injectEndpoints({
             query: data => ({
                 url: "/member/register/othersDetail",
                 method: "POST",
-                headers: { authorization: `Bearer ${localStorage.getItem("accessToken")}` },
+                headers: {
+                    authorization: `Bearer ${getCookie("token")}`,
+                },
+                body: data,
+            }),
+        }),
+        setSiblingDetail: builder.mutation({
+            query: data => ({
+                url: "/member/register/siblingDetail",
+                method: "POST",
+                headers: {
+                    authorization: `Bearer ${getCookie("token")}`,
+                },
                 body: data,
             }),
         }),
@@ -74,7 +95,9 @@ export const userApi = apiSlice.injectEndpoints({
             query: data => ({
                 url: `/member/personalDetail`,
                 method: "PUT",
-                headers: { authorization: `Bearer ${localStorage.getItem("accessToken")}` },
+                headers: {
+                    authorization: `Bearer ${getCookie("token")}`,
+                },
                 body: data,
             }),
         }),
@@ -82,7 +105,9 @@ export const userApi = apiSlice.injectEndpoints({
             query: ({ data, id }) => ({
                 url: `/member/professionalDetail/${id}`,
                 method: "PUT",
-                headers: { authorization: `Bearer ${localStorage.getItem("accessToken")}` },
+                headers: {
+                    authorization: `Bearer ${getCookie("token")}`,
+                },
                 body: data,
             }),
         }),
@@ -90,7 +115,9 @@ export const userApi = apiSlice.injectEndpoints({
             query: ({ data, id }) => ({
                 url: `/member/educationalDetail/${id}`,
                 method: "PUT",
-                headers: { authorization: `Bearer ${localStorage.getItem("accessToken")}` },
+                headers: {
+                    authorization: `Bearer ${getCookie("token")}`,
+                },
                 body: data,
             }),
         }),
@@ -98,7 +125,9 @@ export const userApi = apiSlice.injectEndpoints({
             query: data => ({
                 url: `/member/physicalDetail`,
                 method: "PUT",
-                headers: { authorization: `Bearer ${localStorage.getItem("accessToken")}` },
+                headers: {
+                    authorization: `Bearer ${getCookie("token")}`,
+                },
                 body: data,
             }),
         }),
@@ -106,7 +135,29 @@ export const userApi = apiSlice.injectEndpoints({
             query: data => ({
                 url: `/member/othersDetail`,
                 method: "PUT",
-                headers: { authorization: `Bearer ${localStorage.getItem("accessToken")}` },
+                headers: {
+                    authorization: `Bearer ${getCookie("token")}`,
+                },
+                body: data,
+            }),
+        }),
+        updateFamilyDetails: builder.mutation({
+            query: data => ({
+                url: `/member/familyDetail`,
+                method: "PUT",
+                headers: {
+                    authorization: `Bearer ${getCookie("token")}`,
+                },
+                body: data,
+            }),
+        }),
+        updateSiblingDetail: builder.mutation({
+            query: ({ data, id }) => ({
+                url: `/member/siblingDetail/${id}`,
+                method: "PUT",
+                headers: {
+                    authorization: `Bearer ${getCookie("token")}`,
+                },
                 body: data,
             }),
         }),
@@ -116,11 +167,144 @@ export const userApi = apiSlice.injectEndpoints({
         }),
         getProfileDetailsWIthAuth: builder.query({
             query: () => ({
-                url: "member/personalDetail",
+                url: "/member/personalDetail",
                 method: "GET",
-                headers: { authorization: `Bearer ${localStorage.getItem("accessToken")}` },
+                headers: {
+                    authorization: `Bearer ${getCookie("token")}`,
+                },
             }),
-            keepUnusedDataFor: 20,
+            keepUnusedDataFor: 0,
+        }),
+        findFilteredUser: builder.mutation({
+            query: ({ data, keyword, page }) => ({
+                url: `/member/connections/search?_page=${page || ""}&_limit=9&_keyword=${keyword}`,
+                method: "POST",
+                headers: {
+                    authorization: `Bearer ${getCookie("token")}`,
+                },
+                body: data,
+            }),
+        }),
+        findFilteredUserByAdmin: builder.mutation({
+            query: data => ({
+                url: "/member/connections/search",
+                method: "POST",
+                headers: {
+                    authorization: `Bearer ${getCookie("adminToken")}`,
+                },
+                body: data,
+            }),
+        }),
+        verifyEmail: builder.mutation({
+            query: otp => ({
+                url: `/verify/verifyEmail/id`,
+                method: "POST",
+                headers: {
+                    authorization: `Bearer ${getCookie("token")}`,
+                },
+                body: otp,
+            }),
+        }),
+        reSendOtp: builder.mutation({
+            query: () => ({
+                url: `/verify/sendOtpByToken`,
+                method: "POST",
+                headers: {
+                    authorization: `Bearer ${getCookie("token")}`,
+                },
+            }),
+        }),
+        getPercentageOfProfileComplete: builder.query({
+            query: () => ({
+                url: "/member/completed",
+                method: "GET",
+                headers: {
+                    authorization: `Bearer ${getCookie("token")}`,
+                },
+            }),
+        }),
+        updatePhotosOnProfile: builder.mutation({
+            query: photos => ({
+                url: `/member/personalDetail`,
+                method: "PUT",
+                headers: {
+                    authorization: `Bearer ${getCookie("token")}`,
+                },
+                body: photos,
+            }),
+        }),
+
+        updateProfilePhoto: builder.mutation({
+            query: data => ({
+                url: "/member/personalDetail",
+                method: "PUT",
+                headers: {
+                    authorization: `Bearer ${getCookie("token")}`,
+                },
+                body: data,
+            }),
+            async onQueryStarted(arg, { dispatch, queryFulfilled }) {
+                const updateResult = dispatch(
+                    apiSlice.util.updateQueryData("getProfileDetailsWIthAuth", undefined, draft => {
+                        return {
+                            ...draft,
+                            profilePhoto: arg.profilePhoto,
+                        };
+                    })
+                );
+                try {
+                    await queryFulfilled;
+                } catch (error) {
+                    updateResult.undo();
+                }
+            },
+        }),
+        addNewCertificate: builder.mutation({
+            query: ({ data, id }) => ({
+                url: `/member/addNewCertificate/${id}`,
+                method: "PUT",
+                headers: {
+                    authorization: `Bearer ${getCookie("token")}`,
+                },
+                body: data,
+            }),
+            invalidatesTags:["certificates"]
+        }),
+        getUsersAllNotification: builder.query({
+            query: ({ page, limit }) => ({
+                url: `/member/notification?_page=${page}&_limit=${limit}`,
+                headers: {
+                    authorization: `Bearer ${getCookie("token")}`,
+                },
+            }),
+        }),
+        getUserBadges: builder.query({
+            query: () => ({
+                url: `/member/badges`,
+                headers: {
+                    authorization: `Bearer ${getCookie("token")}`,
+                },
+            }),
+        }),
+        addNwMarriageCertificate: builder.mutation({
+            query: ({ data, id }) => ({
+                url: `/member/marriage/${id}`,
+                method: "PUT",
+                headers: {
+                    authorization: `Bearer ${getCookie("token")}`,
+                },
+                body: data,
+            }),
+            invalidatesTags:["certificates"]
+        }),
+        getSwapData: builder.query({
+            query: () => ({
+                url: "/swap/get-unique-profile",
+                method: "GET",
+                headers: {
+                    authorization: `Bearer ${getCookie("token")}`,
+                },
+            }),
         }),
     }),
 });
@@ -142,4 +326,19 @@ export const {
     useUpdateOthersDetailsMutation,
     useUpdateProfessionalDetailsMutation,
     useGetProfileDetailsWIthAuthQuery,
+    useFindFilteredUserMutation,
+    useUpdateProfilePhotoMutation,
+    useVerifyEmailMutation,
+    useReSendOtpMutation,
+    useFindFilteredUserByAdminMutation,
+    useGetPercentageOfProfileCompleteQuery,
+    useUpdatePhotosOnProfileMutation,
+    useUpdateFamilyDetailsMutation,
+    useSetSiblingDetailMutation,
+    useUpdateSiblingDetailMutation,
+    useAddNewCertificateMutation,
+    useGetUsersAllNotificationQuery,
+    useGetUserBadgesQuery,
+    useAddNwMarriageCertificateMutation,
+    useGetSwapDataQuery,
 } = userApi;

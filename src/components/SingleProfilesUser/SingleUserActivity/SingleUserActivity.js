@@ -1,150 +1,180 @@
-import React, { useState } from 'react';
-import { useRef } from 'react';
-import { DynamicActivityPage } from '../../pages/DynamicProfilePage/DynamicActivityPage';
-import profile from "../../../assets/images/profile/up1.png";
-import { MdCreateNewFolder } from "react-icons/md";
-import { firebaseStorage } from '../../../firebase.init';
-import { getDownloadURL, uploadBytes } from 'firebase/storage';
-import { v4 as uuidv4 } from "uuid";
-import coolicon from "../../../assets/images/activity/coolicon.png";
+// configuration
+import React, { useEffect, useState } from "react";
+
+// Third party packages
 import { Select } from "antd";
-import banner from "../../../assets/images/activity/postBanner.png";
-import { Link } from "react-router-dom";
-import { BottomNav } from "../../../Wrapper/Home/mobileversion/BottomNav";
-import { MovDynamicActivity } from '../../pages/DynamicProfilePage/MovDynamicActivity';
+import { MdCreateNewFolder } from "react-icons/md";
+
+// components
+import { useSelector } from "react-redux";
+import useDocumentTitle from "../../../assets/utilities/useDocumentTitle";
+import { usePhotosUploadOnServerMutation } from "../../../Redux/features/fileUpload/fileUploadApi";
+import {
+  useAddUserPostMutation,
+  useGetMyPostsQuery,
+} from "../../../Redux/features/Post/postApi";
+import { AllPostsOfLoggedInUser } from "./AllPostsOfLoggedInUser/AllPostsOfLoggedInUser";
+import { useGetProfileDetailsWIthAuthQuery } from "../../../Redux/features/userInfo/userApi";
+import GoActivityPremiumCard from "./GoActivityPremiumCard";
 
 const SingleUserActivity = () => {
+  // hook variable declaration
+  const [photoURL, setPhotoUrl] = useState("");
+  const [postText, setPostText] = useState("");
+  const [privacy, setPrivacy] = useState("");
+  const [canPost, setCanPost] = useState(true);
 
-    const ref = useRef(null);
-    const [photoURL, setPhotoUrl] = useState("");
-    const [postRefetch, setPostRefetch] = useState(0);
+  // page title
+  useDocumentTitle("Shongshari | Activity");
 
-    const handleMessage = event => {
-        event.preventDefault();
-        const post_info = {
-            postBody: ref.current.value
-        }
+  // Redux Api Call
+  const { data: profileData } = useGetProfileDetailsWIthAuthQuery();
+  const [addUserPost, { isSuccess: addPostSuccess }] = useAddUserPostMutation();
+  const { data: posts, isLoading, error } = useGetMyPostsQuery();
+  const [photosUploadOnServer, { isSuccess, data }] =
+    usePhotosUploadOnServerMutation();
 
-        fetch(`http://localhost:4000/member/post/add`, {
-            method: "POST",
-            headers: {
-                "content-type": "application/json",
-                authorization: `Bearer ${localStorage.getItem("accessToken")}`
-            },
-            body: JSON.stringify(post_info)
-        })
-            .then(res => res.json())
-            .then(data => {
-                ref.current.value = '';
-                setPostRefetch(postRefetch + 1);
-            })
+  const userInfo = useSelector(
+    (state) => state?.persistedReducer?.userInfo?.userInfo?.user
+  );
+
+  const { profilePhoto, firstName, lastName } = userInfo || {};
+
+  // decision making about profile photo
+  let profile;
+  profile = profilePhoto
+    ? profilePhoto
+    : "https://i.postimg.cc/Hn3ghQJn/images.jpg";
+
+  // function declarations
+  const addPost = async (event) => {
+    event.preventDefault();
+    if ((!profileData?.userMatrimonyPackageInfo?.package?.timelinePost)) {
+      return setCanPost(false);
+    } else {
+      const data = {
+        authorName: firstName + " " + lastName,
+        attachment: photoURL,
+        postBody: postText,
+        privacy: privacy,
+        profilePhoto: profilePhoto,
+      };
+
+      await addUserPost({
+        data,
+      });
+
+      setPostText("");
     }
+  };
 
-    const photoHandler = async e => {
-        const photo = e.target.files[0];
-        const storageRef = ref(firebaseStorage, `post/${photo.name + uuidv4()}`);
+  const photoHandler = async (e) => {
+    const photo = e.target.files[0];
+    const formData = new FormData();
+    formData.append("photos", photo);
+    photosUploadOnServer(formData);
+  };
 
-        uploadBytes(storageRef, photo).then(async snapshot => {
-            await getDownloadURL(snapshot.ref).then(url => {
-                setPhotoUrl(url.toString());
-            });
-        });
-    };
+  useEffect(() => {
+    if (isSuccess) {
+      setPhotoUrl(data?.data?.file[0]?.fileName);
+    }
+  }, [isSuccess, data]);
 
-    return (
-        <div>
-            <div className='hidden md:block'>
-            <div className="grid grid-cols-1 gap-y-[30px]">
-            <div className="w-[457px] mx-auto shadow-[2px_2px_4px_rgba(0,0,0,0.12)] bg-white rounded-[10px] p-[30px] font-Inter font-normal text-[11px]">
-                <div className="flex w-full h-[100px] gap-[19px]">
-                    <img className="w-12 h-10 rounded-full" src={profile} alt="profile" />
-                    <textarea ref={ref} id="message" className='text-[#757575] w-full focus:outline-none resize-none' name='post_description' placeholder='Write somethiings here......'></textarea>
-                </div>
-                <hr />
-                <div className="flex w-full justify-between mt-[30px]">
-                    <div className='flex items-center'>
-                        <label className='mr-[10px] bg-[#F7E9F8] rounded-[20px] cursor-pointer'>
-                            <div className='flex items-center justify-center h-[30px] w-[60px] text-2xl text-[#E41272]'>
-                                <MdCreateNewFolder />
-                            </div>
-                            <input className='hidden' type="file" id='postPhoto' accept=".png, .jpg, .jpeg" onChange={photoHandler} />
-                        </label>
-                        <div className='flex items-center cursor-pointer border border-[rgba(0, 0, 0, 0.2)] rounded-[50px] px-3 py-2 text-[#333333]'>
-                            <select id="" className="focus:outline-none cursor-pointer">
-                                <option selected>PUBLIC</option>
-                                <option value="friends">Friends</option>
-                                <option value="me">Only Me</option>
-                            </select>
-                        </div>
-                    </div>
-                    <button className="border-[1px] border-[rgba(0,0,0,0.1)] rounded-[50px] py-[6px] px-5 font-bold text-[17px] text-[#FFFFFF] bg-gradient-to-t from-[#942DD9] to-[#F22876] shadow-[0.872px_9.962px_20px_rgba(12, 78, 165, 0.3)]" onClick={handleMessage}>
-                        Post
-                    </button>
-                </div>
-            </div>
-            <DynamicActivityPage postRefetch={postRefetch}></DynamicActivityPage>
-        </div>
-            </div>
-            <div className='md:hidden w-full'>
-            <div
-          className="bg-[#FFFFFF] rounded-md pb-[5px] my-[10px]"
-          style={{ boxShadow: "2px 2px 4px rgba(0, 0, 0, 0.12)" }}
-        >
-          <div className="max-w-[338px] border-[rgba(0, 0, 0, 0.2)] pt-[30px] pb-[50px] border-b-[1px] mx-auto flex px-6">
-            <div className="relative">
+  useEffect(() => {
+    if (addPostSuccess) {
+      setPostText("");
+      setPhotoUrl("");
+    }
+  }, [addPostSuccess]);
+
+  return (
+    <div>
+      <div className="hidden md:block">
+        <div className="grid grid-cols-1 gap-y-[30px]">
+          <div className="w-[457px] mx-auto shadow-[2px_2px_4px_rgba(0,0,0,0.12)] bg-white rounded-[10px] p-[30px] font-Inter font-normal text-[11px]">
+            <div className="flex w-full h-[100px] gap-[19px]">
               <img
-                className="w-[40px] h-[40px] rounded-[50px]"
+                className="w-12 h-10 rounded-full"
                 src={profile}
-                alt="Not Available"
+                alt="profile"
               />
+              <textarea
+                id="message"
+                value={postText}
+                className="text-[#757575] w-full focus:outline-none resize-none"
+                name="post_description"
+                placeholder="Write somethings here......"
+                onChange={(e) => setPostText(e.target.value)}
+              ></textarea>
             </div>
-            <div className="ml-[25px]">
-            <textarea ref={ref} id="message" className='text-[#757575] w-full focus:outline-none resize-none' name='post_description' placeholder='Write somethiings here......'></textarea>
-            </div>
-          </div>
-          <div className="flex max-w-[338px] mt-[20px] mx-auto justify-between items-center px-6">
-            <div className="flex justify-between items-center">
-              <button className="bg-[#F7E9F8] flex justify-center items-center w-[51px] h-[31px] rounded-[20px]">
-                <img src={coolicon} alt="Not Available" />
-              </button>
-              <div className="ml-[20px]">
-                <Select
-                  defaultValue="Public"
-                  style={{ width: 105, borderRadius: "50px" }}
-                  options={[
-                    {
-                      value: "Public",
+            <hr />
+            <div className="flex w-full justify-between mt-[30px]">
+              <div className="flex items-center">
+                <label
+                  className={`mr-[10px] ${
+                    photoURL ? "bg-green-100" : "bg-[#F7E9F8]"
+                  } rounded-[20px] cursor-pointer`}
+                >
+                  <div
+                    className={`flex items-center justify-center h-[30px] w-[60px] text-2xl ${
+                      photoURL ? "text-green-400" : "text-[#E41272]"
+                    }`}
+                  >
+                    <MdCreateNewFolder />
+                  </div>
+                  <input
+                    className="hidden"
+                    type="file"
+                    id="postPhoto"
+                    accept=".png, .jpg, .jpeg"
+                    onChange={photoHandler}
+                  />
+                </label>
+                <div className="flex items-center cursor-pointer rounded-[50px] px-3 py-2 text-[#333333]">
+                  <Select
+                    labelInValue
+                    defaultValue={{
+                      value: "public",
                       label: "Public",
-                    },
-                    {
-                      value: "lucy",
-                      label: "Lucy",
-                    },
-                    {
-                      value: "disabled",
-                      disabled: true,
-                      label: "Disabled",
-                    },
-                    {
-                      value: "Yiminghe",
-                      label: "yiminghe",
-                    },
-                  ]}
-                />
+                    }}
+                    style={{
+                      width: 100,
+                      borderRadius: "50px",
+                    }}
+                    onSelect={(val) => setPrivacy(val.value)}
+                    options={[
+                      {
+                        value: "public",
+                        label: "Public",
+                      },
+                      {
+                        value: "friend",
+                        label: "Friends",
+                      },
+                      {
+                        value: "only me",
+                        label: "Only me",
+                      },
+                    ]}
+                  />
+                </div>
               </div>
+              <button
+                className="border-[1px] border-[rgba(0,0,0,0.1)] rounded-[50px] py-[6px] px-5 font-bold text-[17px] text-[#FFFFFF] bg-gradient-to-t from-[#942DD9] to-[#F22876] shadow-[0.872px_9.962px_20px_rgba(12, 78, 165, 0.3)] cursor-pointer"
+                onClick={addPost}
+                disabled={postText === "" && photoURL === ""}
+              >
+                Post
+              </button>
             </div>
-            <button className="border-[1px] border-[rgba(0,0,0,0.1)] rounded-[50px] py-[6px] px-5 font-bold text-[17px] text-[#FFFFFF] bg-gradient-to-t from-[#942DD9] to-[#F22876] shadow-[0.872px_9.962px_20px_rgba(12, 78, 165, 0.3)]" onClick={handleMessage}>
-                        Post
-                    </button>
           </div>
-         
-          <MovDynamicActivity postRefetch={postRefetch}></MovDynamicActivity>
+          <AllPostsOfLoggedInUser {...{ posts, isLoading, error }} />
         </div>
-            </div>
-
-        
-        </div>
-    );
+      </div>
+      {!canPost && <GoActivityPremiumCard {...{ canPost, setCanPost }} />}
+    </div>
+  );
 };
 
 export default SingleUserActivity;

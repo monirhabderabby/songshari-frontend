@@ -2,15 +2,15 @@ import React from "react";
 
 export const MembershipUpgrade = () => {
   return (
-    <div>
+    <div className="mb-[300px] max-w-[1200px] mx-auto">
       <h1 className="text-secondary font-bold font-syne text-2xl text-center mt-20">
         Upgrade Your Profile
       </h1>
       <h1 className="text-black font-bold text-5xl text-center mt-4 ">
-        Premium Memeber Plan
+        Premium Member Plan
       </h1>
       <p className="text-center mt-4 text-lg">
-        Benefit from Peyamba at its maximum you!
+        Benefit from Shongshari at its maximum!
       </p>
 
       <div className="grid lg:grid-cols-4 sm:grid-cols-1 gap-2 mx-auto ml-14 mr-14 mt-20">

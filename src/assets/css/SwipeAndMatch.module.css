@@ -1,0 +1,9 @@
+.gradientTextWithBorder {
+    background: -webkit-linear-gradient(#e42986, #a32ccb);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    padding: 10px;
+    display: inline-block;
+    border: 2px solid transparent;
+    border-image: linear-gradient(to right, #e42986, #a32ccb) 1;
+}

@@ -1,8 +1,7 @@
-import React from "react";
 import { Input, Radio, Select, Slider, Space } from "antd";
+import React from "react";
 import MartialInfoForm from "./MartialInfoForm";
 export default function BasicInfoForm({ homeTowns, countries, basicInfo, setBasicInfo }) {
-
     return (
         <div className="w-full">
             <div className="mb-4 ">
@@ -13,53 +12,19 @@ export default function BasicInfoForm({ homeTowns, countries, basicInfo, setBasi
                 <Select
                     defaultValue="bride"
                     className="w-full mb-4"
-                    onChange={(value) => { setBasicInfo({ ...basicInfo, looking: value }) }}
+                    onChange={value => {
+                        setBasicInfo({ ...basicInfo, looking: value });
+                    }}
                     showSearch
                     filterOption={(input, option) => (option?.label ?? "").toLowerCase().includes(input.toLowerCase())}
                     options={[
                         {
-                            value: "bride",
+                            value: "man",
                             label: "Bride",
                         },
                         {
-                            value: "groom",
+                            value: "woman",
                             label: "Groom",
-                        },
-                    ]}
-                />
-            </div>
-            <div>
-                <h1 className="text-base leading-6 font-medium mb-2">For</h1>
-                <Select
-                    defaultValue="myself"
-                    className="w-full mb-4"
-                    onChange={(value) => { setBasicInfo({ ...basicInfo, forWhom: value }) }}
-                    showSearch
-                    filterOption={(input, option) => (option?.label ?? "").toLowerCase().includes(input.toLowerCase())}
-                    options={[
-                        {
-                            value: "myself",
-                            label: "Myself",
-                        },
-                        {
-                            value: "brother",
-                            label: "My Brother",
-                        },
-                        {
-                            value: "sister",
-                            label: "My Sister",
-                        },
-                        {
-                            value: "cousin",
-                            label: "My Cousin",
-                        },
-                        {
-                            value: "friend",
-                            label: "My Friend",
-                        },
-                        {
-                            value: "relative",
-                            label: "My Relative",
                         },
                     ]}
                 />
@@ -73,7 +38,7 @@ export default function BasicInfoForm({ homeTowns, countries, basicInfo, setBasi
                 <Slider
                     className="mb-4"
                     range={{ draggableTrack: true }}
-                    defaultValue={[20, 50]}
+                    defaultValue={basicInfo.age}
                     onChange={value => setBasicInfo({ ...basicInfo, age: value })}
                 />
             </div>
@@ -186,8 +151,7 @@ export default function BasicInfoForm({ homeTowns, countries, basicInfo, setBasi
                     ]}
                 />
             </div>
-            <MartialInfoForm{...{ basicInfo, setBasicInfo }} />
-
+            <MartialInfoForm {...{ basicInfo, setBasicInfo }} />
         </div>
-    )
+    );
 }

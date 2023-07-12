@@ -1,51 +1,64 @@
-import { DatePicker } from "antd";
-import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+// configuration
 import React, { useEffect, useState } from "react";
-import { Controller, useFieldArray, useForm } from "react-hook-form";
 
+// Third party packages
+import { DatePicker } from "antd";
+import moment from "moment";
+import { Controller, useForm } from "react-hook-form";
 import { AiOutlineCloudUpload, AiOutlineIdcard } from "react-icons/ai";
+import { decodeToken } from "react-jwt";
 import Select from "react-select";
 import makeAnimated from "react-select/animated";
-import CreatableSelect from "react-select/creatable";
-import { v4 as uuidv4 } from "uuid";
-import { firebaseStorage } from "../../firebase.init";
+
+// components
+import getCookie from "../../Helper/cookies/getCookie";
 import { useSetPersonalDetailsMutation } from "../../Redux/features/userInfo/userApi";
+import { usePhotosUploadOnServerMutation } from "../../Redux/features/fileUpload/fileUploadApi";
 
 export const PersonalDetails = ({ setPage }) => {
+    const [setPersonalDetails, { data: personalDetailsResponse, isLoading, isError }] = useSetPersonalDetailsMutation();
+    const [uploadProfilePhoto,{ data: uploadedProfilePhoto},] = usePhotosUploadOnServerMutation();
+    const [uploadCoverPhoto, { data: uploadedCoverPhoto }] = usePhotosUploadOnServerMutation();
+    const [uploadNIDFront, { data: uploadedNIDFront }] = usePhotosUploadOnServerMutation();
+    const [uploadNIDBack, { data: uploadedNIDBack }] =usePhotosUploadOnServerMutation();
+    const token = getCookie("token");
+    const tokenInfo = decodeToken(token);
+
+    const { role } = tokenInfo || {};
+
     const [profilePhoto, setProfilePhoto] = useState("");
     const [coverPhoto, setCoverPhoto] = useState("");
-    const [frontSide, setFrontSide] = useState("");
-    const [backSide, setBackSide] = useState("");
-    const [professionalAchievementMoment, setProfessionalAchievementMoment] = useState("");
-    const [addedAchievementMoment, setAddedAchievementMoment] = useState([]);
-    const [educationalAchievementMoment, setEducationalAchievementMoment] = useState("");
+    const [NidFrontSide, setNidFrontSide] = useState("");
+    const [NidBackSide, setNidBackSide] = useState("");
     // const [licencePhoto, setLicencePhoto] = useState("");
-    const [meritalStatus, setMeritalStatus] = useState("");
+    const [maritalStatus, setMaritalStatus] = useState("");
     const [citizenShip, setCitizenShip] = useState([]);
     const [dateOfBirth, setDateOfBirth] = useState();
     const [marriageDate, setMarriageDate] = useState();
     const [divorceDate, setDivorceDate] = useState();
     const [partnerDeathDate, setPartnerDeathDate] = useState();
-    const [theCurrentWorkPeriod, setTheCurrentWorkPeriod] = useState();
-    const [addedWorkPeriod, setAddedWorkPeriod] = useState([]);
-    const [userHobbies, setUserHobbies] = useState([]);
+    const [hobbies, setHobbies] = useState([]);
+    const [profilePhotoName, setProfilePhotoName] = useState();
+    const [coverPhotoName, setCoverPhotoName] = useState();
 
-    // Education
-    const [degreeName, setDegreeName] = useState("");
-    const [eduDepartment, setEduDepartment] = useState("");
-    const [eduInstitute, setEduInstitute] = useState("");
-    const [eduFieldOfStudy, setEduFieldOfStudy] = useState("");
-    const [eduYearOfPassing, setEduYearOfPassing] = useState("");
+    //setting profile photo
+    useEffect(() => {
+        if (uploadedProfilePhoto) setProfilePhoto(uploadedProfilePhoto?.data[0]?.path)
+    }, [uploadedProfilePhoto])
 
-    // Physical
-    const [phyAncestry, setPhyAncestry] = useState("");
-    const [phySkinTone, setPhySkinTone] = useState("");
-    const [phyEyeColor, setPhyEyeColor] = useState("");
-    const [phyHairColor, setPhyHairColor] = useState("");
-    const [phyHairType, setPhyHairType] = useState("");
-    const [phyNumberTeeth, setPhyNumberTeeth] = useState("");
+    // setting cover Photo
+    useEffect(() => {
+      if (uploadedCoverPhoto) setCoverPhoto(uploadedCoverPhoto?.data[0]?.path);
+    }, [uploadedCoverPhoto]);
+    useEffect(() => {
+      if (uploadedNIDFront) setNidFrontSide(uploadedNIDFront?.data[0]?.path);
+    }, [uploadedNIDFront]);
+    useEffect(() => {
+      if (uploadedNIDBack) setNidBackSide(uploadedNIDBack?.data[0]?.path);
+    }, [uploadedNIDBack]);
 
-    const { RangePicker } = DatePicker;
+    // setting NID photo
+
 
     const {
         register,
@@ -54,25 +67,17 @@ export const PersonalDetails = ({ setPage }) => {
         control,
     } = useForm();
 
-    const { fields, append, remove } = useFieldArray({
-        name: "professions",
-        control,
-    });
+    function disabledDate(current) {
+        // Can not select days after today
+        return current && current > moment().endOf("day");
+    }
 
     // hobbies
-    const [hobbies, setHobbies] = useState([]);
+    const [hobbiesData, setHobbiesData] = useState([]);
     useEffect(() => {
         fetch("json/hobby.json")
             .then(res => res.json())
-            .then(data => setHobbies(data));
-    }, []);
-
-    // Ancestry
-    const [ancestryData, setAncestryData] = useState([]);
-    useEffect(() => {
-        fetch("json/ancestry.json")
-            .then(res => res.json())
-            .then(data => setAncestryData(data));
+            .then(data => setHobbiesData(data));
     }, []);
 
     // Zodiac Sign
@@ -107,6 +112,9 @@ export const PersonalDetails = ({ setPage }) => {
     const [parmanentCountryValue, setPermanentCountryValue] = useState("");
     const [currentCountryValue, setCurrentCountryValue] = useState("");
 
+    if (isError) {
+        console.log(isError);
+    }
     useEffect(() => {
         fetch("json/district.json")
             .then(res => res.json())
@@ -114,8 +122,6 @@ export const PersonalDetails = ({ setPage }) => {
                 if (data) setHomeTown(data);
             });
     }, [setHomeTown]);
-
-    const [setPersonalDetails, { data, isLoading }] = useSetPersonalDetailsMutation();
 
     const handleCountriesSuggestion = text => {
         let matches = [];
@@ -190,197 +196,76 @@ export const PersonalDetails = ({ setPage }) => {
     };
 
     const onSubmit = async data => {
-        console.log(data);
-        const highestEducationalQualification = {};
-        const currentProfession = {};
-
-        Object.keys(data).forEach(function (key) {
-            if (
-                key === "CurrentProfessionposition" ||
-                key === "CurrentProfessionInstitute" ||
-                key === "currentWorkPeriod" ||
-                key === "specialProfessionalAchievement"
-            ) {
-                currentProfession[key] = data[key];
-            }
-        });
-
-        Object.keys(data).forEach(function (key) {
-            if (
-                key === "degreeName" ||
-                key === "eduInstitute" ||
-                key === "eduDepartment" ||
-                key === "eduFieldOfStudy" ||
-                key === "eduYearOfPassing" ||
-                key === "specialEducationalAchievement" ||
-                key === "educationalAchievementMoment"
-            ) {
-                highestEducationalQualification[key] = data[key];
-            }
-        });
-
-        delete data.degreeName;
-        delete data.eduInstitute;
-        delete data.eduDepartment;
-        delete data.eduFieldOfStudy;
-        delete data.eduYearOfPassing;
-        delete data.specialEducationalAchievement;
-        delete data.educationalAchievementMoment;
-
-        highestEducationalQualification.degreeName = degreeName;
-        highestEducationalQualification.eduInstitute = eduInstitute;
-        highestEducationalQualification.eduDepartment = eduDepartment;
-        highestEducationalQualification.eduFieldOfStudy = eduFieldOfStudy;
-        highestEducationalQualification.eduYearOfPassing = eduYearOfPassing;
-        highestEducationalQualification.educationalAchievementMoment = educationalAchievementMoment;
-
-        //current profession object delete from main object
-        delete data.CurrentProfessionposition;
-        delete data.CurrentProfessionInstitute;
-        delete data.currentWorkPeriod;
-        delete data.specialProfessionalAchievement;
-        delete data.professionalAchievementMoment;
-
-        currentProfession.position = currentProfession.CurrentProfessionposition;
-        currentProfession.institute = currentProfession.CurrentProfessionInstitute;
-
-        delete currentProfession.CurrentProfessionposition;
-        delete currentProfession.CurrentProfessionInstitute;
         delete data.citizenShip;
-        delete data.professionalAchievementMoment;
-
-        currentProfession.currentWorkPeriod = theCurrentWorkPeriod;
-        currentProfession.professionalAchievementMoment = professionalAchievementMoment;
 
         //photo links upload
         data.profilePhoto = profilePhoto;
         data.coverPhoto = coverPhoto;
-        data.frontSide = frontSide;
-        data.backSide = backSide;
         // data.licencePhoto = licencePhoto;
         // data.professionalAchievementMoment = professionalAchievementMoment;
 
-        data.professions.map(p => delete p.addedProfessionWorkPeriod);
-        data.professions.map((p, index) => (p.addedProfessionWorkPeriod = addedWorkPeriod[index]));
+        delete data.frontSide;
+        delete data.backSide;
 
-        data.professions.map(p => delete p.addedProfessionAchievementMoment);
-        data.professions.map((p, index) => (p.addedProfessionAchievementMoment = addedAchievementMoment[index]));
         data = {
             ...data,
-            highestEducationalQualification,
-            currentProfession,
+            NidFrontSide,
+            NidBackSide,
             dateOfBirth,
-            phyAncestry,
-            phyEyeColor,
-            phyHairColor,
-            phyHairType,
-            phyNumberTeeth,
-            phySkinTone,
-            userHobbies,
+            hobbies,
             marriageDate,
             divorceDate,
             partnerDeathDate,
             citizenShip,
-            addedAchievementMoment,
         };
         await setPersonalDetails(data);
-        console.log(data);
     };
 
     useEffect(() => {
-        if (data) {
+        if (personalDetailsResponse) {
             setPage(2);
         }
-    }, [data, setPage]);
+    }, [personalDetailsResponse, setPage]);
 
     const profilePhotoHandler = async e => {
-        const photo = e.target.files[0];
-        const storageRef = ref(firebaseStorage, `profile/${photo?.name + uuidv4()}`);
-        uploadBytes(storageRef, photo).then(async snapshot => {
-            await getDownloadURL(snapshot.ref).then(url => {
-                setProfilePhoto(url.toString());
-            });
-        });
+        if (e.target.files[0]) {
+            setProfilePhotoName(e.target.files[0]?.name);
+            const formData = new FormData();
+            formData.append("image", e.target.files[0]);
+            uploadProfilePhoto(formData);
+        }
+        
     };
 
     const coverPhotoHandler = async e => {
-        const photo = e.target.files[0];
-        const storageRef = ref(firebaseStorage, `cover/${photo?.name + uuidv4()}`);
-        uploadBytes(storageRef, photo).then(async snapshot => {
-            await getDownloadURL(snapshot.ref).then(url => {
-                setCoverPhoto(url.toString());
-            });
-        });
-    };
-
-    const professionalAchievementMomentHandler = async e => {
-        const photo = e.target.files[0];
-        console.log(photo);
-        const storageRef = ref(firebaseStorage, `cover/${photo?.name + uuidv4()}`);
-        uploadBytes(storageRef, photo).then(async snapshot => {
-            await getDownloadURL(snapshot.ref).then(url => {
-                console.log(url);
-                setProfessionalAchievementMoment(url.toString());
-            });
-        });
-    };
-
-    const addedProfessionAchievementMomentHandler = async e => {
-        const photo = e.target.files[0];
-        const storageRef = ref(firebaseStorage, `moment/${photo?.name + uuidv4()}`);
-        uploadBytes(storageRef, photo).then(async snapshot => {
-            await getDownloadURL(snapshot.ref).then(url => {
-                setAddedAchievementMoment([...addedAchievementMoment, url.toString()]);
-            });
-        });
-    };
-
-    const educationalAchievementMomentHandler = async e => {
-        const photo = e.target.files[0];
-        const storageRef = ref(firebaseStorage, `cover/${photo?.name + uuidv4()}`);
-        uploadBytes(storageRef, photo).then(async snapshot => {
-            await getDownloadURL(snapshot.ref).then(url => {
-                setEducationalAchievementMoment(url.toString());
-            });
-        });
+        if (e.target.files[0]) {
+            setCoverPhotoName(e.target.files[0]?.name);
+            const formData = new FormData();
+            formData.append("image", e.target.files[0]);
+            uploadCoverPhoto(formData);
+        }
+        
     };
 
     const frontSideNIDHandler = async e => {
-        const photo = e.target.files[0];
-        const storageRef = ref(firebaseStorage, `nid/${photo?.name + uuidv4()}`);
-        uploadBytes(storageRef, photo).then(async snapshot => {
-            await getDownloadURL(snapshot.ref).then(url => {
-                setFrontSide(url.toString());
-            });
-        });
+        if (e.target.files[0]) {
+            const formData = new FormData();
+            formData.append("image", e.target.files[0]);
+            uploadNIDFront(formData);
+        }
+        
     };
     const backSideNIDHandler = async e => {
-        const photo = e.target.files[0];
-        const storageRef = ref(firebaseStorage, `nid/${photo?.name + uuidv4()}`);
-        uploadBytes(storageRef, photo).then(async snapshot => {
-            await getDownloadURL(snapshot.ref).then(url => {
-                setBackSide(url.toString());
-            });
-        });
+        if (e.target.files[0]) {
+            const formData = new FormData();
+            formData.append("image", e.target.files[0]);
+            uploadNIDBack(formData);
+        }
+        
     };
-    // const licenseHandler = async e => {
-    //     const photo = e.target.files[0];
-    //     const storageRef = ref(firebaseStorage, `license/${photo.name + uuidv4()}`);
-    //     uploadBytes(storageRef, photo).then(async snapshot => {
-    //         await getDownloadURL(snapshot.ref).then(url => {
-    //             setLicencePhoto(url.toString());
-    //         });
-    //     });
-    // };
 
     const onDateOfBirthChange = (date, dateString) => {
         setDateOfBirth(dateString);
-    };
-    const onCurrentWorkPeriodChange = (value, dateString) => {
-        setTheCurrentWorkPeriod(dateString);
-    };
-    const onAddedWorkPeriodChange = (value, dateString) => {
-        setAddedWorkPeriod([...addedWorkPeriod, dateString]);
     };
 
     useEffect(() => {
@@ -462,6 +347,7 @@ export const PersonalDetails = ({ setPage }) => {
                                 id="dateOfBirth"
                                 bordered={false}
                                 onChange={onDateOfBirthChange}
+                                disabledDate={disabledDate}
                             />
                         </div>
                     </section>
@@ -520,9 +406,9 @@ export const PersonalDetails = ({ setPage }) => {
                             <AiOutlineCloudUpload className=" mr-2 text-gray-400" />
                             <label htmlFor="profilePhoto" className="outline-none h-full text-sm text-gray-400 bg-gray-100">
                                 {profilePhoto ? (
-                                    <>
-                                        <span className="text-green-400">Profile Photo added</span>
-                                    </>
+                                    <div>
+                                        <span className="text-green-400">{profilePhotoName ? profilePhotoName : "Profile Photo added"}</span>
+                                    </div>
                                 ) : (
                                     "Upload Profile Photo"
                                 )}
@@ -553,7 +439,7 @@ export const PersonalDetails = ({ setPage }) => {
                             <label htmlFor="coverPhoto" className="outline-none h-full text-sm text-gray-400 bg-gray-100">
                                 {coverPhoto ? (
                                     <>
-                                        <span className="text-green-400">Cover Photo added</span>
+                                        <span className="text-green-400">{coverPhotoName ? coverPhotoName : "Cover Photo added"}</span>
                                     </>
                                 ) : (
                                     "Upload Cover Photo"
@@ -603,7 +489,7 @@ export const PersonalDetails = ({ setPage }) => {
                         <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
                             <AiOutlineIdcard className=" mr-2 text-gray-400" />
                             <label htmlFor="frontSide" className="outline-none h-full text-sm text-gray-400 bg-gray-100">
-                                {frontSide ? (
+                                {NidFrontSide ? (
                                     <>
                                         <span className="text-green-400">Front side NID / PAssport added</span>
                                     </>
@@ -635,7 +521,7 @@ export const PersonalDetails = ({ setPage }) => {
                         <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
                             <AiOutlineIdcard className="mr-2 text-gray-400" />
                             <label htmlFor="backSide" className="outline-none h-full text-sm text-gray-400 bg-gray-100">
-                                {backSide ? (
+                                {NidBackSide ? (
                                     <>
                                         <span className="text-green-400">Photo added</span>
                                     </>
@@ -664,7 +550,7 @@ export const PersonalDetails = ({ setPage }) => {
                     </section>
                     {/* ---------- Citizenship ---------- */}
                     <section>
-                        <div className="flex items-center bg-gray-100  w-full rounded-lg mt-3 lg:mt-0">
+                        <div className="flex items-center bg-gray-100 p-[3px] w-full rounded-lg mt-3 lg:mt-0">
                             <Controller
                                 {...register("citizenShip")}
                                 control={control}
@@ -700,8 +586,8 @@ export const PersonalDetails = ({ setPage }) => {
                     {/* ---------- Zodiac Sign ---------- */}
                     <section className="relative">
                         <div
-                            className={`flex items-center  p-3 w-full rounded-lg mt-3 lg:mt-0 ${
-                                zodiacSignSuggestion.length > 0 ? "rounded-br-none rounded-bl-none shadow-lg bg-white" : "bg-gray-100"
+                            className={`flex items-center p-3 w-full rounded-lg mt-3 lg:mt-0 ${
+                                zodiacSignSuggestion.length > 0 ? "rounded-br-none rounded-bl-none shadow-lg bg-white overflow-auto" : "bg-gray-100"
                             }`}
                         >
                             <input
@@ -720,7 +606,7 @@ export const PersonalDetails = ({ setPage }) => {
                             />
                         </div>
                         <div
-                            className={`bg-white shadow-lg absolute top-[40px] right-0 w-full rounded-br-lg rounded-bl-lg overflow-y-scroll ${
+                            className={`bg-white shadow-lg absolute top-[40px] right-0 w-full rounded-br-lg rounded-bl-lg overflow-y-scroll z-50 ${
                                 zodiacSignSuggestion.length > 0 ? "max-h-[346px]" : "h-0"
                             }`}
                         >
@@ -819,7 +705,7 @@ export const PersonalDetails = ({ setPage }) => {
                     {/* ---------- Town permanent ---------- */}
                     <section className="relative">
                         <div
-                            className={`flex items-center  p-3 w-full rounded-lg mt-3 lg:mt-0 ${
+                            className={`flex items-center -z-10  p-3 w-full rounded-lg mt-3 lg:mt-0 ${
                                 townPermanentSuggestion.length > 0 ? "rounded-br-none rounded-bl-none shadow-lg bg-white" : "bg-gray-100"
                             }`}
                         >
@@ -904,7 +790,12 @@ export const PersonalDetails = ({ setPage }) => {
                             }`}
                         >
                             <input
-                                {...register("countryPermanent", { required: { value: true, message: "Country Name is required" } })}
+                                {...register("countryPermanent", {
+                                    required: {
+                                        value: true,
+                                        message: "Country Name is required",
+                                    },
+                                })}
                                 type="text"
                                 placeholder="Select Country"
                                 className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
@@ -925,7 +816,7 @@ export const PersonalDetails = ({ setPage }) => {
                                             key={suggetion?.id}
                                             className="h-[40px] flex justify-start items-center text-[14px] hover:bg-gray-100 px-3 cursor-pointer text-gray-500 rounded-br-lg rounded-bl-lg"
                                             onClick={() => {
-                                                setPermanentCountryValue(suggetion?.name);
+                                                setPermanentCountryValue(suggetion?.value);
                                                 setCountriesSuggestionForParmanent([]);
                                             }}
                                         >
@@ -941,9 +832,9 @@ export const PersonalDetails = ({ setPage }) => {
                         </h1>
                     </section>
 
-                    {/* --------------------------- Permanent Adress End ------------------------- */}
+                    {/* --------------------------- Permanent Address End ------------------------- */}
 
-                    {/* --------------------------- Current Adress Start ------------------------- */}
+                    {/* --------------------------- Current Address Start ------------------------- */}
                     <section className="col-span-1 md:col-span-2 lg:col-span-3 text-[#2F3659] font-medium text-left ml-1">Current Address</section>
 
                     {/* ---------- House Address Current ---------- */}
@@ -1015,7 +906,7 @@ export const PersonalDetails = ({ setPage }) => {
                     {/* ---------- Town Current ---------- */}
                     <section className="relative">
                         <div
-                            className={`flex items-center  p-3 w-full rounded-lg mt-3 lg:mt-0 ${
+                            className={`flex items-center -z-50  p-3 w-full rounded-lg mt-3 lg:mt-0 ${
                                 townCurrentSuggestion.length > 0 ? "rounded-br-none rounded-bl-none shadow-lg bg-white" : "bg-gray-100"
                             }`}
                         >
@@ -1100,7 +991,12 @@ export const PersonalDetails = ({ setPage }) => {
                             }`}
                         >
                             <input
-                                {...register("countryCurrent", { required: { value: true, message: "Country Name is required" } })}
+                                {...register("countryCurrent", {
+                                    required: {
+                                        value: true,
+                                        message: "Country Name is required",
+                                    },
+                                })}
                                 type="text"
                                 placeholder="Select Country"
                                 className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
@@ -1121,7 +1017,7 @@ export const PersonalDetails = ({ setPage }) => {
                                             key={suggetion?.id}
                                             className="h-[40px] flex justify-start items-center text-[14px] hover:bg-gray-100 px-3 cursor-pointer text-gray-500 rounded-br-lg rounded-bl-lg"
                                             onClick={() => {
-                                                setCurrentCountryValue(suggetion?.name);
+                                                setCurrentCountryValue(suggetion?.value);
                                                 setCountriesSuggestionForCurrent([]);
                                             }}
                                         >
@@ -1152,7 +1048,7 @@ export const PersonalDetails = ({ setPage }) => {
                                     },
                                 })}
                                 type="text"
-                                onChange={e => setMeritalStatus(e.target.value)}
+                                onChange={e => setMaritalStatus(e.target.value)}
                                 className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
                                 id="maritalStatus"
                             >
@@ -1170,7 +1066,7 @@ export const PersonalDetails = ({ setPage }) => {
                         </h1>
                     </section>
                     {/* ---------- Number Of Partner ---------- */}
-                    {meritalStatus === "married" && meritalStatus !== "single" && (
+                    {maritalStatus === "married" && maritalStatus !== "single" && (
                         <section>
                             <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
                                 <input
@@ -1194,7 +1090,7 @@ export const PersonalDetails = ({ setPage }) => {
                         </section>
                     )}
                     {/* ---------- Reason of Marriage ---------- */}
-                    {meritalStatus === "married" && meritalStatus !== "single" && (
+                    {maritalStatus === "married" && maritalStatus !== "single" && (
                         <section>
                             <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
                                 <input
@@ -1218,11 +1114,11 @@ export const PersonalDetails = ({ setPage }) => {
                         </section>
                     )}
                     {/* ---------- Is partner aware of marriage ---------- */}
-                    {meritalStatus === "married" && meritalStatus !== "single" && (
+                    {maritalStatus === "married" && maritalStatus !== "single" && (
                         <section>
                             <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
                                 <select
-                                    {...register("isPartnerAwareOfMarriage", {
+                                    {...register("isPartnerAwarOfMarriage", {
                                         required: {
                                             value: true,
                                             message: "Answer is required",
@@ -1230,7 +1126,7 @@ export const PersonalDetails = ({ setPage }) => {
                                     })}
                                     type="text"
                                     className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
-                                    id="isPartnerAwareOfMarriage"
+                                    id="isPartnerAwarOfMarriage"
                                 >
                                     <option value="">Is partner aware of marriage?</option>
                                     <option value="yes">Yes</option>
@@ -1238,14 +1134,14 @@ export const PersonalDetails = ({ setPage }) => {
                                 </select>
                             </div>
                             <h1 className="text-left ml-2">
-                                {errors.isPartnerAwareOfMarriage?.type === "required" && (
-                                    <span className="w-full text-left text-red-400 text-sm">{errors?.isPartnerAwareOfMarriage.message}</span>
+                                {errors.isPartnerAwarOfMarriage?.type === "required" && (
+                                    <span className="w-full text-left text-red-400 text-sm">{errors?.isPartnerAwarOfMarriage.message}</span>
                                 )}
                             </h1>
                         </section>
                     )}
                     {/* ---------- Date of Marriage ---------- */}
-                    {meritalStatus === "married" && meritalStatus !== "single" && (
+                    {maritalStatus === "married" && maritalStatus !== "single" && (
                         <section>
                             <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
                                 <DatePicker
@@ -1259,7 +1155,7 @@ export const PersonalDetails = ({ setPage }) => {
                         </section>
                     )}
                     {/* ---------- Reason of Divorce ---------- */}
-                    {meritalStatus === "divorced" && meritalStatus !== "single" && (
+                    {maritalStatus === "divorced" && maritalStatus !== "single" && (
                         <section>
                             <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
                                 <input
@@ -1283,11 +1179,10 @@ export const PersonalDetails = ({ setPage }) => {
                         </section>
                     )}
                     {/* ---------- Date of Divorce ---------- */}
-                    {meritalStatus === "divorced" && meritalStatus !== "single" && (
+                    {maritalStatus === "divorced" && maritalStatus !== "single" && (
                         <section>
                             <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
                                 <DatePicker
-                                    {...register("divorceDate")}
                                     onChange={(date, dateString) => setDivorceDate(dateString)}
                                     placeholder="Divorce Date"
                                     className="flex-1 px-2 py-[10px] outline-none h-full bg-transparent text-sm text-gray-400"
@@ -1297,8 +1192,7 @@ export const PersonalDetails = ({ setPage }) => {
                         </section>
                     )}
                     {/* ---------- Do you have children --------- */}
-                    {/* {meritalStatus !== "" || meritalStatus !== "single" || ( */}
-                    {meritalStatus === "married" && meritalStatus !== "" && meritalStatus !== "single" && (
+                    {maritalStatus === "married" && maritalStatus !== "" && maritalStatus !== "single" && (
                         <section>
                             <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
                                 <select
@@ -1325,7 +1219,7 @@ export const PersonalDetails = ({ setPage }) => {
                             </h1>
                         </section>
                     )}
-                    {meritalStatus === "divorced" && meritalStatus !== "" && meritalStatus !== "single" && (
+                    {maritalStatus === "divorced" && maritalStatus !== "" && maritalStatus !== "single" && (
                         <section>
                             <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
                                 <select
@@ -1352,7 +1246,7 @@ export const PersonalDetails = ({ setPage }) => {
                             </h1>
                         </section>
                     )}
-                    {meritalStatus === "widowed" && meritalStatus !== "" && meritalStatus !== "single" && (
+                    {maritalStatus === "widowed" && maritalStatus !== "" && maritalStatus !== "single" && (
                         <section>
                             <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
                                 <select
@@ -1380,7 +1274,7 @@ export const PersonalDetails = ({ setPage }) => {
                         </section>
                     )}
                     {/* ---------- Number Of Boy ---------- */}
-                    {childrenStatus === "yes" && meritalStatus !== "single" && meritalStatus !== "" && (
+                    {childrenStatus === "yes" && maritalStatus !== "single" && maritalStatus !== "" && (
                         <section>
                             <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
                                 <input
@@ -1404,7 +1298,7 @@ export const PersonalDetails = ({ setPage }) => {
                         </section>
                     )}
                     {/* ---------- Ages Of Boy ---------- */}
-                    {childrenStatus === "yes" && meritalStatus !== "single" && meritalStatus !== "" && (
+                    {childrenStatus === "yes" && maritalStatus !== "single" && maritalStatus !== "" && (
                         <section>
                             <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
                                 <input
@@ -1428,7 +1322,7 @@ export const PersonalDetails = ({ setPage }) => {
                         </section>
                     )}
                     {/* ---------- Number Of Girl ---------- */}
-                    {childrenStatus === "yes" && meritalStatus !== "single" && meritalStatus !== "" && (
+                    {childrenStatus === "yes" && maritalStatus !== "single" && maritalStatus !== "" && (
                         <section>
                             <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
                                 <input
@@ -1452,7 +1346,7 @@ export const PersonalDetails = ({ setPage }) => {
                         </section>
                     )}
                     {/* ---------- Ages Of Girl ---------- */}
-                    {childrenStatus === "yes" && meritalStatus !== "single" && meritalStatus !== "" && (
+                    {childrenStatus === "yes" && maritalStatus !== "single" && maritalStatus !== "" && (
                         <section>
                             <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
                                 <input
@@ -1476,670 +1370,26 @@ export const PersonalDetails = ({ setPage }) => {
                         </section>
                     )}
                     {/* ---------- Partner death date ---------- */}
-                    {meritalStatus === "widowed" && meritalStatus !== "" && (
+                    {maritalStatus === "widowed" && maritalStatus !== "" && (
                         <section>
                             <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
                                 <DatePicker
-                                    {...register("partnerDeathDay")}
                                     onChange={(date, dateString) => setPartnerDeathDate(dateString)}
                                     placeholder="Partner Death Date"
                                     className="flex-1 px-2 py-[10px] outline-none h-full bg-transparent text-sm text-gray-400"
                                     id="partnerDeathDay"
                                 />
                             </div>
-                            {/* <h1 className="text-left ml-2">
-                                {errors.partnerDeathDay?.type === "required" && (
-                                    <span className="w-full text-left text-red-400 text-sm">{errors?.partnerDeathDay.message}</span>
-                                )}
-                            </h1> */}
                         </section>
                     )}
-                    {/* ------------------------ Current profession field start ------------------------ */}
 
-                    {/* ---------- Current Profession info ---------- */}
-                    <section className="col-span-1 md:col-span-2 lg:col-span-3 text-[#2F3659] font-medium text-left ml-1">
-                        Current Profession Info
-                    </section>
-                    {/* ---------- Position ---------- */}
-                    <section>
-                        <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
-                            <input
-                                {...register("CurrentProfessionposition", {
-                                    required: {
-                                        value: true,
-                                        message: "Position is required",
-                                    },
-                                })}
-                                type="text"
-                                placeholder="Position"
-                                className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
-                                id="position"
-                            />
-                        </div>
-                        <h1 className="text-left ml-2">
-                            {errors.position?.type === "required" && (
-                                <span className="w-full text-left text-red-400 text-sm">{errors?.position.message}</span>
-                            )}
-                        </h1>
-                    </section>
-                    {/* ---------- Institution ---------- */}
-                    <section>
-                        <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
-                            <input
-                                {...register("CurrentProfessionInstitute", {
-                                    required: {
-                                        value: true,
-                                        message: "Institution is required",
-                                    },
-                                })}
-                                type="text"
-                                placeholder="Institution"
-                                className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
-                                id="institute"
-                            />
-                        </div>
-                        <h1 className="text-left ml-2">
-                            {errors.CurrentProfessionInstitute?.type === "required" && (
-                                <span className="w-full text-left text-red-400 text-sm">{errors?.CurrentProfessionInstitute.message}</span>
-                            )}
-                        </h1>
-                    </section>
-                    {/* ---------- Work Period ---------- */}
-                    <section>
-                        <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
-                            <RangePicker
-                                {...register("currentWorkPeriod")}
-                                placeholder={["Start Date", "End Date"]}
-                                className="flex-1 px-2 py-[10px] outline-none h-full bg-transparent text-sm text-gray-400"
-                                id="workPeriod"
-                                bordered={false}
-                                onChange={onCurrentWorkPeriodChange}
-                            />
-                        </div>
-                        {/* <h1 className="text-left ml-2">
-                            {errors.workPeriod?.type === "required" && (
-                                <span className="w-full text-left text-red-400 text-sm">{errors?.workPeriod.message}</span>
-                            )}
-                        </h1> */}
-                    </section>
-                    {/* ---------- Special Professional Achievement ---------- */}
-                    <section>
-                        <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
-                            <input
-                                {...register("specialProfessionalAchievement", {
-                                    required: {
-                                        value: true,
-                                        message: "Special Professional Achievement is required",
-                                    },
-                                })}
-                                type="text"
-                                placeholder="Special Achievement"
-                                className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
-                                id="specialProfessionalAchievement"
-                            />
-                        </div>
-                        <h1 className="text-left ml-2">
-                            {errors.specialProfessionalAchievement?.type === "required" && (
-                                <span className="w-full text-left text-red-400 text-sm">{errors?.specialProfessionalAchievement.message}</span>
-                            )}
-                        </h1>
-                    </section>
-                    {/* ---------- Professional Achievement moment ---------- */}
-                    <section>
-                        <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
-                            <AiOutlineCloudUpload className=" mr-2 text-gray-400" />
-                            <label htmlFor="professionalAchievementMoment" className="outline-none h-full text-sm text-gray-400 bg-gray-100">
-                                {professionalAchievementMoment ? (
-                                    <>
-                                        <span className="text-green-400">Moments added</span>
-                                    </>
-                                ) : (
-                                    "Upload Achievement Moments"
-                                )}
-                            </label>
-                            <input
-                                {...register("professionalAchievementMoment")}
-                                type="file"
-                                id="professionalAchievementMoment"
-                                className="hidden"
-                                onChange={professionalAchievementMomentHandler}
-                            />
-                        </div>
-                    </section>
-
-                    {/* <section className="col-span-1 md:col-span-2 lg:col-span-3 text-left text-lg font-bold">
-                        Add more professional experience
-                    </section> */}
-                    <br />
-                    {fields.map((field, index) => {
-                        return (
-                            <section className="col-span-1 md:col-span-2 lg:col-span-3 grid grid-cols-3 gap-3" key={field.id}>
-                                <section>
-                                    <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
-                                        <input
-                                            {...register(`professions.${index}.addedProfessionPosition`, {
-                                                required: {
-                                                    value: true,
-                                                    message: "Position is required",
-                                                },
-                                            })}
-                                            type="text"
-                                            placeholder="Position"
-                                            className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
-                                            id="position"
-                                        />
-                                    </div>
-                                    <h1 className="text-left ml-2">
-                                        {errors.addedProfessionPosition?.type === "required" && (
-                                            <span className="w-full text-left text-red-400 text-sm">{errors?.addedProfessionPosition.message}</span>
-                                        )}
-                                    </h1>
-                                </section>
-                                <section>
-                                    <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
-                                        <input
-                                            {...register(`professions.${index}.addedProfessionInstitute`, {
-                                                required: {
-                                                    value: true,
-                                                    message: "Institution is required",
-                                                },
-                                            })}
-                                            type="text"
-                                            placeholder="Institution"
-                                            className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
-                                            id="institute"
-                                        />
-                                    </div>
-                                    <h1 className="text-left ml-2">
-                                        {errors.addedProfessionInstitute?.type === "required" && (
-                                            <span className="w-full text-left text-red-400 text-sm">{errors?.addedProfessionInstitute.message}</span>
-                                        )}
-                                    </h1>
-                                </section>
-                                <section>
-                                    <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
-                                        <RangePicker
-                                            {...register(`professions.${index}.addedProfessionWorkPeriod`)}
-                                            placeholder={["Start Date", "End Date"]}
-                                            className="flex-1 px-2 py-[10px] outline-none h-full bg-transparent text-sm text-gray-400"
-                                            id="workPeriod"
-                                            bordered={false}
-                                            onChange={onAddedWorkPeriodChange}
-                                        />
-                                    </div>
-                                    <h1 className="text-left ml-2">
-                                        {errors.addedProfessionWorkPeriod?.type === "required" && (
-                                            <span className="w-full text-left text-red-400 text-sm">{errors?.addedProfessionWorkPeriod.message}</span>
-                                        )}
-                                    </h1>
-                                </section>
-                                <section>
-                                    <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
-                                        <input
-                                            {...register(`professions.${index}.addedProfessionAchievement`, {
-                                                required: {
-                                                    value: true,
-                                                    message: "Special Professional Achievement is required",
-                                                },
-                                            })}
-                                            type="text"
-                                            placeholder="Special Achievement"
-                                            className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
-                                            id="specialProfessionalAchievement"
-                                        />
-                                    </div>
-                                    <h1 className="text-left ml-2">
-                                        {errors.addedProfessionAchievement?.type === "required" && (
-                                            <span className="w-full text-left text-red-400 text-sm">
-                                                {errors?.addedProfessionAchievement.message}
-                                            </span>
-                                        )}
-                                    </h1>
-                                </section>
-                                <section>
-                                    <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
-                                        <AiOutlineCloudUpload className=" mr-2 text-gray-400" />
-                                        <label
-                                            htmlFor="addedProfessionAchievementMoment"
-                                            className="outline-none h-full text-sm text-gray-400 bg-gray-100"
-                                        >
-                                            {addedAchievementMoment.length > 0 ? (
-                                                <>
-                                                    <span className="text-green-400">Moments new added</span>
-                                                </>
-                                            ) : (
-                                                "Upload new Achievement Moments"
-                                            )}
-                                        </label>
-                                        <input
-                                            {...register(`professions.${index}.addedProfessionAchievementMoment`)}
-                                            type="file"
-                                            id="addedProfessionAchievementMoment"
-                                            className="hidden"
-                                            onChange={addedProfessionAchievementMomentHandler}
-                                        />
-                                    </div>
-                                </section>
-                                <button
-                                    className="p-3 text-sm text-center font-medium bg-red-100 text-red-500 rounded-lg"
-                                    type="button"
-                                    onClick={() => remove(index)}
-                                >
-                                    Remove
-                                </button>
-                            </section>
-                        );
-                    })}
-                    <button
-                        type="button"
-                        className="p-3 text-sm text-center font-medium text-gray-400 bg-gray-100 rounded-lg"
-                        onClick={() => {
-                            append({
-                                addedProfessionPosition: "",
-                                addedProfessionInstitute: "",
-                                addedProfessionWorkPeriod: "",
-                                addedProfessionAchievement: "",
-                                addedProfessionAchievementMoment: "",
-                            });
-                        }}
-                    >
-                        + Add More Professional Experience
-                    </button>
-
-                    {/* ------------------------ Current profession field end ------------------------ */}
-
-                    {/* ---------------------- Highest education qualification start --------------------- */}
-
-                    {/* ---------- Education info ---------- */}
-                    <section className="col-span-1 md:col-span-2 lg:col-span-3 text-[#2F3659] font-medium text-left ml-1">
-                        Highest Educational Info
-                    </section>
-                    {/* ---------- Degree Name ---------- */}
-                    <section>
-                        <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
-                            <CreatableSelect
-                                {...register("degreeName")}
-                                onChange={val => setDegreeName(val.value)}
-                                type="text"
-                                placeholder="Degree Name"
-                                // options={options}
-                                styles={{
-                                    control: (baseStyles, state) => ({
-                                        ...baseStyles,
-                                        backgroundColor: "transparent",
-                                        border: "none",
-                                        textAlign: "left",
-                                        fontSize: "14px",
-                                        color: "#9CA3AF",
-                                    }),
-                                }}
-                                className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
-                                id="degreeName"
-                            />
-                        </div>
-                        <h1 className="text-left ml-2">
-                            {errors.degreeName?.type === "required" && (
-                                <span className="w-full text-left text-red-400 text-sm">{errors?.degreeName.message}</span>
-                            )}
-                        </h1>
-                    </section>
-                    {/* ---------- Institution ---------- */}
-                    <section>
-                        <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
-                            <CreatableSelect
-                                {...register("eduInstitute")}
-                                onChange={val => setEduInstitute(val.value)}
-                                type="text"
-                                placeholder="Institution"
-                                // options={options}
-                                styles={{
-                                    control: (baseStyles, state) => ({
-                                        ...baseStyles,
-                                        backgroundColor: "transparent",
-                                        border: "none",
-                                        textAlign: "left",
-                                        fontSize: "14px",
-                                        color: "#9CA3AF",
-                                    }),
-                                }}
-                                className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
-                                id="institute"
-                            />
-                        </div>
-                    </section>
-                    {/* ---------- Department Name ---------- */}
-                    <section>
-                        <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
-                            <CreatableSelect
-                                {...register("eduDepartment")}
-                                onChange={val => setEduDepartment(val.value)}
-                                type="text"
-                                placeholder="Department Name"
-                                // options={options}
-                                styles={{
-                                    control: (baseStyles, state) => ({
-                                        ...baseStyles,
-                                        backgroundColor: "transparent",
-                                        border: "none",
-                                        textAlign: "left",
-                                        fontSize: "14px",
-                                        color: "#9CA3AF",
-                                    }),
-                                }}
-                                className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
-                                id="Department"
-                            />
-                        </div>
-                        {/* <h1 className="text-left ml-2">
-                            {errors.Department?.type === "required" && (
-                                <span className="w-full text-left text-red-400 text-sm">{errors?.Department.message}</span>
-                            )}
-                        </h1> */}
-                    </section>
-                    {/* ---------- Field of Study ---------- */}
-                    <section>
-                        <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
-                            <CreatableSelect
-                                {...register("eduFieldOfStudy")}
-                                onChange={val => setEduFieldOfStudy(val.value)}
-                                type="text"
-                                placeholder="Field of Study"
-                                // options={options}
-                                styles={{
-                                    control: (baseStyles, state) => ({
-                                        ...baseStyles,
-                                        backgroundColor: "transparent",
-                                        border: "none",
-                                        textAlign: "left",
-                                        fontSize: "14px",
-                                        color: "#9CA3AF",
-                                    }),
-                                }}
-                                className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
-                                id="fieldOfStudy"
-                            />
-                        </div>
-                        {/* <h1 className="text-left ml-2">
-                            {errors.fieldOfStudy?.type === "required" && (
-                                <span className="w-full text-left text-red-400 text-sm">{errors?.fieldOfStudy.message}</span>
-                            )}
-                        </h1> */}
-                    </section>
-                    {/* ---------- Year of Passing ---------- */}
-                    <section>
-                        <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
-                            <DatePicker
-                                {...register("eduYearOfPassing")}
-                                onChange={(date, dateString) => setEduYearOfPassing(dateString)}
-                                placeholder="Year of Passing"
-                                className="flex-1 px-2 py-2 outline-none h-full bg-transparent text-sm text-gray-400"
-                                id="yearOfPassing"
-                                bordered={false}
-                            />
-                        </div>
-                        {/* <h1 className="text-left ml-2">
-                            {errors.yearOfPassing?.type === "required" && (
-                                <span className="w-full text-left text-red-400 text-sm">{errors?.yearOfPassing.message}</span>
-                            )}
-                        </h1> */}
-                    </section>
-                    {/* ---------- Special Educational Achievement ---------- */}
-                    <section>
-                        <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
-                            <input
-                                {...register("specialEducationalAchievement", {
-                                    required: {
-                                        value: true,
-                                        message: "Special Educational Achievement is required",
-                                    },
-                                })}
-                                type="text"
-                                placeholder="Special Achievement"
-                                className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
-                                id="specialEducationalAchievement"
-                            />
-                        </div>
-                        <h1 className="text-left ml-2">
-                            {errors.specialEducationalAchievement?.type === "required" && (
-                                <span className="w-full text-left text-red-400 text-sm">{errors?.specialEducationalAchievement.message}</span>
-                            )}
-                        </h1>
-                    </section>
-                    {/* ---------- Educational Achievement Moment ---------- */}
-                    <section>
-                        <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
-                            <AiOutlineCloudUpload className=" mr-2 text-gray-400" />
-                            <label htmlFor="educationalAchievementMoment" className="outline-none h-full text-sm text-gray-400 bg-gray-100">
-                                {educationalAchievementMoment ? (
-                                    <>
-                                        <span className="text-green-400">Moments added</span>
-                                    </>
-                                ) : (
-                                    "Upload Achievement Moments"
-                                )}
-                            </label>
-                            <input
-                                {...register("educationalAchievementMoment")}
-                                type="file"
-                                id="educationalAchievementMoment"
-                                className="hidden"
-                                onChange={educationalAchievementMomentHandler}
-                            />
-                        </div>
-                    </section>
-
-                    {/* --------------------- Highest education qualification end ---------------------- */}
-
-                    {/* ---------- Physical info ---------- */}
-                    <section className="col-span-1 md:col-span-2 lg:col-span-3 text-[#2F3659] font-medium text-left ml-1">Physical Info</section>
-                    {/* ---------- Height ---------- */}
-                    <section>
-                        <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
-                            <input
-                                {...register("height", {
-                                    required: {
-                                        value: true,
-                                        message: "Height is required",
-                                    },
-                                })}
-                                type="text"
-                                placeholder="Height"
-                                className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
-                                id="height"
-                            />
-                        </div>
-                        <h1 className="text-left ml-2">
-                            {errors.height?.type === "required" && (
-                                <span className="w-full text-left text-red-400 text-sm">{errors?.height.message}</span>
-                            )}
-                        </h1>
-                    </section>
-                    {/* ---------- Weight ---------- */}
-                    <section>
-                        <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
-                            <input
-                                {...register("weight", {
-                                    required: {
-                                        value: true,
-                                        message: "Weight is required",
-                                    },
-                                })}
-                                type="text"
-                                placeholder="Weight"
-                                className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
-                                id="weight"
-                            />
-                        </div>
-                        <h1 className="text-left ml-2">
-                            {errors.weight?.type === "required" && (
-                                <span className="w-full text-left text-red-400 text-sm">{errors?.weight.message}</span>
-                            )}
-                        </h1>
-                    </section>
-                    {/* ---------- Ancestry ---------- */}
-                    <section>
-                        <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
-                            <CreatableSelect
-                                {...register("phyAncestry")}
-                                onChange={val => setPhyAncestry(val.value)}
-                                type="text"
-                                placeholder="Ancestry"
-                                options={ancestryData}
-                                styles={{
-                                    control: (baseStyles, state) => ({
-                                        ...baseStyles,
-                                        backgroundColor: "transparent",
-                                        border: "none",
-                                        textAlign: "left",
-                                        fontSize: "14px",
-                                        color: "#9CA3AF",
-                                    }),
-                                }}
-                                className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
-                                id="ancestry"
-                            />
-                        </div>
-                    </section>
-                    {/* ---------- Skin Tone ---------- */}
-                    <section>
-                        <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
-                            <CreatableSelect
-                                {...register("phySkinTone")}
-                                onChange={val => setPhySkinTone(val.value)}
-                                type="text"
-                                placeholder="Skin Tone"
-                                options={[
-                                    {
-                                        value: "Dark",
-                                        label: "Dark",
-                                    },
-                                    {
-                                        value: "Brown",
-                                        label: "Brown",
-                                    },
-                                    {
-                                        value: "White",
-                                        label: "White",
-                                    },
-                                ]}
-                                styles={{
-                                    control: (baseStyles, state) => ({
-                                        ...baseStyles,
-                                        backgroundColor: "transparent",
-                                        border: "none",
-                                        textAlign: "left",
-                                        fontSize: "14px",
-                                        color: "#9CA3AF",
-                                    }),
-                                }}
-                                className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
-                                id="SkinTone"
-                            />
-                        </div>
-                    </section>
-                    {/* ---------- Hair Color ---------- */}
-                    <section>
-                        <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
-                            <CreatableSelect
-                                {...register("phyHairColor")}
-                                onChange={val => setPhyHairColor(val.value)}
-                                type="text"
-                                placeholder="Hair Color"
-                                // options={options}
-                                styles={{
-                                    control: (baseStyles, state) => ({
-                                        ...baseStyles,
-                                        backgroundColor: "transparent",
-                                        border: "none",
-                                        textAlign: "left",
-                                        fontSize: "14px",
-                                        color: "#9CA3AF",
-                                    }),
-                                }}
-                                className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
-                                id="hairColour"
-                            />
-                        </div>
-                    </section>
-                    {/* ---------- Hair Type ---------- */}
-                    <section>
-                        <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
-                            <CreatableSelect
-                                {...register("phyHairType")}
-                                onChange={val => setPhyHairType(val.value)}
-                                type="text"
-                                placeholder="Hair Type"
-                                // options={options}
-                                styles={{
-                                    control: (baseStyles, state) => ({
-                                        ...baseStyles,
-                                        backgroundColor: "transparent",
-                                        border: "none",
-                                        textAlign: "left",
-                                        fontSize: "14px",
-                                        color: "#9CA3AF",
-                                    }),
-                                }}
-                                className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
-                                id="hairType"
-                            />
-                        </div>
-                    </section>
-                    {/* ---------- Eye Color ---------- */}
-                    <section>
-                        <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
-                            <CreatableSelect
-                                {...register("phyEyeColor")}
-                                onChange={val => setPhyEyeColor(val.value)}
-                                type="text"
-                                placeholder="Eye Color"
-                                // options={options}
-                                styles={{
-                                    control: (baseStyles, state) => ({
-                                        ...baseStyles,
-                                        backgroundColor: "transparent",
-                                        border: "none",
-                                        textAlign: "left",
-                                        fontSize: "14px",
-                                        color: "#9CA3AF",
-                                    }),
-                                }}
-                                className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
-                                id="eyeColor"
-                            />
-                        </div>
-                    </section>
-                    {/* ---------- Number of Teeth ---------- */}
-                    <section>
-                        <div className="flex items-center bg-gray-100 w-full rounded-lg mt-3 lg:mt-0">
-                            <CreatableSelect
-                                {...register("phyNumberTeeth")}
-                                onChange={val => setPhyNumberTeeth(val.value)}
-                                type="number"
-                                placeholder="Number of Teeth"
-                                // options={options}
-                                styles={{
-                                    control: (baseStyles, state) => ({
-                                        ...baseStyles,
-                                        backgroundColor: "transparent",
-                                        border: "none",
-                                        textAlign: "left",
-                                        fontSize: "14px",
-                                        color: "#9CA3AF",
-                                    }),
-                                }}
-                                className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
-                                id="numberOfTeeth"
-                            />
-                        </div>
-                    </section>
                     {/* ---------- Parents Status Info Start ---------- */}
                     <section className="col-span-1 md:col-span-2 lg:col-span-3 text-[#2F3659] font-medium text-left ml-1">Family Member Info</section>
                     {/* ---------- Status ---------- */}
                     <section>
                         <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
                             <select
-                                {...register("parentStatus", {
+                                {...register("isParentsAlive", {
                                     required: {
                                         value: true,
                                         message: "Answer is required",
@@ -2147,7 +1397,7 @@ export const PersonalDetails = ({ setPage }) => {
                                 })}
                                 type="text"
                                 className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
-                                id="parentStatus"
+                                id="isParentsAlive"
                             >
                                 <option value="">Parents status?</option>
                                 <option value="yes">Yes</option>
@@ -2157,8 +1407,8 @@ export const PersonalDetails = ({ setPage }) => {
                             </select>
                         </div>
                         <h1 className="text-left ml-2">
-                            {errors.parentStatus?.type === "required" && (
-                                <span className="w-full text-left text-red-400 text-sm">{errors?.parentStatus.message}</span>
+                            {errors.isParentsAlive?.type === "required" && (
+                                <span className="w-full text-left text-red-400 text-sm">{errors?.isParentsAlive.message}</span>
                             )}
                         </h1>
                     </section>
@@ -2382,16 +1632,16 @@ export const PersonalDetails = ({ setPage }) => {
                     <section>
                         <div className="flex items-center bg-gray-100  w-full rounded-lg mt-3 lg:mt-0">
                             <Controller
-                                {...register("userHobbies")}
+                                {...register("hobbies")}
                                 control={control}
-                                name="userHobbies"
+                                name="hobbies"
                                 render={({ field: { onChange, value, ref } }) => (
                                     <Select
-                                        onChange={val => onChange(val.map(hobby => setUserHobbies([...userHobbies, hobby.value])))}
+                                        onChange={val => onChange(val.map(hobby => setHobbies([...hobbies, hobby.value])))}
                                         closeMenuOnSelect={false}
                                         components={animatedComponents}
                                         isMulti
-                                        options={hobbies}
+                                        options={hobbiesData}
                                         className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
                                         placeholder="Select Hobbies"
                                         styles={{
@@ -2427,128 +1677,34 @@ export const PersonalDetails = ({ setPage }) => {
                         </h1>
                     </section>
                     {/* ---------- What are you looking for ---------- */}
-                    <section>
-                        <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
-                            <select
-                                {...register("whatAreYouLookingFor", {
-                                    required: {
-                                        value: true,
-                                        message: "Answer is required",
-                                    },
-                                })}
-                                type="text"
-                                className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
-                                id="whatAreYouLookingFor"
-                            >
-                                <option value="">What Are You Looking For?</option>
-                                <option value="men">Men</option>
-                                <option value="women">Women</option>
-                            </select>
-                        </div>
-                        <h1 className="text-left ml-2">
-                            {errors.whatAreYouLookingFor?.type === "required" && (
-                                <span className="w-full text-left text-red-400 text-sm">{errors?.whatAreYouLookingFor.message}</span>
-                            )}
-                        </h1>
-                    </section>
-
-                    {/* -------------------- Professional Details field -------------------- */}
-
-                    {/* ---------- Extra ---------- */}
-                    <section className="col-span-1 md:col-span-2 lg:col-span-3 text-[#2F3659] font-medium text-left ml-1">Professional Info</section>
-                    {/* ---------- Year of Experience ---------- */}
-                    <section>
-                        <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
-                            <input
-                                {...register("yearOfExperience")}
-                                type="number"
-                                placeholder="Year of Experience"
-                                className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
-                                id="yearOfExperience"
-                            />
-                        </div>
-                        <h1 className="text-left ml-2">
-                            {errors.yearOfExperience?.type === "required" && (
-                                <span className="w-full text-left text-red-400 text-sm">{errors?.yearOfExperience.message}</span>
-                            )}
-                        </h1>
-                    </section>
-                    {/* ---------- Office Location ---------- */}
-                    <section>
-                        <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
-                            <input
-                                {...register("officeLocation")}
-                                type="text"
-                                placeholder="Office Location"
-                                className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
-                                id="officeLocation"
-                            />
-                        </div>
-                        <h1 className="text-left ml-2">
-                            {errors.officeLocation?.type === "required" && (
-                                <span className="w-full text-left text-red-400 text-sm">{errors?.officeLocation.message}</span>
-                            )}
-                        </h1>
-                    </section>
-                    {/* ---------- Service Category ---------- */}
-                    <section>
-                        <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
-                            <input
-                                {...register("serviceCategory")}
-                                type="text"
-                                placeholder="Service Category"
-                                className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
-                                id="serviceCategory"
-                            />
-                        </div>
-                        <h1 className="text-left ml-2">
-                            {errors.serviceCategory?.type === "required" && (
-                                <span className="w-full text-left text-red-400 text-sm">{errors?.serviceCategory.message}</span>
-                            )}
-                        </h1>
-                    </section>
-                    {/* ---------- Your Provided Service ---------- */}
-                    <section>
-                        <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
-                            <input
-                                {...register("serviceProvide")}
-                                type="text"
-                                placeholder="Your Provided Service"
-                                className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
-                                id="serviceProvide"
-                            />
-                        </div>
-                        <h1 className="text-left ml-2">
-                            {errors.serviceProvide?.type === "required" && (
-                                <span className="w-full text-left text-red-400 text-sm">{errors?.serviceProvide.message}</span>
-                            )}
-                        </h1>
-                    </section>
-                    {/* ---------- Monthly Income ---------- */}
-                    <section>
-                        <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
-                            <input
-                                {...register("monthlyIncome")}
-                                type="text"
-                                placeholder="Monthly Income"
-                                className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
-                                id="monthlyIncome"
-                            />
-                        </div>
-                        <h1 className="text-left ml-2">
-                            {errors.monthlyIncome?.type === "required" && (
-                                <span className="w-full text-left text-red-400 text-sm">{errors?.monthlyIncome.message}</span>
-                            )}
-                        </h1>
-                    </section>
+                    {role === "member" && (
+                        <section>
+                            <div className="flex items-center bg-gray-100 p-3 w-full rounded-lg mt-3 lg:mt-0">
+                                <select
+                                    {...register("whatAreYouLookingFor", {
+                                        required: {
+                                            value: true,
+                                            message: "Answer is required",
+                                        },
+                                    })}
+                                    type="text"
+                                    className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
+                                    id="whatAreYouLookingFor"
+                                >
+                                    <option value="">What Are You Looking For?</option>
+                                    <option value="man">Men</option>
+                                    <option value="woman">Women</option>
+                                </select>
+                            </div>
+                            <h1 className="text-left ml-2">
+                                {errors.whatAreYouLookingFor?.type === "required" && (
+                                    <span className="w-full text-left text-red-400 text-sm">{errors?.whatAreYouLookingFor.message}</span>
+                                )}
+                            </h1>
+                        </section>
+                    )}
                 </section>
                 <div className="flex items-center w-full justify-center gap-x-[20px] mt-[20px]">
-                    <button
-                        className="border-2 cursor-pointer mt-3 border-primary hover:border-0 rounded-full px-12 py-2 hover:bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] hover:text-white duration-500 transition-all"
-                        onClick={() => setPage(1)}
-                    >
-                        Previous
-                    </button>
                     <input
                         type="submit"
                         value={isLoading ? "Saving..." : "Next"}

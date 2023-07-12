@@ -1,30 +1,45 @@
+// configuration, ex: react-router
 import React, { useEffect, useState } from "react";
-import { useCreateUserWithEmailAndPassword, useSignInWithGoogle, useUpdateProfile } from "react-firebase-hooks/auth";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+
+// Third party packages, ex: redux
+import { Select } from "antd";
+import { useSignInWithGoogle } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
 import { AiOutlineIdcard } from "react-icons/ai";
+import { BsFillArrowLeftCircleFill } from "react-icons/bs";
 import { FaGoogle, FaRegEnvelope, FaRegUser } from "react-icons/fa";
+import { ImUsers } from "react-icons/im";
 import { MdLockOutline, MdPhone } from "react-icons/md";
 import { useDispatch } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
-import "../../../App.css";
+
+// components
 import logo from "../../../assets/images/Logo/logoBlack.png";
 import { auth } from "../../../firebase.init";
+import setCookie from "../../../Helper/cookies/setCookie";
 import { useRegAsMemberMutation } from "../../../Redux/features/userInfo/userApi";
 import { loadUserData } from "../../../Redux/features/userInfo/userInfo";
 import Error from "../../ui/error/Error";
 import { TextField } from "./InputFields/TextField";
 import MobileSignUp from "./MobileDesign/MobileSignUp";
 
-const Signup = () => {
-    const [regAsMember, { data: response, isLoading: serverLoading }] = useRegAsMemberMutation();
-    const [customError, setCustomError] = useState("");
-    const [createUserWithEmailAndPassword, user, loading, error] = useCreateUserWithEmailAndPassword(auth);
-    const [signInWithGoogle, googleUser, googleLoading] = useSignInWithGoogle(auth);
-    const [updateProfile, updating] = useUpdateProfile(auth);
-    const [gender, setGender] = useState("");
+// css files
+import "../../../App.css";
+import "../../../assets/css/SignUp.css";
+import { EmailField } from "./InputFields/EmailField";
 
+const Signup = () => {
+    // hook variables
+    const [regAsMember, { data: response, isLoading: serverLoading, error }] = useRegAsMemberMutation();
+    const [signInWithGoogle, user] = useSignInWithGoogle(auth);
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const [agreement, setAgreement] = useState(false);
+
+    // state declarations
+    const [gender, setGender] = useState("");
+    const [customError, setCustomError] = useState("");
+    const searchParams = new URLSearchParams(useLocation().search);
 
     const {
         register,
@@ -33,44 +48,89 @@ const Signup = () => {
         reset,
     } = useForm();
 
-    const emailHandler = () => {
-        setCustomError("");
-    };
-
-    const onSubmit = async data => {
-        data.role = "member";
-        data.gender = gender;
-        console.log(data);
-        // Implement firebase registration
-        await createUserWithEmailAndPassword(data.email, data.password);
-        await updateProfile({ displayName: data.firstName + " " + data.lastName });
-        await regAsMember(data);
-    };
-
     useEffect(() => {
         if (response) {
-            localStorage.setItem("accessToken", response?.data?.token);
-            dispatch(loadUserData(response));
+            setCookie("token", response?.data?.token);
+            dispatch(loadUserData(response?.data));
             reset();
-            navigate("/userProfile");
         }
-    }, [response, dispatch, reset, navigate, user, googleUser]);
+        if (response?.data?.user?.googleLogin === false) {
+            navigate("/otp");
+        } else if (response?.data?.user?.googleLogin === true) {
+            navigate("/registration-info");
+        }
+    }, [response, dispatch, reset, navigate]);
 
     useEffect(() => {
-        if (error?.message === "Firebase: Error (auth/email-already-in-use).") {
-            setCustomError("email already in use");
+        if (user) {
+            const userEmail = user?.user?.email;
+            const data = {
+                email: userEmail,
+                googleLogin: true,
+            };
+
+            regAsMember({ data: data, ref: ref || "" });
+        }
+    }, [user, regAsMember]);
+
+    useEffect(() => {
+        if (error) {
+            setCustomError(error?.data?.message);
         }
     }, [error]);
 
+    // function handler
+    const emailHandler = () => {
+        setCustomError("");
+    };
+    const passwordAndCOnfirmPasswordHandler = () => {
+        setCustomError("");
+    };
+
+    const NidOrPassportNumberHandler = () => {
+        setCustomError("");
+    };
+
+    const handleAgreement = e => {
+        setCustomError("");
+        setAgreement(e.target.checked);
+    };
+
+    // query
+    const ref = searchParams.get("ref");
+
+    const onSubmit = async data => {
+        if (!agreement) {
+            setCustomError("Please agree to the terms and conditions");
+            return;
+        }
+        if (data.password !== data.confirmPassword) {
+            setCustomError("Passwords do not match");
+            return;
+        }
+        data.role = "member";
+        data.gender = gender;
+        await regAsMember({
+            data: data,
+            ref: ref || "",
+        });
+    };
+
     return (
-        <div>
-            <div className="min-h-screen hidden md:block">
+        <div className="hidden md:block">
+            <div className="min-h-screen">
                 <section className="flex justify-center items-center w-full flex-1 text-center px-3 md:px-20  min-h-screen">
                     <div className="bg-white rounded-2xl shadow-2xl lg:flex w-[100%] md:w-3/4 lg:w-4/5 max-w-6xl relative">
                         <div className="w-full lg:w-3/5 p-5 my-auto">
                             <div className="text-left font-bold">
                                 <span className="gradient_text font-george">
-                                    <img className="w-[150px]" src={logo} alt="logo" crossOrigin="anonymous" />
+                                    <img
+                                        onClick={() => navigate("/")}
+                                        className="w-[150px] cursor-pointer"
+                                        src={logo}
+                                        alt="logo"
+                                        crossOrigin="anonymous"
+                                    />
                                 </span>
                             </div>
                             <div className="py-10">
@@ -99,83 +159,28 @@ const Signup = () => {
                                                 requiredMessage: "First name is required",
                                             }}
                                         />
-                                        {/* <section>
-                                            <div className="flex items-center bg-gray-100 p-2 w-full rounded-xl">
-                                                <FaRegUser className=" m-2 text-gray-400" />
-                                                <input
-                                                    {...register("firstName", {
-                                                        required: {
-                                                            value: true,
-                                                            message: "First name is required",
-                                                        },
-                                                    })}
-                                                    type="text"
-                                                    placeholder="First name"
-                                                    className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
-                                                    id="firstName"
-                                                />
-                                            </div>
-                                            <h1 className="text-left ml-2">
-                                                {errors.firstName?.type === "required" && (
-                                                    <span className="w-full text-left text-red-400 text-sm">{errors?.firstName.message}</span>
-                                                )}
-                                            </h1>
-                                        </section>{" "}
-                                        first name field */}
-                                        <section>
-                                            <div className="flex items-center bg-gray-100 p-2 w-full rounded-xl mt-3 lg:mt-0">
-                                                <FaRegUser className=" m-2 text-gray-400" />
-                                                <input
-                                                    {...register("lastName", {
-                                                        required: {
-                                                            value: true,
-                                                            message: "Last name is required",
-                                                        },
-                                                    })}
-                                                    type="text"
-                                                    placeholder="Last name"
-                                                    className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
-                                                    id="lastName"
-                                                />
-                                            </div>
-                                            <h1 className="text-left ml-2">
-                                                {errors.lastName?.type === "required" && (
-                                                    <span className="w-full text-left text-red-400 text-sm">{errors?.lastName.message}</span>
-                                                )}
-                                            </h1>
-                                        </section>{" "}
-                                        {/*last name field*/}
-                                        <section>
-                                            <div className="flex items-center bg-gray-100 p-2 w-full rounded-xl mt-3">
-                                                <FaRegEnvelope className=" m-2 text-gray-400" />
-                                                <input
-                                                    {...register("email", {
-                                                        required: {
-                                                            value: true,
-                                                            message: "Email is required",
-                                                        },
-                                                        pattern: {
-                                                            value: /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/,
-                                                            message: "Provide a Valid Email",
-                                                        },
-                                                    })}
-                                                    type="email"
-                                                    placeholder="Email"
-                                                    className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
-                                                    onChange={emailHandler}
-                                                    id="email"
-                                                />
-                                            </div>
-                                            <h1 className="text-left ml-2">
-                                                {errors.email?.type === "required" && (
-                                                    <span className="w-full text-left text-red-400 text-sm">{errors?.email.message}</span>
-                                                )}
-                                                {errors.email?.type === "pattern" && (
-                                                    <span className="w-full text-left text-red-400 text-sm">{errors?.email.message}</span>
-                                                )}
-                                            </h1>
-                                        </section>
-                                        {/*Email field*/}
+                                        <TextField
+                                            {...{
+                                                register,
+                                                errors,
+                                                icon: <FaRegUser className=" m-2 text-gray-400" />,
+                                                id: "lastName",
+                                                placeholder: "Last name",
+                                                name: "lastName",
+                                                requiredMessage: "Last name is required",
+                                            }}
+                                        />
+                                        <EmailField
+                                            {...{
+                                                register,
+                                                errors,
+                                                icon: <FaRegEnvelope className=" m-2 text-gray-400" />,
+                                                placeholder: "Email",
+                                                emailHandler,
+                                                name: "email",
+                                                id: "email",
+                                            }}
+                                        />
                                         <section>
                                             <div className="flex items-center bg-gray-100 p-2 w-full rounded-xl mt-3">
                                                 <MdPhone className=" m-2 text-gray-400" />
@@ -217,6 +222,7 @@ const Signup = () => {
                                                     placeholder="NID or Passport Number"
                                                     className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
                                                     id="NidOrPassportNumber"
+                                                    onChange={NidOrPassportNumberHandler}
                                                 />
                                             </div>
                                             <h1 className="text-left ml-2">
@@ -251,6 +257,7 @@ const Signup = () => {
                                                     placeholder="Password"
                                                     className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
                                                     id="password"
+                                                    onChange={passwordAndCOnfirmPasswordHandler}
                                                 />
                                             </div>
                                             <h1 className="text-left ml-2">
@@ -280,6 +287,7 @@ const Signup = () => {
                                                     placeholder="Confirm Password"
                                                     className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
                                                     id="confirmPassword"
+                                                    onChange={passwordAndCOnfirmPasswordHandler}
                                                 />
                                             </div>
                                             <h1 className="text-left ml-2">
@@ -291,34 +299,49 @@ const Signup = () => {
                                                 )}
                                             </h1>
                                         </section>
-                                        <section>
-                                            <div className="flex items-center bg-gray-100 p-2 w-full rounded-xl mt-3">
-                                                <MdLockOutline className=" m-2 text-gray-400" />
-                                                <select
-                                                    name="gender"
-                                                    id="gender"
+                                        <section className="relative">
+                                            <div className="flex items-center bg-gray-100 w-full p-2 rounded-xl mt-3">
+                                                <ImUsers className=" m-2 text-gray-400 absolute left-[8px]" />
+                                                <Select
                                                     className="flex-1 outline-none h-full bg-transparent text-sm text-gray-400"
-                                                    required
-                                                    onChange={e => setGender(e.target.value)}
-                                                >
-                                                    <option value="">Select Gender</option>
-                                                    <option value="man">Man</option>
-                                                    <option value="woman">Women</option>
-                                                </select>
+                                                    bordered={false}
+                                                    onSelect={value => setGender(value)}
+                                                    allowClear
+                                                    placeholder="Select Gender"
+                                                    options={[
+                                                        {
+                                                            value: "man",
+                                                            label: "Man",
+                                                        },
+                                                        {
+                                                            value: "woman",
+                                                            label: "Women",
+                                                        },
+                                                    ]}
+                                                ></Select>
                                             </div>
-                                            <h1 className="text-left ml-2">
-                                                {errors.image?.type === "required" && (
-                                                    <span className="w-full text-left text-red-400 text-sm">{errors?.image.message}</span>
-                                                )}
-                                            </h1>
-                                        </section>{" "}
-                                        {/*attach file*/}
-                                        <div className="col-span-2">{customError && <Error message={customError} />}</div>
+                                        </section>
+
+                                        <section className="col-span-2 items-center mt-3 pl-2">
+                                            <div className="flex h-full items-center">
+                                                <input type="checkbox" name="" className="mr-2" onChange={handleAgreement} />{" "}
+                                                <p className="text-[#1E2022] text-[14px]">
+                                                    {" "}
+                                                    By continuing, you agree to our{" "}
+                                                    <span className="text-blue-700 cursor-pointer">Terms of Service</span> and{" "}
+                                                    <span className="text-blue-700 cursor-pointer" onClick={() => navigate("/privacy-policy")}>
+                                                        Privacy Policy
+                                                    </span>
+                                                </p>
+                                            </div>
+                                        </section>
+                                        <div className="col-span-2 w-full">{customError && <Error message={customError} />}</div>
                                         <div className="col-span-2">
                                             <input
                                                 type="submit"
-                                                value={loading || updating || googleLoading || serverLoading ? "Loading..." : "SIGN UP"}
+                                                value={serverLoading ? "Loading..." : "SIGN UP"}
                                                 className="border-2 cursor-pointer mt-6 border-primary hover:border-0 rounded-full px-12 py-2 hover:bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] hover:text-white duration-500 transition-all"
+                                                disabled={serverLoading}
                                             />
                                         </div>
                                     </form>
@@ -344,7 +367,10 @@ const Signup = () => {
                             </Link>
                         </div>
                         {/*Sign in section */}
-                        <div className="hidden md:block bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] lg:w-2/5 p-5 text-white rounded-tr-2xl rounded-br-2xl md:py-36 md:px-4 lg:px-12">
+                        <div className="hidden md:block bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] lg:w-2/5 p-5 text-white rounded-tr-2xl rounded-br-2xl md:py-36 md:px-4 lg:px-12 relative">
+                            <div onClick={() => navigate("/")} className="absolute top-4 right-4">
+                                <BsFillArrowLeftCircleFill className="text-3xl cursor-pointer" />
+                            </div>
                             <h2 className="font-bold text-3xl mb-2">Hello, Friend!</h2>
                             <div className="border-2 w-10 border-white inline-block"></div>
                             <p className="mb-4">If you have already an account </p>

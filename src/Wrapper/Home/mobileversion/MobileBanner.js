@@ -1,32 +1,28 @@
-import React from 'react'
-import Slider from "react-slick";
+// Configuration
+import React, { useState } from "react";
+import { decodeToken } from "react-jwt";
+
+// Third party packages
+import BannerProfile from "../../../components/pages/Home/Banner/BannerProfile";
+import GoPremiumCard from "../../../components/pages/Home/Banner/GoPrimiumCard";
+import getCookie from "../../../Helper/cookies/getCookie";
+import UnLoggedMovBanner from "./UnLoggedMovBanner";
 
 export const MobileBanner = () => {
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1
-  };
+  const [swapable, setSwapable] = useState(true);
+  const token = getCookie("token");
+  const decodedValue = decodeToken(token);
+  const { role } = decodedValue || {};
   return (
-    <div className='mt-8'>
-      <Slider {...settings}>
-        <div>
-          <img src='https://i.ibb.co/FDC2838/Rectangle-4464.png' className='mx-auto' alt="Not Available"></img>
-
+    <div>
+      {role?.includes("member") ? (
+        <div className="mt-8 px-6">
+          {swapable && <BannerProfile {...{ setSwapable }} />}
+          {!swapable && <GoPremiumCard />}
         </div>
-        <div>
-          <h3>2</h3>
-        </div>
-        <div>
-          <h3>3</h3>
-        </div>
-        <div>
-          <h3>4</h3>
-        </div>
-
-      </Slider>
+      ) : (
+        <UnLoggedMovBanner />
+      )}
     </div>
-  )
-}
+  );
+};

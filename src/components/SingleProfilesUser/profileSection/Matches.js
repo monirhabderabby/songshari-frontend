@@ -1,51 +1,71 @@
-import React from "react";
-import { useState } from "react";
-import { BiUserCircle } from "react-icons/bi";
-import { TbMessage } from "react-icons/tb";
-import { ageCalculator } from "../../../assets/utilities/AgeCalculation/ageCalculator";
-import { useGetMatchedUsersQuery } from "../../../Redux/features/connections/connectionApi";
+// normal import
+import React, { useState } from "react";
+
+// 3rd party package
+// import { FiUsers } from "react-icons/fi";
+
+// components import
+import { MatchesLoader } from "../../shared/Cards/Loader/Matches/MatchesLoader";
 import MatchersModalForm from "../MatchPreference/MatchersModalForm";
+
+// css files
+import useDocumentTitle from "../../../assets/utilities/useDocumentTitle";
+import { useGetMatchPreferencesQuery } from "../../../Redux/features/MatchesPreferences/matchesPreferenceApi";
+import { MatchesDesktopCard } from "../../shared/Cards/Matches/MatchesDesktopCard";
 import "./Matches.css";
+import { useEffect } from "react";
 
-export const Matches = () => {
-    const { data, isLoading, error } = useGetMatchedUsersQuery();
-    const [mathchesModalOpen, setMatchesModalOpen] = useState(false);
-    if (isLoading) {
-        return;
-    }
-    if (error) { console.log(error.message) };
+export const Matches = ({ setMatchesCount }) => {
+  // hooks variables
+  const { data, isLoading } = useGetMatchPreferencesQuery();
+  const [mathchesModalOpen, setMatchesModalOpen] = useState(false);
 
-    return (
-        <div>
-            <button className="btn-certificate text-white p-2 rounded" onClick={() => setMatchesModalOpen(true)}>Matches Modal</button>
-            <div className="grid lg:grid-cols-2 gap-4">
-                {data?.map((info, index) => {
-                    return (
-                        <div key={index} className=" rounded-lg lg:max-w-lg shadow-xl colorrrrrr">
-                            <p className="bg-white w-28 text-center ml-3 mt-3 text-[12px] py-[6px] px-[8px] rounded-[8px]">{info.percentage}% Match</p>
-                            <img
-                                src={info._doc.profilePhoto}
-                                className="w-20 h-20 mx-auto rounded-full mt-4"
-                                alt="profile"
-                            ></img>
-                            <div className="card-body items-center text-center">
-                                <h2 className="card-title text-white">{info._doc.firstName}</h2>
-                                <p className="text-white">Age : {ageCalculator(info._doc.dateOfBirth)} </p>
-                                <p className="text-white">{info._doc.hometown}, Bangladesh </p>
-                                <div className="flex justify-center pt-5 gap-x-[24px] mb-[15px]">
-                                    <button className="flex justify-center items-center h-[44px] w-[44px] hover:bg-white bg-[#FFDFF4] rounded-full ">
-                                        <TbMessage className="text-[#E41272] h-[20px] w-[20px]" />
-                                    </button>
-                                    <button className="flex justify-center items-center h-[44px] w-[44px] hover:bg-white bg-[#FFDFF4] rounded-full ">
-                                        <BiUserCircle className="text-[#E41272] h-[20px] w-[20px]" />
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    );
-                })}
-            </div>
-            <MatchersModalForm {...{ mathchesModalOpen, setMatchesModalOpen }} />
-        </div>
+  // page title
+  useDocumentTitle("Shongshari | Matches");
+
+  let content = null;
+
+  if (isLoading) {
+    content = (
+      <div className="flex justify-center gap-4 w-full">
+        <MatchesLoader />
+        <MatchesLoader />
+        <MatchesLoader />
+        <MatchesLoader />
+      </div>
     );
+  } else if (!isLoading && data?.matchedData?.length === 0) {
+    content = (
+      <div className="w-full h-[60vh] flex justify-center items-center">
+        <p>Not Matches Found!</p>
+      </div>
+    );
+  } else if (!isLoading && data?.matchedData.length > 0) {
+    content = (
+      <div className="w-full grid grid-cols-2 gap-y-4 gap-2">
+        {data?.matchedData?.map((info, index) => {
+          return <MatchesDesktopCard key={index} {...{ info }} />;
+        })}
+      </div>
+    );
+  }
+
+  useEffect(() => {
+    if (data) {
+      setMatchesCount(data?.matchedData?.length);
+    }
+  }, [setMatchesCount, data]);
+
+  return (
+    <div className="w-full lg:max-w-[521px] mx-auto">
+      <button
+        className="bg-[linear-gradient(166deg,rgb(242,40,118)_0%,rgb(148,45,217)_100%)] text-white p-2 rounded mb-3"
+        onClick={() => setMatchesModalOpen(true)}
+      >
+        Matches Modal
+      </button>
+      {content}
+      <MatchersModalForm {...{ mathchesModalOpen, setMatchesModalOpen }} />
+    </div>
+  );
 };

@@ -1,21 +1,37 @@
+// configuration
 import React from "react";
-import { Link, Outlet } from "react-router-dom";
+import { NavLink, Outlet } from "react-router-dom";
 
+// css
+import "../../../../assets/css/topProfile.css";
 
 const TopProfileMov = () => {
   return (
-    <div className="bg-[#F8F8FF]">
-     <div className="mt-8 pt-8 md:hidden lg:hidden">
-        <Link to="" className='bg-home-suggested pr-4 pt-2 pb-2 pl-2 ml-2  text-white'> Suggested For You </Link>
-        <Link to="/" className='pl-4  pt-2 pb-2   bg-gome-2 '> Top Profile </Link>
-        <Link to="/" className='pl-4  pt-2 pb-2  bg-gome-3 '> Top Groom </Link>
+    <div>
+      <h1 className="font-bold ml-5 mt-10 mb-4">Top Profile</h1>
+      <div>
+        <div className="  top-profile-button-mov flex mx-4">
+          <NavLink to="/" className="mr-2">
+            <p className="text-[11px] text-center">Suggested For You</p>
+          </NavLink>
+
+          <NavLink to="/mobile-top-bride" className="mr-2">
+            <p className="text-[11px] text-center pl-[16px] pr-[16px] font-semibold">
+              Top Bride
+            </p>
+          </NavLink>
+
+          <NavLink to="/mobile-top-groom">
+            <p className="text-[11px] text-center pl-[16px] pr-[16px] font-semibold">
+              Top Groom
+            </p>
+          </NavLink>
+        </div>
+
+        <div>
+          <Outlet />
+        </div>
       </div>
-     <div className="mt-8 pt-8 hidden lg:hidden md:block">
-        <Link to="" className='bg-home-suggested pr-4 pt-2 pb-2 pl-2 ml-8 mr-32 text-white'> Suggested For You </Link>
-        <Link to="/" className='pl-4  pt-2 pb-2 mr-32  bg-gome-2 '> Top Profile </Link>
-        <Link to="/" className='pl-4  pt-2 pb-2  bg-gome-3 '> Top Groom </Link>
-      </div>
-      <Outlet></Outlet>
     </div>
   );
 };
